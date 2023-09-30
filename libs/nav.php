@@ -14,7 +14,7 @@
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');
-$vers='1.09.301';
+$vers='1.09.30';
 // if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
 require_once $_SERVER['DOCUMENT_ROOT'].'/libs/gestion.php';
   $sql="SELECT *

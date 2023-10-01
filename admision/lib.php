@@ -132,10 +132,10 @@ function cmp_admision(){
 	$c[]=new cmp('sexo','s','20',$d['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('genero','s','20',$d['genero'],$w.' '.$o,'genero','genero',null,'',false,false,'','col-3');
 	$c[]=new cmp('nacionalidad','s','20',$d['nacionalidad'],$w.' '.$o,'Nacionalidad','nacionalidad',null,'',false,false,'','col-2');
-	$c[]=new cmp('estado_civil','s','3',$d['estado_civil'],$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
-	$c[]=new cmp('niveduca','s','3',$d['niveduca'],$w.' '.$o,'Nivel Educativo','niveduca',null,null,true,true,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d['ocupacion'],$w.' '.$o,'Ocupacion','ocupacion',null,null,true,true,'','col-25');
-	$c[]=new cmp('regimen','s','20',$d['regimen'],$w.' '.$o,'Regimen','regimen',null,'',true,true,'','col-25');
+	$c[]=new cmp('estado_civil','s','3',$d['estado_civil'],$w.' '.$o,'Estado Civil','estado_civil',null,'',false,false,'','col-15');
+	$c[]=new cmp('niveduca','s','3',$d['niveduca'],$w.' '.$o,'Nivel Educativo','niveduca',null,'',false,false,'','col-2');
+	$c[]=new cmp('ocupacion','s','3',$d['ocupacion'],$w.' '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-2');
+	$c[]=new cmp('regimen','s','20',$d['regimen'],$w.' '.$o,'Regimen','regimen',null,'',true,true,'','col-2');
 	$c[]=new cmp('eapb','s','20',$d['eapb'],$w.' '.$o,'EAPB','eapb',null,'',true,true,'','col-25');
 	$c[]=new cmp('localidad','t','20',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-35');
 	$c[]=new cmp('barrio','t','20',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,'',false,false,'','col-35');

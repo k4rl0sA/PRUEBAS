@@ -21,22 +21,17 @@ else {
 
 
 function lis_homes(){
-	$total="SELECT COUNT(*) AS total FROM (
-    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
-    FROM hog_geo H
-    INNER JOIN usuarios U ON H.subred = U.subred
-    LEFT JOIN adscrip A ON H.territorio = A.territorio
-    WHERE H.estado_v IN ('7') ".whe_homes()."
-        AND U.id_usuario = '{$_SESSION['us_sds']}'
-        AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
-) AS Subquery";
+	$total=" SELECT count(*) as total
+	FROM hog_geo H  
+	 WHERE estado_v  in('7') ".whe_homes()." AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))";
+
 	$info=datos_mysql($total);
-	$total=$info['responseResult'][0]['total']; 
+	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+	$sql="SELECT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
 	H.sector_catastral,
@@ -50,42 +45,37 @@ $sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
-	INNER JOIN usuarios U ON H.subred = U.subred 
-	LEFT JOIN adscrip A ON H.territorio=A.territorio
-WHERE H.estado_v  in('7') ".whe_homes()." 
-	AND U.id_usuario = '{$_SESSION['us_sds']}'
-	AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') 
-	OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
-	GROUP BY ACCIONES
+WHERE estado_v  in('7') ".whe_homes()." 
+	AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
+	AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
 	ORDER BY nummanzana, predio_num
-	LIMIT $pag, $regxPag";
+    LIMIT $pag, $regxPag";
+//    echo $sql;
 
-
-	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 function whe_homes() {
 	$sql = "";
+	// print_r($_POST);
 	if ($_POST['fsector'])
-		$sql .= " AND H.sector_catastral = '".$_POST['fsector']."'";
+		$sql .= " AND sector_catastral = '".$_POST['fsector']."'";
 	if ($_POST['fmanz'])
-		$sql .= " AND H.nummanzana = '".$_POST['fmanz']."'";
+		$sql .= " AND nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
-		$sql .= " AND H.predio_num = '".$_POST['fpred']."'";
-	if ($_POST['fdigita'])
-		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
+		$sql .= " AND predio_num = '".$_POST['fpred']."'";
+//	if ($_POST['fdigita'])
+//		$sql .= " AND usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
+				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
 			} else {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23:59:59'";
+				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
 		}
 	return $sql;
 }
-
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 

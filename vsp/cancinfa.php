@@ -76,11 +76,11 @@ function cmp_cancinfa(){
 
 	  $c[]=new cmp('id_cancinfa','h','50',$_POST['id'],$w.' '.$o,'','id_cancinfa',null,null,false,true,'','col-2');
     
-    $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0);');
-    $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2');
-    $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-    $c[]=new cmp('estado_s','s','3',$d,$w.' '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
-    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
     
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
@@ -114,21 +114,31 @@ function cmp_cancinfa(){
     $c[]=new cmp('caso_afirmativo','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Relacione Cuales signos y sintomas, Y Atención Recibida Hasta el Momento','caso_afirmativo',null,null,false,$x,'','col-4');
     $c[]=new cmp('otras_condiciones','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Otras Condiciones de Riesgo que Requieren una Atención Complementaria.','otras_condiciones',null,null,false,$x,'','col-4');
     $c[]=new cmp('observaciones','a','1500',$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-10');
-    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$o,'Cierre de Caso','rta',null,null,false,$x,'','col-1','enabFincas(this,\'cc\');');
-    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
+    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-2','enabFincas(this,\'cc\');');
+    $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
+    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-25');
     //igual
-
-    $c[]=new cmp('supera_problema','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria problemas prácticos','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('supera_emocional','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria estado emocional','rta',null,null,false,$x,'','col-3');
+    
+   
+    $c[]=new cmp('supera_problema','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria problemas prácticos','rta',null,null,false,$x,'','col-35');
+    $c[]=new cmp('supera_emocional','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria estado emocional','rta',null,null,false,$x,'','col-35');
     $c[]=new cmp('supera_dolor','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria Valoración del dolor','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('supera_funcional','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria valoracion funcional','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('supera_educacion','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria Educación','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-1');
+    $c[]=new cmp('supera_funcional','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria valoracion funcional','rta',null,null,false,$x,'','col-35');
+    $c[]=new cmp('supera_educacion','s','2',$d,$w.' cc '.$no.' '.$o,'Se han superado las necesidades en la categoria Educación','rta',null,null,false,$x,'','col-35');
+    $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-3');
+    $c[]=new cmp('users_bina[]','m','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
+
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
 
+function opc_bina($id=''){
+  return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
+}
+function opc_motivo_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
@@ -231,13 +241,13 @@ function gra_cancinfa(){
   $id=divide($_POST['id_cancinfa']);
   if(count($id)==5){
     $sql="UPDATE vsp_cancinfa SET 
-    diagnosticado=trim(upper('{$_POST['diagnosticado']}')),fecha_dx=trim(upper('{$_POST['fecha_dx']}')),tratamiento=trim(upper('{$_POST['tratamiento']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),cual_espe=trim(upper('{$_POST['cual_espe']}')),trata_orde=trim(upper('{$_POST['trata_orde']}')),fecha_cirug=trim(upper('{$_POST['fecha_cirug']}')),fecha_quimio=trim(upper('{$_POST['fecha_quimio']}')),fecha_radiote=trim(upper('{$_POST['fecha_radiote']}')),fecha_otro=trim(upper('{$_POST['fecha_otro']}')),otro_cual=trim(upper('{$_POST['otro_cual']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),supera_problema=trim(upper('{$_POST['supera_problema']}')),supera_emocional=trim(upper('{$_POST['supera_emocional']}')),supera_dolor=trim(upper('{$_POST['supera_dolor']}')),supera_funcional=trim(upper('{$_POST['supera_funcional']}')),supera_educacion=trim(upper('{$_POST['supera_educacion']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    diagnosticado=trim(upper('{$_POST['diagnosticado']}')),fecha_dx=trim(upper('{$_POST['fecha_dx']}')),tratamiento=trim(upper('{$_POST['tratamiento']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),cual_espe=trim(upper('{$_POST['cual_espe']}')),trata_orde=trim(upper('{$_POST['trata_orde']}')),fecha_cirug=trim(upper('{$_POST['fecha_cirug']}')),fecha_quimio=trim(upper('{$_POST['fecha_quimio']}')),fecha_radiote=trim(upper('{$_POST['fecha_radiote']}')),fecha_otro=trim(upper('{$_POST['fecha_otro']}')),otro_cual=trim(upper('{$_POST['otro_cual']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),supera_problema=trim(upper('{$_POST['supera_problema']}')),supera_emocional=trim(upper('{$_POST['supera_emocional']}')),supera_dolor=trim(upper('{$_POST['supera_dolor']}')),supera_funcional=trim(upper('{$_POST['supera_funcional']}')),supera_educacion=trim(upper('{$_POST['supera_educacion']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),users_bina = TRIM(UPPER('{$_POST['users_bina']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_cancinfa =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
     $sql="INSERT INTO vsp_cancinfa VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['diagnosticado']}')),$fecha_dx,trim(upper('{$_POST['tratamiento']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['cual_espe']}')),trim(upper('{$_POST['trata_orde']}')),$fecha_cirug,$fecha_quimio,$fecha_radiote,$fecha_otro,trim(upper('{$_POST['otro_cual']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),$fecha_cierre,trim(upper('{$_POST['supera_problema']}')),trim(upper('{$_POST['supera_emocional']}')),trim(upper('{$_POST['supera_dolor']}')),trim(upper('{$_POST['supera_funcional']}')),trim(upper('{$_POST['supera_educacion']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['diagnosticado']}')),$fecha_dx,trim(upper('{$_POST['tratamiento']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['cual_espe']}')),trim(upper('{$_POST['trata_orde']}')),$fecha_cirug,$fecha_quimio,$fecha_radiote,$fecha_otro,trim(upper('{$_POST['otro_cual']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),$fecha_cierre,trim(upper('{$_POST['supera_problema']}')),trim(upper('{$_POST['supera_emocional']}')),trim(upper('{$_POST['supera_dolor']}')),trim(upper('{$_POST['supera_funcional']}')),trim(upper('{$_POST['supera_educacion']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$_POST['users_bina']}')),
     TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
     // echo $sql;
   }
@@ -251,7 +261,7 @@ function gra_cancinfa(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_cancinfa,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,diagnosticado,fecha_dx,tratamiento,asiste_control,cual_espe,trata_orde,fecha_cirug,fecha_quimio,fecha_radiote,fecha_otro,otro_cual,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,supera_problema,supera_emocional,supera_dolor,supera_funcional,supera_educacion,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,diagnosticado,fecha_dx,tratamiento,asiste_control,cual_espe,trata_orde,fecha_cirug,fecha_quimio,fecha_radiote,fecha_otro,otro_cual,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,supera_problema,supera_emocional,supera_dolor,supera_funcional,supera_educacion,redu_riesgo_cierre,users_bina
       FROM vsp_cancinfa
       WHERE id_cancinfa ='{$id[0]}'";
       // echo $sql;

@@ -75,11 +75,11 @@ function cmp_cronicos(){
   
 	$c[]=new cmp('id_cronicos','h','50',$_POST['id'],$w.' '.$o,'','id_cronicos',null,null,false,$x,'','col-2');
 
-    $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
-    $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2');
-    $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-    $c[]=new cmp('estado_s','s','3',$d,$w.' '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['acc'],['Ob'],['nO'],['bL']);");
-    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
     
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
@@ -98,11 +98,11 @@ function cmp_cronicos(){
     $c[]=new cmp('fecha_hemo','d','10',$d,$w.' hG '.$bl.' '.$o,'Fecha de Hemoglobina Glicosilada','fecha_hemo',null,null,false,$x,'','col-2',"validDate(this,-730,0)");
     $c[]=new cmp('valor_hemo','n','3',$d,$w.' hG '.$bl.' '.$o,'Valor Hemoglobina Glicisilada mas reciente','valor_hemo',null,null,false,$x,'','col-2');
     $c[]=new cmp('tas','n',3, $d,$w.' '.$o,'Tensión Sistolica Mín=60 - Máx=310','tas','rgxsisto','###',true,$x,'','col-35',"valSist('tas');");
-	  $c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','###',true,$x,'','col-35',"valTensions('tas',this);valDist('tad');");
-	  $c[]=new cmp('glucometria','n',4, $d,$w.' '.$o,'Glucometría Mín=70 - Máx=190','glu','','###',true,$x,'','col-3');
+    $c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','###',true,$x,'','col-35',"valTensions('tas',this);valDist('tad');");
+    $c[]=new cmp('glucometria','n',4, $d,$w.' '.$o,'Glucometría Mín=70 - Máx=190','glu','','###',true,$x,'','col-3');
     $c[]=new cmp('peso','sd',6, $d,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgx3in1fl','###.##',true,$x,'','col-2');
-	  $c[]=new cmp('talla','sd',5, $d,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgx3in1fl','###.#',true,$x,'','col-2','calImc(\'peso\',this,\'imc\');');
-	  $c[]=new cmp('imc','t',6, $d,$w.' '.$bl.' '.$o,'IMC','imc','','',false,false,'','col-2');
+    $c[]=new cmp('talla','sd',5, $d,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgx3in1fl','###.#',true,$x,'','col-2','calImc(\'peso\',this,\'imc\');');
+    $c[]=new cmp('imc','t',6, $d,$w.' '.$bl.' '.$o,'IMC','imc','','',false,false,'','col-2');
     $c[]=new cmp('peri_cintura','n','3',$d,$w.' '.$o,'Perímetro de cintura','peri_cintura',null,null,false,$x,'','col-2');
     $c[]=new cmp('fuma','s','2',$d,$w.' '.$o,'¿Fuma?','rta',null,null,false,$x,'','col-2');
     
@@ -124,14 +124,22 @@ function cmp_cronicos(){
     $c[]=new cmp('caso_afirmativo','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Relacione Cuales signos y sintomas, Y Atención Recibida Hasta el Momento','caso_afirmativo',null,null,false,$x,'','col-4');
     $c[]=new cmp('otras_condiciones','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Otras Condiciones de Riesgo que Requieren una Atención Complementaria.','otras_condiciones',null,null,false,$x,'','col-4');
     $c[]=new cmp('observaciones','a','1500',$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-10');
-    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$o,'Cierre de Caso','rta',null,null,false,$x,'','col-1','enabFincas(this,\'cc\');');
-    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
+    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-2','enabFincas(this,\'cc\');');
+    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-25');
+    $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
+    $c[]=new cmp('users_bina[]','m','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
     
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
 
+function opc_bina($id=''){
+  return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
+}
+function opc_motivo_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
   }
@@ -225,13 +233,13 @@ function gra_cronicos(){
   $id=divide($_POST['id_cronicos']);
   if(count($id)==5){
     $sql="UPDATE vsp_cronicos SET 
-     condi_diag=trim(upper('{$_POST['condi_diag']}')),dx1=trim(upper('{$_POST['dx1']}')),dx2=trim(upper('{$_POST['dx2']}')),dx3=trim(upper('{$_POST['dx3']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),trata_farma=trim(upper('{$_POST['trata_farma']}')),adhere_tratami=trim(upper('{$_POST['adhere_tratami']}')),mantien_dieta=trim(upper('{$_POST['mantien_dieta']}')),actividad_fisica=trim(upper('{$_POST['actividad_fisica']}')),metodo_fecun=trim(upper('{$_POST['metodo_fecun']}')),cual=trim(upper('{$_POST['cual']}')),hemoglobina=trim(upper('{$_POST['hemoglobina']}')),fecha_hemo=trim(upper('{$_POST['fecha_hemo']}')),valor_hemo=trim(upper('{$_POST['valor_hemo']}')),tas=trim(upper('{$_POST['tas']}')),tad=trim(upper('{$_POST['tad']}')),glucometria=trim(upper('{$_POST['glucometria']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),peri_cintura=trim(upper('{$_POST['peri_cintura']}')),fuma=trim(upper('{$_POST['fuma']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+     condi_diag=trim(upper('{$_POST['condi_diag']}')),dx1=trim(upper('{$_POST['dx1']}')),dx2=trim(upper('{$_POST['dx2']}')),dx3=trim(upper('{$_POST['dx3']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),trata_farma=trim(upper('{$_POST['trata_farma']}')),adhere_tratami=trim(upper('{$_POST['adhere_tratami']}')),mantien_dieta=trim(upper('{$_POST['mantien_dieta']}')),actividad_fisica=trim(upper('{$_POST['actividad_fisica']}')),metodo_fecun=trim(upper('{$_POST['metodo_fecun']}')),cual=trim(upper('{$_POST['cual']}')),hemoglobina=trim(upper('{$_POST['hemoglobina']}')),fecha_hemo=trim(upper('{$_POST['fecha_hemo']}')),valor_hemo=trim(upper('{$_POST['valor_hemo']}')),tas=trim(upper('{$_POST['tas']}')),tad=trim(upper('{$_POST['tad']}')),glucometria=trim(upper('{$_POST['glucometria']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),peri_cintura=trim(upper('{$_POST['peri_cintura']}')),fuma=trim(upper('{$_POST['fuma']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),users_bina = TRIM(UPPER('{$_POST['users_bina']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_cronicos =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
     $sql="INSERT INTO vsp_cronicos VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['condi_diag']}')),trim(upper('{$_POST['dx1']}')),trim(upper('{$_POST['dx2']}')),trim(upper('{$_POST['dx3']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['trata_farma']}')),trim(upper('{$_POST['adhere_tratami']}')),trim(upper('{$_POST['mantien_dieta']}')),trim(upper('{$_POST['actividad_fisica']}')),trim(upper('{$_POST['metodo_fecun']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['hemoglobina']}')),trim(upper('{$_POST['fecha_hemo']}')),trim(upper('{$_POST['valor_hemo']}')),trim(upper('{$_POST['tas']}')),trim(upper('{$_POST['tad']}')),trim(upper('{$_POST['glucometria']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['peri_cintura']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['condi_diag']}')),trim(upper('{$_POST['dx1']}')),trim(upper('{$_POST['dx2']}')),trim(upper('{$_POST['dx3']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['trata_farma']}')),trim(upper('{$_POST['adhere_tratami']}')),trim(upper('{$_POST['mantien_dieta']}')),trim(upper('{$_POST['actividad_fisica']}')),trim(upper('{$_POST['metodo_fecun']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['hemoglobina']}')),trim(upper('{$_POST['fecha_hemo']}')),trim(upper('{$_POST['valor_hemo']}')),trim(upper('{$_POST['tas']}')),trim(upper('{$_POST['tad']}')),trim(upper('{$_POST['glucometria']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['peri_cintura']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$_POST['users_bina']}')),
       TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
     }
@@ -245,7 +253,7 @@ function gra_cronicos(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_cronicos,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,condi_diag,dx1,dx2,dx3,asiste_control,trata_farma,adhere_tratami,mantien_dieta,actividad_fisica,metodo_fecun,cual,hemoglobina,fecha_hemo,valor_hemo,tas,tad,glucometria,peso,talla,imc,peri_cintura,fuma,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,condi_diag,dx1,dx2,dx3,asiste_control,trata_farma,adhere_tratami,mantien_dieta,actividad_fisica,metodo_fecun,cual,hemoglobina,fecha_hemo,valor_hemo,tas,tad,glucometria,peso,talla,imc,peri_cintura,fuma,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_cronicos
       WHERE id_cronicos ='{$id[0]}'";
       // echo $sql;

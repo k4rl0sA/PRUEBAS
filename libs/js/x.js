@@ -485,6 +485,18 @@ function enabDesEsc(a,clsCmp,e){
 	}
 }
 
+function Ocup5(a,b){
+	rta =getAge(a);
+	ano=rta['anios'];
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	for (i=0; i<ele.length;i++) {
+		if(ano<6){
+			enaFie(ele[i],true);
+  		}else{
+			enaFie(ele[i],false);
+		}
+	}
+}
 /* function zsco(){
 	const pes=document.getElementById('peso').value;
 	const fec=document.getElementById('fechanacimiento').value;

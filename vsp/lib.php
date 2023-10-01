@@ -21,18 +21,22 @@ else {
 
 
 function lis_homes(){
-	$total=" SELECT count(*) as total
-	FROM hog_geo H  
-	 WHERE estado_v  in('7') ".whe_homes()." AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))";
-
+	$total="SELECT COUNT(*) AS total FROM (
+    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
+    FROM hog_geo H
+    INNER JOIN usuarios U ON H.subred = U.subred
+    LEFT JOIN adscrip A ON H.territorio = A.territorio
+    WHERE H.estado_v IN ('7') ".whe_homes()."
+        AND U.id_usuario = '{$_SESSION['us_sds']}'
+        AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
+) AS Subquery";
 	$info=datos_mysql($total);
-	$total=$info['responseResult'][0]['total'];
+	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
-   /*  $sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v) ACCIONES,	FN_CATALOGODESC(42,`estrategia`) estrategia, direccion,	sector_catastral 'Sector Catastral',	nummanzana,	predio_num,	FN_CATALOGODESC(3,zona) zona,	FN_CATALOGODESC(2,localidad) 'Localidad',	usu_creo,fecha_create,FN_CATALOGODESC(44,`estado_v`) estado	FROM `hog_geo` 		WHERE '1'='1' ";	$sql.=whe_homes();	$sql.=" AND estado_v='7' ORDER BY fecha_create DESC";	$sql.=' LIMIT '.$pag.','.$regxPag; */
-
-   $sql="SELECT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+	
+$sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
 	H.sector_catastral,
@@ -46,33 +50,37 @@ function lis_homes(){
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
-WHERE estado_v  in('7') ".whe_homes()." 
-	AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
+	INNER JOIN usuarios U ON H.subred = U.subred 
+	LEFT JOIN adscrip A ON H.territorio=A.territorio
+WHERE H.estado_v  in('7') ".whe_homes()." 
+	AND U.id_usuario = '{$_SESSION['us_sds']}'
+	AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') 
+	OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
+	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
-    LIMIT $pag, $regxPag";
-//    echo $sql;
-	
+	LIMIT $pag, $regxPag";
+
+
+	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 function whe_homes() {
 	$sql = "";
-	// print_r($_POST);
 	if ($_POST['fsector'])
-		$sql .= " AND sector_catastral = '".$_POST['fsector']."'";
+		$sql .= " AND H.sector_catastral = '".$_POST['fsector']."'";
 	if ($_POST['fmanz'])
-		$sql .= " AND nummanzana = '".$_POST['fmanz']."'";
+		$sql .= " AND H.nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
-		$sql .= " AND predio_num = '".$_POST['fpred']."'";
-//	if ($_POST['fdigita'])
-//		$sql .= " AND usu_creo ='".$_POST['fdigita']."'";
+		$sql .= " AND H.predio_num = '".$_POST['fpred']."'";
+	if ($_POST['fdigita'])
+		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
+				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
 			} else {
-				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
+				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
 		}
 	return $sql;
@@ -173,7 +181,7 @@ function cmp_homes(){
 	
 	$o='fam';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN FAMILIAR',$w);
-	$c[]=new cmp('tipo_vivienda','s','3',$d,$w.' '.$o,'Tipo de Vivienda','tipo_vivienda',null,null,true,true,'','col-25');
+	$c[]=new cmp('tipo_vivienda','s','3',$d,$w.' '.$o,'Tipo de Vivienda','tipo_vivienda',null,null,true,true,'','col-25',"tipVivi('tipo_vivienda','bed');");
 	$c[]=new cmp('tendencia','s','3',$d,$w.' '.$o,'Tenencia de la Vivienda','tendencia',null,null,true,true,'','col-25');
 	$c[]=new cmp('dormitorios','n',2,$d,$w.' '.$o,'Número de dormitorios','dormitorios',null,null,true,true,'','col-25');
 	$c[]=new cmp('actividad_economica','o',2,$d,$w.' '.$o,'Uso para  actividad económicas','actividad_economica',null,null,false,true,'','col-25');
@@ -395,12 +403,12 @@ function cmp_person(){
 	$rta="";
 	/* $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='datos-lis' >".lista_persons()."</div></div>"; */
-	$t=['anos'=>0];
+	// $t=['anos'=>0];
 	$hoy=date('Y-m-d');
-	$p=get_edad();
+	// $p=get_edad();
     $w="person";
-	if ($p==""){$p=$t;}
-	$ocu= ($p['anos']>5) ? true : false ;
+	// if ($p==""){$p=$t;}
+	/* $ocu= ($p['anos']>5) ? true : false ; */
 	/* $t=['vivipersona'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','discapacidad'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','regimen'=>'','eapb'=>'','localidad'=>'','upz'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];$w='person';
 	$d=get_person(); 
 	if ($d=="") {$d=$t;}$u=($d['vivipersona']=='')?true:false; */
@@ -425,7 +433,7 @@ function cmp_person(){
 
 	$c[]=new cmp('niveduca','s','3',$d,$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
 	$c[]=new cmp('abanesc','s','3',$d,$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d,$w.' '.$o,'Ocupacion','ocupacion',null,'',$ocu,$ocu,'','col-25','timeDesem(this,\'des\');');//true
+	$c[]=new cmp('ocupacion','s','3',$d,$w.' '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-25','timeDesem(this,\'des\');');//true
 	$c[]=new cmp('tiemdesem','n','3',$d,$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
 
 	$c[]=new cmp('vinculo_jefe','s','3',$d,$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
@@ -621,6 +629,7 @@ function gra_person(){
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 
 	}
+	echo $sql;
 	  $rta=dato_mysql($sql);
 	  return $rta;
 	}

@@ -113,7 +113,7 @@ function cmp_admision(){
 	$rta="<div class='encabezado adm'>TABLA ADMISION</div>
 	<div class='contenido' id='adm-lis'>".lis_adm()."</div></div>";
 	$hoy=date('Y-m-d');
-	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','direccion'=>''];
+	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','ocupacion'=>'','regimen'=>'','eapb'=>'','localidad'=>'','barrio'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$d=get_personas();
 	if ($d==""){$d=$t;}
 	$e="";
@@ -132,13 +132,18 @@ function cmp_admision(){
 	$c[]=new cmp('sexo','s','20',$d['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('genero','s','20',$d['genero'],$w.' '.$o,'genero','genero',null,'',false,false,'','col-3');
 	$c[]=new cmp('nacionalidad','s','20',$d['nacionalidad'],$w.' '.$o,'Nacionalidad','nacionalidad',null,'',false,false,'','col-2');
+	$c[]=new cmp('estado_civil','s','3',$d['estado_civil'],$w.' '.$o,'Estado Civil','estado_civil',null,'',false,false,'','col-15');
+	$c[]=new cmp('niveduca','s','3',$d['niveduca'],$w.' '.$o,'Nivel Educativo','niveduca',null,'',false,false,'','col-2');
+	$c[]=new cmp('ocupacion','s','3',$d['ocupacion'],$w.' '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-2');
 	$c[]=new cmp('regimen','s','20',$d['regimen'],$w.' '.$o,'Regimen','regimen',null,'',true,true,'','col-2');
-	$c[]=new cmp('eapb','s','20',$d['eapb'],$w.' '.$o,'EAPB','eapb',null,'',true,true,'','col-2');
-	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,'',false,false,'','col-2');
-	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,'',false,false,'','col-2');
-	$c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,'',false,false,'','col-2');
-	$c[]=new cmp('direccion','t','20',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-2');
- 
+	$c[]=new cmp('eapb','s','20',$d['eapb'],$w.' '.$o,'EAPB','eapb',null,'',true,true,'','col-25');
+	$c[]=new cmp('localidad','t','20',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-35');
+	$c[]=new cmp('barrio','t','20',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,'',false,false,'','col-35');
+	$c[]=new cmp('direccion','t','20',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-3');
+ 	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,'',false,false,'','col-3');
+	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,'',false,false,'','col-3');
+	$c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,'',false,false,'','col-3');
+	
 	$o='admfac';
 	$c[]=new cmp($o,'e',null,'ADMISIÓN Y FACTURACIÓN',$w);
 	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,true,'','col-15','validDate(this,-2,0)');
@@ -174,11 +179,11 @@ function get_personas(){
 	}else{
 		 $id=divide($_REQUEST['id']);
 		//  print_r($id);
-		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.regimen,P.eapb,H.telefono1,H.telefono2,H.telefono3,G.direccion
+		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,G.localidad,G.barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3
 			FROM adm_facturacion F
 			LEFT JOIN personas P ON F.tipo_doc = P.tipo_doc AND F.documento = P.idpersona 
 			LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion
+			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
 		WHERE  P.tipo_doc='{$id[0]}' AND P.idpersona='{$id[1]}'";
 		// echo $sql;
@@ -195,12 +200,12 @@ function get_admision(){
 		$id=divide($_REQUEST['id']);
 		// print_r($id);
 		$sql="SELECT concat(F.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
-		F.tipo_doc,F.documento,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.regimen,P.eapb,H.telefono1,H.telefono2,H.telefono3,G.direccion,fecha_consulta,tipo_consulta,
+		F.tipo_doc,F.documento,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,G.localidad,G.barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3,fecha_consulta,tipo_consulta,
 		cod_cups,final_consul,cod_admin,cod_factura,estado_hist,tipo_docnew,documento_new
 		FROM `adm_facturacion` F
 		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
 		LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion
+			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
 		WHERE id_factura='{$id[2]}'";
 		// echo $sql;
@@ -229,6 +234,21 @@ function opc_regimen($id=''){
 }
 function opc_eapb($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
+}
+function opc_estado_civil($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=47 and estado='A' ORDER BY 1",$id);
+}
+function opc_niveduca($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=180 and estado='A' ORDER BY 1",$id);
+}
+function opc_ocupacion($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=175 and estado='A' ORDER BY 1",$id);
+}
+function opc_localidad($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=2 and estado='A' ORDER BY 1",$id);
+}
+function opc_barrio($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=20 and estado='A' ORDER BY 1",$id);
 }
 function opc_tipo_consulta($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=182 and estado='A'  ORDER BY 1 ",$id);

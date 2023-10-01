@@ -176,7 +176,9 @@ function whe_hog_geoloc() {
 	if (isset($_POST['fdigita'])){
 		if($_POST['fdigita']) $sql .= " AND asignado ='".$_POST['fdigita']."'";
 	}else{
-		$sql .= "AND (H.equipo IN (SELECT U.equipo from usuarios where id_usuario='80811594') OR (asignado='80811594') OR (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='80811594')))";
+		$sql .= "AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') 
+					OR (asignado='{$_SESSION['us_sds']}'))";
+		// $sql .= "AND (H.equipo     IN (SELECT U.equipo from usuarios where id_usuario='{$_SESSION['us_sds']}') OR (asignado='{$_SESSION['us_sds']}') OR (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}')))";
 	}
 	return $sql;
 }

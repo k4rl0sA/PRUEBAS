@@ -22,49 +22,20 @@ else {
 
 
 function lis_homes(){
-	$total=" SELECT count(*) as total
-	FROM hog_geo H  WHERE estado_v  in('7') ".whe_homes()." 
-	AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))";
+	$total="SELECT COUNT(*) AS total FROM (
+    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
+    FROM hog_geo H
+    INNER JOIN usuarios U ON H.subred = U.subred
+    LEFT JOIN adscrip A ON H.territorio = A.territorio
+    WHERE H.estado_v IN ('7') ".whe_homes()."
+        AND U.id_usuario = '{$_SESSION['us_sds']}'
+        AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
+) AS Subquery";
 	$info=datos_mysql($total);
-	$total=$info['responseResult'][0]['total'];
+	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
-   /*  $sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v) ACCIONES,
-	FN_CATALOGODESC(42,`estrategia`) estrategia, direccion,
-	sector_catastral 'Sector Catastral',
-	nummanzana,
-	predio_num,
-	FN_CATALOGODESC(3,zona) zona,
-	FN_CATALOGODESC(2,localidad) 'Localidad',
-	usu_creo,fecha_create,FN_CATALOGODESC(44,`estado_v`) estado
-	FROM `hog_geo` H
-	INNER JOIN usuarios U ON H.subred = U.subred
-		WHERE '1'='1' ";
-	$sql.=whe_homes();
-	$sql.=" AND estado_v='7'  ORDER BY fecha_create DESC";
-	$sql.=' LIMIT '.$pag.','.$regxPag; */
-	/* $sql="SELECT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
-	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
-	direccion,
-	H.sector_catastral,
-	H.nummanzana AS Manzana,
-	H.predio_num AS predio,
-	H.unidad_habit AS 'Unidad Hab',
-	FN_CATALOGODESC(3,	H.zona) AS zona,
-	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	H.usu_creo,
-	H.equipo,
-	H.fecha_create,
-	FN_CATALOGODESC(44,H.estado_v) AS estado
-	FROM hog_geo H
-WHERE estado_v  in('7') ".whe_homes()." 
-	AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
-	ORDER BY nummanzana, predio_num
-    LIMIT $pag, $regxPag"; */
-// echo $sql;
 	
 $sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
@@ -84,13 +55,13 @@ $sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
 WHERE H.estado_v  in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
-	AND (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	OR (H.usu_creo IN('{$_SESSION['us_sds']}')) 
-	OR 	(H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}')))
+	AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') 
+	OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
-    LIMIT $pag, $regxPag";
- 
+	LIMIT $pag, $regxPag";
+
+
 	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
@@ -441,12 +412,12 @@ function cmp_person(){
 	$rta="";
 	/* $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='datos-lis' >".lista_persons()."</div></div>"; */
-	$t=['anos'=>0];
+	// $t=['anos'=>0];
 	$hoy=date('Y-m-d');
-	$p=get_edad();
+	// $p=get_edad();
     $w="person";
-	if ($p==""){$p=$t;}
-	$ocu= ($p['anos']>5) ? true : false ;
+	// if ($p==""){$p=$t;}
+	/* $ocu= ($p['anos']>5) ? true : false ; */
 	/* $t=['vivipersona'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','discapacidad'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','regimen'=>'','eapb'=>'','localidad'=>'','upz'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];$w='person';
 	$d=get_person(); 
 	if ($d=="") {$d=$t;}$u=($d['vivipersona']=='')?true:false; */
@@ -462,7 +433,7 @@ function cmp_person(){
 	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t','30',$d,$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
 	$c[]=new cmp('apellido2','t','30',$d,$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','d','',$d,$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');");
+	$c[]=new cmp('fecha_nacimiento','d','',$d,$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
 	$c[]=new cmp('sexo','s','3',$d,$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
 	$c[]=new cmp('genero','s','3',$d,$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
 	$c[]=new cmp('oriensexual','s','3',$d,$w.' osx '.$o,'Orientacion Sexual','oriensexual',null,null,true,true,'','col-2');
@@ -470,7 +441,7 @@ function cmp_person(){
 	$c[]=new cmp('estado_civil','s','3',$d,$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
 	$c[]=new cmp('niveduca','s','3',$d,$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
 	$c[]=new cmp('abanesc','s','3',$d,$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d,$w.' '.$o,'Ocupacion','ocupacion',null,'',$ocu,$ocu,'','col-25','timeDesem(this,\'des\');');//true
+	$c[]=new cmp('ocupacion','s','3',$d,$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-25',"timeDesem(this,'des');");//true
 	$c[]=new cmp('tiemdesem','n','3',$d,$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
 	$c[]=new cmp('vinculo_jefe','s','3',$d,$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
 	$c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ocu','idi');");
@@ -529,7 +500,7 @@ function men_person(){
 	return $rta;
 }
 
-function get_edad(){
+/* function get_edad(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
@@ -548,7 +519,7 @@ function get_edad(){
 			return "";
 		}
 	}
-}
+} */
 
 function get_person(){
 	// print_r($_POST);

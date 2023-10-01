@@ -240,7 +240,7 @@ function opc_etapa($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo='136' and estado='A' ORDER BY 1",$id);
 }
 function opc_sema_gest($id=''){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo='137' and estado='A' ORDER BY 1",$id);
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo='137' and estado='A' ORDER BY LENGTH(idcatadeta)",$id);
 }
 function opc_resultado_1($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo='' and estado='A' ORDER BY 1",$id);

@@ -511,6 +511,28 @@ function staEfe(a,b){
 		}
 	}
 }
+
+function enabEtap(a, b) {
+	const act = document.getElementById(a);
+  
+	const selector = b.map(clase => `select.${clase}, input.${clase}, textarea.${clase}`).join(', ');
+  
+	const elementos = [...document.querySelectorAll(selector)];
+  
+	const valorA = parseInt(act.value);
+	const habilitar = (valorA === 1 && (elementos.some(elemento => elemento.classList.contains('pRe')) || elementos.some(elemento => elemento.classList.contains('PYg'))))
+	 ||
+					  ((valorA === 2 || valorA === 3) && (elementos.some(elemento => elemento.classList.contains('PuE')) || elementos.some(elemento => elemento.classList.contains('PYg'))));
+  
+	elementos.forEach(elemento => {
+	  enaFie(elemento, !habilitar);
+	});
+  }
+  
+  
+
+
+  
 /* function zsco(){
 	const pes=document.getElementById('peso').value;
 	const fec=document.getElementById('fechanacimiento').value;

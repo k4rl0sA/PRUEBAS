@@ -497,6 +497,20 @@ function Ocup5(a,b){
 		}
 	}
 }
+
+function staEfe(a,b){
+	const act=document.getElementById(a);
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	for (i=0; i<ele.length;i++) {
+		if(act.value=='1'){
+			enaFie(ele[i],true);
+			ele[i].value='1';
+  		}else{
+			enaFie(ele[i],false);
+			ele[i].value='';
+		}
+	}
+}
 /* function zsco(){
 	const pes=document.getElementById('peso').value;
 	const fec=document.getElementById('fechanacimiento').value;

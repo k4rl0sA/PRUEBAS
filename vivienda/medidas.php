@@ -110,9 +110,9 @@ function men_medidas(){
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');//true}
-	$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','gestante',null,null,true,true,'','col-2',"valGluc('glucometria');");
+	$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gest,'','col-2',"valGluc('glucometria');");
 	$c[]=new cmp('etapgest','s','3',$d,$w.' '.$o,'Etapa Gestacional','etapgest',null,'',$gest,$gest,'','col-25');//true
-	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','cronico',null,null,true,true,'','col-2',"valGluc('glucometria');");
+	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"valGluc('glucometria');");
 	/* $c[]=new cmp('pobladifer','s','3',$d,$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-25');//true
 	$c[]=new cmp('incluofici','s','3',$d,$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-25');//true */
 	
@@ -139,7 +139,11 @@ function men_medidas(){
 	$c[]=new cmp('codoral','n',1,$d,$w.' '.$o,'Cod. Salud Bucal','codoral','rgx1codora',null,false,true,'','col-1');
 	$c[]=new cmp('alert10','o',15,$d,$w.' '.$o,'Derivaciones','alert10',null,null,true,true,'','col-1',"enabAlert(this,'der');");
 	$c[]=new cmp('selmul10[]','m',3,$d,$w.' der '.$o,'Derivaciones','selmul10',null,'',false,false,'','col-3');
-	$c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
+	$c[]=new cmp('deac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deac','eAc');");
+	$c[]=new cmp('eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-5');
+	$c[]=new cmp('dpcf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('dpcf','pCf');");
+	$c[]=new cmp('pcf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','pcf',null,null,false,false,'','col-5');
+	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 
 	$o='med';
 	$c[]=new cmp($o,'e',null,'TOMA DE SIGNOS Y MEDIDAS ANTROPOMÉTRICAS',$w);
@@ -386,10 +390,8 @@ function get_medidas(){
 		
 	}
 }
-function opc_gestante($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
-}
-function opc_cronico($id=''){
+
+function opc_rta($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
 function opc_crit_epi($id=''){
@@ -402,7 +404,22 @@ function opc_cursovida($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=176 and estado='A' ORDER BY 1",$id);
 }
 function opc_medico($id=''){
-	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('MED')  AND subred=FN_SUBRED({$_SESSION['us_sds']}) AND estado ='A' ORDER BY 2",$id);
+	return opc_sql("SELECT
+	`id_usuario`,
+	CONCAT(nombre, ' - ', LEFT(perfil, 3))
+FROM
+	`usuarios` U
+	RIGHT JOIN adscrip A ON U.id_usuario= A.doc_asignado
+WHERE
+	`perfil` IN('MEDATE', 'ENFATE')
+	AND U.subred = (SELECT subred from usuarios where id_usuario={$_SESSION['us_sds']})
+	AND	U.id_usuario IN (SELECT doc_asignado FROM adscrip where territorio in (select territorio from adscrip a where doc_asignado={$_SESSION['us_sds']})) 
+	AND U.estado = 'A'
+ORDER BY
+	perfil,2",$id);
+}
+function opc_pcf($id=''){
+	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('APYFAM')  AND subred=FN_SUBRED({$_SESSION['us_sds']}) AND estado ='A' ORDER BY 2",$id);
 }
 function  opc_des($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=0 and estado='A' ORDER BY 1",$id);

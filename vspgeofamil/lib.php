@@ -41,7 +41,7 @@ function lis_fam_geo(){
 	$sql.=whe_fam_geo();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	//echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"fam_geo",$regxPag);
 	}

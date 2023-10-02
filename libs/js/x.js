@@ -519,17 +519,36 @@ function enabEtap(a, b) {
   
 	const elementos = [...document.querySelectorAll(selector)];
   
-	const valorA = parseInt(act.value);
-	const habilitar = (valorA === 1 && (elementos.some(elemento => elemento.classList.contains('pRe')) || elementos.some(elemento => elemento.classList.contains('PYg'))))
-	 ||
-					  ((valorA === 2 || valorA === 3) && (elementos.some(elemento => elemento.classList.contains('PuE')) || elementos.some(elemento => elemento.classList.contains('PYg'))));
-  
 	elementos.forEach(elemento => {
-	  enaFie(elemento, !habilitar);
+	  const valorA = parseInt(act.value);
+	  let habilitar = false;
+  
+	  switch (valorA) {
+		case 1:
+			habilitar = elemento.classList.contains('PuE');
+		  break;
+		case 2:
+			habilitar = elemento.classList.contains('pRe');
+		  break;
+		case 3:
+			habilitar = elemento.classList.contains('pRe');
+		  break;
+	  }
+  
+	  enaFie(elemento, habilitar);
 	});
   }
-  
-  
+
+  function weksEtap(a,b){
+	const act = document.getElementById(a);
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+		if(act.value=='3'){
+			enaFie(ele[0],true);
+			ele[0].value='43';
+  		}else{
+			enaFie(ele[0],false);
+		}
+  }
 
 
   
@@ -579,6 +598,33 @@ function Zsco(a){
 			var rta =data;
 			glu.value=JSON.parse(rta);
 		}
+}
+
+function ZscoAte(a){
+	const sco=document.getElementById('dxnutricional');
+	if (sco!==null){
+	const pes=document.getElementById('atencion_peso').value;
+	const fec=document.getElementById('fecha_nacimiento').value;
+	const sex=document.getElementById('sexo').value;
+	const tal=document.getElementById('atencion_talla').value;
+
+	if (loader !== undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =xmlhttp.responseText;
+				if (loader != undefined) loader.style.display = 'none';
+					console.log(data)
+			}}
+			xmlhttp.open("POST",'lib.php',false);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('a=get&tb=zscore&val='+pes+'_'+fec+'_'+sex+'_'+tal);
+			var rta =data;
+			sco.value=JSON.parse(rta);
+	}
 }
 
 function EnabEfec(a,b,c,d,e) {

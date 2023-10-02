@@ -643,9 +643,9 @@ function cmp_atencion(){
 	$fecha_actual = new DateTime();
 	$fecha_nacimiento = new DateTime($d['fecha_nacimiento']);
 	$edad = $fecha_nacimiento->diff($fecha_actual)->y;
-
 	$adul = ($edad>=18) ? true : false;
 	$meno = ($edad<5) ? true : false;
+	$gest = (($edad>=10 && $edad <= 54) && $d['sexo'] == 'M') ? true : false;
 	
 	$c[]=new cmp($o,'e',null,'Datos atención medica usuario',$w);
 	$c[]=new cmp('ida','h',15,$_POST['id'],$w.' '.$o,'ida','ida',null,'####',false,false,'col-1');
@@ -664,18 +664,23 @@ function cmp_atencion(){
 	$c[]=new cmp('tipo_consulta','s',3,$x,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,false,'','col-2');
 	$c[]=new cmp('atencion_codigocups','s',3,$x,$w.' '.$o,'Código CUPS','cups',null,'',true,false,'','col-3');
 	$c[]=new cmp('atencion_finalidadconsulta','s',3,$x,$w.' '.$o,'Finalidad de la Consulta','consultamedica',null,'',true,false,'','col-3');
+
+
+	$c[]=new cmp('atencion_cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
 	
-	$c[]=new cmp('atencion_peso','t',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','atencion_peso','rgxpeso','###.##',true,true,'','col-2');
-	$c[]=new cmp('atencion_talla','n',3, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','atencion_talla','rgxtalla',null,true,true,'','col-2');
+	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');enabLoca('gestante','AbD');");
+
+	$c[]=new cmp('atencion_peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','atencion_peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('atencion_peso');ZscoAte('dxnutricional');");
+	$c[]=new cmp('atencion_talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','atencion_talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('atencion_talla');ZscoAte('dxnutricional');");
+	$c[]=new cmp('atencion_sistolica','n',3, $x,$w,'TAS Mín=40 - Máx=250','atencion_sistolica','rgxsisto','###',$adul,$adul,'','col-2',"valSist('atencion_sistolica');");
+	$c[]=new cmp('atencion_diastolica','n',3, $x,$w,'TAD Mín=40 - Máx=150','atencion_diastolica','rgxdiast','###',$adul,$adul,'','col-2',"ValTensions('atencion_sistolica',this);valDist('atencion_diastolica');");
+	$c[]=new cmp('atencion_abdominal','n',4,$x,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','atencion_abdominal','rgxperabd','###',$adul,$adul,'','col-3');
 	
 	
-	$c[]=new cmp('atencion_sistolica','n',3, $x,$w,'TAS Mín=40 - Máx=250','atencion_sistolica','rgxsisto','##',$adul,$adul,'','col-15');
-	$c[]=new cmp('atencion_diastolica','n',3, $x,$w,'TAD Mín=40 - Máx=150','atencion_diastolica','rgxdiast','##',$adul,$adul,'','col-15');
-	$c[]=new cmp('atencion_abdominal','n',4,$x,$w.' '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','atencion_abdominal','rgxperabd',null,$adul,$adul,'','col-3');
-	
-	
-	$c[]=new cmp('perime_braq','n',4, $x,$w,'Perimetro Braquial (Cm)',0,null,'#,#',$meno,$meno,'','col-25');
-	$c[]=new cmp('dxnutricional','s',3,$x,$w.'  '.$o,'dx nutricional','nutricion5',null,'',false,false,'','col-25');
+	$c[]=new cmp('perime_braq','sd',4, $x,$w,'Perimetro Braquial (Cm)',0,null,'##,#',$meno,$meno,'','col-3');
+
+	$c[]=new cmp('dxnutricional','t',15,$x,$w.'  '.$o,'Dx Nutricional','des',null,null,false,false,'','col-5');
+
 	$c[]=new cmp('signoalarma','s',2,$x,$w.'  '.$o,'niño o niña con signos de alarma ','aler',null,'',$meno,$meno,'','col-25','AlarChild(this,\'ala\');');
 	$c[]=new cmp('cualalarma','s',3,$x,$w.' ala '.$o,'cual?','alarma5',null,'',false,false,'','col-25');
 	
@@ -693,14 +698,7 @@ function cmp_atencion(){
 
 $o='cronico';
 	$c[]=new cmp($o,'e',null,'Condiciones',$w);
-	$c[]=new cmp('atencion_cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
 
-
-	$gest = (($edad>=10 && $edad <= 54) && $d['sexo'] == 'M') ? true : false;
-
-
-// if (($edad >= 10 && $edad <= 54 ) && $d['sexo'] == 'M') {
-	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3','alerPreg(this,\'pre\',\'nfe\',\'fer\',\'mef\');');
 
 	$c[]=new cmp('fertil','s',3,$x,$w.' pre mef '.$o,'¿Mujer en Edad Fertil (MEF) con intención reproductiva?','aler',null,'',$gest,$gest,'','col-4','enabFert(this,\'fer\',\'nfe\');');
 	$c[]=new cmp('preconcepcional','s',3,$x,$w.' pre nfe '.$o,'Tiene consulta preconcepcional','aler',null,'',$gest,false,'','col-2');
@@ -745,6 +743,7 @@ $o='prurap';
 	$c[]=new cmp('atencion_ordenimagenes','o',3,$x,$w.' '.$o,'Ordena Imágenes Diagnósticas','atencion_ordenimagenes	',null,'',true,true,'','col-3');//,'hidFieOpt(\'atencion_ordenimagenes\',\'img_hid\',this,true)'
 	$c[]=new cmp('atencion_ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
 	$c[]=new cmp('atencion_relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
+	$c[]=new cmp('prioridad','s',3,$x,$w.' '.$o,'Prioridad','prioridad',null,'',true,true,'','col-4');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -786,6 +785,56 @@ function get_personas(){
 		}
 }
 
+function get_zscore(){
+	$id=divide($_POST['val']);
+	 $fechaNacimiento = new DateTime($id[1]);
+	 $fechaActual = new DateTime();
+	 $diferencia = $fechaNacimiento->diff($fechaActual);
+	 $edadEnDias = $diferencia->days;
+	$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+	$sex=$id[2];
+
+$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+	(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+	((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+ (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+//   echo $sql;
+ $info=datos_mysql($sql);
+ 	if (!$info['responseResult']) {
+		return '';
+	}else{
+		$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+		switch ($z) {
+			case ($z <=-3):
+				$des='DESNUTRICIÓN AGUDA SEVERA';
+				break;
+			case ($z >-3 && $z <=-2):
+				$des='DESNUTRICIÓN AGUDA MODERADA';
+				break;
+			case ($z >-2 && $z <=-1):
+				$des='RIESGO DESNUTRICIÓN AGUDA';
+				break;
+			case ($z>-1 && $z <=1):
+					$des='PESO ADECUADO PARA LA TALLA';
+				break;
+			case ($z >1 && $z <=2):
+					$des='RIESGO DE SOBREPESO';
+				break;
+			case ($z >2 && $z <=3):
+					$des='SOBREPESO';
+				break;
+				case ($z >3):
+					$des='OBESIDAD';
+				break;
+			default:
+				$des='Error en el rango, por favor valide';
+				break;
+		}
+
+		return json_encode($z." = ".$des);
+	}
+}
+
 function get_atencion(){
 	if($_REQUEST['id']==''){
 		return "";
@@ -806,13 +855,15 @@ function get_atencion(){
 			if ($total==1){		
 				$sql="SELECT concat(a.documento,'_',a.tipo_doc) id,a.tipo_doc,a.documento,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
+			atencion_cronico, `gestante`, 
 				`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
 				dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
-				`diagnostico3`, atencion_cronico, `gestante`, `fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
+				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
 				`mestruacion`,
 				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
 				`atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
 				`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
+				,prioridad
 			FROM adm_facturacion a
 			LEFT JOIN personas b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
 			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona
@@ -823,13 +874,14 @@ function get_atencion(){
 			}else{
 				$sql="SELECT concat(a.documento,'_',a.tipo_doc) id,a.tipo_doc,a.documento,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 				b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
+				`atencion_cronico`,`gestante`,
 				`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
 			dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
 			`diagnostico3`, `fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
-			`mestruacion`, 
-			vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-			`gestante`, `atencion_cronico`, `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
+			`mestruacion`, vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+			  `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
 			`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
+			,prioridad
 			FROM adm_facturacion a
 			LEFT JOIN personas b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
 			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona AND a.id_factura=c.id_factura
@@ -839,25 +891,6 @@ function get_atencion(){
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}
-			
-		 
-		/* 	
-		`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
-			dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
-			`diagnostico3`, atencion_cronico,`atencion_fertil`, `atencion_preconcepcional`, `atencion_metodo`, `atencion_anticonceptivo`, `atencion_planificacion`, 
-			`atencion_mestruacion`, `atencion_gestante`,`atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
-			`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
-		$sql="SELECT  concat(a.documento,a.tipo_doc) id,a.tipo_doc,a.documento,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul
-			,`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,dxnutricional,signoalarma,cualalarma, `letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, `diagnostico3`, `atencion_fertil`, `atencion_preconcepcional`, `atencion_metodo`, `atencion_anticonceptivo`, `atencion_planificacion`, `atencion_mestruacion`, `atencion_gestante`, `atencion_cronico`, `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, `atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
-			FROM adm_facturacion a
-			LEFT JOIN personas b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
-			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona
-		WHERE atencion ='{$id[0]}' "; */
-		// print_r($id[0]);
-		// echo $sql;
-	/* 	$info=datos_mysql($sql);
-		// print_r(json_encode($info['responseResult'][0]));
-		return json_encode($info['responseResult'][0]);		 */	
 		 }
 	} 
 
@@ -877,126 +910,7 @@ function get_atencion(){
 		if(count($id)==6){
 			return "No es posible actualizar consulte con el administrador";
 		}elseif(count($id)==2){
-			/* 
-			$atencion_cronico = isset($_POST['atencion_cronico']) ? trim($_POST['atencion_cronico']) : '';
-			$atencion_menos5anios = isset($_POST['atencion_menos5anios']) ? trim($_POST['atencion_menos5anios']) : '';
-			$atencion_esquemavacuna = isset($_POST['atencion_esquemavacuna']) ? trim($_POST['atencion_esquemavacuna']) : '';
-			$atencion_signoalarma = isset($_POST['atencion_signoalarma']) ? trim($_POST['atencion_signoalarma']) : '';
-			$atencion_cualalarma = isset($_POST['atencion_cualalarma']) ? trim($_POST['atencion_cualalarma']) : '';
-			$atencion_dxnutricional = isset($_POST['atencion_dxnutricional']) ? trim($_POST['atencion_dxnutricional']) : ''; 
-			$atencion_observaciones = isset($_POST['atencion_observaciones']) ? trim($_POST['atencion_observaciones']) : '';
-			$atencion_ordenmedicamentos = isset($_POST['atencion_ordenmedicamentos']) ? trim($_POST['atencion_ordenmedicamentos']) : '';
-			$atencion_medicamentos = isset($_POST['atencion_medicamentos']) ? trim($_POST['atencion_medicamentos']) : '';
-			$atencion_rutacontinuidad = isset($_POST['atencion_rutacontinuidad']) ? trim($_POST['atencion_rutacontinuidad']) : '';
-			$atencion_relevo = isset($_POST['atencion_relevo']) ? trim($_POST['atencion_relevo']) : '';
-			*/
-			// $atencion_imagenes = isset($_POST['atencion_imagenes']) ? trim($_POST['atencion_imagenes']) : '';
 			
-			/*
-			$atencionrutasirc =  $_POST['atencion_rutasirc'];
-	$atencioncontinuidad =  $_POST['atencion_continuidad'];
-		$rutasirc = implode(",", str_replace("'", "", $atencionrutasirc));
-		$continuidad = implode(",", str_replace("'", "", $atencioncontinuidad));
-			$atencion_tipodoc = isset($_POST['atencion_tipodoc']) ? trim($_POST['atencion_tipodoc']) : '';
-			$atencion_idpersona = isset($_POST['atencion_idpersona']) ? trim($_POST['atencion_idpersona']) : '';
-			$atencion_fechaatencion = isset($_POST['atencion_fechaatencion']) ? trim($_POST['atencion_fechaatencion']) : '';
-			$tipo_consulta = isset($_POST['tipo_consulta']) ? trim($_POST['tipo_consulta']) : '';
-			$atencion_codigocups = isset($_POST['atencion_codigocups']) ? trim($_POST['atencion_codigocups']) : '';
-			$atencion_finalidadconsulta = isset($_POST['atencion_finalidadconsulta']) ? trim($_POST['atencion_finalidadconsulta']) : '';
-			$atencion_peso = isset($_POST['atencion_peso']) ? trim($_POST['atencion_peso']) : '';
-			$atencion_talla = isset($_POST['atencion_talla']) ? trim($_POST['atencion_talla']) : '';
-			$atencion_sistolica = isset($_POST['atencion_sistolica']) ? trim($_POST['atencion_sistolica']) : '';
-			$atencion_diastolica = isset($_POST['atencion_diastolica']) ? trim($_POST['atencion_diastolica']) : '';
-			$atencion_abdominal = isset($_POST['atencion_abdominal']) ? trim($_POST['atencion_abdominal']) : '';
-			$atencion_brazo = isset($_POST['atencion_brazo']) ? trim($_POST['atencion_brazo']) : '';
-
-			$dxnutricional = isset($_POST['dxnutricional']) ? trim($_POST['dxnutricional']) : ''; 
-			$signoalarma = isset($_POST['signoalarma']) ? trim($_POST['signoalarma']) : '';
-			$cualalarma = isset($_POST['cualalarma']) ? trim($_POST['cualalarma']) : '';
-
-			$letra1 = isset($_POST['letra1']) ? trim($_POST['letra1']) : ''; 
-			$rango1 = isset($_POST['rango1']) ? trim($_POST['rango1']) : ''; 
-			$diagnostico1 = isset($_POST['diagnostico1']) ? trim($_POST['diagnostico1']) : ''; 
-			$letra2 = isset($_POST['letra2']) ? trim($_POST['letra2']) : ''; 
-			$rango2 = isset($_POST['rango2']) ? trim($_POST['rango2']) : ''; 
-			$diagnostico2 = isset($_POST['diagnostico2']) ? trim($_POST['diagnostico2']) : ''; 
-			$letra3 = isset($_POST['letra3']) ? trim($_POST['letra3']) : ''; 
-			$rango3 = isset($_POST['rango3']) ? trim($_POST['rango3']) : ''; 
-			$diagnostico3 = isset($_POST['diagnostico3']) ? trim($_POST['diagnostico3']) : ''; 
-			$atencion_eventointeres = isset($_POST['atencion_eventointeres']) ? trim($_POST['atencion_eventointeres']) : '';
-			$atencion_evento = isset($_POST['atencion_evento']) ? trim($_POST['atencion_evento']) : '';
-			$atencion_cualevento = isset($_POST['atencion_cualevento']) ? trim($_POST['atencion_cualevento']) : '';
-			$atencion_sirc = isset($_POST['atencion_sirc']) ? trim($_POST['atencion_sirc']) : '';
-			$atencion_rutasirc = isset($_POST['atencion_rutasirc']) ? $_POST['atencion_rutasirc'] : '';
-			$atencion_remision = isset($_POST['atencion_remision']) ? trim($_POST['atencion_remision']) : '';
-			$atencion_cualremision = isset($_POST['atencion_cualremision']) ? trim($_POST['atencion_cualremision']) : '';
-			$atencion_ordenpsicologia = isset($_POST['atencion_ordenpsicologia']) ? trim($_POST['atencion_ordenpsicologia']) : '';
-			$atencion_ordenvacunacion = isset($_POST['atencion_ordenvacunacion']) ? trim($_POST['atencion_ordenvacunacion']) : '';
-			$atencion_vacunacion = isset($_POST['atencion_vacunacion']) ? trim($_POST['atencion_vacunacion']) : '';
-			$atencion_ordenlaboratorio = isset($_POST['atencion_ordenlaboratorio']) ? trim($_POST['atencion_ordenlaboratorio']) : '';
-			$atencion_laboratorios = isset($_POST['atencion_laboratorios']) ? trim($_POST['atencion_laboratorios']) : '';
-			$atencion_ordenimagenes = isset($_POST['atencion_ordenimagenes']) ? trim($_POST['atencion_ordenimagenes']) : '';
-			TRIM(UPPER('{$atencion_asistenciacronica}')),
-	TRIM(UPPER('{$atencion_tratamiento}')),	TRIM(UPPER('{$atencion_vacunascronico}')),
-	-- TRIM(UPPER('{$atencion_menos5anios}')),
-	/* TRIM(UPPER('{$atencion_esquemavacuna}')),
-	TRIM(UPPER('{$atencion_signoalarma}')),
-	TRIM(UPPER('{$atencion_cualalarma}')),
-	TRIM(UPPER('{$atencion_dxnutricional}')),
-	TRIM(UPPER('{$atencion_imagenes}')),
-
-	TRIM(UPPER('{$atencion_tipodoc}')),
-	TRIM(UPPER('{$atencion_idpersona}')),
-	TRIM(UPPER('{$atencion_fechaatencion}')),
-	TRIM(UPPER('{$tipo_consulta}')),
-	TRIM(UPPER('{$atencion_codigocups}')),
-	TRIM(UPPER('{$atencion_finalidadconsulta}')),
-	TRIM(UPPER('{$atencion_peso}')),
-	TRIM(UPPER('{$atencion_talla}')),
-	TRIM(UPPER('{$atencion_sistolica}')),
-	TRIM(UPPER('{$atencion_diastolica}')),
-	TRIM(UPPER('{$atencion_abdominal}')),
-	TRIM(UPPER('{$atencion_brazo}')),
-	TRIM(UPPER('{$dxnutricional}')),
-	TRIM(UPPER('{$signoalarma}')),
-	TRIM(UPPER('{$cualalarma}')),
-	TRIM(UPPER('{$letra1}')),
-	TRIM(UPPER('{$rango1}')),
-	TRIM(UPPER('{$diagnostico1}')), 
-	TRIM(UPPER('{$letra2}')),
-	TRIM(UPPER('{$rango2}')),
-	TRIM(UPPER('{$diagnostico2}')),
-	TRIM(UPPER('{$letra3}')),
-	TRIM(UPPER('{$rango3}')),
-	TRIM(UPPER('{$diagnostico3}')), 
-	TRIM(UPPER('{$atencion_fertil}')),
-	TRIM(UPPER('{$atencion_preconcepcional}')),
-	TRIM(UPPER('{$atencion_metodo}')),
-	TRIM(UPPER('{$atencion_anticonceptivo}')),
-	TRIM(UPPER('{$atencion_planificacion}')),
-	TRIM(UPPER('{$atencion_mestruacion}')),
-	TRIM(UPPER('{$atencion_gestante}')),
-	TRIM(UPPER('{$atencion_cronico}')),
-	TRIM(UPPER('{$atencion_eventointeres}')),
-	TRIM(UPPER('{$atencion_evento}')),
-	TRIM(UPPER('{$atencion_cualevento}')),
-	TRIM(UPPER('{$atencion_sirc}')),
-	TRIM(UPPER('{$rutasirc}')),
-	TRIM(UPPER('{$atencion_remision}')),
-	TRIM(UPPER('{$atencion_cualremision}')),
-	TRIM(UPPER('{$atencion_ordenvacunacion}')),
-	TRIM(UPPER('{$atencion_vacunacion}')),
-	TRIM(UPPER('{$atencion_ordenlaboratorio}')),
-	TRIM(UPPER('{$atencion_laboratorios}')),
-	TRIM(UPPER('{$atencion_ordenmedicamentos}')),
-	TRIM(UPPER('{$atencion_medicamentos}')),
-	TRIM(UPPER('{$atencion_rutacontinuidad}')),
-	TRIM(UPPER('{$continuidad}')),
-	TRIM(UPPER('{$atencion_ordenimagenes}')),
-	TRIM(UPPER('{$atencion_ordenpsicologia}')),
-	TRIM(UPPER('{$atencion_relevo}')),
-	*/
-	// echo " PRECONCE = ".$_POST['preconcepcional'];
 	$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
 	$preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';
 	$metodo = isset($_POST['metodo']) ? trim($_POST['metodo']) : '';
@@ -1017,6 +931,8 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_POST['tipo_consulta']}')),
 		TRIM(UPPER('{$_POST['atencion_codigocups']}')),
 		TRIM(UPPER('{$_POST['atencion_finalidadconsulta']}')),
+		TRIM(UPPER('{$_POST['atencion_cronico']}')),
+		TRIM(UPPER('{$gestante}')),
 		TRIM(UPPER('{$_POST['atencion_peso']}')),
 		TRIM(UPPER('{$_POST['atencion_talla']}')),
 		TRIM(UPPER('{$_POST['atencion_sistolica']}')),
@@ -1035,8 +951,6 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_POST['letra3']}')),
 		TRIM(UPPER('{$_POST['rango3']}')),
 		TRIM(UPPER('{$_POST['diagnostico3']}')),
-		TRIM(UPPER('{$_POST['atencion_cronico']}')),
-		TRIM(UPPER('{$gestante}')),
 		TRIM(UPPER('{$fertil}')),
 		TRIM(UPPER('{$preconcepcional}')),
 		TRIM(UPPER('{$metodo}')),
@@ -1069,13 +983,14 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_POST['atencion_ordenimagenes']}')),
 		TRIM(UPPER('{$_POST['atencion_ordenpsicologia']}')),
 		TRIM(UPPER('{$_POST['atencion_relevo']}')),
+		TRIM(UPPER('{$_POST['prioridad']}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			// echo $sql;
+			echo $sql;
 		}
 		  $rta=dato_mysql($sql);
 		  return $rta; 
-		}
+}
 
 	///////////// inicio lista principal //////////////////
 
@@ -1597,7 +1512,9 @@ function gra_eac_vejez(){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
+function opc_prioridad($id=''){
+	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=201 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_vih($id=''){
 	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=187 and estado='A'  ORDER BY 1 ",$id);
 }

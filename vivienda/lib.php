@@ -6,7 +6,7 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
+  case 'csv':
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
     echo csv($rs,'');
@@ -18,8 +18,6 @@ else {
 	else echo $rta;
   }   
 }
-
-
 
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
@@ -40,14 +38,13 @@ function lis_homes(){
 $sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
+	H.territorio,
 	H.sector_catastral,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad Hab',
-	FN_CATALOGODESC(3,	H.zona) AS zona,
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
 	H.usu_creo,
-	H.equipo,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H

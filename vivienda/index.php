@@ -97,9 +97,25 @@ $ayer = date("Y-m-d",strtotime($hoy."- 1 days"));
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION['us_sds']);
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'];
+
+// $sql="select idcatadeta,descripcion from catadeta where idcatalogo=202 and estado='A' AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') order by 1";
+$sql1="select descripcion,descripcion from catadeta where idcatalogo=202 and estado='A' AND valor in(1) order by 1";
+// $territorios=opc_sql($sql1,'');
+$territorios=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=202 and estado='A' order by 1",'');
+//$territorios=opc_sql("SELECT descripcion,descripcion FROM catadeta WHERE idcatalogo=202 AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
+// $territorio = ($perfil == 'GEO' || $perfil == 'ADM' || $perfil == 'ADMEAC') ? '<div class="campo"><div>Territorio</div><select class="captura" id="fdigita" name="fdigita" onchange="actualizar();">' .$territorios. '</select></div>' : '';
+echo $sql1;
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
+<div class="campo"><div>Territorio</div>
+	<select class="captura" id="fterri" name="fterri" OnChange="actualizar();">
+		<?php echo $territorios; ?>
+	</select>
+</div>
+	<?php //echo $territorio; ?>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>

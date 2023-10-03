@@ -141,9 +141,9 @@ function men_medidas(){
 	$c[]=new cmp('codoral','n',1,$d,$w.' '.$o,'Cod. Salud Bucal','codoral','rgx1codora',null,false,true,'','col-1');
 	$c[]=new cmp('alert10','o',15,$d,$w.' '.$o,'Derivaciones','alert10',null,null,true,true,'','col-1',"enabAlert(this,'der');");
 	$c[]=new cmp('selmul10[]','m',3,$d,$w.' der '.$o,'Derivaciones','selmul10',null,'',false,false,'','col-3');
-	$c[]=new cmp('deriva_eac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deac','eAc');");
+	$c[]=new cmp('deriva_eac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_eac','eAc');");
 	$c[]=new cmp('asignado_eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-5');
-	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('dpcf','pCf');");
+	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','pcf',null,null,false,false,'','col-5');
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 

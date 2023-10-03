@@ -53,8 +53,8 @@ include_once('./login/frmlogin.php');
 
 function db_connect(){
 		//$con = new mysqli("srv247.hstgr.io", "u470700275_06", "z9#KqH!YK2VEyJpT","u470700275_06");
-		$con = new mysqli("srv247.hstgr.io", "u470700275_07", "z9#KqH!YK2VEyJpT","u470700275_07");
-		//$con = new mysqli("localhost", "u470700275_06", "z9#KqH!YK2VEyJpT","u470700275_06");
+		//$con = new mysqli("srv247.hstgr.io", "u470700275_07", "z9#KqH!YK2VEyJpT","u470700275_07");
+		$con = new mysqli("localhost", "u470700275_06", "z9#KqH!YK2VEyJpT","u470700275_06");
   if( !$con ){
     throw new Exception('No se ha podido conectar a la base de datos');
 	die();

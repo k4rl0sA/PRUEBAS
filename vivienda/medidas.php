@@ -116,6 +116,7 @@ function men_medidas(){
 	/* $c[]=new cmp('pobladifer','s','3',$d,$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-25');//true
 	$c[]=new cmp('incluofici','s','3',$d,$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-25');//true */
 	
+	
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
 	$c[]=new cmp('alert1','o',15,$d,$w.' '.$o,'Condición crónica','alert1',null,null,true,true,'','col-1',"enabAlert(this,'cro');");

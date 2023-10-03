@@ -600,6 +600,13 @@ function Zsco(a){
 		}
 }
 
+
+function hiddxTamiz(){
+
+}
+
+
+
 function ZscoAte(a){
 	const sco=document.getElementById('dxnutricional');
 	const anos=getAge('fecha_nacimiento');

@@ -117,7 +117,7 @@ function men_medidas(){
 	$c[]=new cmp('incluofici','s','3',$d,$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-25');//true */
 
 	
-	
+
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
 	$c[]=new cmp('alert1','o',15,$d,$w.' '.$o,'Condición crónica','alert1',null,null,true,true,'','col-1',"enabAlert(this,'cro');");
@@ -346,9 +346,9 @@ function gra_medidas(){
 		trim(upper('{$pab}')),trim(upper('0')),trim(upper('0')),trim(upper('{$fin}')),
 		trim(upper('{$oms}')),trim(upper('{$epo}')),";
 	 } */
-	 $sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
+	//  $sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
-		echo $sql;
+		// echo $sql;
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta;

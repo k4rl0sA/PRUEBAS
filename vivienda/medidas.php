@@ -269,6 +269,7 @@ function gra_medidas(){
 	$pbr = $_POST['perime_braq'] ?? null;
 	$per = $_POST['percentil'] ?? null;
 	$des = $_POST['zscore'] ?? null;
+	$codoral= $_POST['codoral']?? null;
 
 	$id=divide($_POST['idp']);
 
@@ -293,9 +294,9 @@ function gra_medidas(){
 	}else if($_POST['tipo']==1){
  	*/
 
- 	$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes from personas P left join hog_viv V ON idviv=vivipersona WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+ 	/* $sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes from personas P left join hog_viv V ON idviv=vivipersona WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 	$data=datos_mysql($sql1);
-	$edad=$data['responseResult'][0];
+	$edad=$data['responseResult'][0]; */
 
 	/* $sql="INSERT INTO personas_datocomp VALUES (NULL,
 		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['fecha']}')),
@@ -321,7 +322,8 @@ function gra_medidas(){
 		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
 		trim(upper('{$_POST['alert7']}')),trim(upper('{$sm7}')),trim(upper('{$_POST['alert8']}')),trim(upper('{$sm8}')),
-		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$_POST['codoral']}')),trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
+		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$codoral}')),
+		trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
 		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
 		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),
 		trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),
@@ -348,7 +350,7 @@ function gra_medidas(){
 	 } */
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
-		echo $sql;
+		// echo $sql;
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta;

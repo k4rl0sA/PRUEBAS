@@ -106,7 +106,7 @@ $territorio = ($perfil == 'GEO' || $perfil == 'ADM' || $perfil == 'ADMEAC') ? '<
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 <!-- <div class="campo"><div>Territorio</div>
 	<select class="captura" id="fterri" name="fterri" OnChange="actualizar();">
-		<?php echo $territorios; ?>
+		
 	</select>
 </div> -->
 	<?php echo $territorio; ?>

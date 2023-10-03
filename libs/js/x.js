@@ -602,7 +602,8 @@ function Zsco(a){
 
 function ZscoAte(a){
 	const sco=document.getElementById('dxnutricional');
-	if (sco!==null){
+	const anos=getAge('fecha_nacimiento');
+	if (sco!==null || anos['anios']>4){
 	const pes=document.getElementById('atencion_peso').value;
 	const fec=document.getElementById('fecha_nacimiento').value;
 	const sex=document.getElementById('sexo').value;

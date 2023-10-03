@@ -235,15 +235,17 @@ $mod='hog_geoloc';
 $hoy = date("Y-m-d");
 
 //  ["usu"]=> string(44) "CARLOS EDUARDO ACEVEDO AREVALO_ADM_5_SDS_EAC_EQU" }
-$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-$usu=divide($rta["responseResult"][0]['usu']);
+//$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+//$usu=divide($rta["responseResult"][0]['usu']);
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=44 and estado='A' order by 1",'1');
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('AUX','MED') and subred=$usu[2] ORDER BY 1",$_SESSION['us_sds']);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('AUX','MED') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",$_SESSION['us_sds']);
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
-$import = ($usu[1] == 'GEO'||$usu[1] =='ADM'||$usu[1] =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
-$crea = ($usu[1] == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li>":"";
+$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li>":"";
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>

@@ -298,12 +298,14 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='homes';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 1 days")); 
-$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-$usu=divide($rta["responseResult"][0]['usu']);
+/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+$usu=divide($rta["responseResult"][0]['usu']); */
 // var_dump($usu);
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='MED' and subred=$usu[2]  ORDER BY 1",$_SESSION['us_sds']);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='MED' and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 1",$_SESSION['us_sds']);
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
 ?>
 <form method='post' id='fapp' >
@@ -327,7 +329,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	</div>
 <?php
 	$rta="";
-	$rta = ($usu[1] =='ADM'||'MED') ? '<div class="campo"><div>Colaborador</div>
+	$rta = ($perfil =='ADM'||'MED') ? '<div class="campo"><div>Colaborador</div>
 	<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" disabled="true">'.$digitadores.'</select></div>':'';
 	$rta.='</div>';
 	echo $rta;

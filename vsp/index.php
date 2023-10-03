@@ -124,8 +124,8 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='homes';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 1 days")); 
-$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-$usu=divide($rta["responseResult"][0]['usu']);
+/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+$usu=divide($rta["responseResult"][0]['usu']); */
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 //$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('PROFAM') and subred=$usu[2] ORDER BY 2",'');//$_SESSION['us_sds']

@@ -114,7 +114,9 @@ INNER JOIN usuarios U ON H.subred = U.subred
 
 function lis_hog_geoloc(){
 	$total="SELECT count(*) as total
- FROM hog_geo H
+ FROM (
+    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
+    from hog_geo H
 INNER JOIN usuarios U ON H.subred = U.subred
 LEFT JOIN adscrip A ON H.territorio=A.territorio
 WHERE H.estado_v IN (1, 2, 3)
@@ -124,14 +126,14 @@ WHERE H.estado_v IN (1, 2, 3)
       AND H2.predio_num = H.predio_num
       AND H2.unidad_habit = H.unidad_habit
       AND H2.estrategia = H.estrategia
-      AND H2.estado_v = 7);";
+      AND H2.estado_v = 7)) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];
 
 $regxPag = 5;
 $pag = isset($_POST['pag-hog_geoloc']) ? ($_POST['pag-hog_geoloc'] - 1) * $regxPag : 0;
 
-$sql = "SELECT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+$sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
     FN_CATALOGODESC(42, H.estrategia) AS estrategia,direccion,
     H.sector_catastral,
     H.nummanzana AS Manzana,
@@ -439,8 +441,9 @@ function get_asigruteo(){
 
  
 function gra_hog_geoloc(){
-	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-	$usu=divide($rta["responseResult"][0]['usu']);
+	$info=datos_mysql("select equipo as equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
+	$equipo = (!$info['responseResult']) ? '' : $info['responseResult'][0]['equipo'] ;
+
 	
 	 $sql="INSERT INTO hog_geo VALUES 
 	(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
@@ -465,12 +468,12 @@ function gra_hog_geoloc(){
 	TRIM(UPPER('{$_POST['cordyn']}')),
 	TRIM(UPPER('{$_POST['estrato']}')),
 	TRIM(UPPER('{$_POST['asignado']}')),
-	TRIM(UPPER('{$usu[5]}')),
+	TRIM(UPPER('{$equipo}')),
 	TRIM(UPPER('{$_POST['estado_v']}')),
 	TRIM(UPPER('{$_POST['motivo_estado']}')),
 	TRIM(UPPER('{$_SESSION['us_sds']}')),
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
-	// echo $sql;-- TRIM(UPPER('{$_POST['equipo']}')),
+	//echo $sql;
   $rta=dato_mysql($sql);
   return $rta;
 }

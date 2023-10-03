@@ -56,18 +56,13 @@ function grabar(tb='',ev){
 			if(res==false){
 				return;
 			}
-			var textoEdad = document.getElementById('edad').value;
+			/* var textoEdad = document.getElementById('edad').value;
 			var patron = /Años:\s*(\d+)/;
 			var resultado = patron.exec(textoEdad);
-			const ofi=document.getElementById('incluofici').value;
-			if(validSist('tas')===true) return;
-			if(validDist('tad')===true) return;
-			if(validGluco('glucometria')===true) return;
-			if(resultado[1]>17 && ofi==5)
-				document.getElementById(tb+'-modal').innerHTML='El valor de Población Inclusion Por Oficio no corresponde con respecto a la edad,por favor valide e intente nuevamente';
-				document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-				openModal();
-			
+			const ofi=document.getElementById('incluofici').value; */
+			if(valSist('tas')===true) return;
+			if(valDist('tad')===true) return;
+			if(valGluco('glucometria')===true) return;
 		}
 
 		var rutaMap = {

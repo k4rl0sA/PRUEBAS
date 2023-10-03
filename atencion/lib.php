@@ -791,6 +791,7 @@ function get_zscore(){
 	 $fechaActual = new DateTime();
 	 $diferencia = $fechaNacimiento->diff($fechaActual);
 	 $edadEnDias = $diferencia->days;
+	 if($edadEnDias<1857){
 	$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
 	$sex=$id[2];
 
@@ -830,9 +831,10 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 				$des='Error en el rango, por favor valide';
 				break;
 		}
-
 		return json_encode($z." = ".$des);
 	}
+}
+return json_encode('N/A');
 }
 
 function get_atencion(){
@@ -986,7 +988,7 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_POST['prioridad']}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			echo $sql;
+			// echo $sql;
 		}
 		  $rta=dato_mysql($sql);
 		  return $rta; 

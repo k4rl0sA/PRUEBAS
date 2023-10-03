@@ -346,7 +346,7 @@ function gra_medidas(){
 		trim(upper('{$pab}')),trim(upper('0')),trim(upper('0')),trim(upper('{$fin}')),
 		trim(upper('{$oms}')),trim(upper('{$epo}')),";
 	 } */
-	//  $sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
+	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
 		echo $sql;
 		$rta=dato_mysql($sql);

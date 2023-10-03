@@ -14,7 +14,7 @@
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');
-$vers='1.10.01.1';
+$vers='1.10.02.1';
 // if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
 require_once $_SERVER['DOCUMENT_ROOT'].'/libs/gestion.php';
   $sql="SELECT *
@@ -69,7 +69,7 @@ $nav.= '<a href="../logout.php">
 	<br>Salir</a>
   ';
 
-$nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_v.'.$vers.'</div>';
+$nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_'.$vers.'</div>';
 $nav.='</div></div>';
 echo $nav;
 ?>

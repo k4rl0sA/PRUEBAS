@@ -386,20 +386,25 @@ function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 
 function panel_static(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
-	if (document.getElementById(id) == undefined){
+	if (document.getElementById(id) == undefined) {
 		var p = document.createElement('div');
 		p.id = id;
-		p.className = a+' panel'+(a=='sta'?' col-0':' col-'+b);
-		var txt = "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
+		p.className = a+' panel'+(a=='frm'?'col-0':' static col-'+b);
+		var txt = "<div id='"+id+"-tit'>";
+		txt += "<span id='"+id+"-foco' class='oculto'></span>";
+		txt += "<nav cass='left'></nav><nav class='menu right'></nav></div>";
+		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
+        txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
 		p.innerHTML = txt;
 		document.getElementById('fapp').appendChild(p);
-		Drag.init(document.getElementById(id+'-con'),p);
+		Drag.init(document.getElementById(id+'-tit'),p);
 		document.getElementById(id).style.top=(screen.height-p.style.height)/7;
 		document.getElementById(id).style.left=(screen.width-p.style.width)/10.5;
         act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
         act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false); 
 	}
 	document.getElementById(id).style.display = "block";	
+	//document.getElementById(id+"-con").innerHTML="";		
 }
 
 function foco(a){

@@ -82,14 +82,13 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='administracion';
 $ya = new DateTime();
-$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-$usu=divide($rta["responseResult"][0]['usu']);
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=184 and estado='A' order by 1",'1');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('ENFATE','MEDATE','PSIEAC') and subred=$usu[2] ORDER BY 2",$_SESSION['us_sds']);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('ENFATE','MEDATE','PSIEAC') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 2",$_SESSION['us_sds']);
 ?>
-<!-- <form method='post' id='fapp'> -->
+
 
 <div class='col-0 panel' id='<?php echo $mod; ?>'>
+<form method='post' id='fapp'>
       <div class='titulo' > ZONA DE ADMINISTRACIÓN
 		<nav class='menu left' >
     <li class='icono gestusu'      title='Exportar Información General' onclick="mostrar('gestionusu','sta',event,'','lib.php',0);"></li>
@@ -100,13 +99,14 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN
             <li class='icono cancelar'      title='Salir'            Onclick="location.href='../main/'"></li>
         </nav>               
       </div>
+  </form>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
      <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
 		
 <!-- <div class='load' id='loader' z-index='0' ></div> -->
-<!-- </form> -->
+
 <!-- <div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

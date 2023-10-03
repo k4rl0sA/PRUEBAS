@@ -139,10 +139,10 @@ function men_medidas(){
 	$c[]=new cmp('codoral','n',1,$d,$w.' '.$o,'Cod. Salud Bucal','codoral','rgx1codora',null,false,true,'','col-1');
 	$c[]=new cmp('alert10','o',15,$d,$w.' '.$o,'Derivaciones','alert10',null,null,true,true,'','col-1',"enabAlert(this,'der');");
 	$c[]=new cmp('selmul10[]','m',3,$d,$w.' der '.$o,'Derivaciones','selmul10',null,'',false,false,'','col-3');
-	$c[]=new cmp('deac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deac','eAc');");
-	$c[]=new cmp('eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-5');
-	$c[]=new cmp('dpcf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('dpcf','pCf');");
-	$c[]=new cmp('pcf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','pcf',null,null,false,false,'','col-5');
+	$c[]=new cmp('deriva_eac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deac','eAc');");
+	$c[]=new cmp('asignado_eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-5');
+	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('dpcf','pCf');");
+	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','pcf',null,null,false,false,'','col-5');
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 
 	$o='med';
@@ -320,6 +320,8 @@ function gra_medidas(){
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
 		trim(upper('{$_POST['alert7']}')),trim(upper('{$sm7}')),trim(upper('{$_POST['alert8']}')),trim(upper('{$sm8}')),
 		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$_POST['codoral']}')),trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
+		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
+		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),
 		trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),
 		trim(upper('{$tas}')),trim(upper('{$tad}')),trim(upper('{$glu}')),trim(upper('{$pbr}')),trim(upper('{$per}')),
 		trim(upper('{$des}')),";
@@ -344,7 +346,7 @@ function gra_medidas(){
 	 } */
 	 $sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
-		//echo $sql;
+		echo $sql;
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta;
@@ -361,11 +363,13 @@ function get_medidas(){
 		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE idmedidas='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
+
+
 		$sql="SELECT concat(dc_documento,'_',dc_tipo_doc,'_',tipo) as id,dc_documento,dc_tipo_doc,
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		D.fecha,`tipo`,D.crit_epi,cursovida,gestante,etapgest,cronico,`alert1`,`selmul1`,`alert2`,`selmul2`,`alert3`,`selmul3`, `alert4`, `selmul4`, `alert5`, `selmul5`, `alert6`, `selmul6`, `alert7`, `selmul7`, `alert8`, `selmul8`, `alert9`, `selmul9`, codoral,`alert10`, `selmul10`,
-		V.asignado,`peso`, `talla`,imc";
+		D.deriva_eac,D.asignado_eac,deriva_pf,evento_pf,`peso`, `talla`,imc";
 		if ($edad['ano'] > 17 ) {
 		    $sql.=",`tas`, `tad`, `glucometria`";
 		}

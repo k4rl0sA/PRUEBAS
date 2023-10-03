@@ -1039,7 +1039,7 @@ td.resumen .icono {top: 6px;}
 
 .movil{display:none;position:absolute;resize:both;overflow: scroll;border: 1px solid #0f04ff8f;z-index: 1000;}
 .movil.titulo{cursor:move;}
-
+.static{display:none;resize:both;overflow: scroll;border: 1px solid #0f04ff8f;z-index: 1000;}
 /*.movil.titulo{cursor:move;}*/
 
 .encabezado {

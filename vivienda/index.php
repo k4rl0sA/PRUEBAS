@@ -56,13 +56,14 @@ function grabar(tb='',ev){
 			if(res==false){
 				return;
 			}
-			/* var textoEdad = document.getElementById('edad').value;
+			var textoEdad = document.getElementById('edad').value;
 			var patron = /Años:\s*(\d+)/;
 			var resultado = patron.exec(textoEdad);
-			const ofi=document.getElementById('incluofici').value; */
-			if(valSist('tas')===true) return;
-			if(valDist('tad')===true) return;
-			if(valGluco('glucometria')===true) return;
+			if(resultado>17){			
+				if(valSist('tas')===true) return;
+				if(valDist('tad')===true) return;
+				if(valGluco('glucometria')===true) return;
+			}
 		}
 
 		var rutaMap = {

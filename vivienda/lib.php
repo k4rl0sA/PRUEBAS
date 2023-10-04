@@ -28,7 +28,7 @@ function lis_homes(){
     WHERE H.estado_v IN ('7') ".whe_homes()."
         AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
- echo $total;
+//  echo $total;
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;

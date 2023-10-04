@@ -50,7 +50,7 @@ $sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '
 	FROM hog_geo H
 	INNER JOIN usuarios U ON H.subred = U.subred 
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
-WHERE H.estado_v  in('7') ".whe_homes()." 
+WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
@@ -65,7 +65,7 @@ WHERE H.estado_v  in('7') ".whe_homes()."
 function whe_homes() {
 	$sql = "";
 	if ($_POST['fterri']){
-		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}'";
+		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 	}else{
 		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')"; 
 	}

@@ -9,6 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
+<script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
@@ -104,8 +105,6 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >TAMIZAJE OMS
 		<nav class='menu left' >
-			<li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
-			<li class='icono exportar'      title='Exportar Información General'    Onclick="csv(mod);"></li>
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono crear'       title='Crear'     Onclick="mostrar(mod,'pro');"></li> <!--setTimeout(load,500);-->

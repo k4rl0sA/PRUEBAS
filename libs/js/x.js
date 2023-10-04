@@ -601,9 +601,42 @@ function Zsco(a){
 }
 
 
-function hiddxTamiz(){
-
-}
+function hiddxTamiz(a, b,e) {
+	const cmpAct = document.getElementById(a);
+	const cmps = document.querySelectorAll(`.${b}`);
+	const edad = parseInt(cmpAct.value) > e;
+  
+	for (let i = 0; i < cmps.length; i++) {
+		hidFie(cmps[i], true);
+	  }
+	for (let i = 0; i < cmps.length; i++) {
+	  hidFie(cmps[i], !edad);
+	}
+  }
+  
+  function TamizxApgar(a) {
+	const cmpAct = document.getElementById(a);
+	const men = document.querySelectorAll('.cuestionario1');
+	const may = document.querySelectorAll('.cuestionario2');
+	const edad = parseInt(cmpAct.value);
+  
+	for (let i = 0; i < men.length; i++) {
+	  hidFie(men[i], true);
+	}
+	for (let i = 0; i < may.length; i++) {
+	  hidFie(may[i], true);
+	}
+	if (edad > 17) {
+	  for (let i = 0; i < may.length; i++) {
+		hidFie(may[i], false);
+	  }
+	} else if (edad > 6 && edad < 18) {
+	  for (let i = 0; i < men.length; i++) {
+		hidFie(men[i], false);
+	  }
+	}
+  }
+  
 
 
 

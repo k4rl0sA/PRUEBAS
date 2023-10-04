@@ -100,7 +100,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'];
 $territorios=opc_sql("SELECT descripcion,descripcion FROM catadeta WHERE idcatalogo=202 AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
-$territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '<div class="campo"><div>Territorio</div><select class="captura" id="fterri" name="fterri" onchange="actualizar();">' .$territorios. '</select></div>' : '';
+$territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 'disabled';
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
@@ -109,7 +109,11 @@ $territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ?
 		
 	</select>
 </div> -->
-	<?php echo $territorio; ?>
+	<div class="campo"><div>Territorio</div>
+		<select class="captura" id="fterri" name="fterri" onchange="actualizar();"<?php echo $territorio; ?> ><?php echo $territorios; ?>
+		</select>
+	</div>
+	
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>

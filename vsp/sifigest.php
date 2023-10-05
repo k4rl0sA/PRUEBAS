@@ -80,8 +80,8 @@ function cmp_sifigest(){
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   
-  $c[]=new cmp('etapa','s','3',$d,$w.' '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
-  $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
+  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
+  $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
     
 
     $o='hab';
@@ -100,7 +100,6 @@ function cmp_sifigest(){
     $c[]=new cmp('meto_fecunda','s','2',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35');
     $c[]=new cmp('cual','s','3',$d,$w.' PuE '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
     
-    
     $o='ncvmor';
     $c[]=new cmp($o,'e',null,'NACIDO VIVO Y/O MORTINATO',$w);
     $c[]=new cmp('confir_sificong','s','2',$d,$w.' PuE '.$o,'¿Es un caso confirmado de sífilis congénita?','rta',null,null,false,$x,'','col-35');
@@ -113,19 +112,19 @@ function cmp_sifigest(){
     
     $o='infacc';
     $c[]=new cmp($o,'e',null,'GESTANTE Y/O PUERPERA',$w);
-    $c[]=new cmp('ctrl_serol1t','s','2',$d,$w.' PYg '.$o,'Control Serológico 1er Trimestre?','rta',null,null,false,$x,'','col-2',"enabOthSi(this,'cT1');");
+    $c[]=new cmp('ctrl_serol1t','s','2',$d,$w.' PYg '.$o,'Control Serológico 1er Trimestre?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_serol1t','cT1');");
     $c[]=new cmp('fec_conser_1tri1','d','10',$d,$w.' PYg  cT1 '.$o,'Fecha Control Serológico 1er Trimestre','fec_conser_1tri1',null,null,false,$x,'','col-2');
     $c[]=new cmp('resultado_1','s','3',$d,$w.' PYg cT1 '.$o,'Resultado 1','resultado',null,null,false,$x,'','col-2');
-    $c[]=new cmp('ctrl_serol2t','s','2',$d,$w.' PYg '.$o,'Control Serológico 2do Trimestre','rta',null,null,false,$x,'','col-2',"enabOthSi(this,'cT2');");
+    $c[]=new cmp('ctrl_serol2t','s','2',$d,$w.' PYg '.$o,'Control Serológico 2do Trimestre','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_serol2t','cT2');");
     $c[]=new cmp('fec_conser_2tri','d','10',$d,$w.' PYg cT2 '.$o,'Fecha Control Serológico 2do Trimestre','fec_conser_2tri',null,null,false,$x,'','col-2');
     $c[]=new cmp('resultado_2','s','3',$d,$w.' PYg cT2 '.$o,'Resultado 2','resultado',null,null,false,$x,'','col-2');
-    $c[]=new cmp('ctrl_serol3t','s','10',$d,$w.' PYg '.$o,'Control Serológico 3er Trimestre','rta',null,null,false,$x,'','col-3',"enabOthSi(this,'cT3');");
+    $c[]=new cmp('ctrl_serol3t','s','10',$d,$w.' PYg '.$o,'Control Serológico 3er Trimestre','rta',null,null,false,$x,'','col-3',"enabOthSi('ctrl_serol3t','cT3');");
     $c[]=new cmp('fec_conser_3tri','d','10',$d,$w.' PYg cT3 '.$o,'Fecha Control Serológico 3er Trimestre','fec_conser_3tri',null,null,false,$x,'','col-3');
     $c[]=new cmp('resultado_3','s','3',$d,$w.' PYg cT3 '.$o,'Resultado 3','resultado',null,null,false,$x,'','col-2');
     
     $o='sifges';
     $c[]=new cmp($o,'e',null,'SIFILIS GESTACIONAL',$w);
-    $c[]=new cmp('initratasif','s','2',$d,$w.' PYg '.$o,'¿usuario inicia tratamiento para sifilis gestacional?','rta',null,null,false,$x,'','col-5',"enabOthSi(this,'SGs');");
+    $c[]=new cmp('initratasif','s','2',$d,$w.' PYg '.$o,'¿usuario inicia tratamiento para sifilis gestacional?','rta',null,null,false,$x,'','col-5',"enabOthSi('initratasif','SGs');");
     $c[]=new cmp('fec_1dos_trages1','d','10',$d,$w.' PYg SGs '.$o,'Fecha Primera Dosis De Tratamiento De La Gestante','fec_1dos_trages1',null,null,false,$x,'','col-5');
     $c[]=new cmp('fec_2dos_trages1','d','10',$d,$w.' PYg SGs '.$o,'Fecha Segunda Dosis De Tratamiento De La Gestante','fec_2dos_trages1',null,null,false,$x,'','col-5');
     $c[]=new cmp('fec_3dos_trages1','d','10',$d,$w.' PYg SGs '.$o,'Fecha Tercera Dosis De Tratamiento De La Gestante','fec_3dos_trages1',null,null,false,$x,'','col-5');
@@ -133,7 +132,7 @@ function cmp_sifigest(){
     $o='pricont';
     $c[]=new cmp($o,'e',null,'PRIMER CONTACTO',$w);
     $c[]=new cmp('pri_con_sex','s','3',$d,$w.' PYg '.$o,'Primer Contacto Sexual','con_sex',null,null,false,$x,'','col-2');
-    $c[]=new cmp('initratasif','s','2',$d,$w.' PYg '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi(this,'PcO');");
+    $c[]=new cmp('initratasif1','s','2',$d,$w.' PYg '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif1','PcO');");
     $c[]=new cmp('fec_apl_tra_1dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Primera Dosis','fec_apl_tra_1dos1',null,null,false,$x,'','col-4');
     $c[]=new cmp('fec_apl_tra_2dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Segunda Dosis','fec_apl_tra_2dos1',null,null,false,$x,'','col-5');
     $c[]=new cmp('fec_apl_tra_3dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Tercera Dosis','fec_apl_tra_3dos1',null,null,false,$x,'','col-5');
@@ -141,7 +140,7 @@ function cmp_sifigest(){
     $o='segcont';
     $c[]=new cmp($o,'e',null,'SEGUNDO CONTACTO',$w);
     $c[]=new cmp('seg_con_sex','s','3',$d,$w.' PYg '.$o,'Segundo Contacto Sexual','con_sex',null,null,false,$x,'','col-2');
-    $c[]=new cmp('initratasif2','s','2',$d,$w.' PYg '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi(this,'ScO');");
+    $c[]=new cmp('initratasif2','s','2',$d,$w.' PYg '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif2','ScO');");
     $c[]=new cmp('fec_apl_tra_1dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación  Tratamiento Primera Dosis4','fec_apl_tra_1dos2',null,null,false,$x,'','col-4');
     $c[]=new cmp('fec_apl_tra_2dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación Tratamiento Segunda Dosis5','fec_apl_tra_2dos2',null,null,false,$x,'','col-5');
     $c[]=new cmp('fec_apl_tra_3dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación Tratamiento Tercera Dosis6','fec_apl_tra_3dos2',null,null,false,$x,'','col-5');
@@ -149,7 +148,7 @@ function cmp_sifigest(){
     $o='prerei';
     $c[]=new cmp($o,'e',null,'PRESENTA REINFECCION',$w);
     $c[]=new cmp('prese_reinfe','s','2',$d,$w.' PYg '.$o,'¿Presenta Reinfección?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('initratasif2','s','2',$d,$w.' PYg '.$o,'¿usuario reinicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi(this,'ReI');");
+    $c[]=new cmp('initratasif3','s','2',$d,$w.' PYg '.$o,'¿usuario reinicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif3','ReI');");
     $c[]=new cmp('fec_1dos_trages2','d','10',$d,$w.' PYg ReI '.$o,'Primera Dosis De Tratamiento De La Gestante7','fec_1dos_trages2',null,null,false,$x,'','col-4');
     $c[]=new cmp('fec_2dos_trages2','d','10',$d,$w.' PYg ReI '.$o,'Segunda Dosis De Tratamiento De La Gestante8','fec_2dos_trages2',null,null,false,$x,'','col-5');
     $c[]=new cmp('fec_3dos_trages2','d','10',$d,$w.' PYg ReI '.$o,'Tercera Dosis De Tratamiento De La Gestante9','fec_3dos_trages2',null,null,false,$x,'','col-5');
@@ -157,12 +156,11 @@ function cmp_sifigest(){
     $o='paract';
     $c[]=new cmp($o,'e',null,'PAREJA ACTUAL',$w);
     $c[]=new cmp('reinf_1con','s','3',$d,$w.' PYg '.$o,'Segundo Contacto Sexual','con_sex',null,null,false,$x,'','col-25');
-    $c[]=new cmp('initratasif3','s','2',$d,$w.' PYg '.$o,'¿usuario reinicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-35',"enabOthSi(this,'pAc');");
+    $c[]=new cmp('initratasif4','s','2',$d,$w.' PYg '.$o,'¿usuario reinicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-35',"enabOthSi('initratasif4','pAc');");
     $c[]=new cmp('fec_1dos_trapar','d','10',$d,$w.' PYg pAc '.$o,'Fecha Primera Dosis De Tratamiento de la Pareja','fec_1dos_trapar',null,null,false,$x,'','col-35');
     $c[]=new cmp('fec_2dos_trapar','d','10',$d,$w.' PYg pAc '.$o,'Fecha Segunda Dosis De Tratamiento de la Pareja','fec_2dos_trapar',null,null,false,$x,'','col-35');
     $c[]=new cmp('fec_3dos_trapar','d','10',$d,$w.' PYg pAc '.$o,'Fecha Tercera Dosis De Tratamiento de la Pareja','fec_3dos_trapar',null,null,false,$x,'','col-3');
-   
-       
+      
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
     $c[]=new cmp('estrategia_1','s','3',$d,$w.' '.$o,'Estrategia PF_1','estrategia_1',null,null,false,$x,'','col-5');
@@ -300,11 +298,11 @@ function gra_sifigest(){
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_sifigest =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==3){
+  }else if(count($id)==4){
     $sql="INSERT INTO vsp_sifigest VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fec_conser_1tri1']}')),trim(upper('{$_POST['resultado_1']}')),trim(upper('{$_POST['fec_conser_2tri']}')),trim(upper('{$_POST['resultado_2']}')),trim(upper('{$_POST['fec_conser_3tri']}')),trim(upper('{$_POST['resultado_3']}')),trim(upper('{$_POST['fec_1dos_trages1']}')),trim(upper('{$_POST['fec_2dos_trages1']}')),trim(upper('{$_POST['fec_3dos_trages1']}')),trim(upper('{$_POST['pri_con_sex']}')),trim(upper('{$_POST['fec_apl_tra_1dos1']}')),trim(upper('{$_POST['fec_apl_tra_2dos1']}')),trim(upper('{$_POST['fec_apl_tra_3dos1']}')),trim(upper('{$_POST['seg_con_sex']}')),trim(upper('{$_POST['fec_apl_tra_1dos2']}')),trim(upper('{$_POST['fec_apl_tra_2dos2']}')),trim(upper('{$_POST['fec_apl_tra_3dos2']}')),trim(upper('{$_POST['prese_reinfe']}')),trim(upper('{$_POST['fec_1dos_trages2']}')),trim(upper('{$_POST['fec_2dos_trages2']}')),trim(upper('{$_POST['fec_3dos_trages2']}')),trim(upper('{$_POST['fec_1dos_trapar']}')),trim(upper('{$_POST['fec_2dos_trapar']}')),trim(upper('{$_POST['fec_3dos_trapar']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['confir_sificong']}')),trim(upper('{$_POST['resul_ser_recnac']}')),trim(upper('{$_POST['trata_recnac']}')),trim(upper('{$_POST['fec_conser_1tri2']}')),trim(upper('{$_POST['resultado']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
     TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-    // echo $sql;
+    echo $sql;
   }
     $rta=dato_mysql($sql);
     return $rta;
@@ -335,7 +333,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='sifigest-lis' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
-		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'sifigest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'sifigest.php');\"></li>";
+		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'sifigest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','etapa','sema_gest'],'sifigest.php');\"></li>";
 	}
 	
  return $rta;

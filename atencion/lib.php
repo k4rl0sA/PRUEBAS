@@ -744,6 +744,7 @@ $o='prurap';
 	$c[]=new cmp('atencion_ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
 	$c[]=new cmp('atencion_relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
 	$c[]=new cmp('prioridad','s',3,$x,$w.' '.$o,'Prioridad','prioridad',null,'',true,true,'','col-4');
+	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -865,7 +866,7 @@ function get_atencion(){
 				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
 				`atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
 				`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
-				,prioridad
+				,prioridad,estrategia
 			FROM adm_facturacion a
 			LEFT JOIN personas b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
 			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona
@@ -883,7 +884,7 @@ function get_atencion(){
 			`mestruacion`, vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
 			  `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
 			`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
-			,prioridad
+			,prioridad,estrategia
 			FROM adm_facturacion a
 			LEFT JOIN personas b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
 			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona AND a.id_factura=c.id_factura
@@ -986,6 +987,7 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_POST['atencion_ordenpsicologia']}')),
 		TRIM(UPPER('{$_POST['atencion_relevo']}')),
 		TRIM(UPPER('{$_POST['prioridad']}')),
+		TRIM(UPPER('{$_POST['estrategia']}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 			// echo $sql;
@@ -1514,6 +1516,9 @@ function gra_eac_vejez(){
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+function opc_estrategia($id=''){
+	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=203 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_prioridad($id=''){
 	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=201 and estado='A'  ORDER BY 1 ",$id);
 }

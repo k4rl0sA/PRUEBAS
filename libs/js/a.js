@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.02.1";
+window.appVersion = "1.10.05.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -33,12 +33,14 @@ if (version) {
   }
 }
 
-document.addEventListener('keydown', function (event) {
-	if (event.ctrlKey && event.key === 'v') {
-		inform('Esta acción no esta permitida');
+  document.addEventListener('keydown', function (event) {
+	const txtarea = document.activeElement;
+	if (event.ctrlKey && event.key === 'v' && txtarea && txtarea.tagName === 'TEXTAREA') {
+	  inform('Esta acción no está permitida');
 	  event.preventDefault();
 	}
   });
+  
   
  /*  document.addEventListener('contextmenu', function (event) {
 	inform('Esta acción no esta permitida');

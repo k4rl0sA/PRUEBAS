@@ -33,20 +33,57 @@ if (version) {
   }
 }
 
-  document.addEventListener('keydown', function (event) {
-	const txtarea = document.activeElement;
-	if (event.ctrlKey && event.key === 'v' && txtarea && txtarea.tagName === 'TEXTAREA') {
-	  inform('Esta acción no está permitida');
+document.addEventListener('keydown', function (event) {
+	if (event.ctrlKey && event.key === 'v') {
+		inform('Esta acción no esta permitida');
 	  event.preventDefault();
 	}
   });
+
   
-  
- /*  document.addEventListener('contextmenu', function (event) {
+  document.addEventListener('contextmenu', function (event) {
 	inform('Esta acción no esta permitida');
 	event.preventDefault();
-  });	 */
+  });
 
+
+//Sesion
+let inactivityTimer;
+const inactivityTimeout = 25 * 60 * 1000; // 30
+
+function startInactivityTimer() {
+  inactivityTimer = setTimeout(() => {
+    logoutUser()
+      .then(() => {
+        window.location.href = '/logout.php';
+      })
+      .catch((error) => {
+        console.error('Error durante el cierre de sesión:', error);
+      });
+  }, inactivityTimeout);
+}
+
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  startInactivityTimer();
+}
+
+function showInactivityWarning() {
+  inform('Tu sesión se cerrará en 5 minutos debido a la inactividad. ¡Por favor, interactúa con la aplicación para mantenerla activa!');
+}
+
+setTimeout(showInactivityWarning, inactivityTimeout - (5 * 60 * 1000));
+
+document.addEventListener('keydown', resetInactivityTimer);
+document.addEventListener('click', resetInactivityTimer);
+
+function logoutUser() {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
+  
 var captura = {
 	init: function (n, c = '', a = 'tab') {
 		var con = "";

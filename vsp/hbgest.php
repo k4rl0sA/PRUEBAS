@@ -68,7 +68,7 @@ function cmp_hbgest(){
   $no='nO';
   $bl='bL';
   $x=false;
-   $block=['hab','acc'];
+  $block=['hab','acc'];
   $event=divide($_POST['id']);
   $ev=$event[3];
   $ge='pR';
@@ -76,41 +76,49 @@ function cmp_hbgest(){
   
 	$c[]=new cmp('id_hbgestacio','h','50',$_POST['id'],$w.' '.$o,'Id de hbgest','id_hbgestacio',null,null,false,false,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
-  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2');
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('estado_s','s','3',$d,$w.' '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enbValsCls('etapa',['{$ge}','{$pu}','{$pu}']);");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-2');
 
   $o='hab';
-    $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTES',$w);
-    $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-25');
+  $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTES',$w);
+  $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-25');
+  $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-25');
+  $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-25');
+  $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-25');
    
-    $c[]=new cmp($o,'e',null,'INFORMACIÓN PUERPERIO Y/O POSTERIOR AL PUERPERIO',$w);
-    $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
-    $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resul_gest','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
-    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
-    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$pu.' '.$o,'¿Cuál?','cual',null,null,false,false,' ','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Asiste a Controles de C y D o plan canguro?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('lacmate_comple','s','3',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-15');
-    $c[]=new cmp('fec_hb_recnac','d','10',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'Fecha de vacuna HB del recién nacido','fec_hb_recnac',null,null,false,$x,'','col-15');
-    $c[]=new cmp('reci_inmunoglo','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe Inmunoglobulina?','rta',null,null,false,$x,'','col-1');
-    $c[]=new cmp('seg_eps','s','2',$d,$w.' '.$bl.' Rg '.$pu.' '.$o,'¿Se evidencia seguimiento desde su EPS?','rta',null,null,false,$x,'','col-2');
+  $o='infpue';
+  $c[]=new cmp($o,'e',null,'INFORMACIÓN PUERPERIO Y/O POSTERIOR AL PUERPERIO',$w);
+  $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
+  $c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('resul_gest','s','3',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
+  $c[]=new cmp('meto_fecunda','s','2',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
+  $c[]=new cmp('cual','s','3',$d,$w.' PuE '.$bl.' mF '.$pu.' '.$o,'¿Cuál?','cual',null,null,false,false,' ','col-2');
+
     
-    $o='hab';
-    $c[]=new cmp($o,'e',null,'INFORMACIÓN ANTIGENOS',$w);
-    $c[]=new cmp('antige_super1','s','2',$d,$w.' '.$o,'Antígeno de Superficie','rta',null,null,false,$x,'','col-25',"enabOthSi('antige_super1','A1');");
-    $c[]=new cmp('resultado1','s','2',$d,$w.' A1 '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
-    $c[]=new cmp('anticor_igm_hb1','s','2',$d,$w.' '.$o,'AntiCore Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_igm_hb1','a2');");
-    $c[]=new cmp('resultado2','s','2',$d,$w.' a2 '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
-    $c[]=new cmp('anticor_toigm_hb1','s','2',$d,$w.' '.$o,'AntiCore Total Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_toigm_hb1','A3');");
-    $c[]=new cmp('resultado3','s','2',$d,$w.' A3 '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
+  $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Asiste a Controles de C y D o plan canguro?','rta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('lacmate_comple','s','3',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-15');
+    
+
+    $o='ncvmor';
+    $c[]=new cmp($o,'e',null,'NACIDO VIVO Y/O MORTINATO',$w);
+    $c[]=new cmp('reci_inmunoglo','s','2',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-1');
+    $c[]=new cmp('fec_hb_recnac','d','10',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'Fecha de vacuna HB del recién nacido','fec_hb_recnac',null,null,false,$x,'','col-15');
+    $c[]=new cmp('reci_inmunoglo','s','2',$d,$w.' PuE '.$bl.' '.$pu.' '.$o,'¿Recibe Inmunoglobulina?','rta',null,null,false,$x,'','col-1');
+    $c[]=new cmp('seg_eps','s','2',$d,$w.' '.$bl.' PuE '.$pu.' '.$o,'¿Se evidencia seguimiento desde su EPS?','rta',null,null,false,$x,'','col-2');
+    
+    $o='infacc';
+    $c[]=new cmp($o,'e',null,'GESTANTE Y/O PUERPERA',$w);
+    $c[]=new cmp('antige_super1','s','2',$d,$w.' PYg '.$bl.' '.$o,'Antígeno de Superficie','rta',null,null,false,$x,'','col-25',"enabOthSi('antige_super1','A1');");
+    $c[]=new cmp('resultado1','s','2',$d,$w.' A1 PYg '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
+    $c[]=new cmp('anticor_igm_hb1','s','2',$d,$w.' PYg '.$bl.' '.$o,'AntiCore Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_igm_hb1','a2');");
+    $c[]=new cmp('resultado2','s','2',$d,$w.' a2 PYg '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
+    $c[]=new cmp('anticor_toigm_hb1','s','2',$d,$w.' PYg '.$bl.' '.$o,'AntiCore Total Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_toigm_hb1','A3');");
+    $c[]=new cmp('resultado3','s','2',$d,$w.' A3 PYg '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
     
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
@@ -131,17 +139,20 @@ function cmp_hbgest(){
     $c[]=new cmp('observaciones','a','1500',$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-10');
     $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$o,'Cierre de Caso','rta',null,null,false,$x,'','col-1','enabFincas(this,\'cc\');');
     //igual
-
+    $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');    
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
-    $c[]=new cmp('liker_dificul','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-2');
-    $c[]=new cmp('liker_emocion','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-2');
-    $c[]=new cmp('liker_decision','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-2');
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
+    $c[]=new cmp('users_bina[]','m','10',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
-
+function opc_bina($id=''){
+  return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
+}
+function opc_motivo_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_rta1($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=187 and estado='A' ORDER BY 1",$id);
   }
@@ -252,15 +263,16 @@ function opc_cual($id=''){
 function gra_hbgest(){
   // print_r($_POST);
   $id=divide($_POST['id_hbgestacio']);
+  if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==5){
     $sql="UPDATE vsp_hbgest SET 
-    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),fec_hb_recnac=trim(upper('{$_POST['fec_hb_recnac']}')),reci_inmunoglo=trim(upper('{$_POST['reci_inmunoglo']}')),seg_eps=trim(upper('{$_POST['seg_eps']}')),antige_super1=trim(upper('{$_POST['antige_super1']}')),resultado1=trim(upper('{$_POST['resultado1']}')),anticor_igm_hb1=trim(upper('{$_POST['anticor_igm_hb1']}')),resultado2=trim(upper('{$_POST['resultado2']}')),anticor_toigm_hb1=trim(upper('{$_POST['anticor_toigm_hb1']}')),resultado3=trim(upper('{$_POST['resultado3']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),fec_hb_recnac=trim(upper('{$_POST['fec_hb_recnac']}')),reci_inmunoglo=trim(upper('{$_POST['reci_inmunoglo']}')),seg_eps=trim(upper('{$_POST['seg_eps']}')),antige_super1=trim(upper('{$_POST['antige_super1']}')),resultado1=trim(upper('{$_POST['resultado1']}')),anticor_igm_hb1=trim(upper('{$_POST['anticor_igm_hb1']}')),resultado2=trim(upper('{$_POST['resultado2']}')),anticor_toigm_hb1=trim(upper('{$_POST['anticor_toigm_hb1']}')),resultado3=trim(upper('{$_POST['resultado3']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),users_bina = TRIM(UPPER('{$smbina}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_hbgestacio =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
     $sql="INSERT INTO vsp_hbgest VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_comple']}')),trim(upper('{$_POST['fec_hb_recnac']}')),trim(upper('{$_POST['reci_inmunoglo']}')),trim(upper('{$_POST['seg_eps']}')),trim(upper('{$_POST['antige_super1']}')),trim(upper('{$_POST['resultado1']}')),trim(upper('{$_POST['anticor_igm_hb1']}')),trim(upper('{$_POST['resultado2']}')),trim(upper('{$_POST['anticor_toigm_hb1']}')),trim(upper('{$_POST['resultado3']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_comple']}')),trim(upper('{$_POST['fec_hb_recnac']}')),trim(upper('{$_POST['reci_inmunoglo']}')),trim(upper('{$_POST['seg_eps']}')),trim(upper('{$_POST['antige_super1']}')),trim(upper('{$_POST['resultado1']}')),trim(upper('{$_POST['anticor_igm_hb1']}')),trim(upper('{$_POST['resultado2']}')),trim(upper('{$_POST['anticor_toigm_hb1']}')),trim(upper('{$_POST['resultado3']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbina}')),
     TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;
   }
@@ -275,7 +287,7 @@ function gra_hbgest(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_hbgestacio,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,asiste_control,vacuna_comple,lacmate_comple,fec_hb_recnac,reci_inmunoglo,seg_eps,antige_super1,resultado1,anticor_igm_hb1,resultado2,anticor_toigm_hb1,resultado3,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,asiste_control,vacuna_comple,lacmate_comple,fec_hb_recnac,reci_inmunoglo,seg_eps,antige_super1,resultado1,anticor_igm_hb1,resultado2,anticor_toigm_hb1,resultado3,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina,
       FROM vsp_hbgest
       WHERE id_hbgestacio ='{$id[0]}'";
       // echo $sql;

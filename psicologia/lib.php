@@ -25,7 +25,7 @@ function lis_psicologia(){
 	$info=datos_mysql("SELECT COUNT(DISTINCT concat(P.tipo_doc,'_',idpersona)) total from personas P 
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc 
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
-	left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)	
+	left join hog_geo G ON V.idgeo=concat(G.estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)	
 	LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc	
 	LEFT JOIN usuarios U ON S.doc_asignado = U.id_usuario 
 	LEFT JOIN eac_rutpsico R ON S.documento = R.documento AND S.tipo_doc = R.tipo_doc
@@ -42,7 +42,7 @@ function lis_psicologia(){
 	FROM personas P
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
+	left join hog_geo G ON V.idgeo=concat(G.estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
 	LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc
 	LEFT JOIN usuarios U ON S.doc_asignado = U.id_usuario
 	LEFT JOIN eac_rutpsico R ON S.documento = R.documento AND S.tipo_doc = R.tipo_doc
@@ -50,7 +50,7 @@ function lis_psicologia(){
 	$sql.=whe_psicologia();
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"psicologia",$regxPag);
 }
@@ -75,10 +75,14 @@ function whe_psicologia() {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
 		}
-		$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+		/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 		$usu=divide($rta["responseResult"][0]['usu']);
-		$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ;
-		$sql.="  and U.componente IN('EAC','ADM') AND U.subred IN(".$subred.") AND S.doc_asignado='".$_SESSION['us_sds']."'";
+		$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ; */
+		$rta=datos_mysql("select perfil,subred from usuarios where id_usuario='".$_SESSION['us_sds']."';");
+		$perfil=divide($rta["responseResult"][0]['perfil']);
+		$subred=divide($rta["responseResult"][0]['subred']);
+		$sub = ($perfil[0]=='ADM') ? '1,2,3,4,5' : $subred[0] ; 
+		$sql.="  and U.componente IN('EAC','ADM') AND U.subred IN($sub) AND S.doc_asignado='".$_SESSION['us_sds']."'";
 	return $sql;
 }
 

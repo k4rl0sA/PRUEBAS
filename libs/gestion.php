@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION["us_sds"]) || isset($_SESSION['expira']) && time()>$_SESSION['expira']){ 
-  die("<script>window.top.location.href = '/';</script>");
-}
+/* if (!isset($_SESSION["us_sds"]) || (isset($_SESSION['expira']) && time() > $_SESSION['expira'])) {
+  echo "<script>inform('Tu sesión ha expirado o no has iniciado sesión. Serás redirigido.');</script>";
+  header("Location: /");
+  exit;
+} */
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
 // $GLOBALS['app']='sds';
@@ -12,7 +14,7 @@ setlocale(LC_ALL,'es_CO');
 $ruta_upload='/public_html/upload/';
 $env='prod';
 //$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
- $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 //$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']) or die(mysqli_error());//."<script>window.top.location.href='/';</script>");
 mysqli_set_charset($con,"utf8");

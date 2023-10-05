@@ -6,7 +6,7 @@ include_once('./login/frmlogin.php');
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$name = test_input($_POST['username']);
 			$pwd =$_POST['passwd'];
-			/*********************************************  PARA PRODUCCION
+			
 			
 			$token=$_POST['token'];
 			$url='https://www.google.com/recaptcha/api/siteverify';
@@ -28,12 +28,9 @@ include_once('./login/frmlogin.php');
 					</div>";
 				die();
 			}
-
-			*/
 			$valida=login($name,$pwd);
 			if ($valida === true){
 				$_SESSION["us_sds"] = strtolower($name);
-				$_SESSION['expira'] = time() + 120*60;
 				if($_POST["passwd"] == "riesgo2020+"){
 					$link="cambio-clave/";
 					// echo "<script>alert('".$valida."  -  ".$link."');</script>";

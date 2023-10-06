@@ -19,8 +19,6 @@ else {
   }   
 }
 
-
-
 function lis_psicologia(){
 	$info=datos_mysql("SELECT COUNT(DISTINCT concat(P.tipo_doc,'_',idpersona)) total from personas P 
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc 
@@ -33,7 +31,6 @@ function lis_psicologia(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-psicologia']))? ($_POST['pag-psicologia']-1)* $regxPag:0;
-	
 	
 	$sql="SELECT DISTINCT concat(P.tipo_doc,'_',idpersona) ACCIONES, P.tipo_doc AS 'Tipo Documento',
 	idpersona AS 'N° Documento', CONCAT(nombre1, ' ',apellido1) AS Nombre,

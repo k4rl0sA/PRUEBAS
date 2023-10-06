@@ -138,7 +138,7 @@ function gra_tamoms(){
 $sql1="SELECT puntaje,clasificacion from oms 
 where diabetes='{$diab}' AND sexo='{$_POST['sexo']}' AND fuma='{$fuma}' 
 ORDER BY ABS(edad-{$_POST['edad']}),ABS(tas-{$_POST['tas']}) LIMIT 1;";
-// echo $sql1;
+echo $sql1;
 $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];

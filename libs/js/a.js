@@ -72,7 +72,7 @@ function showInactivityWarning() {
   inform('Tu sesión se cerrará en 5 minutos debido a la inactividad. ¡Por favor, interactúa con la aplicación para mantenerla activa!');
 }
 
-setTimeout(showInactivityWarning, inactivityTimeout - (5 * 60 * 1000));
+setTimeout(showInactivityWarning, inactivityTimeout - (30 * 60 * 1000));
 
 document.addEventListener('keydown', resetInactivityTimer);
 document.addEventListener('click', resetInactivityTimer);

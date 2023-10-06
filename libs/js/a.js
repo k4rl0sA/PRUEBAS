@@ -48,7 +48,7 @@ document.addEventListener('keydown', function (event) {
 
 
 //Sesion
-let inactivityTimer;
+/* let inactivityTimer;
 const inactivityTimeout = 25 * 60 * 1000; // 30
 
 function startInactivityTimer() {
@@ -82,7 +82,7 @@ function logoutUser() {
     resolve();
   });
 }
-
+ */
   
 var captura = {
 	init: function (n, c = '', a = 'tab') {

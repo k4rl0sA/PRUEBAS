@@ -135,10 +135,29 @@ function gra_tamoms(){
 	
 	$diab = ($_POST['diabetes']==1) ? 'SI' : 'NO';
 	$fuma = ($_POST['fuma']==1) ? 'SI' : 'NO';
+
+$sql2="SELECT CASE
+        WHEN {$_POST['edad']} < 50 THEN 40
+        WHEN {$_POST['edad']} >= 50 AND @edad < 60 THEN 50
+        WHEN {$_POST['edad']} >= 60 AND @edad < 70 THEN 60
+        ELSE 70
+    END anios,
+    @tens := CASE
+        WHEN  {$_POST['tas']}< 140 THEN 120
+        WHEN  {$_POST['tas']}>= 140 AND @tas < 160 THEN 140
+        WHEN  {$_POST['tas']}>= 160 AND @tas < 180 THEN 160
+        ELSE 180
+    END ten;";	
+$info=datos_mysql($sql2);
+$año=$info['responseResult'][0]['anios'];
+$ten=$info['responseResult'][0]['ten'];
+
+
 $sql1="SELECT puntaje,clasificacion from oms 
 where diabetes='{$diab}' AND sexo='{$_POST['sexo']}' AND fuma='{$fuma}' 
-ORDER BY ABS(edad-{$_POST['edad']}),ABS(tas-{$_POST['tas']}) LIMIT 1;";
-echo $sql1;
+AND edad=$año AND tas=$ten;";
+
+//echo $sql1;
 $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];

@@ -48,8 +48,8 @@ document.addEventListener('keydown', function (event) {
 
 
 //Sesion
-/* let inactivityTimer;
-const inactivityTimeout = 25 * 60 * 1000; // 30
+let inactivityTimer;
+const inactivityTimeout = 30 * 60 * 1000; // 30
 
 function startInactivityTimer() {
   inactivityTimer = setTimeout(() => {
@@ -69,7 +69,7 @@ function resetInactivityTimer() {
 }
 
 function showInactivityWarning() {
-  inform('Tu sesión se cerrará en 5 minutos debido a la inactividad. ¡Por favor, interactúa con la aplicación para mantenerla activa!');
+	alert('Tu sesión se cerrará en 5 minutos debido a la inactividad. ¡Por favor, interactúa con la aplicación para mantenerla activa!');
 }
 
 setTimeout(showInactivityWarning, inactivityTimeout - (30 * 60 * 1000));
@@ -82,7 +82,7 @@ function logoutUser() {
     resolve();
   });
 }
- */
+
   
 var captura = {
 	init: function (n, c = '', a = 'tab') {

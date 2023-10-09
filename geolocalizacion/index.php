@@ -244,7 +244,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
-$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li>":"";
 ?>
 <form method='post' id='fapp' >
@@ -284,31 +284,9 @@ $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mo
 </form>
 <script>
 	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
-	
 	btnLoad.addEventListener("click", () => {
-		if (inputFile1.files.length > 0 ) {
-			var formData = new FormData();
-			formData.append("ncol", 30);
-			formData.append("tab", "hog_geo");
-			formData.append("archivo", inputFile1.files[0]);
-			var req = new XMLHttpRequest();
-			req.addEventListener("readystatechange",function(){
-				if(this.readyState === 4){
-					if(this.status === 200){
-						document.getElementById("cmprstss").innerHTML = this.responseText;
-						act_lista(mod);
-					}
-				}
-			});
-			req.open("POST", "../libs/import.php", true);
-			req.send(formData);
-		} else {
-			document.getElementById(mn+'-modal').innerHTML="Selecciona un archivo valido";
-			document.getElementById(mn+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-			openModal();
-		}
-	});
-	
+	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
+  });
 </script>	
 <div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">

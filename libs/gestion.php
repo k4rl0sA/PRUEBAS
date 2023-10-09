@@ -11,12 +11,17 @@ setlocale(LC_TIME, 'es_CO');
 ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
+if (!isset($_SESSION["us_sds"])) {
+  header("Location: /index.php"); 
+  exit;
+}
 $ruta_upload='/public_html/upload/';
 $env='prod';
 //$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 //$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
-$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']) or die(mysqli_error());//."<script>window.top.location.href='/';</script>");
+$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
+if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;
 // $cv=array(isset($_SESSION["us_{$GLOBALS['app']}"])?$_SESSION["us_{$GLOBALS['app']}"]:"","NOW()");

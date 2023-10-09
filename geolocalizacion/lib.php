@@ -265,9 +265,9 @@ function cmp_hog_geoloc(){
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,$u,'','col-2',false,['upz']);
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,$u,'','col-25',false,['bar']);
  $c[]=new cmp('barrio','s','8',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,$u,'','col-35');
- $c[]=new cmp('territorio','t','5',$d['territorio'],$w.' '.$o,'Territorio','territorio',null,null,false,$u,'','col-2');
+ $c[]=new cmp('territorio','t','6',$d['territorio'],$w.' '.$o,'Territorio','territorio',null,null,false,$u,'','col-2');
  
- $c[]=new cmp('microterritorio','t','3',$d['microterritorio'],$w.' '.$o,'Manzana Cuidado','microterritorio',null,null,false,$u,'','col-2');
+ $c[]=new cmp('microterritorio','t','3',$d['microterritorio'],$w.' '.$o,'Manzana del Cuidado','microterritorio',null,null,false,$u,'','col-2');
  $c[]=new cmp('sector_catastral','n','6',$d['sector_catastral'],$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,null,true,$u,'','col-2');
  $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,null,true,$u,'','col-15');
  $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,null,true,$u,'','col-15');

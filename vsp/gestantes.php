@@ -72,48 +72,55 @@ $ob='Ob';
    $block=['hab','acc'];
   $event=divide($_POST['id']);
   $ev=$event[3];
+  $ge='pRe';
+  $pu='PuE';
+  $pg='PYg';
   
 
 	$c[]=new cmp('id_gestante','h','50',$_POST['id'],$w.' '.$o,'','id_gestante',null,null,false,true,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
-  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2');
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('estado_s','s','3',$d,$w.' '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('etapa','s','3',$d,$w.' '.$o,'Etapa','etapa',null,null,false,true,'','col-15');
+  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enabEtap('etapa',['{$ge}','{$pu}','{$pg}']);weksEtap('etapa','PeT');");
+  $c[]=new cmp('sema_gest','s','3',$d,$w.' hab PeT '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-2');
   
   $o='hab';
   $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTE',$w);
-    $c[]=new cmp('sema_gest','s','3',$d,$w.' '.$o,'Sema de Gest','sema_gest',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$o,'Asis de Ctrpre','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$o,'Exam de Lab','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$o,'Esqu de Vacuna','esqu_vacuna',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$o,'Cons de Micronutr','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso','','3,2',$d,$w.' '.$o,'Peso','peso',null,null,false,$x,'','col-2');
-    $c[]=new cmp('talla','n','3',$d,$w.' '.$o,'Talla','talla',null,null,false,$x,'','col-2');
-    $c[]=new cmp('imc','','3,2',$d,$w.' '.$o,'Imc','imc',null,null,false,$x,'','col-2');
-    $c[]=new cmp('clas_nutri','s','3',$d,$w.' '.$o,'Clas de Nutri','clas_nutri',null,null,false,$x,'','col-2');
-    $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$o,'Gana de Peso','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cant_ganapesosem','s','3',$d,$w.' '.$o,'Cant de Ganapesosem','cant_ganapesosem',null,null,false,$x,'','col-2');
-    $c[]=new cmp('ante_patogest','s','3',$d,$w.' '.$o,'Ante de Patogest','ante_patogest',null,null,false,$x,'','col-2');
-    $c[]=new cmp('num_frutas','s','2',$d,$w.' '.$o,'Num de Frutas','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('num_carnes','s','3',$d,$w.' '.$o,'Num de Carnes','num_carnes',null,null,false,$x,'','col-2');
-    $c[]=new cmp('num_azucar','s','3',$d,$w.' '.$o,'Num de Azucar','num_azucar',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cant_actifisica','s','3',$d,$w.' '.$o,'Cant de Actifisica','cant_actifisica',null,null,false,$x,'','col-2');
-    $c[]=new cmp('adop_recomenda','s','2',$d,$w.' '.$o,'Adop de Recomenda','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('apoy_alim','s','2',$d,$w.' '.$o,'Apoy de Alim','rta',null,null,false,$x,'','col-2');
+    
+    $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-25');
+    
+    
+    $c[]=new cmp('peso','','3,2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Peso (kg)','peso',null,null,false,$x,'','col-1',"valPeso('peso')");
+    $c[]=new cmp('talla','n','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Talla (cm)','talla',null,null,false,$x,'','col-1',"calImc('peso',this,'imc');valTalla('talla')");
+    $c[]=new cmp('imc','t','6',$d,$w.' '.$bl.' '.$o,'Imc','imc',null,null,false,false,'','col-1');
+    $c[]=new cmp('clas_nutri','t','50',$d,$w.' '.$bl.' '.$ge.' '.$o,'Clasificación Nutricional Segun Edad Gestacional','clas_nutri',null,null,false,$x,'','col-2');
+    $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Se evidencia ganancia de peso?','rta',null,null,false,$x,'','col-15');
+    $c[]=new cmp('cant_ganapesosem','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Ganancia de peso semanal','cant_ganapesosem',null,null,false,$x,'','col-35');
+    $c[]=new cmp('ante_patogest','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Antecedentes Patológicos Durante La Gestación','ante_patogest',null,null,false,$x,'','col-25');
+    $c[]=new cmp('num_frutas','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Porciones Que Consume Al Día De Frutas y Verduras','rtaali',null,null,false,$x,'','col-25');
+    $c[]=new cmp('num_carnes','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Porciones Que Consume Al Día De Carnes, Huevos, Leguminosas','rtaali',null,null,false,$x,'','col-25');
+    $c[]=new cmp('num_azucar','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Porciones Que Consume Al Día De Azucares','rtaali',null,null,false,$x,'','col-25');
+    $c[]=new cmp('cant_actifisica','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Cuantas Horas De Actividad Física Realiza a la Semana','rtaali',null,null,false,$x,'','col-25');
+    $c[]=new cmp('adop_recomenda','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿La gestante adopta recomendaciones nutricionales brindadas?','rta',null,null,false,$x,'','col-3');
+    $c[]=new cmp('apoy_alim','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta con programa de apoyo alimentario?','rta',null,null,false,$x,'','col-2');
 
-    $o='hab';
+    $o='infpue';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN PUERPERIA',$w);
-    $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$o,'Fecha de Obstetrica','fecha_obstetrica',null,null,false,$x,'','col-2');
-    $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$o,'Edad de Gesta','edad_gesta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resul_gest','s','2',$d,$w.' '.$o,'Resul de Gest','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$o,'Meto de Fecunda','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cual','s','3',$d,$w.' '.$o,'Cual','cual',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso_nacer','n','4',$d,$w.' '.$o,'Peso de Nacer','peso_nacer',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$o,'Asiste de Control','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' '.$o,'Vacuna de Comple','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('lacmate_exclu','s','2',$d,$w.' '.$o,'Lacmate de Exclu','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
+    $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Edad gestacional al momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('resul_gest','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
+    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
+    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$pu.' '.$o,'Cual','cual',null,null,false,false,' ','col-2');
+    
+    $c[]=new cmp('peso_nacer','n','4',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'Peso del recién nacido al nacer (gr)','peso_nacer',null,null,false,$x,'','col-15');
+    $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('lacmate_exclu','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
 
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
@@ -132,16 +139,35 @@ $ob='Ob';
     $c[]=new cmp('caso_afirmativo','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Relacione Cuales signos y sintomas, Y Atención Recibida Hasta el Momento','caso_afirmativo',null,null,false,$x,'','col-4');
     $c[]=new cmp('otras_condiciones','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Otras Condiciones de Riesgo que Requieren una Atención Complementaria.','otras_condiciones',null,null,false,$x,'','col-4');
     $c[]=new cmp('observaciones','a','1500',$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-10');
-    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$o,'Cierre de Caso','rta',null,null,false,$x,'','col-1','enabFincas(this,\'cc\');');
+    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-15','enabFincas(this,\'cc\');');
     //igual
-
+    $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
-    
+    $c[]=new cmp('users_bina[]','m','10',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
 
+
+function opc_bina($id=''){
+  return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
+}
+function opc_motivo_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
+}
+function opc_resul_gest($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=193 and estado='A' ORDER BY 1",$id);
+}
+function opc_etapa($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=136 and estado='A' ORDER BY 1",$id);
+}
+function opc_sema_gest($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+}
+function opc_rtaali($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A' ORDER BY LPAD(idcatadeta,2,'0')",$id);
+  }
 function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
   }
@@ -218,12 +244,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_novedades($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=77 and estado='A' ORDER BY 1",$id);
 }
-function opc_etapa($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
-  }
-  function opc_sema_gest($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
-  }
+
   function opc_asis_ctrpre($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
   }
@@ -231,39 +252,32 @@ function opc_etapa($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
   }
   function opc_cant_ganapesosem($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=205 and estado='A' ORDER BY 1",$id);
   }
   function opc_ante_patogest($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=204 and estado='A' ORDER BY 1",$id);
   }
-  function opc_num_carnes($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
-  }
-  function opc_num_azucar($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
-  }
-  function opc_cant_actifisica($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
-  }
+  
   function opc_edad_gesta($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
   }
   function opc_cual($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=138 and estado='A' ORDER BY 1",$id);
   }
 
 function gra_gestantes(){
   // print_r($_POST);
   $id=divide($_POST['id_gestante']);
+  if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==5){
     $sql="UPDATE vsp_gestantes SET 
-   etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),clas_nutri=trim(upper('{$_POST['clas_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),cant_ganapesosem=trim(upper('{$_POST['cant_ganapesosem']}')),ante_patogest=trim(upper('{$_POST['ante_patogest']}')),num_frutas=trim(upper('{$_POST['num_frutas']}')),num_carnes=trim(upper('{$_POST['num_carnes']}')),num_azucar=trim(upper('{$_POST['num_azucar']}')),cant_actifisica=trim(upper('{$_POST['cant_actifisica']}')),adop_recomenda=trim(upper('{$_POST['adop_recomenda']}')),apoy_alim=trim(upper('{$_POST['apoy_alim']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),peso_nacer=trim(upper('{$_POST['peso_nacer']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+   etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),clas_nutri=trim(upper('{$_POST['clas_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),cant_ganapesosem=trim(upper('{$_POST['cant_ganapesosem']}')),ante_patogest=trim(upper('{$_POST['ante_patogest']}')),num_frutas=trim(upper('{$_POST['num_frutas']}')),num_carnes=trim(upper('{$_POST['num_carnes']}')),num_azucar=trim(upper('{$_POST['num_azucar']}')),cant_actifisica=trim(upper('{$_POST['cant_actifisica']}')),adop_recomenda=trim(upper('{$_POST['adop_recomenda']}')),apoy_alim=trim(upper('{$_POST['apoy_alim']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),peso_nacer=trim(upper('{$_POST['peso_nacer']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),users_bina = TRIM(UPPER('{$smbin}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_gestante =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
-  }else if(count($id)==3){
+  }else if(count($id)==4){
     $sql="INSERT INTO vsp_gestantes VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-   trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['clas_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['cant_ganapesosem']}')),trim(upper('{$_POST['ante_patogest']}')),trim(upper('{$_POST['num_frutas']}')),trim(upper('{$_POST['num_carnes']}')),trim(upper('{$_POST['num_azucar']}')),trim(upper('{$_POST['cant_actifisica']}')),trim(upper('{$_POST['adop_recomenda']}')),trim(upper('{$_POST['apoy_alim']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['peso_nacer']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+   trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['clas_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['cant_ganapesosem']}')),trim(upper('{$_POST['ante_patogest']}')),trim(upper('{$_POST['num_frutas']}')),trim(upper('{$_POST['num_carnes']}')),trim(upper('{$_POST['num_azucar']}')),trim(upper('{$_POST['cant_actifisica']}')),trim(upper('{$_POST['adop_recomenda']}')),trim(upper('{$_POST['apoy_alim']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['peso_nacer']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
       TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
     }
@@ -277,7 +291,7 @@ function gra_gestantes(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_gestante,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,peso,talla,imc,clas_nutri,gana_peso,cant_ganapesosem,ante_patogest,num_frutas,num_carnes,num_azucar,cant_actifisica,adop_recomenda,apoy_alim,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,peso,talla,imc,clas_nutri,gana_peso,cant_ganapesosem,ante_patogest,num_frutas,num_carnes,num_azucar,cant_actifisica,adop_recomenda,apoy_alim,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_gestantes
       WHERE id_gestante ='{$id[0]}'";
       // echo $sql;
@@ -306,3 +320,4 @@ function bgcolor($a,$c,$f='c'){
   $rta="";
   return $rta;
    }
+   

@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.05.1";
+window.appVersion = "1.10.08.2";
 
 const version = document.querySelector("div.usuario");
 
@@ -49,17 +49,11 @@ document.addEventListener('keydown', function (event) {
 
 //Sesion
 let inactivityTimer;
-const inactivityTimeout = 30 * 60 * 1000; // 30
 
 function startInactivityTimer() {
-  inactivityTimer = setTimeout(() => {
-    logoutUser()
-      .then(() => {
-        window.location.href = '/logout.php';
-      })
-      .catch((error) => {
-        console.error('Error durante el cierre de sesión:', error);
-      });
+  const inactivityTimeout = 45 * 60 * 1000;
+  inactivityTimer = setTimeout(function() {
+    window.location.href = '/logout.php';
   }, inactivityTimeout);
 }
 
@@ -68,22 +62,10 @@ function resetInactivityTimer() {
   startInactivityTimer();
 }
 
-function showInactivityWarning() {
-	alert('Tu sesión se cerrará en 5 minutos debido a la inactividad. ¡Por favor, interactúa con la aplicación para mantenerla activa!');
-}
+document.addEventListener("click", resetInactivityTimer);
+document.addEventListener("keypress", resetInactivityTimer);
+startInactivityTimer();
 
-setTimeout(showInactivityWarning, inactivityTimeout - (30 * 60 * 1000));
-
-document.addEventListener('keydown', resetInactivityTimer);
-document.addEventListener('click', resetInactivityTimer);
-
-function logoutUser() {
-  return new Promise((resolve, reject) => {
-    resolve();
-  });
-}
-
-  
 var captura = {
 	init: function (n, c = '', a = 'tab') {
 		var con = "";
@@ -1347,6 +1329,52 @@ function calImc(a, b, i) {
 	  imc.value = calImc.toFixed(2);
 	}
   }
+
+  function uploadCsv(ncol, tab, archivo, ruta, mod) {
+	if (archivo.files.length > 0) {
+		loader=document.getElementById('loader');
+		if (loader != undefined) loader.style.display = 'block';
+
+	  const formData = new FormData();
+	  formData.append("ncol", ncol);
+	  formData.append("tab", tab);
+	  formData.append("archivo", archivo.files[0]);
+  
+	  fetch(ruta, {
+		method: "POST",
+		body: formData,
+	  })
+		.then((response) => {
+		  if (response.ok) {
+			return response.text();
+		  } else {
+			if (loader != undefined) loader.style.display = 'none';
+			throw new Error("Network response was not ok");
+		  }
+		})
+		.then((data) => {
+			const response = JSON.parse(data);
+			const type = response.type;
+			const msj = response.msj;
+			if (loader != undefined) loader.style.display = 'none';
+			if(type=='Error'){
+				errors(msj);
+			}else if(type=='Error'){
+				ok(msj);
+			}else{
+				warnin(msj);
+			}
+		   act_lista(mod);
+		})
+		.catch((error) => {
+		  console.error(error);
+		  errors('Ha ocurrido un error al procesar la solicitud');
+		});
+	} else {
+	  warnin('Selecciona un archivo válido');
+	}
+  }
+    
 
 /* 	const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");

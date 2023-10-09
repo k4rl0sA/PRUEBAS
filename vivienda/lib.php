@@ -130,7 +130,7 @@ function lis_famili(){
 		//  echo $sql;
 		$_SESSION['sql_famili']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"famili-lis",5);
+		return panel_content($datos["responseResult"],"famili-lis",10);
 		}
 	
 
@@ -487,7 +487,7 @@ function cmp_person(){
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"datos-lis",5);
+		return panel_content($datos["responseResult"],"datos-lis",10);
 		}
 
 function focus_person(){

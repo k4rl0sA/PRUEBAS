@@ -1,10 +1,5 @@
 <?php
 session_start();
-/* if (!isset($_SESSION["us_sds"]) || (isset($_SESSION['expira']) && time() > $_SESSION['expira'])) {
-  echo "<script>inform('Tu sesión ha expirado o no has iniciado sesión. Serás redirigido.');</script>";
-  header("Location: /");
-  exit;
-} */
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
 // $GLOBALS['app']='sds';

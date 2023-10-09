@@ -1,20 +1,24 @@
 <?php
 session_start();
-if (!isset($_SESSION["us_sds"]) || isset($_SESSION['expira']) && time()>$_SESSION['expira']){ 
-  die("<script>window.top.location.href = '/';</script>");
-}
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
 // $GLOBALS['app']='sds';
 ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
+if (!isset($_SESSION["us_sds"])) {
+  header("Location: /index.php"); 
+  exit;
+}
 $ruta_upload='/public_html/upload/';
 $env='prod';
-$comy=array('prod' => ['s'=>'213.190.6.148','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
-$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']) or die(mysqli_error());//."<script>window.top.location.href='/';</script>");
-if (!$con) die("Error de conexión: " . mysqli_connect_error());
-mysqli_set_charset($con, "utf8mb4"); 
+//$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+//$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
+$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
+if (!$con) { $error = mysqli_connect_error();  exit; }
+mysqli_set_charset($con,"utf8");
+$GLOBALS['con']=$con;
 // $cv=array(isset($_SESSION["us_{$GLOBALS['app']}"])?$_SESSION["us_{$GLOBALS['app']}"]:"","NOW()");
 // $SESSION['perfil']=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_{$GLOBALS['app']}"]."'");
 //$cabecera = "<html><head><link rel='stylesheet' href='s.css' type='text/css' media='screen'><script src='js/c.js'></script></head>";
@@ -84,7 +88,6 @@ function csv($a,$b){
   return ob_get_clean();
 }
 
-
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
@@ -96,7 +99,7 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$rs = $con->query($sql);
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
-		die(json_encode(['code' => 30, 'message' => E3, 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+		die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
 	}finally {
     // $GLOBALS['con']->close();
   }
@@ -423,13 +426,6 @@ function rol($a){ //a=modulo, b=perfil c=componente
 	return $rta;
 }
 
-/* function perfil1($a = null) {
-  if ($a === null) $a = $_SESSION['us_sds'];
-  $per = datos_mysql("SELECT FN_PERFIL({$a}) AS perfil");
-  $perfil = $per["responseResult"][0]['perfil'];
-  return $perfil;
-} */
-
 function perfil($a){
 	$perf=rol($a);
 	//print_r($perf);
@@ -437,6 +433,13 @@ function perfil($a){
 		echo "<H1>ACCESO NO AUTORIZADO, VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
 		exit();
 		 }
+}
+
+function perfil1($a = null) {
+  if ($a === null) $a = $_SESSION['us_sds'];
+  $per = datos_mysql("SELECT FN_PERFIL({$a}) AS perfil");
+  $perfil = $per["responseResult"][0]['perfil'];
+  return $perfil;
 }
 
 /*COMPONENTES*/
@@ -682,3 +685,6 @@ function subtitulo($a){
 
 //~ <input class='captura valido agendar' type='date' id='fecha_atenc' name='fecha_atenc' value=".$hoy." min='".$hoy."' max='3000-01-01' required></div>";
 ?>
+
+
+

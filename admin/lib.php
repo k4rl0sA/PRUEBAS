@@ -38,24 +38,25 @@ function cmp_gestionusu(){
 }
 
 function cmp_planos(){
-	echo '<div class="container">
-        <h2>Formulario de Registro</h2>
-        <div class="input-container">
-            <label class="input-label" for="nombre">Nombre:</label>
-            <input class="input-field" type="text" id="nombre" name="nombre" required>
-        </div>
-        <div class="input-container">
-            <label class="input-label" for="email">Correo Electrónico:</label>
-            <input class="input-field" type="email" id="email" name="email" required>
-        </div>
-        <div class="input-container">
-            <label class="input-label" for="contrasena">Contraseña:</label>
-            <input class="input-field" type="password" id="contrasena" name="contrasena" required>
-        </div>
-        <button class="submit-button" type="submit">Registrarse</button>
-    </div>';
-}
+	$rta="";
+	$hoy=date('Y-m-d');
+	$t=['tarea'=>'','rol'=>'','documento'=>'','usuarios'=>''];
+	$d=get_personas();
+	if ($d==""){$d=$t;}
 
+	$w='csv';
+	$o='infusu';
+	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
+	$c[]=new cmp('proceso','s','20',$d['proceso'],$w.' '.$o,'Proceso','proceso',null,'',false,true,'','col-2');
+	$c[]=new cmp('rol','s','20',$d['rol'],$w.' '.$o,'Rol','rol',null,'',false,false,'','col-2');
+	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-2');
+	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' '.$o,'Usuarios','usuarios',null,'',false,true,'','col-2');
+	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	return $rta;
+}
+function OPC_proceso($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
+}
 function opc_tarea($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
@@ -65,19 +66,6 @@ function opc_rol($id=''){
 function opc_usuarios($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function cmp_person1(){

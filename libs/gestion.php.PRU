@@ -29,7 +29,8 @@ switch ($req) {
 	case '';
 	break;
 	case 'exportar':
-		header_csv($_REQUEST['b'] . '.csv');
+    $now=date("ymd");
+		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 			echo csv($ts, $rs);
@@ -75,12 +76,17 @@ function header_csv($a) {
   header("Content-Type: application/download");
   header("Content-Disposition: attachment;filename={$a}");
   header("Content-Transfer-Encoding: binary");
+  header("Content-Type: text/csv; charset=UTF-8");
 }
+
+
+
+
 
 function csv($a,$b){
   $df=fopen("php://output", 'w');
   ob_start();
-  if(isset($a)) fputcsv($df,array_keys($a),'|');
+  if(isset($a)){fwrite($df, "\xEF\xBB\xBF"); fputcsv($df,array_keys($a),'|');}
   if(isset($b)){
     foreach ($b as $row) fputcsv($df,$row,'|');
   }

@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
-?>	
+?>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='administracion';	
 var ruta_app='lib.php';
-
 
 function csv(b){
   var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
@@ -30,8 +29,7 @@ function grabar(tb='',ev){
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
-	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-	
+	myFetch(ruta_app,"a=gra&tb="+tb,mod);	
 }   
 
 </script>
@@ -95,8 +93,8 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN
 <form method='post' id='fapp'>
       <div class='titulo' > ZONA DE ADMINISTRACIÓN
 		<nav class='menu left' >
-    <li class='icono gestusu'      title='Exportar Información General' onclick="mostrar('gestionusu','sta',event,'','lib.php',0);"></li>
-    <li class='icono exportar'      title='Exportar Información General'    Onclick="mostrar('planos','sta',event,'','lib.php',0);"></li>
+    <li class='icono gestusu'      title='Gestionar Usuarios' onclick="mostrar('gestionusu','sta',event,'','lib.php',0);"></li>
+    <li class='icono exportar'      title='Exportar Información'    Onclick="mostrar('planos','sta',event,'','lib.php',0);"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

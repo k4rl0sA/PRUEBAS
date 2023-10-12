@@ -6,18 +6,19 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
-    header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
-    echo csv($rs,'');
-    die;
-    break;
-  default:
-    eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
-    if (is_array($rta)) json_encode($rta);
-	else echo $rta;
-  }   
-}
+  	case 'csv': 
+    	header_csv ($_REQUEST['tb'].'.csv');
+    	$rs=array('','');    
+    	echo csv($rs,'');
+    	die;
+    	break;
+  	default:
+    	eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
+    	if (is_array($rta)) json_encode($rta);
+		else echo $rta;
+  }
+}   
+
 
 function cmp_gestionusu(){
 	$rta="";
@@ -34,28 +35,67 @@ function cmp_gestionusu(){
 	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-2');
 	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' '.$o,'Usuarios','usuarios',null,'',false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"consultar('lista_consulta');\">Ejecutar</button></center>";
 	return $rta;
 }
 
+
+
+function lis_planos($opcion) {
+    switch ($opcion) {
+        case 1:
+            lis_homes();
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+}
+
+
+function lis_homes(){ //
+
+$sql1="SELECT * FROM hog_geo "; 
+// $sql1.=whe_data();
+	$sql1.=" ORDER BY 1 ASC;";
+	$_SESSION['sql_caracterizacion']=$sql1;
+	return json_encode('OK');
+}
+
+function whe_data() {
+	$hoy=date('Y-m-d');
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql = "";
+	$sql.= " WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql.= " AND subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql.= " AND date(fecha_create) BETWEEN '$ano'-'$mes'-01' AND '$ano'-'$mes'-'$dia'";
+	return $sql;
+}
+
+
 function cmp_planos(){
 	$rta="";
-	$hoy=date('Y-m-d');
-	$t=['tarea'=>'','rol'=>'','documento'=>'','usuarios'=>''];
-	$d=get_personas();
+	$hoy=date('d')-1;
+	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fecha'=>''];
+	$d='';
 	if ($d==""){$d=$t;}
 
 	$w='csv';
 	$o='infusu';
-	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('proceso','s','20',$d['proceso'],$w.' '.$o,'Proceso','proceso',null,'',false,true,'','col-2');
-	$c[]=new cmp('rol','s','20',$d['rol'],$w.' '.$o,'Rol','rol',null,'',false,false,'','col-2');
-	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-2');
-	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' '.$o,'Usuarios','usuarios',null,'',false,true,'','col-2');
+	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
+	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',false,true,'','col-2');
+	$c[]=new cmp('fecha','d',10,$d['fecha'],$w.' DwL '.$o,'Fecha','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
+	$c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','DwL');setTimeout(csv,100,'caracterizacion');\">Descargar</button></center>";
 	return $rta;
 }
-function OPC_proceso($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
+
+function opc_proceso($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 and estado='A' ORDER BY 1",$id);
 }
 function opc_tarea($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
@@ -68,73 +108,7 @@ function opc_usuarios($id=''){
 }
 
 
-function cmp_person1(){
-	$rta="<div id='download' class='tabcontent'>
-  <h3>Descargas</h3>
-  <p>aqui la funcion de las Descargas</p> 
-</div>";
-	return $rta;
-} 
 
-/* function lista_persons(){ //revisar
-	$id=divide($_POST['id']);
-		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
-		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
-		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
-		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
-		FROM `personas` 
-			WHERE '1'='1' and vivipersona='".$id[0]."'";
-		$sql.=" ORDER BY fecha_create";
-		// echo $sql;
-		$_SESSION['sql_person']=$sql;
-			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"datos-lis",5);
-		} */
-
-function lista_persons(){
-	
-}
-
-
-function lis_adm(){
-	// var_dump($_POST['id']);
-	/* $id=divide($_POST['id']);
-	$info=datos_mysql("SELECT count(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura))	total FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=2;
-	$pag=(isset($_POST['pag-administracion']))? ($_POST['pag-administracion']-1)* $regxPag:0; */
-
-/* 
-	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
-	FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-		//  echo $sql;
-	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
- */
-	$id=divide($_POST['id']);
-	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
-	FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"adm-lis",5);
-   }
-
-function lis_administracion(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion`  WHERE soli_admis='SI'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-administracion']))? ($_POST['pag-administracion']-1)* $regxPag:0;
-	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
-	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',`usu_creo` Creó, FN_CATALOGODESC(184,estado_hist) Estado 
-	FROM `adm_facturacion` WHERE soli_admis='SI'";
-	$sql.=" ORDER BY fecha_create";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"administracion",$regxPag);
-	}
 
 function focus_administracion(){
  return 'administracion';
@@ -158,76 +132,10 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-function cmp_administracion(){
-	$rta="<div class='encabezado adm'>TABLA administracion</div>
-	<div class='contenido' id='adm-lis'>".lis_adm()."</div></div>";
-	$hoy=date('Y-m-d');
-	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','direccion'=>''];
-	$d=get_personas();
-	if ($d==""){$d=$t;}
-	$e="";
-	$w='administracion';
-	$o='infusu';
-	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
-	 
-	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('tipo_doc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo Documento','atencion_tipo_doc',null,'',false,false,'','col-5');
-	$c[]=new cmp('documento','t','20',$d['idpersona'],$w.' '.$o,'N° Identificación','atencion_idpersona',null,'',false,false,'','col-5');
-	$c[]=new cmp('nombre1','t','20',$d['nombre1'],$w.' '.$o,'primer nombres','nombre1',null,'',false,false,'','col-3');
-	$c[]=new cmp('nombre2','t','20',$d['nombre2'],$w.' '.$o,'segundo nombres','nombre2',null,'',false,false,'','col-2');
-	$c[]=new cmp('apellido1','t','20',$d['apellido1'],$w.' '.$o,'primer apellido','apellido1',null,'',false,false,'','col-3');
-	$c[]=new cmp('apellido2','t','20',$d['apellido2'],$w.' '.$o,'segundo apellido','apellido2',null,'',false,false,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','t','20',$d['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fecha_nacimiento',null,'',false,false,'','col-3');
-	$c[]=new cmp('sexo','s','20',$d['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-2');
-	$c[]=new cmp('genero','s','20',$d['genero'],$w.' '.$o,'genero','genero',null,'',false,false,'','col-3');
-	$c[]=new cmp('nacionalidad','s','20',$d['nacionalidad'],$w.' '.$o,'Nacionalidad','nacionalidad',null,'',false,false,'','col-2');
-	$c[]=new cmp('regimen','s','20',$d['regimen'],$w.' '.$o,'Regimen','regimen',null,'',true,true,'','col-2');
-	$c[]=new cmp('eapb','s','20',$d['eapb'],$w.' '.$o,'EAPB','eapb',null,'',true,true,'','col-2');
-	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,'',false,false,'','col-2');
-	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,'',false,false,'','col-2');
-	$c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,'',false,false,'','col-2');
-	$c[]=new cmp('direccion','t','20',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-2');
- 
-	$o='admfac';
-	$c[]=new cmp($o,'e',null,'ADMISIÓN Y FACTURACIÓN',$w);
-	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,true,'','col-15','validDate(this,-2,0)');
-	$c[]=new cmp('tipo_consulta','s',3,$e,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,true,'','col-15');
-	$c[]=new cmp('cod_cups','s','3',$e,$w.' '.$o,'Codigo CUPS','cod_cups',null,null,true,true,'','col-35');
-	$c[]=new cmp('final_consul','s','3',$e,$w.' '.$o,'Finalidad de la Consulta','final_consul',null,null,true,true,'','col-35');
-	$c[]=new cmp('cod_admin','n','12',$e,$w.' '.$o,'Codigo ingreso','cod_admin',null,null,true,true,'','col-15');
-	$c[]=new cmp('cod_factura','n','12',$e,$w.' '.$o,'Codigo de Factura','cod_factura',null,null,false,true,'','col-15');
-	$c[]=new cmp('estado_hist','s','3',$e,$w.' '.$o,'Estado administracion','estado_hist',null,null,true,true,'','col-2');
-	
-	$o='admfac';
-	$c[]=new cmp($o,'e',null,'AJUSTE IDENTIFICACION DEL USUARIO',$w);
-	$c[]=new cmp('tipo_docnew','s','3',$e,$w.' '.$o,'Ajuste Tipo Documento','tipo_docnew',null,'',false,true,'','col-25');
-	$c[]=new cmp('documento_new','t','20',$e,$w.' '.$o,'Ajuste N° Identificación','documento_new',null,'',false,true,'','col-25');
-	
-	 
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta;
-}
 
 
 
-function get_personas(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		 $id=divide($_REQUEST['id']);
-		//  print_r($id);
-		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.regimen,P.eapb,H.telefono1,H.telefono2,H.telefono3,G.direccion
-			FROM adm_facturacion F
-			LEFT JOIN personas P ON F.tipo_doc = P.tipo_doc AND F.documento = P.idpersona 
-			LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion
-        			FROM hog_geo ) AS G ON H.idgeo = G.geo
-		WHERE  P.tipo_doc='{$id[0]}' AND P.idpersona='{$id[1]}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		return $info['responseResult'][0];			
-	} 
-   }
+
 
 function get_administracion(){
 	if($_REQUEST['id']==''){
@@ -252,36 +160,6 @@ function get_administracion(){
 	}
 }
 
-function opc_sexo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
-}
-function opc_genero($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
-}
-function opc_nacionalidad($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
-}
-function opc_regimen($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY 1",$id);
-}
-function opc_eapb($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
-}
-function opc_tipo_consulta($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=182 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_cod_cups($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=126 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_final_consul($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=127 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_estado_hist($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=184 and estado='A' ORDER BY 1",$id);
-}
-function opc_tipo_docnew($id=''){
-	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
- }
 
 
 

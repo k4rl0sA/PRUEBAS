@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.08.2";
+window.appVersion = "1.10.12.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -29,6 +29,8 @@ if (version) {
    
   if (ver[1] !== window.appVersion) {
 	alert('Por favor recuerda borrar tu Cache, para utilizar la versión más estable del sistema '+window.appVersion);
+	window.location.href = '/logout.php';
+	return;
     version.textContent = actual + '_' + window.appVersion;
   }
 }
@@ -1327,6 +1329,17 @@ function calImc(a, b, i) {
 	  const tallaMetros = ta.value / 100;
 	  const calImc = pe.value / Math.pow(tallaMetros,2);
 	  imc.value = calImc.toFixed(2);
+	}
+  }
+
+  async function DownloadCsv(a,b,c) {
+	try {
+	const info=document.querySelector('select.'+b).value;
+	  const data = await getJSON(a,info,c); 
+	  console.log(data);
+	} catch (error) {
+	  console.error(error);
+	  errors('No se pudo realizar la descarga consulta con el administrador.');
 	}
   }
 

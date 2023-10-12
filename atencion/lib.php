@@ -18,7 +18,15 @@ else {
 	else echo $rta;
   }
 }
-
+function get_usuario(){
+	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit  
+	FROM hog_viv hv 
+	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
+	inner JOIN personas p ON hv.idviv=p.vivipersona
+	WHERE p.idpersona={$_POST['id']}  and hg.estado_v='7'";
+	$info=datos_mysql($sql);
+	return json_encode($info['responseResult'][0]);
+}
 
 
 function lis_homes(){
@@ -164,11 +172,11 @@ function cmp_homes(){
 	$c[]=new cmp('numfam','s',3,$d,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
 	$c[]=new cmp('fecha','d','10',$d,$w.' oculto '.$o,'fecha Caracterización','fecha',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-15');
-    $c[]=new cmp('nuc1','t','3',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
+    $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
  	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o,'complemento2','complemento',null,'',false,true,'','col-15');
- 	$c[]=new cmp('nuc2','t','3',$d,$w.' '.$o,'nuc2','nuc2',null,'',false,true,'','col-1');
+ 	$c[]=new cmp('nuc2','t','4',$d,$w.' '.$o,'nuc2','nuc2',null,'',false,true,'','col-1');
  	$c[]=new cmp('complemento3','s','3',$d,$w.' '.$o,'complemento3','complemento',null,'',false,true,'','col-15');
- 	$c[]=new cmp('nuc3','t','3',$d,$w.' '.$o,'nuc3','nuc3',null,'',false,true,'','col-15');
+ 	$c[]=new cmp('nuc3','t','4',$d,$w.' '.$o,'nuc3','nuc3',null,'',false,true,'','col-15');
 	$c[]=new cmp('telefono1','n','10',$d,$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
 	$c[]=new cmp('telefono2','n','10',$d,$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
 	$c[]=new cmp('telefono3','n','10',$d,$w.' '.$o,'telefono3','telefono3','rgxphone1',null,false,true,'','col-4');
@@ -307,7 +315,7 @@ function cmp_person(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
-	$c[]=new cmp('idpersona','t','18',$d,$w.' '.$o,'Identificación','idpersona',null,null,true,true,'','col-4');
+	$c[]=new cmp('idpersona','n','18',$d,$w.' '.$o,'Identificación','idpersona',null,null,true,true,'','col-4');
 	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4');
 	$c[]=new cmp('nombre1','t','30',$d,$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
@@ -668,7 +676,7 @@ function cmp_atencion(){
 
 	$c[]=new cmp('atencion_cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
 	
-	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');enabLoca('gestante','AbD');");
+	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');periAbd('gestante','AbD',$adul);");
 
 	$c[]=new cmp('atencion_peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','atencion_peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('atencion_peso');ZscoAte('dxnutricional');");
 	$c[]=new cmp('atencion_talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','atencion_talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('atencion_talla');ZscoAte('dxnutricional');");
@@ -705,7 +713,7 @@ $o='cronico';
 	$c[]=new cmp('metodo','s',3,$x,$w.' pre fer '.$o,'Uso actual de método anticonceptivo','aler',null,'',$gest,false,'','col-2','enabAlert(this,\'met\');');
 	$c[]=new cmp('anticonceptivo','s',3,$x,$w.' pre fer met '.$o,'Metodo anticonceptivo','metodoscons',null,'',$gest,false,'','col-2');
 	$c[]=new cmp('planificacion','s',3,$x,$w.' pre fer '.$o,'Tiene consulta de PF','aler',null,'',$gest,false,'','col-2');
-	$c[]=new cmp('mestruacion','d',3,$x,$w.' pre fer '.$o,'Fecha de ultima Mestruacion','atencion_mestruacion',null,'',$gest,false,'','col-2');	
+	$c[]=new cmp('mestruacion','d',3,$x,$w.' pre fer '.$o,'Fecha de ultima Mestruacion','atencion_mestruacion',null,'',false,false,'','col-2');	
 // }	
 
 $o='prurap';

@@ -339,6 +339,18 @@ function enabLoca(a,b){
 	}
 }
 
+function periAbd(a,b,c){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	const act=document.getElementById(a);
+	for (i=0; i<ele.length;i++) {
+		if(act.value=='SI' && c!==true){
+			enaFie(ele[i],true);
+  		}else{
+			enaFie(ele[i],false);
+		}
+	}
+}
+
 function timeDesem(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
 	for (i=0; i<ele.length;i++) {
@@ -600,6 +612,15 @@ function Zsco(a){
 		}
 }
 
+async function search(a,b,c){
+	try {
+		const id=document.getElementById(a).value;
+		const rta = await getJSON('get','usuario',id);
+	} catch (error) {
+		errors();
+		console.error("Error al ejecutar la función", error);
+	}
+}
 
 function hiddxTamiz(a, b,e) {
 	const cmpAct = document.getElementById(a);

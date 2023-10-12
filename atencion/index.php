@@ -310,9 +310,12 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
+
+	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="search(this);"></div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>
+	<div class="campo"><div>Unidad Habitacional</div><input class="captura" size=6 id="funhab" name="funhab" OnChange="actualizar();"></div>
 	<div class="campo"><div>Localidad</div>
 		<select class="captura" id="flocalidad" name="flocalidad" OnChange="actualizar();">
 			<?php echo $localidades; ?>
@@ -327,13 +330,16 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 		<div>Fecha Asignado Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
 	</div>
+	
 <?php
 	$rta="";
 	$rta = ($perfil =='ADM'||'MED') ? '<div class="campo"><div>Colaborador</div>
 	<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" disabled="true">'.$digitadores.'</select></div>':'';
-	$rta.='</div>';
 	echo $rta;
 ?>
+
+ 
+ </div>
 
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >ATENCIONES

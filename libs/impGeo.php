@@ -271,7 +271,7 @@ function catalogo($id,$nd){
 }
 
 function asignados(){
-	$info=datos_mysql("SELECT id_usuario FROM usuarios WHERE componente IN('SELECT componente from id_usuario where id_usuario='".$_SESSION['us_sds']."') and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."' and estado='A') ");
+	$info=datos_mysql("SELECT id_usuario FROM usuarios WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."') and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and estado='A' ");
 	$valores = array(); 
 	if (is_array($info['responseResult'])) {
 		foreach ($info['responseResult'] as $item) {

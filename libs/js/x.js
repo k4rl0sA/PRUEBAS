@@ -343,7 +343,9 @@ function periAbd(a,b,c){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
 	const act=document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
-		if(act.value=='SI' && c!==true){
+		if(act.value=='SI' ){
+			enaFie(ele[i],true);
+		}else if(c!==true){
 			enaFie(ele[i],true);
   		}else{
 			enaFie(ele[i],false);

@@ -6,7 +6,7 @@ include_once('./login/frmlogin.php');
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$name = test_input($_POST['username']);
 			$pwd =$_POST['passwd'];
-			
+			/*
 			$token=$_POST['token'];
 			$url='https://www.google.com/recaptcha/api/siteverify';
 			$req="$url?secret=$claves[privada]&response=$token";
@@ -27,7 +27,7 @@ include_once('./login/frmlogin.php');
 					</div>";
 				die();
 			}
-	
+	*/
 			$valida=login($name,$pwd);
 			if ($valida === true){
 				$_SESSION["us_sds"] = strtolower($name);

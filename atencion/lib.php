@@ -18,6 +18,7 @@ else {
 	else echo $rta;
   }
 }
+
 function get_usuario(){
 	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit  
 	FROM hog_viv hv 
@@ -713,7 +714,7 @@ $o='cronico';
 	$c[]=new cmp('metodo','s',3,$x,$w.' pre fer '.$o,'Uso actual de método anticonceptivo','aler',null,'',$gest,false,'','col-2','enabAlert(this,\'met\');');
 	$c[]=new cmp('anticonceptivo','s',3,$x,$w.' pre fer met '.$o,'Metodo anticonceptivo','metodoscons',null,'',$gest,false,'','col-2');
 	$c[]=new cmp('planificacion','s',3,$x,$w.' pre fer '.$o,'Tiene consulta de PF','aler',null,'',$gest,false,'','col-2');
-	$c[]=new cmp('mestruacion','d',3,$x,$w.' pre fer '.$o,'Fecha de ultima Mestruacion','atencion_mestruacion',null,'',false,false,'','col-2');	
+	$c[]=new cmp('mestruacion','d',3,$x,$w.' pre '.$o,'Fecha de ultima Mestruacion','atencion_mestruacion',null,'',false,false,'','col-2');	
 // }	
 
 $o='prurap';

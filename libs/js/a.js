@@ -1372,7 +1372,7 @@ function calImc(a, b, i) {
 			if (loader != undefined) loader.style.display = 'none';
 			if(type=='Error'){
 				errors(msj);
-			}else if(type=='Error'){
+			}else if(type=='OK'){
 				ok(msj);
 			}else{
 				warnin(msj);

@@ -98,21 +98,21 @@ function grabar(tb='',ev){
 function enableAddr(a,b,c,d){
 	const eru= document.querySelectorAll('input.'+b);
 	const eur= document.querySelectorAll('input.'+c);
-	const zon=document.querySelectorAll(d);
-	if(zon==1){
-		for (i=0; i<eur.length;i++) {
-		if(a.value=='SI'){
-			enaFie(eur[i],false);
-  		}else{
-			enaFie(eur[i],true);
-		}
-	}	
-	}else{
+	const zon=document.getElementById(d).value;
+	if(zon==='1'){
 		for (i=0; i<eru.length;i++) {
 		if(a.value=='SI'){
 			enaFie(eru[i],false);
   		}else{
 			enaFie(eru[i],true);
+		}
+		}	
+	}else{
+		for (i=0; i<eur.length;i++) {
+		if(a.value=='SI'){
+			enaFie(eur[i],false);
+  		}else{
+			enaFie(eur[i],true);
 		}
 	}
 	}

@@ -278,11 +278,11 @@ function cmp_hog_geoloc(){
  $c[]=new cmp('direccion_nueva','t','50',$d['direccion_nueva'],$w.' adur '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$u,'','col-4');
  
  $c[]=new cmp('vereda','t','50',$d['vereda'],$w.' '.$o,'Vereda','vereda',null,null,false,$u,'','col-4');
- $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' adru '.$o,'Cordx','cordx',null,null,false,$u,'','col-3');
- $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' adru '.$o,'Cordy','cordy',null,null,false,$u,'','col-3');
- $c[]=new cmp('vereda_nueva','t','50',$d['vereda_nueva'],$w.' '.$o,'Vereda Nueva','vereda_nueva',null,null,false,$u,'','col-5');
- $c[]=new cmp('cordxn','t','15',$d['cordx'],$w.' '.$o,'Cordx Nueva','cordx',null,null,false,$u,'','col-25');
- $c[]=new cmp('cordyn','t','15',$d['cordy'],$w.' '.$o,'Cordy Nueva','cordy',null,null,false,$u,'','col-25');
+ $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,$u,'','col-3');
+ $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-3');
+ $c[]=new cmp('vereda_nueva','t','50',$d['vereda_nueva'],$w.' adru '.$o,'Vereda Nueva','vereda_nueva',null,null,false,$u,'','col-5');
+ $c[]=new cmp('cordxn','t','15',$d['cordx'],$w.' adru '.$o,'Cordx Nueva','cordx',null,null,false,$u,'','col-25');
+ $c[]=new cmp('cordyn','t','15',$d['cordy'],$w.' adru '.$o,'Cordy Nueva','cordy',null,null,false,$u,'','col-25');
 
  $c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,false,$asig,'','col-25');
  $c[]=new cmp('estado_v','s',2,$d['estado_v'],$w.' '.$o,'estado','estado',null,null,true,$esta,'','col-25','enabFielSele(this,true,[\'motivo_estado\'],[\'5\']);');//hideExpres(\'estado_v\',[\'7\']);
@@ -301,7 +301,6 @@ function opc_fuente($id=''){
 function opc_priorizacion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=191 and estado='A' ORDER BY 1",$id);
 }
-
 function opc_estrategia($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=42 and estado='A' ORDER BY 1",$id);
 }

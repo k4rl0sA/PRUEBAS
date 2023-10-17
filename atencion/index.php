@@ -99,7 +99,7 @@ function valResol(a,el){
     	ele.setAttribute('readonly', true);
 		changeSelect('letra1','rango1');
 	}else{
-		if(ele.value==25 || ele.value==18){
+		if(ele.value==25){// if(ele.value==25 || ele.value==18){
 			ele.value='';
 			ele.disabled = false;
 			ele.required = true;
@@ -288,6 +288,53 @@ function rutePsico(a){
 	}
 }
 
+
+
+function searPers(a){
+	if (loader != undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =JSON.parse(xmlhttp.responseText);
+				if (loader != undefined) loader.style.display = 'none';
+					console.log(data)
+			}}
+			xmlhttp.open("POST", ruta_app,false);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('a=opc&tb=usuario&id='+a.value);
+			const sec=document.getElementById('fsector');
+			const man=document.getElementById('fmanz');
+			const pre=document.getElementById('fpred');
+			const uni=document.getElementById('funhab');
+			const des=document.getElementById('fdes');
+			const has=document.getElementById('fhas');
+			var rta =data;
+				if (Object.keys(rta).length === 4) {
+					des.value='';
+					has.value='';
+					sec.value=data['sector_catastral'];
+					man.value=data['nummanzana'];
+					pre.value=data['predio_num'];
+					uni.value=data['unidad_habit'];
+					actualizar();
+				}else{
+					const hoy = new Date();
+					hoy.setDate(hoy.getDate() - 1);
+					has.value = hoy.toISOString().split('T')[0];
+					const usu = document.getElementById('fusu');
+					usu.value = '';
+					sec.value = '';
+					man.value = '';
+					pre.value = '';
+					uni.value = '';
+					actualizar();
+					warnin('NO se ha encontrado un registro asociado.');
+				}
+	}
+
 </script>
 </head>
 <body Onload="actualizar();">
@@ -311,7 +358,7 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 
-	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="search(this);"></div>
+	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>

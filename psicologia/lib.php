@@ -219,7 +219,7 @@ function cmp_psicologia() {
 	$c[]=new cmp('psicologia_funcionamiento','t','20',$k['whodas_analisis'],$w.' '.$o,'RESULTADO MEDICIÓN DEL FUNCIONAMIENTO (WHODAS 2.0) INICIAL','psicologia_funcionamiento',null,'',$ad,false,'','col-4');
 
 	$c[]=new cmp('evachips','a','1500',$d['eva_chips'],$w.' '.$o,'EVALUACION DE RIESGO PARA NIÑOS NIÑAS Y ADOLESCENTES - ChiPS','psicologia_evaluacion',null,'',!$ad,!$ad,'','col-10');
-	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-2,0)');
+	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-15,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');
 	$c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
 	
@@ -243,7 +243,6 @@ function cmp_psicologia() {
 
 	$o='proter';
 	$c[]=new cmp($o,'e',null,'DEFINICION DE PROCESO TERAPEUTICO',$w);
-
 	$c[]=new cmp('psi_validacion10','o','2',$d['psi_validacion10'],$w.' '.$o,'1. ¿Tiene la persona un plan para terminar con su vida dentro de las siguientes dos semanas?','psi_validacion10',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion11','o','2',$d['psi_validacion11'],$w.' '.$o,'2. ¿La persona posiblemente tiene un serio trastorno mental, neurológico o por uso de sustancias?','psi_validacion11',null,null,false,true,'','col-10');
 

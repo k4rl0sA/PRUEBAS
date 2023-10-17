@@ -19,15 +19,23 @@ else {
   }
 }
 
-function get_usuario(){
-	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit  
-	FROM hog_viv hv 
+function opc_usuario(){
+	$id=$_REQUEST['id'];
+	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit FROM hog_viv hv 
 	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
 	inner JOIN personas p ON hv.idviv=p.vivipersona
-	WHERE p.idpersona={$_POST['id']}  and hg.estado_v='7'";
+	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
+
+//  echo $sql;
 	$info=datos_mysql($sql);
-	return json_encode($info['responseResult'][0]);
+	if(isset($info['responseResult'][0])){ 
+		return json_encode($info['responseResult'][0]);
+	}else{
+		return "[]";
+	}
 }
+
+
 
 
 function lis_homes(){

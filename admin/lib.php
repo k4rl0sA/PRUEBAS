@@ -17,7 +17,7 @@ else {
     	if (is_array($rta)) json_encode($rta);
 		else echo $rta;
   }
-}   
+} 
 
 
 function cmp_gestionusu(){
@@ -41,9 +41,9 @@ function cmp_gestionusu(){
 
 
 
-function lis_planos($opcion) {
-    switch ($opcion) {
-        case 1:
+function lis_planos() {
+    switch ($_REQUEST['id']) {
+        case '1':
             lis_homes();
             break;
         case 2:
@@ -54,13 +54,15 @@ function lis_planos($opcion) {
 }
 
 
-function lis_homes(){ //
-
-$sql1="SELECT * FROM hog_geo "; 
-// $sql1.=whe_data();
+function lis_homes(){ 
+$sql1="SELECT * FROM CARACTERIZACION C"; 
+$sql1.=whe_data();
 	$sql1.=" ORDER BY 1 ASC;";
 	$_SESSION['sql_caracterizacion']=$sql1;
-	return json_encode('OK');
+	$rta = array(
+		'type' => 'OK','msj'=>$sql1
+	);
+	echo json_encode($rta);
 }
 
 function whe_data() {
@@ -68,10 +70,10 @@ function whe_data() {
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql = "";
-	$sql.= " WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	$sql.= " AND subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	$sql.= " AND date(fecha_create) BETWEEN '$ano'-'$mes'-01' AND '$ano'-'$mes'-'$dia'";
+	$sql = " INNER JOIN usuarios U ON C.subred= U.subred  ";
+	$sql.= " WHERE U.componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql.= " AND U.subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql.= " AND date(C.fecha_create) BETWEEN '$ano-$mes-01' AND '$ano-$mes-$dia'";
 	return $sql;
 }
 

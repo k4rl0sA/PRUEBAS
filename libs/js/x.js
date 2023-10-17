@@ -88,16 +88,6 @@ function valPeso(a){
 		return false;
 	}
 }
-async function getDat(a,t,id) {
-	try {
-		const rta = await getJSON(a,t, id);
-		console.log(rta);
-	} catch (error) {
-		console.error("Error al ejecutar la función", error);
-	}
-  }
-
-
 
   function getAge(a) {
 	const born = document.getElementById(a);
@@ -614,15 +604,44 @@ function Zsco(a){
 		}
 }
 
-async function search(a,b,c){
+/* async function searchUsu(a,b,c){
 	try {
-		const id=document.getElementById(a).value;
-		const rta = await getJSON('get','usuario',id);
+		const id=a.value;
+		const rta = await getJSON('opc','usuario',id);
 	} catch (error) {
 		errors();
 		console.error("Error al ejecutar la función", error);
 	}
-}
+} */
+
+
+
+  async function searchUsu(a) {
+	try {
+	  const info = a.value;
+	  console.log("Datos a enviar al servidor:", info);
+  
+	  const data = await getJSON("opc", "usuario", info);
+	  console.log("Datos recibidos del servidor:", data);
+  
+	  // Resto del código...
+	} catch (error) {
+	  console.error(error);
+	  errors("No se pudo realizar la Busqueda.");	}
+  }
+  
+  
+
+  function handleResponse(responseData) {
+	const resultadoElement = document.getElementById("resultado");
+	const errorMessageElement = document.getElementById("error-message");
+	if (responseData && responseData.sector_catastral) {
+	  ok(`Sector Catastral: ${responseData.sector_catastral}, NumManzana: ${responseData.nummanzana}, Predio Num: ${responseData.predio_num}, Unidad Habit: ${responseData.unidad_habit}`);
+	} else {
+		warnin("No se encontraron resultados.");
+	}
+  }
+
 
 function hiddxTamiz(a, b,e) {
 	const cmpAct = document.getElementById(a);

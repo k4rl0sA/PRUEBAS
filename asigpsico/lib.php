@@ -23,11 +23,14 @@ else {
 
 function lis_asigpsico(){
 	$info=datos_mysql("SELECT  COUNT(DISTINCT P.idpersona,P.tipo_doc) total FROM  personas P
-	RIGHT JOIN eac_atencion A ON P.idpersona=A.atencion_idpersona AND P.tipo_doc=A.atencion_tipodoc 
-	LEFT JOIN asigpsico S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc
-	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
-	WHERE (A.atencion_ordenpsicologia='SI') ".whe_asigpsico());
+	INNER JOIN eac_atencion A ON P.tipo_doc = A.atencion_tipodoc AND P.idpersona = A.atencion_idpersona
+INNER JOIN hog_viv V ON P.vivipersona = V.idviv
+INNER JOIN relaciones_geo R ON V.idviv = R.id_viv
+INNER JOIN hog_geo G ON R.id_geo = G.idgeo
+INNER JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN asigpsico S ON A.atencion_idpersona = S.documento AND A.atencion_tipodoc = S.tipo_doc
+	
+	WHERE A.atencion_ordenpsicologia='SI' ".whe_asigpsico());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-asigpsico']))? ($_POST['pag-asigpsico']-1)* $regxPag:0;
@@ -42,18 +45,21 @@ function lis_asigpsico(){
 	WHERE 1 AND A.atencion_ordenpsicologia='SI' "; */
 	$sql="SELECT 
    DISTINCT CONCAT(P.tipo_doc, '_', P.idpersona) AS ACCIONES,
-  P.tipo_doc AS 'Tipo Documento',
-  P.idpersona AS 'N° Documento',
-  CONCAT(P.nombre1, ' ', P.apellido1) AS Nombre,
-  G.sector_catastral AS 'sector catastral',
-  G.nummanzana AS manzana,
-  G.predio_num AS predio,
-  FN_CATALOGODESC(38, S.estado) AS estado
-FROM personas P
-LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc 
-LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc
-LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-LEFT JOIN hog_geo G ON V.idgeo = CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v)
+    P.tipo_doc AS 'Tipo Documento',
+    P.idpersona AS 'N° Documento',
+    CONCAT(P.nombre1, ' ', P.apellido1) AS Nombre, 
+    FN_CATALOGODESC(2, G.localidad) AS LOCALIDAD,
+    FN_CATALOGODESC(20, G.barrio) AS BARRIO,
+    G.sector_catastral AS 'sector catastral',
+    G.nummanzana AS manzana,
+    G.predio_num AS predio
+FROM `personas` P
+INNER JOIN eac_atencion A ON P.tipo_doc = A.atencion_tipodoc AND P.idpersona = A.atencion_idpersona
+INNER JOIN hog_viv V ON P.vivipersona = V.idviv
+INNER JOIN relaciones_geo R ON V.idviv = R.id_viv
+INNER JOIN hog_geo G ON R.id_geo = G.idgeo
+INNER JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN asigpsico S ON A.atencion_idpersona = S.documento AND A.atencion_tipodoc = S.tipo_doc
 WHERE (A.atencion_ordenpsicologia = 'SI')";
 	$sql.=whe_asigpsico();
 	$sql.=" ORDER BY A.fecha_create";
@@ -64,7 +70,7 @@ WHERE (A.atencion_ordenpsicologia = 'SI')";
 } 
 
 function whe_asigpsico() {
-	$sql = " AND G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}' AND estado = 'A') ";
+	$sql = " AND R.subred = (SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}' AND estado = 'A') ";
 	if ($_POST['fdocumento'])
 		$sql .= " AND S.documento = '".$_POST['fdocumento']."'";
 	if ($_POST['fseca'])
@@ -194,7 +200,6 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('asigpsico','pro',event,'','lib.php',7);\"></li>";
 	}
-	
  return $rta;
 }
 

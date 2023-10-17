@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.12.1";
+window.appVersion = "1.10.16.2";
 
 const version = document.querySelector("div.usuario");
 
@@ -851,7 +851,7 @@ function myFetch(b, c, d) {
 	}
   }
   
-  async function getJSON(action, table, id, customHeaders = {}) {
+   async function getJSON(action, table, id, customHeaders = {}) {
 	if (loader?.style) loader.style.display = 'block';
 	const headers = {
 	  "Content-type": "application/x-www-form-urlencoded",
@@ -873,7 +873,7 @@ function myFetch(b, c, d) {
 		handleRequestError(error.message);
 	}
   }
-  
+ 
   
   function handleRequestError(error) {
 	if (loader?.style) loader.style.display = 'none';
@@ -1334,8 +1334,8 @@ function calImc(a, b, i) {
 
   async function DownloadCsv(a,b,c) {
 	try {
-	const info=document.querySelector('select.'+b).value;
-	  const data = await getJSON(a,info,c); 
+	const info=document.querySelector('select.'+c).value;
+	  const data = await getJSON(a,b,info); 
 	  console.log(data);
 	} catch (error) {
 	  console.error(error);

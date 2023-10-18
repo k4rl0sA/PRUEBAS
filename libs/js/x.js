@@ -213,7 +213,7 @@ function enbValue(a,clsCmp,v){
 	}
 }
 
-function enbValsCls(a, ClsCmp) {
+/* function enbValsCls(a, ClsCmp) {
 	const act = document.getElementById(a);
 	const numValue = parseInt(act.value, 10);
   
@@ -235,7 +235,7 @@ function enbValsCls(a, ClsCmp) {
 	  });
 	}
   }
-	
+ */	
 
 
 function enabEapb(a,clsCmp){

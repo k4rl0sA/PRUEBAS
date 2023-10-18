@@ -71,38 +71,38 @@ function cmp_condsuic(){
    $block=['hab','acc'];
   $event=divide($_POST['id']);
   $ev=$event[3];
-  $ge='pR';
-  $pu='Pu';
+  $ge='pRe';
+  $pu='PuE';
+  $gp='GyP';
 
   $c[]=new cmp('id_condsuic','h','50',$_POST['id'],$w.' '.$o,'','id_condsuic',null,null,false,true,'','col-2');
-
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-2,0)');
-    $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2');
-    $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-    $c[]=new cmp('estado_s','s','3',$d,$w.' '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
-    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-    $c[]=new cmp('tipo_caso','s','2',$d,$w.' hab '.$o,'Tipo de Población','tipo_caso',null,null,false,$x,'','col-2',"enabOthSi('tipo_caso','Tp');");
-    $c[]=new cmp('etapa','s','3',$d,$w.' Tp '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enbValsCls('etapa',['{$ge}','{$pu}','{$pu}']);");
-    $c[]=new cmp('sema_gest','s','3',$d,$w.' Tp '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-3');
-
-    $o='hab';
-    $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTE',$w);
-    $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('esqu_vacuna','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
-    
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+  $c[]=new cmp('tipo_caso','s','2',$d,$w.' hab '.$o,'Tipo de Población','tipo_caso',null,null,false,$x,'','col-2',"enabOthSi('tipo_caso','GyP');");
+  $c[]=new cmp('etapa','s','3',$d,$w.' Tp '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enabEtap('etapa',['pRe','PuE','PuE']);");//enbValsCls('etapa',['{$ge}','{$pu}','{$pu}']);
+  $c[]=new cmp('sema_gest','s','3',$d,$w.' Tp '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-3');
+ 
+  $o='hab';
+  $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTE',$w);
+  $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$gp.' '.$gp.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$gp.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('esqu_vacuna','s','2',$d,$w.' '.$bl.' '.$ge.' '.$gp.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-2');
+  $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$gp.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
+   
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN PUERPERIA',$w);
-    $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
-    $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resul_gest','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
-    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
-    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso_nacer','n','4',$d,$w.' Rg '.$bl.' '.$o,'Peso del recién nacido al nacer (gr)','peso_nacer',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');
-    $c[]=new cmp('lacmate_exclu','s','2',$d,$w.' Rg '.$bl.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
+    $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('resul_gest','s','2',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
+    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
+    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$gp.' '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-2');
+    $c[]=new cmp('peso_nacer','n','4',$d,$w.' Rg '.$bl.' '.$gp.' '.$o,'Peso del recién nacido al nacer (gr)','peso_nacer',null,null,false,$x,'','col-2');
+    $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$gp.' '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-3');
+    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$gp.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');
+    $c[]=new cmp('lacmate_exclu','s','2',$d,$w.' Rg '.$bl.' '.$gp.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
 
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN CONDUCTA SUICIDA',$w);
@@ -212,7 +212,7 @@ function opc_acciones_1($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
 }
 function opc_desc_accion1($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo75 and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
   }
 function opc_estrategia_1($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=90 and estado='A' ORDER BY 1",$id);

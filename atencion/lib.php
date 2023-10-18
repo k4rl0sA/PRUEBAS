@@ -25,7 +25,6 @@ function opc_usuario(){
 	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
 	inner JOIN personas p ON hv.idviv=p.vivipersona
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
-
 //  echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 

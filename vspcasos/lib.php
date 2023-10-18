@@ -42,7 +42,7 @@ function lis_vsp_asig(){
 	FN_CATALOGODESC(44,C.estado_v) estado 
   FROM `vspgeo` C
   LEFT JOIN hog_geo D ON C.estrategia=D.estrategia AND C.sector_catastral=D.sector_catastral AND C.nummanzana=D.nummanzana AND C.predio_num=D.predio_num AND C.unidad_habit=D.unidad_habit AND C.estado_v=D.estado_v
-  WHERE C.estado_v in (1) AND C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and D.asignado='".$_SESSION['us_sds']."'";
+  WHERE C.estado_v in (1) AND C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and D.asignado='".$_SESSION['us_sds']."' AND estrategia>3";
 //   echo $sql;
 	$sql.=whe_vsp_asig();
 	$sql.=" ORDER BY C.nummanzana,C.predio_num";

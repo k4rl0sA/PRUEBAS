@@ -323,7 +323,7 @@ function searPers(a){
 				}else{
 					const hoy = new Date();
 					hoy.setDate(hoy.getDate() - 1);
-					has.value = hoy.toISOString().split('T')[0];
+					des.value = hoy.toISOString().split('T')[0];
 					const usu = document.getElementById('fusu');
 					usu.value = '';
 					sec.value = '';

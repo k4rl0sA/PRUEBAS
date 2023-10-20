@@ -23,7 +23,7 @@ else {
 function lis_homes(){
 	$total=" SELECT count(*) as total
 	FROM hog_geo H  
-	 WHERE estado_v  in('7') ".whe_homes()." AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))";
+	WHERE estado_v  in('7') ".whe_homes()." AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (usu_creo IN('{$_SESSION['us_sds']}'))  OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
 
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];
@@ -49,7 +49,7 @@ function lis_homes(){
 WHERE estado_v in('7') ".whe_homes()." 
 	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
 	AND (usu_creo IN('{$_SESSION['us_sds']}'))  
-	OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
+	OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 //    echo $sql;

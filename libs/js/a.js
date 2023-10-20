@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.16.2";
+window.appVersion = "1.10.19.2";
 
 const version = document.querySelector("div.usuario");
 
@@ -41,7 +41,6 @@ document.addEventListener('keydown', function (event) {
 	  event.preventDefault();
 	}
   });
-
   
   document.addEventListener('contextmenu', function (event) {
 	inform('Esta acción no esta permitida');
@@ -67,6 +66,17 @@ function resetInactivityTimer() {
 document.addEventListener("click", resetInactivityTimer);
 document.addEventListener("keypress", resetInactivityTimer);
 startInactivityTimer();
+
+
+function countMaxChar(ele, max=1500) {
+	ele.addEventListener("input", function() {
+		var longitud = this.value.length;
+		if (longitud > max){
+			this.value=this.value.slice(0,max);
+			warnin("Has ingresado más de " + max + " caracteres en el campo");
+		}
+	});
+}
 
 var captura = {
 	init: function (n, c = '', a = 'tab') {
@@ -1345,13 +1355,15 @@ function calImc(a, b, i) {
 
   function uploadCsv(ncol, tab, archivo, ruta, mod) {
 	if (archivo.files.length > 0) {
-		loader=document.getElementById('loader');
-		if (loader != undefined) loader.style.display = 'block';
-
+	  const loader = document.getElementById('loader');
+	  if (loader != undefined) loader.style.display = 'block';
+  
 	  const formData = new FormData();
 	  formData.append("ncol", ncol);
 	  formData.append("tab", tab);
 	  formData.append("archivo", archivo.files[0]);
+  
+	  let data = null; // Inicializa la variable data
   
 	  fetch(ruta, {
 		method: "POST",
@@ -1365,28 +1377,30 @@ function calImc(a, b, i) {
 			throw new Error("Network response was not ok");
 		  }
 		})
-		.then((data) => {
-			const response = JSON.parse(data);
-			const type = response.type;
-			const msj = response.msj;
-			if (loader != undefined) loader.style.display = 'none';
-			if(type=='Error'){
-				errors(msj);
-			}else if(type=='OK'){
-				ok(msj);
-			}else{
-				warnin(msj);
-			}
-		   act_lista(mod);
+		.then((responseData) => {
+		  data = responseData; // Almacena la respuesta en la variable data
+		  const response = JSON.parse(data);
+		  const type = response.type;
+		  const msj = response.msj;
+		  if (loader != undefined) loader.style.display = 'none';
+		  if (type == 'Error') {
+			errors(msj);
+		  } else if (type == 'OK') {
+			ok(msj);
+		  } else {
+			warnin(msj);
+		  }
+		  act_lista(mod);
 		})
 		.catch((error) => {
-		  console.error(error);
+		  console.error(error + '=' + data); // Muestra el valor de data junto con el error
 		  errors('Ha ocurrido un error al procesar la solicitud');
 		});
 	} else {
 	  warnin('Selecciona un archivo válido');
 	}
   }
+  
     
 
 /* 	const navToggle = document.querySelector(".nav-toggle");

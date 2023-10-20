@@ -600,7 +600,7 @@ function input_area($a){
   $rta.=" class='{$a->w} ".($a->v?'valido':'')." ".($a->u?'captura':'bloqueo')." '";
   if (!$a->u) $rta.=" readonly ";
   if ($a->v) $rta.=" required onblur=\"valido(this);\" ";
-  $rta.=" Style='width:95%;'";
+  $rta.=" onkeypress='countMaxChar(this);' Style='width:95%;'";
   $rta.=">".$a->d;
   $rta.="</textarea>";
   return $rta;	

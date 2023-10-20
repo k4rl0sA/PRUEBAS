@@ -159,7 +159,8 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     LIMIT $pag, $regxPag";
 
 		//  echo $sql;
-
+		$sql1="";
+		$_SESSION['sql_hog_geoloc']=$sql1;
 		$data = datos_mysql($sql);
     return create_table($total, $data["responseResult"], "hog_geoloc", $regxPag);
 }

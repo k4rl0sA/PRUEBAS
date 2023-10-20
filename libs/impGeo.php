@@ -80,7 +80,8 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 									}
 								}
 								if ($i === 1) { //estrategia
-									$valor = trim($campo[$i]);
+									// $valor = trim($campo[$i]);
+									$valor=trim($nFil);
 									if (!in_array($valor, $estrategias) || strlen($valor) != 1) {
 										$rta = array(
 											'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' esta fuera del rango ('.$estrategias[0].' a '.count($estrategias).').'

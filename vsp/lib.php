@@ -44,14 +44,15 @@ function lis_homes(){
 	H.equipo,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
-	FROM hog_geo H
-WHERE estado_v  in('7') ".whe_homes()." 
-	AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	AND (usu_creo IN('{$_SESSION['us_sds']}')  OR equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
+	FROM hog_geo H 
+	left join usuarios U ON H.equipo=U.id_usuario 
+WHERE estado_v in('7') ".whe_homes()." 
+	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
+	AND (usu_creo IN('{$_SESSION['us_sds']}'))  
+	OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}'))
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 //    echo $sql;
-
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
@@ -491,7 +492,7 @@ function cmp_person(){
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"datos-lis",5);
+		return panel_content($datos["responseResult"],"datos-lis",10);
 		}
 
 function focus_person(){

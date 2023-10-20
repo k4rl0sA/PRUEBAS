@@ -135,10 +135,6 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-
-
-
-
 function get_administracion(){
 	if($_REQUEST['id']==''){
 		return "";

@@ -14,8 +14,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='hog_geoloc';	
 var ruta_app='lib.php';
+
 function csv(b){
-		var myWindow = window.open("../../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
+		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
 }
 
 document.onkeyup=function(ev) {
@@ -245,7 +246,7 @@ $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_S
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
 $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
-$crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li>":"";
+$crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li><li class='icono exportar'      title='Exportar Información General'    Onclick='csv(mod);'></li>":"";
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>

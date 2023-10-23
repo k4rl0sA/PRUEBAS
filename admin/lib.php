@@ -21,12 +21,11 @@ else {
 
 
 function cmp_gestionusu(){
-	$rta="";
+	$rta="".$_POST." _".$_REQUEST;
 	$hoy=date('Y-m-d');
 	$t=['tarea'=>'','rol'=>'','documento'=>'','usuarios'=>''];
 	$d=get_personas();
 	if ($d==""){$d=$t;}
-
 	$w='administracion';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
@@ -42,11 +41,14 @@ function cmp_gestionusu(){
 
 
 function lis_planos() {
+	$clave = random_bytes(32);
     switch ($_REQUEST['id']) {
         case '1':
-            lis_homes();
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
             break;
-        case 2:
+        case '2':
             break;
         default:
             break;
@@ -54,15 +56,42 @@ function lis_planos() {
 }
 
 
-function lis_homes(){ 
-$sql1="SELECT * FROM CARACTERIZACION C"; 
+
+function lis_geolo($txt){
+	$sql="SELECT
+    CONCAT_ws(' ',G.estrategia,G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.estado_v) AS ID_FAMILIAR,
+    G.fecha_create,    U.nombre,    C1.descripcion AS SUBRED,    G.localidad,    C2.descripcion AS LOCALIDAD,    G.upz,    C3.descripcion AS UPZ,    G.zona,    C4.descripcion AS ZONA,    G.sector_catastral,    G.barrio,    C5.descripcion AS BARRIO,    G.nummanzana,    G.predio_num,	G.unidad_habit,    G.direccion,
+    G.cordx,    G.cordy,    CONCAT_WS(' ',V.complemento1,V.nuc1,V.complemento2,V.nuc2,V.complemento3,V.nuc3) AS COMPLEMENTOS,    G.direccion_nueva,    G.vereda_nueva,    G.cordxn,    G.cordyn,    G.estrato,    C6.descripcion AS ESTRATEGIA,    C7.descripcion AS ESTADO,    G.usu_creo 
+	FROM  hog_geo G LEFT JOIN hog_viv V ON CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v) = V.idgeo
+	LEFT JOIN usuarios U ON G.usu_creo = U.id_usuario LEFT JOIN catadeta C1 ON G.subred = C1.idcatadeta AND C1.idcatalogo = 72 LEFT JOIN catadeta C2 ON G.localidad = C2.idcatadeta AND C2.idcatalogo = 2 LEFT JOIN catadeta C3 ON G.upz = C3.idcatadeta AND C3.idcatalogo = 7 LEFT JOIN catadeta C4 ON G.zona = C4.idcatadeta AND C4.idcatalogo = 3 LEFT JOIN catadeta C5 ON G.barrio = C5.idcatadeta AND C5.idcatalogo = 20 LEFT JOIN catadeta C6 ON G.estrategia = C6.idcatadeta AND C6.idcatalogo = 42 LEFT JOIN catadeta C7 ON G.estado_v = C7.idcatadeta AND C7.idcatalogo = 44;";
+$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+
+
+function encript($texto, $clave) {
+    $txtcript = openssl_encrypt($texto, 'aes-256-ecb', $clave, 0);
+    return base64_encode($txtcript);
+}
+
+function decript($txtcript, $clave) {
+    $txtcript = base64_decode($txtcript);
+    $texto = openssl_decrypt($txtcript, 'aes-256-ecb', $clave, 0);
+    return $texto;
+}
+
+
+function lis_homes(){
+/* $sql1="SELECT * FROM CARACTERIZACION C"; 
 $sql1.=whe_data();
 	$sql1.=" ORDER BY 1 ASC;";
 	$_SESSION['sql_caracterizacion']=$sql1;
 	$rta = array(
 		'type' => 'OK','msj'=>$sql1
 	);
-	echo json_encode($rta);
+	echo json_encode($rta); */
 }
 
 function whe_data() {
@@ -92,24 +121,28 @@ function cmp_planos(){
 	$c[]=new cmp('fecha','d',10,$d['fecha'],$w.' DwL '.$o,'Fecha','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
 	$c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','DwL');setTimeout(csv,100,'caracterizacion');\">Descargar</button></center>";
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','DwL');\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL');setTimeout(csv,100,'geo');
 	return $rta;
 }
+
+
+
 
 function opc_proceso($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 and estado='A' ORDER BY 1",$id);
 }
+
 function opc_tarea($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
+
 function opc_rol($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
+
 function opc_usuarios($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
-
-
 
 
 function focus_administracion(){
@@ -135,28 +168,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-function get_administracion(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		// print_r($_POST);
-		$id=divide($_REQUEST['id']);
-		// print_r($id);
-		$sql="SELECT concat(F.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
-		F.tipo_doc,F.documento,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.regimen,P.eapb,H.telefono1,H.telefono2,H.telefono3,G.direccion,fecha_consulta,tipo_consulta,
-		cod_cups,final_consul,cod_admin,cod_factura,estado_hist,tipo_docnew,documento_new
-		FROM `adm_facturacion` F
-		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
-		LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion
-        			FROM hog_geo ) AS G ON H.idgeo = G.geo
-		WHERE id_factura='{$id[2]}'";
-		// echo $sql;
-		// print_r($id);
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
-	}
-}
+
 
 
 

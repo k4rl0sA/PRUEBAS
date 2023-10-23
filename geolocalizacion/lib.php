@@ -19,99 +19,6 @@ else {
   }   
 }
 
-/* 
-function lis_hog_geoloc(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `hog_geo`  WHERE estado_v in (1,2,3) AND subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') 
-  AND concat(sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estrategia) NOT IN (
-	SELECT concat(sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estrategia) 
-	FROM hog_geo 
-	WHERE estado_v in(4,5,6,7))".whe_hog_geoloc());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-hog_geoloc']))? ($_POST['pag-hog_geoloc']-1)* $regxPag:0;
-	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v) ACCIONES,
-	FN_CATALOGODESC(42,`estrategia`) estrategia,
-	sector_catastral,
-	nummanzana 'Manzana',
-	predio_num 'predio',
-	unidad_habit 'Unidad Hab',
-	FN_CATALOGODESC(3,zona) zona,
-	FN_CATALOGODESC(2,localidad) 'Localidad',
-	usu_creo,
-	fecha_create,
-	FN_CATALOGODESC(44,`estado_v`) estado 
-  FROM `hog_geo` 
-  WHERE estado_v in (1,2,3) AND subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') 
-  AND concat(sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estrategia) NOT IN (
-	SELECT concat(sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estrategia) 
-	FROM hog_geo 
-	WHERE estado_v in(4,5,6,7))";
-	$sql.=whe_hog_geoloc();
-	$sql.=" ORDER BY nummanzana,predio_num";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
-	
-	/* $sql1="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v) ACCIONES,
-	FN_CATALOGODESC(42,`estrategia`) estrategia,
-	sector_catastral,
-	nummanzana 'Manzana',
-	predio_num 'predio',
-	unidad_habit 'Unidad Hab',
-	FN_CATALOGODESC(3,zona) zona,
-	FN_CATALOGODESC(2,localidad) 'Localidad',
-	usu_creo,
-	fecha_create,
-	FN_CATALOGODESC(44,`estado_v`) estado 
-  FROM `hog_geo`";
-	$_SESSION['sql_hog_geoloc']=$sql1; //
-// echo $sql;
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"hog_geoloc",$regxPag);
-	}
- */
-
- 
- /* function lis_hog_geoloc() {
-    $id  = "CONCAT(sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estrategia) NOT IN (
-        SELECT CONCAT(sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estrategia) 
-        FROM hog_geo 
-        WHERE estado_v IN (4, 5, 6, 7))";
-    
-    $total = "SELECT COUNT(*) total
-	FROM hog_geo  H
-	INNER JOIN usuarios U ON H.subred = U.subred
-	WHERE estado_v IN (1, 2, 3) AND U.id_usuario='{$_SESSION['us_sds']}' AND $id " . whe_hog_geoloc();
-	echo $total;
-    $info = datos_mysql($total);
-    $total = $info['responseResult'][0]['total'];
-
-    $regxPag = 5;
-    $pag = isset($_POST['pag-hog_geoloc']) ? ($_POST['pag-hog_geoloc'] - 1) * $regxPag : 0;
-
-    $sql = "SELECT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
-    FN_CATALOGODESC(42, H.estrategia) AS estrategia,
-    H.sector_catastral,
-    H.nummanzana AS Manzana,
-    H.predio_num AS predio,
-    H.unidad_habit AS 'Unidad Hab',
-    FN_CATALOGODESC(3, H.zona) AS zona,
-    FN_CATALOGODESC(2, H.localidad) AS 'Localidad',
-    H.usu_creo,
-    H.fecha_create,
-    FN_CATALOGODESC(44, H.estado_v) AS estado
-FROM 
-    hog_geo H
-INNER JOIN usuarios U ON H.subred = U.subred
-        WHERE estado_v IN (1, 2, 3) AND U.id_usuario='{$_SESSION['us_sds']}' AND $id " . whe_hog_geoloc() . "
-        ORDER BY nummanzana, predio_num
-        LIMIT $pag, $regxPag";
-
-		// echo $sql;
-    $data = datos_mysql($sql);
-    return create_table($total, $data["responseResult"], "hog_geoloc", $regxPag);
-} */
-
 function lis_hog_geoloc(){
 	$total="SELECT count(*) as total
  FROM (
@@ -126,7 +33,7 @@ WHERE H.estado_v IN (1, 2, 3)
       AND H2.predio_num = H.predio_num
       AND H2.unidad_habit = H.unidad_habit
       AND H2.estrategia = H.estrategia
-      AND H2.estado_v = 7)) as subquery";
+      AND H2.estado_v in( 4,5,6,7))) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];
 
@@ -141,11 +48,11 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     H.unidad_habit AS 'Unidad Hab',
     FN_CATALOGODESC(3, H.zona) AS zona,
     FN_CATALOGODESC(2, H.localidad) AS 'Localidad',
-    H.usu_creo,
+    U.nombre asignado,
     H.fecha_create,
     FN_CATALOGODESC(44, H.estado_v) AS estado
 	FROM hog_geo H
-		INNER JOIN usuarios U ON H.subred = U.subred
+		LEFT JOIN usuarios U ON H.subred = U.subred
 		LEFT JOIN adscrip A ON H.territorio=A.territorio
 	WHERE H.estado_v IN (1, 2, 3)
   		AND U.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
@@ -154,7 +61,7 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
       	AND H2.predio_num = H.predio_num
       	AND H2.unidad_habit = H.unidad_habit
       	AND H2.estrategia = H.estrategia
-      	AND H2.estado_v = 7) 
+		AND H2.estado_v in( 4,5,6,7))
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 

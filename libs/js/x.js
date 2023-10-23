@@ -555,27 +555,6 @@ function enabEtap(a, b) {
   }
 
 
-  
-/* function zsco(){
-	const pes=document.getElementById('peso').value;
-	const fec=document.getElementById('fechanacimiento').value;
-	const sex=document.getElementById('sexo').value;
-	const tal=document.getElementById('talla').value;
-const requestData = {
-	val: pes+'_'+fec+'_'+sex+'_'+tal,
-  };
-
-pFetch('../vivienda/medidas.php', requestData, (responseData) => {
-	// Callback para manejar la respuesta del servidor
-	console.log("Respuesta del servidor:", responseData);
-  }).catch((error) => {
-	// Manejar errores si ocurren
-	console.error("Error:", error);
-  });
-
-document.getElementById('zscore').value=responseData;
-} */
-
 function Zsco(a){
     // doc=a.split('_');
 	const glu=document.getElementById('zscore');

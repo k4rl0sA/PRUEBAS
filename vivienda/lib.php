@@ -36,9 +36,9 @@ function opc_usuario(){
 
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
-    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
+    SELECT DISTINCT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES
     FROM hog_geo H
-    INNER JOIN usuarios U ON H.subred = U.subred
+    LEFT JOIN usuarios U ON H.subred = U.subred
     LEFT JOIN adscrip A ON H.territorio = A.territorio
     WHERE H.estado_v IN ('7') ".whe_homes()."
         AND U.id_usuario = '{$_SESSION['us_sds']}'
@@ -50,20 +50,21 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+$sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
+	H.idgeo Cod,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
 	H.territorio,
-	H.sector_catastral,
+	H.sector_catastral Sector,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
-	H.unidad_habit AS 'Unidad Hab',
+	H.unidad_habit AS 'Unidad',
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	H.usu_creo,
+	U.nombre,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
-	INNER JOIN usuarios U ON H.subred = U.subred 
+	LEFT JOIN usuarios U ON H.subred = U.subred 
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
 WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
@@ -134,28 +135,18 @@ function cap_menus($a,$b='cap',$con='con') {
 
 
 function lis_famili(){
-	// $id=divide($_POST['id']);
-		/* $sql="SELECT concat(idviv,'_',idgeo) ACCIONES,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,
-		numfam FAMILIA, fecha CARACTERIZACION, FN_CATALOGODESC(166,crit_epi) CRITERIO_EPIDEMIOLOGICO,
+		$cod=divide($_POST['id']);
+		$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
+		$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_viv` V 
-		left join usuarios P ON usu_creo=id_usuario
-			WHERE '1'='1' and idgeo='".$_POST['id'];
+			left join usuarios P ON usu_creo=id_usuario
+		WHERE '1'='1' and idgeo='".$id;
 		$sql.="' ORDER BY fecha_create";
 		//  echo $sql;
-		$_SESSION['sql_famili']=$sql;
-			$datos=datos_mysql($sql); */
-			$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
-		V.fecha_create Creado,nombre Creó
-		FROM `hog_viv` V 
-		left join usuarios P ON usu_creo=id_usuario
-			WHERE '1'='1' and idgeo='".$_POST['id'];
-		$sql.="' ORDER BY fecha_create";
-		//  echo $sql;
-		$_SESSION['sql_famili']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",10);
-		}
+	}
 	
 
 function cmp_homes1(){
@@ -345,9 +336,10 @@ function get_homes(){
 		return "";
 	}else{
 		$id=divide($_REQUEST['id']);
+		$cod=$id[1].'_'.$id[2].'_'.$id[3].'_'.$id[4].'_'.$id[5].'_'.$id[6];
 		$sql="SELECT idviv,numfam,fecha,estado_aux,motivo_estaux,fechaupd,motivoupd,eventoupd,fechanot,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3,crit_epi,crit_geo,estr_inters,fam_peretn,fam_rurcer,tipo_vivienda,tendencia,dormitorios,actividad_economica,tipo_familia,personas,ingreso,seg_pre1,seg_pre2,seg_pre3,seg_pre4,seg_pre5,seg_pre6,seg_pre7,seg_pre8,subsidio_1,subsidio_2,subsidio_3,subsidio_4,subsidio_5,subsidio_6,subsidio_7,subsidio_8,subsidio_9,subsidio_10,subsidio_11,subsidio_12,subsidio_13,subsidio_14,subsidio_15,subsidio_16,subsidio_17,subsidio_18,subsidio_19,subsidio_20,energia,gas,acueducto,alcantarillado,basuras,pozo,aljibe,perros,numero_perros,perro_vacunas,perro_esterilizado,gatos,numero_gatos,gato_vacunas,gato_esterilizado,otros,facamb1,facamb2,facamb3,facamb4,facamb5,facamb6,facamb7,facamb8,facamb9,observacion,asignado
 		FROM `hog_viv` 
-		WHERE idviv ='{$id[0]}' AND idgeo=concat('".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."','_','".$id[6]."')";
+		WHERE idviv ='{$id[0]}' AND idgeo='{$cod}'";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
@@ -374,6 +366,7 @@ function men_homes1(){
 function gra_homes(){
 	$id=divide($_POST['idg']);
 	// print_r($_POST);
+	$cod=$id[0].'_'.$id[1].'_'.$id[2].'_'.$id[3].'_'.$id[4].'_'.$id[5];
 	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
 	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];
@@ -389,9 +382,10 @@ function gra_homes(){
 	WHERE idviv='{$id[0]}'";
 	// echo $sql;
 	//   echo $sql."    ".$rta;
-	}elseif(count($id)==6){
+	}elseif(count($id)==7){
 		$sql="INSERT INTO hog_viv VALUES (null,
-		concat('".$id[0]."','_','".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."'),
+		{$id[6]},
+		TRIM(UPPER('{$cod}')),
 		TRIM(UPPER('{$_POST['numfam']}')),
 		TRIM(UPPER('{$_POST['fecha']}')),
 		TRIM(UPPER('{$_POST['estado_aux']}')),
@@ -410,7 +404,7 @@ function gra_homes(){
 		trim(upper('{$_POST['perros']}')),$perros,$pvacun,$peste,TRIM(UPPER('{$_POST['gatos']}')),$gatos,$gvacun,$geste,
 		trim(upper('{$_POST['otros']}')),trim(upper('{$_POST['factor_1']}')),trim(upper('{$_POST['factor_2']}')),trim(upper('{$_POST['factor_3']}')),trim(upper('{$_POST['factor_4']}')),trim(upper('{$_POST['factor_5']}')),trim(upper('{$_POST['factor_6']}')),trim(upper('{$_POST['factor_7']}')),trim(upper('{$_POST['factor_8']}')),trim(upper('{$_POST['factor_9']}')),trim(upper('{$_POST['observacion']}')),	
 		NULL,TRIM(UPPER('{$_SESSION['us_sds']}')),       DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-		//echo $sql;
+		// echo $sql;
 	}
 
 	  $rta=dato_mysql($sql);
@@ -779,7 +773,7 @@ function gra_person(){
 
 	$o='plancon';
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-	$c[]=new cmp('obs','a',2000,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
+	$c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
 	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
 	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -800,7 +794,7 @@ function gra_person(){
 			//  echo $sql;
 			$_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"planc-lis",5);
+			return panel_content($datos["responseResult"],"planc-lis",10);
 	}
 	
 	function focus_placuifam(){

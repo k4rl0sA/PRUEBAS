@@ -82,6 +82,11 @@ function grabar(tb='',ev){
  };
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
+	if (tb == 'person') {
+  		setTimeout(function() {
+    		mostrar('person1', 'fix', event, '', 'lib.php', 0, 'person1', document.querySelector('input[type="hidden"]').value.split('_')[0]);
+  		}, 1000);
+	}
 }   
 
 
@@ -305,6 +310,7 @@ function searPers(a){
 			xmlhttp.open("POST", ruta_app,false);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('a=opc&tb=usuario&id='+a.value);
+			const ter=document.getElementById('fterri');
 			const sec=document.getElementById('fsector');
 			const man=document.getElementById('fmanz');
 			const pre=document.getElementById('fpred');
@@ -313,6 +319,7 @@ function searPers(a){
 			const has=document.getElementById('fhas');
 			var rta =data;
 				if (Object.keys(rta).length === 4) {
+					ter.value='';
 					des.value='';
 					has.value='';
 					sec.value=data['sector_catastral'];
@@ -325,6 +332,7 @@ function searPers(a){
 					hoy.setDate(hoy.getDate() - 1);
 					des.value = hoy.toISOString().split('T')[0];
 					const usu = document.getElementById('fusu');
+					ter.value='';
 					usu.value = '';
 					sec.value = '';
 					man.value = '';
@@ -353,11 +361,16 @@ $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalo
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='MED' and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 1",$_SESSION['us_sds']);
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
-
+$territorios=opc_sql("SELECT descripcion,descripcion FROM catadeta WHERE idcatalogo=202 AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
+$territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM') ? '' : 'disabled';
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 
+<div class="campo"><div>Territorio</div>
+		<select class="captura" id="fterri" name="fterri" onchange="actualizar();"<?php echo $territorio; ?> ><?php echo $territorios; ?>
+		</select>
+	</div>
 	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>

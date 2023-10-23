@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.19.2";
+window.appVersion = "1.10.22.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -861,29 +861,43 @@ function myFetch(b, c, d) {
 	}
   }
   
-   async function getJSON(action, table, id, customHeaders = {}) {
-	if (loader?.style) loader.style.display = 'block';
+  async function getJSON(action, table, id,url=ruta_app,customHeaders = {}) {
+	if (loader?.style) loader.style.display = "block";
 	const headers = {
 	  "Content-type": "application/x-www-form-urlencoded",
 	  ...customHeaders,
 	};
 	const body = `a=${action}&tb=${table}&id=${id}`;
-	const url = ruta_app;
-  
+	let rawData;
 	try {
 	  const response = await fetch(url, { method: "POST", headers, body });
 	  if (!response.ok) {
-		throw new Error("Network response was not ok");
+		rawData = await response.text();
+		throw new Error(`Network response was not ok: ${response.status} - ${response.statusText}`);
 	  }
-	  const data = await response.json();
-	  if (loader?.style) loader.style.display = 'none';
+  
+	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
+	  console.error(`Response: ${rawData}`);
+
+	  const data = JSON.parse(rawData);
+  
+	  if (loader?.style) loader.style.display = "none";
 	  return data;
 	} catch (error) {
-		console.error(error);
-		handleRequestError(error.message);
+	  console.error(error+rawData);
+	  	if (rawData) {
+      		console.error(`Error Response: ${rawData}`);
+    	}
+	  handleRequestError(error.message);
 	}
   }
- 
+  
+  function handleRequestError(error) {
+	if (loader?.style) loader.style.display = "none";
+	console.error(error);
+	errors("Error al realizar la solicitud");
+  }
+   
   
   function handleRequestError(error) {
 	if (loader?.style) loader.style.display = 'none';
@@ -1344,9 +1358,9 @@ function calImc(a, b, i) {
 
   async function DownloadCsv(a,b,c) {
 	try {
-	const info=document.querySelector('select.'+c).value;
-	  const data = await getJSON(a,b,info); 
-	  console.log(data);
+		const info=document.querySelector('select.'+c).value;
+		const data = await getJSON(a,b,info);
+		csv(data['file']);
 	} catch (error) {
 	  console.error(error);
 	  errors('No se pudo realizar la descarga consulta con el administrador.');

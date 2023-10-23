@@ -107,39 +107,40 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 }
 
 
-function dato_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
-		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-		$con=$GLOBALS['con'];
-		$con->set_charset('utf8');
-		try {
-			if (strpos($sql,'DELETE')!==false){
-				$op='Eliminado';
-			}elseif(strpos($sql,'INSERT')!==false){
-				$op='Insertado';
-			}else{
-				$op='Actualizado';
-			}
-			if(!$con->query($sql)){
-				$err=$con->error;
-				$con->query("ROLLBACK;");
-				if ($con->error==''){
-					$rs="Error : ".$err;
-				}else{
-					$rs="Error : ". $err." Ouchh! NO se modifico ningún registro, por favor valide la información e intente nuevamente.";
-				}
-			}else{
-				if($con->affected_rows>0){
-					$rs="Se ha ".$op.": ".$con->affected_rows." Registro Correctamente.";
-				}else{
-					$rs="Ouchh!, NO se ha ".$op.", por favor valide la información e intente nuevamente.";
-				}
-			}
-		} catch (mysqli_sql_exception $e) {
-			$rs="Error = ".$e->getCode()." ".$e->getMessage();
-			die($rs);
-		}
-    // $con->close;
-	return $rs;
+function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+  $con->set_charset('utf8');
+
+  try {
+      if (strpos($sql, 'DELETE') !== false) {
+          $op = 'Eliminado';
+      } elseif (strpos($sql, 'INSERT') !== false) {
+          $op = 'Insertado';
+      } else {
+          $op = 'Actualizado';
+      }
+
+      if (!$con->query($sql)) {
+          $err = $con->error;
+          $con->query("ROLLBACK;");
+          if ($con->error == '') {
+              $rs = "Error: " . $err;
+          } else {
+              $rs = "Error: " . $err . " Ouchh! NO se modificó ningún registro, por favor valide la información e intente nuevamente.";
+          }
+      } else {
+          if ($con->affected_rows > 0) {
+              $rs = "Se ha " . $op . ": " . $con->affected_rows . " Registro Correctamente.";
+          } else {
+              $rs = "Ouchh!, NO se ha " . $op . ", por favor valide la información e intente nuevamente.";
+          }
+      }
+  } catch (mysqli_sql_exception $e) {
+      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  }
+
+  return $rs;
 }
 
 function fetch(&$con, &$rs, $resulttype, &$arr) {

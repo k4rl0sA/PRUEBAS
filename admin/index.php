@@ -16,7 +16,8 @@ var mod='administracion';
 var ruta_app='lib.php';
 
 function csv(b){
-  var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
+  // const b=document.getElementById(b).value;
+   var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
 }
 
 function actualizar(){

@@ -74,6 +74,11 @@ function grabar(tb='',ev){
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
 	/* setTimeout(actualizar, 1000);
 	setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500); */
+	if (tb == 'person') {
+  		setTimeout(function() {
+    		mostrar('person1', 'fix', event, '', 'lib.php', 0, 'person1', document.querySelector('input[type="hidden"]').value.split('_')[0]);
+  		}, 1000);
+	}
 }   
 
 function disFecar(a){
@@ -152,11 +157,7 @@ $territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ?
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
-<!-- <div class="campo"><div>Territorio</div>
-	<select class="captura" id="fterri" name="fterri" OnChange="actualizar();">
-		
-	</select>
-</div> -->
+	
 	<div class="campo"><div>Territorio</div>
 		<select class="captura" id="fterri" name="fterri" onchange="actualizar();"<?php echo $territorio; ?> ><?php echo $territorios; ?>
 		</select>

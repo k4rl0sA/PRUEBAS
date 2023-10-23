@@ -35,17 +35,14 @@ function opc_usuario(){
 }
 
 
-
-
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
-    SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
-    FROM hog_geo H
-    INNER JOIN usuarios U ON H.subred = U.subred
-    LEFT JOIN adscrip A ON H.territorio = A.territorio
-    WHERE H.estado_v IN ('7') ".whe_homes()."
-        AND U.id_usuario = '{$_SESSION['us_sds']}'
-        AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
+		SELECT DISTINCT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES
+		FROM hog_geo H
+		LEFT JOIN usuarios U ON H.subred = U.subred
+		LEFT JOIN adscrip A ON H.territorio = A.territorio
+		WHERE H.estado_v IN ('7') ".whe_homes()."
+			AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
@@ -53,38 +50,42 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT  CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+$sql="SELECT  CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
+	H.idgeo Cod,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
-	H.sector_catastral,
+	H.territorio,
+	H.sector_catastral Sector,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
-	H.unidad_habit AS 'Unidad Hab',
-	FN_CATALOGODESC(3,	H.zona) AS zona,
+	H.unidad_habit AS 'Unidad',
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	H.usu_creo,
-	H.equipo,
+	U.nombre,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
-	INNER JOIN usuarios U ON H.subred = U.subred 
+	LEFT JOIN usuarios U ON H.subred = U.subred 
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
 WHERE H.estado_v  in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
-	AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') 
-	OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
-
 	// echo $sql;
+	//AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
+	//AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 function whe_homes() {
 	$sql = "";
+	if ($_POST['fterri']){
+		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}')";
+	}else{
+		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')"; 
+	}
 	if ($_POST['fsector'])
 		$sql .= " AND H.sector_catastral = '".$_POST['fsector']."'";
 	if ($_POST['fmanz'])
@@ -145,17 +146,17 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-
 function lis_famili(){
 	// $id=divide($_POST['id']);
-	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
+	$cod=divide($_POST['id']);
+	$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
+	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_viv` V 
-		left join usuarios P ON usu_creo=id_usuario
-			WHERE '1'='1' and idgeo='".$_POST['id'];
+			left join usuarios P ON usu_creo=id_usuario
+		WHERE '1'='1' and idgeo='".$id;
 		$sql.="' ORDER BY fecha_create";
 		//  echo $sql;
-		$_SESSION['sql_famili']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",5);
 		}
@@ -253,6 +254,7 @@ function men_homes1(){
 function gra_homes(){
 	$id=divide($_POST['idg']);
 	// print_r($id);
+	$cod=$id[0].'_'.$id[1].'_'.$id[2].'_'.$id[3].'_'.$id[4].'_'.$id[5];
 	if(count($id)==1){
 	$sql="UPDATE `hog_viv` SET
 	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),
@@ -265,9 +267,10 @@ function gra_homes(){
 	WHERE idviv='{$id[0]}'";
 	// echo $sql;
 	//   echo $sql."    ".$rta;
-	}elseif(count($id)==6){
+	}elseif(count($id)==7){
 		$sql="INSERT INTO hog_viv VALUES (null,
-		concat('".$id[0]."','_','".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."'),
+		{$id[6]},
+		TRIM(UPPER('{$cod}')),
 		TRIM(UPPER('{$_POST['numfam']}')),
 		TRIM(UPPER('{$_POST['fecha']}')),
 		'','','','','','',
@@ -328,26 +331,25 @@ function cmp_person(){
 	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t','30',$d,$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
 	$c[]=new cmp('apellido2','t','30',$d,$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','d','',$d,$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');");
+	$c[]=new cmp('fecha_nacimiento','d','',$d,$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
 	$c[]=new cmp('sexo','s','3',$d,$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
 	$c[]=new cmp('genero','s','3',$d,$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
 	$c[]=new cmp('oriensexual','s','3',$d,$w.' osx '.$o,'Orientacion Sexual','oriensexual',null,null,true,true,'','col-2');
 	$c[]=new cmp('nacionalidad','s','3',$d,$w.' '.$o,'nacionalidad','nacionalidad',null,null,true,true,'','col-2');
 	$c[]=new cmp('estado_civil','s','3',$d,$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
-
 	$c[]=new cmp('niveduca','s','3',$d,$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
 	$c[]=new cmp('abanesc','s','3',$d,$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d,$w.' '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-25','timeDesem(this,\'des\');');//true
+	$c[]=new cmp('ocupacion','s','3',$d,$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-25',"timeDesem(this,'des');");//true
 	$c[]=new cmp('tiemdesem','n','3',$d,$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
-
 	$c[]=new cmp('vinculo_jefe','s','3',$d,$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
 	$c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ocu','idi');");
 	$c[]=new cmp('pueblo','s','50',$d,$w.' ocu cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
 	$c[]=new cmp('idioma','o','2',$d,$w.' ocu cmhi idi '.$o,'Habla Español','idioma',null,null,false,true,'','col-2');
 	$c[]=new cmp('discapacidad','s','3',$d,$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');
-	$c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');
+	$c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
 	$c[]=new cmp('eapb','s','3',$d,$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 	$c[]=new cmp('afiliacion','o','2',$d,$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
+	
 	
 	$c[]=new cmp('sisben','s','3',$d,$w.' '.$o,'Grupo Sisben','sisben',null,null,true,true,'','col-2');
 	$c[]=new cmp('catgosisb','n','2',$d,$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');

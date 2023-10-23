@@ -72,7 +72,7 @@ function cmp_dntsevymod(){
    $block=['hab','acc'];
   $event=divide($_POST['id']);
   $ev=$event[3];
-  
+  $p=get_persona();
 
 	$c[]=new cmp('id_dntsevymod','h','50',$_POST['id'],$w.' '.$o,'','id_dntsevymod',null,null,false,true,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-20,0)');
@@ -80,8 +80,9 @@ function cmp_dntsevymod(){
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+  $c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');  
 
-  
   $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
     $c[]=new cmp('patolo_base','s','3',$d,$w.' '.$o,'Patologia de Base','patolo_base',null,null,false,$x,'','col-2');
@@ -91,8 +92,8 @@ function cmp_dntsevymod(){
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' '.$o,'Lactancia materna Exclusiva','lacmate_exclu',null,null,false,$x,'','col-2');
     $c[]=new cmp('lacmate_comple','s','3',$d,$w.' '.$o,'Lactancia materna Complementaria','lacmate_comple',null,null,false,$x,'','col-2');
     $c[]=new cmp('alime_complemen','s','3',$d,$w.' '.$o,'Alimentación Complementaria','alime_complemen',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso','sd','6',$d,$w.' '.$o,'Peso Actual','peso','rgx3int2dec','###.##',false,$x,'','col-2');
-    $c[]=new cmp('talla','sd','3',$d,$w.' '.$o,'Talla Actual','talla','rgx3int2dec',null,false,$x,'','col-2');
+    $c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso Actual','peso','rgx3int2dec','##.#',false,$x,'','col-2',"Zsco('zscore');");
+    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla Actual','talla','rgx3int2dec','###.#',false,$x,'','col-2',"Zsco('zscore');");
     $c[]=new cmp('zscore','t','20',$d,$w.' '.$o,'Zscore','zscore',null,null,false,$x,'','col-2');
     $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,$x,'','col-2');
     $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$o,'Ganancia de Peso','rta',null,null,false,$x,'','col-2');
@@ -136,6 +137,75 @@ function cmp_dntsevymod(){
 	return $rta;
 }
 
+function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
+		FN_EDAD(fecha_nacimiento,CURDATE()),
+		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+  		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR ))% 30 AS dia
+		from personas P left join hog_viv V ON idviv=vivipersona 
+		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+		// echo $sql;
+		$info=datos_mysql($sql);
+				return $info['responseResult'][0];
+		}
+	} 
+
+
+function get_zscore(){
+	$id=divide($_POST['val']);
+	 $fechaNacimiento = new DateTime($id[1]);
+	 $fechaActual = new DateTime();
+	 $diferencia = $fechaNacimiento->diff($fechaActual);
+	 $edadEnDias = $diferencia->days;
+	$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+	$sex=$id[2];
+
+$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+	(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+	((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+ (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+//   echo $sql;
+ $info=datos_mysql($sql);
+ 	if (!$info['responseResult']) {
+		return '';
+	}else{
+		$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+		switch ($z) {
+			case ($z <=-3):
+				$des='DESNUTRICIÓN AGUDA SEVERA';
+				break;
+			case ($z >-3 && $z <=-2):
+				$des='DESNUTRICIÓN AGUDA MODERADA';
+				break;
+			case ($z >-2 && $z <=-1):
+				$des='RIESGO DESNUTRICIÓN AGUDA';
+				break;
+			case ($z>-1 && $z <=1):
+					$des='PESO ADECUADO PARA LA TALLA';
+				break;
+			case ($z >1 && $z <=2):
+					$des='RIESGO DE SOBREPESO';
+				break;
+			case ($z >2 && $z <=3):
+					$des='SOBREPESO';
+				break;
+				case ($z >3):
+					$des='OBESIDAD';
+				break;
+			default:
+				$des='Error en el rango, por favor valide';
+				break;
+		}
+
+		return json_encode($z." = ".$des);
+	}
+}
+   
 function opc_bina($id=''){
   return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
 }

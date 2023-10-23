@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -259,7 +259,7 @@ function gra_tamcope(){
 			$desevit='RIESGO BAJO';
 			break;
 		case ($suma_evita >23 && $suma_evita < 36):
-			$desevit='RIESGO BAJO';
+			$desevit='RIESGO MEDIO';
 			break;
 		case ($suma_evita >35 && $suma_evita < 49):
 				$desevit='RIESGO ALTO';
@@ -268,7 +268,7 @@ function gra_tamcope(){
 			$desevit='Error en el rango, por favor valide';
 			break;
 	}
-	// $suma_cope = ($suma_afronta+$suma_comp+$suma_ambi);
+	// $suma_cope = ($su	ma_afronta+$suma_comp+$suma_ambi);
 
 		$sql="INSERT INTO hog_tam_cope VALUES (
 			null,

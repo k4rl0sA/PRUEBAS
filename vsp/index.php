@@ -82,9 +82,14 @@ function grabar(tb='',ev){
   'medidas':'../vivienda/medidas.php',
   'ambient':'../vivienda/amb.php'
 };
-
+	
 var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
+	if (tb == 'person') {
+  		setTimeout(function() {
+    		mostrar('person1', 'fix', event, '', 'lib.php', 0, 'person1', document.querySelector('input[type="hidden"]').value.split('_')[0]);
+  		}, 1000);
+	}
 }   
 
 function disFecar(a){

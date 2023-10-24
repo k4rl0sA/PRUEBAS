@@ -85,16 +85,16 @@ function cmp_cancinfa(){
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
     $c[]=new cmp('diagnosticado','s','2',$d,$w.' '.$o,'¿DX Confirmado?','rta',null,null,false,$x,'','col-15',"enabOthSi('diagnosticado','cI');");
-    $c[]=new cmp('fecha_dx','d','10',$d,$w.' cI '.$bl.' '.$bl.' '.$o,'Fecha de diagnóstico confirmado','fecha_dx',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_dx','d','10',$d,$w.' cI '.$bl.' '.$bl.' '.$o,'Fecha de diagnóstico confirmado','fecha_dx',null,null,false,$x,'','col-2','validDate(-2500,0);');
     
     $c[]=new cmp('tratamiento','s','10',$d,$w.' cI '.$bl.' '.$o,'Cuenta con Tratamiento','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('asiste_control','s','2',$d,$w.' cI '.$bl.' '.$no.' '.$o,'¿Asiste a controles con especialista?','rta',null,null,false,$x,'','col-2',"enabOthSi('asiste_control','tO');");
     $c[]=new cmp('cual_espe','t','500',$d,$w.' tO '.$bl.' '.$no.' '.$o,'Cuál o Cuales especialistas','cual_espe',null,null,false,$x,'','col-2');
     $c[]=new cmp('trata_orde','s','3',$d,$w.' cI '.$bl.' '.$no.' '.$o,'Tratamiento ordenado','trata_orde',null,null,false,$x,'','col-2',"enbValsCls('trata_orde',['fC','Fq','fR','Fo']);");
-    $c[]=new cmp('fecha_cirug','d','10',$d,$w.' fC '.$bl.' '.$no.' '.$o,'Fecha de Cirugía','fecha_cirug',null,null,false,$x,'','col-2');
-    $c[]=new cmp('fecha_quimio','d','10',$d,$w.' Fq '.$bl.' '.$no.' '.$o,'Fecha de inicio de Quimioterapia','fecha_quimio',null,null,false,$x,'','col-2');
-    $c[]=new cmp('fecha_radiote','d','10',$d,$w.' fR '.$bl.' '.$no.' '.$o,'Fecha de inicio de Radioterapia','fecha_radiote',null,null,false,$x,'','col-2');
-    $c[]=new cmp('fecha_otro','d','10',$d,$w.' Fo '.$bl.' '.$no.' '.$o,'Fecha de Otro','fecha_otro',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_cirug','d','10',$d,$w.' fC '.$bl.' '.$no.' '.$o,'Fecha de Cirugía','fecha_cirug',null,null,false,$x,'','col-2','validDate(-2500,0);');
+    $c[]=new cmp('fecha_quimio','d','10',$d,$w.' Fq '.$bl.' '.$no.' '.$o,'Fecha de inicio de Quimioterapia','fecha_quimio',null,null,false,$x,'','col-2','validDate(-2500,0);');
+    $c[]=new cmp('fecha_radiote','d','10',$d,$w.' fR '.$bl.' '.$no.' '.$o,'Fecha de inicio de Radioterapia','fecha_radiote',null,null,false,$x,'','col-2','validDate(-2500,0);');
+    $c[]=new cmp('fecha_otro','d','10',$d,$w.' Fo '.$bl.' '.$no.' '.$o,'Fecha de Otro','fecha_otro',null,null,false,$x,'','col-2','validDate(-2500,0);');
     $c[]=new cmp('otro_cual','t','500',$d,$w.' Fo '.$bl.' '.$no.' '.$o,'¿Otro Cuál?','otro_cual',null,null,false,$x,'','col-4'); 
     
     $o='acc';
@@ -231,12 +231,12 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 
 function gra_cancinfa(){
   
-  $fecha_dx = ($_POST['fecha_dx']!=='') ? "trim(upper({'".$_POST['fecha_dx']."'}))":"NULL";
-  $fecha_cirug = ($_POST['fecha_cirug']) ? "trim(upper({'".$_POST['fecha_cirug']."'}))":"NULL";
-  $fecha_quimio = ($_POST['fecha_quimio']) ? "trim(upper({'".$_POST['fecha_quimio']."'}))":"NULL";
-  $fecha_radiote = ($_POST['fecha_radiote']) ? "trim(upper({'".$_POST['fecha_radiote']."'}))":"NULL";
-  $fecha_otro = ($_POST['fecha_otro']) ? "trim(upper({'".$_POST['fecha_otro']."'}))":"NULL";
-  $fecha_cierre = ($_POST['fecha_cierre']) ? "trim(upper({'".$_POST['fecha_cierre']."'}))":"NULL";
+  $fecha_dx = ($_POST['fecha_dx']!=='') ? "trim(upper('".$_POST['fecha_dx']."'))":"NULL";
+  $fecha_cirug = ($_POST['fecha_cirug']) ? "trim(upper('".$_POST['fecha_cirug']."'))":"NULL";
+  $fecha_quimio = ($_POST['fecha_quimio']) ? "trim(upper('".$_POST['fecha_quimio']."'))":"NULL";
+  $fecha_radiote = ($_POST['fecha_radiote']) ? "trim(upper('".$_POST['fecha_radiote']."'))":"NULL";
+  $fecha_otro = ($_POST['fecha_otro']) ? "trim(upper('".$_POST['fecha_otro']."'))":"NULL";
+  $fecha_cierre = ($_POST['fecha_cierre']) ? "trim(upper('".$_POST['fecha_cierre']."'))":"NULL";
 
   $id=divide($_POST['id_cancinfa']);
 if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}	

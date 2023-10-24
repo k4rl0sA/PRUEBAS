@@ -99,6 +99,23 @@ function focus_prinfancia(){
       } 
     }
 
+    function get_atenc(){
+      if($_REQUEST['id']==''){
+        return "";
+      }else{
+        $id=divide($_REQUEST['id']);
+        $sql="SELECT atencion_idpersona FROM eac_atencion 
+        WHERE atencion_tipodoc ='{$id[1]}' AND atencion_idpersona ='{$id[0]}'";
+        // echo $sql;
+        $info=datos_mysql($sql);
+        if(isset($info['responseResult'][0])){ 
+          return $info['responseResult'][0];
+        }else{
+          return "[]";
+        }
+      }
+    }
+
     function gra_prinfancia(){
       $id=divide($_POST['id']);
       //print_r($id);

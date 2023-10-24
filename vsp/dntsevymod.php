@@ -92,10 +92,10 @@ function cmp_dntsevymod(){
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' '.$o,'Lactancia materna Exclusiva','lacmate_exclu',null,null,false,$x,'','col-2');
     $c[]=new cmp('lacmate_comple','s','3',$d,$w.' '.$o,'Lactancia materna Complementaria','lacmate_comple',null,null,false,$x,'','col-2');
     $c[]=new cmp('alime_complemen','s','3',$d,$w.' '.$o,'Alimentación Complementaria','alime_complemen',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso Actual','peso','rgx3int2dec','##.#',false,$x,'','col-2',"Zsco('zscore');");
-    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla Actual','talla','rgx3int2dec','###.#',false,$x,'','col-2',"Zsco('zscore');");
-    $c[]=new cmp('zscore','t','20',$d,$w.' '.$o,'Zscore','zscore',null,null,false,$x,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,$x,'','col-2');
+    $c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso Actual','peso','rgxpeso','##.#',false,$x,'','col-2',"Zsco('zscore','../vsp/dntsevymod.php');");
+    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla Actual','talla','rgxtalla','###.#',false,$x,'','col-2',"Zsco('zscore','../vsp/dntsevymod.php');");
+    $c[]=new cmp('zscore','t','20',$d,$w.' '.$bl.' '.$o,'Zscore','zscore',null,null,false,false,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
     $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$o,'Ganancia de Peso','rta',null,null,false,$x,'','col-2');
     //$c[]=new cmp('trata_desnutri','s','3',$d,$w.' '.$o,'Tratamiento de Desnutrición','trata_desnutri',null,null,false,$x,'','col-2',"enabOthSi('trata_desnutri','tdnt');");
      $c[]=new cmp('trata_desnutri','s','3',$d,$w.' '.$o,'Tratamiento de Desnutrición','trata_desnutri',null,null,false,$x,'','col-2',"enbValue('trata_desnutri','tdnt','7');");
@@ -169,7 +169,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
 	((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
  (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
-//   echo $sql;
+  // echo $sql;
  $info=datos_mysql($sql);
  	if (!$info['responseResult']) {
 		return '';
@@ -177,32 +177,31 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 		$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
 		switch ($z) {
 			case ($z <=-3):
-				$des='DESNUTRICIÓN AGUDA SEVERA';
+				$des=3;
 				break;
 			case ($z >-3 && $z <=-2):
-				$des='DESNUTRICIÓN AGUDA MODERADA';
+				$des=2;
 				break;
 			case ($z >-2 && $z <=-1):
-				$des='RIESGO DESNUTRICIÓN AGUDA';
+				$des=1;
 				break;
 			case ($z>-1 && $z <=1):
-					$des='PESO ADECUADO PARA LA TALLA';
+					$des=4;
 				break;
 			case ($z >1 && $z <=2):
-					$des='RIESGO DE SOBREPESO';
+					$des=5;
 				break;
 			case ($z >2 && $z <=3):
-					$des='SOBREPESO';
+					$des=6;
 				break;
 				case ($z >3):
-					$des='OBESIDAD';
+					$des=7;
 				break;
 			default:
-				$des='Error en el rango, por favor valide';
+				$des=8;
 				break;
 		}
-
-		return json_encode($z." = ".$des);
+		return json_encode([$z,$des]);
 	}
 }
    
@@ -341,9 +340,11 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_dntsevymod,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),fecha_seg,numsegui,evento,estado_s,motivo_estado,
+      $sql="SELECT concat(id_dntsevymod,'_',D.tipo_doc,'_',D.documento,'_',numsegui,'_',evento),fecha_seg,numsegui,evento,estado_s,motivo_estado,
+      FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       patolo_base,segui_medico,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,peso,talla,zscore,clasi_nutri,gana_peso,trata_desnutri,tratamiento,consume_fruyverd,consume_carnes,consume_azucares,actividad_fisica,apoyo_alimentario,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
-      FROM vsp_dntsevymod
+      FROM vsp_dntsevymod D
+      LEFT JOIN personas P ON D.tipo_doc=P.tipo_doc AND D.documento=P.idpersona
       WHERE id_dntsevymod ='{$id[0]}'";
       // echo $sql;
       // print_r($id);

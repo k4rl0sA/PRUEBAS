@@ -213,7 +213,7 @@ function enbValue(a,clsCmp,v){
 	}
 }
 
-/* function enbValsCls(a, ClsCmp) {
+ function enbValsCls(a, ClsCmp) {
 	const act = document.getElementById(a);
 	const numValue = parseInt(act.value, 10);
   
@@ -235,7 +235,7 @@ function enbValue(a,clsCmp,v){
 	  });
 	}
   }
- */	
+ 	
 
 
 function enabEapb(a,clsCmp){
@@ -555,9 +555,9 @@ function enabEtap(a, b) {
   }
 
 
-function Zsco(a){
+function Zsco(a,b='../vivienda/medidas.php'){
     // doc=a.split('_');
-	const glu=document.getElementById('zscore');
+	const glu=document.getElementById(a);
 	if (glu!==null){
 	const pes=document.getElementById('peso').value;
 	const fec=document.getElementById('fechanacimiento').value;
@@ -575,11 +575,18 @@ function Zsco(a){
 				if (loader != undefined) loader.style.display = 'none';
 					console.log(data)
 			}}
-			xmlhttp.open("POST",'../vivienda/medidas.php',false);
+			xmlhttp.open("POST",b,false);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('a=get&tb=zscore&val='+pes+'_'+fec+'_'+sex+'_'+tal);
 			var rta =data;
-			glu.value=JSON.parse(rta);
+			if(b=='../vivienda/medidas.php'){
+				glu.value=JSON.parse(rta);
+			}else{
+				val=JSON.parse(rta);
+				document.getElementById('clasi_nutri').value=val[1];
+				glu.value=val[0];
+			}
+			
 		}
 }
 

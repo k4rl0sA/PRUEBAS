@@ -50,7 +50,7 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT  CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
+$sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
 	H.idgeo Cod,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
@@ -60,13 +60,14 @@ $sql="SELECT  CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predi
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad',
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	U.nombre,
+	U1.nombre,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
-	LEFT JOIN usuarios U ON H.subred = U.subred 
+	LEFT JOIN usuarios U ON H.subred = U.subred
+	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
-WHERE H.estado_v  in('7') ".whe_homes()." 
+WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num

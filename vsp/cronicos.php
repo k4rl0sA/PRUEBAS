@@ -94,9 +94,9 @@ function cmp_cronicos(){
     $c[]=new cmp('actividad_fisica','s','3',$d,$w.' '.$o,'¿Cuánto tiempo pasa usted haciendo actividades físicas moderadas o vigorosas?','actividad_fisica',null,null,false,$x,'','col-5');
     $c[]=new cmp('metodo_fecun','s','2',$d,$w.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-25',"enabOthSi('metodo_fecun','mF');");
     $c[]=new cmp('cual','s','3',$d,$w.' mF '.$bl.' '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-25');
-    $c[]=new cmp('hemoglobina','s','3',$d,$w.' hM '.$bl.' '.$o,'¿Hemoglobina?','rta',null,null,false,$x,'','col-1',"enabOthSi('hemoglobina','hG');");
-    $c[]=new cmp('fecha_hemo','d','10',$d,$w.' hG '.$bl.' '.$o,'Fecha de Hemoglobina Glicosilada','fecha_hemo',null,null,false,$x,'','col-2',"validDate(this,-730,0)");
-    $c[]=new cmp('valor_hemo','n','3',$d,$w.' hG '.$bl.' '.$o,'Valor Hemoglobina Glicisilada mas reciente','valor_hemo',null,null,false,$x,'','col-2');
+    $c[]=new cmp('hemoglobina','s','3',$d,$w.' hM '.$o,'¿Hemoglobina?','rta',null,null,false,$x,'','col-1',"enabOthSi('hemoglobina','hG');");
+    $c[]=new cmp('fecha_hemo','d','10',$d,$w.' hM hG  '.$bl.' '.$o,'Fecha de Hemoglobina Glicosilada','fecha_hemo',null,null,false,$x,'','col-2',"validDate(this,-730,0)");
+    $c[]=new cmp('valor_hemo','n','3',$d,$w.' hM hG '.$bl.' '.$o,'Valor Hemoglobina Glicisilada mas reciente','valor_hemo',null,null,false,$x,'','col-2');
     $c[]=new cmp('tas','n',3, $d,$w.' '.$o,'Tensión Sistolica Mín=60 - Máx=310','tas','rgxsisto','###',true,$x,'','col-35',"valSist('tas');");
     $c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','###',true,$x,'','col-35',"valTensions('tas',this);valDist('tad');");
     $c[]=new cmp('glucometria','n',4, $d,$w.' '.$o,'Glucometría Mín=70 - Máx=190','glu','','###',true,$x,'','col-3');

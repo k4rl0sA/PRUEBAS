@@ -20,6 +20,21 @@ else {
 }
 
 
+function opc_usuario(){
+	$id=$_REQUEST['id'];
+	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit FROM hog_viv hv 
+	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
+	inner JOIN personas p ON hv.idviv=p.vivipersona
+	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
+//  echo $sql;
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){ 
+		return json_encode($info['responseResult'][0]);
+	}else{
+		return "[]";
+	}
+}
+
 function lis_homes(){
 	$total=" SELECT count(*) as total
 	FROM hog_geo H  
@@ -41,11 +56,12 @@ function lis_homes(){
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad',
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	MAX(U.nombre) nombre,
+	MAX(U1.nombre) nombre,
 	H.fecha_create,
 	FN_CATALOGODESC(44,H.estado_v) AS estado
 	FROM hog_geo H
 	LEFT JOIN usuarios U ON H.subred = U.subred 
+	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario 
 WHERE estado_v in('7') ".whe_homes()." 
 	AND H.estrategia > 3
 	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 

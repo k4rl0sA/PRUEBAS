@@ -24,8 +24,9 @@ function lis_hog_geoloc(){
  FROM (
     SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
     from hog_geo H
-INNER JOIN usuarios U ON H.subred = U.subred
+LEFT JOIN usuarios U ON H.subred = U.subred
 LEFT JOIN adscrip A ON H.territorio=A.territorio
+LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
 WHERE H.estado_v IN (1, 2, 3)
   AND U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
   AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
@@ -48,12 +49,13 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     H.unidad_habit AS 'Unidad Hab',
     FN_CATALOGODESC(3, H.zona) AS zona,
     FN_CATALOGODESC(2, H.localidad) AS 'Localidad',
-    U.nombre asignado,
+    U1.nombre asignado,
     H.fecha_create,
     FN_CATALOGODESC(44, H.estado_v) AS estado
 	FROM hog_geo H
 		LEFT JOIN usuarios U ON H.subred = U.subred
 		LEFT JOIN adscrip A ON H.territorio=A.territorio
+		LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
 	WHERE H.estado_v IN (1, 2, 3)
   		AND U.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
   		AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral

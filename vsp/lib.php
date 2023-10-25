@@ -65,8 +65,6 @@ function lis_homes(){
 WHERE estado_v in('7') ".whe_homes()." 
 	AND H.estrategia > 3
 	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
-	AND (usu_creo IN('{$_SESSION['us_sds']}'))  
-	OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
@@ -92,7 +90,11 @@ function whe_homes() {
 			} else {
 				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
-		}
+	}
+	if(!$_POST['fsector'] || !$_POST['fmanz'] || !$_POST['fpred'] || !$_POST['fdes']){
+		$sql.="AND (usu_creo IN('{$_SESSION['us_sds']}'))  
+		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
+	}
 	return $sql;
 }
 

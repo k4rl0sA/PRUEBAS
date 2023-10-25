@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.23.2";
+window.appVersion = "1.10.24.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -781,7 +781,13 @@ function myFetch(b, c, d) {
 		  errors('Error en la sintaxis, asociada a la tabla');
 		  break;
 		default:
-		  errors('Error desconocido');
+			const err = rta.match(/msj\['(.*?)'\]/);
+			if (err && err[1]) {
+				warnin(err[1]);
+			} else {
+				errors('Error al realizar la tarea,intenta nuevamente');
+			}
+		  
 	  }
   }
 
@@ -1358,8 +1364,7 @@ function calImc(a, b, i) {
 
   async function DownloadCsv(a,b,c) {
 	try {
-		const info=document.querySelector('select.'+c).value;
-		const data = await getJSON(a,b,info);
+		const data = await getJSON(a,b,form_input(c));
 		csv(data['file']);
 	} catch (error) {
 	  console.error(error);

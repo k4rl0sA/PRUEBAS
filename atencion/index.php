@@ -77,14 +77,14 @@ function grabar(tb='',ev){
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
-  var rutaMap = {
-	'prinfancia':'prinfancia.php',
-	'adolesce':'adolescencia.php',
-	'infancia':'infancia.php',
-	'admision':'admision.php',
-	'pregnant':'gestantes.php',
-	'prechronic':'cronicos.php'
- };
+  	var rutaMap = {
+		'prinfancia':'prinfancia.php',
+		'adolesce':'adolescencia.php',
+		'infancia':'infancia.php',
+		'admision':'admision.php',
+		'pregnant':'gestantes.php',
+		'prechronic':'cronicos.php'
+ 	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	// if(aten!==0){
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

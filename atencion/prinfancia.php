@@ -99,21 +99,16 @@ function focus_prinfancia(){
       } 
     }
 
-    function get_atenc(){
-      if($_REQUEST['id']==''){
-        return "";
-      }else{
-        $id=divide($_REQUEST['id']);
+    function get_atenc($tip,$doc){
         $sql="SELECT atencion_idpersona FROM eac_atencion 
-        WHERE atencion_tipodoc ='{$id[1]}' AND atencion_idpersona ='{$id[0]}'";
+        WHERE atencion_tipodoc ='$tip' AND atencion_idpersona ='$doc'";
         // echo $sql;
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
-          return $info['responseResult'][0];
+          return true;
         }else{
-          return "[]";
+          return false;
         }
-      }
     }
 
     function gra_prinfancia(){
@@ -128,16 +123,25 @@ function focus_prinfancia(){
         WHERE p_infancia_tipo_doc='$id[0]' AND p_infancia_documento='$id[1]'"; 
         // echo $x;
         // echo $sql;
+        $rta=dato_mysql($sql);
       }else{
-        $sql="INSERT INTO eac_pinfancia VALUES (
-        TRIM(UPPER('{$_POST['p_infancia_tipo_doc']}')),
-        TRIM(UPPER('{$_POST['p_infancia_documento']}')),
-        trim(upper('{$_POST['p_infancia_validacion1']}')),trim(upper('{$_POST['p_infancia_validacion2']}')),trim(upper('{$_POST['p_infancia_validacion3']}')),trim(upper('{$_POST['p_infancia_validacion4']}')),trim(upper('{$_POST['p_infancia_validacion5']}')),trim(upper('{$_POST['p_infancia_validacion6']}')),trim(upper('{$_POST['p_infancia_validacion7']}')),trim(upper('{$_POST['p_infancia_validacion8']}')),trim(upper('{$_POST['p_infancia_validacion9']}')),trim(upper('{$_POST['p_infancia_validacion10']}')),trim(upper('{$_POST['p_infancia_validacion11']}')),trim(upper('{$_POST['p_infancia_validacion12']}')),
-        TRIM(UPPER('{$_SESSION['us_sds']}')),
-        DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+        $tip=$_POST['p_infancia_tipo_doc'];
+        $doc=$_POST['p_infancia_documento'];
+        if(get_atenc($tip,$doc)){
+          $sql="INSERT INTO eac_pinfancia VALUES (
+            TRIM(UPPER('{$_POST['p_infancia_tipo_doc']}')),
+            TRIM(UPPER('{$_POST['p_infancia_documento']}')),
+            trim(upper('{$_POST['p_infancia_validacion1']}')),trim(upper('{$_POST['p_infancia_validacion2']}')),trim(upper('{$_POST['p_infancia_validacion3']}')),trim(upper('{$_POST['p_infancia_validacion4']}')),trim(upper('{$_POST['p_infancia_validacion5']}')),trim(upper('{$_POST['p_infancia_validacion6']}')),trim(upper('{$_POST['p_infancia_validacion7']}')),trim(upper('{$_POST['p_infancia_validacion8']}')),trim(upper('{$_POST['p_infancia_validacion9']}')),trim(upper('{$_POST['p_infancia_validacion10']}')),trim(upper('{$_POST['p_infancia_validacion11']}')),trim(upper('{$_POST['p_infancia_validacion12']}')),
+            TRIM(UPPER('{$_SESSION['us_sds']}')),
+            DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+
+            $rta=dato_mysql($sql);
+        }else{
+          $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
+        }
         // echo $sql;
       }
-        $rta=dato_mysql($sql);
+        
       //   return "correctamente";
         return $rta; 
       }

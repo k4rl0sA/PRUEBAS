@@ -19,6 +19,12 @@ else {
   }
 } 
 
+function perfilUsu(){
+	$perfi=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+	$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
+	return $perfil; 
+}
+
 
 function cmp_gestionusu(){
 	$rta="".$_POST." _".$_REQUEST;
@@ -42,13 +48,36 @@ function cmp_gestionusu(){
 
 function lis_planos() {
 	$clave = random_bytes(32);
-    switch ($_REQUEST['id']) {
+    switch ($_REQUEST['proceso']) {
         case '1':
 			$tab = "geo";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_geolo($tab);
             break;
         case '2':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
+		case '3':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
+		case '4':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
+		case '5':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
+		case '6':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
+		case '7':
+			$tab = "geo";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_geolo($tab);
             break;
         default:
             break;
@@ -58,17 +87,40 @@ function lis_planos() {
 
 
 function lis_geolo($txt){
-	$sql="SELECT
-    CONCAT_ws(' ',G.estrategia,G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.estado_v) AS ID_FAMILIAR,
-    G.fecha_create,    U.nombre,    C1.descripcion AS SUBRED,    G.localidad,    C2.descripcion AS LOCALIDAD,    G.upz,    C3.descripcion AS UPZ,    G.zona,    C4.descripcion AS ZONA,    G.sector_catastral,    G.barrio,    C5.descripcion AS BARRIO,    G.nummanzana,    G.predio_num,	G.unidad_habit,    G.direccion,
-    G.cordx,    G.cordy,    CONCAT_WS(' ',V.complemento1,V.nuc1,V.complemento2,V.nuc2,V.complemento3,V.nuc3) AS COMPLEMENTOS,    G.direccion_nueva,    G.vereda_nueva,    G.cordxn,    G.cordyn,    G.estrato,    C6.descripcion AS ESTRATEGIA,    C7.descripcion AS ESTADO,    G.usu_creo 
-	FROM  hog_geo G LEFT JOIN hog_viv V ON CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v) = V.idgeo
-	LEFT JOIN usuarios U ON G.usu_creo = U.id_usuario LEFT JOIN catadeta C1 ON G.subred = C1.idcatadeta AND C1.idcatalogo = 72 LEFT JOIN catadeta C2 ON G.localidad = C2.idcatadeta AND C2.idcatalogo = 2 LEFT JOIN catadeta C3 ON G.upz = C3.idcatadeta AND C3.idcatalogo = 7 LEFT JOIN catadeta C4 ON G.zona = C4.idcatadeta AND C4.idcatalogo = 3 LEFT JOIN catadeta C5 ON G.barrio = C5.idcatadeta AND C5.idcatalogo = 20 LEFT JOIN catadeta C6 ON G.estrategia = C6.idcatadeta AND C6.idcatalogo = 42 LEFT JOIN catadeta C7 ON G.estado_v = C7.idcatadeta AND C7.idcatalogo = 44;";
-$_SESSION['sql_'.$txt]=$sql;
+	$sql="SELECT CONCAT(G.estrategia, '', G.sector_catastral, '', G.nummanzana, '', G.predio_num, '', G.unidad_habit, '_', G.estado_v) AS ID_FAMILIAR,
+	C1.descripcion AS Estrategia,G.subred AS Cod_Subred,C2.descripcion AS Subred,G.zona AS Cod_Zona,C3.descripcion AS Zona,G.localidad AS Cod_Localidad,C4.descripcion AS Localidad,G.upz AS Cod_Upz, C5.descripcion AS Upz,G.barrio AS Cod_Barrio,C6.descripcion AS Barrio,
+	G.territorio AS Territorio,G.microterritorio AS Manzana_Cuidado,G.sector_catastral AS Sector_Catastral,G.nummanzana AS Numero_Manzana,G.predio_num AS Numero_Predio,G.unidad_habit AS Unidad_Habitacional,
+	G.direccion AS Direccion,G.vereda AS Vereda,G.cordx AS Coordenada_X,G.cordy AS Coordenda_Y,G.direccion_nueva AS Direccion_Nueva,G.vereda_nueva AS Vereda_Nueva,G.cordxn AS Coordenada_X_Nueva,G.cordyn AS Coordenada_Y_Nueva,G.estrato AS Estrato,G.asignado AS Cod_Usuario_Asignado,U1.nombre AS Usuario_Asignado,G.equipo AS Equipo_Usuario,G.estado_v AS Estado_Visita,G.motivo_estado AS Motivo_Estado,
+	G.usu_creo,U2.nombre,U2.perfil,G.fecha_create
+	FROM `hog_geo` G
+	LEFT JOIN catadeta C1 ON C1.idcatadeta = G.subred AND C1.idcatalogo = 42 AND C1.estado = 'A'
+	LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A'
+	LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A'
+	LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A'
+	LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A'
+	LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A'
+	LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
+	LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
 
+function whe_subred() {
+	$sql= " AND G.subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(G.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
 
 
 function encript($texto, $clave) {
@@ -94,38 +146,56 @@ $sql1.=whe_data();
 	echo json_encode($rta); */
 }
 
-function whe_data() {
-	$hoy=date('Y-m-d');
-	$dia=date('d');
-	$mes=date('m');
-	$ano=date('Y');
-	$sql = " INNER JOIN usuarios U ON C.subred= U.subred  ";
-	$sql.= " WHERE U.componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	$sql.= " AND U.subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	$sql.= " AND date(C.fecha_create) BETWEEN '$ano-$mes-01' AND '$ano-$mes-$dia'";
-	return $sql;
-}
+
 
 
 function cmp_planos(){
 	$rta="";
 	$hoy=date('d')-1;
-	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fecha'=>''];
+	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
-
 	$w='csv';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
 	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',false,true,'','col-2');
-	$c[]=new cmp('fecha','d',10,$d['fecha'],$w.' DwL '.$o,'Fecha','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
-	$c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
+	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
+	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
+	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','DwL');\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL');setTimeout(csv,100,'geo');
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','fapp');grabar('gestion',this);\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL');setTimeout(csv,100,'geo');
 	return $rta;
 }
 
+function gra_gestion(){
+	$rtaF='';
+	// $id=divide($_POST['id_factura']);
+		// print_r($id);
 
+	$sql="INSERT INTO monitoreo 
+	VALUES(NULL,'1',trim(upper('{$_POST['proceso']}')),'','', '', '',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR))";
+	
+
+	/* 
+	1=descargar
+	2=actualizar
+	3=restaurar
+	4=crear
+	5=rol
+	6=adscripcion 
+	*/
+	
+	/* INSERT INTO `personas` SET
+		regimen=trim(upper('{$_POST['regimen']}')), 
+		eapb=trim(upper('{$_POST['eapb']}')),
+		usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),
+		fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
+		where idpersona='{$id[0]}' and tipo_doc='{$id[1]}'";
+		// echo $sql; */
+		$rta=dato_mysql($sql);
+		// echo $sql;
+  return $rta;
+}
 
 
 function opc_proceso($id=''){
@@ -173,53 +243,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 
 
-function gra_administracion(){
-	$rtaF='';
-	$id=divide($_POST['id_factura']);
-	if(count($id)==4){
-		if (isset($_POST['cod_factura']) && $_POST['cod_factura']!='' && isset($_POST['cod_admin'])){
-			$estado='F';	
-		}else{
-			$estado='E';
-		}
-		// print_r($id);
 
-		$sql1="UPDATE `personas` SET
-		regimen=trim(upper('{$_POST['regimen']}')), 
-		eapb=trim(upper('{$_POST['eapb']}')),
-		usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),
-		fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-		where idpersona='{$id[0]}' and tipo_doc='{$id[1]}'";
-		// echo $sql1;
-		$rta1=dato_mysql($sql1);
-
-		if (strpos($rta1, "Correctamente") !== false) {
-			$rtaF.= "";
-		} else {
-			$rtaF.= "Error: No se pudo actualizar el Regimen o la Eapb";
-		}	
-
-		$sql="UPDATE `adm_facturacion` SET
-	fecha_consulta=trim(upper('{$_POST['fecha_consulta']}')), 
-	tipo_consulta=trim(upper('{$_POST['tipo_consulta']}')),	
-	`cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
-	`cod_cups`=TRIM(UPPER('{$_POST['cod_cups']}')),
-	`final_consul`=TRIM(UPPER('{$_POST['final_consul']}')),
-	`cod_factura`=TRIM(UPPER('{$_POST['cod_factura']}')),
-	`estado_hist`=TRIM(UPPER('{$_POST['estado_hist']}')),
-	`tipo_docnew`=TRIM(UPPER('{$_POST['tipo_docnew']}')),
-	`documento_new`=TRIM(UPPER('{$_POST['documento_new']}')),
-	
-	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-	fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR),
-	`estado`='{$estado}' WHERE id_factura='{$id[3]}'";
-		$rtaF.=dato_mysql($sql);
-	}else if(count($id)==3){
-		$rtaF.= "NO HA SELECIONADO LA administracion A EDITAR";
-	}
-	// echo $sql;
-  return $rtaF;
-}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

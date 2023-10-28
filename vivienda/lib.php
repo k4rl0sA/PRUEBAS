@@ -92,6 +92,8 @@ function whe_homes() {
 		$sql .= " AND H.nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
 		$sql .= " AND H.predio_num = '".$_POST['fpred']."'";
+	if ($_POST['funhab'])
+		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";
 	if ($_POST['fdigita'])
 		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {

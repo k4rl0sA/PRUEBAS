@@ -179,11 +179,21 @@ $usu=divide($rta["responseResult"][0]['usu']); */
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 //$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('PROFAM') and subred=$usu[2] ORDER BY 2",'');//$_SESSION['us_sds']
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'];
+$binas=opc_sql("select equipo,equipo from usuarios WHERE perfil='PROFAM' AND estado='A' AND subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
+$bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 'disabled';
 
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
+
+<div class="campo"><div>Bina</div>
+		<select class="captura" id="fbinas" name="fbinas" onchange="actualizar();"<?php echo $bina; ?> ><?php echo $binas; ?>
+		</select>
+	</div>
+
+	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>

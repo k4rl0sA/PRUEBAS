@@ -76,12 +76,16 @@ WHERE estado_v in('7') ".whe_homes()."
 function whe_homes() {
 	$sql = "";
 	// print_r($_POST);
+	if ($_POST['fbinas'])
+		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
 	if ($_POST['fsector'])
 		$sql .= " AND sector_catastral = '".$_POST['fsector']."'";
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
 		$sql .= " AND predio_num = '".$_POST['fpred']."'";
+	if ($_POST['funhab'])
+		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";
 //	if ($_POST['fdigita'])
 //		$sql .= " AND usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {

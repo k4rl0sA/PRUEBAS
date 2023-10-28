@@ -6,7 +6,7 @@ include_once('./login/frmlogin.php');
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$name = test_input($_POST['username']);
 			$pwd =$_POST['passwd'];
-/*			
+/*			AQUI ESTA COMENTADO
 			$token=$_POST['token'];
 			$url='https://www.google.com/recaptcha/api/siteverify';
 			$req="$url?secret=$claves[privada]&response=$token";

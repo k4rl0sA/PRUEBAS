@@ -160,28 +160,53 @@ function gra_admision(){
 		$rta = "'NO ES POSIBLE ACTUALIZAR EL REGISTRO'";
 	//    echo $sql;
 	}else if(count($id)==3){
-	  $sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$_POST['tipo_doc']}')),trim(upper('{$_POST['documento']}')),trim(upper('{$_POST['soli_admis']}')),
-	  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
-	  trim(upper('{$_POST['cod_factura']}')),
-	  TRIM(UPPER('{$_POST['estado_hist']}')),
-	  TRIM(UPPER('{$_POST['tipo_docnew']}')),
-	  TRIM(UPPER('{$_POST['documento_new']}')),
-	  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-	//   echo $sql;
-	$rta=dato_mysql($sql);
+		$tip=$_POST['tipo_doc'];
+        $doc=$_POST['documento'];
+		if(get_admi($tip,$doc)){
+			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
+		}else{
+			  $sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$_POST['tipo_doc']}')),trim(upper('{$_POST['documento']}')),trim(upper('{$_POST['soli_admis']}')),
+			  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
+			  trim(upper('{$_POST['cod_factura']}')),
+			  TRIM(UPPER('{$_POST['estado_hist']}')),
+			  TRIM(UPPER('{$_POST['tipo_docnew']}')),
+			  TRIM(UPPER('{$_POST['documento_new']}')),
+			  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+			//   echo $sql;
+			$rta=dato_mysql($sql);
+		}
 	}else{
-		$sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$_POST['tipo_doc']}')),trim(upper('{$_POST['documento']}')),trim(upper('{$_POST['soli_admis']}')),
-	  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
-	  trim(upper('{$_POST['cod_factura']}')),
-	  TRIM(UPPER('{$_POST['estado_hist']}')),
-	  TRIM(UPPER('{$_POST['tipo_docnew']}')),
-	  TRIM(UPPER('{$_POST['documento_new']}')),
-	  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-	  $rta=dato_mysql($sql);
+		$tip=$_POST['tipo_doc'];
+        $doc=$_POST['documento'];
+		if(get_admi($tip,$doc)){
+			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
+		}else{
+			$sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$_POST['tipo_doc']}')),trim(upper('{$_POST['documento']}')),trim(upper('{$_POST['soli_admis']}')),
+		  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
+		  trim(upper('{$_POST['cod_factura']}')),
+		  TRIM(UPPER('{$_POST['estado_hist']}')),
+		  TRIM(UPPER('{$_POST['tipo_docnew']}')),
+		  TRIM(UPPER('{$_POST['documento_new']}')),
+		  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+		  $rta=dato_mysql($sql);
+	  	}
 	}
 	
 	
 	 return $rta;
+}
+
+function get_admi($tip,$doc){
+	$hoy=date('Y-m-d');
+	$sql="select * from adm_facturacion 
+	where usu_creo='{$_SESSION['us_sds']}' and DATE(fecha_create)='$hoy' and documento='$doc' AND tipo_doc ='$tip'";
+	echo $sql;
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){ 
+	  return true;
+	}else{
+	  return false;
+	}
 }
 
 function get_admision(){

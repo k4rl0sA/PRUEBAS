@@ -83,6 +83,18 @@ function focus_adolesce(){
     return $rta;
      }
 
+     function get_atenc($tip,$doc){
+      $sql="SELECT atencion_idpersona FROM eac_atencion 
+      WHERE atencion_tipodoc ='$tip' AND atencion_idpersona ='$doc'";
+      // echo $sql;
+      $info=datos_mysql($sql);
+      if(isset($info['responseResult'][0])){ 
+        return true;
+      }else{
+        return false;
+      }
+  }
+
      function get_adolesce(){
       if($_REQUEST['id']==''){
         return "";
@@ -128,6 +140,10 @@ function focus_adolesce(){
         // echo $x;
  //echo $sql;
       }else{
+        $tip=$_POST['adolecencia_tipo_doc'];
+        $doc=$_POST['adolecencia_documento'];
+        if(get_atenc($tip,$doc)){
+
         $sql="INSERT INTO eac_adolescencia VALUES (
         trim(upper('{$_POST['adolecencia_tipo_doc']}')),
         trim(upper('{$_POST['adolecencia_documento']}')),
@@ -147,12 +163,15 @@ function focus_adolesce(){
         trim(upper('{$_POST['preg14']}')),
         TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
         // echo $sql;
-      }
         $rta=dato_mysql($sql);
-      //   return "correctamente";
-        return $rta; 
+      }else{
+        $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
       }
-
+      // echo $sql;
+    }
+    //   return "correctamente";
+      return $rta; 
+    }
 
 function opc_adolecencia_tipo_doc($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);

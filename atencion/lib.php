@@ -1236,33 +1236,39 @@ function gra_eac_juventud(){
 	  //echo $sql."    ".$rta;
 
 	}else{
-
-		$sql="INSERT INTO eac_juventud VALUES (
-		TRIM(UPPER('{$_POST['juventud_tipo_doc']}')),
-		TRIM(UPPER('{$_POST['juventud_documento']}')),
-		TRIM(UPPER('{$_POST['validacion1']}')),
-		TRIM(UPPER('{$_POST['validacion2']}')),
-		TRIM(UPPER('{$_POST['validacion3']}')),
-		TRIM(UPPER('{$_POST['validacion4']}')),
-		
-		TRIM(UPPER('{$_POST['validacion6']}')),
-		TRIM(UPPER('{$_POST['validacion7']}')),
-		TRIM(UPPER('{$_POST['validacion8']}')),
-		TRIM(UPPER('{$_POST['validacion9']}')),
-		TRIM(UPPER('{$_POST['validacion10']}')),
-		TRIM(UPPER('{$_POST['validacion11']}')),
-		TRIM(UPPER('{$_POST['validacion12']}')),
-		TRIM(UPPER('{$_POST['validacion13']}')),
-		TRIM(UPPER('{$_POST['validacion14']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
+		$tip=$_POST['p_infancia_tipo_doc'];
+        $doc=$_POST['p_infancia_documento'];
+        if(get_atenc($tip,$doc)){
+			$sql="INSERT INTO eac_juventud VALUES (
+			TRIM(UPPER('{$_POST['juventud_tipo_doc']}')),
+			TRIM(UPPER('{$_POST['juventud_documento']}')),
+			TRIM(UPPER('{$_POST['validacion1']}')),
+			TRIM(UPPER('{$_POST['validacion2']}')),
+			TRIM(UPPER('{$_POST['validacion3']}')),
+			TRIM(UPPER('{$_POST['validacion4']}')),
+			
+			TRIM(UPPER('{$_POST['validacion6']}')),
+			TRIM(UPPER('{$_POST['validacion7']}')),
+			TRIM(UPPER('{$_POST['validacion8']}')),
+			TRIM(UPPER('{$_POST['validacion9']}')),
+			TRIM(UPPER('{$_POST['validacion10']}')),
+			TRIM(UPPER('{$_POST['validacion11']}')),
+			TRIM(UPPER('{$_POST['validacion12']}')),
+			TRIM(UPPER('{$_POST['validacion13']}')),
+			TRIM(UPPER('{$_POST['validacion14']}')),
+			TRIM(UPPER('{$_SESSION['us_sds']}')),
+			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
 		//echo $sql;
-
+		$rta=dato_mysql($sql);
+	}else{
+	  $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
 	}
-	  $rta=dato_mysql($sql);
-	//   return "correctamente";
-	  return $rta; 
-	}
+	// echo $sql;
+  }
+	
+  //   return "correctamente";
+	return $rta; 
+  }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1368,33 +1374,48 @@ function gra_eac_adultez(){
 	  //echo $sql."    ".$rta;
 
 	}else{
-
-		$sql="INSERT INTO eac_adultez VALUES (
-		TRIM(UPPER('{$_POST['adultez_tipo_doc']}')),
-		TRIM(UPPER('{$_POST['adultez_documento']}')),
-		TRIM(UPPER('{$_POST['validacion1']}')),
-		TRIM(UPPER('{$_POST['validacion2']}')),
-		TRIM(UPPER('{$_POST['validacion3']}')),
-		TRIM(UPPER('{$_POST['validacion4']}')),
-		TRIM(UPPER('{$_POST['validacion5']}')),
-		TRIM(UPPER('{$_POST['validacion6']}')),
-		TRIM(UPPER('{$_POST['validacion7']}')),
-		TRIM(UPPER('{$_POST['validacion8']}')),
-		TRIM(UPPER('{$_POST['validacion9']}')),
-		TRIM(UPPER('{$_POST['validacion10']}')),
-		TRIM(UPPER('{$_POST['validacion11']}')),
-		TRIM(UPPER('{$_POST['validacion12']}')),
-		TRIM(UPPER('{$_POST['validacion13']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
+		$tip=$_POST['adultez_tipo_doc'];
+        $doc=$_POST['adultez_documento'];
+        if(get_atenc($tip,$doc)){
+			$sql="INSERT INTO eac_adultez VALUES (
+			TRIM(UPPER('{$_POST['adultez_tipo_doc']}')),
+			TRIM(UPPER('{$_POST['adultez_documento']}')),
+			TRIM(UPPER('{$_POST['validacion1']}')),
+			TRIM(UPPER('{$_POST['validacion2']}')),
+			TRIM(UPPER('{$_POST['validacion3']}')),
+			TRIM(UPPER('{$_POST['validacion4']}')),
+			TRIM(UPPER('{$_POST['validacion5']}')),
+			TRIM(UPPER('{$_POST['validacion6']}')),
+			TRIM(UPPER('{$_POST['validacion7']}')),
+			TRIM(UPPER('{$_POST['validacion8']}')),
+			TRIM(UPPER('{$_POST['validacion9']}')),
+			TRIM(UPPER('{$_POST['validacion10']}')),
+			TRIM(UPPER('{$_POST['validacion11']}')),
+			TRIM(UPPER('{$_POST['validacion12']}')),
+			TRIM(UPPER('{$_POST['validacion13']}')),
+			TRIM(UPPER('{$_SESSION['us_sds']}')),
+			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
 		//echo $sql;
-
+		$rta=dato_mysql($sql);
+	}else{
+  		$rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
 	}
-	  $rta=dato_mysql($sql);
-	//   return "correctamente";
-	  return $rta; 
+	// echo $sql;
 	}
-
+//   return "correctamente";
+	return $rta; 
+}
+	function get_atenc($tip,$doc){
+        $sql="SELECT atencion_idpersona FROM eac_atencion 
+        WHERE atencion_tipodoc ='$tip' AND atencion_idpersona ='$doc'";
+        // echo $sql;
+        $info=datos_mysql($sql);
+        if(isset($info['responseResult'][0])){ 
+          return true;
+        }else{
+          return false;
+        }
+    }
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 function cmp_eac_vejez(){
@@ -1501,33 +1522,39 @@ function gra_eac_vejez(){
 	  //echo $sql."    ".$rta;
 
 	}else{
-
-		$sql="INSERT INTO eac_vejez VALUES (
-		TRIM(UPPER('{$_POST['vejez_tipo_doc']}')),
-		TRIM(UPPER('{$_POST['vejez_documento']}')),
-		TRIM(UPPER('{$_POST['validacion1']}')),
-		TRIM(UPPER('{$_POST['validacion2']}')),
-		TRIM(UPPER('{$_POST['validacion3']}')),
-		TRIM(UPPER('{$_POST['validacion4']}')),
-		TRIM(UPPER('{$_POST['validacion5']}')),
-		TRIM(UPPER('{$_POST['validacion6']}')),
-		TRIM(UPPER('{$_POST['validacion7']}')),
-		TRIM(UPPER('{$_POST['validacion8']}')),
-		TRIM(UPPER('{$_POST['validacion9']}')),
-		TRIM(UPPER('{$_POST['validacion10']}')),
-		TRIM(UPPER('{$_POST['validacion11']}')),
-		TRIM(UPPER('{$_POST['validacion12']}')),
-		TRIM(UPPER('{$_POST['validacion13']}')),
-		TRIM(UPPER('{$_POST['validacion14']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
+		$tip=$_POST['vejez_tipo_doc'];
+        $doc=$_POST['vejez_documento'];
+        if(get_atenc($tip,$doc)){
+			$sql="INSERT INTO eac_vejez VALUES (
+			TRIM(UPPER('{$_POST['vejez_tipo_doc']}')),
+			TRIM(UPPER('{$_POST['vejez_documento']}')),
+			TRIM(UPPER('{$_POST['validacion1']}')),
+			TRIM(UPPER('{$_POST['validacion2']}')),
+			TRIM(UPPER('{$_POST['validacion3']}')),
+			TRIM(UPPER('{$_POST['validacion4']}')),
+			TRIM(UPPER('{$_POST['validacion5']}')),
+			TRIM(UPPER('{$_POST['validacion6']}')),
+			TRIM(UPPER('{$_POST['validacion7']}')),
+			TRIM(UPPER('{$_POST['validacion8']}')),
+			TRIM(UPPER('{$_POST['validacion9']}')),
+			TRIM(UPPER('{$_POST['validacion10']}')),
+			TRIM(UPPER('{$_POST['validacion11']}')),
+			TRIM(UPPER('{$_POST['validacion12']}')),
+			TRIM(UPPER('{$_POST['validacion13']}')),
+			TRIM(UPPER('{$_POST['validacion14']}')),
+			TRIM(UPPER('{$_SESSION['us_sds']}')),
+			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
 		//echo $sql;
+		$rta=dato_mysql($sql);
+	}else{
+	  $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
+	}
+	// echo $sql;
+  }
+  //   return "correctamente";
+	return $rta; 
+  }
 
-	}
-	  $rta=dato_mysql($sql);
-	//   return "correctamente";
-	  return $rta; 
-	}
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////

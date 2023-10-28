@@ -1,5 +1,5 @@
 <?php
 $claves=[
-    'publica'=>'6Lca_mcnAAAAAMJJuKRoqYzn3wDqWsv58uqesQGk',
-    'privada'=>'6Lca_mcnAAAAALwxFk-9Gm4W0Syfc91eNKhzeXQ9'];
+    'publica'=>'6Ld47tUoAAAAAHpJPDuP5w3keyiFw9A9RhjRO0GM',
+    'privada'=>'6Ld47tUoAAAAAKdFwES-feKB0XOPl1QE9K-GS4Hw'];
     

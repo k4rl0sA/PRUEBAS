@@ -81,6 +81,20 @@ function focus_infancia(){
     return $rta;
      }
 
+
+  function get_atenc($tip,$doc){
+      $sql="SELECT atencion_idpersona FROM eac_atencion 
+      WHERE atencion_tipodoc ='$tip' AND atencion_idpersona ='$doc'";
+      // echo $sql;
+      $info=datos_mysql($sql);
+      if(isset($info['responseResult'][0])){ 
+        return true;
+      }else{
+        return false;
+      }
+  }
+
+
      function get_infancia(){
       if($_REQUEST['id']==''){
         return "";
@@ -113,18 +127,23 @@ function focus_infancia(){
         // echo $x;
         // echo $sql;
       }else{
+        $tip=$_POST['infancia_tipo_doc'];
+        $doc=$_POST['infancia_documento'];
+        if(get_atenc($tip,$doc)){
         $sql="INSERT INTO eac_infancia VALUES (
         TRIM(UPPER('{$_POST['infancia_tipo_doc']}')),TRIM(UPPER('{$_POST['infancia_documento']}')),
         trim(upper('{$_POST['infancia_validacion1']}')),trim(upper('{$_POST['infancia_validacion2']}')),trim(upper('{$_POST['infancia_validacion3']}')),trim(upper('{$_POST['infancia_validacion4']}')),trim(upper('{$_POST['infancia_validacion5']}')),trim(upper('{$_POST['infancia_validacion6']}')),trim(upper('{$_POST['infancia_validacion7']}')),trim(upper('{$_POST['infancia_validacion8']}')),trim(upper('{$_POST['infancia_validacion9']}')),trim(upper('{$_POST['infancia_validacion10']}')),trim(upper('{$_POST['infancia_validacion11']}')),trim(upper('{$_POST['infancia_validacion12']}')),
         TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
         // echo $sql;
-      }
         $rta=dato_mysql($sql);
-      //   return "correctamente";
-        return $rta; 
+      }else{
+        $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
       }
-
-   
+      // echo $sql;
+    }
+    //   return "correctamente";
+      return $rta; 
+    }
 
 
 	function bgcolor($a,$c,$f='c'){

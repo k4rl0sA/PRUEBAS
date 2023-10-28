@@ -52,7 +52,7 @@ function lis_admision(){
 	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
 	
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
-	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,A.usu_creo Creó, FN_CATALOGODESC(184,A.estado_hist) Estado 
+	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
 	FROM `adm_facturacion` A 
 	JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
@@ -146,7 +146,7 @@ function cmp_admision(){
 	
 	$o='admfac';
 	$c[]=new cmp($o,'e',null,'ADMISIÓN Y FACTURACIÓN',$w);
-	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,true,'','col-15','validDate(this,-20,0)');
+	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,true,'','col-15','validDate(this,-26,0)');
 	$c[]=new cmp('tipo_consulta','s',3,$e,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,true,'','col-15');
 	$c[]=new cmp('cod_cups','s','3',$e,$w.' '.$o,'Codigo CUPS','cod_cups',null,null,true,true,'','col-35');
 	$c[]=new cmp('final_consul','s','3',$e,$w.' '.$o,'Finalidad de la Consulta','final_consul',null,null,true,true,'','col-35');

@@ -95,7 +95,7 @@ function whe_homes() {
 				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
 	}
-	if(!$_POST['fsector'] || !$_POST['fmanz'] || !$_POST['fpred'] || !$_POST['fdes']){
+	if(!$_POST['fbinas']|| !$_POST['fsector'] || !$_POST['fmanz'] || !$_POST['fpred'] || !$_POST['fdes']){
 		$sql.="AND (usu_creo IN('{$_SESSION['us_sds']}'))  
 		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
 	}

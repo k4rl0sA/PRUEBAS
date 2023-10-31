@@ -12,9 +12,9 @@ if (!isset($_SESSION["us_sds"])) {
 }
 $ruta_upload='/public_html/upload/';
 $env='prod';
-//$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+//$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
-//$comy=array('prod' => ['s'=>'srv247.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
+// $comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
@@ -29,7 +29,8 @@ switch ($req) {
 	case '';
 	break;
 	case 'exportar':
-		header_csv($_REQUEST['b'] . '.csv');
+    $now=date("ymd");
+		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 			echo csv($ts, $rs);
@@ -75,12 +76,17 @@ function header_csv($a) {
   header("Content-Type: application/download");
   header("Content-Disposition: attachment;filename={$a}");
   header("Content-Transfer-Encoding: binary");
+  header("Content-Type: text/csv; charset=UTF-8");
 }
+
+
+
+
 
 function csv($a,$b){
   $df=fopen("php://output", 'w');
   ob_start();
-  if(isset($a)) fputcsv($df,array_keys($a),'|');
+  if(isset($a)){fwrite($df, "\xEF\xBB\xBF"); fputcsv($df,array_keys($a),'|');}
   if(isset($b)){
     foreach ($b as $row) fputcsv($df,$row,'|');
   }
@@ -106,6 +112,41 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 	return $arr;
 }
 
+
+/* function dato_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+		$con=$GLOBALS['con'];
+		$con->set_charset('utf8');
+		try {
+			if (strpos($sql,'DELETE')!==false){
+				$op='Eliminado';
+			}elseif(strpos($sql,'INSERT')!==false){
+				$op='Insertado';
+			}else{
+				$op='Actualizado';
+			}
+			if(!$con->query($sql)){
+				$err=$con->error;
+				$con->query("ROLLBACK;");
+				if ($con->error==''){
+					$rs="Error : ".$err;
+				}else{
+					$rs="Error : ". $err." Ouchh! NO se modifico ningún registro, por favor valide la información e intente nuevamente.";
+				}
+			}else{
+				if($con->affected_rows>0){
+					$rs="Se ha ".$op.": ".$con->affected_rows." Registro Correctamente.";
+				}else{
+					$rs="Ouchh!, NO se ha ".$op.", por favor valide la información e intente nuevamente.";
+				}
+			}
+		} catch (mysqli_sql_exception $e) {
+			$rs="Error = ".$e->getCode()." ".$e->getMessage();
+			// die($rs);22-10-2023
+		}
+    // $con->close;
+	return $rs;
+} */
 
 function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
@@ -431,7 +472,7 @@ function perfil($a){
 	$perf=rol($a);
 	//print_r($perf);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
-		echo "<H1>ACCESO NO AUTORIZADO, VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
+		echo "<H1>ACCESO NO AUTORIZADO,PARA {$a} VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
 		exit();
 		 }
 }

@@ -140,13 +140,14 @@ function searPers(a){
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
-				if (Object.keys(rta).length === 4) {
+				if (Object.keys(rta).length === 7) {
 					des.value='';
 					has.value='';
 					sec.value=data['sector_catastral'];
 					man.value=data['nummanzana'];
 					pre.value=data['predio_num'];
 					uni.value=data['unidad_habit'];
+					inform('<p class="blanco">Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Equipo: '+data['equipo']+'</p>');
 					actualizar();
 				}else{
 					const hoy = new Date();

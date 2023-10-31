@@ -72,7 +72,7 @@ $ob='Ob';
    $block=['hab','acc'];
   $event=divide($_POST['id']);
   $ev=$event[3];
-  
+  $p=get_persona();
 
 	$c[]=new cmp('id_bpnterm','h','50',$_POST['id'],$w.' '.$o,'Id de bpnterm','id_bpnterm',null,null,false,false,'','col-2');
     
@@ -81,17 +81,18 @@ $ob='Ob';
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-
+  $c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
 
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
     $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-4');
     $c[]=new cmp('vacuna_comple','s','2',$d,$w.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-4');
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' '.$o,'¿Recibe lactancia materna exclusiva?','lacmate_exclu',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso','n','3',$d,$w.' '.$o,'Peso (Gramos 800)','peso',null,null,false,$x,'','col-2');
-    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla (Cm.Mm 20.2)','talla',null,null,false,$x,'','col-2');
-    $c[]=new cmp('zscore','t','500',$d,$w.' '.$o,'Z SCORE','zscore',null,null,false,$x,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificacion Nutricional','clasi_nutri',null,null,false,$x,'','col-4');
+    $c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso (Kg) (0.82 = 820 Gramos)','peso',null,null,false,$x,'','col-2',"Zsco('zscore','../vsp/bpnterm.php');");
+    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla (Cm) (75.2 =Cm,mm)','talla',null,null,false,$x,'','col-2',"Zsco('zscore','../vsp/bpnterm.php');");
+    $c[]=new cmp('zscore','t','500',$d,$w.' '.$bl.' '.$o,'Z SCORE','zscore',null,null,false,false,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$o,'Clasificacion Nutricional','clasi_nutri',null,null,false,$x,'','col-4');
     $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$o,'¿Se evidencia ganancia de peso?','rta',null,null,false,$x,'','col-2',"enabOthSi('gana_peso','gP');");
     $c[]=new cmp('gana_peso_dia','s','3',$d,$w.' gP '.$no.' '.$bl.' '.$o,'Ganancia de Peso Diaria','gana_peso_dia',null,null,false,$x,'','col-2');
     $c[]=new cmp('signos_alarma','s','2',$d,$w.' '.$o,'¿El cuidador identifica signos de alarma?','rta',null,null,false,$x,'','col-3');
@@ -127,6 +128,74 @@ $ob='Ob';
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+
+function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
+		FN_EDAD(fecha_nacimiento,CURDATE()),
+		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+  		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR ))% 30 AS dia
+		from personas P left join hog_viv V ON idviv=vivipersona 
+		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+		// echo $sql;
+		$info=datos_mysql($sql);
+				return $info['responseResult'][0];
+		}
+	}
+
+  function get_zscore(){
+    $id=divide($_POST['val']);
+     $fechaNacimiento = new DateTime($id[1]);
+     $fechaActual = new DateTime();
+     $diferencia = $fechaNacimiento->diff($fechaActual);
+     $edadEnDias = $diferencia->days;
+    $ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+    $sex=$id[2];
+  
+  $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+    (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+    ((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+   (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+    // echo $sql;
+   $info=datos_mysql($sql);
+     if (!$info['responseResult']) {
+      return '';
+    }else{
+      $z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+      switch ($z) {
+        case ($z <=-3):
+          $des=3;
+          break;
+        case ($z >-3 && $z <=-2):
+          $des=2;
+          break;
+        case ($z >-2 && $z <=-1):
+          $des=1;
+          break;
+        case ($z>-1 && $z <=1):
+            $des=4;
+          break;
+        case ($z >1 && $z <=2):
+            $des=5;
+          break;
+        case ($z >2 && $z <=3):
+            $des=6;
+          break;
+          case ($z >3):
+            $des=7;
+          break;
+        default:
+          $des=8;
+          break;
+      }
+      return json_encode([$z,$des]);
+    }
+  }
+
 
 function opc_bina($id=''){
   return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
@@ -247,9 +316,12 @@ function gra_bpnterm(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_bpnterm,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,asiste_control,vacuna_comple,lacmate_exclu,peso,talla,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
-      FROM vsp_bpnterm
+      $sql="SELECT concat(id_bpnterm,'_',D.tipo_doc,'_',D.documento,'_',numsegui,'_',evento),
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,
+      FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
+      asiste_control,vacuna_comple,lacmate_exclu,peso,talla,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
+      FROM vsp_bpnterm D
+      LEFT JOIN personas P ON D.tipo_doc=P.tipo_doc AND D.documento=P.idpersona
       WHERE id_bpnterm ='{$id[0]}'";
       // echo $sql;
       // print_r($id);

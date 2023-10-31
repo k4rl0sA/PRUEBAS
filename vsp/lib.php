@@ -22,9 +22,10 @@ else {
 
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit FROM hog_viv hv 
+	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
 	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
 	inner JOIN personas p ON hv.idviv=p.vivipersona
+	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
 //  echo $sql;
 	$info=datos_mysql($sql);
@@ -68,7 +69,7 @@ WHERE estado_v in('7') ".whe_homes()."
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
-   echo $sql;
+//    echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
@@ -91,12 +92,11 @@ function whe_homes() {
 	if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
 				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
-			} else {
-				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
+		 " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23: 59:59'";
 			}
 	}
-	if(!$_POST['fbinas']|| !$_POST['fsector'] || !$_POST['fmanz'] || !$_POST['fpred'] || !$_POST['fdes']){
-		$sql.="AND (usu_creo IN('{$_SESSION['us_sds']}'))  
+	if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
+		$sql.=" AND (usu_creo IN('{$_SESSION['us_sds']}'))  
 		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
 	}
 	return $sql;

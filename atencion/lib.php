@@ -1238,17 +1238,16 @@ function gra_eac_juventud(){
 	  //echo $sql."    ".$rta;
 
 	}else{
-		$tip=$_POST['p_infancia_tipo_doc'];
-        $doc=$_POST['p_infancia_documento'];
-        if(get_atenc($tip,$doc)){
+		/* $tip=$_POST['p_infancia_tipo_doc'];
+        $doc=$_POST['p_infancia_documento']; */
+        if(get_atenc($juventud_tipo_doc,$juventud_documento)){
 			$sql="INSERT INTO eac_juventud VALUES (
-			TRIM(UPPER('{$_POST['juventud_tipo_doc']}')),
-			TRIM(UPPER('{$_POST['juventud_documento']}')),
+			'$juventud_tipo_doc',
+			'$juventud_documento',
 			TRIM(UPPER('{$_POST['validacion1']}')),
 			TRIM(UPPER('{$_POST['validacion2']}')),
 			TRIM(UPPER('{$_POST['validacion3']}')),
 			TRIM(UPPER('{$_POST['validacion4']}')),
-			
 			TRIM(UPPER('{$_POST['validacion6']}')),
 			TRIM(UPPER('{$_POST['validacion7']}')),
 			TRIM(UPPER('{$_POST['validacion8']}')),
@@ -1260,7 +1259,7 @@ function gra_eac_juventud(){
 			TRIM(UPPER('{$_POST['validacion14']}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL)";
-		//echo $sql;
+		// echo $sql;
 		$rta=dato_mysql($sql);
 	}else{
 	  $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";

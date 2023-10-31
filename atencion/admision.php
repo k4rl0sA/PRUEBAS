@@ -200,7 +200,7 @@ function get_admi($tip,$doc){
 	$hoy=date('Y-m-d');
 	$sql="select * from adm_facturacion 
 	where usu_creo='{$_SESSION['us_sds']}' and DATE(fecha_create)='$hoy' and documento='$doc' AND tipo_doc ='$tip'";
-	echo $sql;
+	// echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 
 	  return true;

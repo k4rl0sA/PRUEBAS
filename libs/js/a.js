@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.10.24.1";
+window.appVersion = "1.10.31.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -279,6 +279,7 @@ function is_option(a) {
 function valido(a) {
 	a.classList.remove('alerta','invalid');
 		if (a.value == '') a.classList.add('alerta','invalid');
+		if (a.value == '' && a.multiple)document.querySelector('input[type="search"].mult#'+a.id).classList.add('alerta');
 		/* if(a.tagName=='SELECT'){
 			if(a.firstChild.classList.contains('alerta') && a.value =='0')a.classList.add('alerta','invalid');
 		} */

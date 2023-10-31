@@ -84,28 +84,33 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_psico3($tab);
             break;	
+        case '8':
+			$tab = "Psicologia_Sesion_Fin";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_psico4($tab);
+            break;	
         default:
-            break;    
+            break;
     }
 }
 
 
 
 function lis_geolo($txt){
-	$sql="SELECT CONCAT(G.estrategia, '', G.sector_catastral, '', G.nummanzana, '', G.predio_num, '', G.unidad_habit, '_', G.estado_v) AS ID_FAMILIAR,
-	C1.descripcion AS Estrategia,G.subred AS Cod_Subred,C2.descripcion AS Subred,G.zona AS Cod_Zona,C3.descripcion AS Zona,G.localidad AS Cod_Localidad,C4.descripcion AS Localidad,G.upz AS Cod_Upz, C5.descripcion AS Upz,G.barrio AS Cod_Barrio,C6.descripcion AS Barrio,
-	G.territorio AS Territorio,G.microterritorio AS Manzana_Cuidado,G.sector_catastral AS Sector_Catastral,G.nummanzana AS Numero_Manzana,G.predio_num AS Numero_Predio,G.unidad_habit AS Unidad_Habitacional,
-	G.direccion AS Direccion,G.vereda AS Vereda,G.cordx AS Coordenada_X,G.cordy AS Coordenda_Y,G.direccion_nueva AS Direccion_Nueva,G.vereda_nueva AS Vereda_Nueva,G.cordxn AS Coordenada_X_Nueva,G.cordyn AS Coordenada_Y_Nueva,G.estrato AS Estrato,G.asignado AS Cod_Usuario_Asignado,U1.nombre AS Usuario_Asignado,G.equipo AS Equipo_Usuario,G.estado_v AS Estado_Visita,G.motivo_estado AS Motivo_Estado,
-	G.usu_creo,U2.nombre,U2.perfil,G.fecha_create
-	FROM `hog_geo` G
-	LEFT JOIN catadeta C1 ON C1.idcatadeta = G.subred AND C1.idcatalogo = 42 AND C1.estado = 'A'
-	LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A'
-	LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A'
-	LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A'
-	LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A'
-	LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A'
-	LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
-	LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
+	$sql="SELECT CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v) AS ID_FAMILIAR,
+C1.descripcion AS Estrategia,G.subred AS Cod_Subred,C2.descripcion AS Subred,G.zona AS Cod_Zona,C3.descripcion AS Zona,G.localidad AS Cod_Localidad,C4.descripcion AS Localidad,G.upz AS Cod_Upz, C5.descripcion AS Upz,G.barrio AS Cod_Barrio,C6.descripcion AS Barrio,
+G.territorio AS Territorio,G.microterritorio AS Manzana_Cuidado,G.sector_catastral AS Sector_Catastral,G.nummanzana AS Numero_Manzana,G.predio_num AS Numero_Predio,G.unidad_habit AS Unidad_Habitacional,
+G.direccion AS Direccion,G.vereda AS Vereda,G.cordx AS Coordenada_X,G.cordy AS Coordenda_Y,G.direccion_nueva AS Direccion_Nueva,G.vereda_nueva AS Vereda_Nueva,G.cordxn AS Coordenada_X_Nueva,G.cordyn AS Coordenada_Y_Nueva,G.estrato AS Estrato,G.asignado AS Cod_Usuario_Asignado,U1.nombre AS Usuario_Asignado,G.equipo AS Equipo_Usuario,FN_CATALOGODESC(44,G.estado_v) AS Estado_Visita,FN_CATALOGODESC(5,G.motivo_estado) AS Motivo_Estado,
+G.usu_creo,U2.nombre,U2.perfil,G.fecha_create
+FROM `hog_geo` G
+LEFT JOIN catadeta C1 ON C1.idcatadeta = G.subred AND C1.idcatalogo = 42 AND C1.estado = 'A'
+LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A'
+LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A'
+LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A'
+LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A'
+LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A'
+LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
+LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	// echo $sql;
@@ -281,6 +286,27 @@ A.psi_fecha_sesion,FN_CATALOGODESC(125,A.psi_sesion) AS N°_Sesion,A.cod_admin4,
 A.psi_validacion10,A.psi_validacion11,A.psi_validacion12,A.psi_validacion13,A.psi_validacion14,A.psi_validacion15,A.psi_validacion16,A.psi_validacion17,
 A.fecha_create,A.usu_creo
 FROM `psi_sesiones` A
+LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_psico4($txt){
+	$sql="SELECT G.subred,V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
+P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
+
+A.psi_fecha_sesion,A.cod_admisfin,A.zung_ini,A.hamilton_ini,A.whodas_ini,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.psi_validacion6,A.psi_validacion7,
+A.psi_validacion8,A.psi_validacion9,A.psi_validacion10,A.psi_validacion11,A.psi_validacion12,A.psi_validacion13,A.psi_validacion14,A.psi_validacion15,A.psi_validacion17,A.psi_validacion18,A.psi_validacion19,
+A.fecha_create,A.usu_creo
+
+FROM `psi_sesion_fin` A
 LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo

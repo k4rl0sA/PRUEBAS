@@ -543,6 +543,39 @@ function enabEtap(a, b) {
 	});
   }
 
+
+  function enabClasValu(a, b) {
+    const act = document.getElementById(a);
+    const selector = b.map(clase => `select.${clase}, input.${clase}, textarea.${clase}`).join(', ');
+    const elementos = [...document.querySelectorAll(selector)];
+    elementos.forEach(elemento => {
+        const valorA = parseInt(act.value);
+        let bloquea = true; 
+
+        switch (valorA) {
+            case 1:
+                if (elemento.classList.contains('mOr') || elemento.classList.contains('NOm')) {
+                    bloquea = false;
+                }
+                break;
+            case 2:
+                if (elemento.classList.contains('mOr')) {
+                    bloquea = false;
+                } else {
+                    bloquea = true;
+                }
+                break;
+            default:
+                if (elemento.classList.contains('mOr') || elemento.classList.contains('NOm')) {
+                    bloquea = true;
+                }
+                break;
+        }
+        enaFie(elemento, bloquea);
+    });
+}
+
+  
   function weksEtap(a,b){
 	const act = document.getElementById(a);
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);

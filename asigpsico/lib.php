@@ -25,8 +25,7 @@ function lis_asigpsico(){
 	$info=datos_mysql("SELECT  COUNT(DISTINCT P.idpersona,P.tipo_doc) total FROM  personas P
 	INNER JOIN eac_atencion A ON P.tipo_doc = A.atencion_tipodoc AND P.idpersona = A.atencion_idpersona
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-LEFT JOIN relaciones_geo R ON V.idviv = R.id_viv
-LEFT JOIN hog_geo G ON R.id_geo = G.idgeo
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
 LEFT JOIN asigpsico S ON A.atencion_idpersona = S.documento AND A.atencion_tipodoc = S.tipo_doc
 	
@@ -54,11 +53,10 @@ LEFT JOIN asigpsico S ON A.atencion_idpersona = S.documento AND A.atencion_tipod
     G.nummanzana AS manzana,
     G.predio_num AS predio
 FROM `personas` P
-INNER JOIN eac_atencion A ON P.tipo_doc = A.atencion_tipodoc AND P.idpersona = A.atencion_idpersona
-INNER JOIN hog_viv V ON P.vivipersona = V.idviv
-INNER JOIN relaciones_geo R ON V.idviv = R.id_viv
-INNER JOIN hog_geo G ON R.id_geo = G.idgeo
-INNER JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN eac_atencion A ON P.tipo_doc = A.atencion_tipodoc AND P.idpersona = A.atencion_idpersona
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
 LEFT JOIN asigpsico S ON A.atencion_idpersona = S.documento AND A.atencion_tipodoc = S.tipo_doc
 WHERE (A.atencion_ordenpsicologia = 'SI')";
 	$sql.=whe_asigpsico();
@@ -70,9 +68,9 @@ WHERE (A.atencion_ordenpsicologia = 'SI')";
 } 
 
 function whe_asigpsico() {
-	$sql = " AND R.subred = (SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}' AND estado = 'A') ";
+	$sql = " AND G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}' AND estado = 'A') ";
 	if ($_POST['fdocumento'])
-		$sql .= " AND S.documento = '".$_POST['fdocumento']."'";
+		$sql .= " AND A.atencion_idpersona = '".$_POST['fdocumento']."'";
 	if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])

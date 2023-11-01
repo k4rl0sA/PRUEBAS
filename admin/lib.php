@@ -89,8 +89,23 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_psico4($tab);
             break;	
+        case '9':
+			$tab = "Relevo_Identificacion";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_relevo1($tab);
+            break;	
+        case '10':
+			$tab = "Relevo_Sesiones";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_relevo2($tab);
+            break;	
+        case '11':
+			$tab = "Reteo_Gestion";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_ruteo($tab);
+            break;	
         default:
-            break;
+            break;    
     }
 }
 
@@ -319,9 +334,94 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_relevo1($txt){
+	$sql=" SELECT G.subred,V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
+P.tipo_doc AS Tipo_Documento_Cuidador,P.idpersona AS N°_Documento_Cuidador,concat(P.nombre1,' ',P.nombre2) AS Nombres_Cuidador,concat(P.apellido1,' ',P.apellido2) AS Apellidos_Cuidador,P.fecha_nacimiento AS Fecha_Nacimiento_Cuidador,FN_CATALOGODESC(21,P.sexo) AS Sexo_Cuidador,FN_CATALOGODESC(19,P.genero) AS Genero_Cuidador,FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual_Cuidador,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad_Cuidador,FN_CATALOGODESC(16,P.etnia) AS Etnia_Cuidador,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia_Cuidador,FN_CATALOGODESC(17,P.regimen) AS Regimen_Cuidador,FN_CATALOGODESC(18,P.eapb) AS Eapb_Cuidador,FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Difer_Cuidador,FN_CATALOGODESC(179,P.incluofici) AS Poblacion_Oficio_Cuidador,FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad_Cuidador,FN_CATALOGODESC(28,R.rel_validacion1) AS Antecedentes_Cuidador,R.rel_validacion2 AS Otros_Antecedentes_Cuidador,
+FN_CATALOGODESC(29,R.rel_validacion3) AS Modalidad,R.rel_validacion4 AS Resultado_Hamilton,R.rel_validacion6 AS Resultado_Zarit,R.rel_validacion9 AS Resultado_Zung,R.rel_validacion12 AS Resultado_Ophi,
+
+P0.tipo_doc AS Tipo_Documento_Pers_cuidada1,P0.idpersona AS N°_Documento_Pers_cuidada1,concat(P0.nombre1,' ',P0.nombre2) AS Nombres_Pers_cuidada1,concat(P0.apellido1,' ',P0.apellido2) AS Apellidos_Pers_cuidada1,P0.fecha_nacimiento AS Fecha_Nacimiento_Pers_cuidada1,FN_CATALOGODESC(21,P0.sexo) AS Sexo_Pers_cuidada1,FN_CATALOGODESC(19,P0.genero) AS Genero_Pers_cuidada1,FN_CATALOGODESC(49,P0.oriensexual) AS Orientacion_Pers_cuidada1,FN_CATALOGODESC(30,P0.nacionalidad) AS Nacionalidad_Pers_cuidada1,FN_CATALOGODESC(16,P0.etnia) AS Etnia_Pers_cuidada1,FN_CATALOGODESC(15,P0.pueblo) AS Pueblo_Etnia_Pers_cuidada1,FN_CATALOGODESC(17,P0.regimen) AS Regimen_Pers_cuidada1,FN_CATALOGODESC(18,P0.eapb) AS Eapb_Pers_cuidada1,FN_CATALOGODESC(178,P0.pobladifer) AS Poblacion_Difer_Pers_cuidada1,FN_CATALOGODESC(179,P0.incluofici) AS Poblacion_Oficio_Pers_cuidada1,FN_CATALOGODESC(28,R.rel_validacion14) AS Antecedentes_Pers_cuidada1,R.rel_validacion15 AS Otros_Antecedentes_Pers_cuidada1,FN_CATALOGODESC(14,R.rel_validacion16) AS Tipo_Discapacidad_Pers_cuidada1 ,FN_CATALOGODESC(189,R.np_cuida) AS N°_personas_alcuidado,
+
+P1.tipo_doc AS Tipo_Documento_Pers_cuidada2,P1.idpersona AS N°_Documento_Pers_cuidada2,concat(P1.nombre1,' ',P1.nombre2) AS Nombres_Pers_cuidada2,concat(P1.apellido1,' ',P1.apellido2) AS Apellidos_Pers_cuidada2,P1.fecha_nacimiento AS Fecha_Nacimiento_Pers_cuidada2,FN_CATALOGODESC(21,P1.sexo) AS Sexo_Pers_cuidada2,FN_CATALOGODESC(19,P1.genero) AS Genero_Pers_cuidada2,FN_CATALOGODESC(49,P1.oriensexual) AS Orientacion_Pers_cuidada2,FN_CATALOGODESC(30,P1.nacionalidad) AS Nacionalidad_Pers_cuidada2,FN_CATALOGODESC(16,P1.etnia) AS Etnia_Pers_cuidada2,FN_CATALOGODESC(15,P1.pueblo) AS Pueblo_Etnia_Pers_cuidada2,FN_CATALOGODESC(17,P1.regimen) AS Regimen_Pers_cuidada2,FN_CATALOGODESC(18,P1.eapb) AS Eapb_Pers_cuidada2,FN_CATALOGODESC(178,P1.pobladifer) AS Poblacion_Difer_Pers_cuidada2,FN_CATALOGODESC(179,P1.incluofici) AS Poblacion_Oficio_Pers_cuidada2,FN_CATALOGODESC(28,R.antecedentes_2) AS Antecedentes_Pers_cuidada2,R.otro_2 AS Otros_Antecedentes_Pers_cuidada2,FN_CATALOGODESC(14,R.discapacidad_2) AS Tipo_Discapacidad_Pers_cuidada2,
+
+P2.tipo_doc AS Tipo_Documento_Pers_cuidada3,
+P2.idpersona AS N°_Documento_Pers_cuidada3,
+concat(P2.nombre1,' ',P2.nombre2) AS Nombres_Pers_cuidada3,
+concat(P2.apellido1,' ',P2.apellido2) AS Apellidos_Pers_cuidada3,
+P2.fecha_nacimiento AS Fecha_Nacimiento_Pers_cuidada3,
+FN_CATALOGODESC(21,P2.sexo) AS Sexo_Pers_cuidada3,
+FN_CATALOGODESC(19,P2.genero) AS Genero_Pers_cuidada3,
+FN_CATALOGODESC(49,P2.oriensexual) AS Orientacion_Pers_cuidada3,
+FN_CATALOGODESC(30,P2.nacionalidad) AS Nacionalidad_Pers_cuidada3,
+FN_CATALOGODESC(16,P2.etnia) AS Etnia_Pers_cuidada3,
+FN_CATALOGODESC(15,P2.pueblo) AS Pueblo_Etnia_Pers_cuidada3,
+FN_CATALOGODESC(17,P2.regimen) AS Regimen_Pers_cuidada3,
+FN_CATALOGODESC(18,P2.eapb) AS Eapb_Pers_cuidada3,
+FN_CATALOGODESC(178,P2.pobladifer) AS Poblacion_Difer_Pers_cuidada3,
+FN_CATALOGODESC(179,P2.incluofici) AS Poblacion_Oficio_Pers_cuidada3,
+FN_CATALOGODESC(28,R.antecedentes_3) AS Antecedentes_Pers_cuidada3,
+R.otro_3 AS Otros_Antecedentes_Pers_cuidada3,FN_CATALOGODESC(14,R.discapacidad_3) AS Tipo_Discapacidad_Pers_cuidada3,
+FN_CATALOGODESC(170,R.rel_validacion17) AS Aceptacion_Relevos,R.rel_validacion18 AS Fecha_Identificacion,
+
+R.usu_creo,U.nombre,U.perfil,R.fecha_create
+FROM `rel_relevo` R
+LEFT JOIN personas P ON R.rel_documento = P.idpersona
+LEFT JOIN personas P0 ON R.rel_validacion13 = P0.idpersona
+LEFT JOIN personas P1 ON R.cuidado_2 = P1.idpersona
+LEFT JOIN personas P2 ON R.cuidado_3 = P2.idpersona
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_relevo2($txt){
+	$sql="SELECT G.subred,V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
+R.rel_tipo_doc,R.rel_documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,
+FN_CATALOGODESC(32,R.rel_validacion1) AS N°_Sesion,R.rel_validacion2 AS Fecha_Sesion,R.rel_validacion3 AS Perfil_Sesion,FN_CATALOGODESC(301,R.rel_validacion4) AS Actividad_Respiro,R.rel_validacion5 AS Descripcion_Intervencion,
+FN_CATALOGODESC(103,R.autocuidado) AS Autocuidado,FN_CATALOGODESC(194,R.activesparc) AS Actividades_Esparcimiento,FN_CATALOGODESC(157,R.infeducom) AS Inf_Educa_Comuni_salud,
+R.fecha_create,R.usu_creo
+ FROM `rel_sesion` R
+ LEFT JOIN personas P ON R.rel_documento = P.idpersona 
+ LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+ LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_ruteo($txt){
+	$sql="SELECT A.estrategia, A.fuente, A.fecha_asig, A.priorizacion, A.tipo_doc, A.documento, A.nombres, A.fecha_nac, A.sexo, A.nacionalidad, A.tipo_doc_acu, A.documento_acu, A.nombres_acu, A.direccion, A.telefono1, A.telefono2, A.telefono3, A.subred, A.localidad, A.upz, A.barrio, A.sector_catastral, A.nummanzana, A.predio_num, A.unidad_habit, A.cordx, A.cordy, A.perfil_asignado, A.fecha_gestion, A.estado_g, A.motivo_estado, A.direccion_nueva, A.complemento, A.observacion, A.usu_creo FROM `eac_ruteo` A  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred1();
+	$sql.=whe_date1();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function whe_subred1() {
+	$sql= " AND (A.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date1(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+} 
 
 function whe_subred() {
-	$sql= " AND G.subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 
@@ -411,7 +511,7 @@ function gra_gestion(){
 
 
 function opc_proceso($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 and estado='A' ORDER BY LPAD(idcatadeta,2,'0')",$id);
 }
 
 function opc_tarea($id=''){

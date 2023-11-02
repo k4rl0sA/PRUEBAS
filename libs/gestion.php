@@ -13,8 +13,8 @@ if (!isset($_SESSION["us_sds"])) {
 $ruta_upload='/public_html/upload/';
 $env='prod';
 //$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
-// $comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
+//$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
@@ -33,11 +33,9 @@ switch ($req) {
 		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-      // 01-11-2023
       foreach ($ts as &$value) {
         $value = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
       }
-      // 01-11-2023
 			echo csv($value, $rs);
 		} else {
 			echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;

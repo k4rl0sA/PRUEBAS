@@ -663,7 +663,8 @@ function cmp_atencion(){
 	$fecha_actual = new DateTime();
 	$fecha_nacimiento = new DateTime($d['fecha_nacimiento']);
 	$edad = $fecha_nacimiento->diff($fecha_actual)->y;
-	$adul = ($edad>=18) ? 'true' : 'false';
+	$adul = ($edad>=18) ? true : false;
+	$adult = ($edad>=18) ? 'true' : 'false';
 	$meno = ($edad<5) ? true : false;
 	$gest = (($edad>=10 && $edad <= 54) && $d['sexo'] == 'M') ? true : false;
 	
@@ -688,7 +689,7 @@ function cmp_atencion(){
 
 	$c[]=new cmp('atencion_cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
 	
-	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');periAbd('gestante','AbD',$adul);");
+	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');periAbd('gestante','AbD',$adult);");
 
 	$c[]=new cmp('atencion_peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','atencion_peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('atencion_peso');ZscoAte('dxnutricional');");
 	$c[]=new cmp('atencion_talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','atencion_talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('atencion_talla');ZscoAte('dxnutricional');");

@@ -41,7 +41,7 @@ function lis_asigruteo(){
 	FN_CATALOGODESC(44,1) estado 
   FROM eac_ruteo C
   LEFT JOIN hog_geo D ON C.estrategia=D.estrategia AND C.sector_catastral=D.sector_catastral AND C.nummanzana=D.nummanzana AND C.predio_num=D.predio_num AND C.unidad_habit=D.unidad_habit AND 1=D.estado_v
-  WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and D.asignado='".$_SESSION['us_sds']."'";
+  WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and (D.asignado='".$_SESSION['us_sds']."' OR D.equipo IN('SELECT equipo FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 // echo $sql;
 	$sql.=whe_asigruteo();
 	$sql.=" ORDER BY C.nummanzana,C.predio_num";

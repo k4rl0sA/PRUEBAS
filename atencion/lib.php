@@ -663,7 +663,7 @@ function cmp_atencion(){
 	$fecha_actual = new DateTime();
 	$fecha_nacimiento = new DateTime($d['fecha_nacimiento']);
 	$edad = $fecha_nacimiento->diff($fecha_actual)->y;
-	$adul = ($edad>=18) ? true : false;
+	$adul = ($edad>=18) ? 'true' : 'false';
 	$meno = ($edad<5) ? true : false;
 	$gest = (($edad>=10 && $edad <= 54) && $d['sexo'] == 'M') ? true : false;
 	

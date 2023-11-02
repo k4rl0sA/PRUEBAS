@@ -96,18 +96,19 @@ function cmp_sifigest(){
     $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' PuE '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-3');
     $c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-4');
     $c[]=new cmp('resul_gest','s','3',$d,$w.' PuE '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-3',"enabClasValu('resul_gest',['ncvmor','mOr','NOm']);");
-    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35');
-    $c[]=new cmp('cual','s','3',$d,$w.' PuE '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
+    $c[]=new cmp('meto_fecunda','s','2',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');");
+    $c[]=new cmp('cual','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
     
     $o='ncvmor';
     $c[]=new cmp($o,'e',null,'NACIDO VIVO Y/O MORTINATO',$w);
-    $c[]=new cmp('confir_sificong','s','2',$d,$w.' PuE mOr '.$o,'¿Es un caso confirmado de sífilis congénita?','rta',null,null,false,$x,'','col-35');
-    $c[]=new cmp('resul_ser_recnac','s','3',$d,$w.' PuE mOr '.$o,'Resultado de serológia del recién nacido','resultado',null,null,false,$x,'','col-3');
+    $c[]=new cmp('confir_sificong','s','2',$d,$w.' PuE mOr '.$o,'¿Es un caso confirmado de sífilis congénita?','rta',null,null,false,$x,'','col-35',"enabOthSi('confir_sificong','siC');");
+    $c[]=new cmp('resul_ser_recnac','s','3',$d,$w.' PuE mOr SiC '.$o,'Resultado de serológia del recién nacido','resultado',null,null,false,$x,'','col-3');
+
 
     $c[]=new cmp('trata_recnac','s','3',$d,$w.' PuE NOm '.$o,'Tratamiento Del Recién Nacido','trata_recnac',null,null,false,$x,'','col-35');
-    $c[]=new cmp('serol_3meses','s','2',$d,$w.' PuE NOm '.$o,'¿Menor cuenta con serologia a los tres meses?','rta',null,null,false,$x,'','col-35');
-    $c[]=new cmp('fec_conser_1tri2','d','10',$d,$w.' PuE NOm '.$o,'Fecha Control Serológico 3 Meses','fec_conser_1tri2',null,null,false,$x,'','col-3');
-    $c[]=new cmp('resultado','s','3',$d,$w.' PuE NOm '.$o,'Resultado','resultado',null,null,false,$x,'','col-35');
+    $c[]=new cmp('serol_3meses','s','2',$d,$w.' PuE NOm '.$o,'¿Menor cuenta con serologia a los tres meses?','rta',null,null,false,$x,'','col-35',"enabOthSi('serol_3meses','sER');");
+    $c[]=new cmp('fec_conser_1tri2','d','10',$d,$w.' PuE NOm sER '.$o,'Fecha Control Serológico 3 Meses','fec_conser_1tri2',null,null,false,$x,'','col-3');
+    $c[]=new cmp('resultado','s','3',$d,$w.' PuE NOm sER '.$o,'Resultado','resultado',null,null,false,$x,'','col-35');
     
     $o='infacc';
     $c[]=new cmp($o,'e',null,'GESTANTE Y/O PUERPERA',$w);
@@ -132,17 +133,17 @@ function cmp_sifigest(){
     $c[]=new cmp($o,'e',null,'PRIMER CONTACTO',$w);
     $c[]=new cmp('pri_con_sex','s','3',$d,$w.' PYg '.$o,'Primer Contacto Sexual','con_sex',null,null,false,$x,'','col-2',"enbValue('pri_con_sex','iNI',6);");
     $c[]=new cmp('initratasif1','s','2',$d,$w.' PYg iNI '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif1','PcO');");
-    $c[]=new cmp('fec_apl_tra_1dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Primera Dosis','fec_apl_tra_1dos1',null,null,false,$x,'','col-4');
-    $c[]=new cmp('fec_apl_tra_2dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Segunda Dosis','fec_apl_tra_2dos1',null,null,false,$x,'','col-5');
-    $c[]=new cmp('fec_apl_tra_3dos1','d','10',$d,$w.' PYg PcO '.$o,'Fecha Aplicación Tratamiento Tercera Dosis','fec_apl_tra_3dos1',null,null,false,$x,'','col-5');
+    $c[]=new cmp('fec_apl_tra_1dos1','d','10',$d,$w.' PYg PcO iNI '.$o,'Fecha Aplicación Tratamiento Primera Dosis','fec_apl_tra_1dos1',null,null,false,$x,'','col-4');
+    $c[]=new cmp('fec_apl_tra_2dos1','d','10',$d,$w.' PYg PcO iNI '.$o,'Fecha Aplicación Tratamiento Segunda Dosis','fec_apl_tra_2dos1',null,null,false,$x,'','col-5');
+    $c[]=new cmp('fec_apl_tra_3dos1','d','10',$d,$w.' PYg PcO iNI '.$o,'Fecha Aplicación Tratamiento Tercera Dosis','fec_apl_tra_3dos1',null,null,false,$x,'','col-5');
 
     $o='segcont';
     $c[]=new cmp($o,'e',null,'SEGUNDO CONTACTO',$w);
-    $c[]=new cmp('seg_con_sex','s','3',$d,$w.' PYg '.$o,'Segundo Contacto Sexual','con_sex',null,null,false,$x,'','col-2');
-    $c[]=new cmp('initratasif2','s','2',$d,$w.' PYg '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif2','ScO');");
-    $c[]=new cmp('fec_apl_tra_1dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación  Tratamiento Primera Dosis4','fec_apl_tra_1dos2',null,null,false,$x,'','col-4');
-    $c[]=new cmp('fec_apl_tra_2dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación Tratamiento Segunda Dosis5','fec_apl_tra_2dos2',null,null,false,$x,'','col-5');
-    $c[]=new cmp('fec_apl_tra_3dos2','d','10',$d,$w.' PYg ScO '.$o,'Fecha Aplicación Tratamiento Tercera Dosis6','fec_apl_tra_3dos2',null,null,false,$x,'','col-5');
+    $c[]=new cmp('seg_con_sex','s','3',$d,$w.' PYg '.$o,'Segundo Contacto Sexual','con_sex',null,null,false,$x,'','col-2',"enbValue('seg_con_sex','dOs',6);");
+    $c[]=new cmp('initratasif2','s','2',$d,$w.' PYg dOs '.$o,'¿Contacto Sexual inicia tratamiento para sifilis?','initratasif',null,null,false,$x,'','col-4',"enabOthSi('initratasif2','ScO');");
+    $c[]=new cmp('fec_apl_tra_1dos2','d','10',$d,$w.' PYg ScO dOs '.$o,'Fecha Aplicación  Tratamiento Primera Dosis4','fec_apl_tra_1dos2',null,null,false,$x,'','col-4');
+    $c[]=new cmp('fec_apl_tra_2dos2','d','10',$d,$w.' PYg ScO dOs '.$o,'Fecha Aplicación Tratamiento Segunda Dosis5','fec_apl_tra_2dos2',null,null,false,$x,'','col-5');
+    $c[]=new cmp('fec_apl_tra_3dos2','d','10',$d,$w.' PYg ScO dOs '.$o,'Fecha Aplicación Tratamiento Tercera Dosis6','fec_apl_tra_3dos2',null,null,false,$x,'','col-5');
     
     $o='prerei';
     $c[]=new cmp($o,'e',null,'PRESENTA REINFECCION',$w);
@@ -194,7 +195,7 @@ function opc_motivo_cierre($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
 }
 function opc_initratasif($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=207 and estado='A' ORDER BY 1",$id);
 }
 function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);

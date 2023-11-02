@@ -328,7 +328,7 @@ function enabLoca(a,b){
 		}
 	}
 }
-
+// periAbd('gestante','AbD',1)
 function periAbd(a,b,c){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
 	const act=document.getElementById(a);
@@ -342,6 +342,8 @@ function periAbd(a,b,c){
 		}
 	}
 }
+
+
 
 function timeDesem(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);

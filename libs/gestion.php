@@ -33,7 +33,12 @@ switch ($req) {
 		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-			echo csv($ts, $rs);
+      // 01-11-2023
+      foreach ($ts as &$value) {
+        $value = mb_convert_encoding($value, 'UTF-8', 'UTF-8');
+      }
+      // 01-11-2023
+			echo csv($value, $rs);
 		} else {
 			echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
       $GLOBALS['con']->close();

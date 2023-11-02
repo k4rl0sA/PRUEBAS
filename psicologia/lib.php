@@ -219,7 +219,7 @@ function cmp_psicologia() {
 	$c[]=new cmp('psicologia_funcionamiento','t','20',$k['whodas_analisis'],$w.' '.$o,'RESULTADO MEDICIÓN DEL FUNCIONAMIENTO (WHODAS 2.0) INICIAL','psicologia_funcionamiento',null,'',$ad,false,'','col-4');
 
 	$c[]=new cmp('evachips','a','1500',$d['eva_chips'],$w.' '.$o,'EVALUACION DE RIESGO PARA NIÑOS NIÑAS Y ADOLESCENTES - ChiPS','psicologia_evaluacion',null,'',!$ad,!$ad,'','col-10');
-	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-31,0)');
+	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-33,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');
 	$c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
 	
@@ -417,7 +417,7 @@ function cmp_sesion2() {
 	// $c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,true,'','col-5');
 	// $c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,true,'','col-5');
 
-	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-31,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-33,0);');
 	$c[]=new cmp('edad','t','5',$edad,$w.' '.$o,'Edad en Años','edad',null,null,true,false,'','col-4');
 	$c[]=new cmp('cod_admin2','n','12',$d['cod_admin2'],$w.' '.$o,'Codigo Admisión','cod_admin2',null,null,true,true,'','col-2');
 	// $c[]=new cmp('psi_sesion','s','3',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
@@ -561,7 +561,7 @@ function cmp_sesion_fin() {
 	$c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
 	$c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
 
-	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-31,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-33,0);');
 	//$c[]=new cmp('psi_sesion','t','50',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
 
 	$c[]=new cmp('zung_ini','a','1500',$r['zung1'],$w.' '.$o,'RESULTADO TAMIZAJE ZUNG INICIAL','zung_ini',null,null,false,false,'','col-3');

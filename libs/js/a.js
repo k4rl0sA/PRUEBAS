@@ -35,7 +35,7 @@ if (version) {
   }
 }
 
-/* document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function (event) {
 	if (event.ctrlKey && event.key === 'v') {
 		inform('Esta acción no esta permitida');
 	  event.preventDefault();
@@ -46,7 +46,7 @@ if (version) {
 	inform('Esta acción no esta permitida');
 	event.preventDefault();
   });
- */
+
 
 //Sesion
 let inactivityTimer;

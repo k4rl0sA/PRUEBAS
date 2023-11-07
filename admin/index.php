@@ -30,7 +30,8 @@ function grabar(tb='',ev){
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
-	myFetch(ruta_app,"a=gra&tb="+tb,mod);	
+    myFetch(ruta_app,"a=gra&tb="+tb,mod);  
+    // DownloadCsv('lis','planos','fapp');
 }   
 
 </script>
@@ -108,14 +109,14 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
 		
-<!-- <div class='load' id='loader' z-index='0' ></div> -->
+<div class='load' id='loader' z-index='0' ></div>
 
-<!-- <div class="overlay" id="overlay" onClick="closeModal();">
+<div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
 		<h3><div class='image' id='<?php echo$mod; ?>-image'></div></h3>
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
-	</div>	 -->		
+	</div>
 </div>
 
 

@@ -153,7 +153,7 @@ function cmp_hog_geoloc(){
 
  if($f['documento']!==''){
 	$o='infrut';
-	$c[]=new cmp($o,'e',null,'INFROMACIÓN COMPLEMENTARIA RUTEO',$w);
+	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA RUTEO',$w);
 	$c[]=new cmp('fuente','s',3,$f['fuente'],$w.' '.$o,'fuente','fuente',null,null,false,false,'','col-3');
 	$c[]=new cmp('priorizacion','s',3,$f['priorizacion'],$w.' '.$o,'priorizacion','priorizacion',null,null,false,false,'','col-3');
 	$c[]=new cmp('tipo_doc','t','3',$f['tipo_doc'],$w.' '.$o,'Tipo de Documento','tipo_doc',null,null,true,false,'','col-2');

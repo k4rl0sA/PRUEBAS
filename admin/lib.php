@@ -45,6 +45,62 @@ function cmp_gestionusu(){
 }
 
 
+function cmp_planos(){
+	$rta="";
+	$ini=date('d')<11 ?-date('d')-31:-date('d');
+	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
+	$d='';
+	if ($d==""){$d=$t;}
+	$w='gestion';
+	$o='infusu';
+	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
+	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',true,true,'','col-2');
+	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
+	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
+	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
+	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','fapp');grabar('gestion',this);\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL
+	return $rta;
+}
+
+function gra_gestion(){
+	$name=get_tabla($_POST['proceso']);
+	if($name!=='[]'){
+		return "Error: msj['Ya se realizo la descarga por el usuario $name']";
+		exit;
+	}else{
+	$sql="INSERT INTO monitoreo 
+	VALUES(NULL,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),'1',trim(upper('{$_POST['proceso']}')),'','', '', '',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR))";
+	/* 
+	1=descargar
+	2=actualizar
+	3=restaurar
+	4=crear
+	5=rol
+	6=adscripcion 
+	*/
+		// echo $sql;
+		$rta=dato_mysql($sql);
+  return $rta;
+	}
+}
+
+function get_tabla($a){
+	//  `atencion_fechaatencion`, `atencion_codigocups`, `atencion_finalidadconsulta`, `atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`, `atencion_diagnosticoprincipal`, `atencion_diagnosticorelacion1`, `atencion_diagnosticorelacion2`, `atencion_diagnosticorelacion3`, `atencion_fertil`, `atencion_preconcepcional`, `atencion_metodo`, `atencion_anticonceptivo`, `atencion_planificacion`, `atencion_mestruacion`, `atencion_gestante`, `atencion_gestaciones`, `atencion_partos`, `atencion_abortos`, `atencion_cesarias`, `atencion_vivos`, `atencion_muertos`, `atencion_vacunaciongestante`, `atencion_edadgestacion`, `atencion_ultimagestacion`, `atencion_probableparto`, `atencion_prenatal`, `atencion_fechaparto`, `atencion_rpsicosocial`, `atencion_robstetrico`, `atencion_rtromboembo`, `atencion_rdepresion`, `atencion_sifilisgestacional`, `atencion_sifiliscongenita`, `atencion_morbilidad`, `atencion_hepatitisb`, `atencion_vih`, `atencion_cronico`, `atencion_asistenciacronica`, `atencion_tratamiento`, `atencion_vacunascronico`, `atencion_menos5anios`, `atencion_esquemavacuna`, `atencion_signoalarma`, `atencion_cualalarma`, `atencion_dxnutricional`, `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, `atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenpsicologia`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenimagenes`, `atencion_imagenes`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_relevo`  ON a.atencion_idpersona = b.idpersona AND a.atencion_tipodoc = b.tipo_doc
+	$hoy=date('Y-m-d');
+	$sql="SELECT u.nombre nombre FROM monitoreo m left join usuarios u ON m.usu_creo=u.id_usuario
+ 	where	accion=1 
+	AND m.subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') 
+	AND tabla='$a' AND DATE(fecha_create)='$hoy'";
+	// echo $sql;
+	$info=datos_mysql($sql);
+	// echo $info;
+	if (isset($info['responseResult'][0])) {
+		return $info['responseResult'][0]['nombre'];
+	}else{
+		return '[]';
+	}
+}
 
 function lis_planos() {
 	$clave = random_bytes(32);
@@ -53,12 +109,12 @@ function lis_planos() {
 			$tab = "Geografico";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_geolo($tab);
-            break;
+		break;
         case '2':
 			$tab = "Admision_Facturacion";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_admfact($tab);
-            break;
+           break;
         case '3':
 			$tab = "Atenciones";
 			$encr = encript($tab, $clave);
@@ -100,7 +156,7 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_relevo2($tab);
             break;	
         case '11':
-			$tab = "Reteo_Gestion";
+			$tab = "Ruteo_Gestion";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_ruteo($tab);
             break;	
@@ -108,6 +164,7 @@ function lis_planos() {
             break;    
     }
 }
+
 
 
 
@@ -169,7 +226,7 @@ LEFT JOIN catadeta C21 ON C21.idcatadeta = F.estado_hist AND C21.idcatalogo = 18
 LEFT JOIN usuarios U ON F.usu_creo=U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
-	// echo $sql;
+	echo $sql;
 	$_SESSION['sql_'.$txt]=$sql;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
@@ -433,8 +490,6 @@ function whe_date(){
 	return $sql;
 }
 
-
-
 function encript($texto, $clave) {
     $txtcript = openssl_encrypt($texto, 'aes-256-ecb', $clave, 0);
     return base64_encode($txtcript);
@@ -459,55 +514,6 @@ $sql1.=whe_data();
 }
 
 
-
-
-function cmp_planos(){
-	$rta="";
-	$hoy=date('d')-1;
-	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
-	$d='';
-	if ($d==""){$d=$t;}
-	$w='csv';
-	$o='infusu';
-	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
-	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',false,true,'','col-2');
-	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
-	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',false,true,'','col-2',"validDate(this,-$hoy,0)");
-	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','fapp');grabar('gestion',this);\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL');setTimeout(csv,100,'geo');
-	return $rta;
-}
-
-function gra_gestion(){
-	$rtaF='';
-	// $id=divide($_POST['id_factura']);
-		// print_r($id);
-
-	$sql="INSERT INTO monitoreo 
-	VALUES(NULL,'1',trim(upper('{$_POST['proceso']}')),'','', '', '',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR))";
-	
-
-	/* 
-	1=descargar
-	2=actualizar
-	3=restaurar
-	4=crear
-	5=rol
-	6=adscripcion 
-	*/
-	
-	/* INSERT INTO `personas` SET
-		regimen=trim(upper('{$_POST['regimen']}')), 
-		eapb=trim(upper('{$_POST['eapb']}')),
-		usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),
-		fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-		where idpersona='{$id[0]}' and tipo_doc='{$id[1]}'";
-		// echo $sql; */
-		$rta=dato_mysql($sql);
-		// echo $sql;
-  return $rta;
-}
 
 
 function opc_proceso($id=''){

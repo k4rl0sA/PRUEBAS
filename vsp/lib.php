@@ -39,7 +39,8 @@ function opc_usuario(){
 function lis_homes(){
 	$total=" SELECT count(*) as total
 	FROM hog_geo H  
-	WHERE estado_v  in('7') ".whe_homes()." AND H.estrategia > 3 AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (usu_creo IN('{$_SESSION['us_sds']}'))  OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio 
+	 WHERE estado_v  in('7') ".whe_homes()." AND H.estrategia > 3 AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (H.usu_creo IN('{$_SESSION['us_sds']}'))  OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
 
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];
@@ -63,6 +64,7 @@ function lis_homes(){
 	FROM hog_geo H
 	LEFT JOIN usuarios U ON H.subred = U.subred 
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario 
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
 WHERE estado_v in('7') ".whe_homes()." 
 	AND H.estrategia > 3
 	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
@@ -87,17 +89,15 @@ function whe_homes() {
 		$sql .= " AND predio_num = '".$_POST['fpred']."'";
 	if ($_POST['funhab'])
 		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";
-//	if ($_POST['fdigita'])
-//		$sql .= " AND usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
-		 " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23: 59:59'";
+				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
+		 " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23: 59:59'";
 			}
 	}
 	if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
-		$sql.=" AND (usu_creo IN('{$_SESSION['us_sds']}'))  
-		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
+		$sql.=" AND (H.usu_creo IN('{$_SESSION['us_sds']}'))  
+		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}' AND H.estado_v=7 )";
 	}
 	return $sql;
 }
@@ -169,10 +169,10 @@ function cmp_homes(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('numfam','s',3,$d,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2','validDate(this,-32,0)');
+	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2','validDate(this,-37,0)');
 	$c[]=new cmp('estado_aux','s','3',$d,$w.' '.$o,'Estado Visita','estado_aux',null,'',true,true,'','col-2','enabFielSele(this,true,[\'motivo_estaux\'],[\'4\']);stateVisit(this,[\'cri\',\'fam\',\'ali\',\'sub\',\'ser\',\'ani\',\'amb\',\'fal\']);');
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
-	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2','addupd(this,\'hid\',\'motivoupd\');validDate(this,-32,0);');
+	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2','addupd(this,\'hid\',\'motivoupd\');validDate(this,-37,0);');
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','complemento',null,'',false,false,'','col-4');
 	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','complemento',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-2');
@@ -743,7 +743,7 @@ function gra_person(){
 	$key='pln';
 	$c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-32,0)');
+	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-37,0)');
 	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3','selectDepend(\'accion1\',\'desc_accion1\',\'lib.php\');');
 	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5','selectDepend(\'accion2\',\'desc_accion2\',\'lib.php\');');

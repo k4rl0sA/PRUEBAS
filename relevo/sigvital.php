@@ -81,7 +81,7 @@ function cmp_vitals_signs(){
 
   $o='sigvit';
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
-  $c[]=new cmp('fecha_toma','d',3,$d,$w.' aux '.$o,'Fecha','fecha_toma',null,null,true,true,'','col-1','validDate(this,-33,0)');
+  $c[]=new cmp('fecha_toma','d',3,$d,$w.' aux '.$o,'Fecha','fecha_toma',null,null,true,true,'','col-1','validDate(this,-37,0)');
 	$c[]=new cmp('momento','s',3,$d,$w.' aux '.$o,'Momento','momento',null,null,true,true,'','col-15');
 	$c[]=new cmp('tas','n',3, $d,$w.' aux '.$o,'Tensión Sistolica Mín=40 - Máx=250','tas','rgxsisto','###',true,true,'','col-15');
 	$c[]=new cmp('tad','n',3, $d,$w.' aux '.$o,'Tensión Diastolica Mín=40 - Máx=150','tad','rgxdiast','###',true,true,'','col-2');

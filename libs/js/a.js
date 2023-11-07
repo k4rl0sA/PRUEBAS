@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.11.02.1";
+window.appVersion = "1.11.07.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -41,11 +41,12 @@ document.addEventListener('keydown', function (event) {
 	  event.preventDefault();
 	}
   });
-  
-  document.addEventListener('contextmenu', function (event) {
+
+   document.addEventListener('contextmenu', function (event) {
 	inform('Esta acción no esta permitida');
 	event.preventDefault();
-  });
+  }); 
+  
 
 
 //Sesion
@@ -1003,43 +1004,7 @@ function myFetch(b, c, d) {
 	RangeDateTime(a.id,min,max);
   }
   
-  /*   function getDatForm(clsKey, fun) {
-	  const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
-	  let id = '';
-		  for (let i = 0; i < c.length; i++) {
-			const {value} = c[i];
-			if (value === '') {
-				  break;
-			}
-			id += `${value}_`;
-		  }
-		  if (id===''){
-			return false;
-		  }else{
-			  id = id.slice(0, -1);
-				  getJSON('get', fun, id)
-					.then(data => {
-						var data=Object.values(data);
-						var cmp=document.querySelectorAll(`.${c[0].classList[0]} input ,.${c[0].classList[0]} select`);
-						for (i=1;i<cmp.length;i++) {
-							if(cmp[i].type==='checkbox')cmp[i].checked=false;
-								if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
-									cmp[i].checked=true;
-								}else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
-									cmp[i].value='NO';
-								}
-								// key += value !== '' ? value + '_' : '';
-								cmp[i].value=i==0?data[i-1]:data[i];
-								for (x=0;x<c.length;x++) {
-									if(cmp[i].name==c[x]) cmp[i].disabled = true;
-								}
-						}
-					})
-				.catch(handleRequestError);
-		}	
-	} */
-
-	/* +++++++++++++++++++++++++++++++++++++++++++++SELECT MULTIPLE+++++++++++++++++++++++++++++++++++++++++++++++ */
+  	/* +++++++++++++++++++++++++++++++++++++++++++++SELECT MULTIPLE+++++++++++++++++++++++++++++++++++++++++++++++ */
 
 	window.onmousedown = function (e) {
 		let el = e.target;
@@ -1369,7 +1334,7 @@ function calImc(a, b, i) {
 		csv(data['file']);
 	} catch (error) {
 	  console.error(error);
-	  errors('No se pudo realizar la descarga consulta con el administrador.');
+	  errors('ya se realizo la descarga el dia de hoy intentalo mañana nuevamente.');
 	}
   }
 

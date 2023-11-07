@@ -40,6 +40,7 @@ function lis_homes(){
     FROM hog_geo H
     LEFT JOIN usuarios U ON H.subred = U.subred
     LEFT JOIN adscrip A ON H.territorio = A.territorio
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
     WHERE H.estado_v IN ('7') ".whe_homes()."
         AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
@@ -67,13 +68,12 @@ function lis_homes(){
 	LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
-WHERE H.estado_v in('7') ".whe_homes()." 
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+ WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
-
-
 	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
@@ -84,7 +84,7 @@ function whe_homes() {
 	if ($_POST['fterri']){
 		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 	}else{
-		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')"; 
+		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')"; 
 	}
 	if ($_POST['fsector'])
 		$sql .= " AND H.sector_catastral = '".$_POST['fsector']."'";

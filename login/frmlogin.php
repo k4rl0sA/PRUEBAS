@@ -20,7 +20,7 @@ include ('claves.php');
 
     <section class="main">
         <div class="login-container">
-            <p class="title">GIF-SDS</p>
+            <p class="title">SIGINF-SDS</p>
             <div class="separator"></div>
             <form class="login-form" method="POST">
                 <div class="form-control">

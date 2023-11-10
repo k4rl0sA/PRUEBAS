@@ -416,6 +416,17 @@ function enabOthSi(a,b){
 	}
 }
 
+function enabYes(a,b){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	const act=document.getElementById(a);
+	for (i=0; i<ele.length;i++) {
+		if(act.value=='SI'){
+			enaFie(ele[i],false);
+  		}else{
+			enaFie(ele[i],true);
+		}
+	}
+}
 // Al menos un elemento tiene valor SI
 function min1ElmSi(a,ClsCmp) {
 	const ele = document.querySelectorAll('select.'+ClsCmp+',input.'+ClsCmp+',textarea.'+ClsCmp);

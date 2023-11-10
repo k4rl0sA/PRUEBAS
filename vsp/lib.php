@@ -467,7 +467,7 @@ function cmp_person(){
 	$c[]=new cmp('incluofici','s','3',$d,$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-2');
 	
 	$o='relevo';
-	$c[]=new cmp('cuidador','o','2',$d,$w.' '.$o,'¿Es cuidador de una personacuida residente en la vivienda?','cuidador',null,null,true,true,'','col-25',"enabOthSi('cuidador','cUi');");
+	$c[]=new cmp('cuidador','o','2',$d,$w.' '.$o,'¿Es cuidador de una personacuida residente en la vivienda?','cuidador',null,null,true,true,'','col-25',"enabYes('cuidador','cUi');");
 	
 	$c[]=new cmp('perscuidada','s','3',$d,$w.' cUi '.$o,'N° de identificacion y Nombres','cuida',null,null,false,false,'','col-35');
 	$c[]=new cmp('tiempo_cuidador','n','20',$d,$w.' cUi '.$o,'¿Por cuánto tiempo ha sido cuidador?','tiempo_cuidador',null,null,false,false,'','col-2');
@@ -1032,7 +1032,7 @@ function formato_dato($a,$b,$c,$d){
 			}
 			if ($a=='datos-lis' && $b=='acciones'){
 				$rta="<nav class='menu right'>";
-				$rta.="<li class='icono editar ' title='Editar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabOthSi,700,'cuidador','cUi');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(enabLoca,700,'reside_localidad','lochi');
+				$rta.="<li class='icono editar ' title='Editar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabYes,700,'cuidador','cUi');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(enabLoca,700,'reside_localidad','lochi');
 				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');setTimeout(enabAfil,1200,'regimen','eaf');setTimeout(enabEapb,1200,'regimen','rgm');setTimeout(enabEtni,1200,'etnia','ocu','idi');setTimeout(hideCuida,1210,'cuidador','cuihid',false);\"></li>";
 					$rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','../vivienda/medidas.php',7,'medidas');Color('datos-lis');\"></li>";
 					$rta.="<li class='icono admsi1' title='Validar Evento' id='".$c['ACCIONES']."' Onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>";

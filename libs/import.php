@@ -2,7 +2,7 @@
 ini_set("display_errors", 1);
 require_once "../libs/gestion.php";
 $perfil=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
-if ($perfil['responseResult'][0]['perfil']=='GEO' || $perfil['responseResult'][0]['perfil']=='ADM'|| $perfil['responseResult'][0]['perfil']=='TECFAM'){
+if ($perfil['responseResult'][0]['perfil']=='GEO' || $perfil['responseResult'][0]['perfil']=='ADM'|| $perfil['responseResult'][0]['perfil']=='TECFAM' || $perfil['responseResult'][0]['perfil']=='SUPHOG'){
 	$file = $_FILES['archivo']['tmp_name'];
 	$name = $_FILES['archivo']['name'];
 	$type = $_FILES['archivo']['type'];

@@ -160,6 +160,41 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_ruteo($tab);
             break;	
+        case '12':
+			$tab = "Caracterizacion_Hogar";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_caracter($tab);
+            break;
+        case '13':
+			$tab = "Plan_Cuidado_Hogar";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_placuid($tab);
+            break;
+        case '14':
+			$tab = "Alertas_Medidas_Hogar";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_alertas($tab);
+            break;
+        case '15':
+			$tab = "Riesgo_Ambiental";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_ambiente($tab);
+            break;
+        case '16':
+			$tab = "Tamizaje_Apgar";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_apgar($tab);
+            break;
+        case '17':
+			$tab = "Tamizaje_Findrisc";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_findrisc($tab);
+            break;    
+        case '18':
+			$tab = "Tamizaje_Oms";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_oms($tab);
+            break;	
         default:
             break;    
     }
@@ -242,7 +277,7 @@ FN_DESC(3,A.diagnostico1) AS DX1,FN_DESC(3,A.diagnostico2) AS DX2,FN_DESC(3,A.di
 A.fertil AS '¿Mujer_Edad_Fertil?',A.preconcepcional AS '¿Consulta_Preconsecional?',A.metodo AS '¿Metodo_Planificacion?',FN_CATALOGODESC(129,A.anticonceptivo) AS '¿Cua_Metodo?', A.planificacion AS Planificacion,A.mestruacion AS Fur,
 A.vih AS Prueba_VIH,FN_CATALOGODESC(187,A.resul_vih) AS Resultado_VIH,A.hb AS Prueba_HB,FN_CATALOGODESC(188,A.resul_hb) AS Resultado_HB,A.trepo_sifil AS Trepomina_Sifilis,FN_CATALOGODESC(188,A.resul_sifil) AS Resultado_Trepo_Sifilis,A.pru_embarazo AS Prueba_Embarazo,FN_CATALOGODESC(88,A.resul_emba) AS Resultado_Embarazo,
 A.atencion_cronico AS '¿Es_Cronico?',A.gestante AS '¿Es_Gestante?',
-GE.edadgestacion AS Edad_Gestacional, GE.fechaparto AS Fecha_Ultimo_Parto, GE.prenatal AS Sem_Inicio_Controles, GE.rpsicosocial AS Riesgo_Psicosocial, GE.robstetrico AS Riesgo_Obstetrico, GE.rtromboembo AS Riesgo_Tromboembolico,GE.rdepresion AS Riesgo_Depresion, GE.sifilisgestacional AS Sifilis_Gestacional,GE.sifiliscongenita AS Sifilis_Congenita,GE.morbilidad AS Morbilidad_Materna_Extrema,GE.hepatitisb AS Hepatitis_B,GE.vih AS Vih,
+GE.edadgestacion AS Edad_Gestacional, GE.probableparto AS Fecha_Probable_Parto, GE.prenatal AS Sem_Inicio_Controles, GE.rpsicosocial AS Riesgo_Psicosocial, GE.robstetrico AS Riesgo_Obstetrico, GE.rtromboembo AS Riesgo_Tromboembolico,GE.rdepresion AS Riesgo_Depresion, GE.sifilisgestacional AS Sifilis_Gestacional,GE.sifiliscongenita AS Sifilis_Congenita,GE.morbilidad AS Morbilidad_Materna_Extrema,GE.hepatitisb AS Hepatitis_B,GE.vih AS Vih,
 A.atencion_ordenpsicologia AS Orden_Psicologia,A.atencion_relevo AS Aplica_Relevo,FN_CATALOGODESC(201,A.prioridad) AS Prioridad,FN_CATALOGODESC(203,A.estrategia) AS Estrategia,
 A.usu_creo,U.nombre,
 U.perfil,A.fecha_create
@@ -458,6 +493,179 @@ function lis_ruteo($txt){
 	$sql="SELECT A.estrategia, A.fuente, A.fecha_asig, A.priorizacion, A.tipo_doc, A.documento, A.nombres, A.fecha_nac, A.sexo, A.nacionalidad, A.tipo_doc_acu, A.documento_acu, A.nombres_acu, A.direccion, A.telefono1, A.telefono2, A.telefono3, A.subred, A.localidad, A.upz, A.barrio, A.sector_catastral, A.nummanzana, A.predio_num, A.unidad_habit, A.cordx, A.cordy, A.perfil_asignado, A.fecha_gestion, A.estado_g, A.motivo_estado, A.direccion_nueva, A.complemento, A.observacion, A.usu_creo FROM `eac_ruteo` A  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred1();
 	$sql.=whe_date1();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_caracter($txt){
+	$sql="SELECT G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,V.numfam AS FAMILIA_N°,V.fecha AS FECHA_CARACTERIZACION,FN_CATALOGODESC(165,V.estado_aux) AS ESTADO,concat(V.complemento1,' ',V.nuc1,' ',V.complemento2,' ',V.nuc2,' ',V.complemento3,' ',V.nuc3) AS COMPLEMENTOS,
+V.telefono1 AS TELEFONO_1,V.telefono2 AS TELEFONO_2,V.telefono3 AS TELEFONO_3,
+FN_CATALOGODESC(166,V.crit_epi) AS CRITERIO_EPIDE,FN_CATALOGODESC(167,V.crit_geo) AS CRITERIO_GEO,FN_CATALOGODESC(168,V.estr_inters) AS ESTRATEGIAS_INTERSEC,FN_CATALOGODESC(169,V.fam_peretn) AS FAM_PERTEN_ETNICA,FN_CATALOGODESC(170,V.fam_rurcer) AS FAMILIAS_RURALIDAD_CER,
+FN_CATALOGODESC(4,V.tipo_vivienda) AS TIPO_VIVIENDA,FN_CATALOGODESC(8,V.tendencia) AS TENENCIA_VIVIENDA,V.dormitorios AS DORMITORIOS,V.actividad_economica AS USO_ACTIVIDAD_ECONO, FN_CATALOGODESC(10,V.tipo_familia) AS TIPO_FAMILIA, V.personas AS N°_PERSONAS, FN_CATALOGODESC(13,V.ingreso) AS INGRESO_ECONOMICO_FAM,
+V.seg_pre1 AS SEGURIDAD_ALIMEN_PREG1,V.seg_pre2 AS SEGURIDAD_ALIMEN_PREG2,V.seg_pre3 AS SEGURIDAD_ALIMEN_PREG3,V.seg_pre4 AS SEGURIDAD_ALIMEN_PREG4,V.seg_pre5 AS SEGURIDAD_ALIMEN_PREG5,V.seg_pre6 AS SEGURIDAD_ALIMEN_PREG6,V.seg_pre7 AS SEGURIDAD_ALIMEN_PREG7,V.seg_pre8 AS SEGURIDAD_ALIMEN_PREG8,
+V.subsidio_1 AS SUBSIDIO_SDIS1,V.subsidio_2 AS SUBSIDIO_SDIS2,V.subsidio_3 AS SUBSIDIO_SDIS3,V.subsidio_4 AS SUBSIDIO_SDIS4,V.subsidio_5 AS SUBSIDIO_SDIS5,V.subsidio_6 AS SUBSIDIO_SDIS6,V.subsidio_7 AS SUBSIDIO_SDIS7,V.subsidio_8 AS SUBSIDIO_SDIS8,V.subsidio_9 AS SUBSIDIO_SDIS9,
+V.subsidio_10 AS SUBSIDIO_SDIS10,V.subsidio_11 AS SUBSIDIO_SDIS11,V.subsidio_12 AS SUBSIDIO_SDIS12,V.subsidio_13 AS SUBSIDIO_ICBF1,V.subsidio_14 AS SUBSIDIO_ICBF2,V.subsidio_15 AS SUBSIDIO15_SECRE_HABIT,V.subsidio_16 AS SUBSIDIO_CONSEJERIA,V.subsidio_17 AS SUBSIDIO_ONGS, V.subsidio_18 AS SUBSIDIO_FAMILIAS_ACCION,V.subsidio_19 AS SUBSIDIO_RED_UNIDOS,V.subsidio_20 AS SUBSIDIO_SECADE,
+V.energia AS SERVICIO_ENERGIA,V.gas AS SERVICIO_GAS_NATURAL,V.acueducto AS SERVICIO_ACUEDUCTO,V.alcantarillado AS SERVICIO_ALCANTAR,V.basuras AS SERVICIO_BASURAS,V.pozo AS POZO,V.aljibe AS ALJIBE,
+V.perros AS ANIMALES_PERROS,V.numero_perros AS N°_PERROS,V.perro_vacunas AS N°_PERROS_NOVACU,V.perro_esterilizado AS N°_PERROS_NOESTER,V.gatos AS ANIMALES_GATOS,V.numero_gatos AS N°_GATOS,V.gato_vacunas AS N°_GATOS_NOVACU,V.gato_esterilizado AS N°_GATOS_NOESTER,V.otros AS OTROS_ANIMALES,V.facamb1 AS FACTORES_AMBIEN_PRE1,V.facamb2 AS FACTORES_AMBIEN_PRE2,V.facamb3 AS FACTORES_AMBIEN_PRE3,V.facamb4 AS FACTORES_AMBIEN_PRE4,V.facamb5 AS FACTORES_AMBIEN_PRE5,V.facamb6 AS FACTORES_AMBIEN_PRE6,V.facamb7 AS FACTORES_AMBIEN_PRE7,V.facamb8 AS FACTORES_AMBIEN_PRE8,V.facamb9 AS FACTORES_AMBIEN_PRE9,V.observacion AS OBSERVACIONES,V.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,V.fecha_create,V.usu_update AS Cod_Edito,U1.nombre AS Nombre_Edito,U1.perfil AS Perfil_Edito,V.fecha_update
+FROM `hog_viv` V
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario
+LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+
+function lis_placuid($txt){
+	$sql="SELECT 
+G.subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar ,
+A.fecha AS Fecha_Caracterizacion,
+FN_CATALOGODESC(22,A.accion1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descipcion_Accion1,
+FN_CATALOGODESC(22,A.accion2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descipcion_Accion2,
+FN_CATALOGODESC(22,A.accion3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descipcion_Accion3,
+FN_CATALOGODESC(22,A.accion4) AS Accion_4,FN_CATALOGODESC(75,A.desc_accion4) AS Descipcion_Accion4,
+A.observacion AS Obervaciones,
+A.usu_creo AS Usuario_Creo,A.fecha_create AS Fecha_Creacion,
+
+C.compromiso AS Compromisos,
+FN_CATALOGODESC(26,C.equipo) AS Equipo,
+C.cumple AS Cumple_Compromiso,
+C.fecha_create AS Fecha_Creacion_Compromiso,
+C.usu_creo AS Usuario_Creo_Compromiso
+
+FROM `hog_planconc` C
+LEFT JOIN hog_plancuid A ON C.idviv=A.idviv
+LEFT JOIN hog_viv V ON C.idviv = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_alertas($txt){
+	$sql="SELECT G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,V.numfam AS FAMILIA_N°,
+P.tipo_doc AS TIPO_DOCUMEN,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,
+A.fecha AS FECHA, FN_CATALOGODESC(34,A.tipo) AS TIPO_IDENTIFICACION,FN_CATALOGODESC(166,A.crit_epi) AS CRITERIO_EPIDE,FN_CATALOGODESC(176,A.cursovida) AS CURSO_DE_VIDA,FN_CATALOGODESC(170,A.gestante) AS GESTANTE,FN_CATALOGODESC(177,A.etapgest
+) AS ETAPA_GESTACIONAL,FN_CATALOGODESC(170,A.cronico) AS CRONICO,A.alert1 AS ALERTA_CRONICO,A.selmul1 AS OPCIONES_CRONICO,A.alert2 AS ALERTA_ENF_TRANSMI,A.selmul2 AS OPCIONES_TRANSMI,A.alert3 AS ALERTA_NUTRICIONAL,A.selmul3 AS OPCIONES_NUTRICIONAL,A.alert4 AS ALERTA_PSICOSOCIAL,A.selmul4 AS OPCIONES_PSICOSOCIAL,A.alert5 AS ALERTA_INFANCIA,A.selmul5 AS OPCIONES_INFANCIA,A.alert6 AS ALERTA_EN_MUJERES,A.selmul6 AS OPCIONES_EN_MUJERES,A.alert7 AS ALERTAS_DISCAPACIDAD,A.selmul7 AS OPCIONES_DISCAPACIDAD
+,A.alert8 AS ALERTAS_COMUNIDAD_ETN,A.selmul8 AS OPCIONES_COM_ETN,A.alert9 AS ALERTA_SALUD_BUCAL,A.selmul9 AS OPCIONES_SALUD_BUCAL,A.codoral AS CLASIFICACION_SO,A.alert10 AS DERIVACION_GENERAL,A.selmul10 AS OPCIONES_DERIVACION,FN_CATALOGODESC(170,A.deriva_eac) AS DERIVACION_EAC,A.asignado_eac AS PROFESIONAL_EAC,FN_CATALOGODESC(170,A.deriva_pf) AS DERIVACION_PF,A.evento_pf AS EVENTO_PF,
+A.peso AS PESO,A.talla AS TALLA,A.imc AS IMC,A.tas AS TENSION_SISTOLICA,A.tad AS TENSION_DIASTOLICA,A.glucometria AS GLUCOMETRIA,A.perime_braq AS PERIMETRO_BRAQUIAL,A.percentil AS PERCENTIL,A.zscore AS ZSCORE,A.usu_creo,A.fecha_create
+
+FROM `personas_datocomp` A
+LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_ambiente($txt){
+	$sql="SELECT 
+G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+A.fecha AS Fecha_Seguimiento,FN_CATALOGODESC(34,A.tipo_activi) AS Tipo_Seguimiento,
+A.seguro AS seguro,A.grietas AS grietas,A.combustible AS combustible,A.separadas AS separadas,A.lena AS lena,A.ilumina AS ilumina,A.fuma AS fuma,A.bano AS bano,A.cocina AS cocina,
+A.elevado AS elevado,A.electrica AS electrica,A.elementos AS elementos,A.barreras AS barreras,A.zontrabajo AS zontrabajo,A.agua AS agua,A.tanques AS tanques,A.adecagua AS adecagua,
+A.raciagua AS raciagua,A.sanitari AS sanitari,A.aguaresid AS aguaresid,A.terraza AS terraza,A.recipientes AS recipientes,A.vivaseada AS vivaseada,A.separesiduos AS separesiduos,A.reutresiduos AS reutresiduos,
+A.noresiduos AS noresiduos,A.adecresiduos AS adecresiduos,A.horaresiduos AS horaresiduos,A.plagas AS plagas,A.contplagas AS contplagas,A.pracsanitar AS pracsanitar,A.envaplaguicid AS envaplaguicid,A.consealiment AS consealiment,A.limpcocina AS limpcocina,A.cuidcuerpo AS cuidcuerpo,A.fechvencim AS fechvencim,A.limputensilios AS limputensilios,A.adqualime AS adqualime,A.almaquimicos AS almaquimicos,A.etiqprodu AS etiqprodu,A.juguetes AS juguetes,A.medicamalma AS medicamalma,A.medicvenc AS medicvenc,A.adqumedicam AS adqumedicam,A.medidaspp AS medidaspp,A.radiacion AS radiacion,A.contamaire AS contamaire,A.monoxido AS monoxido,A.residelectri AS residelectri,A.duermeelectri AS duermeelectri,A.vacunasmascot AS vacunasmascot,A.aseamascot AS aseamascot,A.alojmascot AS alojmascot,A.excrmascot AS excrmascot,A.permmascot AS permmascot,A.salumascot AS salumascot,A.pilas AS pilas,A.dispmedicamentos AS dispmedicamentos,A.dispcompu AS dispcompu,A.dispplamo AS dispplamo,A.dispbombill AS dispbombill,A.displlanta AS displlanta,
+A.dispplaguic AS dispplaguic,A.dispaceite AS dispaceite,
+
+A.fecha_create Fecha_Creacion,U.nombre AS Nombre_Creo,U.perfil AS Perfil
+ FROM `hog_amb` A
+LEFT JOIN hog_viv V ON A.idvivamb = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_apgar($txt){
+	$sql="SELECT 
+G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,V.idviv AS Cod_Familia,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,    C1.descripcion AS Sexo,
+C2.descripcion AS Apgar_7_A_17_Años_Preg_1,C3.descripcion AS Apgar_7_A_17_Años_Preg_2,C4.descripcion AS Apgar_7_A_17_Años_Preg_3,C5.descripcion AS Apgar_7_A_17_Años_Preg_4,C6.descripcion AS Apgar_7_A_17_Años_Preg_5,
+C7.descripcion AS Apgar_Mayor_de_18_Años_Preg_1,C8.descripcion AS Apgar_Mayor_de_18_Años_Preg_2,C9.descripcion AS Apgar_Mayor_de_18_Años_Preg_3,C10.descripcion AS Apgar_Mayor_de_18_Años_Preg_4,C11.descripcion AS Apgar_Mayor_de_18_Años_Preg_5,
+A.puntaje,A.descripcion,
+A.usu_creo AS Cod_Usuario_Creo,U1.nombre AS Nombre_Creo,U1.perfil AS Perfil_Creo,A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_apgar` A
+LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc = P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN catadeta C1 ON C1.idcatadeta = P.sexo AND C1.idcatalogo = 21 AND C1.estado = 'A'
+LEFT JOIN catadeta C2 ON C2.idcatadeta = A.ayuda_fam AND C2.idcatalogo = 37 AND C2.estado = 'A'
+LEFT JOIN catadeta C3 ON C3.idcatadeta = A.fam_comprobl AND C3.idcatalogo = 37 AND C3.estado = 'A'
+LEFT JOIN catadeta C4 ON C4.idcatadeta = A.fam_percosnue AND C4.idcatalogo = 37 AND C4.estado = 'A'
+LEFT JOIN catadeta C5 ON C5.idcatadeta = A.fam_feltrienf AND C5.idcatalogo = 37 AND C5.estado = 'A'
+LEFT JOIN catadeta C6 ON C6.idcatadeta = A.fam_comptiemjun AND C6.idcatalogo = 37 AND C6.estado = 'A'
+LEFT JOIN catadeta C7 ON C7.idcatadeta = A.sati_famayu AND C7.idcatalogo = 173 AND C7.estado = 'A'
+LEFT JOIN catadeta C8 ON C8.idcatadeta = A.sati_famcompro AND C8.idcatalogo = 173 AND C8.estado = 'A'
+LEFT JOIN catadeta C9 ON C9.idcatadeta = A.sati_famapoemp AND C9.idcatalogo = 173 AND C9.estado = 'A'
+LEFT JOIN catadeta C10 ON C10.idcatadeta = A.sati_famemosion AND C10.idcatalogo = 173 AND C10.estado = 'A'
+LEFT JOIN catadeta C11 ON C11.idcatadeta = A.sati_famcompar AND C11.idcatalogo = 173 AND C11.estado = 'A'
+LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_findrisc($txt){
+	$sql="SELECT 
+G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+
+A.peso AS Peso,A.talla AS Talla,A.imc AS Imc,A.perimcint AS Perimetro_Cintura,
+FN_CATALOGODESC(43,A.actifisica) AS Actividad_Fisica,FN_CATALOGODESC(46,A.verduras) AS Consumo_Verduras_Frutas,FN_CATALOGODESC(56,A.hipertension) AS Toma_Medicamento_Hiper,
+FN_CATALOGODESC(57,A.glicemia) AS Valores_Altos_Glucosa,FN_CATALOGODESC(41,A.diabfam) AS Diabetes_Familiares,
+A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
+A.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo As Equipo,A.fecha_create AS Fecha_Creacion
+
+FROM `hog_tam_findrisc` A
+LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_oms($txt){
+	$sql="SELECT 
+G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+
+FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes,FN_CATALOGODESC(170,A.fuma) AS Fuma,A.tas AS Tension_Arterial_Sistolica,A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
+A.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo As Equipo,A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_oms` A
+LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
 	// echo $sql;
 	$_SESSION['sql_'.$txt]=$sql;
 	$rta = array('type' => 'OK','file'=>$txt);

@@ -37,10 +37,10 @@ function opc_usuario(){
 }
 
 function lis_homes(){
-	$total=" SELECT count(*) as total
-	FROM hog_geo H  
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio 
-	 WHERE estado_v  in('7') ".whe_homes()." AND H.estrategia > 3 AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (H.usu_creo IN('{$_SESSION['us_sds']}'))  OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND H.estado_v=7 )";
+    $total=" SELECT count(*) as total
+	FROM hog_geo H
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+WHERE 1 ".whe_homes()." AND estado_v in('7')";
 
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];
@@ -48,36 +48,24 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-	$sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
-	H.idgeo Cod,
-	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
-	direccion,
-	H.territorio,
-	H.sector_catastral Sector,
-	H.nummanzana AS Manzana,
-	H.predio_num AS predio,
-	H.unidad_habit AS 'Unidad',
-	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	MAX(U1.nombre) nombre,
-	H.fecha_create,
-	FN_CATALOGODESC(44,H.estado_v) AS estado
+	$sql="SELECT DISTINCT H.idgeo AS ACCIONES, H.idgeo AS Cod, FN_CATALOGODESC(42,H.estrategia) AS estrategia, direccion, H.territorio, H.sector_catastral AS Sector, H.nummanzana AS Manzana, H.predio_num AS predio, H.unidad_habit AS 'Unidad', FN_CATALOGODESC(2,H.localidad) AS 'Localidad', U1.nombre AS nombre, H.fecha_create, FN_CATALOGODESC(44,H.estado_v) AS estado 
 	FROM hog_geo H
 	LEFT JOIN usuarios U ON H.subred = U.subred 
-	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario 
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
-WHERE estado_v in('7') ".whe_homes()." 
-	AND H.estrategia > 3
-	AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') 
+	LEFT JOIN usuarios U1 ON H.asignado = U1.id_usuario 
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio 
+ WHERE 1 ".whe_homes()." 
+	 AND estado_v in('7')
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
-//    echo $sql;
+// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
+
 function whe_homes() {
-	$sql = "";
+	$sql = " AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}')";
 	// print_r($_POST);
 	if ($_POST['fbinas'])
 		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
@@ -88,19 +76,21 @@ function whe_homes() {
 	if ($_POST['fpred'])
 		$sql .= " AND predio_num = '".$_POST['fpred']."'";
 	if ($_POST['funhab'])
-		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";
+		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";	
 	if ($_POST['fdes']) {
-			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
-		 " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23: 59:59'";
-			}
+		if ($_POST['fhas']) {
+			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fhas']."'";
+		}else{
+			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fdes']."'";
+		}
 	}
 	if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
-		$sql.=" AND (H.usu_creo IN('{$_SESSION['us_sds']}'))  
-		OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}' AND H.estado_v=7 )";
+		$sql.=" AND ((H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}') OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND estado_v=7))";
+		//OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (D.doc_asignado='{$_SESSION['us_sds']}'))";
 	}
 	return $sql;
 }
+
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
@@ -129,15 +119,27 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function lis_famili(){
 	$cod=divide($_POST['id']);
-		$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
-	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,
-	numfam FAMILIA, fecha CARACTERIZACION, FN_CATALOGODESC(166,crit_epi) CRITERIO_EPIDEMIOLOGICO,
-	V.fecha_create Creado,nombre Creó
-	FROM `hog_viv` V 
-		left join usuarios P ON usu_creo=id_usuario
-	WHERE '1'='1' and idgeo='".$id;
-	$sql.="' ORDER BY fecha_create";
-	//  echo $sql;
+	$sql="SELECT
+	concat(idviv, '_', idpre) ACCIONES,
+	idviv AS COD_FAM,
+	fecha,
+	CONCAT_WS(' ', FN_CATALOGODESC(6, complemento1), nuc1, FN_CATALOGODESC(6, complemento2), nuc2, FN_CATALOGODESC(6, complemento3), nuc3) Complementos,
+	numfam FAMILIA,
+	fecha CARACTERIZACION,
+	FN_CATALOGODESC(166,
+	crit_epi) CRITERIO_EPIDEMIOLOGICO,
+	V.fecha_create Creado,
+	nombre Creó
+FROM
+	`hog_viv` V
+left join usuarios P ON
+	usu_creo = id_usuario
+LEFT JOIN hog_geo hg ON V.idpre=hg.idgeo 
+WHERE
+	hg.estado_v=7 
+	AND idpre=$cod[0]";
+	$sql.=" ORDER BY V.fecha_create";
+	// echo $sql;
 		$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"famili-lis",10);
 }
@@ -327,9 +329,9 @@ function get_homes(){
 		return "";
 	}else{
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idviv,numfam,fecha,estado_aux,motivo_estaux,fechaupd,motivoupd,eventoupd,fechanot,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3,crit_epi,crit_geo,estr_inters,fam_peretn,fam_rurcer,tipo_vivienda,tendencia,dormitorios,actividad_economica,tipo_familia,personas,ingreso,seg_pre1,seg_pre2,seg_pre3,seg_pre4,seg_pre5,seg_pre6,seg_pre7,seg_pre8,subsidio_1,subsidio_2,subsidio_3,subsidio_4,subsidio_5,subsidio_6,subsidio_7,subsidio_8,subsidio_9,subsidio_10,subsidio_11,subsidio_12,subsidio_13,subsidio_14,subsidio_15,subsidio_16,subsidio_17,subsidio_18,subsidio_19,subsidio_20,energia,gas,acueducto,alcantarillado,basuras,pozo,aljibe,perros,numero_perros,perro_vacunas,perro_esterilizado,gatos,numero_gatos,gato_vacunas,gato_esterilizado,otros,facamb1,facamb2,facamb3,facamb4,facamb5,facamb6,facamb7,facamb8,facamb9,observacion,asignado
+		$sql="SELECT concat(idviv,'_',idpre) id,numfam,fecha,estado_aux,motivo_estaux,fechaupd,motivoupd,eventoupd,fechanot,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3,crit_epi,crit_geo,estr_inters,fam_peretn,fam_rurcer,tipo_vivienda,tendencia,dormitorios,actividad_economica,tipo_familia,personas,ingreso,seg_pre1,seg_pre2,seg_pre3,seg_pre4,seg_pre5,seg_pre6,seg_pre7,seg_pre8,subsidio_1,subsidio_2,subsidio_3,subsidio_4,subsidio_5,subsidio_6,subsidio_7,subsidio_8,subsidio_9,subsidio_10,subsidio_11,subsidio_12,subsidio_13,subsidio_14,subsidio_15,subsidio_16,subsidio_17,subsidio_18,subsidio_19,subsidio_20,energia,gas,acueducto,alcantarillado,basuras,pozo,aljibe,perros,numero_perros,perro_vacunas,perro_esterilizado,gatos,numero_gatos,gato_vacunas,gato_esterilizado,otros,facamb1,facamb2,facamb3,facamb4,facamb5,facamb6,facamb7,facamb8,facamb9,observacion,asignado
 		FROM `hog_viv` 
-		WHERE idviv ='{$id[0]}' AND idgeo=concat('".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."','_','".$id[6]."')";
+		WHERE idviv =$id[0] AND idpre=$id[1]";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
@@ -355,15 +357,17 @@ function men_homes1(){
    
 function gra_homes(){
 	$id=divide($_POST['idg']);
-	// print_r($_POST);
-	$cod=$id[0].'_'.$id[1].'_'.$id[2].'_'.$id[3].'_'.$id[4].'_'.$id[5];
+	print_r($_POST);
+	$sql1="SELECT  CONCAT_WS('_', H.estrategia, H.sector_catastral, H.nummanzana, H.predio_num, H.unidad_habit, H.estado_v) COD FROM hog_geo H where idgeo='$id[0]'";
+	$info=datos_mysql($sql1);
+	$cod=$info['responseResult'][0]['COD'];
 	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
 	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];
 	$gatos  = empty($_POST['numero_gatos']) ? 0 : $_POST['numero_gatos'];
 	$gvacun = empty($_POST['gato_vacunas']) ? 0 : $_POST['gato_vacunas'];
 	$geste  = empty($_POST['gato_esterilizado']) ? 0:$_POST['gato_esterilizado'];
-	if(count($id)==1){
+	if(count($id)==2){
 	$sql="UPDATE `hog_viv` SET
 	numfam=TRIM(UPPER('{$_POST['numfam']}')),
 	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),
@@ -372,9 +376,9 @@ function gra_homes(){
 	WHERE idviv='{$id[0]}'";
 	// echo $sql;
 	//   echo $sql."    ".$rta;
-	}elseif(count($id)==7){
+	}elseif(count($id)==1){
 		$sql="INSERT INTO hog_viv VALUES (null,
-		{$id[6]},
+		{$id[0]},
 		TRIM(UPPER('{$cod}')),
 		TRIM(UPPER('{$_POST['numfam']}')),
 		TRIM(UPPER('{$_POST['fecha']}')),
@@ -396,9 +400,7 @@ function gra_homes(){
 		NULL,TRIM(UPPER('{$_SESSION['us_sds']}')),       DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
 		// echo $sql;
 	}
-
 	  $rta=dato_mysql($sql);
-	  
 	//   return "correctamente";
 	  return $rta;
 	}
@@ -535,7 +537,7 @@ function get_person(){
 	}else{
 		$id=divide($_POST['id']);
 		// print_r($id);
-		$sql="SELECT concat(idpersona,'_',tipo_doc),encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona),encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta
@@ -548,10 +550,10 @@ function get_person(){
 	} 
 }
 function gra_person(){
-	// print_r($_POST);
+	 //print_r($_POST);
 	$id=divide($_POST['idp']);
-	// print_r(count($id));
-	if(count($id)!=7){
+	 print_r(count($id));
+	if(count($id)==3){
 		$sql="UPDATE `personas` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),
 		`tipo_doc`=TRIM(UPPER('{$_POST['tipo_doc']}')),
@@ -594,7 +596,7 @@ function gra_person(){
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE idpersona =TRIM(UPPER('{$id[0]}')) AND tipo_doc=TRIM(UPPER('{$id[1]}'))";
-		//    echo $sql;
+		//echo $sql;
 		//    echo $sql."    ".$rta;
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
@@ -718,12 +720,12 @@ function gra_person(){
 	}
 	function opc_cuida(){
 		$id=divide($_REQUEST['id']);
-		if(count($id)==7){
-			$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
+		if(count($id)==2){
+		$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
 		}else if(count($id)==3){
-			$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[2]' and idpersona<>'$id[0]'";
+		$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[2]' and idpersona<>'$id[0]'";
 		}
-		// var_dump($id);
+		 //var_dump($id);
 			return opc_sql($sql,'');		
 	}
 
@@ -968,7 +970,7 @@ function eventAsign($key) {
 	  3 => ['icono' => 'vihge1', 'titulo' => 'VIH GESTACIONAL', 'modulo' => 'vihgest'],
 	  4 => ['icono' => 'gesta1', 'titulo' => 'BAJO PESO GESTACIONAL', 'modulo' => 'gestantes'],
 	  5 => ['icono' => 'gesta1', 'titulo' => 'FAMILIAS CON GESTANTES', 'modulo' => 'gestantes'],
-	  //6 => ['icono' => 'siges1', 'titulo' => 'TITULO', 'modulo' => 'sifigest'],
+	  6 => ['icono' => 'gesta3', 'titulo' => 'MORBILIDAD MATERNA EXTREMA', 'modulo' => 'mme'],
 	  7 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (CONSUMADO)', 'modulo' => 'condsuic'],
 	  //8 => ['icono' => 'siges1', 'titulo' => 'TITULO', 'modulo' => 'sifigest'],
 	  9 => ['icono' => 'desnu1', 'titulo' => 'DNT AGUDA MODERADA O SEVERA', 'modulo' => 'dntsevymod'],
@@ -1012,8 +1014,8 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-// var_dump($c['ACCIONES']);
-// var_dump($rta); 
+// var_dump($c['ACCION);
+//  print_r($c); 
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";	
 			$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
@@ -1022,15 +1024,15 @@ function formato_dato($a,$b,$c,$d){
 		if ($a=='famili-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
 				/* $rta.="<li class='icono inactiva' title='Eliminar' id='".$c['ACCIONES']."' OnClick=\"inactivareg(this,event,'idviv');\" ></li>"; */
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,['idviv','numfam']);setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
-				$rta.="<li class='icono familia' title='Integrantes Personas' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
+				$rta.="<li class='icono editar ' title='Editar Caracterizacion' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,['idviv','numfam']);setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono familia' title='Integrantes Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 				$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('placuifam','pro',event,'','lib.php',7);Color('famili-lis');\"></li>";
 				$rta.="<li class='icono ambi1' title='Ambiental' id='".$c['ACCIONES']."' Onclick=\"mostrar('ambient','pro',event,'','../vivienda/amb.php',7);Color('famili-lis');\"></li>";
 				$rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(disabledCmp,300,'cmhi');setTimeout(enabLoca('reside_localidad','lochi'),300);Color('famili-lis');\"></li>";
 			}
 			if ($a=='datos-lis' && $b=='acciones'){
 				$rta="<nav class='menu right'>";
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');
+				$rta.="<li class='icono editar ' title='Editar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');
 				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');setTimeout(enabAfil,1200,'regimen','eaf');setTimeout(enabEapb,1200,'regimen','rgm');setTimeout(enabEtni,1200,'etnia','ocu','idi');setTimeout(hideCuida,1210,'cuidador','cuihid',false);\"></li>";
 					$rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','../vivienda/medidas.php',7,'medidas');Color('datos-lis');\"></li>";
 					$rta.="<li class='icono admsi1' title='Validar Evento' id='".$c['ACCIONES']."' Onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>";

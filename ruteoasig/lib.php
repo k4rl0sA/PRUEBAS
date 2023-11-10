@@ -20,16 +20,20 @@ else {
 }
 
 function lis_asigruteo(){
-	$sql1="SELECT COUNT(*) total FROM eac_ruteo C
-	LEFT JOIN hog_geo D ON C.estrategia=D.estrategia AND C.sector_catastral=D.sector_catastral AND C.nummanzana=D.nummanzana AND C.predio_num=D.predio_num AND C.unidad_habit=D.unidad_habit AND 1=D.estado_v
-	 WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')".whe_asigruteo();
+	$sql1="SELECT COUNT(*) total FROM(
+                SELECT DISTINCT concat(C.estrategia,'_',C.sector_catastral,'_',C.nummanzana,'_',C.predio_num,'_',C.unidad_habit,'_',1) ACCIONES
+                FROM eac_ruteo C
+                    LEFT JOIN hog_geo D ON C.estrategia=D.estrategia AND C.sector_catastral=D.sector_catastral AND C.nummanzana=D.nummanzana AND C.predio_num=D.predio_num AND C.unidad_habit=D.unidad_habit AND 1=D.estado_v
+                    LEFT JOIN usuarios U ON D.equipo=U.equipo
+                 WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')".whe_asigruteo()."AND D.equipo in(SELECT equipo FROM usuarios where id_usuario='".$_SESSION['us_sds']."')
+	        ) AS SUB";
 	//  echo $sql1;
 	$info=datos_mysql($sql1);
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-asigruteo']))? ($_POST['pag-asigruteo']-1)* $regxPag:0;
 	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(C.estrategia,'_',C.sector_catastral,'_',C.nummanzana,'_',C.predio_num,'_',C.unidad_habit,'_',1) ACCIONES,
+$sql="SELECT DISTINCT concat(C.estrategia,'_',C.sector_catastral,'_',C.nummanzana,'_',C.predio_num,'_',C.unidad_habit,'_',1) ACCIONES,
 	FN_CATALOGODESC(42,C.estrategia) estrategia,
 	C.sector_catastral,
 	C.nummanzana 'Manzana',
@@ -41,12 +45,14 @@ function lis_asigruteo(){
 	FN_CATALOGODESC(44,1) estado 
   FROM eac_ruteo C
   LEFT JOIN hog_geo D ON C.estrategia=D.estrategia AND C.sector_catastral=D.sector_catastral AND C.nummanzana=D.nummanzana AND C.predio_num=D.predio_num AND C.unidad_habit=D.unidad_habit AND 1=D.estado_v
-  WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and (D.asignado='".$_SESSION['us_sds']."' OR D.equipo IN('SELECT equipo FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-// echo $sql;
+  LEFT JOIN usuarios U ON D.equipo=U.equipo
+  WHERE C.subred in (SELECT C.subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') AND D.equipo in(SELECT equipo FROM usuarios where id_usuario='".$_SESSION['us_sds']."')
+  ";
+//echo $sql;
 	$sql.=whe_asigruteo();
 	$sql.=" ORDER BY C.nummanzana,C.predio_num";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+//	 echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"asigruteo",$regxPag);
 	}
@@ -59,11 +65,6 @@ function whe_asigruteo() {
 		$sql .= " AND C.nummanzana ='".$_POST['fmanz']."' ";
 	if ($_POST['fpred'])
 		$sql .= " AND C.predio_num ='".$_POST['fpred']."' ";
-	if (isset($_POST['fdigita'])){
-		if($_POST['fdigita']) $sql .= " AND asignado ='".$_POST['fdigita']."'";
-	}else{
-		$sql .= " AND asignado IN ({$_SESSION['us_sds']})";
-	}
 	return $sql;
 }
 

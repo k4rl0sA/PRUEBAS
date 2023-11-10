@@ -70,6 +70,7 @@ function grabar(tb='',ev){
   'gestantes':'gestantes.php',
   'hbgest':'hbgest.php',
   'mnehosp': 'mnehosp.php',
+  'mme':'mme.php',
   'otroprio': 'otroprio.php',
   'saludoral': 'saludoral.php',
   'sificong':'sificong.php',

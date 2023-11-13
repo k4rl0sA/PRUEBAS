@@ -95,52 +95,49 @@ $ob='Ob';
   $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-25');
    
   $o='infpue';
-  $c[]=new cmp($o,'e',null,'INFORMACIÓN PUERPERIO Y/O POSTERIOR AL PUERPERIO',$w);
-  $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-2');
-  $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
-  $c[]=new cmp('resul_gest','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
+  $c[]=new cmp($o,'e',null,'DESPUES DE LA GESTACION (PUERPERIO Y/O POSTERIOR AL PUERPERIO',$w);
+  $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' '.$bl.' '.$pu.' '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-15',"validDate(0,-700);");
+  $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-3');
+  $c[]=new cmp('resul_gest','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-15',"enabOthSi('resul_gest','Rg');");
   $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
-  $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$pu.' '.$o,'¿Cuál?','cual',null,null,false,false,' ','col-2');
+  $c[]=new cmp('cual_metodo','s','3',$d,$w.' '.$bl.' mF '.$pu.' '.$o,'¿Cuál?','cual',null,null,false,false,' ','col-2');
 
-  
     $c[]=new cmp($o,'e',null,'NACIDO VIVO',$w);
     $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Asiste a Controles de C y D o plan canguro?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('lacmate_comple','s','3',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-15');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿El recién nacido recibió profilaxis?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Recibe fórmula láctea?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','3',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuántos tarros en el mes?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Se trata de un caso confirmado de transmisión materno infantil?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Asiste a programa de VIH (R.N)?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta con carga viral del primer mes?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('fec_conser_1tri1','d','10',$d,$w.' PYg  cT1 '.$o,'Fecha de carga viral primer mes','fec_conser_1tri1',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resultado_1','s','3',$d,$w.' PYg cT1 '.$o,'Resultado 1','resultado',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asiste_control','s','2',$d,$w.' '.$bl.' '.$pu.' '.$o,'¿Cuenta con carga viral del cuarto mes?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('fec_conser_1tri1','d','10',$d,$w.' PYg  cT1 '.$o,'Fecha de carga viral primer mes','fec_conser_1tri1',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resultado_1','s','3',$d,$w.' PYg cT1 '.$o,'Resultado 1','resultado',null,null,false,$x,'','col-2');
-    
-
+    $c[]=new cmp('recnac_proxi','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿El recién nacido recibió profilaxis?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('formu_lact','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Recibe fórmula láctea?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('tarros_mes','s','3',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Cuántos tarros en el mes?','tarros',null,null,false,$x,'','col-2');
+    $c[]=new cmp('caso_con_tmi','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Se trata de un caso confirmado de transmisión materno infantil?','rta',null,null,false,$x,'','col-3');
+    $c[]=new cmp('asis_provih_rn','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Asiste a programa de VIH (R.N)?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('cargaviral_1mes','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Cuenta con carga viral del primer mes?','rta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('fecha_carga1mes','d','10',$d,$w.' Rg '.$bl.' '.$pu.' PYg  Cv1 '.$o,'Fecha de carga viral primer mes','fec_conser_1tri1',null,null,false,$x,'','col-15');
+    $c[]=new cmp('resul_carga1mes','s','3',$d,$w.' Rg '.$bl.' '.$pu.' PYg Cv1 '.$o,'Resultado','resultado',null,null,false,$x,'','col-2');
+    $c[]=new cmp('cargaviral_4mes','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$o,'¿Cuenta con carga viral del cuarto mes?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_carga4mes','d','10',$d,$w.' Rg '.$bl.' '.$pu.' PYg  Cv1 '.$o,'Fecha de carga viral cuarto mes','fec_conser_1tri1',null,null,false,$x,'','col-2');
+    $c[]=new cmp('resul_carga4mes','s','3',$d,$w.' Rg '.$bl.' '.$pu.' PYg Cv1 '.$o,'Resultado','resultado',null,null,false,$x,'','col-2');
     
     $o='infacc';
     $c[]=new cmp($o,'e',null,'GESTANTE Y/O PUERPERA',$w);
-    $c[]=new cmp('ctrl_serol1t','s','2',$d,$w.' PYg '.$o,'¿Tiene prueba rapida?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_serol1t','cT1');");
-    $c[]=new cmp('fec_conser_1tri1','d','10',$d,$w.' PYg  cT1 '.$o,'Fecha de Prueba Rápida','fec_conser_1tri1',null,null,false,$x,'','col-2');
-    $c[]=new cmp('ctrl_serol2t','s','2',$d,$w.' PYg '.$o,'¿Tiene carga viral?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_serol2t','cT2');");
-    $c[]=new cmp('fec_conser_2tri','d','10',$d,$w.' PYg cT2 '.$o,'Fecha de carga viral','fec_conser_2tri',null,null,false,$x,'','col-2');
-    $c[]=new cmp('resultado_2','s','3',$d,$w.' PYg cT2 '.$o,'Resultado de Carga Viral','resultado',null,null,false,$x,'','col-2');
-    $c[]=new cmp('ctrl_serol3t','s','10',$d,$w.' PYg '.$o,'¿Asiste a programa de VIH?','rta',null,null,false,$x,'','col-3',"enabOthSi('ctrl_serol3t','cT3');");
-    $c[]=new cmp('fec_conser_3tri','t','50',$d,$w.' PYg cT3 '.$o,'¿Cuál?','fec_conser_3tri',null,null,false,$x,'','col-3');
-    $c[]=new cmp('resultado_3','s','3',$d,$w.' PYg '.$o,'¿Adherente al Tratamiento antirretroviral?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('prueba_rapida','s','2',$d,$w.' PYg '.$o,'¿Tiene prueba rapida?','rta',null,null,false,$x,'','col-2',"enabOthSi('prueba_rapida','cT1');");
+    $c[]=new cmp('fec_pruerap1','d','10',$d,$w.' '.$bl.' PYg  cT1 '.$o,'Fecha de Prueba Rápida','fec_pruerap1',null,null,false,$x,'','col-2');
+    $c[]=new cmp('carga_viral','s','2',$d,$w.' PYg '.$o,'¿Tiene carga viral?','rta',null,null,false,$x,'','col-2',"enabOthSi('carga_viral','cT2');");
+    $c[]=new cmp('fec_cargaviral1','d','10',$d,$w.' PYg cT2 '.$o,'Fecha de carga viral','fec_cargaviral1',null,null,false,$x,'','col-2');
+    $c[]=new cmp('resul_cargaviral1','s','3',$d,$w.' PYg cT2 '.$o,'Resultado de Carga Viral','resultado',null,null,false,$x,'','col-2');
+    $c[]=new cmp('asis_provih1','s','10',$d,$w.' PYg '.$o,'¿Asiste a programa de VIH?','rta',null,null,false,$x,'','col-3',"enabOthSi('asis_provih1','cT3');");
+    $c[]=new cmp('cual1','t','50',$d,$w.' PYg cT3 '.$o,'¿Cuál?','fec_conser_3tri',null,null,false,$x,'','col-3');
+    $c[]=new cmp('adhe_tra_antirre1','s','3',$d,$w.' PYg '.$o,'¿Adherente al Tratamiento antirretroviral?','rta',null,null,false,$x,'','col-2');
 
 
-    $c[]=new cmp('antige_super1','s','2',$d,$w.' '.$pg.' '.$bl.' '.$o,'Antígeno de Superficie','rta',null,null,false,$x,'','col-25',"enabOthSi('antige_super1','A1');");
+   /*  $c[]=new cmp('antige_super1','s','2',$d,$w.' '.$pg.' '.$bl.' '.$o,'Antígeno de Superficie','rta',null,null,false,$x,'','col-25',"enabOthSi('antige_super1','A1');");
     $c[]=new cmp('resultado1','s','2',$d,$w.' A1 '.$pg.' '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
     $c[]=new cmp('anticor_igm_hb1','s','2',$d,$w.' '.$pg.' '.$bl.' '.$o,'AntiCore Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_igm_hb1','a2');");
     $c[]=new cmp('resultado2','s','2',$d,$w.' a2 '.$pg.' '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
     $c[]=new cmp('anticor_toigm_hb1','s','2',$d,$w.' '.$pg.' '.$bl.' '.$o,'AntiCore Total Igm HB','rta',null,null,false,$x,'','col-25',"enabOthSi('anticor_toigm_hb1','A3');");
     $c[]=new cmp('resultado3','s','2',$d,$w.' A3 '.$pg.' '.$bl.' '.$o,'Resultado','rta1',null,null,false,$x,'','col-25');
     
-    
+     */
     
     
     $o='acc';
@@ -170,7 +167,27 @@ $ob='Ob';
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
-
+function opc_tarros($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=209 and estado='A' ORDER BY 1",$id);
+}
+function opc_resultado($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=208 and estado='A' ORDER BY 1",$id);
+}
+function opc_etapa($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=136 and estado='A' ORDER BY 1",$id);
+}
+function opc_edad_gesta($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+}
+function opc_resul_gest($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=193 and estado='A' ORDER BY 1",$id);
+}
+function opc_cual($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=138 and estado='A' ORDER BY 1",$id);
+}
+function opc_sema_gest($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+}
 function opc_bina($id=''){
   return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 2;",$id);
 }
@@ -263,18 +280,23 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 
 
 function gra_vihgest(){
-// print_r($_POST);
+//  print_r($_POST);
 $id=divide($_POST['id_vihgestacio']);
+if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==5){
     $sql="UPDATE vsp_vihgest SET 
-    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),fec_pruerap1=trim(upper('{$_POST['fec_pruerap1']}')),fec_cargaviral1=trim(upper('{$_POST['fec_cargaviral1']}')),resul_cargaviral1=trim(upper('{$_POST['resul_cargaviral1']}')),asis_provih1=trim(upper('{$_POST['asis_provih1']}')),cual1=trim(upper('{$_POST['cual1']}')),adhe_tra_antirre1=trim(upper('{$_POST['adhe_tra_antirre1']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual_metodo=trim(upper('{$_POST['cual_metodo']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),fec_pruerap2=trim(upper('{$_POST['fec_pruerap2']}')),fec_cargaviral2=trim(upper('{$_POST['fec_cargaviral2']}')),resul_cargaviral2=trim(upper('{$_POST['resul_cargaviral2']}')),asis_provih2=trim(upper('{$_POST['asis_provih2']}')),cual2=trim(upper('{$_POST['cual2']}')),adhe_tra_antirre2=trim(upper('{$_POST['adhe_tra_antirre2']}')),recnac_proxi=trim(upper('{$_POST['recnac_proxi']}')),formu_lact=trim(upper('{$_POST['formu_lact']}')),tarros_mes=trim(upper('{$_POST['tarros_mes']}')),caso_con_tmi=trim(upper('{$_POST['caso_con_tmi']}')),asis_provih_rn=trim(upper('{$_POST['asis_provih_rn']}')),cargaviral_1mes=trim(upper('{$_POST['cargaviral_1mes']}')),fec_cargaviral3=trim(upper('{$_POST['fec_cargaviral3']}')),resultado1=trim(upper('{$_POST['resultado1']}')),cargaviral_4mes=trim(upper('{$_POST['cargaviral_4mes']}')),fec_cargaviral_4mes=trim(upper('{$_POST['fec_cargaviral_4mes']}')),resultado2=trim(upper('{$_POST['resultado2']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),        
+    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual_metodo=trim(upper('{$_POST['cual_metodo']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),recnac_proxi=trim(upper('{$_POST['recnac_proxi']}')),formu_lact=trim(upper('{$_POST['formu_lact']}')),tarros_mes=trim(upper('{$_POST['tarros_mes']}')),caso_con_tmi=trim(upper('{$_POST['caso_con_tmi']}')),asis_provih_rn=trim(upper('{$_POST['asis_provih_rn']}')),cargaviral_1mes=trim(upper('{$_POST['cargaviral_1mes']}')),fecha_carga1mes=trim(upper('{$_POST['fecha_carga1mes']}')),resul_carga1mes=trim(upper('{$_POST['resul_carga1mes']}')),cargaviral_4mes=trim(upper('{$_POST['cargaviral_4mes']}')),fecha_carga4mes=trim(upper('{$_POST['fecha_carga4mes']}')),resul_carga4mes=trim(upper('{$_POST['resul_carga4mes']}')),prueba_rapida=trim(upper('{$_POST['prueba_rapida']}')),fec_pruerap1=trim(upper('{$_POST['fec_pruerap1']}')),carga_viral=trim(upper('{$_POST['carga_viral']}')),fec_cargaviral1=trim(upper('{$_POST['fec_cargaviral1']}')),resul_cargaviral1=trim(upper('{$_POST['resul_cargaviral1']}')),asis_provih1=trim(upper('{$_POST['asis_provih1']}')),cual1=trim(upper('{$_POST['cual1']}')),adhe_tra_antirre1=trim(upper('{$_POST['adhe_tra_antirre1']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    users_bina=trim(upper('{$_POST['users_bina']}')),
+    users_bina=trim(upper('{$_POST['users_bina']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_vihgestacio =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==3){
+  }else if(count($id)==4){
     $sql="INSERT INTO vsp_vihgest VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fec_pruerap1']}')),trim(upper('{$_POST['fec_cargaviral1']}')),trim(upper('{$_POST['resul_cargaviral1']}')),trim(upper('{$_POST['asis_provih1']}')),trim(upper('{$_POST['cual1']}')),trim(upper('{$_POST['adhe_tra_antirre1']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual_metodo']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_comple']}')),trim(upper('{$_POST['fec_pruerap2']}')),trim(upper('{$_POST['fec_cargaviral2']}')),trim(upper('{$_POST['resul_cargaviral2']}')),trim(upper('{$_POST['asis_provih2']}')),trim(upper('{$_POST['cual2']}')),trim(upper('{$_POST['adhe_tra_antirre2']}')),trim(upper('{$_POST['recnac_proxi']}')),trim(upper('{$_POST['formu_lact']}')),trim(upper('{$_POST['tarros_mes']}')),trim(upper('{$_POST['caso_con_tmi']}')),trim(upper('{$_POST['asis_provih_rn']}')),trim(upper('{$_POST['cargaviral_1mes']}')),trim(upper('{$_POST['fec_cargaviral3']}')),trim(upper('{$_POST['resultado1']}')),trim(upper('{$_POST['cargaviral_4mes']}')),trim(upper('{$_POST['fec_cargaviral_4mes']}')),trim(upper('{$_POST['resultado2']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
-    TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual_metodo']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_comple']}')),trim(upper('{$_POST['recnac_proxi']}')),trim(upper('{$_POST['formu_lact']}')),trim(upper('{$_POST['tarros_mes']}')),trim(upper('{$_POST['caso_con_tmi']}')),trim(upper('{$_POST['asis_provih_rn']}')),trim(upper('{$_POST['cargaviral_1mes']}')),trim(upper('{$_POST['fecha_carga1mes']}')),trim(upper('{$_POST['resul_carga1mes']}')),trim(upper('{$_POST['cargaviral_4mes']}')),trim(upper('{$_POST['fecha_carga4mes']}')),
+    trim(upper('{$_POST['resul_carga4mes']}')),
+    trim(upper('{$_POST['prueba_rapida']}')),trim(upper('{$_POST['fec_pruerap1']}')),trim(upper('{$_POST['carga_viral']}')),trim(upper('{$_POST['fec_cargaviral1']}')),trim(upper('{$_POST['resul_cargaviral1']}')),trim(upper('{$_POST['asis_provih1']}')),trim(upper('{$_POST['cual1']}')),trim(upper('{$_POST['adhe_tra_antirre1']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    trim(upper('{$smbin}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;
   }
     $rta=dato_mysql($sql);
@@ -288,7 +310,7 @@ $id=divide($_POST['id_vihgestacio']);
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_vihgestacio,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fec_pruerap1,fec_cargaviral1,resul_cargaviral1,asis_provih1,cual1,adhe_tra_antirre1,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual_metodo,asiste_control,vacuna_comple,lacmate_comple,fec_pruerap2,fec_cargaviral2,resul_cargaviral2,asis_provih2,cual2,adhe_tra_antirre2,recnac_proxi,formu_lact,tarros_mes,caso_con_tmi,asis_provih_rn,cargaviral_1mes,fec_cargaviral3,resultado1,cargaviral_4mes,fec_cargaviral_4mes,resultado2,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual_metodo,asiste_control,vacuna_comple,lacmate_comple,recnac_proxi,formu_lact,tarros_mes,caso_con_tmi,asis_provih_rn,cargaviral_1mes,fecha_carga1mes,resul_carga1mes,cargaviral_4mes,fecha_carga4mes,resul_carga4mes,prueba_rapida,fec_pruerap1,carga_viral,fec_cargaviral1,resul_cargaviral1,asis_provih1,cual1,adhe_tra_antirre1,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_vihgest
       WHERE id_vihgestacio ='{$id[0]}'";
       // echo $sql;

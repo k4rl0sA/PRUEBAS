@@ -61,11 +61,11 @@ function valGluc(a){
 	const glu=document.getElementById(a);
 	if (glu!==null){
 	const al1=document.getElementById('cronico').value;
-	const ges=document.getElementById('etapgest').value;
-		if(al1=='2' || ges=='2'){
-			enaFie(glu,true);
-		}else{
+	const ges=document.getElementById('gestante').value;
+		if(al1=='1' || ges=='1'){
 			enaFie(glu,false);
+		}else{
+			enaFie(glu,true);
 		}
 	}
 }

@@ -18,7 +18,7 @@ var rgxdatehm = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) 
 var rgxdate = "([12][0-9][0-9][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 var rgxtime = "([01][0-9]|2[0123]):([0-5][0-9])";
 
-window.appVersion = "1.11.07.1";
+window.appVersion = "1.11.13.1";
 
 const version = document.querySelector("div.usuario");
 
@@ -53,7 +53,7 @@ document.addEventListener('keydown', function (event) {
 let inactivityTimer;
 
 function startInactivityTimer() {
-  const inactivityTimeout = 45 * 60 * 1000;
+  const inactivityTimeout = 60 * 60 * 1000;
   inactivityTimer = setTimeout(function() {
     window.location.href = '/logout.php';
   }, inactivityTimeout);

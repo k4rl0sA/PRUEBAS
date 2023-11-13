@@ -79,7 +79,21 @@ function header_csv($a) {
   header("Content-Type: text/csv; charset=UTF-8");
 }
 
-
+function cleanTxt($val) {
+  // Elimina espacios en blanco al principio y al final
+  $val = trim($val);
+  // Escapa comillas simples y dobles
+  $val = addslashes($val);
+  // Escapa caracteres especiales para SQL (opcional)
+  $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
+  // Elimina saltos de línea y tabulaciones
+  $pattern = '/[\'";\x00-\x1F\x7F]/';
+  $replacement = '';
+  $val = preg_replace($pattern, $replacement, $val);
+  $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
+  $val=strtoupper($val);
+  return $val;
+}
 
 
 

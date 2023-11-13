@@ -84,12 +84,12 @@ function whe_homes() {
 			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fdes']."'";
 		}
 	}
-	if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
+	// if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
 		$sql.=" AND ((H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}') OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND estado_v=7))";
 		//OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (D.doc_asignado='{$_SESSION['us_sds']}'))";
-	}else{
+	/* }else{
 		$sql.=" AND H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}'";
-	}
+	} */
 	return $sql;
 }
 

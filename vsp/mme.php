@@ -74,7 +74,7 @@ function cmp_mme(){
   $p=get_persona();
 
 	$c[]=new cmp('id_mme','h','50',$_POST['id'],$w.' '.$o,'Id de mme','id_mme',null,null,false,false,'','col-2');
-  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-37,0)');
+  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-45,0)');
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
@@ -94,10 +94,10 @@ function cmp_mme(){
 
     $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Trata de Farma','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe FaR '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('peso','sd','4',$d,$w.' pRe '.$o,'Peso (Kg) (0.82 = 820 Gramos)','peso','rgxpeso','##.#',false,$x,'','col-2',"Zsco('zscore','../vsp/mme.php');");
-    $c[]=new cmp('talla','sd','5',$d,$w.' pRe '.$o,'Talla (Cm) (75.2 =Cm,mm)','talla','rgxtalla','###.#',false,$x,'','col-2',"Zsco('zscore','../vsp/mme.php');");
-    $c[]=new cmp('zscore','t','20',$d,$w.' '.$bl.' '.$o,'Zscore','zscore',null,null,false,false,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
+    $c[]=new cmp('peso','sd',6,$d,$w.' pRe '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
+    $c[]=new cmp('talla','sd',5,$d,$w.' pRe '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso',this,'imc');");
+    $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' pRe  '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,false,'','col-2');
     $c[]=new cmp('signos_alarma_seg','s','2',$d,$w.' pRe '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma_seg','SiA');");
     $c[]=new cmp('descr_sigalarma','t','500',$d,$w.' pRe SiA '.$o,'Descripcion del signo de alarma','descr_sigalarma',null,null,false,$x,'','col-3');
     $c[]=new cmp('entrega_medic_labo','t','500',$d,$w.' pRe '.$o,'Entrega de medicamentos y realización de laboratorios en casa','entrega_medic_labo',null,null,false,$x,'','col-3');
@@ -172,7 +172,7 @@ function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
 function opc_clasi_nutri($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=98 and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=210 and estado='A' ORDER BY 1",$id);
   }
 function opc_estado_s($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=73 and estado='A' ORDER BY 1",$id);
@@ -265,13 +265,13 @@ function gra_mme(){
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==5){
     $sql="UPDATE vsp_mme SET 
-    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),trata_farma=trim(upper('{$_POST['trata_farma']}')),adhe_tratafarma=trim(upper('{$_POST['adhe_tratafarma']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),zscore=trim(upper('{$_POST['zscore']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),otro_cual=trim(upper('{$_POST['otro_cual']}')),motivo_nofecund=trim(upper('{$_POST['motivo_nofecund']}')),control_mac=trim(upper('{$_POST['control_mac']}')),fecha_control_mac=trim(upper('{$_POST['fecha_control_mac']}')),ctrl_postpar_espe=trim(upper('{$_POST['ctrl_postpar_espe']}')),fecha_postpar_espe=trim(upper('{$_POST['fecha_postpar_espe']}')),consul_apoy_lacmater=trim(upper('{$_POST['consul_apoy_lacmater']}')),fecha_apoy_lacmater=trim(upper('{$_POST['fecha_apoy_lacmater']}')),peso_rcnv=trim(upper('{$_POST['peso_rcnv']}')),consul_lacmate=trim(upper('{$_POST['consul_lacmate']}')),fecha_consul_lacmate=trim(upper('{$_POST['fecha_consul_lacmate']}')),asiste_ctrl_cyd=trim(upper('{$_POST['asiste_ctrl_cyd']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),descr_sigalarma=trim(upper('{$_POST['descr_sigalarma']}')),entrega_medic_labo=trim(upper('{$_POST['entrega_medic_labo']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),conti_segespecial=trim(upper('{$_POST['conti_segespecial']}')),cual_segespecial=trim(upper('{$_POST['cual_segespecial']}')),recomen_cierre=trim(upper('{$_POST['recomen_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),trata_farma=trim(upper('{$_POST['trata_farma']}')),adhe_tratafarma=trim(upper('{$_POST['adhe_tratafarma']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),otro_cual=trim(upper('{$_POST['otro_cual']}')),motivo_nofecund=trim(upper('{$_POST['motivo_nofecund']}')),control_mac=trim(upper('{$_POST['control_mac']}')),fecha_control_mac=trim(upper('{$_POST['fecha_control_mac']}')),ctrl_postpar_espe=trim(upper('{$_POST['ctrl_postpar_espe']}')),fecha_postpar_espe=trim(upper('{$_POST['fecha_postpar_espe']}')),consul_apoy_lacmater=trim(upper('{$_POST['consul_apoy_lacmater']}')),fecha_apoy_lacmater=trim(upper('{$_POST['fecha_apoy_lacmater']}')),peso_rcnv=trim(upper('{$_POST['peso_rcnv']}')),consul_lacmate=trim(upper('{$_POST['consul_lacmate']}')),fecha_consul_lacmate=trim(upper('{$_POST['fecha_consul_lacmate']}')),asiste_ctrl_cyd=trim(upper('{$_POST['asiste_ctrl_cyd']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),descr_sigalarma=trim(upper('{$_POST['descr_sigalarma']}')),entrega_medic_labo=trim(upper('{$_POST['entrega_medic_labo']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),conti_segespecial=trim(upper('{$_POST['conti_segespecial']}')),cual_segespecial=trim(upper('{$_POST['cual_segespecial']}')),recomen_cierre=trim(upper('{$_POST['recomen_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     users_bina = TRIM(UPPER('{$smbin}')),`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_mme =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
     $sql="INSERT INTO vsp_mme VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['trata_farma']}')),trim(upper('{$_POST['adhe_tratafarma']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['zscore']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['otro_cual']}')),trim(upper('{$_POST['motivo_nofecund']}')),trim(upper('{$_POST['control_mac']}')),trim(upper('{$_POST['fecha_control_mac']}')),trim(upper('{$_POST['ctrl_postpar_espe']}')),trim(upper('{$_POST['fecha_postpar_espe']}')),trim(upper('{$_POST['consul_apoy_lacmater']}')),trim(upper('{$_POST['fecha_apoy_lacmater']}')),trim(upper('{$_POST['peso_rcnv']}')),trim(upper('{$_POST['consul_lacmate']}')),trim(upper('{$_POST['fecha_consul_lacmate']}')),trim(upper('{$_POST['asiste_ctrl_cyd']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['signos_alarma']}')),trim(upper('{$_POST['signos_alarma_seg']}')),trim(upper('{$_POST['descr_sigalarma']}')),trim(upper('{$_POST['entrega_medic_labo']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['conti_segespecial']}')),trim(upper('{$_POST['cual_segespecial']}')),trim(upper('{$_POST['recomen_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
+    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['trata_farma']}')),trim(upper('{$_POST['adhe_tratafarma']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['otro_cual']}')),trim(upper('{$_POST['motivo_nofecund']}')),trim(upper('{$_POST['control_mac']}')),trim(upper('{$_POST['fecha_control_mac']}')),trim(upper('{$_POST['ctrl_postpar_espe']}')),trim(upper('{$_POST['fecha_postpar_espe']}')),trim(upper('{$_POST['consul_apoy_lacmater']}')),trim(upper('{$_POST['fecha_apoy_lacmater']}')),trim(upper('{$_POST['peso_rcnv']}')),trim(upper('{$_POST['consul_lacmate']}')),trim(upper('{$_POST['fecha_consul_lacmate']}')),trim(upper('{$_POST['asiste_ctrl_cyd']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['signos_alarma']}')),trim(upper('{$_POST['signos_alarma_seg']}')),trim(upper('{$_POST['descr_sigalarma']}')),trim(upper('{$_POST['entrega_medic_labo']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['conti_segespecial']}')),trim(upper('{$_POST['cual_segespecial']}')),trim(upper('{$_POST['recomen_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),
     trim(upper('{$smbin}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;
   }
@@ -286,7 +286,7 @@ function gra_mme(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_mme,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,trata_farma,adhe_tratafarma,peso,talla,zscore,clasi_nutri,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,otro_cual,motivo_nofecund,control_mac,fecha_control_mac,ctrl_postpar_espe,fecha_postpar_espe,consul_apoy_lacmater,fecha_apoy_lacmater,peso_rcnv,consul_lacmate,fecha_consul_lacmate,asiste_ctrl_cyd,vacuna_comple,lacmate_exclu,signos_alarma,signos_alarma_seg,descr_sigalarma,entrega_medic_labo,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,conti_segespecial,cual_segespecial,recomen_cierre,redu_riesgo_cierre,users_bina
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,trata_farma,adhe_tratafarma,peso,talla,imc,clasi_nutri,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,otro_cual,motivo_nofecund,control_mac,fecha_control_mac,ctrl_postpar_espe,fecha_postpar_espe,consul_apoy_lacmater,fecha_apoy_lacmater,peso_rcnv,consul_lacmate,fecha_consul_lacmate,asiste_ctrl_cyd,vacuna_comple,lacmate_exclu,signos_alarma,signos_alarma_seg,descr_sigalarma,entrega_medic_labo,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,conti_segespecial,cual_segespecial,recomen_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_mme
       WHERE id_mme ='{$id[0]}'";
       // echo $sql;
@@ -314,54 +314,6 @@ function gra_mme(){
       }
     }
 
-  function get_zscore(){
-    $id=divide($_POST['val']);
-     $fechaNacimiento = new DateTime($id[1]);
-     $fechaActual = new DateTime();
-     $diferencia = $fechaNacimiento->diff($fechaActual);
-     $edadEnDias = $diferencia->days;
-    $ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
-    $sex=$id[2];
-  
-  $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
-    (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
-    ((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
-   (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
-    // echo $sql;
-   $info=datos_mysql($sql);
-     if (!$info['responseResult']) {
-      return '';
-    }else{
-      $z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
-      switch ($z) {
-        case ($z <=-3):
-          $des=3;
-          break;
-        case ($z >-3 && $z <=-2):
-          $des=2;
-          break;
-        case ($z >-2 && $z <=-1):
-          $des=1;
-          break;
-        case ($z>-1 && $z <=1):
-            $des=4;
-          break;
-        case ($z >1 && $z <=2):
-            $des=5;
-          break;
-        case ($z >2 && $z <=3):
-            $des=6;
-          break;
-          case ($z >3):
-            $des=7;
-          break;
-        default:
-          $des=8;
-          break;
-      }
-      return json_encode([$z,$des]);
-    }
-  }
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

@@ -747,7 +747,7 @@ function gra_person(){
 	$key='pln';
 	$c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-37,0)');
+	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,false,'','col-2','validDate(this,-37,0)');
 	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3','selectDepend(\'accion1\',\'desc_accion1\',\'lib.php\');');
 	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5','selectDepend(\'accion2\',\'desc_accion2\',\'lib.php\');');
@@ -761,8 +761,8 @@ function gra_person(){
 
 	$o='plancon';
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-	$c[]=new cmp('obs','a',500,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
+	$c[]=new cmp('obs','a',500,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,false,true,'','col-7');
+	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,false,true,'','col-2');
 	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
@@ -774,7 +774,7 @@ function gra_person(){
 	function lis_planc(){
 		// print_r($_POST);
 		$id=divide($_POST['id']);
-		$sql="SELECT concat(idviv,'_',idcon) ACCIONES,idcon 'Cod Registro'compromiso,
+		$sql="SELECT concat(idviv,'_',idcon) ACCIONES,idcon 'Cod Registro',compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
 			FROM `hog_planconc` 
 				WHERE '1'='1' and idviv='".$id[0];

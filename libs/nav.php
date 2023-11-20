@@ -69,7 +69,7 @@ $nav.= '<a href="../logout.php">
 	<br>Salir</a>
   ';
 
-// $nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_'.$vers.'</div>';
+$nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_'.$vers.'</div>';
 $nav.='</div></div>';
 echo $nav;
 ?>

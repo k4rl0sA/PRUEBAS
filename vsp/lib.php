@@ -48,24 +48,23 @@ WHERE 1 ".whe_homes()." AND estado_v in('7')";
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-	$sql="SELECT DISTINCT H.idgeo AS ACCIONES, H.idgeo AS Cod, FN_CATALOGODESC(42,H.estrategia) AS estrategia, direccion, H.territorio, H.sector_catastral AS Sector, H.nummanzana AS Manzana, H.predio_num AS predio, H.unidad_habit AS 'Unidad', FN_CATALOGODESC(2,H.localidad) AS 'Localidad', U1.nombre AS nombre, H.fecha_create, FN_CATALOGODESC(44,H.estado_v) AS estado 
+	$sql="SELECT H.idgeo AS ACCIONES, H.idgeo AS Cod_Predio, FN_CATALOGODESC(42, H.estrategia) AS estrategia, H.direccion, H.territorio, H.sector_catastral AS Sector, H.nummanzana AS Manzana, H.predio_num AS predio, H.unidad_habit AS 'Unidad', FN_CATALOGODESC(2, H.localidad) AS 'Localidad', U.nombre AS nombre, H.fecha_create, FN_CATALOGODESC(44, H.estado_v) AS estado 
 	FROM hog_geo H
-	LEFT JOIN usuarios U ON H.subred = U.subred 
-	LEFT JOIN usuarios U1 ON H.asignado = U1.id_usuario 
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio 
- WHERE 1 ".whe_homes()." 
-	 AND estado_v in('7')
+	LEFT JOIN usuarios U ON H.asignado = U.id_usuario
+    LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+ WHERE estado_v =('7') ".whe_homes()." 
+	 
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
-// echo $sql;
+//echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 
 function whe_homes() {
-	$sql = " AND H.subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}')";
+	$sql = " AND H.subred in(SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}')";
 	// print_r($_POST);
 	if ($_POST['fbinas'])
 		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
@@ -86,7 +85,7 @@ function whe_homes() {
 	}
 		//if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
 	if(!$_POST['fbinas']){
-		$sql.=" AND ((H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}') OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND estado_v=7))";
+		$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
 		//OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (D.doc_asignado='{$_SESSION['us_sds']}'))";
 	}else{
 		//$sql.=" AND H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}'";
@@ -124,7 +123,7 @@ function lis_famili(){
 	$cod=divide($_POST['id']);
 	$sql="SELECT
 	concat(idviv, '_', idpre) ACCIONES,
-	idviv AS COD_FAM,
+	idviv AS Cod_Familia,
 	fecha,
 	CONCAT_WS(' ', FN_CATALOGODESC(6, complemento1), nuc1, FN_CATALOGODESC(6, complemento2), nuc2, FN_CATALOGODESC(6, complemento3), nuc3) Complementos,
 	numfam FAMILIA,
@@ -509,9 +508,9 @@ function cmp_person(){
 	}
 }
    
-   function lista_persons(){ //revisar
+function lista_persons(){ //revisar
 	$id=divide($_POST['id']);
-		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
+		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona ,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Nació',
 		FN_CATALOGODESC(21,sexo) 'Sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
 		FROM `personas` 
@@ -775,7 +774,7 @@ function gra_person(){
 	function lis_planc(){
 		// print_r($_POST);
 		$id=divide($_POST['id']);
-		$sql="SELECT concat(idviv,'_',idcon) ACCIONES,compromiso,
+		$sql="SELECT concat(idviv,'_',idcon) ACCIONES,idcon 'Cod Registro'compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
 			FROM `hog_planconc` 
 				WHERE '1'='1' and idviv='".$id[0];
@@ -975,7 +974,7 @@ function eventAsign($key) {
 	  5 => ['icono' => 'gesta1', 'titulo' => 'FAMILIAS CON GESTANTES', 'modulo' => 'gestantes'],
 	  6 => ['icono' => 'gesta3', 'titulo' => 'MORBILIDAD MATERNA EXTREMA', 'modulo' => 'mme'],
 	  7 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (CONSUMADO)', 'modulo' => 'condsuic'],
-	  //8 => ['icono' => 'siges1', 'titulo' => 'TITULO', 'modulo' => 'sifigest'],
+	  8 => ['icono' => 'siges1', 'titulo' => 'VIOLENCIA EN GESTANTES', 'modulo' => 'violgest'],
 	  9 => ['icono' => 'desnu1', 'titulo' => 'DNT AGUDA MODERADA O SEVERA', 'modulo' => 'dntsevymod'],
 	  10 => ['icono' => 'desnu1', 'titulo' => 'MENORES CON EXCESO DE PESO', 'modulo' => 'dntsevymod'],
 	  11 => ['icono' => 'aterm1', 'titulo' => 'BPN A TÉRMNO', 'modulo' => 'bpnterm'],

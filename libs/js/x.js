@@ -588,8 +588,39 @@ function enabEtap(a, b) {
     });
 }
 
-  
-  function weksEtap(a,b){
+/* 
+function enClSe(act, clin, claf) {
+    const ac = document.getElementById(act);
+    const els = [...document.querySelectorAll('.' + clin)];
+    const valor = parseInt(ac.value);
+
+    els.forEach(elm => {
+        const clases = claf[valor - 1].map(clase => [`select.${clase}`, `input.${clase}`, `textarea.${clase}`]).flat();
+        const bloquea = clases.some(clase => elm.classList.contains(clase));
+        enaFie(els,bloquea);
+    });
+}
+ */
+
+
+function enClSe(act, clin, claf) {
+    const ac = document.getElementById(act);
+    const els = [...document.querySelectorAll(`select.${clin}, input.${clin}, textarea.${clin}`)];
+    const valor = parseInt(ac.value);
+
+    els.forEach(elm => {
+        const index = Math.min(valor - 1, claf.length - 1);
+        const clase = claf[index][0];
+
+        const bloquea = elm.classList.contains(clase);
+        enaFie(elm,!bloquea);
+    });
+}
+
+//enClSe('accion', 'tOL', [['mOr'], ['NOm'], ['ANr']]);
+
+
+function weksEtap(a,b){
 	const act = document.getElementById(a);
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
 		if(act.value=='3'){

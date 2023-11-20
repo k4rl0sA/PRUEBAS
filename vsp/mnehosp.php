@@ -44,8 +44,8 @@ function focus_mnehosp(){
  FUNCTION seg_mnehosp(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `id_mnehosp` ACCIONES,
-  tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+	$sql="SELECT `id_mnehosp` ACCIONES,  'Cod Registro',
+tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_mnehosp A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
@@ -74,7 +74,7 @@ function cmp_mnehosp(){
   
 
 	$c[]=new cmp('id_mnehosp','h','50',$_POST['id'],$w.' '.$o,'','id_mnehosp',null,null,false,true,'','col-2');
-  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-45,0)');
+  $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-60,0);');
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
@@ -119,7 +119,7 @@ function cmp_mnehosp(){
 
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
-    $c[]=new cmp('users_bina[]','m','10',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
+    $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -225,7 +225,7 @@ function gra_mnehosp(){
 if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
     if(count($id)==5){
     $sql="UPDATE vsp_mnehosp SET 
-    fecha_seg=trim(upper('{$_POST['fecha_seg']}')),numsegui=trim(upper('{$_POST['numsegui']}')),evento=trim(upper('{$_POST['evento']}')),estado_s=trim(upper('{$_POST['estado_s']}')),motivo_estado=trim(upper('{$_POST['motivo_estado']}')),even_prio=trim(upper('{$_POST['even_prio']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),alime_complemen=trim(upper('{$_POST['alime_complemen']}')),adhe_tratam=trim(upper('{$_POST['adhe_tratam']}')),ira_eda=trim(upper('{$_POST['ira_eda']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),reing_hospita=trim(upper('{$_POST['reing_hospita']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),users_bina = TRIM(UPPER('{$smbin}')),
+    fecha_seg=trim(upper('{$_POST['fecha_seg']}')),numsegui=trim(upper('{$_POST['numsegui']}')),evento=trim(upper('{$_POST['evento']}')),estado_s=trim(upper('{$_POST['estado_s']}')),motivo_estado=trim(upper('{$_POST['motivo_estado']}')),even_prio=trim(upper('{$_POST['even_prio']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),alime_complemen=trim(upper('{$_POST['alime_complemen']}')),adhe_tratam=trim(upper('{$_POST['adhe_tratam']}')),ira_eda=trim(upper('{$_POST['ira_eda']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),reing_hospita=trim(upper('{$_POST['reing_hospita']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_mnehosp =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;

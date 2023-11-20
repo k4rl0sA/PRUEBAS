@@ -39,10 +39,10 @@ function focus_ambient(){
 	   }
   return $rta;
 }
-   FUNCTION lis_ambient(){
+FUNCTION lis_ambient(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `idamb` ACCIONES,`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_amb A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idvivamb='".$id[0];
@@ -62,7 +62,7 @@ function cmp_ambient(){
 	$o='rieamb';
 	$c[]=new cmp($o,'e',null,'RIESGOS AMBIENTALES DE LA VIVIENDA',$w);
 	$c[]=new cmp('idvivamb','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5','validDate(this,-45,0);');
+	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5','validDate(this,-60,0);');
 	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'Tipo de Activi','tipo_activi',null,null,true,true,'','col-5');
 
 	$o='espvit';

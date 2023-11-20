@@ -5,14 +5,15 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FINDRISC || SIGINF</title>
+<title>AJUSTES || SIGINF</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
+<script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='tamfindrisc';	
+var mod='ajustar';	
 var ruta_app='lib.php';
 function csv(b){
 		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
@@ -38,11 +39,6 @@ function grabar(tb='',ev){
   			}
 	
 	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
-			const dia= document.getElementById('diabetes');
-			if(dia.value=='1'){
-				warnins('El usuario no aplica para el tamizaje, por favor valide la información');
-				return;
-			}
 			if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
     			/* if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
@@ -54,15 +50,18 @@ function grabar(tb='',ev){
 				setTimeout(actualizar, 1000);
 			}
 	}else{
-		inform('Esta funcion no esta habilitada en este momento,por favor consulta con el administrador del sistema');
+		const message = `La función de Editar no esta habilitada en este momento`;
+        document.getElementById(mod+'-modal').innerHTML = message;
+        document.getElementById(mod+'-image').innerHTML = '<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
+        openModal();
+		
 	}
 }
 
 function hiddxedad(xedad,cls) {
 	const edad=document.getElementById(xedad);
 	const cmpHid1 = document.querySelectorAll(`.${cls}`);
-
-	if(edad.value > 17 ){
+	if(edad.value > 39 ){
 		for(i=0;i<cmpHid1.length;i++){
 			hidFie(cmpHid1[i],false);
 		}
@@ -72,22 +71,6 @@ function hiddxedad(xedad,cls) {
 		}
 	}
 }
-
-function hiddxdiab(diab,cls) {
-	const dbts=document.getElementById(diab);
-	const cmpHid1 = document.querySelectorAll(`.${cls}`);
-	if(dbts.value== 1 ){
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],true);
-		}
-	}else{
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],false);
-		}
-	}
-}
-
-
 
 
 </script>
@@ -97,30 +80,28 @@ function hiddxdiab(diab,cls) {
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='tamfindrisc';
+$mod='ajustar';
 $ya = new DateTime();
 // $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
-$tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` ORDER BY 2 ASC",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 	
 <div class="campo">
-	<div>Identificación</div>
-	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
+	<div>Cod. Predio</div>
+	<input class="captura" type="number" id="fpredio" name="fpredio" OnChange="actualizar();">
 </div>
 	
 	<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
+		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
 			<?php echo $digitadores; ?>
 		</select>
 	</div>
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' >TAMIZAJE FINDRISC
+      <div class='titulo' >AJUSTES
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">

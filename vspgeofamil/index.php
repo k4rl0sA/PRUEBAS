@@ -85,8 +85,11 @@ function subred($a = null){
 
 $mod='fam_geo';
 $ya = new DateTime();
+$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+$usu=divide($rta["responseResult"][0]['usu']);
 $eventos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=87 and estado='A' order by 1",'');
-$rta = ($usu[1] == 'TECFAM'||$usu[1] =='ADM'||$usu[1] =='SUPHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN ('PROFAM') ORDER BY 1",$_SESSION['us_sds']); 
+$rta = ($usu[1] == 'TECFAM'||$usu[1] =='ADM' ||$usu[1] =='SUPHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 $localidades = (perfil1()=='ADM') ? opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 AND estado='A' order by 1",'') : opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and valor='".subred()."' AND estado='A' order by 1",'') ;
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN ('PROFAM') ORDER BY 1",$_SESSION['us_sds']); 
 ?>
@@ -110,7 +113,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 	$usu=divide($rta["responseResult"][0]['usu']);
 	
 	$rta="";
-	$rta = ($usu[1] == 'TECFAM'||$usu[1] =='ADM') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+	$rta = ($usu[1] == 'TECFAM'||$usu[1] =='ADM'|| $usu[1] =='SUPHOG' ) ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 	$rta.='</div>';
 	echo $rta;
 	?>

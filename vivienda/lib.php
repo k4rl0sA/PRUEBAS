@@ -52,7 +52,7 @@ function lis_homes(){
 
 	
 	$sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
-	H.idgeo Cod,
+	H.idgeo AS Cod_Predio,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
 	H.territorio,
@@ -138,18 +138,18 @@ function cap_menus($a,$b='cap',$con='con') {
 
 
 function lis_famili(){
-		$cod=divide($_POST['id']);
-		$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
-		$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
-		V.fecha_create Creado,nombre Creó
-		FROM `hog_viv` V 
-			left join usuarios P ON usu_creo=id_usuario
-		WHERE '1'='1' and idgeo='".$id;
-		$sql.="' ORDER BY fecha_create";
-		//  echo $sql;
-			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"famili-lis",10);
-	}
+	$cod=divide($_POST['id']);
+	$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
+	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS Cod_Familia,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
+	V.fecha_create Creado,nombre Creó
+	FROM `hog_viv` V 
+		left join usuarios P ON usu_creo=id_usuario
+	WHERE '1'='1' and idgeo='".$id;
+	$sql.="' ORDER BY fecha_create";
+	//  echo $sql;
+		$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"famili-lis",10);
+}
 	
 
 function cmp_homes1(){
@@ -178,7 +178,7 @@ function cmp_homes(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('numfam','s',3,$d,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2','validDate(this,-45,0);');
+	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2','validDate(this,-60,0);');
 	$c[]=new cmp('estado_aux','s','3',$d,$w.' '.$o,'Estado Visita','estado_aux',null,'',true,true,'','col-2','enabFielSele(this,true,[\'motivo_estaux\'],[\'4\']);stateVisit(this,[\'cri\',\'fam\',\'ali\',\'sub\',\'ser\',\'ani\',\'amb\',\'fal\'],[\'ne\',\'dog\',\'cat\']);');
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2','addupd(this,\'hid\',\'motivoupd\');validDate(this,-2,0);');
@@ -762,7 +762,7 @@ function gra_person(){
 	$key='pln';
 	$c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-45,0)');
+	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-60,0);');
 	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3','selectDepend(\'accion1\',\'desc_accion1\',\'lib.php\');');
 	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5','selectDepend(\'accion2\',\'desc_accion2\',\'lib.php\');');
@@ -789,7 +789,7 @@ function gra_person(){
 	function lis_planc(){
 		// print_r($_POST);
 		$id=divide($_POST['id']);
-		$sql="SELECT concat(idviv,'_',idcon) ACCIONES,compromiso,
+		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
 			FROM `hog_planconc` 
 				WHERE '1'='1' and idviv='".$id[0];

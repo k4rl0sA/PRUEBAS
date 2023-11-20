@@ -52,7 +52,7 @@ function lis_homes(){
 
 	
 $sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES,
-	H.idgeo Cod,
+	H.idgeo AS Cod_Predio,
 	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
 	direccion,
 	H.territorio,
@@ -155,7 +155,7 @@ function lis_famili(){
 	// $id=divide($_POST['id']);
 	$cod=divide($_POST['id']);
 	$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
-	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS COD_FAM,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
+	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_viv` V 
 			left join usuarios P ON usu_creo=id_usuario
@@ -401,9 +401,9 @@ function cmp_person(){
 	}
 }
      
-   function lista_persons(){ //revisar
+function lista_persons(){ //revisar
 	$id=divide($_POST['id']);
-		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
+		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
@@ -414,7 +414,7 @@ function cmp_person(){
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
-		}
+} 
 
 function focus_person(){
 	return 'person';

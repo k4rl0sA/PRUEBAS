@@ -56,7 +56,7 @@ function cmp_tamepoc(){
     $key='epo';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('documento','n','20',$d['documento'],$w.' '.$o.' '.$key,'N° Identificación','documento',null,'',false,$u,'','col-2');
+	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o.' '.$key,'N° Identificación','documento',null,'',false,$u,'','col-2');
 	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipo_doc',null,'',false,$u,'','col-25','getDatForm(\'epo\',\'person\',[\'datos\']);setTimeout(hiddxedad,500,\'edad\',\'cuestionario1\',\'cuestionario2\');');
 	$c[]=new cmp('nombre','t','50',$d['epoc_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['epoc_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');

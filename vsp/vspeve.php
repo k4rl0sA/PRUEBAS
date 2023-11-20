@@ -56,7 +56,7 @@ function focus_vspeve(){
 function lis_eventos(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
-    $sql="SELECT tipo_doc,documento,FN_CATALOGODESC(87,evento),fecha_even
+    $sql="SELECT id_eve 'Cod Registro',tipo_doc,documento,FN_CATALOGODESC(87,evento),fecha_even
     FROM vspeve E 
     WHERE E.documento='{$id[0]}'AND E.tipo_doc='{$id[1]}'"; 
     $sql.=" ORDER BY 4";

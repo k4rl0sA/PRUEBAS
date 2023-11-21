@@ -69,7 +69,7 @@ function cmp_ajustar(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN PARA EDITAR',$w);
 	$c[]=new cmp('tipo_doc_new','s',3,$d['tipo_doc_new'],$w.' '.$k.' '.$l.' TpD '.$o,'Tipo de Documento','tipo_doc_new',null,null,false,false,'','col-2');
 	$c[]=new cmp('documento_new','t',18,$d['documento_new'],$w.' '.$k.' '.$l.' DoC '.$o,'N° Identificación del usuario','documento_new',null,null,false,false,'','col-2');
-	$c[]=new cmp('fecha_new','d',10,$d['fecha_new'],$w.' '.$k.' '.$l.' FEc '.$o,'Fecha','fecha_new',null,null,false,false,'','col-2');
+	$c[]=new cmp('fecha_new','d',10,$d['fecha_new'],$w.' '.$k.' '.$l.' FEc '.$o,'Fecha de Nacimiento (Unicamente)','fecha_new',null,null,false,false,'','col-2');
 	$c[]=new cmp('sexo_new','s',3,$d['sexo_new'],$w.' '.$k.' '.$l.' sEX '.$o,'Sexo','sexo_new',null,null,false,false,'','col-2');
 	
 

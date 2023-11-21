@@ -44,7 +44,7 @@ function focus_otroprio(){
  FUNCTION seg_otroprio(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `id_otroprio` ACCIONES,  'Cod Registro',
+	$sql="SELECT `id_otroprio` ACCIONES, id_otroprio 'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_otroprio A

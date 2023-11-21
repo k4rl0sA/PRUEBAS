@@ -60,8 +60,8 @@ function cmp_ajustar(){
 	$c[]=new cmp('cod_pred','t',18,$d['cod_pred'],$w.' '.$o,'Codigo del predio','cod_pred',null,null,true,true,'','col-15',"changeSelect('cod_pred','cod_fam');");
 	$c[]=new cmp('cod_fam','s',25,$d['cod_fam'],$w.' '.$o,'Codigo de la Familia','cod_fam',null,null,true,true,'','col-15',"changeSelect('cod_fam','cod_individuo');");
 	$c[]=new cmp('cod_individuo','s',25,$d['cod_individuo'],$w.' '.$o,'N° Identificación del usuario','cod_individuo',null,null,true,true,'','col-3');
-	$c[]=new cmp('accion','s',3,$d['accion'],$w.' '.$o,'Accion','accion',null,null,true,true,'','col-2',"enClSe('accion', 'tOL', [['DEl'], ['upD'], ['Tra']]);");
-	$c[]=new cmp('formulario','s',3,$d['formulario'],$w.' '.$k.' DEl upD '.$o,'Formulario','formulario',null,null,true,true,'','col-2');
+	$c[]=new cmp('accion','s',3,$d['accion'],$w.' '.$o,'Accion','accion',null,null,true,true,'','col-2',"enClSe('accion', 'tOL', [['DEl'], ['upD'], ['Tra']]);valSelDep('accion',2,'INt',6);");
+	$c[]=new cmp('formulario','s',3,$d['formulario'],$w.' '.$k.' DEl upD INt '.$o,'Formulario','formulario',null,null,true,true,'','col-2');
 	$c[]=new cmp('cod_delete','n',18,$d['cod_delete'],$w.' '.$k.' DEl '.$o,'Cod para Eliminar','cod_delete',null,null,false,false,'','col-2');
 	$c[]=new cmp('cod_traslada','n',18,$d['cod_traslada'],$w.' '.$k.' Tra '.$o,'Cod de la Familia','cod_delete',null,null,false,false,'','col-2');
 	$c[]=new cmp('cmp_editar','s',3,$d['cmp_editar'],$w.' '.$k.' upD '.$o,'Campo a editar','cmp_editar',null,null,false,false,'','col-2',"enClSe('cmp_editar', 'AcT', [['TpD'], ['DoC'], ['FEc'],['sEX']]);");

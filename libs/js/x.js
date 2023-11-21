@@ -213,6 +213,21 @@ function enbValue(a,clsCmp,v){
 	}
 }
 
+
+function valSelDep(a,val,clsCmp,v){
+	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);
+	const act=document.getElementById(a);
+	if (act.value==val){
+		for (i = 0; i < ele.length; i++){ 
+			enaFie(ele[i],true);
+			ele[i].value=v;
+		}
+	}else{
+		for (i = 0; i < ele.length; i++){ 
+			enaFie(ele[i],false);
+		}	
+	}
+}
  function enbValsCls(a, ClsCmp) {
 	const act = document.getElementById(a);
 	const numValue = parseInt(act.value, 10);

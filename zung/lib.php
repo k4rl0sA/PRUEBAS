@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -23,7 +23,7 @@ else {
 
 function lis_tamzung(){
 	// concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,zung_idpersona Documento,FN_CATALOGODESC(1,zung_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,tam_zung 'Cod. Registro',zung_idpersona Documento,FN_CATALOGODESC(1,zung_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,zung_momento) Momento,`zung_puntaje` Puntaje ,`zung_analisis` Analisis 
 FROM hog_tam_zung O
 LEFT JOIN personas P ON O.zung_idpersona = P.idpersona

@@ -26,7 +26,7 @@ function lis_tamcope(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 
-	$sql="SELECT concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,cope_idpersona Documento,FN_CATALOGODESC(1,cope_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
+	$sql="SELECT concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,tam_cope  'Cod. registro',cope_idpersona Documento,FN_CATALOGODESC(1,cope_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(135,cope_momento) Momento,`cope_puntajea` 'Pts. Afrontamiento',cope_descripciona Descripcion, `cope_puntajee` 'Pts. Evitación',cope_descripcione Descripción
 	FROM hog_tam_cope O
 	LEFT JOIN personas P ON O.cope_idpersona = P.idpersona

@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -21,7 +21,7 @@ else {
 
 
 function lis_tamWhodas(){
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(whodas_idpersona,'_',whodas_tipodoc,'_',whodas_momento) ACCIONES,whodas_idpersona Documento,FN_CATALOGODESC(1,whodas_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(whodas_idpersona,'_',whodas_tipodoc,'_',whodas_momento) ACCIONES,tam_whodas 'Cod Registro',whodas_idpersona Documento,FN_CATALOGODESC(1,whodas_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,whodas_momento) Momento,`porcentaje_total` Puntaje 
 FROM hog_tam_whodas O
 LEFT JOIN personas P ON O.whodas_idpersona = P.idpersona

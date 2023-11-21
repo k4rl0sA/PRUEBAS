@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -41,7 +41,6 @@ function whe_tamepoc() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
 		$sql .= " AND O.idpersona like '%".$_POST['fidentificacion']."%'";
-			
 	return $sql;
 }
 

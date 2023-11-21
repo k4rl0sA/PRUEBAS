@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -21,7 +21,7 @@ else {
 
 function lis_tamhamilton(){
 	// concat(hamilton_idpersona,'_',hamilton_tipodoc,'_',hamilton_momento) ACCIONES,
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(hamilton_idpersona,'_',hamilton_tipodoc,'_',hamilton_momento) ACCIONES,hamilton_idpersona Documento,FN_CATALOGODESC(1,hamilton_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(hamilton_idpersona,'_',hamilton_tipodoc,'_',hamilton_momento) ACCIONES,tam_hamilton 'Cod. Registro',hamilton_idpersona Documento,FN_CATALOGODESC(1,hamilton_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,hamilton_momento) Momento,`hamilton_analisis` Analisis,`hamilton_total` Puntaje,`hamilton_analisis` analisis,`hamilton_psiquica` psiquica,`hamilton_somatica` somatica 
 FROM hog_tam_hamilton O
 LEFT JOIN personas P ON O.hamilton_idpersona = P.idpersona

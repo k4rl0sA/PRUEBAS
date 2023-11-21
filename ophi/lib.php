@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -45,7 +45,7 @@ echo $sql;
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamOphi']))? ($_POST['pag-tamOphi']-1)* $regxPag:0;
 
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,tam_ophi 'Cod. Registro',ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,ophi_momento) Momento,`ophi_puntaje` Puntaje 
 FROM hog_tam_ophi O
 LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona

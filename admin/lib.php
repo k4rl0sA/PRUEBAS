@@ -47,7 +47,7 @@ function cmp_gestionusu(){
 
 function cmp_planos(){
 	$rta="";
-	$ini=60;
+	$ini=-60;
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';

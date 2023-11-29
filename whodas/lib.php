@@ -226,12 +226,12 @@ function gra_tamWhodas(){
 	}else{
 
 	$infodata_whodas=datos_mysql("SELECT whodas_momento,whodas_idpersona FROM hog_tam_whodas
-		 WHERE whodas_idpersona = {$_POST['whodas_idpersona']} AND whodas_momento = 2 ");
+		 WHERE whodas_idpersona = '{$_POST['whodas_idpersona']}' AND whodas_momento = 2 ");
 	if (isset($infodata_whodas['responseResult'][0])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_whodas=datos_mysql("SELECT whodas_momento,whodas_idpersona FROM hog_tam_whodas
-		 WHERE whodas_idpersona = {$_POST['whodas_idpersona']} AND whodas_momento = 1 ");
+		 WHERE whodas_idpersona = '{$_POST['whodas_idpersona']}' AND whodas_momento = 1 ");
 		if (isset($infodata2_whodas['responseResult'][0])){
 			$idmomento = 2;
 		}else{

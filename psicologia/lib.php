@@ -23,7 +23,7 @@ function lis_psicologia(){
 	$info=datos_mysql("SELECT COUNT(DISTINCT concat(P.tipo_doc,'_',idpersona)) total from personas P 
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc 
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
-	left join hog_geo G ON V.idgeo=concat(G.estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)	
+	left join hog_geo G ON V.idpre=G.idgeo	
 	LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc	
 	LEFT JOIN usuarios U ON S.doc_asignado = U.id_usuario 
 	LEFT JOIN eac_rutpsico R ON S.documento = R.documento AND S.tipo_doc = R.tipo_doc
@@ -39,7 +39,7 @@ function lis_psicologia(){
 	FROM personas P
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	left join hog_geo G ON V.idgeo=concat(G.estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
+	left join hog_geo G ON V.idpre=G.idgeo
 	LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc
 	LEFT JOIN usuarios U ON S.doc_asignado = U.id_usuario
 	LEFT JOIN eac_rutpsico R ON S.documento = R.documento AND S.tipo_doc = R.tipo_doc
@@ -208,8 +208,8 @@ function cmp_psicologia() {
 	$c[]=new cmp('psi_apellido2','t','20',$j['apellido2'],$w.' '.$o,'Segundo apellido','psi_apellido2',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_fecha_nacimiento','d','20',$j['fecha_nacimiento'],$w.' '.$o,'Fecha nacimiento','psi_fecha_nacimiento',null,'',false,false,'','col-2');
 	$c[]=new cmp('psi_sexo','s','20',$j['sexo'],$w.' '.$o,'Sexo','psi_sexo',null,'',false,false,'','col-3');
-	$c[]=new cmp('psi_genero','s','20',$j['genero'],$w.' '.$o,'Genero','psi_genero',null,'',false,false,'','col-2');
-	$c[]=new cmp('psi_orientacion','s','20',$j['genero'],$w.' '.$o,'Orientacion sexual','psi_genero',null,'',false,false,'','col-3');
+	$c[]=new cmp('psi_genero','s','20',$j['genero'],$w.' '.$o,'Genero','genero',null,'',false,false,'','col-2');
+	$c[]=new cmp('psi_orientacion','s','20',$j['oriensexual'],$w.' '.$o,'Orientacion sexual','oriensexual',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_nacionalidad','s','20',$j['nacionalidad'],$w.' '.$o,'Nacionalidad','psi_nacionalidad',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_regimen','s','20',$j['regimen'],$w.' '.$o,'Regimen','psi_regimen',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_eapb','s','20',$j['eapb'],$w.' '.$o,'eapb','psi_eapb',null,'',false,false,'','col-4');
@@ -219,7 +219,7 @@ function cmp_psicologia() {
 	$c[]=new cmp('psicologia_funcionamiento','t','20',$k['whodas_analisis'],$w.' '.$o,'RESULTADO MEDICIÓN DEL FUNCIONAMIENTO (WHODAS 2.0) INICIAL','psicologia_funcionamiento',null,'',$ad,false,'','col-4');
 
 	$c[]=new cmp('evachips','a','1500',$d['eva_chips'],$w.' '.$o,'EVALUACION DE RIESGO PARA NIÑOS NIÑAS Y ADOLESCENTES - ChiPS','psicologia_evaluacion',null,'',!$ad,!$ad,'','col-10');
-	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-37,0)');
+	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-61,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');
 	$c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
 	
@@ -265,7 +265,7 @@ function cmp_psicologia() {
 
 function get_DataPersonas(){
 	$id=divide($_POST['id']);
-		$sql="SELECT `idpersona`,`tipo_doc`,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`nacionalidad`,`regimen`,`eapb`,`zung_analisis`,`hamilton_analisis`,`whodas_analisis`
+		$sql="SELECT `idpersona`,`tipo_doc`,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,`zung_analisis`,`hamilton_analisis`,`whodas_analisis`
 				FROM personas
 				LEFT JOIN hog_tam_zung ON idpersona = zung_idpersona
 				LEFT JOIN hog_tam_hamilton ON idpersona = hamilton_idpersona
@@ -300,7 +300,7 @@ function get_persona(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT tipo_doc,idpersona,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,sexo,genero,nacionalidad,regimen,eapb,YEAR(CURDATE())-YEAR(fecha_nacimiento) edad
+		$sql="SELECT tipo_doc,idpersona,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,sexo,genero,oriensexual,nacionalidad,regimen,eapb,YEAR(CURDATE())-YEAR(fecha_nacimiento) edad
 		FROM `personas` WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
 
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
@@ -417,7 +417,7 @@ function cmp_sesion2() {
 	// $c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,true,'','col-5');
 	// $c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,true,'','col-5');
 
-	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-37,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-61,0);');
 	$c[]=new cmp('edad','t','5',$edad,$w.' '.$o,'Edad en Años','edad',null,null,true,false,'','col-4');
 	$c[]=new cmp('cod_admin2','n','12',$d['cod_admin2'],$w.' '.$o,'Codigo Admisión','cod_admin2',null,null,true,true,'','col-2');
 	// $c[]=new cmp('psi_sesion','s','3',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
@@ -561,7 +561,7 @@ function cmp_sesion_fin() {
 	$c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
 	$c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
 
-	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-37,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-61,0);');
 	//$c[]=new cmp('psi_sesion','t','50',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
 
 	$c[]=new cmp('zung_ini','a','1500',$r['zung1'],$w.' '.$o,'RESULTADO TAMIZAJE ZUNG INICIAL','zung_ini',null,null,false,false,'','col-3');
@@ -824,6 +824,12 @@ function gra_sesion_fin(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function opc_genero($id=''){
+	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
+	}
+	function opc_oriensexual($id=''){
+	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=49 and estado='A' ORDER BY 1",$id);
+	}
 function opc_contin_caso($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 160 and estado='A' ORDER BY 1",$id);
 }
@@ -909,7 +915,7 @@ function opc_psi_nacionalidad($id=''){
 }
 
 function opc_psi_regimen($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=56 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_psi_eapb($id=''){

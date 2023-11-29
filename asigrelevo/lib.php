@@ -25,7 +25,7 @@ function lis_asigrelevo(){
 	FROM personas P 
   LEFT JOIN asigrelevo S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc 
   LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-  LEFT JOIN hog_geo G ON V.idgeo = CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v)
+  LEFT JOIN hog_geo G ON V.idpre = G.idgeo
   WHERE P.cuidador = 'SI'".whe_asigrelevo());
 
 	$total=$info['responseResult'][0]['total'];
@@ -45,7 +45,7 @@ function lis_asigrelevo(){
   FROM personas P 
   LEFT JOIN asigrelevo S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc 
   LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-  LEFT JOIN hog_geo G ON V.idgeo = CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v)
+  LEFT JOIN hog_geo G ON V.idpre = G.idgeo
   WHERE P.cuidador = 'SI'";
 /* 	$sql="SELECT DISTINCT concat(P.tipo_doc,'_',idpersona) ACCIONES, P.tipo_doc AS 'Tipo Documento',idpersona AS 'N° Documento', CONCAT(nombre1, ' ',apellido1) AS Nombre,
 	sector_catastral 'sector castastral',nummanzana manzana,predio_num predio,FN_CATALOGODESC(38,S.estado) estado     

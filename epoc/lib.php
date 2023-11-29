@@ -25,7 +25,7 @@ function lis_tamepoc(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamepoc']))? ($_POST['pag-tamepoc']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.documento,'_',O.tipo_doc,'_') ACCIONES,O.documento Documento,FN_CATALOGODESC(1,O.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion`Descripcion FROM tam_epoc O 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.documento,'_',O.tipo_doc,'_') ACCIONES,id_epoc 'Cod Registro',O.documento Documento,FN_CATALOGODESC(1,O.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion`Descripcion FROM tam_epoc O 
 	LEFT JOIN personas P ON O.documento = P.idpersona 
 	WHERE '1'='1'";
 	$sql.=whe_tamepoc();

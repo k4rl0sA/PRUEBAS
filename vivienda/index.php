@@ -105,21 +105,16 @@ function searPers(a){
 			xmlhttp.send('a=opc&tb=usuario&id='+a.value);
 			
 			const ter=document.getElementById('fterri');
-			const sec=document.getElementById('fsector');
-			const man=document.getElementById('fmanz');
 			const pre=document.getElementById('fpred');
-			const uni=document.getElementById('funhab');
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
-				if (Object.keys(rta).length === 4) {
+				if (Object.keys(rta).length === 5) {
 					ter.value='';
 					des.value='';
 					has.value='';
-					sec.value=data['sector_catastral'];
-					man.value=data['nummanzana'];
-					pre.value=data['predio_num'];
-					uni.value=data['unidad_habit'];
+					pre.value=data['idgeo'];
+					inform('<p class="blanco">Subred:'+data['subred']+'<br>Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Equipo: '+data['equipo']+'</p>');
 					actualizar();
 				}else{
 					const hoy = new Date();
@@ -128,10 +123,7 @@ function searPers(a){
 					const usu = document.getElementById('fusu');
 					ter.value='';
 					usu.value = '';
-					sec.value = '';
-					man.value = '';
 					pre.value = '';
-					uni.value = '';
 					actualizar();
 					warnin('NO se ha encontrado un registro asociado.');
 				}
@@ -162,12 +154,9 @@ $territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ?
 		<select class="captura" id="fterri" name="fterri" onchange="actualizar();"<?php echo $territorio; ?> ><?php echo $territorios; ?>
 		</select>
 	</div>
-	
-	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
-	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
-	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
-	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>
-	<div class="campo"><div>Unidad Habitacional</div><input class="captura" size=6 id="funhab" name="funhab" OnChange="actualizar();"></div>
+
+	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
+	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<div class="campo"><div>Colaborador</div>
 		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled>
 			<?php echo $digitadores; ?>

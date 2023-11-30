@@ -12,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='administracion';	
+var mod='casos';	
 var ruta_app='lib.php';
 
 function csv(b){
@@ -21,8 +21,12 @@ function csv(b){
 }
 
 function actualizar(){
-	mostrar(mod);
+	act_lista(mod);
 }
+
+/* function actualizar(){
+	mostrar(mod);
+} */
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
@@ -78,13 +82,13 @@ function grabar(tb='',ev){
         }
     </style>
 </head>
-<body>
+<body Onload="actualizar();">
 <?php
 
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='administracion';
+$mod='casos';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=184 and estado='A' order by 1",'1');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('ENFATE','MEDATE','PSIEAC') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 2",$_SESSION['us_sds']);
@@ -93,9 +97,9 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN
 
 <div class='col-0 panel' id='<?php echo $mod; ?>'>
 <form method='post' id='fapp'>
-      <div class='titulo' > ZONA DE ADMINISTRACIÓN
+      <div class='titulo' > ZONA DE ADMINISTRACIÓN DE CASOS
 		<nav class='menu left' >
-    <li class='icono gestusu'      title='Gestionar Usuarios' onclick="mostrar('gestionusu','sta',event,'','lib.php',0);"></li>
+    <li class='icono gestusu'      title='Gestionar Usuarios' onclick="mostrar('gestionusu','pro');"></li>
     <li class='icono exportar'      title='Exportar Información'    Onclick="mostrar('planos','sta',event,'','lib.php',0);"></li>
     </nav>
 		<nav class='menu right' >

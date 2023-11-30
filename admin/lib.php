@@ -48,6 +48,7 @@ function cmp_gestionusu(){
 }
 
 
+
 function cmp_planos(){
 	$rta="";
 	$ini=-60;

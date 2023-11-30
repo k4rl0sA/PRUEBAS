@@ -76,6 +76,7 @@ WHERE G.predio = G.predio AND ( (G.estado_v IN (1, 2, 3)) OR (G.estado_v NOT IN 
 AND DATE(H.fecha_create) BETWEEN $feini and $fefin
 */
 $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
+	H.idgeo 'Cod. Predio',
     FN_CATALOGODESC(42, H.estrategia) AS estrategia,direccion,
     H.sector_catastral,
     H.nummanzana AS Manzana,

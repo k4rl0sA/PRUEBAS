@@ -146,7 +146,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='homes';
 $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 1 days")); 
+$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION['us_sds']);
@@ -173,15 +173,16 @@ $territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ?
 			<?php echo $digitadores; ?>
 		</select>
 	</div>
+	
 	<div class="campo">
 		<div>Fecha Asignado Desde</div>
-		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();">
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">
+		
 	</div>
 	<div class="campo">
 		<div>Fecha Asignado Hasta</div>
-		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
+		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
 	</div>
-
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

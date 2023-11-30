@@ -168,12 +168,12 @@ function gra_tamBarthel(){
 	}else{
 
 	$infodata_barthel=datos_mysql("SELECT barthel_momento,barthel_idpersona FROM hog_tam_barthel
-		 WHERE barthel_idpersona = {$_POST['barthel_idpersona']} AND barthel_momento = 2 ");
+		 WHERE barthel_idpersona = '{$_POST['barthel_idpersona']}' AND barthel_momento = 2 ");
 	if (isset($infodata_barthel['responseResult'][0])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_barthel=datos_mysql("SELECT barthel_momento,barthel_idpersona FROM hog_tam_barthel
-		 WHERE barthel_idpersona = {$_POST['barthel_idpersona']} AND barthel_momento = 1 ");
+		 WHERE barthel_idpersona = '{$_POST['barthel_idpersona']}' AND barthel_momento = 1 ");
 		if (isset($infodata2_barthel['responseResult'][0])){
 			$idmomento = 2;
 		}else{

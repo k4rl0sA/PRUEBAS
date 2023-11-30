@@ -176,12 +176,12 @@ function gra_tamhamilton(){
 	}else{
 
 	$infodata_hamilton=datos_mysql("SELECT hamilton_momento,hamilton_idpersona FROM hog_tam_hamilton
-		 WHERE hamilton_idpersona = {$_POST['hamilton_idpersona']} AND hamilton_momento = 2 ");
+		 WHERE hamilton_idpersona = '{$_POST['hamilton_idpersona']}' AND hamilton_momento = 2 ");
 	if (isset($infodata_hamilton['responseResult'][0])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_hamilton=datos_mysql("SELECT hamilton_momento,hamilton_idpersona FROM hog_tam_hamilton
-		 WHERE hamilton_idpersona = {$_POST['hamilton_idpersona']} AND hamilton_momento = 1 ");
+		 WHERE hamilton_idpersona = '{$_POST['hamilton_idpersona']}' AND hamilton_momento = 1 ");
 		if (isset($infodata2_hamilton['responseResult'][0])){
 			$idmomento = 2;
 		}else{

@@ -166,12 +166,12 @@ function gra_tamzung(){
 	}else{
 
 	$infodata_zung=datos_mysql("SELECT zung_momento,zung_idpersona FROM hog_tam_zung
-		 WHERE zung_idpersona = {$_POST['zung_idpersona']} AND zung_momento = 2 ");
+		 WHERE zung_idpersona = '{$_POST['zung_idpersona']}' AND zung_momento = 2 ");
 	if (isset($infodata_zung['responseResult'][0])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_zung=datos_mysql("SELECT zung_momento,zung_idpersona FROM hog_tam_zung
-		 WHERE zung_idpersona = {$_POST['zung_idpersona']} AND zung_momento = 1 ");
+		 WHERE zung_idpersona = '{$_POST['zung_idpersona']}' AND zung_momento = 1 ");
 		if (isset($infodata2_zung['responseResult'][0])){
 			$idmomento = 2;
 		}else{

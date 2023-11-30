@@ -180,12 +180,12 @@ function gra_tamzarit(){
 	}else{
 
 	$infodata_zarit=datos_mysql("SELECT zarit_momento,zarit_idpersona FROM hog_tam_zarit
-		 WHERE zarit_idpersona = {$_POST['zarit_idpersona']} AND zarit_momento = 2 ");
+		 WHERE zarit_idpersona = '{$_POST['zarit_idpersona']}' AND zarit_momento = 2 ");
 	if (isset($infodata_zarit['responseResult'][0])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_zarit=datos_mysql("SELECT zarit_momento,zarit_idpersona FROM hog_tam_zarit
-		 WHERE zarit_idpersona = {$_POST['zarit_idpersona']} AND zarit_momento = 1 ");
+		 WHERE zarit_idpersona = '{$_POST['zarit_idpersona']}' AND zarit_momento = 1 ");
 		if (isset($infodata2_zarit['responseResult'][0])){
 			$idmomento = 2;
 		}else{

@@ -1472,7 +1472,7 @@ function opc_subred($id=''){
 }
 
 function opc_perfil($id=''){
-	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' AND  perfil not in('ADM') ORDER BY 1",$id);
 }
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);

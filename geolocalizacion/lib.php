@@ -47,7 +47,7 @@ WHERE H.estado_v IN (1, 2, 3)
       AND H2.predio_num = H.predio_num
       AND H2.unidad_habit = H.unidad_habit
       AND H2.estrategia = H.estrategia
-      AND H2.estado_v in( 4,5,6,7))) as subquery";
+      AND H.estado_v in( 4,5,6,7))) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];
 
@@ -99,13 +99,13 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
       	AND H2.predio_num = H.predio_num
       	AND H2.unidad_habit = H.unidad_habit
       	AND H2.estrategia = H.estrategia
-		AND H2.estado_v in( 4,5,6,7))
+		AND H.estado_v in( 4,5,6,7))
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 
 		//  echo $sql;
 		$sql1="";
-		$_SESSION['sql_hog_geoloc']=$sql1;
+		//$_SESSION['sql_hog_geoloc']=$sql1;
 		$data = datos_mysql($sql);
     return create_table($total, $data["responseResult"], "hog_geoloc", $regxPag);
 }

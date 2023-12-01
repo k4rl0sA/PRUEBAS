@@ -89,7 +89,10 @@ function disFecar(a){
 }
 
 function searPers(a){
-	if (loader != undefined) loader.style.display = 'block';
+	const doc=document.getElementById('fusu');
+	const pre=document.getElementById('fpred');
+	if((doc.value!='' || doc!=undefined) && (pre.value!='' || pre!=undefined) ){
+		if (loader != undefined) loader.style.display = 'block';
 		if (window.XMLHttpRequest)
 			xmlhttp = new XMLHttpRequest();
 		else
@@ -105,7 +108,6 @@ function searPers(a){
 			xmlhttp.send('a=opc&tb=usuario&id='+a.value);
 			
 			const ter=document.getElementById('fterri');
-			const pre=document.getElementById('fpred');
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
@@ -124,10 +126,12 @@ function searPers(a){
 					ter.value='';
 					usu.value = '';
 					pre.value = '';
-					actualizar();
+					//actualizar();
 					warnin('NO se ha encontrado un registro asociado.');
 				}
+
 	}
+}
 
 </script>
 </head>
@@ -156,7 +160,7 @@ $territorio = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ?
 	</div>
 
 	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
-	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
+	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" ></div>
 	<div class="campo"><div>Colaborador</div>
 		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled>
 			<?php echo $digitadores; ?>

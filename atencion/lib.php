@@ -19,13 +19,15 @@ else {
   }
 }
 
+
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit FROM hog_viv hv 
-	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
-	inner JOIN personas p ON hv.idviv=p.vivipersona
+	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
+	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
+	LEFT JOIN personas p ON hv.idviv=p.vivipersona
+	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
-//  echo $sql;
+// echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 
 		return json_encode($info['responseResult'][0]);
@@ -33,7 +35,6 @@ function opc_usuario(){
 		return "[]";
 	}
 }
-
 
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
@@ -89,14 +90,8 @@ function whe_homes() {
 	}else{
 		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')"; 
 	}
-	if ($_POST['fsector'])
-		$sql .= " AND H.sector_catastral = '".$_POST['fsector']."'";
-	if ($_POST['fmanz'])
-		$sql .= " AND H.nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
-		$sql .= " AND H.predio_num = '".$_POST['fpred']."'";
-	if ($_POST['funhab'])
-		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";
+		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
 	if ($_POST['fdigita'])
 		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['fdes']) {

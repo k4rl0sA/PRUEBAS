@@ -121,7 +121,10 @@ function enabEfec(a,clsCmp,clsNb){
 //*********************************FIN FUNCIONES VSP*************************
 
 function searPers(a){
-	if (loader != undefined) loader.style.display = 'block';
+	const doc=document.getElementById('fusu');
+	const pre=document.getElementById('fpred');
+	if((doc.value!='' || doc!=undefined) && (pre.value!='' || pre!=undefined) ){
+		if (loader != undefined) loader.style.display = 'block';
 		if (window.XMLHttpRequest)
 			xmlhttp = new XMLHttpRequest();
 		else
@@ -135,21 +138,15 @@ function searPers(a){
 			xmlhttp.open("POST", ruta_app,false);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('a=opc&tb=usuario&id='+a.value);
-			const sec=document.getElementById('fsector');
-			const man=document.getElementById('fmanz');
-			const pre=document.getElementById('fpred');
-			const uni=document.getElementById('funhab');
+			
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
-				if (Object.keys(rta).length === 7) {
+				if (Object.keys(rta).length === 5) {
 					des.value='';
 					has.value='';
-					sec.value=data['sector_catastral'];
-					man.value=data['nummanzana'];
-					pre.value=data['predio_num'];
-					uni.value=data['unidad_habit'];
-					inform('<p class="blanco">Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Equipo: '+data['equipo']+'</p>');
+					pre.value=data['idgeo'];
+					inform('<p class="blanco">Subred:'+data['subred']+'<br>Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Equipo: '+data['equipo']+'</p>');
 					actualizar();
 				}else{
 					const hoy = new Date();
@@ -157,15 +154,12 @@ function searPers(a){
 					des.value = hoy.toISOString().split('T')[0];
 					const usu = document.getElementById('fusu');
 					usu.value = '';
-					sec.value = '';
-					man.value = '';
 					pre.value = '';
-					uni.value = '';
-					actualizar();
+					//actualizar();
 					warnin('NO se ha encontrado un registro asociado.');
 				}
+	}
 }
-
 
 </script>
 </head>
@@ -196,21 +190,10 @@ $bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 
 		</select>
 	</div>
 
-	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fusu" name="fusu" OnChange="searPers(this);"></div>
-	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fsector" name="fsector" OnChange="actualizar();"></div>
-	<div class="campo"><div>Manzana</div><input class="captura" size=6 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
-	<div class="campo"><div>Predio</div><input class="captura" size=6 id="fpred" name="fpred" OnChange="actualizar();"></div>
-	<div class="campo"><div>Unidad Habitacional</div><input class="captura" size=6 id="funhab" name="funhab" OnChange="actualizar();"></div>
-	<!-- <div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
-			<?php echo''; // $digitadores; ?>
-		</select>
-	</div>-->
-	<div class="campo"><div>Localidad</div>
-		<select class="captura" id="flocalidad" name="flocalidad" OnChange="actualizar();">
-			<?php echo $localidades; ?>
-		</select>
-	</div>
+	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
+	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" ></div>
+	
+	
 	<div class="campo">
 		<div>Fecha Asignado Desde</div>
 		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">

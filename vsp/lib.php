@@ -19,15 +19,14 @@ else {
   }   
 }
 
-
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT sector_catastral,nummanzana,predio_num,unidad_habit,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
-	inner JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
-	inner JOIN personas p ON hv.idviv=p.vivipersona
+	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
+	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
+	LEFT JOIN personas p ON hv.idviv=p.vivipersona
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
-//  echo $sql;
+// echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 
 		return json_encode($info['responseResult'][0]);
@@ -68,14 +67,8 @@ function whe_homes() {
 	// print_r($_POST);
 	if ($_POST['fbinas'])
 		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
-	if ($_POST['fsector'])
-		$sql .= " AND sector_catastral = '".$_POST['fsector']."'";
-	if ($_POST['fmanz'])
-		$sql .= " AND nummanzana = '".$_POST['fmanz']."'";
 	if ($_POST['fpred'])
-		$sql .= " AND predio_num = '".$_POST['fpred']."'";
-	if ($_POST['funhab'])
-		$sql .= " AND H.unidad_habit = '".$_POST['funhab']."'";	
+		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
 			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fhas']."'";

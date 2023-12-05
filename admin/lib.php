@@ -29,54 +29,59 @@ function perfilUsu(){
 function cmp_gestionusu(){
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['gestion'=>'','perfil'=>'','documento'=>'','usuarios'=>'','nombre'=>'','correo'=>'','subred'=>''];
+	$t=['gestion'=>'','perfil'=>'','documento'=>'','usuarios'=>'','nombre'=>'','correo'=>'','subred'=>'','bina'=>'','territorio'=>'','perfiln'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
-	$w='administracion';
+	$w='adm_usuarios';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',false,true,'','col-2');
-	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',false,true,'','col-2');
-	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-2');
-	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'Nombres y Apellidos','nombre',null,'',false,true,'','col-2');
-	$c[]=new cmp('correo','t','30',$d['correo'],$w.' '.$o,'Correo','correo',null,'',false,true,'','col-2');
-	// $c[]=new cmp('subred','s','3',$d['subred'],$w.' '.$o,'subred','subred',null,'',false,true,'','col-2');
-	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' '.$o,'Usuarios','usuarios',null,'',false,true,'','col-2');
+	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2',"enClSe('gestion','GsT',[['Rpw'],['Rpw'],['cUS'],['cRL']]);");
+	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSe('perfil','prF',[['bIN'],['TEr']]);");
+	$c[]=new cmp('documento','t','20',$d['documento'],$w.' GsT cUS '.$o,'N° Documento','documento',null,'',false,false,'','col-15');
+	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' GsT cUS '.$o,'Nombres y Apellidos','nombre',null,'',false,false,'','col-3');
+	$c[]=new cmp('correo','t','30',$d['correo'],$w.' GsT cUS '.$o,'Correo','correo',null,'',false,false,'','col-25');
+	$c[]=new cmp('bina','s','3',$d['bina'],$w.' GsT prF bIN '.$o,'bina','bina',null,'',false,false,'','col-2');
+	$c[]=new cmp('territorio','s','3',$d['territorio'],$w.' GsT prF TEr '.$o,'territorio','territorio',null,'',false,false,'','col-2');
+	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' cRL Rpw  GsT '.$o,'Usuarios','usuarios',null,'',false,false,'','col-2');
+	$c[]=new cmp('perfiln','s','3',$d['perfiln'],$w.' GsT cRL '.$o,'Perfil Nuevo','Perfil',null,'',true,true,'','col-1',"enClSe('perfil','prF',[['bIN'],['TEr']]);");
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"consultar('lista_consulta');\">Ejecutar</button></center>";
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('adm_usuarios','adm_usuarios');\">Guardar</button></center>";
 	return $rta;
 }
 
 
-function lis_casos(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion` A JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ".whe_admision());
+function lis_adm_usuarios(){
+	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_usuarios` C 
+	JOIN usuarios U ON C.usu_creo = U.id_usuario 
+	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND usu_creo='{$_SESSION['us_sds']}'".whe_adm_usuarios());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
-	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-adm_usuarios']))? ($_POST['pag-adm_usuarios']-1)* $regxPag:0;
 	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
-	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
-	FROM `adm_facturacion` A 
-	JOIN usuarios U ON A.usu_creo = U.id_usuario
-	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
-	$sql.=whe_admision();
+	$sql="SELECT id_gestusu ACCIONES, 
+	accion,documento,C.nombres,C.correo,C.perfil,C.subred,bina_territorio,C.componente,respuesta,U.nombre,fecha_create,C.estado
+	FROM `adm_usuarios` C 
+	JOIN usuarios U ON C.usu_creo = U.id_usuario
+	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND usu_creo='{$_SESSION['us_sds']}'";
+	$sql.=whe_adm_usuarios();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"admision",$regxPag);
+	return create_table($total,$datos["responseResult"],"adm_usuarios",$regxPag);
 }
 
-function whe_admision() {
+function whe_adm_usuarios() {
 	$sql = "";
-	 if ($_POST['fdocumento'])
-		$sql .= " AND documento = '".$_POST['fdocumento']."'";
-	if ($_POST['fcod_admin'])
-		$sql .= " AND cod_admin ='".$_POST['fcod_admin']."' ";
-	if($_POST['fdigita']) 
-	    $sql .= " AND usu_creo ='".$_POST['fdigita']."'";
-	if ($_POST['festado_hist'])
-		$sql .= " AND estado_hist ='".$_POST['festado_hist']."' ";
+	 if ($_POST['fcaso'])
+		$sql .= " AND id_gestusu = '".$_POST['fcaso']."'";
+	if ($_POST['fdes']) {
+		if ($_POST['fhas']) {
+			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
+		} else {
+			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
+		}
+	}
 	return $sql;
 }
 
@@ -119,6 +124,22 @@ function gra_gestion(){
 		$rta=dato_mysql($sql);
   return $rta;
 	// }
+}
+
+function gra_adm_usuarios(){
+$gestion = cleanTxt($_POST['gestion']);
+$documento = cleanTxt($_POST['documento']);
+$nombre = cleanTxt($_POST['nombre']);
+$correo = cleanTxt($_POST['correo']);
+$perfil = cleanTxt($_POST['perfil']);
+$bina_territorio = cleanTxt($_POST['bina_territorio']);
+$componente = cleanTxt($_POST['componente']);
+
+$sql="INSERT INTO adm_usuarios 
+	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),
+	$bina_territorio,$componente,NULL,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+	$rta=dato_mysql($sql);
+	return $rta;
 }
 
 function get_tabla($a){
@@ -1254,6 +1275,7 @@ function lis_violges($txt){
 function lis_violreite($txt){
 	$sql="SELECT 
 G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_violreite AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,
 FN_CATALOGODESC(88,A.asiste_control) AS Asiste_Controles_CYD,FN_CATALOGODESC(88,A.vacuna_comple) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(88,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva,FN_CATALOGODESC(88,A.lacmate_comple) AS Lactancia_Materna_Complementaria,FN_CATALOGODESC(88,A.alime_complemen) AS Alimentacion_Complementaria,FN_CATALOGODESC(170,A.riesgo_violen) AS Persisten_Riesgos_Violencia,FN_CATALOGODESC(170,A.apoyo_sector) AS Apoyo_Otro_Sector,FN_CATALOGODESC(89,A.cual_sector) AS Cual_Sector,
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
@@ -1474,6 +1496,12 @@ $sql1.=whe_data();
 	echo json_encode($rta); */
 }
 
+function opc_bina($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=217 and estado='A' ORDER BY 1",$id);
+}
+function opc_territorio($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=218 and estado='A' ORDER BY 1",$id);
+}
 function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
@@ -1512,6 +1540,20 @@ function men_administracion(){
  return $rta;
 }
 
+function focus_gestionusu(){
+	return 'homes1';
+}
+function men_gestionusu(){
+	$rta=cap_menus('homes','pro');
+	return $rta;
+}
+function focus_planos(){
+	return 'homes1';
+}
+function men_planos(){
+	$rta=cap_menus('homes','pro');
+	return $rta;
+}
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
@@ -1544,7 +1586,7 @@ function formato_dato($a,$b,$c,$d){
 	}
 	if ($a=='adm-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'administracion',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'administracion',event,this,'lib.php');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('administracion','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
  return $rta;

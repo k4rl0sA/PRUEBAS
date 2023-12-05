@@ -5,14 +5,15 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administración || SIGINF</title>
+<title>gestión de Usuarios || SIGINF</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
+<script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='casos';	
+var mod='adm_usuarios';	
 var ruta_app='lib.php';
 
 function csv(b){
@@ -88,19 +89,35 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='casos';
-$ya = new DateTime();
-$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=184 and estado='A' order by 1",'1');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('ENFATE','MEDATE','PSIEAC') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 2",$_SESSION['us_sds']);
+$mod='adm_usuarios';
+$hoy = date("Y-m-d");
+$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 ?>
 
 
-<div class='col-0 panel' id='<?php echo $mod; ?>'>
 <form method='post' id='fapp'>
-      <div class='titulo' > ZONA DE ADMINISTRACIÓN DE CASOS
+<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
+	
+
+<div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" ></div>
+
+	
+	<div class="campo">
+		<div>Fecha Asignado Desde</div>
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">
+		
+	</div>
+	<div class="campo">
+		<div>Fecha Asignado Hasta</div>
+		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
+	</div>
+</div>
+<div class='col-8 panel' id='<?php echo $mod; ?>'>
+      <div class='titulo' > ZONA DE GESTIÓN DE USUARIOS
 		<nav class='menu left' >
-    <li class='icono gestusu'      title='Gestionar Usuarios' onclick="mostrar('gestionusu','pro');"></li>
-    <li class='icono exportar'      title='Exportar Información'    Onclick="mostrar('planos','sta',event,'','lib.php',0);"></li>
+    <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
+    <li class='icono gestusu'      title='Gestión de Usuarios' onclick="mostrar('gestionusu','pro',event,'','lib.php','7','Gestión de Usuarios');"></li>
+    <li class='icono exportar'      title='Exportar Información'    Onclick="mostrar('planos','pro');"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

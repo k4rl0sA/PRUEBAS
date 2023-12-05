@@ -38,7 +38,7 @@ function cmp_gestionusu(){
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2',"enClSe('gestion','GsT',[['Rpw'],['Rpw'],['cUS'],['cRL']]);");
 	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSe('perfil','prF',[['bIN'],['TEr']]);");
 	$c[]=new cmp('documento','t','20',$d['documento'],$w.' GsT cUS '.$o,'N° Documento','documento',null,'',false,false,'','col-15');
-	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' GsT cUS '.$o,'Nombres y Apellidos','nombre',null,'',false,false,'','col-3');
+	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' GsT cUS '.$o,'Nombres y Apellidos','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('correo','t','30',$d['correo'],$w.' GsT cUS '.$o,'Correo','correo',null,'',false,false,'','col-25');
 	$c[]=new cmp('bina','s','3',$d['bina'],$w.' GsT prF bIN '.$o,'bina','bina',null,'',false,false,'','col-2');
 	$c[]=new cmp('territorio','s','3',$d['territorio'],$w.' GsT prF TEr '.$o,'territorio','territorio',null,'',false,false,'','col-2');

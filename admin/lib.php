@@ -649,7 +649,7 @@ LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P
 }
 
 function lis_caracter($txt){
-	$sql="SELECT G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,V.numfam AS FAMILIA_N°,V.fecha AS FECHA_CARACTERIZACION,FN_CATALOGODESC(165,V.estado_aux) AS ESTADO,concat(V.complemento1,' ',V.nuc1,' ',V.complemento2,' ',V.nuc2,' ',V.complemento3,' ',V.nuc3) AS COMPLEMENTOS,
+	$sql="SELECT G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,V.fecha AS FECHA_CARACTERIZACION,FN_CATALOGODESC(165,V.estado_aux) AS ESTADO, V.fechaupd AS Fecha_Actualizacion, FN_CATALOGODESC(215,V.motivoupd) AS Motivo_Actualizacion, FN_CATALOGODESC(87,V.eventoupd) AS Evento_Actualizacion, V.fechanot AS Fecha_Notificacion,concat(V.complemento1,' ',V.nuc1,' ',V.complemento2,' ',V.nuc2,' ',V.complemento3,' ',V.nuc3) AS COMPLEMENTOS,
 V.telefono1 AS TELEFONO_1,V.telefono2 AS TELEFONO_2,V.telefono3 AS TELEFONO_3,
 FN_CATALOGODESC(166,V.crit_epi) AS CRITERIO_EPIDE,FN_CATALOGODESC(167,V.crit_geo) AS CRITERIO_GEO,FN_CATALOGODESC(168,V.estr_inters) AS ESTRATEGIAS_INTERSEC,FN_CATALOGODESC(169,V.fam_peretn) AS FAM_PERTEN_ETNICA,FN_CATALOGODESC(170,V.fam_rurcer) AS FAMILIAS_RURALIDAD_CER,
 FN_CATALOGODESC(4,V.tipo_vivienda) AS TIPO_VIVIENDA,FN_CATALOGODESC(8,V.tendencia) AS TENENCIA_VIVIENDA,V.dormitorios AS DORMITORIOS,V.actividad_economica AS USO_ACTIVIDAD_ECONO, FN_CATALOGODESC(10,V.tipo_familia) AS TIPO_FAMILIA, V.personas AS N°_PERSONAS, FN_CATALOGODESC(13,V.ingreso) AS INGRESO_ECONOMICO_FAM,

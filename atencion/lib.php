@@ -158,7 +158,7 @@ function lis_famili(){
 		$sql.="' ORDER BY fecha_create";
 		//  echo $sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"famili-lis",5);
+		return panel_content($datos["responseResult"],"famili-lis",10);
 		}
 	
 

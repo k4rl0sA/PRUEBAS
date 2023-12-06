@@ -162,7 +162,7 @@ function opc_asignado($id=''){
 	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 	$usu=divide($rta["responseResult"][0]['usu']);
 	$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ;
-	return opc_sql("SELECT `id_usuario`,concat(perfil,' - ',nombre) FROM `usuarios` WHERE `perfil`IN ('TSOREL','ENFREL','AUXREL','TOPREL','LEFREL','LARREL') AND componente='EAC' AND subred IN(".$subred.") ORDER BY (2)",$id);
+	return opc_sql("SELECT `id_usuario`,concat(perfil,' - ',nombre) FROM `usuarios` WHERE `perfil`IN ('TSOREL','ENFREL','RELENF','AUXREL','TOPREL','LEFREL','LARREL') AND componente='EAC' AND subred IN(".$subred.") ORDER BY (2)",$id);
 }
 
 

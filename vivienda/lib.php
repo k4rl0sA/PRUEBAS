@@ -80,7 +80,6 @@ function lis_homes(){
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
-
 function whe_homes() {
 	$sql = "";
 	if (!empty($_POST['fpred'])) {

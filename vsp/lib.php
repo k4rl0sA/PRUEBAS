@@ -56,19 +56,17 @@ WHERE 1 ".whe_homes()." AND estado_v in('7')";
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
-//echo $sql;
+echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 
-function whe_homes() {
+/* function whe_homes() {
 	$sql = " AND H.subred in(SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}')";
 	// print_r($_POST);
 	if ($_POST['fbinas'])
 		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
-	if ($_POST['fpred'])
-		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
 			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fhas']."'";
@@ -83,9 +81,36 @@ function whe_homes() {
 	}else{
 		//$sql.=" AND H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}'";
 	} 
+		if ($_POST['fpred'])
+		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
+	return $sql;
+} */
+
+function whe_homes() {
+	$sql = " AND H.subred in(SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}')";
+	if (!empty($_POST['fpred'])) {
+		$sql .= " AND H.idgeo = '" . $_POST['fpred'] . "'";
+		if(!$_POST['fbinas']){
+			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
+		}else{
+			$sql .=" AND H.equipo='".$_POST['fbinas']."'";
+		}
+	} else {
+		if(!$_POST['fbinas']){
+			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
+		}else{
+			$sql .=" AND H.equipo='".$_POST['fbinas']."'";
+		} 
+		if ($_POST['fdes']) {
+			if ($_POST['fhas']) {
+				$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fhas']."'";
+			}else{
+				$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fdes']."'";
+			}
+		}
+	}
 	return $sql;
 }
-
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 

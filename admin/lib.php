@@ -35,15 +35,15 @@ function cmp_gestionusu(){
 	$w='adm_usuarios';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2',"enClSe('gestion','GsT',[['Rpw'],['Rpw'],['cUS'],['cRL']]);");
-	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSe('perfil','prF',[['bIN'],['TEr']]);");
+	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2',"enabLoca('gestion','GsT');enClSe('gestion','GsT',[['Rpw'],['Rpw'],['cUS'],['cRL']]);");
+	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSeDe('gestion','perfil','prF',[[],['TEr'],[],['bIN'],[]]);",['usuarios']);
 	$c[]=new cmp('documento','t','20',$d['documento'],$w.' GsT cUS '.$o,'N° Documento','documento',null,'',false,false,'','col-15');
-	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' GsT cUS '.$o,'Nombres y Apellidos','nombre',null,'',false,false,'','col-4');
+	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' GsT cUS '.$o,'Nombres y Apellidos','nombre',null,'',false,false,'','col-3');
 	$c[]=new cmp('correo','t','30',$d['correo'],$w.' GsT cUS '.$o,'Correo','correo',null,'',false,false,'','col-25');
-	$c[]=new cmp('bina','s','3',$d['bina'],$w.' GsT prF bIN '.$o,'bina','bina',null,'',false,false,'','col-2');
-	$c[]=new cmp('territorio','s','3',$d['territorio'],$w.' GsT prF TEr '.$o,'territorio','territorio',null,'',false,false,'','col-2');
-	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' cRL Rpw  GsT '.$o,'Usuarios','usuarios',null,'',false,false,'','col-2');
-	$c[]=new cmp('perfiln','s','3',$d['perfiln'],$w.' GsT cRL '.$o,'Perfil Nuevo','Perfil',null,'',true,true,'','col-1',"enClSe('perfil','prF',[['bIN'],['TEr']]);");
+	$c[]=new cmp('bina','s','3',$d['bina'],$w.'  prF bIN '.$o,'bina','bina',null,'',false,false,'','col-2');
+	$c[]=new cmp('territorio','s','3',$d['territorio'],$w.' prF TEr '.$o,'territorio','territorio',null,'',false,false,'','col-2');
+	$c[]=new cmp('usuarios','s','20',$d['usuarios'],$w.' cRL Rpw  GsT '.$o,'Usuarios','usuarios',null,'',false,false,'','col-4');
+	$c[]=new cmp('perfiln','s','3',$d['perfiln'],$w.' GsT cRL '.$o,'Perfil Nuevo','Perfil',null,'',true,false,'','col-15',"enClSe('perfiln','prF',[['bIN'],['TEr']]);");
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('adm_usuarios','adm_usuarios');\">Guardar</button></center>";
 	return $rta;
@@ -1497,17 +1497,21 @@ $sql1.=whe_data();
 }
 
 function opc_bina($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=217 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=217 and estado='A' and valor=(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",$id);
 }
 function opc_territorio($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=218 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and valor=(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}')  ORDER BY 1",$id);
 }
 function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
-
 function opc_perfil($id=''){
-	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' AND  perfil not in('ADM') ORDER BY 1",$id);
+	$com=datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
+	$comp = $com['responseResult'][0]['componente'] ;
+	// return $comp;
+	return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor='1'",$id);
+
+	// return opc_sql("SELECT perfil,perfil FROM `usuarios` WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' AND  perfil not in('ADM') ORDER BY 1",$id);
 }
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
@@ -1526,7 +1530,18 @@ function opc_rol($id=''){
 }
 
 function opc_usuarios($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT id_usuario,concat_ws(' - ',id_usuario,nombre,perfil) FROM usuarios WHERE  estado='A' AND componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY 1",$id);
+}
+
+function opc_perfilusuarios($id=''){
+	
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT id_usuario,concat_ws(' - ',id_usuario,nombre,perfil) FROM usuarios WHERE estado='A' AND componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') AND perfil=(SELECT descripcion FROM `catadeta` WHERE idcatalogo=218 AND idcatadeta=$id[0]) ORDER BY 1";
+		$info=datos_mysql($sql);		
+		// var_dump($sql);
+		return json_encode($info['responseResult']);
+	} 
 }
 
 

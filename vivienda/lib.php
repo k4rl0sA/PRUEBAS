@@ -21,7 +21,7 @@ else {
 
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
+	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.territorio FROM hog_viv hv 
 	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
 	LEFT JOIN personas p ON hv.idviv=p.vivipersona
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
@@ -75,29 +75,41 @@ function lis_homes(){
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
+
 function whe_homes() {
 	$sql = "";
-	if ($_POST['fterri']){
-		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}')";
-	}else{
-		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')"; 
-	}
-	if ($_POST['fpred'])
-		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
-	if ($_POST['fdigita'])
-		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
-	if ($_POST['fdes']) {
+	if (!empty($_POST['fpred'])) {
+		$sql .= " AND H.idgeo = '" . $_POST['fpred'] . "'";
+		if ($_POST['fterri']) {
+			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
+		} else {
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+		}
+		if ($_POST['fdigita']) {
+			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
+		}
+	} else {
+		if ($_POST['fterri']) {
+			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
+		} else {
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+		}
+		if ($_POST['fdigita']) {
+			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
+		}
+		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
+				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
 			} else {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23:59:59'";
+				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
 			}
 		}
+	}
 	return $sql;
 }
 

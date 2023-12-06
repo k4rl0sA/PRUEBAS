@@ -160,7 +160,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 									}
 									if ($i === 8) {//microterritorio- Manzana del cuidado
 										$valor = trim($campo[$i]);
-    									if (strlen($valor) != 2 || $valor === '0') {
+    									if (strlen($valor) != 2 || $valor === '0' && $valor>21) {
 											$rta = array(
 												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en Manzana del Cuidado debe contener 2 digitos'
 											);

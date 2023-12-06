@@ -603,20 +603,10 @@ function enabEtap(a, b) {
     });
 }
 
-/* 
-function enClSe(act, clin, claf) {
-    const ac = document.getElementById(act);
-    const els = [...document.querySelectorAll('.' + clin)];
-    const valor = parseInt(ac.value);
 
-    els.forEach(elm => {
-        const clases = claf[valor - 1].map(clase => [`select.${clase}`, `input.${clase}`, `textarea.${clase}`]).flat();
-        const bloquea = clases.some(clase => elm.classList.contains(clase));
-        enaFie(els,bloquea);
-    });
+function enClSeDe(ac,act, clin, claf){
+	if (document.getElementById(ac).value==3) enClSe(act, clin, claf);
 }
- */
-
 
 function enClSe(act, clin, claf) {
     const ac = document.getElementById(act);

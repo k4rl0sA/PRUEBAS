@@ -170,7 +170,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='homes';
 $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
+$ayer = date("Y-m-d",strtotime($hoy."- 3 days")); 
 /* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']); */
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
@@ -191,8 +191,8 @@ $bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 
 	</div>
 
 	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
-	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" ></div>
-	
+		<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" onchange="actualizar();"></div>
+
 	
 	<div class="campo">
 		<div>Fecha Asignado Desde</div>

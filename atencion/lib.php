@@ -83,26 +83,7 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
-function whe_homes() {
-	$sql = "";
-	if ($_POST['fterri']){
-		$sql .=" AND (H.territorio='".$_POST['fterri']."' OR H.usu_creo = '{$_SESSION['us_sds']}')";
-	}else{
-		$sql .=" AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')"; 
-	}
-	if ($_POST['fpred'])
-		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
-	if ($_POST['fdigita'])
-		$sql .= " AND H.usu_creo ='".$_POST['fdigita']."'";
-	if ($_POST['fdes']) {
-			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='".$_POST['fhas']." 23:59:59'";
-			} else {
-				$sql .= " AND H.fecha_create >='".$_POST['fdes']." 00:00:00' AND H.fecha_create <='". $_POST['fdes']." 23:59:59'";
-			}
-		}
-	return $sql;
-}
+
 
 
 

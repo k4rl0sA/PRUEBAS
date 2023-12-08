@@ -445,9 +445,11 @@ function enabYes(a,b){
 // Al menos un elemento tiene valor SI
 function min1ElmSi(a,ClsCmp) {
 	const ele = document.querySelectorAll('select.'+ClsCmp+',input.'+ClsCmp+',textarea.'+ClsCmp);
+	const est=document.getElementById('estado_s');
+	
 	for (const elm of ele) {
-	  if (elm.value === '1') {
-		return true; 
+	  if (elm.value === '1' || est.value==='3'){
+		return true;
 	  }
 	}
 	return false;

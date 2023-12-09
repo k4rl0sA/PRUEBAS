@@ -795,15 +795,24 @@ function gra_person(){
 	function lis_planc(){
 		// print_r($_POST);
 		$id=divide($_POST['id']);
+
+	$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
+	WHERE idviv=".$id[0]."");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=3;
+	$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
+
 		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
 			FROM `hog_planconc` 
-				WHERE '1'='1' and idviv='".$id[0];
+				WHERE idviv=".$id[0];
 			$sql.="' ORDER BY fecha_create";
+			$sql.=' LIMIT '.$pag.','.$regxPag;
 			//  echo $sql;
-			$_SESSION['sql_planc']=$sql;
+			// $_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"planc-lis",10);
+			return create_table($total,$datos["responseResult"],"planc-lis",$regxPag);
+			/* return panel_content($datos["responseResult"],"planc-lis",10); */
 	}
 	
 	function focus_placuifam(){

@@ -66,7 +66,7 @@ function lis_adm_usuarios(){
 	$sql.=whe_adm_usuarios();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	// echo $sq;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"adm_usuarios",$regxPag);
 }
@@ -120,7 +120,7 @@ function gra_gestion(){
 	5=rol
 	6=adscripcion 
 	*/
-		// echo $sql;
+		// echo $sq;
 		$rta=dato_mysql($sql);
   return $rta;
 	// }
@@ -149,7 +149,7 @@ function get_tabla($a){
  	where	accion=1 
 	AND m.subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') 
 	AND tabla='$a' AND DATE(fecha_create)='$hoy'";
-	// echo $sql;
+	// echo $sq;
 	$info=datos_mysql($sql);
 	// echo $info;
 	if (isset($info['responseResult'][0])) {
@@ -387,16 +387,8 @@ LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
 LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
-$tot="SELECT count(*) as total
-FROM `hog_geo` G
-LEFT JOIN catadeta C1 ON C1.idcatadeta = G.estrategia AND C1.idcatalogo = 42 AND C1.estado = 'A'
-LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A'
-LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A'
-LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A'
-LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A'
-LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A'
-LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
-LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
+	
+	$tot="SELECT count(*) as total FROM `hog_geo` G LEFT JOIN catadeta C1 ON C1.idcatadeta = G.estrategia AND C1.idcatalogo = 42 AND C1.estado = 'A' LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A' LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A' LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A' LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A' LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A' LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
 	$tot.=whe_date();
 	// echo $sql;
@@ -441,8 +433,13 @@ LEFT JOIN catadeta C21 ON C21.idcatadeta = F.estado_hist AND C21.idcatalogo = 18
 LEFT JOIN usuarios U ON F.usu_creo=U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred1();
 	$sql.=whe_date1();
+
+	$tot="SELECT count(*) as total FROM `adm_facturacion` F	LEFT JOIN personas P ON F.documento = P.idpersona AND F.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN catadeta C1 ON C1.idcatadeta = P.sexo AND C1.idcatalogo = 21 AND C1.estado = 'A' LEFT JOIN catadeta C2 ON C2.idcatadeta = P.genero AND C2.idcatalogo = 19 AND C2.estado = 'A' LEFT JOIN catadeta C3 ON C3.idcatadeta = P.oriensexual AND C3.idcatalogo = 49 AND C3.estado = 'A' LEFT JOIN catadeta C4 ON C4.idcatadeta = P.nacionalidad AND C4.idcatalogo = 30 AND C4.estado = 'A' LEFT JOIN catadeta C5 ON C5.idcatadeta = P.estado_civil AND C5.idcatalogo = 47 AND C5.estado = 'A' LEFT JOIN catadeta C6 ON C6.idcatadeta = P.niveduca AND C6.idcatalogo = 180 AND C6.estado = 'A' LEFT JOIN catadeta C7 ON C7.idcatadeta = P.abanesc AND C7.idcatalogo = 181 AND C7.estado = 'A' LEFT JOIN catadeta C8 ON C8.idcatadeta = P.ocupacion AND C8.idcatalogo = 175 AND C8.estado = 'A' LEFT JOIN catadeta C9 ON C9.idcatadeta = P.vinculo_jefe AND C9.idcatalogo = 54 AND C9.estado = 'A' LEFT JOIN catadeta C10 ON C10.idcatadeta = P.etnia AND C10.idcatalogo = 16 AND C10.estado = 'A' LEFT JOIN catadeta C11 ON C11.idcatadeta = P.pueblo AND C11.idcatalogo = 15 AND C11.estado = 'A' LEFT JOIN catadeta C12 ON C12.idcatadeta = P.discapacidad AND C12.idcatalogo = 14 AND C12.estado = 'A' LEFT JOIN catadeta C13 ON C13.idcatadeta = P.regimen AND C13.idcatalogo = 17 AND C13.estado = 'A' LEFT JOIN catadeta C14 ON C14.idcatadeta = P.eapb AND C14.idcatalogo = 18 AND C14.estado = 'A' LEFT JOIN catadeta C15 ON C15.idcatadeta = P.sisben AND C15.idcatalogo = 48 AND C15.estado = 'A' LEFT JOIN catadeta C16 ON C16.idcatadeta = P.pobladifer AND C16.idcatalogo = 178 AND C16.estado = 'A' LEFT JOIN catadeta C17 ON C17.idcatadeta = P.incluofici AND C17.idcatalogo = 179 AND C17.estado = 'A' LEFT JOIN catadeta C18 ON C18.idcatadeta = F.tipo_consulta AND C18.idcatalogo = 182 AND C18.estado = 'A' LEFT JOIN catadeta C19 ON C19.idcatadeta = F.cod_cups AND C19.idcatalogo = 126 AND C19.estado = 'A' LEFT JOIN catadeta C20 ON C20.idcatadeta = F.final_consul AND C20.idcatalogo = 127 AND C20.estado = 'A' LEFT JOIN catadeta C21 ON C21.idcatadeta = F.estado_hist AND C21.idcatalogo = 184 AND C21.estado = 'A' LEFT JOIN usuarios U ON F.usu_creo=U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred1();
+	$tot.=whe_date1();
 	// echo $sql;
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -475,7 +472,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred2();
 	$sql.=whe_date2();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `eac_atencion` A LEFT JOIN personas P ON A.atencion_idpersona = P.idpersona AND A.atencion_tipodoc=P.tipo_doc  LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN eac_gestantes GE ON A.atencion_tipodoc=GE.gestantes_tipo_doc AND A.atencion_idpersona=GE.gestantes_documento LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred2();
+	$tot.=whe_date2();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -504,7 +505,11 @@ LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred2();
 	$sql.=whe_date2();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `eac_atencion` A LEFT JOIN personas P ON A.atencion_idpersona = P.idpersona AND A.atencion_tipodoc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN catadeta C1 ON C1.idcatadeta = P.sexo AND C1.idcatalogo = 21 AND C1.estado = 'A'	LEFT JOIN catadeta C34 ON C34.idcatadeta = A.atencion_evento AND C34.idcatalogo = 134 AND C34.estado = 'A'	LEFT JOIN catadeta C35 ON C35.idcatadeta = A.atencion_rutasirc AND C35.idcatalogo = 131 AND C35.estado = 'A'	LEFT JOIN catadeta C36 ON C36.idcatadeta = A.atencion_cualremision AND C36.idcatalogo = 132 AND C36.estado = 'A'	LEFT JOIN catadeta C37 ON C37.idcatadeta = A.atencion_vacunacion AND C37.idcatalogo = 185 AND C37.estado = 'A'	LEFT JOIN catadeta C38 ON C38.idcatadeta = A.atencion_laboratorios AND C38.idcatalogo = 133 AND C38.estado = 'A'	LEFT JOIN catadeta C39 ON C39.idcatadeta = A.atencion_medicamentos AND C39.idcatalogo = 186 AND C39.estado = 'A'	LEFT JOIN catadeta C40 ON C40.idcatadeta = A.atencion_continuidad AND C40.idcatalogo = 131 AND C40.estado = 'A'	LEFT JOIN catadeta C41 ON C41.idcatadeta = A.prioridad AND C41.idcatalogo = 134 AND C41.estado = 'A'	LEFT JOIN catadeta C42 ON C42.idcatadeta = A.estrategia AND C42.idcatalogo = 203 AND C42.estado = 'A'	LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred2();
+	$tot.=whe_date2();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -525,7 +530,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred3();
 	$sql.=whe_date3();
 	// echo $sql;
+	$tot="SELECT  COUNT(*) total FROM `psi_psicologia` A LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred3();
+	$tot.=whe_date3();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -545,7 +554,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred4();
 	$sql.=whe_date4();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `psi_sesion2` A LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred4();
+	$tot.=whe_date4();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -564,7 +577,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred4();
 	$sql.=whe_date4();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `psi_sesiones` A LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred4();
+	$tot.=whe_date4();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -583,7 +600,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred4();
 	$sql.=whe_date4();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `psi_sesion_fin` A LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred4();
+	$tot.=whe_date4();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -624,7 +645,11 @@ LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	// echo $sql;
+	$tot=" SELECT COUNT(*) total FROM `rel_relevo` R LEFT JOIN personas P ON R.rel_documento = P.idpersona LEFT JOIN personas P0 ON R.rel_validacion13 = P0.idpersona LEFT JOIN personas P1 ON R.cuidado_2 = P1.idpersona LEFT JOIN personas P2 ON R.cuidado_3 = P2.idpersona LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
+	$tot.=whe_date();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -642,21 +667,25 @@ R.fecha_create,R.usu_creo
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `rel_sesion` R	 LEFT JOIN personas P ON R.rel_documento = P.idpersona LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
+	$tot.=whe_date();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
 
 function lis_ruteo($txt){
-	$sql="SELECT R.id_ruteo AS Cod_Ruteo, FN_CATALOGODESC(33,R.fuente) AS Fuente, R.fecha_asig AS Fecha_Asignado, FN_CATALOGODESC(191,R.priorizacion) AS Priorizacion, R.tipo_doc AS Tipo_Documento, R.documento AS N°_Documento, R.nombres AS Nombres_Apellidos, R.fecha_nac AS Fecha_Nacimiento, FN_CATALOGODESC(21,R.sexo) AS Sexo, FN_CATALOGODESC(30,R.nacionalidad) AS Nacionalidad, R.tipo_doc_acu AS Tipo_Documento_Acudiente, R.documento_acu AS N°_Documento_Acudiente, R.nombres_acu AS Nombres_Apellidos_Acudiente, R.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3, FN_CATALOGODESC(72,R.subred) AS Subred, FN_CATALOGODESC(2,R.localidad) AS Localidad, FN_CATALOGODESC(7,R.upz) AS Upz, FN_CATALOGODESC(20,R.barrio) AS Barrio, R.sector_catastral AS Sector_Catastral, R.nummanzana AS N°_Manzana, R.predio_num AS N°_Predio, R.unidad_habit AS Unidad_Habitacional, R.cordx AS Coordenada_X, R.cordy AS Coordenada_Y, R.perfil_asignado AS Perfil_Asignado, R.fecha_gestion AS Fecha_Gestion, FN_CATALOGODESC(35,R.estado_g) AS Estado_Gestion, FN_CATALOGODESC(36,R.motivo_estado) AS Motivo_Estado_Gestion, R.direccion_nueva AS Direccion_Nueva, R.complemento AS Complementos_Direccion, R.observacion AS Observacion_Gestion, NULL AS Estado_Atencion, Null AS N°_Integrantes_Fam,P.vivipersona AS Cod_Familia, A.atencion_fechaatencion AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, FN_CATALOGODESC(127,A.atencion_finalidadconsulta) AS Finalidad_Consulta, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, NULL AS Observacion_Consulta
-
-FROM `eac_ruteo` R
-LEFT JOIN eac_atencion A ON R.tipo_doc=A.atencion_tipodoc AND R.documento=A.atencion_idpersona AND R.estrategia=A.estrategia
-LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P.idpersona  WHERE 1 ";
+	$sql="SELECT R.id_ruteo AS Cod_Ruteo, FN_CATALOGODESC(33,R.fuente) AS Fuente, R.fecha_asig AS Fecha_Asignado, FN_CATALOGODESC(191,R.priorizacion) AS Priorizacion, R.tipo_doc AS Tipo_Documento, R.documento AS N°_Documento, R.nombres AS Nombres_Apellidos, R.fecha_nac AS Fecha_Nacimiento, FN_CATALOGODESC(21,R.sexo) AS Sexo, FN_CATALOGODESC(30,R.nacionalidad) AS Nacionalidad, R.tipo_doc_acu AS Tipo_Documento_Acudiente, R.documento_acu AS N°_Documento_Acudiente, R.nombres_acu AS Nombres_Apellidos_Acudiente, R.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3, FN_CATALOGODESC(72,R.subred) AS Subred, FN_CATALOGODESC(2,R.localidad) AS Localidad, FN_CATALOGODESC(7,R.upz) AS Upz, FN_CATALOGODESC(20,R.barrio) AS Barrio, R.sector_catastral AS Sector_Catastral, R.nummanzana AS N°_Manzana, R.predio_num AS N°_Predio, R.unidad_habit AS Unidad_Habitacional, R.cordx AS Coordenada_X, R.cordy AS Coordenada_Y, R.perfil_asignado AS Perfil_Asignado, R.fecha_gestion AS Fecha_Gestion, FN_CATALOGODESC(35,R.estado_g) AS Estado_Gestion, FN_CATALOGODESC(36,R.motivo_estado) AS Motivo_Estado_Gestion, R.direccion_nueva AS Direccion_Nueva, R.complemento AS Complementos_Direccion, R.observacion AS Observacion_Gestion, NULL AS Estado_Atencion, Null AS N°_Integrantes_Fam,P.vivipersona AS Cod_Familia, A.atencion_fechaatencion AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, FN_CATALOGODESC(127,A.atencion_finalidadconsulta) AS Finalidad_Consulta, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, NULL AS Observacion_Consulta FROM `eac_ruteo` R LEFT JOIN eac_atencion A ON R.tipo_doc=A.atencion_tipodoc AND R.documento=A.atencion_idpersona AND R.estrategia=A.estrategia LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P.idpersona  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred13();
 	$sql.=whe_date13();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total	FROM `eac_ruteo` R LEFT JOIN eac_atencion A ON R.tipo_doc=A.atencion_tipodoc AND R.documento=A.atencion_idpersona AND R.estrategia=A.estrategia	LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P.idpersona  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred13();
+	$tot.=whe_date13();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -678,7 +707,11 @@ LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred8();
 	$sql.=whe_date8();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_viv` VLEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario	LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
+	$tot.=whe_date8();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -706,7 +739,11 @@ LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred9();
 	$sql.=whe_date9();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_planconc` C LEFT JOIN hog_plancuid A ON C.idviv=A.idviv LEFT JOIN hog_viv V ON C.idviv = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred9();
+	$tot.=whe_date9();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -725,7 +762,11 @@ LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred9();
 	$sql.=whe_date9();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `personas_datocomp` A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred9();
+	$tot.=whe_date9();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -747,7 +788,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred9();
 	$sql.=whe_date9();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_amb` A LEFT JOIN hog_viv V ON A.idvivamb = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred9();
+	$tot.=whe_date9();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -779,7 +824,11 @@ LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_apgar` A LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN catadeta C1 ON C1.idcatadeta = P.sexo AND C1.idcatalogo = 21 AND C1.estado = 'A' LEFT JOIN catadeta C2 ON C2.idcatadeta = A.ayuda_fam AND C2.idcatalogo = 37 AND C2.estado = 'A' LEFT JOIN catadeta C3 ON C3.idcatadeta = A.fam_comprobl AND C3.idcatalogo = 37 AND C3.estado = 'A' LEFT JOIN catadeta C4 ON C4.idcatadeta = A.fam_percosnue AND C4.idcatalogo = 37 AND C4.estado = 'A' LEFT JOIN catadeta C5 ON C5.idcatadeta = A.fam_feltrienf AND C5.idcatalogo = 37 AND C5.estado = 'A' LEFT JOIN catadeta C6 ON C6.idcatadeta = A.fam_comptiemjun AND C6.idcatalogo = 37 AND C6.estado = 'A' LEFT JOIN catadeta C7 ON C7.idcatadeta = A.sati_famayu AND C7.idcatalogo = 173 AND C7.estado = 'A' LEFT JOIN catadeta C8 ON C8.idcatadeta = A.sati_famcompro AND C8.idcatalogo = 173 AND C8.estado = 'A' LEFT JOIN catadeta C9 ON C9.idcatadeta = A.sati_famapoemp AND C9.idcatalogo = 173 AND C9.estado = 'A' LEFT JOIN catadeta C10 ON C10.idcatadeta = A.sati_famemosion AND C10.idcatalogo = 173 AND C10.estado = 'A' LEFT JOIN catadeta C11 ON C11.idcatadeta = A.sati_famcompar AND C11.idcatalogo = 173 AND C11.estado = 'A' LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -801,7 +850,11 @@ LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_findrisc` A LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -820,7 +873,11 @@ LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_oms` A LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -847,7 +904,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_acompsic` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -872,7 +933,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_apopsicduel` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -897,7 +962,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_bpnpret` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -922,7 +991,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_bpnterm` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -948,7 +1021,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_cancinfa` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -976,7 +1053,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_condsuic` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1001,7 +1082,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_cronicos` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1027,7 +1112,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_dntsevymod` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1052,7 +1141,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_eraira` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1080,7 +1173,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_gestantes` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1105,7 +1202,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_hbgest` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1115,7 +1216,11 @@ function lis_mme($txt){
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	// echo $sql;
+	$tot=" WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
+	$tot.=whe_date();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1140,7 +1245,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_mnehosp` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1164,7 +1273,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_otroprio` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1191,7 +1304,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_saludoral` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1216,7 +1333,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_sificong` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1242,7 +1363,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_sifigest` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1269,7 +1394,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_vihgest` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1279,7 +1408,11 @@ function lis_violges($txt){
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot=" WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1306,7 +1439,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
 	$sql.=whe_date11();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vsp_violreite` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1320,7 +1457,11 @@ LEFT JOIN usuarios U1 ON A.usu_creo = U1.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred12();
 	$sql.=whe_date12();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `vspgeo` A LEFT JOIN usuarios U ON A.equipo = U.id_usuario LEFT JOIN usuarios U1 ON A.usu_creo = U1.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred12();
+	$tot.=whe_date12();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
@@ -1331,7 +1472,10 @@ LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario
 WHERE U.perfil <> 'ADM'  ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `adscrip` A LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario WHERE U.perfil <> 'ADM'  ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }

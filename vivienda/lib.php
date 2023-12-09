@@ -800,7 +800,7 @@ function gra_person(){
 	WHERE idviv=".$id[0]."");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
-	$pag=(isset($_POST['pag-plancon']))? ($_POST['pag-plancon']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
 
 		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
@@ -811,7 +811,7 @@ function gra_person(){
 			//  echo $sql;
 			// $_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"plancon",$regxPag);
+			return create_table($total,$datos["responseResult"],"planc",$regxPag);
 			/* return panel_content($datos["responseResult"],"planc-lis",10); */
 	}
 	

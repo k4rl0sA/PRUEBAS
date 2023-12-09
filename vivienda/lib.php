@@ -794,7 +794,7 @@ function gra_person(){
 
 	function lis_planc(){
 		print_r($_POST);
-		$id=divide($_POST['id']);
+		$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
 	WHERE idviv=".$id[0]."");
 	$total=$info['responseResult'][0]['total'];

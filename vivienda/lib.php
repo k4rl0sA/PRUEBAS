@@ -799,19 +799,19 @@ function gra_person(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
 	WHERE idviv=".$id[0]."");
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=3;
+	$regxPag=5;
 	$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
 
 		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
 			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
 			FROM `hog_planconc` 
-				WHERE idviv=".$id[0];
+				WHERE idviv='".$id[0];
 			$sql.="' ORDER BY fecha_create";
 			$sql.=' LIMIT '.$pag.','.$regxPag;
 			//  echo $sql;
 			// $_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"planc-lis",$regxPag);
+			return create_table($total,$datos["responseResult"],"planc-lis",$rgxPag);
 			/* return panel_content($datos["responseResult"],"planc-lis",10); */
 	}
 	

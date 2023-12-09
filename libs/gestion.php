@@ -32,7 +32,7 @@ switch ($req) {
     $now=date("ymd");
 		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
     $info=datos_mysql($_SESSION['tot_' . $_REQUEST['b']]);
-		$total=$info['responseResult'][0];
+		$total=$info['responseResult'][0]['total'];
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 			echo csv($ts, $rs,$total);

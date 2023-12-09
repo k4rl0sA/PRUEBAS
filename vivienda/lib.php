@@ -787,7 +787,7 @@ function gra_person(){
 	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='plancon-lis' >".lis_planc()."</div></div>";
+	<div class='contenido' id='planc-lis' >".lis_planc()."</div></div>";
 	// $rta.="<div class='contenido' id='plancon-lis' >".lis_planc()."</div></div>";
 	return $rta;
 	}

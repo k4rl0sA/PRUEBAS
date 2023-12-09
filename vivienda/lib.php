@@ -811,7 +811,7 @@ function gra_person(){
 			//  echo $sql;
 			// $_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"planc-lis",$regxPag);
+			return create_table($total,$datos["responseResult"],"plancon",$regxPag);
 			/* return panel_content($datos["responseResult"],"planc-lis",10); */
 	}
 	

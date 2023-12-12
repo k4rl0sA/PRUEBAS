@@ -109,13 +109,13 @@ function cmp_asigrelevo(){
 	$rta="";
 	$t=['idpersona'=>'','tipo_doc'=>'','asignado'=>''];
 	$w='asigpsico';
-   //  $d=get_asigpsico();
-   $d='';
+    //  $d=get_asigpsico();
+    $d='';
 	 if ($d=="") {$d=$t;}
 	$o='asicas';
 	$c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
-	   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	   $c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
+	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

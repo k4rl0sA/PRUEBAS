@@ -79,6 +79,11 @@ function grabar(tb='',ev){
     		mostrar('person1', 'fix', event, '', 'lib.php', 0, 'person1', document.querySelector('input[type="hidden"]').value.split('_')[0]);
   		}, 1000);
 	}
+	if (tb == 'placuifam') {
+  		setTimeout(function() {
+			mostrar('placuifam','pro',event,'','lib.php',7,'placuifam', document.querySelector('input[type="hidden"]').value.split('_')[0]);
+  		}, 1000);
+	}
 }   
 
 function disFecar(a){

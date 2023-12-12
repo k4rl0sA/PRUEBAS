@@ -699,7 +699,7 @@ V.seg_pre1 AS SEGURIDAD_ALIMEN_PREG1,V.seg_pre2 AS SEGURIDAD_ALIMEN_PREG2,V.seg_
 V.subsidio_1 AS SUBSIDIO_SDIS1,V.subsidio_2 AS SUBSIDIO_SDIS2,V.subsidio_3 AS SUBSIDIO_SDIS3,V.subsidio_4 AS SUBSIDIO_SDIS4,V.subsidio_5 AS SUBSIDIO_SDIS5,V.subsidio_6 AS SUBSIDIO_SDIS6,V.subsidio_7 AS SUBSIDIO_SDIS7,V.subsidio_8 AS SUBSIDIO_SDIS8,V.subsidio_9 AS SUBSIDIO_SDIS9,
 V.subsidio_10 AS SUBSIDIO_SDIS10,V.subsidio_11 AS SUBSIDIO_SDIS11,V.subsidio_12 AS SUBSIDIO_SDIS12,V.subsidio_13 AS SUBSIDIO_ICBF1,V.subsidio_14 AS SUBSIDIO_ICBF2,V.subsidio_15 AS SUBSIDIO15_SECRE_HABIT,V.subsidio_16 AS SUBSIDIO_CONSEJERIA,V.subsidio_17 AS SUBSIDIO_ONGS, V.subsidio_18 AS SUBSIDIO_FAMILIAS_ACCION,V.subsidio_19 AS SUBSIDIO_RED_UNIDOS,V.subsidio_20 AS SUBSIDIO_SECADE,
 V.energia AS SERVICIO_ENERGIA,V.gas AS SERVICIO_GAS_NATURAL,V.acueducto AS SERVICIO_ACUEDUCTO,V.alcantarillado AS SERVICIO_ALCANTAR,V.basuras AS SERVICIO_BASURAS,V.pozo AS POZO,V.aljibe AS ALJIBE,
-V.perros AS ANIMALES_PERROS,V.numero_perros AS N°_PERROS,V.perro_vacunas AS N°_PERROS_NOVACU,V.perro_esterilizado AS N°_PERROS_NOESTER,V.gatos AS ANIMALES_GATOS,V.numero_gatos AS N°_GATOS,V.gato_vacunas AS N°_GATOS_NOVACU,V.gato_esterilizado AS N°_GATOS_NOESTER,V.otros AS OTROS_ANIMALES,V.facamb1 AS FACTORES_AMBIEN_PRE1,V.facamb2 AS FACTORES_AMBIEN_PRE2,V.facamb3 AS FACTORES_AMBIEN_PRE3,V.facamb4 AS FACTORES_AMBIEN_PRE4,V.facamb5 AS FACTORES_AMBIEN_PRE5,V.facamb6 AS FACTORES_AMBIEN_PRE6,V.facamb7 AS FACTORES_AMBIEN_PRE7,V.facamb8 AS FACTORES_AMBIEN_PRE8,V.facamb9 AS FACTORES_AMBIEN_PRE9,V.observacion AS OBSERVACIONES,V.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,V.fecha_create,V.usu_update AS Cod_Edito,U1.nombre AS Nombre_Edito,U1.perfil AS Perfil_Edito,V.fecha_update
+V.perros AS ANIMALES_PERROS,V.numero_perros AS N°_PERROS,V.perro_vacunas AS N°_PERROS_NOVACU,V.perro_esterilizado AS N°_PERROS_NOESTER,V.gatos AS ANIMALES_GATOS,V.numero_gatos AS N°_GATOS,V.gato_vacunas AS N°_GATOS_NOVACU,V.gato_esterilizado AS N°_GATOS_NOESTER,V.otros AS OTROS_ANIMALES,V.facamb1 AS FACTORES_AMBIEN_PRE1,V.facamb2 AS FACTORES_AMBIEN_PRE2,V.facamb3 AS FACTORES_AMBIEN_PRE3,V.facamb4 AS FACTORES_AMBIEN_PRE4,V.facamb5 AS FACTORES_AMBIEN_PRE5,V.facamb6 AS FACTORES_AMBIEN_PRE6,V.facamb7 AS FACTORES_AMBIEN_PRE7,V.facamb8 AS FACTORES_AMBIEN_PRE8,V.facamb9 AS FACTORES_AMBIEN_PRE9,V.observacion AS OBSERVACIONES,V.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,V.fecha_create,V.usu_update AS Cod_Edito,U1.nombre AS Nombre_Edito,U1.perfil AS Perfil_Edito, V.fecha_update
 FROM `hog_viv` V
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario
@@ -707,7 +707,7 @@ LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred8();
 	$sql.=whe_date8();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM `hog_viv` VLEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario	LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
+	$tot="SELECT COUNT(*) total FROM `hog_viv` V LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario	LEFT JOIN usuarios U1 ON V.usu_update = U1.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
 	$tot.=whe_date8();
 	$_SESSION['sql_'.$txt]=$sql;

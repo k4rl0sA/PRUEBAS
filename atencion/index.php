@@ -380,7 +380,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 $territorios=opc_sql("SELECT descripcion,descripcion FROM catadeta WHERE idcatalogo=202 AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
-$territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM') ? '' : 'disabled';
+$territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) ? '' : 'disabled';
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>

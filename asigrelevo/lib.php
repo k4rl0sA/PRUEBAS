@@ -107,7 +107,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_asigrelevo(){
 	$rta="";
-	$t=['idpersona'=>'','tipo_doc'=>'','asignado'=>''];
+	$t=['idpersona'=>'','tipo_doc'=>'','asignado'=>'','estado_cierre'=>''];
 	$w='asigpsico';
     //  $d=get_asigpsico();
     $d='';

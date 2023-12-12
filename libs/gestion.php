@@ -13,8 +13,8 @@ if (!isset($_SESSION["us_sds"])) {
 $ruta_upload='/public_html/upload/';
 $env='prod';
 //$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
-//$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
+$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+// $comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
@@ -31,11 +31,9 @@ switch ($req) {
 	case 'exportar':
     $now=date("ymd");
 		header_csv($_REQUEST['b'] .'_'.$now.'.csv');
-    $info=datos_mysql($_SESSION['tot_' . $_REQUEST['b']]);
-		$total=$info['responseResult'][0]['total'];
 		if ($rs = mysqli_query($GLOBALS[isset($_REQUEST['con']) ? $_REQUEST['con'] : 'con'], $_SESSION['sql_' . $_REQUEST['b']])) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-			echo csv($ts, $rs,$total);
+			echo csv($ts, $rs);
 		} else {
 			echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
       $GLOBALS['con']->close();
@@ -81,24 +79,6 @@ function header_csv($a) {
   header("Content-Type: text/csv; charset=UTF-8");
 }
 
-
-
-
-
-function csv($a,$b,$tot= null){
-  $df=fopen("php://output", 'w');
-  ob_start();
-  if(isset($a)){fwrite($df, "\xEF\xBB\xBF"); fputcsv($df,array_keys($a),'|');}
-  if(isset($b)){
-    foreach ($b as $row) fputcsv($df,$row,'|');
-  }
-  if ($tot !== null) {
-    fwrite($df, "Total Registros: " . $tot . PHP_EOL);
-  }
-  fclose($df);
-  return ob_get_clean();
-}
-
 function cleanTxt($val) {
   // Elimina espacios en blanco al principio y al final
   $val = trim($val);
@@ -113,6 +93,19 @@ function cleanTxt($val) {
   $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
   $val=strtoupper($val);
   return $val;
+}
+
+
+
+function csv($a,$b){
+  $df=fopen("php://output", 'w');
+  ob_start();
+  if(isset($a)){fwrite($df, "\xEF\xBB\xBF"); fputcsv($df,array_keys($a),'|');}
+  if(isset($b)){
+    foreach ($b as $row) fputcsv($df,$row,'|');
+  }
+  fclose($df);
+  return ob_get_clean();
 }
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){

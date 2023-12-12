@@ -116,7 +116,7 @@ function cmp_asigrelevo(){
 	$c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'estado_cierre','estado_cierre',null,null,true,true,'','col-5',"enbValue('estado_cierre','Rel','7');");
-	$c[]=new cmp('asignado','s',3,$d['asignado'],$w.' Rel '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
+	$c[]=new cmp('asignado','s',3,$d['asignado'],$w.' Rel '.$o,'Asignado','asignado',null,null,true,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

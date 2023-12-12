@@ -13,6 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
+	
 var mod='asigrelevo'; ////modulo
 var ruta_app='lib.php';
 

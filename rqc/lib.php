@@ -191,8 +191,7 @@ function gra_tamsrq(){
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-
-	$infodata_srq=datos_mysql("SELECT srq_momento,srq_idpersona FROM hog_tam_srq
+		$infodata_srq=datos_mysql("SELECT srq_momento,srq_idpersona FROM hog_tam_srq
 		 WHERE srq_idpersona = {$_POST['srq_idpersona']} AND srq_momento = 2 ");
 	if (isset($infodata_srq['responseResult'][0])){
 		return "Ya se realizo los dos momentos";

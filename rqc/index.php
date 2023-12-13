@@ -49,7 +49,7 @@ function grabar(tb='',ev){
 				setTimeout(actualizar, 1000);
 			}
 	}else{
-		const message = `Esta funcion no esta habilitada en este momento,por favor consulta con el administrador del sistema`;
+		const message = `La funcion de editar no esta habilitada en el proceso,por favor consulta con el administrador del sistema`;
         document.getElementById(mod+'-modal').innerHTML = message;
         document.getElementById(mod+'-image').innerHTML = '<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
         openModal();

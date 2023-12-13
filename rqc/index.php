@@ -30,7 +30,7 @@ function actualizar(){
 }
 
 function grabar(tb='',ev){
-	if(document.getElementById('idsrq').value==''){
+	if(document.getElementById('idsrq').value=='0'){
 		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   			var f=document.getElementsByClassName('valido '+tb);
    			for (i=0;i<f.length;i++) {

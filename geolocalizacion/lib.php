@@ -396,7 +396,7 @@ function gra_hog_geoloc(){
   		$rta=dato_mysql($sql);
   		return $rta;
 	}else{
-		
+		$rta="Error: msj['No puede guardar el registro ya que elpredio no esta asignado a Ud,']";
 	}
 }
 

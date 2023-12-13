@@ -245,7 +245,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
-$import = ($perfil == 'GEO'||$perfil =='ADM' || $perfil =='SUPHOG' || $perfil =='SUPEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$import = ($perfil == 'GEO'|| $perfil =='ADM' || $perfil =='SUPHOG' || $perfil =='SUPEAC' || $perfil =='ADMHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li><li class='icono exportar'      title='Exportar Información General'    Onclick='csv(mod);'></li>":"";
 ?>
 <form method='post' id='fapp' >

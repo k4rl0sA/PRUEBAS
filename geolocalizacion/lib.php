@@ -42,7 +42,7 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     H.sector_catastral Sector,
     H.nummanzana Manzana,
     H.predio_num Predio,
-    H.unidad_habit 'Unidad Hab',
+    H.unidad_habit 'Und Hab',
     FN_CATALOGODESC(3, H.zona) Zona,
 	H.territorio Territorio,
     FN_CATALOGODESC(2, H.localidad) Localidad,

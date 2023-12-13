@@ -53,7 +53,6 @@ function grabar(tb='',ev){
         document.getElementById(mod+'-modal').innerHTML = message;
         document.getElementById(mod+'-image').innerHTML = '<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
         openModal();
-		
 	}
 } 
 

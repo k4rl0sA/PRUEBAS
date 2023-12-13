@@ -188,7 +188,7 @@ function men_tamsrq(){
 function gra_tamsrq(){
 	$id=$_POST['idsrq'];
 	//print_r($_POST);
-	if($id != ""){
+	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
 	}else{
 

@@ -47,9 +47,9 @@ function whe_tamsrq() {
 		$sql .= " AND P.sexo ='".$_POST['fsexo']."' ";
 	if ($_POST['fpersona']){
 		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";
+			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) < 18 ";
 		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) > 18 ";
+			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) >= 18 ";
 		}
 	}
 	return $sql;

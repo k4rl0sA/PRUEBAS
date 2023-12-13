@@ -37,18 +37,18 @@ $regxPag = 5;
 $pag = isset($_POST['pag-hog_geoloc']) ? ($_POST['pag-hog_geoloc'] - 1) * $regxPag : 0;
 
 $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
-	H.idgeo 'Cod. Predio',
+	H.idgeo 'Cod Predio',
     FN_CATALOGODESC(42, H.estrategia) AS estrategia,direccion,
-    H.sector_catastral,
-    H.nummanzana AS Manzana,
-    H.predio_num AS predio,
-    H.unidad_habit AS 'Unidad Hab',
-    FN_CATALOGODESC(3, H.zona) AS zona,
-	H.territorio,
-    FN_CATALOGODESC(2, H.localidad) AS 'Localidad',
-    U1.nombre asignado,
-    H.fecha_create,
-    FN_CATALOGODESC(44, H.estado_v) AS estado
+    H.sector_catastral Sector,
+    H.nummanzana Manzana,
+    H.predio_num Predio,
+    H.unidad_habit 'Unidad Hab',
+    FN_CATALOGODESC(3, H.zona) Zona,
+	H.territorio Territorio,
+    FN_CATALOGODESC(2, H.localidad) Localidad,
+    U1.nombre Asignado,
+    H.fecha_create Creado,
+    FN_CATALOGODESC(44, H.estado_v) Estado
 	FROM hog_geo H
 		LEFT JOIN usuarios U ON H.subred = U.subred
 		LEFT JOIN adscrip A ON H.territorio=A.territorio

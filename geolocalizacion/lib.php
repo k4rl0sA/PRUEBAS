@@ -359,42 +359,45 @@ function get_asigruteo(){
 
  
 function gra_hog_geoloc(){
-	$info=datos_mysql("select equipo as equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
+	$info=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
 	$equipo = (!$info['responseResult']) ? '' : $info['responseResult'][0]['equipo'] ;
 
-	
-	 $sql="INSERT INTO hog_geo VALUES 
-	(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
-	TRIM(UPPER('{$_POST['subred']}')),
-	TRIM(UPPER('{$_POST['zona']}')),
-	TRIM(UPPER('{$_POST['localidad']}')),
-	TRIM(UPPER('{$_POST['upz']}')),
-	TRIM(UPPER('{$_POST['barrio']}')),
-	TRIM(UPPER('{$_POST['territorio']}')),
-	TRIM(UPPER('{$_POST['microterritorio']}')),
-	TRIM(UPPER('{$_POST['sector_catastral']}')),
-	TRIM(UPPER('{$_POST['direccion']}')),
-	TRIM(UPPER('{$_POST['direccion_nueva']}')),
-	TRIM(UPPER('{$_POST['nummanzana']}')),
-	TRIM(UPPER('{$_POST['predio_num']}')),
-	TRIM(UPPER('{$_POST['unidad_habit']}')),
-	TRIM(UPPER('{$_POST['vereda']}')),
-	TRIM(UPPER('{$_POST['vereda_nueva']}')),
-	TRIM(UPPER('{$_POST['cordx']}')),
-	TRIM(UPPER('{$_POST['cordy']}')),
-	TRIM(UPPER('{$_POST['cordxn']}')),
-	TRIM(UPPER('{$_POST['cordyn']}')),
-	TRIM(UPPER('{$_POST['estrato']}')),
-	TRIM(UPPER('{$_POST['asignado']}')),
-	TRIM(UPPER('{$equipo}')),
-	TRIM(UPPER('{$_POST['estado_v']}')),
-	TRIM(UPPER('{$_POST['motivo_estado']}')),
-	TRIM(UPPER('{$_POST['asignado']}')),
-	/* TRIM(UPPER('{$_SESSION['us_sds']}')), */
-	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
-	echo $sql;
-  $rta=dato_mysql($sql);
-  return $rta;
+	if($_POST['asignado']!==$_SESSION['us_sds']){
+		$sql="INSERT INTO hog_geo VALUES 
+		(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
+		TRIM(UPPER('{$_POST['subred']}')),
+		TRIM(UPPER('{$_POST['zona']}')),
+		TRIM(UPPER('{$_POST['localidad']}')),
+		TRIM(UPPER('{$_POST['upz']}')),
+		TRIM(UPPER('{$_POST['barrio']}')),
+		TRIM(UPPER('{$_POST['territorio']}')),
+		TRIM(UPPER('{$_POST['microterritorio']}')),
+		TRIM(UPPER('{$_POST['sector_catastral']}')),
+		TRIM(UPPER('{$_POST['direccion']}')),
+		TRIM(UPPER('{$_POST['direccion_nueva']}')),
+		TRIM(UPPER('{$_POST['nummanzana']}')),
+		TRIM(UPPER('{$_POST['predio_num']}')),
+		TRIM(UPPER('{$_POST['unidad_habit']}')),
+		TRIM(UPPER('{$_POST['vereda']}')),
+		TRIM(UPPER('{$_POST['vereda_nueva']}')),
+		TRIM(UPPER('{$_POST['cordx']}')),
+		TRIM(UPPER('{$_POST['cordy']}')),
+		TRIM(UPPER('{$_POST['cordxn']}')),
+		TRIM(UPPER('{$_POST['cordyn']}')),
+		TRIM(UPPER('{$_POST['estrato']}')),
+		TRIM(UPPER('{$_POST['asignado']}')),
+		TRIM(UPPER('{$equipo}')),
+		TRIM(UPPER('{$_POST['estado_v']}')),
+		TRIM(UPPER('{$_POST['motivo_estado']}')),
+		-- TRIM(UPPER('{$_POST['asignado']}')),
+		TRIM(UPPER('{$_SESSION['us_sds']}')),
+		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
+		// echo $sql;
+  		$rta=dato_mysql($sql);
+  		return $rta;
+	}else{
+		
+	}
 }
 
 function formato_dato($a,$b,$c,$d){

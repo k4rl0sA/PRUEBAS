@@ -132,12 +132,13 @@ $documento = cleanTxt($_POST['documento']);
 $nombre = cleanTxt($_POST['nombre']);
 $correo = cleanTxt($_POST['correo']);
 $perfil = cleanTxt($_POST['perfil']);
+$perfiln = cleanTxt($_POST['perfiln']);
 $bina_territorio = cleanTxt($_POST['bina_territorio']);
 $componente = cleanTxt($_POST['componente']);
 
-$sql="INSERT INTO adm_usuarios 
+	$sql="INSERT INTO adm_usuarios 
 	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),
-	$bina_territorio,$componente,NULL,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+	$bina_territorio,$componente,$perfiln,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 	$rta=dato_mysql($sql);
 	return $rta;
 }
@@ -1667,8 +1668,6 @@ function opc_perfil($id=''){
 	$comp = $com['responseResult'][0]['componente'] ;
 	// return $comp;
 	return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor='1'",$id);
-
-	// return opc_sql("SELECT perfil,perfil FROM `usuarios` WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' AND  perfil not in('ADM') ORDER BY 1",$id);
 }
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);

@@ -389,7 +389,8 @@ function gra_hog_geoloc(){
 	TRIM(UPPER('{$equipo}')),
 	TRIM(UPPER('{$_POST['estado_v']}')),
 	TRIM(UPPER('{$_POST['motivo_estado']}')),
-	TRIM(UPPER('{$_SESSION['us_sds']}')),
+	TRIM(UPPER('{$_POST['asignado']}')),
+	/* TRIM(UPPER('{$_SESSION['us_sds']}')), */
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
 	echo $sql;
   $rta=dato_mysql($sql);

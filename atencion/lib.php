@@ -76,7 +76,7 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
-	echo $sql;
+	// echo $sql;
 	//AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
 	//AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
 		$datos=datos_mysql($sql);

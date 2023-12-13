@@ -396,7 +396,7 @@ function gra_hog_geoloc(){
   		$rta=dato_mysql($sql);
   		return $rta;
 	}else{
-		$rta="Error: msj['No puede guardar el registro ya que el predio no esta asignado a Ud,valida nuevamente el ID.']";
+		$rta="Error: msj['No puede guardar el registro ya que el predio no esta asignado a Ud,valide nuevamente el ID.']";
 		return $rta;
 	}
 }

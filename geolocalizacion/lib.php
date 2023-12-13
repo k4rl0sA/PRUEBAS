@@ -362,7 +362,7 @@ function gra_hog_geoloc(){
 	$info=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
 	$equipo = (!$info['responseResult']) ? '' : $info['responseResult'][0]['equipo'] ;
 
-	if($_POST['asignado']!==$_SESSION['us_sds']){
+	if($_POST['asignado']===$_SESSION['us_sds']){
 		$sql="INSERT INTO hog_geo VALUES 
 		(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
 		TRIM(UPPER('{$_POST['subred']}')),
@@ -396,7 +396,7 @@ function gra_hog_geoloc(){
   		$rta=dato_mysql($sql);
   		return $rta;
 	}else{
-		$rta="Error: msj['No puede guardar el registro ya que elpredio no esta asignado a Ud,']";
+		$rta="Error: msj['No puede guardar el registro ya que el predio no esta asignado a Ud,valida nuevamente el ID.']";
 	}
 }
 

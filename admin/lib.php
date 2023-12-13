@@ -87,7 +87,7 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$ini=-60;
+	$ini=-75;
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';

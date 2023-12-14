@@ -132,17 +132,42 @@ function men_ajustar(){
   }
    
 function gra_ajustar(){
-
-	
-
-
 	if($_POST['id']==0){
 			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
-		$sql="INSERT INTO ajustes VALUES (null,
-		trim(upper('{$_POST['cod_pred']}')),trim(upper('{$_POST['cod_fam']}')),trim(upper('{$_POST['cod_individuo']}')),trim(upper('{$_POST['formulario']}')),trim(upper('{$_POST['accion']}')),trim(upper('{$_POST['cod_delete']}')),trim(upper('{$_POST['cod_traslada']}')),trim(upper('{$_POST['cmp_editar']}')),trim(upper('{$_POST['tipo_doc_new']}')),trim(upper('{$_POST['documento_new']}')),trim(upper('{$_POST['fecha_new']}')),trim(upper('{$_POST['sexo_new']}')),'',
-		TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),'',NULL,'A')";
-		// echo $sql;
-		$rta=dato_mysql($sql);
+		$sql1="SELECT p.tipo_doc tipodoc_old,p.idpersona documento_old,p.fecha_nacimiento fecha_old,
+		p.sexo sexo_old
+		FROM ajustes x LEFT JOIN usuarios u ON x.usu_creo=u.id_usuario
+		LEFT JOIN personas p ON x.cod_individuo=p.idpeople
+		where x.cod_individuo='{$_POST['cod_individuo']}'";
+		$info=datos_mysql($sql1);
+
+		$cod_pred = cleanTxt($_POST['cod_pred']);
+		$cod_fam = cleanTxt($_POST['cod_fam']);
+		$cod_individuo = cleanTxt($_POST['cod_individuo']);
+		$formulario = cleanTxt($_POST['formulario']);
+		$accion = cleanTxt($_POST['accion']);
+		$cod_delete = cleanTxt($_POST['cod_delete']);
+		$cod_traslada = cleanTxt($_POST['cod_traslada']);
+		$cmp_editar = cleanTxt($_POST['cmp_editar']);
+		$tipo_doc_new = cleanTxt($_POST['tipo_doc_new']);
+		$documento_new = cleanTxt($_POST['docu$documento_new']);
+		$fecha_new = cleanTxt($_POST['fecha_new']);
+		$sexo_new = cleanTxt($_POST['sexo_new']);
+
+		$doc_old=$info['responseResult'][0]['nombre'];
+		$doc_old=$info['responseResult'][0]['nombre'];
+		$doc_old=$info['responseResult'][0]['nombre'];
+		$doc_old=$info['responseResult'][0]['nombre'];
+
+			$sql="INSERT INTO ajustes VALUES (null,
+			$cod_pred,$cod_fam,$cod_individuo,$formulario,$accion,$cod_delete,$cod_traslada,$cmp_editar,
+			$tipo_doc_new,$documento_new,$fecha_new,$sexo_new,'',
+			'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),'',NULL,'A')";
+			// echo $sql;
+			$rta=dato_mysql($sql);
+
+
+		
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
 	}else{

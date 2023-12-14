@@ -154,14 +154,14 @@ function gra_ajustar(){
 		$fecha_new = cleanTxt($_POST['fecha_new']);
 		$sexo_new = cleanTxt($_POST['sexo_new']);
 
-		$doc_old=$info['responseResult'][0]['nombre'];
-		$doc_old=$info['responseResult'][0]['nombre'];
-		$doc_old=$info['responseResult'][0]['nombre'];
-		$doc_old=$info['responseResult'][0]['nombre'];
+		$doc_old=$info['responseResult'][0]['documento_old'];
+		$tipodoc_old=$info['responseResult'][0]['tipodoc_old'];
+		$fecha_old=$info['responseResult'][0]['fecha_old'];
+		$sexo_old=$info['responseResult'][0]['sexo_old'];
 
 			$sql="INSERT INTO ajustes VALUES (null,
 			$cod_pred,$cod_fam,$cod_individuo,$formulario,$accion,$cod_delete,$cod_traslada,$cmp_editar,
-			$tipo_doc_new,$documento_new,$fecha_new,$sexo_new,'',
+			$tipodoc_old,$tipo_doc_new,$doc_old,$documento_new,$fecha_old,$fecha_new,$sexo_old,$sexo_new,'',
 			'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),'',NULL,'A')";
 			// echo $sql;
 			$rta=dato_mysql($sql);

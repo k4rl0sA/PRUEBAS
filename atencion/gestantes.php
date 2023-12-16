@@ -203,7 +203,7 @@ function cmp_pregnant(){
 			      $hepatitisb = isset($_POST['hepatitisb']) ? trim($_POST['hepatitisb']) : '';
 			      $vih = isset($_POST['vih']) ? trim($_POST['vih']) : '';
     
-            $sql="INSERT INTO eac_gestantes VALUES (
+            $sql="INSERT INTO eac_gestantes VALUES (NULL,
             TRIM(UPPER('{$_POST['gestantes_tipo_doc']}')),
             TRIM(UPPER('{$_POST['gestantes_documento']}')),
             TRIM(UPPER('{$gestaciones}')),

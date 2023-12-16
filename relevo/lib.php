@@ -412,6 +412,7 @@ function gra_relevo(){
 		$val11 = $_POST['rel_validacion11'] ?? null;
 
 		$sql="INSERT INTO rel_relevo VALUES (
+					null,
 					trim(upper('{$_POST['rel_tipo_doc']}')),
 					trim(upper('{$_POST['rel_documento']}')),
 					trim(upper('{$_POST['rel_validacion1']}')),

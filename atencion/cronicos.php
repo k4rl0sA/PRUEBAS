@@ -184,7 +184,7 @@ function cmp_prechronic(){
     
         }else{
 
-            $sql="INSERT INTO eac_enfermedades VALUES (
+            $sql="INSERT INTO eac_enfermedades VALUES (NULL,
             TRIM(UPPER('{$_POST['enfermedades_tipo_doc']}')),
             TRIM(UPPER('{$_POST['enfermedades_documento']}')),
             TRIM(UPPER('{$_POST['dx_hiper']}')),

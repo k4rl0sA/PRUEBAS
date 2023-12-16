@@ -1250,7 +1250,7 @@ function gra_eac_juventud(){
 		/* $tip=$_POST['p_infancia_tipo_doc'];
         $doc=$_POST['p_infancia_documento']; */
         if(get_atenc($juventud_tipo_doc,$juventud_documento)){
-			$sql="INSERT INTO eac_juventud VALUES (
+			$sql="INSERT INTO eac_juventud VALUES (NULL,
 			'$juventud_tipo_doc',
 			'$juventud_documento',
 			TRIM(UPPER('{$_POST['validacion1']}')),
@@ -1387,7 +1387,7 @@ function gra_eac_adultez(){
 		$tip=$_POST['adultez_tipo_doc'];
         $doc=$_POST['adultez_documento'];
         if(get_atenc($tip,$doc)){
-			$sql="INSERT INTO eac_adultez VALUES (
+			$sql="INSERT INTO eac_adultez VALUES (NULL,
 			TRIM(UPPER('{$_POST['adultez_tipo_doc']}')),
 			TRIM(UPPER('{$_POST['adultez_documento']}')),
 			TRIM(UPPER('{$_POST['validacion1']}')),
@@ -1535,7 +1535,7 @@ function gra_eac_vejez(){
 		$tip=$_POST['vejez_tipo_doc'];
         $doc=$_POST['vejez_documento'];
         if(get_atenc($tip,$doc)){
-			$sql="INSERT INTO eac_vejez VALUES (
+			$sql="INSERT INTO eac_vejez VALUES (NULL,
 			TRIM(UPPER('{$_POST['vejez_tipo_doc']}')),
 			TRIM(UPPER('{$_POST['vejez_documento']}')),
 			TRIM(UPPER('{$_POST['validacion1']}')),

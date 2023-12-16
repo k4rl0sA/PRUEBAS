@@ -128,7 +128,7 @@ function focus_prinfancia(){
         $tip=$_POST['p_infancia_tipo_doc'];
         $doc=$_POST['p_infancia_documento'];
         if(get_atenc($tip,$doc)){
-          $sql="INSERT INTO eac_pinfancia VALUES (
+          $sql="INSERT INTO eac_pinfancia VALUES (NULL,
             TRIM(UPPER('{$_POST['p_infancia_tipo_doc']}')),
             TRIM(UPPER('{$_POST['p_infancia_documento']}')),
             trim(upper('{$_POST['p_infancia_validacion1']}')),trim(upper('{$_POST['p_infancia_validacion2']}')),trim(upper('{$_POST['p_infancia_validacion3']}')),trim(upper('{$_POST['p_infancia_validacion4']}')),trim(upper('{$_POST['p_infancia_validacion5']}')),trim(upper('{$_POST['p_infancia_validacion6']}')),trim(upper('{$_POST['p_infancia_validacion7']}')),trim(upper('{$_POST['p_infancia_validacion8']}')),trim(upper('{$_POST['p_infancia_validacion9']}')),trim(upper('{$_POST['p_infancia_validacion10']}')),trim(upper('{$_POST['p_infancia_validacion11']}')),trim(upper('{$_POST['p_infancia_validacion12']}')),

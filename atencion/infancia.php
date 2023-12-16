@@ -130,7 +130,7 @@ function focus_infancia(){
         $tip=$_POST['infancia_tipo_doc'];
         $doc=$_POST['infancia_documento'];
         if(get_atenc($tip,$doc)){
-        $sql="INSERT INTO eac_infancia VALUES (
+        $sql="INSERT INTO eac_infancia VALUES (NULL,
         TRIM(UPPER('{$_POST['infancia_tipo_doc']}')),TRIM(UPPER('{$_POST['infancia_documento']}')),
         trim(upper('{$_POST['infancia_validacion1']}')),trim(upper('{$_POST['infancia_validacion2']}')),trim(upper('{$_POST['infancia_validacion3']}')),trim(upper('{$_POST['infancia_validacion4']}')),trim(upper('{$_POST['infancia_validacion5']}')),trim(upper('{$_POST['infancia_validacion6']}')),trim(upper('{$_POST['infancia_validacion7']}')),trim(upper('{$_POST['infancia_validacion8']}')),trim(upper('{$_POST['infancia_validacion9']}')),trim(upper('{$_POST['infancia_validacion10']}')),trim(upper('{$_POST['infancia_validacion11']}')),trim(upper('{$_POST['infancia_validacion12']}')),
         TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";

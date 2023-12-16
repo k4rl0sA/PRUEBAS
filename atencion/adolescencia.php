@@ -144,7 +144,7 @@ function focus_adolesce(){
         $doc=$_POST['adolecencia_documento'];
         if(get_atenc($tip,$doc)){
 
-        $sql="INSERT INTO eac_adolescencia VALUES (
+        $sql="INSERT INTO eac_adolescencia VALUES (NULL,
         trim(upper('{$_POST['adolecencia_tipo_doc']}')),
         trim(upper('{$_POST['adolecencia_documento']}')),
         trim(upper('{$_POST['preg1']}')),

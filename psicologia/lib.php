@@ -347,6 +347,7 @@ function gra_psicologia(){
 
 	} else {
 		$sql="INSERT INTO psi_psicologia VALUES (
+					NULL,			
 					trim(upper('{$_POST['psi_tipo_doc']}')),
 					trim(upper('{$_POST['psi_documento']}')),
 					trim(upper('{$_POST['fecha_ses1']}')),
@@ -780,6 +781,7 @@ function gra_sesion_fin(){
 
 
 		$sql="INSERT INTO psi_sesion_fin VALUES (
+					NULL,
 					trim(upper('{$_POST['psi_tipo_doc']}')),
 					trim(upper('{$_POST['psi_documento']}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),

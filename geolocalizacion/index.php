@@ -251,9 +251,9 @@ $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mo
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 	
-	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca"></div>
-	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz"></div>
-	<div class="campo"><div>Predio</div><input class="captura" size=3 id="fpred" name="fpred" ></div>
+	<div class="campo"><div>Sector Catastral</div><input class="captura" type="number" size=6 id="fseca" name="fseca"></div>
+	<div class="campo"><div>Manzana</div><input class="captura" type="number" size=3 id="fmanz" name="fmanz"></div>
+	<div class="campo"><div>Predio</div><input class="captura" type="number" size=3 id="fpred" name="fpred" ></div>
 	<div class="campo"><div>Unidad Habitacional</div><input class="captura" type="number" size=3 id="funid" name="funid" OnChange="actualizar();"></div>
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fcopre" name="fcopre" OnChange="actualizar();"></div>
 	<div class="campo"><div>Estado</div>

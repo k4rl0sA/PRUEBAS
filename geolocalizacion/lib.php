@@ -69,7 +69,7 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 
-		//  echo $sql;
+		 echo $sql;
 		$sql1="";
 		//$_SESSION['sql_hog_geoloc']=$sql1;
 		$data = datos_mysql($sql);
@@ -79,8 +79,8 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
 function whe_hog_geoloc() {
 	$fefin=date('Y-m-d');
 	$feini=date('Y-m-d',strtotime($fefin.'- 4 week')); 
-	$sql = "AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
-
+	$sql="";
+	// $sql = "AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
 	/* if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])
@@ -89,8 +89,6 @@ function whe_hog_geoloc() {
 		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
 	if ($_POST['funid'])
 		$sql .= " AND unidad_habit ='".$_POST['funid']."' "; */
-	if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
 	if ($_POST['festado'])
 		$sql .= " AND estado_v ='".$_POST['festado']."'";
 	if (isset($_POST['fdigita'])){
@@ -99,10 +97,14 @@ function whe_hog_geoloc() {
 		$sql .= "AND (H.territorio IN (SELECT A.territorio FROM adscrip A where A.doc_asignado='{$_SESSION['us_sds']}') 
 					OR (asignado='{$_SESSION['us_sds']}')) ";
 	}
-	if($_POST['fseca'] && $_POST['fmanz'] && $_POST['fpred'] && $_POST['funid']){
+	if($_POST['fseca'] && $_POST['fmanz'] && $_POST['fpred'] && $_POST['funid'] && empty($_POST['fcopre'])){
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."' AND nummanzana ='".$_POST['fmanz']."' AND predio_num ='".$_POST['fpred']."' AND unidad_habit ='".$_POST['funid']."' ";
 	}else{
-
+		if($_POST['fcopre']){
+		$sql .= " AND id_geo ='".$_POST['fcopre']."' ";
+		}else{
+			$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
+		}
 	}
 	return $sql;
 }

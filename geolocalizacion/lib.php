@@ -29,12 +29,7 @@ LEFT JOIN adscrip A ON H.territorio=A.territorio
 LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
 WHERE H.estado_v IN (1, 2, 3)
   AND U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
-  AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
-      AND H2.nummanzana = H.nummanzana
-      AND H2.predio_num = H.predio_num
-      AND H2.unidad_habit = H.unidad_habit
-      AND H2.estrategia = H.estrategia
-      AND H2.estado_v in( 4,5,6,7))) as subquery";
+  ) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];
 
@@ -63,7 +58,7 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 
-		 echo $sql;
+		//  echo $sql;
 		$sql1="";
 		//$_SESSION['sql_hog_geoloc']=$sql1;
 		$data = datos_mysql($sql);

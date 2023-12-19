@@ -245,15 +245,17 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 
-$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='ADMEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$import = ($perfil == 'GEO'||$perfil =='ADM' || $perfil =='SUPHOG' || $perfil =='SUPEAC') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li><li class='icono exportar'      title='Exportar Información General'    Onclick='csv(mod);'></li>":"";
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 	
-	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca" OnChange="actualizar();"></div>
-	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
-	<div class="campo"><div>Predio</div><input class="captura" size=3 id="fpred" name="fpred" OnChange="actualizar();"></div>
+	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca"></div>
+	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz"></div>
+	<div class="campo"><div>Predio</div><input class="captura" size=3 id="fpred" name="fpred" ></div>
+	<div class="campo"><div>Unidad Habitacional</div><input class="captura" type="number" size=3 id="funid" name="funid" OnChange="actualizar();"></div>
+	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fcopre" name="fcopre" OnChange="actualizar();"></div>
 	<div class="campo"><div>Estado</div>
 		<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php echo $estados;?></select>
 	</div>

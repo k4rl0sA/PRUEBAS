@@ -20,18 +20,6 @@ else {
 }
 
 function lis_hog_geoloc(){
-$fefin=date('Y-m-d');
-$feini=date('Y-m-d',strtotime($fefin.'- 4 week')); 
-	/*$total="SELECT count(*) as total
- FROM (SELECT G.idgeo AS ACCIONES, FN_CATALOGODESC(42, G.estrategia) AS estrategia, FN_CATALOGODESC(2, G.localidad) AS 'Localidad', FN_CATALOGODESC(3, G.zona) AS zona, G.direccion, G.sector_catastral, G.nummanzana AS Manzana, G.predio_num AS predio, G.unidad_habit AS 'Unidad Hab', U1.nombre AS asignado, G.fecha_create 
- FROM `hog_geo` G 
- LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario 
- WHERE G.predio = G.predio AND ( (G.estado_v IN (1, 2, 3)) OR (G.estado_v NOT IN (4, 5, 6, 7)))
-  AND U1.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() .") as subquery";
-$info = datos_mysql($total);
-$total = $info['responseResult'][0]['total'];
-*/
-
 	$total="SELECT count(*) as total
  FROM (
     SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
@@ -41,7 +29,6 @@ LEFT JOIN adscrip A ON H.territorio=A.territorio
 LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
 WHERE H.estado_v IN (1, 2, 3)
   AND U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
-  AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' 
   AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
       AND H2.nummanzana = H.nummanzana
       AND H2.predio_num = H.predio_num
@@ -55,26 +42,6 @@ $total = $info['responseResult'][0]['total'];
 $regxPag = 5;
 $pag = isset($_POST['pag-hog_geoloc']) ? ($_POST['pag-hog_geoloc'] - 1) * $regxPag : 0;
 
-/*
-$sql = "SELECT G.idgeo AS ACCIONES, FN_CATALOGODESC(42, G.estrategia) AS estrategia, FN_CATALOGODESC(2, G.localidad) AS 'Localidad', FN_CATALOGODESC(3, G.zona) AS zona, G.direccion, G.sector_catastral, G.nummanzana AS Manzana, G.predio_num AS predio, G.unidad_habit AS 'Unidad Hab', U1.nombre AS asignado, G.fecha_create 
-FROM `hog_geo` G 
-LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario 
-WHERE G.predio = G.predio AND ( (G.estado_v IN (1, 2, 3)) OR (G.estado_v NOT IN (4, 5, 6, 7)) )
-  		AND U1.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
-  		
-    ORDER BY nummanzana, predio_num
-    LIMIT $pag, $regxPag";
-
-		  echo $sql;
-		$sql1="";
-		$_SESSION['sql_hog_geoloc']=$sql1;
-		$data = datos_mysql($sql);
-    return create_table($total, $data["responseResult"], "hog_geoloc", $regxPag);
-}
-
-
-AND DATE(H.fecha_create) BETWEEN $feini and $fefin
-*/
 $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
 	H.idgeo 'Cod. Predio',
     FN_CATALOGODESC(42, H.estrategia) AS estrategia,direccion,
@@ -93,7 +60,6 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
 		LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
 	WHERE H.estado_v IN (1, 2, 3)
   		AND U.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
-  		AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' 
   		AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
       	AND H2.nummanzana = H.nummanzana
       	AND H2.predio_num = H.predio_num
@@ -111,11 +77,18 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
 }
 
 function whe_hog_geoloc() {
-	$sql = "";
-	if ($_POST['fseca'])
+	$fefin=date('Y-m-d');
+	$feini=date('Y-m-d',strtotime($fefin.'- 4 week')); 
+	$sql = "AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
+
+	/* if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
+	if ($_POST['fpred'])
+		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
+	if ($_POST['funid'])
+		$sql .= " AND unidad_habit ='".$_POST['funid']."' "; */
 	if ($_POST['fpred'])
 		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
 	if ($_POST['festado'])
@@ -125,7 +98,11 @@ function whe_hog_geoloc() {
 	}else{
 		$sql .= "AND (H.territorio IN (SELECT A.territorio FROM adscrip A where A.doc_asignado='{$_SESSION['us_sds']}') 
 					OR (asignado='{$_SESSION['us_sds']}')) ";
-		// $sql .= "AND (H.equipo     IN (SELECT U.equipo from usuarios where id_usuario='{$_SESSION['us_sds']}') OR (asignado='{$_SESSION['us_sds']}') OR (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}')))";
+	}
+	if($_POST['fseca'] && $_POST['fmanz'] && $_POST['fpred'] && $_POST['funid']){
+		$sql .= " AND sector_catastral = '".$_POST['fseca']."' AND nummanzana ='".$_POST['fmanz']."' AND predio_num ='".$_POST['fpred']."' AND unidad_habit ='".$_POST['funid']."' ";
+	}else{
+
 	}
 	return $sql;
 }

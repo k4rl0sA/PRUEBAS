@@ -101,7 +101,7 @@ function whe_hog_geoloc() {
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."' AND nummanzana ='".$_POST['fmanz']."' AND predio_num ='".$_POST['fpred']."' AND unidad_habit ='".$_POST['funid']."' ";
 	}else{
 		if($_POST['fcopre']){
-		$sql .= " AND id_geo ='".$_POST['fcopre']."' ";
+		$sql .= " AND idgeo ='".$_POST['fcopre']."' ";
 		}else{
 			$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
 		}

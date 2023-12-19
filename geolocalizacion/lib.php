@@ -27,8 +27,7 @@ function lis_hog_geoloc(){
 LEFT JOIN usuarios U ON H.subred = U.subred
 LEFT JOIN adscrip A ON H.territorio=A.territorio
 LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
-WHERE H.estado_v IN (1, 2, 3)
-  AND U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
+WHERE U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
   ) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];

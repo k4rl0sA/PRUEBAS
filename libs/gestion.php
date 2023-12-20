@@ -221,7 +221,17 @@ function mysql_prepd($sql, ...$params) {
               $types = '';
               $bindParams = array();
               foreach ($params as $param) {
-                  $types .= gettype($param)[0];
+                  if (is_int($param)) {
+                      $types .= 'i';  // entero
+                  } elseif (is_float($param)) {
+                      $types .= 'd';  // doble
+                  } elseif (is_string($param)) {
+                      $types .= 's';  // cadena
+                  } elseif (is_null($param)) {
+                      $types .= 's';  // null como cadena
+                  } else {
+                      throw new Exception("Tipo de parámetro no válido.");
+                  }
                   $bindParams[] = &$param;
               }
               array_unshift($bindParams, $types);
@@ -236,9 +246,12 @@ function mysql_prepd($sql, ...$params) {
       }
   } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  } catch (Exception $e) {
+      $rs = "Error: " . $e->getMessage();
   }
   return $rs;
 }
+
 
 
 

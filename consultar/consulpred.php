@@ -59,7 +59,7 @@ function cmp_predios(){
 	$hoy=date('Y-m-d');
 	$w='predios';
 	$d='';
-	$o='rieamb';
+	$o='pred';
 	$c[]=new cmp($o,'e',null,'CODIGOS DE PREDIO',$w);
 	$c[]=new cmp('sector','n',15,$d,$w.' '.$o,'sector','sector',null,'123456',false,false);
 	$c[]=new cmp('manzana','n',6,$d,$w.' '.$o,'manzana','manzana',null,'123',true,true,'','col-5','validDate(this,-60,0);');

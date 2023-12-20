@@ -274,36 +274,39 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
  */
 
- function mysql_prepd($sql, $params) {
+
+ function dato_mysql_prepared($sql, $params = array()) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
   try {
       $stmt = $con->prepare($sql);
-      if ($stmt) {
-          $types = '';
-          $values = array();
-          foreach ($params as $param) {
-              $types .= $param['type'];
-              $values[] = $param['value'] === 's' ? strtoupper($param['value']) : $param['value'];
+      if (!$stmt) {
+          $rs = "Error en la preparación de la consulta: " . $con->error;
+      } else {
+          if (!empty($params)) {
+              $types = '';
+              $bindParams = array();
+              foreach ($params as $param) {
+                  $types .= $param['type'];
+                  print_r($param['value']);
+                  $bindParams[] = $param['value'] === 's' ? strtoupper($param['value']) : $param['value'];
+                  // $bindParams[] = &$param['value'];
+              }
+              array_unshift($bindParams, $types);
+              call_user_func_array(array($stmt, 'bind_param'), $bindParams);
           }
-          $stmt->bind_param($types, ...$values);
-          if ($stmt->execute()) {
-              $arr['responseResult'][] = $stmt->insert_id;
+          if (!$stmt->execute()) {
+              $rs = "Error al ejecutar la consulta: " . $stmt->error;
           } else {
-              $arr['code'] = 1;
-              $arr['message'] = "Error: " . $stmt->error;
+              $rs = "Consulta ejecutada correctamente.";
           }
           $stmt->close();
-      } else {
-          $arr['code'] = 1;
-          $arr['message'] = "Error: " . $con->error;
       }
   } catch (mysqli_sql_exception $e) {
-      $arr['code'] = 1;
-      $arr['message'] = "Error = " . $e->getCode() . " " . $e->getMessage();
+      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
-  return $arr;
+  return $rs;
 }
 
 

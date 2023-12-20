@@ -192,7 +192,7 @@ $rta = mysql_prepd(
 return $rta;
  */
   $sql = "INSERT INTO INSERT INTO asigpsico VALUES
-   (?, ?,?, ?,?, ?,?, ?,?, ?,?)";
+   (?,?,?,?,?,?,?,?,?,?,?)";
 $params = array(
 	array('type' => 'i', 'value' => NULL),
 	array('type' => 's', 'value' => $id[0]),

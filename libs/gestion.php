@@ -298,7 +298,6 @@ function mysql_prepd($sql, $params) {
           } else {
               $op = 'Operación desconocida';
           }
-
           if (!$stmt->execute()) {
             $rs = "Error al ejecutar la consulta: " . $stmt->error;
         } else {

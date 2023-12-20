@@ -202,8 +202,8 @@ $params = array(
 	array('type' => 'i', 'value' => $_POST['asignado']),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
+	array('type' => 'i', 'value' => ''),
+	array('type' => 's', 'value' => ''),
 	array('type' => 'i', 'value' => 1)
 );
 $rta = mysql_prepd($sql, $params);

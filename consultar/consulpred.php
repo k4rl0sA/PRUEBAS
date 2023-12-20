@@ -61,9 +61,11 @@ function cmp_predios(){
 	$d='';
 	$o='rieamb';
 	$c[]=new cmp($o,'e',null,'CODIGOS DE PREDIO',$w);
-	$c[]=new cmp('idvivamb','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5','validDate(this,-60,0);');
-	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'Tipo de Activi','tipo_activi',null,null,true,true,'','col-5');
+	$c[]=new cmp('sector','n',15,$_POST['id'],$w.' '.$o,'id','sector',null,'####',false,false);
+	$c[]=new cmp('manzana','n',6,$d,$w.' '.$o,'manzana','manzana',null,'123456',true,true,'','col-5','validDate(this,-60,0);');
+	$c[]=new cmp('predio','n',3,$d,$w.' '.$o,'predio','predio',null,'123',true,true,'','col-5');
+	$c[]=new cmp('unidad','n',3,$d,$w.' '.$o,'unidad','unidad',null,'123',true,true,'','col-5');
+	$c[]=new cmp('codpre','n',3,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'123',true,true,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

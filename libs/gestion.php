@@ -208,7 +208,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
 
 
-function mysql_prepd($sql, ...$params) {
+/* function mysql_prepd($sql, ...$params) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
@@ -272,8 +272,57 @@ function mysql_prepd($sql, ...$params) {
 
   return $rs;
 }
+ */
 
 
+ function mysql_prepd($sql, ...$params) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+  $con->set_charset('utf8');
+  
+  try {
+      $stmt = $con->prepare($sql);
+
+      if (!$stmt) {
+          $rs = "Error en la preparación de la consulta: " . $con->error;
+      } else {
+          if (!empty($params)) {
+              $types = '';
+              $bindParams = array();
+
+              foreach ($params as $param) {
+                  if (is_int($param) || is_float($param)) {
+                      $types .= 'i';
+                  } elseif (is_string($param)) {
+                      $types .= 's';
+                  } else {
+                      $types .= 's'; // Asignamos 's' para el tipo 'NULL'
+                      $param = null;  // asignar null explícitamente
+                  }
+
+                  $bindParams[] = &$param;
+              }
+
+              array_unshift($bindParams, $types);
+              call_user_func_array(array($stmt, 'bind_param'), $bindParams);
+          }
+
+          if (!$stmt->execute()) {
+              $rs = "Error al ejecutar la consulta: " . $stmt->error;
+          } else {
+              $rs = "Operación ejecutada correctamente.";
+          }
+
+          $stmt->close();
+      }
+  } catch (mysqli_sql_exception $e) {
+      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  } catch (Exception $e) {
+      $rs = "Error: " . $e->getMessage();
+  }
+
+  return $rs;
+}
 
 
 

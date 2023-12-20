@@ -119,7 +119,7 @@ $d='';
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'Estado del Caso','estado_cierre',null,null,true,true,'','col-2',"enClSe('estado_cierre', 'STc', [['AsG'], ['cAN']]);");
 	$c[]=new cmp('motivo_cierre','t',150,$d['motivo_cierre'],$w.' cAN STc '.$o,'Motivo Cierre','motivo_cierre',null,null,true,false,'','col-8');
-	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' STc AsG '.$o,'Asignado A','asignado',null,null,true,false,'','col-5');
+	$c[]=new cmp('asignado','s',3,$d['asignado'],$w.' STc AsG '.$o,'Asignado A','asignado',null,null,true,false,'','col-35');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -164,11 +164,13 @@ function get_asigpsico(){
 
 function gra_asigpsico(){
 	$id=divide($_POST['id']);
-	 $sql="INSERT INTO asigpsico VALUES 
+	$sql="INSERT INTO asigpsico VALUES 
 	(NULL,
 	TRIM(UPPER('{$id[0]}')),
 	TRIM(UPPER('{$id[1]}')),
-	TRIM(UPPER('{$_POST['asignado']}')),
+	cleanTxt({$_POST['estado_cierre']}),
+	cleanTxt({$_POST['motivo_cierre']}),
+	cleanTxt({$_POST['asignado']}),
 	TRIM(UPPER('{$_SESSION['us_sds']}')),
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	// echo $sql;

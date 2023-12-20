@@ -275,11 +275,11 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
  */
 
 
- function mysql_prepd($sql, ...$params) {
+ function dato_mysql_prepared($sql, $params = array()) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
-  
+
   try {
       $stmt = $con->prepare($sql);
 
@@ -291,18 +291,8 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
               $bindParams = array();
 
               foreach ($params as $param) {
-                  if (is_int($param) || is_float($param)) {
-                      $types .= 'i';
-                  } elseif (is_string($param)) {
-                      $types .= 's';
-                  } elseif (is_null($param)) {
-                      $types .= 's';
-                      $param = null;  // asignar null explícitamente
-                  } else {
-                      $types .= 's';  // asignar 's' para otros tipos
-                  }
-
-                  $bindParams[] = &$param;
+                  $types .= $param['type'];
+                  $bindParams[] = &$param['value'];
               }
 
               array_unshift($bindParams, $types);
@@ -312,15 +302,13 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error;
           } else {
-              $rs = "Operación ejecutada correctamente.";
+              $rs = "Consulta ejecutada correctamente.";
           }
 
           $stmt->close();
       }
   } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
-  } catch (Exception $e) {
-      $rs = "Error: " . $e->getMessage();
   }
 
   return $rs;

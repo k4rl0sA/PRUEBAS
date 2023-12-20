@@ -180,7 +180,7 @@ function gra_asigpsico(){
   /* $rta=dato_mysql($sql);
   return $rta; */
 
-  echo $id[0].'--'.$id[1].'--'.$_POST['estado_cierre'].'--'.$_POST['motivo_cierre'].'--'. $_POST['asignado'].'--'.
+/*   echo $id[0].'--'.$id[1].'--'.$_POST['estado_cierre'].'--'.$_POST['motivo_cierre'].'--'. $_POST['asignado'].'--'.
   $_SESSION['us_sds'].'--'. date("Y-m-d H:i:s");
 
 $rta = mysql_prepd(
@@ -190,8 +190,8 @@ $rta = mysql_prepd(
 );
 
 return $rta;
-
-/*   $sql = "INSERT INTO INSERT INTO asigpsico VALUES
+ */
+  $sql = "INSERT INTO INSERT INTO asigpsico VALUES
    (?, ?)";
 $params = array(
 	array('type' => 'i', 'value' => NULL),
@@ -207,8 +207,10 @@ $params = array(
 	array('type' => 'i', 'value' => 1)
 );
 
-$rta = mysql_prepd($sql, $params);
-return $rta; */
+
+
+$rta = dato_mysql_prepared($sql, $params);
+return $rta;
 }
 
 function opc_estado_cierre($id=''){

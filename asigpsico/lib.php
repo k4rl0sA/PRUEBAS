@@ -109,7 +109,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_asigpsico(){
  $rta="";
- $t=['idpersona'=>'','tipo_doc'=>'','asignado'=>''];
+ $t=['idpersona'=>'','tipo_doc'=>'','asignado'=>'','estado_cierre'=>''];
  $w='asigpsico';
 //  $d=get_asigpsico();
 $d='';
@@ -175,8 +175,11 @@ function gra_asigpsico(){
   return $rta;
 }
 
+function opc_estado_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=219 AND estado='A' ORDER BY 1", $id);
+}
 
- function opc_tipo_doc($id=''){
+function opc_tipo_doc($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 }
 

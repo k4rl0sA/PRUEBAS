@@ -295,9 +295,11 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
                       $types .= 'i';
                   } elseif (is_string($param)) {
                       $types .= 's';
-                  } else {
-                      $types .= 's'; // Asignamos 's' para el tipo 'NULL'
+                  } elseif (is_null($param)) {
+                      $types .= 's';
                       $param = null;  // asignar null explícitamente
+                  } else {
+                      $types .= 's';  // asignar 's' para otros tipos
                   }
 
                   $bindParams[] = &$param;

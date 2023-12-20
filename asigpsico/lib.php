@@ -164,7 +164,7 @@ function get_asigpsico(){
 
 function gra_asigpsico(){
 	$id=divide($_POST['id']);
-	$estado_cierre = cleanTxt($_POST['estado_cierre']);
+	/* $estado_cierre = cleanTxt($_POST['estado_cierre']);
 	$motivo_cierre = cleanTxt($_POST['motivo_cierre']);
 	$asignado = cleanTxt($_POST['asignado']);
 	$sql="INSERT INTO asigpsico VALUES 
@@ -175,10 +175,37 @@ function gra_asigpsico(){
 	$motivo_cierre,
 	$asignado,
 	TRIM(UPPER('{$_SESSION['us_sds']}')),
-	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
+	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');"; */
 	// echo $sql;
-  $rta=dato_mysql($sql);
-  return $rta;
+  /* $rta=dato_mysql($sql);
+  return $rta; */
+
+$rta = mysql_prepd(
+    "INSERT INTO asigpsico VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    NULL,$id[0],$id[1],$_POST['estado_cierre'],$_POST['motivo_cierre'], $_POST['asignado'],
+	$_SESSION['us_sds'], date("Y-m-d H:i:s"), NULL, NULL, 1
+);
+
+return $rta;
+
+/*   $sql = "INSERT INTO INSERT INTO asigpsico VALUES
+   (?, ?)";
+$params = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 's', 'value' => $id[0]),
+	array('type' => 's', 'value' => $id[1]),
+	array('type' => 'i', 'value' => $_POST['estado_cierre']),
+	array('type' => 's', 'value' => $_POST['motivo_cierre']),
+	array('type' => 'i', 'value' => $_POST['asignado']),
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 'i', 'value' => 1)
+);
+
+$rta = mysql_prepd($sql, $params);
+return $rta; */
 }
 
 function opc_estado_cierre($id=''){

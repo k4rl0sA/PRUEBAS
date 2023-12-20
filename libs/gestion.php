@@ -298,23 +298,20 @@ function mysql_prepd($sql, $params) {
           } else {
               $op = 'Operación desconocida';
           }
-          if ($stmt->execute()) {
+
+          if (!$stmt->execute()) {
+            $rs = "Error al ejecutar la consulta: " . $stmt->error;
+        } else {
             $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
-              $arr['responseResult'][] =$rs;
-          } else {
-              $arr['code'] = 1;
-              $arr['message'] = "Error: " . $stmt->error;
-          }
+        }
           $stmt->close();
       } else {
-          $arr['code'] = 1;
-          $arr['message'] = "Error: " . $con->error;
+        $rs = "Error: " . $con->error;
       }
   } catch (mysqli_sql_exception $e) {
-      $arr['code'] = 1;
-      $arr['message'] = "Error = " . $e->getCode() . " " . $e->getMessage();
+    $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
-  return $arr;
+  return $rs;
 }
 
 

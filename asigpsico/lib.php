@@ -180,6 +180,9 @@ function gra_asigpsico(){
   /* $rta=dato_mysql($sql);
   return $rta; */
 
+  echo $id[0].'--'.$id[1].'--'.$_POST['estado_cierre'].'--'.$_POST['motivo_cierre'].'--'. $_POST['asignado'].'--'.
+  $_SESSION['us_sds'].'--'. date("Y-m-d H:i:s");
+
 $rta = mysql_prepd(
     "INSERT INTO asigpsico VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
     NULL,$id[0],$id[1],$_POST['estado_cierre'],$_POST['motivo_cierre'], $_POST['asignado'],

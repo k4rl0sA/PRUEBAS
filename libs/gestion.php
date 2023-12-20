@@ -287,9 +287,7 @@ function mysql_prepd($sql, $params) {
               $types .= $param['type'];
               $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
           }
-
           $stmt->bind_param($types, ...$values);
-          
           $sqlType = strtoupper($sql);
           if (strpos($sqlType, 'DELETE') !== false) {
               $op = 'Eliminado';

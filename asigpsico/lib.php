@@ -191,7 +191,7 @@ $rta = mysql_prepd(
 
 return $rta;
  */
-  $sql = "INSERT INTO INSERT INTO asigpsico VALUES
+  $sql = "INSERT INTO asigpsico VALUES
    (?,?,?,?,?,?,?,?,?,?,?)";
 $params = array(
 	array('type' => 'i', 'value' => NULL),

@@ -133,6 +133,45 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 	return $arr;
 }
 
+function mysql_prepd($sql, $params) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+  $con->set_charset('utf8');
+  try {
+      $stmt = $con->prepare($sql);
+      if ($stmt) {
+          $types = '';
+          $values = array();
+          foreach ($params as $param) {
+              $types .= $param['type'];
+              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
+          }
+          $stmt->bind_param($types, ...$values);
+          $sqlType = strtoupper($sql);
+          if (strpos($sqlType, 'DELETE') !== false) {
+              $op = 'Eliminado';
+          } elseif (strpos($sqlType, 'INSERT') !== false) {
+              $op = 'Insertado';
+          } elseif (strpos($sqlType, 'UPDATE') !== false) {
+              $op = 'Actualizado';
+          } else {
+              $op = 'Operación desconocida';
+          }
+          if (!$stmt->execute()) {
+            $rs = "Error al ejecutar la consulta: " . $stmt->error;
+        } else {
+            $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
+        }
+          $stmt->close();
+      } else {
+        $rs = "Error: " . $con->error;
+      }
+  } catch (mysqli_sql_exception $e) {
+    $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  }
+  return $rs;
+}
+
 
 /* function dato_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];

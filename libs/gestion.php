@@ -274,7 +274,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
  */
 
-function dato_mysql_prepared($sql, $params) {
+function mysql_prepd($sql, $params) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');

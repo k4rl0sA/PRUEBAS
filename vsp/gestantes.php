@@ -91,7 +91,7 @@ $ob='Ob';
   
   $o='gest';
   $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTE',$w);
-    
+
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-25');
@@ -313,7 +313,7 @@ function gra_gestantes(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_gestante,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,peso,talla,imc,clas_nutri,gana_peso,cant_ganapesosem,ante_patogest,num_frutas,num_carnes,num_azucar,cant_actifisica,adop_recomenda,apoy_alim,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,peso,talla,imc,clasi_nutri,gana_peso,cant_ganapesosem,ante_patogest,num_frutas,num_carnes,num_azucar,cant_actifisica,adop_recomenda,apoy_alim,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_gestantes
       WHERE id_gestante ='{$id[0]}'";
       // echo $sql;

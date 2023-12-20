@@ -117,8 +117,7 @@ $d='';
  $o='asicas';
  $c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	/* $rta .="<div class='encabezado asigna'>TABLA DE ASIGNACION DE PSICOLOGIA</div>
-	<div class='contenido' id='datos-lis' >".lista_asignados()."</div></div>"; */
+	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'estado_cierre','estado_cierre',null,null,true,true,'','col-5',"enbValue('estado_cierre','Rel','7');");
 	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;

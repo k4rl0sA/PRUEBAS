@@ -164,13 +164,16 @@ function get_asigpsico(){
 
 function gra_asigpsico(){
 	$id=divide($_POST['id']);
+	$estado_cierre = cleanTxt($_POST['estado_cierre']);
+	$motivo_cierre = cleanTxt($_POST['motivo_cierre']);
+	$asignado = cleanTxt($_POST['asignado']);
 	$sql="INSERT INTO asigpsico VALUES 
 	(NULL,
 	TRIM(UPPER('{$id[0]}')),
 	TRIM(UPPER('{$id[1]}')),
-	cleanTxt({$_POST['estado_cierre']}),
-	cleanTxt({$_POST['motivo_cierre']}),
-	cleanTxt({$_POST['asignado']}),
+	$estado_cierre,
+	$motivo_cierre,
+	$asignado,
 	TRIM(UPPER('{$_SESSION['us_sds']}')),
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	// echo $sql;

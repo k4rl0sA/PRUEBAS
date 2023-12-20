@@ -65,7 +65,7 @@ function cmp_predios(){
 	$c[]=new cmp('manzana','n',6,$d,$w.' '.$o,'manzana','manzana',null,'123',true,true,'','col-5','validDate(this,-60,0);');
 	$c[]=new cmp('predio','n',3,$d,$w.' '.$o,'predio','predio',null,'123',true,true,'','col-5');
 	$c[]=new cmp('unidad','n',3,$d,$w.' '.$o,'unidad','unidad',null,'123',true,true,'','col-5');
-	$c[]=new cmp('codpre','n',3,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'123',true,true,'','col-5');
+	$c[]=new cmp('codpre','n',3,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'#####',true,true,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

@@ -117,8 +117,8 @@ $d='';
  $o='asicas';
  $c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'estado_cierre','estado_cierre',null,null,true,true,'','col-5',"enbValue('estado_cierre','Rel','7');");
-	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
+	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'estado_cierre','estado_cierre',null,null,true,true,'','col-5',"enbValue('estado_cierre','pSi','7');");
+	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' pSi '.$o,'Asignado','asignado',null,null,true,true,'','col-5');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -127,7 +127,7 @@ $d='';
 	$id=divide($_POST['id']);
 		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Nació',
-		FN_CATALOGODESC(21,sexo) 'Sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
+		FN_CATALOGODESC(21,sexo) 'Sexo',FN_CATALOGODESC(19,gene ro) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
 		FROM `personas` 
 			WHERE '1'='1' and vivipersona='".$id[0]."'";
 		$sql.=" ORDER BY fecha_create";
@@ -176,7 +176,7 @@ function gra_asigpsico(){
 }
 
 function opc_estado_cierre($id=''){
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=219 AND estado='A' ORDER BY 1", $id);
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=220 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_tipo_doc($id=''){

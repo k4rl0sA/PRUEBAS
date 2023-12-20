@@ -117,9 +117,9 @@ $d='';
  $o='asicas';
  $c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'estado_cierre','estado_cierre',null,null,true,true,'','col-5',"enClSe('estado_cierre', 'STc', [['AsG'], ['cAN']]);");
-	$c[]=new cmp('motivo_cierre','t',150,$d['motivo_cierre'],$w.' cAN STc '.$o,'motivo_cierre','motivo_cierre',null,null,true,false,'','col-5');
-	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' STc AsG '.$o,'Asignado','asignado',null,null,true,false,'','col-5');
+	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'Estado del Caso','estado_cierre',null,null,true,true,'','col-5',"enClSe('estado_cierre', 'STc', [['AsG'], ['cAN']]);");
+	$c[]=new cmp('motivo_cierre','t',150,$d['motivo_cierre'],$w.' cAN STc '.$o,'Motivo Cierre','motivo_cierre',null,null,true,false,'','col-5');
+	$c[]=new cmp('asignado','s','3',$d['asignado'],$w.' STc AsG '.$o,'Asignado A','asignado',null,null,true,false,'','col-5');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

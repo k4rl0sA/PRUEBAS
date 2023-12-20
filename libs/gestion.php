@@ -55,7 +55,7 @@ switch ($req) {
 		if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $fi))
 			echo "Error " . $_FILES['archivo']['error'] . " " . $fi;
 		else {
-			echo $cabecera;
+			/* echo $cabecera;
 			echo "Archivo <b>" . $_POST['b'] . "</b>" . $ar . "<br>";
 			echo "<center>";
 			echo "<div id='progress-ordennovedadvalor'></div>";
@@ -63,7 +63,7 @@ switch ($req) {
 			if (isset($GLOBALS['def_' . $tb]))
 				importar($tb, $fi, $_REQUEST['d']);
 			echo "<input type=button value='Continuar' OnClick=\"retornar('" . $cr . "','" . $ar . ".csv')\" >";
-			echo "</center>";
+			echo "</center>"; */
 		}
 		break;
 }
@@ -100,20 +100,23 @@ function csv($a,$b,$tot= null){
 }
 
 function cleanTxt($val) {
-  // Elimina espacios en blanco al principio y al final
   $val = trim($val);
-  // Escapa comillas simples y dobles
   $val = addslashes($val);
-  // Escapa caracteres especiales para SQL (opcional)
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-  // Elimina saltos de línea y tabulaciones
   $pattern = '/[\'";\x00-\x1F\x7F]/';
   $replacement = '';
   $val = preg_replace($pattern, $replacement, $val);
   $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
   $val=strtoupper($val);
-  return $val;
+  if (function_exists('mb_ereg_replace')) {
+    return mb_ereg_replace('[\x00\x0A\x0D\x1A\x22\x27\x5C]', '\\\0', $val);
+  } else {
+    return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\\$0', $val);
+  }
+  // return $val;
 }
+
+
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];

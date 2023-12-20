@@ -109,7 +109,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_asigpsico(){
  $rta="";
- $t=['idpersona'=>'','tipo_doc'=>'','asignado'=>'','estado_cierre'=>'',''=>''];
+ $t=['idpersona'=>'','tipo_doc'=>'','asignado'=>'','estado_cierre'=>'','motivo_cierre'=>''];
  $w='asigpsico';
 //  $d=get_asigpsico();
 $d='';

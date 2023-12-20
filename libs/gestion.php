@@ -289,7 +289,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
               $bindParams = array();
               foreach ($params as $param) {
                   $types .= $param['type'];
-                  // print_r($param['value']);
+                  print_r($param['value']);
                   $bindParams[] = $param['type'] === 's' ? strtoupper($param['value']) : $param['value'];
                   // $bindParams[] = &$param['value'];
               }

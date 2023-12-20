@@ -274,44 +274,36 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
  */
 
-
- function dato_mysql_prepared($sql, $params = array()) {
+ function mysql_prepd($sql, $params) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
-
   try {
       $stmt = $con->prepare($sql);
-
-      if (!$stmt) {
-          $rs = "Error en la preparación de la consulta: " . $con->error;
-      } else {
-          if (!empty($params)) {
-              $types = '';
-              $bindParams = array();
-
-              foreach ($params as $param) {
-                  $types .= $param['type'];
-                  $bindParams[] = &$param['value'];
-              }
-
-              array_unshift($bindParams, $types);
-              call_user_func_array(array($stmt, 'bind_param'), $bindParams);
+      if ($stmt) {
+          $types = '';
+          $values = array();
+          foreach ($params as $param) {
+              $types .= $param['type'];
+              $values[] = $param['value'] === 's' ? strtoupper($param['value']) : $param['value'];
           }
-
-          if (!$stmt->execute()) {
-              $rs = "Error al ejecutar la consulta: " . $stmt->error;
+          $stmt->bind_param($types, ...$values);
+          if ($stmt->execute()) {
+              $arr['responseResult'][] = $stmt->insert_id;
           } else {
-              $rs = "Consulta ejecutada correctamente.";
+              $arr['code'] = 1;
+              $arr['message'] = "Error: " . $stmt->error;
           }
-
           $stmt->close();
+      } else {
+          $arr['code'] = 1;
+          $arr['message'] = "Error: " . $con->error;
       }
   } catch (mysqli_sql_exception $e) {
-      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+      $arr['code'] = 1;
+      $arr['message'] = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
-
-  return $rs;
+  return $arr;
 }
 
 

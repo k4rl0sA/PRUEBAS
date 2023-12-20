@@ -206,10 +206,7 @@ $params = array(
 	array('type' => 's', 'value' => NULL),
 	array('type' => 'i', 'value' => 1)
 );
-
-
-
-$rta = dato_mysql_prepared($sql, $params);
+$rta = mysql_prepd($sql, $params);
 return $rta;
 }
 

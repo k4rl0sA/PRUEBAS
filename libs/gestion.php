@@ -287,9 +287,22 @@ function mysql_prepd($sql, $params) {
               $types .= $param['type'];
               $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
           }
+
           $stmt->bind_param($types, ...$values);
+          
+          $sqlType = strtoupper($sql);
+          if (strpos($sqlType, 'DELETE') !== false) {
+              $op = 'Eliminado';
+          } elseif (strpos($sqlType, 'INSERT') !== false) {
+              $op = 'Insertado';
+          } elseif (strpos($sqlType, 'UPDATE') !== false) {
+              $op = 'Actualizado';
+          } else {
+              $op = 'Operación desconocida';
+          }
           if ($stmt->execute()) {
-              $arr['responseResult'][] = $stmt->insert_id;
+            $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
+              $arr['responseResult'][] =$rs;
           } else {
               $arr['code'] = 1;
               $arr['message'] = "Error: " . $stmt->error;

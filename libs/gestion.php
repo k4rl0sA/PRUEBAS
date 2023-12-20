@@ -212,36 +212,56 @@ function mysql_prepd($sql, ...$params) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
+  
   try {
       $stmt = $con->prepare($sql);
+
       if (!$stmt) {
           $rs = "Error en la preparación de la consulta: " . $con->error;
       } else {
+          $sqlType = strtoupper($sql);
+
+          if (strpos($sqlType, 'DELETE') !== false) {
+              $op = 'Eliminado';
+          } elseif (strpos($sqlType, 'INSERT') !== false) {
+              $op = 'Insertado';
+          } elseif (strpos($sqlType, 'UPDATE') !== false) {
+              $op = 'Actualizado';
+          } else {
+              $op = 'Operación desconocida';
+          }
+
           if (!empty($params)) {
               $types = '';
               $bindParams = array();
+
               foreach ($params as $param) {
                   if (is_int($param)) {
-                      $types .= 'i';  // entero
+                      $types .= 'i';
                   } elseif (is_float($param)) {
-                      $types .= 'd';  // doble
+                      $types .= 'd';
                   } elseif (is_string($param)) {
-                      $types .= 's';  // cadena
+                      $types .= 's';
                   } elseif (is_null($param)) {
-                      $types .= 's';  // null como cadena
+                      $types .= 's';
+                      $param = null;  // asignar null explícitamente
                   } else {
                       throw new Exception("Tipo de parámetro no válido.");
                   }
+
                   $bindParams[] = &$param;
               }
+
               array_unshift($bindParams, $types);
               call_user_func_array(array($stmt, 'bind_param'), $bindParams);
           }
+
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error;
           } else {
-              $rs = "Consulta ejecutada correctamente.";
+              $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
           }
+
           $stmt->close();
       }
   } catch (mysqli_sql_exception $e) {
@@ -249,8 +269,10 @@ function mysql_prepd($sql, ...$params) {
   } catch (Exception $e) {
       $rs = "Error: " . $e->getMessage();
   }
+
   return $rs;
 }
+
 
 
 

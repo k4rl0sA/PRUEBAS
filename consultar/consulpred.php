@@ -38,7 +38,7 @@ function focus_predios(){
 	   }
   return $rta;
 }
-FUNCTION lis_predios(){
+function lis_predios(){
 	var_dump($_POST);
 	var_dump($_GET);
 	var_dump($_REQUEST);
@@ -51,7 +51,7 @@ FUNCTION lis_predios(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"predios-lis",5);
-   }
+}
 
 
 function cmp_predios(){

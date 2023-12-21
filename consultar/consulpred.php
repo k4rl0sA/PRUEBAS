@@ -41,6 +41,7 @@ function focus_predios(){
 FUNCTION lis_predios(){
 	var_dump($_POST);
 	var_dump($_GET);
+	var_dump($_REQUEST);
 	$id=divide($_POST['id']);
 	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_amb A
@@ -73,31 +74,31 @@ function cmp_predios(){
 
 function opc_tipo_activi($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=34 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_seguro($id=''){
+}
+function opc_seguro($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_grietas($id=''){
+}
+function opc_grietas($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_combustible($id=''){
+}
+function opc_combustible($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_separadas($id=''){
+}
+function opc_separadas($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_lena($id=''){
+}
+function opc_lena($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_ilumina($id=''){
+}
+function opc_ilumina($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_fuma($id=''){
+}
+function opc_fuma($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_bano($id=''){
+}
+function opc_bano($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
-	}
+}
 	function opc_cocina($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
 	}
@@ -239,30 +240,6 @@ function opc_tipo_activi($id=''){
 	function opc_salumascot($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
 	}
-	/* function opc_pilas($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispmedicamentos($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispcompu($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispplamo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispbombill($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_displlanta($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispplaguic($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_dispaceite($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
-	} */
 	function opc_raciagua($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=192 and estado='A' ORDER BY 1",$id);
 		}

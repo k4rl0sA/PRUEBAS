@@ -61,11 +61,11 @@ function cmp_predios(){
 	$d='';
 	$o='pred';
 	$c[]=new cmp($o,'e',null,'CODIGOS DE PREDIO',$w);
-	$c[]=new cmp('sector','n',15,$d,$w.' '.$o,'sector','sector',null,'123456',true,true,'','col-2');
-	$c[]=new cmp('manzana','n',6,$d,$w.' '.$o,'manzana','manzana',null,'123',true,true,'','col-2');
+	$c[]=new cmp('sector','n',6,$d,$w.' '.$o,'sector','sector',null,'123456',true,true,'','col-2');
+	$c[]=new cmp('manzana','n',3,$d,$w.' '.$o,'manzana','manzana',null,'123',true,true,'','col-2');
 	$c[]=new cmp('predio','n',3,$d,$w.' '.$o,'predio','predio',null,'123',true,true,'','col-2');
 	$c[]=new cmp('unidad','n',3,$d,$w.' '.$o,'unidad','unidad',null,'123',true,true,'','col-2');
-	$c[]=new cmp('codpre','n',3,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'#####',true,true,'','col-2');
+	$c[]=new cmp('codpre','n',15,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'#####',true,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

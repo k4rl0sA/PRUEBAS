@@ -34,8 +34,7 @@ function focus_predios(){
 	 $rta = ""; 
 	 $acc=rol($a);
 	   if ($a=='predios'  && isset($acc['crear']) && $acc['crear']=='SI'){  
-	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	 
+	//  $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	   }
   return $rta;
 }
@@ -67,7 +66,7 @@ function cmp_predios(){
 	$c[]=new cmp('unidad','n',3,$d,$w.' '.$o,'unidad','unidad',null,'123',true,true,'','col-2');
 	$c[]=new cmp('codpre','n',15,$d,$w.' '.$o,'Codigo del Predio','codpre',null,'#####',true,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"act_lista('predios');\">Buscar</button></center>";
+	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"act_lista('predios','','../consultar/consulpred.php');\">Buscar</button></center>";
 	return $rta;
 }
 

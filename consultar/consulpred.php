@@ -39,9 +39,9 @@ function focus_predios(){
   return $rta;
 }
 function lis_predios(){
-	var_dump($_POST);
+	// var_dump($_POST);
 	var_dump($_GET);
-	var_dump($_REQUEST);
+	// var_dump($_REQUEST);
 	$id=divide($_POST['id']);
 	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_amb A

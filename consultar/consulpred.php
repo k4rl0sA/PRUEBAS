@@ -95,7 +95,7 @@ function cmp_predios(){
 	$d='';
 	$o='pred';
 	$c[]=new cmp($o,'e',null,'CODIGOS DE PREDIO',$w);
-	$c[]=new cmp('filtro','n',6,$d,$w.' '.$o,'Buscar Por','filtro',null,null,true,true,'','col-0');
+	$c[]=new cmp('filtro','s',3,$d,$w.' '.$o,'Buscar Por','filtro',null,null,true,true,'','col-0');
 	$c[]=new cmp('sector','n',6,$d,$w.' '.$o,'sector','sector',null,'123456',true,true,'','col-2');
 	$c[]=new cmp('manzana','n',3,$d,$w.' '.$o,'manzana','manzana',null,'123',true,true,'','col-1');
 	$c[]=new cmp('predio','n',3,$d,$w.' '.$o,'predio','predio',null,'123',true,true,'','col-1');

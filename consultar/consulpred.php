@@ -60,9 +60,9 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
-				$rta="<div class='error' style='text-transform:uppercase'>
-					<strong>NOTA:</strong>Recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
+					<strong style='text-transform:uppercase'>NOTA:</strong>Recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 				return $rta;
 			}
 			break;
@@ -76,9 +76,9 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
-				$rta="<div class='error' style='text-transform:uppercase'>
-					<strong>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
+					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 				return $rta;
 			}
 			break;
@@ -93,9 +93,9 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",2);	
 			}else{
-				$rta="<div class='error' style='text-transform:uppercase'>
-					<strong>NOTA:</strong>No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.
-					<span class='closebtn' style='' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
+					<strong style='text-transform:uppercase'>NOTA:</strong> No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 				return $rta;
 			}
 			break;

@@ -39,13 +39,19 @@ function focus_predios(){
   return $rta;
 }
 function lis_predios(){
-	var_dump($_REQUEST);
-	$id=divide($_POST['id']);
-	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_amb A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idvivamb='".$id[0];
-	$sql.="' ORDER BY fecha_create";
+	// var_dump($_REQUEST);
+	// $id=divide($_POST['id']);
+	$sector=$_REQUEST['sector'];
+	$manzana=$_REQUEST['manzana'];
+	$predio=$_REQUEST['predio'];
+	$unidad=$_REQUEST['unidad'];
+
+	$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,G.estrategia) Estrategia,FN_CATALOGODESC(72,G.subred) Subred,territorio,direccion,asignado,equipo,estado_v 'estado',usu_creo Creo 
+	from hog_geo hg
+	left join usuarios u ON hg.asignado=u.nombre";
+	$sql.="WHERE sector_catastral='".$sector."' AND nummanzana='".$manzana."'  
+	AND predio_num='".$predio."' AND unidad_habit='".$unidad."'";
+	$sql.="ORDER BY estado_v";
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"predios-lis",5);

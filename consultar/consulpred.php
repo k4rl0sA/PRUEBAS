@@ -60,7 +60,9 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
-				$rta="<br><span style='background-color:red;'>Recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).</span>";
+				$rta="<div class='error' style='text-transform:uppercase'>
+					<strong>NOTA:</strong>Recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 				return $rta;
 			}
 			break;
@@ -74,7 +76,9 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
-				$rta="<br><span style='background-color:red;text-transform:uppercase'>No hay registros asociados, por favor valide el codigo ingresado.</span>";
+				$rta="<div class='error' style='text-transform:uppercase'>
+					<strong>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 				return $rta;
 			}
 			break;
@@ -89,22 +93,16 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",2);	
 			}else{
-				$rta="<br><span style='background-color:red;'>No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.</span>";
+				$rta="<div class='error' style='text-transform:uppercase'>
+					<strong>NOTA:</strong>No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 				return $rta;
 			}
 			break;
 		default:
 		$rta="<div class='error' style='text-transform:uppercase'>
-					<strong>Error!</strong> Debe seleccionar el tipo de filtro
+					<strong>NOTA:</strong>Recuerde que Debe seleccionar el tipo de filtro
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
-		/* $rta='<div class="overlay active" id="overlay" onClick="closeModal();">
-				<div class="popup" id="popup" z-index="0" onClick="closeModal();">
-				<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
-				<h3><div class="image" id="predios-image"><div class="icon-popup rtainfo"></div></div></h3>
-				<h4><div class="message" id="predios-modal">Debe seleccionar el tipo de filtro</div></h4>
-				</div>			
-			</div>'; */
-		// <br><span style='background-color:red;text-transform:uppercase'></span>";
 		return $rta;
 		break;
 	}

@@ -50,6 +50,7 @@ function lis_predios(){
 	$docume=  ($_REQUEST['docume'])??'';
 	switch ($filtro) {
 		case '1':
+			if($sector!=='' && $manzana!=='' && $predio!=='' && $unidad!==''){
 				$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,territorio,direccion,u.nombre Asignado,hg.equipo,FN_CATALOGODESC(44,hg.estado_v) Estado,usu_creo Creo 
 				from hog_geo hg
 				left join usuarios u ON hg.asignado=u.id_usuario";
@@ -58,8 +59,10 @@ function lis_predios(){
 				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
+			}
 			break;
 		case '2':
+			if($codpre!==''){
 				$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,territorio,direccion,u.nombre Asignado,hg.equipo,FN_CATALOGODESC(44,hg.estado_v) Estado,usu_creo Creo 
 				from hog_geo hg
 				left join usuarios u ON hg.asignado=u.id_usuario";
@@ -67,8 +70,10 @@ function lis_predios(){
 				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
+			}
 			break;
-		case '3':
+		case '3':				
+			if($docume!==''){	
 				$sql="SELECT hg.idgeo 'Cod Predio',hg.direccion Direccion,u.nombre 'Creo',u.perfil,p.fecha_create 'FechaCreo',hv.idviv 'Cod Familia',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,FN_CATALOGODESC(44,hg.estado_v) Estado  
 				FROM hog_viv hv 
 				left JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
@@ -78,6 +83,7 @@ function lis_predios(){
 				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",2);	
+			}
 			break;
 		default:
 			# code...

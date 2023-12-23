@@ -95,14 +95,14 @@ function lis_predios(){
 			}else{
 				$rta="<div class='error' style='text-transform:uppercase'>
 					<strong>NOTA:</strong>No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+					<span class='closebtn' style='' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 				return $rta;
 			}
 			break;
 		default:
-		$rta="<div class='error' style='text-transform:uppercase'>
+		$rta="<div class='error' style='padding: 20px; background-color: #ff0909a6;color: white; border-radius: 25px;position:absolute;z-index:100;top:0;'>
 					<strong>NOTA:</strong>Recuerde que Debe seleccionar el tipo de filtro
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 		return $rta;
 		break;
 	}

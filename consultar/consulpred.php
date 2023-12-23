@@ -49,8 +49,8 @@ function lis_predios(){
 		$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,G.estrategia) Estrategia,FN_CATALOGODESC(72,G.subred) Subred,territorio,direccion,asignado,equipo,estado_v 'estado',usu_creo Creo 
 		from hog_geo hg
 		left join usuarios u ON hg.asignado=u.nombre";
-		$sql.="WHERE sector_catastral='".$sector."' AND nummanzana='".$manzana."'  
-		AND predio_num='".$predio."' AND unidad_habit='".$unidad."'";
+		$sql.=" WHERE sector_catastral=".$sector." AND nummanzana=".$manzana."  
+		AND predio_num=".$predio." AND unidad_habit=".$unidad;
 		$sql.="ORDER BY estado_v";
 		$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"predios-lis",7);

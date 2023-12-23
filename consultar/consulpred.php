@@ -96,7 +96,7 @@ function lis_predios(){
 		default:
 		$rta="<div class='error' style='text-transform:uppercase'>
 					<strong>Error!</strong> Debe seleccionar el tipo de filtro
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
 		/* $rta='<div class="overlay active" id="overlay" onClick="closeModal();">
 				<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 				<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

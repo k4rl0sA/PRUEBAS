@@ -47,7 +47,7 @@ function lis_predios(){
 	$predio=  ($_REQUEST['predio'])??'';
 	$unidad=  ($_REQUEST['unidad'])??'';
 	$codpre=  ($_REQUEST['codpre'])??'';
-	$docume=  ($_REQUEST['docume'])??'';
+	$docume=  ($_REQUEST['documento'])??'';
 	switch ($filtro) {
 		case '1':
 			if($sector!=='' && $manzana!=='' && $predio!=='' && $unidad!==''){
@@ -80,7 +80,6 @@ function lis_predios(){
 				LEFT JOIN personas p ON hv.idviv=p.vivipersona
 				LEFT  JOIN usuarios u ON hg.asignado=u.id_usuario";
 				$sql.=" WHERE p.idpersona=".$docume;
-				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",2);	
 			}

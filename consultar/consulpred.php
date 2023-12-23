@@ -100,9 +100,9 @@ function lis_predios(){
 			}
 			break;
 		default:
-		$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
+		$rta="<div class='error' style='padding: 12px; background-color: #00a3ffa6;color: white; border-radius: 25px;z-index:100;top:0;'>
 					<strong style='text-transform:uppercase'>NOTA:</strong> Recuerde que Debe seleccionar el tipo de filtro
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">X</span></div>";
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 		return $rta;
 		break;
 	}

@@ -74,7 +74,7 @@ function lis_predios(){
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
-				$rta="<br><span style='background-color:red;'>No hay registros asociados, por favor valide el codigo ingresado.</span>";
+				$rta="<br><span style='background-color:red;text-transform:uppercase'>No hay registros asociados, por favor valide el codigo ingresado.</span>";
 				return $rta;
 			}
 			break;
@@ -94,7 +94,15 @@ function lis_predios(){
 			}
 			break;
 		default:
-			# code...
+		$rta='<div class="overlay" id="overlay" onClick="closeModal();">
+				<div class="popup" id="popup" z-index="0" onClick="closeModal();">
+				<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
+				<h3><div class="image" id="predios-image"></div></h3>
+				<h4><div class="message" id="predios-modal"></div></h4>
+				</div>			
+			</div>';
+		// <br><span style='background-color:red;text-transform:uppercase'></span>";
+		return $rta;
 		break;
 	}
 	// echo $sql;

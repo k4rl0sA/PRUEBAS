@@ -41,10 +41,10 @@ function focus_predios(){
 function lis_predios(){
 	// var_dump($_REQUEST);
 	// $id=divide($_POST['id']);
-	$sector=$_REQUEST['sector'];
-	$manzana=$_REQUEST['manzana'];
-	$predio=$_REQUEST['predio'];
-	$unidad=$_REQUEST['unidad'];
+	$sector= ($_REQUEST['sector'])? $_REQUEST['sector']:'';
+	$manzana=($_REQUEST['manzana'])? $_REQUEST['manzana']:'';
+	$predio= ($_REQUEST['predio'])? $_REQUEST['predio']:'';
+	$unidad= ($_REQUEST['unidad'])? $_REQUEST['unidad']:'';
 
 	$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,G.estrategia) Estrategia,FN_CATALOGODESC(72,G.subred) Subred,territorio,direccion,asignado,equipo,estado_v 'estado',usu_creo Creo 
 	from hog_geo hg

@@ -94,11 +94,11 @@ function lis_predios(){
 			}
 			break;
 		default:
-		$rta='<div class="overlay" id="overlay" onClick="closeModal();">
+		$rta='<div class="overlay active" id="overlay" onClick="closeModal();">
 				<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 				<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
-				<h3><div class="image" id="predios-image"></div></h3>
-				<h4><div class="message" id="predios-modal"></div></h4>
+				<h3><div class="image" id="predios-image"><div class="icon-popup rtainfo"></div></div></h3>
+				<h4><div class="message" id="predios-modal">Debe seleccionar el tipo de filtro</div></h4>
 				</div>			
 			</div>';
 		// <br><span style='background-color:red;text-transform:uppercase'></span>";

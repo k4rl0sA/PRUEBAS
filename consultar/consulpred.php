@@ -59,6 +59,9 @@ function lis_predios(){
 				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
+			}else{
+				$rta="Error: msj['No hay registros asociados o recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).']";
+				return $rta;
 			}
 			break;
 		case '2':
@@ -70,6 +73,9 @@ function lis_predios(){
 				$sql.=" ORDER BY estado_v";
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
+			}else{
+				$rta="Error: msj['No hay registros asociados, por favor valide el codigo ingresado.']";
+				return $rta;
 			}
 			break;
 		case '3':				
@@ -82,6 +88,9 @@ function lis_predios(){
 				$sql.=" WHERE p.idpersona=".$docume;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",2);	
+			}else{
+				$rta="Error: msj['No hay registros asociados, recuerde que esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.']";
+				return $rta;
 			}
 			break;
 		default:

@@ -1826,9 +1826,9 @@ function formato_dato($a,$b,$c,$d){
 
 function bgcolor($a,$c,$f='c'){
  $rta="";
- if (isset($row['Cronico']) && $row['Cronico'] == 'SIN') {
+if (isset($row['Cronico']) && $row['Cronico'] == 'SIN') {
 	$background_color = 'red';
 }
 return ($background_color !== '') ? "style='background-color: $background_color;'" : '';
- return $rta;
+//  return $rta;
 }

@@ -418,7 +418,7 @@ function lista_persons(){ //revisar
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',
 		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'CON','SIN'),'NO') AS Cronico,
 		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'CON', 'SIN'),'NO') AS Gestante	
-		FROM `personas` p
+		FROM `personas` p 
 			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
 			WHERE vivipersona='".$id[0]."'";
 		// echo $sql;

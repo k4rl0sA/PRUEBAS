@@ -1827,7 +1827,7 @@ print_r($c);
 function bgcolor($a,$c,$f='c'){
 	$rta = 'red';
 	if ($a=='datos-lis'){
-		if($c['Cronicos']==='SIN'){
+		if($c['Cronico']==='SIN'){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
 	}

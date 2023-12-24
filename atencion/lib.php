@@ -415,9 +415,11 @@ function lista_persons(){ //revisar
 		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
-		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
+		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',
+		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'CON','SIN'),'NO') AS Cronico,
+		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'CON', 'SIN'),'NO') AS Gestante	
 		FROM `personas` 
-			WHERE '1'='1' and vivipersona='".$id[0]."'";
+			WHERE vivipersona='".$id[0]."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;
@@ -789,12 +791,6 @@ $o='prurap';
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
 	FROM adm_facturacion F
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
-		/* $sql="SELECT atencion  ACCIONES, FN_CATALOGODESC(9,atencion_codigocups) 'Código CUPS', 
-		FN_CATALOGODESC(1,atencion_tipodoc) Identificación,
-		`atencion_idpersona` 'Número',  `atencion_fechaatencion` fecha,
-		  `fecha_create` 'fecha creación'
-		FROM `eac_atencion` 
-		WHERE atencion_idpersona  ='{$id[0]}'"; */
 		$sql.=" ORDER BY F.fecha_create";
 		// echo $sql;
 			$datos=datos_mysql($sql);

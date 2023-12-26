@@ -21,16 +21,23 @@ else {
 
 
 function lis_tamfindrisc(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O LEFT JOIN personas P ON O.idpersona = P.idpersona where 1 ".whe_tamfindrisc() ." AND O.usu_creo ='".$_SESSION['us_sds']."'");
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O 
+	LEFT JOIN personas P ON O.idpersona = P.idpersona
+		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
+	 where ".whe_tamfindrisc());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombres Creo,U.perfil perfil 
 	FROM hog_tam_findrisc O 
-	LEFT JOIN personas P ON O.idpersona = P.idpersona 
-	WHERE '1'='1'";
+		LEFT JOIN personas P ON O.idpersona = P.idpersona
+		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
+	WHERE ";
 	$sql.=whe_tamfindrisc();
-	$sql .= " AND O.usu_creo ='".$_SESSION['us_sds']."'";
 	$sql.=" ORDER BY O.fecha_create DESC";
 	echo $sql;
 	$datos=datos_mysql($sql);
@@ -39,10 +46,11 @@ function lis_tamfindrisc(){
 }
 
 function whe_tamfindrisc() {
-	$sql = "";
+	$fefin=date('Y-m-d');
+	$feini=date('Y-m-d',strtotime($fefin.'- 4 days')); 
+	$sql = " G.subred=(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin' ";
 	if ($_POST['fidentificacion'])
-		$sql .= " AND O.idpersona like '%".$_POST['fidentificacion']."%'";
-			
+		$sql .= " AND O.idpersona = '".$_POST['fidentificacion']."'";
 	return $sql;
 }
 

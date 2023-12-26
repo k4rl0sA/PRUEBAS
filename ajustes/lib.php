@@ -34,7 +34,7 @@ function lis_ajustar(){
 	U.nombre Creo,respuesta,fecha_create Fecha
 	FROM ajustes A 
 	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
-	WHERE ";
+	WHERE 1 ";
 	$sql.=whe_ajustar();
 	$sql.=" ORDER BY A.fecha_create DESC";
 	echo $sql;

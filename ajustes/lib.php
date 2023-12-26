@@ -27,7 +27,7 @@ function lis_ajustar(){
 	$regxPag=12;
 	$pag=(isset($_POST['pag-ajustar']))? ($_POST['pag-ajustar']-1)* $regxPag:0;
 	$sql="SELECT A.cod_pred predio,A.cod_fam Familia,FN_CATALOGODESC(302,A.accion) Accion,FN_CATALOGODESC(213,A.formulario) Formulario,
-	IF(A.cod_delete = '',A.cod_traslada,A.cod_delete) AS Codigo,
+	IF(A.accion=2,A.documento_old,IF(A.cod_delete = '',A.cod_traslada,A.cod_delete)) AS Codigo,
 	FN_CATALOGODESC(303,A.cmp_editar) Campo,
 	IF(A.accion=2,IF(A.cmp_editar=1,A.tipodoc_old,IF(A.cmp_editar=2,A.documento_old,IF(A.cmp_editar=3,A.fecha_old,A.sexo_old))),'') Antes,
 	IF(A.accion=2,IF(A.cmp_editar=1,A.tipo_doc_new,IF(A.cmp_editar=2,A.documento_new,IF(A.cmp_editar=3,A.fecha_new,A.sexo_new))),'') Nuevo,

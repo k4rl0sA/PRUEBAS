@@ -30,7 +30,7 @@ function lis_tamfindrisc(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombres Creo,U.perfil perfil 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil 
 	FROM hog_tam_findrisc O 
 		LEFT JOIN personas P ON O.idpersona = P.idpersona
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv

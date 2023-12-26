@@ -37,7 +37,7 @@ function lis_ajustar(){
 	WHERE ";
 	$sql.=whe_ajustar();
 	$sql.=" ORDER BY A.fecha_create DESC";
-	//echo $sql;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"ajustar",$regxPag);	
 }

@@ -28,6 +28,8 @@ function lis_ajustar(){
 	$sql="SELECT A.cod_pred predio,A.cod_fam Familia,FN_CATALOGODESC(302,A.accion) Accion,FN_CATALOGODESC(213,A.formulario) Formulario,
 	IF(A.cod_delete = '',A.cod_traslada,A.cod_delete) AS Codigo,
 	FN_CATALOGODESC(303,A.cmp_editar) Campo,
+	IF(A.tipodoc_old = '',IF(A.documento_old = '',A.fecha_old,A.documento_old),A.tipodoc_old) AS Anterior,
+	IF(A.tipodoc_new = '',IF(A.documento_new = '',A.fecha_new,A.documento_new),A.tipodoc_new) AS Nuevo,
 	U.nombre Creo,respuesta,fecha_create Fecha
 	FROM ajustes A 
 	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario

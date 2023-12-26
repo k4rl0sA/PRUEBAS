@@ -83,14 +83,26 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='ajustar';
 $ya = new DateTime();
 // $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
+$acciones=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=302 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` ORDER BY 2 ASC",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-	
+
+
+<div class="campo">
+	<div>Cod. Eliminar ó N° Documento (Editado)</div>
+	<input class="captura" type="text" id="fcod" name="fcod" OnChange="actualizar();">
+</div>
 <div class="campo">
 	<div>Cod. Predio</div>
 	<input class="captura" type="number" id="fpredio" name="fpredio" OnChange="actualizar();">
+</div>
+
+<div class="campo"><div>Acción</div>
+		<select class="captura" id="facci" name="facci" OnChange="actualizar();">
+			<?php echo $acciones; ?>
+		</select>
 </div>
 	
 	<div class="campo"><div>Colaborador</div>

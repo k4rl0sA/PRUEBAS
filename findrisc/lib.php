@@ -48,9 +48,13 @@ function lis_tamfindrisc(){
 function whe_tamfindrisc() {
 	$fefin=date('Y-m-d');
 	$feini=date('Y-m-d',strtotime($fefin.'- 4 days')); 
-	$sql = " G.subred=(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin' ";
-	if ($_POST['fidentificacion'])
+	$sql = " G.subred=(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	if ($_POST['fidentificacion']){
 		$sql .= " AND O.idpersona = '".$_POST['fidentificacion']."'";
+	}else{
+		$sql.=" AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin'"; 
+	}
+		
 	return $sql;
 }
 

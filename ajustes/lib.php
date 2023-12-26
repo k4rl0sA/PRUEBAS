@@ -44,14 +44,14 @@ function lis_ajustar(){
 
 function whe_ajustar() {
 	$sql = "";
-	if ($_POST['fcod'])
-		$sql .= " A.documento_old= '".$_POST['fcod']."' OR A.cod_delete = '".$_POST['fcod']."' OR cod_traslada='".$_POST['fcod']."'";
 	if ($_POST['fpredio'])
 		$sql .= " AND A.cod_pred like '%".$_POST['fpredio']."%'";
 	if ($_POST['facci'])
 		$sql .= " AND A.accion= '".$_POST['facci']."'";
 	if ($_POST['fdigita'])
 		$sql .= " AND A.usu_creo='".$_POST['fdigita']."'";
+	if ($_POST['fcod'])
+		$sql .= " AND A.documento_old= '".$_POST['fcod']."' OR A.cod_delete = '".$_POST['fcod']."' OR cod_traslada='".$_POST['fcod']."'";
 	return $sql;
 }
 

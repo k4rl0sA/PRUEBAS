@@ -31,8 +31,8 @@ function lis_ajustar(){
 	FN_CATALOGODESC(303,A.cmp_editar) Campo,
 	IF(A.tipodoc_old = '',IF(A.documento_old = '',A.fecha_old,A.documento_old),A.tipodoc_old) AS 1Anterior,
 	IF(A.tipo_doc_new = '',IF(A.documento_new = '',A.fecha_new,A.documento_new),A.tipo_doc_new) AS 1Nuevo,
-	IF(A.cmp_editar=2,IF(A.tipodoc_old = '',IF(A.documento_old = '',A.fecha_old,A.documento_old),A.tipodoc_old),'') Anterior,
-	IF(A.cmp_editar=2,IF(A.tipo_doc_new = '',IF(A.documento_new = '',A.fecha_new,A.documento_new),A.tipo_doc_new),'') Nuevo,
+	IF(A.accion=2,IF(A.tipodoc_old = '',IF(A.documento_old = '',A.fecha_old,A.documento_old),A.tipodoc_old),'') Anterior,
+	IF(A.accion=2,IF(A.tipo_doc_new = '',IF(A.documento_new = '',A.fecha_new,A.documento_new),A.tipo_doc_new),'') Nuevo,
 	U.nombre Creo,respuesta,fecha_create Fecha
 	FROM ajustes A 
 	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario

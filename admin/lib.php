@@ -87,7 +87,7 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$ini=-75;
+	$ini=-90;
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
@@ -750,12 +750,18 @@ LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
 }
 
 function lis_alertas($txt){
-	$sql="SELECT G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,V.numfam AS FAMILIA_N°,
-P.tipo_doc AS TIPO_DOCUMEN,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,
+	$sql="SELECT 
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,A.idmedidas AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(176,A.cursovida) AS Curso_Vida, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad ,FN_CATALOGODESC(16,P.etnia) AS ETNIA, FN_CATALOGODESC(15,P.pueblo) AS Pueblo, P.idioma AS Habla_Español, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(54,P.vinculo_jefe) AS Vinculo_Jefe_Hogar, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion,FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, FN_CATALOGODESC(180,P.niveduca) AS Nivel_Educativo, P.abanesc AS Razón_Abandono_Escolar, P.tiemdesem AS Tiempo_Desempleo,
+
+P.cuidador AS Persona_Cuidadora, P.tiempo_cuidador AS Tiempo_Cuidador, FN_CATALOGODESC(67,P.cuidador_unidad) AS Unidad_Medida_Tiempo_Cuidador, FN_CATALOGODESC(54,P.vinculo) AS Vinculo_Persona_Cuidada, P.localidad_vive AS En_Qué_Localidad_Vive, FN_CATALOGODESC(25,P.transporta) AS En_Que_Se_Transporta, P.tiempo_descanso AS Cada_Cuánto_Descansa, FN_CATALOGODESC(67,P.descanso_unidad) AS Unidad_Medida_Tiempo_Descanso,
+
 A.fecha AS FECHA, FN_CATALOGODESC(34,A.tipo) AS TIPO_IDENTIFICACION,FN_CATALOGODESC(166,A.crit_epi) AS CRITERIO_EPIDE,FN_CATALOGODESC(176,A.cursovida) AS CURSO_DE_VIDA,FN_CATALOGODESC(170,A.gestante) AS GESTANTE,FN_CATALOGODESC(177,A.etapgest
 ) AS ETAPA_GESTACIONAL,FN_CATALOGODESC(170,A.cronico) AS CRONICO,A.alert1 AS ALERTA_CRONICO,A.selmul1 AS OPCIONES_CRONICO,A.alert2 AS ALERTA_ENF_TRANSMI,A.selmul2 AS OPCIONES_TRANSMI,A.alert3 AS ALERTA_NUTRICIONAL,A.selmul3 AS OPCIONES_NUTRICIONAL,A.alert4 AS ALERTA_PSICOSOCIAL,A.selmul4 AS OPCIONES_PSICOSOCIAL,A.alert5 AS ALERTA_INFANCIA,A.selmul5 AS OPCIONES_INFANCIA,A.alert6 AS ALERTA_EN_MUJERES,A.selmul6 AS OPCIONES_EN_MUJERES,A.alert7 AS ALERTAS_DISCAPACIDAD,A.selmul7 AS OPCIONES_DISCAPACIDAD
 ,A.alert8 AS ALERTAS_COMUNIDAD_ETN,A.selmul8 AS OPCIONES_COM_ETN,A.alert9 AS ALERTA_SALUD_BUCAL,A.selmul9 AS OPCIONES_SALUD_BUCAL,A.codoral AS CLASIFICACION_SO,A.alert10 AS DERIVACION_GENERAL,A.selmul10 AS OPCIONES_DERIVACION,FN_CATALOGODESC(170,A.deriva_eac) AS DERIVACION_EAC,A.asignado_eac AS PROFESIONAL_EAC,FN_CATALOGODESC(170,A.deriva_pf) AS DERIVACION_PF,A.evento_pf AS EVENTO_PF,
 A.peso AS PESO,A.talla AS TALLA,A.imc AS IMC,A.tas AS TENSION_SISTOLICA,A.tad AS TENSION_DIASTOLICA,A.glucometria AS GLUCOMETRIA,A.perime_braq AS PERIMETRO_BRAQUIAL,A.percentil AS PERCENTIL,A.zscore AS ZSCORE,A.usu_creo,A.fecha_create
+
 FROM `personas_datocomp` A
 LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -888,7 +894,7 @@ function lis_acompsic($txt){
 G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,
-FN_CATALOGODESC(170,A.autocono) AS Preg_1,FN_CATALOGODESC(170,A.cumuni_aser) AS Preg_2,FN_CATALOGODESC(170,A.toma_decis) AS Preg_3,FN_CATALOGODESC(170,A.pensa_crea) AS Preg_4,FN_CATALOGODESC(170,A.manejo_emo) AS Preg_5,FN_CATALOGODESC(170,A.rela_interp) AS Preg_6,FN_CATALOGODESC(170,A.solu_prob) AS Preg_7,FN_CATALOGODESC(170,A.pensa_critico) AS Preg_8,FN_CATALOGODESC(170,A.manejo_tension) AS Preg_9,FN_CATALOGODESC(170,A.empatia) AS Preg_10,
+FN_CATALOGODESC(170,A.autocono) AS Autoconocimiento,FN_CATALOGODESC(170,A.cumuni_aser) AS Comuni_Asertiva,FN_CATALOGODESC(170,A.toma_decis) AS Toma_Decisiones,FN_CATALOGODESC(170,A.pensa_crea) AS Pensa_Creativo,FN_CATALOGODESC(170,A.manejo_emo) AS Manejo_Emoci,FN_CATALOGODESC(170,A.rela_interp) AS Rela_Interper,FN_CATALOGODESC(170,A.solu_prob) AS Solu_Pro_Confli,FN_CATALOGODESC(170,A.pensa_critico) AS Pensam_Criti,FN_CATALOGODESC(170,A.manejo_tension) AS Manejo_Tensiones,FN_CATALOGODESC(170,A.empatia) AS Empatia,
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
@@ -1156,7 +1162,7 @@ function lis_gestantes($txt){
 G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,FN_CATALOGODESC(136,A.etapa) AS Etapa,FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
-FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal,FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio,FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes,A.peso AS 'Peso_(Kg)',A.talla AS 'Talla_(Cm)',A.imc AS Imc,FN_CATALOGODESC(210,A.clas_nutri) AS Clasificacion_Nutricional,FN_CATALOGODESC(170,A.gana_peso) AS Evidencia_Ganancia_Peso,FN_CATALOGODESC(205,A.cant_ganapesosem) AS Ganancia_Peso_Semanal,FN_CATALOGODESC(204,A.ante_patogest) AS Antecedentes_Patologicos,FN_CATALOGODESC(196,A.num_frutas) AS Come_Frutas_Verduras,FN_CATALOGODESC(196,A.num_carnes) AS Consume_Carnes,FN_CATALOGODESC(196,A.num_azucar) AS Consume_Azucar,
+FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal,FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio,FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes,A.peso AS 'Peso_(Kg)',A.talla AS 'Talla_(Cm)',A.imc AS Imc,FN_CATALOGODESC(210,A.clasi_nutri) AS Clasificacion_Nutricional,FN_CATALOGODESC(170,A.gana_peso) AS Evidencia_Ganancia_Peso,FN_CATALOGODESC(205,A.cant_ganapesosem) AS Ganancia_Peso_Semanal,FN_CATALOGODESC(204,A.ante_patogest) AS Antecedentes_Patologicos,FN_CATALOGODESC(196,A.num_frutas) AS Come_Frutas_Verduras,FN_CATALOGODESC(196,A.num_carnes) AS Consume_Carnes,FN_CATALOGODESC(196,A.num_azucar) AS Consume_Azucar,
 FN_CATALOGODESC(196,A.cant_actifisica) AS Realiza_Actividad_Fisica,FN_CATALOGODESC(170,A.adop_recomenda) AS Adopta_Recomendaciones_Nt,FN_CATALOGODESC(170,A.apoy_alim) AS Apoyo_Alimentario,A.fecha_obstetrica AS Fecha_Evento_Obstetrico,FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento,FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion,FN_CATALOGODESC(170,A.meto_fecunda) AS Cuenta_Metodo_Fecundidad,
 FN_CATALOGODESC(130,A.cual) AS Cual_Metodo,A.peso_nacer AS Peso_RN_Nacer,FN_CATALOGODESC(170,A.asiste_control) AS Asiste_control_CYD,FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo,
 FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva,

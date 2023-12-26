@@ -32,7 +32,7 @@ function lis_tamfindrisc(){
 	$sql.=whe_tamfindrisc();
 	$sql .= " AND O.usu_creo ='".$_SESSION['us_sds']."'";
 	$sql.=" ORDER BY O.fecha_create DESC";
-	//echo $sql;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
 	

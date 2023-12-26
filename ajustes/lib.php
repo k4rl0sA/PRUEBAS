@@ -25,7 +25,7 @@ function lis_ajustar(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-ajustar']))? ($_POST['pag-ajustar']-1)* $regxPag:0;
-	$sql="SELECT A.cod_pred predio,A.cod_fam Familia,FN_CATALOGODESC(302,A.accion) Accion,U.nombre Creo,respuesta,fecha_create Fecha
+	$sql="SELECT A.cod_pred predio,A.cod_fam Familia,FN_CATALOGODESC(302,A.accion) Accion,FN_CATALOGODESC(213,A.formulario) Formulario,U.nombre Creo,respuesta,fecha_create Fecha
 	FROM ajustes A 
 	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE '1'='1'";

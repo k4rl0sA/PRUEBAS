@@ -20,6 +20,18 @@ else {
 }
 
 function lis_hog_geoloc(){
+$fefin=date('Y-m-d');
+$feini=date('Y-m-d',strtotime($fefin.'- 4 week')); 
+	/*$total="SELECT count(*) as total
+ FROM (SELECT G.idgeo AS ACCIONES, FN_CATALOGODESC(42, G.estrategia) AS estrategia, FN_CATALOGODESC(2, G.localidad) AS 'Localidad', FN_CATALOGODESC(3, G.zona) AS zona, G.direccion, G.sector_catastral, G.nummanzana AS Manzana, G.predio_num AS predio, G.unidad_habit AS 'Unidad Hab', U1.nombre AS asignado, G.fecha_create 
+ FROM `hog_geo` G 
+ LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario 
+ WHERE G.predio = G.predio AND ( (G.estado_v IN (1, 2, 3)) OR (G.estado_v NOT IN (4, 5, 6, 7)))
+  AND U1.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() .") as subquery";
+$info = datos_mysql($total);
+$total = $info['responseResult'][0]['total'];
+*/
+
 	$total="SELECT count(*) as total
  FROM (
     SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES
@@ -27,8 +39,15 @@ function lis_hog_geoloc(){
 LEFT JOIN usuarios U ON H.subred = U.subred
 LEFT JOIN adscrip A ON H.territorio=A.territorio
 LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
-WHERE U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
-  ) as subquery";
+WHERE H.estado_v IN (1, 2, 3)
+  AND U.id_usuario = '{$_SESSION['us_sds']}'" . whe_hog_geoloc() ."
+  AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' 
+  AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
+      AND H2.nummanzana = H.nummanzana
+      AND H2.predio_num = H.predio_num
+      AND H2.unidad_habit = H.unidad_habit
+      AND H2.estrategia = H.estrategia
+      AND H2.estado_v in( 4,5,6,7))) as subquery";
 $info = datos_mysql($total);
 $total = $info['responseResult'][0]['total'];
 
@@ -36,25 +55,51 @@ $total = $info['responseResult'][0]['total'];
 $regxPag = 5;
 $pag = isset($_POST['pag-hog_geoloc']) ? ($_POST['pag-hog_geoloc'] - 1) * $regxPag : 0;
 
+/*
+$sql = "SELECT G.idgeo AS ACCIONES, FN_CATALOGODESC(42, G.estrategia) AS estrategia, FN_CATALOGODESC(2, G.localidad) AS 'Localidad', FN_CATALOGODESC(3, G.zona) AS zona, G.direccion, G.sector_catastral, G.nummanzana AS Manzana, G.predio_num AS predio, G.unidad_habit AS 'Unidad Hab', U1.nombre AS asignado, G.fecha_create 
+FROM `hog_geo` G 
+LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario 
+WHERE G.predio = G.predio AND ( (G.estado_v IN (1, 2, 3)) OR (G.estado_v NOT IN (4, 5, 6, 7)) )
+  		AND U1.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
+  		
+    ORDER BY nummanzana, predio_num
+    LIMIT $pag, $regxPag";
+
+		  echo $sql;
+		$sql1="";
+		$_SESSION['sql_hog_geoloc']=$sql1;
+		$data = datos_mysql($sql);
+    return create_table($total, $data["responseResult"], "hog_geoloc", $regxPag);
+}
+
+
+AND DATE(H.fecha_create) BETWEEN $feini and $fefin
+*/
 $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.nummanzana, '_', H.predio_num, '_', H.unidad_habit, '_', H.estado_v) AS ACCIONES,
-	H.idgeo 'Cod Predio',
+	H.idgeo 'Cod. Predio',
     FN_CATALOGODESC(42, H.estrategia) AS estrategia,direccion,
-    H.sector_catastral Sector,
-    H.nummanzana Manzana,
-    H.predio_num Predio,
-    H.unidad_habit 'Und Hab',
-    FN_CATALOGODESC(3, H.zona) Zona,
-	H.territorio Territorio,
-    FN_CATALOGODESC(2, H.localidad) Localidad,
-    U1.nombre Asignado,
-    H.fecha_create Creado,
-    FN_CATALOGODESC(44, H.estado_v) Estado
+    H.sector_catastral,
+    H.nummanzana AS Manzana,
+    H.predio_num AS predio,
+    H.unidad_habit AS 'Unidad Hab',
+    FN_CATALOGODESC(3, H.zona) AS zona,
+    FN_CATALOGODESC(2, H.localidad) AS 'Localidad',
+    U1.nombre asignado,
+    H.fecha_create,
+    FN_CATALOGODESC(44, H.estado_v) AS estado
 	FROM hog_geo H
 		LEFT JOIN usuarios U ON H.subred = U.subred
 		LEFT JOIN adscrip A ON H.territorio=A.territorio
 		LEFT JOIN usuarios U1 ON H.asignado=U1.id_usuario
-	WHERE 
-  		U.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
+	WHERE H.estado_v IN (1, 2, 3)
+  		AND U.id_usuario = '{$_SESSION['us_sds']}' " . whe_hog_geoloc() ."
+  		AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' 
+  		AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
+      	AND H2.nummanzana = H.nummanzana
+      	AND H2.predio_num = H.predio_num
+      	AND H2.unidad_habit = H.unidad_habit
+      	AND H2.estrategia = H.estrategia
+		AND H2.estado_v in( 4,5,6,7))
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 
@@ -66,18 +111,13 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
 }
 
 function whe_hog_geoloc() {
-	$fefin=date('Y-m-d');
-	$feini=date('Y-m-d',strtotime($fefin.'- 4 week')); 
-	$sql="";
-	// $sql = "AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin'";
-	/* if ($_POST['fseca'])
+	$sql = "";
+	if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
 	if ($_POST['fpred'])
 		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
-	if ($_POST['funid'])
-		$sql .= " AND unidad_habit ='".$_POST['funid']."' "; */
 	if ($_POST['festado'])
 		$sql .= " AND estado_v ='".$_POST['festado']."'";
 	if (isset($_POST['fdigita'])){
@@ -85,21 +125,7 @@ function whe_hog_geoloc() {
 	}else{
 		$sql .= "AND (H.territorio IN (SELECT A.territorio FROM adscrip A where A.doc_asignado='{$_SESSION['us_sds']}') 
 					OR (asignado='{$_SESSION['us_sds']}')) ";
-	}
-	if($_POST['fseca'] && $_POST['fmanz'] && $_POST['fpred'] && $_POST['funid'] && empty($_POST['fcopre'])){
-		$sql .= " AND sector_catastral = '".$_POST['fseca']."' AND nummanzana ='".$_POST['fmanz']."' AND predio_num ='".$_POST['fpred']."' AND unidad_habit ='".$_POST['funid']."' ";
-	}else{
-		if($_POST['fcopre']){
-		$sql .= " AND idgeo ='".$_POST['fcopre']."' ";
-		}else{
-			$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' AND H.estado_v IN (1, 2, 3)";
-			$sql.=" AND NOT EXISTS (SELECT 1 FROM hog_geo H2 WHERE H2.sector_catastral = H.sector_catastral
-			AND H2.nummanzana = H.nummanzana
-			AND H2.predio_num = H.predio_num
-			AND H2.unidad_habit = H.unidad_habit
-			AND H2.estrategia = H.estrategia
-		  AND H2.estado_v in( 4,5,6,7)) ";
-		}
+		// $sql .= "AND (H.equipo     IN (SELECT U.equipo from usuarios where id_usuario='{$_SESSION['us_sds']}') OR (asignado='{$_SESSION['us_sds']}') OR (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}')))";
 	}
 	return $sql;
 }
@@ -359,46 +385,41 @@ function get_asigruteo(){
 
  
 function gra_hog_geoloc(){
-	$info=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
+	$info=datos_mysql("select equipo as equipo from usuarios where id_usuario='".$_SESSION['us_sds']."';");
 	$equipo = (!$info['responseResult']) ? '' : $info['responseResult'][0]['equipo'] ;
 
-	if($_POST['asignado']===$_SESSION['us_sds']){
-		$sql="INSERT INTO hog_geo VALUES 
-		(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
-		TRIM(UPPER('{$_POST['subred']}')),
-		TRIM(UPPER('{$_POST['zona']}')),
-		TRIM(UPPER('{$_POST['localidad']}')),
-		TRIM(UPPER('{$_POST['upz']}')),
-		TRIM(UPPER('{$_POST['barrio']}')),
-		TRIM(UPPER('{$_POST['territorio']}')),
-		TRIM(UPPER('{$_POST['microterritorio']}')),
-		TRIM(UPPER('{$_POST['sector_catastral']}')),
-		TRIM(UPPER('{$_POST['direccion']}')),
-		TRIM(UPPER('{$_POST['direccion_nueva']}')),
-		TRIM(UPPER('{$_POST['nummanzana']}')),
-		TRIM(UPPER('{$_POST['predio_num']}')),
-		TRIM(UPPER('{$_POST['unidad_habit']}')),
-		TRIM(UPPER('{$_POST['vereda']}')),
-		TRIM(UPPER('{$_POST['vereda_nueva']}')),
-		TRIM(UPPER('{$_POST['cordx']}')),
-		TRIM(UPPER('{$_POST['cordy']}')),
-		TRIM(UPPER('{$_POST['cordxn']}')),
-		TRIM(UPPER('{$_POST['cordyn']}')),
-		TRIM(UPPER('{$_POST['estrato']}')),
-		TRIM(UPPER('{$_POST['asignado']}')),
-		TRIM(UPPER('{$equipo}')),
-		TRIM(UPPER('{$_POST['estado_v']}')),
-		TRIM(UPPER('{$_POST['motivo_estado']}')),
-		-- TRIM(UPPER('{$_POST['asignado']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
-		// echo $sql;
-  		$rta=dato_mysql($sql);
-  		return $rta;
-	}else{
-		$rta="Error: msj['No puede guardar el registro ya que el predio no esta asignado a Ud,valide nuevamente el ID.']";
-		return $rta;
-	}
+	
+	 $sql="INSERT INTO hog_geo VALUES 
+	(NULL,TRIM(UPPER('{$_POST['estrategia']}')),
+	TRIM(UPPER('{$_POST['subred']}')),
+	TRIM(UPPER('{$_POST['zona']}')),
+	TRIM(UPPER('{$_POST['localidad']}')),
+	TRIM(UPPER('{$_POST['upz']}')),
+	TRIM(UPPER('{$_POST['barrio']}')),
+	TRIM(UPPER('{$_POST['territorio']}')),
+	TRIM(UPPER('{$_POST['microterritorio']}')),
+	TRIM(UPPER('{$_POST['sector_catastral']}')),
+	TRIM(UPPER('{$_POST['direccion']}')),
+	TRIM(UPPER('{$_POST['direccion_nueva']}')),
+	TRIM(UPPER('{$_POST['nummanzana']}')),
+	TRIM(UPPER('{$_POST['predio_num']}')),
+	TRIM(UPPER('{$_POST['unidad_habit']}')),
+	TRIM(UPPER('{$_POST['vereda']}')),
+	TRIM(UPPER('{$_POST['vereda_nueva']}')),
+	TRIM(UPPER('{$_POST['cordx']}')),
+	TRIM(UPPER('{$_POST['cordy']}')),
+	TRIM(UPPER('{$_POST['cordxn']}')),
+	TRIM(UPPER('{$_POST['cordyn']}')),
+	TRIM(UPPER('{$_POST['estrato']}')),
+	TRIM(UPPER('{$_POST['asignado']}')),
+	TRIM(UPPER('{$equipo}')),
+	TRIM(UPPER('{$_POST['estado_v']}')),
+	TRIM(UPPER('{$_POST['motivo_estado']}')),
+	TRIM(UPPER('{$_SESSION['us_sds']}')),
+	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL);";
+	//echo $sql;
+  $rta=dato_mysql($sql);
+  return $rta;
 }
 
 function formato_dato($a,$b,$c,$d){

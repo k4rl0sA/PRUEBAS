@@ -15,15 +15,15 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='tamoms';	
 var ruta_app='lib.php';
-function csv(b){
+/*function csv(b){
 		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
 }
 
-document.onkeyup=function(ev) {
+ document.onkeyup=function(ev) {
 	ev=ev||window.event;
 	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
 	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
-};
+}; */
 
 
 function actualizar(){

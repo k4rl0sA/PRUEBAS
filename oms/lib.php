@@ -21,7 +21,8 @@ else {
 
 
 function lis_tamoms(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_oms O LEFT JOIN personas P ON O.documento = P.idpersona
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_oms O 
+	LEFT JOIN personas P ON O.idpersona = P.idpersona
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 	LEFT JOIN usuarios U ON O.usu_creo=id_usuario where ".whe_tamoms());
@@ -30,7 +31,7 @@ function lis_tamoms(){
 	$pag=(isset($_POST['pag-tamoms']))? ($_POST['pag-tamoms']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,idoms 'Cod Registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,descripcion  
 	FROM hog_tam_oms O 
-	LEFT JOIN personas P ON O.documento = P.idpersona
+	LEFT JOIN personas P ON O.idpersona = P.idpersona
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario

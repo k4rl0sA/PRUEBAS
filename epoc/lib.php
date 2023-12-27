@@ -21,7 +21,8 @@ else {
 
 
 function lis_tamepoc(){
-	$info=datos_mysql("SELECT COUNT(*) total from tam_epoc O LEFT JOIN personas P ON O.idpersona = P.idpersona
+	$info=datos_mysql("SELECT COUNT(*) total from tam_epoc O 
+	LEFT JOIN personas P ON O.documento = P.idpersona
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 	LEFT JOIN usuarios U ON O.usu_creo=id_usuario where ".whe_tamepoc());

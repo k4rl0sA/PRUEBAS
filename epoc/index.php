@@ -96,11 +96,11 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
 	
-	<div class="campo"><div>Colaborador</div>
+	<!-- <div class="campo"><div>Colaborador</div>
 		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
-			<?php echo $digitadores; ?>
+			<?php //echo $digitadores; ?>
 		</select>
-	</div>
+	</div> -->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

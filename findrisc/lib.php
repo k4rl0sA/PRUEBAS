@@ -39,7 +39,7 @@ function lis_tamfindrisc(){
 	WHERE ";
 	$sql.=whe_tamfindrisc();
 	$sql.=" ORDER BY O.fecha_create DESC";
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
 	
@@ -54,7 +54,6 @@ function whe_tamfindrisc() {
 	}else{
 		$sql.=" AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin'"; 
 	}
-		
 	return $sql;
 }
 

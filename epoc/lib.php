@@ -21,15 +21,21 @@ else {
 
 
 function lis_tamepoc(){
-	$info=datos_mysql("SELECT COUNT(*) total from tam_epoc O LEFT JOIN personas P ON O.documento = P.idpersona where 1 ".whe_tamepoc() ." AND O.usu_creo ='".$_SESSION['us_sds']."'");
+	$info=datos_mysql("SELECT COUNT(*) total from tam_epoc O LEFT JOIN personas P ON O.idpersona = P.idpersona
+	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+	LEFT JOIN usuarios U ON O.usu_creo=id_usuario where ".whe_tamepoc());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamepoc']))? ($_POST['pag-tamepoc']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.documento,'_',O.tipo_doc,'_') ACCIONES,id_epoc 'Cod Registro',O.documento Documento,FN_CATALOGODESC(1,O.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion`Descripcion FROM tam_epoc O 
-	LEFT JOIN personas P ON O.documento = P.idpersona 
-	WHERE '1'='1'";
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.documento,'_',O.tipo_doc,'_') ACCIONES,id_epoc 'Cod Registro',O.documento Documento,FN_CATALOGODESC(1,O.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion`Descripcion, U.nombre Creo,U.perfil perfil 
+	 FROM tam_epoc O 
+	LEFT JOIN personas P ON O.idpersona = P.idpersona
+		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
+	WHERE ";
 	$sql.=whe_tamepoc();
-	$sql .= " AND O.usu_creo ='".$_SESSION['us_sds']."'";
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
@@ -38,9 +44,14 @@ function lis_tamepoc(){
 }
 
 function whe_tamepoc() {
-	$sql = "";
-	if ($_POST['fidentificacion'])
-		$sql .= " AND O.idpersona like '%".$_POST['fidentificacion']."%'";
+	$fefin=date('Y-m-d');
+	$feini=date('Y-m-d',strtotime($fefin.'- 4 days')); 
+	$sql = " G.subred=(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	if ($_POST['fidentificacion']){
+		$sql .= " AND O.idpersona = '".$_POST['fidentificacion']."'";
+	}else{
+		$sql.=" AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin'"; 
+	}
 	return $sql;
 }
 

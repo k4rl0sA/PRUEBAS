@@ -102,7 +102,7 @@ $ya = new DateTime();
 // $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 $genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
 $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
+// $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
@@ -112,11 +112,13 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
 	
-	<div class="campo"><div>Colaborador</div>
+	<!--
+		 <div class="campo"><div>Colaborador</div>
 		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
-			<?php echo $digitadores; ?>
+			<?php //echo $digitadores; ?> 
 		</select>
 	</div>
+	-->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

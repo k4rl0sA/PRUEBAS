@@ -30,7 +30,7 @@ function lis_tamepoc(){
 	$pag=(isset($_POST['pag-tamepoc']))? ($_POST['pag-tamepoc']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.documento,'_',O.tipo_doc,'_') ACCIONES,id_epoc 'Cod Registro',O.documento Documento,FN_CATALOGODESC(1,O.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion`Descripcion, U.nombre Creo,U.perfil perfil 
 	 FROM tam_epoc O 
-	LEFT JOIN personas P ON O.idpersona = P.idpersona
+	LEFT JOIN personas P ON O.documento = P.idpersona
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario

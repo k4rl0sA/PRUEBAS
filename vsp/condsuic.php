@@ -82,7 +82,7 @@ function cmp_condsuic(){
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('tipo_caso','s','2',$d,$w.' hab '.$o,'Tipo de Población','tipo_caso',null,null,false,$x,'','col-2',"enabOthSi('tipo_caso','GyP');");
-  $c[]=new cmp('etapa','s','3',$d,$w.' Tp '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enabEtap('etapa',['pRe','PuE','PuE']);");//enbValsCls('etapa',['{$ge}','{$pu}','{$pu}']);
+  $c[]=new cmp('etapa','s','3',$d,$w.' GyP Tp '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enabEtap('etapa',['pRe','PuE','PuE']);");//enbValsCls('etapa',['{$ge}','{$pu}','{$pu}']);
   $c[]=new cmp('sema_gest','s','3',$d,$w.' Tp '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-3');
  
   $o='hab';

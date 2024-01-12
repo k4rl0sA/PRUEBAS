@@ -98,7 +98,7 @@ function cmp_condsuic(){
     $c[]=new cmp('edad_gesta','s','3',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-2');
     $c[]=new cmp('resul_gest','s','2',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-2',"enabOthSi('resul_gest','Rg');");
     $c[]=new cmp('meto_fecunda','s','2',$d,$w.' '.$bl.' '.$pu.' '.$gp.' '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-2',"enabOthSi('meto_fecunda','mF');");
-    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' mF '.$gp.' '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-2');
+    $c[]=new cmp('cual','s','3',$d,$w.' '.$bl.' '.$pu.' mF '.$gp.' '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-2');
     $c[]=new cmp('peso_nacer','n','4',$d,$w.' Rg '.$bl.' '.$pu.' '.$gp.' '.$o,'Peso del recién nacido al nacer (gr)','peso_nacer',null,null,false,$x,'','col-2');
     $c[]=new cmp('asiste_control','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$gp.' '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('vacuna_comple','s','2',$d,$w.' Rg '.$bl.' '.$pu.' '.$gp.' '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');

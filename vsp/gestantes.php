@@ -104,7 +104,7 @@ $ob='Ob';
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');
     // $c[]=new cmp('imc','t','6',$d,$w.' '.$bl.' '.$o,'Imc','imc',null,null,false,false,'','col-1');
     // $c[]=new cmp('clas_nutri','t','50',$d,$w.' '.$bl.' '.$ge.' '.$o,'Clasificación Nutricional Segun Edad Gestacional','clas_nutri',null,null,false,$x,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,false,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
     $c[]=new cmp('gana_peso','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Se evidencia ganancia de peso?','rta',null,null,false,$x,'','col-15');
 
     $c[]=new cmp('cant_ganapesosem','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Ganancia de peso semanal','cant_ganapesosem',null,null,false,$x,'','col-35');

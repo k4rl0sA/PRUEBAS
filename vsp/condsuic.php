@@ -301,7 +301,8 @@ function gra_condsuic(){
     WHERE id_condsuic =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
   }else if(count($id)==4){
-    $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),trim(upper('{$_POST['fecha_seg']}')),
+    $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),
     trim(upper('{$_POST['evento']}')),
     trim(upper('{$_POST['estado_s']}')),
@@ -358,8 +359,9 @@ function gra_condsuic(){
     trim(upper('{$_POST['incremen_evita']}')),
     trim(upper('{$_POST['redu_riesgo_cierre']}')),
     TRIM(UPPER('{$smbin}')),
+    
     TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-      echo $sql;
+      // echo $sql;
     }
       $rta=dato_mysql($sql);
       return $rta;

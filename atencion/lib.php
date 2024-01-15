@@ -787,7 +787,7 @@ $o='prurap';
    function lis_atencion(){
 	// FN_CATALOGODESC(1,F.tipo_doc) Identificación, F.documento 'Número', F.`fecha_create` 'fecha creación' 
 	$id=divide($_POST['id']);
-	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
+	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-atencion']))? ($_POST['pag-atencion']-1)* $regxPag:0;

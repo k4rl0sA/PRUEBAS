@@ -806,8 +806,8 @@ $o='prurap';
 		// $sql.=$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);' LIMIT '.$pag.','.$regxPag;
 		// echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
-		// return panel_content($datos["responseResult"],"atencion-lis",5);
+			// return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
+		return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 
 function get_personas(){
@@ -1779,7 +1779,7 @@ function asigna_rutePsico(){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-print_r($a);
+// print_r($a);
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);

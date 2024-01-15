@@ -793,7 +793,7 @@ $o='prurap';
 	print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
+	$regxPag=2;
 	$pag=(isset($_POST['pag-atencion']))? ($_POST['pag-atencion']-1)* $regxPag:0;
 
 	$sql="SELECT  F.id_factura ACCIONES,F.cod_admin,F.fecha_consulta fecha,FN_CATALOGODESC(182,F.tipo_consulta) Consulta,

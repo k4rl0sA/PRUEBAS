@@ -787,6 +787,11 @@ $o='prurap';
    function lis_atencion(){
 	// FN_CATALOGODESC(1,F.tipo_doc) Identificación, F.documento 'Número', F.`fecha_create` 'fecha creación' 
 	$id=divide($_POST['id']);
+	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-atencion']))? ($_POST['pag-atencion']-1)* $regxPag:0;
+
 	$sql="SELECT  F.id_factura ACCIONES,F.cod_admin,F.fecha_consulta fecha,FN_CATALOGODESC(182,F.tipo_consulta) Consulta,
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
 	FROM adm_facturacion F
@@ -794,7 +799,8 @@ $o='prurap';
 		$sql.=" ORDER BY F.fecha_create";
 		// echo $sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"atencion-lis",5);
+			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
+		// return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 
 function get_personas(){

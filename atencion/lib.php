@@ -806,7 +806,7 @@ $o='prurap';
 		// $sql.=$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);' LIMIT '.$pag.','.$regxPag;
 		// echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
+			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 

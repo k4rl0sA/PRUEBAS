@@ -790,7 +790,7 @@ $o='prurap';
 	$id=divide($_POST['ida']); */
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);
 
-	print_r($id);
+	// print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;

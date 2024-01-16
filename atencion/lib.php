@@ -807,8 +807,8 @@ $o='prurap';
 		
 		// echo $sql;
 			$datos=datos_mysql($sql);
-			// return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
-		return panel_content($datos["responseResult"],"atencion-lis",5);
+			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
+		//return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 
 function get_personas(){

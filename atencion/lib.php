@@ -803,7 +803,8 @@ $o='prurap';
 	FROM adm_facturacion F
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
-		$sql.=$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);' LIMIT '.$pag.','.$regxPag;
+	$sql.='LIMIT '.$pag.','.$regxPag;
+		
 		// echo $sql;
 			$datos=datos_mysql($sql);
 			// return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');

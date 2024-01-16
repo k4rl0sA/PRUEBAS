@@ -803,7 +803,7 @@ $o='prurap';
 	FROM adm_facturacion F
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
-	$sql.='LIMIT '.$pag.','.$regxPag;
+		$sql.=' LIMIT '.$pag.','.$regxPag;
 		
 		// echo $sql;
 			$datos=datos_mysql($sql);

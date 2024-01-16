@@ -392,12 +392,12 @@ $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) 
 	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<div class="campo">
-		<div>Fecha Asignado Desde</div>
+		<!-- <div>Fecha Asignado Desde</div> -->
 		<input type="hidden" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>'  disabled="true">
 		
 	</div>
 	<div class="campo">
-		<div>Fecha Asignado Hasta</div>
+		<!-- <div>Fecha Asignado Hasta</div> -->
 		<input type="hidden" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>'  disabled="true">
 	</div> 
 

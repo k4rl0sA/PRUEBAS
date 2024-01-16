@@ -795,7 +795,6 @@ $o='prurap';
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
 
-    
 	$pag=(isset($_POST['pag-atencion']))? ($_POST['pag-atencion']-1)* $regxPag:0;
 	$sql="SELECT  F.id_factura ACCIONES,F.cod_admin,F.fecha_consulta fecha,FN_CATALOGODESC(182,F.tipo_consulta) Consulta,
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
@@ -805,7 +804,7 @@ $o='prurap';
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		// echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
+			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 

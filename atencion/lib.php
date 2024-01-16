@@ -802,12 +802,13 @@ $o='prurap';
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
 	FROM adm_facturacion F
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
-		$sql.=" ORDER BY F.fecha_create";
-		$sql.=' LIMIT '.$pag.','.$regxPag;
+	$sql.=" ORDER BY F.fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 		
-		// echo $sql;
+		echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
+			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag);
+
 		//return panel_content($datos["responseResult"],"atencion-lis",5);
 	}
 

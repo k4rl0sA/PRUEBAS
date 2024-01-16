@@ -370,7 +370,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='homes';
 $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 3 days"));
+$ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 /* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']); */
 // var_dump($usu);
@@ -393,12 +393,12 @@ $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) 
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<div class="campo">
 		<div>Fecha Asignado Desde</div>
-		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>'  disabled="true">
 		
 	</div>
 	<div class="campo">
 		<div>Fecha Asignado Hasta</div>
-		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
+		<input type="hidden" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>'  disabled="true">
 	</div> 
 
 	<?php

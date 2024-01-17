@@ -67,7 +67,7 @@ FROM vsp_cronicos A
    
 function cmp_cronicos(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='cronicos'>".lis_cronicos()."</div></div>";
+	<div class='contenido' id='cronicos-lis'>".lis_cronicos()."</div></div>";
 	$w='cronicos';
   $d='';
 	$o='inf';

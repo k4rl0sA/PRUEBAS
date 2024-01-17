@@ -1757,7 +1757,8 @@ function opc_tipo_consulta($id=''){
 function asigna_rutePsico(){
     $id=divide($_REQUEST['id']);
     $sql="INSERT INTO asigpsico VALUES 
-	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_SESSION['us_sds']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
+	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),NULL,NULL,TRIM(UPPER('{$_SESSION['us_sds']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),
+	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	$rta1=dato_mysql($sql);
 	//echo $sql;
 	$sql1="INSERT INTO eac_rutpsico VALUES

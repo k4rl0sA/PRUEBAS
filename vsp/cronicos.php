@@ -67,7 +67,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 
 function cmp_cronicos(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='cronicos-lis'>".seg_cronicos()."</div></div>";
+	<div class='contenido' id='cronicos-lis'>".lis_cronicos()."</div></div>";
 	$w='cronicos';
   $d='';
 	$o='inf';

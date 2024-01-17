@@ -56,8 +56,9 @@ tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,event
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_cronicos A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
+  $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+  $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);

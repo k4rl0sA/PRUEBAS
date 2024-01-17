@@ -48,7 +48,7 @@ function focus_cronicos(){
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=2;
+	$regxPag=4;
   $pag=(isset($_POST['pag-cronicos']))? ($_POST['pag-cronicos']-1)* $regxPag:0;
 
 	$sql="SELECT `id_cronicos` ACCIONES,id_cronicos  'Cod Registro',

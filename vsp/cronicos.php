@@ -36,7 +36,7 @@ function focus_cronicos(){
    $rta = "";
    $acc=rol($a);
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-   $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+   $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this,'cronicos.php');\"></li>";
   
    return $rta;
  }

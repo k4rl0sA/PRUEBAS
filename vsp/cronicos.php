@@ -64,8 +64,7 @@ FROM vsp_cronicos A
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);
   return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
    }
-
-
+   
 function cmp_cronicos(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
 	<div class='contenido' id='cronicos'>".lis_cronicos()."</div></div>";

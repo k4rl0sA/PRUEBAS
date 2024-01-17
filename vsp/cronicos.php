@@ -62,7 +62,7 @@ FROM vsp_cronicos A
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);
-  return create_table($total,$datos["responseResult"],"cronicos-lis",$regxPag);
+  return create_table($total,$datos["responseResult"],"cronicos-lis",$regxPag,'cronicos.php');
    }
 
 

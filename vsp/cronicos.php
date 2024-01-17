@@ -59,7 +59,7 @@ FROM vsp_cronicos A
   $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
   $sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);
   return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');

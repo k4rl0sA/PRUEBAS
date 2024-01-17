@@ -45,6 +45,12 @@ function focus_cronicos(){
  FUNCTION seg_cronicos(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]);
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-atencion']))? ($_POST['pag-atencion']-1)* $regxPag:0;
+
 	$sql="SELECT `id_cronicos` ACCIONES,id_cronicos  'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
@@ -54,7 +60,8 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"cronicos-lis",5);
+	// return panel_content($datos["responseResult"],"cronicos-lis",5);
+  return create_table($total,$datos["responseResult"],"cronicos-lis",$regxPag);
    }
 
 

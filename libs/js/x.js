@@ -446,7 +446,6 @@ function enabYes(a,b){
 function min1ElmSi(a,ClsCmp) {
 	const ele = document.querySelectorAll('select.'+ClsCmp+',input.'+ClsCmp+',textarea.'+ClsCmp);
 	const est=document.getElementById('estado_s');
-	
 	for (const elm of ele) {
 	  if (elm.value === '1' || (est.value==='10' || est.value==='3' || est.value==='5')  ){
 		return true;

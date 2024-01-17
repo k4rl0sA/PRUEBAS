@@ -112,7 +112,7 @@ function gra_gestion(){
 	}else{ */
 	$sql="INSERT INTO monitoreo 
 	VALUES(NULL,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),'1',trim(upper('{$_POST['proceso']}')),
-	'{$_POST['fechad']}','{$_POST['fechad']}', '', '',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR))";
+	'{$_POST['fechad']}','{$_POST['fechah']}', '', '',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR))";
 	/* 
 	1=descargar
 	2=actualizar

@@ -62,13 +62,13 @@ FROM vsp_cronicos A
 	echo $sql;
 	$datos=datos_mysql($sql);
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);
-  return create_table($total,$datos["responseResult"],"cronicos-lis",$regxPag,'cronicos.php');
+  return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
    }
 
 
 function cmp_cronicos(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='cronicos-lis'>".lis_cronicos()."</div></div>";
+	<div class='contenido' id='cronicos'>".lis_cronicos()."</div></div>";
 	$w='cronicos';
   $d='';
 	$o='inf';

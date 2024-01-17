@@ -448,7 +448,7 @@ function min1ElmSi(a,ClsCmp) {
 	const est=document.getElementById('estado_s');
 	
 	for (const elm of ele) {
-	  if (elm.value === '1' || est.value==='3'){
+	  if (elm.value === '1' || (est.value==='3' || est.value==='4' || est.value==='2'  )){
 		return true;
 	  }
 	}

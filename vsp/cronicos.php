@@ -43,7 +43,7 @@ function focus_cronicos(){
 
 
  function lis_cronicos(){
-	// var_dump($_POST['id']);
+	var_dump($_POST);
 	$id=divide($_POST['id']);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");

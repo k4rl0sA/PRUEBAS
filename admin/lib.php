@@ -87,7 +87,7 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	//$ini=-117;
+	//$ini=-110;
 	$ini=date('d')<11 ?-date('d')-31:-date('d');
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
@@ -363,6 +363,11 @@ function lis_planos() {
 			$tab = "Adscripcion_Territorial";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_adscrip($tab);
+            break;
+        case '41':
+			$tab = "Casos_Relevo_Cuidador";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_asigrelevo($tab);
             break;    
         default:
             break;    
@@ -1476,6 +1481,27 @@ LEFT JOIN usuarios U1 ON A.usu_creo = U1.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_asigrelevo($txt){
+	$sql="SELECT G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,P.idpeople AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, 
+
+P.tipo_doc AS Tipo_Documento_Cuidador, P.idpersona AS N°_Documento_Cuidador, concat(P.nombre1,' ',P.nombre2) AS Nombres_Cuidador, concat(P.apellido1,' ',P.apellido2) AS Apellidos_Cuidador,P.fecha_nacimiento AS Fecha_Nacimiento_Cuidador, FN_CATALOGODESC(21,P.sexo) AS Sexo_Cuidador, FN_CATALOGODESC(19,P.genero) AS Genero_Cuidador, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual_Cuidador, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad_Cuidador, FN_CATALOGODESC(16,P.etnia) AS Etnia_Cuidador, FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia_Cuidador, FN_CATALOGODESC(17,P.regimen) AS Regimen_Cuidador, FN_CATALOGODESC(18,P.eapb) AS Eapb_Cuidador, P.cuidador AS Persona_Cuidadora, P.tiempo_cuidador AS Tiempo_Cuidador, FN_CATALOGODESC(67,P.cuidador_unidad) AS Unidad_Medida_Tiempo_Cuidador,  FN_CATALOGODESC(54,P.vinculo) AS Vinculo_Persona_Cuidada, P.tiempo_descanso AS Cada_Cuánto_Descansa, FN_CATALOGODESC(67,P.descanso_unidad) AS Unidad_Medida_Tiempo_Descanso, P.reside_localidad AS Reside_Localidad, P.localidad_vive AS En_Qué_Localidad_Vive, FN_CATALOGODESC(25,P.transporta) AS En_Que_Se_Transporta, S.estado_cierre AS Estado, S.fecha_create AS Fecha_Asignacion, U.nombre AS Colaborador, U.perfil AS Perfil    
+  FROM personas P 
+  LEFT JOIN asigrelevo S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc 
+  LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+  LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+  LEFT JOIN usuarios U ON S.doc_asignado=U.id_usuario WHERE P.cuidador = 'SI' ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred15();
+	$sql.=whe_date15();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `personas` P  LEFT JOIN asigrelevo S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON S.doc_asignado=U.id_usuario WHERE P.cuidador = 'SI' ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred15();
+	$tot.=whe_date15();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 function lis_adscrip($txt){
 	$sql="SELECT U.subred,A.territorio AS Territorio,A.doc_asignado AS Cod_Usuario,U.nombre AS Nombre_Usuario,U.perfil AS Perfil_Usuario FROM `adscrip` A 
 LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario 
@@ -1636,6 +1662,19 @@ function whe_date13(){
 
 function whe_subred14() {
 	$sql= " AND (U.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_subred15() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date15(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

@@ -12,9 +12,9 @@ if (!isset($_SESSION["us_sds"])) {
 }
 $ruta_upload='/public_html/upload/';
 $env='prod';
-//$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+//$comy=array('prod' => ['s'=>'auth-db1180.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 //$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
@@ -55,7 +55,7 @@ switch ($req) {
 		if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $fi))
 			echo "Error " . $_FILES['archivo']['error'] . " " . $fi;
 		else {
-			/* echo $cabecera;
+			echo $cabecera;
 			echo "Archivo <b>" . $_POST['b'] . "</b>" . $ar . "<br>";
 			echo "<center>";
 			echo "<div id='progress-ordennovedadvalor'></div>";
@@ -63,7 +63,7 @@ switch ($req) {
 			if (isset($GLOBALS['def_' . $tb]))
 				importar($tb, $fi, $_REQUEST['d']);
 			echo "<input type=button value='Continuar' OnClick=\"retornar('" . $cr . "','" . $ar . ".csv')\" >";
-			echo "</center>"; */
+			echo "</center>";
 		}
 		break;
 }
@@ -100,23 +100,20 @@ function csv($a,$b,$tot= null){
 }
 
 function cleanTxt($val) {
+  // Elimina espacios en blanco al principio y al final
   $val = trim($val);
+  // Escapa comillas simples y dobles
   $val = addslashes($val);
+  // Escapa caracteres especiales para SQL (opcional)
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
+  // Elimina saltos de línea y tabulaciones
   $pattern = '/[\'";\x00-\x1F\x7F]/';
   $replacement = '';
   $val = preg_replace($pattern, $replacement, $val);
   $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
   $val=strtoupper($val);
-  if (function_exists('mb_ereg_replace')) {
-    return mb_ereg_replace('[\x00\x0A\x0D\x1A\x22\x27\x5C]', '\\\0', $val);
-  } else {
-    return preg_replace('~[\x00\x0A\x0D\x1A\x22\x27\x5C]~u', '\\\\$0', $val);
-  }
-  // return $val;
+  return $val;
 }
-
-
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
@@ -134,6 +131,45 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     // $GLOBALS['con']->close();
   }
 	return $arr;
+}
+
+function mysql_prepd($sql, $params) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+  $con->set_charset('utf8');
+  try {
+      $stmt = $con->prepare($sql);
+      if ($stmt) {
+          $types = '';
+          $values = array();
+          foreach ($params as $param) {
+              $types .= $param['type'];
+              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
+          }
+          $stmt->bind_param($types, ...$values);
+          $sqlType = strtoupper($sql);
+          if (strpos($sqlType, 'DELETE') !== false) {
+              $op = 'Eliminado';
+          } elseif (strpos($sqlType, 'INSERT') !== false) {
+              $op = 'Insertado';
+          } elseif (strpos($sqlType, 'UPDATE') !== false) {
+              $op = 'Actualizado';
+          } else {
+              $op = 'Operación desconocida';
+          }
+          if (!$stmt->execute()) {
+            $rs = "Error al ejecutar la consulta: " . $stmt->error;
+        } else {
+            $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
+        }
+          $stmt->close();
+      } else {
+        $rs = "Error: " . $con->error;
+      }
+  } catch (mysqli_sql_exception $e) {
+    $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  }
+  return $rs;
 }
 
 
@@ -204,117 +240,9 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
   } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
-  return $rs;
-}
-
-
-/* function mysql_prepd($sql, ...$params) {
-  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-  $con = $GLOBALS['con'];
-  $con->set_charset('utf8');
-  
-  try {
-      $stmt = $con->prepare($sql);
-
-      if (!$stmt) {
-          $rs = "Error en la preparación de la consulta: " . $con->error;
-      } else {
-          $sqlType = strtoupper($sql);
-
-          if (strpos($sqlType, 'DELETE') !== false) {
-              $op = 'Eliminado';
-          } elseif (strpos($sqlType, 'INSERT') !== false) {
-              $op = 'Insertado';
-          } elseif (strpos($sqlType, 'UPDATE') !== false) {
-              $op = 'Actualizado';
-          } else {
-              $op = 'Operación desconocida';
-          }
-
-          if (!empty($params)) {
-              $types = '';
-              $bindParams = array();
-
-              foreach ($params as $param) {
-                  if (is_int($param)) {
-                      $types .= 'i';
-                  } elseif (is_float($param)) {
-                      $types .= 'd';
-                  } elseif (is_string($param)) {
-                      $types .= 's';
-                  } elseif (is_null($param)) {
-                      $types .= 's';
-                      $param = null;  // asignar null explícitamente
-                  } else {
-                      throw new Exception("Tipo de parámetro no válido.");
-                  }
-
-                  $bindParams[] = &$param;
-              }
-
-              array_unshift($bindParams, $types);
-              call_user_func_array(array($stmt, 'bind_param'), $bindParams);
-          }
-
-          if (!$stmt->execute()) {
-              $rs = "Error al ejecutar la consulta: " . $stmt->error;
-          } else {
-              $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
-          }
-
-          $stmt->close();
-      }
-  } catch (mysqli_sql_exception $e) {
-      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
-  } catch (Exception $e) {
-      $rs = "Error: " . $e->getMessage();
-  }
 
   return $rs;
 }
- */
-
-function mysql_prepd($sql, $params) {
-  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-  $con = $GLOBALS['con'];
-  $con->set_charset('utf8');
-  try {
-      $stmt = $con->prepare($sql);
-      if ($stmt) {
-          $types = '';
-          $values = array();
-          foreach ($params as $param) {
-              $types .= $param['type'];
-              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
-          }
-          $stmt->bind_param($types, ...$values);
-          $sqlType = strtoupper($sql);
-          if (strpos($sqlType, 'DELETE') !== false) {
-              $op = 'Eliminado';
-          } elseif (strpos($sqlType, 'INSERT') !== false) {
-              $op = 'Insertado';
-          } elseif (strpos($sqlType, 'UPDATE') !== false) {
-              $op = 'Actualizado';
-          } else {
-              $op = 'Operación desconocida';
-          }
-          if (!$stmt->execute()) {
-            $rs = "Error al ejecutar la consulta: " . $stmt->error;
-        } else {
-            $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
-        }
-          $stmt->close();
-      } else {
-        $rs = "Error: " . $con->error;
-      }
-  } catch (mysqli_sql_exception $e) {
-    $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
-  }
-  return $rs;
-}
-
-
-
 
 function fetch(&$con, &$rs, $resulttype, &$arr) {
 	if ($rs === TRUE) {

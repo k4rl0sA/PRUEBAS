@@ -193,7 +193,7 @@ function cmp_relevo() {
 	$c[]=new cmp('otro_3','t','50',$j['otro_3'],$w.' ot2 cr3 '.$o,'Otro, Cual','otro_3',null,null,false,false,'','col-2');
 	$c[]=new cmp('discapacidad_3','s','3',$j['discapacidad_3'],$w.' cr3 '.$o,'TIPO DE DISCAPACIDAD','rel_validacion16',null,null,false,false,'','col-3');
 	$c[]=new cmp('rel_validacion17','s','3',$j['rel_validacion17'],$w.' '.$o,'Aceptacion Releveos','aler',null,null,true,true,'','col-2',"enabDateRel(this,['fre']);");
-	$c[]=new cmp('rel_validacion18','d','10',$j['rel_validacion18'],$w.' fre '.$o,'Fecha de la identificación','rel_validacion18',null,null,false,true,'','col-4','validDate(this,-5)');
+	$c[]=new cmp('rel_validacion18','d','10',$j['rel_validacion18'],$w.' fre '.$o,'Fecha de la identificación','rel_validacion18',null,null,false,true,'','col-4','validDate(this,-22)');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	//  $rta .="<div class='encabezado integrantes'>TABLA DE INTEGRANTES DE LA FAMILIA</div><div class='contenido' id='integrantes-lis' >".lis_integrantes1()."</div></div>";

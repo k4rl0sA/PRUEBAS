@@ -789,7 +789,6 @@ $o='prurap';
 	/* $id=divide($_POST['id']);
 	$id=divide($_POST['ida']); */
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);
-
 	// print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
@@ -802,7 +801,7 @@ $o='prurap';
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
-		// echo $sql;
+		echo $sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);

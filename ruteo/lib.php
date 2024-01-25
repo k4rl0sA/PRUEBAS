@@ -160,7 +160,8 @@ function opc_estado_res($id='') {
 		$info=datos_mysql($sql);
     // var_dump($info['responseResult'][0]);
 		$cod= $info['responseResult'][0]['id'];
-		$co=divide($cod[0]);
+		var_dump($cod);
+		$co=divide($cod);
 
 		return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 

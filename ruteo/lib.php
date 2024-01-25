@@ -141,15 +141,38 @@ function cmp_rute(){
 
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
- 
-
+ //el estadodel geo y el cod amision 
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado_res',null,null,true,true,'','col-2',"enClSe('estado', 'tOL', [['DEl'], ['upD'], ['Tra']]);valSelDep('accion',2,'INt',6);");
+ $c[]=new cmp('famili','s',3,$d['famili'],$w.' dir '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' dir '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' dir '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
 
+function opc_estado_res($id='') {
+	// var_dump($_REQUEST);
+	$sec=$_REQUEST['sector_catastral'];
+	$man=$_REQUEST['nummanzana'];
+	$pre=$_REQUEST['predio_num'];
+	$uni=$_REQUEST['unidad_habit'];
+		return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
+			from hog_geo where 
+			sector_catastral='$sec' AND nummanzana='$man' AND predio_num='$pre' AND unidad_habit='$uni'",$id);
+			// var_dump($id);
+	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
+}
 
-
+function famili($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+}
+function usuario($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+}
+function cod_admin($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+}
 function opc_fuente($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
 }

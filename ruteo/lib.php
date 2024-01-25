@@ -155,7 +155,7 @@ function opc_estado_res($id='') {
 	var_dump($_REQUEST);
 	$id=divide($_REQUEST['id']);
 
-	return $id;
+	// return $id;
 		/* return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
 			sector_catastral='$id[0]' AND nummanzana='$man' AND predio_num='$pre' AND unidad_habit='$uni'",$id); */

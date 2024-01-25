@@ -153,6 +153,8 @@ function cmp_rute(){
 
 function opc_estado_res($id='') {
 	var_dump($_REQUEST);
+	var_dump($_POST);
+	var_dump($_GET);
 	$sec=$_REQUEST['sector_catastral'];
 	$man=$_REQUEST['nummanzana'];
 	$pre=$_REQUEST['predio_num'];

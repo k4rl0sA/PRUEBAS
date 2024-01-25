@@ -159,7 +159,7 @@ function opc_estado_res($id='') {
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     // var_dump($info['responseResult'][0]);
-		$cod= $info['responseResult'][0]['id'];
+		$cod= $info['responseResult'][0]['cod'];
 		var_dump($cod);
 		$co=divide($cod);
 

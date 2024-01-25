@@ -153,15 +153,12 @@ function cmp_rute(){
 
 function opc_estado_res($id='') {
 	var_dump($_REQUEST);
-	var_dump($_POST);
-	var_dump($_GET);
-	$sec=$_REQUEST['sector_catastral'];
-	$man=$_REQUEST['nummanzana'];
-	$pre=$_REQUEST['predio_num'];
-	$uni=$_REQUEST['unidad_habit'];
-		return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
+	$id=divide($_REQUEST['id']);
+
+	return $id;
+		/* return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
-			sector_catastral='$sec' AND nummanzana='$man' AND predio_num='$pre' AND unidad_habit='$uni'",$id);
+			sector_catastral='$id[0]' AND nummanzana='$man' AND predio_num='$pre' AND unidad_habit='$uni'",$id); */
 			// var_dump($id);
 	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }

@@ -138,6 +138,12 @@ function cmp_rute(){
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-2');
  $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
  $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,$x,'','col-10');
+
+ $o='gesres';
+ $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
+ 
+
+
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

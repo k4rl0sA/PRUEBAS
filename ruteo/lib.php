@@ -133,7 +133,7 @@ function cmp_rute(){
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado','estado']);");
+ $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,$x,'','col-2','validState(this,\'estado_g\');');
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-2');
  $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
@@ -142,7 +142,7 @@ function cmp_rute(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  //el estadodel geo y el cod amision 
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado_res',null,null,true,false,'','col-2',"enClSe('estado', 'rEs', [['DEl'], ['upD'], ['Tra']]);");
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado_res',null,null,true,false,'','col-2',"enClSe('estado', 'rEs', [['DEl'], ['upD'], ['Tra']]);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' rEs Tra '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs Tra '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs Tra '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion

@@ -142,31 +142,27 @@ function cmp_rute(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  //el estadodel geo y el cod amision 
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado_res',null,null,true,true,'','col-2',"enClSe('estado', 'tOL', [['DEl'], ['upD'], ['Tra']]);valSelDep('accion',2,'INt',6);");
- $c[]=new cmp('famili','s',3,$d['famili'],$w.' dir '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
- $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' dir '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' dir '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado_res',null,null,true,true,'','col-2',"enClSe('estado', 'rEs', [['DEl'], ['upD'], ['Tra']]);");
+ $c[]=new cmp('famili','s',3,$d['famili'],$w.' rEs DEl '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
 
 function opc_estado_res($id='') {
-	var_dump($_REQUEST);
 	$id=divide($_REQUEST['id']);
-
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     // var_dump($info['responseResult'][0]);
 		$cod= $info['responseResult'][0]['cod'];
-		var_dump($cod);
 		$co=divide($cod);
 
 		return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
-			
 			// var_dump($id);
 }
 

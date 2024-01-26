@@ -144,8 +144,8 @@ function cmp_rute(){
  //el estadodel geo y el cod amision 
  $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado_res',null,null,true,true,'','col-2',"enClSe('estado', 'rEs', [['DEl'], ['upD'], ['Tra']]);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' rEs DEl '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
- $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs upD '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs Tra '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;

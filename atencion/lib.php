@@ -22,10 +22,15 @@ else {
 
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.equipo FROM hog_viv hv 
+	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,
+	FN_CATALOGODESC(42,hg.estrategia) AS estrategia,
+	IFNULL(u.nombre,u1.nombre) asignado,
+	hg.territorio 
+	FROM hog_viv hv 
 	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
 	LEFT JOIN personas p ON hv.idviv=p.vivipersona
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
+	LEFT JOIN usuarios u1 ON hg.usu_creo=u1.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
 // echo $sql;
 	$info=datos_mysql($sql);

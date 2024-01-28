@@ -416,8 +416,8 @@ function lista_persons(){ //revisar
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',
-		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'CON','SIN'),'NO') AS Cronico,
-		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'CON', 'SIN'),'NO') AS Gestante	
+		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'X',' '),'NO') AS Cronico,
+		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'X', ' '),'NO') AS Gestante	
 		FROM `personas` p 
 			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
 			WHERE vivipersona='".$id[0]."'";
@@ -1838,10 +1838,10 @@ function formato_dato($a,$b,$c,$d){
 function bgcolor($a,$c,$f='c'){
 	$rta = 'red';
 	if ($a=='datos-lis'){
-		if($c['Cronico']==='SIN'){
+		if($c['Cronico']===' '){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
-		if($c['Gestante']==='SIN'){
+		if($c['Gestante']===' '){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
 	}

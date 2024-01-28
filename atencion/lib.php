@@ -41,8 +41,9 @@ function lis_homes(){
 		SELECT DISTINCT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES
 		FROM hog_geo H
 		LEFT JOIN usuarios U ON H.subred = U.subred
-		LEFT JOIN adscrip A ON H.territorio = A.territorio
-		LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
+	LEFT JOIN adscrip A ON H.territorio=A.territorio 
+	".whe_deriva()."
 		WHERE H.estado_v IN ('7') ".whe_homes()."
 			AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
@@ -68,8 +69,8 @@ $sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio
 	FROM hog_geo H
 	LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
-	LEFT JOIN adscrip A ON H.territorio=A.territorio
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+	LEFT JOIN adscrip A ON H.territorio=A.territorio 
+	".whe_deriva()."
 WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	GROUP BY ACCIONES
@@ -77,23 +78,31 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	LIMIT $pag, $regxPag";
 
 //echo $sql;
-	//AND (H.territorio IN (SELECT A.territorio FROM adscrip WHERE A.doc_asignado = '{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')
-	//AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR (H.usu_creo IN('{$_SESSION['us_sds']}')))
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
+}
+
+function whe_deriva(){
+    $sql = "";
+    if ($_POST['fterri']) {
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio ";
+    }else{
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio AND D.doc_asignado='{$_SESSION['us_sds']}' ";
+    }
+    return $sql;
 }
 
 
 function whe_homes() {
 	$fefin=date('Y-m-d');
-	$feini = date("Y-m-d",strtotime($fefin."- 3 days"));
+	$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
 	$sql = "";
 	if (!empty($_POST['fpred'])) {
 		$sql .= " AND H.idgeo = '" . $_POST['fpred'] . "'";
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
@@ -102,19 +111,20 @@ function whe_homes() {
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' )";//OR D.doc_asignado='{$_SESSION['us_sds']}'
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
 		}
-		$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' ";
-		/*if ($_POST['fdes']) {
+		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
+			      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
 			} else {
-				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
+			    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
 			}
-		} */
+		}
 	}
 	return $sql;
 }
@@ -416,12 +426,12 @@ function lista_persons(){ //revisar
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',
-		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'X',' '),'NO') AS Cronico,
-		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'X', ' '),'NO') AS Gestante	
+		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'CON','SIN'),'NO') AS Cronico,
+		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'CON', 'SIN'),'NO') AS Gestante	
 		FROM `personas` p 
 			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
 			WHERE vivipersona='".$id[0]."'";
-		echo $sql;
+		// echo $sql;
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
@@ -789,6 +799,7 @@ $o='prurap';
 	/* $id=divide($_POST['id']);
 	$id=divide($_POST['ida']); */
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);
+
 	// print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
@@ -801,7 +812,7 @@ $o='prurap';
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
-		echo $sql;
+		// echo $sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"atencion-lis",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);
@@ -1838,10 +1849,10 @@ function formato_dato($a,$b,$c,$d){
 function bgcolor($a,$c,$f='c'){
 	$rta = 'red';
 	if ($a=='datos-lis'){
-		if($c['Cronico']===' '){
+		if($c['Cronico']==='SIN'){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
-		if($c['Gestante']===' '){
+		if($c['Gestante']==='SIN'){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
 	}

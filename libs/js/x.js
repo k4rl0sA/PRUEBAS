@@ -191,13 +191,9 @@ function disabledCmp(clsCmp){
 	}
   }
 	
-		
-  
-  
-	
-  
-  
+function selDep(){
 
+}
   
 function enbValue(a,clsCmp,v){
 	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);

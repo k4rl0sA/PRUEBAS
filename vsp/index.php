@@ -175,7 +175,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='homes';
 $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 3 days")); 
+$ayer = date("Y-m-d",strtotime($hoy."- 6 days")); 
 /* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']); */
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
@@ -184,7 +184,7 @@ $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalo
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'];
 $binas=opc_sql("select DISTINCT equipo,equipo from usuarios WHERE perfil='PROFAM' AND estado='A' AND subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
-$bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 'disabled';
+$bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG' || $perfil == 'SUPHOG') ? '' : 'disabled';
 
 ?>
 <form method='post' id='fapp' >
@@ -201,12 +201,12 @@ $bina = ($perfil == 'APYHOG' || $perfil == 'ADM' || $perfil == 'ADMHOG') ? '' : 
 	
 	<div class="campo">
 		<div>Fecha Asignado Desde</div>
-		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' disabled="true">
 		
 	</div>
 	<div class="campo">
 		<div>Fecha Asignado Hasta</div>
-		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
+		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>'  disabled="true">
 	</div>
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

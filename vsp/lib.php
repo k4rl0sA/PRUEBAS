@@ -50,54 +50,39 @@ WHERE 1 ".whe_homes()." AND estado_v in('7')";
 	$sql="SELECT H.idgeo AS ACCIONES, H.idgeo AS Cod_Predio, FN_CATALOGODESC(42, H.estrategia) AS estrategia, H.direccion, H.territorio, H.sector_catastral AS Sector, H.nummanzana AS Manzana, H.predio_num AS predio, H.unidad_habit AS 'Unidad', FN_CATALOGODESC(2, H.localidad) AS 'Localidad', U.nombre AS nombre, H.fecha_create, FN_CATALOGODESC(44, H.estado_v) AS estado 
 	FROM hog_geo H
 	LEFT JOIN usuarios U ON H.asignado = U.id_usuario
-    LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+    ".whe_deriva()."
  WHERE estado_v =('7') ".whe_homes()." 
-	 
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
-// echo $sql;
+ //echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
+function whe_deriva(){
+    $sql = "";
+    if(!$_POST['fbinas']){
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio AND D.doc_asignado IN(SELECT id_usuario from usuarios where equipo=(select equipo from usuarios where id_usuario='{$_SESSION['us_sds']}'))";
+    }else{
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio AND D.doc_asignado IN(SELECT id_usuario from usuarios where equipo='{$_POST['fbinas']}')";
+    }
+    return $sql;
+}
 
-/* function whe_homes() {
-	$sql = " AND H.subred in(SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}')";
-	// print_r($_POST);
-	if ($_POST['fbinas'])
-		$sql .=" AND H.equipo='".$_POST['fbinas']."'";
-	if ($_POST['fdes']) {
-		if ($_POST['fhas']) {
-			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fhas']."'";
-		}else{
-			$sql .= " AND DATE(H.fecha_create) BETWEEN '".$_POST['fdes']."' AND '".$_POST['fdes']."'";
-		}
-	}
-		//if(!$_POST['fbinas'] && !$_POST['fsector'] && !$_POST['fmanz'] && !$_POST['fpred']){
-	if(!$_POST['fbinas']){
-		$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
-		//OR (H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') AND (D.doc_asignado='{$_SESSION['us_sds']}'))";
-	}else{
-		//$sql.=" AND H.usu_creo='{$_SESSION['us_sds']}' AND D.doc_asignado='{$_SESSION['us_sds']}'";
-	} 
-		if ($_POST['fpred'])
-		$sql .= " AND H.idgeo = '".$_POST['fpred']."'";
-	return $sql;
-} */
 
 function whe_homes() {
 	$sql = " AND H.subred in(SELECT subred FROM usuarios WHERE id_usuario = '{$_SESSION['us_sds']}')";
 	if (!empty($_POST['fpred'])) {
 		$sql .= " AND H.idgeo = '" . $_POST['fpred'] . "'";
 		if(!$_POST['fbinas']){
-			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado IN('{$_SESSION['us_sds']}'))";
 		}else{
 			$sql .=" AND H.equipo='".$_POST['fbinas']."'";
 		}
 	} else {
 		if(!$_POST['fbinas']){
-			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql.=" AND (H.usu_creo='{$_SESSION['us_sds']}' OR H.equipo in(select equipo from usuarios where id_usuario = '{$_SESSION['us_sds']}') )";
 		}else{
 			$sql .=" AND H.equipo='".$_POST['fbinas']."'";
 		} 
@@ -195,8 +180,8 @@ function cmp_homes(){
 	$c[]=new cmp('estado_aux','s','3',$d,$w.' '.$o,'Estado Visita','estado_aux',null,'',true,true,'','col-2','enabFielSele(this,true,[\'motivo_estaux\'],[\'4\']);stateVisit(this,[\'cri\',\'fam\',\'ali\',\'sub\',\'ser\',\'ani\',\'amb\',\'fal\']);');
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2','addupd(this,\'hid\',\'motivoupd\');validDate(this,-22,0);');
-	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','complemento',null,'',false,false,'','col-4');
-	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','complemento',null,'',false,false,'','col-4');
+	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-4');
+	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
 	$c[]=new cmp('nuc1','t','3',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
@@ -300,6 +285,12 @@ function cmp_homes(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+function opc_motivoupd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=215 and estado='A' ORDER BY 1",$id);
+}
+function opc_evenupd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=87 and estado='A' ORDER BY 1",$id);
+}
 
 function opc_numfam($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(descripcion,' - ',idcatadeta) FROM `catadeta` WHERE idcatalogo=172 and estado='A' ORDER BY 1",$id);
@@ -377,10 +368,10 @@ function men_homes1(){
    
 function gra_homes(){
 	$id=divide($_POST['idg']);
-	print_r($_POST);
+	//print_r($_POST);
 	$sql1="SELECT  CONCAT_WS('_', H.estrategia, H.sector_catastral, H.nummanzana, H.predio_num, H.unidad_habit, H.estado_v) COD FROM hog_geo H where idgeo='$id[0]'";
 	$info=datos_mysql($sql1);
-	$cod=$info['responseResult'][0]['COD'];
+	$cod=$info['responseResult'][0]['COD'];//REVISAR
 	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
 	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];

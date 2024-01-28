@@ -21,10 +21,15 @@ else {
 
 function opc_usuario(){
 	$id=$_REQUEST['id'];
-	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,FN_CATALOGODESC(42,hg.estrategia) AS estrategia,u.nombre asignado,hg.territorio FROM hog_viv hv 
+	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,
+	FN_CATALOGODESC(42,hg.estrategia) AS estrategia,
+	IFNULL(u.nombre asignado,u1.nombre) asignado,
+	hg.territorio 
+	FROM hog_viv hv 
 	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
 	LEFT JOIN personas p ON hv.idviv=p.vivipersona
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
+	LEFT JOIN usuarios u1 ON hg.usu_creo=u1.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
 // echo $sql;
 	$info=datos_mysql($sql);
@@ -41,7 +46,7 @@ function lis_homes(){
     FROM hog_geo H
     LEFT JOIN usuarios U ON H.subred = U.subred
     LEFT JOIN adscrip A ON H.territorio = A.territorio
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+	".whe_deriva()."
     WHERE H.estado_v IN ('7') ".whe_homes()."
         AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
@@ -69,25 +74,40 @@ function lis_homes(){
 	LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	LEFT JOIN adscrip A ON H.territorio=A.territorio
-	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+    ".whe_deriva()."
  WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
-	// echo $sql;
-		$datos=datos_mysql($sql);
+	//echo $sql;
+	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
+function whe_deriva(){
+    $sql = "";
+    if ($_POST['fterri']) {
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio ";
+    }else{
+        $sql.=" LEFT JOIN derivacion D ON H.idgeo = D.cod_predio AND D.doc_asignado='{$_SESSION['us_sds']}' ";
+    }
+    return $sql;
+}
+
+
 function whe_homes() {
+	$fefin=date('Y-m-d');
+	$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
 	$sql = "";
 	if (!empty($_POST['fpred'])) {
 		$sql .= " AND H.idgeo = '" . $_POST['fpred'] . "'";
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'      OR D.doc_asignado='{$_SESSION['us_sds']}'
+			
+			)";
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
@@ -96,16 +116,18 @@ function whe_homes() {
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' OR D.doc_asignado='{$_SESSION['us_sds']}')";
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' )";//OR D.doc_asignado='{$_SESSION['us_sds']}'
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
 		}
 		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
-				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
+			      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
 			} else {
-				$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
+			    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
 			}
 		}
 	}
@@ -189,7 +211,7 @@ function cmp_homes(){
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2','addupd(this,\'hid\',\'motivoupd\');validDate(this,-2,0);');
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-4');
-	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','complemento',null,'',false,false,'','col-4');
+	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
@@ -219,6 +241,8 @@ function cmp_homes(){
 	$c[]=new cmp('personas','n',2,$d,$w.' '.$o,'Número de personas','personas',null,null,true,true,'','col-2');
 	$c[]=new cmp('ingreso','s','3',$d,$w.' '.$o,'Ingreso Economico de la Familia','ingreso',null,true,true,true,'','col-4');
 	
+	
+
 	$o='ali';
 	$c[]=new cmp($o,'e',null,'SEGURIDAD ALIMENTARIA',$w);
 	$c[]=new cmp('seg_pre1','o',2,$d,$w.' '.$o,'¿Hubo alguna vez en que usted se haya preocupado por no tener suficientes alimentos para comer por falta de dinero u otros recursos?','sp1',null,null,false,true,'','col-10');
@@ -294,6 +318,9 @@ function cmp_homes(){
 }
 function opc_motivoupd($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=215 and estado='A' ORDER BY 1",$id);
+}
+function opc_evenupd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=87 and estado='A' ORDER BY 1",$id);
 }
 function opc_presencia($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=164 and estado='A' ORDER BY 1",$id);

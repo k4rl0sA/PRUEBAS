@@ -812,8 +812,9 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";
 
 function lis_apgar($txt){
 	$sql="SELECT 
-G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,V.idviv AS Cod_Familia,
-P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,    C1.descripcion AS Sexo,
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_apgar AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  C1.descripcion AS Sexo,
 C2.descripcion AS Apgar_7_A_17_Años_Preg_1,C3.descripcion AS Apgar_7_A_17_Años_Preg_2,C4.descripcion AS Apgar_7_A_17_Años_Preg_3,C5.descripcion AS Apgar_7_A_17_Años_Preg_4,C6.descripcion AS Apgar_7_A_17_Años_Preg_5,
 C7.descripcion AS Apgar_Mayor_de_18_Años_Preg_1,C8.descripcion AS Apgar_Mayor_de_18_Años_Preg_2,C9.descripcion AS Apgar_Mayor_de_18_Años_Preg_3,C10.descripcion AS Apgar_Mayor_de_18_Años_Preg_4,C11.descripcion AS Apgar_Mayor_de_18_Años_Preg_5,
 A.puntaje,A.descripcion,
@@ -833,7 +834,8 @@ LEFT JOIN catadeta C8 ON C8.idcatadeta = A.sati_famcompro AND C8.idcatalogo = 17
 LEFT JOIN catadeta C9 ON C9.idcatadeta = A.sati_famapoemp AND C9.idcatalogo = 173 AND C9.estado = 'A'
 LEFT JOIN catadeta C10 ON C10.idcatadeta = A.sati_famemosion AND C10.idcatalogo = 173 AND C10.estado = 'A'
 LEFT JOIN catadeta C11 ON C11.idcatadeta = A.sati_famcompar AND C11.idcatalogo = 173 AND C11.estado = 'A'
-LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario  WHERE 1 ";
+LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
+  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;
@@ -1077,16 +1079,23 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_cronicos($txt){
 	$sql="SELECT 
-G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_cronicos AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
+
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,
+
 FN_CATALOGODESC(170,A.condi_diag) AS Cronico_Diagnosticado,FN_CATALOGODESC(170,A.dx1) AS Hipertension,FN_CATALOGODESC(170,A.dx2) AS Diabetes,FN_CATALOGODESC(170,A.dx3) AS Epoc,FN_CATALOGODESC(170,A.asiste_control) AS Asiste_Controles_Cronico,FN_CATALOGODESC(170,A.trata_farma) AS Tratamiento_Farmacologico,FN_CATALOGODESC(170,A.adhere_tratami) AS Adherente_al_Tratamiento,FN_CATALOGODESC(170,A.mantien_dieta) AS Mantiene_Dieta_Recomendada,FN_CATALOGODESC(155,A.actividad_fisica) AS Actividad_Fisica,FN_CATALOGODESC(170,A.metodo_fecun) AS Cuenta_Metodo_Fecundidad,FN_CATALOGODESC(138,A.cual) AS Cual_Metodo,FN_CATALOGODESC(170,A.hemoglobina) AS Hemoglobina,A.fecha_hemo AS Fecha_Hemoglobina,A.valor_hemo AS Valor_Hemoglobina,A.tas AS Tension_Arterial_Sistolica,A.tad AS Tension_Arterial_Diastolica,A.glucometria AS Glucometria,A.peso AS 'Peso_(Kg)',A.talla AS 'Talla_(Cm)',A.imc AS Imc,A.peri_cintura AS Perimetro_Cintura,FN_CATALOGODESC(170,A.fuma) AS '¿Fuma?',
+
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
+
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+
 FROM `vsp_cronicos` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1358,18 +1367,23 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 function lis_sifigest($txt){
 	$sql="SELECT 
 G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_sifigest AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,FN_CATALOGODESC(136,A.etapa) AS Etapa,FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
+
 FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal,FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio,FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes,A.fecha_obstetrica AS Fecha_Evento_Obstetrico,FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento,FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion,FN_CATALOGODESC(170,A.meto_fecunda) AS Cuenta_Metodo_Fecundidad,FN_CATALOGODESC(138,A.cual) AS Cual_Metodo,FN_CATALOGODESC(170,A.confir_sificong) AS RN_Confir_Sífilis_Congénita,FN_CATALOGODESC(94,A.resul_ser_recnac) AS Resultado_Serologia_RN,FN_CATALOGODESC(199,A.trata_recnac) AS Tratamiento_RN,FN_CATALOGODESC(70,A.serol_3meses) AS RN_Serologia_3meses,A.fec_conser_1tri2 AS Fecha_Serologia_3meses,FN_CATALOGODESC(94,A.resultado) AS Resultado_Serologia_3meses,FN_CATALOGODESC(170,A.ctrl_serol1t) AS Control_Serologia_1Trimestre,A.fec_conser_1tri1 AS Fecha_Serologia_1Trimestre,FN_CATALOGODESC(94,A.resultado_1) AS Resultado_Serologia_1Trimestre,FN_CATALOGODESC(170,A.ctrl_serol2t) AS Control_Serologia_2Trimestre,A.fec_conser_2tri AS Fecha_Serologia_2Trimestre,FN_CATALOGODESC(94,A.resultado_2) AS Resultado_Serologia_2Trimestre,FN_CATALOGODESC(170,A.ctrl_serol3t) AS Control_Serologia_3Trimestre,A.fec_conser_3tri AS Fecha_Serologia_3Trimestre,FN_CATALOGODESC(94,A.resultado_3) AS Resultado_Serologia_3Trimestre,FN_CATALOGODESC(170,A.initratasif) AS Inicio_Tratamiento_Sifilis_Ges,A.fec_1dos_trages1 AS Fecha_Primera_Dosis,A.fec_2dos_trages1 AS Fecha_Segunda_Dosis,A.fec_3dos_trages1 AS Fecha_Tercera_Dosis,FN_CATALOGODESC(200,A.pri_con_sex) AS Primer_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif1) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_apl_tra_1dos1 AS Fecha_Primera_Dosis,A.fec_apl_tra_2dos1 AS Fecha_Segunda_Dosis,A.fec_apl_tra_3dos1 AS Fecha_Tercera_Dosis,FN_CATALOGODESC(200,A.seg_con_sex) AS Segundo_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif2) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_apl_tra_1dos2 AS Fecha_Primera_Dosis,A.fec_apl_tra_2dos2 AS Fecha_Segunda_Dosis,A.fec_apl_tra_3dos2 AS Fecha_Tercera_Dosis,FN_CATALOGODESC(170,A.prese_reinfe) AS Presenta_Reinfeccion,FN_CATALOGODESC(207,A.initratasif3) AS Tratamiento_Reinfeccion,A.fec_1dos_trages2 AS Fecha_Primera_Dosis,A.fec_2dos_trages2 AS Fecha_Segunda_Dosis,A.fec_3dos_trages2 AS Fecha_Tercera_Dosis,
 FN_CATALOGODESC(200,A.reinf_1con) AS Primer_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif4) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_1dos_trapar AS Fecha_Primera_Dosis,A.fec_2dos_trapar AS Fecha_Segunda_Dosis,A.fec_3dos_trapar AS Fecha_Tercera_Dosis,
+
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
+
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
 A.users_bina AS Usuarios_Bina
+
 FROM `vsp_sifigest` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv

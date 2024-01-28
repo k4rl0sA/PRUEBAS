@@ -116,15 +116,7 @@ function whe_homes() {
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
 		}
-		if ($_POST['fdes']) {
-			if ($_POST['fhas']) {
-			      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
-				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
-			} else {
-			    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
-				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
-			}
-		}
+		$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' ";
 	}
 	return $sql;
 }

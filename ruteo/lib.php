@@ -142,8 +142,7 @@ function cmp_rute(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  //el estadodel geo y el cod amision 
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado_res',null,null,true,false,'','col-2',"enbValue('estado','FAm',7);",['upz']
-);
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado_res',null,null,true,false,'','col-2',"selDep('estado','FAm');");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' FAm '.$o,'famili','famili',null,'',false, false,'','col-3');//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
@@ -152,7 +151,7 @@ function cmp_rute(){
  return $rta;
 }
 
-function opc_idgeo(){
+/* function opc_idgeo(){
 	$id=divide($_REQUEST['id']);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
@@ -162,7 +161,7 @@ function opc_idgeo(){
 		 return	opc_sql("SELECT CONCAT_WS('_',idgeo,estado_v),FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
-}
+} */
 
 function opc_estado_res($id='') {
 	$id=divide($_REQUEST['id']);
@@ -177,29 +176,6 @@ function opc_estado_res($id='') {
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
 			// var_dump($id);
-}
-
-function opc_estado_resfamili($id=''){
-	/* var_dump($_REQUEST);
-	var_dump($_POST);
-	var_dump($_GET); */
-
-	$id=divide($_REQUEST['id']);
-	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
-		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
-		$info=datos_mysql($sql);
-    // var_dump($info['responseResult'][0]);
-		$cod= $info['responseResult'][0]['cod'];
-		$co=divide($cod);
-
-		return	opc_sql("SELECT estado_v,FN_CATALOGODESC(44,estado_v)
-			from hog_geo where 
-			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
-			// var_dump($id);
-
-
-
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_famili(){

@@ -412,7 +412,7 @@ function cmp_person(){
      
 function lista_persons(){ //revisar
 	$id=divide($_POST['id']);
-		$sql="SELECT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
+		$sql="SELECT DISTINCT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',

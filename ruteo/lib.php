@@ -168,9 +168,9 @@ function opc_estado_res($id='') {
 }
 
 function opc_estado_resfamili($id=''){
-	var_dump($_REQUEST);
+	/* var_dump($_REQUEST);
 	var_dump($_POST);
-	var_dump($_GET);
+	var_dump($_GET); */
 
 	$id=divide($_REQUEST['id']);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod

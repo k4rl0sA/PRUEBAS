@@ -421,7 +421,7 @@ function lista_persons(){ //revisar
 		FROM `personas` p 
 			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
 			WHERE vivipersona='".$id[0]."'";
-		echo $sql;
+		// echo $sql;
 		// $_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);

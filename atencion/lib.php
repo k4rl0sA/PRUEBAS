@@ -801,7 +801,7 @@ $o='prurap';
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
-		echo $sql;
+		//echo $sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);

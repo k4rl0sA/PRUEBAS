@@ -1786,7 +1786,7 @@ function asigna_rutePsico(){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-// print_r($a);
+print_r($a);
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
@@ -1805,7 +1805,7 @@ function formato_dato($a,$b,$c,$d){
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');\"></li>";  //act_lista(f,this);
 		$perfil = (perfil1()=='PSIEAC' || perfil1()=='ADM') ? "<li class='icono asigna1' title='Asigna Psicologia-Ruteo' id='".$c['ACCIONES']."' Onclick=\"rutePsico('{$c['ACCIONES']}');Color('datos-lis');\"></li>" : "" ;
 		$rta.=$perfil;
-		if (perfil1()=='MEDATE' || perfil1()=='ADM' || perfil1()=='ENFATE'|| perfil1()=='ADMEAC' || perfil1()=='SUPEAC' ){
+		if (perfil1()=='MEDATE' || perfil1()=='ADM' || perfil1()=='ENFATE'|| perfil1()=='ADMEAC' || perfil1()=='SUPEAC' || perfil1()=='RELENF' ){
 		$rta.="<li class='icono admsi1' title='Crear Admisión' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"></li>";
 		$rta.="<li class='icono aten1' title='Crear Atención' id='".$c['ACCIONES']."' Onclick=\"mostrar('atencion','pro',event,'','lib.php',7,'atencion');\"></li>";//Color('datos-lis');
 		if($c['edad actual'] >= '0' && $c['edad actual'] <'6'){

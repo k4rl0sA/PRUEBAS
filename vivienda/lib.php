@@ -24,6 +24,7 @@ function opc_usuario(){
 	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,
 	FN_CATALOGODESC(42,hg.estrategia) AS estrategia,
 	IFNULL(u.nombre,u1.nombre) asignado,
+	IFNULL(u.perfil,u1.perfil) perfil,
 	hg.territorio 
 	FROM hog_viv hv 
 	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo

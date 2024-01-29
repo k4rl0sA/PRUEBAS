@@ -121,7 +121,11 @@ function searPers(a){
 					des.value='';
 					has.value='';
 					pre.value=data['idgeo'];
-					inform('<p class="blanco">Subred:'+data['subred']+'<br>Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Territorio: '+data['equipo']+'</p>');
+					inform('<p class="blanco">Subred:'+data['subred']+
+					'<br>Estrategia: '+data['estrategia']+
+					'<br>Asignado: '+data['asignado']+
+					'<br>Perfil: '+data['perfil']+
+					'<br>Territorio: '+data['equipo']+'</p>');
 					actualizar();
 				}else{
 					const hoy = new Date();

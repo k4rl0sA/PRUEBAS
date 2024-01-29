@@ -116,12 +116,12 @@ function searPers(a){
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
-			if (Object.keys(rta).length === 6) {
+				if (Object.keys(rta).length === 5) {
 					ter.value='';
 					des.value='';
 					has.value='';
 					pre.value=data['idgeo'];
-					inform('<p class="blanco">Subred:'+data['subred']+'<br>Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Perfil: '+data['perfil']+'<br>Territorio: '+data['equipo']+'</p>');
+					inform('<p class="blanco">Subred:'+data['subred']+'<br>Estrategia: '+data['estrategia']+'<br>Asignado: '+data['asignado']+'<br>Territorio: '+data['equipo']+'</p>');
 					actualizar();
 				}else{
 					const hoy = new Date();

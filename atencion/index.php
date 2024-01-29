@@ -336,7 +336,7 @@ function searPers(a){
 			const des=document.getElementById('fdes');
 			const has=document.getElementById('fhas');
 			var rta =data;
-			if (Object.keys(rta).length === 6) {
+							if (Object.keys(rta).length === 6) {
 					ter.value='';
 					des.value='';
 					has.value='';

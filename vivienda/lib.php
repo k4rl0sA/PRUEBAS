@@ -32,7 +32,7 @@ function opc_usuario(){
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	LEFT JOIN usuarios u1 ON hg.usu_creo=u1.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
-// echo $sql;
+echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 
 		return json_encode($info['responseResult'][0]);

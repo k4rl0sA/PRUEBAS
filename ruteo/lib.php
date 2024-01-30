@@ -177,7 +177,7 @@ function opc_estadofamili(){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idviv 'id',idviv 'cod' FROM hog_viv hv where idpre={$id[0]} ORDER BY 1";
 		$info=datos_mysql($sql);
-		print_r($sql);
+		// print_r($sql);
 		return json_encode($info['responseResult']);
 	} 
 }

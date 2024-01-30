@@ -142,7 +142,7 @@ function cmp_rute(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  //el estadodel geo y el cod amision 
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado_res',null,null,true,false,'','col-2',"changeSelect('estado','famili');");
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado',null,null,true,false,'','col-2',"changeSelect('estado','famili');");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' FAm '.$o,'famili','famili',null,'',false, false,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
@@ -163,7 +163,7 @@ function opc_idgeo($a){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
 
-function opc_estado_res($id='') {
+function opc_estado($id='') {
 	$id=opc_idgeo($_REQUEST['id']);
 		$co=divide($id);
 		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v)
@@ -172,7 +172,7 @@ function opc_estado_res($id='') {
 			// var_dump($id);
 }
 
-function opc_estado_resfamili(){
+function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idviv 'id',idviv 'cod' FROM hog_viv hv where idpre={$id[0]} ORDER BY 1";

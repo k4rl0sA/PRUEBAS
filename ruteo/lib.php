@@ -187,6 +187,12 @@ function opc_estado_resfamili(){
 		return json_encode($info['responseResult']);
 	} 
 }
+function opc_famili($id=''){
+	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+}
+function opc_usuario($id=''){
+	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+}
 
 function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
@@ -198,10 +204,6 @@ function opc_familiusuario(){
 	} 					
 }
 
-
-function opc_usuario($id=''){
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
-}
 function opc_cod_admin($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }

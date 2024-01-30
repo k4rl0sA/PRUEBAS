@@ -151,27 +151,21 @@ function cmp_rute(){
  return $rta;
 }
 
-function opc_idgeo(){
-	$id=divide($_REQUEST['id']);
+function opc_idgeo($a){
+	$id=divide($a);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		 $info=datos_mysql($sql);
 		 $cod= $info['responseResult'][0]['cod'];
-		 $co=divide($cod);
-		 return	opc_sql("SELECT CONCAT_WS('_',idgeo,estado_v),FN_CATALOGODESC(44,estado_v)
+		 return divide($cod);
+		 /* return	opc_sql("SELECT CONCAT_WS('_',idgeo,estado_v),FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
-			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
+			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
 
 function opc_estado_res($id='') {
-	$id=divide($_REQUEST['id']);
-	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
-		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
-		$info=datos_mysql($sql);
-    // var_dump($info['responseResult'][0]);
-		$cod= $info['responseResult'][0]['cod'];
-		$co=divide($cod);
-		print_r($sql);
+	$id=opc_idgeo($_REQUEST['id']);
+		$co=divide($id);
 		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 

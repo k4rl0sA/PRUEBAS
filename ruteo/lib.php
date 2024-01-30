@@ -178,7 +178,7 @@ function opc_estado_res($id='') {
 			// var_dump($id);
 }
 
-function opc_cod_predcod_fam(){
+function opc_estado_resfamili(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idviv 'id',idviv 'cod' FROM hog_viv hv where idpre={$id[0]} ORDER BY 1";
@@ -188,7 +188,7 @@ function opc_cod_predcod_fam(){
 	} 
 }
 
-function opc_cod_famcod_individuo(){
+function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idpeople,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id[0]} ORDER BY 1";

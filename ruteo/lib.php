@@ -191,9 +191,9 @@ function opc_usuario($id=''){
 function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idpeople,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id[0]} ORDER BY 1";
+		$sql="SELECT idpersona,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id[0]} ORDER BY 1";
 		$info=datos_mysql($sql);
-		print_r($sql);
+		// print_r($sql);
 		return json_encode($info['responseResult']);
 	} 					
 }

@@ -142,7 +142,7 @@ function cmp_rute(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  //el estadodel geo y el cod amision 
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado',null,null,true,false,'','col-2',"changeSelect('estado','famili');");
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' StG '.$o,'estado','estado',null,null,true,false,'','col-2',"changeSelect('estado','famili');tipVivi('estado','FAm');");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' FAm '.$o,'famili','famili',null,'',false, false,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' rEs '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' rEs '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion

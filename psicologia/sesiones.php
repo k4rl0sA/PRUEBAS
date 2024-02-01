@@ -21,16 +21,37 @@ else {
 
 // \[([^\[\]]+)\]
 
-function list_sesions(){
-	$id=divide($_POST['id']);
+function lis_sesiones(){
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['idpsi']) ? divide($_POST['idpsi']) : null);
+
+	$info=datos_mysql("SELECT COUNT(*) total 
+	FROM `psi_sesiones` P
+		left JOIN usuarios U ON P.usu_creo=U.id_usuario 
+	WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+
+	$pag=(isset($_POST['pag-sesiones']))? ($_POST['pag-sesiones']-1)* $regxPag:0;
+
+	$sql="SELECT idsesipsi ACCIONES,psi_fecha_sesion Fecha,FN_CATALOGODESC(125,psi_sesion) Sesión,P.fecha_create Creado,U.nombre Creó,
+	P.estado
+	FROM `psi_sesiones` P
+	left JOIN usuarios U ON P.usu_creo=U.id_usuario 
+	WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+		$sql.=" ORDER BY P.fecha_create";
+		$sql.=' LIMIT '.$pag.','.$regxPag;
+		//echo $sql;
+			$datos=datos_mysql($sql);
+			return create_table($total,$datos["responseResult"],"sesiones",$regxPag,'sesiones.php');
+
+	/* $id=divide($_POST['id']);
 		$sql="SELECT idsesipsi ACCIONES,psi_fecha_sesion Fecha,FN_CATALOGODESC(125,psi_sesion) Sesión,P.fecha_create Creado,U.nombre Creó,
 		P.estado
 		FROM `psi_sesiones` P
 		left JOIN usuarios U ON P.usu_creo=U.id_usuario 
 		WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"sessipsi-lis",5);
-
+		return panel_content($datos["responseResult"],"sessipsi-lis",5); */
 		if($_POST['id']=='0'){
 			return "";
 		}else{
@@ -52,7 +73,7 @@ function cmp_sesiones_psi() {
 	$j='';
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='sessipsi-lis' >".list_sesions()."</div></div>";
+	<div class='contenido' id='sessipsi-lis' >".lis_sesiones()."</div></div>";
 
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';

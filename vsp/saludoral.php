@@ -44,7 +44,7 @@ function focus_saludoral(){
  FUNCTION seg_saludoral(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `id_saludoral` ACCIONES,  'Cod Registro',
+	$sql="SELECT `id_saludoral` ACCIONES,id_saludoral  'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_saludoral A

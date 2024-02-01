@@ -79,7 +79,7 @@ function cmp_rute(){
  'nacionalidad'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
  'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','perfil_asignado'=>'','fecha_gestion'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'', 'complemento'=>'', 'observacion'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
- 'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
+ 'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>'','gestion'=>''];
  $w='rute';
  $d=get_rute(); 
  if ($d=="") {$d=$t;}
@@ -132,6 +132,7 @@ function cmp_rute(){
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
+ $c[]=new cmp('gestion','s',2,$d['gestion'],$w.' '.$o,'estado','gestion',null,null,true,$x,'','col-2');
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,$x,'','col-2','validState(this,\'estado_g\');');
@@ -149,6 +150,10 @@ function cmp_rute(){
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
+}
+
+function opc_gestion($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_idgeo($a){
@@ -267,7 +272,7 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 
-		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`, `fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,cod_admin
+		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,gestion, `fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,predio,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     // var_dump($info['responseResult'][0]);

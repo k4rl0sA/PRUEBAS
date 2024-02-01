@@ -144,7 +144,7 @@ function cmp_rute(){
  //el estadodel geo y el cod amision 
  $c[]=new cmp('estado','s',3,'',$w.' StG '.$o,'estado','estado',null,null,true,false,'','col-2',"changeSelect('estado','famili');");
  $c[]=new cmp('famili','s',3,'',$w.' StG '.$o,'famili','famili',null,'',false, false,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
- $c[]=new cmp('usuario','s',3,'',$w.' StG '.$o,'usuario','usuario',null,'',false, false,'','col-3',"changeSelect('famili','usuario');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('usuario','s',3,'',$w.' StG '.$o,'usuario','usuario',null,'',false, false,'','col-3',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' StG '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

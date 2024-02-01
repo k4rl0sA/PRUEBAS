@@ -202,7 +202,6 @@ function opc_familiusuario(){
 
 function opc_usuariocod_admin(){
 	if($_REQUEST['id']!=''){
-		var_dump($_REQUEST);
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT f.cod_admin,f.cod_admin FROM adm_facturacion f WHERE f.tipo_doc='{$id[0]}' AND f.documento='{$id[1]}' ORDER BY 1";
 		$info=datos_mysql($sql);

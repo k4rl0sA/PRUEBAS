@@ -144,8 +144,8 @@ function cmp_rute(){
  //el estadodel geo y el cod amision 
  $c[]=new cmp('estado','s',3,'',$w.' StG '.$o,'estado','estado',null,null,true,false,'','col-2',"changeSelect('estado','famili');");
  $c[]=new cmp('famili','s',3,'',$w.' StG '.$o,'famili','famili',null,'',false, false,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
- $c[]=new cmp('usuario','s',3,'',$w.' StG '.$o,'usuario','usuario',null,'',false, false,'','col-3'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','t','20',$d['cod_admin'],$w.' StG '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
+ $c[]=new cmp('usuario','s',3,'',$w.' StG '.$o,'usuario','usuario',null,'',false, false,'','col-3',"changeSelect('famili','usuario');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' StG '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
@@ -171,6 +171,8 @@ function opc_estado($id=''){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
 			// var_dump($id);
 }
+
+
 
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
@@ -198,8 +200,19 @@ function opc_familiusuario(){
 	} 					
 }
 
+function opc_usuariocod_admin(){
+	if($_REQUEST['id']!=''){
+		var_dump($_REQUEST);
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT idpersona,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id[0]} ORDER BY 1";
+		$info=datos_mysql($sql);
+		// print_r($sql);
+		return json_encode($info['responseResult']);
+	} 					
+}
+
 function opc_cod_admin($id=''){
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 function opc_fuente($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);

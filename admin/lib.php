@@ -834,7 +834,7 @@ LEFT JOIN catadeta C8 ON C8.idcatadeta = A.sati_famcompro AND C8.idcatalogo = 17
 LEFT JOIN catadeta C9 ON C9.idcatadeta = A.sati_famapoemp AND C9.idcatalogo = 173 AND C9.estado = 'A'
 LEFT JOIN catadeta C10 ON C10.idcatadeta = A.sati_famemosion AND C10.idcatalogo = 173 AND C10.estado = 'A'
 LEFT JOIN catadeta C11 ON C11.idcatadeta = A.sati_famcompar AND C11.idcatalogo = 173 AND C11.estado = 'A'
-LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
+LEFT JOIN usuarios U1 ON A.usu_creo = U1.id_usuario
   WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
@@ -850,18 +850,21 @@ LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
 
 function lis_findrisc($txt){
 	$sql="SELECT 
-G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_findrisc AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+
 A.peso AS Peso,A.talla AS Talla,A.imc AS Imc,A.perimcint AS Perimetro_Cintura,
 FN_CATALOGODESC(43,A.actifisica) AS Actividad_Fisica,FN_CATALOGODESC(46,A.verduras) AS Consumo_Verduras_Frutas,FN_CATALOGODESC(56,A.hipertension) AS Toma_Medicamento_Hiper,
 FN_CATALOGODESC(57,A.glicemia) AS Valores_Altos_Glucosa,FN_CATALOGODESC(41,A.diabfam) AS Diabetes_Familiares,
 A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
 A.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo As Equipo,A.fecha_create AS Fecha_Creacion
+
 FROM `hog_tam_findrisc` A
 LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;
@@ -876,15 +879,17 @@ LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
 
 function lis_oms($txt){
 	$sql="SELECT 
-G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.idoms AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
+
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+
 FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes,FN_CATALOGODESC(170,A.fuma) AS Fuma,A.tas AS Tension_Arterial_Sistolica,A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
 A.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo As Equipo,A.fecha_create AS Fecha_Creacion
 FROM `hog_tam_oms` A
 LEFT JOIN personas P ON A.idpersona = P.idpersona AND A.tipodoc= P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
 	$sql.=whe_date10();
 	// echo $sql;

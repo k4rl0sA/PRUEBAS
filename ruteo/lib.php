@@ -132,7 +132,7 @@ function cmp_rute(){
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
- $c[]=new cmp('gestion','s',2,$d['gestion'],$w.' '.$o,'estado','gestion',null,null,true,$x,'','col-2',"enabOthSi('gestion','pRe')");
+ $c[]=new cmp('gestion','s',2,$d['gestion'],$w.' '.$o,'Gestion','gestion',null,null,true,true,'','col-2',"enabOthSi('gestion','pRe')");
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);");//tipVivi('estado_g','StG');
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-2','validState(this,\'estado_g\');');

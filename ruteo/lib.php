@@ -289,6 +289,7 @@ function gra_rute(){
 
 
 $sql="UPDATE `eac_ruteo` SET 
+gestion=TRIM(UPPER('{$_POST['gestion']}')),
 fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
 `estado_g`=TRIM(UPPER('{$_POST['estado_g']}')),
 `motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),

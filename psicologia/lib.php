@@ -63,8 +63,9 @@ function whe_psicologia() {
 		$sql .= " AND G.sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])
 		$sql .= " AND G.nummanzana ='".$_POST['fmanz']."' ";
-	if ($_POST['fid'])
+	if ($_POST['fid']){
 		$sql .= " AND idpersona like '%".$_POST['fid']."%'";
+	}else{
 		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='".$_POST['fhas']." 23:59:59'";
@@ -72,6 +73,9 @@ function whe_psicologia() {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='". $_POST['fdes']." 23:59:59'";
 			}
 		}
+	}
+		
+		
 		/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 		$usu=divide($rta["responseResult"][0]['usu']);
 		$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ; */

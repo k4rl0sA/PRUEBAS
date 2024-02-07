@@ -73,7 +73,7 @@ function cmp_sesiones_psi() {
 	$j='';
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='sesiones' >".lis_sesiones()."</div></div>";
+	<div class='contenido' id='sesiones-lis'>".lis_sesiones()."</div></div>";
 
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';

@@ -189,11 +189,11 @@ $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalo
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo">
-		<div>Fecha Asignado Desde</div>
+		<!-- <div>Fecha Asignado Desde</div> -->
 		<input type="hidden" class="captura" size=10 id="fdes" name="fdes" value='<?php echo$ayer; ?>' OnChange="actualizar();">
 	</div>
 	<div class="campo">
-		<div>Fecha Asignado Hasta</div>
+		<!-- <div>Fecha Asignado Hasta</div> -->
 		<input type="hidden" class="captura" size=10 id="fhas" name="fhas" value='<?php echo$hoy; ?>' OnChange="actualizar();">
 	</div>
 	

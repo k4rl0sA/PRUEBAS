@@ -42,7 +42,7 @@ function lis_sesiones(){
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		//echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"sessipsi-lis",$regxPag,'sesiones.php');
+			return create_table($total,$datos["responseResult"],"sesiones",$regxPag,'sesiones.php');
 
 	/* $id=divide($_POST['id']);
 		$sql="SELECT idsesipsi ACCIONES,psi_fecha_sesion Fecha,FN_CATALOGODESC(125,psi_sesion) Sesión,P.fecha_create Creado,U.nombre Creó,
@@ -73,7 +73,7 @@ function cmp_sesiones_psi() {
 	$j='';
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='sessipsi-lis' >".lis_sesiones()."</div></div>";
+	<div class='contenido' id='sesiones' >".lis_sesiones()."</div></div>";
 
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';

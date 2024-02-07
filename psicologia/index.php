@@ -177,13 +177,14 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='psicologia';
 $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 1 days")); 
+$ayer = date("Y-m-d",strtotime($hoy."- 4 days")); 
 /*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 	
+
 	<div class="campo"><div>N° Identificación</div><input class="captura" size=10 id="fid" name="fid" OnChange="actualizar();"></div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>

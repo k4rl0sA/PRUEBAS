@@ -33,7 +33,7 @@ function opc_usuario(){
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	LEFT JOIN usuarios u1 ON hg.usu_creo=u1.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
-// echo $sql;
+ //echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 
 		return json_encode($info['responseResult'][0]);
@@ -83,7 +83,7 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
-// echo $sql;
+//echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
@@ -108,7 +108,7 @@ function whe_homes() {
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'       OR D.doc_asignado='{$_SESSION['us_sds']}'  )";
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'    OR D.doc_asignado='{$_SESSION['us_sds']}'  )";
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
@@ -117,16 +117,23 @@ function whe_homes() {
 		if ($_POST['fterri']) {
 			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
 		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}' )";//OR D.doc_asignado='{$_SESSION['us_sds']}'
+			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'  )";//OR D.doc_asignado='{$_SESSION['us_sds']}'
 		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
 		}
-		$sql .= " AND DATE(H.fecha_create) BETWEEN '$feini' and '$fefin' ";
+		if ($_POST['fdes']) {
+			if ($_POST['fhas']) {
+			      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fhas'] . " 23:59:59'";
+			} else {
+			    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
+				//$sql .= " AND H.fecha_create >='" . $_POST['fdes'] . " 00:00:00' AND H.fecha_create <='" . $_POST['fdes'] . " 23:59:59'";
+			}
+		}
 	}
 	return $sql;
 }
-
 
 
 function cap_menus($a,$b='cap',$con='con') {
@@ -425,16 +432,16 @@ function lista_persons(){ //revisar
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
 		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
 		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad',
-		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,' ','X'),'NO') AS Cronico,
-		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, ' ', 'X'),'NO') AS Gestante	
+		IF(a.atencion_cronico = 'SI',IF((SELECT COUNT(*) FROM eac_enfermedades c WHERE c.enfermedades_documento = p.idpersona) > 0,'CON','SIN'),'NO') AS Cronico,
+		IF(a.gestante = 'SI',IF((SELECT COUNT(*) FROM eac_gestantes g WHERE g.gestantes_documento=p.idpersona) > 0, 'CON', 'SIN'),'NO') AS Gestante	
 		FROM `personas` p 
 			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
 			WHERE vivipersona='".$id[0]."'";
 		// echo $sql;
-		// $_SESSION['sql_person']=$sql;
+		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
-}
+} 
 
 function focus_person(){
 	return 'person';
@@ -798,6 +805,7 @@ $o='prurap';
 	/* $id=divide($_POST['id']);
 	$id=divide($_POST['ida']); */
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);
+
 	// print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
@@ -810,7 +818,7 @@ $o='prurap';
 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'";
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
-		//echo $sql;
+		// echo $sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);
@@ -1847,10 +1855,10 @@ function formato_dato($a,$b,$c,$d){
 function bgcolor($a,$c,$f='c'){
 	$rta = 'red';
 	if ($a=='datos-lis'){
-		if($c['Cronico']==='X'){
+		if($c['Cronico']==='SIN'){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
-		if($c['Gestante']==='X'){
+		if($c['Gestante']==='SIN'){
 			return ($rta !== '') ? "style='background-color: $rta;'" : '';
 		}
 	}

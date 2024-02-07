@@ -42,7 +42,7 @@ function lis_sesiones(){
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		//echo $sql;
 			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"sesiones",$regxPag,'sesiones.php');
+			return create_table($total,$datos["responseResult"],"sessipsi-lis",$regxPag,'sesiones.php');
 
 	/* $id=divide($_POST['id']);
 		$sql="SELECT idsesipsi ACCIONES,psi_fecha_sesion Fecha,FN_CATALOGODESC(125,psi_sesion) Sesión,P.fecha_create Creado,U.nombre Creó,

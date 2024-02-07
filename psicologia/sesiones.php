@@ -282,7 +282,7 @@ function formato_dato($a,$b,$c,$d){
 	// $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	// var_dump($a);
 	// var_dump($c);
-	if ($a=='sessipsi-lis' && $b=='acciones'){
+	if ($a=='sesiones' && $b=='acciones'){
 		$rta="<nav class='menu right'>";	
 
 			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sessipsi-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','psi_validacion17'],'sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);

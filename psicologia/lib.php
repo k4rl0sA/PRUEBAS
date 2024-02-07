@@ -47,7 +47,7 @@ function lis_psicologia(){
 	$sql.=whe_psicologia();
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	//echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"psicologia",$regxPag);
 }

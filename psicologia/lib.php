@@ -581,7 +581,7 @@ function cmp_sesion_fin() {
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'RESULTADO DE EVALUACION pre EP+',$w);
-	$c[]=new cmp('cod_admisfin','n','12',$j['cod_admisfin'],$w.' '.$o,'Codigo Admisión','cod_admisfin',null,null,true,true,'','col-3');
+	$c[]=new cmp('cod_admisfin','s',2,$j['cod_admisfin'],$w.' '.$o,'Codigo Admisión','cod_admisfin',null,null,true,true,'','col-4');
 	
 	$sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad
 		FROM personas WHERE tipo_doc='{$d['psi_tipo_doc']}' AND idpersona='{$d['psi_documento']}'";
@@ -832,9 +832,14 @@ function gra_sesion_fin(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function opc_cod_admisfin($id=''){
+	$cod=divide($_REQUEST['id']);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
+}
+
 function opc_cod_admin($id=''){
-	$id=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$id[0]."' AND af.documento='".$id[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
+	$cod=divide($_REQUEST['id']);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
 }
 
 function opc_genero($id=''){

@@ -226,7 +226,7 @@ function cmp_psicologia() {
 	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-60,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');
 
-	$c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,'',true,true,'','col-3');
+	$c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,'',true,true,'','col-4');
 	// $c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
 	
 	$o='pensui';

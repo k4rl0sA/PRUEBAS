@@ -161,7 +161,7 @@ $drv="https://drive.google.com/file/d/";
   <div class="mySlides fade">
     <div class="numbertext" id='video1'>1 / 6<div id='duration'></div></div>
 		<video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
-			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view?usp=sharing'"; ?> type="video/mp4">		
+			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
 		</video>
 <!--
     
@@ -214,7 +214,7 @@ $drv="https://drive.google.com/file/d/";
   <div class="row">
     <div class="column">
 		<video class="demo cursor" autoplay muted loop onclick="currentSlide(1)" title="Video 1" height="95px" width="233px">
-			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'/view?usp=sharing"; ?> type="video/mp4">		
+			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
 		</video>
     </div>
     <div class="column">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Security-Policy" content="img-src 'self' https://drive.google.com">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <meta http-equiv="Content-Security-Policy" content="img-src 'self' https://drive.google.com"> -->
 <!--

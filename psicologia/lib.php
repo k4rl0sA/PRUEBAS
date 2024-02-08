@@ -225,12 +225,14 @@ function cmp_psicologia() {
 	$c[]=new cmp('evachips','a','1500',$d['eva_chips'],$w.' '.$o,'EVALUACION DE RIESGO PARA NIÑOS NIÑAS Y ADOLESCENTES - ChiPS','psicologia_evaluacion',null,'',!$ad,!$ad,'','col-10');
 	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-60,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');
-	$c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
+
+	$c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,'',true,true,'','col-3');
+	// $c[]=new cmp('cod_admin','n','12',$d['cod_admin'],$w.' '.$o,'Codigo Admisión','cod_admin',null,null,true,true,'','col-2');
 	
 	$o='pensui';
 	$c[]=new cmp($o,'e',null,'EVALUACIÓN DE PENSAMIENTOS SUICIDAS',$w);
 	
-	$c[]=new cmp('psi_validacion1','o','2',$d['psi_validacion1'],$w.' '.$o,'1. Durante el último mes, ¿ha tenido usted serios pensamientos o un plan para terminar con su vida?','psi_validacion1',null,null,true,true,'','col-10','hidFieOld(\'psi_validacion1\',\'ter_hide\',false)');
+	$c[]=new cmp('psi_validacion1','o','2',$d['psi_validacion1'],$w.' '.$o,'1. Durante el último mes, ¿ha tenido usted serios pensamientos o un plan para terminar con su vida?','psi_validacion1',null,null,true,true,'','col-10',"hidFieOld('psi_validacion1','ter_hide',false);");
 	$c[]=new cmp('psi_validacion2','a','1500',$d['psi_validacion2'],$w.' ter_hide oculto '.$o,'2. ¿Qué acciones realizó para terminar con su vida?','psi_validacion2',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion3','s','3',$d['psi_validacion3'],$w.' ter_hide oculto '.$o,'3. ¿Tiene planes de terminar con su vida dentro de las siguientes dos semanas?','psi_validacion3',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion4','a','1500',$d['psi_validacion4'],$w.' ter_hide oculto '.$o,'4. Descipcion de la Evaluacion','psi_validacion4',null,null,false,true,'','col-10');
@@ -829,6 +831,11 @@ function gra_sesion_fin(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function opc_cod_admin($id=''){
+	$id=divide($_REQUEST['id']);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$id[0]."' AND af.documento='".$id[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
+}
 
 function opc_genero($id=''){
 	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);

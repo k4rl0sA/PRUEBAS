@@ -214,7 +214,7 @@ $drv="https://drive.google.com/file/d/";
   <div class="row">
     <div class="column">
 		<video class="demo cursor" autoplay muted loop onclick="currentSlide(1)" title="Video 1" height="95px" width="233px">
-			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> type="video/mp4">		
+			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'/view?usp=sharing"; ?> type="video/mp4">		
 		</video>
     </div>
     <div class="column">

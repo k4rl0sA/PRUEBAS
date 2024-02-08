@@ -426,7 +426,7 @@ function cmp_sesion2() {
 
 	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-60,0);');
 	$c[]=new cmp('edad','t','5',$edad,$w.' '.$o,'Edad en Años','edad',null,null,true,false,'','col-4');
-	$c[]=new cmp('cod_admin2','n','12',$d['cod_admin2'],$w.' '.$o,'Codigo Admisión','cod_admin2',null,null,true,true,'','col-2');
+	$c[]=new cmp('cod_admin2','s',2,$d['cod_admin2'],$w.' '.$o,'Codigo Admisión','cod_admin2',null,null,true,true,'','col-4');
 	// $c[]=new cmp('psi_sesion','s','3',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
 
 	$o='infgen_2';
@@ -842,6 +842,10 @@ function opc_cod_admin($id=''){
 	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
 }
 
+function opc_cod_admin2($id=''){
+	$cod=divide($_REQUEST['id']);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=9 AND final_consul=16 ORDER BY 1", $id);
+}
 function opc_genero($id=''){
 	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
 	}

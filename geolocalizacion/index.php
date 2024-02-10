@@ -265,6 +265,7 @@ $crea = ($perfil == 'ADM') ? "<li class='icono crear' title='Crear' onclick=\"mo
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
+			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
 			<?php echo $crea; ?>
 					
 			

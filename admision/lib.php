@@ -326,7 +326,7 @@ function formato_dato($a,$b,$c,$d){
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
-// var_dump($c);
+var_dump($c);
 	if ($a=='admision' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);

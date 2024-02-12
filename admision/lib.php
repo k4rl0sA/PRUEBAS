@@ -325,7 +325,7 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-// var_dump($a);
+var_dump($a);
 // var_dump($c);
 	if ($a=='admision' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

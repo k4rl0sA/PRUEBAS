@@ -66,7 +66,8 @@ function whe_psicologia() {
 	if ($_POST['fid']){
 		$sql .= " AND idpersona like '%".$_POST['fid']."%'";
 	}else{
-		$sql .= "         and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
+		// $sql .= "         and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
+		$sql .= "         and S.doc_asignado IN ('80777242')";
 		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='".$_POST['fhas']." 23:59:59'";

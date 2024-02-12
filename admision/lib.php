@@ -51,7 +51,7 @@ function lis_adm(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"adm-lis",$regxPag,'lib.php');
+	return create_table($total,$datos["responseResult"],"lis-adm",$regxPag,'lib.php');
 	// return panel_content($datos["responseResult"],"adm-lis",12);
    }
 

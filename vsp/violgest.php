@@ -74,7 +74,7 @@ $ob='Ob';
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-22,0);');
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabClasValu('estado_s',['mOr']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
+  $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,$x,'','col-2',"enabEtap('etapa',['{$ge}','{$pu}','{$pg}']);weksEtap('etapa','PeT');");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' hab PeT '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,$x,'','col-2');
@@ -106,7 +106,7 @@ $ob='Ob';
     $c[]=new cmp('persis_riesgo','s','2',$d,$w.' Vio acc '.$o,'¿Persisten los riesgos asociados a la violencia?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('apoy_sector','s','2',$d,$w.' Vio acc '.$o,'¿Cuenta con apoyo y/o seguimiento de otro sector?','rta',null,null,false,$x,'','col-25',"enabOthSi('apoy_sector','APy');");
     $c[]=new cmp('cual_sec','s','3',$d,$w.'  APy '.$o,'¿Cuál?','apoyo',null,null,false,$x,'','col-25');
-    $c[]=new cmp('tam_cope','s','2',$d,$w.' Vio acc PCo '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
+    $c[]=new cmp('tam_cope','s','2',$d,$w.' Vio PCo '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
     $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
     $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
 

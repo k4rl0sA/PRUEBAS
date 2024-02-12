@@ -37,6 +37,7 @@ function lis_adm(){
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
  */
+$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_factura']) ? divide($_POST['id_factura']) : null);
 	$id=divide($_POST['id']);
  	$info=datos_mysql("SELECT  COUNT(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura)) total
 	 FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");

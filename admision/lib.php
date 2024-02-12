@@ -332,7 +332,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
 	}
-	if ($a=='lis_adm' && $b=='acciones'){
+	if ($a=='adm-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);

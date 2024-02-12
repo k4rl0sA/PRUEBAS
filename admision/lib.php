@@ -38,10 +38,10 @@ function lis_adm(){
 	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
  */
 	$id=divide($_POST['id']);
- 	$info=datos_mysql("SELECT DISTINCT COUNT(concat(tipo_doc,'_',documento,'_',id_factura)) total
+ 	$info=datos_mysql("SELECT  COUNT(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura)) total
 	 FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=4;
+	$regxPag=5;
 
 
 	$pag=(isset($_POST['pag-adm-lis']))? ($_POST['pag-adm-lis']-1)* $regxPag:0;	

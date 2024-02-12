@@ -66,8 +66,7 @@ function whe_psicologia() {
 	if ($_POST['fid']){
 		$sql .= " AND idpersona like '%".$_POST['fid']."%'";
 	}else{
-		// $sql .= "         and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
-		$sql .= "         and S.doc_asignado IN ('80777242')";
+		$sql .= "         and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
 		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='".$_POST['fhas']." 23:59:59'";
@@ -85,7 +84,7 @@ function whe_psicologia() {
 		$perfil=divide($rta["responseResult"][0]['perfil']);
 		$subred=divide($rta["responseResult"][0]['subred']);
 		$sub = ($perfil[0]=='ADM') ? '1,2,3,4,5' : $subred[0] ; 
-		$sql.="  and U.componente IN('EAC','ADM') AND U.subred IN($sub) AND S.doc_asignado='".$_SESSION['us_sds']."'";
+		$sql.="  and U.componente IN('EAC','ADM') AND U.subred IN($sub) ";
 	return $sql;
 }
 

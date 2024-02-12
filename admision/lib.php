@@ -38,11 +38,21 @@ function lis_adm(){
 	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
  */
 	$id=divide($_POST['id']);
+ 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F 
+ 	WHERE F.documento ='{$id[0]}' AND F.tipo_doc='{$id[1]}'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+
+
+	$pag=(isset($_POST['pag-adm-lis']))? ($_POST['pag-adm-lis']-1)* $regxPag:0;	
 	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
 	FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
+	$sql.=" ORDER BY F.fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"adm-lis",12);
+	return create_table($total,$datos["responseResult"],"atencion",$regxPag,'lib.php');
+	// return panel_content($datos["responseResult"],"adm-lis",12);
    }
 
 function lis_admision(){

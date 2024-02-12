@@ -48,9 +48,9 @@ function lis_adm(){
 function lis_admision(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion` A JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ".whe_admision());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
+	$regxPag=4;
 	
+	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
 	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
 	FROM `adm_facturacion` A 

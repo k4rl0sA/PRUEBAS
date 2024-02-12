@@ -72,7 +72,7 @@ $ob='Ob';
   
 	$c[]=new cmp('id_gestante','h','50',$_POST['id'],$w.' '.$o,'','id_gestante',null,null,false,true,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2','validDate(this,-22,0);');
-  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);enabOthSi(numsegui,'Pco')");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
@@ -106,9 +106,9 @@ $ob='Ob';
     $c[]=new cmp('persis_riesgo','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Persisten los riesgos asociados a la violencia?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('apoy_sector','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta con apoyo y/o seguimiento de otro sector?','rta',null,null,false,$x,'','col-25',"enabOthSi('apoy_sector','APy');");
     $c[]=new cmp('cual_sec','s','3',$d,$w.' '.$bl.' '.$ge.' APy '.$o,'¿Cuál?','apoyo',null,null,false,$x,'','col-25');
-    $c[]=new cmp('tam_cope','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Aplicación tamizaje COPE','rta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('total_afron','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('total_evita','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
+    $c[]=new cmp('tam_cope','s','2',$d,$w.' Pco '.$bl.' '.$ge.' '.$o,'Aplicación tamizaje COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
+    $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
 
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
@@ -131,7 +131,7 @@ $ob='Ob';
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
-    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' '.$ob.' '.$o,'Se aplicó tamizaje pre test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','');");
+    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$ob.' '.$o,'Se aplicó tamizaje pre test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cOP');");
     $c[]=new cmp('liker_dificul','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_emocion','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_decision','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');

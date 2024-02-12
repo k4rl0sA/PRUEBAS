@@ -106,9 +106,9 @@ $ob='Ob';
     $c[]=new cmp('persis_riesgo','s','2',$d,$w.' Vio acc '.$o,'¿Persisten los riesgos asociados a la violencia?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('apoy_sector','s','2',$d,$w.' Vio acc '.$o,'¿Cuenta con apoyo y/o seguimiento de otro sector?','rta',null,null,false,$x,'','col-25',"enabOthSi('apoy_sector','APy');");
     $c[]=new cmp('cual_sec','s','3',$d,$w.'  APy '.$o,'¿Cuál?','apoyo',null,null,false,$x,'','col-25');
-    $c[]=new cmp('tam_cope','s','2',$d,$w.' Vio PCo '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthNo('tam_cope','pCo');");
-    $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
+    $c[]=new cmp('tam_cope','s','2',$d,$w.' Vio PCo '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthNo('tam_cope','coP');");
+    $c[]=new cmp('total_afron','s','2',$d,$w.' coP '.$bl.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('total_evita','s','2',$d,$w.' coP '.$bl.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
 
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);

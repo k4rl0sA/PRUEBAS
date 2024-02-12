@@ -106,7 +106,7 @@ $ob='Ob';
     $c[]=new cmp('persis_riesgo','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Persisten los riesgos asociados a la violencia?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('apoy_sector','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta con apoyo y/o seguimiento de otro sector?','rta',null,null,false,$x,'','col-25',"enabOthSi('apoy_sector','APy');");
     $c[]=new cmp('cual_sec','s','3',$d,$w.' '.$bl.' '.$ge.' APy '.$o,'¿Cuál?','apoyo',null,null,false,$x,'','col-25');
-    $c[]=new cmp('tam_cope','s','2',$d,$w.' Pco '.$bl.' '.$ge.' '.$o,'Aplicación tamizaje COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
+    $c[]=new cmp('tam_cope','s','2',$d,$w.' Pco '.$bl.' '.$ge.' '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
     $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
     $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
 
@@ -131,10 +131,10 @@ $ob='Ob';
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
-    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$ob.' '.$o,'Se aplicó tamizaje pre test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cOP');");
-    $c[]=new cmp('liker_dificul','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
-    $c[]=new cmp('liker_emocion','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
-    $c[]=new cmp('liker_decision','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');
+    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc LKr '.$ob.' '.$o,'Se aplicó tamizaje POST test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cOP');enabOthNo('aplica_tamiz','')");
+    $c[]=new cmp('liker_dificul','s','3',$d,$w.' cc LKr '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
+    $c[]=new cmp('liker_emocion','s','3',$d,$w.' cc LKr '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
+    $c[]=new cmp('liker_decision','s','3',$d,$w.' cc LKr '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');
 
     $c[]=new cmp('cope_afronta','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
     $c[]=new cmp('cope_evitacion','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Total Evitacion','afronta',null,null,false,$x,'','col-25');

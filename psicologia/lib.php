@@ -47,7 +47,7 @@ function lis_psicologia(){
 	$sql.=whe_psicologia();
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"psicologia",$regxPag);
 }
@@ -66,7 +66,7 @@ function whe_psicologia() {
 	if ($_POST['fid']){
 		$sql .= " AND idpersona like '%".$_POST['fid']."%'";
 	}else{
-		$sql .= "         and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
+		$sql .= " and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
 		if ($_POST['fdes']) {
 			if ($_POST['fhas']) {
 				$sql .= " AND S.fecha_create >='".$_POST['fdes']." 00:00:00' AND S.fecha_create <='".$_POST['fhas']." 23:59:59'";

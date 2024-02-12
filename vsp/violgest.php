@@ -131,15 +131,15 @@ $ob='Ob';
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
-    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' '.$ob.' '.$o,'Se aplicó tamizaje pre test COPE?','rta',null,null,true,$x,'','col-15');
+    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' '.$ob.' '.$o,'Se aplicó tamizaje pre test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','');");
     $c[]=new cmp('liker_dificul','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_emocion','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_decision','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');
 
-    $c[]=new cmp('cope_afronta','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('cope_evitacion','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('incremen_afron','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia incremento en las estrategias de afrontamiento','incremen_afron',null,null,false,$x,'','col-25');
-    $c[]=new cmp('incremen_evita','s','3',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia decremento de las estrategias de evitación','incremen_afron',null,null,false,$x,'','col-25');
+    $c[]=new cmp('cope_afronta','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('cope_evitacion','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Total Evitacion','afronta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('incremen_afron','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia incremento en las estrategias de afrontamiento','incremen_afron',null,null,false,$x,'','col-25');
+    $c[]=new cmp('incremen_evita','s','3',$d,$w.' cc cOP '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia decremento de las estrategias de evitación','incremen_afron',null,null,false,$x,'','col-25');
 
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
     $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');

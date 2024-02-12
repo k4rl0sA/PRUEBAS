@@ -412,7 +412,7 @@ $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) 
 		echo $rta;
 	?>
  </div>
-
+ <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >ATENCIONES
 		<nav class='menu left' >
 			<li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>

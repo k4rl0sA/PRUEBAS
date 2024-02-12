@@ -106,9 +106,9 @@ $ob='Ob';
     $c[]=new cmp('persis_riesgo','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Persisten los riesgos asociados a la violencia?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('apoy_sector','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta con apoyo y/o seguimiento de otro sector?','rta',null,null,false,$x,'','col-25',"enabOthSi('apoy_sector','APy');");
     $c[]=new cmp('cual_sec','s','3',$d,$w.' '.$bl.' '.$ge.' APy '.$o,'¿Cuál?','apoyo',null,null,false,$x,'','col-25');
-    $c[]=new cmp('tam_cope','s','2',$d,$w.' Pco '.$bl.' '.$ge.' '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
-    $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
-    $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$ge.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
+    $c[]=new cmp('tam_cope','s','2',$d,$w.' Pco '.$bl.' '.$o,'Aplicación tamizaje PRE COPE','rta',null,null,false,$x,'','col-25',"enabOthSi('tam_cope','pCo');");
+    $c[]=new cmp('total_afron','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
+    $c[]=new cmp('total_evita','s','2',$d,$w.' pCo '.$bl.' '.$o,'Total Evitación','evita',null,null,false,$x,'','col-25');
 
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
@@ -127,7 +127,7 @@ $ob='Ob';
     $c[]=new cmp('caso_afirmativo','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Relacione Cuales signos y sintomas, Y Atención Recibida Hasta el Momento','caso_afirmativo',null,null,false,$x,'','col-4');
     $c[]=new cmp('otras_condiciones','t','500',$d,$w.' cv '.$bl.' '.$no.' '.$o,'Otras Condiciones de Riesgo que Requieren una Atención Complementaria.','otras_condiciones',null,null,false,$x,'','col-4');
     $c[]=new cmp('observaciones','a','1500',$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-10');
-    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-15','enabFincas(this,\'cc\');');
+    $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-15',"enabFincas(this,'cc');");
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');

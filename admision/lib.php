@@ -22,21 +22,6 @@ else {
 
 
 function lis_adm(){
-	// var_dump($_POST['id']);
-	/* $id=divide($_POST['id']);
-	$info=datos_mysql("SELECT count(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura))	total FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=2;
-	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0; */
-
-/* 
-	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
-	FROM `adm_facturacion` WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-		//  echo $sql;
-	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
- */
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_factura']) ? divide($_POST['id_factura']) : null);
 	// $id=divide($_POST['id']);
  	$info=datos_mysql("SELECT  COUNT(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura)) total
@@ -53,7 +38,6 @@ function lis_adm(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
-	// return panel_content($datos["responseResult"],"adm-lis",12);
    }
 
 function lis_admision(){

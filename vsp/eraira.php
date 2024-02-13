@@ -42,25 +42,33 @@ function focus_eraira(){
  }
 
 
- FUNCTION seg_eraira(){
+function lis_eraira(){
 	// var_dump($_POST['id']);
-	$id=divide($_POST['id']);
-	$sql="SELECT `id_eraira` ACCIONES,id_eraira  'Cod Registro',
+  $id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_eraira']) ? divide($_POST['id_eraira']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_eraira A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-eraira']))? ($_POST['pag-eraira']-1)* $regxPag:0;
+
+
+	$sql="SELECT `id_eraira` ACCIONES,id_eraira 'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
-FROM vsp_eraira A
+FROM vsp_cronicos A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
+  $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+  $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"eraira-lis",5);
+  return create_table($total,$datos["responseResult"],"eraira",$regxPag,'eraira.php');
    }
 
 
 function cmp_eraira(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='eraira-lis'>".seg_eraira()."</div></div>";
+	<div class='contenido' id='eraira-lis'>".lis_eraira()."</div></div>";
 	$w='eraira';
   $d='';
 	$o='inf';
@@ -267,7 +275,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='eraira-lis' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='eraira' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
 		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'eraira',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'eraira.php');\"></li>";
 	}

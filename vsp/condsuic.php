@@ -41,7 +41,7 @@ function focus_condsuic(){
  }
 
 
- FUNCTION seg_condsuic(){
+ function lis_condsuic(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_condsuic']) ? divide($_POST['id_condsuic']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_condsuic A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -69,7 +69,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 
 function cmp_condsuic(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='condsuic-lis'>".seg_condsuic()."</div></div>";
+	<div class='contenido' id='condsuic-lis'>".lis_condsuic()."</div></div>";
 	$w='condsuic';
   $d='';
 	$o='inf';

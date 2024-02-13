@@ -55,7 +55,7 @@ function lis_eraira(){
 	$sql="SELECT id_eraira ACCIONES,id_eraira 'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
-FROM vsp_cronicos A
+FROM vsp_eraira A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
   $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";

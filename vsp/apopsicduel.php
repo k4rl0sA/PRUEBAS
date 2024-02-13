@@ -42,7 +42,7 @@ function focus_apopsicduel(){
  }
 
 
- FUNCTION seg_apopsicduel(){
+ FUNCTION lis_apopsicduel(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_psicduel` ACCIONES, id_psicduel 'Cod Registro',
@@ -60,7 +60,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 
 function cmp_apopsicduel(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='apopsicduel-lis'>".seg_apopsicduel()."</div></div>";
+	<div class='contenido' id='apopsicduel-lis'>".lis_apopsicduel()."</div></div>";
 	$w='apopsicduel';
   $d='';
 	$o='inf';

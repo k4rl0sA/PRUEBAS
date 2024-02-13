@@ -41,7 +41,7 @@ function focus_acompsic(){
  }
 
 
- FUNCTION seg_acompsic(){
+ FUNCTION lis_acompsic(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_acompsic` ACCIONES,id_acompsic 'Cod Registro',
@@ -59,7 +59,7 @@ FROM vsp_acompsic A
 
 function cmp_acompsic(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='acompsic-lis'>".seg_acompsic()."</div></div>";
+	<div class='contenido' id='acompsic-lis'>".lis_acompsic()."</div></div>";
 	$w='acompsic';
   $d='';
 	$o='inf';

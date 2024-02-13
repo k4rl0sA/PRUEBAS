@@ -41,7 +41,7 @@ function focus_hbgest(){
  }
 
 
- FUNCTION seg_hbgest(){
+ FUNCTION lis_hbgest(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_hbgestacio` ACCIONES,id_hbgestacio  'Cod Registro',
@@ -59,7 +59,7 @@ FROM vsp_hbgest A
 
 function cmp_hbgest(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='hbgest-lis'>".seg_hbgest()."</div></div>";
+	<div class='contenido' id='hbgest-lis'>".lis_hbgest()."</div></div>";
 	$w='hbgest';
   $d='';
 	$o='inf';
@@ -305,7 +305,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='hbgest-lis' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='hbgest' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
 		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'hbgest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'hbgest.php');\"></li>";
 	}

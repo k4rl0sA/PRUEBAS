@@ -42,7 +42,7 @@ function focus_dntsevymod(){
  }
 
 
- FUNCTION seg_dntsevymod(){
+ FUNCTION lis_dntsevymod(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_dntsevymod` ACCIONES,id_dntsevymod  'Cod Registro',
@@ -60,7 +60,7 @@ FROM vsp_dntsevymod A
 
 function cmp_dntsevymod(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='dntsevymod-lis'>".seg_dntsevymod()."</div></div>";
+	<div class='contenido' id='dntsevymod-lis'>".lis_dntsevymod()."</div></div>";
 	$w='dntsevymod';
   $d='';
 	$o='inf';
@@ -360,7 +360,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='dntsevymod-lis' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='dntsevymod' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'dntsevymod',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'dntsevymod.php');\"></li>";
 	}

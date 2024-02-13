@@ -390,7 +390,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='condsuic-lis' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='condsuic' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'condsuic',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'condsuic.php');\"></li>";
 	}

@@ -42,7 +42,7 @@ function focus_bpnterm(){
  }
 
 
- FUNCTION seg_bpnterm(){
+ FUNCTION lis_bpnterm(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_bpnterm` ACCIONES,id_bpnterm  'Cod Registro',
@@ -60,7 +60,7 @@ FROM vsp_bpnterm A
 
 function cmp_bpnterm(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='bpnterm-lis'>".seg_bpnterm()."</div></div>";
+	<div class='contenido' id='bpnterm-lis'>".lis_bpnterm()."</div></div>";
 	$w='bpnterm';
   $d='';
 	$o='inf';

@@ -42,7 +42,7 @@ function focus_cancinfa(){
  }
 
 
- FUNCTION seg_cancinfa(){
+ FUNCTION lis_cancinfa(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_cancinfa` ACCIONES,id_cancinfa  'Cod Registro',
@@ -60,7 +60,7 @@ $sql.="' ORDER BY fecha_create";
 
 function cmp_cancinfa(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='cancinfa-lis'>".seg_cancinfa()."</div></div>";
+	<div class='contenido' id='cancinfa-lis'>".lis_cancinfa()."</div></div>";
 	$w='cancinfa';
   $d='';
 	$o='inf';
@@ -278,7 +278,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='cancinfa-lis' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='cancinfa' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'cancinfa',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'cancinfa.php');\"></li>";
 	}

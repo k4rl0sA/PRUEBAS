@@ -41,7 +41,7 @@ function focus_bpnpret(){
  }
 
 
- FUNCTION seg_bpnpret(){
+ FUNCTION lis_bpnpret(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `id_bpnpret` ACCIONES,id_bpnpret 'Cod Registro',
@@ -59,7 +59,7 @@ FROM vsp_bpnpret A
 
 function cmp_bpnpret(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='bpnpret-lis'>".seg_bpnpret()."</div></div>";
+	<div class='contenido' id='bpnpret-lis'>".lis_bpnpret()."</div></div>";
 	$w='bpnpret';
   $d='';
 	$o='inf';

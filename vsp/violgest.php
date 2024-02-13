@@ -47,7 +47,7 @@ function focus_violgest(){
   $pag=(isset($_POST['pag-violges']))? ($_POST['pag-violges']-1)* $regxPag:0;
 
   
-	$sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',
+$sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_violges A
@@ -308,7 +308,7 @@ function gra_violges(){
    trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['peso_nacer']}')),
    trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),
    trim(upper('{$_POST['persis_riesgo']}')),trim(upper('{$_POST['apoy_sector']}')),trim(upper('{$_POST['cual_sec']}')),
-  trim(upper('{$_POST['tam_cope']}')),trim(upper('{$_POST['total_afron']}')),trim(upper('{$_POST['total_evita']}')),
+   trim(upper('{$_POST['tam_cope']}')),trim(upper('{$_POST['total_afron']}')),trim(upper('{$_POST['total_evita']}')),
    trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),
    trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),
    trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),

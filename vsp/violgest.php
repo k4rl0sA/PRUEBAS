@@ -62,7 +62,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 
 function cmp_violgest(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='violgest-lis'>".lis_violgest()."</div></div>";
+	<div class='contenido' id='violgest-lis'>".lis_violges()."</div></div>";
 	$w='violgest';
   $d='';
 	$o='inf';

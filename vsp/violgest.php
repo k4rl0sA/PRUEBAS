@@ -147,7 +147,7 @@ $ob='Ob';
     $c[]=new cmp('cope_afronta','s','3',$d,$w.' cLk '.$bl.' '.$no.' '.$o,'Total Afrontamiento','afronta',null,null,false,$x,'','col-25');
     $c[]=new cmp('cope_evitacion','s','3',$d,$w.' cLk '.$bl.' '.$no.' '.$o,'Total Evitacion','afronta',null,null,false,$x,'','col-25');
     $c[]=new cmp('incremen_afron','s','3',$d,$w.' cLk '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia incremento en las estrategias de afrontamiento','incremen_afron',null,null,false,$x,'','col-25');
-    $c[]=new cmp('incremen_evita','s','3',$d,$w.' cLk '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia decremento de las estrategias de evitación','incremen_afron',null,null,false,$x,'','col-25');
+    $c[]=new cmp('incremen_evita','s','3',$d,$w.' cLk '.$bl.' '.$no.' '.$o,'Tras la intervención se evidencia decremento de las estrategias de evitación','incremen_evita',null,null,false,$x,'','col-25');
 
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
     $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
@@ -156,9 +156,11 @@ $ob='Ob';
 }
 
 function opc_incremen_afron($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=215 and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=142 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_incremen_evita($id=''){
+  return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=143 AND estado='A' ORDER BY 1", $id);
+}
 function opc_liker_dificul($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=78 and estado='A' ORDER BY 1",$id);
 }

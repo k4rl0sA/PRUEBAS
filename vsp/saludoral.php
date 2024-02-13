@@ -43,12 +43,12 @@ function focus_saludoral(){
 
  FUNCTION seg_saludoral(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_cronicos']) ? divide($_POST['id_cronicos']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_saludoral']) ? divide($_POST['id_saludoral']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_saludoral A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-cronicos']))? ($_POST['pag-cronicos']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-saludoral']))? ($_POST['pag-saludoral']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_saludoral` ACCIONES,id_saludoral  'Cod Registro',
@@ -60,7 +60,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 $sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
+	return create_table($total,$datos["responseResult"],"saludoral",$regxPag,'saludoral.php');
    }
 
 

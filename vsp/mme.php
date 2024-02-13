@@ -44,12 +44,12 @@ function focus_mme(){
 
  FUNCTION seg_mme(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_cronicos']) ? divide($_POST['id_cronicos']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_mme']) ? divide($_POST['id_mme']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-cronicos']))? ($_POST['pag-cronicos']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-mme']))? ($_POST['pag-mme']-1)* $regxPag:0;
 
 
   
@@ -62,7 +62,7 @@ FROM vsp_mme A
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-  return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
+  return create_table($total,$datos["responseResult"],"mme",$regxPag,'mme.php');
    }
 
 

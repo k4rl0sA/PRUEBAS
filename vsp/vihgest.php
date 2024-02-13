@@ -44,7 +44,7 @@ function focus_vihgest(){
 
  FUNCTION lis_vihgest(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_vihgest']) ? divide($_POST['id_vihgest']) : null);
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_vihgestacio']) ? divide($_POST['id_vihgestacio']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_vihgest A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];

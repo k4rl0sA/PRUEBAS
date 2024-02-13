@@ -43,15 +43,13 @@ function focus_hbgest(){
 
  FUNCTION lis_hbgest(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_hbgest']) ? divide($_POST['id_hbgest']) : null);
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_hbgestacio']) ? divide($_POST['id_hbgestacio']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_hbgest A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-hbgest']))? ($_POST['pag-hbgest']-1)* $regxPag:0;
 
-
-  
 	$sql="SELECT `id_hbgestacio` ACCIONES,id_hbgestacio  'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 

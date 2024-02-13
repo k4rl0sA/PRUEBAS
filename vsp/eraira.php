@@ -52,7 +52,7 @@ function lis_eraira(){
   $pag=(isset($_POST['pag-eraira']))? ($_POST['pag-eraira']-1)* $regxPag:0;
 
 
-	$sql="SELECT `id_eraira` ACCIONES,id_eraira 'Cod Registro',
+	$sql="SELECT id_eraira ACCIONES,id_eraira 'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_cronicos A

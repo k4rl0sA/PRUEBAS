@@ -57,7 +57,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
   $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"violgest",$regxPag,'violgest.php');
+	return create_table($total,$datos["responseResult"],"violges",$regxPag,'violgest.php');
    }
 
 function cmp_violgest(){

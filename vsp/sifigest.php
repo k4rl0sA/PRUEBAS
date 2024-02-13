@@ -42,9 +42,17 @@ function focus_sifigest(){
  }
 
 
- FUNCTION seg_sifigest(){
+ FUNCTION lis_sifigest(){
 	// var_dump($_POST['id']);
-	$id=divide($_POST['id']);
+  $id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_sifigest']) ? divide($_POST['id_sifigest']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_sifigest A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-sifigest']))? ($_POST['pag-sifigest']-1)* $regxPag:0;
+
+
+
 	$sql="SELECT `id_sifigest` ACCIONES,id_sifigest  'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
     fecha_cierre 'Fecha de Cierre',nombre Creó 
@@ -52,15 +60,17 @@ FROM vsp_sifigest A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"sifigest-lis",5);
+	// return panel_content($datos["responseResult"],"cronicos-lis",5);
+  return create_table($total,$datos["responseResult"],"sifigest",$regxPag,'sifigest.php');
    }
 
 
 function cmp_sifigest(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='sifigest-lis'>".seg_sifigest()."</div></div>";
+	<div class='contenido' id='sifigest-lis'>".lis_sifigest()."</div></div>";
 	$w='sifigest';
   $d='';
 	$o='inf';

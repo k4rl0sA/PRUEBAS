@@ -37,7 +37,7 @@ function focus_violgest(){
    return $rta;
  }
 
- FUNCTION lis_violgest(){
+ FUNCTION lis_violges(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_gestante']) ? divide($_POST['id_gestante']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_violges A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 

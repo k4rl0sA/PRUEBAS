@@ -252,7 +252,6 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
     return $rta;
   } 
 
-
   function get_eraira(){
     if($_REQUEST['id']==''){
       return "";
@@ -282,7 +281,6 @@ function formato_dato($a,$b,$c,$d){
 	
  return $rta;
 }
-
 
 function bgcolor($a,$c,$f='c'){
   $rta="";

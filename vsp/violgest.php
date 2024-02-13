@@ -288,7 +288,7 @@ function opc_cant_ganapesosem($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=138 and estado='A' ORDER BY 1",$id);
   }
 
-function gra_violges(){
+function gra_violgest(){
   // print_r($_POST);
   $id=divide($_POST['id_gestante']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}

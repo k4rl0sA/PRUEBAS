@@ -44,7 +44,7 @@ function focus_gestantes(){
 
  FUNCTION lis_gestantes(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_gestantes']) ? divide($_POST['id_gestantes']) : null);
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_gestante']) ? divide($_POST['id_gestante']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_gestantes A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];

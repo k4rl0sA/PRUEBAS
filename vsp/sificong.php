@@ -42,7 +42,7 @@ function focus_sificong(){
  }
 
 
- FUNCTION seg_sificong(){
+ FUNCTION lis_sificong(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_sificong']) ? divide($_POST['id_sificong']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_sificong A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -59,6 +59,7 @@ FROM vsp_sificong A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sificong",$regxPag,'sificong.php');
@@ -67,7 +68,7 @@ FROM vsp_sificong A
 
 function cmp_sificong(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='sificong-lis'>".seg_sificong()."</div></div>";
+	<div class='contenido' id='sificong-lis'>".lis_sificong()."</div></div>";
 	$w='sificong';
   $d='';
 	$o='inf';

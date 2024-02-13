@@ -59,6 +59,7 @@ FROM vsp_violreite A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];	
 $sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"violreite",$regxPag,'violreite.php');

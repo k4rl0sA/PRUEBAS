@@ -41,7 +41,7 @@ function focus_saludoral(){
  }
 
 
- FUNCTION seg_saludoral(){
+ FUNCTION lis_saludoral(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_saludoral']) ? divide($_POST['id_saludoral']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_saludoral A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -58,6 +58,7 @@ FROM vsp_saludoral A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 $sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"saludoral",$regxPag,'saludoral.php');
@@ -66,7 +67,7 @@ $sql.="' ORDER BY fecha_create";
 
 function cmp_saludoral(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='saludoral-lis'>".seg_saludoral()."</div></div>";
+	<div class='contenido' id='saludoral-lis'>".lis_saludoral()."</div></div>";
 	$w='saludoral';
   $d='';
 	$o='inf';

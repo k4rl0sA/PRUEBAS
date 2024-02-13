@@ -41,7 +41,7 @@ function focus_otroprio(){
  }
 
 
- FUNCTION seg_otroprio(){
+ FUNCTION lis_otroprio(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_otroprio']) ? divide($_POST['id_otroprio']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_otroprio A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -58,6 +58,7 @@ FROM vsp_otroprio A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 $sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"otroprio",$regxPag,'otroprio.php');
@@ -66,7 +67,7 @@ $sql.="' ORDER BY fecha_create";
 
 function cmp_otroprio(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='otroprio-lis'>".seg_otroprio()."</div></div>";
+	<div class='contenido' id='otroprio-lis'>".lis_otroprio()."</div></div>";
 	$w='otroprio';
   $d='';
 	$o='inf';

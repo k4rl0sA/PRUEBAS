@@ -42,7 +42,7 @@ function focus_vihgest(){
  }
 
 
- FUNCTION seg_vihgest(){
+ FUNCTION lis_vihgest(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_vihgest']) ? divide($_POST['id_vihgest']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_vihgest A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -59,6 +59,7 @@ tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,event
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"vihgest",$regxPag,'vihgest.php');
@@ -67,7 +68,7 @@ tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,event
 
 function cmp_vihgest(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='vihgest-lis'>".seg_vihgest()."</div></div>";
+	<div class='contenido' id='vihgest-lis'>".lis_vihgest()."</div></div>";
 	$w='vihgest';
   $d='';
 	$o='inf';

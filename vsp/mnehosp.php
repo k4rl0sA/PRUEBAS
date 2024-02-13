@@ -41,7 +41,7 @@ function focus_mnehosp(){
  }
 
 
- FUNCTION seg_mnehosp(){
+ FUNCTION lis_mnehosp(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_mnehosp']) ? divide($_POST['id_mnehosp']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mnehosp A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -58,6 +58,7 @@ FROM vsp_mnehosp A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"mnehosp",$regxPag,'mnehosp.php');
@@ -66,7 +67,7 @@ FROM vsp_mnehosp A
 
 function cmp_mnehosp(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='mnehosp-lis'>".seg_mnehosp()."</div></div>";
+	<div class='contenido' id='mnehosp-lis'>".lis_mnehosp()."</div></div>";
 	$w='mnehosp';
   $d='';
 	$o='inf';

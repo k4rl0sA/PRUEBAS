@@ -286,7 +286,7 @@ function opc_cant_ganapesosem($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=138 and estado='A' ORDER BY 1",$id);
   }
 
-function gra_violgest(){
+function gra_violges(){
   // print_r($_POST);
   $id=divide($_POST['id_gestante']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
@@ -368,7 +368,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='violgest' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='violges' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'violgest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'violgest.php');\"></li>";
 	}

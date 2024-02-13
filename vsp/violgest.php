@@ -44,7 +44,7 @@ function focus_violgest(){
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-violgest']))? ($_POST['pag-violgest']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-violges']))? ($_POST['pag-violges']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',

@@ -44,7 +44,7 @@ function focus_apopsicduel(){
 
  FUNCTION lis_apopsicduel(){
 	// var_dump($_POST['id']);
-  $id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_apopsicduel']) ? divide($_POST['id_apopsicduel']) : null);
+  $id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_psicduel']) ? divide($_POST['id_psicduel']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_apopsicduel A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];

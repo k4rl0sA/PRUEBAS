@@ -37,14 +37,14 @@ function focus_violgest(){
    return $rta;
  }
 
- FUNCTION lis_violges(){
+ FUNCTION lis_violgest(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_gestante']) ? divide($_POST['id_gestante']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_violges A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-violges']))? ($_POST['pag-violges']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-violgest']))? ($_POST['pag-violgest']-1)* $regxPag:0;
 
   
 $sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',
@@ -62,7 +62,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 
 function cmp_violgest(){
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='violgest-lis'>".lis_violges()."</div></div>";
+	<div class='contenido' id='violgest-lis'>".lis_violgest()."</div></div>";
 	$w='violgest';
   $d='';
 	$o='inf';

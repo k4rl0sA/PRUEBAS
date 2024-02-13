@@ -61,7 +61,7 @@ tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,event
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"vihgest-lis",5);
+	return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
    }
 
 

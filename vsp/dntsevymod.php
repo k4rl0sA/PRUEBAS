@@ -44,12 +44,12 @@ function focus_dntsevymod(){
 
  FUNCTION lis_dntsevymod(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_cronicos']) ? divide($_POST['id_cronicos']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_cronicos A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_dntsevymod']) ? divide($_POST['id_dntsevymod']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_dntsevymod A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-cronicos']))? ($_POST['pag-cronicos']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-dntsevymod']))? ($_POST['pag-dntsevymod']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_dntsevymod` ACCIONES,id_dntsevymod  'Cod Registro',
@@ -61,7 +61,7 @@ FROM vsp_dntsevymod A
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"dntsevymod-lis",5);
+	return create_table($total,$datos["responseResult"],"dntsevymod",$regxPag,'dntsevymod.php');
    }
 
 

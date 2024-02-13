@@ -60,7 +60,7 @@ $sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
 $sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"saludoral-lis",5);
+	return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
    }
 
 

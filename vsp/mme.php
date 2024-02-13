@@ -62,7 +62,7 @@ FROM vsp_mme A
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"mme-lis",5);
+  return create_table($total,$datos["responseResult"],"cronicos",$regxPag,'cronicos.php');
    }
 
 

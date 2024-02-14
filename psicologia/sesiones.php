@@ -86,7 +86,7 @@ function cmp_sesiones_psi() {
 	$nse=$data['responseResult'][0]['total']; */
 		// $blo = ($ed) ? '' : 'bloqueo' ;
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
-	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-60,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-4');
 	$c[]=new cmp('cod_admin4','n','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
 

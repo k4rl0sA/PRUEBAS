@@ -1776,11 +1776,11 @@ function asigna_rutePsico(){
 	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),NULL,NULL,TRIM(UPPER('{$_SESSION['us_sds']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	$rta1=dato_mysql($sql);
-	//echo $sql;
+	echo $sql;
 	$sql1="INSERT INTO eac_rutpsico VALUES
 	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_SESSION['us_sds']}')),'SI',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	$rta2=dato_mysql($sql1);
-	//echo $sql1;
+	echo $sql1;
 	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
 		$rta = "Correctamente";
 	} else {

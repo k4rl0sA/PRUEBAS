@@ -14,9 +14,9 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='asigruteo';	
 var ruta_app='lib.php';
-function csv(b){
-		var myWindow = window.open("../../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
-}
+// function csv(b){
+// 		var myWindow = window.open("../../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
+// }
 
 document.onkeyup=function(ev) {
 	ev=ev||window.event;

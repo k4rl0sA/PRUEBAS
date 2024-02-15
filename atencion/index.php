@@ -308,7 +308,7 @@ function rutePsico(a){
 			if (data.includes('Correctamente')){
 				inform('Se ha asignado Correctamente el usuario.');
 			}else{
-			    warnin('NO se ha asignado, por favor valide con el administrador del sistema.');
+			    warnin('Ya se ha asignado el usuario, por favor valide.');
 			}
 	}
 }

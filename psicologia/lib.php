@@ -27,7 +27,7 @@ function lis_psicologia(){
 	LEFT JOIN asigpsico S ON P.idpersona = S.documento AND P.tipo_doc = S.tipo_doc	
 	LEFT JOIN usuarios U ON S.doc_asignado = U.id_usuario 
 	LEFT JOIN eac_rutpsico R ON S.documento = R.documento AND S.tipo_doc = R.tipo_doc
-	WHERE (A.atencion_ordenpsicologia='SI' OR R.asigno='SI') and S.doc_asignado IN ('{$_SESSION['us_sds']}')".whe_psicologia());//
+	WHERE (A.atencion_ordenpsicologia='SI' OR R.asigno='SI')".whe_psicologia());//
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-psicologia']))? ($_POST['pag-psicologia']-1)* $regxPag:0;
@@ -64,7 +64,7 @@ function whe_psicologia() {
 	if ($_POST['fmanz'])
 		$sql .= " AND G.nummanzana ='".$_POST['fmanz']."' ";
 	if ($_POST['fid']){
-		$sql .= " AND idpersona like '%".$_POST['fid']."%'";
+		$sql .= " AND idpersona= '".$_POST['fid']."'";
 	}else{
 		$sql .= " and S.doc_asignado IN ('{$_SESSION['us_sds']}')";
 		if ($_POST['fdes']) {

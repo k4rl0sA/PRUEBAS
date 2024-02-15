@@ -30,7 +30,7 @@ function lis_adm(){
 	$regxPag=3;
 
 
-	$pag=(isset($_POST['pag-adm-lis']))? ($_POST['pag-adm-lis']-1)* $regxPag:0;	
+	$pag=(isset($_POST['pag-adm']))? ($_POST['pag-adm']-1)* $regxPag:0;	
 	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
 	FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
 	$sql.=" ORDER BY F.fecha_create";

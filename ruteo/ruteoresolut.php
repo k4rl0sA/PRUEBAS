@@ -62,10 +62,10 @@ function cmp_ruteresol(){
  return $rta;
 }
 
-/* function opc_gestion($id=''){
+function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }
-*/
+
 function opc_idgeo($a){
 	$id=divide($a);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod

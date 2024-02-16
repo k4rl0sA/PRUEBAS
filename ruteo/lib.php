@@ -316,7 +316,7 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-var_dump($c);
+// var_dump($c);
 // var_dump($rta);
 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

@@ -190,7 +190,7 @@ function get_ruteresol(){
 	} 
 }
 
-function gra_rute(){
+function gra_ruteresol(){
 $sql="UPDATE `eac_ruteo` SET 
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
 `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),

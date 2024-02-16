@@ -294,8 +294,9 @@ function gra_rute(){
 
 	return $info['responseResult'][0]; */
 
+	// `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
+
 $sql="UPDATE `eac_ruteo` SET 
-gestion=TRIM(UPPER('{$_POST['gestion']}')),
 fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
 `estado_g`=TRIM(UPPER('{$_POST['estado_g']}')),
 `motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
@@ -303,7 +304,6 @@ fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
 `complemento`=TRIM(UPPER('{$_POST['complemento']}')),
 `observacion`=TRIM(UPPER('{$_POST['observacion']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
-`cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
 	WHERE id_ruteo='{$_POST['id']}'";

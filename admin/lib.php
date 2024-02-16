@@ -137,6 +137,8 @@ $perfiln = cleanTxt($_POST['perfiln']);
 $bina_territorio = cleanTxt($_POST['bina_territorio']);
 $componente = cleanTxt($_POST['componente']);
 
+
+var_dump($_POST);
 	$sql="INSERT INTO adm_usuarios 
 	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),
 	$bina_territorio,$componente,$perfiln,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";

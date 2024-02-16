@@ -24,7 +24,7 @@ function lis_rute(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado_g Estado
   FROM `eac_ruteo` 
   WHERE 1 ";
 	$sql.=" AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute();

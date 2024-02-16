@@ -192,13 +192,6 @@ function get_ruteresol(){
 
 function gra_rute(){
 $sql="UPDATE `eac_ruteo` SET 
-gestion=TRIM(UPPER('{$_POST['gestion']}')),
-fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
-`estado_g`=TRIM(UPPER('{$_POST['estado_g']}')),
-`motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
-`direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
-`complemento`=TRIM(UPPER('{$_POST['complemento']}')),
-`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
 `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),

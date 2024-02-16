@@ -140,7 +140,7 @@ $bina_territorio = cleanTxt($_POST['territorio']);
 
 
 	$sql="INSERT INTO adm_usuarios 
-	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),
+	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),	
 	$bina_territorio,(Select componente FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),$perfiln,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 	var_dump($sql);
 	$rta=dato_mysql($sql);

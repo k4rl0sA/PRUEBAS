@@ -19,69 +19,36 @@ else {
 }
 
 
-function lis_rute(){
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo where subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización
-  FROM `eac_ruteo` 
-  WHERE 1 ";
-	$sql.=" AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute();
-	$sql.="ORDER BY fecha_create";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	$_SESSION['sql_rute']=$sql;
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-	}
 
-function whe_rute() {
-	$sql = "";
-	if ($_POST['flocalidad'])
-		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
-	if ($_POST['fgrupo'])
-		$sql .= " AND priorizacion = '".$_POST['fgrupo']."'";
-	if ($_POST['ffuente'])
-		$sql .= " AND fuente ='".$_POST['ffuente']."' ";
-	if ($_POST['fseca'])
-		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
-	if ($_POST['fmanz'])
-		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
-	if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
-	return $sql;
+function focus_ruteresol(){
+ return 'ruteresol';
 }
 
 
-function focus_rute(){
- return 'rute';
-}
-
-
-function men_rute(){
- $rta=cap_menus('rute','pro');
+function men_ruteresol(){
+ $rta=cap_menus('ruteresol','pro');
  return $rta;
 }
 
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='rute'){  
+  if ($a=='ruteresol'){  
 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
   }
   return $rta;
 }
 
 
-function cmp_rute(){
+function cmp_ruteresol(){
  $rta="";
  $t=['id_ruteo'=>'','fuente'=>'','fecha_asig'=>'','priorizacion'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
  'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','perfil_asignado'=>'','fecha_gestion'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'', 'complemento'=>'', 'observacion'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>'','gestion'=>''];
- $w='rute';
- $d=get_rute(); 
+ $w='ruteresol';
+ $d=get_ruteresol(); 
  if ($d=="") {$d=$t;}
  $u=($d['id_ruteo']=='')?true:false;
 //  var_dump($d['estado_g']);
@@ -264,7 +231,7 @@ function opc_motivo_estado($id=''){
 } */
 
 
-function get_rute(){
+function get_ruteresol(){
 	if($_POST['id']=='0'){
 		return "";
 	}else{
@@ -279,21 +246,7 @@ function get_rute(){
 	} 
 }
 
- 
 function gra_rute(){
-/* 	 $sql="INSERT INTO eac_ruteo VALUES 
-	(NULL,TRIM(UPPER('{$_POST['fuente']}')),TRIM(UPPER('{$_POST['fecha_asig']}')),TRIM(UPPER('{$_POST['priorizacion']}')),TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['documento']}')),TRIM(UPPER('{$_POST['nombres']}')),TRIM(UPPER('{$_POST['fecha_nac']}')),TRIM(UPPER('{$_POST['sexo']}')),TRIM(UPPER('{$_POST['nacionalidad']}')),TRIM(UPPER('{$_POST['tipo_doc_acu']}')),TRIM(UPPER('{$_POST['documento_acu']}')),TRIM(UPPER('{$_POST['nombres_acu']}')),TRIM(UPPER('{$_POST['direccion']}')),TRIM(UPPER('{$_POST['telefono1']}')),TRIM(UPPER('{$_POST['telefono2']}')),TRIM(UPPER('{$_POST['telefono']}')),TRIM(UPPER('{$_POST['subred']}')),TRIM(UPPER('{$_POST['localidad']}')),TRIM(UPPER('{$_POST['upz']}')),TRIM(UPPER('{$_POST['barrio']}')),TRIM(UPPER('{$_POST['cordx']}')),TRIM(UPPER('{$_POST['cordy']}')),TRIM(UPPER('{$_POST['perfil_asignado']}')),TRIM(UPPER('{$_POST['fecha_gestion']}')),TRIM(UPPER('{$_POST['estado_g']}')),TRIM(UPPER('{$_POST['motivo_estado']}')),TRIM(UPPER('{$_POST['direccion_nueva']}')),TRIM(UPPER('{$_POST['complemento']}')),TRIM(UPPER('{$_POST['observacion']}')),
-	TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');"; */
-
-
-	/* $sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
-	`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 
-	sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,gestion, `fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,predio,cod_admin
-	FROM `eac_ruteo` WHERE  id_ruteo='{$_POST['id']}'";
-	$info=datos_mysql($sql);
-
-	return $info['responseResult'][0]; */
-
 $sql="UPDATE `eac_ruteo` SET 
 gestion=TRIM(UPPER('{$_POST['gestion']}')),
 fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
@@ -316,14 +269,11 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-var_dump($c);
+// var_dump($a);
 // var_dump($rta);
-	if ($a=='rute' && $b=='acciones'){
+	if ($a=='ruteresol' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
-		if($c['edad actual'] > '5' && $c['edad actual'] <='11'){
-			$rta.="<li class='icono canin1' title='INFANCIA' id='".$c['ACCIONES']."' Onclick=\"mostrar('infancia','pro',event,'','infancia.php',7,'infancia');Color('datos-lis');\"></li>";
-		}
 	}
 	
  return $rta;

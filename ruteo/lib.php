@@ -321,7 +321,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
-		if($c['estado_g']== '1' && $c['estado_g']=='2'){
+		if($c['estado']== '1' && $c['estado']=='2'){
 			$rta.="<li class='icono canin1' title='INFANCIA' id='".$c['ACCIONES']."' Onclick=\"mostrar('infancia','pro',event,'','infancia.php',7,'infancia');Color('datos-lis');\"></li>";
 		}
 	}

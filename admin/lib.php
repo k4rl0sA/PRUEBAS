@@ -134,14 +134,14 @@ $nombre = cleanTxt($_POST['nombre']);
 $correo = cleanTxt($_POST['correo']);
 $perfil = cleanTxt($_POST['perfil']);
 $perfiln = cleanTxt($_POST['perfiln']);
-$bina_territorio = cleanTxt($_POST['bina_territorio']);
-$componente = cleanTxt($_POST['componente']);
+$bina_territorio = cleanTxt($_POST['territorio']);
+
 
 
 var_dump($_POST);
 	$sql="INSERT INTO adm_usuarios 
 	VALUES(NULL,$gestion,$documento,$nombre,$correo,$perfil,(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),
-	$bina_territorio,$componente,$perfiln,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+	$bina_territorio,(Select componente FROM usuarios where id_usuario='".$_SESSION['us_sds']."'),$perfiln,{$_SESSION['us_sds']},DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 	$rta=dato_mysql($sql);
 	return $rta;
 }

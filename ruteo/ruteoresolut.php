@@ -42,11 +42,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_ruteresol(){
  $rta="";
- $t=['id_ruteo'=>'','fuente'=>'','fecha_asig'=>'','priorizacion'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
- 'nacionalidad'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
- 'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','perfil_asignado'=>'','fecha_gestion'=>'','estado_g'=>'',
- 'motivo_estado'=>'','direccion_nueva'=>'', 'complemento'=>'', 'observacion'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
- 'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>'','gestion'=>''];
+ $t=['id_ruteo'=>'','estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>'','gestion'=>''];
  $w='ruteresol';
  $d=get_ruteresol(); 
  if ($d=="") {$d=$t;}

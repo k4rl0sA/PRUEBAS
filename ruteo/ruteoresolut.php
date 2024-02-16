@@ -129,7 +129,7 @@ function opc_usuariocod_admin(){
 function opc_cod_admin($id=''){
 	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
-/* function opc_fuente($id=''){
+function opc_fuente($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
 }
 function opc_subred($id=''){
@@ -167,7 +167,7 @@ function opc_barrio($id=''){
 }
 function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=36 and estado='A' ORDER BY 1",$id);
-} */
+}
 /* function opc_asignado($id=''){
 	$co=datos_mysql("select FN_USUARIO(".$_SESSION['us_sds'].") as co;");
 	$com=divide($co['responseResult'][0]['co']);
@@ -192,7 +192,13 @@ function get_ruteresol(){
 
 function gra_rute(){
 $sql="UPDATE `eac_ruteo` SET 
-
+gestion=TRIM(UPPER('{$_POST['gestion']}')),
+fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
+`estado_g`=TRIM(UPPER('{$_POST['estado_g']}')),
+`motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
+`direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
+`complemento`=TRIM(UPPER('{$_POST['complemento']}')),
+`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
 `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
@@ -213,6 +219,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
 	}
+	
  return $rta;
 }
 

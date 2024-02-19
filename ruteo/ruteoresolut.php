@@ -88,8 +88,9 @@ function opc_estado($id=''){
 	$id=opc_idgeo($_REQUEST['id']);
 		$co=divide($id);
 		// $cod=opc_cod_predio()
-		var_dump($_REQUEST);
-		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);
+		// var_dump($_REQUEST['predio']);
+		$cod = $_REQUEST['predio'];
+		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$cod);
 }
 
 function opc_estadofamili(){

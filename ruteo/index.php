@@ -74,7 +74,7 @@ function grabar(tb='',ev){
      if (!valido(f[i])) {f[i].focus(); return};
   }
   var rutaMap = {
-			'ruteoresol':'ruteoresolt.php'
+			'ruteresol':'ruteoresolt.php'
 		};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);

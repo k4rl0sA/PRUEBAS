@@ -85,11 +85,10 @@ function opc_cod_predio($co=''){
 }
 
 function opc_estado($id=''){
-	/* $cod=opc_idgeo($_REQUEST['id']);
+	$cod=opc_idgeo($_REQUEST['id']);
 		$co=divide($cod);
 		// $cod=opc_cod_predio()
-		// var_dump($_REQUEST['predio']);
-		// return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); */
+		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);
 }
 
 function opc_estadofamili(){
@@ -103,16 +102,16 @@ function opc_estadofamili(){
 }
 
 function opc_famili($id=''){
-	/* var_dump($id);
+	var_dump($id);
 	if ($id=''){
 
 	}else{
 		return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv={$id} ORDER BY 1", $id);
-	} */
+	}
 }
 function opc_usuario($id=''){
 	// var_dump($id);
-	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
+	 return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
 }
 
 function opc_familiusuario(){

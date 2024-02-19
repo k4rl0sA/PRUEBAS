@@ -102,7 +102,7 @@ function opc_estadofamili(){
 	} 
 }
 function opc_famili($id=''){
-	var_dump($id);
+	var_dump("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where hog_viv={$id} ORDER BY 1");
 	return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where hog_viv={$id} ORDER BY 1", $id);
 }
 function opc_usuario($id=''){

@@ -83,7 +83,7 @@ function opc_estado($id=''){
 		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v)
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
-			// var_dump($id);
+			var_dump($id);
 }
 
 

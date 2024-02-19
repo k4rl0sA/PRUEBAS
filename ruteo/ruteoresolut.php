@@ -61,9 +61,9 @@ function cmp_ruteresol(){
  return $rta;
 }
 
-function opc_gestion($id=''){
+/* function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
-}
+} */
 
 function opc_idgeo($a){
 	$id=divide($a);

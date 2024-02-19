@@ -77,10 +77,17 @@ function opc_idgeo($a){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
 
+function opc_cod_predio($co=''){
+	$sql="SELECT idgeo id ,FN_CATALOGODESC(44,estado_v) estado from hog_geo where idgeo=$co";
+	$info=datos_mysql($sql);
+	$cod= $info['responseResult'][0]['id'];
+	return $cod;
+}
+
 function opc_estado($id=''){
 	$id=opc_idgeo($_REQUEST['id']);
 		$co=divide($id);
-		var_dump($id);
+		var_dump(opc_cod_predio($id));
 		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);
 }
 

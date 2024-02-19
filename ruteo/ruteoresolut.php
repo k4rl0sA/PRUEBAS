@@ -202,7 +202,7 @@ function gra_ruteresol(){
 	return $info['responseResult'][0]; */
 
 $sql="UPDATE `eac_ruteo` SET 
-famili=TRIM(UPPER('{$_POST['famili']})),
+famili=TRIM(UPPER('{$_POST['famili']}')),
 usuario=TRIM(UPPER('{$_POST['usuario']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
 `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),

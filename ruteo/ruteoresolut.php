@@ -178,7 +178,7 @@ function get_ruteresol(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT `id_ruteo`,predio,cod_admin
+		$sql="SELECT `id_ruteo`,predio,estado,famili,usuario,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     var_dump($info['responseResult'][0]);

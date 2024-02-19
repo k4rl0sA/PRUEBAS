@@ -68,7 +68,7 @@ function opc_gestion($id=''){
 function opc_idgeo($a){
 	$id=divide($a);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
-		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+		 FROM `eac_ruteo` WHERE id_ruteo='{$id[0]}'";
 		 $info=datos_mysql($sql);
 		 $cod= $info['responseResult'][0]['cod'];
 		 return $cod;
@@ -130,11 +130,11 @@ function get_ruteresol(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		var_dump($id);
+		// var_dump($id);
 		$sql="SELECT `id_ruteo`,predio,famili,usuario,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
-    var_dump($info['responseResult'][0]);
+    	// var_dump($info['responseResult'][0]);
 		return $info['responseResult'][0];
 	} 
 }

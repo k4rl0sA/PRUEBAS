@@ -85,8 +85,6 @@ function opc_estado($id=''){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
 }
 
-
-
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);

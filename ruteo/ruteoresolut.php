@@ -102,11 +102,12 @@ function opc_estadofamili(){
 	} 
 }
 function opc_famili($id=''){
-	var_dump($id);
+	// var_dump($id);
 	return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv={$id} ORDER BY 1", $id);
 }
 function opc_usuario($id=''){
-	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
+	// var_dump($id);
+	return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
 }
 
 function opc_familiusuario(){

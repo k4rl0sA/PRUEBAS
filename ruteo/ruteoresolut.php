@@ -52,9 +52,9 @@ function cmp_ruteresol(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('estado','s',3,'',$w.' PuE StG '.$o,'estado','estado',null,null,true,true,'','col-2',"changeSelect('estado','famili');");
- $c[]=new cmp('famili','s',3,'',$w.' PuE StG '.$o,'famili','famili',null,'',false, true,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
- $c[]=new cmp('usuario','s',3,'',$w.' PuE StG '.$o,'usuario','usuario',null,'',false, true,'','col-3',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' PuE StG '.$o,'estado','estado',null,null,true,true,'','col-2',"changeSelect('estado','famili');");
+ $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',false, true,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',false, true,'','col-3',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE StG '.$o,'cod_admin','cod_admin',null,'',true, true,'','col-2');//traer los codigos del usuario de atencion
 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -202,6 +202,9 @@ function gra_ruteresol(){
 	return $info['responseResult'][0]; */
 
 $sql="UPDATE `eac_ruteo` SET 
+estado=TRIM(UPPER('{$_POST['estado']}')),
+famili=TRIM(UPPER('{$_POST['famili']})),
+usuario=TRIM(UPPER('{$_POST['usuario']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
 `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),

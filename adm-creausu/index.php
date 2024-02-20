@@ -68,7 +68,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <li class='icono gestusu'      title='Gestión de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
+    <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

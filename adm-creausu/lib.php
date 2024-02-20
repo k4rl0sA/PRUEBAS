@@ -29,7 +29,7 @@ function lis_creausu(){
 	WHERE 1 OR atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR 
 	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI'".whe_creausu());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
+	$regxPag=10;
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; ////modificar el nombre de la tabla que se requiera[]
 
 	// ,atencion_ordenpsicologia,atencion_ordenvacunacion,atencion_ordenlaboratorio,atencion_ordenimagenes,atencion_ordenmedicamentos,atencion_ordenvacunacion

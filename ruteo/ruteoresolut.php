@@ -116,8 +116,7 @@ function opc_usuario($id=''){
 
 	}else{
 		$co=divide($id);
-		$sql="SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE tipo_doc='$co[0]' AND p.idpersona='$co[1]'";
-		var_dump($sql);
+		// var_dump($sql);
 		return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE tipo_doc='$co[0]' AND p.idpersona='$co[1]'", $id);
 	}
 	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
@@ -145,6 +144,14 @@ function opc_usuariocod_admin(){
 }
 
 function opc_cod_admin($id=''){
+	var_dump($id);
+	if ($id==''){
+
+	}else{
+		$co=divide($id);
+		// var_dump($sql);
+		return opc_sql("SELECT f.cod_admin cod,cod_admin FROM adm_facturacion f WHERE cod_admin='$id'", $id);
+	}
 	//return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 

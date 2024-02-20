@@ -20,17 +20,17 @@ else {
 
 
 
-function lis_asigsegui(){
+function lis_creausu(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
 	LEFT JOIN personas P ON A.atencion_idpersona=P.idpersona AND A.atencion_tipodoc=P.tipo_doc 
 	  LEFT JOIN asigsegui S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc  
 	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
 	 left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
 	WHERE 1 OR atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR 
-	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI'".whe_asigsegui());
+	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI'".whe_creausu());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
-	$pag=(isset($_POST['pag-asigsegui']))? ($_POST['pag-asigsegui']-1)* $regxPag:0; ////modificar el nombre de la tabla que se requiera[]
+	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; ////modificar el nombre de la tabla que se requiera[]
 
 	// ,atencion_ordenpsicologia,atencion_ordenvacunacion,atencion_ordenlaboratorio,atencion_ordenimagenes,atencion_ordenmedicamentos,atencion_ordenvacunacion
 	$sql="SELECT DISTINCT concat(A.atencion_tipodoc,'_',A.atencion_idpersona) ACCIONES, A.atencion_tipodoc,A.atencion_idpersona Documento,
@@ -41,16 +41,16 @@ function lis_asigsegui(){
 	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
 	 left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
 	 WHERE 1 ";
-	$sql.=whe_asigsegui();
+	$sql.=whe_creausu();
 	$sql.=" AND (atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI')";
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"asigsegui",$regxPag);
+	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
 } 
 
-function whe_asigsegui() {
+function whe_creausu() {
 	$sql = "";
 	if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
@@ -66,19 +66,19 @@ function whe_asigsegui() {
 }
 
 
-function focus_asigsegui(){
- return 'asigsegui';
+function focus_creausu(){
+ return 'creausu';
 }
 
-function men_asigsegui(){
- $rta=cap_menus('asigsegui','pro');
+function men_creausu(){
+ $rta=cap_menus('creausu','pro');
  return $rta;
 } 
 
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='asigsegui'){  $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+  if ($a=='creausu'){  $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
   $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
   $rta .= "<li class='icono $a cancelar'    title='Cerrar'          Onclick=\"ocultar('".$a."','".$b."');\" >";
   }
@@ -86,7 +86,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-function cmp_asigsegui(){
+function cmp_creausu(){
 	$rta="";
 	$t=['idpersona'=>'','tipo_doc'=>'','asignado'=>''];
 	$w='asigpsico';
@@ -105,7 +105,7 @@ function cmp_asigsegui(){
 
 
 
-function get_asigsegui(){
+function get_creausu(){
 	if($_POST['idgeo']=='0'){
 		return "";
 	}else{
@@ -119,7 +119,7 @@ function get_asigsegui(){
 	} 
 }
 
-function gra_asigsegui(){
+function gra_creausu(){
 	$id=divide($_POST['id']);
 	 $sql="INSERT INTO asigsegui VALUES 
 	(NULL,
@@ -154,9 +154,9 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='asigsegui' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='creausu' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('asigsegui','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('creausu','pro',event,'','lib.php',7);\"></li>";
 	}
 	
  return $rta;

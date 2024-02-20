@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='crea_usu';	
+var mod='creausu';	
 var ruta_app='lib.php';
 
 
@@ -38,7 +38,7 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='crea_usu';
+$mod='creausu';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 $estados=array('A'=>'Activo','I'=>'Inactivo');

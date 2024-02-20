@@ -132,15 +132,20 @@ function gra_creausu(){
   return $rta;
 }
 
-function opc_tipo_doc($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-}
+
 
 function opc_asignado($id=''){
 	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 	$usu=divide($rta["responseResult"][0]['usu']);
 	$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ;
 	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil`IN ('ENF','AUX') AND componente='EAC' AND subred IN(".$subred.") ORDER BY 1",$id);
+}
+
+function opc_perfil($id=''){
+	$com=datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
+	$comp = $com['responseResult'][0]['componente'] ;
+	// return $comp;
+	return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor='1'",$id);
 }
 
 

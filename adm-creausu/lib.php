@@ -81,18 +81,18 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_creausu(){
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['gestion'=>'','perfil'=>'','documento'=>'','usuarios'=>'','nombre'=>'','correo'=>'','subred'=>'','bina'=>'','territorio'=>'','perfiln'=>''];
+	$t=['gestion'=>'','perfil'=>'','documento'=>'','nombre'=>'','correo'=>'','bina'=>'','territorio'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
 	$w='adm_usuarios';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('documento','n','20',$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-15');
-	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'Nombres y Apellidos','nombre',null,'',false,true,'','col-3');
-	$c[]=new cmp('correo','t','30',$d['correo'],$w.' '.$o,'Correo','correo',null,'',false,true,'','col-25');
-	$c[]=new cmp('perfil','s','3',$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSeDe('perfil',['TEr','bIN']);");
-	$c[]=new cmp('bina','s','3',$d['bina'],$w.' bIN '.$o,'Bina','bina',null,'',false,false,'','col-2');
-	$c[]=new cmp('territorio','s','3',$d['territorio'],$w.' TEr '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
+	$c[]=new cmp('documento','n',20,$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-15');
+	$c[]=new cmp('nombre','t',50,$d['nombre'],$w.' '.$o,'Nombres y Apellidos','nombre',null,'',false,true,'','col-3');
+	$c[]=new cmp('correo','t',30,$d['correo'],$w.' '.$o,'Correo','correo',null,'',false,true,'','col-25');
+	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enClSeDe('perfil',['TEr','bIN']);");
+	$c[]=new cmp('bina','s',3,$d['bina'],$w.' bIN '.$o,'Bina','bina',null,'',false,false,'','col-2');
+	$c[]=new cmp('territorio','s',3,$d['territorio'],$w.' TEr '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

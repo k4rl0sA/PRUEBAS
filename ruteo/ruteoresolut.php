@@ -103,7 +103,8 @@ function opc_estadofamili(){
 }
 
 function opc_famili($id=''){
-	/* var_dump($id);
+	var_dump($id);
+	/* 
 	if ($id=''){
 
 	}else{

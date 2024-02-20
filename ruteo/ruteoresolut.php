@@ -103,13 +103,11 @@ function opc_estadofamili(){
 }
 
 function opc_famili($id=''){
-	var_dump($id);
+	// var_dump($id);
 	if ($id==''){
 
 	}else{
-		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'";
-		var_dump($sql);
-		return opc_sql($sql, $id);
+		return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
 	}
 }
 function opc_usuario($id=''){

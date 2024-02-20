@@ -961,7 +961,7 @@ function stateVisit(a, b,c) {
   }
 
   
-function enabDepeValu(a,b,c){
+/* function enabDepeValu(a,b,c){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b+',textarea.'+b);
 	const act = document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
@@ -973,4 +973,26 @@ function enabDepeValu(a,b,c){
 			}
 		}
 	}
+} */
+
+
+
+function enabDepeValu(a, b, c) {
+    const ele = document.querySelectorAll('select.' + b + ',input.' + b + ',textarea.' + b);
+    const act = document.getElementById(a);
+    const selectedValue = act.value;
+
+    for (let i = 0; i < ele.length; i++) {
+        const options = ele[i].querySelectorAll('option');
+        let enableElement = false;
+
+        for (let j = 0; j < options.length; j++) {
+            if (selectedValue === options[j].value && c.includes(options[j].innerText)) {
+                enableElement = true;
+                break;
+            }
+        }
+
+        enaFie(ele[i], enableElement);
+    }
 }

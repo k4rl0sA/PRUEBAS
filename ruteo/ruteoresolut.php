@@ -111,7 +111,7 @@ function opc_famili($id=''){
 	}
 }
 function opc_usuario($id=''){
-	// var_dump($id);
+	var_dump($id);
 	if ($id==''){
 
 	}else{

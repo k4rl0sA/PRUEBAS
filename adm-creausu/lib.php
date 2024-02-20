@@ -52,14 +52,6 @@ function lis_creausu(){
 
 function whe_creausu() {
 	$sql = "";
-	if ($_POST['fseca'])
-		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
-	if ($_POST['fmanz'])
-		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
-	if ($_POST['fdigita'])
-		$sql .= " AND S.doc_asignado ='".$_POST['fdigita']."'";
-	if ($_POST['festado'] && $_POST['festado']<>'NULL' )
-		$sql .= " AND S.estado ='".$_POST['festado']."'";
 	if ($_POST['festado'] && $_POST['festado']=='NULL' )
 		$sql .= " AND S.estado  IS NULL ";
 	return $sql;

@@ -975,24 +975,23 @@ function stateVisit(a, b,c) {
 	}
 } */
 
-
-
 function enabDepeValu(a, b, c) {
-    const ele = document.querySelectorAll('select.' + b + ',input.' + b + ',textarea.' + b);
+    const ele = document.querySelectorAll('select.' + b + ', input.' + b + ', textarea.' + b);
     const act = document.getElementById(a);
-    const selectedValue = act.value;
-
+    const options = act.querySelectorAll('option');
+    const selectedValues = Array.from(options).map(option => option.innerText);
     for (let i = 0; i < ele.length; i++) {
-        const options = ele[i].querySelectorAll('option');
         let enableElement = false;
-
-        for (let j = 0; j < options.length; j++) {
-            if (selectedValue === options[j].value && c.includes(options[j].innerText)) {
+        for (let j = 0; j < c.length; j++) {
+            if (selectedValues.includes(c[j])) {
                 enableElement = true;
                 break;
             }
         }
-
         enaFie(ele[i], enableElement);
     }
 }
+
+
+
+

@@ -107,7 +107,7 @@ function opc_famili($id=''){
 	if ($id=''){
 
 	}else{
-		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='".$id."'";
+		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'";
 		var_dump($sql);
 		return opc_sql($sql, $id);
 	}

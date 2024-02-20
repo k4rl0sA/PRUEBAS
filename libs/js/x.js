@@ -967,9 +967,9 @@ function enabDepeValu(a,b,c){
 	for (i=0; i<ele.length;i++) {
 		for (j=0; j<c.length;j++) {
 			if(act.value==c[j]){
-				enaFie(ele[i],false);
-  			}else{
 				enaFie(ele[i],true);
+  			}else{
+				enaFie(ele[i],false);
 			}
 		}
 	}

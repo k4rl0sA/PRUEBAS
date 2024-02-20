@@ -961,15 +961,15 @@ function stateVisit(a, b,c) {
   }
 
   
-function enabDepeValu(a,b,c){
+function enabDepeValu(a,b,c,d){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b+',textarea.'+b);
 	const act = document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
 		for (j=0; j<c.length;j++) {
 			if(act.value==c[j]){
-				enaFie(ele[i],true);
+				enaFie(ele[i],d);
   			}else{
-				enaFie(ele[i],false);
+				enaFie(ele[i],!d);
 			}
 		}
 	}

@@ -963,12 +963,13 @@ function stateVisit(a, b,c) {
   
 function enabDepeValu(a,b,c){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b+',textarea.'+b);
+	const act = document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
 		for (j=0; j<c.length;j++) {
-			if(a.value==c[j]){
-				enaFie(ele[i],true);
-  			}else{
+			if(act.value==c[j]){
 				enaFie(ele[i],false);
+  			}else{
+				enaFie(ele[i],true);
 			}
 		}
 	}

@@ -144,7 +144,7 @@ function opc_usuariocod_admin(){
 }
 
 function opc_cod_admin($id=''){
-	var_dump($id);
+	// var_dump($id);
 	if ($id==''){
 
 	}else{

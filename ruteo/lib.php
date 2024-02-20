@@ -24,9 +24,9 @@ function lis_rute(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado_g Estado
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado_g Gestionado,estado
   FROM `eac_ruteo` 
-  WHERE 1 ";
+  WHERE estado='A' ";
 	$sql.=" AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
@@ -321,7 +321,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
-		if($c['Estado']== '1' || $c['Estado']=='2'){
+		if($c['Gestionado']== '1' || $c['Gestionado']=='2'){
 			$rta.="<li class='icono canin1' title='GESTIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('ruteresol','pro',event,'','ruteoresolut.php',7,'ruteresol');\"></li>";
 		}
 	}

@@ -26,7 +26,7 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,FN_CATALOGODESC(2,localidad) localidad,sector_catastral 'Sector Catastral',nummanzana Manzana,predio_num predio,FN_CATALOGODESC(33,fuente) Fuente,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado_g Gestionado,estado
   FROM `eac_ruteo` 
-  WHERE estado='A' ";
+  WHERE 1 ";
 	$sql.=" AND  subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
@@ -36,7 +36,7 @@ function lis_rute(){
 	}
 
 function whe_rute() {
-	$sql = "";
+	$sql = " AND estado='A' ";
 	if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
 	if ($_POST['fgrupo'])

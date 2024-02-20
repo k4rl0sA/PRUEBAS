@@ -961,7 +961,7 @@ function stateVisit(a, b,c) {
   }
 
   
-/* function enabDepeValu(a,b,c){
+function enabDepeValu(a,b,c){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b+',textarea.'+b);
 	const act = document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
@@ -973,9 +973,9 @@ function stateVisit(a, b,c) {
 			}
 		}
 	}
-} */
+}
 
-function enabDepeValu(a, b, c) {
+function enabDepeInner(a, b, c) {
     const ele = document.querySelectorAll('select.' + b + ', input.' + b + ', textarea.' + b);
     const act = document.getElementById(a);
     const options = act.querySelectorAll('option');

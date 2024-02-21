@@ -112,7 +112,7 @@ function get_creausu(){
 }
 
 function gra_creausu(){
-  /* $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
@@ -124,7 +124,7 @@ function gra_creausu(){
 
    $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina'].") bina;");
    $bin=divide($rta["responseResult"][0]['bina']);
-
+ /*
 
 $params = [
 	['type' => 'i', 'value' => NULL],

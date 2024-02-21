@@ -21,7 +21,7 @@ else {
 
 
 function lis_creausu(){
-/* 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
+	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
 	LEFT JOIN personas P ON A.atencion_idpersona=P.idpersona AND A.atencion_tipodoc=P.tipo_doc 
 	  LEFT JOIN asigsegui S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc  
 	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
@@ -45,9 +45,9 @@ function lis_creausu(){
 	$sql.=" AND (atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI')";
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-// echo $sql;
+	// echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"creausu",$regxPag); */
+	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
 } 
 
 function whe_creausu() {
@@ -85,7 +85,7 @@ function cmp_creausu(){
 	$d='';
 	if ($d==""){$d=$t;}
 	$w='adm_usuarios';
-	$o='infusu';
+	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
 	$c[]=new cmp('documento','n',20,$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-15');
 	$c[]=new cmp('nombre','t',50,$d['nombre'],$w.' '.$o,'Nombres y Apellidos','nombre',null,'',false,true,'','col-3');
@@ -98,7 +98,7 @@ function cmp_creausu(){
 }
 
 function get_creausu(){
-	if($_POST['idgeo']=='0'){
+	/* if($_POST['idgeo']=='0'){
 		return "";
 	}else{
 		$id=divide($_POST['idgeo']);
@@ -108,7 +108,7 @@ function get_creausu(){
 
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
-	} 
+	}  */
 }
 
 function gra_creausu(){

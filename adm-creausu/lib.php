@@ -122,8 +122,9 @@ function gra_creausu(){
    $rta=datos_mysql("select FN_CATALOGODESC(202,".$_POST['territorio'].") terr;");
    $ter=divide($rta["responseResult"][0]['terr']);
 
-   $rta=datos_mysql("select FN_CATALOGODESC(217,".$_POST['bina'].") bina;");
-   $bin=divide($rta["responseResult"][0]['bina']);
+/*    $rta=datos_mysql("select FN_CATALOGODESC(217,".$_POST['bina'].") bina;");
+   $bin=divide($rta["responseResult"][0]['bina']); */
+   $bin='';
 
    $params = [
 	['type' => 'i', 'value' => NULL],

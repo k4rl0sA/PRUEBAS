@@ -116,14 +116,25 @@ function gra_creausu(){
    (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
+
+   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil'].",) perfil;");
+   $per=divide($rta["responseResult"][0]['perfil']);
+
+   $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio'].",) terr;");
+   $ter=divide($rta["responseResult"][0]['terr']);
+
+   $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina'].",) bina;");
+   $bin=divide($rta["responseResult"][0]['bina']);
+
+
 $params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 'i', 'value' => $_POST['documento']],
 	['type' => 's', 'value' => $_POST['nombre']],
 	['type' => 's', 'value' => $_POST['correo']],
-	['type' => 's', 'value' => $_POST['perfil']],
-	['type' => 's', 'value' => $_POST['territorio']],
-	['type' => 's', 'value' => $_POST['bina']],
+	['type' => 's', 'value' => $per],
+	['type' => 's', 'value' => $ter],
+	['type' => 's', 'value' => $bin],
 	['type' => 'i', 'value' => $usu[2]],
 	['type' => 's', 'value' => $usu[4]],
 	['type' => 'i', 'value' => $_SESSION['us_sds']],

@@ -116,7 +116,7 @@ function get_creausu(){
 }
 
 function gra_creausu(){
-  $sql = "INSERT INTO admusunew VALUES
+  $sql = "INSERT INTO adm_usunew VALUES
    (?,?,?,?,?,?,?,?,?,?,?,?)";
 $params = [
 	['type' => 'i', 'value' => NULL],

@@ -116,13 +116,12 @@ function get_creausu(){
 }
 
 function gra_creausu(){
-	$id=divide($_POST['id']);
   $sql = "INSERT INTO admusunew VALUES
    (?,?,?,?,?,?,?,?,?,?,?,?)";
 $params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 'i', 'value' => $_POST['documento']],
-	['type' => 's', 'value' => $_POST['nombres']],
+	['type' => 's', 'value' => $_POST['nombre']],
 	['type' => 's', 'value' => $_POST['correo']],
 	['type' => 's', 'value' => $_POST['perfil']],
 	['type' => 's', 'value' => $_POST['territorio']],

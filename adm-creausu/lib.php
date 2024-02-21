@@ -97,10 +97,6 @@ function cmp_creausu(){
 	return $rta;
 }
 
-
-
-
-
 function get_creausu(){
 	if($_POST['idgeo']=='0'){
 		return "";
@@ -117,7 +113,9 @@ function get_creausu(){
 
 function gra_creausu(){
   $sql = "INSERT INTO adm_usunew VALUES
-   (?,?,?,?,?,?,?,?,?,?,?,?)";
+   (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+   $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+   $usu=divide($rta["responseResult"][0]['usu']);
 $params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 'i', 'value' => $_POST['documento']],
@@ -126,6 +124,8 @@ $params = [
 	['type' => 's', 'value' => $_POST['perfil']],
 	['type' => 's', 'value' => $_POST['territorio']],
 	['type' => 's', 'value' => $_POST['bina']],
+	['type' => 'i', 'value' => $usu[1]],
+	['type' => 's', 'value' => $usu[3]],
 	['type' => 'i', 'value' => $_SESSION['us_sds']],
 	['type' => 's', 'value' => date("Y-m-d H:i:s")],
 	['type' => 's', 'value' => NULL],

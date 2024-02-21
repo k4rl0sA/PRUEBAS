@@ -124,9 +124,8 @@ function gra_creausu(){
 
    $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina'].") bina;");
    $bin=divide($rta["responseResult"][0]['bina']);
- /*
 
-$params = [
+   $params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 'i', 'value' => $_POST['documento']],
 	['type' => 's', 'value' => $_POST['nombre']],
@@ -142,7 +141,7 @@ $params = [
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
 	$rta = mysql_prepd($sql, $params);
-	return $rta; */
+	return $rta;
 }
 
 

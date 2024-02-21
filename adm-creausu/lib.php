@@ -70,8 +70,9 @@ function men_creausu(){
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='creausu'){  $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+  if ($a=='creausu'){  
+	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
+  	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
   }
   return $rta;
 }
@@ -116,26 +117,26 @@ function get_creausu(){
 
 function gra_creausu(){
 	$id=divide($_POST['id']);
-	 $sql="INSERT INTO asigsegui VALUES 
-	(NULL,
-	TRIM(UPPER('{$id[0]}')),
-	TRIM(UPPER('{$id[1]}')),
-	TRIM(UPPER('{$_POST['asignado']}')),
-	TRIM(UPPER('{$_SESSION['us_sds']}')),
-	DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'1');";
-	// echo $sql;
-  $rta=dato_mysql($sql);
-  return $rta;
+  $sql = "INSERT INTO admusunew VALUES
+   (?,?,?,?,?,?,?,?,?,?,?,?)";
+$params = [
+	['type' => 'i', 'value' => NULL],
+	['type' => 'i', 'value' => $_POST['documento']],
+	['type' => 's', 'value' => $_POST['nombres']],
+	['type' => 's', 'value' => $_POST['correo']],
+	['type' => 's', 'value' => $_POST['perfil']],
+	['type' => 's', 'value' => $_POST['territorio']],
+	['type' => 's', 'value' => $_POST['bina']],
+	['type' => 'i', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => date("Y-m-d H:i:s")],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL]];
+$rta = mysql_prepd($sql, $params);
+return $rta;
 }
 
 
-
-function opc_asignado($id=''){
-	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-	$usu=divide($rta["responseResult"][0]['usu']);
-	$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ;
-	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil`IN ('ENF','AUX') AND componente='EAC' AND subred IN(".$subred.") ORDER BY 1",$id);
-}
 function opc_perfil($id=''){
 	$com=datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
 	$comp = $com['responseResult'][0]['componente'] ;
@@ -152,9 +153,6 @@ function opc_territorio($id=''){
 function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
-
-
- 
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

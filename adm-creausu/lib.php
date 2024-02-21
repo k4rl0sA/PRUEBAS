@@ -112,8 +112,7 @@ function get_creausu(){
 }
 
 function gra_creausu(){
-  $sql = "INSERT INTO adm_usunew VALUES
-   (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  /* $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
@@ -143,7 +142,7 @@ $params = [
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
+	return $rta; */
 }
 
 

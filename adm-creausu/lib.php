@@ -21,7 +21,7 @@ else {
 
 
 function lis_creausu(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
+/* 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
 	LEFT JOIN personas P ON A.atencion_idpersona=P.idpersona AND A.atencion_tipodoc=P.tipo_doc 
 	  LEFT JOIN asigsegui S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc  
 	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
@@ -47,7 +47,7 @@ function lis_creausu(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
+	return create_table($total,$datos["responseResult"],"creausu",$regxPag); */
 } 
 
 function whe_creausu() {

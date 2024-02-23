@@ -32,7 +32,7 @@ function lis_creausu(){
 	FROM adm_usunew 
 	 WHERE 1  ";
 	$sql.=whe_creausu();
-	$sql.=" ORDER BY A.fecha_create";
+	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);

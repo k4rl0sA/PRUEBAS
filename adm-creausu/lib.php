@@ -42,7 +42,7 @@ function lis_creausu(){0
 function whe_creausu() {
 	$sql = "";
 	if ($_POST['festado'] && $_POST['festado']=='NULL' )
-		$sql .= " AND S.estado  IS NULL ";
+		$sql .= " AND estado  IS NULL ";
 	return $sql;
 }
 

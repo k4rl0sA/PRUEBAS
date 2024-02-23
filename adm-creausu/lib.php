@@ -116,13 +116,13 @@ function gra_creausu(){
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
-   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') perfil;");
+   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$usu[1]."') AS perfil;");
    $per=divide($rta["responseResult"][0]['perfil']);
 /* 
-   $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio']."') terr;");
+   $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr;");
    $ter=divide($rta["responseResult"][0]['terr']);
 
-   $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina']."') bina;");
+   $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
    $bin=divide($rta["responseResult"][0]['bina']); */
 
 

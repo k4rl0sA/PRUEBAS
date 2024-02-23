@@ -21,28 +21,17 @@ else {
 
 
 function lis_creausu(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM hog_atencion A 
-	LEFT JOIN personas P ON A.atencion_idpersona=P.idpersona AND A.atencion_tipodoc=P.tipo_doc 
-	  LEFT JOIN asigsegui S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc  
-	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	 left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
-	WHERE 1 OR atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR 
-	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI'".whe_creausu());
+	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
+	WHERE estado='A' ".whe_creausu());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
 
 	// ,atencion_ordenpsicologia,atencion_ordenvacunacion,atencion_ordenlaboratorio,atencion_ordenimagenes,atencion_ordenmedicamentos,atencion_ordenvacunacion
-	$sql="SELECT DISTINCT concat(A.atencion_tipodoc,'_',A.atencion_idpersona) ACCIONES, A.atencion_tipodoc,A.atencion_idpersona Documento,
-	CONCAT(P.nombre1, ' ',P.apellido1) AS Nombre,sector_catastral 'sector castastral',nummanzana manzana,predio_num predio,FN_CATALOGODESC(38,S.estado) estado
-	FROM hog_atencion A 
-	LEFT JOIN personas P ON A.atencion_idpersona=P.idpersona AND A.atencion_tipodoc=P.tipo_doc 
-	  LEFT JOIN asigsegui S ON P.idpersona=S.documento AND P.tipo_doc=S.tipo_doc  
-	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	 left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)
-	 WHERE 1 ";
+	$sql="SELECT *
+	FROM adm_usunew 
+	 WHERE 1 estado='A' ";
 	$sql.=whe_creausu();
-	$sql.=" AND (atencion_ordenpsicologia='SI' OR atencion_ordenvacunacion='SI' OR atencion_ordenlaboratorio='SI' OR	atencion_ordenimagenes='SI' OR	atencion_ordenmedicamentos='SI' OR atencion_ordenvacunacion='SI')";
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

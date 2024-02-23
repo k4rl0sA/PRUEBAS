@@ -20,9 +20,9 @@ else {
 
 
 
-function lis_creausu(){
+function lis_creausu(){0
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
-	WHERE estado='A' ".whe_creausu());
+	WHERE 1 ".whe_creausu());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
@@ -30,7 +30,7 @@ function lis_creausu(){
 	
 	$sql="SELECT *
 	FROM adm_usunew 
-	 WHERE 1 estado='A' ";
+	 WHERE 1  ";
 	$sql.=whe_creausu();
 	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

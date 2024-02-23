@@ -27,7 +27,7 @@ function lis_creausu(){
 	$regxPag=10;
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
 
-	// ,atencion_ordenpsicologia,atencion_ordenvacunacion,atencion_ordenlaboratorio,atencion_ordenimagenes,atencion_ordenmedicamentos,atencion_ordenvacunacion
+	
 	$sql="SELECT *
 	FROM adm_usunew 
 	 WHERE 1 estado='A' ";

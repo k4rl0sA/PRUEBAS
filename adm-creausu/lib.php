@@ -115,7 +115,7 @@ function gra_creausu(){
    $bin=divide($rta["responseResult"][0]['bina']); */
 
 
-   var_dump($data[0]);
+   var_dump($data['perfil']);
    $ter='SSD';
    $bin='DDF';
 

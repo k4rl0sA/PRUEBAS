@@ -144,6 +144,7 @@ function gra_creausu(){
 	} else {
 		$rta = "Error: msj['No se puede crear la solicitud']";
 	}
+	return $rta;
 }
 
 

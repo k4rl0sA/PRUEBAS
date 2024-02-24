@@ -125,28 +125,24 @@ function gra_creausu(){
 	['type' => 's', 'value' => NULL]];
 	$rta1 = mysql_prepd($sql, $params);
 
-	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
+	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
 	$params1 = [
-		['type' => 'i', 'value' => NULL],
 		['type' => 'i', 'value' => $_POST['documento']],
 		['type' => 's', 'value' => $_POST['nombre']],
 		['type' => 's', 'value' => $_POST['correo']],
+		['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
 		['type' => 's', 'value' => $data['perfil']],
-		['type' => 's', 'value' => $data['terr']],
-		['type' => 's', 'value' => $data['bina']],
 		['type' => 'i', 'value' => $usu[2]],
+		['type' => 's', 'value' => $equ],
 		['type' => 's', 'value' => $usu[4]],
-		['type' => 'i', 'value' => $_SESSION['us_sds']],
-		['type' => 's', 'value' => date("Y-m-d H:i:s")],
-		['type' => 's', 'value' => NULL],
-		['type' => 's', 'value' => NULL],
-		['type' => 's', 'value' => NULL]];
+		['type' => 's', 'value' => 'P']];
 		$rta2 = mysql_prepd($sql1, $params1);
 
 	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
 		$rta = "Se ha Insertado: 1 Registro Correctamente.";
 	} else {
-		$rta = "Error: msj['No se pudo crear la solicitud']";
+		$rta = "Error: msj['No se puede crear la solicitud']";
 	}
 }
 

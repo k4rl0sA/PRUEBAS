@@ -105,9 +105,8 @@ function gra_creausu(){
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
-   $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr;");
-   $ter=divide($rta["responseResult"][0]['terr']);
-
+   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil;");
+   $per=divide($rta["responseResult"][0]['perfil']);
 /* 
    $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr;");
    $ter=divide($rta["responseResult"][0]['terr']);
@@ -116,7 +115,7 @@ function gra_creausu(){
    $bin=divide($rta["responseResult"][0]['bina']); */
 
 
-   $per=$usu[1];
+// $per=$usu[1];
    $ter='SSD';
    $bin='DDF';
 

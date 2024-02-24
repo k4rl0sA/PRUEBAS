@@ -107,14 +107,6 @@ function gra_creausu(){
 
    $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
    $data=$rta["responseResult"][0];
-/* 
-   $rta=datos_mysql("select FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr;");
-   $ter=divide($rta["responseResult"][0]['terr']);
-
-   $rta=datos_mysql("select FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
-   $bin=divide($rta["responseResult"][0]['bina']); */
-
-
 
    $params = [
 	['type' => 'i', 'value' => NULL],
@@ -131,8 +123,31 @@ function gra_creausu(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
-	$rta = mysql_prepd($sql, $params);
-	return $rta; 
+	$rta1 = mysql_prepd($sql, $params);
+
+	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$params1 = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 'i', 'value' => $_POST['documento']],
+		['type' => 's', 'value' => $_POST['nombre']],
+		['type' => 's', 'value' => $_POST['correo']],
+		['type' => 's', 'value' => $data['perfil']],
+		['type' => 's', 'value' => $data['terr']],
+		['type' => 's', 'value' => $data['bina']],
+		['type' => 'i', 'value' => $usu[2]],
+		['type' => 's', 'value' => $usu[4]],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => date("Y-m-d H:i:s")],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL]];
+		$rta2 = mysql_prepd($sql1, $params1);
+
+	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
+		$rta = "Se ha Insertado: 1 Registro Correctamente.";
+	} else {
+		$rta = "Error: msj['No se pudo crear la solicitud']";
+	}
 }
 
 

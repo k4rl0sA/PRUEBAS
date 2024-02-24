@@ -142,7 +142,7 @@ function gra_creausu(){
 	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
 		$rta = "Se ha Insertado: 1 Registro Correctamente.";
 	} else {
-		$rta = "Error: msj['No se puede crear la solicitud']";
+		$rta = "Error: msj['No se puede crear la solicitud, el usuario ya se ha creado anteriormente']";
 	}
 	return $rta;
 }

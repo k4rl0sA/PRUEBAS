@@ -119,7 +119,7 @@ function gra_creausu(){
    $ter='SSD';
    $bin='DDF';
 
-   $params = [
+   /* $params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 'i', 'value' => $_POST['documento']],
 	['type' => 's', 'value' => $_POST['nombre']],
@@ -135,7 +135,7 @@ function gra_creausu(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
+	return $rta; */
 }
 
 

@@ -63,7 +63,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 		<div>Fecha Asignado Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
 	</div> -->
-	
+
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
@@ -81,9 +81,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
      <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
-		
 <div class='load' id='loader' z-index='0' ></div>
-
 <div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

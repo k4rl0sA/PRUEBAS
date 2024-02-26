@@ -85,9 +85,9 @@ function cmp_sesiones_psi() {
 	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
-
-		// $ed = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
-		 $ed = ($edad<18) ? false :true;
+		$ids=divide($d['id_psi'];
+		$ed = ($edad < 18) ? false : ($ids[2]) == '' ? true : false);
+		 //$ed = ($edad<18) ? false :true;
 	/* $data=datos_mysql("SELECT CASE WHEN COUNT(*) = 0 THEN +3 ELSE +1 END total FROM psi_sesiones WHERE psi_tipo_doc='{$key[0]}' and psi_documento='{$key[1]}';");
 	$nse=$data['responseResult'][0]['total']; */
 		// $blo = ($ed) ? '' : 'bloqueo' ;

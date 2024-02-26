@@ -427,7 +427,7 @@ function cmp_sesion2() {
 
 	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-140,0);');
 	$c[]=new cmp('edad','t','5',$edad,$w.' '.$o,'Edad en Años','edad',null,null,true,false,'','col-4');
-	$c[]=new cmp('cod_admin2','s',2,$d['cod_admin2'],$w.' cA2 '.$o,'Codigo Admisión','cod_admin2',null,null,$dis,$dis,'','col-4');
+	$c[]=new cmp('cod_admin2','s',2,$d['cod_admin2'],$w.' cA2 '.$o,'Codigo Admisión','cod_admin2',null,null,$dis,$u,'','col-4');
 	// $c[]=new cmp('psi_sesion','s','3',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
 
 	$o='infgen_2';

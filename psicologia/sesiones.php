@@ -110,8 +110,8 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('psi_validacion7','o','2',$j,$w.' '.$o,'5. Durante la última semana, ¿ha tenido usted pensamientos o un plan para terminar con su vida?','psi_validacion7',null,null,$ed,$ed,'','col-10','hidFieOpt(\'psi_validacion7\',\'sem_hide\');');
 	$c[]=new cmp('psi_validacion8','a','1500',$j,$w.' sem_hide '.$o,'5,1. Describa sus pensamientos o planes','psi_validacion8',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion9','a','1500',$j,$w.' sem_hide '.$o,'6. ¿Qué acciones usted ha efectuado para tratar de terminar con su vida?','psi_validacion9',null,null,$ed,$ed,'','col-10');
-	$c[]=new cmp('psi_validacion10','s','3',$j,$w.' '.$o,'7. ¿Tiene un plan para terminar con su vida dentro de las próximas dos semanas?','en_duda',null,null,$ed,$ed,'','col-10','hidPlan(\'psi_validacion10\',\'duda_com\');');
-	$c[]=new cmp('psi_validacion11','a','1500',$j,$w.' duda_com '.$o,'7,1. Describa su plan','psi_validacion11',null,null,$ed,$ed,'','col-10');
+	$c[]=new cmp('psi_validacion10','s','3',$j,$w.' '.$o,'7. ¿Tiene un plan para terminar con su vida dentro de las próximas dos semanas?','en_duda',null,null,$ed,$ed,'','col-10',"hidFieOpt('psi_validacion10','uDA');");////hidPlan(\'psi_validacion10\',\'duda_com\');
+	$c[]=new cmp('psi_validacion11','a','1500',$j,$w.' uDA '.$o,'7,1. Describa su plan','psi_validacion11',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion12','a','1500',$j,$w.' '.$o,'8. Ahora que usted está participando en esta intervención, tal vez ha descubierto que otros problemas se han vuelto importantes. Si es así, mencione el que más le preocupa, o dígame si ningún otro problema se ha vuelto importante.','psi_validacion12',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion13','s','3',$j,$w.' '.$o,'8,1. ¿Cuánto le han afectado estos otros problemas durante la última semana?','psi_validacion13',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion14','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 1','psi_validacion14',null,null,true,true,'','col-10');

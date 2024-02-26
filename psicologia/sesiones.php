@@ -78,7 +78,8 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);
-	$sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad FROM personas WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
+
+	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
 		$ed = ($edad<18) ? false :true;
@@ -88,7 +89,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-4');
-	$c[]=new cmp('cod_admin4','n','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
+	$c[]=new cmp('cod_admin4','n','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,$ed,'','col-3');
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'RESULTADO  EVALUACION DURANTE EP+',$w);

@@ -409,7 +409,7 @@ function cmp_sesion2() {
 	if ($d=="") {$d=$t;}
 	// if ($j=="") {$j=$t;}
 
-	$u=($d['psi_fecha_sesion']=='')?true:false;
+	$u=($d['psi_tipo_doc']=='')?true:false;
 	$o='infgen';
 
 	$c[]=new cmp($o,'e',null,'Sesion 2',$w);	
@@ -418,7 +418,7 @@ function cmp_sesion2() {
 	// echo $sql;
 	$info=datos_mysql($sql);
 	$edad=$info['responseResult'][0]['edad'];
-	$dis = ($edad<18) ? false :$d['psi_fecha_sesion']==''? true: false ;
+	$dis = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
 	$id= ($d['id']=='')? $_POST['id']:$d['id'];
 
 	$c[]=new cmp('idpsi','h','20',$id,$w.' '.$o,'','',null,null,true,$u,'','col-1');

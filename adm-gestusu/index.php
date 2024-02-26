@@ -63,6 +63,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 		<div>Fecha Asignado Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
 	</div> -->
+	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS

@@ -79,7 +79,7 @@ function cmp_sesiones_psi() {
 	//$key=' srch';
 	$key=divide($_POST['id']);
 	// $sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad FROM personas WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
-	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
+	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
 	// echo $sql;
 	/* $info=datos_mysql($sql);
 	$edad=$info['responseResult'][0]['edad'];

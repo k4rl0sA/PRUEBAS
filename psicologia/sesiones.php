@@ -74,7 +74,8 @@ function cmp_sesiones_psi() {
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='sesiones-lis'>".lis_sesiones()."</div></div>";
-
+	$t=['id'=>'','psi_tipo_doc'=>'','psi_documento'=>'','psi_fecha_sesion'=>'','psi_sesion'=>'','cod_admin2'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','contin_caso'=>''];
+	$d=get_sesiones_psi();
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);

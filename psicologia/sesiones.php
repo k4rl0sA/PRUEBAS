@@ -74,8 +74,10 @@ function cmp_sesiones_psi() {
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='sesiones-lis'>".lis_sesiones()."</div></div>";
-	$t=['id'=>'','psi_tipo_doc'=>'','psi_documento'=>'','psi_fecha_sesion'=>'','psi_sesion'=>'','cod_admin2'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','contin_caso'=>''];
-	$d=get_sesiones_psi();
+	/* $t=['psi_fecha_sesion'=>''];
+	$d=get_sesiones();
+	if ($d=="") {$d=$t;} */
+	$u=($d['psi_tipo_doc']=='')?true:false;
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);
@@ -84,7 +86,7 @@ function cmp_sesiones_psi() {
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
 
-		$ed = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
+		// $ed = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
 		// $ed = ($edad<18) ? false :true;
 	/* $data=datos_mysql("SELECT CASE WHEN COUNT(*) = 0 THEN +3 ELSE +1 END total FROM psi_sesiones WHERE psi_tipo_doc='{$key[0]}' and psi_documento='{$key[1]}';");
 	$nse=$data['responseResult'][0]['total']; */
@@ -118,6 +120,19 @@ function cmp_sesiones_psi() {
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
+}
+
+function get_sesiones(){
+	if($_POST['id']=='0'){
+		return "";
+	}else{
+		$id=divide($_POST['id']);
+		$sql="SELECT psi_fecha_sesion
+		FROM `psi_sesiones` WHERE idsesipsi='{$id[0]}'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		return json_encode($info['responseResult'][0]);
+	} 
 }
 
 function get_sesiones_psi(){

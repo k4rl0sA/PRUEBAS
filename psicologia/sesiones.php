@@ -95,7 +95,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-4');
-	$c[]=new cmp('cod_admin4','n','12',$j,$w.' cA4 '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
+	$c[]=new cmp('cod_admin4',s,'12',$j,$w.' cA4 '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'RESULTADO  EVALUACION DURANTE EP+',$w);
@@ -251,6 +251,10 @@ function gra_sesiones_psi(){
 	return $rta; 
 }
 
+function opc_cod_admin4($id='') {
+	$cod=divide($_REQUEST['id']);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
+}
 
 function opc_psi_validacion9($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);

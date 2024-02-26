@@ -444,7 +444,7 @@ function cmp_sesion2() {
 	$c[]=new cmp('psi_validacion8','a','1500',$d['psi_validacion8'],$w.' '.$o,'Actividad A Desarrollar 1','psi_validacion8',null,null,true,true,'','col-10');
 	$c[]=new cmp('psi_validacion9','a','1500',$d['psi_validacion9'],$w.' '.$o,'Actividad A Desarrollar 2','psi_validacion9',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion10','a','1500',$d['psi_validacion10'],$w.' '.$o,'Actividad A Desarrollar 3','psi_validacion10',null,null,false,true,'','col-10');
-	$c[]=new cmp('contin_caso','s','3',$d['contin_caso'],$w.' '.$o,'Continuidad del caso','contin_caso',null,null,$u,$u,'','col-10',"enabDepeValu('contin_caso','cA2',['4','5'],true);");
+	$c[]=new cmp('contin_caso','s','3',$d['contin_caso'],$w.' '.$o,'Continuidad del caso','contin_caso',null,null,$u,$u,'','col-10',"enabDepeValu('contin_caso','cA2',['4','5'],false);");
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

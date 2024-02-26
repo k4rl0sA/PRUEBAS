@@ -12,19 +12,6 @@ function hideCuida(act,clsCmp) {
 	}
 }
 
-function hidFieOpt(act,clsCmp,x,valid) {
-	const cmpAct=document.getElementById(act);
-	const cmps = document.querySelectorAll(`.${clsCmp}`);
-	if(cmpAct.value=='SI'){
-		for(i=0;i<cmps.length;i++){
-			hidFie(cmps[i],!valid);
-		}
-	}else{
-		for(i=0;i<cmps.length;i++){
-			hidFie(cmps[i],valid);
-		}
-	}
-}
 
 
 function valSist(a){

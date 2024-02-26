@@ -87,7 +87,7 @@ function cmp_sesiones_psi() {
 		$edad=$info['responseResult'][0]['edad'];
 
 		// $ed = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
-		// $ed = ($edad<18) ? false :true;
+		 $ed = ($edad<18) ? false :true;
 	/* $data=datos_mysql("SELECT CASE WHEN COUNT(*) = 0 THEN +3 ELSE +1 END total FROM psi_sesiones WHERE psi_tipo_doc='{$key[0]}' and psi_documento='{$key[1]}';");
 	$nse=$data['responseResult'][0]['total']; */
 		// $blo = ($ed) ? '' : 'bloqueo' ;

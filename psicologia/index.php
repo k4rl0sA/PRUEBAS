@@ -161,6 +161,7 @@ function hidOpt(act,clsCmp,clsCmp1,valid){
 	}
 }
 
+
 function sumPsy1(){
 	const   afec1=document.getElementById('psi_validacion5').value;
 	const  afec2=document.getElementById('psi_validacion7').value;

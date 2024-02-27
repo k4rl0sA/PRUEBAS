@@ -118,7 +118,7 @@ $d='';
  $c[]=new cmp($o,'e',null,'ASIGNACIÓN DE CASOS',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('estado_cierre','s',3,$d['estado_cierre'],$w.' '.$o,'Estado del Caso','estado_cierre',null,null,true,true,'','col-2',"enClSe('estado_cierre', 'STc', [['AsG'], ['cAN']]);");
-	$c[]=new cmp('motivo_cierre','t',150,$d['motivo_cierre'],$w.' cAN STc '.$o,'Motivo Cierre','motivo_cierre',null,null,true,false,'','col-8');
+	$c[]=new cmp('motivo_cierre','s',150,$d['motivo_cierre'],$w.' cAN STc '.$o,'Motivo Cierre','motivo_cierre',null,null,true,false,'','col-8');
 	$c[]=new cmp('asignado','s',3,$d['asignado'],$w.' STc AsG '.$o,'Asignado A','asignado',null,null,true,false,'','col-35');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
@@ -208,6 +208,10 @@ $params = array(
 );
 $rta = mysql_prepd($sql, $params);
 return $rta;
+}
+
+function opc_motivo_cierre($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_estado_cierre($id=''){

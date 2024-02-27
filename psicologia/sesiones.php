@@ -88,7 +88,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-4');
-	$c[]=new cmp('cod_admin4','s','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
+	$c[]=new cmp('cod_admin4','s','12',$j,$w.' cA4 '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'RESULTADO  EVALUACION DURANTE EP+',$w);
@@ -110,7 +110,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('psi_validacion14','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 1','psi_validacion14',null,null,true,true,'','col-10');
 	$c[]=new cmp('psi_validacion15','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 2','psi_validacion15',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion16','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 3','psi_validacion16',null,null,false,true,'','col-10');
-	$c[]=new cmp('psi_validacion17','s','3',$j,$w.' '.$o,'Se mantiene el caso abierto','psi_validacion17',null,null,true,true,'','col-10');
+	$c[]=new cmp('psi_validacion17','s','3',$j,$w.' '.$o,'Se mantiene el caso abierto','psi_validacion17',null,null,true,true,'','col-10',"enabDepeValu('psi_validacion17','cA4',['4','5'],false);");
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

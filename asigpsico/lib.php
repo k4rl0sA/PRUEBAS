@@ -211,7 +211,7 @@ return $rta;
 }
 
 function opc_motivo_cierre($id=''){
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=223 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_estado_cierre($id=''){

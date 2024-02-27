@@ -151,9 +151,8 @@ function formato_dato($a,$b,$c,$d){
 		$info_sesion2 = datos_mysql($sql_sesion2);
 
 		if (isset($info_sesion2['responseResult'][0]) && $info['responseResult'][0]['dias']>$dateMax){
-			$rta.="<li class='icono familia' title='Sesión 3, 4, 5, 6' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesiones_psi','pro',event,'','sesiones.php',7);\"></li>";//setTimeout(hidPlan,500,'psi_validacion10','duda_com',false);setTimeout(hidFieOpt,500,'psi_validacion7','sem_hide');
+			$rta.="<li class='icono familia' title='Sesión 3, 4, 5, 6' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesiones_psi','pro',event,'','sesiones.php',7);setTimeout(hidPlan,500,'psi_validacion10','duda_com',false);setTimeout(hidFieOpt,500,'psi_validacion7','sem_hide',false);\"></li>";
 		}
-
 		$sql_sesiones = "SELECT psi_tipo_doc, psi_documento, COUNT(*) AS total
 		FROM `psi_sesiones` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}' AND psi_sesion IN (1, 2, 3, 4)";
 		$info_sesion2 = datos_mysql($sql_sesiones);

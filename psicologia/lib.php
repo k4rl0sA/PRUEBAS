@@ -135,7 +135,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='psicologia' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 			$rta.="<li class='icono admsi1' title='Crear Admisión' id='".$c['N° Documento']."_".$c['Tipo Documento']."' Onclick=\"mostrar('admision','pro',event,'','../atencion/admision.php',7,'admision');Color('datos-lis');\"></li>";
-			$rta.="<li class='icono mapa' title='Sesión 1' id='".$c['ACCIONES']."' Onclick=\"mostrar('psicologia','pro',event,'','lib.php',7);setTimeout(hidFieOpt,500,'psi_validacion1','ter_hide',false);setTimeout(hidOpt,500,'psi_validacion13','plan_hide','plan_show',false);\"></li>";
+			$rta.="<li class='icono mapa' title='Sesión 1' id='".$c['ACCIONES']."' Onclick=\"mostrar('psicologia','pro',event,'','lib.php',7);setTimeout(hidFieOpt,700,'psi_validacion1','ter_hide',false);setTimeout(hidOpt,700,'psi_validacion13','plan_hide','plan_show',false);\"></li>";
 		$id = divide($c['ACCIONES']);
 
 		$sql = "SELECT psi_tipo_doc, psi_documento, DATEDIFF(NOW(), fecha_ses1) AS dias

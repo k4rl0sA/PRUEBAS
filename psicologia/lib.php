@@ -155,7 +155,7 @@ function formato_dato($a,$b,$c,$d){
 		}
 		$sql_sesiones = "SELECT psi_tipo_doc, psi_documento, COUNT(*) AS total
 		FROM `psi_sesiones` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}' AND psi_sesion IN (1, 2, 3, 4)";
-		$info_sesion2 = datos_mysql($sql_sesiones)
+		$info_sesion2 = datos_mysql($sql_sesiones);
 
 		$sql_sesiones_fin = "SELECT psi_tipo_doc, psi_documento
 		FROM `psi_sesiones` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}' AND psi_validacion17 = '5'";

@@ -106,7 +106,7 @@ function cmp_sesiones_psi() {
 
 	$c[]=new cmp('difhacer','s','3',$j,$w.' '.$o,'3,1. ¿Cuán difícil le ha resultado hacer esto durante la última semana?','psi_validacion9',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion6','s','3',$j,$w.' '.$o,'4. ¿Cómo se ha sentido la última semana?','psi_validacion6',null,null,$ed,$ed,'','col-10');
-	$c[]=new cmp('psi_validacion7','o','2',$j,$w.' '.$o,'5. Durante la última semana, ¿ha tenido usted pensamientos o un plan para terminar con su vida?','psi_validacion7',null,null,$ed,$ed,'','col-10','hidFieOpt(\'psi_validacion7\',\'sem_hide\');');
+	$c[]=new cmp('psi_validacion7','o','2',$j,$w.' '.$o,'5. Durante la última semana, ¿ha tenido usted pensamientos o un plan para terminar con su vida?','psi_validacion7',null,null,$ed,$ed,'','col-10');//,'hidFieOpt(\'psi_validacion7\',\'sem_hide\');'
 	$c[]=new cmp('psi_validacion8','a','1500',$j,$w.' sem_hide '.$o,'5,1. Describa sus pensamientos o planes','psi_validacion8',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion9','a','1500',$j,$w.' sem_hide '.$o,'6. ¿Qué acciones usted ha efectuado para tratar de terminar con su vida?','psi_validacion9',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion10','s','3',$j,$w.' '.$o,'7. ¿Tiene un plan para terminar con su vida dentro de las próximas dos semanas?','en_duda',null,null,$ed,$ed,'','col-10'); //'hidPlan(\'psi_validacion10\',\'duda_com\');   ,"hidFieOpt('psi_validacion10','DudC',false);"

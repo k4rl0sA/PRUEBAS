@@ -74,27 +74,21 @@ function cmp_sesiones_psi() {
 	$o='infgen';
 	$rta .="<div class='encabezado'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='sesiones-lis'>".lis_sesiones()."</div></div>";
-	/* $t=['psi_fecha_sesion'=>''];
-	$d=get_sesiones();
-	if ($d=="") {$d=$t;} */
-	$u=($d['psi_tipo_doc']=='')?true:false;
+
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);
-
-	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
+	$sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad FROM personas WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
-		$ids=divide($d['id_psi'];
-		$ed = ($edad < 18) ? false : ($ids[2]) == '' ? true : false);
-		 //$ed = ($edad<18) ? false :true;
+		$ed = ($edad<18) ? false :true;
 	/* $data=datos_mysql("SELECT CASE WHEN COUNT(*) = 0 THEN +3 ELSE +1 END total FROM psi_sesiones WHERE psi_tipo_doc='{$key[0]}' and psi_documento='{$key[1]}';");
 	$nse=$data['responseResult'][0]['total']; */
 		// $blo = ($ed) ? '' : 'bloqueo' ;
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-4');
-	$c[]=new cmp('cod_admin4','n','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,$ed,'','col-3');
+	$c[]=new cmp('cod_admin4','n','12',$j,$w.' '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'RESULTADO  EVALUACION DURANTE EP+',$w);
@@ -106,11 +100,11 @@ function cmp_sesiones_psi() {
 
 	$c[]=new cmp('difhacer','s','3',$j,$w.' '.$o,'3,1. ¿Cuán difícil le ha resultado hacer esto durante la última semana?','psi_validacion9',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion6','s','3',$j,$w.' '.$o,'4. ¿Cómo se ha sentido la última semana?','psi_validacion6',null,null,$ed,$ed,'','col-10');
-	$c[]=new cmp('psi_validacion7','o','2',$j,$w.' '.$o,'5. Durante la última semana, ¿ha tenido usted pensamientos o un plan para terminar con su vida?','psi_validacion7',null,null,$ed,$ed,'','col-10');//,'hidFieOpt(\'psi_validacion7\',\'sem_hide\');'
+	$c[]=new cmp('psi_validacion7','o','2',$j,$w.' '.$o,'5. Durante la última semana, ¿ha tenido usted pensamientos o un plan para terminar con su vida?','psi_validacion7',null,null,$ed,$ed,'','col-10','hidFieOpt(\'psi_validacion7\',\'sem_hide\');');
 	$c[]=new cmp('psi_validacion8','a','1500',$j,$w.' sem_hide '.$o,'5,1. Describa sus pensamientos o planes','psi_validacion8',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion9','a','1500',$j,$w.' sem_hide '.$o,'6. ¿Qué acciones usted ha efectuado para tratar de terminar con su vida?','psi_validacion9',null,null,$ed,$ed,'','col-10');
-	$c[]=new cmp('psi_validacion10','s','3',$j,$w.' '.$o,'7. ¿Tiene un plan para terminar con su vida dentro de las próximas dos semanas?','en_duda',null,null,$ed,$ed,'','col-10'); //'hidPlan(\'psi_validacion10\',\'duda_com\');   ,"hidFieOpt('psi_validacion10','DudC',false);"
-	$c[]=new cmp('psi_validacion11','a','1500',$j,$w.' DudC '.$o,'7,1. Describa su plan','psi_validacion11',null,null,$ed,true,'','col-10');
+	$c[]=new cmp('psi_validacion10','s','3',$j,$w.' '.$o,'7. ¿Tiene un plan para terminar con su vida dentro de las próximas dos semanas?','en_duda',null,null,$ed,$ed,'','col-10','hidPlan(\'psi_validacion10\',\'duda_com\');');
+	$c[]=new cmp('psi_validacion11','a','1500',$j,$w.' duda_com '.$o,'7,1. Describa su plan','psi_validacion11',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion12','a','1500',$j,$w.' '.$o,'8. Ahora que usted está participando en esta intervención, tal vez ha descubierto que otros problemas se han vuelto importantes. Si es así, mencione el que más le preocupa, o dígame si ningún otro problema se ha vuelto importante.','psi_validacion12',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion13','s','3',$j,$w.' '.$o,'8,1. ¿Cuánto le han afectado estos otros problemas durante la última semana?','psi_validacion13',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion14','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 1','psi_validacion14',null,null,true,true,'','col-10');
@@ -120,19 +114,6 @@ function cmp_sesiones_psi() {
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
-}
-
-function get_sesiones(){
-	if($_POST['id']=='0'){
-		return "";
-	}else{
-		$id=divide($_POST['id']);
-		$sql="SELECT psi_fecha_sesion
-		FROM `psi_sesiones` WHERE idsesipsi='{$id[0]}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
-	} 
 }
 
 function get_sesiones_psi(){

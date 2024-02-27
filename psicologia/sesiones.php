@@ -245,7 +245,7 @@ function gra_sesiones_psi(){
 }
 
 
-function opc_psi_sesioncod_admin4(){
+/* function opc_psi_sesioncod_admin4(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		var_dump($id);
@@ -253,12 +253,12 @@ function opc_psi_sesioncod_admin4(){
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 
-}
+} */
 
 function opc_cod_admin4($id='') {
 	var_dump($_REQUEST['id']);
 	$cod=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=9 AND final_consul=17 ORDER BY 1", $id);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=9 AND final_consul IN(17,18,19,20,21,22,23,24) ORDER BY 1", $id);
 }
 function opc_psi_validacion9($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);

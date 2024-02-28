@@ -69,15 +69,15 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_gestusu(){
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['gestion'=>'','perfil'=>'','documento'=>'','nombre'=>'','correo'=>'','bina'=>'','territorio'=>''];
+	$t=['gestion'=>'','perfil'=>'','usuario'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
 	$w='adm_usuarios';
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2',"enabLoca('gestion','GsT');enClSe('gestion','GsT',[['Rpw'],['Rpw'],['cUS'],['cRL']]);");
-	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enabDepeValu('perfil','TEr',['2','6','7'],false);enabDepeValu('perfil','bIN',['4'],false);");//enabDepeValu('perfil','bIN',['4']);
-	$c[]=new cmp('documento','n',20,$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-15');
+	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2');
+	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1');
+	$c[]=new cmp('usuario','n',20,$d['usuario'],$w.' '.$o,'Usuario','usuario',null,'',false,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -154,7 +154,10 @@ function opc_perfil($id=''){
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_usuario($id=''){
+	var_dump($_REQUEST);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
+}
 
 
 

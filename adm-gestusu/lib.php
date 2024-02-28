@@ -20,25 +20,25 @@ else {
 
 
 
-function lis_gestusu(){
+function lis_gestuser(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
-	WHERE 1 ".whe_gestusu());
+	WHERE 1 ".whe_gestuser());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
-	$pag=(isset($_POST['pag-gestusu']))? ($_POST['pag-gestusu']-1)* $regxPag:0; 
+	$pag=(isset($_POST['pag-gestuser']))? ($_POST['pag-gestuser']-1)* $regxPag:0; 
 
 	$sql="SELECT *
 	FROM adm_usunew 
 	 WHERE 1  ";
-	$sql.=whe_gestusu();
+	$sql.=whe_gestuser();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"gestusu",$regxPag);
+	return create_table($total,$datos["responseResult"],"gestuser",$regxPag);
 } 
 
-function whe_gestusu() {
+function whe_gestuser() {
 	$sql = "";
 	if ($_POST['festado'] && $_POST['festado']=='NULL' )
 		$sql .= " AND estado  IS NULL ";
@@ -46,19 +46,19 @@ function whe_gestusu() {
 }
 
 
-function focus_gestusu(){
- return 'gestusu';
+function focus_gestuser(){
+ return 'gestuser';
 }
 
-function men_gestusu(){
- $rta=cap_menus('gestusu','pro');
+function men_gestuser(){
+ $rta=cap_menus('gestuser','pro');
  return $rta;
 } 
 
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='gestusu'){  
+  if ($a=='gestuser'){  
 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
   	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
   }
@@ -66,7 +66,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-function cmp_gestusu(){
+function cmp_gestuser(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['gestion'=>'','perfil'=>'','usuario'=>''];
@@ -77,12 +77,12 @@ function cmp_gestusu(){
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2');
 	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1');
-	$c[]=new cmp('usuario','n',20,$d['usuario'],$w.' '.$o,'Usuario','usuario',null,'',false,true,'','col-15');
+	$c[]=new cmp('usuario','s',20,$d['usuario'],$w.' '.$o,'Usuario','usuario',null,'',false,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
 
-function get_gestusu(){
+function get_gestuser(){
 	/* if($_POST['idgeo']=='0'){
 		return "";
 	}else{
@@ -96,7 +96,7 @@ function get_gestusu(){
 	}  */
 }
 
-function gra_gestusu(){
+function gra_gestuser(){
   $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
@@ -168,9 +168,9 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='gestusu' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='gestuser' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('gestusu','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('gestuser','pro',event,'','lib.php',7);\"></li>";
 	}
 	
  return $rta;

@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='gestusu';	
+var mod='gestuser';	
 var ruta_app='lib.php';
 
 
@@ -38,7 +38,7 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='gestusu';
+$mod='gestuser';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 $estados=array('A'=>'Activo','I'=>'Inactivo');
@@ -69,7 +69,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('gestusu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
+    <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('gestuser','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

@@ -157,7 +157,7 @@ function opc_gestion($id=''){
 function opc_usuario($id=''){
 	var_dump($_REQUEST);
 	var_dump($_GET);
-	var_dump($_poST);
+	var_dump($_POST);
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 

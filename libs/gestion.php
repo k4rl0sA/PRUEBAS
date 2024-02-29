@@ -284,8 +284,9 @@ function mysql_prepd($sql, $params) {
           $types = '';
           $values = array();
           foreach ($params as $param) {
-              $types .= $param['type'];
-              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : $param['value'];
+              $types .= $param['type']==='z'? 's' :$param['type'];
+              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : 
+              $param['type'] === 'z' ? trim($param['value']) :$param['value'];
           }
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);

@@ -83,20 +83,24 @@ function cmp_gestuser(){
 }
 
 function get_gestuser(){
-	/* if($_POST['idgeo']=='0'){
-		return "";
-	}else{
-		$id=divide($_POST['idgeo']);
-		$sql="SELECT estrategia,subred,zona,localidad,upz,barrio,territorio,microterritorio,sector_catastral,direccion,direccion_nueva,nummanzana,predio_num,unidad_habit,vereda,vereda_nueva,
-		cordx,cordy,estrato,asignado,estado_v,motivo_estado 
-		FROM `hog_geo` WHERE  estrategia='{$id[0]}' AND sector_catastral='{$id[1]}' AND nummanzana='{$id[2]}' AND predio_num='{$id[3]}' AND unidad_habit='{$id[4]}' AND estado_v='{$id[5]}'";
-
-		$info=datos_mysql($sql);
-		return $info['responseResult'][0];
-	}  */
 }
 
 function gra_gestuser(){
+switch ($_POST['gestion']) {
+	case '1':
+		$sql = "update usuarios SET clave=? WHERE id_usuario=?";
+		$params = [['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
+			['type' => 'i', 'value' => $_POST['usuario']]];
+			$rta1 = mysql_prepd($sql, $params);
+		break;
+	case '2':
+		$sql = "update usuarios SET estado= (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		break;
+	default:
+		# code...
+		break;
+}
+
   $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);

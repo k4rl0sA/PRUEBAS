@@ -145,8 +145,8 @@ function gra_gestuser(){
 
 function opc_perfilusuario($id=''){
 	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$sql="SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+		perfil in(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A'";
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 

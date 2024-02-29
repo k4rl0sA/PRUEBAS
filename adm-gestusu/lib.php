@@ -76,7 +76,7 @@ function cmp_gestuser(){
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2');
-	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1');//,"enabDepeValu('perfil','uSR');
+	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"changeSelect('perfil','usuario');");//  ,"enabDepeValu('perfil','uSR');
 	$c[]=new cmp('usuario','s',20,$d['usuario'],$w.' uSR '.$o,'Usuario','usuario',null,'',false,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -143,6 +143,14 @@ function gra_gestuser(){
 	return $rta;
 }
 
+function opc_perfilupz(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
 
 function opc_perfil($id=''){
 	$com=datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");

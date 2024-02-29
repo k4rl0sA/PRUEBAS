@@ -101,7 +101,7 @@ switch ($_POST['gestion']) {
 		break;
 }
 
-  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  /* $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
@@ -137,7 +137,7 @@ switch ($_POST['gestion']) {
 		['type' => 's', 'value' => $equ],
 		['type' => 's', 'value' => $usu[4]],
 		['type' => 's', 'value' => 'P']];
-		$rta2 = mysql_prepd($sql1, $params1);
+		$rta2 = mysql_prepd($sql1, $params1); */
 
 	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
 		$rta = "Se ha Insertado: 1 Registro Correctamente.";

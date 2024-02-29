@@ -76,7 +76,7 @@ function cmp_gestuser(){
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-2');
-	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enabDepeInner('perfil','uSR',);";);
+	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enabDepeValu('perfil','uSR',);";);
 	$c[]=new cmp('usuario','s',20,$d['usuario'],$w.' uSR '.$o,'Usuario','usuario',null,'',false,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -155,7 +155,9 @@ function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 function opc_usuario($id=''){
-	// var_dump($_REQUEST);
+	var_dump($_REQUEST);
+	var_dump($_GET);
+	var_dump($_poST);
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 

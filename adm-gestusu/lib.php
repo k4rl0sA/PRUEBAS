@@ -147,6 +147,7 @@ function opc_perfilusuario($id=''){
 	if($_REQUEST['id']!=''){
 		$sql="SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
 		perfil in(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A'";
+		var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 

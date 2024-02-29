@@ -143,7 +143,7 @@ function gra_gestuser(){
 	return $rta;
 }
 
-function opc_perfilupz(){
+function opc_perfilusuario($id=''){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
@@ -163,9 +163,6 @@ function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 function opc_usuario($id=''){
-	var_dump($_REQUEST);
-	var_dump($_GET);
-	var_dump($_POST);
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 

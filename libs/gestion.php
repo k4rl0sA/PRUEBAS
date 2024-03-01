@@ -283,11 +283,10 @@ function mysql_prepd($sql, $params) {
       if ($stmt) {
           $types = '';
           $values = array();
-          foreach ($params as $param) {
-              $types .= $param['type']==='z'? 's' :$param['type'];
-              $values[] = $param['type'] === 's' ? trim(strtoupper($param['value'])) : 
-              $param['type'] === 'z' ? trim($param['value']) :$param['value'];
-          }
+        foreach ($params as $param) {
+          $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
+          $values[] = ($param['type'] === 's') ? trim(strtoupper($param['value'])) : (($param['type'] === 'z') ? trim($param['value']) : $param['value']);
+        }        
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);
           if (strpos($sqlType, 'DELETE') !== false) {

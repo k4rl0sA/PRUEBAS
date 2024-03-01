@@ -91,7 +91,7 @@ switch ($_POST['gestion']) {
 		$sql = "update usuarios SET clave=? WHERE id_usuario=?";
 		$params = [['type' => 'z', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
 			['type' => 'i', 'value' => $_POST['usuario']]];
-			$rta1 = mysql_prepd($sql, $params);
+			$rta = mysql_prepd($sql, $params);
 		break;
 	case '2':
 		$sql = "update usuarios SET estado= (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -138,12 +138,6 @@ switch ($_POST['gestion']) {
 		['type' => 's', 'value' => $usu[4]],
 		['type' => 's', 'value' => 'P']];
 		$rta2 = mysql_prepd($sql1, $params1); */
-
-	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
-		$rta = "Se ha Insertado: 1 Registro Correctamente.";
-	} else {
-		$rta = "Error: msj['No se puede crear la solicitud, el usuario ya se ha creado anteriormente']";
-	}
 	return $rta;
 }
 

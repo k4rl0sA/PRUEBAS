@@ -661,10 +661,9 @@ function gra_person(){
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		$rta1=dato_mysql($sql1); */
-		// $sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		$sql = "INSERT INTO personas_1 VALUES (?,?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		$params = [
-			/* ['type' => 'i', 'value' => NULL],
+			['type' => 'i', 'value' => NULL],
 			['type' => 'i', 'value' => $_POST['encuentra']],
 			['type' => 's', 'value' => $_POST['idpersona']],
 			['type' => 'i', 'value' => $id[0]],
@@ -710,18 +709,7 @@ function gra_person(){
 			['type' => 's', 'value' => date("Y-m-d H:i:s")],
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => NULL],
-			['type' => 's', 'value' => 'A'] */
-
-			['type' => 's', 'value' => NULL],
-			['type' => 's', 'value' => $_POST['encuentra']],
-			['type' => 's', 'value' => $_POST['idpersona']],
-			['type' => 's', 'value' => $id[0]],
-			['type' => 's', 'value' => $_POST['tipo_doc']],
-			['type' => 'i', 'value' => $_SESSION['us_sds']],
-			['type' => 's', 'value' => date("Y-m-d H:i:s")],
-			['type' => 's', 'value' => NULL],
-			['type' => 's', 'value' => ''],
-			['type' => 's', 'value' => 'A']
+			['type' => 's', 'value' => 'A'] 
 		];
 			
 

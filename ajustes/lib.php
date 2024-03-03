@@ -166,7 +166,7 @@ function gra_ajustar(){
 		$fecha_new = cleanTxt($_POST['fecha_new']);
 		$sexo_new = cleanTxt($_POST['sexo_new']);
 
-		//var_dump($info['responseResult']);
+		var_dump($info['responseResult']);
 		$doc_old=$info['responseResult'][0]['documento_old'];
 		$tipodoc_old=$info['responseResult'][0]['tipodoc_old'];
 		$fecha_old=$info['responseResult'][0]['fecha_old'];

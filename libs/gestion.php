@@ -115,7 +115,7 @@ function cleanTx($val) {
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-  $val = preg_replace('/[\'"\\´*><;{}[\]\/|\\\\x00-\\\\x1F\\\\x7F]|[\n\r\t\x00]/', '', $val);
+  $val = preg_replace('/[\'"\\´*><;{}[\]\/|\\\\\\\x1F\\\\x7F]|[\n\r\t]/', '', $val);
   // $val = preg_replace('/[\'"\\´*><;{}[\]\/|\\\\x00-\\x1F\\x7F]|[\n\r\t\x00]/', '', $val);
     return $val;
 }
@@ -184,7 +184,7 @@ function mysql_prepd($sql, $params) {
           $values = array();
         foreach ($params as $param) {
           $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
-          $values[] = ($param['type'] === 's') ? cleanTxt(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTxt($param['value']) : cleanTxt($param['value']));
+          $values[] = ($param['type'] === 's') ? cleanTx(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
         }        
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);

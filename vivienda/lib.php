@@ -600,102 +600,133 @@ function gra_person(){
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
 	if(count($id)!=7){
-		$sql="UPDATE `personas` SET 
-		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),
-		`tipo_doc`=TRIM(UPPER('{$_POST['tipo_doc']}')),
-		`nombre1`=TRIM(UPPER('{$_POST['nombre1']}')),
-		`nombre2`=TRIM(UPPER('{$_POST['nombre2']}')),
-		`apellido1`=TRIM(UPPER('{$_POST['apellido1']}')),
-		`apellido2`=TRIM(UPPER('{$_POST['apellido2']}')),
-		`fecha_nacimiento`=TRIM(UPPER('{$_POST['fecha_nacimiento']}')),
-		`sexo`=TRIM(UPPER('{$_POST['sexo']}')),
-		`genero`=TRIM(UPPER('{$_POST['genero']}')),
-		`oriensexual`=TRIM(UPPER('{$_POST['oriensexual']}')),
-		`nacionalidad`=TRIM(UPPER('{$_POST['nacionalidad']}')),
-		`estado_civil`=TRIM(UPPER('{$_POST['estado_civil']}')),
-		niveduca=TRIM(UPPER('{$_POST['niveduca']}')),
-		abanesc=TRIM(UPPER('{$_POST['abanesc']}')),
-		ocupacion=TRIM(UPPER('{$_POST['ocupacion']}')),
-		tiemdesem=TRIM(UPPER('{$_POST['tiemdesem']}')),
-		`vinculo_jefe`=TRIM(UPPER('{$_POST['vinculo_jefe']}')),
-		`etnia`=TRIM(UPPER('{$_POST['etnia']}')),
-		`pueblo`=TRIM(UPPER('{$_POST['pueblo']}')),
-		`idioma`=TRIM(UPPER('{$_POST['idioma']}')),
-		`discapacidad`=TRIM(UPPER('{$_POST['discapacidad']}')),
-		`regimen`=TRIM(UPPER('{$_POST['regimen']}')),
-		`eapb`=TRIM(UPPER('{$_POST['eapb']}')),
-		`afiliaoficio`=TRIM(UPPER('{$_POST['afiliacion']}')),
-		`sisben`=TRIM(UPPER('{$_POST['sisben']}')),
-		`catgosisb`=TRIM(UPPER('{$_POST['catgosisb']}')),
-		`pobladifer`=TRIM(UPPER('{$_POST['pobladifer']}')),
-		`incluofici`=TRIM(UPPER('{$_POST['incluofici']}')),
-		`cuidador`=TRIM(UPPER('{$_POST['cuidador']}')),
-		`perscuidada`=TRIM(UPPER('{$_POST['perscuidada']}')),
-		`tiempo_cuidador`=TRIM(UPPER('{$_POST['tiempo_cuidador']}')),
-		`cuidador_unidad`=TRIM(UPPER('{$_POST['cuidador_unidad']}')),
-		`vinculo`=TRIM(UPPER('{$_POST['vinculo_cuida']}')),
-		`tiempo_descanso`=TRIM(UPPER('{$_POST['tiempo_descanso']}')),
-		`descanso_unidad`=TRIM(UPPER('{$_POST['descanso_unidad']}')),
-		`reside_localidad`=TRIM(UPPER('{$_POST['reside_localidad']}')),
-		`localidad_vive`=TRIM(UPPER('{$_POST['localidad_vive']}')),
-		`transporta`=TRIM(UPPER('{$_POST['transporta']}')),
-		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE idpersona =TRIM(UPPER('{$id[0]}')) AND tipo_doc=TRIM(UPPER('{$id[1]}'))";
+		$sql = "UPDATE personas SET  encuentra=?,tipo_doc=?,nombre1=?,nombre2=?,
+		apellido1=?,apellido2=?,fecha_nacimiento=?,sexo=?,genero=?,oriensexual=?,nacionalidad=?,estado_civil=?,niveduca=?,
+		abanesc=?,ocupacion=?,tiemdesem=?,vinculo_jefe=?,etnia=?,pueblo=?,idioma=?,discapacidad=?,regimen=?,eapb=?,afiliaoficio=?,
+		sisben=?,catgosisb=?,pobladifer=?,incluofici=?,cuidador=?,perscuidada=?,tiempo_cuidador=?,cuidador_unidad=?,vinculo=?,
+		tiempo_descanso=?,descanso_unidad=?,reside_localidad=?,localidad_vive=?,transporta=?,usu_update=?,
+		fecha_update=? WHERE idpersona =? AND tipo_doc=?";
+		$params = [
+			['type' => 'i', 'value' => $_POST['encuentra']],
+			['type' => 's', 'value' => $_POST['tipo_doc']],
+			['type' => 's', 'value' => $_POST['nombre1']],
+			['type' => 's', 'value' => $_POST['nombre2']],
+			['type' => 's', 'value' => $_POST['apellido1']],
+			['type' => 's', 'value' => $_POST['apellido2']],
+			['type' => 's', 'value' => $_POST['fecha_nacimiento']],
+			['type' => 's', 'value' => $_POST['sexo']],
+			['type' => 'i', 'value' => $_POST['genero']],
+			['type' => 'i', 'value' => $_POST['oriensexual']],
+			['type' => 's', 'value' => $_POST['nacionalidad']],
+			['type' => 'i', 'value' => $_POST['estado_civil']],
+			['type' => 'i', 'value' => $_POST['niveduca']],
+			['type' => 'i', 'value' => $_POST['abanesc']],
+			['type' => 'i', 'value' => $_POST['ocupacion']],
+			['type' => 'i', 'value' => $_POST['tiemdesem']],
+			['type' => 'i', 'value' => $_POST['vinculo_jefe']],
+			['type' => 'i', 'value' => $_POST['etnia']],
+			['type' => 'i', 'value' => $_POST['pueblo']],
+			['type' => 's', 'value' => $_POST['idioma']],
+			['type' => 'i', 'value' => $_POST['discapacidad']],
+			['type' => 'i', 'value' => $_POST['regimen']],
+			['type' => 'i', 'value' => $_POST['eapb']],
+			['type' => 's', 'value' => $_POST['afiliacion']],
+			['type' => 'i', 'value' => $_POST['sisben']],
+			['type' => 'i', 'value' => $_POST['catgosisb']],
+			['type' => 'i', 'value' => $_POST['pobladifer']],
+			['type' => 'i', 'value' => $_POST['incluofici']],
+			['type' => 's', 'value' => $_POST['cuidador']],
+			['type' => 's', 'value' => $_POST['perscuidada']],
+			['type' => 'i', 'value' => $_POST['tiempo_cuidador']],
+			['type' => 'i', 'value' => $_POST['cuidador_unidad']],
+			['type' => 'i', 'value' => $_POST['vinculo_cuida']],
+			['type' => 'i', 'value' => $_POST['tiempo_descanso']],
+			['type' => 'i', 'value' => $_POST['descanso_unidad']],
+			['type' => 's', 'value' => $_POST['reside_localidad']],
+			['type' => 'i', 'value' => $_POST['localidad_vive']],
+			['type' => 'i', 'value' => $_POST['transporta']],
+
+			['type' => 'i', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => date("Y-m-d H:i:s")],
+			
+			['type' => 's', 'value' => $id[0]],
+			['type' => 's', 'value' => $id[1]]
+		];
+			
+		
+		
+		
+		
 		//    echo $sql;
 		//    echo $sql."    ".$rta;
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		$rta1=dato_mysql($sql1); */
+		$sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-		$sql="INSERT INTO personas VALUES (NULL,
-		TRIM(UPPER('{$_POST['encuentra']}')),
-		TRIM(UPPER('{$_POST['idpersona']}')),$id[0],
-		TRIM(UPPER('{$_POST['tipo_doc']}')),
-		TRIM(UPPER('{$_POST['nombre1']}')),
-		TRIM(UPPER('{$_POST['nombre2']}')),
-		TRIM(UPPER('{$_POST['apellido1']}')),
-		TRIM(UPPER('{$_POST['apellido2']}')),
-		TRIM(UPPER('{$_POST['fecha_nacimiento']}')),
-		TRIM(UPPER('{$_POST['sexo']}')),
-		TRIM(UPPER('{$_POST['genero']}')),
-		TRIM(UPPER('{$_POST['oriensexual']}')),
-		TRIM(UPPER('{$_POST['nacionalidad']}')),
-		TRIM(UPPER('{$_POST['estado_civil']}')),
+		$params = [
+			['type' => 'i', 'value' => NULL],
+			['type' => 'i', 'value' => $_POST['encuentra']],
+			['type' => 's', 'value' => $_POST['idpersona']],
+			['type' => 'i', 'value' => $id[0]],
+			['type' => 's', 'value' => $_POST['tipo_doc']],
+			['type' => 's', 'value' => $_POST['nombre1']],
+			['type' => 's', 'value' => $_POST['nombre2']],
+			['type' => 's', 'value' => $_POST['apellido1']],
+			['type' => 's', 'value' => $_POST['apellido2']],
+			['type' => 's', 'value' => $_POST['fecha_nacimiento']],
+			['type' => 's', 'value' => $_POST['sexo']],
+			['type' => 'i', 'value' => $_POST['genero']],
+			['type' => 'i', 'value' => $_POST['oriensexual']],
+			['type' => 's', 'value' => $_POST['nacionalidad']],
+			['type' => 'i', 'value' => $_POST['estado_civil']],
+			['type' => 'i', 'value' => $_POST['niveduca']],
+			['type' => 'i', 'value' => $_POST['abanesc']],
+			['type' => 'i', 'value' => $_POST['ocupacion']],
+			['type' => 'i', 'value' => $_POST['tiemdesem']],
+			['type' => 'i', 'value' => $_POST['vinculo_jefe']],
+			['type' => 'i', 'value' => $_POST['etnia']],
+			['type' => 'i', 'value' => $_POST['pueblo']],
+			['type' => 's', 'value' => $_POST['idioma']],
+			['type' => 'i', 'value' => $_POST['discapacidad']],
+			['type' => 'i', 'value' => $_POST['regimen']],
+			['type' => 'i', 'value' => $_POST['eapb']],
+			['type' => 's', 'value' => $_POST['afiliacion']],
+			['type' => 'i', 'value' => $_POST['sisben']],
+			['type' => 'i', 'value' => $_POST['catgosisb']],
+			['type' => 'i', 'value' => $_POST['pobladifer']],
+			['type' => 'i', 'value' => $_POST['incluofici']],
+			['type' => 's', 'value' => $_POST['cuidador']],
+			['type' => 's', 'value' => $_POST['perscuidada']],
+			['type' => 'i', 'value' => $_POST['tiempo_cuidador']],
+			['type' => 'i', 'value' => $_POST['cuidador_unidad']],
+			['type' => 'i', 'value' => $_POST['vinculo_cuida']],
+			['type' => 'i', 'value' => $_POST['tiempo_descanso']],
+			['type' => 'i', 'value' => $_POST['descanso_unidad']],
+			['type' => 's', 'value' => $_POST['reside_localidad']],
+			['type' => 'i', 'value' => $_POST['localidad_vive']],
+			['type' => 'i', 'value' => $_POST['transporta']],
 
-		TRIM(UPPER('{$_POST['niveduca']}')),
-		TRIM(UPPER('{$_POST['abanesc']}')),
-		TRIM(UPPER('{$_POST['ocupacion']}')),
-		TRIM(UPPER('{$_POST['tiemdesem']}')),
+			['type' => 'i', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => date("Y-m-d H:i:s")],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => 'A']];
+			
 
-		TRIM(UPPER('{$_POST['vinculo_jefe']}')),
-		TRIM(UPPER('{$_POST['etnia']}')),
-		TRIM(UPPER('{$_POST['pueblo']}')),
-		TRIM(UPPER('{$_POST['idioma']}')),
-		TRIM(UPPER('{$_POST['discapacidad']}')),
-		TRIM(UPPER('{$_POST['regimen']}')),
-		TRIM(UPPER('{$_POST['eapb']}')),
-		TRIM(UPPER('{$_POST['afiliacion']}')),
-		TRIM(UPPER('{$_POST['sisben']}')),
-		TRIM(UPPER('{$_POST['catgosisb']}')),
-		TRIM(UPPER('{$_POST['pobladifer']}')),
-		TRIM(UPPER('{$_POST['incluofici']}')),
-		TRIM(UPPER('{$_POST['cuidador']}')),
-		TRIM(UPPER('{$_POST['perscuidada']}')),
-		TRIM(UPPER('{$_POST['tiempo_cuidador']}')),
-		TRIM(UPPER('{$_POST['cuidador_unidad']}')),
-		TRIM(UPPER('{$_POST['vinculo_cuida']}')),
-		TRIM(UPPER('{$_POST['tiempo_descanso']}')),
-		TRIM(UPPER('{$_POST['descanso_unidad']}')),
-		TRIM(UPPER('{$_POST['reside_localidad']}')),
-		TRIM(UPPER('{$_POST['localidad_vive']}')),
-		TRIM(UPPER('{$_POST['transporta']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 
+
+
+
+
+
+
+
+/* 
+		$sql="INSERT INTO personas VALUES (NULL,TRIM(UPPER('{$_POST['encuentra']}')),TRIM(UPPER('{$_POST['idpersona']}')),$id[0],TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['nombre1']}')),TRIM(UPPER('{$_POST['nombre2']}')),TRIM(UPPER('{$_POST['apellido1']}')),TRIM(UPPER('{$_POST['apellido2']}')),TRIM(UPPER('{$_POST['fecha_nacimiento']}')),TRIM(UPPER('{$_POST['sexo']}')),TRIM(UPPER('{$_POST['genero']}')),TRIM(UPPER('{$_POST['oriensexual']}')),TRIM(UPPER('{$_POST['nacionalidad']}')),TRIM(UPPER('{$_POST['estado_civil']}')),TRIM(UPPER('{$_POST['niveduca']}')),TRIM(UPPER('{$_POST['abanesc']}')),TRIM(UPPER('{$_POST['ocupacion']}')),TRIM(UPPER('{$_POST['tiemdesem']}')),TRIM(UPPER('{$_POST['vinculo_jefe']}')),TRIM(UPPER('{$_POST['etnia']}')),TRIM(UPPER('{$_POST['pueblo']}')),TRIM(UPPER('{$_POST['idioma']}')),TRIM(UPPER('{$_POST['discapacidad']}')),TRIM(UPPER('{$_POST['regimen']}')),TRIM(UPPER('{$_POST['eapb']}')),TRIM(UPPER('{$_POST['afiliacion']}')),TRIM(UPPER('{$_POST['sisben']}')),TRIM(UPPER('{$_POST['catgosisb']}')),TRIM(UPPER('{$_POST['pobladifer']}')),TRIM(UPPER('{$_POST['incluofici']}')),TRIM(UPPER('{$_POST['cuidador']}')),TRIM(UPPER('{$_POST['perscuidada']}')),TRIM(UPPER('{$_POST['tiempo_cuidador']}')),TRIM(UPPER('{$_POST['cuidador_unidad']}')),TRIM(UPPER('{$_POST['vinculo_cuida']}')),TRIM(UPPER('{$_POST['tiempo_descanso']}')),TRIM(UPPER('{$_POST['descanso_unidad']}')),TRIM(UPPER('{$_POST['reside_localidad']}')),TRIM(UPPER('{$_POST['localidad_vive']}')),TRIM(UPPER('{$_POST['transporta']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 */ 
 	//  envia_mail('prueba.riesgo@gmail.com','Prueba','hola Mundo');
 	}
 	// echo $sql;
-	  $rta=dato_mysql($sql);
+	$rta = mysql_prepd($sql, $params);
 	  return $rta;
 	//   return sendMail(['prueba.riesgo@gmail.com'],'Prueba','hola Mundo');
 	}

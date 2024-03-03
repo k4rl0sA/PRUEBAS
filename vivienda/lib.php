@@ -648,7 +648,6 @@ function gra_person(){
 
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
 			['type' => 's', 'value' => date("Y-m-d H:i:s")],
-			
 			['type' => 's', 'value' => $id[0]],
 			['type' => 's', 'value' => $id[1]]
 		];
@@ -665,7 +664,7 @@ function gra_person(){
 		$sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		$params = [
-			['type' => 'i', 'value' => NULL],
+			/* ['type' => 'i', 'value' => NULL],
 			['type' => 'i', 'value' => $_POST['encuentra']],
 			['type' => 's', 'value' => $_POST['idpersona']],
 			['type' => 'i', 'value' => $id[0]],
@@ -711,7 +710,8 @@ function gra_person(){
 			['type' => 's', 'value' => date("Y-m-d H:i:s")],
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => NULL],
-			['type' => 's', 'value' => 'A']];
+			['type' => 's', 'value' => 'A'] */
+		];
 			
 
 

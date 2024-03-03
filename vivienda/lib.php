@@ -720,7 +720,7 @@ function gra_person(){
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
 			['type' => 's', 'value' => date("Y-m-d H:i:s")],
 			['type' => 's', 'value' => NULL],
-			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => ''],
 			['type' => 's', 'value' => 'A']
 		];
 			

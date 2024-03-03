@@ -184,7 +184,7 @@ function mysql_prepd($sql, $params) {
           $values = array();
         foreach ($params as $param) {
           $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
-          $values[] = ($param['type'] === 's') ? cleanTx(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
+          $values[] = ($param['type'] === 's') ? cleanTxt(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTxt($param['value']) : cleanTxt($param['value']));
         }        
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);

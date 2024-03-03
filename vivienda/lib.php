@@ -661,8 +661,8 @@ function gra_person(){
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		$rta1=dato_mysql($sql1); */
-		$sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
+		// $sql = "INSERT INTO personas VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO personas1 VALUES (?,?,?,?,?,?,?,?,?)";
 		$params = [
 			/* ['type' => 'i', 'value' => NULL],
 			['type' => 'i', 'value' => $_POST['encuentra']],
@@ -716,44 +716,6 @@ function gra_person(){
 			['type' => 's', 'value' => $_POST['encuentra']],
 			['type' => 's', 'value' => $_POST['idpersona']],
 			['type' => 's', 'value' => $id[0]],
-			['type' => 's', 'value' => $_POST['tipo_doc']],
-			['type' => 's', 'value' => $_POST['nombre1']],
-			['type' => 's', 'value' => $_POST['nombre2']],
-			['type' => 's', 'value' => $_POST['apellido1']],
-			['type' => 's', 'value' => $_POST['apellido2']],
-			['type' => 's', 'value' => $_POST['fecha_nacimiento']],
-			['type' => 's', 'value' => $_POST['sexo']],
-			['type' => 's', 'value' => $_POST['genero']],
-			['type' => 's', 'value' => $_POST['oriensexual']],
-			['type' => 's', 'value' => $_POST['nacionalidad']],
-			['type' => 's', 'value' => $_POST['estado_civil']],
-			['type' => 's', 'value' => $_POST['niveduca']],
-			['type' => 's', 'value' => $_POST['abanesc']],
-			['type' => 's', 'value' => $_POST['ocupacion']],
-			['type' => 's', 'value' => $_POST['tiemdesem']],
-			['type' => 's', 'value' => $_POST['vinculo_jefe']],
-			['type' => 's', 'value' => $_POST['etnia']],
-			['type' => 's', 'value' => $_POST['pueblo']],
-			['type' => 's', 'value' => $_POST['idioma']],
-			['type' => 's', 'value' => $_POST['discapacidad']],
-			['type' => 's', 'value' => $_POST['regimen']],
-			['type' => 's', 'value' => $_POST['eapb']],
-			['type' => 's', 'value' => $_POST['afiliacion']],
-			['type' => 's', 'value' => $_POST['sisben']],
-			['type' => 's', 'value' => $_POST['catgosisb']],
-			['type' => 's', 'value' => $_POST['pobladifer']],
-			['type' => 's', 'value' => $_POST['incluofici']],
-			['type' => 's', 'value' => $_POST['cuidador']],
-			['type' => 's', 'value' => $_POST['perscuidada']],
-			['type' => 's', 'value' => $_POST['tiempo_cuidador']],
-			['type' => 's', 'value' => $_POST['cuidador_unidad']],
-			['type' => 's', 'value' => $_POST['vinculo_cuida']],
-			['type' => 's', 'value' => $_POST['tiempo_descanso']],
-			['type' => 's', 'value' => $_POST['descanso_unidad']],
-			['type' => 's', 'value' => $_POST['reside_localidad']],
-			['type' => 's', 'value' => $_POST['localidad_vive']],
-			['type' => 's', 'value' => $_POST['transporta']],
-
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
 			['type' => 's', 'value' => date("Y-m-d H:i:s")],
 			['type' => 's', 'value' => NULL],

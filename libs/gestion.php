@@ -115,7 +115,7 @@ function cleanTx($val) {
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-  $pattern = '/[;\|\/\*><\[\{\]\}\x00-\x1F\x7F]/';
+  $pattern = '/[;\|\/\*><\[\{\]\}\x1F\x7F]/';
   $val = preg_replace($pattern,'', $val);
   $val = str_replace(array("\n", "\r", "\t"),'', $val);
   return $val;

@@ -118,7 +118,6 @@ function cleanTx($val) {
   $pattern = '/[\'";\/\*><\[\{\]\}\x00-\x1F\x7F]/';
   $val = preg_replace($pattern, '', $val);
   $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
-
   return $val;
 }
 

@@ -99,6 +99,18 @@ function csv($a,$b,$tot= null){
   return ob_get_clean();
 }
 
+function cleanTxt($val) {
+  $val = trim($val);
+  $val = addslashes($val);
+  $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
+  $pattern = '/[\'";\x00-\x1F\x7F]/';
+  $replacement = '';
+  $val = preg_replace($pattern, $replacement, $val);
+  $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
+  $val=strtoupper($val);
+  return $val;
+}
+
 function cleanTx($val) {
   $val = trim($val);
   $val = addslashes($val);

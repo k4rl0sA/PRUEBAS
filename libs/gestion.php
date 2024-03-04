@@ -126,8 +126,7 @@ function fechas_app($modu){
     case 'vsp':
       $sql="SELECT valor FROM `catadeta` WHERE idcatalogo='224' and estado='A' and idcatadeta=1;";
       $info=datos_mysql($sql);
-      var_dump($info['responseResult'][0]['valor']);
-      $dias=$info['responseResult'][0];
+      var_dump($dias=$info['responseResult'][0]['valor']);
     break;
     case 'vivienda':
       $dias=-7;

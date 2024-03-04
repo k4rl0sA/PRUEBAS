@@ -121,6 +121,21 @@ function cleanTx($val) {
   return $val;
 }
 
+function fechas_app($modulo){
+  switch ($modulo) {
+    case 'vsp':
+      $dias=-7;
+    break;
+    case 'vivienda':
+      $dias=-7;
+    break;
+    default:
+      $dias=-7;
+      break;
+  }
+  return $dias;
+}
+
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];

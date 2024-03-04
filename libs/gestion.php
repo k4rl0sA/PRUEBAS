@@ -135,7 +135,7 @@ function fechas_app($modu){
       $dias=-7;
       break;
   }
-  return $dias;
+  return intval($dias);
 }
 
 

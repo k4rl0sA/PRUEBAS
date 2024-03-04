@@ -121,10 +121,12 @@ function cleanTx($val) {
   return $val;
 }
 
-function fechas_app($modulo){
-  switch ($modulo) {
+function fechas_app($modu){
+    switch ($modu) {
     case 'vsp':
-      $dias=-7;
+      $sql="SELECT valor FROM `catadeta` WHERE idcatalogo='224' and estado='A' and idcatadeta=1;";
+      $info=datos_mysql($sql);
+      $dias=json_encode($info['responseResult']);
     break;
     case 'vivienda':
       $dias=-7;

@@ -129,7 +129,9 @@ function fechas_app($modu){
       $dias=$info['responseResult'][0]['valor'];
     break;
     case 'vivienda':
-      $dias=-7;
+      $sql="SELECT valor FROM `catadeta` WHERE idcatalogo='224' and estado='A' and idcatadeta=2;";
+      $info=datos_mysql($sql);
+      $dias=$info['responseResult'][0]['valor'];
     break;
     default:
       $dias=-7;

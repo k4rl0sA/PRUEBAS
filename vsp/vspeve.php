@@ -89,7 +89,7 @@ function cmp_vspeve(){
  	$c[]=new cmp($o,'e',null,'EVENTOS VSP',$w);
  	$c[]=new cmp('docum_base','t',22,$e,$w.' '.$o,'Documento Base','docum_base',null,null,true,true,'','col-25');
   $c[]=new cmp('evento','s',3, $e,$w,'Evento','evento',null,null,true,true,'','col-2');
-  $c[]=new cmp('fecha_even','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-25','validDate(this,-3,0);');
+  $c[]=new cmp('fecha_even','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-25',"validDate(this,$days,0);");
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

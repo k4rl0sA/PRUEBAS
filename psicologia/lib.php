@@ -583,7 +583,7 @@ function cmp_sesion_fin() {
 	$c[]=new cmp($o,'e',null,'RESULTADO DE EVALUACION pre EP+',$w);
 	$c[]=new cmp('cod_admisfin','s',2,$j['cod_admisfin'],$w.' '.$o,'Codigo Admisión','cod_admisfin',null,null,true,true,'','col-4');
 	
-	$sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad
+	$sql="SELECT DATEDIFF(CURDATE(),fecha_nacimiento)/365.25 edad
 		FROM personas WHERE tipo_doc='{$d['psi_tipo_doc']}' AND idpersona='{$d['psi_documento']}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];

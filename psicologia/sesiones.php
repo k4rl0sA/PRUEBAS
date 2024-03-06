@@ -78,7 +78,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);
-	$sql="SELECT YEAR(CURDATE())-YEAR(fecha_nacimiento) edad FROM personas WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
+	$sql="SELECT datediff(CURDATE(),fecha_nacimiento)/365.25 edad FROM personas WHERE tipo_doc='{$key[0]}' AND idpersona='{$key[1]}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
 		$ed = ($edad<18) ? false :true;

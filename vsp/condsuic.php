@@ -384,7 +384,7 @@ function gra_condsuic(){
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat(id_condsuic,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
-      fecha_seg,numsegui,evento,estado_s,motivo_estado,tipo_caso,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,persis_morir,proce_eapb,otra_conduc,cual_conduc,conduc_otrofam,tam_cope,total_afron,total_evita,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,aplica_tamiz,liker_dificul,liker_emocion,liker_decision,cope_afronta,cope_evitacion,incremen_afron,incremen_evita,redu_riesgo_cierre
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,tipo_caso,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,persis_morir,proce_eapb,otra_conduc,cual_conduc,conduc_otrofam,tam_cope,total_afron,total_evita,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,aplica_tamiz,liker_dificul,liker_emocion,liker_decision,cope_afronta,cope_evitacion,incremen_afron,incremen_evita,redu_riesgo_cierre
       FROM vsp_condsuic
       WHERE id_condsuic ='{$id[0]}'";
       // echo $sql;

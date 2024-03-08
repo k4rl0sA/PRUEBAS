@@ -56,7 +56,7 @@ FUNCTION lis_planDCui(){
 function cmp_planDCui(){
 	$rta="";
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_accfam();
+	$d=get_planDCui();
 	if ($d==""){$d=$t;}
 	$u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
@@ -246,7 +246,7 @@ function cmp_planDCui(){
             return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
         } 
 
-        
+
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];

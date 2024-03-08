@@ -811,10 +811,10 @@ function gra_person(){
 
 	
 	
-	function cmp_placuifam(){
+	/* function cmp_placuifam(){
 	    $rta="";
-	/* $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>"; */
+	// $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
+	//<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>";
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d=get_accfam();
 	if ($d==""){$d=$t;}
@@ -848,7 +848,7 @@ function gra_person(){
 	<div class='contenido' id='planc-lis' >".lis_planc()."</div></div>";
 	// $rta.="<div class='contenido' id='plancon-lis' >".lis_planc()."</div></div>";
 	return $rta;
-	}
+	} */
 
 	function lis_planc(){
 		// print_r($_POST);
@@ -872,7 +872,7 @@ function gra_person(){
 			/* return panel_content($datos["responseResult"],"planc-lis",10); */
 	}
 	
-	function focus_placuifam(){
+/* 	function focus_placuifam(){
 		return 'placuifam';
 	}
 	   
@@ -880,7 +880,7 @@ function gra_person(){
 		$rta=cap_menus('placuifam','pro');
 		return $rta;
 	}
-
+ */
 	function get_accfam() {
 		// print_r($_POST);
 			if (!$_POST['id']) {
@@ -900,7 +900,7 @@ function gra_person(){
 			}
 	}
 
-function get_placuifam() {
+/* function get_placuifam() {
 	// print_r($_POST);
 		if (!$_POST['id']) {
 			return '';
@@ -920,7 +920,7 @@ function get_placuifam() {
 			return json_encode($info['responseResult'][0]);
 		}
 }
-
+ */
 	function get_plancon() {
 		print_r($_POST);
 			if (!$_POST['id']) {
@@ -983,7 +983,7 @@ function gra_placuifam(){
 
 
 
-function opc_accion1desc_accion1($id=''){
+/* function opc_accion1desc_accion1($id=''){
 if($_REQUEST['id']!=''){
 			$id=divide($_REQUEST['id']);
 			$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
@@ -1041,7 +1041,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 
 function opc_equipo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
-} 
+}  */
 
 /*
 //Inicio 5. RIESGOS AMBIENTALES DE LA VIVIENDA

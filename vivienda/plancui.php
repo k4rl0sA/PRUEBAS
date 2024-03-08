@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors','1');
 require_once "../libs/gestion.php";
-$perf=perfil($_POST['tb']);
+if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
   $rta="";
@@ -60,7 +60,7 @@ function cmp_planDCui(){
 	if ($d==""){$d=$t;}
 	$u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
-    $w="placuifam";
+    $w="planDCui";
 	$o='accide';
 	$e="";
 	$key='pln';

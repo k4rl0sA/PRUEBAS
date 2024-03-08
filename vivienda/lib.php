@@ -941,7 +941,7 @@ function gra_person(){
 		}
 
 
-function gra_placuifam(){
+/* function gra_placuifam(){
 	// print_r($_POST);
 	$id=divide($_POST['idp']);
 		$sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
@@ -981,7 +981,7 @@ function gra_placuifam(){
 	// $rta=dato_mysql($sql);
 	return $rta;
 }
-
+ */
 
 
 /* function opc_accion1desc_accion1($id=''){

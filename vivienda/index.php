@@ -68,7 +68,8 @@ function grabar(tb='',ev){
 
 		var rutaMap = {
 			'medidas':'medidas.php',
-			'ambient':'amb.php'
+			'ambient':'amb.php',
+			'planDCui':'plancui.php'
 		};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);

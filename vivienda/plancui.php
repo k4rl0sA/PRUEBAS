@@ -87,35 +87,32 @@ function cmp_planDCui(){
     $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
     $info = datos_mysql($sql1);
     if (!$info['responseResult']) {
-        $sql="INSERT INTO hog_plancuid VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['fecha_caracteriza']}')),
-        TRIM('{$_POST['accion1']}'),TRIM('{$_POST['desc_accion1']}'),TRIM(UPPER('{$_POST['accion2']}')),TRIM('{$_POST['desc_accion2']}'),TRIM(UPPER('{$_POST['accion3']}')),TRIM('{$_POST['desc_accion3']}'),TRIM(UPPER('{$_POST['accion4']}')),TRIM('{$_POST['desc_accion4']}'),TRIM(UPPER('{$_POST['observacion']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),
-        DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-        $rta1=dato_mysql($sql);
-                
-        $sql2="INSERT INTO hog_planconc VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['obs']}')),
-        TRIM(UPPER('{$_POST['equipo']}')),TRIM(UPPER('{$_POST['cumplio']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),NULL,NULL,'A');";
-        $rta2=dato_mysql($sql2);
-        // echo $sql1;
-        
-        if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
-            $rta = "Se ha Insertado: 1 Registro Correctamente.";
-        } else {
-            $rta = "Error: No se pudo guardar el registro en la tabla";
-        }	
+      $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+      $params = [
+        ['type' => 'i', 'value' => NULL],
+        ['type' => 'i', 'value' => $id[0]],
+        ['type' => 's', 'value' => $_POST['fecha_caracteriza']],
+        ['type' => 's', 'value' => $_POST['accion1']],
+        ['type' => 's', 'value' => $_POST['desc_accion1']],
+        ['type' => 's', 'value' => $_POST['accion2']],
+        ['type' => 's', 'value' => $_POST['desc_accion2']],
+        ['type' => 's', 'value' => $_POST['accion3']],
+        ['type' => 's', 'value' => $_POST['desc_accion3']],
+        ['type' => 's', 'value' => $_POST['accion4']],
+        ['type' => 's', 'value' => $_POST['desc_accion4']],
+        ['type' => 's', 'value' => $_POST['observacion']],
+        ['type' => 'i', 'value' => $_SESSION['us_sds']],
+        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 's', 'value' => NULL],
+        ['type' => 's', 'value' => NULL],
+        ['type' => 's', 'value' => 'A']
+      ];
+      $rta = mysql_prepd($sql, $params);
     }else{
         $sql="UPDATE `hog_plancuid` SET `fecha`=TRIM(UPPER('{$_POST['fecha_caracteriza']}')),`accion1`=TRIM(UPPER('{$_POST['accion1']}')),`desc_accion1`=TRIM(UPPER('{$_POST['desc_accion1']}')),`accion2`=TRIM(UPPER('{$_POST['accion2']}')),`desc_accion2`=TRIM(UPPER('{$_POST['desc_accion2']}'))`accion3`=TRIM(UPPER('{$_POST['accion3']}')),`desc_accion3`=TRIM(UPPER('{$_POST['desc_accion3']}')),`accion4`=TRIM(UPPER('{$_POST['accion4']}')),`desc_accion4`=TRIM(UPPER('{$_POST['desc_accion4']}')),`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
         usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
         WHERE idviv='{$id[0]}'";
-
-        $sql2="INSERT INTO hog_planconc VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['obs']}')),
-        TRIM(UPPER('{$_POST['equipo']}')),TRIM(UPPER('{$_POST['cumplio']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),NULL,NULL,'A');";
-        $rta2=dato_mysql($sql2);
-
-        if (strpos($rta2, "Correctamente")  !== false) {
-            $rta = "Se ha insertado: 1 Registro Correctamente.";
-        } else {
-            $rta = "Error: No se pudo guardar el registro en la tabla";
-        }
     }
 // echo $sql1.'-------------------------'.$sql;
 // $rta=dato_mysql($sql);

@@ -59,7 +59,9 @@ function cmp_planDCui(){
 	$d=get_planDCui();
 	if ($d==""){$d=$t;}
 print_r($d['fecha']);
-	$u=($d['id']=='')?true:false;
+	//$u=($d['id']=='')?true:false;
+
+$u=true;
 	$hoy=date('Y-m-d');
     $w="planDCui";
 	$o='accide';

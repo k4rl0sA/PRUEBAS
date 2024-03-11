@@ -136,10 +136,9 @@ return $rta;
 			return '';
 		}
 		$id = divide($_POST['id']);
-		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion,P.compromiso,P.equipo,P.cumple
+		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
 		FROM hog_plancuid A
-		LEFT JOIN hog_planconc P ON A.idviv=P.idviv
-		WHERE P.idviv='{$id[0]}' and P.idcon='{$id[1]}'";
+		WHERE A.idviv='{$id[0]}'";
 		// echo $sql;		
 		$info = datos_mysql($sql);
 		// echo $sql; 

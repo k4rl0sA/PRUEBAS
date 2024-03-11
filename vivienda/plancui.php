@@ -105,11 +105,14 @@ function cmp_planDCui(){
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => NULL],
-        ['type' => 's', 'value' => NULL],
+        ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
+$sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?  WHERE idviv=?";
+
+
         $sql="UPDATE `hog_plancuid` SET `fecha`=TRIM(UPPER('{$_POST['fecha_caracteriza']}')),`accion1`=TRIM(UPPER('{$_POST['accion1']}')),`desc_accion1`=TRIM(UPPER('{$_POST['desc_accion1']}')),`accion2`=TRIM(UPPER('{$_POST['accion2']}')),`desc_accion2`=TRIM(UPPER('{$_POST['desc_accion2']}'))`accion3`=TRIM(UPPER('{$_POST['accion3']}')),`desc_accion3`=TRIM(UPPER('{$_POST['desc_accion3']}')),`accion4`=TRIM(UPPER('{$_POST['accion4']}')),`desc_accion4`=TRIM(UPPER('{$_POST['desc_accion4']}')),`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
         usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
         WHERE idviv='{$id[0]}'";

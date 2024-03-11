@@ -147,7 +147,7 @@ return $rta;
 		if (!$info['responseResult']) {
 			return '';
 		}else{
-			return var_dump($info['responseResult'][0]);
+			return $info['responseResult'][0];
 		}
 	}
 

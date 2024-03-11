@@ -140,6 +140,7 @@ function men_medidas(){
 	$c[]=new cmp('alert10','o',15,$d,$w.' '.$o,'Derivaciones','alert10',null,null,true,true,'','col-1',"enabAlert(this,'der');");
 	$c[]=new cmp('selmul10[]','m',3,$d,$w.' der '.$o,'Derivaciones','selmul10',null,'',false,false,'','col-3');
 	$c[]=new cmp('deriva_eac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_eac','eAc');");
+	$c[]=new cmp('necesidad_eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','necesidad',null,null,false,false,'','col-5');
 	$c[]=new cmp('asignado_eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-5');
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','evento',null,null,false,false,'','col-5');
@@ -422,6 +423,10 @@ function get_medidas(){
 		}
 		
 	}
+}
+
+function opc_necesidad($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 
 function opc_rta($id=''){

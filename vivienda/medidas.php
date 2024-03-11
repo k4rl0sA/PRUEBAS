@@ -399,7 +399,7 @@ function get_medidas(){
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		D.fecha,`tipo`,D.crit_epi,cursovida,gestante,etapgest,cronico,`alert1`,`selmul1`,`alert2`,`selmul2`,`alert3`,`selmul3`, `alert4`, `selmul4`, `alert5`, `selmul5`, `alert6`, `selmul6`, `alert7`, `selmul7`, `alert8`, `selmul8`, `alert9`, `selmul9`, codoral,`alert10`, `selmul10`,
-		D.deriva_eac,D.asignado_eac,deriva_pf,evento_pf,`peso`, `talla`,imc";
+		D.deriva_eac,D.necesidad_eac,D.asignado_eac,deriva_pf,evento_pf,`peso`, `talla`,imc";
 		if ($edad['ano'] > 17 ) {
 		    $sql.=",`tas`, `tad`, `glucometria`";
 		}

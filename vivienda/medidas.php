@@ -426,9 +426,8 @@ function get_medidas(){
 }
 
 function opc_necesidad($id=''){
-	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=166 AND estado='A' ORDER BY 1", $id);
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=225 AND estado='A' ORDER BY 1", $id);
 }
-
 function opc_rta($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }

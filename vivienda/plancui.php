@@ -58,10 +58,8 @@ function cmp_planDCui(){
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d=get_planDCui();
 	if ($d==""){$d=$t;}
-var_dump($d);
-	//$u=($d['id']=='')?true:false;
-
-$u=true;
+//var_dump($d);
+	$u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
     $w="planDCui";
 	$o='accide';
@@ -149,7 +147,7 @@ return $rta;
 		if (!$info['responseResult']) {
 			return '';
 		}else{
-			return json_encode($info['responseResult'][0]);
+			return var_dump(json_encode($info['responseResult'][0]));
 		}
 	}
 

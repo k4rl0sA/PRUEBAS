@@ -323,7 +323,7 @@ function gra_medidas(){
 		trim(upper('{$_POST['alert7']}')),trim(upper('{$sm7}')),trim(upper('{$_POST['alert8']}')),trim(upper('{$sm8}')),
 		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$codoral}')),
 		trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
-		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
+		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['necesidad_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
 		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),
 		trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),
 		trim(upper('{$tas}')),trim(upper('{$tad}')),trim(upper('{$glu}')),trim(upper('{$pbr}')),trim(upper('{$per}')),

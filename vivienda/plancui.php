@@ -58,7 +58,7 @@ function cmp_planDCui(){
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d=get_planDCui();
 	if ($d==""){$d=$t;}
-print_r($d);
+print_r($d['fecha']);
 	$u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
     $w="planDCui";

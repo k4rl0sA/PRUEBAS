@@ -42,7 +42,7 @@ document.addEventListener('keydown', function (event) {
 	}
   });
 
-   document.addEventListener('contextmenu', function (event) {
+   document.addEventListener('contextmen', function (event) {
 	inform('Esta acción no esta permitida');
 	event.preventDefault();
   }); 

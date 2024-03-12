@@ -77,6 +77,7 @@ $sql="SELECT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio
 	LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	LEFT JOIN adscrip A ON H.territorio=A.territorio 
+	LEFT JOIN personas_datocomp M ON U.id_usuario =M.asignado_eac 
 	".whe_deriva()."
 WHERE H.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'

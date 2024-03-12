@@ -49,6 +49,7 @@ function lis_homes(){
 		LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	LEFT JOIN adscrip A ON H.territorio=A.territorio 
+	LEFT JOIN personas_datocomp M ON U.id_usuario =M.asignado_eac  
 	".whe_deriva()."
 		WHERE H.estado_v IN ('7') ".whe_homes()."
 			AND U.id_usuario = '{$_SESSION['us_sds']}'
@@ -83,7 +84,7 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
-//echo $sql;
+echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }

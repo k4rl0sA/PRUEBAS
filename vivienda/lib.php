@@ -1081,7 +1081,7 @@ function formato_dato($a,$b,$c,$d){
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($c['ACCIONES']);
-var_dump($rta); 
+var_dump($c); 
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";	
 			$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);

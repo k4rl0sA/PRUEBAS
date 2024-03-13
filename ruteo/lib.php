@@ -303,11 +303,10 @@ fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
 `direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
 `complemento`=TRIM(UPPER('{$_POST['complemento']}')),
 `observacion`=TRIM(UPPER('{$_POST['observacion']}')),
-`predio`=TRIM(UPPER('{$_POST['estado']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
 	WHERE id_ruteo='{$_POST['id']}'";
-	//echo $sql;
+	//echo $sql; `predio`=TRIM(UPPER('{$_POST['estado']}')),
   $rta=dato_mysql($sql);
   return $rta;
 }

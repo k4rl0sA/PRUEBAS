@@ -118,26 +118,9 @@ function opc_usuario($id=''){
 	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
 }
 
-function opc_familiusuario(){
-	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id[0]} ORDER BY 1";
-		$info=datos_mysql($sql);
-		// print_r($sql);
-		return json_encode($info['responseResult']);
-	} 					
-}
 
-function opc_usuariocod_admin(){
-	// var_dump($_REQUEST['id']);
-	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT f.cod_admin cod,concat_ws('-',f.cod_admin,FN_CATALOGODESC(127,f.final_consul)) FROM adm_facturacion f WHERE f.tipo_doc='{$id[0]}' AND f.documento='{$id[1]}' ORDER BY 1";
-		$info=datos_mysql($sql);
-		print_r($sql);
-		return json_encode($info['responseResult']);
-	} 					
-}
+
+
 
 function opc_cod_admin($id=''){
 	// var_dump($id);

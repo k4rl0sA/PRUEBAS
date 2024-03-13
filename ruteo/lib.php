@@ -194,7 +194,6 @@ function opc_usuario($id=''){
 	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 
-/*
 function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
@@ -205,16 +204,16 @@ function opc_familiusuario(){
 	} 					
 }
 
- function opc_usuariocod_admin(){
+function opc_usuariocod_admin(){
 	// var_dump($_REQUEST['id']);
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT f.cod_admin cod,f.cod_admin FROM adm_facturacion f WHERE f.tipo_doc='{$id[0]}' AND f.documento='{$id[1]}' ORDER BY 1";
+		$sql="SELECT f.cod_admin cod,concat_ws('-',f.cod_admin,FN_CATALOGODESC(127,f.final_consul)) FROM adm_facturacion f WHERE f.tipo_doc='{$id[0]}' AND f.documento='{$id[1]}' ORDER BY 1";
 		$info=datos_mysql($sql);
-		// print_r($sql);
+		print_r($sql);
 		return json_encode($info['responseResult']);
 	} 					
-} */
+}
 
 function opc_cod_admin($id=''){
 	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);

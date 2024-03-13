@@ -41,8 +41,6 @@ function whe_rute() {
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
 	if ($_POST['fgrupo'])
 		$sql .= " AND priorizacion = '".$_POST['fgrupo']."'";
-	if ($_POST['ffuente'])
-		$sql .= " AND fuente ='".$_POST['ffuente']."' ";
 	if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])

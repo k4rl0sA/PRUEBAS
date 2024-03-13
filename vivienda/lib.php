@@ -1103,7 +1103,7 @@ var_dump($c);
 				$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 				
 				
-				if(plan($c['Cod_familia'])===true){
+				if(plan($c['Cod_Familia'])===true){
 					$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 				}
 				

@@ -1072,7 +1072,13 @@ function cmp_rieamb(){
 
 */
 function plan($id){
-return '';
+	$sql="select id FROM hog_plancuid where idviv='".$id."'";
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){
+		return json_encode($info['responseResult'][0]);
+	}else{
+		return "[]";
+	}
 }
 
 
@@ -1097,7 +1103,7 @@ var_dump($c);
 				$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 				
 				
-				if(plan(1)==''){
+				if(plan($c['Cod_familia'])==''){
 					$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 				}
 				

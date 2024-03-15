@@ -86,7 +86,7 @@ function cmp_compConc(){
 }
 
 	function gra_compConc(){
-		// print_r($_POST);
+		print_r($_POST);
 	$id=divide($_POST['idp']);
     $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
     $info = datos_mysql($sql1);

@@ -67,7 +67,7 @@ function cmp_compConc(){
 	// $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
 	//<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>";
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_accfam();
+	$d=get_compConc();
 	if ($d==""){$d=$t;}
 	$u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');

@@ -46,7 +46,7 @@ $info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc
 WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-compConc']))? ($_POST['pag-compConc']-1)* $regxPag:0;
 
     $sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
         FN_CATALOGODESC(26,equipo) 'Equipo',cumple
@@ -57,7 +57,7 @@ $pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
         //  echo $sql;
         // $_SESSION['sql_planc']=$sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"planc",$regxPag);
+        return create_table($total,$datos["responseResult"],"compConc",$regxPag);
         /* return panel_content($datos["responseResult"],"planc-lis",10); */
 }
 

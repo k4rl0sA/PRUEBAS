@@ -218,7 +218,7 @@ return $rta;
 		$b=strtolower($b);
 		$rta=$c[$d];
         var_dump($a);
-		if ($a=='compConc-lis' && $b=='acciones'){
+		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'compConc',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}

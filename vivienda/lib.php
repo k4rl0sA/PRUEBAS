@@ -1102,7 +1102,7 @@ function formato_dato($a,$b,$c,$d){
 				$rta.="<li class='icono familia' title='Integrantes Personas' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 				$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 				if(plan($c['Cod_Familia'])===true){
-					$rta.="<li class='icono comp1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
+					$rta.="<li class='icono comp1' title='Compromisos Concertados' id='".$c['ACCIONES']."' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"></li>";
 				}
 				$rta.="<li class='icono ambi1' title='Ambiental' id='".$c['ACCIONES']."' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"></li>";
 				$rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(disabledCmp,300,'cmhi');setTimeout(enabLoca('reside_localidad','lochi'),300);Color('famili-lis');\"></li>";

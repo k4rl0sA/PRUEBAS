@@ -92,20 +92,14 @@ function cmp_compConc(){
         print_r($_REQUEST);
 	$id=divide($_POST['idp']);
     if($id[1]!=''){
-      $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO hog_planconc VALUES (?,?,?,?,?,?,?,?,?,?)";
+
       $params = [
-        ['type' => 'i', 'value' => NULL],
-        ['type' => 'i', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['fecha_caracteriza']],
-        ['type' => 's', 'value' => $_POST['accion1']],
-        ['type' => 's', 'value' => $_POST['desc_accion1']],
-        ['type' => 's', 'value' => $_POST['accion2']],
-        ['type' => 's', 'value' => $_POST['desc_accion2']],
-        ['type' => 's', 'value' => $_POST['accion3']],
-        ['type' => 's', 'value' => $_POST['desc_accion3']],
-        ['type' => 's', 'value' => $_POST['accion4']],
-        ['type' => 's', 'value' => $_POST['desc_accion4']],
-        ['type' => 's', 'value' => $_POST['observacion']],
+        ['type' => 'i', 'value' => NULL ],
+        ['type' => 's', 'value' => $id[0]],
+        ['type' => 's', 'value' => $_POST['compromiso']],
+        ['type' => 'i', 'value' => $_POST['equipo']],
+        ['type' => 's', 'value' => $_POST['cumple']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],
@@ -115,8 +109,6 @@ function cmp_compConc(){
       $rta = mysql_prepd($sql, $params);
     }else{
     $sql="UPDATE hog_planconc SET compromiso=?, equipo=?, cumple=?,fecha_update=?,usu_update=? WHERE idcon=?";
-
-
     $params = [
         ['type' => 's', 'value' => $_POST['compromiso']],
         ['type' => 'i', 'value' => $_POST['equipo']],

@@ -851,7 +851,7 @@ function gra_person(){
 	return $rta;
 	} */
 
-	function lis_planc(){
+/* 	function lis_planc(){
 		// print_r($_POST);
 		$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 	$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
@@ -870,8 +870,8 @@ function gra_person(){
 			// $_SESSION['sql_planc']=$sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"planc",$regxPag);
-			/* return panel_content($datos["responseResult"],"planc-lis",10); */
-	}
+			 //return panel_content($datos["responseResult"],"planc-lis",10); 
+	} */
 	
 /* 	function focus_placuifam(){
 		return 'placuifam';
@@ -922,7 +922,7 @@ function gra_person(){
 		}
 }
  */
-	function get_plancon() {
+/* 	function get_plancon() {
 		print_r($_POST);
 			if (!$_POST['id']) {
 				return '';
@@ -938,7 +938,7 @@ function gra_person(){
 				return '';
 			}
 			return json_encode($info['responseResult'][0]);
-		}
+		} */
 
 
 /* function gra_placuifam(){

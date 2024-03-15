@@ -39,18 +39,27 @@ function focus_compConc(){
 	   }
   return $rta;
 }
-FUNCTION lis_compConc(){
-	// var_dump($_POST['id']);
-	$id=divide($_POST['id']);
-	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_amb A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idvivamb='".$id[0];
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"compConc-lis",5);
-   }
+function lis_compConc(){
+    // print_r($_POST);
+    $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
+$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
+WHERE idviv=".$id[0]."");
+$total=$info['responseResult'][0]['total'];
+$regxPag=5;
+$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
+
+    $sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
+        FN_CATALOGODESC(26,equipo) 'Equipo',cumple
+        FROM `hog_planconc` 
+            WHERE idviv='".$id[0];
+        $sql.="' ORDER BY fecha_create";
+        $sql.=' LIMIT '.$pag.','.$regxPag;
+        //  echo $sql;
+        // $_SESSION['sql_planc']=$sql;
+        $datos=datos_mysql($sql);
+        return create_table($total,$datos["responseResult"],"planc",$regxPag);
+        /* return panel_content($datos["responseResult"],"planc-lis",10); */
+}
 
 
 function cmp_compConc(){
@@ -133,22 +142,21 @@ return $rta;
 	}
 
 	function get_compConc(){
-		if (!$_POST['id']) {
-			return '';
-		}
-		$id = divide($_POST['id']);
-		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
-		FROM hog_plancuid A
-		WHERE A.idviv='{$id[0]}'";
-	//	echo $sql;		
-		$info = datos_mysql($sql);
-		// echo $sql; 
-	//	print_r($info['responseResult'][0]);
-		if (!$info['responseResult']) {
-			return '';
-		}else{
-			return $info['responseResult'][0];
-		}
+        print_r($_POST);
+        if (!$_POST['id']) {
+            return '';
+        }
+        $id = divide($_POST['id']);
+        $sql = "SELECT concat(idcon,'_',idviv) 'id',compromiso,equipo,cumple
+                FROM `hog_planconc` 
+                WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
+                LIMIT 1";
+        // echo $sql;		
+        $info = datos_mysql($sql);
+        if (!$info['responseResult']) {
+            return '';
+        }
+        return json_encode($info['responseResult'][0]);
 	}
 
     function opc_accion1desc_accion1($id=''){

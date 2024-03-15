@@ -136,8 +136,8 @@ function cmp_rute(){
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-2','validState(this,\'estado_g\');');
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-2');
  $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
- $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
- $c[]=new cmp('integrantes','n',1,$d['integrantes'],$w.' '.$o,'N° Integrantes','observacion',null,null,true,true,'','col-10');
+ $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-9');
+ $c[]=new cmp('integrantes','n',1,$d['integrantes'],$w.' '.$o,'N° Integrantes','observacion',null,null,true,true,'','col-1');
 
  /* $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);

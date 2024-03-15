@@ -91,7 +91,7 @@ function cmp_compConc(){
         print_r($_GET);
         print_r($_REQUEST);
 	$id=divide($_POST['idp']);
-    if($id[1]!=''){
+    if($id[1]==''){
       $sql = "INSERT INTO hog_planconc VALUES (?,?,?,?,?,?,?,?,?,?)";
 
       $params = [

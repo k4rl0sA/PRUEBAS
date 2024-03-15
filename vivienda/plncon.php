@@ -91,11 +91,8 @@ function cmp_compConc(){
         print_r($_GET);
         print_r($_REQUEST);
 	$id=divide($_POST['idp']);
-    $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
-    $info = datos_mysql($sql1);
-    if (!$info['responseResult']) {
+    if($id[1]!=''){
       $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
       $params = [
         ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $id[0]],
@@ -117,21 +114,16 @@ function cmp_compConc(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-$sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";
+    $sql="UPDATE hog_planconc SET compromiso=?, equipo=?, cumple=?,fecha_update=?,usu_update=? WHERE idcon=?";
 
-$params = [
-        ['type' => 's', 'value' => $_POST['accion1']],
-        ['type' => 's', 'value' => $_POST['desc_accion1']],
-        ['type' => 's', 'value' => $_POST['accion2']],
-        ['type' => 's', 'value' => $_POST['desc_accion2']],
-        ['type' => 's', 'value' => $_POST['accion3']],
-        ['type' => 's', 'value' => $_POST['desc_accion3']],
-        ['type' => 's', 'value' => $_POST['accion4']],
-        ['type' => 's', 'value' => $_POST['desc_accion4']],
-        ['type' => 's', 'value' => $_POST['observacion']],
+
+    $params = [
+        ['type' => 's', 'value' => $_POST['compromiso']],
+        ['type' => 'i', 'value' => $_POST['equipo']],
+        ['type' => 's', 'value' => $_POST['cumple']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-['type' => 'i', 'value' => $id[0]]
+        ['type' => 'i', 'value' => $id[1]]
       ];
       $rta = mysql_prepd($sql, $params);
     }

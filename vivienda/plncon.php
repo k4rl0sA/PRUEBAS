@@ -144,7 +144,7 @@ return $rta;
             return '';
         }
         $id = divide($_POST['id']);
-        $sql = "SELECT concat(A.idviv,'_',A.idcon) 'id',compromiso,equipo,cumple
+        $sql = "SELECT concat(idviv,'_',idcon) 'id',compromiso,equipo,cumple
                 FROM `hog_planconc` 
                 WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
                 LIMIT 1";

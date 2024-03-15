@@ -217,7 +217,7 @@ return $rta;
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];
-        var_dump($a);
+        // var_dump($a);
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'compConc',event,this,['fecha','tipo_activi'],'../vivienda/plncon.php');\"></li>";  //   act_lista(f,this);

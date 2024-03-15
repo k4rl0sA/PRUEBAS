@@ -97,9 +97,9 @@ function cmp_compConc(){
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['compromiso']],
+        ['type' => 's', 'value' => $_POST['obs']],
         ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['cumple']],
+        ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],
@@ -110,9 +110,9 @@ function cmp_compConc(){
     }else{
     $sql="UPDATE hog_planconc SET compromiso=?, equipo=?, cumple=?,fecha_update=?,usu_update=? WHERE idcon=?";
     $params = [
-        ['type' => 's', 'value' => $_POST['compromiso']],
+        ['type' => 's', 'value' => $_POST['obs']],
         ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['cumple']],
+        ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $id[1]]

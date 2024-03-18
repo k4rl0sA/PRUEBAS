@@ -370,7 +370,7 @@ function tipVivi(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
 	const act=document.getElementById(a);
 	for (i=0; i<ele.length;i++) {
-		if(act.value=='1' || act.value=='2'){
+		if(act.value=='1' || act.value=='2' || act.value=='3'){
 			enaFie(ele[i],false);
   		}else{
 			enaFie(ele[i],true);

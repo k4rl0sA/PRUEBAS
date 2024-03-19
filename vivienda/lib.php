@@ -211,12 +211,12 @@ function cmp_homes(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('estado_aux','s','3',$d,$w.' '.$o,'Estado Visita','estado_aux',null,'',true,true,'','col-2','enabFielSele(this,true,[\'motivo_estaux\'],[\'4\']);stateVisit(this,[\'cri\',\'fam\',\'ali\',\'sub\',\'ser\',\'ani\',\'amb\',\'fal\'],[\'ne\',\'dog\',\'cat\']);');
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
-	$c[]=new cmp('equipo_car','s','3',$d,$w.' '.$o,'Equipo Caracterizacion','equipo_car',null,'',false,true,'','col-2');
+	$c[]=new cmp('equipo_car','s','3',$d,$w.' '.$o,'Equipo Caracterizacion','equipo',null,'',false,true,'','col-2');
 	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-15',"addupd(this,'hid','motivoupd');validDate(this,$days,0);");
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
 	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15');
-	$c[]=new cmp('equipo_act','s','3',$d,$w.' '.$o,'Equipo Actualizacion','equipo_act',null,'',false,true,'','col-1');
+	$c[]=new cmp('equipo_act','s','3',$d,$w.' '.$o,'Equipo Actualizacion','equipo',null,'',false,true,'','col-1');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
  	$c[]=new cmp('complemento2','s','3',$d,$w.'ne '.$o.' '.$n,'complemento2','complemento',null,'',false,true,'','col-2');

@@ -811,6 +811,10 @@ function gra_person(){
 			return opc_sql($sql,'');		
 	}
 
+	function opc_equipo($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
+}  
+
 	
 	
 	/* function cmp_placuifam(){
@@ -1041,9 +1045,7 @@ function opc_accion4($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
 }
 
-function opc_equipo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
-}  */
+*/
 
 /*
 //Inicio 5. RIESGOS AMBIENTALES DE LA VIVIENDA

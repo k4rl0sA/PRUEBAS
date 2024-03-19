@@ -408,6 +408,7 @@ function gra_homes(){
 	print_r($_POST['idg']." - ".$id[0]);
 	$sql1="SELECT  CONCAT_WS('_', H.estrategia, H.sector_catastral, H.nummanzana, H.predio_num, H.unidad_habit, H.estado_v) COD FROM hog_geo H where idgeo='$id[0]'";
 	$info=datos_mysql($sql1);
+	var_dump($info['responseResult']);
 	$cod=$info['responseResult'][0]['COD'];//REVISAR
 	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];

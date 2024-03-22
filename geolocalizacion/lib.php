@@ -230,7 +230,7 @@ function cmp_hog_geoloc(){
  $c[]=new cmp('cordyn','t','15',$d['cordy'],$w.' adru '.$o,'Cordy Nueva','cordy',null,null,false,$u,'','col-25');
 
  $c[]=new cmp('asignado','s','3',$d['asignado'],$w.' '.$o,'Asignado','asignado',null,null,false,$asig,'','col-25');
- $c[]=new cmp('estado_v','s',2,$d['estado_v'],$w.' '.$o,'estado','estado',null,null,true,$esta,'','col-25','enabFielSele(this,true,[\'motivo_estado\'],[\'5\']);');//hideExpres(\'estado_v\',[\'7\']);
+ $c[]=new cmp('estado_v','s',2,$d['estado_v'],$w.' '.$o,'estado','estado',null,null,true,$esta,'','col-25',"enabFielSele(this,true,['motivo_estado'],['5']);");//hideExpres(\'estado_v\',[\'7\']);
  //  $c[]=new cmp('estado_v','s','3',$d['estado_v'],$w.' '.$o,'Estado de V','estado',null,null,true,true,'','col-2');
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,false,'','col-4');
 

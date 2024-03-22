@@ -42,7 +42,7 @@ function focus_statFam(){
    function cmp_statFam(){
     $rta="";
     $hoy=date('Y-m-d');
-    $t=['id_eacfam'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
+    $t=['id'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
     $w='statFam';
     $d=get_statFam(); 
     if ($d=="") {$d=$t;}

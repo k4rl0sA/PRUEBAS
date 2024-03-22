@@ -408,7 +408,7 @@ function gra_homes(){
 	print_r($_POST['idg']." - ".$id[0]);
 	$sql1="SELECT  CONCAT_WS('_', H.estrategia, H.sector_catastral, H.nummanzana, H.predio_num, H.unidad_habit, H.estado_v) COD FROM hog_geo H where idgeo='$id[0]'";
 	$info=datos_mysql($sql1);
-	var_dump($sql1);
+	// var_dump($sql1);
 	$cod=$info['responseResult'][0]['COD'];//REVISAR
 	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
@@ -719,20 +719,11 @@ function gra_person(){
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => 'A'] 
 		];
-			
-
-
-
-
-
-
-
-
 /* 
-		$sql="INSERT INTO personas VALUES (NULL,TRIM(UPPER('{$_POST['encuentra']}')),TRIM(UPPER('{$_POST['idpersona']}')),$id[0],TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['nombre1']}')),TRIM(UPPER('{$_POST['nombre2']}')),TRIM(UPPER('{$_POST['apellido1']}')),TRIM(UPPER('{$_POST['apellido2']}')),TRIM(UPPER('{$_POST['fecha_nacimiento']}')),TRIM(UPPER('{$_POST['sexo']}')),TRIM(UPPER('{$_POST['genero']}')),TRIM(UPPER('{$_POST['oriensexual']}')),TRIM(UPPER('{$_POST['nacionalidad']}')),TRIM(UPPER('{$_POST['estado_civil']}')),TRIM(UPPER('{$_POST['niveduca']}')),TRIM(UPPER('{$_POST['abanesc']}')),TRIM(UPPER('{$_POST['ocupacion']}')),TRIM(UPPER('{$_POST['tiemdesem']}')),TRIM(UPPER('{$_POST['vinculo_jefe']}')),TRIM(UPPER('{$_POST['etnia']}')),TRIM(UPPER('{$_POST['pueblo']}')),TRIM(UPPER('{$_POST['idioma']}')),TRIM(UPPER('{$_POST['discapacidad']}')),TRIM(UPPER('{$_POST['regimen']}')),TRIM(UPPER('{$_POST['eapb']}')),TRIM(UPPER('{$_POST['afiliacion']}')),TRIM(UPPER('{$_POST['sisben']}')),TRIM(UPPER('{$_POST['catgosisb']}')),TRIM(UPPER('{$_POST['pobladifer']}')),TRIM(UPPER('{$_POST['incluofici']}')),TRIM(UPPER('{$_POST['cuidador']}')),TRIM(UPPER('{$_POST['perscuidada']}')),TRIM(UPPER('{$_POST['tiempo_cuidador']}')),TRIM(UPPER('{$_POST['cuidador_unidad']}')),TRIM(UPPER('{$_POST['vinculo_cuida']}')),TRIM(UPPER('{$_POST['tiempo_descanso']}')),TRIM(UPPER('{$_POST['descanso_unidad']}')),TRIM(UPPER('{$_POST['reside_localidad']}')),TRIM(UPPER('{$_POST['localidad_vive']}')),TRIM(UPPER('{$_POST['transporta']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 */ 
+	$sql="INSERT INTO personas VALUES (NULL,TRIM(UPPER('{$_POST['encuentra']}')),TRIM(UPPER('{$_POST['idpersona']}')),$id[0],TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['nombre1']}')),TRIM(UPPER('{$_POST['nombre2']}')),TRIM(UPPER('{$_POST['apellido1']}')),TRIM(UPPER('{$_POST['apellido2']}')),TRIM(UPPER('{$_POST['fecha_nacimiento']}')),TRIM(UPPER('{$_POST['sexo']}')),TRIM(UPPER('{$_POST['genero']}')),TRIM(UPPER('{$_POST['oriensexual']}')),TRIM(UPPER('{$_POST['nacionalidad']}')),TRIM(UPPER('{$_POST['estado_civil']}')),TRIM(UPPER('{$_POST['niveduca']}')),TRIM(UPPER('{$_POST['abanesc']}')),TRIM(UPPER('{$_POST['ocupacion']}')),TRIM(UPPER('{$_POST['tiemdesem']}')),TRIM(UPPER('{$_POST['vinculo_jefe']}')),TRIM(UPPER('{$_POST['etnia']}')),TRIM(UPPER('{$_POST['pueblo']}')),TRIM(UPPER('{$_POST['idioma']}')),TRIM(UPPER('{$_POST['discapacidad']}')),TRIM(UPPER('{$_POST['regimen']}')),TRIM(UPPER('{$_POST['eapb']}')),TRIM(UPPER('{$_POST['afiliacion']}')),TRIM(UPPER('{$_POST['sisben']}')),TRIM(UPPER('{$_POST['catgosisb']}')),TRIM(UPPER('{$_POST['pobladifer']}')),TRIM(UPPER('{$_POST['incluofici']}')),TRIM(UPPER('{$_POST['cuidador']}')),TRIM(UPPER('{$_POST['perscuidada']}')),TRIM(UPPER('{$_POST['tiempo_cuidador']}')),TRIM(UPPER('{$_POST['cuidador_unidad']}')),TRIM(UPPER('{$_POST['vinculo_cuida']}')),TRIM(UPPER('{$_POST['tiempo_descanso']}')),TRIM(UPPER('{$_POST['descanso_unidad']}')),TRIM(UPPER('{$_POST['reside_localidad']}')),TRIM(UPPER('{$_POST['localidad_vive']}')),TRIM(UPPER('{$_POST['transporta']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 */ 
 	//  envia_mail('prueba.riesgo@gmail.com','Prueba','hola Mundo');
 	}
-	var_dump($params);
+	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	  return $rta;
 	//   return sendMail(['prueba.riesgo@gmail.com'],'Prueba','hola Mundo');

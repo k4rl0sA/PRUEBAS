@@ -91,7 +91,7 @@ function focus_statFam(){
       }else{
         $sql="INSERT INTO eac_fam VALUES (?,?,?,?,?,?,?,?,?)";
         $params = [
-        ['type' => 'i', 'value' => $_POST['id_eacfam']],
+        ['type' => 'i', 'value' => $_POST['id']],
         ['type' => 'i', 'value' => $_POST['cod_fam']],
         ['type' => 's', 'value' => $_POST['estado_fam']],
         ['type' => 's', 'value' => $_POST['motivo_estafam']],

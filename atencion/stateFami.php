@@ -97,23 +97,7 @@ function focus_statFam(){
       // print_r($id);
       //die("Ok");
       if($_POST['id']!=''){
-      $sql="UPDATE `eac_adolescencia` SET 
-      preg1=trim(upper('{$_POST['preg1']}')),
-      preg2=trim(upper('{$_POST['preg2']}')),
-      preg3=trim(upper('{$_POST['preg3']}')),
-      preg4=trim(upper('{$_POST['preg4']}')),
-      preg5=trim(upper('{$_POST['preg5']}')),
-      preg6=trim(upper('{$_POST['preg6']}')),
-      preg7=trim(upper('{$_POST['preg7']}')),
-      preg8=trim(upper('{$_POST['preg8']}')),
-      preg9=trim(upper('{$_POST['preg9']}')),
-      preg10=trim(upper('{$_POST['preg10']}')),
-      preg11=trim(upper('{$_POST['preg11']}')),
-      preg12=trim(upper('{$_POST['preg12']}')),
-      preg13=trim(upper('{$_POST['preg13']}')),
-      preg14=trim(upper('{$_POST['preg14']}')),
-        `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-        WHERE adolecencia_tipo_doc='$id[0]' AND adolecencia_documento='$id[1]'"; 
+      
         // echo $x;
  //echo $sql;
       }else{

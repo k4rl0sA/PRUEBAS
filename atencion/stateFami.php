@@ -117,33 +117,18 @@ function focus_statFam(){
         // echo $x;
  //echo $sql;
       }else{
-        $tip=$_POST['adolecencia_tipo_doc'];
-        $doc=$_POST['adolecencia_documento'];
-        if(get_atenc($tip,$doc)){
-
-        $sql="INSERT INTO eac_adolescencia VALUES (NULL,
-        trim(upper('{$_POST['adolecencia_tipo_doc']}')),
-        trim(upper('{$_POST['adolecencia_documento']}')),
-        trim(upper('{$_POST['preg1']}')),
-        trim(upper('{$_POST['preg2']}')),
-        trim(upper('{$_POST['preg3']}')),
-        trim(upper('{$_POST['preg4']}')),
-        trim(upper('{$_POST['preg5']}')),
-        trim(upper('{$_POST['preg6']}')),
-        trim(upper('{$_POST['preg7']}')),
-        trim(upper('{$_POST['preg8']}')),
-        trim(upper('{$_POST['preg9']}')),
-        trim(upper('{$_POST['preg10']}')),
-        trim(upper('{$_POST['preg11']}')),
-        trim(upper('{$_POST['preg12']}')),
-        trim(upper('{$_POST['preg13']}')),
-        trim(upper('{$_POST['preg14']}')),
-        TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-        // echo $sql;
-        $rta=dato_mysql($sql);
-      }else{
-        $rta="Error: msj['Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente']";
-      }
+        $sql="INSERT INTO eac_fam VALUES (?,?,?,?,?,?,?,?,?)";
+        $params = [
+        ['type' => 'i', 'value' => $_POST['id_eacfam']],
+        ['type' => 'i', 'value' => $_POST['cod_fam']],
+        ['type' => 's', 'value' => $_POST['estado_fam']],
+        ['type' => 's', 'value' => $_POST['motivo_estafam']],
+        ['type' => 'i', 'value' => $_SESSION['us_sds']],
+        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 's', 'value' => ''],
+        ['type' => 's', 'value' => ''],
+        ['type' => 's', 'value' => 'A']];
+        $rta = mysql_prepd($sql, $params);
       // echo $sql;
     }
     //   return "correctamente";

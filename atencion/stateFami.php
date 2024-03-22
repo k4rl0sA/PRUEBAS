@@ -57,19 +57,7 @@ function focus_statFam(){
     return $rta;
      }
 
-     function get_atenc($tip,$doc){
-      $sql="SELECT atencion_idpersona FROM eac_atencion 
-      WHERE atencion_tipodoc ='$tip' AND atencion_idpersona ='$doc'";
-      // echo $sql;
-      $info=datos_mysql($sql);
-      if(isset($info['responseResult'][0])){ 
-        return true;
-      }else{
-        return false;
-      }
-  }
-
-     function get_statFam(){
+    function get_statFam(){
       if($_POST['id']==''){
         return "";
       }else{
@@ -96,7 +84,7 @@ function focus_statFam(){
       $id=divide($_POST['id']);
       var_dump($_POST);
       //die("Ok");
-      if($_POST['id']!=''){
+      if(COUNT($id)==8){
       
         // echo $x;
  //echo $sql;

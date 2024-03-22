@@ -50,9 +50,9 @@ function focus_statFam(){
     $o='datos';
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id_eacfam','h',15,$d['id'],$w.' '.$o,' ','id',null,'####',false,false);
-    $c[]=new cmp('cod_fam','n',11,$d['cod_fam'],$w.' '.$o,'Cod de Fam','cod_fam',null,null,true,true,'','col-2');
-    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de Fam','estado_fam',null,null,false,true,'','col-2');
-    $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' '.$o,'Motivo de Estafam','motivo_estafam',null,null,true,true,'','col-2');
+    $c[]=new cmp('cod_fam','h',11,$d['cod_fam'],$w.' '.$o,'Codigo de La Familia','cod_fam',null,null,true,true,'','col-2');
+    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,false,true,'','col-2');
+    $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' '.$o,'Motivo de Rechazado','motivo_estafam',null,null,true,true,'','col-2');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     return $rta;
      }

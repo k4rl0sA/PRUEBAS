@@ -83,6 +83,8 @@ function focus_statFam(){
     function gra_statFam(){
       $id=divide($_POST['id']);
       var_dump($_POST);
+      var_dump($_REQUEST);
+      var_dump($_GET);
       //die("Ok");
       if(COUNT($id)==8){
       

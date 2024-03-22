@@ -44,6 +44,7 @@ function focus_statFam(){
     $hoy=date('Y-m-d');
     $t=['id'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
     $w='statFam';
+    var_dump($_POST);
     $d=get_statFam(); 
     if ($d=="") {$d=$t;}
     $u=($d['id']=='')?true:false;

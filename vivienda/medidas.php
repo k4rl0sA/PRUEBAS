@@ -448,7 +448,7 @@ FROM
 	`usuarios` U
 	RIGHT JOIN adscrip A ON U.id_usuario= A.doc_asignado
 WHERE
-	`perfil` IN('MEDATE', 'ENFATE')
+	`perfil` IN('MEDATE', 'ENFATE','ADM')
 	AND U.subred = (SELECT subred from usuarios where id_usuario={$_SESSION['us_sds']})
 	AND	U.id_usuario IN (SELECT doc_asignado FROM adscrip where territorio in (select territorio from adscrip a where doc_asignado={$_SESSION['us_sds']})) 
 	AND U.estado = 'A'

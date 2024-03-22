@@ -1805,7 +1805,7 @@ function estado($id){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-print_r($c);
+// print_r($c);
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);

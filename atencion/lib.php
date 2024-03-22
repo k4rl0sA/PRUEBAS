@@ -1775,11 +1775,11 @@ function asigna_rutePsico(){
 	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),NULL,NULL,TRIM(UPPER('{$_SESSION['us_sds']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),
 	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	$rta1=dato_mysql($sql);
-	echo $sql;
+	// echo $sql;
 	$sql1="INSERT INTO eac_rutpsico VALUES
 	(NULL,TRIM(UPPER('{$id[1]}')),TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_SESSION['us_sds']}')),'SI',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'1');";
 	$rta2=dato_mysql($sql1);
-	echo $sql1;
+	// echo $sql1;
 	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
 		$rta = "Correctamente";
 	} else {
@@ -1799,7 +1799,8 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
 		$rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
 	}
-	if ($a=='famili-lis' && $b=='acciones'){
+
+	if ($a=='famili-lis' && $b=='acciones' && ){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,300,'homes',event,this,['idviv','numfam','estado_aux']);Color('famili-lis');\"></li>";  //act_lista(f,this);
 		$rta.="<li class='icono familia' title='Integrantes Personas' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);

@@ -93,7 +93,7 @@ function focus_statFam(){
 
     function gra_statFam(){
       $id=divide($_POST['id']);
-      // print_r($id);
+      var_dump($_POST);
       //die("Ok");
       if($_POST['id']!=''){
       

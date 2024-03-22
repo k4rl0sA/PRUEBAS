@@ -84,7 +84,7 @@ function grabar(tb='',ev){
 		'admision':'admision.php',
 		'pregnant':'gestantes.php',
 		'prechronic':'cronicos.php',
-		'cmp_statFam':'stateFami.php'
+		'statFam':'stateFami.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	// if(aten!==0){

@@ -1752,6 +1752,8 @@ function opc_tipo_consulta($id=''){
 	function opc_evento($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=134 and estado='A'  ORDER BY 1 ",$id);
 	}
+
+
 	
 	function get_condicion($c){
 		// print_r($_POST);
@@ -1789,6 +1791,16 @@ function asigna_rutePsico(){
 }
 	
 ////////////////////////////////////////////////////atencion//////////////////////////////////////////////
+
+function estado($id){
+	$sql="select id_eacfam FROM eac_fam where cod_fam='".$id."'";
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){
+	  return true;
+	}else{
+	  return false;
+	}
+  }
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

@@ -80,16 +80,7 @@ function focus_statFam(){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
     }
 
-    function plan($id){
-      $sql="select id FROM hog_plancuid where idviv='".$id."'";
-      $info=datos_mysql($sql);
-      if(isset($info['responseResult'][0])){
-        return true;
-      }else{
-        return false;
-      }
-    }
-
+  
     function gra_statFam(){
       $id=divide($_POST['id']);
       /* var_dump($_POST);

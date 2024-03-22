@@ -44,16 +44,9 @@ function focus_statFam(){
     $hoy=date('Y-m-d');
     $t=['id_eacfam'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
     $w='statFam';
-    $key=divide($_POST['id']);
-    // var_dump($key);
     $d=get_statFam(); 
-    if ($d==""){
-      $d=$t;
-      $u=true;
-      $rta.="<h1>Sin datos de Gestión en el plan de cuidado</h1>";
-    }else{
-      $u=false;
-    } 
+    if ($d=="") {$d=$t;}
+    $u=($d['sector_catastral']=='')?true:false;
     $o='datos';
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id_eacfam','h',15,$d['id'],$w.' '.$o,' ','id',null,'####',false,false);
@@ -77,15 +70,12 @@ function focus_statFam(){
   }
 
      function get_statFam(){
-      if($_REQUEST['id']==''){
+      if($_POST['id']==''){
         return "";
       }else{
-         $id=divide($_REQUEST['id']);
-        $sql="SELECT 
-        concat(adolecencia_tipo_doc,'_',adolecencia_documento) id,
-        preg1,preg2,preg3,preg4,preg5,preg6,preg7,preg8,preg9,preg10,preg11,preg12,preg13,preg14
-        FROM `eac_adolescencia`
-        WHERE adolecencia_tipo_doc ='{$id[1]}' AND adolecencia_documento ='{$id[0]}'  ";
+         $id=divide($_POST['id']);
+        $sql="SELECT id_eacfam,cod_fam,estado_fam,motivo_estafam
+        WHERE cod_fam='{$id[0]}'  ";
         // echo $sql;
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 

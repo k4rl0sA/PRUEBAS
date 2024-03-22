@@ -1793,7 +1793,7 @@ function asigna_rutePsico(){
 ////////////////////////////////////////////////////atencion//////////////////////////////////////////////
 
 function estado($id){
-	$sql="select id_eacfam FROM eac_fam where cod_fam='".$id."'";
+	$sql="select id_eacfam FROM eac_fam where cod_fam='".$id."' AND estado_fam='7'";
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){
 	  return true;
@@ -1811,7 +1811,6 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
 		$rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
 	}
-
 	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,300,'homes',event,this,['idviv','numfam','estado_aux']);Color('famili-lis');\"></li>";  //act_lista(f,this);

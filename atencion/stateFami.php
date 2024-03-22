@@ -76,7 +76,7 @@ function focus_statFam(){
          $id=divide($_POST['id']);
         $sql="SELECT id_eacfam,cod_fam,estado_fam,motivo_estafam
         WHERE cod_fam='{$id[0]}' ";
-        // echo $sql;
+        echo $sql;
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
             return $info['responseResult'][0];

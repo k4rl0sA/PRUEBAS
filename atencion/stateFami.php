@@ -44,7 +44,7 @@ function focus_statFam(){
     $hoy=date('Y-m-d');
     $t=['id'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
     $w='statFam';
-    var_dump($_POST);
+    // var_dump($_POST);
     $d=get_statFam(); 
     if ($d=="") {$d=$t;}
     $u=($d['id']=='')?true:false;
@@ -82,10 +82,9 @@ function focus_statFam(){
 
     function gra_statFam(){
       $id=divide($_POST['id']);
-      var_dump($_POST);
+      /* var_dump($_POST);
       var_dump($_REQUEST);
-      var_dump($_GET);
-      //die("Ok");
+      var_dump($_GET); */
       if(COUNT($id)==8){
       
         // echo $x;

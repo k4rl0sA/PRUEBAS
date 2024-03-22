@@ -46,7 +46,7 @@ function focus_statFam(){
     $w='statFam';
     $d=get_statFam(); 
     if ($d=="") {$d=$t;}
-    $u=($d['sector_catastral']=='')?true:false;
+    $u=($d['id']=='')?true:false;
     $o='datos';
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id_eacfam','h',15,$d['id'],$w.' '.$o,' ','id',null,'####',false,false);

@@ -85,6 +85,13 @@ function focus_statFam(){
       } 
     }
 
+    function opc_estado_fam($id=''){
+      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=44 and estado='A' ORDER BY 1",$id);
+    }
+    function opc_motivo_estafam($id=''){
+      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
+    }
+
     function gra_statFam(){
       $id=divide($_POST['id']);
       // print_r($id);

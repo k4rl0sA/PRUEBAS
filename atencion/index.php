@@ -83,7 +83,8 @@ function grabar(tb='',ev){
 		'infancia':'infancia.php',
 		'admision':'admision.php',
 		'pregnant':'gestantes.php',
-		'prechronic':'cronicos.php'
+		'prechronic':'cronicos.php',
+		'cmp_statFam':'stateFami.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	// if(aten!==0){

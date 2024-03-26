@@ -406,7 +406,7 @@ function men_homes1(){
    
 function gra_homes(){
 	$id=divide($_POST['idg']);
-	print_r($_POST['idg']." - ".$id[6]);
+	/* print_r($_POST['idg']." - ".$id[6]); */
 	/* $sql1="SELECT  CONCAT_WS('_', H.estrategia, H.sector_catastral, H.nummanzana, H.predio_num, H.unidad_habit, H.estado_v) COD FROM hog_geo H where idgeo='$id[6]'";
 	$info=datos_mysql($sql1); */
 	// var_dump($sql1);

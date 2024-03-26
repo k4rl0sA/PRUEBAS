@@ -1112,7 +1112,7 @@ function eac($id){
 	$fecUp=$info['responseResult'][0]['fechaupd'];
 	if(($fecha=='' || $fecha=='0000-00-00') && $famil!='' ){
 		return 1;
-	}elseif($fecUp!=''){
+	}elseif($fecUp!='0000-00-00'){
 		return 2;
 	}else{
 		return 3;

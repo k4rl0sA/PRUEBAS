@@ -50,6 +50,7 @@ function grabar(tb='',ev){
 				openModal();
 				return
 			}
+			if(valTel('telefono1')===true) return;
 		}
 		if(tb=='medidas'){
 			var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");

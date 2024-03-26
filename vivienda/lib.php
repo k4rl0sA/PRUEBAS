@@ -418,6 +418,13 @@ function gra_homes(){
 	$gvacun = empty($_POST['gato_vacunas']) ? 0 : $_POST['gato_vacunas'];
 	$geste  = empty($_POST['gato_esterilizado']) ? 0:$_POST['gato_esterilizado'];
 	if(count($id)==1){
+		$sql1="SELECT fechaupd FROM hog_viv H where idviv='$id[0]'";
+		$info=datos_mysql($sql1);
+		// $cod=$info['responseResult'][0];
+		var_dump($info['responseResult'][0]);
+	// var_dump($sql1);
+	// $cod=$info['responseResult'][0]['COD'];//REVISAR
+
 	$sql="UPDATE `hog_viv` SET
 	numfam=TRIM(UPPER('{$_POST['numfam']}')),
 	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),

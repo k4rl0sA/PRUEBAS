@@ -383,7 +383,7 @@ function get_homes(){
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
-		print_r($info['responseResult'][0]);
+		// print_r($info['responseResult'][0]);
 		return json_encode($info['responseResult'][0]);
 	} 
 }

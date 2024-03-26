@@ -1105,7 +1105,7 @@ function plan($id){
 
 
 function eac($id){
-	$sql="select fecha,numfam FROM hog_plancuid where idviv='".$id."'";
+	$sql="select fecha,numfam FROM hog_viv where idviv='".$id."'";
 	$info=datos_mysql($sql);
 	$fecha=$info['responseResult'][0]['fecha'];
 	$famil=$info['responseResult'][0]['numfam'];

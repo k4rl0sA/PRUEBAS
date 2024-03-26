@@ -49,9 +49,8 @@ function focus_mnehosp(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-mnehosp']))? ($_POST['pag-mnehosp']-1)* $regxPag:0;
-
   
-	$sql="SELECT `id_mnehosp` ACCIONES,  'Cod Registro',
+	$sql="SELECT `id_mnehosp` ACCIONES,id_mnehosp  'Cod Registro',
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_mnehosp A

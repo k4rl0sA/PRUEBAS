@@ -1104,6 +1104,18 @@ function plan($id){
 }
 
 
+function eac($id){
+	$sql="select fecha,numfam FROM hog_plancuid where idviv='".$id."'";
+	$info=datos_mysql($sql);
+	$fecha=$info['responseResult'][0]['fecha'];
+	$famil=$info['responseResult'][0]['numfam'];
+	if(($fecha=='' || $fecha=='0000-00-00') && $famil!='' ){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -1116,9 +1128,14 @@ function formato_dato($a,$b,$c,$d){
 			$rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
 		}
 		if ($a=='famili-lis' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
+			$rta="<nav class='menu right'>";
+			if(eac($c['Cod_Familia'])==true){
+				$cmps=['idviv','numfam'];
+			}else{
+				$cmps=['idviv','numfam','estado_aux','equipo_car'];
+			}
 				/* $rta.="<li class='icono inactiva' title='Eliminar' id='".$c['ACCIONES']."' OnClick=\"inactivareg(this,event,'idviv');\" ></li>"; */
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,['idviv','numfam','equipo_car']);setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,{$cmps});setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
 				// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');setTimeout(enabAfil,300,'regimen','eaf');setTimeout(enabEapb,300,'regimen','rgm');\"></li>";
 
 				$rta.="<li class='icono familia' title='Integrantes Personas' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);

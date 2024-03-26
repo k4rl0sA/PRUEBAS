@@ -87,9 +87,9 @@ function cmp_compConc(){
 }
 
 	function gra_compConc(){
-		print_r($_POST);
+	/* 	print_r($_POST);
         print_r($_GET);
-        print_r($_REQUEST);
+        print_r($_REQUEST); */
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==7){

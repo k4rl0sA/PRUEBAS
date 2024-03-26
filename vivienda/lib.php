@@ -423,7 +423,7 @@ function gra_homes(){
 		$fechaUpd=$info['responseResult'][0]['fecUpd'];
 		$fechaCar=$info['responseResult'][0]['fecUpd'];
 
-	if($fechaUpd==''){
+	if($fechaUpd=='' || $fechaUpd=='0000-00-00' ){
 		$sql="UPDATE `hog_viv` SET
 	numfam=TRIM(UPPER('{$_POST['numfam']}')),
 	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),

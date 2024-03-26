@@ -302,7 +302,7 @@ function gra_homes(){
 		TRIM(UPPER('{$cod}')),
 		TRIM(UPPER('{$_POST['numfam']}')),
 		TRIM(UPPER('{$_POST['fecha']}')),
-		'','','','','','',
+		'','','','','','','','',
 		TRIM(UPPER('{$_POST['complemento1']}')),TRIM(UPPER('{$_POST['nuc1']}')),
 		TRIM(UPPER('{$_POST['complemento2']}')),TRIM(UPPER('{$_POST['nuc2']}')),
 		TRIM(UPPER('{$_POST['complemento3']}')),TRIM(UPPER('{$_POST['nuc3']}')),

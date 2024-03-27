@@ -180,10 +180,12 @@ function cmp_homes(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('estado_aux','s','3',$d,$w.' '.$o,'Estado Visita','estado_aux',null,'',true,true,'','col-2','enabFielSele(this,true,[\'motivo_estaux\'],[\'4\']);stateVisit(this,[\'cri\',\'fam\',\'ali\',\'sub\',\'ser\',\'ani\',\'amb\',\'fal\']);');
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
-	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-2',"addupd(this,'hid','motivoupd');validDate(this,$days,0);");
+	$c[]=new cmp('equipo_car','s','3',$d,$w.' '.$o,'Equipo Caracterizacion','equipo',null,'',true,true,'','col-2');
+	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-15',"validDate(this,$days,0);",array(''),"addupd(this,'hid','motivoupd');");
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-4');
 	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-2');
+	$c[]=new cmp('equipo_act','s','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo',null,'',false,false,'','col-1');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
 	$c[]=new cmp('nuc1','t','3',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
 	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o.' '.$n,'complemento2','complemento',null,'',false,true,'','col-2');
@@ -380,14 +382,25 @@ function gra_homes(){
 	$gvacun = empty($_POST['gato_vacunas']) ? 0 : $_POST['gato_vacunas'];
 	$geste  = empty($_POST['gato_esterilizado']) ? 0:$_POST['gato_esterilizado'];
 	if(count($id)==2){
-	$sql="UPDATE `hog_viv` SET
-	numfam=TRIM(UPPER('{$_POST['numfam']}')),
-	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),
-		estado_aux=trim(upper('{$_POST['estado_aux']}')),motivo_estaux=trim(upper('{$_POST['motivo_estaux']}')),fechaupd=trim(upper('{$_POST['fechaupd']}')),motivoupd=trim(upper('{$_POST['motivoupd']}')),eventoupd=trim(upper('{$_POST['eventoupd']}')),fechanot=trim(upper('{$_POST['fechanot']}')),crit_epi=trim(upper('{$_POST['crit_epi']}')),crit_geo=trim(upper('{$_POST['crit_geo']}')),estr_inters=trim(upper('{$_POST['estr_inters']}')),fam_peretn=trim(upper('{$_POST['fam_peretn']}')),fam_rurcer=trim(upper('{$_POST['fam_rurcer']}')),complemento1=trim(upper('{$_POST['complemento1']}')),nuc1=trim(upper('{$_POST['nuc1']}')),complemento2=trim(upper('{$_POST['complemento2']}')),nuc2=trim(upper('{$_POST['nuc2']}')),complemento3=trim(upper('{$_POST['complemento3']}')),nuc3=trim(upper('{$_POST['nuc3']}')),telefono1=trim(upper('{$_POST['telefono1']}')),telefono2=trim(upper('{$_POST['telefono2']}')),telefono3=trim(upper('{$_POST['telefono3']}')),tipo_familia=trim(upper('{$_POST['tipo_familia']}')),ingreso=trim(upper('{$_POST['ingreso']}')),seg_pre1=trim(upper('{$_POST['seg_pre1']}')),seg_pre2=trim(upper('{$_POST['seg_pre2']}')),seg_pre3=trim(upper('{$_POST['seg_pre3']}')),seg_pre4=trim(upper('{$_POST['seg_pre4']}')),seg_pre5=trim(upper('{$_POST['seg_pre5']}')),seg_pre6=trim(upper('{$_POST['seg_pre6']}')),seg_pre7=trim(upper('{$_POST['seg_pre7']}')),seg_pre8=trim(upper('{$_POST['seg_pre8']}')),subsidio_1=trim(upper('{$_POST['subsidio_1']}')),subsidio_2=trim(upper('{$_POST['subsidio_2']}')),subsidio_3=trim(upper('{$_POST['subsidio_3']}')),subsidio_4=trim(upper('{$_POST['subsidio_4']}')),subsidio_5=trim(upper('{$_POST['subsidio_5']}')),subsidio_6=trim(upper('{$_POST['subsidio_6']}')),subsidio_7=trim(upper('{$_POST['subsidio_7']}')),subsidio_8=trim(upper('{$_POST['subsidio_8']}')),subsidio_9=trim(upper('{$_POST['subsidio_9']}')),subsidio_10=trim(upper('{$_POST['subsidio_10']}')),subsidio_11=trim(upper('{$_POST['subsidio_11']}')),subsidio_12=trim(upper('{$_POST['subsidio_12']}')),subsidio_13=trim(upper('{$_POST['subsidio_13']}')),subsidio_14=trim(upper('{$_POST['subsidio_14']}')),subsidio_15=trim(upper('{$_POST['subsidio_15']}')),subsidio_16=trim(upper('{$_POST['subsidio_16']}')),subsidio_17=trim(upper('{$_POST['subsidio_17']}')),subsidio_18=trim(upper('{$_POST['subsidio_18']}')),subsidio_19=trim(upper('{$_POST['subsidio_19']}')),subsidio_20=trim(upper('{$_POST['subsidio_20']}')),tipo_vivienda=trim(upper('{$_POST['tipo_vivienda']}')),tendencia=trim(upper('{$_POST['tendencia']}')),dormitorios=trim(upper('{$_POST['dormitorios']}')),personas=trim(upper('{$_POST['personas']}')),actividad_economica=trim(upper('{$_POST['actividad_economica']}')),energia=trim(upper('{$_POST['energia']}')),gas=trim(upper('{$_POST['gas']}')),acueducto=trim(upper('{$_POST['acueducto']}')),alcantarillado=trim(upper('{$_POST['alcantarillado']}')),basuras=trim(upper('{$_POST['basuras']}')),pozo=trim(upper('{$_POST['pozo']}')),aljibe=trim(upper('{$_POST['aljibe']}')),perros=trim(upper('{$_POST['perros']}')),numero_perros=trim(upper('{$_POST['numero_perros']}')),perro_vacunas=trim(upper('{$_POST['perro_vacunas']}')),perro_esterilizado=trim(upper('{$_POST['perro_esterilizado']}')),gatos=trim(upper('{$_POST['gatos']}')),numero_gatos=trim(upper('{$_POST['numero_gatos']}')),gato_vacunas=trim(upper('{$_POST['gato_vacunas']}')),gato_esterilizado=trim(upper('{$_POST['gato_esterilizado']}')),otros=trim(upper('{$_POST['otros']}')),facamb1=trim(upper('{$_POST['factor_1']}')),facamb2=trim(upper('{$_POST['factor_2']}')),facamb3=trim(upper('{$_POST['factor_3']}')),facamb4=trim(upper('{$_POST['factor_4']}')),facamb5=trim(upper('{$_POST['factor_5']}')),facamb6=trim(upper('{$_POST['factor_6']}')),facamb7=trim(upper('{$_POST['factor_7']}')),facamb8=trim(upper('{$_POST['factor_8']}')),facamb9=trim(upper('{$_POST['factor_9']}')),observacion=trim(upper('{$_POST['observacion']}')),
-		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-	WHERE idviv='{$id[0]}'";
-	// echo $sql;
-	//   echo $sql."    ".$rta;
+		$sql1="SELECT fecha fecCar,fechaupd fecUpd FROM hog_viv H where idviv='$id[0]'";
+		$info=datos_mysql($sql1);
+		$fechaUpd=$info['responseResult'][0]['fecUpd'];
+		$fechaCar=$info['responseResult'][0]['fecCar'];
+
+		if($fechaUpd=='' || $fechaUpd=='0000-00-00' ){
+			$sql="UPDATE `hog_viv` SET
+			numfam=TRIM(UPPER('{$_POST['numfam']}')),
+			`fecha`=TRIM(UPPER('{$_POST['fecha']}')),
+			estado_aux=trim(upper('{$_POST['estado_aux']}')),motivo_estaux=trim(upper('{$_POST['motivo_estaux']}')),fechaupd=trim(upper('{$_POST['fechaupd']}')),motivoupd=trim(upper('{$_POST['motivoupd']}')),eventoupd=trim(upper('{$_POST['eventoupd']}')),fechanot=trim(upper('{$_POST['fechanot']}')),crit_epi=trim(upper('{$_POST['crit_epi']}')),crit_geo=trim(upper('{$_POST['crit_geo']}')),estr_inters=trim(upper('{$_POST['estr_inters']}')),fam_peretn=trim(upper('{$_POST['fam_peretn']}')),fam_rurcer=trim(upper('{$_POST['fam_rurcer']}')),complemento1=trim(upper('{$_POST['complemento1']}')),nuc1=trim(upper('{$_POST['nuc1']}')),complemento2=trim(upper('{$_POST['complemento2']}')),nuc2=trim(upper('{$_POST['nuc2']}')),complemento3=trim(upper('{$_POST['complemento3']}')),nuc3=trim(upper('{$_POST['nuc3']}')),telefono1=trim(upper('{$_POST['telefono1']}')),telefono2=trim(upper('{$_POST['telefono2']}')),telefono3=trim(upper('{$_POST['telefono3']}')),tipo_familia=trim(upper('{$_POST['tipo_familia']}')),ingreso=trim(upper('{$_POST['ingreso']}')),seg_pre1=trim(upper('{$_POST['seg_pre1']}')),seg_pre2=trim(upper('{$_POST['seg_pre2']}')),seg_pre3=trim(upper('{$_POST['seg_pre3']}')),seg_pre4=trim(upper('{$_POST['seg_pre4']}')),seg_pre5=trim(upper('{$_POST['seg_pre5']}')),seg_pre6=trim(upper('{$_POST['seg_pre6']}')),seg_pre7=trim(upper('{$_POST['seg_pre7']}')),seg_pre8=trim(upper('{$_POST['seg_pre8']}')),subsidio_1=trim(upper('{$_POST['subsidio_1']}')),subsidio_2=trim(upper('{$_POST['subsidio_2']}')),subsidio_3=trim(upper('{$_POST['subsidio_3']}')),subsidio_4=trim(upper('{$_POST['subsidio_4']}')),subsidio_5=trim(upper('{$_POST['subsidio_5']}')),subsidio_6=trim(upper('{$_POST['subsidio_6']}')),subsidio_7=trim(upper('{$_POST['subsidio_7']}')),subsidio_8=trim(upper('{$_POST['subsidio_8']}')),subsidio_9=trim(upper('{$_POST['subsidio_9']}')),subsidio_10=trim(upper('{$_POST['subsidio_10']}')),subsidio_11=trim(upper('{$_POST['subsidio_11']}')),subsidio_12=trim(upper('{$_POST['subsidio_12']}')),subsidio_13=trim(upper('{$_POST['subsidio_13']}')),subsidio_14=trim(upper('{$_POST['subsidio_14']}')),subsidio_15=trim(upper('{$_POST['subsidio_15']}')),subsidio_16=trim(upper('{$_POST['subsidio_16']}')),subsidio_17=trim(upper('{$_POST['subsidio_17']}')),subsidio_18=trim(upper('{$_POST['subsidio_18']}')),subsidio_19=trim(upper('{$_POST['subsidio_19']}')),subsidio_20=trim(upper('{$_POST['subsidio_20']}')),tipo_vivienda=trim(upper('{$_POST['tipo_vivienda']}')),tendencia=trim(upper('{$_POST['tendencia']}')),dormitorios=trim(upper('{$_POST['dormitorios']}')),personas=trim(upper('{$_POST['personas']}')),actividad_economica=trim(upper('{$_POST['actividad_economica']}')),energia=trim(upper('{$_POST['energia']}')),gas=trim(upper('{$_POST['gas']}')),acueducto=trim(upper('{$_POST['acueducto']}')),alcantarillado=trim(upper('{$_POST['alcantarillado']}')),basuras=trim(upper('{$_POST['basuras']}')),pozo=trim(upper('{$_POST['pozo']}')),aljibe=trim(upper('{$_POST['aljibe']}')),perros=trim(upper('{$_POST['perros']}')),numero_perros=trim(upper('{$_POST['numero_perros']}')),perro_vacunas=trim(upper('{$_POST['perro_vacunas']}')),perro_esterilizado=trim(upper('{$_POST['perro_esterilizado']}')),gatos=trim(upper('{$_POST['gatos']}')),numero_gatos=trim(upper('{$_POST['numero_gatos']}')),gato_vacunas=trim(upper('{$_POST['gato_vacunas']}')),gato_esterilizado=trim(upper('{$_POST['gato_esterilizado']}')),otros=trim(upper('{$_POST['otros']}')),facamb1=trim(upper('{$_POST['factor_1']}')),facamb2=trim(upper('{$_POST['factor_2']}')),facamb3=trim(upper('{$_POST['factor_3']}')),facamb4=trim(upper('{$_POST['factor_4']}')),facamb5=trim(upper('{$_POST['factor_5']}')),facamb6=trim(upper('{$_POST['factor_6']}')),facamb7=trim(upper('{$_POST['factor_7']}')),facamb8=trim(upper('{$_POST['factor_8']}')),facamb9=trim(upper('{$_POST['factor_9']}')),observacion=trim(upper('{$_POST['observacion']}')),
+			equipo_car=trim(upper('{$_POST['equipo_car']}')),equipo_act=trim(upper('{$_POST['equipo_act']}')),
+			`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
+			WHERE idviv='{$id[0]}'";
+		}else{
+			$sql="UPDATE `hog_viv` SET
+			crit_epi=trim(upper('{$_POST['crit_epi']}')),crit_geo=trim(upper('{$_POST['crit_geo']}')),estr_inters=trim(upper('{$_POST['estr_inters']}')),fam_peretn=trim(upper('{$_POST['fam_peretn']}')),fam_rurcer=trim(upper('{$_POST['fam_rurcer']}')),complemento1=trim(upper('{$_POST['complemento1']}')),nuc1=trim(upper('{$_POST['nuc1']}')),complemento2=trim(upper('{$_POST['complemento2']}')),nuc2=trim(upper('{$_POST['nuc2']}')),complemento3=trim(upper('{$_POST['complemento3']}')),nuc3=trim(upper('{$_POST['nuc3']}')),telefono1=trim(upper('{$_POST['telefono1']}')),telefono2=trim(upper('{$_POST['telefono2']}')),telefono3=trim(upper('{$_POST['telefono3']}')),tipo_familia=trim(upper('{$_POST['tipo_familia']}')),ingreso=trim(upper('{$_POST['ingreso']}')),seg_pre1=trim(upper('{$_POST['seg_pre1']}')),seg_pre2=trim(upper('{$_POST['seg_pre2']}')),seg_pre3=trim(upper('{$_POST['seg_pre3']}')),seg_pre4=trim(upper('{$_POST['seg_pre4']}')),seg_pre5=trim(upper('{$_POST['seg_pre5']}')),seg_pre6=trim(upper('{$_POST['seg_pre6']}')),seg_pre7=trim(upper('{$_POST['seg_pre7']}')),seg_pre8=trim(upper('{$_POST['seg_pre8']}')),subsidio_1=trim(upper('{$_POST['subsidio_1']}')),subsidio_2=trim(upper('{$_POST['subsidio_2']}')),subsidio_3=trim(upper('{$_POST['subsidio_3']}')),subsidio_4=trim(upper('{$_POST['subsidio_4']}')),subsidio_5=trim(upper('{$_POST['subsidio_5']}')),subsidio_6=trim(upper('{$_POST['subsidio_6']}')),subsidio_7=trim(upper('{$_POST['subsidio_7']}')),subsidio_8=trim(upper('{$_POST['subsidio_8']}')),subsidio_9=trim(upper('{$_POST['subsidio_9']}')),subsidio_10=trim(upper('{$_POST['subsidio_10']}')),subsidio_11=trim(upper('{$_POST['subsidio_11']}')),subsidio_12=trim(upper('{$_POST['subsidio_12']}')),subsidio_13=trim(upper('{$_POST['subsidio_13']}')),subsidio_14=trim(upper('{$_POST['subsidio_14']}')),subsidio_15=trim(upper('{$_POST['subsidio_15']}')),subsidio_16=trim(upper('{$_POST['subsidio_16']}')),subsidio_17=trim(upper('{$_POST['subsidio_17']}')),subsidio_18=trim(upper('{$_POST['subsidio_18']}')),subsidio_19=trim(upper('{$_POST['subsidio_19']}')),subsidio_20=trim(upper('{$_POST['subsidio_20']}')),tipo_vivienda=trim(upper('{$_POST['tipo_vivienda']}')),tendencia=trim(upper('{$_POST['tendencia']}')),dormitorios=trim(upper('{$_POST['dormitorios']}')),personas=trim(upper('{$_POST['personas']}')),actividad_economica=trim(upper('{$_POST['actividad_economica']}')),energia=trim(upper('{$_POST['energia']}')),gas=trim(upper('{$_POST['gas']}')),acueducto=trim(upper('{$_POST['acueducto']}')),alcantarillado=trim(upper('{$_POST['alcantarillado']}')),basuras=trim(upper('{$_POST['basuras']}')),pozo=trim(upper('{$_POST['pozo']}')),aljibe=trim(upper('{$_POST['aljibe']}')),perros=trim(upper('{$_POST['perros']}')),numero_perros=trim(upper('{$_POST['numero_perros']}')),perro_vacunas=trim(upper('{$_POST['perro_vacunas']}')),perro_esterilizado=trim(upper('{$_POST['perro_esterilizado']}')),gatos=trim(upper('{$_POST['gatos']}')),numero_gatos=trim(upper('{$_POST['numero_gatos']}')),gato_vacunas=trim(upper('{$_POST['gato_vacunas']}')),gato_esterilizado=trim(upper('{$_POST['gato_esterilizado']}')),otros=trim(upper('{$_POST['otros']}')),facamb1=trim(upper('{$_POST['factor_1']}')),facamb2=trim(upper('{$_POST['factor_2']}')),facamb3=trim(upper('{$_POST['factor_3']}')),facamb4=trim(upper('{$_POST['factor_4']}')),facamb5=trim(upper('{$_POST['factor_5']}')),facamb6=trim(upper('{$_POST['factor_6']}')),facamb7=trim(upper('{$_POST['factor_7']}')),facamb8=trim(upper('{$_POST['factor_8']}')),facamb9=trim(upper('{$_POST['factor_9']}')),observacion=trim(upper('{$_POST['observacion']}')),
+			`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
+			WHERE idviv='{$id[0]}'";
+		}
 	}elseif(count($id)==1){
 		$sql="INSERT INTO hog_viv VALUES (null,
 		{$id[0]},
@@ -396,7 +409,8 @@ function gra_homes(){
 		TRIM(UPPER('{$_POST['fecha']}')),
 		TRIM(UPPER('{$_POST['estado_aux']}')),
 		TRIM(UPPER('{$_POST['motivo_estaux']}')),
-		null,null,null,null,
+		TRIM(UPPER('{$_POST['equipo_car']}')),
+		null,null,null,null,NULL,
 		trim(upper('{$_POST['complemento1']}')),trim(upper('{$_POST['nuc1']}')),
 		trim(upper('{$_POST['complemento2']}')),trim(upper('{$_POST['nuc2']}')),
 		trim(upper('{$_POST['complemento3']}')),trim(upper('{$_POST['nuc3']}')),
@@ -1031,6 +1045,31 @@ function eventAsign($key) {
     return $eve;
 }
 
+function plan($id){
+	$sql="select id FROM hog_plancuid where idviv='".$id."'";
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function eac($id){
+	$sql="select fecha,numfam,fechaupd FROM hog_viv where idviv='".$id."'";
+	$info=datos_mysql($sql);
+	$fecha=$info['responseResult'][0]['fecha'];
+	$famil=$info['responseResult'][0]['numfam'];
+	$fecUp=$info['responseResult'][0]['fechaupd'];
+	if(($fecha=='' || $fecha=='0000-00-00') && $famil!='' ){
+		return 1;
+	}elseif($fecUp!='0000-00-00' && $fecUp!=''){
+		return 2;
+	}else{
+		return 3;
+	}
+}
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -1043,11 +1082,28 @@ function formato_dato($a,$b,$c,$d){
 			$rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
 		}
 		if ($a=='famili-lis' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
+			$rta="<nav class='menu right'>";
+			switch (eac($c['Cod_Familia'])) {
+				case 1:
+					$cmps="['idviv','numfam']";	
+					break;
+				case 2:
+					$cmps="['idviv','numfam','estado_aux','equipo_car','fechaupd']";
+					break;
+				case 3:
+					$cmps="['idviv','numfam','estado_aux','equipo_car']";
+					break;
+				default:
+					break;
+			}
+
 				/* $rta.="<li class='icono inactiva' title='Eliminar' id='".$c['ACCIONES']."' OnClick=\"inactivareg(this,event,'idviv');\" ></li>"; */
-				$rta.="<li class='icono editar ' title='Editar Caracterizacion' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,['idviv','numfam','estado_aux']);setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar Caracterizacion' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(getData,1000,'homes',event,this,{$cmps});setTimeout(disFecar,1100,'fecha');Color('famili-lis');\"></li>";  //act_lista(f,this);
 				$rta.="<li class='icono familia' title='Integrantes Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 				$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('placuifam','pro',event,'','lib.php',7);Color('famili-lis');\"></li>";
+				if(plan($c['Cod_Familia'])===true){
+					$rta.="<li class='icono comp1' title='Compromisos Concertados' id='".$c['ACCIONES']."' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"></li>";
+				}
 				$rta.="<li class='icono ambi1' title='Ambiental' id='".$c['ACCIONES']."' Onclick=\"mostrar('ambient','pro',event,'','../vivienda/amb.php',7);Color('famili-lis');\"></li>";
 				$rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(disabledCmp,300,'cmhi');setTimeout(enabLoca('reside_localidad','lochi'),300);Color('famili-lis');\"></li>";
 			}

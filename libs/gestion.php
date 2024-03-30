@@ -12,9 +12,9 @@ if (!isset($_SESSION["us_sds"])) {
 }
 $ruta_upload='/public_html/upload/';
 $env='prod';
-//$comy=array('prod' => ['s'=>'auth-db1167.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+//$comy=array('prod' => ['s'=>'auth-db1180.hstgr.io','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
+$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06']);
 //$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_07','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_07']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
@@ -55,7 +55,7 @@ switch ($req) {
 		if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $fi))
 			echo "Error " . $_FILES['archivo']['error'] . " " . $fi;
 		else {
-			/* echo $cabecera;
+			echo $cabecera;
 			echo "Archivo <b>" . $_POST['b'] . "</b>" . $ar . "<br>";
 			echo "<center>";
 			echo "<div id='progress-ordennovedadvalor'></div>";
@@ -63,7 +63,7 @@ switch ($req) {
 			if (isset($GLOBALS['def_' . $tb]))
 				importar($tb, $fi, $_REQUEST['d']);
 			echo "<input type=button value='Continuar' OnClick=\"retornar('" . $cr . "','" . $ar . ".csv')\" >";
-			echo "</center>"; */
+			echo "</center>";
 		}
 		break;
 }
@@ -141,7 +141,6 @@ function fechas_app($modu){
   return intval($dias);
 }
 
-
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
@@ -158,41 +157,6 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     // $GLOBALS['con']->close();
   }
 	return $arr;
-}
-
-function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
-  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-  $con = $GLOBALS['con'];
-  $con->set_charset('utf8');
-
-  try {
-      if (strpos($sql, 'DELETE') !== false) {
-          $op = 'Eliminado';
-      } elseif (strpos($sql, 'INSERT') !== false) {
-          $op = 'Insertado';
-      } else {
-          $op = 'Actualizado';
-      }
-
-      if (!$con->query($sql)) {
-          $err = $con->error;
-          $con->query("ROLLBACK;");
-          if ($con->error == '') {
-              $rs = "Error: " . $err;
-          } else {
-              $rs = "Error: " . $err . " Ouchh! NO se modificó ningún registro, por favor valide la información e intente nuevamente.";
-          }
-      } else {
-          if ($con->affected_rows > 0) {
-              $rs = "Se ha " . $op . ": " . $con->affected_rows . " Registro Correctamente.";
-          } else {
-              $rs = "Ouchh!, NO se ha " . $op . ", por favor valide la información e intente nuevamente.";
-          }
-      }
-  } catch (mysqli_sql_exception $e) {
-      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
-  }
-  return $rs;
 }
 
 function mysql_prepd($sql, $params) {
@@ -235,7 +199,76 @@ function mysql_prepd($sql, $params) {
 }
 
 
+/* function dato_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+		$con=$GLOBALS['con'];
+		$con->set_charset('utf8');
+		try {
+			if (strpos($sql,'DELETE')!==false){
+				$op='Eliminado';
+			}elseif(strpos($sql,'INSERT')!==false){
+				$op='Insertado';
+			}else{
+				$op='Actualizado';
+			}
+			if(!$con->query($sql)){
+				$err=$con->error;
+				$con->query("ROLLBACK;");
+				if ($con->error==''){
+					$rs="Error : ".$err;
+				}else{
+					$rs="Error : ". $err." Ouchh! NO se modifico ningún registro, por favor valide la información e intente nuevamente.";
+				}
+			}else{
+				if($con->affected_rows>0){
+					$rs="Se ha ".$op.": ".$con->affected_rows." Registro Correctamente.";
+				}else{
+					$rs="Ouchh!, NO se ha ".$op.", por favor valide la información e intente nuevamente.";
+				}
+			}
+		} catch (mysqli_sql_exception $e) {
+			$rs="Error = ".$e->getCode()." ".$e->getMessage();
+			// die($rs);22-10-2023
+		}
+    // $con->close;
+	return $rs;
+} */
 
+function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+  $con->set_charset('utf8');
+
+  try {
+      if (strpos($sql, 'DELETE') !== false) {
+          $op = 'Eliminado';
+      } elseif (strpos($sql, 'INSERT') !== false) {
+          $op = 'Insertado';
+      } else {
+          $op = 'Actualizado';
+      }
+
+      if (!$con->query($sql)) {
+          $err = $con->error;
+          $con->query("ROLLBACK;");
+          if ($con->error == '') {
+              $rs = "Error: " . $err;
+          } else {
+              $rs = "Error: " . $err . " Ouchh! NO se modificó ningún registro, por favor valide la información e intente nuevamente.";
+          }
+      } else {
+          if ($con->affected_rows > 0) {
+              $rs = "Se ha " . $op . ": " . $con->affected_rows . " Registro Correctamente.";
+          } else {
+              $rs = "Ouchh!, NO se ha " . $op . ", por favor valide la información e intente nuevamente.";
+          }
+      }
+  } catch (mysqli_sql_exception $e) {
+      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+  }
+
+  return $rs;
+}
 
 function fetch(&$con, &$rs, $resulttype, &$arr) {
 	if ($rs === TRUE) {
@@ -399,26 +432,6 @@ function create_table($totalReg, $data_arr, $obj_name, $rp = 20,$mod='lib.php', 
   return $rta;
 }
 
-/* function pagins_table($tb, $pg, $np, $nr,$mod) {
-  $np= ($np>$nr) ? ($np-1) : $np;
-  $rta = "<nav class='menu left'>";
-  $rta .= "<li class='icono regini' OnClick=\"ir_pagina('".$tb."', 1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgatra' OnClick=\"ir_pagina('".$tb."', $pg-1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgsigu' OnClick=\"ir_pagina('".$tb."', $pg+1, ".$np.");\"></li>";
-  $rta .= "<li class='icono regfin' OnClick=\"ir_pagina('".$tb."', $np, ".$np.");\"></li>&nbsp;";
-  $rta .= "<input type='text' class='pagina ".$tb." filtro txt-right' maxlength=8 id='pag-".$tb."' value='".$pg."' 
-            Onkeypress=\"return solo_numero(event);\" OnChange=\"ir_pagina('".$tb."', this.value, ".$np.");\">";
-  $rta .= "<span><b> DE ".$np." PAGINAS ";
-  $rta .= "<input type='text' class='pagina txt-right' id='rec-".$tb."' value='".$nr."' disabled>"; 
-  $rta .= " REGISTROS</b></span>";
-  $rta .= "</nav><nav class='menu right'>";
-  $rta .= "<li class='icono regini' OnClick=\"ir_pagina('".$tb."', 1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgatra' OnClick=\"ir_pagina('".$tb."', $pg-1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgsigu' OnClick=\"ir_pagina('".$tb."', $pg+1, ".$np.");\"></li>";
-  $rta .= "<li class='icono regfin' OnClick=\"ir_pagina('".$tb."', $np, ".$np.");\"></li>";
-  $rta .= "</nav>";
-  return $rta;
-} */
 
 function pags_table($tb, $pg, $np, $nr,$mod) {
   $np= ($np>$nr) ? ($np-1) : $np;

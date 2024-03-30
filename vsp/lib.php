@@ -980,10 +980,11 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_accion4($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
 }
-function opc_equipo($id=''){
+ */
+
+ function opc_equipo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
 } 
- */
 function eventAsign($key) {
     $id = divide($key);
     $sql = "SELECT evento as eve

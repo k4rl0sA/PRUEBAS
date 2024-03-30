@@ -82,7 +82,9 @@ function grabar(tb='',ev){
   'condsuic':'condsuic.php',
   'violgest':'violgest.php',
   'medidas':'../vivienda/medidas.php',
-  'ambient':'../vivienda/amb.php'
+  'ambient':'../vivienda/amb.php',
+  'compConc':'../vivienda/plncon.php',
+  'planDCui':'../vivienda/plancui.php'
 };
 	
 var ruta_app = rutaMap[tb] || 'lib.php';

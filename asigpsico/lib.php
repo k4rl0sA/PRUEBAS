@@ -188,7 +188,6 @@ $rta = mysql_prepd(
     NULL,$id[0],$id[1],$_POST['estado_cierre'],$_POST['motivo_cierre'], $_POST['asignado'],
 	$_SESSION['us_sds'], date("Y-m-d H:i:s"), NULL, NULL, 1
 );
-
 return $rta;
  */
   $sql = "INSERT INTO asigpsico VALUES

@@ -217,11 +217,9 @@ function cmp_psicologia() {
 	$c[]=new cmp('psi_nacionalidad','s','20',$j['nacionalidad'],$w.' '.$o,'Nacionalidad','psi_nacionalidad',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_regimen','s','20',$j['regimen'],$w.' '.$o,'Regimen','psi_regimen',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_eapb','s','20',$j['eapb'],$w.' '.$o,'eapb','psi_eapb',null,'',false,false,'','col-4');
-
 	$c[]=new cmp('psicologia_tam_zung','t','20', $k['zung_analisis'],$w.' '.$o,'RESULTADO TAMIZAJE ZUNG INICIAL','psicologia_tam_zung',null,'',$ad,false,'','col-3');
 	$c[]=new cmp('psicologia_tam_hamilton','t','20', $k['hamilton_analisis'],$w.' '.$o,'RESULTADO TAMIZAJE HAMILTON INICIAL','psicologia_tam_hamilton',null,'',$ad,false,'','col-3');
 	$c[]=new cmp('psicologia_funcionamiento','t','20',$k['whodas_analisis'],$w.' '.$o,'RESULTADO MEDICIÓN DEL FUNCIONAMIENTO (WHODAS 2.0) INICIAL','psicologia_funcionamiento',null,'',$ad,false,'','col-4');
-
 	$c[]=new cmp('evachips','a','1500',$d['eva_chips'],$w.' '.$o,'EVALUACION DE RIESGO PARA NIÑOS NIÑAS Y ADOLESCENTES - ChiPS','psicologia_evaluacion',null,'',!$ad,!$ad,'','col-10');
 	$c[]=new cmp('fecha_ses1','d','10',$d['fecha_ses1'],$w.' '.$o,'Fecha','fecha_ses1',null,'',true,$u,'','col-2','validDate(this,-140,0)');
 	$c[]=new cmp('tipo_caso','s','20',$d['tipo_caso'],$w.' '.$o,'Tipo de Caso','tipo_caso',null,'',true,$u,'','col-3');

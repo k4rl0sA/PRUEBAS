@@ -18,8 +18,6 @@ else {
   }   
 }
 
-
-
 function lis_creausu(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
 	WHERE 1 ".whe_creausu());

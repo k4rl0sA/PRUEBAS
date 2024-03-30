@@ -754,10 +754,8 @@ function gra_person(){
 	}
 
 	
-	function cmp_placuifam(){
+	/* function cmp_placuifam(){
 	    $rta="";
-	/* $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>"; */
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d=get_accfam();
 	if ($d==""){$d=$t;}
@@ -779,7 +777,6 @@ function gra_person(){
     $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
     $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5','selectDepend(\'accion4\',\'desc_accion4\',\'lib.php\');');
     $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
-    
 	$c[]=new cmp('observacion','a',500,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 	$o='plancon';
@@ -823,7 +820,7 @@ function gra_person(){
 	function men_placuifam(){
 		$rta=cap_menus('placuifam','pro');
 		return $rta;
-	}
+	} */
 
 	function get_accfam() {
 		// print_r($_POST);
@@ -844,7 +841,7 @@ function gra_person(){
 			}
 	}
 
-function get_placuifam() {
+/* function get_placuifam() {
 	// print_r($_POST);
 		if (!$_POST['id']) {
 			return '';
@@ -986,7 +983,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_equipo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
 } 
-
+ */
 function eventAsign($key) {
     $id = divide($key);
     $sql = "SELECT evento as eve

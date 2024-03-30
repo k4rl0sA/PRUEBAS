@@ -167,14 +167,10 @@ function opc_usuario($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }
 
-
-
-
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-// var_dump($a);
 // var_dump($rta);
 	if ($a=='gestuser' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		

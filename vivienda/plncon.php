@@ -108,10 +108,8 @@ function cmp_compConc(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-    $sql="UPDATE hog_planconc SET compromiso=?, equipo=?, cumple=?,fecha_update=?,usu_update=? WHERE idcon=?";
+    $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],

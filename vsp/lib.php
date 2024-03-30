@@ -182,9 +182,9 @@ function cmp_homes(){
 	$c[]=new cmp('motivo_estaux','s','3',$d,$w.' '.$o,'Motivo','motivo_estaux',null,'',false,false,'','col-2');
 	$c[]=new cmp('equipo_car','s','3',$d,$w.' '.$o,'Equipo Caracterizacion','equipo',null,'',true,true,'','col-2');
 	$c[]=new cmp('fechaupd','d','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-15',"validDate(this,$days,0);",array(''),"addupd(this,'hid','motivoupd');");
-	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-4');
-	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-4');
-	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-2');
+	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
+	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
+	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('equipo_act','s','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo',null,'',false,false,'','col-1');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
 	$c[]=new cmp('nuc1','t','3',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
@@ -192,9 +192,9 @@ function cmp_homes(){
 	$c[]=new cmp('nuc2','t','3',$d,$w.' '.$o.' '.$n,'nuc2','nuc2',null,'',false,true,'','col-1');
 	$c[]=new cmp('complemento3','s','3',$d,$w.' '.$o.' '.$n,'complemento3','complemento',null,'',false,true,'','col-2');
 	$c[]=new cmp('nuc3','t','3',$d,$w.' '.$o.' '.$n,'nuc3','nuc3',null,'',false,true,'','col-2');
-	$c[]=new cmp('telefono1','n','10',$d,$w.' '.$o.' '.$n,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
-	$c[]=new cmp('telefono2','n','10',$d,$w.' '.$o.' '.$n,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
-	$c[]=new cmp('telefono3','n','10',$d,$w.' '.$o.' '.$n,'telefono3','telefono3','rgxphone1',null,false,true,'','col-4');
+	$c[]=new cmp('telefono1','n','10',$d,$w.' '.$o.' '.$n,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-25');
+	$c[]=new cmp('telefono2','n','10',$d,$w.' '.$o.' '.$n,'telefono2','telefono2','rgxphone1',null,false,true,'','col-25');
+	$c[]=new cmp('telefono3','n','10',$d,$w.' '.$o.' '.$n,'telefono3','telefono3','rgxphone1',null,false,true,'','col-25');
 	
 	$o='cri';
 	$c[]=new cmp($o,'e',null,'CRITERIOS DE PRIORIZACIÓN',$w);

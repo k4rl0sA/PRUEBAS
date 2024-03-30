@@ -51,7 +51,7 @@ function cmp_gestionusu(){
 
 
 function lis_adm_usuarios(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_usuarios` C 
+	/* $info=datos_mysql("SELECT COUNT(*) total FROM `adm_usuarios` C 
 	JOIN usuarios U ON C.usu_creo = U.id_usuario 
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND usu_creo='{$_SESSION['us_sds']}'".whe_adm_usuarios());
 	$total=$info['responseResult'][0]['total'];
@@ -68,7 +68,7 @@ function lis_adm_usuarios(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sq;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"adm_usuarios",$regxPag);
+	return create_table($total,$datos["responseResult"],"adm_usuarios",$regxPag); */
 }
 
 function whe_adm_usuarios() {

@@ -368,6 +368,26 @@ function lis_planos() {
 			$tab = "Casos_Relevo_Cuidador";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_asigrelevo($tab);
+            break;
+         case '42':
+			$tab = "Tamizaje_Cope";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_cope($tab);
+            break;    
+        case '43':
+			$tab = "Plano_Ajustes";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_ajustes($tab);
+            break;
+        case '44':
+			$tab = "Casos_Psicologia";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_asigpsico($tab);
+            break;
+        case '45':
+			$tab = "Casos_Derivados_Eac";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_derivaeac($tab);
             break;    
         default:
             break;    
@@ -523,16 +543,21 @@ LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
 
 
 function lis_psico1($txt){
-	$sql="SELECT  V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
-P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
-A.fecha_ses1,A.tipo_caso,A.cod_admin,A.eva_chips,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.psi_validacion6,A.psi_validacion7,
-A.psi_validacion8,A.psi_validacion9,A.psi_validacion10,A.psi_validacion11,FN_DESC(3,A.psi_diag12) as DX,A.psi_validacion13,A.psi_validacion14,A.otro,A.psi_validacion15,A.numsesi,
-A.usu_creo,
-A.fecha_create
+	$sql="SELECT  G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,A.idpsi AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
+A.fecha_ses1 AS Fecha_Sesion, A.tipo_caso AS Tipo_de_Caso, A.cod_admin AS Cod_Admision, 
+H.hamilton_analisis AS Hamilton_Inicial, Z.zung_analisis AS Zung_Inicial, W.whodas_analisis AS Whodas_Inicial, A.eva_chips AS Resultado_Eva_Chips, 
+A.psi_validacion1 AS Pensamiento_Termina_Vida, A.psi_validacion2 AS Accion_Termina_Vida, A.psi_validacion3 AS Plan_termina_Vida_Sem, A.psi_validacion4 AS Descripcion_Evaluacion, A.psi_validacion5 AS Persona_Le_Entiende, A.psi_validacion6 AS Persona_Acompaña_Razonable, A.psi_validacion7 AS Respuestas_Raras_Inusuales,
+A.psi_validacion8 AS No_Contacto_Realidad, A.psi_validacion9 AS Posibles_Transtornos, A.psi_validacion10 AS Plan_Termina_Vida, A.psi_validacion11 AS Posible_Transtorno_Mental, FN_DESC(3,A.psi_diag12) as Impresion_DX, A.psi_validacion13 AS Plan_Menejo_Terapeutico, A.psi_validacion14 AS No_Plan_Manejo_Terapeutico, A.otro AS Otro, A.psi_validacion15 AS Descripcion_Plan_Manejo, A.numsesi AS N°_Sesiones,
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
+
 FROM `psi_psicologia` A
 LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN hog_tam_hamilton H ON A.psi_documento = H.hamilton_idpersona AND A.psi_tipo_doc = H.hamilton_tipodoc AND H.hamilton_momento = 1  
+LEFT JOIN hog_tam_zung Z ON A.psi_documento = Z.zung_idpersona AND A.psi_tipo_doc = Z.zung_tipodoc AND Z.zung_momento = 1
+LEFT JOIN hog_tam_whodas W ON A.psi_documento = W.whodas_idpersona AND A.psi_tipo_doc = W.whodas_tipodoc AND W.whodas_momento = 1
 LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred3();
 	$sql.=whe_date3();
@@ -547,12 +572,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 function lis_psico2($txt){
-	$sql="SELECT V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
-P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
-A.psi_tipo_doc,A.psi_documento,A.psi_fecha_sesion,A.cod_admin2,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.psi_validacion6,A.psi_validacion7,A.psi_validacion8,
-A.psi_validacion9,A.psi_validacion10,A.contin_caso,
-A.fecha_create,
-A.usu_creo
+	$sql="SELECT G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,A.id_sesion2 AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
+
+A.psi_fecha_sesion AS Fecha_Sesion, A.cod_admin2 AS Cod_Admision, A.psi_validacion1 AS Problema_Que_Aflije, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Causa_Problema, FN_CATALOGODESC(124,A.psi_validacion6) AS Cuan_Dificil_Resultado, FN_CATALOGODESC(124,A.psi_validacion7) AS Como_Se_Sintio_Semana, A.psi_validacion8 AS Actividad_Desarrollar_1, A.psi_validacion9 AS Actividad_Desarrollar_2, A.psi_validacion10 AS Actividad_Desarrollar_3, (FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.psi_validacion7)) AS Resultado_Evaluacion, FN_CATALOGODESC(160,A.contin_caso) AS Continuidad_Caso,
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
 FROM `psi_sesion2` A
 LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -571,11 +595,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 function lis_psico3($txt){
-	$sql="SELECT G.subred,V.idgeo AS Id_Familiar,V.numfam AS N°_Familia,
-P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
-A.psi_fecha_sesion,FN_CATALOGODESC(125,A.psi_sesion) AS N°_Sesion,A.cod_admin4,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.difhacer,A.psi_validacion6,A.psi_validacion7,A.psi_validacion8,A.psi_validacion9,
-A.psi_validacion10,A.psi_validacion11,A.psi_validacion12,A.psi_validacion13,A.psi_validacion14,A.psi_validacion15,A.psi_validacion16,A.psi_validacion17,
-A.fecha_create,A.usu_creo
+	$sql="SELECT G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,A.idsesipsi AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
+
+A.psi_fecha_sesion AS Fecha_Sesion, FN_CATALOGODESC(125,A.psi_sesion) AS N°_Sesion, A.cod_admin4 AS Cod_Admision, A.psi_validacion1 AS Problema_Preocupa_Principio, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije_Principio, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Le_Ha_Costado_Hacer_Principio,FN_CATALOGODESC(124,A.difhacer) AS Cuan_Dificil_Resultado,FN_CATALOGODESC(124,A.psi_validacion6) AS Como_Se_Sintio_Semana, A.psi_validacion7 AS Plan_Para_Terminar_Con_Su_Vida, A.psi_validacion8 AS Describa_Pensamientos_Planes, A.psi_validacion9 AS Acciones_Terminar_Su_Vida,FN_CATALOGODESC(130,A.psi_validacion10) AS Plan_Terminar_Con_Su_Vida_Prox_Semana, A.psi_validacion11 AS Describa_Su_Plan, A.psi_validacion12 AS Otro_Problema_Importante, FN_CATALOGODESC(124,A.psi_validacion13) AS Afectado_Otros_Problemas,A.psi_validacion14 AS Actividad_Desarrollar_1,A.psi_validacion15 AS Actividad_Desarrollar_2,A.psi_validacion16 AS Actividad_Desarrollar_3,(FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.difhacer)+FN_CATALOGODESC(124,A.psi_validacion13)) AS Resultado_Evaluacion,FN_CATALOGODESC(160,A.psi_validacion17) AS Continuidad_Caso,
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
 FROM `psi_sesiones` A
 LEFT JOIN personas P ON A.psi_documento = P.idpersona AND A.psi_tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -649,8 +673,8 @@ LEFT JOIN personas P2 ON R.cuidado_3 = P2.idpersona
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario WHERE 1 ";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
-	$sql.=whe_date();
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred18();
+	$sql.=whe_date18();
 	// echo $sql;
 	$tot=" SELECT COUNT(*) total FROM `rel_relevo` R LEFT JOIN personas P ON R.rel_documento = P.idpersona LEFT JOIN personas P0 ON R.rel_validacion13 = P0.idpersona LEFT JOIN personas P1 ON R.cuidado_2 = P1.idpersona LEFT JOIN personas P2 ON R.cuidado_3 = P2.idpersona LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
@@ -671,8 +695,8 @@ R.fecha_create,R.usu_creo
  LEFT JOIN personas P ON R.rel_documento = P.idpersona 
  LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
  LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
-	$sql.=whe_date();
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred19();
+	$sql.=whe_date19();
 	// echo $sql;
 	$tot="SELECT COUNT(*) total FROM `rel_sesion` R	 LEFT JOIN personas P ON R.rel_documento = P.idpersona LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
@@ -766,12 +790,13 @@ P.cuidador AS Persona_Cuidadora, P.tiempo_cuidador AS Tiempo_Cuidador, FN_CATALO
 A.fecha AS FECHA, FN_CATALOGODESC(34,A.tipo) AS TIPO_IDENTIFICACION,FN_CATALOGODESC(166,A.crit_epi) AS CRITERIO_EPIDE,FN_CATALOGODESC(176,A.cursovida) AS CURSO_DE_VIDA,FN_CATALOGODESC(170,A.gestante) AS GESTANTE,FN_CATALOGODESC(177,A.etapgest
 ) AS ETAPA_GESTACIONAL,FN_CATALOGODESC(170,A.cronico) AS CRONICO,A.alert1 AS ALERTA_CRONICO,A.selmul1 AS OPCIONES_CRONICO,A.alert2 AS ALERTA_ENF_TRANSMI,A.selmul2 AS OPCIONES_TRANSMI,A.alert3 AS ALERTA_NUTRICIONAL,A.selmul3 AS OPCIONES_NUTRICIONAL,A.alert4 AS ALERTA_PSICOSOCIAL,A.selmul4 AS OPCIONES_PSICOSOCIAL,A.alert5 AS ALERTA_INFANCIA,A.selmul5 AS OPCIONES_INFANCIA,A.alert6 AS ALERTA_EN_MUJERES,A.selmul6 AS OPCIONES_EN_MUJERES,A.alert7 AS ALERTAS_DISCAPACIDAD,A.selmul7 AS OPCIONES_DISCAPACIDAD
 ,A.alert8 AS ALERTAS_COMUNIDAD_ETN,A.selmul8 AS OPCIONES_COM_ETN,A.alert9 AS ALERTA_SALUD_BUCAL,A.selmul9 AS OPCIONES_SALUD_BUCAL,A.codoral AS CLASIFICACION_SO,A.alert10 AS DERIVACION_GENERAL,A.selmul10 AS OPCIONES_DERIVACION,FN_CATALOGODESC(170,A.deriva_eac) AS DERIVACION_EAC,A.asignado_eac AS PROFESIONAL_EAC,FN_CATALOGODESC(170,A.deriva_pf) AS DERIVACION_PF,A.evento_pf AS EVENTO_PF,
-A.peso AS PESO,A.talla AS TALLA,A.imc AS IMC,A.tas AS TENSION_SISTOLICA,A.tad AS TENSION_DIASTOLICA,A.glucometria AS GLUCOMETRIA,A.perime_braq AS PERIMETRO_BRAQUIAL,A.percentil AS PERCENTIL,A.zscore AS ZSCORE,A.usu_creo,A.fecha_create
+A.peso AS PESO,A.talla AS TALLA,A.imc AS IMC,A.tas AS TENSION_SISTOLICA,A.tad AS TENSION_DIASTOLICA,A.glucometria AS GLUCOMETRIA,A.perime_braq AS PERIMETRO_BRAQUIAL,A.percentil AS PERCENTIL,A.zscore AS ZSCORE,A.usu_creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo AS Equipo,A.fecha_create
 
 FROM `personas_datocomp` A
 LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-LEFT JOIN hog_geo G ON V.idpre = G.idgeo  WHERE 1 ";
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario  WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred9();
 	$sql.=whe_date9();
 	// echo $sql;
@@ -1535,25 +1560,32 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 function lis_violges($txt){
-	$sql="SELECT 
+	$sql="SELECT
 G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
-A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,FN_CATALOGODESC(136,A.etapa) AS Etapa,FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
+A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento, FN_CATALOGODESC(87,A.evento) AS Evento, FN_CATALOGODESC(73,A.estado_s) AS Estado,
+FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado, FN_CATALOGODESC(136,A.etapa) AS Etapa, FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
 
-FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal,FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio,FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes,A.fecha_obstetrica AS Fecha_Evento_Obstetrico,FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento,
-FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion,FN_CATALOGODESC(170,A.meto_fecunda) AS Cuenta_Metodo_Fecundidad,FN_CATALOGODESC(138,A.cual) AS Cual_Metodo,FN_CATALOGODESC(170,A.peso_nacer) AS Peso_RN_Nacer,FN_CATALOGODESC(170,A.asiste_control) AS Asiste_control_CYD,FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo,FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva,
+FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal, FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio, FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes, 
 
-FN_CATALOGODESC(170,A.persis_riesgo) AS Persisten_Riesgos_Asociados,FN_CATALOGODESC(170,A.apoy_sector) AS Apoyo_Otro_Sector,FN_CATALOGODESC(89,A.cual_sec) AS Cual_Sector,FN_CATALOGODESC(170,A.tam_cope) AS Aplica_Tamizaje_Cope,FN_CATALOGODESC(140,A.total_afron) AS Cope_Afrontamiento,FN_CATALOGODESC(141,A.total_evita) AS Cope_Evitacion,
+A.fecha_obstetrica AS Fecha_Evento_Obstetrico, FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento, FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion,
+FN_CATALOGODESC(170,A.meto_fecunda) AS Cuenta_Metodo_Fecundidad, FN_CATALOGODESC(138,A.cual) AS Cual_Metodo, FN_CATALOGODESC(170,A.peso_nacer) AS Peso_RN_Nacer,
+FN_CATALOGODESC(170,A.asiste_control) AS Asiste_control_CYD, FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva, FN_CATALOGODESC(170,A.persis_riesgo) AS Persisten_Riesgos_Asociados, FN_CATALOGODESC(170,A.apoy_sector) AS Apoyo_Otro_Sector,
+FN_CATALOGODESC(89,A.cual_sec) AS Cual_Sector, FN_CATALOGODESC(170,A.tam_cope) AS Aplica_Tamizaje_Cope, FN_CATALOGODESC(140,A.total_afron) AS Cope_Afrontamiento,
+FN_CATALOGODESC(141,A.total_evita) AS Cope_Evitacion,
+FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
+FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
+FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
+FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
+
+FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta, FN_CATALOGODESC(79,A.ruta) AS Ruta, FN_CATALOGODESC(77,A.novedades) AS Novedades, FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid, A.caso_afirmativo AS Relacione_Cuales, A.otras_condiciones AS Otras_Condiciones, A.observaciones AS Observaciones,
+FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades, FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones, FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones, FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento, FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion, FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento, FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo, A.users_bina AS Usuarios_Bina
 
 
-                
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,
-FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento,FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion,FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento,FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.users_bina AS Usuarios_Bina
 FROM `vsp_violges` A
-LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
+LEFT JOIN personas P ON A.tipo_doc = P.tipo_doc AND A.documento=P.idpersona
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
@@ -1645,13 +1677,128 @@ P.tipo_doc AS Tipo_Documento_Cuidador, P.idpersona AS N°_Documento_Cuidador, co
 }
 
 function lis_adscrip($txt){
-	$sql="SELECT U.subred,A.territorio AS Territorio,A.doc_asignado AS Cod_Usuario,U.nombre AS Nombre_Usuario,U.perfil AS Perfil_Usuario FROM `adscrip` A 
+	$sql="SELECT U.subred,A.territorio AS Territorio,A.doc_asignado AS Cod_Usuario,U.nombre AS Nombre_Usuario,U.perfil AS Perfil_Usuario,U.equipo AS Equipo_Usuario FROM `adscrip` A 
 LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario 
 WHERE U.perfil <> 'ADM'  ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	// echo $sql;
 	$tot="SELECT COUNT(*) total FROM `adscrip` A LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario WHERE U.perfil <> 'ADM'  ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_cope($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar,G.subred AS Subred,G.localidad AS Localidad,FN_CATALOGODESC(3,G.zona) AS Zona, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, G.territorio AS Territorio,G.microterritorio AS Manzana_Cuidado, G.estrato AS Estrato,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,
+
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad ,FN_CATALOGODESC(16,P.etnia) AS ETNIA, FN_CATALOGODESC(15,P.pueblo) AS Pueblo, P.idioma AS Habla_Español, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(54,P.vinculo_jefe) AS Vinculo_Jefe_Hogar, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion,FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, FN_CATALOGODESC(180,P.niveduca) AS Nivel_Educativo, P.abanesc AS Razón_Abandono_Escolar, P.tiemdesem AS Tiempo_Desempleo,
+
+C.fecha_create AS Fecha,
+FN_CATALOGODESC(120,C.cope_reporta)  AS Caso_Reportado,
+FN_CATALOGODESC(135,C.cope_pregunta1)  AS Pregunta_1,
+FN_CATALOGODESC(135,C.cope_pregunta2)  AS Pregunta_2,
+FN_CATALOGODESC(135,C.cope_pregunta3)  AS Pregunta_3,
+FN_CATALOGODESC(135,C.cope_pregunta4)  AS Pregunta_4,
+FN_CATALOGODESC(135,C.cope_pregunta5)  AS Pregunta_5,
+FN_CATALOGODESC(135,C.cope_pregunta6)  AS Pregunta_6,
+FN_CATALOGODESC(135,C.cope_pregunta7)  AS Pregunta_7,
+FN_CATALOGODESC(135,C.cope_pregunta8)  AS Pregunta_8,
+FN_CATALOGODESC(135,C.cope_pregunta9)  AS Pregunta_9,
+FN_CATALOGODESC(135,C.cope_pregunta10)  AS Pregunta_10,
+FN_CATALOGODESC(135,C.cope_pregunta11)  AS Pregunta_11,
+FN_CATALOGODESC(135,C.cope_pregunta12)  AS Pregunta_12,
+FN_CATALOGODESC(135,C.cope_pregunta13)  AS Pregunta_13,
+FN_CATALOGODESC(135,C.cope_pregunta14)  AS Pregunta_14,
+FN_CATALOGODESC(135,C.cope_pregunta15)  AS Pregunta_15,
+FN_CATALOGODESC(135,C.cope_pregunta16)  AS Pregunta_16,
+FN_CATALOGODESC(135,C.cope_pregunta17)  AS Pregunta_17,
+FN_CATALOGODESC(135,C.cope_pregunta18)  AS Pregunta_18,
+FN_CATALOGODESC(135,C.cope_pregunta19)  AS Pregunta_19,
+FN_CATALOGODESC(135,C.cope_pregunta20)  AS Pregunta_20,
+FN_CATALOGODESC(135,C.cope_pregunta21)  AS Pregunta_21,
+FN_CATALOGODESC(135,C.cope_pregunta22)  AS Pregunta_22,
+FN_CATALOGODESC(135,C.cope_pregunta23)  AS Pregunta_23,
+FN_CATALOGODESC(135,C.cope_pregunta24)  AS Pregunta_24,
+FN_CATALOGODESC(135,C.cope_pregunta25)  AS Pregunta_25,
+FN_CATALOGODESC(135,C.cope_pregunta26)  AS Pregunta_26,
+FN_CATALOGODESC(135,C.cope_pregunta27)  AS Pregunta_27,
+FN_CATALOGODESC(135,C.cope_pregunta28)  AS Pregunta_28,
+
+C.cope_puntajea  AS Puntaje_Afrontamiento,
+C.cope_descripciona  AS Descipcion_Afrontamiento,
+C.cope_puntajee  AS Puntaje_Evitacion,
+C.cope_descripcione  AS Descipcion_Evitacion
+
+ FROM `hog_tam_cope` C
+ 
+LEFT JOIN personas P ON C.cope_idpersona = P.idpersona AND C.cope_tipodoc= P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred16();
+	$sql.=whe_date16();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_cope` A LEFT JOIN personas P ON A.cope_idpersona = P.idpersona AND A.cope_tipodoc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_ajustes($txt){
+	$sql="SELECT A.id_ajuste AS Cod_Ajuste,G.subred,A.cod_pred AS Cod_Predio, A.cod_fam AS Cod_Familia, A.cod_individuo AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, FN_CATALOGODESC(213, A.formulario) AS Formulario, FN_CATALOGODESC(302, A.accion) AS Accion, A.cod_delete AS Cod_Eliminar, A.cod_traslada AS Cod_Nueva_Familia, A.cmp_editar AS Campo_Editar_Personas,A.tipodoc_old AS Tipo_Documento_Old, A.tipo_doc_new AS Tipo_Documento_Nuevo, A.documento_old AS Documento_Old,A.documento_new AS Documento_Nuevo, A.fecha_old AS Fecha_Nacimiento_Old, A.fecha_new AS Fecha_Nacimiento_Nueva, A.sexo_old AS Sexo_Old,A.sexo_new AS Sexo_Nuevo,A.respuesta AS Respuesta_SDS,U.nombre,U.perfil, A.fecha_create 
+FROM `ajustes` A 
+LEFT JOIN personas P ON A.cod_individuo=P.idpeople 
+LEFT JOIN hog_geo G ON A.cod_pred=G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario 
+WHERE U.perfil <> 'ADM'  ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred17();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `ajustes` A LEFT JOIN hog_geo G ON A.cod_pred=G.idgeo LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE U.perfil <> 'ADM'  ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred17();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_asigpsico($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS Id_Familiar, V.numfam AS N°_Familia,P.idpeople AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, V.telefono1 AS Telefono_1, V.telefono2 AS Telefono_2, V.telefono3 AS Telefono_3, 
+
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, concat(P.nombre1,' ',P.nombre2) AS Nombres, concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, A.atencion_ordenpsicologia AS Orden_Psicologia, FN_CATALOGODESC(220,S.estado_cierre) AS Estado_Orden, FN_CATALOGODESC(223,S.motivo_cierre) AS Motivo_Estado, S.fecha_create AS Fecha_Asignacion, S.usu_creo AS Cod_Colaborador, U.nombre AS Nombre_Colaborador, U.perfil AS Perfil_Colaborador 
+FROM `eac_atencion` A
+LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P.idpersona
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN asigpsico S ON A.atencion_tipodoc=S.tipo_doc AND A.atencion_idpersona=S.documento
+LEFT JOIN usuarios U ON S.doc_asignado=U.id_usuario
+WHERE A.atencion_ordenpsicologia = 'SI'";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred22();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `eac_atencion` A LEFT JOIN personas P ON A.atencion_tipodoc=P.tipo_doc AND A.atencion_idpersona=P.idpersona LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN asigpsico S ON A.atencion_tipodoc=S.tipo_doc AND A.atencion_idpersona=S.documento LEFT JOIN usuarios U ON S.doc_asignado=U.id_usuario WHERE A.atencion_ordenpsicologia = 'SI' ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred22();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_derivaeac($txt){
+	$sql="SELECT G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR, G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(3,G.zona) AS Zona,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos,G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y,V.telefono1 AS Telefono_1,V.telefono2 AS Telefono_2, V.telefono3 AS Telefono_3, A.idmedidas Cod_Registro,P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(47,P.estado_civil) AS Estado_Civil,FN_CATALOGODESC(180,P.niveduca) AS Nivel_Educativo,FN_CATALOGODESC(225,A.necesidad_eac) AS Necesidad_EAC,A.asignado_eac AS Profesional_Derivado, U.nombre AS Nombre_Colaborador, U.perfil AS Perfil FROM `personas_datocomp` A
+LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario
+WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred22();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `personas_datocomp` A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred22();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
@@ -1819,7 +1966,62 @@ function whe_date15(){
 	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
+function whe_subred16() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
 
+function whe_date16(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(C.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+function whe_subred17() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date17(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+
+function whe_subred18() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date18(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(R.rel_validacion18) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+function whe_subred19() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date19(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(R.rel_validacion2) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+function whe_subred22() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
 
 
 function encript($texto, $clave) {

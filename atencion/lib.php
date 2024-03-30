@@ -295,7 +295,6 @@ function gra_homes(){
 	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 	WHERE idviv='{$id[0]}'";
 	// echo $sql;
-	//   echo $sql."    ".$rta;
 	}elseif(count($id)==7){
 		$sql="INSERT INTO hog_viv VALUES (null,
 		{$id[6]},

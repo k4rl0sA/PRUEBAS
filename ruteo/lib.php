@@ -138,7 +138,6 @@ function cmp_rute(){
  $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
  $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-9');
  $c[]=new cmp('integrantes','n',1,$d['integrantes'],$w.' '.$o,'N° Integrantes','observacion',null,null,true,true,'','col-1');
-
  /* $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('estado','s',3,'',$w.' PuE StG '.$o,'estado','estado',null,null,false,false,'','col-2',"changeSelect('estado','famili');");

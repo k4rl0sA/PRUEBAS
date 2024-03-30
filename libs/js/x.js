@@ -983,7 +983,7 @@ function enabDepeInner(a, b, c) {
 
 function valTel(a){
 const ele=document.getElementById(a).value;
-if (ele.length!=7 || ele.length!=10){
+if (ele.length!=7 && ele.length!=10){
 		warnin('El Valor ingresado en el número de telefono, no es valido');
 		return true;
 	}else{

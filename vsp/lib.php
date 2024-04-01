@@ -773,13 +773,13 @@ function gra_person(){
 	}
 
  function opc_equipo($id=''){
-	$fam=divide($_POST['id']);
+	/* $fam=divide($_POST['id']);
 	$sql="SELECT CASE WHEN EXISTS (SELECT 1 FROM hog_viv c WHERE c.idviv = $fam[0] AND NOT EXISTS (
         SELECT 1 FROM usuarios u WHERE u.id_usuario ='{$_SESSION['us_sds']}' AND u.equipo = c.equipo_car)) 
 	THEN FALSE
     ELSE TRUE
     END AS RTA";
-	$info = datos_mysql($sql);
+	$info = datos_mysql($sql); */
 	/* $rta = $info['responseResult'][0]['RTA'];
 	if ($rta===0){
 		return opc_sql("SELECT equipo_car,equipo_car FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",$id);

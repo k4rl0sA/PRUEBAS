@@ -116,7 +116,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
       <div class='titulo' > ZONA DE GESTIÓN DE USUARIOS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <li class='icono gestusu'      title='Gestión de Usuarios' onclick="mostrar('gestionusu','pro',event,'','lib.php','7','Gestión de Usuarios');"></li>
+    <!-- <li class='icono gestusu'      title='Gestión de Usuarios' onclick="mostrar('gestionusu','pro',event,'','lib.php','7','Gestión de Usuarios');"></li> -->
     <li class='icono exportar'      title='Exportar Información'    Onclick="mostrar('planos','pro');"></li>
     </nav>
 		<nav class='menu right' >
@@ -139,24 +139,4 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>
 </div>
-
-
-<script>
-/* function openAction(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-} */
-
-// Get the element with id="defaultOpen" and click on it
-// document.getElementById("defaultOpen").click();
-</script>
 </body>

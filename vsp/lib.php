@@ -778,8 +778,8 @@ function gra_person(){
 
 function opc_equipo1($id=''){
 	var_dump($_POST);
-	var_dump($_GET);
-	var_dump($_REQUEST);
+	// var_dump($_GET);
+	// var_dump($_REQUEST);
     /* $info = datos_mysql($sql);
     $rta = $info['responseResult']; */
 	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);

@@ -780,7 +780,7 @@ function gra_person(){
     ELSE TRUE
     END AS RTA";
 	$info = datos_mysql($sql);
-	/* $rta = $info['responseResult'][0]['RTA'];
+	$rta = $info['responseResult'][0]['RTA'];
 	if ($rta===0){
 		return opc_sql("SELECT equipo_car,equipo_car FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",$id);
 	}else{

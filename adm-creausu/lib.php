@@ -101,6 +101,14 @@ function get_creausu(){
 function gra_creausu(){
   
 	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
+	if (isset($data['bina'])) {
+		$equ =$data['bina'];
+	} elseif(isset($data['terr'])) {
+		$equ =$data['terr'];
+	}else{
+		$equ ='';
+	}
+	
 	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
 	$params1 = [
 		['type' => 'i', 'value' => $_POST['documento']],

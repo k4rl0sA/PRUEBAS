@@ -780,14 +780,14 @@ function gra_person(){
     ELSE TRUE
     END AS RTA";
 	$info = datos_mysql($sql);
-	$rta = $info['responseResult'][0]['RTA'];
+	$rta1 = $info['responseResult'][0]['RTA'];
 
 	$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$rta = $info['responseResult'][0]['equipo'];
-		var_dump($rta);
+		var_dump($rta1."-".$rta);
 
-	if ($rta===0){
+	if ($rta1===0){
 		$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$rta = $info['responseResult'][0]['equipo'];

@@ -99,7 +99,24 @@ function get_creausu(){
 }
 
 function gra_creausu(){
-  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  
+	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
+	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
+	$params1 = [
+		['type' => 'i', 'value' => $_POST['documento']],
+		['type' => 's', 'value' => $_POST['nombre']],
+		['type' => 's', 'value' => $_POST['correo']],
+		['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
+		['type' => 's', 'value' => $data['perfil']],
+		['type' => 'i', 'value' => $usu[2]],
+		['type' => 's', 'value' => $equ],
+		['type' => 's', 'value' => $usu[4]],
+		['type' => 's', 'value' => 'P']];
+		$rta2 = mysql_prepd($sql1, $params1);
+
+	if (strpos($rta2, "Correctamente")!== false) {
+		$rta = "Se ha Insertado: 1 Registro Correctamente.";
+		$sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
@@ -122,23 +139,6 @@ function gra_creausu(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
 	$rta1 = mysql_prepd($sql, $params);
-
-	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
-	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
-	$params1 = [
-		['type' => 'i', 'value' => $_POST['documento']],
-		['type' => 's', 'value' => $_POST['nombre']],
-		['type' => 's', 'value' => $_POST['correo']],
-		['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
-		['type' => 's', 'value' => $data['perfil']],
-		['type' => 'i', 'value' => $usu[2]],
-		['type' => 's', 'value' => $equ],
-		['type' => 's', 'value' => $usu[4]],
-		['type' => 's', 'value' => 'P']];
-		$rta2 = mysql_prepd($sql1, $params1);
-
-	if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
-		$rta = "Se ha Insertado: 1 Registro Correctamente.";
 	} else {
 		$rta = "Error: msj['No se puede crear la solicitud, el usuario ya se ha creado anteriormente']";
 	}

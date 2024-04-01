@@ -96,7 +96,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 
 
 <form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
+<!-- <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 	
 
 <div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" ></div>
@@ -111,7 +111,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 		<div>Fecha Asignado Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
 	</div>
-</div>
+</div> -->
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE GESTIÓN DE USUARIOS
 		<nav class='menu left' >

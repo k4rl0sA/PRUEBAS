@@ -185,7 +185,7 @@ function cmp_homes(){
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
 	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
 	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('equipo_act','s','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo',null,'',false,false,'','col-1');
+	$c[]=new cmp('equipo_act','s','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo1',null,'',false,false,'','col-1');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
 	$c[]=new cmp('nuc1','t','3',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
 	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o.' '.$n,'complemento2','complemento',null,'',false,true,'','col-2');
@@ -753,75 +753,6 @@ function gra_person(){
 			return opc_sql($sql,'');		
 	}
 
-	
-	/* function cmp_placuifam(){
-	    $rta="";
-	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_accfam();
-	if ($d==""){$d=$t;}
-	$u=($d['id']=='')?true:false;
-	$hoy=date('Y-m-d');
-    $w="placuifam";
-	$o='accide';
-	$e="";
-	$key='pln';
-	$days=fechas_app('vsp');
-	$c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,false,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3','selectDepend(\'accion1\',\'desc_accion1\',\'lib.php\');');
-	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
-    $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5','selectDepend(\'accion2\',\'desc_accion2\',\'lib.php\');');
-    $c[]=new cmp('desc_accion2','s','3',$d['desc_accion2'],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion3','s','3',$d['accion3'],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5','selectDepend(\'accion3\',\'desc_accion3\',\'lib.php\');');
-    $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5','selectDepend(\'accion4\',\'desc_accion4\',\'lib.php\');');
-    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
-	$c[]=new cmp('observacion','a',500,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
-
-	$o='plancon';
-	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-	$c[]=new cmp('obs','a',500,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
-	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,true,true,'','col-1');
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='planc-lis' >".lis_planc()."</div></div>";
-	// $rta.="<div class='contenido' id='plancon-lis' >".lis_planc()."</div></div>";
-	return $rta;
-	}
-
-	function lis_planc(){
-		// print_r($_POST);
-		$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-		$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
-		WHERE idviv=".$id[0]."");
-		$total=$info['responseResult'][0]['total'];
-		$regxPag=5;
-		$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
-	
-		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
-		FN_CATALOGODESC(26,equipo) 'Equipo',cumple
-		FROM `hog_planconc` 
-			WHERE idviv='".$id[0];
-		$sql.="' ORDER BY fecha_create";
-		$sql.=' LIMIT '.$pag.','.$regxPag;
-		//  echo $sql;
-		// $_SESSION['sql_planc']=$sql;
-		$datos=datos_mysql($sql);
-		return create_table($total,$datos["responseResult"],"planc",$regxPag);
-			
-	}
-	
-	function focus_placuifam(){
-		return 'placuifam';
-	}
-	   
-	function men_placuifam(){
-		$rta=cap_menus('placuifam','pro');
-		return $rta;
-	} */
-
 	function get_accfam() {
 		// print_r($_POST);
 			if (!$_POST['id']) {
@@ -984,7 +915,16 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 
  function opc_equipo($id=''){
 	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
-}  
+}
+
+function opc_equipo1($id=''){
+	var_dump($_POST);
+	var_dump($_GET);
+	var_dump($_REQUEST);
+    /* $info = datos_mysql($sql);
+    $rta = $info['responseResult']; */
+	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+}
  
 function eventAsign($key) {
     $id = divide($key);

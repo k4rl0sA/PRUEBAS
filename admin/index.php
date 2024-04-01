@@ -112,7 +112,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
 	</div>
 </div> -->
-<div class='col-8 panel' id='<?php echo $mod; ?>'>
+<div class='col-0 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE GESTIÓN DE USUARIOS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">

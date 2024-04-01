@@ -68,7 +68,7 @@ document.addEventListener("keypress", resetInactivityTimer);
 startInactivityTimer();
 
 
-function countMaxChar(ele, max=5000) {
+function countMaxChar(ele, max=7000) {
 	ele.addEventListener("input", function() {
 		var longitud = this.value.length;
 		if (longitud > max){

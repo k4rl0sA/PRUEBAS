@@ -785,7 +785,7 @@ function gra_person(){
 		$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$rta = $info['responseResult'][0]['equipo'];
-		// var_dump($rta);
+		var_dump($rta);
 		// return $rta;
 		return opc_sql($sql,$rta);
 	}else{

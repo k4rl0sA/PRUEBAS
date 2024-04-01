@@ -95,6 +95,7 @@ function men_medidas(){
 	}
 	$des='des';
 	$z='zS';
+	$days=fechas_app('vivienda');
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE MEDIDAS',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
@@ -103,7 +104,7 @@ function men_medidas(){
 	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
     $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-2');
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15','validDate(this,-6,0);');
+	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
 	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-3');
 

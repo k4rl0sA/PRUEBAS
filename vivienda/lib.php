@@ -215,8 +215,8 @@ function cmp_homes(){
 	$c[]=new cmp('fechaupd','h','10',$d,$w.' '.$o,'fecha Actualización','fechaupd',null,'',false,true,'','col-15',"validDate(this,$days,0);",array(''),"addupd(this,'hid','motivoupd');");
 	$c[]=new cmp('motivoupd','h','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
 	$c[]=new cmp('eventoupd','h','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
-	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('equipo_act','s','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanot','h','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('equipo_act','h','3',$d,$w.' hid '.$o,'Equipo Actualizacion','equipo',null,'',false,false,'','col-1');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o.' '.$n,'complemento1','complemento',null,'',true,true,'','col-2');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o.' '.$n,'nuc1','nuc1',null,'',true,true,'','col-1');
  	$c[]=new cmp('complemento2','s','3',$d,$w.'ne '.$o.' '.$n,'complemento2','complemento',null,'',false,true,'','col-2');

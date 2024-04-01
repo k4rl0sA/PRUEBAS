@@ -100,6 +100,13 @@ function get_creausu(){
 
 function gra_creausu(){
   
+	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+	$usu=divide($rta["responseResult"][0]['usu']);
+ 
+	$rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
+	$data=$rta["responseResult"][0];
+
+
 	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
 	if (isset($data['bina'])) {
 		$equ =$data['bina'];
@@ -109,7 +116,6 @@ function gra_creausu(){
 		$equ ='';
 	}
 	
-	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
 	$params1 = [
 		['type' => 'i', 'value' => $_POST['documento']],
 		['type' => 's', 'value' => $_POST['nombre']],
@@ -125,11 +131,7 @@ function gra_creausu(){
 	if (strpos($rta2, "Correctamente")!== false) {
 		$rta = "Se ha Insertado: 1 Registro Correctamente.";
 		$sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-   $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-   $usu=divide($rta["responseResult"][0]['usu']);
-
-   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
-   $data=$rta["responseResult"][0];
+   
 
    $params = [
 	['type' => 'i', 'value' => NULL],

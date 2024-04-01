@@ -157,7 +157,7 @@ function opc_perfil($id=''){
 		$comp = $com['responseResult'][0]['componente'];
 	}
 	
-	// var_dump("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
+	var_dump("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor IN('{$comp}')");
 	return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor IN('{$comp}')",$id);
 }
 function opc_bina($id=''){

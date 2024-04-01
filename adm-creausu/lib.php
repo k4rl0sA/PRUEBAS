@@ -150,7 +150,7 @@ function opc_perfil($id=''){
 	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 	$adm=$info['responseResult'][0]['perfil'];
 	if ($adm=='ADM') {
-		$comp="EAC,HOG";
+		$comp="EAC','HOG";
 	}else {
 		$sql ="SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'";
 		$com=datos_mysql($sql);

@@ -782,12 +782,12 @@ function gra_person(){
 	$info = datos_mysql($sql);
 	$rta1 = $info['responseResult'][0]['RTA'];
 
-	$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
+	/* $sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$equ = $info['responseResult'][0]['equipo'];
 		var_dump($rta1);
 		var_dump($equ);
-		var_dump(opc_sql("SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",''));
+		var_dump(opc_sql("SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",'')); */
 
 	if ($rta1=="0"){
 		$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
@@ -882,7 +882,6 @@ function plan($id){
 function eac($id){
 	$sql="select fecha,numfam,fechaupd FROM hog_viv where idviv='".$id."'";
 	$info=datos_mysql($sql);
-	var_dump($info['responseResult'][0]);
 	$fecha=$info['responseResult'][0]['fecha'];
 	$famil=$info['responseResult'][0]['numfam'];
 	$fecUp=$info['responseResult'][0]['fechaupd'];

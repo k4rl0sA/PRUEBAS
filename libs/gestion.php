@@ -305,11 +305,9 @@ function opc_sql($sql,$val,$str=true){
 				if ($rs != FALSE) {
 					while ($r = $rs->fetch_array(MYSQLI_NUM))
 						if($r[0]==$val){
-              var_dump($r[0]."-------".$r[1]);
-							// $rta.="<option value='".$r[0]."' selected>".htmlentities($r[1],ENT_QUOTES)."</option>";
+							$rta.="<option value='".$r[0]."' selected>".htmlentities($r[1],ENT_QUOTES)."</option>";
 						}else{
-              var_dump($r[0]."*****".$r[1]);
-							// $rta.="<option value='".$r[0]."'>".htmlentities($r[1],ENT_QUOTES)."</option>";
+							$rta.="<option value='".$r[0]."'>".htmlentities($r[1],ENT_QUOTES)."</option>";
 						}						
 				}
 				//~ $con->close();

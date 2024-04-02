@@ -92,7 +92,7 @@ function gra_compConc(){
         print_r($_REQUEST); */
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
-    if(COUNT($id)==7){
+    if(COUNT($id)==7 || COUNT($id)==3 ){
       $sql = "INSERT INTO hog_planconc VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],

@@ -785,11 +785,12 @@ function gra_person(){
 	$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$equ = $info['responseResult'][0]['equipo'];
+		var_dump($rta1);
 		var_dump($equ);
 		var_dump(opc_sql("SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",''));
 
 	if ($rta1===0){
-		$sql="SELECT 1 FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
+		$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
 		$info = datos_mysql($sql);
 		$rta = $info['responseResult'][0]['equipo'];
 		// var_dump($rta);

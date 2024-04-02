@@ -882,6 +882,7 @@ function plan($id){
 function eac($id){
 	$sql="select fecha,numfam,fechaupd FROM hog_viv where idviv='".$id."'";
 	$info=datos_mysql($sql);
+	var_dump($info['responseResult'][0]);
 	$fecha=$info['responseResult'][0]['fecha'];
 	$famil=$info['responseResult'][0]['numfam'];
 	$fecUp=$info['responseResult'][0]['fechaupd'];

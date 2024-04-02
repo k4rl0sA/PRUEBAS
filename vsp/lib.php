@@ -795,7 +795,7 @@ function gra_person(){
 		$rta = $info['responseResult'][0]['equipo'];
 		// var_dump($rta);
 		// return $rta;
-		return opc_sql($sql,$equ);
+		return opc_sql($sql,$rta);
 	}else{
 		return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
 	}

@@ -86,7 +86,7 @@ function cmp_compConc(){
 	return $rta;
 }
 
-	function gra_compConc(){
+function gra_compConc(){
 	/* 	print_r($_POST);
         print_r($_GET);
         print_r($_REQUEST); */
@@ -118,7 +118,7 @@ function cmp_compConc(){
       $rta = mysql_prepd($sql, $params);
     }
 return $rta;
-	}
+}
 
 	function get_compConc(){
         // print_r($_POST);

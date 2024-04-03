@@ -26,13 +26,13 @@ function lis_creausu(){
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
 
 	
-	$sql="SELECT *
+	$sql="SELECT DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,SUBRED,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
 	FROM adm_usunew 
-	 WHERE 1  ";
+	 WHERE DATE(fecha_create) BETWEEN  ";
 	$sql.=whe_creausu();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
 } 

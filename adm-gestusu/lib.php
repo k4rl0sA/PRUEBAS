@@ -30,7 +30,7 @@ function lis_gestuser(){
 	$sql="SELECT *
 	FROM adm_usunew 
 	 WHERE 1  ";
-	$sql.=whe_gestuser();
+	$sql.= whe_gestuser();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

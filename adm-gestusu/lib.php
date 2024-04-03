@@ -147,44 +147,41 @@ switch ($_POST['gestion']) {
 }
 
 function adm(){
-	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
-	$adm=$info['responseResult'][0]['perfil'];
-	return $adm;
+    $info = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+    $adm = $info['responseResult'][0]['perfil'];
+    return $adm;
 }
 
 function opc_perfilusuario($id=''){
-	if($_REQUEST['id']!=''){	
-		if(adm()='ADM'){	
-			$sql="SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
-		perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
-		 ORDER BY nombre";
-		// var_dump($sql);
-		$info=datos_mysql($sql);		
-		return json_encode($info['responseResult']);	
-		}else {
-			$sql="SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
-		perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
-		and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
-		and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY nombre";
-		// var_dump($sql);
-		$info=datos_mysql($sql);		
-		return json_encode($info['responseResult']);	
-		}
-	} 
+    if($_REQUEST['id']!=''){	
+        if(adm()=='ADM'){	
+            $sql = "SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+            perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+            ORDER BY nombre";
+            $info = datos_mysql($sql);		
+            return json_encode($info['responseResult']);	
+        } else {
+            $sql = "SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+            perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+            and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
+            and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY nombre";
+            $info = datos_mysql($sql);		
+            return json_encode($info['responseResult']);	
+        }
+    } 
 }
 
 function opc_perfil($id=''){
-	
-	if (adm()=='ADM') {
-		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
-	}else {
-	$com=datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
-	$comp = $com['responseResult'][0]['componente'] ;
-	// return $comp;
-	// var_dump("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
-	return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor='$comp'",$id);
-	}
+    if (adm()=='ADM') {
+        return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
+    } else {
+        $com = datos_mysql("SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
+        $comp = $com['responseResult'][0]['componente'] ;
+        return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor='$comp'",$id);
+    }
 }
+
+
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }

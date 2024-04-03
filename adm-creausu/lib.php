@@ -147,7 +147,7 @@ function gra_creausu(){
 	['type' => 's', 'value' => date("Y-m-d H:i:s")],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => NULL]];
+	['type' => 's', 'value' => 'R']];
 	$rta1 = mysql_prepd($sql, $params);
 	} else {
 		$rta = "Error: msj['No se puede crear la solicitud, el usuario ya se ha creado anteriormente']";

@@ -28,7 +28,7 @@ function lis_creausu(){
 	
 	$sql="SELECT DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,SUBRED,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
 	FROM adm_usunew 
-	 WHERE DATE(fecha_create) BETWEEN  ";
+	 WHERE BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE()";
 	$sql.=whe_creausu();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

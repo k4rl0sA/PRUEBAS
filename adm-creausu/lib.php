@@ -28,7 +28,7 @@ function lis_creausu(){
 	
 	$sql="SELECT id_usu Caso,DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,SUBRED,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
 	FROM adm_usunew 
-	 WHERE fecha_create BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE()  AND SUBRED=(select subred from usuarios where id_usaurio='".$_SESSION['us_sds']."')";
+	 WHERE fecha_create BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE()  AND SUBRED=(select subred from usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	$sql.=whe_creausu();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

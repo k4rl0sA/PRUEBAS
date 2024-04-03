@@ -26,9 +26,9 @@ function lis_creausu(){
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
 
 	
-	$sql="SELECT id_usu Caso,DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,SUBRED,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
+	$sql="SELECT id_usu Caso,DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
 	FROM adm_usunew 
-	 WHERE DATE(fecha_create) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE()  AND SUBRED=(select subred from usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	 WHERE 1 ";
 	$sql.=whe_creausu();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
@@ -39,8 +39,17 @@ function lis_creausu(){
 
 function whe_creausu() {
 	$sql = "";
-	if ($_POST['festado'] && $_POST['festado']=='NULL' )
-		$sql .= " AND estado  IS NULL ";
+	if ($_POST['fcaso']) {
+		$sql .= " AND id_usu = '$_POST['fcaso']'";
+	}elseif($_POST['fdoc']){
+		$sql .= " AND documento LIKE '%$_POST['fdoc']%'";
+	}else {
+		$sql .=" AND DATE(fecha_create) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE()  AND SUBRED=(select subred from usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	}
+	
+		
+
+
 	return $sql;
 }
 

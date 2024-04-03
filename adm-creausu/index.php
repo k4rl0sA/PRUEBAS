@@ -50,19 +50,12 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 	
 
 <div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" ></div>
+<div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" ></div>
 
-<div class="campo"><div>Estado</div>
-	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php echo $estados;?></select>
-</div>
+<!-- <div class="campo"><div>Estado</div>
+	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>
+</div> -->
 	
-	<!-- <div class="campo">
-		<div>Fecha Asignado Desde</div>
-		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();" disabled="true">
-	</div>
-	<div class="campo">
-		<div>Fecha Asignado Hasta</div>
-		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();" disabled="true">
-	</div> -->
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS

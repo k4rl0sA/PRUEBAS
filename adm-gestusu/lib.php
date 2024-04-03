@@ -38,7 +38,8 @@ function lis_gestuser(){
 	return create_table($total,$datos["responseResult"],"gestuser",$regxPag);
 } 
 
-$sql = "";
+function whe_gestuser() {
+	$sql = "";
     if ($_POST['fcaso']) {
         $sql .= " AND id_usu = '" . $_POST['fcaso'] . "'";
     } elseif ($_POST['fdoc']) {
@@ -47,6 +48,7 @@ $sql = "";
         $sql .= " AND DATE(fecha_create) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() AND SUBRED=(select subred from usuarios where id_usuario='" . $_SESSION['us_sds'] . "')";
     }
     return $sql;
+}
 
 
 function focus_gestuser(){

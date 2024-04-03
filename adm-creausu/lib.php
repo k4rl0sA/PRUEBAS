@@ -120,7 +120,7 @@ function gra_creausu(){
 		['type' => 'i', 'value' => $_POST['documento']],
 		['type' => 's', 'value' => $_POST['nombre']],
 		['type' => 's', 'value' => $_POST['correo']],
-		['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
+		['type' => 'z', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
 		['type' => 's', 'value' => $data['perfil']],
 		['type' => 'i', 'value' => $usu[2]],
 		['type' => 's', 'value' => $equ],

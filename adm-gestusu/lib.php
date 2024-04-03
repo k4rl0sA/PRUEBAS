@@ -159,6 +159,8 @@ function opc_perfilusuario($id=''){
 }
 
 function opc_perfil($id=''){
+	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+	$adm=$info['responseResult'][0]['perfil'];
 	if ($adm=='ADM') {
 		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
 	}else {

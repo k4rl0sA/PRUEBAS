@@ -889,6 +889,16 @@ function EnabCron(a,b,c,d,e) {
 }
 
 
+function bloqElem(elem,flag) {
+    elem.forEach(function(ele) {
+        let ele = document.getElementById(ele);
+        if (ele) {
+            lockeds(ele, flag);
+        } else {
+            console.error('elemento no encontrado: ' + ele);
+        }
+    });
+}
 
 function enabRuta(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b+',textarea.'+b);

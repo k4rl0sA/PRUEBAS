@@ -305,7 +305,7 @@ function gra_admision(){
 
 
 function fac($id){
-	$id=divide($id)
+	$id=divide($id);
 	$sql="SELECT fecha_consulta fecha
 			FROM adm_facturacion F
 			WHERE  F.id_factura='{$id[2]}'";

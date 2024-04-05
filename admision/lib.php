@@ -305,9 +305,10 @@ function gra_admision(){
 
 
 function fac($id){
+	$id=divide($id)
 	$sql="SELECT fecha_consulta fecha
 			FROM adm_facturacion F
-			WHERE  F.id_factura='{$id}'";
+			WHERE  F.id_factura='{$id[2]}'";
 	// echo $sql;
 	$info=datos_mysql($sql);
 	$f=$info['responseResult'][0]['fecha'];
@@ -318,7 +319,7 @@ function formato_dato($a,$b,$c,$d){
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
-var_dump($c);
+// var_dump($c);
 	if ($a=='admision' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
@@ -326,7 +327,7 @@ var_dump($c);
 	}
 	if ($a=='adm' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$cmps = (fac($c['id_factura'])=='0000-00-00') ? '':"['fecha_consulta','tipo_consulta','cod_cups','final_consul']";
+		$cmps = (fac($c['ACCIONES'])=='0000-00-00') ? '':"['fecha_consulta','tipo_consulta','cod_cups','final_consul']";
 		$rta.="<li class='icono editar ' title='Editar Facturación' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,{$cmps},'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}

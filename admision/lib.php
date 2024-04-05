@@ -112,6 +112,14 @@ function cmp_admision(){
 	$e="";
 	$w='admision';
 	$o='infusu';
+	$sql="SELECT fecha_consulta fecha
+			FROM adm_facturacion F
+		WHERE  F.tipo_doc='{$d['tipo_doc']}' AND F.documento='{$d['idpersona']}'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		$f=$info['responseResult'][0]['fecha'];
+	    $x= ($f=='' || $f=='0000-00-00') ? false:true;
+	
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	 
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
@@ -139,11 +147,11 @@ function cmp_admision(){
 	
 	$o='admfac';
 	$c[]=new cmp($o,'e',null,'ADMISIÓN Y FACTURACIÓN',$w);
-	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,true,'','col-15','validDate(this,-140,0)');
-	$c[]=new cmp('tipo_consulta','s',3,$e,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,true,'','col-15');
-	$c[]=new cmp('cod_cups','s','3',$e,$w.' '.$o,'Codigo CUPS','cod_cups',null,null,true,true,'','col-35');
-	$c[]=new cmp('final_consul','s','3',$e,$w.' '.$o,'Finalidad de la Consulta','final_consul',null,null,true,true,'','col-35');
-	$c[]=new cmp('cod_admin','n','12',$e,$w.' '.$o,'Codigo ingreso','cod_admin',null,null,true,true,'','col-15');
+	$c[]=new cmp('fecha_consulta','d',20,$e,$w.' '.$o,'Fecha de la consulta','fecha_consulta',null,'',true,$x,'','col-15','validDate(this,-140,0)');
+	$c[]=new cmp('tipo_consulta','s',3,$e,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,$x,'','col-15');
+	$c[]=new cmp('cod_cups','s','3',$e,$w.' '.$o,'Codigo CUPS','cod_cups',null,null,true,$x,'','col-35');
+	$c[]=new cmp('final_consul','s','3',$e,$w.' '.$o,'Finalidad de la Consulta','final_consul',null,null,true,$x,'','col-35');
+	$c[]=new cmp('cod_admin','n','12',$e,$w.' '.$o,'Codigo ingreso','cod_admin',null,null,true,$x,'','col-15');
 	$c[]=new cmp('cod_factura','n','12',$e,$w.' '.$o,'Codigo de Factura','cod_factura',null,null,false,true,'','col-15');
 	$c[]=new cmp('estado_hist','s','3',$e,$w.' '.$o,'Estado Admision','estado_hist',null,null,true,true,'','col-2');
 	
@@ -316,7 +324,7 @@ function formato_dato($a,$b,$c,$d){
 	}
 	if ($a=='adm' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono editar ' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'','lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
 	

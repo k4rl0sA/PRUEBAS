@@ -1228,16 +1228,15 @@ function lockeds(ele,flag) {
 }
 
 function bloqElem(elementos, flag) {
-    elementos.forEach(function(elemento) {
-        let ele = document.getElementById(elemento);
+    elementos.forEach(function(elm) {
+        let ele = document.getElementById(elm);
         if (ele) {
             lockeds(ele, flag);
         } else {
-            console.error('Elemento no encontrado: ' + elemento);
+            console.error('Elemento no encontrado: ' + elm);
         }
     });
 }
-
 function hidLabFie(ele,flag){
 	switch (ele.nodeName) {
 		case 'SELECT':

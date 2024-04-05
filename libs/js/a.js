@@ -1227,6 +1227,16 @@ function lockeds(ele,flag) {
     ele.disabled = flag === true;
 }
 
+function bloqElem(elem,flag) {
+    elem.forEach(function(ele) {
+        let ele = document.getElementById(ele);
+        if (ele) {
+            lockeds(ele, flag);
+        } else {
+            console.error('elemento no encontrado: ' + ele);
+        }
+    });
+}
 
 function hidLabFie(ele,flag){
 	switch (ele.nodeName) {

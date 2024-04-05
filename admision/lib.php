@@ -180,7 +180,11 @@ function get_personas(){
 		WHERE  P.tipo_doc='{$id[0]}' AND P.idpersona='{$id[1]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
-		return $info['responseResult'][0];			
+		if (!$info['responseResult']) {
+				return '';
+			}else{
+				return $info['responseResult'][0];
+			}
 	} 
    }
 

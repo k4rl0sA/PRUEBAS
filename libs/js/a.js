@@ -1227,13 +1227,13 @@ function lockeds(ele,flag) {
     ele.disabled = flag === true;
 }
 
-function bloqElem(elem,flag) {
-    elem.forEach(function(ele	) {
-        let elm = document.getElementById(ele);
-        if (elm) {
-            lockeds(elm, flag);
+function bloqElem(elementos, flag) {
+    elementos.forEach(function(elemento) {
+        let ele = document.getElementById(elemento);
+        if (ele) {
+            lockeds(ele, flag);
         } else {
-            console.error('elemento no encontrado: ' + ele);
+            console.error('Elemento no encontrado: ' + elemento);
         }
     });
 }

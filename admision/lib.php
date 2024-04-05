@@ -171,7 +171,7 @@ function get_personas(){
 		return "";
 	}else{
 		 $id=divide($_REQUEST['id']);
-		// print_r($id);
+		//  print_r($id);
 		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,FN_CATALOGODESC(2,G.localidad) localidad,FN_CATALOGODESC(20,G.barrio) barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3
 			FROM adm_facturacion F
 			LEFT JOIN personas P ON F.tipo_doc = P.tipo_doc AND F.documento = P.idpersona 
@@ -303,18 +303,6 @@ function gra_admision(){
   return $rtaF;
 }
 
-
-function fac($id){
-	$id=divide($id);
-	$sql="SELECT fecha_consulta fecha
-			FROM adm_facturacion F
-			WHERE  F.id_factura='{$id[2]}'";
-	// echo $sql;
-	$info=datos_mysql($sql);
-	$f=$info['responseResult'][0]['fecha'];
-	// var_dump($f);
-}
-
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -328,11 +316,11 @@ function formato_dato($a,$b,$c,$d){
 	}
 	if ($a=='adm' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		// $cmps = (fac($c['ACCIONES'])=='0000-00-00') ? '':"['fecha_consulta','tipo_consulta','cod_cups','final_consul']";
-		$cmps ='';
-		$rta.="<li class='icono editar ' title='Editar Facturación' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,{$cmps});Color('adm-lis');\"></li>";  //act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
+	
+	
  return $rta;
 }
 

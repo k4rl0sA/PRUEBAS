@@ -1228,7 +1228,7 @@ function lockeds(ele,flag) {
 }
 
 function bloqElem(elem,flag) {
-    elem.forEach(function(ele) {
+    elem.forEach(function(ele	) {
         let elm = document.getElementById(ele);
         if (elm) {
             lockeds(elm, flag);

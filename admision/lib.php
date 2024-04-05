@@ -312,7 +312,7 @@ function fac($id){
 	// echo $sql;
 	$info=datos_mysql($sql);
 	$f=$info['responseResult'][0]['fecha'];
-	var_dump($f);
+	// var_dump($f);
 }
 
 function formato_dato($a,$b,$c,$d){

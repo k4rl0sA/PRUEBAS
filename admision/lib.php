@@ -112,16 +112,7 @@ function cmp_admision(){
 	$e="";
 	$w='admision';
 	$o='infusu';
-	$sql="SELECT fecha_consulta fecha
-			FROM adm_facturacion F
-		WHERE  F.tipo_doc='{$d['tipo_doc']}' AND F.documento='{$d['idpersona']}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		$f=$info['responseResult'][0]['fecha'];
-	    $x= ($f=='' || $f=='0000-00-00') ? false:true;
-	
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
-	 
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('tipo_doc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo Documento','atencion_tipo_doc',null,'',true,false,'','col-5');
 	$c[]=new cmp('documento','t','20',$d['idpersona'],$w.' '.$o,'N° Identificación','atencion_idpersona',null,'',true,false,'','col-5');

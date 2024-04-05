@@ -1229,9 +1229,9 @@ function lockeds(ele,flag) {
 
 function bloqElem(elem,flag) {
     elem.forEach(function(ele) {
-        let ele = document.getElementById(ele);
-        if (ele) {
-            lockeds(ele, flag);
+        let elm = document.getElementById(ele);
+        if (elm) {
+            lockeds(elm, flag);
         } else {
             console.error('elemento no encontrado: ' + ele);
         }

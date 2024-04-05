@@ -332,7 +332,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";
 		// $cmps = (fac($c['ACCIONES'])=='0000-00-00') ? '':"['fecha_consulta','tipo_consulta','cod_cups','final_consul']";
 		$cmps ='';
-		var_dump(fac($c['ACCIONES']);
+		echo(fac($c['ACCIONES']);
 		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,{$cmps},'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}

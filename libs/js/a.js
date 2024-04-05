@@ -1229,7 +1229,7 @@ function lockeds(ele,flag) {
 
 function bloqElem(elementos, flag) {
     elementos.forEach(function(elm) {
-        let ele = document.getElementById(elm);
+        var ele = document.getElementById(elm);
         if (ele) {
             lockeds(ele, flag);
         } else {

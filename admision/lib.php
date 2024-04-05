@@ -335,8 +335,6 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
 		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
-	
-	
  return $rta;
 }
 

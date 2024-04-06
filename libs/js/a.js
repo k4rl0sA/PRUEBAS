@@ -1237,6 +1237,7 @@ function bloqElem(elementos, flag) {
         }
     });
 }
+
 function hidLabFie(ele,flag){
 	switch (ele.nodeName) {
 		case 'SELECT':

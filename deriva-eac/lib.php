@@ -20,16 +20,28 @@ else {
 }
 
 function lis_deriva-eac(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion` A JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ".whe_deriva-eac());
+	$info=datos_mysql("SELECT COUNT(*) total FROM personas_datocomp A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ".whe_deriva-eac());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=4;
+	$regxPag=10;
 	$pag=(isset($_POST['pag-deriva-eac']))? ($_POST['pag-deriva-eac']-1)* $regxPag:0;
-	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
-	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
-	FROM `adm_facturacion` A 
-	JOIN usuarios U ON A.usu_creo = U.id_usuario
-	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
+
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, 
+	E.id_eacfam ACCIONES,
+	G.idgeo Cod_Predio,
+	V.idviv Cod_Familia,
+	G.territorio Territorio,
+	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
+	U.nombre Colaborador, 
+	U.perfil Perfil, 
+	FN_CATALOGODESC(44,E.estado_fam) Estado, 
+	E.fecha_create Rta 
+	FROM personas_datocomp A
+	LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
+	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario
+	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam
+	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ";
 	$sql.=whe_deriva-eac();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

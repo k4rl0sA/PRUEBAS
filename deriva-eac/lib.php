@@ -19,45 +19,26 @@ else {
   }   
 }
 
-
-
-function lis_adm(){
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_factura']) ? divide($_POST['id_factura']) : null);
-	// $id=divide($_POST['id']);
- 	$info=datos_mysql("SELECT  COUNT(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura)) total
-	 FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=3;
-	$pag=(isset($_POST['pag-adm']))? ($_POST['pag-adm']-1)* $regxPag:0;	
-	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
-	FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
-	$sql.=" ORDER BY F.fecha_create";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"adm",$regxPag,'lib.php');
-   }
-
-function lis_admision(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion` A JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ".whe_admision());
+function lis_deriva-eac(){
+	$info=datos_mysql("SELECT COUNT(*) total FROM `adm_facturacion` A JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ".whe_deriva-eac());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
 	
-	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-deriva-eac']))? ($_POST['pag-deriva-eac']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
 	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
 	FROM `adm_facturacion` A 
 	JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
-	$sql.=whe_admision();
+	$sql.=whe_deriva-eac();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"admision",$regxPag);
+	return create_table($total,$datos["responseResult"],"deriva-eac",$regxPag);
 	}
 
-function whe_admision() {
+function whe_deriva-eac() {
 	$sql = "";
 	 if ($_POST['fdocumento'])
 		$sql .= " AND documento = '".$_POST['fdocumento']."'";
@@ -80,13 +61,13 @@ function whe_admision() {
 }
 
 
-function focus_admision(){
- return 'admision';
+function focus_deriva-eac(){
+ return 'deriva-eac';
 }
 
 
-function men_admision(){
- $rta=cap_menus('admision','pro');
+function men_deriva-eac(){
+ $rta=cap_menus('deriva-eac','pro');
  return $rta;
 }
 
@@ -94,7 +75,7 @@ function men_admision(){
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
-  if ($a=='admision'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+  if ($a=='deriva-eac'  && isset($acc['crear']) && $acc['crear']=='SI'){  
     $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
 	// $rta .= "<li class='icono $a crear'  title='Actualizar'   id='".print_r($_REQUEST)."'   Onclick=\"\"></li>";
@@ -102,15 +83,15 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-function cmp_admision(){
-	$rta="<div class='encabezado adm'>TABLA ADMISION</div>
+function cmp_deriva-eac(){
+	$rta="<div class='encabezado adm'>TABLA deriva-eac</div>
 	<div class='contenido' id='adm-lis'>".lis_adm()."</div></div>";
 	$hoy=date('Y-m-d');
 	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','ocupacion'=>'','regimen'=>'','eapb'=>'','localidad'=>'','barrio'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$d=get_personas();
 	if ($d==""){$d=$t;}
 	$e="";
-	$w='admision';
+	$w='deriva-eac';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
@@ -156,39 +137,8 @@ function cmp_admision(){
 	return $rta;
 }
 
-function new_Admision(){
-    $id=divide($_REQUEST['id']);
-    $sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$id[0]}')),trim(upper('{$id[1]}')),
-	trim(upper('SI')),'','','','','','','','','',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-	$rta=dato_mysql($sql);
-	//echo $sql;
-	return $rta;
-}
 
-function get_personas(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		 $id=divide($_REQUEST['id']);
-		//  print_r($id);
-		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,FN_CATALOGODESC(2,G.localidad) localidad,FN_CATALOGODESC(20,G.barrio) barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3
-			FROM adm_facturacion F
-			LEFT JOIN personas P ON F.tipo_doc = P.tipo_doc AND F.documento = P.idpersona 
-			LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
-        			FROM hog_geo ) AS G ON H.idgeo = G.geo
-		WHERE  P.tipo_doc='{$id[0]}' AND P.idpersona='{$id[1]}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		if (!$info['responseResult']) {
-				return '';
-			}else{
-				return $info['responseResult'][0];
-			}
-	} 
-   }
-
-function get_admision(){
+function get_deriva-eac(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
@@ -258,7 +208,7 @@ function opc_tipo_docnew($id=''){
 
 
 
-function gra_admision(){
+function gra_deriva-eac(){
 	$rtaF='';
 	$id=divide($_POST['id_factura']);
 	if(count($id)==4){
@@ -323,17 +273,17 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($c);
-	if ($a=='admision' && $b=='acciones'){
+	if ($a=='deriva-eac' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('deriva-eac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
 	}
 	if ($a=='adm' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$blo = (fac($c['ACCIONES'])=='0000-00-00') ? 'false' :'true';
 		// $cmps ='';
-		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'admision',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
-		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'deriva-eac',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
+		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('deriva-eac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
  return $rta;
 }

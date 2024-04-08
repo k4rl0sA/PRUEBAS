@@ -45,7 +45,7 @@ function lis_deriva-eac(){
 	$sql.=whe_deriva-eac();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"deriva-eac",$regxPag);
 	}

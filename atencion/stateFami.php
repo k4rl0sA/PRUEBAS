@@ -58,7 +58,7 @@ function focus_statFam(){
      }
 
     function get_statFam(){
-      var_dump($_POST);
+      // var_dump($_POST);
       // var_dump($_GET);
       if($_POST['id']==''){
         return "";

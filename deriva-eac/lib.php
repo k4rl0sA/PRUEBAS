@@ -25,16 +25,17 @@ function lis_derivaeac(){
 	$regxPag=10;
 	$pag=(isset($_POST['pag-derivaeac']))? ($_POST['pag-derivaeac']-1)* $regxPag:0;
 
+	// FN_CATALOGODESC(44,E.estado_fam) 'Estado', 
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, 
 	E.id_eacfam ACCIONES,
-	G.idgeo Cod_Predio,
-	V.idviv Cod_Familia,
+	G.idgeo Predio,
+	V.idviv Familia,
 	G.territorio Territorio,
-	A.dc_documento,
+	A.dc_documento Documento,
+	concat_ws(' ',P.nombre1,apellido1) Usuario,
 	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
 	U.nombre Colaborador, 
 	U.perfil Perfil, 
-	FN_CATALOGODESC(44,E.estado_fam) 'Estado', 
 	E.fecha_create Rta 
 	FROM personas_datocomp A
 	LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc

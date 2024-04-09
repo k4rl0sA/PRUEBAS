@@ -12,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='deriva-eac';	
+var mod='derivaeac';	
 var ruta_app='lib.php';
 
 function actualizar(){
@@ -37,7 +37,7 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='deriva-eac';
+$mod='derivaeac';
 /*$ya = new DateTime();
 $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']); */

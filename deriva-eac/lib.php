@@ -19,11 +19,11 @@ else {
   }   
 }
 
-function lis_deriva-eac(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM personas_datocomp A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ".whe_deriva-eac());
+/* function lis_derivaeac(){
+	$info=datos_mysql("SELECT COUNT(*) total FROM personas_datocomp A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ".whe_derivaeac());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
-	$pag=(isset($_POST['pag-deriva-eac']))? ($_POST['pag-deriva-eac']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-derivaeac']))? ($_POST['pag-derivaeac']-1)* $regxPag:0;
 
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, 
 	E.id_eacfam ACCIONES,
@@ -42,23 +42,23 @@ function lis_deriva-eac(){
 	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario
 	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam
 	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ";
-	$sql.=whe_deriva-eac();
+	$sql.=whe_derivaeac();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"deriva-eac",$regxPag);
-	}
+	return create_table($total,$datos["responseResult"],"derivaeac",$regxPag);
+	} */
 
-function whe_deriva-eac() {
+function whe_derivaeac() {
 	$sql = "";
-	 if ($_POST['fdocumento'])
-		$sql .= " AND documento = '".$_POST['fdocumento']."'";
-	if ($_POST['fcod_admin'])
-		$sql .= " AND cod_admin ='".$_POST['fcod_admin']."' ";
+	 if ($_POST['fpre'])
+		$sql .= " AND G.idgeo = '".$_POST['fpre']."'";
+	if ($_POST['ffam'])
+		$sql .= " AND V.idviv ='".$_POST['ffam']."' ";
 	if($_POST['fdigita']) 
 	    $sql .= " AND usu_creo ='".$_POST['fdigita']."'";
-	if ($_POST['festado_hist'])
+	if ($_POST['festado'])
 		$sql .= " AND estado_hist ='".$_POST['festado_hist']."' ";
 	/*if ($_POST['fpred'])
 		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
@@ -73,13 +73,13 @@ function whe_deriva-eac() {
 }
 
 
-function focus_deriva-eac(){
- return 'deriva-eac';
+function focus_derivaeac(){
+ return 'derivaeac';
 }
 
 
-function men_deriva-eac(){
- $rta=cap_menus('deriva-eac','pro');
+function men_derivaeac(){
+ $rta=cap_menus('derivaeac','pro');
  return $rta;
 }
 
@@ -87,7 +87,7 @@ function men_deriva-eac(){
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
-  if ($a=='deriva-eac'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+  if ($a=='derivaeac'  && isset($acc['crear']) && $acc['crear']=='SI'){  
     $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
 	// $rta .= "<li class='icono $a crear'  title='Actualizar'   id='".print_r($_REQUEST)."'   Onclick=\"\"></li>";
@@ -95,15 +95,15 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-function cmp_deriva-eac(){
-	$rta="<div class='encabezado adm'>TABLA deriva-eac</div>
+function cmp_derivaeac(){
+	$rta="<div class='encabezado adm'>TABLA derivaeac</div>
 	<div class='contenido' id='adm-lis'>".lis_adm()."</div></div>";
 	$hoy=date('Y-m-d');
 	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','ocupacion'=>'','regimen'=>'','eapb'=>'','localidad'=>'','barrio'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$d=get_personas();
 	if ($d==""){$d=$t;}
 	$e="";
-	$w='deriva-eac';
+	$w='derivaeac';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
@@ -150,7 +150,7 @@ function cmp_deriva-eac(){
 }
 
 
-function get_deriva-eac(){
+function get_derivaeac(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
@@ -220,7 +220,7 @@ function opc_tipo_docnew($id=''){
 
 
 
-function gra_deriva-eac(){
+function gra_derivaeac(){
 	$rtaF='';
 	$id=divide($_POST['id_factura']);
 	if(count($id)==4){
@@ -285,17 +285,17 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($c);
-	if ($a=='deriva-eac' && $b=='acciones'){
+	if ($a=='derivaeac' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('deriva-eac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
 	}
 	if ($a=='adm' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$blo = (fac($c['ACCIONES'])=='0000-00-00') ? 'false' :'true';
 		// $cmps ='';
-		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'deriva-eac',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
-		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('deriva-eac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'derivaeac',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
+		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 	}
  return $rta;
 }

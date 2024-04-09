@@ -33,7 +33,7 @@ function lis_derivaeac(){
 	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
 	U.nombre Colaborador, 
 	U.perfil Perfil, 
-	FN_CATALOGODESC(44,E.estado_fam) Estado, 
+	FN_CATALOGODESC(44,E.estado_fam) 'Estado', 
 	E.fecha_create Rta 
 	FROM personas_datocomp A
 	LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
@@ -43,7 +43,7 @@ function lis_derivaeac(){
 	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam
 	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ";
 	$sql.=whe_derivaeac();
-	$sql.=" ORDER BY fecha_create";
+	$sql.=" ORDER BY E.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);

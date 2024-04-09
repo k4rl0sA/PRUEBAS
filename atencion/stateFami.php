@@ -67,7 +67,7 @@ function focus_statFam(){
         $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
-          var_dump($info);
+          var_dump($info['responseResult']);
             return $info['responseResult'][0];
         }else{
           return "";

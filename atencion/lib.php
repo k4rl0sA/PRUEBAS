@@ -1792,7 +1792,7 @@ function asigna_rutePsico(){
 ////////////////////////////////////////////////////atencion//////////////////////////////////////////////
 
 function estado($id){
-	$sql="select id_eacfam FROM eac_fam where cod_fam='".$id."' AND estado_fam='7'";
+	$sql="select id_eacfam FROM eac_fam where cod_fam='".$id."' AND estado_fam='1'";
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){
 	  return true;

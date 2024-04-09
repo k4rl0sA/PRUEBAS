@@ -46,7 +46,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN
 ?>
 <form method='post' id='fapp'>
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-	<div class="campo"><div>Codigo del Predio</div><input type="number" class="captura" size=10 id="fpred" name="fpred" OnChange="actualizar();"></div>
+	<div class="campo"><div>Codigo del Predio</div><input type="number" class="captura" size=10 id="fpre" name="fpre" OnChange="actualizar();"></div>
 	<div class="campo"><div>Codigo de la Familia </div><input type="number" class="captura" size=10 id="ffam" name="ffam" OnChange="actualizar();"></div>
 	<div class="campo"><div>Colaborador</div>
 		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">

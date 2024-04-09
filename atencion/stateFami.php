@@ -68,9 +68,9 @@ function focus_statFam(){
         echo $sql;
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
+          echo $sql;
             return $info['responseResult'][0];
         }else{
-          echo $sql;
           return "";
         }
       } 

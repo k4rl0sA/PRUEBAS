@@ -58,8 +58,6 @@ function focus_statFam(){
      }
 
     function get_statFam(){
-      // var_dump($_POST);
-      // var_dump($_GET);
       if($_POST['id']==''){
         return "";
       }else{
@@ -67,7 +65,6 @@ function focus_statFam(){
         $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
-          var_dump($info['responseResult'][0]);
             return $info['responseResult'][0];
         }else{
           return "";

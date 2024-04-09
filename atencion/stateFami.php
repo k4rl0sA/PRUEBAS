@@ -70,6 +70,7 @@ function focus_statFam(){
         if(isset($info['responseResult'][0])){ 
             return $info['responseResult'][0];
         }else{
+          echo $sql;
           return "";
         }
       } 

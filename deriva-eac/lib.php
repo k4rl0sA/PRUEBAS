@@ -59,18 +59,7 @@ function whe_derivaeac() {
 	if ($_POST['ffam'])
 		$sql .= " AND V.idviv ='".$_POST['ffam']."' ";
 	if($_POST['fdigita']) 
-	    $sql .= " AND usu_creo ='".$_POST['fdigita']."'";
-	if ($_POST['festado'])
-		$sql .= " AND estado_hist ='".$_POST['festado_hist']."' ";
-	/*if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
-	if ($_POST['festado'])
-		$sql .= " AND estado_v ='".$_POST['festado']."'";
-	if (isset($_POST['fdigita'])){
-		if($_POST['fdigita']) $sql .= " AND asignado ='".$_POST['fdigita']."'";
-	}else{
-		$sql .= " AND asignado ='".$_SESSION['us_sds']."'";
-	} */
+	    $sql .= " AND A.asignado_eac ='".$_POST['fdigita']."'";
 	return $sql;
 }
 

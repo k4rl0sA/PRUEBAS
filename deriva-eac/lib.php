@@ -30,6 +30,7 @@ function lis_derivaeac(){
 	G.idgeo Cod_Predio,
 	V.idviv Cod_Familia,
 	G.territorio Territorio,
+	A.dc_documento,
 	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
 	U.nombre Colaborador, 
 	U.perfil Perfil, 

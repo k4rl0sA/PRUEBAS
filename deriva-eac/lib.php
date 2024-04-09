@@ -63,7 +63,7 @@ function whe_derivaeac() {
 	return $sql;
 }
 
-
+/* 
 function focus_derivaeac(){
  return 'derivaeac';
 }
@@ -160,54 +160,14 @@ function get_derivaeac(){
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
-        /*if (!$info['responseResult']) {
-				return '';
-			}else{
-				return json_encode($info['responseResult'][0]);
-			}*/
+        //if (!$info['responseResult']) {
+		//		return '';
+		//	}else{
+		//		return json_encode($info['responseResult'][0]);
+		//	}
 		 return json_encode($info['responseResult'][0]);
 	    } 
 }
-
-function opc_sexo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
-}
-function opc_genero($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
-}
-function opc_nacionalidad($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
-}
-function opc_regimen($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY 1",$id);
-}
-function opc_eapb($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
-}
-function opc_estado_civil($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=47 and estado='A' ORDER BY 1",$id);
-}
-function opc_niveduca($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=180 and estado='A' ORDER BY 1",$id);
-}
-function opc_ocupacion($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=175 and estado='A' ORDER BY 1",$id);
-}
-function opc_tipo_consulta($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=182 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_cod_cups($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=126 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_final_consul($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=127 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id);
-}
-function opc_estado_hist($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=184 and estado='A' ORDER BY 1",$id);
-}
-function opc_tipo_docnew($id=''){
-	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-    }
 
 
 
@@ -269,7 +229,7 @@ function fac($id){
 	return $f=$info['responseResult'][0]['fecha'];
 	// var_dump($f);
 }
-
+ */
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

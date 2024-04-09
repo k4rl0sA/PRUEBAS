@@ -278,7 +278,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($c);
 	if ($a=='derivaeac' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono actimed' title='Estado Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('statFam','pro',event,'','stateFami.php',5,'stateFami');Color('famili-lis');\"></li>";
+		$rta.="<li class='icono actimed' title='Estado Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('statFam','pro',event,'','../atencion/stateFami.php',5,'stateFami');Color('famili-lis');\"></li>";
 		/* $rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>"; */
 	}

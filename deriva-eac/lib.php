@@ -45,7 +45,7 @@ function lis_derivaeac(){
 	$sql.=whe_derivaeac();
 	$sql.=" ORDER BY E.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"derivaeac",$regxPag);
 	}

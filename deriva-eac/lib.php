@@ -278,15 +278,9 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($c);
 	if ($a=='derivaeac' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
-		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
-	}
-	if ($a=='adm' && $b=='acciones'){
-		$rta="<nav class='menu right'>";
-		$blo = (fac($c['ACCIONES'])=='0000-00-00') ? 'false' :'true';
-		// $cmps ='';
-		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'derivaeac',event,this,'','lib.php');setTimeout(bloqElem,700,['fecha_consulta','tipo_consulta','cod_cups','final_consul'],$blo);Color('adm-lis');\"></li>";  //act_lista(f,this);
-		// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono actimed' title='Estado Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('statFam','pro',event,'','stateFami.php',5,'stateFami');Color('famili-lis');\"></li>";
+		/* $rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('derivaeac','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>"; */
 	}
  return $rta;
 }

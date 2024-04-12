@@ -51,15 +51,15 @@ function focus_statFam(){
     $o='datos';
       $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
       $info=datos_mysql($sql);
-      $perf=$info['responseResult'][0]['perfil'];
+      $p=$info['responseResult'][0]['perfil'];
       
-      if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){
+     /*  if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){
         $p='estado_med';
       }elseif($perf=='ADMISI'|| $perf=='LIDEAC'){
         $p='estado_adm';
       }else{
         $p='estado_fam';
-      }
+      } */
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
     $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita',$p,null,null,true,$u,'','col-5',"enbValue('estado_fam','StA',5);");

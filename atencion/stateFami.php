@@ -81,7 +81,7 @@ function focus_statFam(){
       }else if($perf=='ADMISI'|| $perf=='LIDEAC'){
         return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' AND valor =2 or( idcatalogo=227 and idcatadeta=3) ORDER BY 1",$id);
       }else{
-        return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' AND valor =1 ORDER BY 1",$id);
+        return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' ORDER BY 1",$id);
       }
       // return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' ORDER BY 1",$id);
     }

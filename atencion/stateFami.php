@@ -51,7 +51,7 @@ function focus_statFam(){
     $o='datos';
       $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
       $info=datos_mysql($sql);
-      var_dump($info['responseResult'][0]['perfil']);
+      var_dump($info['responseResult'][0]);
 
       
      /*  if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){

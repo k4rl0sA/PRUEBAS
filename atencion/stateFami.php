@@ -73,9 +73,9 @@ function focus_statFam(){
     }
 
     function opc_estado_fam($id=''){
-    /*   $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
+      $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
       $info=datos_mysql($sql);
-      $perf=$info['responseResult'][0]['perfil']; */
+      $perf=$info['responseResult'][0]['perfil'];
       /* if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){
         return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' AND valor =1 ORDER BY 1",$id);
       }elseif($perf=='ADMISI'|| $perf=='LIDEAC'){

@@ -80,7 +80,7 @@ function focus_statFam(){
     }
 
     function opc_estado_fam($id=''){
-      var_dump(opc_perf());
+      return var_dump(opc_perf());
       /* if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){
         return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' AND valor =1 ORDER BY 1",$id);
       }elseif($perf=='ADMISI'|| $perf=='LIDEAC'){

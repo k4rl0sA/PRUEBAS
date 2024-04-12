@@ -49,6 +49,8 @@ function focus_statFam(){
     if ($d=="") {$d=$t;}
     $u=($d['id']=='')?true:false;
     $o='datos';
+    $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
+      $info=datos_mysql($sql);
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
     $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,true,$u,'','col-5',"enbValue('estado_fam','StA',5);");

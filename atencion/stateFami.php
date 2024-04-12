@@ -49,21 +49,9 @@ function focus_statFam(){
     if ($d=="") {$d=$t;}
     $u=($d['id']=='')?true:false;
     $o='datos';
-      $sql="SELECT perfil from usuarios WHERE id_usuario='$_SESSION['us_sds']'";
-      $info=datos_mysql($sql);
-      // var_dump($info);
-      $p='';
-      
-     /*  if($perf=='MEDATE' || $perf=='PSIEAC' || $perf=='ENFATE'){
-        $p='estado_med';
-      }elseif($perf=='ADMISI'|| $perf=='LIDEAC'){
-        $p='estado_adm';
-      }else{
-        $p='estado_fam';
-      } */
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
-    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita',$p,null,null,true,$u,'','col-5',"enbValue('estado_fam','StA',5);");
+    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,true,$u,'','col-5',"enbValue('estado_fam','StA',5);");
     $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' StA '.$o,'Motivo de Rechazado','motivo_estafam',null,null,false,false,'','col-5');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     return $rta;
@@ -84,22 +72,9 @@ function focus_statFam(){
       } 
     }
 
-
-    function opc_estado_med($id=''){
+    function opc_estado_fam($id=''){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' ORDER BY 1",$id);
     }
-
-    function opc_estado_fam($id=''){
-        return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' ORDER BY 1",$id);
-      // 
-    }
-
-    function opc_estado_adm($id=''){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=227 and estado='A' AND valor =2 or( idcatalogo=227 and idcatadeta=3) ORDER BY 1",$id);
-    }
-     
-    
-
     function opc_motivo_estafam($id=''){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
     }

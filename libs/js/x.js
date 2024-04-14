@@ -514,6 +514,16 @@ function Ocup5(a,b){
 	}
 }
 
+function EditOcup5(a,b){
+	rta =getAge(a);
+	ano=rta['anios'];
+	if(ano<6){
+		lockeds(a,true);
+	  }else{
+		lockeds(a, false);
+	}
+}
+
 function staEfe(a,b){
 	const act=document.getElementById(a);
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);

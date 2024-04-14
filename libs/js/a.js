@@ -1233,7 +1233,7 @@ function bloqElem(elementos, flag) {
         if (ele) {
             lockeds(ele, flag);
         } else {
-            console.error('Element no encontrado: ' + elm);
+            console.error('Elemento no encontrado: ' + elm);
         }
     });
 }

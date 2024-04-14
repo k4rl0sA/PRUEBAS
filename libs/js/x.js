@@ -515,7 +515,7 @@ function Ocup5(a,b){
 }
 
 function EditOcup(a,b){
-	rta =getAge(a);
+	rta =getAge('fecha_nacimiento');
 	ano=rta['anios'];
 	let el=document.getElementById(a);
 	if(ano<6){

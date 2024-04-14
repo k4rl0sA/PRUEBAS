@@ -517,10 +517,11 @@ function Ocup5(a,b){
 function EditOcup(a,b){
 	rta =getAge(a);
 	ano=rta['anios'];
+	let el=document.getElementById(a);
 	if(ano<6){
-		lockeds(a,true);
+		lockeds(el,true);
 	  }else{
-		lockeds(a, false);
+		lockeds(el, false);
 	}
 }
 

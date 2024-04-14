@@ -514,7 +514,7 @@ function Ocup5(a,b){
 	}
 }
 
-function EditOcup5(a,b){
+function EditOcup(a,b){
 	rta =getAge(a);
 	ano=rta['anios'];
 	if(ano<6){

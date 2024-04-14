@@ -1117,7 +1117,6 @@ function eac($id){
 	}
 }
 
-
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

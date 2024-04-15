@@ -367,7 +367,7 @@ function cmp_person(){
 	$c[]=new cmp('estado_civil','s','3',$d,$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
 	$c[]=new cmp('niveduca','s','3',$d,$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
 	$c[]=new cmp('abanesc','s','3',$d,$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d,$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,false,'','col-25',"timeDesem(this,'des');");//true
+	$c[]=new cmp('ocupacion','s','3',$d,$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,true,'','col-25',"timeDesem(this,'des');");//true
 	$c[]=new cmp('tiemdesem','n','3',$d,$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
 	$c[]=new cmp('vinculo_jefe','s','3',$d,$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
 	$c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ocu','idi');");
@@ -1821,7 +1821,7 @@ function formato_dato($a,$b,$c,$d){
 	}
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
-		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');
+		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,500,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');setTimeout(enabAfil,1200,'regimen','eaf');setTimeout(enabEapb,1200,'regimen','rgm');setTimeout(enabEtni,1200,'etnia','ocu','idi');setTimeout(hideCuida,1210,'cuidador','cuihid',false);\"></li>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,1000,'person',event,this,['idpersona','tipo_doc']);Color('datos-lis');\"></li>";  //act_lista(f,this);
 		$perfil = (perfil1()=='PSIEAC' || perfil1()=='ADM') ? "<li class='icono asigna1' title='Asigna Psicologia-Ruteo' id='".$c['ACCIONES']."' Onclick=\"rutePsico('{$c['ACCIONES']}');Color('datos-lis');\"></li>" : "" ;

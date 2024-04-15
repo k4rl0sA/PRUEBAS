@@ -42,7 +42,7 @@ function focus_statFam(){
    function cmp_statFam(){
     $rta="";
     $hoy=date('Y-m-d');
-    $t=['id'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'']; 
+    $t=['id'=>'','cod_fam'=>'','estado_fam'=>'','motivo_estafam'=>'','direccion_nueva'=>'']; 
     $w='statFam';
     // var_dump($_POST);
     $d=get_statFam(); 
@@ -67,7 +67,7 @@ function focus_statFam(){
         return "";
       }else{
          $id=divide($_POST['id']);
-        $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
+        $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam,direccion_nueva from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
             return $info['responseResult'][0];

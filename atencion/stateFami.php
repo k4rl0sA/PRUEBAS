@@ -73,8 +73,9 @@ function focus_statFam(){
       if($_POST['id']==''){
         return "";
       }else{
-        var_dump($_POST['id']);
          $id=divide($_POST['id']);
+         $tot=count($id);
+         var_dump($tot);
         $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam,direccion_nueva from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 

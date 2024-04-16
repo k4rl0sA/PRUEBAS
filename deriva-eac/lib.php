@@ -236,7 +236,7 @@ function formato_dato($a,$b,$c,$d){
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
-var_dump($c);
+// var_dump($c);
 // var_dump($a);
 	if ($a=='derivaeac' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

@@ -52,7 +52,7 @@ function focus_statFam(){
     $ty=(modulo()=='/atencion')?'h':'t';
     // var_dump($_POST);
     var_dump($_GET);
-    var_dump($_REQUEST);
+    // var_dump($_REQUEST);
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
     /* $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");//

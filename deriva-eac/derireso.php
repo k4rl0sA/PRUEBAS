@@ -65,7 +65,7 @@ function opc_idgeo($a){
 		FROM hog_geo hg LEFT JOIN hog_viv hv ON hg.idgeo =hv.idpre 
 		LEFT JOIN eac_fam ef ON hv.idviv=ef.cod_fam 
 		where id_eacfam='{$id[0]}'";
-		var_dump($sql);
+		// var_dump($sql);
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];
 	return $cod;

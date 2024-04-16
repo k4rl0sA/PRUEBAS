@@ -49,6 +49,8 @@ function focus_statFam(){
     if ($d=="") {$d=$t;}
     $u=($d['id']=='')?true:false;
     $o='datos';
+    $uri = $_SERVER['REQUEST_URI'];
+    var_dump($uri);
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
     /* $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");//
@@ -56,6 +58,7 @@ function focus_statFam(){
     $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-2'); */
     $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,true,$u,'','col-5',"enabStatPreAdm(this,['motivo_estafam'],false);");//enbValue('estado_fam','StA',5);
     $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' StA '.$o,'Motivo de Rechazado','motivo_estafam',null,null,false,false,'','col-5',"validState(this,'estado_fam');");
+
     $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-5');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     return $rta;

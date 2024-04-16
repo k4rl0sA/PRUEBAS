@@ -36,7 +36,8 @@ function lis_derivaeac(){
 	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
 	U.nombre Colaborador, 
 	U.perfil Perfil, 
-	E.fecha_create Rta 
+	E.fecha_create Rta,
+	E.estado_fam 
 	FROM personas_datocomp A
 	LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv

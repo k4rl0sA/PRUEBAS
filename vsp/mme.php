@@ -161,7 +161,7 @@ function cmp_mme(){
     $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$o,'Cierre de Caso','rta',null,null,false,$x,'','col-1','enabFincas(this,\'cc\');');
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');    
-    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15');
+    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
 
     $c[]=new cmp('conti_segespecial','s','3',$d,$w.' cc '.$o,'Continua en seguimiento por especialista','rta',null,null,false,true,'','col-2',"enabOthSi('conti_segespecial','seP');");
     $c[]=new cmp('cual_segespecial','t','500',$d,$w.' cc seP '.$o,'Cual de Segespecial','cual_segespecial',null,null,false,true,'','col-2');

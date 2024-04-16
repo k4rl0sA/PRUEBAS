@@ -146,7 +146,7 @@ $ev=$event[3];
     $c[]=new cmp('cierre_caso','s','2',$d,$w.' '.$ob.' '.$o,'Cierre de Caso','rta',null,null,true,true,'','col-2',"enabOthSi('cierre_caso','cc');");//disaOthNo('cierre_caso','Lk');disaOthNo('cierre_caso','cO');
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');    
-    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15','validDate(this,-3,0);');
+    $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
     $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$bl.' '.$o,'Aplica Tamizaje Cope','rta',null,null,false,$x,'','col-15',"enabOthSi('aplica_tamiz','cO');disaOthNo('aplica_tamiz','Lk');");
     $c[]=new cmp('liker_dificul','s','3',$d,$w.' Lk '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-2');
     $c[]=new cmp('liker_emocion','s','3',$d,$w.' Lk '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-2');

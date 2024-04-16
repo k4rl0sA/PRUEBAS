@@ -50,7 +50,8 @@ function focus_statFam(){
     $u=($d['id']=='')?true:false;
     $o='datos';
     $uri = $_SERVER['REQUEST_URI'];
-    var_dump($uri);
+    $url = rtrim(dirname(parse_url($uri)['path']), '/');
+    var_dump($url);
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
     /* $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");//

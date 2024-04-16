@@ -613,7 +613,7 @@ function showFil(a){
 	}
 }
 
-function changeSelect(a,b){
+function changeSelect(a,b,c=ruta_app){
 	if(b!=''){
 		const x = document.getElementById(a);
 		const z = document.getElementById(b);
@@ -627,7 +627,7 @@ function changeSelect(a,b){
 				data =JSON.parse(xmlhttp.responseText);
 				console.log(data)
 			}}
-				xmlhttp.open("POST", ruta_app,false);
+				xmlhttp.open("POST",c,false);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xmlhttp.send('a=opc&tb='+a+b+'&id='+x.value);
 				//~ var rta =data;

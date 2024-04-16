@@ -990,9 +990,9 @@ function enabDepeInner(a, b, c) {
     }
 }
 
-function enabStatPreAdm(a, b) {
+function enabStatPreAdm(a, b,c=true) {
 	var ele = document.getElementById(b);
-	if(a.value==3 || a.value==6){
+	if(a.value==3 || a.value==6 && c===true){
 		enaFie(ele,false);
 	}else{
 		enaFie(ele,true);

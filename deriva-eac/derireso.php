@@ -82,7 +82,7 @@ function opc_estado($id=''){
 	/* $cod=opc_idgeo($_REQUEST['id']); */
 		$co=divide($_REQUEST['id']);
 		// $cod=opc_cod_predio()
-		// var_dump($_REQUEST['predio']);
+		var_dump($co);
 		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where idgeo='$co[0]'  AND estado_v>3",$id);
 }
 

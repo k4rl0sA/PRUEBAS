@@ -40,7 +40,6 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-
 function cmp_ruteresol(){
  $rta="";
  $t=['id_ruteo'=>'','predio'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
@@ -62,8 +61,8 @@ function cmp_ruteresol(){
 
 function opc_idgeo($a){
 	$id=divide($a);
-	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
-		FROM `eac_ruteo` WHERE id_ruteo='{$id[0]}'";
+		$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
+		FROM hog_geo WHERE idgeo='{$id[0]}' AND estado_v=7";
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];
 	return $cod;

@@ -64,6 +64,7 @@ function opc_idgeo($a){
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
 		FROM hog_geo hg LEFT JOIN hog_viv hv ON hg.idgeo =hv.idpre 
 		WHERE hv.idviv='{$id[0]}'";
+		var_dump($sql);
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];
 	return $cod;

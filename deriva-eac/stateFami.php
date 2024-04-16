@@ -52,9 +52,9 @@ function focus_statFam(){
     $ty=(isset($_REQUEST['fterri']))?'h':'t';
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);
-    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,true,$u,'','col-3',"enabStatPreAdm(this,['motivo_estafam'],false);");//enbValue('estado_fam','StA',5);
-    $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' StA '.$o,'Motivo de Rechazado','motivo_estafam',null,null,false,false,'','col-35',"validState(this,'estado_fam');");
-    $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-35');
+    $c[]=new cmp('estado_fam','s',3,$d['estado_fam'],$w.' '.$o,'Estado de la Visita','estado_fam',null,null,true,$u,'','col-2',"enabStatPreAdm(this,['motivo_estafam'],false);");//enbValue('estado_fam','StA',5);
+    $c[]=new cmp('motivo_estafam','s',3,$d['motivo_estafam'],$w.' StA '.$o,'Motivo de Rechazado','motivo_estafam',null,null,false,false,'','col-4',"validState(this,'estado_fam');");
+    $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-4');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     return $rta;
      }

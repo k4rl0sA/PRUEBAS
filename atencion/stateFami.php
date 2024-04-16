@@ -52,7 +52,7 @@ function focus_statFam(){
     // $ty=(modulo()=='/atencion')?'h':'t';
     // var_dump($_POST);
     // var_dump($_GET);
-    var_dump($_REQUEST);
+    var_dump($_REQUEST['fterri']);
     $ty=($_REQUEST['fterri'])?'h':'t';
     $c[]=new cmp($o,'e',null,'ESTADOS DE LA FAMILIA',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','id',null,'####',false,false);

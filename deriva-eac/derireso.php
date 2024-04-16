@@ -61,8 +61,9 @@ function cmp_ruteresol(){
 
 function opc_idgeo($a){
 	$id=divide($a);
-		$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
-		FROM hog_geo WHERE idgeo='{$id[0]}' AND estado_v=7";
+	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
+		FROM hog_geo hg LEFT JOIN hog_viv hv ON hg.idgeo =hv.idpre 
+		WHERE hv.idviv='{$id[0]}'";
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];
 	return $cod;
@@ -71,19 +72,19 @@ function opc_idgeo($a){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
 
-/* function opc_cod_predio($co=''){
+function opc_cod_predio($co=''){
 	$sql="SELECT idgeo id ,FN_CATALOGODESC(44,estado_v) estado from hog_geo where idgeo=$co";
 	$info=datos_mysql($sql);
 	$cod= $info['responseResult'][0]['id'];
 	return $cod;
-} */
+}
 
 function opc_estado($id=''){
-	/* $cod=opc_idgeo($_REQUEST['id']); */
-		$co=divide($_REQUEST['id']);
+	$cod=opc_idgeo($_REQUEST['id']);
+		$co=divide($cod);
 		// $cod=opc_cod_predio()
-		var_dump($co);
-		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where idgeo='$co[0]'  AND estado_v>3",$id);
+		// var_dump($_REQUEST['predio']);
+		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);
 }
 
 function opc_estadofamili(){

@@ -74,13 +74,12 @@ function focus_statFam(){
         return "";
       }else{
          $id=divide($_POST['id']);
-         $tot=count($id);
+         /* $tot=count($id);
          var_dump($tot);
-/*          if(count($id)==7){
+         if(count($id)==7){
 
          } */
         $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam,direccion_nueva from eac_fam WHERE cod_fam='{$id[0]}' limit 1 ";
-        var_dump($sql);
         $info=datos_mysql($sql);
         if(isset($info['responseResult'][0])){ 
             return $info['responseResult'][0];

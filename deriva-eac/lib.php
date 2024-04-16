@@ -37,7 +37,7 @@ function lis_derivaeac(){
 	U.nombre Colaborador, 
 	U.perfil Perfil, 
 	E.fecha_create Rta,
-	E.estado_fam 
+	FN_CATALOGODESC(227,E.estado_fam) Estado
 	FROM personas_datocomp A
 	LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv

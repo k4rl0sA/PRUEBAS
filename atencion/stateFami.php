@@ -114,7 +114,6 @@ function focus_statFam(){
       var_dump($_REQUEST);
       var_dump($_GET); */
       if(COUNT($id)==8){
-      
         // echo $x;
  //echo $sql;
       }else{
@@ -124,6 +123,7 @@ function focus_statFam(){
         ['type' => 'i', 'value' => $_POST['id']],
         ['type' => 's', 'value' => $_POST['estado_fam']],
         ['type' => 's', 'value' => $_POST['motivo_estafam']],
+        ['type' => 's', 'value' => $_POST['direccion_nueva']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],

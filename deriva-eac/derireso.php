@@ -83,7 +83,7 @@ function opc_idgeo($a){
 
 function opc_usuario($id=''){
 	$id=divide($_REQUEST['id']);
-	return opc_sql("SELECT idpersona,CONCAT_WS(' ',nombre1,apellido1) FROM personas where idpersona='$id[1]'", $id);
+	return opc_sql("SELECT TRIM(idpersona),CONCAT_WS(' ',nombre1,apellido1) FROM personas where idpersona='$id[1]'", $id);
 }
 
 /* function opc_cod_predio($co=''){

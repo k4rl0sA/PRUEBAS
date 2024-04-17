@@ -51,17 +51,24 @@ function cmp_ruteresol(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili','derireso.php');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
- $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');");//N° FAMILIA
+ /* $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili','derireso.php');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
+ //N° FAMILIA */
+ $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');");
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin','derireso.php');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE StG '.$o,'cod_admin','cod_admin',null,'',true,$u,'','col-4');//traer los codigos del usuario de atencion
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
 
+function opc_famili($id=''){
+	$cod=opc_idgeo($_REQUEST['id']);
+		$co=divide($cod);
+	return	opc_sql("SELECT idviv,concat(idviv,' - ','FAMILIA ',numfam) from hog_viv where idpre='$co[0]'",$id);
+}
+
 function opc_idgeo($a){
 	$id=divide($a);
-	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
+	$sql="SELECT idgeo cod
 		FROM hog_geo hg LEFT JOIN hog_viv hv ON hg.idgeo =hv.idpre 
 		LEFT JOIN eac_fam ef ON hv.idviv=ef.cod_fam 
 		where id_eacfam='{$id[0]}'";
@@ -99,7 +106,7 @@ function opc_estadofamili(){
 	} 
 }
 
-function opc_famili($id=''){
+/* function opc_famili($id=''){
 	// var_dump($id);
 	if ($id==''){
 
@@ -107,6 +114,7 @@ function opc_famili($id=''){
 		return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
 	}
 }
+ */
 function opc_usuario($id=''){
 	// var_dump($id);
 	if ($id==''){

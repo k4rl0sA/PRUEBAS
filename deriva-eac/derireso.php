@@ -150,7 +150,7 @@ function opc_cod_admin($id=''){
 function opc_usuariocod_admin(){
 	$id=divide($_REQUEST['id']);
 	var_dump($_REQUEST['id']);
-	return opc_sql("SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE documento='$id'", $id);
+	return opc_sql("SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE documento='{$id}'", $id);
 }
 
 function get_ruteresol(){

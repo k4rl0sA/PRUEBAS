@@ -68,7 +68,7 @@ function opc_famili($id=''){
 
 function opc_idgeo($a){
 	$id=divide($a);
-	$sql="SELECT idgeo cod
+	$sql="SELECT hg.idgeo cod
 		FROM hog_geo hg LEFT JOIN hog_viv hv ON hg.idgeo =hv.idpre 
 		LEFT JOIN eac_fam ef ON hv.idviv=ef.cod_fam 
 		where id_eacfam='{$id[0]}'";

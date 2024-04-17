@@ -32,6 +32,7 @@ function grabar(tb='',ev){
 };
 	var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
+	setTimeout(actualizar, 1000);
 	
 }   
 

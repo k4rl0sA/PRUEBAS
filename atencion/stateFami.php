@@ -129,6 +129,8 @@ function focus_statFam(){
         ['type' => 's', 'value' => $_POST['estado_fam']],
         ['type' => 's', 'value' => $_POST['motivo_estafam']],
         ['type' => 's', 'value' => $_POST['direccion_nueva']],
+        ['type' => 'i', 'value' => NULL],
+        ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],

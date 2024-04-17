@@ -82,7 +82,7 @@ function opc_idgeo($a){
 }
 
 function opc_usuario($id=''){
-	var_dump($id);
+	var_dump($_REQUEST['id']);
 	$id=divide($id);
 	return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
 }

@@ -21,22 +21,19 @@ else {
 
 
 function lis_gestuser(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
-	WHERE 1 ".whe_gestuser());
+	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew WHERE 1 ".whe_gestuser());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
-	$pag=(isset($_POST['pag-gestuser']))? ($_POST['pag-gestuser']-1)* $regxPag:0; 
+	$pag=(isset($_POST['pag-gestuser']))? ($_POST['pag-gestuser']-1)* $regxPag:0;
 
-	$sql="SELECT *
-	FROM adm_usunew 
-	 WHERE 1  ";
+	$sql="SELECT * FROM adm_usunew WHERE 1 ";
 	$sql.= whe_gestuser();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"gestuser",$regxPag);
-} 
+}
 
 function whe_gestuser() {
 	$sql = "";

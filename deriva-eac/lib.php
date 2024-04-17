@@ -27,7 +27,7 @@ function lis_derivaeac(){
 
 	// FN_CATALOGODESC(44,E.estado_fam) 'Estado', 
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, 
-	CONCAT(V.idviv,'_',A.dc_documento) ACCIONES,
+	CONCAT_WS('_',E.id_eacfam,V.idviv,A.dc_documento) ACCIONES,
 	G.idgeo Predio,
 	V.idviv Familia,
 	G.territorio Territorio,

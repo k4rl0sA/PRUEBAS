@@ -167,7 +167,7 @@ function get_ruteresol(){
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);
-		return $info['responseResult'][0];
+		// return $info['responseResult'][0];
 	} 
 }
 

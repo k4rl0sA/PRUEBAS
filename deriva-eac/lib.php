@@ -44,7 +44,7 @@ function lis_derivaeac(){
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario
 	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam
-	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null ";//AND E.estado_fam=1 AND E.estado='A'
+	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null AND (E.estado='A' OR E.estado IS NULL)";//AND E.estado_fam=1 AND E.estado='A'
 	$sql.=whe_derivaeac();
 	$sql.=" ORDER BY E.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

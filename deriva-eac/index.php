@@ -26,6 +26,10 @@ function grabar(tb='',ev){
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
+  var rutaMap = {
+  'statFam': '../atencion/stateFami.php'
+};
+	var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
 	
 }   

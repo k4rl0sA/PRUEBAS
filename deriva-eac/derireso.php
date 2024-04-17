@@ -47,7 +47,7 @@ function cmp_ruteresol(){
  $d=get_ruteresol(); 
  if ($d=="") {$d=$t;}
  $u=($d['predio']== NULL)?true:false;
-var_dump($_POST);
+// var_dump($_POST);
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');

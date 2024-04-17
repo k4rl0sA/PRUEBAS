@@ -82,9 +82,8 @@ function opc_idgeo($a){
 }
 
 function opc_usuario($id=''){
-	var_dump($_REQUEST['id']);
-	$id=divide($id);
-	return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
+	$id=divide($_REQUEST['id']);
+	return opc_sql("SELECT idpersona,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1) FROM personas where idpersona='$id[1]'", $id);
 }
 
 /* function opc_cod_predio($co=''){

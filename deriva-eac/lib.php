@@ -31,7 +31,7 @@ function lis_derivaeac(){
 	G.idgeo Predio,
 	V.idviv Familia,
 	G.territorio Territorio,
-	TRIM(A.dc_documento) Documento,
+	A.dc_documento Documento,
 	concat_ws(' ',P.nombre1,apellido1) Usuario,
 	FN_CATALOGODESC(225,A.necesidad_eac) Necesidad,
 	U.nombre Colaborador, 

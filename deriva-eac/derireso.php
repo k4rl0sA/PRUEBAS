@@ -151,9 +151,9 @@ function opc_usuariocod_admin(){
 	if($_REQUEST['id']!=''){
 	$id=divide($_REQUEST['id']);
 	$sql="SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE documento LIKE '%{$id[0]}%'";
-	return var_dump($sql);
-	// $info=datos_mysql($sql);
-	// return json_encode($info['responseResult']);
+	// return var_dump($sql);
+	$info=datos_mysql($sql);
+	return json_encode($info['responseResult']);
 	}
 }
 

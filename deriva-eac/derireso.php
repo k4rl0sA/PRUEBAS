@@ -53,18 +53,18 @@ function cmp_ruteresol(){
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
  /* $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili','derireso.php');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  //N° FAMILIA */
- $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');");
+/*  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');"); */
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin','derireso.php');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE StG '.$o,'cod_admin','cod_admin',null,'',true,$u,'','col-4');//traer los codigos del usuario de atencion
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
 
-function opc_famili($id=''){
+/* function opc_famili($id=''){
 	$cod=opc_idgeo($_REQUEST['id']);
 		$co=divide($cod);
 	return	opc_sql("SELECT idviv,concat(idviv,' - ','FAMILIA ',numfam) from hog_viv where idpre='$co[0]'",$id);
-}
+} */
 
 function opc_idgeo($a){
 	$id=divide($a);
@@ -81,7 +81,13 @@ function opc_idgeo($a){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
 
-function opc_cod_predio($co=''){
+function opc_usuario($id=''){
+	var_dump($id);
+	$id=divide($id);
+	return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
+}
+
+/* function opc_cod_predio($co=''){
 	$sql="SELECT idgeo id ,FN_CATALOGODESC(44,estado_v) estado from hog_geo where idgeo=$co";
 	$info=datos_mysql($sql);
 	$cod= $info['responseResult'][0]['id'];
@@ -105,7 +111,7 @@ function opc_estadofamili(){
 		return json_encode($info['responseResult']);
 	} 
 }
-
+ */
 /* function opc_famili($id=''){
 	// var_dump($id);
 	if ($id==''){
@@ -115,7 +121,7 @@ function opc_estadofamili(){
 	}
 }
  */
-function opc_usuario($id=''){
+/* function opc_usuario($id=''){
 	// var_dump($id);
 	if ($id==''){
 
@@ -125,7 +131,7 @@ function opc_usuario($id=''){
 		return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE tipo_doc='$co[0]' AND p.idpersona='$co[1]'", $id);
 	}
 	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
-}
+} */
 
 
 

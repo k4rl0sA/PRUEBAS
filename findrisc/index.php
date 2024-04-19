@@ -40,7 +40,7 @@ function grabar(tb='',ev){
 	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
 			const dia= document.getElementById('diabetes');
 			if(dia.value=='1'){
-				warnins('El usuario no aplica para el tamizaje, por favor valide la información');
+				warnin('El usuario no aplica para el tamizaje, por favor valide la información');
 				return;
 			}
 			if(res==true){

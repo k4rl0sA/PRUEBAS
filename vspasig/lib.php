@@ -204,7 +204,7 @@ function opc_estrato($id=''){
 }
 function opc_asignado($id=''){
 	// $asig = ($id=='') ? $_SESSION['us_sds'] : $id ;
-	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN ('PROFAM') ORDER BY 2",$id);
+	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN ('PROFAM') and estado='A' ORDER BY 2",$id);
 }
 function opc_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=44 and estado='A' ORDER BY 1",$id);

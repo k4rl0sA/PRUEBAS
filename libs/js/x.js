@@ -1036,3 +1036,15 @@ if (selMul){
 		targetSelect.disabled = !shouldBeEnabled;
 	});
 }
+
+document.getElementById('fselmul10[]').addEventListener('change', function() {
+	// Obtener referencias a los elementos select
+	let targetSelect = document.getElementById('deriva_eac');
+
+	// Verificar si se han seleccionado las opciones especificadas
+	var selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
+	var shouldBeEnabled = selectedOptions.some(option => ['5A', 'SB'].includes(option));
+
+	// Habilitar o deshabilitar el select simple basado en la condición
+	targetSelect.disabled = !shouldBeEnabled;
+});

@@ -1022,29 +1022,21 @@ if (ele.length!=7 && ele.length!=10){
 	}
 }
 
-let selMul=document.getElementById('fselmul10[]');
-if (selMul){
-	selMul.addEventListener('change', function() {
-		// Obtener referencias a los elementos select
-		let targetSelect = document.getElementById('deriva_eac');
-	
-		// Verificar si se han seleccionado las opciones especificadas
-		var selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
-		var shouldBeEnabled = selectedOptions.some(option => ['5A', 'SB'].includes(option));
-	
-		// Habilitar o deshabilitar el select simple basado en la condición
-		targetSelect.disabled = !shouldBeEnabled;
-	});
+function enabSelMulSel(act, sel, val) {
+    alert('ZXDFGHJKJMNBVDCVFBGNHM');
+ /*    const selMul = document.getElementById(act);
+    const selSim = document.getElementById(sel);
+
+    // Añadir un evento de cambio al selMul múltiple
+    selMul.addEventListener('change', function() {
+        // Verificar si se han seleccionado las opciones especificadas
+        var selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
+        var shouldBeEnabled = selectedOptions.some(option => val.includes(option));
+
+        // Habilitar o deshabilitar el select simple basado en la condición
+        selSim.disabled = !shouldBeEnabled;
+    });
+
+    // Llamar al evento change al cargar la página para inicializar el estado del select simple
+    selMul.dispatchEvent(new Event('change')); */
 }
-
-document.getElementById('fselmul10[]').addEventListener('change', function() {
-	// Obtener referencias a los elementos select
-	let targetSelect = document.getElementById('deriva_eac');
-
-	// Verificar si se han seleccionado las opciones especificadas
-	var selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
-	var shouldBeEnabled = selectedOptions.some(option => ['5A', 'SB'].includes(option));
-
-	// Habilitar o deshabilitar el select simple basado en la condición
-	targetSelect.disabled = !shouldBeEnabled;
-});

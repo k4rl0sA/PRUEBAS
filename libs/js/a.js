@@ -1056,7 +1056,7 @@ function myFetch(b, c, d) {
 			  }
 	  mul.value = out;
 	  sel.focus();
-	  enabSelMulSel('selmul10[]','deriva_eac',['5A', 'SB']);
+	  if(sel.id=='selmul10[]')enabSelMulSel('selmul10[]','deriva_eac',['5A', 'SB']);
 	}
 	
 	function showMult(a,b){

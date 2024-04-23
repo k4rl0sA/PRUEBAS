@@ -1411,7 +1411,7 @@ function calImc(a, b, i) {
 	}
 }
 
-function enabSelMulSel(act, sel, val) {
+/* function enabSelMulSel(act, sel, val) {
     alert('ZXDFGHJKJMNBVDCVFBGNHM');
     const selMul = document.getElementById(act);
     const selSim = document.getElementById(sel);
@@ -1428,7 +1428,7 @@ function enabSelMulSel(act, sel, val) {
 
     // Llamar al evento change al cargar la página para inicializar el estado del select simple
     selMul.dispatchEvent(new Event('change'));
-}
+} */
 
 /* 	const navToggle = document.querySelector(".nav-toggle");
 const navMenu = document.querySelector(".nav-menu");

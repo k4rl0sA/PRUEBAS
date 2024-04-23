@@ -1328,7 +1328,7 @@ function RangeDateTime(a,b,c){
 
 function calImc(a, b, i) {
 	const pe = document.getElementById(a);
-	const ta = document.getElementById(b.id);
+	const ta = document.getElementById(b);
 	const imc = document.getElementById(i);
   
 	if (ta && pe) {

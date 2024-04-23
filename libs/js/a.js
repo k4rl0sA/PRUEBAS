@@ -1412,7 +1412,7 @@ function calImc(a, b, i) {
 }
 
 function enabSelMulSel(act, sel, val) {
-    
+    alert('ZXDFGHJKJMNBVDCVFBGNHM');
     const selMul = document.getElementById(act);
     const selSim = document.getElementById(sel);
 

@@ -1026,7 +1026,6 @@ function enabSelMulSel(act, sel, val) {
     // alert('ZXDFGHJKJMNBVDCVFBGNHM');
     const selMul = document.getElementById(act);
     const selSim = document.getElementById(sel);
-
     // Añadir un evento de cambio al selMul múltiple
     selMul.addEventListener('change', function() {
         // Verificar si se han seleccionado las opciones especificadas

@@ -1023,19 +1023,19 @@ if (ele.length!=7 && ele.length!=10){
 }
 
 function enabSelMulSel(act, sel, val) {
-    alert('ZXDFGHJKJMNBVDCVFBGNHM');
- /*    const selMul = document.getElementById(act);
+    // alert('ZXDFGHJKJMNBVDCVFBGNHM');
+    const selMul = document.getElementById(act);
     const selSim = document.getElementById(sel);
 
     // Añadir un evento de cambio al selMul múltiple
     selMul.addEventListener('change', function() {
         // Verificar si se han seleccionado las opciones especificadas
-        var selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
-        var shouldBeEnabled = selectedOptions.some(option => val.includes(option));
+        let selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
+        let shouldBeEnabled = selectedOptions.some(option => val.includes(option));
         // Habilitar o deshabilitar el select simple basado en la condición
         selSim.disabled = !shouldBeEnabled;
     });
 
     // Llamar al evento change al cargar la página para inicializar el estado del select simple
-    selMul.dispatchEvent(new Event('change')); */
+    selMul.dispatchEvent(new Event('change'));
 }

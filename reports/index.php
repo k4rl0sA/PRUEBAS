@@ -50,7 +50,7 @@ $reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=
 	
 
 <div class="campo"><div>Reportes</div>
-	<select class="captura" id="festado" name="freporte" onChange="actualizar();">'.<?php echo $reportes; ?></select>
+	<select class="captura" id="indicador-indicador" name="indicador-indicador" onChange="actualizar();">'.<?php echo $reportes; ?></select>
 </div>
 <div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
 

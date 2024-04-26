@@ -1034,7 +1034,4 @@ function enabSelMulSel(act, sel, val) {
         // Habilitar o deshabilitar el select simple basado en la condición
         selSim.disabled = !shouldBeEnabled;
     });
-
-    // Llamar al evento change al cargar la página para inicializar el estado del select simple
-    selMul.dispatchEvent(new Event('change'));
 }

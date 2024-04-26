@@ -1029,7 +1029,7 @@ function enabSelMulSel(act, sel, val) {
     // Añadir un evento de cambio al selMul múltiple
     selMul.addEventListener('change', function() {
         // Verificar si se han seleccionado las opciones especificadas
-        let selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
+        let selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
         let shouldBeEnabled = selectedOptions.some(option => val.includes(option));
         // Habilitar o deshabilitar el select simple basado en la condición
         selSim.disabled = !shouldBeEnabled;

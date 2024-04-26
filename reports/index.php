@@ -58,7 +58,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
+      <div class='titulo' > REPORTES
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
     <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>

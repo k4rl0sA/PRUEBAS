@@ -41,7 +41,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='creausu';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
-$estados=array('A'=>'Activo','I'=>'Inactivo');
+$estados=
 ?>
 
 

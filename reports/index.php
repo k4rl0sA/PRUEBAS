@@ -50,7 +50,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 	
 
 <div class="campo"><div>Reportes</div>
-	<select class="captura" id="festado" name="freporte" onChange="actualizar();">'.<?php echo $estados; ?></select>
+	<select class="captura" id="festado" name="freporte" onChange="actualizar();">'.<?php echo $reportes; ?></select>
 </div>
 <div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
 

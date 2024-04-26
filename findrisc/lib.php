@@ -80,7 +80,7 @@ function cmp_tamfindrisc(){
 	$o='prufin oculto';
  	$c[]=new cmp($o,'e',null,'PRUEBA FINDRISC',$w);
  	$c[]=new cmp('peso','t',6,$d['peso'],$w.' '.$o,'Peso (Kg) Mínimo=0.50 (Kg) - Máximo=150.00 (Kg)','peso','rgxpeso','###.##',true,true,'','col-25');
- 	$c[]=new cmp('talla','n',3,$d['talla'],$w.' '.$o,'Talla (Cm) Mínimo=120 (Cm) - Máximo=210 (Cm)','talla','rgxtalla',null,false,true,'','col-25',"calImc('peso',this,'imc');");
+ 	$c[]=new cmp('talla','n',3,$d['talla'],$w.' '.$o,'Talla (Cm) Mínimo=120 (Cm) - Máximo=210 (Cm)','talla','rgxtalla',null,false,true,'','col-25',"calImc('peso','talla','imc');");
 	$c[]=new cmp('imc','t',6, $d['imc'],$w.'IMC','imc',null,null,false,false,'','col-2');
 	$c[]=new cmp('perimcint','n',3,$d['perimcint'],$w.' '.$o,'Perimetro de cintura (Cm) Mínimo=50 (Cm) - Máximo=210 (Cm)','perimcint','rgxperabd',null,false,true,'','col-3');
  	$c[]=new cmp('actifisica','s',3,$d['actifisica'],$w.' '.$o,'Hace habitualmente (a diario) al menos 30 minutos de actividad física en el trabajo o durante su tiempo libre?','actifisica',null,null,false,true,'','col-5');

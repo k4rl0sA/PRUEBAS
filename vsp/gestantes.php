@@ -107,7 +107,7 @@ $ev=$event[3];
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-25');
     
     $c[]=new cmp('peso','sd',6,$d,$w.' '.$bl.' '.$ge.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
-    $c[]=new cmp('talla','sd',5,$d,$w.' '.$bl.' '.$ge.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso',this,'imc');");
+    $c[]=new cmp('talla','sd',5,$d,$w.' '.$bl.' '.$ge.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso','talla','imc');");
     /* $c[]=new cmp('peso','','3,2',$d,$w.' '.$bl.' '.$ge.' '.$o,'Peso (kg)','peso',null,null,false,$x,'','col-1',"valPeso('peso')");
     $c[]=new cmp('talla','n','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Talla (cm)','talla',null,null,false,$x,'','col-1',"calImc('peso',this,'imc');valTalla('talla')"); */
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');

@@ -109,7 +109,7 @@ $ev=$event[3];
     $c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','###',true,$x,'','col-35',"valTensions('tas',this);valDist('tad');");
     $c[]=new cmp('glucometria','n',4, $d,$w.' '.$o,'Glucometría Mín=70 - Máx=190','glu','','###',true,$x,'','col-3');
     $c[]=new cmp('peso','sd',6, $d,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgx3in1fl','###.##',true,$x,'','col-2');
-    $c[]=new cmp('talla','sd',5, $d,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgx3in1fl','###.#',true,$x,'','col-2','calImc(\'peso\',this,\'imc\');');
+    $c[]=new cmp('talla','sd',5, $d,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgx3in1fl','###.#',true,$x,'','col-2',"calImc('peso','talla','imc');");
     $c[]=new cmp('imc','t',6, $d,$w.' '.$bl.' '.$o,'IMC','imc','','',false,false,'','col-2');
     $c[]=new cmp('peri_cintura','n','3',$d,$w.' '.$o,'Perímetro de cintura','peri_cintura',null,null,false,$x,'','col-2');
     $c[]=new cmp('fuma','s','2',$d,$w.' '.$o,'¿Fuma?','rta',null,null,false,$x,'','col-2');

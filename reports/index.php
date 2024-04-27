@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creación de Usuarios || SIGINF</title>
+<title>Reportes || SIGINF</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='creausu';	
+var mod='reports';	
 var ruta_app='lib.php';
 
 

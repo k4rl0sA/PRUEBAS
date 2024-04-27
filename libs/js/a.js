@@ -528,6 +528,46 @@ function act_lista(tb, b,lib = ruta_app) {
 		resizeIframe(parent.document.getElementById(tb+'-frm-con').childNodes[0]);
 }
 
+function graficar() {
+	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
+	var tv = document.getElementById('indicador-agrupar').value;
+	var th = document.getElementById('indicador-columna').value;
+	var tb = document.getElementById('indicador-objeto').value;
+	var tg = document.getElementById('indicador-tipo_grafico').value;
+	var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
+	switch (tg) {
+		case 'AREA':
+			var graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+			break;
+		case 'PIE':
+			var graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+			break;
+		case 'BAR':
+			var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+			break;
+		case 'COLUMN':
+			var graf = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			break;
+		case 'LINE':
+			var graf = new google.visualization.LineChart(document.getElementById('chart_div'));
+			break;
+		case 'STEP':
+			var graf = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+			break;
+		case 'DONUT':
+			var graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
+			break;
+	}
+	var rows = JSON.parse(ajax(ruta_app, 'a=ind&tb=' + tb.toLowerCase(), false));
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', tv);
+	data.addColumn('number', th);
+	data.addRows(rows);
+	graf.draw(data, options);
+	sobreponer('grafica', 'gra');
+}
+
 function act_html(a, b, c, d = false) {  
 	if (document.getElementById(a) != undefined) {
 		pajax(b, c+form_input('fapp'), function () { 

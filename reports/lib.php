@@ -20,26 +20,26 @@ else {
 }
 
 
-function lis_reports(){
+function lis_tamsrq(){
 	// concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,tam_srq 'Cod Registro',srq_idpersona Documento,FN_CATALOGODESC(1,srq_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,srq_momento) Momento,`srq_totalsi` 'Puntaje SI',`srq_totalno` 'Puntaje NO'
 FROM hog_tam_srq O
 LEFT JOIN personas P ON O.srq_idpersona = P.idpersona
 		WHERE '1'='1'";
-	$sql.=whe_reports();
+	$sql.=whe_tamsrq();
 	$sql.=" ORDER BY 1";
 
 	 $sql1="SELECT * 
 	  FROM `hog_tam_srq` WHERE 1";
-	$sql1.=whe_reports();	
+	$sql1.=whe_tamsrq();	
 	//echo $sql;
-		$_SESSION['sql_reports']=$sql1;
+		$_SESSION['sql_tamsrq']=$sql1;
 		$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"reports",20);
+	return panel_content($datos["responseResult"],"tamsrq",20);
 }
 
-function whe_reports() {
+function whe_tamsrq() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
 		$sql .= " AND srq_idpersona like '%".$_POST['fidentificacion']."%'";
@@ -76,9 +76,9 @@ return json_encode($info['responseResult'][0]);
 	   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	   // var_dump($a);
 	   // var_dump($rta);
-		   if ($a=='reports' && $b=='acciones'){
+		   if ($a=='tamsrq' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('reports','pro',event,'','lib.php',7,'TAMIZAJE RQC Y SRQ');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamsrq','pro',event,'','lib.php',7,'TAMIZAJE RQC Y SRQ');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }

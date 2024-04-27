@@ -459,7 +459,7 @@ function checkon(a) {
 		a.value = 'NO';
 }
 function graficar() {
-	var tit = document.getElementById('indicador-indicador').value;
+	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
 	var th = document.getElementById('indicador-columna').value;
 	var tb = document.getElementById('indicador-objeto').value;

@@ -41,7 +41,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='creausu';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
-$estados=array('A'=>'Activo','I'=>'Inactivo');
+$reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
 ?>
 
 
@@ -49,7 +49,9 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 	
 
-<div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
+<div class="campo"><div>Reportes</div>
+	<select class="captura" id="indicador-indicador" name="indicador-indicador" onChange="actualizar();">'.<?php echo $reportes; ?></select>
+</div>
 <div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
 
 <!-- <div class="campo"><div>Estado</div>
@@ -58,7 +60,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
+      <div class='titulo' > REPORTES
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
     <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>

@@ -38,7 +38,7 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='creausu';
+$mod='reports';
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 $reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');

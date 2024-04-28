@@ -21,14 +21,8 @@ function actualizar(){
 	graficar();
 }
 
-function grabar(tb='',ev){
-  if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  var f=document.getElementsByClassName('valido '+tb);
-   for (i=0;i<f.length;i++) {
-     if (!valido(f[i])) {f[i].focus(); return};
-  }
-    myFetch(ruta_app,"a=gra&tb="+tb,mod);  
-}   
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
 </script>
 </head>
@@ -90,8 +84,5 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
 	</div>
 </div>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-</script>
+
 </body>

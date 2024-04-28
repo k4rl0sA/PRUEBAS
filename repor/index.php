@@ -12,6 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 var mod='reports';	
 var ruta_app='lib.php';
@@ -150,6 +151,4 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>
 </div>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-
 </body>

@@ -563,8 +563,8 @@ function graficar() {
 			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
 			break;
 	}
-	
-	var rows = JSON.parse(myFetch(ruta_app, 'a=ind&tb=' + tb.toLowerCase(), false));
+
+	var rows = JSON.parse(myFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
 	var data = new google.visualization.DataTable();
 	data.addColumn('string', tv);
 	data.addColumn('number', th);

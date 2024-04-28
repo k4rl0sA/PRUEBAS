@@ -535,6 +535,7 @@ function graficar() {
 	var th = document.getElementById('indicador-columna').value;
 	var tb = document.getElementById('indicador-objeto').value;
 	var tg = document.getElementById('indicador-tipo_grafico').value; */
+	const tb = document.getElementById('indicador-indicador').value;
 	const th=900;
 	const tg='BAR'; 
 	var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };

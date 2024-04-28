@@ -20,7 +20,7 @@ else {
 }
 
 
-function lis_reports(){
+function ind_reports(){
 	// concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,tam_srq 'Cod Registro',srq_idpersona Documento,FN_CATALOGODESC(1,srq_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,srq_momento) Momento,`srq_totalsi` 'Puntaje SI',`srq_totalno` 'Puntaje NO'
@@ -29,12 +29,6 @@ LEFT JOIN personas P ON O.srq_idpersona = P.idpersona
 		WHERE '1'='1'";
 	$sql.=whe_reports();
 	$sql.=" ORDER BY 1";
-
-	 $sql1="SELECT * 
-	  FROM `hog_tam_srq` WHERE 1";
-	$sql1.=whe_reports();	
-	//echo $sql;
-		$_SESSION['sql_reports']=$sql1;
 		$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"reports",20);
 }

@@ -23,7 +23,7 @@ else {
 function opc_1(){
 	$sql="SELECT FN_CATALOGODESC(176, cursovida) as Curso,FN_CATALOGODESC(231,MONTH(fecha)) AS mes,COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY     FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
 	$datos=datos_mysql($sql);
-	return  $datos;
+	return  var_dump($datos);
 }
 
 function ind_reports(){

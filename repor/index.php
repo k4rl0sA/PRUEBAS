@@ -60,7 +60,14 @@ function graficar() {
 			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
 			break;
 	}
-  var datos = obtenerDatosDesdeLibPHP(tb);
+  // var datos = obtenerDatosDesdeLibPHP(tb);
+  var datos=[
+          ['Mushrooms', 1],
+          ['Onions', 1],
+          ['Olives', 2],
+          ['Zucchini', 2],
+          ['Pepperoni', 1]
+        ];
 	// var rows = JSON.parse(pFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
 	var data = new google.visualization.DataTable();
 	data.addColumn('string', tv);

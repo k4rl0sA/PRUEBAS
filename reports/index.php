@@ -51,9 +51,12 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
 	
 
 <div class="campo"><div>Reportes</div>
-	<select class="captura" id="indicador-indicador" name="indicador-indicador" onChange="actualizar();">'.<?php echo $reportes; ?></select>
+	<select class="captura" id="indicador-indicador" name="indicador-indicador" onChange="graficar();">'.<?php echo $reportes; ?></select>
 </div>
-<div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
+<div class="campo"><div>Tamaño</div>
+	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $reportes; ?></select>
+</div>
+<div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="graficar();"></div>
 
 <!-- <div class="campo"><div>Estado</div>
 	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>

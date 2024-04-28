@@ -23,20 +23,7 @@ else {
 function opc_1(){
 	$sql="SELECT FN_CATALOGODESC(176, cursovida) as Curso,FN_CATALOGODESC(231,MONTH(fecha)) AS mes,COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY     FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
 	$datos=datos_mysql($sql);
-	var_dump($datos);
-}
-
-function ind_reports(){
-	// concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,tam_srq 'Cod Registro',srq_idpersona Documento,FN_CATALOGODESC(1,srq_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
-	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,srq_momento) Momento,`srq_totalsi` 'Puntaje SI',`srq_totalno` 'Puntaje NO'
-FROM hog_tam_srq O
-LEFT JOIN personas P ON O.srq_idpersona = P.idpersona
-		WHERE '1'='1'";
-	$sql.=whe_reports();
-	$sql.=" ORDER BY 1";
-		$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"reports",20);
+	return json_encode($datos['responseResult']);
 }
 
 function whe_reports() {

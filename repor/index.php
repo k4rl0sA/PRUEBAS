@@ -102,6 +102,9 @@ async function graficar() {
                 case 'PIE':
                     graf = new google.visualization.PieChart(document.getElementById('chart_div'));
                     break;
+                case 'BAR':
+			            var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+			          break;
                 // Otros casos para diferentes tipos de gráficos
             }
 

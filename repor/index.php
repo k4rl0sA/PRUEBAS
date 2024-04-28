@@ -77,7 +77,7 @@ google.charts.setOnLoadCallback(drawChart);
 	sobreponer('grafica', 'gra');
 }
  */
-async function graficar() {
+function graficar() {
     try {
         var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
         var tv = document.getElementById('indicador-agrupar').value;

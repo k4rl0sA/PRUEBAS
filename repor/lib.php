@@ -1,25 +1,32 @@
 <?php
 require_once "../libs/gestion.php";
 ini_set('display_errors','1');
-if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
-if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
-else {
-  $rta="";
-  switch ($_POST['a']){
-  case 'csv': 
-    header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
-    echo csv($rs,'');
-    die;
-    break;
-  default:
-    eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
-    if (is_array($rta)) json_encode($rta);
-	else echo $rta;
-  }   
+
+// Verificar si las claves 'a' y 'tb' están definidas en $_POST
+if (isset($_POST['a']) && isset($_POST['tb'])) {
+    if ($_POST['a'] != 'opc') $perf = perfil($_POST['tb']);
+    if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
+    else {
+        $rta = "";
+        switch ($_POST['a']) {
+            case 'csv':
+                header_csv($_REQUEST['tb'] . '.csv');
+                $rs = array('', '');
+                echo csv($rs, '');
+                die;
+                break;
+            default:
+                eval('$rta=' . $_POST['a'] . '_' . $_POST['tb'] . '();');
+                if (is_array($rta)) json_encode($rta);
+                else echo $rta;
+        }
+    }
+} else {
+    // Si las claves 'a' y 'tb' no están definidas en $_POST, devolver un mensaje de error
+    echo "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
 }
 
-var_dump($_POST);
+//var_dump($_POST);
 
 function opc_1(){
     $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";

@@ -528,13 +528,13 @@ function act_lista(tb, b,lib = ruta_app) {
 		resizeIframe(parent.document.getElementById(tb+'-frm-con').childNodes[0]);
 }
 
-function graficar() {
+/* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
-	/*
-	var th = document.getElementById('indicador-columna').value;
-	var tb = document.getElementById('indicador-objeto').value;
-	var tg = document.getElementById('indicador-tipo_grafico').value; */
+	
+	//var th = document.getElementById('indicador-columna').value;
+	//var tb = document.getElementById('indicador-objeto').value;
+	//var tg = document.getElementById('indicador-tipo_grafico').value;
 	const tb = document.getElementById('indicador-indicador').value;
 	const th=900;
 	const tg='BAR'; 
@@ -572,6 +572,50 @@ function graficar() {
 	graf.draw(data, options);
 	sobreponer('grafica', 'gra');
 }
+*/
+async function graficar() {
+    try {
+        let tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
+        let tv = document.getElementById('indicador-agrupar').value;
+        const tb = document.getElementById('indicador-indicador').value;
+        const th = 900;
+        const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
+
+        // Realizar la solicitud para obtener los datos
+        const data = await pFetch('lib.php', {a: 'opc', tb: tb});
+
+        // Crear el objeto de opciones del gráfico
+        var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
+
+        // Crear el objeto de gráfico según el tipo seleccionado
+        var graf;
+        switch (tg) {
+            case 'AREA':
+                graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                break;
+			case 'BAR':
+					var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+					break;
+            case 'PIE':
+                graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+                break;
+            // Otros casos para diferentes tipos de gráficos
+        }
+
+        // Crear el objeto de datos del gráfico y agregar los datos obtenidos
+        var chartData = new google.visualization.DataTable();
+        chartData.addColumn('string', tv);
+        chartData.addColumn('number', th);
+        chartData.addRows(data);
+
+        // Dibujar el gráfico
+        graf.draw(chartData, options);
+    } catch (error) {
+        console.error("Error:", error);
+        // Manejar el error como lo desees
+    }
+}
+
 
 function sobreponer(a, b = '', c = null) {
 	var id = a + (b != '' ? '-' + b : b);

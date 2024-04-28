@@ -563,14 +563,29 @@ function graficar() {
 			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
 			break;
 	}
-
-	var rows = JSON.parse(myFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
-	var data = new google.visualization.DataTable();
-	data.addColumn('string', tv);
-	data.addColumn('number', th);
-	data.addRows(rows);
-	graf.draw(data, options);
-	sobreponer('grafica', 'gra');
+	myFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false)
+	.then(response => {
+		// Verificar si la respuesta fue exitosa
+		if (response.includes('Error')) {
+			typeErrors(response);
+		} else {
+			// Parsear la respuesta como JSON
+			var rows = JSON.parse(response);
+			// Crear el DataTable y agregar las filas
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', tv);
+			data.addColumn('number', th);
+			data.addRows(rows);
+			// Dibujar el gráfico
+			graf.draw(data, options);
+			sobreponer('grafica', 'gra');
+		}
+	})
+	.catch(error => {
+		console.error('Error:', error);
+		errors(`Error: ${error}`);
+	});
+	
 }
 
 function sobreponer(a, b = '', c = null) {

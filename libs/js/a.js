@@ -568,6 +568,26 @@ function graficar() {
 	sobreponer('grafica', 'gra');
 }
 
+function sobreponer(a, b = '', c = null) {
+	var id = a + (b != '' ? '-' + b : b);
+	if (document.getElementById(id) != undefined) {
+		var x = document.getElementsByClassName("movil");
+		for (i = 0; i < x.length; i++)
+			x[i].style.zIndex = 0;
+		if (document.getElementById(id) != undefined)
+			document.getElementById(id).style.zIndex = 1;
+		if (c == null) {
+			if (document.getElementById(id + '-foco') != undefined) {
+				var foco = document.getElementById(id + '-foco').innerHTML;
+				if (document.getElementById(foco) != undefined)
+					c = document.getElementById(foco);
+			}
+		}
+		if (c != undefined)
+			c.focus();
+}
+}
+
 function act_html(a, b, c, d = false) {  
 	if (document.getElementById(a) != undefined) {
 		pajax(b, c+form_input('fapp'), function () { 

@@ -20,6 +20,16 @@ else {
 }
 
 
+switch ($tb) {
+	case 1:
+		$sql="SELECT FN_CATALOGODESC(176, cursovida) as Curso,FN_CATALOGODESC(231,MONTH(fecha)) AS mes,COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY     FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
+		break;
+	
+	default:
+		return "Error: msj[No existe este reporte porfavor valide con el administrador]";
+		break;
+}
+
 function ind_reports(){
 	// concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(srq_idpersona,'_',srq_tipodoc,'_',srq_momento) ACCIONES,tam_srq 'Cod Registro',srq_idpersona Documento,FN_CATALOGODESC(1,srq_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 

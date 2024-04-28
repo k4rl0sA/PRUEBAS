@@ -143,7 +143,7 @@ function pajax(url, method, data, successCallback, errorCallback) {
 // Ejemplo de uso:
 var url = 'lib.php';
 var method = 'POST';
-var requestData = {a: 'opc', tb: 'example_table'};
+var requestData = {a: 'opc', tb:tb};
 ajax(url, method, requestData, function(responseData) {
     // Éxito: hacer algo con los datos
     console.log('Datos recibidos:', responseData);

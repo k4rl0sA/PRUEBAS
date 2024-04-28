@@ -25,7 +25,7 @@ function actualizar(){
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
-function graficar() {
+/* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
 	
@@ -76,7 +76,51 @@ function graficar() {
 	graf.draw(data, options);
 	sobreponer('grafica', 'gra');
 }
+ */
+async function graficar() {
+    try {
+        var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
+        var tv = document.getElementById('indicador-agrupar').value;
+        const tb = document.getElementById('indicador-indicador').value;
+        const th = 900;
+        const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
 
+        // Realizar la solicitud para obtener los datos
+        pajax('lib.php', {a: 'opc', tb: tb}, function(responseText) {
+            // Convertir la respuesta a un objeto JSON
+            var data = JSON.parse(responseText);
+
+            // Crear el objeto de opciones del gráfico
+            var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
+
+            // Crear el objeto de gráfico según el tipo seleccionado
+            var graf;
+            switch (tg) {
+                case 'AREA':
+                    graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    break;
+                case 'PIE':
+                    graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    break;
+                // Otros casos para diferentes tipos de gráficos
+            }
+
+            // Crear el objeto de datos del gráfico y agregar los datos obtenidos
+            var chartData = new google.visualization.DataTable();
+            chartData.addColumn('string', tv);
+            chartData.addColumn('number', th);
+            chartData.addRows(data);
+
+            // Dibujar el gráfico
+            graf.draw(chartData, options);
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        // Manejar el error como lo desees
+    }
+}
+
+/* 
 function obtenerDatosDesdeLibPHP(tipo_grafico) {
     return fetch('lib.php', {
         method: 'POST',
@@ -98,7 +142,7 @@ function obtenerDatosDesdeLibPHP(tipo_grafico) {
         console.error('Error:', error);
     });
 }
-
+ */
 </script>
 </head>
 <body Onload="actualizar();">

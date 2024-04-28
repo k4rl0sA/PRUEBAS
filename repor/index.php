@@ -24,6 +24,73 @@ function actualizar(){
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
+function graficar() {
+	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
+	var tv = document.getElementById('indicador-agrupar').value;
+	
+	//var th = document.getElementById('indicador-columna').value;
+	//var tb = document.getElementById('indicador-objeto').value;
+	//var tg = document.getElementById('indicador-tipo_grafico').value; 
+	const tb = document.getElementById('indicador-indicador').value;
+	const th=900;
+	const tg='BAR'; 
+	var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
+	switch (tg) {
+		case 'AREA':
+			var graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+			break;
+		case 'PIE':
+			var graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+			break;
+		case 'BAR':
+			var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+			break;
+		case 'COLUMN':
+			var graf = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			break;
+		case 'LINE':
+			var graf = new google.visualization.LineChart(document.getElementById('chart_div'));
+			break;
+		case 'STEP':
+			var graf = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+			break;
+		case 'DONUT':
+			var graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
+			break;
+	}
+
+	var rows = JSON.parse(pFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', tv);
+	data.addColumn('number', th);
+	data.addRows(rows);
+	graf.draw(data, options);
+	sobreponer('grafica', 'gra');
+}
+
+function obtenerDatosDesdeLibPHP(tipo_grafico) {
+    return fetch('lib.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({a: 'opc', tb: tipo_grafico})
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Hubo un problema al obtener los datos.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

@@ -86,7 +86,7 @@ async function graficar() {
         const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
 
         // Realizar la solicitud para obtener los datos
-        pajax('lib.php', {a: 'opc', tb: tb}, function(responseText) {
+        ajax('lib.php', 'POST', {a: 'opc', tb: tb}, function(responseData) {
             // Convertir la respuesta a un objeto JSON
             var data = JSON.parse(responseText);
 
@@ -123,29 +123,35 @@ async function graficar() {
     }
 }
 
-/* 
-function obtenerDatosDesdeLibPHP(tipo_grafico) {
-    return fetch('lib.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({a: 'opc', tb: tipo_grafico})
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Hubo un problema al obtener los datos.');
+function pajax(url, method, data, successCallback, errorCallback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var responseData = JSON.parse(xhr.responseText);
+                successCallback(responseData);
+            } else {
+                errorCallback(xhr.statusText);
+            }
         }
-        return response.json();
-    })
-    .then(data => {
-        return data;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    };
+    xhr.send(JSON.stringify(data));
 }
- */
+
+// Ejemplo de uso:
+var url = 'lib.php';
+var method = 'POST';
+var requestData = {a: 'opc', tb: 'example_table'};
+ajax(url, method, requestData, function(responseData) {
+    // Éxito: hacer algo con los datos
+    console.log('Datos recibidos:', responseData);
+}, function(errorMsg) {
+    // Error: manejar el error
+    console.error('Error en la solicitud:', errorMsg);
+});
+
 </script>
 </head>
 <body Onload="actualizar();">

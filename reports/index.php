@@ -84,4 +84,5 @@ $reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>
 </div>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 </body>

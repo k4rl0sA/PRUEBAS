@@ -60,12 +60,12 @@ function graficar() {
 			options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
 			break;
 	}
-
-	var rows = JSON.parse(pFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
+  var datos = obtenerDatosDesdeLibPHP(tb);
+	// var rows = JSON.parse(pFetch(ruta_app, 'a=opc&tb=' + tb.toLowerCase(), false));
 	var data = new google.visualization.DataTable();
 	data.addColumn('string', tv);
 	data.addColumn('number', th);
-	data.addRows(rows);
+	data.addRows(datos);
 	graf.draw(data, options);
 	sobreponer('grafica', 'gra');
 }

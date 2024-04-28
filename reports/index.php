@@ -62,7 +62,8 @@ $reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > REPORTES
 		<nav class='menu left' >
-    <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
+    <li class='icono actualizar'    title='Actualizar'      Onclick="graficar();">
+    <li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

@@ -90,6 +90,8 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
 	</div>
 </div>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
+</script>
 </body>

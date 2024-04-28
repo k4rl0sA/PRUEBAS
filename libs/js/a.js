@@ -531,9 +531,12 @@ function act_lista(tb, b,lib = ruta_app) {
 function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
+	/*
 	var th = document.getElementById('indicador-columna').value;
 	var tb = document.getElementById('indicador-objeto').value;
-	var tg = document.getElementById('indicador-tipo_grafico').value;
+	var tg = document.getElementById('indicador-tipo_grafico').value; */
+	const th=900;
+	const tg='BAR'; 
 	var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4, };
 	switch (tg) {
 		case 'AREA':

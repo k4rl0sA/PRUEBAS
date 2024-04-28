@@ -76,7 +76,7 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
       </div>
   </form>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
-     <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
+     <div class='contenido' id='chart_div' ></div>
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
 		

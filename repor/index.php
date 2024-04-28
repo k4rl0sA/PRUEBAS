@@ -124,6 +124,7 @@ function graficar() {
 }
 
 function pajax(url, method, data, successCallback, errorCallback) {
+    console.log("Datos:", data);
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
     xhr.setRequestHeader('Content-Type', 'application/json');

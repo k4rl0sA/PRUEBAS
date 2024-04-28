@@ -86,7 +86,7 @@ function graficar() {
         const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
 
         // Realizar la solicitud para obtener los datos
-        pajax('lib.php', 'POST', JSON.stringify({ a: 'opc', tb: 1 }), function(responseData) {
+        pajax('lib.php', 'POST', { a: 'opc', tb: 1 }, function(responseData) {
             // Convertir la respuesta a un objeto JSON
             var data = JSON.parse(responseData);
 

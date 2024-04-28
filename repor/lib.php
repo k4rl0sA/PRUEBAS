@@ -1,33 +1,32 @@
 <?php
 require_once "../libs/gestion.php";
 ini_set('display_errors','1');
-if (isset($_POST['a']) && isset($_POST['tb'])) {
-    if ($_POST['a'] !== 'opc') {
-        $perf = perfil($_POST['tb']);
-    }
-    if (!isset($_SESSION['us_sds'])) {
-        die("<script>window.top.location.href='/';</script>");
-    } else {
-        $rta = "";
-        switch ($_POST['a']) {
-            case 'csv':
-                header_csv ($_REQUEST['tb'].'.csv');
-                $rs = array('', '');    
-                echo csv($rs, '');
-                die;
-                break;
-            default:
-                eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
-                if (is_array($rta)) {
-                    echo json_encode($rta);
-                } else {
-                    echo $rta;
-                }
-        }
-    }
-} else {
-    // Manejar el caso en que 'a' y/o 'tb' no estén definidos
-    echo "<H1>ACCESO NO AUTORIZADO, PARA VALIDAR TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='message rtawarn'></div>";
+if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
+if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
+else {
+  $rta="";
+  switch ($_POST['a']){
+  case 'csv': 
+    header_csv ($_REQUEST['tb'].'.csv');
+    $rs=array('','');    
+    echo csv($rs,'');
+    die;
+    break;
+  default:
+    eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
+    if (is_array($rta)) json_encode($rta);
+	else echo $rta;
+  }   
+}
+
+var_dump($_POST);
+
+function opc_1(){
+    $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
+    $datos = datos_mysql($sql);
+    header('Content-Type: application/json'); // Establecer el encabezado de respuesta como JSON
+    echo json_encode($datos['responseResult']); // Enviar los datos como JSON
+    exit(); // Detener la ejecución del script después de enviar la respuesta
 }
 
 function whe_reports() {

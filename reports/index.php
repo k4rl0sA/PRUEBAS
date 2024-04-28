@@ -18,7 +18,7 @@ var ruta_app='lib.php';
 
 
 function actualizar(){
-	act_lista(mod);
+	graficar();
 }
 
 function grabar(tb='',ev){

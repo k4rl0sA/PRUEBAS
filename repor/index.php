@@ -24,6 +24,62 @@ function actualizar(){
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(graficar);
 
+function graficar() {
+    try {
+        var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
+        var tv = document.getElementById('indicador-agrupar').value;
+        const tb = document.getElementById('indicador-indicador').value;
+        const th = 900;
+        const tg = 'BAR';
+
+var data = google.visualization.arrayToDataTable([
+    ['Mes', 'Adulto', 'Juventud', 'Infancia', 'Vejez'],
+    ['Enero', 100, 50, 120, 20],
+    ['Febrero', 150, 25, 120, 80],
+    ['Marzo', 100, 90, 150, 120]
+  ]);
+
+            // console.error(JSON.parse(data));
+
+            // Crear el objeto de opciones del gráfico
+            var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
+
+            // Crear el objeto de gráfico según el tipo seleccionado
+            var graf;
+            switch (tg) {
+                case 'AREA':
+                    graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    break;
+                case 'PIE':
+                    graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    break;
+                case 'BAR':
+			            var graf = new google.charts.Bar(document.getElementById('chart_div'));
+			          break;
+            }
+            var materialOptions = {
+        chart: {
+          title: tit
+        },
+        hAxis: {
+          title: 'Total Mes',
+          minValue: 'Enero',
+        },
+        vAxis: {
+          title: 'Total Usuarios'
+        },
+        bars: 'horizontal'
+      };
+
+            graf.draw(data, materialOptions);
+
+    } catch (error) {
+        console.error("Error:", error);
+        // Manejar el error como lo desees
+    }
+}
+
+
 /* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
@@ -76,90 +132,6 @@ google.charts.setOnLoadCallback(graficar);
 	sobreponer('grafica', 'gra');
 }
  */
-function graficar() {
-    try {
-        var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
-        var tv = document.getElementById('indicador-agrupar').value;
-        const tb = document.getElementById('indicador-indicador').value;
-        const th = 900;
-        const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
-
-        // Realizar la solicitud para obtener los datos
-            // Convertir la respuesta a un objeto JSON
-            // var data = JSON.parse(myAjax(tb));
-
-            // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-           /*  var data=[["PRIMERA INFANCIA",1],
-["INFANCIA",1],
-["INFANCIA",1],
-["ADOLESCENCIA",2],
-["JUVENTUD",1],
-["JUVENTUD",2],
-["JUVENTUD",2],
-["ADULTEZ",2],
-["ADULTEZ",1],
-["ADULTEZ",1]]; */
-
-var data = google.visualization.arrayToDataTable([
-    ['Mes', 'Adulto', 'Juventud', 'Infancia', 'Vejez'],
-    ['Enero', 100, 50, 120, 20],
-    ['Febrero', 150, 25, 120, 80],
-    ['Marzo', 100, 90, 150, 120]
-  ]);
-
-            // console.error(JSON.parse(data));
-
-            // Crear el objeto de opciones del gráfico
-            var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
-
-            // Crear el objeto de gráfico según el tipo seleccionado
-            var graf;
-            switch (tg) {
-                case 'AREA':
-                    graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                    break;
-                case 'PIE':
-                    graf = new google.visualization.PieChart(document.getElementById('chart_div'));
-                    break;
-                case 'BAR':
-			            var graf = new google.charts.Bar(document.getElementById('chart_div'));
-			          break;
-                // Otros casos para diferentes tipos de gráficos
-            }
-
-            // Crear el objeto de datos del gráfico y agregar los datos obtenidos
-            // var chartData = new google.visualization.DataTable();
-            /* dataTable.addColumn('string', 'Curso');
-            dataTable.addColumn('string', 'Mes');
-            dataTable.addColumn('number', 'Total Usuarios'); */
-
-         /*    chartData.addColumn('string', tit);
-            chartData.addColumn('string', 'Mes');
-            chartData.addColumn('number', 'Total Usuarios');
-            chartData.addRows(data); */
-
-
-            var materialOptions = {
-        chart: {
-          title: tit
-        },
-        hAxis: {
-          title: 'Total Mes',
-          minValue: 'Enero',
-        },
-        vAxis: {
-          title: 'Total Usuarios'
-        },
-        bars: 'horizontal'
-      };
-
-            graf.draw(data, materialOptions);
-
-    } catch (error) {
-        console.error("Error:", error);
-        // Manejar el error como lo desees
-    }
-}
 
 
 function myAjax(a){

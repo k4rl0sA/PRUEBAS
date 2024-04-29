@@ -146,11 +146,11 @@ var data= google.visualization.arrayToDataTable([["PRIMERA INFANCIA",'ABRIL',1],
           title: tit
         },
         hAxis: {
-          title: 'Total Population',
-          minValue: 0,
+          title: 'Total Mes',
+          minValue: 'Enero',
         },
         vAxis: {
-          title: 'Curso de Vida'
+          title: 'Total Usuarios'
         },
         bars: 'horizontal'
       };

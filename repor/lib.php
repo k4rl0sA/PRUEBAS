@@ -36,8 +36,8 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 } */
 
 function opc_1(){
-	$sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
-	$datos = datos_mysql($sql);
+	/* $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
+	$datos = datos_mysql($sql); */
 
 	$sql1 = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176;";
 	$datos1 = datos_mysql($sql1);
@@ -51,7 +51,7 @@ function opc_1(){
 
 	$sql = "SELECT 
             FN_CATALOGODESC(176, cursovida) AS Curso,
-            MONTH(fecha) AS Mes,
+            FN_CATALOGODESC(230, MONTH(fecha)) AS Mes,
             COUNT(*) AS Total_usuarios
         FROM 
             personas_datocomp

@@ -220,6 +220,19 @@ function graficar() {
                         dataTable.addRow(fila);
                     }
 
+                    var data=[["PRIMERA INFANCIA",'ENERO',1],
+["INFANCIA",'ENERO',1],
+["INFANCIA",'SEPTIEMBRE',1],
+["ADOLESCENCIA",'ENERO',2],
+["JUVENTUD",'ENERO',1],
+["JUVENTUD",'MARZO',2],
+["JUVENTUD",'MARZO',2],
+["ADULTEZ",'JUNIO',2],
+["ADULTEZ",'AGOSTO',1],
+["ADULTEZ",'OCTUBRE',1]]; 
+
+dataTable.addRow(data);
+
                     // Configurar las opciones del gráfico
                     var opciones = {
                         title: 'Usuarios por Curso y Mes',

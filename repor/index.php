@@ -100,7 +100,7 @@ function graficar() {
 {"Curso":"ADULTEZ","mes":"MARZO","total_usuarios":"2"},
 {"Curso":"ADULTEZ","mes":"ABRIL","total_usuarios":"1"},
 {"Curso":"ADULTEZ","mes":"OCTUBRE","total_usuarios":"1"}];
-            console.error(JSON.parse(data));
+            // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};

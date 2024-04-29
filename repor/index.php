@@ -215,31 +215,11 @@ function graficar() {
                     dataTable.addColumn('number', 'Total Usuarios');
 
                     // Agregar los datos al DataTable
-                  /*   for (var i = 0; i < data.length; i++) {
-                        var fila = [data[i].Curso, data[i].mes, parseInt(data[i].total_usuarios)];
+                    for (var i = 0; i < data.length; i++) {
+                        var fila = [data[i].Curso,parseInt(data[i].total_usuarios)];
                         dataTable.addRow(fila);
-                    } */
+                    }
 
-/*                     var data=[["PRIMERA INFANCIA",'ENERO',1],
-["INFANCIA",'ENERO',1],
-["INFANCIA",'SEPTIEMBRE',1],
-["ADOLESCENCIA",'ENERO',2],
-["JUVENTUD",'ENERO',1],
-["JUVENTUD",'MARZO',2],
-["JUVENTUD",'MARZO',2],
-["ADULTEZ",'JUNIO',2],
-["ADULTEZ",'AGOSTO',1],
-["ADULTEZ",'OCTUBRE',1]];  */
-var data=[["PRIMERA INFANCIA",1],
-["INFANCIA",1],
-["INFANCIA",1],
-["ADOLESCENCIA",2],
-["JUVENTUD",1],
-["JUVENTUD",2],
-["JUVENTUD",2],
-["ADULTEZ",2],
-["ADULTEZ",1],
-["ADULTEZ",1]]; 
 
 dataTable.addRow(data);
 

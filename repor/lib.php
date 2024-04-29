@@ -21,8 +21,7 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
                 else echo $rta;
         }
     }
-} else {
-    // Si las claves 'a' y 'tb' no están definidas en $_POST, devolver un mensaje de error
+}else {
     echo "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
 }
 

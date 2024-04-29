@@ -116,7 +116,9 @@ function graficar() {
 
             // Dibujar el gráfico
             graf.draw(chartData, options);
-        });
+        }, function(errorMsg) {
+    console.error("Error:", errorMsg);
+    });
     } catch (error) {
         console.error("Error:", error);
         // Manejar el error como lo desees

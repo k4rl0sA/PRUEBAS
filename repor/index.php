@@ -39,12 +39,8 @@ var data = google.visualization.arrayToDataTable([
     ['Marzo', 100, 90, 150, 120]
   ]);
 
-            // console.error(JSON.parse(data));
-
-            // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 
-            // Crear el objeto de gráfico según el tipo seleccionado
             var graf;
             switch (tg) {
                 case 'AREA':

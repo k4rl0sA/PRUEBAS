@@ -32,14 +32,14 @@ function graficar() {
         const th = 900;
         const tg = 'BAR';
 
-// var data=google.visualization.arrayToDataTable([myAjax(tb)]);
+var data=google.visualization.arrayToDataTable([myAjax(tb)]);
 
-var data = google.visualization.arrayToDataTable([
+/* var data = google.visualization.arrayToDataTable([
     ['Mes', 'Adulto', 'Juventud', 'Infancia', 'Vejez'],
     ['Enero', 100, 50, 120, 20],
     ['Febrero', 150, 25, 120, 80],
     ['Marzo', 100, 90, 150, 120]
-  ]);
+  ]); */
 
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 

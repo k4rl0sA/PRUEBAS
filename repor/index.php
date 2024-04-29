@@ -19,11 +19,11 @@ var ruta_app='lib.php';
 
 
 function actualizar(){
-  drawChart();
+  graficar();
 }
 
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(graficar);
 
 /* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
@@ -200,7 +200,7 @@ ajax(url, method, requestData, function(responseData) {
     console.error('Error en la solicitud:', errorMsg);
 });
  */
-function drawChart() {
+function garficar() {
             // Realizar una solicitud AJAX para obtener los datos del backend
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {

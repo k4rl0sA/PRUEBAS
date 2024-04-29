@@ -77,7 +77,7 @@ for ($mes = 1; $mes <= 12; $mes++) {
 
     // Iterar sobre los cursos de vida y agregar los totales de usuarios para el mes actual
     foreach ($cursos as $curso) {
-        $total_usuarios_curso = 0;
+        $total_usuarios_curso = rand(0,150);
 
         // Buscar el total de usuarios para este mes y curso de vida
         foreach ($datos_por_mes[$curso] as $fila) {

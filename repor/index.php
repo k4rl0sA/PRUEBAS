@@ -133,8 +133,8 @@ var data=[["PRIMERA INFANCIA",'ABRIL',1],
             dataTable.addColumn('string', 'Mes');
             dataTable.addColumn('number', 'Total Usuarios'); */
 
-            chartData.addColumn('string', tv);
-            chartData.addColumn('number', th);
+            chartData.addColumn('string', tit);
+            chartData.addColumn('string', 'Mes');
             chartData.addColumn('number', 'Total Usuarios');
             chartData.addRows(data);
 

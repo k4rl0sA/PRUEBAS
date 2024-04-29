@@ -87,10 +87,10 @@ function graficar() {
 
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
-             let data = JSON.parse(myAjax(tb));
+            // var data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-         /*    var data=[["PRIMERA INFANCIA",1],
+            var data=[["PRIMERA INFANCIA",1],
 ["INFANCIA",1],
 ["INFANCIA",1],
 ["ADOLESCENCIA",2],
@@ -99,24 +99,10 @@ function graficar() {
 ["JUVENTUD",2],
 ["ADULTEZ",2],
 ["ADULTEZ",1],
-["ADULTEZ",1]]; */
+["ADULTEZ",1]];
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
-            const nuevoFormato = [];
-
-// Recorremos el JSON original
-data.forEach(item => {
-    // Extraemos los valores necesarios
-    const curso = item.Curso;
-    const total_usuarios = parseInt(item.total_usuarios); // Convertimos a número
-
-    // Agregamos los valores al nuevo formato
-    nuevoFormato.push([curso, total_usuarios]);
-});
-
-// Convertimos el nuevo formato a JSON
-const datos = JSON.stringify(nuevoFormato);
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 
             // Crear el objeto de gráfico según el tipo seleccionado
@@ -138,7 +124,7 @@ const datos = JSON.stringify(nuevoFormato);
             var chartData = new google.visualization.DataTable();
             chartData.addColumn('string', tv);
             chartData.addColumn('number', th);
-            chartData.addRows(datos);
+            chartData.addRows(data);
 
             // Dibujar el gráfico
             graf.draw(chartData, options);

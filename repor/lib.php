@@ -44,7 +44,7 @@ function opc_1(){
 	// Crear un array para almacenar los datos en el formato que necesita el gráfico
 	$data = array();
 
-	$data[] =Array('Mes',$datos1['responseResult']['cursos']);
+	$data[] =Array('Mes',$datos1['responseResult'][0]);
 
 	/* foreach ($datos['responseResult'] as $fila) {
 		$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]

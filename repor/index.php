@@ -201,8 +201,8 @@ ajax(url, method, requestData, function(responseData) {
 });
  */
 function graficar() {
-            // Realizar una solicitud AJAX para obtener los datos del backend
-            var xhttp = new XMLHttpRequest();
+   // Realizar una solicitud AJAX para obtener los datos del backend
+   var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Convertir la respuesta JSON en un objeto JavaScript
@@ -233,9 +233,10 @@ function graficar() {
                     chart.draw(dataTable, opciones);
                 }
             };
-            xhttp.open("GET", "lib.php", true);
-            xhttp.send();
-        }
+            xhttp.open("POST", "lib.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("a=opc&tb=1"); // Reemplaza 'your_table_name' con el nombre de tu tabla           
+}
 
 </script>
 </head>

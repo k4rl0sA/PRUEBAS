@@ -28,36 +28,13 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 // var_dump($_POST);
 
-function opc_10(){
-    /* $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
+function opc_1(){
+    $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
     $datos = datos_mysql($sql);
     echo json_encode($datos['responseResult']); // Enviar los datos como JSON
-    exit(); // Detener la ejecución del script después de enviar la respuesta */
+    exit(); // Detener la ejecución del script después de enviar la respuesta
 }
 
-function opc_1(){
-	$query = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios 
-          FROM personas_datocomp 
-          GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) 
-          ORDER BY cursovida, MONTH(fecha)";
-
-			
-
-			$resultado = $GLOBALS['con']->query($query);
-
-			if (!$resultado) {
-			    die("Error al ejecutar la consulta: " . $GLOBALS['con']->error);
-			}
-
-			// Preparar datos para el gráfico
-			$datos = array();
-			while ($fila = $resultado->fetch_assoc()) {
-			    $datos[] = $fila;
-			}
-
-			// Devolver los datos en formato JSON
-			echo json_encode($datos);
-}
 
 
 function whe_reports() {

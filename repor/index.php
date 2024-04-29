@@ -86,9 +86,8 @@ function graficar() {
         const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
 
         // Realizar la solicitud para obtener los datos
-        pajax('lib.php', 'POST', { a: 'opc', tb: tb }, function(responseData) {
             // Convertir la respuesta a un objeto JSON
-            var data = JSON.parse(responseData);
+            var data = myAjax(tb);
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
@@ -116,14 +115,32 @@ function graficar() {
 
             // Dibujar el gráfico
             graf.draw(chartData, options);
-        }, function(errorMsg) {
-    console.error("Error:", errorMsg);
-    });
+        
     } catch (error) {
         console.error("Error:", error);
         // Manejar el error como lo desees
     }
 }
+
+
+function myAjax(a){
+	if (loader !== undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =xmlhttp.responseText;
+				if (loader != undefined) loader.style.display = 'none';
+					console.log(data)
+			}}
+			xmlhttp.open("POST",'lib.php',false);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('a=opc&tb=1');
+			return JSON.parse(data);
+}
+
 
 function pajax(url, method, data, successCallback, errorCallback) {
     console.log("Datos:", data);

@@ -28,12 +28,28 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 // var_dump($_POST);
 
-function opc_1(){
+/* function opc_1(){
     $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
     $datos = datos_mysql($sql);
     echo json_encode($datos['responseResult']); // Enviar los datos como JSON
     exit(); // Detener la ejecución del script después de enviar la respuesta
+} */
+
+function opc_1(){
+	$sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
+	$datos = datos_mysql($sql);
+	
+	// Crear un array para almacenar los datos en el formato que necesita el gráfico
+	$data = array();
+	foreach ($datos['responseResult'] as $fila) {
+		$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]
+	}
+	// Devolver los datos como JSON
+	echo json_encode($data);
+	exit();
 }
+
+
 
 
 

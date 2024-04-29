@@ -79,6 +79,24 @@ var data = google.visualization.arrayToDataTable([
     }
 }
 
+function myAjax(a){
+	if (loader !== undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =xmlhttp.responseText;
+				if (loader != undefined) loader.style.display = 'none';
+					console.log(data)
+			}}
+			xmlhttp.open("POST",'lib.php',false);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('a=opc&tb=1&'+ form_input('fapp'));
+			return JSON.parse(data);
+}
+
 
 /* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
@@ -134,23 +152,7 @@ var data = google.visualization.arrayToDataTable([
  */
 
 
-function myAjax(a){
-	if (loader !== undefined) loader.style.display = 'block';
-		if (window.XMLHttpRequest)
-			xmlhttp = new XMLHttpRequest();
-		else
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			xmlhttp.onreadystatechange = function () {
-			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-				data =xmlhttp.responseText;
-				if (loader != undefined) loader.style.display = 'none';
-					console.log(data)
-			}}
-			xmlhttp.open("POST",'lib.php',false);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send('a=opc&tb=1&'+ form_input('fapp'));
-			return JSON.parse(data);
-}
+
 
 
 /* function pajax(url, method, data, successCallback, errorCallback) {

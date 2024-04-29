@@ -21,7 +21,7 @@ var ruta_app='lib.php';
 function actualizar(){
 	graficar();
 }
-google.charts.load("current", {"packages":["map"]});
+google.charts.load("current", {"packages":["map"],"mapsApiKey": "AIzaSyAFb4phXctlfTOMwkvAWoCyWtykG_Cawoo"});
 google.charts.setOnLoadCallback(graficar);
 
 function graficar() {

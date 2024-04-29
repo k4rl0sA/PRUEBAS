@@ -33,17 +33,24 @@ function graficar() {
         const tg = 'BAR';
 
         let data = google.visualization.arrayToDataTable([
-          ['Lat', 'Long', 'Name'],
-          [37.4232, -122.0853, 'Work'],
-          [37.4289, -122.1697, 'University'],
-          [37.6153, -122.3900, 'Airport'],
-          [37.4422, -122.1731, 'Shopping']
+          ['Lat', 'Long', 'State','Marker'],
+          [37.4232, -122.0853,4,'blue'],
+          [37.4289, -122.1697,7,'green'],
+          [37.6153, -122.3900,1,'yellow'],
+          [37.4422, -122.1731,5,'red']
+        ]);
         ]);
 
         var map = new google.visualization.Map(document.getElementById('chart_div'));
         map.draw(data, {
           showTooltip: true,
-          showInfoWindow: true
+          showInfoWindow: true,
+          icons: {
+            blue: {normal:   'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'},
+            green: {normal:   'https://maps.google.com/mapfiles/ms/icons/green-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'},
+            yellow: {normal:   'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'},
+            red: {normal:   'https://maps.google.com/mapfiles/ms/icons/red-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'}
+          }
         });
       }catch (error) {
         console.error("Error:", error);

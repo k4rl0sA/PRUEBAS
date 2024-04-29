@@ -36,75 +36,68 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 } */
 
 function opc_1(){
-	// Obtener los nombres de los cursos de vida
-$sql_cursos = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
+
+	$sql_cursos = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
 $datos_cursos = datos_mysql($sql_cursos);
 
 $cursos = array();
 foreach ($datos_cursos['responseResult'] as $fila_curso) {
     $cursos[] = $fila_curso['cursos'];
 }
-
-// Crear un array para almacenar los datos
-$datos_por_curso = array();
+	// Crear un array para almacenar los datos
+$datos_por_mes = array();
 
 // Iterar sobre cada curso de vida y obtener los datos correspondientes
 foreach ($cursos as $curso) {
     $sql = "SELECT 
-                FN_CATALOGODESC(176, '$curso') AS Curso,
-                MONTH(fecha) AS Mes,
+                MONTHNAME(fecha) AS Mes,
                 COUNT(*) AS Total_usuarios
             FROM 
                 personas_datocomp
             WHERE
                 cursovida = '$curso'
             GROUP BY 
-                Curso, Mes
+                Mes
             ORDER BY 
-                Curso, Mes";
+                MONTH(fecha)";
 
     $datos = datos_mysql($sql);
 
     // Crear un array asociativo para almacenar los datos del curso actual
-    $datos_curso_actual = array();
-
-    // Iterar sobre los resultados y agregarlos al array de datos del curso actual
-    foreach ($datos['responseResult'] as $fila) {
-        $mes = $fila['Mes'];
-        $total_usuarios = $fila['Total_usuarios'];
-
-        // Si aún no existe una entrada para este mes, crearla
-        if (!isset($datos_curso_actual[$mes])) {
-            $datos_curso_actual[$mes] = 0;
-        }
-
-        // Agregar el total de usuarios para este mes al array del curso actual
-        $datos_curso_actual[$mes] += $total_usuarios;
-    }
-
-    // Agregar los datos del curso actual al array principal
-    $datos_por_curso[$curso] = $datos_curso_actual;
+    $datos_por_mes[$curso] = $datos['responseResult'];
 }
 
 // Crear el array de salida con el formato deseado
 $salida = array();
 
-// Iterar sobre los meses para construir el formato deseado
+// Agregar los encabezados de los cursos de vida como la primera fila
+$salida[] = array_merge(['Mes'], $cursos);
+
+// Iterar sobre los meses para construir el resto de los datos
 for ($mes = 1; $mes <= 12; $mes++) {
     $fila_mes = array(date('F', mktime(0, 0, 0, $mes, 1))); // Obtener el nombre del mes
 
     // Iterar sobre los cursos de vida y agregar los totales de usuarios para el mes actual
     foreach ($cursos as $curso) {
-        $total_usuarios_curso = isset($datos_por_curso[$curso][$mes]) ? $datos_por_curso[$curso][$mes] : 0;
+        $total_usuarios_curso = 0;
+
+        // Buscar el total de usuarios para este mes y curso de vida
+        foreach ($datos_por_mes[$curso] as $fila) {
+            if (date('n', strtotime($fila['Mes'])) === $mes) {
+                $total_usuarios_curso = $fila['Total_usuarios'];
+                break;
+            }
+        }
+
+        // Agregar el total de usuarios para este mes al array del curso actual
         $fila_mes[] = $total_usuarios_curso;
     }
 
     // Agregar la fila del mes al array de salida
     $salida[] = $fila_mes;
+	// Imprimir el resultado en formato de array de arrays
+echo json_encode($salida);
 }
-
-// Imprimir el resultado en formato de array de arrays
-return json_encode($salida);
 	
 }
 

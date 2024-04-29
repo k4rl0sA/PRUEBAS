@@ -36,59 +36,76 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 } */
 
 function opc_1(){
-	/* $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
-	$datos = datos_mysql($sql); */
+	// Obtener los nombres de los cursos de vida
+$sql_cursos = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
+$datos_cursos = datos_mysql($sql_cursos);
 
-	$sql1 = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176;";
-	$datos1 = datos_mysql($sql1);
-	$data = array();
-	$data[] = 'Mes';
-	foreach ($datos1['responseResult'] as $row) {
-		$data[] = $row['cursos'];
-	}
-	$cadena_limpia = trim(implode(', ', $data), "\n\"");
-	$array = explode(', ', $cadena_limpia);
+$cursos = array();
+foreach ($datos_cursos['responseResult'] as $fila_curso) {
+    $cursos[] = $fila_curso['cursos'];
+}
 
-	$sql = "SELECT 
-            FN_CATALOGODESC(176, cursovida) AS Curso,
-            FN_CATALOGODESC(231, MONTH(fecha)) AS Mes,
-            COUNT(*) AS Total_usuarios
-        FROM 
-            personas_datocomp
-        GROUP BY 
-            Curso, Mes
-        ORDER BY 
-            Curso, Mes";
+// Crear un array para almacenar los datos
+$datos_por_curso = array();
 
-$datos = datos_mysql($sql);
-// Crear un array asociativo para almacenar los datos en el formato deseado
-$resultado = array();
-// Iterar sobre los resultados y agregarlos al array de resultado
-	foreach ($datos['responseResult'] as $fila) {
-    	$curso = $fila['Curso'];
-    	$mes = $fila['Mes'];
-    	$total_usuarios = $fila['Total_usuarios'];
-    	// Si aún no existe una entrada para este mes, crearla
-    	if (!isset($resultado[$mes])) {
-    	    $resultado[$mes] = array();
-    	}
-    	// Agregar el total de usuarios para este curso de vida a la entrada del mes correspondiente
-    	$resultado[$mes][$curso] = $total_usuarios;
-	}
-	$salida = array();
+// Iterar sobre cada curso de vida y obtener los datos correspondientes
+foreach ($cursos as $curso) {
+    $sql = "SELECT 
+                FN_CATALOGODESC(176, '$curso') AS Curso,
+                MONTH(fecha) AS Mes,
+                COUNT(*) AS Total_usuarios
+            FROM 
+                personas_datocomp
+            WHERE
+                cursovida = '$curso'
+            GROUP BY 
+                Curso, Mes
+            ORDER BY 
+                Curso, Mes";
 
-	foreach ($resultado as $mes => $valores) {
-    	$fila_mes = array($mes);
-    	foreach ($valores as $total_usuarios) {
-    	    $fila_mes[] = $total_usuarios;
-    	}
-    	$salida[] = $fila_mes;
-	}
+    $datos = datos_mysql($sql);
 
-	// Imprimir el resultado en formato de array de arrays
-	// echo json_encode($salida);
+    // Crear un array asociativo para almacenar los datos del curso actual
+    $datos_curso_actual = array();
 
-	return json_encode($salida);
+    // Iterar sobre los resultados y agregarlos al array de datos del curso actual
+    foreach ($datos['responseResult'] as $fila) {
+        $mes = $fila['Mes'];
+        $total_usuarios = $fila['Total_usuarios'];
+
+        // Si aún no existe una entrada para este mes, crearla
+        if (!isset($datos_curso_actual[$mes])) {
+            $datos_curso_actual[$mes] = 0;
+        }
+
+        // Agregar el total de usuarios para este mes al array del curso actual
+        $datos_curso_actual[$mes] += $total_usuarios;
+    }
+
+    // Agregar los datos del curso actual al array principal
+    $datos_por_curso[$curso] = $datos_curso_actual;
+}
+
+// Crear el array de salida con el formato deseado
+$salida = array();
+
+// Iterar sobre los meses para construir el formato deseado
+for ($mes = 1; $mes <= 12; $mes++) {
+    $fila_mes = array(date('F', mktime(0, 0, 0, $mes, 1))); // Obtener el nombre del mes
+
+    // Iterar sobre los cursos de vida y agregar los totales de usuarios para el mes actual
+    foreach ($cursos as $curso) {
+        $total_usuarios_curso = isset($datos_por_curso[$curso][$mes]) ? $datos_por_curso[$curso][$mes] : 0;
+        $fila_mes[] = $total_usuarios_curso;
+    }
+
+    // Agregar la fila del mes al array de salida
+    $salida[] = $fila_mes;
+}
+
+// Imprimir el resultado en formato de array de arrays
+return json_encode($salida);
+	
 }
 
 

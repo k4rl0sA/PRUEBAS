@@ -215,10 +215,10 @@ function graficar() {
                     dataTable.addColumn('number', 'Total Usuarios');
 
                     // Agregar los datos al DataTable
-                    for (var i = 0; i < data.length; i++) {
+                  /*   for (var i = 0; i < data.length; i++) {
                         var fila = [data[i].Curso, data[i].mes, parseInt(data[i].total_usuarios)];
                         dataTable.addRow(fila);
-                    }
+                    } */
 
                     var data=[["PRIMERA INFANCIA",'ENERO',1],
 ["INFANCIA",'ENERO',1],

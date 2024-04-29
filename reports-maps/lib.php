@@ -43,9 +43,13 @@ function opc_3(){
             ELSE 'red' 
             END AS color
         FROM hog_geo hg
-        WHERE estado_v in(6)";
+        WHERE estado_v in(6) limit 100";
         $data= datos_mysql($sql);
-        $out= array_merge([$title], $data['responseResult']);
+        $json=$data['responseResult'];
+        $obj = json_decode($json);
+        $datos = [floatval($objeto->cordx),floatval($objeto->cordy),$objeto->estado,$objeto->color];
+
+        $out= array_merge([$title],$datos);
 echo json_encode($out);
 	// Obtener los encabezados de los cursos de vida	
 }

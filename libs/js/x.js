@@ -108,7 +108,7 @@ function DisableUpdate(act,clsCmp){
 function disabledCmp(clsCmp){
 	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);
 	for (i = 0; i < ele.length; i++){ 
-				enaFie(ele[i],true);
+		enaFie(ele[i],true);
 	}
 }
 

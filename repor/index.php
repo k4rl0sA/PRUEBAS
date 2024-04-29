@@ -137,7 +137,7 @@ function myAjax(a){
 			}}
 			xmlhttp.open("POST",'lib.php',false);
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send('a=opc&tb=1');
+			xmlhttp.send('a=opc&tb=1&'+ form_input('fapp'));
 			return JSON.parse(data);
 }
 

@@ -51,7 +51,7 @@ function opc_1(){
 
 	$sql = "SELECT 
             FN_CATALOGODESC(176, cursovida) AS Curso,
-            FN_CATALOGODESC(230, MONTH(fecha)) AS Mes,
+            FN_CATALOGODESC(231, MONTH(fecha)) AS Mes,
             COUNT(*) AS Total_usuarios
         FROM 
             personas_datocomp

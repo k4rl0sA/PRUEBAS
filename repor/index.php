@@ -117,7 +117,7 @@ data.forEach(item => {
 });
 
 // Convertimos el nuevo formato a JSON
-const datos = JSON.stringify(nuevoFormato);
+const datos = JSON.parse(stringify(nuevoFormato));
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 
             // Crear el objeto de gráfico según el tipo seleccionado

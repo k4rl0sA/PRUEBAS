@@ -211,7 +211,7 @@ function graficar() {
                     // Crear una tabla de datos de Google Charts
                     var dataTable = new google.visualization.DataTable();
                     dataTable.addColumn('string', 'Curso');
-                    dataTable.addColumn('string', 'Mes');
+                    // dataTable.addColumn('string', 'Mes');
                     dataTable.addColumn('number', 'Total Usuarios');
 
                     // Agregar los datos al DataTable
@@ -220,7 +220,7 @@ function graficar() {
                         dataTable.addRow(fila);
                     } */
 
-                    var data=[["PRIMERA INFANCIA",'ENERO',1],
+/*                     var data=[["PRIMERA INFANCIA",'ENERO',1],
 ["INFANCIA",'ENERO',1],
 ["INFANCIA",'SEPTIEMBRE',1],
 ["ADOLESCENCIA",'ENERO',2],
@@ -229,7 +229,17 @@ function graficar() {
 ["JUVENTUD",'MARZO',2],
 ["ADULTEZ",'JUNIO',2],
 ["ADULTEZ",'AGOSTO',1],
-["ADULTEZ",'OCTUBRE',1]]; 
+["ADULTEZ",'OCTUBRE',1]];  */
+var data=[["PRIMERA INFANCIA",1],
+["INFANCIA",1],
+["INFANCIA",1],
+["ADOLESCENCIA",2],
+["JUVENTUD",1],
+["JUVENTUD",2],
+["JUVENTUD",2],
+["ADULTEZ",2],
+["ADULTEZ",1],
+["ADULTEZ",1]]; 
 
 dataTable.addRow(data);
 

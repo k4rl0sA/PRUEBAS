@@ -100,13 +100,15 @@ function graficar() {
 ["ADULTEZ",2],
 ["ADULTEZ",1],
 ["ADULTEZ",1]]; */
-var data=[["PRIMERA INFANCIA",'ABRIL',1],
+
+var data= google.visualization.arrayToDataTable([["PRIMERA INFANCIA",'ABRIL',1],
 ["INFANCIA",'ENERO',1],
 ["INFANCIA",'FEBRERO',1],
 ["ADOLESCENCIA",'FEBRERO',2],
 ["JUVENTUD",'ENERO',1],
 ["ADULTEZ",'ABRIL',2],
-["ADULTEZ",'MAYO',1]];
+["ADULTEZ",'MAYO',1]]);
+
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
@@ -138,9 +140,23 @@ var data=[["PRIMERA INFANCIA",'ABRIL',1],
             chartData.addColumn('number', 'Total Usuarios');
             chartData.addRows(data);
 
-            // Dibujar el gráfico
-            graf.draw(chartData, options);
-        
+
+            var materialOptions = {
+        chart: {
+          title: tit
+        },
+        hAxis: {
+          title: 'Total Population',
+          minValue: 0,
+        },
+        vAxis: {
+          title: 'Curso de Vida'
+        },
+        bars: 'horizontal'
+      };
+
+            materialChart.draw(data, materialOptions);
+
     } catch (error) {
         console.error("Error:", error);
         // Manejar el error como lo desees

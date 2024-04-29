@@ -34,10 +34,10 @@ function graficar() {
 
         let data = google.visualization.arrayToDataTable([
           ['Lat', 'Long', 'State','Marker'],
-          [37.4232, -122.0853,4,'blue'],
-          [37.4289, -122.1697,7,'green'],
-          [37.6153, -122.3900,1,'yellow'],
-          [37.4422, -122.1731,5,'red']
+          [37.4232, -122.0853,'No Residencial','blue'],
+          [37.4289, -122.1697,'Efectivo','green'],
+          [37.6153, -122.3900,'Ausente','yellow'],
+          [37.4422, -122.1731,'Fallido','red']
         ]);
 
         var map = new google.visualization.Map(document.getElementById('chart_div'));

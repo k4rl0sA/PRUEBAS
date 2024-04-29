@@ -100,6 +100,7 @@ function graficar() {
 ["ADULTEZ",2],
 ["ADULTEZ",1],
 ["ADULTEZ",1]]; */
+
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico

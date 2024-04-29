@@ -90,23 +90,20 @@ function graficar() {
             // var data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-            var data=[["PRIMERA INFANCIA",'ABRIL',1],
-["INFANCIA",'ENERO',1],
-["INFANCIA",'FEBRERO',1],
-["ADOLESCENCIA",'FEBRERO',2],
-["JUVENTUD",'ENERO',1],
-["ADULTEZ",'ABRIL',2],
-["ADULTEZ",'MAYO',1]];
+            var data=[["PRIMERA INFANCIA",1],
+["INFANCIA",1],
+["INFANCIA",1],
+["ADOLESCENCIA",2],
+["JUVENTUD",1],
+["JUVENTUD",2],
+["JUVENTUD",2],
+["ADULTEZ",2],
+["ADULTEZ",1],
+["ADULTEZ",1]];
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
-            /* var opciones = {
-                        title: 'Usuarios por Curso y Mes',
-                        hAxis: {title: 'Curso'},
-                        vAxis: {title: 'Total Usuarios'},
-                        legend: 'none'
-                    }; */
 
             // Crear el objeto de gráfico según el tipo seleccionado
             var graf;
@@ -125,9 +122,12 @@ function graficar() {
 
             // Crear el objeto de datos del gráfico y agregar los datos obtenidos
             var chartData = new google.visualization.DataTable();
-            dataTable.addColumn('string', 'Curso');
+            /* dataTable.addColumn('string', 'Curso');
             dataTable.addColumn('string', 'Mes');
-            dataTable.addColumn('number', 'Total Usuarios');
+            dataTable.addColumn('number', 'Total Usuarios'); */
+
+            chartData.addColumn('string', tv);
+            chartData.addColumn('number', th);
             chartData.addRows(data);
 
             // Dibujar el gráfico

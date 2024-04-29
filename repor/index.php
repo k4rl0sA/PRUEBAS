@@ -19,11 +19,11 @@ var ruta_app='lib.php';
 
 
 function actualizar(){
-  graficar();
+	graficar();
 }
 
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(graficar);
+google.charts.setOnLoadCallback(drawChart);
 
 /* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
@@ -77,7 +77,7 @@ google.charts.setOnLoadCallback(graficar);
 	sobreponer('grafica', 'gra');
 }
  */
- function graficar() {
+function graficar() {
     try {
         var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
         var tv = document.getElementById('indicador-agrupar').value;
@@ -87,10 +87,10 @@ google.charts.setOnLoadCallback(graficar);
 
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
-             let data = myAjax(tb);
+             let data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-             var data=[["PRIMERA INFANCIA",1],
+         /*    var data=[["PRIMERA INFANCIA",1],
 ["INFANCIA",1],
 ["INFANCIA",1],
 ["ADOLESCENCIA",2],
@@ -99,8 +99,7 @@ google.charts.setOnLoadCallback(graficar);
 ["JUVENTUD",2],
 ["ADULTEZ",2],
 ["ADULTEZ",1],
-["ADULTEZ",1]]; 
-
+["ADULTEZ",1]]; */
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
@@ -117,7 +116,7 @@ data.forEach(item => {
 });
 
 // Convertimos el nuevo formato a JSON
-const datos = JSON.parse(stringify(nuevoFormato));
+const datos = JSON.stringify(nuevoFormato);
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 
             // Crear el objeto de gráfico según el tipo seleccionado
@@ -168,9 +167,9 @@ function myAjax(a){
 			xmlhttp.send('a=opc&tb=1&'+ form_input('fapp'));
 			return JSON.parse(data);
 }
- 
 
- function pajax(url, method, data, successCallback, errorCallback) {
+
+/* function pajax(url, method, data, successCallback, errorCallback) {
     console.log("Datos:", data);
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -199,12 +198,7 @@ ajax(url, method, requestData, function(responseData) {
     // Error: manejar el error
     console.error('Error en la solicitud:', errorMsg);
 });
- 
-
-
-
-
-
+ */
 </script>
 </head>
 <body Onload="actualizar();">

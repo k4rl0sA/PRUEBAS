@@ -42,23 +42,55 @@ function opc_1(){
 	$sql1 = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176;";
 	$datos1 = datos_mysql($sql1);
 	$data = array();
-
-	// Agregar el encabezado 'Mes' al principio del array
 	$data[] = 'Mes';
-	
-	// Iterar sobre los resultados y agregar las descripciones al array de datos
 	foreach ($datos1['responseResult'] as $row) {
 		$data[] = $row['cursos'];
 	}
-	
-	// Limpiar la cadena eliminando los caracteres no deseados
 	$cadena_limpia = trim(implode(', ', $data), "\n\"");
-	
-	// Convertir la cadena limpiada en un array
 	$array = explode(', ', $cadena_limpia);
-	
-	// Imprimir el array
-	return json_encode($array);
+
+	$sql = "SELECT 
+            FN_CATALOGODESC(176, cursovida) AS Curso,
+            MONTH(fecha) AS Mes,
+            COUNT(*) AS Total_usuarios
+        FROM 
+            personas_datocomp
+        GROUP BY 
+            Curso, Mes
+        ORDER BY 
+            Curso, Mes";
+
+$datos = datos_mysql($sql);
+// Crear un array asociativo para almacenar los datos en el formato deseado
+$resultado = array();
+// Iterar sobre los resultados y agregarlos al array de resultado
+	foreach ($datos['responseResult'] as $fila) {
+    	$curso = $fila['Curso'];
+    	$mes = $fila['Mes'];
+    	$total_usuarios = $fila['Total_usuarios'];
+    	// Si aún no existe una entrada para este mes, crearla
+    	if (!isset($resultado[$mes])) {
+    	    $resultado[$mes] = array();
+    	}
+    	// Agregar el total de usuarios para este curso de vida a la entrada del mes correspondiente
+    	$resultado[$mes][$curso] = $total_usuarios;
+	}
+	$salida = array();
+
+	foreach ($resultado as $mes => $valores) {
+    	$fila_mes = array($mes);
+    	foreach ($valores as $total_usuarios) {
+    	    $fila_mes[] = $total_usuarios;
+    	}
+    	$salida[] = $fila_mes;
+	}
+
+	// Imprimir el resultado en formato de array de arrays
+	echo json_encode($salida);
+
+
+
+	return json_encode($salida);
 }
 
 

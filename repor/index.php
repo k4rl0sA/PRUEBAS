@@ -88,9 +88,9 @@ function graficar() {
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
             var data = JSON.parse(myAjax(tb));
-            // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
 
-            console.error(data);
+            // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
+            console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};

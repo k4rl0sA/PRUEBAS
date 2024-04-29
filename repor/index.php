@@ -85,50 +85,61 @@ function graficar() {
         const th = 900;
         const tg = 'BAR'; // Asumiendo que esto es el tipo de gráfico seleccionado
 
-        var xmlhttp;
-        if (window.XMLHttpRequest) {
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
+        // Realizar la solicitud para obtener los datos
+            // Convertir la respuesta a un objeto JSON
+            var data = myAjax(tb);
+            console.error(data);
 
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var data = JSON.parse(xmlhttp.responseText);
-                console.log(data);
+            // Crear el objeto de opciones del gráfico
+            var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
 
-                var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
-
-                var graf;
-                switch (tg) {
-                    case 'AREA':
-                        graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                        break;
-                    case 'PIE':
-                        graf = new google.visualization.PieChart(document.getElementById('chart_div'));
-                        break;
-                    case 'BAR':
-                        graf = new google.visualization.BarChart(document.getElementById('chart_div'));
-                        break;
-                    // Otros casos para diferentes tipos de gráficos
-                }
-
-                var chartData = new google.visualization.DataTable();
-                chartData.addColumn('string', tv);
-                chartData.addColumn('number', th);
-                chartData.addRows(data);
-
-                graf.draw(chartData, options);
+            // Crear el objeto de gráfico según el tipo seleccionado
+            var graf;
+            switch (tg) {
+                case 'AREA':
+                    graf = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    break;
+                case 'PIE':
+                    graf = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    break;
+                case 'BAR':
+			            var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+			          break;
+                // Otros casos para diferentes tipos de gráficos
             }
-        };
 
-        xmlhttp.open("POST", 'lib.php', true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send('a=opc&tb=1&' + form_input('fapp'));
+            // Crear el objeto de datos del gráfico y agregar los datos obtenidos
+            var chartData = new google.visualization.DataTable();
+            chartData.addColumn('string', tv);
+            chartData.addColumn('number', th);
+            chartData.addRows(data);
+
+            // Dibujar el gráfico
+            graf.draw(chartData, options);
+        
     } catch (error) {
         console.error("Error:", error);
         // Manejar el error como lo desees
     }
+}
+
+
+function myAjax(a){
+	if (loader !== undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =xmlhttp.responseText;
+				if (loader != undefined) loader.style.display = 'none';
+					console.log(data)
+			}}
+			xmlhttp.open("POST",'lib.php',false);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send('a=opc&tb=1&'+ form_input('fapp'));
+			return JSON.parse(data);
 }
 
 

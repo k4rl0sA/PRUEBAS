@@ -38,12 +38,19 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 function opc_1(){
 	$sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
 	$datos = datos_mysql($sql);
-	
+
+	$sql1 = "SELECT GROUP_CONCAT(descripcion ORDER BY idcatadeta  SEPARATOR ', ') AS cursos	FROM catadeta WHERE idcatalogo = 176;";
+	$datos1 = datos_mysql($sql1);
 	// Crear un array para almacenar los datos en el formato que necesita el gráfico
 	$data = array();
-	foreach ($datos['responseResult'] as $fila) {
+
+	$data[] =Array('Mes',$datos1['responseResult']['cursos']);
+
+	/* foreach ($datos['responseResult'] as $fila) {
 		$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]
 	}
+ */
+
 	// Devolver los datos como JSON
 	echo json_encode($data);
 	exit();

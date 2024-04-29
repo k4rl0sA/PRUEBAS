@@ -22,7 +22,8 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
         }
     }
 }else {
-    echo "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
+    var_dump($_POST);
+	//  "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
 }
 
 var_dump($_POST);

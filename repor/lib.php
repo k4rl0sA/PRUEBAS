@@ -37,14 +37,12 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 function opc_1(){
 
-	$sql_cursos = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
-$datos_cursos = datos_mysql($sql_cursos);
+	// Obtener los encabezados de los cursos de vida
+$sql_encabezados = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
+$datos_encabezados = datos_mysql($sql_encabezados);
+$cursos = array_column($datos_encabezados['responseResult'], 'cursos');
 
-$cursos = array();
-foreach ($datos_cursos['responseResult'] as $fila_curso) {
-    $cursos[] = $fila_curso['cursos'];
-}
-	// Crear un array para almacenar los datos
+// Crear un array para almacenar los datos
 $datos_por_mes = array();
 
 // Iterar sobre cada curso de vida y obtener los datos correspondientes
@@ -95,9 +93,10 @@ for ($mes = 1; $mes <= 12; $mes++) {
 
     // Agregar la fila del mes al array de salida
     $salida[] = $fila_mes;
-	// Imprimir el resultado en formato de array de arrays
-echo json_encode($salida);
 }
+
+// Imprimir el resultado en formato de array de arrays
+echo json_encode($salida);
 	
 }
 

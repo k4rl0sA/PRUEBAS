@@ -101,13 +101,12 @@ function graficar() {
 ["ADULTEZ",1],
 ["ADULTEZ",1]]; */
 
-var data= google.visualization.arrayToDataTable([["PRIMERA INFANCIA",'ABRIL',1],
-["INFANCIA",'ENERO',1],
-["INFANCIA",'FEBRERO',1],
-["ADOLESCENCIA",'FEBRERO',2],
-["JUVENTUD",'ENERO',1],
-["ADULTEZ",'ABRIL',2],
-["ADULTEZ",'MAYO',1]]);
+var data = google.visualization.arrayToDataTable([
+    ['Mes', 'Adulto', 'Juventud', 'Infancia', 'Vejez'],
+    ['Enero', 100, 50, 120, 20],
+    ['Febrero', 150, 25, 120, 80],
+    ['Marzo', 100, 90, 150, 120]
+  ]);
 
             // console.error(JSON.parse(data));
 

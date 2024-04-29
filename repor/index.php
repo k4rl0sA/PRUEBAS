@@ -142,7 +142,7 @@ function myAjax(a){
 }
 
 
-function pajax(url, method, data, successCallback, errorCallback) {
+/* function pajax(url, method, data, successCallback, errorCallback) {
     console.log("Datos:", data);
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -171,7 +171,7 @@ ajax(url, method, requestData, function(responseData) {
     // Error: manejar el error
     console.error('Error en la solicitud:', errorMsg);
 });
-
+ */
 </script>
 </head>
 <body Onload="actualizar();">

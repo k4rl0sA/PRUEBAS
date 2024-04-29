@@ -200,7 +200,7 @@ ajax(url, method, requestData, function(responseData) {
     console.error('Error en la solicitud:', errorMsg);
 });
  */
-function garficar() {
+function graficar() {
             // Realizar una solicitud AJAX para obtener los datos del backend
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {

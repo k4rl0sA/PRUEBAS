@@ -90,16 +90,13 @@ function graficar() {
             // var data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-            var data=[["PRIMERA INFANCIA",1],
-["INFANCIA",1],
-["INFANCIA",1],
-["ADOLESCENCIA",2],
-["JUVENTUD",1],
-["JUVENTUD",2],
-["JUVENTUD",2],
-["ADULTEZ",2],
-["ADULTEZ",1],
-["ADULTEZ",1]];
+            var data=[["PRIMERA INFANCIA",'ABRIL',1],
+["INFANCIA",'ENERO',1],
+["INFANCIA",'FEBRERO',1],
+["ADOLESCENCIA",'FEBRERO',2],
+["JUVENTUD",'ENERO',1],
+["ADULTEZ",'ABRIL',2],
+["ADULTEZ",'MAYO',1]];
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico
@@ -122,8 +119,9 @@ function graficar() {
 
             // Crear el objeto de datos del gráfico y agregar los datos obtenidos
             var chartData = new google.visualization.DataTable();
-            chartData.addColumn('string', tv);
-            chartData.addColumn('number', th);
+            dataTable.addColumn('string', 'Curso');
+            dataTable.addColumn('string', 'Mes');
+            dataTable.addColumn('number', 'Total Usuarios');
             chartData.addRows(data);
 
             // Dibujar el gráfico

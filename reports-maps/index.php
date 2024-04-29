@@ -45,11 +45,7 @@ function graficar() {
           showTooltip: true,
           showInfoWindow: true
         });
-      }
-
-
-
-    } catch (error) {
+      }catch (error) {
         console.error("Error:", error);
         // Manejar el error como lo desees
     }

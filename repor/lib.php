@@ -39,17 +39,27 @@ function opc_1(){
 	$sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
 	$datos = datos_mysql($sql);
 
-	$sql1 = "SELECT GROUP_CONCAT(descripcion ORDER BY idcatadeta  SEPARATOR ', ') AS cursos	FROM catadeta WHERE idcatalogo = 176;";
+	$sql1 = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176;";
 	$datos1 = datos_mysql($sql1);
+
 	// Crear un array para almacenar los datos en el formato que necesita el gráfico
 	$data = array();
 
-	$data[] =Array('Mes',$datos1['responseResult'][0]);
+	// Agregar el encabezado 'Mes' al principio del array
+	$data[] = 'Mes';
 
-	/* foreach ($datos['responseResult'] as $fila) {
-		$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]
+	// Iterar sobre los resultados y agregar las descripciones al array de datos
+	foreach ($datos1['responseResult'] as $row) {
+	    $data[] = $row['cursos'];
 	}
- */
+
+	// Imprimir el array en formato deseado
+	$data= '[' . implode(', ', $data) . ']';
+
+		/* foreach ($datos['responseResult'] as $fila) {
+			$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]
+		}
+	 */
 
 	// Devolver los datos como JSON
 	echo json_encode($data);

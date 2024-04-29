@@ -87,7 +87,7 @@ function graficar() {
 
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
-             let data = JSON.parse(myAjax(tb));
+             let data = myAjax(tb);
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
          /*    var data=[["PRIMERA INFANCIA",1],

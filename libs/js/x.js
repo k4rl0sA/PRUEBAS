@@ -1023,10 +1023,8 @@ if (ele.length!=7 && ele.length!=10){
 }
 
 function enabSelMulSel(act, sel, val) {
-    // alert('ZXDFGHJKJMNBVDCVFBGNHM');
     const selMul = document.getElementById(act);
     const selSim = document.getElementById(sel);
-    // Añadir un evento de cambio al selMul múltiple
 	let selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
 	let shouldBeEnabled = selectedOptions.some(option => val.includes(option));
 	if(shouldBeEnabled){

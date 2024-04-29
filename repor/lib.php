@@ -41,29 +41,24 @@ function opc_1(){
 
 	$sql1 = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176;";
 	$datos1 = datos_mysql($sql1);
-
-	// Crear un array para almacenar los datos en el formato que necesita el gráfico
 	$data = array();
 
 	// Agregar el encabezado 'Mes' al principio del array
 	$data[] = 'Mes';
-
+	
 	// Iterar sobre los resultados y agregar las descripciones al array de datos
 	foreach ($datos1['responseResult'] as $row) {
-	    $data[] = $row['cursos'];
+		$data[] = $row['cursos'];
 	}
-
-	// Imprimir el array en formato deseado
-	$data= '[' . implode(', ', $data) . ']';
-
-		/* foreach ($datos['responseResult'] as $fila) {
-			$data[] = array($fila['mes'], $fila['total_usuarios'], $fila['Curso']); // [Mes, Total Usuarios, Curso de vida]
-		}
-	 */
-
-	// Devolver los datos como JSON
-	echo json_encode($data);
-	exit();
+	
+	// Limpiar la cadena eliminando los caracteres no deseados
+	$cadena_limpia = trim(implode(', ', $data), "\n\"");
+	
+	// Convertir la cadena limpiada en un array
+	$array = explode(', ', $cadena_limpia);
+	
+	// Imprimir el array
+	return json_encode($array);
 }
 
 

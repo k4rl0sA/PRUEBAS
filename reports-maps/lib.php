@@ -28,14 +28,25 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 
 function opc_3(){
-    $salida=[
-        ['Lat', 'Long', 'State','Marker'],
-        [37.4232, -122.0853,'No Residencial','blue'],
-        [37.4289, -122.1697,'Efectivo','green'],
-        [37.6153, -122.3900,'Ausente','yellow'],
-        [37.4422, -122.1731,'Fallido','red']
-      ];
-echo json_encode($salida);
+    $title=['Coord. X', 'Coord. Y', 'Estado','Marker'];
+
+    $sql= "SELECT 
+        cordx,cordy,FN_CATALOGODESC(44, estado_v) AS estado,
+        CASE estado_v
+            WHEN 1 THEN 'blue'
+            WHEN 2 THEN 'yellow'
+            WHEN 3 THEN 'yellow'
+            WHEN 4 THEN 'purple'
+            WHEN 5 THEN 'pink'
+            WHEN 6 THEN 'ltblue'
+            WHEN 7 THEN 'green'
+            ELSE 'red' 
+            END AS color
+        FROM hog_geo hg
+        WHERE estado_v in(6)";
+        $data= datos_mysql($sql);
+        $out[]= array_merge([$title], $data['responseResult']);
+echo json_encode($out);
 	// Obtener los encabezados de los cursos de vida	
 }
 

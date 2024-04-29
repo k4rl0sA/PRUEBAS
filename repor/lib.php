@@ -22,11 +22,11 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
         }
     }
 }else {
-    var_dump($_POST);
-	//  "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
+    // var_dump($_POST);
+	 "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
 }
 
-var_dump($_POST);
+// var_dump($_POST);
 
 function opc_1(){
     $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";

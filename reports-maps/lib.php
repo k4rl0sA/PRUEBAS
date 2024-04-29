@@ -45,7 +45,7 @@ function opc_3(){
         FROM hog_geo hg
         WHERE estado_v in(6)";
         $data= datos_mysql($sql);
-        $out[]= array_merge([$title], $data['responseResult']);
+        $out= array_merge([$title], $data['responseResult']);
 echo json_encode($out);
 	// Obtener los encabezados de los cursos de vida	
 }

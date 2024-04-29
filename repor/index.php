@@ -88,7 +88,7 @@ function graficar() {
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
             // var data = myAjax(tb);
-            var data = JSON.parse("[['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]]");
+            var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
 
             console.error(data);
 

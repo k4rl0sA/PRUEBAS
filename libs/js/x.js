@@ -1029,5 +1029,11 @@ function enabSelMulSel(act, sel, val) {
     // Añadir un evento de cambio al selMul múltiple
 	let selectedOptions = Array.from(selMul.selectedOptions).map(option => option.value);
 	let shouldBeEnabled = selectedOptions.some(option => val.includes(option));
-	selSim.disabled = !shouldBeEnabled;
+	if(shouldBeEnabled){
+		selSim.value=1;
+		enabOthSi('deriva_eac','eAc');
+	}else{
+		selSim.value=2;
+		enabOthSi('deriva_eac','eAc');
+	}
 }

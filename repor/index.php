@@ -204,44 +204,7 @@ ajax(url, method, requestData, function(responseData) {
 
 
 
-/* function graficar() {
-   // Realizar una solicitud AJAX para obtener los datos del backend
-   var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Convertir la respuesta JSON en un objeto JavaScript
-                    var data = JSON.parse(this.responseText);
 
-                    // Crear una tabla de datos de Google Charts
-                    var dataTable = new google.visualization.DataTable();
-                    dataTable.addColumn('string', 'Curso');
-                    dataTable.addColumn('string', 'Mes');
-                    dataTable.addColumn('number', 'Total Usuarios');
-
-                    // Agregar los datos al DataTable
-                    for (var i = 0; i < data.length; i++) {
-                        var fila = [data[i].Curso, data[i].mes, parseInt(data[i].total_usuarios)];
-                        dataTable.addRow(fila);
-                    }
-
-                    // Configurar las opciones del gráfico
-                    var opciones = {
-                        title: 'Usuarios por Curso y Mes',
-                        hAxis: {title: 'Curso'},
-                        vAxis: {title: 'Total Usuarios'},
-                        legend: 'none'
-                    };
-
-                    // Crear un gráfico de barras
-                    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                    chart.draw(dataTable, opciones);
-                }
-            };
-            xhttp.open("POST", "lib.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("a=opc&tb=1"); // Reemplaza 'your_table_name' con el nombre de tu tabla           
-}
- */
 </script>
 </head>
 <body Onload="actualizar();">

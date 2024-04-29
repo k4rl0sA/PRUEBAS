@@ -32,13 +32,8 @@ function graficar() {
         const th = 900;
         const tg = 'BAR';
 
-        let data = google.visualization.arrayToDataTable([
-          ['Lat', 'Long', 'State','Marker'],
-          [37.4232, -122.0853,'No Residencial','blue'],
-          [37.4289, -122.1697,'Efectivo','green'],
-          [37.6153, -122.3900,'Ausente','yellow'],
-          [37.4422, -122.1731,'Fallido','red']
-        ]);
+        let dato=myAjax(tb);
+        let data = google.visualization.arrayToDataTable(dato);
 
         var map = new google.visualization.Map(document.getElementById('chart_div'));
         map.draw(data, {

@@ -26,78 +26,17 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 	 "Error: Parámetros 'a' y 'tb' no están definidos en la solicitud.";
 }
 
-// var_dump($_POST);
 
-/* function opc_1(){
-    $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
-    $datos = datos_mysql($sql);
-    echo json_encode($datos['responseResult']); // Enviar los datos como JSON
-    exit(); // Detener la ejecución del script después de enviar la respuesta
-} */
-
-function opc_1(){
-
-	// Obtener los encabezados de los cursos de vida
-$sql_encabezados = "SELECT descripcion AS cursos FROM catadeta WHERE idcatalogo = 176";
-$datos_encabezados = datos_mysql($sql_encabezados);
-$cursos = array_column($datos_encabezados['responseResult'], 'cursos');
-
-// Crear un array para almacenar los datos
-$datos_por_mes = array();
-
-// Iterar sobre cada curso de vida y obtener los datos correspondientes
-foreach ($cursos as $curso) {
-    $sql = "SELECT 
-                MONTHNAME(fecha) AS Mes,
-                COUNT(*) AS Total_usuarios
-            FROM 
-                personas_datocomp
-            WHERE
-                cursovida = '$curso'
-            GROUP BY 
-                Mes
-            ORDER BY 
-                MONTH(fecha)";
-
-    $datos = datos_mysql($sql);
-
-    // Crear un array asociativo para almacenar los datos del curso actual
-    $datos_por_mes[$curso] = $datos['responseResult'];
-}
-
-// Crear el array de salida con el formato deseado
-$salida = array();
-
-// Agregar los encabezados de los cursos de vida como la primera fila
-$salida[] = array_merge(['Mes'], $cursos);
-
-// Iterar sobre los meses para construir el resto de los datos
-for ($mes = 1; $mes <= 12; $mes++) {
-    $fila_mes = array(date('F', mktime(0, 0, 0, $mes, 1))); // Obtener el nombre del mes
-
-    // Iterar sobre los cursos de vida y agregar los totales de usuarios para el mes actual
-    foreach ($cursos as $curso) {
-        $total_usuarios_curso = rand(0,150);
-
-        // Buscar el total de usuarios para este mes y curso de vida
-        foreach ($datos_por_mes[$curso] as $fila) {
-            if (date('n', strtotime($fila['Mes'])) === $mes) {
-                $total_usuarios_curso = $fila['Total_usuarios'];
-                break;
-            }
-        }
-
-        // Agregar el total de usuarios para este mes al array del curso actual
-        $fila_mes[] = $total_usuarios_curso;
-    }
-
-    // Agregar la fila del mes al array de salida
-    $salida[] = $fila_mes;
-}
-
-// Imprimir el resultado en formato de array de arrays
+function opc_3(){
+    $salida=[
+        ['Lat', 'Long', 'State','Marker'],
+        [37.4232, -122.0853,'No Residencial','blue'],
+        [37.4289, -122.1697,'Efectivo','green'],
+        [37.6153, -122.3900,'Ausente','yellow'],
+        [37.4422, -122.1731,'Fallido','red']
+      ];
 echo json_encode($salida);
-	
+	// Obtener los encabezados de los cursos de vida	
 }
 
 
@@ -120,35 +59,3 @@ function whe_rptMap() {
 	return $sql;
 }
 
-
-function get_person(){
-	// print_r($_POST);
-	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
-FROM personas 
-	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	// echo $sql;
-	$info=datos_mysql($sql);
-	if (!$info['responseResult']) {
-		return '';
-	}
-return json_encode($info['responseResult'][0]);
-}
-
-	function formato_dato($a,$b,$c,$d){
-		$b=strtolower($b);
-		$rta=$c[$d];
-	   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-	   // var_dump($a);
-	   // var_dump($rta);
-		   if ($a=='rptMap' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptMap','pro',event,'','lib.php',7,'TAMIZAJE RQC Y SRQ');\"></li>";  //act_lista(f,this);
-			}
-		return $rta;
-	   }
-	   
-	   function bgcolor($a,$c,$f='c'){
-		// return $rta;
-	   }
-	

@@ -22,6 +22,9 @@ function actualizar(){
   graficar();
 }
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(graficar);
+
 /* function graficar() {
 	var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
 	var tv = document.getElementById('indicador-agrupar').value;
@@ -74,7 +77,7 @@ function actualizar(){
 	sobreponer('grafica', 'gra');
 }
  */
-function graficar() {
+ function graficar() {
     try {
         var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
         var tv = document.getElementById('indicador-agrupar').value;
@@ -167,7 +170,7 @@ function myAjax(a){
 }
  
 
-/* function pajax(url, method, data, successCallback, errorCallback) {
+ function pajax(url, method, data, successCallback, errorCallback) {
     console.log("Datos:", data);
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -196,6 +199,48 @@ ajax(url, method, requestData, function(responseData) {
     // Error: manejar el error
     console.error('Error en la solicitud:', errorMsg);
 });
+ 
+
+
+
+
+/* function graficar() {
+   // Realizar una solicitud AJAX para obtener los datos del backend
+   var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Convertir la respuesta JSON en un objeto JavaScript
+                    var data = JSON.parse(this.responseText);
+
+                    // Crear una tabla de datos de Google Charts
+                    var dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Curso');
+                    dataTable.addColumn('string', 'Mes');
+                    dataTable.addColumn('number', 'Total Usuarios');
+
+                    // Agregar los datos al DataTable
+                    for (var i = 0; i < data.length; i++) {
+                        var fila = [data[i].Curso, data[i].mes, parseInt(data[i].total_usuarios)];
+                        dataTable.addRow(fila);
+                    }
+
+                    // Configurar las opciones del gráfico
+                    var opciones = {
+                        title: 'Usuarios por Curso y Mes',
+                        hAxis: {title: 'Curso'},
+                        vAxis: {title: 'Total Usuarios'},
+                        legend: 'none'
+                    };
+
+                    // Crear un gráfico de barras
+                    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                    chart.draw(dataTable, opciones);
+                }
+            };
+            xhttp.open("POST", "lib.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("a=opc&tb=1"); // Reemplaza 'your_table_name' con el nombre de tu tabla           
+}
  */
 </script>
 </head>

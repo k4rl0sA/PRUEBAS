@@ -87,9 +87,19 @@ function graficar() {
 
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
-            var data = JSON.parse(myAjax(tb));
+            // var data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
+            var data=[{"Curso":"PRIMERA INFANCIA","mes":"ABRIL","total_usuarios":"1"},
+{"Curso":"INFANCIA","mes":"FEBRERO","total_usuarios":"1"},
+{"Curso":"INFANCIA","mes":"MARZO","total_usuarios":"1"},
+{"Curso":"ADOLESCENCIA","mes":"FEBRERO","total_usuarios":"2"},
+{"Curso":"JUVENTUD","mes":"FEBRERO","total_usuarios":"1"},
+{"Curso":"JUVENTUD","mes":"MARZO","total_usuarios":"2"},
+{"Curso":"JUVENTUD","mes":"ABRIL","total_usuarios":"2"},
+{"Curso":"ADULTEZ","mes":"MARZO","total_usuarios":"2"},
+{"Curso":"ADULTEZ","mes":"ABRIL","total_usuarios":"1"},
+{"Curso":"ADULTEZ","mes":"OCTUBRE","total_usuarios":"1"}];
             console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico

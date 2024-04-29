@@ -86,9 +86,7 @@ $resultado = array();
 	}
 
 	// Imprimir el resultado en formato de array de arrays
-	echo json_encode($salida);
-
-
+	// echo json_encode($salida);
 
 	return json_encode($salida);
 }

@@ -90,16 +90,16 @@ function graficar() {
             // var data = JSON.parse(myAjax(tb));
 
             // var data = [['Mushrooms', 1], ['Onions', 1], ['Olives', 2], ['Zucchini', 2], ['Pepperoni', 1]];
-            var data=[["PRIMERA INFANCIA","1"],
-                      ["INFANCIA","1"],
-                      ["INFANCIA","1"],
-                      ["ADOLESCENCIA","2"],
-                      ["JUVENTUD","1"],
-                      ["JUVENTUD","2"],
-                      ["JUVENTUD","2"],
-                      ["ADULTEZ","2"],
-                      ["ADULTEZ","1"],
-                      ["ADULTEZ","1"]];
+            var data=[["PRIMERA INFANCIA",1],
+                      ["INFANCIA",1],
+                      ["INFANCIA",1],
+                      ["ADOLESCENCIA",2],
+                      ["JUVENTUD",1],
+                      ["JUVENTUD",2],
+                      ["JUVENTUD",2],
+                      ["ADULTEZ",2],
+                      ["ADULTEZ",1],
+                      ["ADULTEZ",1]];
             // console.error(JSON.parse(data));
 
             // Crear el objeto de opciones del gráfico

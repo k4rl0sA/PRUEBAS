@@ -21,8 +21,7 @@ var ruta_app='lib.php';
 function actualizar(){
 	graficar();
 }
-
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(graficar);
 
 /* function graficar() {

@@ -39,7 +39,6 @@ function graficar() {
           [37.6153, -122.3900,1,'yellow'],
           [37.4422, -122.1731,5,'red']
         ]);
-        ]);
 
         var map = new google.visualization.Map(document.getElementById('chart_div'));
         map.draw(data, {

@@ -87,7 +87,8 @@ function graficar() {
 
         // Realizar la solicitud para obtener los datos
             // Convertir la respuesta a un objeto JSON
-            var data = JSON.parse(myAjax(tb));
+            var data = myAjax(tb);
+            console.error(data);
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};

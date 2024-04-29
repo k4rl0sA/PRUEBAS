@@ -31,7 +31,6 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 function opc_1(){
     $sql = "SELECT FN_CATALOGODESC(176, cursovida) as Curso, FN_CATALOGODESC(231, MONTH(fecha)) AS mes, COUNT(*) AS total_usuarios FROM personas_datocomp GROUP BY FN_CATALOGODESC(176, cursovida), MONTH(fecha) ORDER BY cursovida, MONTH(fecha)";
     $datos = datos_mysql($sql);
-    header('Content-Type: application/json'); // Establecer el encabezado de respuesta como JSON
     echo json_encode($datos['responseResult']); // Enviar los datos como JSON
     exit(); // Detener la ejecución del script después de enviar la respuesta
 }

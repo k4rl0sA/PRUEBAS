@@ -101,6 +101,12 @@ function graficar() {
 
             // Crear el objeto de opciones del gráfico
             var options = {title: tit, vAxis: {title: tv}, hAxis: {title: th}, legend: {position: 'none'}, pieHole: 0.4};
+            /* var opciones = {
+                        title: 'Usuarios por Curso y Mes',
+                        hAxis: {title: 'Curso'},
+                        vAxis: {title: 'Total Usuarios'},
+                        legend: 'none'
+                    }; */
 
             // Crear el objeto de gráfico según el tipo seleccionado
             var graf;

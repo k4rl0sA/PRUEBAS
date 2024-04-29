@@ -32,7 +32,9 @@ function graficar() {
         const th = 900;
         const tg = 'BAR';
 
-var data=google.visualization.arrayToDataTable([myAjax(tb)]);
+        let dato=myAjax(tb);
+        alert(dato);
+var data=google.visualization.arrayToDataTable(dato);
 
 /* var data = google.visualization.arrayToDataTable([
     ['Mes', 'Adulto', 'Juventud', 'Infancia', 'Vejez'],

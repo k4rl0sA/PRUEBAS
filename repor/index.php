@@ -123,21 +123,21 @@ var data = google.visualization.arrayToDataTable([
                     graf = new google.visualization.PieChart(document.getElementById('chart_div'));
                     break;
                 case 'BAR':
-			            var graf = new google.visualization.BarChart(document.getElementById('chart_div'));
+			            var graf = new google.charts.Bar(document.getElementById('chart_div'));
 			          break;
                 // Otros casos para diferentes tipos de gráficos
             }
 
             // Crear el objeto de datos del gráfico y agregar los datos obtenidos
-            var chartData = new google.visualization.DataTable();
+            // var chartData = new google.visualization.DataTable();
             /* dataTable.addColumn('string', 'Curso');
             dataTable.addColumn('string', 'Mes');
             dataTable.addColumn('number', 'Total Usuarios'); */
 
-            chartData.addColumn('string', tit);
+         /*    chartData.addColumn('string', tit);
             chartData.addColumn('string', 'Mes');
             chartData.addColumn('number', 'Total Usuarios');
-            chartData.addRows(data);
+            chartData.addRows(data); */
 
 
             var materialOptions = {
@@ -154,7 +154,7 @@ var data = google.visualization.arrayToDataTable([
         bars: 'horizontal'
       };
 
-            materialChart.draw(data, materialOptions);
+            graf.draw(data, materialOptions);
 
     } catch (error) {
         console.error("Error:", error);

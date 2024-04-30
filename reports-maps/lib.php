@@ -46,8 +46,7 @@ function opc_3(){
         WHERE estado_v in(6) limit 100";
         $data= datos_mysql($sql);
         $json=$data['responseResult'];
-        $obj = json_decode($json);
-        $datos = [floatval($obj->cordx),floatval($obj->cordy),$obj->estado,$obj->color];
+        $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
 
         $out= array_merge([$title],$datos);
 echo json_encode($out);

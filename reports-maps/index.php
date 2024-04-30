@@ -45,6 +45,8 @@ function graficar() {
             yellow: {normal:   'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'},
             red: {normal:   'https://maps.google.com/mapfiles/ms/icons/red-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'},
             ltblue: {normal:   'https://maps.google.com/mapfiles/ms/icons/ltblue-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/ltblue-dot.png'}
+            purple: {normal:   'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'}
+            pink: {normal:   'https://maps.google.com/mapfiles/ms/icons/purple-dot.png',selected: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'}
           }
         });
       }catch (error) {

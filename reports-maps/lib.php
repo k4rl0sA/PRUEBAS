@@ -58,8 +58,8 @@ function opc_3(){
             );
             $rta[] = $row;
         }
-
-    return json_encode($rta);
+        $out= array_merge([$title],$rta);
+    return json_encode($out);
 /*         $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
 
         $out= array_merge([$title],$datos);

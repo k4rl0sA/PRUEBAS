@@ -73,7 +73,7 @@ function myAjax(a){
 
 </script>
 </head>
-<body Onload="actualizar();">
+<body>
 <?php
 
 require_once "../libs/gestion.php";

@@ -44,9 +44,22 @@ function opc_3(){
             END AS color
         FROM hog_geo hg
         WHERE estado_v in(6) limit 100";
-        $data= datos_mysql($sql);
-        $json=$data['responseResult'];
-        return json_encode($json);
+
+        $data = datos_mysql($sql);
+        $json = $data['responseResult'];
+
+        $rta = array();
+        foreach ($json as $fila) {
+            $row = array(
+                floatval($fila['cordx']),
+                floatval($fila['cordy']),
+                $fila['estado'],
+                $fila['color']
+            );
+            $rta[] = $row;
+        }
+
+    return json_encode($rta);
 /*         $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
 
         $out= array_merge([$title],$datos);

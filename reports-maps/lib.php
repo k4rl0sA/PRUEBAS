@@ -28,10 +28,10 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 
 function opc_3(){
-    $title=['Coord. X', 'Coord. Y', 'Estado','Marker'];
+    $title=['Coord. Y', 'Coord. X', 'Estado','Marker'];
 
     $sql= "SELECT 
-        cordx,cordy,FN_CATALOGODESC(44, estado_v) AS estado,
+        cordy,cordx,FN_CATALOGODESC(44, estado_v) AS estado,
         CASE estado_v
             WHEN 1 THEN 'blue'
             WHEN 2 THEN 'yellow'
@@ -51,8 +51,8 @@ function opc_3(){
         $rta = array();
         foreach ($json as $fila) {
             $row = array(
-                floatval($fila['cordx']),
                 floatval($fila['cordy']),
+                floatval($fila['cordx']),
                 $fila['estado'],
                 $fila['color']
             );

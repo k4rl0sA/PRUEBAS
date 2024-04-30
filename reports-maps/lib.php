@@ -58,8 +58,8 @@ function opc_3(){
             );
             $rta[] = $row;
         }
-        return var_dump($out= array_merge([$title],$rta));
-    // echo json_encode($out);
+        $out= array_merge([$title],$rta);
+    echo json_encode($out);
 }
 
 

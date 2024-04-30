@@ -46,10 +46,11 @@ function opc_3(){
         WHERE estado_v in(6) limit 100";
         $data= datos_mysql($sql);
         $json=$data['responseResult'];
-        $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
+        return isArray($json);
+/*         $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
 
         $out= array_merge([$title],$datos);
-echo json_encode($out);
+echo json_encode($out); */
 	// Obtener los encabezados de los cursos de vida	
 }
 

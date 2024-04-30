@@ -43,7 +43,7 @@ function opc_3(){
             ELSE 'red' 
             END AS color
         FROM hog_geo hg
-        WHERE estado_v not in(8) limit 10";
+        WHERE estado_v not in(8)";
 
         $data = datos_mysql($sql);
         $json = $data['responseResult'];

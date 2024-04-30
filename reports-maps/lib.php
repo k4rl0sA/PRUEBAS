@@ -47,7 +47,7 @@ function opc_3(){
         $data= datos_mysql($sql);
         $json=$data['responseResult'];
         $obj = json_decode($json);
-        $datos = [floatval($objeto->cordx),floatval($objeto->cordy),$objeto->estado,$objeto->color];
+        $datos = [floatval($obj->cordx),floatval($obj->cordy),$obj->estado,$obj->color];
 
         $out= array_merge([$title],$datos);
 echo json_encode($out);

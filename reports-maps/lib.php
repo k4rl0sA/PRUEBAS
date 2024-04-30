@@ -59,12 +59,7 @@ function opc_3(){
             $rta[] = $row;
         }
         $out= array_merge([$title],$rta);
-    return json_encode($out);
-/*         $datos = [floatval($json->cordx),floatval($json->cordy),$json->estado,$json->color];
-
-        $out= array_merge([$title],$datos);
-echo json_encode($out); */
-	// Obtener los encabezados de los cursos de vida	
+    echo json_encode($out);
 }
 
 

@@ -92,11 +92,7 @@ $territorios=opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idca
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=44 and estado='A' order by 1",'');
 
 
-function opc_floc_fter(){
-  var_dump($_REQUEST);
-  $territorios=opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
-  valor=$_REQUEST[0] ORDER BY CAST(idcatadeta AS UNSIGNED)",'');
-  }
+
 
 
 ?>
@@ -111,7 +107,7 @@ function opc_floc_fter(){
 </div>
 
 <div class="campo"><div>Localidad</div>
-	<select class="captura" id="floc" name="floc" onChange="graficar();selectDepend('floc','fter');">'.<?php echo $localidades; ?></select>
+	<select class="captura" id="floc" name="floc" onChange="graficar();selectDepend('floc','fter','lib.php');">'.<?php echo $localidades; ?></select>
 </div>
 
 <div class="campo"><div>Territorio</div>

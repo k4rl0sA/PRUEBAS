@@ -34,6 +34,11 @@ function graficar() {
         let dato=myAjax(tb);
         let data = google.visualization.arrayToDataTable(dato);
 
+        if (data.getNumberOfRows() === 0) {
+          document.getElementById('map_div').innerHTML = 'No hay datos disponibles para mostrar en el mapa.';
+          return;
+        }
+
         var map = new google.visualization.Map(document.getElementById('chart_div'));
         map.draw(data, {
           showTooltip: true,

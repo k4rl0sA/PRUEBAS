@@ -27,7 +27,6 @@ google.charts.setOnLoadCallback(graficar);
 function graficar() {
     try {
         var tit = document.getElementById('indicador-indicador').options[document.getElementById('indicador-indicador').selectedIndex].text;
-        var tv = document.getElementById('indicador-agrupar').value;
         const tb = document.getElementById('indicador-indicador').value;
         const th = 900;
         const tg = 'BAR';

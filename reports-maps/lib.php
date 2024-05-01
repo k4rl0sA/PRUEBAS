@@ -84,9 +84,6 @@ function whe_rptMap() {
 
 
 function opc_flocfter(){
-
-
-    var_dump($_REQUEST);
     $id=divide($_REQUEST['id']);
     $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
     valor=$id[0] ORDER BY CAST(idcatadeta AS UNSIGNED)";

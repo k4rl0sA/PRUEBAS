@@ -111,11 +111,11 @@ function opc_loc_ter(){
 </div>
 
 <div class="campo"><div>Localidad</div>
-	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();selectDepend('loc','ter');">'.<?php echo $localidades; ?></select>
+	<select class="captura" id="floc" name="floc" onChange="graficar();selectDepend('floc','fter');">'.<?php echo $localidades; ?></select>
 </div>
 
 <div class="campo"><div>Territorio</div>
-	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $territorios; ?></select>
+	<select class="captura" id="fter" name="fter" onChange="graficar();">'.<?php echo $territorios; ?></select>
 </div>
 
 <div class="campo"><div>Estado</div>

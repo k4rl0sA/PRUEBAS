@@ -83,7 +83,7 @@ function whe_rptMap() {
 }
 
 
-function opc_floc_fter(){
+function opc_flocfter(){
 
 
     var_dump($_REQUEST);

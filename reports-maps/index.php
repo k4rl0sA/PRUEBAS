@@ -87,6 +87,18 @@ $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 $reportes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=229 and estado='A' order by 1",'');
 $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and estado='A' order by 1",'');
+$localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
+$territorios=opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and valor=(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY CAST(idcatadeta AS UNSIGNED)",'');
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=44 and estado='A' order by 1",'');
+
+
+function opc_loc_ter(){
+  var_dump($_REQUEST);
+  $territorios=opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
+  valor=$_REQUEST[0] ORDER BY CAST(idcatadeta AS UNSIGNED)",'');
+  }
+
+
 ?>
 
 
@@ -94,18 +106,27 @@ $sizes=opc_sql("select valor,descripcion from catadeta where idcatalogo=228 and 
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 	
 
-<div class="campo"><div>Reportes</div>
+<div class="campo"><div>Reporte</div>
 	<select class="captura" id="indicador-indicador" name="indicador-indicador" onChange="graficar();">'.<?php echo $reportes; ?></select>
 </div>
-<div class="campo"><div>Tamaño</div>
-	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $sizes; ?></select>
+
+<div class="campo"><div>Localidad</div>
+	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();selectDepend('loc','ter');">'.<?php echo $localidades; ?></select>
+</div>
+
+<div class="campo"><div>Territorio</div>
+	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $territorios; ?></select>
+</div>
+
+<div class="campo"><div>Estado</div>
+	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $estados; ?></select>
 </div>
 
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > REPORTE MAPS
-		<nav class='menu left' >
+      <div class='titulo'> REPORTE PREDIOS MAPA POR ESTADOS
+		<nav class='menu left'>
     <li class='icono actualizar'    title='Actualizar'      Onclick="graficar();">
     <li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
     </nav>

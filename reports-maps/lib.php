@@ -86,7 +86,7 @@ function whe_rptMap() {
 function opc_flocfter(){
     $id=divide($_REQUEST['id']);
     $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
-    valor=(select valor from catadeta where and idcatalogo=2 AND  idcatadeta=$id[0]) ORDER BY CAST(idcatadeta AS UNSIGNED)";
+    valor=(select valor from catadeta where idcatalogo=2 AND  idcatadeta=$id[0]) ORDER BY CAST(idcatadeta AS UNSIGNED)";
     $info=datos_mysql($sql);		
     // return json_encode($info['responseResult']);
     return json_encode($sql);

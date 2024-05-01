@@ -1065,6 +1065,8 @@ td.resumen .icono {top: 6px;}
 .col-55 {width: 55%;}.col-6 {width: 60%;}.col-65 {width: 65%;}.col-7 {width: 70%;}.col-75 {width: 75%;}.col-8 {width: 80%;}.col-85 {width: 85%;}.col-9 {width: 90%;}.col-95 {width: 95%;}.col-0 {width: 100%;}
 .col-10s.borde1.oscuro {height: 55px;}
 
+.maps-nodata {position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);text-align:center;text-transform:uppercase;-webkit-text-stroke-width:thin;background-color:darkgrey;}
+
 @media only screen and (max-width:768px) {
   [class*="col-"] {width:100%;}
   iframe          {width:100%;height:80vh;}

@@ -88,8 +88,8 @@ function opc_flocfter(){
 
     var_dump($_REQUEST);
     $id=divide($_REQUEST['id']);
-    $sql=opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
-    valor=$id[0] ORDER BY CAST(idcatadeta AS UNSIGNED)",'');
+    $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
+    valor=$id[0] ORDER BY CAST(idcatadeta AS UNSIGNED)";
     $info=datos_mysql($sql);		
     return json_encode($info['responseResult']);
 }

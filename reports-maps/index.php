@@ -35,7 +35,7 @@ function graficar() {
         let data = google.visualization.arrayToDataTable(dato);
 
         if (data.getNumberOfRows() === 0) {
-          document.getElementById('map_div').innerHTML = 'No hay datos disponibles para mostrar en el mapa.';
+          document.getElementById('chart_div').innerHTML = 'No hay datos disponibles relacionados para mostrar en el mapa.';
           return;
         }
 

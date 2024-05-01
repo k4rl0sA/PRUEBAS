@@ -58,7 +58,9 @@ function opc_3(){
             );
             $rta[] = $row;
         }
-        $rta = ($rta=='') ? '[NULL,NULL,NULL,NULL]' : $rta ;
+        if (empty($rta)) {
+            $rta = [[null, null, null, null]];
+        }
         $out= array_merge([$title],$rta);
     echo json_encode($out);
 }

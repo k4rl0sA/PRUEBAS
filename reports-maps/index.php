@@ -115,7 +115,7 @@ $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=4
 </div>
 
 <div class="campo"><div>Estado</div>
-	<select class="captura" id="indicador-agrupar" name="indicador-indicador" onChange="graficar();">'.<?php echo $estados; ?></select>
+	<select class="captura" id="fest" name="fest" onChange="graficar();">'.<?php echo $estados; ?></select>
 </div>
 
 	

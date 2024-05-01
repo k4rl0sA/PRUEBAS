@@ -43,7 +43,7 @@ function opc_3(){
             ELSE 'red' 
             END AS color
         FROM hog_geo hg
-        WHERE estado_v not in(8)";
+        WHERE 1 ". whe_opc_3();
 
         $data = datos_mysql($sql);
         $json = $data['responseResult'];
@@ -63,21 +63,14 @@ function opc_3(){
 }
 
 
-
-
-
-function whe_rptMap() {
+function whe_opc_3() {
 	$sql = "";
-	if ($_POST['fidentificacion'])
-		$sql .= " AND srq_idpersona like '%".$_POST['fidentificacion']."%'";
-	if ($_POST['fsexo'])
-		$sql .= " AND P.sexo ='".$_POST['fsexo']."' ";
-	if ($_POST['fpersona']){
-		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) < 18 ";
-		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) >= 18 ";
-		}
+	if ($_POST['floc'])
+		$sql .= " AND localidad = '".$_POST['floc']."'";
+	if ($_POST['fter'])
+		$sql .= " AND territorio ='".$_POST['fter']."' ";
+	if ($_POST['fest']){
+		$sql .= " AND estado_v ='".$_POST['fest']."' ";
 	}
 	return $sql;
 }

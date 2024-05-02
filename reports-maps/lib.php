@@ -62,7 +62,9 @@ function opc_3(){
             $rta = [[null, null, null, null]];
         } */
         $out= array_merge([$title],$rta);
+        var_dump($sql);
     echo json_encode($out);
+    
 }
 
 
@@ -71,7 +73,7 @@ function whe_opc_3() {
 	if ($_POST['floc'])
 		$sql .= " AND localidad = '".$_POST['floc']."'";
 	if ($_POST['fter'])
-		$sql .= " AND territorio ='".$_POST['fter']."' ";
+		$sql .= " AND territorio ='".$_POST['fter']."'";
 	if ($_POST['fest']){
 		$sql .= " AND estado_v ='".$_POST['fest']."' ";
 	}

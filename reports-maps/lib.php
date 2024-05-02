@@ -83,7 +83,7 @@ function whe_opc_3() {
 
 function opc_flocfter(){
     $id=divide($_REQUEST['id']);
-    $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
+    $sql="SELECT `descripcion`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
     valor=(select valor from catadeta where idcatalogo=2 AND  idcatadeta=$id[0]) ORDER BY CAST(idcatadeta AS UNSIGNED)";
     $info=datos_mysql($sql);		
     return json_encode($info['responseResult']);

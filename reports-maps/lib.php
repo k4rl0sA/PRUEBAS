@@ -62,7 +62,7 @@ function opc_3(){
             $rta = [[null, null, null, null]];
         } */
         $out= array_merge([$title],$rta);
-        var_dump($sql);
+        // var_dump($sql);
     echo json_encode($out);
     
 }
@@ -73,7 +73,7 @@ function whe_opc_3() {
 	if ($_POST['floc'])
 		$sql .= " AND localidad = '".$_POST['floc']."'";
 	if ($_POST['fter'])
-		$sql .= " AND territorio ='".$_POST['fter']."'";
+		$sql .= " AND territorio ='(select descripcion from catadeta where idcatalogo=202 AND idcatadeta=".$_POST['fter']."')";
 	if ($_POST['fest']){
 		$sql .= " AND estado_v ='".$_POST['fest']."' ";
 	}
@@ -83,10 +83,11 @@ function whe_opc_3() {
 
 function opc_flocfter(){
     $id=divide($_REQUEST['id']);
-    $sql="SELECT `descripcion`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
+    $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
     valor=(select valor from catadeta where idcatalogo=2 AND  idcatadeta=$id[0]) ORDER BY CAST(idcatadeta AS UNSIGNED)";
     $info=datos_mysql($sql);		
     return json_encode($info['responseResult']);
     // return json_encode($sql);
+
 }
 

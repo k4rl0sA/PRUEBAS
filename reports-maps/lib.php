@@ -72,7 +72,7 @@ function whe_opc_3() {
 	if ($_POST['floc'])
 		$sql .= " AND localidad = '".$_POST['floc']."'";
 	if ($_POST['fter'])
-		$sql .= " AND territorio ='(select descripcion from catadeta where idcatalogo=202 AND idcatadeta=".$_POST['fter'].")'";
+		$sql .= " AND territorio =(select descripcion from catadeta where idcatalogo=202 AND idcatadeta=".$_POST['fter'].")";
 	if ($_POST['fest']){
 		$sql .= " AND estado_v ='".$_POST['fest']."' ";
 	}

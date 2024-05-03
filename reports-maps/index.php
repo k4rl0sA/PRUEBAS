@@ -56,7 +56,6 @@ function graficar() {
         });
       }catch (error) {
         console.error("Error:", error);
-        // Manejar el error como lo desees
     }
 }
 

@@ -62,9 +62,8 @@ function opc_3(){
             $rta = [[null, null, null, null]];
         } */
         $out= array_merge([$title],$rta);
-        // var_dump($sql);
+    var_dump($sql);
     echo json_encode($out);
-    
 }
 
 

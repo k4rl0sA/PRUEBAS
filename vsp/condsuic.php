@@ -304,7 +304,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_equ(){
   $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
   $info=datos_mysql($sql);		
-  return $info['responseResult'];
+  return $info['responseResult'][0]['equipo'];
 }
 
 function gra_condsuic(){
@@ -318,7 +318,7 @@ function gra_condsuic(){
     WHERE id_condsuic =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
   }else if(count($id)==4){
-    var_dump($eq=opc_equ());
+    $eq=opc_equ();
     $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),

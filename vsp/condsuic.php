@@ -304,7 +304,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_equ(){
   $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
   $info=datos_mysql($sql);		
-  return $info['responseResult']['equipo'];
+  return $info['responseResult'];
 }
 
 function gra_condsuic(){

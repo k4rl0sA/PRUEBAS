@@ -318,7 +318,7 @@ function gra_condsuic(){
     WHERE id_condsuic =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
   }else if(count($id)==4){
-    $eq=opc_equ();
+    var_dump($eq=opc_equ());
     $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),

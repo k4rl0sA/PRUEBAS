@@ -261,7 +261,11 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_liker_decision($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=78 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_equ(){
+  $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
+  $info=datos_mysql($sql);		
+  return $info['responseResult'][0]['equipo'];
+}
 
 function gra_apopsicduel(){
   // print_r($_POST);
@@ -274,6 +278,7 @@ function gra_apopsicduel(){
     WHERE id_psicduel =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
   }else if(count($id)==4){
+    $eq=opc_equ();
     $sql="INSERT INTO vsp_apopsicduel VALUES (
     NULL,
     trim(upper('{$id[1]}')),
@@ -318,7 +323,7 @@ function gra_apopsicduel(){
     trim(upper('{$_POST['liker_decision']}')),
     trim(upper('{$_POST['redu_riesgo_cierre']}')),
     trim(upper('{$smbin}')),
-      TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+      '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
     }
       $rta=dato_mysql($sql);

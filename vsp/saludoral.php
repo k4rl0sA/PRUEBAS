@@ -208,7 +208,11 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_novedades($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=77 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_equ(){
+  $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
+  $info=datos_mysql($sql);		
+  return $info['responseResult'][0]['equipo'];
+}
 
 
 function gra_saludoral(){
@@ -221,9 +225,10 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
     WHERE id_saludoral =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
+    $eq=opc_equ();
     $sql="INSERT INTO vsp_saludoral VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['clasi_riesgo']}')),trim(upper('{$_POST['sangra_cepilla']}')),trim(upper('{$_POST['evide_anormal']}')),trim(upper('{$_POST['explica_breve']}')),trim(upper('{$_POST['urg_odonto']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['mejora_practica']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
-      TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+      '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
     }
       $rta=dato_mysql($sql);

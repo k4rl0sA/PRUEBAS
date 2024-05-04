@@ -306,6 +306,11 @@ function opc_ruta($id=''){
 function opc_novedades($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=77 and estado='A' ORDER BY 1",$id);
 }
+function opc_equ(){
+  $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
+  $info=datos_mysql($sql);		
+  return $info['responseResult'][0]['equipo'];
+}
 
 function gra_sifigest(){
   // print_r($_POST);
@@ -318,9 +323,10 @@ function gra_sifigest(){
     WHERE id_sifigest =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==4){
+    $eq=opc_equ();
     $sql="INSERT INTO vsp_sifigest VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['confir_sificong']}')),trim(upper('{$_POST['resul_ser_recnac']}')),trim(upper('{$_POST['trata_recnac']}')),trim(upper('{$_POST['serol_3meses']}')),trim(upper('{$_POST['fec_conser_1tri2']}')),trim(upper('{$_POST['resultado']}')),trim(upper('{$_POST['ctrl_serol1t']}')),trim(upper('{$_POST['fec_conser_1tri1']}')),trim(upper('{$_POST['resultado_1']}')),trim(upper('{$_POST['ctrl_serol2t']}')),trim(upper('{$_POST['fec_conser_2tri']}')),trim(upper('{$_POST['resultado_2']}')),trim(upper('{$_POST['ctrl_serol3t']}')),trim(upper('{$_POST['fec_conser_3tri']}')),trim(upper('{$_POST['resultado_3']}')),trim(upper('{$_POST['initratasif']}')),trim(upper('{$_POST['fec_1dos_trages1']}')),trim(upper('{$_POST['fec_2dos_trages1']}')),trim(upper('{$_POST['fec_3dos_trages1']}')),trim(upper('{$_POST['pri_con_sex']}')),trim(upper('{$_POST['initratasif1']}')),trim(upper('{$_POST['fec_apl_tra_1dos1']}')),trim(upper('{$_POST['fec_apl_tra_2dos1']}')),trim(upper('{$_POST['fec_apl_tra_3dos1']}')),trim(upper('{$_POST['seg_con_sex']}')),trim(upper('{$_POST['initratasif2']}')),trim(upper('{$_POST['fec_apl_tra_1dos2']}')),trim(upper('{$_POST['fec_apl_tra_2dos2']}')),trim(upper('{$_POST['fec_apl_tra_3dos2']}')),trim(upper('{$_POST['prese_reinfe']}')),trim(upper('{$_POST['initratasif3']}')),trim(upper('{$_POST['fec_1dos_trages2']}')),trim(upper('{$_POST['fec_2dos_trages2']}')),trim(upper('{$_POST['fec_3dos_trages2']}')),trim(upper('{$_POST['reinf_1con']}')),trim(upper('{$_POST['initratasif4']}')),trim(upper('{$_POST['fec_1dos_trapar']}')),trim(upper('{$_POST['fec_2dos_trapar']}')),trim(upper('{$_POST['fec_3dos_trapar']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
-    TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+    '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;
   }
     $rta=dato_mysql($sql);

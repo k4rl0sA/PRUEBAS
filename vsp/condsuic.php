@@ -300,7 +300,6 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_incremen_evita($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=143 and estado='A' ORDER BY 1",$id);
 }
-
 function opc_equ(){
   $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
   $info=datos_mysql($sql);		

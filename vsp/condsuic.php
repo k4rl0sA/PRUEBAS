@@ -377,7 +377,7 @@ function gra_condsuic(){
     trim(upper('{$_POST['incremen_evita']}')),
     trim(upper('{$_POST['redu_riesgo_cierre']}')),
     TRIM(UPPER('{$smbin}')),    
-    $eq,TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+    '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       //  echo $sql;
     }
       $rta=dato_mysql($sql);

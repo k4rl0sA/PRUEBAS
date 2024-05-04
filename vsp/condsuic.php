@@ -301,6 +301,12 @@ function opc_incremen_evita($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=143 and estado='A' ORDER BY 1",$id);
 }
 
+function opc_equ(){
+  $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
+  $info=datos_mysql($sql);		
+  return $info['responseResult'];
+}
+
 function gra_condsuic(){
   // print_r($_POST);
   $id=divide($_POST['id_condsuic']);
@@ -312,6 +318,8 @@ function gra_condsuic(){
     WHERE id_condsuic =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
   }else if(count($id)==4){
+    $eq=opc_equ();
+
     $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),
@@ -369,9 +377,8 @@ function gra_condsuic(){
     trim(upper('{$_POST['incremen_afron']}')),
     trim(upper('{$_POST['incremen_evita']}')),
     trim(upper('{$_POST['redu_riesgo_cierre']}')),
-    TRIM(UPPER('{$smbin}')),
-    
-    TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+    TRIM(UPPER('{$smbin}')),    
+    $eq,TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
     }
       $rta=dato_mysql($sql);

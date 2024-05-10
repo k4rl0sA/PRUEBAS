@@ -116,7 +116,7 @@ $riesgos=opc_sql("select descripcion,descripcion from catadeta where idcatalogo=
 	
 	<div class="campo"><div>Nievel de Riesgo de Diabetes</div>
 		<select class="captura" id="friesgo" name="friesgo" OnChange="actualizar();">
-			<?php echo $digitadores; ?> 
+			<?php echo $riesgos; ?> 
 		</select>
 	</div>
 	

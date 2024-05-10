@@ -54,6 +54,8 @@ function whe_tamfindrisc() {
 	}else{
 		$sql.=" AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin'"; 
 	}
+	if($_POST['friesgo'])
+	$sql .= " AND O.descripcion = '".$_POST['friesgo']."'";
 	return $sql;
 }
 

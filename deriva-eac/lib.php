@@ -20,7 +20,7 @@ else {
 }
 
 function lis_derivaeac(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM personas_datocomp A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null AND E.estado_fam=1 ".whe_derivaeac());
+	$info=datos_mysql("SELECT COUNT(*) total FROM personas_datocomp A LEFT JOIN personas P ON A.dc_documento = P.idpersona AND A.dc_tipo_doc= P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo	LEFT JOIN usuarios U ON A.asignado_eac=U.id_usuario	LEFT JOIN eac_fam E ON V.idviv=E.cod_fam	WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null AND (E.estado='A' OR E.estado IS NULL) ".whe_derivaeac());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-derivaeac']))? ($_POST['pag-derivaeac']-1)* $regxPag:0;
@@ -53,16 +53,21 @@ function lis_derivaeac(){
 	return create_table($total,$datos["responseResult"],"derivaeac",$regxPag);
 	}
 
-function whe_derivaeac() {
-	$sql = "";
-	 if ($_POST['fpre'])
-		$sql .= " AND G.idgeo = '".$_POST['fpre']."'";
-	if ($_POST['ffam'])
-		$sql .= " AND V.idviv ='".$_POST['ffam']."' ";
-	if($_POST['fdigita']) 
-	    $sql .= " AND A.asignado_eac ='".$_POST['fdigita']."'";
-	return $sql;
-}
+	function whe_derivaeac() {
+		$sql = "";
+		 if ($_POST['fpre'])
+			$sql .= " AND G.idgeo = '".$_POST['fpre']."'";
+		if ($_POST['ffam'])
+			$sql .= " AND V.idviv ='".$_POST['ffam']."' ";
+		if($_POST['fdigita']){
+			$sql .= " AND A.asignado_eac ='".$_POST['fdigita']."'";
+		}else{
+			$sql .= " AND A.asignado_eac ='".$_SESSION['us_sds']."'";
+		} 
+		 if($_POST['festa']) 
+			$sql .= " AND E.estado_fam ='".$_POST['festa']."'";
+		return $sql;
+	}
 
 /* 
 function focus_derivaeac(){

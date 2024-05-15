@@ -21,11 +21,11 @@ else {
 
 
 
-function lis_tamOphi(){
-	/* $info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_tamOphi());
+function lis_rptindv(){
+	/* $info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
-	$pag=(isset($_POST['pag-tamOphi']))? ($_POST['pag-tamOphi']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
 
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
@@ -33,31 +33,31 @@ function lis_tamOphi(){
 FROM hog_tam_ophi O
 LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona
 		WHERE '1' ";
-	$sql.=whe_tamOphi();
+	$sql.=whe_rptindv();
 	$sql.="ORDER BY O.fecha_create,2";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamOphi",$regxPag);
+	return create_table($total,$datos["responseResult"],"rptindv",$regxPag);
 	*/
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_tamOphi());
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
-	$pag=(isset($_POST['pag-tamOphi']))? ($_POST['pag-tamOphi']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,tam_ophi 'Cod. Registro',ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,ophi_momento) Momento,`ophi_puntaje` Puntaje 
 FROM hog_tam_ophi O
 LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona
 		WHERE '1' ";
-	$sql.=whe_tamOphi();
+	$sql.=whe_rptindv();
 	$sql.="ORDER BY O.fecha_create,2";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamOphi",$regxPag);
+	return create_table($total,$datos["responseResult"],"rptindv",$regxPag);
 } 
 
-function whe_tamOphi() {
+function whe_rptindv() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
 		$sql .= " AND ophi_idpersona like '%".$_POST['fidentificacion']."%'";
@@ -71,7 +71,7 @@ function whe_tamOphi() {
 	return $sql;
 }
 
-function cmp_tamOphi(){
+function cmp_rptindv(){
 	$rta="";
 	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
 	 'ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',	 'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'', 
@@ -81,8 +81,8 @@ function cmp_tamOphi(){
 	 'ophi_copetencia6'=>'', 'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'',
 	 'ophi_ambiente2'=>'','ophi_ambiente3'=>'','ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'',
 	 'ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'','ophi_social'=>'','ophi_manejo'=>'']; 
-	$w='tamOphi';
-	$d=get_tamOphi(); 
+	$w='rptindv';
+	$d=get_rptindv(); 
 	if ($d=="") {$d=$t;}
 	$u = ($d['tam_ophi']!='') ? false : true ;
 	$o='datos';
@@ -160,7 +160,7 @@ function cmp_tamOphi(){
 	return $rta;
    }
 
-   function get_tamOphi(){
+   function get_rptindv(){
 	// print_r($_POST);
 	if($_POST['id']==0){
 		return "";
@@ -206,25 +206,25 @@ left JOIN personas_datocomp ON idpersona=dc_documento and tipo_doc=dc_tipo_doc
 return json_encode($info['responseResult'][0]);
 }
 
-function focus_tamOphi(){
-	return 'tamOphi';
+function focus_rptindv(){
+	return 'rptindv';
    }
    
-function men_tamOphi(){
-	$rta=cap_menus('tamOphi','pro');
+function men_rptindv(){
+	$rta=cap_menus('rptindv','pro');
 	return $rta;
    }
 
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = ""; 
 	$acc=rol($a);
-	if ($a=='tamOphi') {  
+	if ($a=='rptindv') {  
 		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
 	}
 	return $rta;
   }
    
-function gra_tamOphi(){
+function gra_rptindv(){
 	$id=$_POST['idophi'];
 	//print_r($_POST);
 	if($id != "0"){
@@ -373,9 +373,9 @@ function gra_tamOphi(){
 	   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	   // var_dump($a);
 	   // var_dump($rta);
-		   if ($a=='tamOphi' && $b=='acciones'){
+		   if ($a=='rptindv' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamOphi','pro',event,'','lib.php',7,'tamOphi');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptindv','pro',event,'','lib.php',7,'rptindv');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }

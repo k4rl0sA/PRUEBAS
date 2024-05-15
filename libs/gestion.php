@@ -491,7 +491,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
-  print_r($data);
+  // print_r($data);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
     }
@@ -500,7 +500,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
 
 function perfil($a){
 	$perf=rol($a);
-	var_dump($perf);
+	// var_dump($perf);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
 		echo "<H1>ACCESO NO AUTORIZADO,PARA {$a} VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
 		exit();

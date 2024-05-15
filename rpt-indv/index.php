@@ -42,11 +42,11 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 </div>
 
 <div class="campo"><div>Localidad</div>
-	<select class="captura" id="floc" name="floc" onChange="graficar();selectDepend('floc','fter','lib.php');">'.<?php echo $localidades; ?></select>
+	<select class="captura" id="floc" name="floc" onChange="actualizar();selectDepend('floc','fter','lib.php');">'.<?php echo $localidades; ?></select>
 </div>
 
 <div class="campo"><div>Territorio</div>
-	<select class="captura" id="fter" name="fter" onChange="graficar();">'.<?php echo $territorios; ?></select>
+	<select class="captura" id="fter" name="fter" onChange="actualizar();">'.<?php echo $territorios; ?></select>
 </div>
 	
 </div>
@@ -56,7 +56,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 		</nav>
-		<nav class='menu right' >
+		<nav class='menu right'>
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://sites.google.com/', '_blank');"></li>
         </nav>               
       </div>

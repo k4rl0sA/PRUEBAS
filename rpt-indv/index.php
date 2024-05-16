@@ -219,15 +219,15 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 <div class="title-risk">Identificación</div>
     <div class="user-info section normal-risk">
         <div class="user-details">
-            <div class="user-name">Sandra Patricia Mora Pérez</div>
-            <div><b>Documento:</b> CC 12345678</div>
-            <div><b>Sexo:</b> Mujer</div>
-            <div><b>Género:</b> Femenino</div>
+            <div class="user-name">Carlos Eduardo Acevedo Arevalo</div>
+            <div><b>Documento:</b> CC 80811594</div>
+            <div><b>Sexo:</b> Hombre</div>
+            <div><b>Género:</b> Masculino</div>
             <div><b>Nacionalidad:</b> Colombiana</div>
         </div>
         <div class="risk-info">
             <div class="extra-info"><b>Curso de Vida:</b> Adultez</div>
-            <div class="risk-level normal-risk"><span class="point normal-risk"></span> Normal</div>
+            <div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
         </div>
     </div>
 
@@ -236,7 +236,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
         <div class="user-details">
             <div><b>Localidad:</b> Bosa</div>
             <div><b>Dirección:</b> Carrera 5A SUR 20 95</div>
-            <div><b>Teléfono:</b> 8888888</div>
+            <div><b>Teléfono:</b> 5217455</div>
         </div>
     </div>
 

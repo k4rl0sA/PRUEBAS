@@ -29,8 +29,8 @@ function actualizar(){
   --low-risk-color: blue;
   --bord-radiu-xs: 50rem;
   --bord-radiu-s: 50rem;
-  --bord-radiu-m: 50rem;
-  --bord-radiu-m: 50rem;
+  --bord-radiu-m: 60rem;
+  --bord-radiu-l: 80rem;
 }
 
 .section {
@@ -145,20 +145,6 @@ function actualizar(){
       border-radius: 50%;
       margin-right: 10px;
 }
-/*
-.badge {
-    display: inline-block;
-    padding: 0.35em 0.65em;
-    font-size: .75em;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-}
-*/
-
 
 .btn-group {
   display: flex;
@@ -169,7 +155,6 @@ function actualizar(){
   margin-bottom: 20px;
 }
 
-
 .custom-btn {
   font-size: .75em;
     font-weight: 700;
@@ -179,12 +164,6 @@ function actualizar(){
     vertical-align: baseline;
     border-radius: 0.25rem;
     padding: 0px 20px;
-  /*  
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  */
 }
 
 .btn-value {

@@ -273,7 +273,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
               </div>
 
               <div class="btn-contain">
-                <span class='custom-btn medium-risk'>Normal</span>
+                <span class='custom-btn normal-risk'>Normal</span>
                 <div class='btn-value normal-risk'>20</div>
               </div>
 

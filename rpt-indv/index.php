@@ -217,7 +217,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
     <div class='contenido' id='<?php //echo $mod;?>-lis' >
 <div class="title-risk">Identificación</div>
-    <div class="user-info section normal-risk">
+    <div class="user-info section medium-risk">
         <div class="user-details">
             <div class="user-name">Carlos Eduardo Acevedo Arevalo</div>
             <div><b>Documento:</b> CC 80811594</div>

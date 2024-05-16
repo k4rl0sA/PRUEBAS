@@ -236,7 +236,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
     <div class='contenido' id='<?php //echo $mod;?>-lis' >
 <div class="title-risk">Identificación</div>
-    <div class="user-info section medium-risk">
+    <div class="user-info section normal-risk">
         <div class="user-details">
             <div class="user-name">Sandra Patricia Mora Pérez</div>
             <div><b>Documento:</b> CC 12345678</div>
@@ -246,7 +246,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
         </div>
         <div class="risk-info">
             <div class="extra-info"><b>Curso de Vida:</b> Adultez</div>
-            <div class="risk-level medium-risk"><span class="point medium-risk"></span> Normal</div>
+            <div class="risk-level normal-risk"><span class="point normal-risk"></span> Normal</div>
         </div>
     </div>
 

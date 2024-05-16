@@ -140,7 +140,7 @@ function actualizar(){
 
 .point {
     display: inline-block;
-      width: 13px;
+      width: 14px;
       height: 14px;
       border-radius: 50%;
       margin-right: 10px;

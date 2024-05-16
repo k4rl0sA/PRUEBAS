@@ -21,6 +21,178 @@ function actualizar(){
 }
 
 </script>
+<style>
+:root {
+  --high-risk-color: red;
+  --medium-risk-color: #faab00;
+  --normal-risk-color: #4caf50;
+  --low-risk-color: blue;
+  --bord-radiu-xs: 50rem;
+  --bord-radiu-s: 50rem;
+  --bord-radiu-m: 50rem;
+  --bord-radiu-m: 50rem;
+}
+
+.section {
+    border: 1px solid #d1d1d1;
+    margin-top: 8px;
+    padding: 10px;
+    display: flex;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}    
+
+.section::before {
+    content: "";
+    display: block;
+    width: 12px;
+    position: relative;
+    top: 3px;
+    bottom: 3px;
+    left: -10px;
+}
+
+.title-risk {
+    background-color: #e6e6e6;
+    color: #333;
+    padding: 5px;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: bold;
+    border: 1px solid #ababab;
+}
+
+.user-info {
+    display: flex;
+    flex-grow: 1;
+}
+
+.user-name {
+    color: blue;
+    font-size: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
+
+.user-details {
+    margin-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 150px;
+    color: black;
+}
+
+.user-details div {
+    margin-bottom: 5px;
+}
+
+.risk-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 20px;
+    color: black;
+}
+
+.extra-info {
+    margin-bottom: 10px;
+}
+
+.risk-level {
+    padding: 5px;
+    font-weight: bold;
+    padding-top: 95px;
+}
+
+.high-risk {
+  color: var(--high-risk-color);
+}
+
+.medium-risk {
+  color: var(--medium-risk-color);
+}
+
+.normal-risk {
+  color: var(--normal-risk-color);
+}
+
+.low-risk {
+  color: var(--low-risk-color);
+}
+
+.point.high-risk,span.high-risk,.section.high-risk::before {
+    background-color: var(--high-risk-color);
+    color:white;
+}
+.point.medium-risk,span.medium-risk,.section.medium-risk::before {
+    background-color: var(--medium-risk-color);
+    color:white;
+}
+.point.normal-risk,span.normal-risk,.section.normal-risk::before{
+    background-color: var(--normal-risk-color);
+    color:white;
+}
+.point.low-risk,span.low-risk,.section.low-risk::before {
+    background-color: var(--low-risk-color);
+    color:white;
+}
+
+.point {
+    display: inline-block;
+      width: 13px;
+      height: 14px;
+      border-radius: 50%;
+      margin-right: 10px;
+}
+/*
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+*/
+
+
+.btn-group {
+  display: flex;
+}
+
+.btn-contain {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.custom-btn {
+  font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    padding: 0px 20px;
+  /*  
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  */
+}
+
+.btn-value {
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+
+</style>
 </head>
 <body Onload="actualizar();">
 <?php

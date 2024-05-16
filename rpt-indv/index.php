@@ -203,7 +203,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <!-- <div class='titulo' >REPORTE INDIVIDUAL DE ALERTA
+      <div class='titulo' >REPORTE INDIVIDUAL DE ALERTA
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
@@ -211,7 +211,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<nav class='menu right'>
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://sites.google.com/', '_blank');"></li>
         </nav>               
-      </div> -->
+      </div>
     	<div>
 		</div>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>

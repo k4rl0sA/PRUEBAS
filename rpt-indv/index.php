@@ -66,6 +66,7 @@ function actualizar(){
     display: flex;
     flex-grow: 1;
 	background-color: #fbfbfb;
+	font-size: 14px;
 }
 
 .user-name {

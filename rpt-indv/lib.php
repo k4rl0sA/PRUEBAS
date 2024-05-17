@@ -63,15 +63,13 @@ function whe_rptindv() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
 		$sql .= " AND P.idpersona like '%".$_POST['fidentificacion']."%'";
-	if ($_POST['fpersona']){
-		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";
-		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) > 18 ";
-		}
+	if ($_POST['floc'])
+			$sql .= " AND G.localidad='".$_POST['floc']."'";
+	if ($_POST['fter'])
+			$sql .= " AND G.territorio='".$_POST['fter']."'";
+		return $sql;
 	}
-	return $sql;
-}
+	
 
 function cmp_rptindv(){
 	$rta="";

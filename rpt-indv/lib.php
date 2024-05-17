@@ -62,7 +62,7 @@ function lis_rptindv(){
 function whe_rptindv() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
-		$sql .= " AND ophi_idpersona like '%".$_POST['fidentificacion']."%'";
+		$sql .= " AND P.idpersona like '%".$_POST['fidentificacion']."%'";
 	if ($_POST['fpersona']){
 		if($_POST['fpersona'] == '2'){ //mayor de edad
 			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";

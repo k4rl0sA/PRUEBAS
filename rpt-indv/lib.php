@@ -72,8 +72,89 @@ function whe_rptindv() {
 	
 
 function cmp_rptindv(){
-	$rta="";
-	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
+	$rta='
+	<div class="title-risk">Identificación</div>
+    <div class="user-info section medium-risk">
+        <div class="user-details">
+            <div class="user-name">Carlos Eduardo Acevedo Arevalo</div>
+            <div><b>Documento:</b> CC 80811594</div>
+            <div><b>Sexo:</b> Hombre</div>
+            <div><b>Género:</b> Masculino</div>
+            <div><b>Nacionalidad:</b> Colombiana</div>
+        </div>
+        <div class="risk-info">
+            <div class="extra-info"><b>Curso de Vida:</b> Adultez</div>
+            <div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
+        </div>
+    </div>
+
+    <div class="title-risk">Ubicación</div>
+    <div class="user-info section">
+        <div class="user-details">
+            <div><b>Localidad:</b> Bosa</div>
+            <div><b>Dirección:</b> Carrera 5A SUR 20 95</div>
+            <div><b>Teléfono:</b> 5217455</div>
+        </div>
+    </div>
+
+     <div class="title-risk">Caracterización</div>
+    <div class="user-info section">
+        <div class="user-detail">
+            <div><b>OMS</b></div>
+            <div><br></div>
+
+            <div class="btn-group">
+
+              <div class="btn-contain">
+                <span class="custom-btn low-risk">Delgadez</span>
+                <div class="btn-value low-risk">30</div>
+              </div>
+
+              <div class="btn-contain">
+                <span class="custom-btn normal-risk">Normal</span>
+                <div class="btn-value normal-risk">20</div>
+              </div>
+
+              <div class="btn-contain">
+                <span class="custom-btn medium-risk">Sobrepeso</span>
+                <div class="btn-value medium-risk">40</div>
+              </div>
+
+              <div class="btn-contain">
+                <span class="custom-btn high-risk">Obesidad</span>
+                <div class="btn-value high-risk">40</div>
+              </div>
+            </div>
+         </div>
+         <div class="user-details">
+            <div><b>SRQ:</b> 20</div>
+            <div><b>Findrisc:</b> 30</div>
+         </div>
+        <div class="user-details">
+            <div><b>RQC:</b> 30</div>
+            <div><b>COPE 28:</b> 80</div>
+        </div>
+        <div class="user-details">
+            <div><b>EPOC:</b> 80</div>
+        </div>
+    </div>
+
+    <div class="title-risk">Atención Individual</div>
+    <div class="user-info section">
+        <div class="user-details">
+            <div><b>Zarith:</b> 30</div>
+            <div><b>Hamilton:</b> 30</div>
+        </div>
+        <div class="user-details">
+            <div><b>Zung:</b> 30</div>
+            <div><b>Ophi II:</b> 30</div>
+        </div>
+    </div>
+</div>
+</div>';
+
+
+/* 	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
 	 'ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',	 'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'', 
 	 'ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
 	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
@@ -95,69 +176,8 @@ function cmp_rptindv(){
 	$c[]=new cmp('ophi_fechanacimiento','d','10',$d['ophi_fechanacimiento'],$w.' '.$o,'fecha nacimiento','ophi_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('ophi_edad','n','3',$d['ophi_edad'],$w.' '.$o,'edad','ophi_edad',null,'',true,false,'','col-1');
     $c[]=new cmp('ophi_estadocivil','s','3',$d['ophi_estadocivil'],$w.' '.$o,'Estado Civil','estado_civil',null,'',true,$u,'','col-3');
-    // $c[]=new cmp('ophi_escolaridad','s','3',$d['ophi_escolaridad'],$w.' '.$o,'Nivel de escolaridad','niv_educativo',null,'',true,$u,'','col-3');
 	$c[]=new cmp('ophi_condicionsalud','a','3',$d['ophi_condicionsalud'],$w.' '.$o,'Condicion de salud','ophi_condicionsalud',null,'',true,$u,'','col-5');
-    // $c[]=new cmp('ophi_ocupacion','a','3',$d['ophi_ocupacion'],$w.' '.$o,'Ocupación Principal:(Diferente a la del cuidado)	','ophi_ocupacion',null,'',true,$u,'','col-5');
-
-	$o='info';
-	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
-
-	$c[]=new cmp('ophi_rutina','a','3',$d['ophi_rutina'],$w.' '.$o,'RUTINAS DIARIAS','ophi_rutina',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_rol','a','3',$d['ophi_rol'],$w.' '.$o,'ROLES OCUPACIONALES ','ophi_rol',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_actividad','a','3',$d['ophi_actividad'],$w.' '.$o,'ELECCIÓN DE ACTIVIDAD/OCUPACIÓN ','ophi_actividad',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_evento','a','3',$d['ophi_evento'],$w.' '.$o,'EVENTOS CRÍTICOS DE LA VIDA ','ophi_evento',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_comportamiento','a','3',$d['ophi_comportamiento'],$w.' '.$o,'AMBIENTES DE COMPORTAMIENTO OCUPACIONAL ','ophi_comportamiento',null,'',true,$u,'','col-10');
-
-	$o='identidad';
-	$c[]=new cmp($o,'e',null,'ESCALA DE IDENTIDAD OCUPACIONAL ',$w);
-	$c[]=new cmp('ophi_identidad1','s',3,$d['ophi_identidad1'],$w.' '.$o,'Tienes metas personales o proyectos ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad2','s',3,$d['ophi_identidad2'],$w.' '.$o,'Identificar un estilo de vida ocupacional ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad3','s',3,$d['ophi_identidad3'],$w.' '.$o,'Espera éxito acepta responsabilidades ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad4','s',3,$d['ophi_identidad4'],$w.' '.$o,'Valora habilidades y limitaciones ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad5','s',3,$d['ophi_identidad5'],$w.' '.$o,'Tiene compromisos y valores ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad6','s',3,$d['ophi_identidad6'],$w.' '.$o,'Reconoce identidades y obligaciones ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad7','s',3,$d['ophi_identidad7'],$w.' '.$o,'Tiene interés ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad8','s',3,$d['ophi_identidad8'],$w.' '.$o,'Se sintió efectivo en el (pasado)','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad9','s',3,$d['ophi_identidad9'],$w.' '.$o,'Encontró sentido, satisfacciones en su estilo de vida (pasado)','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_identidad10','s',3,$d['ophi_identidad10'],$w.' '.$o,'Hizo elecciones ocupacionales ','salud_mental',null,null,true,$u,'','col-10');
-
-	$o='copetencias';
-	$c[]=new cmp($o,'e',null,'ESCALA DE COMPETENCIA OCUPACIONAL ',$w);
-	$c[]=new cmp('ophi_copetencia1','s',3,$d['ophi_copetencia1'],$w.' '.$o,'Mantiene un estilo de vida satisfactorio','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia2','s',3,$d['ophi_copetencia2'],$w.' '.$o,'Cumple con las expectativas de sus roles ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia3','s',3,$d['ophi_copetencia3'],$w.' '.$o,'Trabaja hacia metas ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia4','s',3,$d['ophi_copetencia4'],$w.' '.$o,'Cubre los estándares de desenvolvimiento personal ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia5','s',3,$d['ophi_copetencia5'],$w.' '.$o,'Organiza su tiempo para cumplir responsabilidades ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia6','s',3,$d['ophi_copetencia6'],$w.' '.$o,'Participa en intereses ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia7','s',3,$d['ophi_copetencia7'],$w.' '.$o,'Cumplió con sus roles (pasado)','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia8','s',3,$d['ophi_copetencia8'],$w.' '.$o,'Mantuvo hábitos (pasado)','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_copetencia9','s',3,$d['ophi_copetencia9'],$w.' '.$o,'Logro satisfacción (pasado)','salud_mental',null,null,true,$u,'','col-10');
-
-	$o='ambiente';
-	$c[]=new cmp($o,'e',null,'ESCALA DE AMBIENTES DE COMPORTAMIENTOS OCUPACIONALES ',$w);
-	$c[]=new cmp('ophi_ambiente1','s',3,$d['ophi_ambiente1'],$w.' '.$o,'Formas ocupacionales de vida en el hogar ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente2','s',3,$d['ophi_ambiente2'],$w.' '.$o,'Formas ocupacionales del rol principal productivo ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente3','s',3,$d['ophi_ambiente3'],$w.' '.$o,'Formas ocupacionales de diversión ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente4','s',3,$d['ophi_ambiente4'],$w.' '.$o,'Grupo social en la vida hogareña ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente5','s',3,$d['ophi_ambiente5'],$w.' '.$o,'Grupo social del principal rol productivo ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente6','s',3,$d['ophi_ambiente6'],$w.' '.$o,'Grupo social de diversión ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente7','s',3,$d['ophi_ambiente7'],$w.' '.$o,'Espacios físicos, objetos y recursos en la vida hogareña ','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente8','s',3,$d['ophi_ambiente8'],$w.' '.$o,'Espacios físicos, objetos y recursos en el rol productivo','salud_mental',null,null,true,$u,'','col-10');
-	$c[]=new cmp('ophi_ambiente9','s',3,$d['ophi_ambiente9'],$w.' '.$o,'Espacios físicos, objetos y recursos en los ambientes de diversión','salud_mental',null,null,true,$u,'','col-10');
-	$o='concepto';
-	$c[]=new cmp($o,'e',null,'CONCEPTO OCUPACIONAL ',$w);
-    $c[]=new cmp('ophi_psicologico','a','3',$d['ophi_psicologico'],$w.' '.$o,'COMPONENTE PSICOLOGICO ','ophi_psicologico',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_social','a','3',$d['ophi_social'],$w.' '.$o,'COMPONENTE SOCIAL ','ophi_social',null,'',true,$u,'','col-10');
-    $c[]=new cmp('ophi_manejo','a','3',$d['ophi_manejo'],$w.' '.$o,'COMPONENTE MENEJO DE SI MISMO ','ophi_manejo',null,'',true,$u,'','col-10');
-
-	$o='totales';
-	$c[]=new cmp($o,'e',null,'Resultado ',$w);
-	$c[]=new cmp('ophi_momento','t',20,$d['ophi_momento'],$w.' '.$o,'Momento','ophi_momento',null,'',false,false,'','col-6');
-	$c[]=new cmp('ophi_puntaje','t',3,$d['ophi_puntaje'],$w.' '.$o,'Puntaje','ophi_puntaje',null,'',false,false,'','col-4');
-
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
-	return $rta;
+ */	return $rta;
    }
 
    function get_rptindv(){

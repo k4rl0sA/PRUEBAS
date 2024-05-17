@@ -221,7 +221,7 @@ function cmp_rptindv(){
 		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
 		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
 		WHERE P.idpersona ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
-		// echo $sql;
+		echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}

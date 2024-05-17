@@ -215,7 +215,7 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
     	<div>
 		</div>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
-    <div class='contenido' id='<?php //echo $mod;?>-lis' >
+    <div class='contenido' id='<?php echo $mod;?>-lis' >
 <div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
         <div class="user-details">

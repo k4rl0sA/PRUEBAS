@@ -28,7 +28,7 @@ function lis_rptindv(){
 	$regxPag=10;
 	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
-	$sql="SELECT  
+	$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCION,
 	G.localidad AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
 	P.vivipersona AS Cod_Familia,
 	P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, P.sexo AS Sexo, P.genero AS Genero, P.nacionalidad AS Nacionalidad,

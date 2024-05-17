@@ -72,6 +72,16 @@ function whe_rptindv() {
 	
 
 function cmp_rptindv(){
+
+	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
+	 'ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',	 'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'', 
+	 'ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
+	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
+	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'',
+	 'ophi_copetencia6'=>'', 'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'',
+	 'ophi_ambiente2'=>'','ophi_ambiente3'=>'','ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'',
+	 'ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'','ophi_social'=>'','ophi_manejo'=>'']; 
+
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -187,23 +197,30 @@ function cmp_rptindv(){
 	}else{
 		 $id=divide($_POST['id']);
 		 
-		$sql="SELECT `tam_ophi`,`ophi_idpersona`,`ophi_tipodoc`,
-		FN_CATALOGODESC(116,ophi_momento) ophi_momento,`ophi_condicionsalud`,`ophi_rutina`,`ophi_rol`, 
-		`ophi_actividad`,`ophi_evento`,`ophi_comportamiento`,
-		`ophi_identidad1`,`ophi_identidad2`,`ophi_identidad3`,
-		`ophi_identidad4`,`ophi_identidad5`,`ophi_identidad6`,
-		`ophi_identidad7`,`ophi_identidad8`,`ophi_identidad9`,
-		`ophi_identidad10`,`ophi_copetencia1`,`ophi_copetencia2`,
-		`ophi_copetencia3`,`ophi_copetencia4`,`ophi_copetencia5`,
-		`ophi_copetencia6`,`ophi_copetencia7`,`ophi_copetencia8`,
-		`ophi_copetencia9`,`ophi_ambiente1`,`ophi_ambiente2`,
-		`ophi_ambiente3`,`ophi_ambiente4`,
-		`ophi_ambiente5`,`ophi_ambiente6`,`ophi_ambiente7`,`ophi_ambiente8`,`ophi_ambiente9`,`ophi_psicologico`,`ophi_social`,
-		`ophi_manejo`,`ophi_puntaje`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) ophi_nombre,P.fecha_nacimiento ophi_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) ophi_edad,estado_civil ophi_estadocivil
-		FROM `hog_tam_ophi` O
-		LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona and O.ophi_tipodoc=P.tipo_doc
-		LEFT JOIN personas_datocomp C ON O.ophi_idpersona = C.dc_documento AND O.ophi_tipodoc=C.dc_documento
-		WHERE ophi_idpersona ='{$id[0]}' AND ophi_tipodoc='{$id[1]}' AND ophi_momento = '{$id[2]}'  ";
+		$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCIONES,
+		G.localidad AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
+		P.vivipersona AS Cod_Familia,
+		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, P.sexo AS Sexo, P.genero AS Genero, P.nacionalidad AS Nacionalidad,
+		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
+			CASE
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'Primera Infancia'
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'Infancia'
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'Adolescencia'
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'Juventud'
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'Adultez'
+				WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'Vejez'
+				ELSE 'Edad Desconocida'
+			END AS Rango_Edad,
+		A.puntaje AS Puntaje_Apgar, A.descripcion AS Riesgo_Apgar,
+		F.puntaje AS Puntaje_Findrisc, F.descripcion AS Riesgo_Findrisc,
+		O.puntaje AS Puntaje_Oms, O.descripcion AS Riesgo_Oms
+		FROM personas P 
+		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
+		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
+		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
+		WHERE P.idpersona ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];

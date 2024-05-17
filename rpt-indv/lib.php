@@ -22,36 +22,38 @@ else {
 
 
 function lis_rptindv(){
-	/* $info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_rptindv());
+	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
+		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona WHERE '1' ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
+	$regxPag=10;
 	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
-
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
-	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,ophi_momento) Momento,`ophi_puntaje` Puntaje 
-FROM hog_tam_ophi O
-LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona
-		WHERE '1' ";
+	$sql="SELECT  
+	G.localidad AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
+	P.vivipersona AS Cod_Familia,
+	P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, P.sexo AS Sexo, P.genero AS Genero, P.nacionalidad AS Nacionalidad,
+	TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
+		CASE
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'Primera Infancia'
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'Infancia'
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'Adolescencia'
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'Juventud'
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'Adultez'
+			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'Vejez'
+			ELSE 'Edad Desconocida'
+		END AS Rango_Edad,
+	A.puntaje AS Puntaje_Apgar, A.descripcion AS Riesgo_Apgar,
+	F.puntaje AS Puntaje_Findrisc, F.descripcion AS Riesgo_Findrisc,
+	O.puntaje AS Puntaje_Oms, O.descripcion AS Riesgo_Oms
+	FROM personas P 
+	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+	LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
+	LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
+	LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
+	WHERE '1' ";
 	$sql.=whe_rptindv();
-	$sql.="ORDER BY O.fecha_create,2";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-echo $sql;
-	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"rptindv",$regxPag);
-	*/
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_ophi O LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona where 1 ".whe_rptindv());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=12;
-	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
-
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(ophi_idpersona,'_',ophi_tipodoc,'_',ophi_momento) ACCIONES,tam_ophi 'Cod. Registro',ophi_idpersona Documento,FN_CATALOGODESC(1,ophi_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
-	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,ophi_momento) Momento,`ophi_puntaje` Puntaje 
-FROM hog_tam_ophi O
-LEFT JOIN personas P ON O.ophi_idpersona = P.idpersona
-		WHERE '1' ";
-	$sql.=whe_rptindv();
-	$sql.="ORDER BY O.fecha_create,2";
+	$sql.="ORDER BY P.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rptindv",$regxPag);

@@ -257,9 +257,6 @@ function men_rptindv(){
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = ""; 
 	$acc=rol($a);
-	if ($a=='rptindv') {  
-		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
-	}
 	return $rta;
   }
    

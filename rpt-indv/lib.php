@@ -74,7 +74,7 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'','ophi_rol'=>'',
 	'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'','ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
 	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
 	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'','ophi_copetencia6'=>'',

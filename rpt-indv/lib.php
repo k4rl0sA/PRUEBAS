@@ -74,7 +74,7 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','ophi_escolaridad'=>'','ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',
 	'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'','ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
 	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
 	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'','ophi_copetencia6'=>'',
@@ -82,6 +82,7 @@ function cmp_rptindv(){
 	  'ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'','ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'',
 	  'ophi_social'=>'','ophi_manejo'=>'']; 
 	 $d=get_rptindv(); 
+	 $d="";
 	 if ($d=="") {$d=$t;}
 	var_dump($d);
 	$rta='
@@ -119,28 +120,28 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk">30</div>
+                <div class="btn-value low-risk"> '.$d["imc"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk">20</div>
+                <div class="btn-value normal-risk"> '.$d["imc"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk">40</div>
+                <div class="btn-value medium-risk"> '.$d["imc"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> '.$d["Puntaje_Findrisc"].'</div>
+                <div class="btn-value high-risk"> '.$d["imc"].'</div>
               </div>
             </div>
          </div>
          <div class="user-details">
             <div><b>SRQ:</b> 20</div>
-            <div><b>Findrisc:</b> 30</div>
+            <div><b>Findrisc:</b> '.$d["Puntaje_Findrisc"].'</div>
          </div>
         <div class="user-details">
             <div><b>RQC:</b> 30</div>

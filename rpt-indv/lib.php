@@ -90,8 +90,8 @@ function cmp_rptindv(){
         <div class="user-details">
             <div class="user-name">'.$d['Usuario'].'</div>
             <div><b>Documento:</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
-            <div><b>Sexo:</b>'.$d["Sexo"].'</div>
-            <div><b>Género:</b>'.$d["Genero"].'</div>
+            <div><b>Sexo:</b> '.$d["Sexo"].'</div>
+            <div><b>Género:</b> '.$d["Genero"].'</div>
             <div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
         </div>
         <div class="risk-info">
@@ -103,16 +103,16 @@ function cmp_rptindv(){
     <div class="title-risk">Ubicación</div>
     <div class="user-info section">
         <div class="user-details">
-            <div><b>Localidad:</b>'.$d["Localidad"].'</div>
-            <div><b>Dirección:</b>'.$d["Direccion"].'</div>
-            <div><b>Teléfono:</b>'.$d["Telefono_Contacto"].'</div>
+            <div><b>Localidad:</b> '.$d["Localidad"].'</div>
+            <div><b>Dirección:</b> '.$d["Direccion"].'</div>
+            <div><b>Teléfono:</b> '.$d["Telefono_Contacto"].'</div>
         </div>
     </div>
 
      <div class="title-risk">Caracterización</div>
     <div class="user-info section">
         <div class="user-detail">
-            <div><b>OMS</b>'.$d["Puntaje_Oms"].'</div>
+            <div><b>OMS</b> '.$d["Puntaje_Oms"].'</div>
             <div><br></div>
 
             <div class="btn-group">
@@ -134,7 +134,7 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk">'.$d["Puntaje_Findrisc"].'</div>
+                <div class="btn-value high-risk"> '.$d["Puntaje_Findrisc"].'</div>
               </div>
             </div>
          </div>
@@ -150,7 +150,6 @@ function cmp_rptindv(){
             <div><b>EPOC:</b> 80</div>
         </div>
     </div>
-
     <div class="title-risk">Atención Individual</div>
     <div class="user-info section">
         <div class="user-details">

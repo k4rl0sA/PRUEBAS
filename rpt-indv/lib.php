@@ -73,14 +73,14 @@ function whe_rptindv() {
 
 function cmp_rptindv(){
 
-	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
-	 'ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',	 'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'', 
-	 'ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
+	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','ophi_escolaridad'=>'','ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',
+	'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'','ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
 	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
-	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'',
-	 'ophi_copetencia6'=>'', 'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'',
-	 'ophi_ambiente2'=>'','ophi_ambiente3'=>'','ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'',
-	 'ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'','ophi_social'=>'','ophi_manejo'=>'']; 
+	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'','ophi_copetencia6'=>'',
+	  'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'','ophi_ambiente2'=>'','ophi_ambiente3'=>'',
+	  'ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'','ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'',
+	  'ophi_social'=>'','ophi_manejo'=>'']; 
 	 $d=get_rptindv(); 
 	 if ($d=="") {$d=$t;}
 	var_dump($d);
@@ -89,13 +89,13 @@ function cmp_rptindv(){
     <div class="user-info section medium-risk">
         <div class="user-details">
             <div class="user-name">'.$d['Usuario'].'</div>
-            <div><b>Documento:</b> CC 80811594</div>
-            <div><b>Sexo:</b> Hombre</div>
-            <div><b>Género:</b> Masculino</div>
-            <div><b>Nacionalidad:</b> Colombiana</div>
+            <div><b>Documento:</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
+            <div><b>Sexo:</b>'.$d["Sexo"].'</div>
+            <div><b>Género:</b>'.$d["Genero"].'</div>
+            <div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
         </div>
         <div class="risk-info">
-            <div class="extra-info"><b>Curso de Vida:</b> Adultez</div>
+            <div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].'</div>
             <div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
         </div>
     </div>
@@ -103,16 +103,16 @@ function cmp_rptindv(){
     <div class="title-risk">Ubicación</div>
     <div class="user-info section">
         <div class="user-details">
-            <div><b>Localidad:</b> Bosa</div>
-            <div><b>Dirección:</b> Carrera 5A SUR 20 95</div>
-            <div><b>Teléfono:</b> 5217455</div>
+            <div><b>Localidad:</b>'.$d["Localidad"].'</div>
+            <div><b>Dirección:</b>'.$d["Direccion"].'</div>
+            <div><b>Teléfono:</b>'.$d["Telefono_Contacto"].'</div>
         </div>
     </div>
 
      <div class="title-risk">Caracterización</div>
     <div class="user-info section">
         <div class="user-detail">
-            <div><b>OMS</b></div>
+            <div><b>OMS</b>'.$d["Puntaje_Oms"].'</div>
             <div><br></div>
 
             <div class="btn-group">
@@ -134,7 +134,7 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk">40</div>
+                <div class="btn-value high-risk">["Puntaje_Findrisc"]</div>
               </div>
             </div>
          </div>

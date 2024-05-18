@@ -84,7 +84,7 @@ function cmp_rptindv(){
 	 $d=get_rptindv(); 
 	 $d="";
 	 if ($d=="") {$d=$t;}
-	var_dump($d);
+	// var_dump($d);
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">

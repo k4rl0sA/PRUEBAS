@@ -81,7 +81,8 @@ function cmp_rptindv(){
 	 'ophi_copetencia6'=>'', 'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'',
 	 'ophi_ambiente2'=>'','ophi_ambiente3'=>'','ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'',
 	 'ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'','ophi_social'=>'','ophi_manejo'=>'']; 
-
+	 $d=get_rptindv(); 
+	var_dump($d);
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -221,7 +222,7 @@ function cmp_rptindv(){
 		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
 		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
 		WHERE P.idpersona ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
-		echo $sql;
+		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}

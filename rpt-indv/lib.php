@@ -73,7 +73,7 @@ function whe_rptindv() {
 
 function cmp_rptindv(){
 
-	$t=['Usuario'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
+	$t=['tam_ophi'=>'','ophi_tipodoc'=>'','ophi_nombre'=>'','ophi_idpersona'=>'','ophi_fechanacimiento'=>'','ophi_puntaje'=>'','ophi_momento'=>'','ophi_edad'=>'','ophi_lugarnacimiento'=>'','ophi_condicionsalud'=>'','ophi_estadocivil'=>'','ophi_escolaridad'=>'',
 	 'ophi_ocupacion'=>'','ophi_rutina'=>'','ophi_rol'=>'',	 'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'', 
 	 'ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
 	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
@@ -81,14 +81,14 @@ function cmp_rptindv(){
 	 'ophi_copetencia6'=>'', 'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'',
 	 'ophi_ambiente2'=>'','ophi_ambiente3'=>'','ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'',
 	 'ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'','ophi_social'=>'','ophi_manejo'=>'']; 
-	 $d=get_rptindv();
-	 if ($d=="") {$d=$t;} 
+	 $d=get_rptindv(); 
+	 if ($d=="") {$d=$t;}
 	var_dump($d);
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
         <div class="user-details">
-            <div class="user-name">{$d[Usuario]}
+            <div class="user-name">'.$d['Usuario'].'</div>
             <div><b>Documento:</b> CC 80811594</div>
             <div><b>Sexo:</b> Hombre</div>
             <div><b>Género:</b> Masculino</div>

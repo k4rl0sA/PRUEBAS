@@ -134,7 +134,7 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk">["Puntaje_Findrisc"]</div>
+                <div class="btn-value high-risk">'.$d["Puntaje_Findrisc"].'</div>
               </div>
             </div>
          </div>

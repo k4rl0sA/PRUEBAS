@@ -82,7 +82,7 @@ function cmp_rptindv(){
 	  'ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'','ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'',
 	  'ophi_social'=>'','ophi_manejo'=>'']; 
 	 $d=get_rptindv(); 
-	 $d="";
+	//  $d="";
 	 if ($d=="") {$d=$t;}
 	// var_dump($d);
 	$rta='

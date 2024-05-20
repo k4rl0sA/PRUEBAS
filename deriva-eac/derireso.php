@@ -151,11 +151,12 @@ function opc_usuariocod_admin(){
 	if($_REQUEST['id']!=''){
 	$id=divide($_REQUEST['id']);
 	$sql="SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE TRIM(documento) LIKE '%{$id[0]}%' AND estado_hist=1";
-	// return var_dump($sql);
+	 return var_dump($sql);
 	$info=datos_mysql($sql);
 	return json_encode($info['responseResult']);
 	}
 }
+
 
 function get_ruteresol(){
 	if($_POST['id']=='0'){

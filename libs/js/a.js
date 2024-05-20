@@ -712,38 +712,8 @@ function changeSelect(a,b,c=ruta_app){
 	}
 }
 
-function selectDepend(a,b,c){
-	if(b!=''){
-		const x = document.getElementById(a);
-		const z = document.getElementById(b);
-		z.innerHTML="";
-		if (window.XMLHttpRequest)
-			xmlhttp = new XMLHttpRequest();
-		else
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			xmlhttp.onreadystatechange = function () {
-			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-				data =JSON.parse(xmlhttp.responseText);
-				console.log(data)
-			}}
-				xmlhttp.open("POST",c,false);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('a=opc&tb='+a+b+'&id='+x.value);
-				//~ var rta =data;
-				var data=Object.values(data);
-				var opt = document.createElement('option');
-				opt.text ='SELECCIONE';
-				// opt.classList.add('alerta');
-				opt.value='';
-				z.add(opt);
-				for(i=0;i<data.length;i++){
-					var obj=Object.keys(data[i]);
-					var opt = document.createElement('option');
-					opt.text =data[i][obj[1]];
-					opt.value=data[i][obj[0]];;
-					z.add(opt);
-				}
-	}
+function selectDepend(a,b,c=ruta_app){
+	changeSelect(a,b,c);
 }
 
 function getData(a, ev,i,blo,path=ruta_app) {

@@ -100,8 +100,8 @@ function gra_compConc(){
         ['type' => 's', 'value' => $_POST['obs']],
         ['type' => 'i', 'value' => $_POST['equipo']],
         ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
@@ -111,8 +111,8 @@ function gra_compConc(){
     $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
       $rta = mysql_prepd($sql, $params);

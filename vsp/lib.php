@@ -788,18 +788,22 @@ function gra_person(){
 		var_dump($rta1);
 		var_dump($equ);
 		var_dump(opc_sql("SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1",'')); */
-
-	if ($rta1=="0"){
-		$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
-		$info = datos_mysql($sql);
-		$rta = $info['responseResult'][0]['equipo'];
-		// var_dump($rta);
-		// return $rta;
-		return opc_sql($sql,$rta);
-	}else{
+	if (count($fam)===1){
 		return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+	}else{
+		if ($rta1=="0"){
+			$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
+			$info = datos_mysql($sql);
+			$rta = $info['responseResult'][0]['equipo'];
+			// var_dump($rta);
+			// return $rta;
+			return opc_sql($sql,$rta);
+		}else{
+			//if ($fam[0]==='')
+			return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+		}
 	}
-}
+	}
 
 function opc_equipo1($id=''){
 	/* var_dump($_POST);

@@ -34,7 +34,8 @@ function men_ruteresol(){
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='ruteresol'){  
+  $acc=rol($a);
+	if($a=='ruteresol' && isset($acc['crear']) && $acc['crear']=='SI'){
 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
   }
   return $rta;

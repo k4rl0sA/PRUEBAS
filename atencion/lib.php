@@ -1829,7 +1829,7 @@ function formato_dato($a,$b,$c,$d){
 		$admision = (acceso('admision')) ? "<li class='icono admsi1' title='Crear Admisión' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"></li>" : "" ;
 		$rta.=$admision;
 
-		$atencion = (acceso('atencion')) ? "<li class='icono admsi1' title='Crear Admisión' id='".$c['ACCIONES']."' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"></li>" : "" ;
+		$atencion = (acceso('atencion')) ? "<li class='icono aten1' title='Crear Atención' id='".$c['ACCIONES']."' Onclick=\"mostrar('atencion','pro',event,'','lib.php',7,'atencion');\"></li>" : "" ;
 		$rta.=$atencion;
 
 		if (perfil1()=='MEDATE' || perfil1()=='ADM' || perfil1()=='ENFATE'|| perfil1()=='ADMEAC' || perfil1()=='SUPEAC' || perfil1()=='RELENF' ){

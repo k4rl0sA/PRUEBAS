@@ -517,7 +517,7 @@ function perfil1($a = null) {
 function acceso($a){
   $acc=rol($a);
   print_r($acc);
-  if (!empty($acc['perfil']) || $acc['perfil'] !== array()){
+  if (!empty($acc['perfil'])){
     return true;
   }else{
     return;

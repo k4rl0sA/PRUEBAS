@@ -514,6 +514,15 @@ function perfil1($a = null) {
   return $perfil;
 }
 
+function acceso($a){
+  $acc=rol($a);
+  if (!empty($acc['perfil']) || $acc['perfil'] !== array()){
+    return true;
+  }else{
+    return;
+  }
+}
+
 /*COMPONENTES*/
 class cmp { //ntwplcsdxhvuf
   public $n; //name

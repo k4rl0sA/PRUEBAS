@@ -179,6 +179,7 @@ function gra_ruteresol(){
 $sql="UPDATE `eac_fam` SET 
 idperson=TRIM(UPPER('{$_POST['usuario']}')),
 codadmin=TRIM(UPPER('{$_POST['cod_admin']}')),
+estado_user=TRIM(UPPER('{$_POST['estado']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR),
 estado='R' WHERE id_eacfam='{$cod[0]}'";

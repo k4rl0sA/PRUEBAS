@@ -55,8 +55,8 @@ function cmp_ruteresol(){
  $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado',null,null,true,$u,'','col-2',"enbValue('estado','PuE',1);");
  //N° FAMILIA */
 /*  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');"); */
- $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin','derireso.php');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE '.$o,'cod_admin','cod_admin',null,'',true,$u,'','col-4');//traer los codigos del usuario de atencion
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE '.$o,'usuario','usuario',null,'',true,false,'','col-25',"changeSelect('usuario','cod_admin','derireso.php');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE '.$o,'cod_admin','cod_admin',null,'',true,false,'','col-4');//traer los codigos del usuario de atencion
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

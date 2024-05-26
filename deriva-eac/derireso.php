@@ -52,7 +52,7 @@ function cmp_ruteresol(){
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado',null,null,true,$u,'','col-2',"enbValue('estado',clsCmp,v);");
+ $c[]=new cmp('estado','s',3,$d['estado'],$w.' '.$o,'estado','estado',null,null,true,$u,'','col-2',"enbValue('estado','PuE',1);");
  //N° FAMILIA */
 /*  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario','derireso.php');"); */
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin','derireso.php');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO

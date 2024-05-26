@@ -132,7 +132,7 @@ function opc_estado($id=''){
 		$co=divide($cod);
 		// $cod=opc_cod_predio()
 		// var_dump($_REQUEST['predio']);
-		return	opc_sql("SELECT idcatadeta cod,FN_CATALOGODESC(227,idcatadeta) FROM catadeta WHERE idcatalogo=227", $id);
+		return	opc_sql("SELECT idcatadeta cod,FN_CATALOGODESC(227,idcatadeta) FROM catadeta WHERE idcatalogo=227 AND idcatadeta IN(1,3)", $id);
 }
 
 

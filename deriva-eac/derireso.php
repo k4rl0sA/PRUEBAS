@@ -132,7 +132,7 @@ function opc_estado($id=''){
 		$co=divide($cod);
 		// $cod=opc_cod_predio()
 		// var_dump($_REQUEST['predio']);
-		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);
+		return	opc_sql("SELECT idcatadeta cod,FN_CATALOGODESC(227,idcatadeta) FROM catadeta WHERE idcatalogo=227", $id);
 }
 
 
@@ -143,7 +143,7 @@ function opc_cod_admin($id=''){
 	}else{
 		$co=divide($id);
 		// var_dump($co);
-		return opc_sql("SELECT idcatadeta cod,FN_CATALOGODESC(227,idcatadeta) FROM catadeta WHERE idcatalogo=227", $id);
+		return opc_sql("SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE cod_admin='$id'", $id);
 	}
 	//return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }

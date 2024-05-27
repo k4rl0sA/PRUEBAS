@@ -113,13 +113,14 @@ function focus_statFam(){
         // echo $x;
  //echo $sql;
       }else{
-        $sql="INSERT INTO eac_fam VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql="INSERT INTO eac_fam VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $params = [
         ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $_POST['id']],
         ['type' => 's', 'value' => $_POST['estado_fam']],
         ['type' => 's', 'value' => $_POST['motivo_estafam']],
         ['type' => 's', 'value' => $_POST['direccion_nueva']],
+        ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],

@@ -69,14 +69,19 @@ function focus_statFam(){
       if($_POST['id']==''){
         return "";
       }else{
-         $id=divide($_POST['id']);
-        $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam,direccion_nueva from eac_fam WHERE id_eacfam='{$id[0]}' limit 1 ";
-        $info=datos_mysql($sql);
-        if(isset($info['responseResult'][0])){ 
+        $id=divide($_POST['id']);
+        if(count($id)==3){
+          $sql="SELECT id_eacfam id,cod_fam,estado_fam,motivo_estafam,direccion_nueva from eac_fam WHERE id_eacfam='{$id[0]}' limit 1 ";
+          $info=datos_mysql($sql);
+          if(isset($info['responseResult'][0])){ 
             return $info['responseResult'][0];
+          }else{
+            return "";
+          }
         }else{
           return "";
         }
+        
       } 
     }
 

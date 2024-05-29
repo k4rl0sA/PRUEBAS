@@ -77,6 +77,25 @@ function cmp_rptindv(){
 	//  $d="";
 	 if ($d=="") {$d=$t;}
 	// var_dump($d);
+
+
+	switch (true) {
+		case $d["IMC"]< 18.5:
+			$delgadez=$d["IMC"];
+			break;
+		case $d["IMC"] >= 18.5 && $d["IMC"] < 24.9:
+    	    $normal = $d["IMC"];
+    	    break;
+    	case $d["IMC"] >= 25 && $d["IMC"] < 29.9:
+    	    $sobrepeso = $d["IMC"];
+    	    break;
+    	case $d["IMC"] >= 30:
+    	    $obesidad= $d["IMC"];
+    	    break;
+		default:
+			# code...
+			break;
+	}
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -109,10 +128,9 @@ function cmp_rptindv(){
             <div><br></div>
 
             <div class="btn-group">
-
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> '.$d["IMC"].'</div>
+                <div class="btn-value low-risk"> '.$delgadez.'</div>
               </div>
 
               <div class="btn-contain">

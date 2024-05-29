@@ -119,22 +119,22 @@ function cmp_rptindv(){
             <div class="btn-group">
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> '.$delgadez = isset($delgadez) ? $delgadez : '' ;.'</div>
+                <div class="btn-value low-risk"> '.$delgadez.'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk">'.$normal = isset($normal) ? $normal : '' ;.'<div>
+                <div class="btn-value normal-risk">'.$normal.'<div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk">'.$sobrepeso = isset($sobrepeso) ? $sobrepeso : '' ;.'<div>
+                <div class="btn-value medium-risk">'.$sobrepeso.'<div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> '.$Obesidad = isset($Obesidad) ? $Obesidad : '' ;.'<div>
+                <div class="btn-value high-risk"> '.$Obesidad.'<div>
               </div>
             </div>
          </div>

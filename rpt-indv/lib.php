@@ -124,17 +124,17 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk"> '.$d["IMC"].'</div>
+                <div class="btn-value normal-risk"> '.$normal.'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk"> '.$d["IMC"].'</div>
+                <div class="btn-value medium-risk"> '.$sobrepeso.'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk">  '.$d["IMC"].'</div>
+                <div class="btn-value high-risk">  '.$obesidad.'</div>
               </div>
             </div>
          </div>

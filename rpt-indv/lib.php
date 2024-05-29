@@ -66,14 +66,14 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'','imc'=>'30']; 
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','IMC'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'']; 
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
 	// var_dump($d);
 
 
-	$imc = $d['imc'];
+	$imc = $d['IMC'];
     $delgadez = $normal = $sobrepeso = $obesidad = '';
     if ($imc < 18.5) {
         $delgadez = $imc;
@@ -134,7 +134,7 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> '.$Obesidad.'<div>
+                <div class="btn-value high-risk"> '.$obesidad.'<div>
               </div>
             </div>
          </div>

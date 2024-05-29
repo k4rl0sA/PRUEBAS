@@ -122,7 +122,7 @@ function cmp_rptindv(){
      <div class="title-risk">Caracterización</div>
     <div class="user-info section">
         <div class="user-detail">
-            <div><b>OMS</b> '.$d["Puntaje_Oms"].' ('.$d["Riesgo_Oms"].')</div>
+            <div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
             <div><br></div>
 
             <div class="btn-group">

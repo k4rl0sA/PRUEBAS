@@ -22,35 +22,44 @@ else {
 
 
 function lis_rptindv(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN hog_viv V ON P.vivipersona = V.idviv	LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
-		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona WHERE '1' ".whe_rptindv());
+	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona	LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona WHERE '1' ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
 	$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCIONES,
-	G.localidad AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
+	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
 	P.vivipersona AS Cod_Familia,
-	P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, P.sexo AS Sexo, P.genero AS Genero, P.nacionalidad AS Nacionalidad,
+	P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,
 	TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
-		CASE
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'Primera Infancia'
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'Infancia'
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'Adolescencia'
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'Juventud'
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'Adultez'
-			WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'Vejez'
-			ELSE 'Edad Desconocida'
-		END AS Rango_Edad,
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'PRIMERA INFANCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'INFANCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'ADOLESCENCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'JUVENTUD'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'ADULTEZ'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
+        ELSE 'Edad Desconocida'
+    END AS Rango_Edad,
 	A.puntaje AS Puntaje_Apgar, A.descripcion AS Riesgo_Apgar,
 	F.puntaje AS Puntaje_Findrisc, F.descripcion AS Riesgo_Findrisc,
-	O.puntaje AS Puntaje_Oms, O.descripcion AS Riesgo_Oms
+	O.puntaje AS Puntaje_Oms, O.descripcion AS Riesgo_Oms,
+	C.cope_puntajea AS Puntaje_Cope, C.cope_descripciona,
+	E.puntaje AS Puntaje_Epoc, E.descripcion AS Riesgo_Epoc,
+	Z.zarit_puntaje AS Puntaje_Zarit, Z.zarit_analisis AS Riesgo_Zarit,
+	ZU.zung_puntaje AS Puntaje_Zung, ZU.zung_analisis AS Riesgo_Zung,
+	H.hamilton_total AS Puntaje_Hamilton, H.hamilton_analisis AS Riesgo_Hamilton
 	FROM personas P 
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 	LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
 	LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
 	LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
+	LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona
+	LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento
+	LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona
+	LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona
+	LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona
 	WHERE '1' ";
 	$sql.=whe_rptindv();
 	$sql.="ORDER BY P.fecha_create";

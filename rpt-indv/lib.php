@@ -71,7 +71,7 @@ function cmp_rptindv(){
 	//  $d="";
 	 if ($d=="") {$d=$t;}
 	// var_dump($d);
-
+/* 
 
 	$imc = $d['IMC'];
     $delgadez = $normal = $sobrepeso = $obesidad = '';
@@ -83,7 +83,7 @@ function cmp_rptindv(){
         $sobrepeso = $imc;
     } elseif ($imc >= 30) {
         $obesidad = $imc;
-    }
+    } */
 
 	$rta='
 	<div class="title-risk">Identificación</div>

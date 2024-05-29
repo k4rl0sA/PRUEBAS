@@ -93,7 +93,7 @@ function cmp_rptindv(){
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
-	var_dump($d);
+	// var_dump($d);
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -154,21 +154,21 @@ function cmp_rptindv(){
          </div>
         <div class="user-details">
             <div><b>RQC:</b> 30</div>
-            <div><b>COPE 28:</b> 80</div>
+            <div><b>COPE 28:</b> '.$d["Puntaje_Cope"].'</div>
         </div>
         <div class="user-details">
-            <div><b>EPOC:</b> 80</div>
+            <div><b>EPOC:</b> '.$d["Riesgo_Epoc"].'</div>
         </div>
     </div>
     <div class="title-risk">Atención Individual</div>
     <div class="user-info section">
         <div class="user-details">
-            <div><b>Zarith:</b> 30</div>
-            <div><b>Hamilton:</b> 30</div>
+            <div><b>Zarith:</b> '.$d["Riesgo_Zarit"].'</div>
+            <div><b>Hamilton:</b> '.$d["Riesgo_Hamilton"].'</div>
         </div>
         <div class="user-details">
-            <div><b>Zung:</b> 30</div>
-            <div><b>Ophi II:</b> 30</div>
+            <div><b>Zung:</b> '.$d["Riesgo_Zung"].'</div>
+            <div><b>Ophi II:</b> '.$d[""].'</div>
         </div>
     </div>
 </div>
@@ -177,7 +177,7 @@ return $rta;
    }
 
    function get_rptindv(){
-	print_r($_POST);
+	// print_r($_POST);
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -253,127 +253,6 @@ function men_rptindv(){
 	return $rta;
   }
    
-function gra_rptindv(){
-	$id=$_POST['idophi'];
-	//print_r($_POST);
-	if($id != "0"){
-		return "No es posible actualizar el tamizaje";
-	}else{
-
-	$infodata_ophi=datos_mysql("SELECT ophi_momento,ophi_idpersona FROM hog_tam_ophi
-		 WHERE ophi_idpersona = {$_POST['ophi_idpersona']} AND ophi_momento = 2 ");
-	if (isset($infodata_ophi['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_ophi=datos_mysql("SELECT ophi_momento,ophi_idpersona FROM hog_tam_ophi
-		 WHERE ophi_idpersona = {$_POST['ophi_idpersona']} AND ophi_momento = 1 ");
-		if (isset($infodata2_ophi['responseResult'][0])){
-			$idmomento = 2;
-		}else{
-			$idmomento = 1;
-		}
-	}
-
-	/* nivel_educativo=TRIM(UPPER('{$_POST['ophi_escolaridad']}')),
-	ocupacion=TRIM(UPPER('{$_POST['ophi_ocupacion']}')), */
-	$sql3="UPDATE personas_datocomp SET 
-	estadocivil=TRIM(UPPER('{$_POST['ophi_estadocivil']}')),
-	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-	`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-	WHERE idpersona ={$_POST['ophi_idpersona']} AND tipo_doc={$_POST['ophi_tipodoc']}";
-	$rta3=dato_mysql($sql3);
-
-	$suma_iden = (
-		$_POST['ophi_identidad1']+
-		$_POST['ophi_identidad2']+
-		$_POST['ophi_identidad3']+
-		$_POST['ophi_identidad4']+
-		$_POST['ophi_identidad5']+
-		$_POST['ophi_identidad6']+
-		$_POST['ophi_identidad7']+
-		$_POST['ophi_identidad8']+
-		$_POST['ophi_identidad9']+
-		$_POST['ophi_identidad10']
-	);
-
-	$suma_comp = (
-		$_POST['ophi_copetencia1']+
-		$_POST['ophi_copetencia2']+
-		$_POST['ophi_copetencia3']+
-		$_POST['ophi_copetencia4']+
-		$_POST['ophi_copetencia5']+
-		$_POST['ophi_copetencia6']+
-		$_POST['ophi_copetencia7']+
-		$_POST['ophi_copetencia8']+
-		$_POST['ophi_copetencia9']
-	);
-
-	$suma_ambi = (
-		$_POST['ophi_ambiente1']+
-		$_POST['ophi_ambiente2']+
-		$_POST['ophi_ambiente3']+
-		$_POST['ophi_ambiente4']+
-		$_POST['ophi_ambiente5']+
-		$_POST['ophi_ambiente6']+
-		$_POST['ophi_ambiente7']+
-		$_POST['ophi_ambiente8']+
-		$_POST['ophi_ambiente9']
-	);
-
-
-	$suma_ophi = ($suma_iden+$suma_comp+$suma_ambi);
-
-		$sql="INSERT INTO hog_tam_ophi VALUES (null,
-		TRIM(UPPER('{$_POST['ophi_tipodoc']}')),
-		TRIM(UPPER('{$_POST['ophi_idpersona']}')),
-		{$idmomento},
-		TRIM(UPPER('{$_POST['ophi_condicionsalud']}')),
-		TRIM(UPPER('{$_POST['ophi_rutina']}')),
-		TRIM(UPPER('{$_POST['ophi_rol']}')),
-		TRIM(UPPER('{$_POST['ophi_actividad']}')),
-		TRIM(UPPER('{$_POST['ophi_evento']}')),
-		TRIM(UPPER('{$_POST['ophi_comportamiento']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad1']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad2']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad3']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad4']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad5']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad6']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad7']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad8']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad9']}')),
-		TRIM(UPPER('{$_POST['ophi_identidad10']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia1']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia2']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia3']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia4']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia5']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia6']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia7']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia8']}')),
-		TRIM(UPPER('{$_POST['ophi_copetencia9']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente1']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente2']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente3']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente4']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente5']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente6']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente7']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente8']}')),
-		TRIM(UPPER('{$_POST['ophi_ambiente9']}')),
-		TRIM(UPPER('{$_POST['ophi_psicologico']}')),
-		TRIM(UPPER('{$_POST['ophi_social']}')),
-		TRIM(UPPER('{$_POST['ophi_manejo']}')),
-		'{$suma_ophi}',
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		// echo $sql;
-	}
-	  $rta=dato_mysql($sql);
-	  return $rta; 
-	}
-
-
 	function opc_ophi_tipodoc($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}

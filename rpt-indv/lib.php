@@ -93,7 +93,7 @@ function cmp_rptindv(){
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
-	// var_dump($d);
+	var_dump($d);
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -177,7 +177,7 @@ return $rta;
    }
 
    function get_rptindv(){
-	// print_r($_POST);
+	print_r($_POST);
 	if($_POST['id']==0){
 		return "";
 	}else{

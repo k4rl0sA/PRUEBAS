@@ -66,25 +66,30 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','IMC'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'']; 
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'','imc'=>'30']; 
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
 	// var_dump($d);
-/* 
 
-	$imc = $d['IMC'];
-    $delgadez = $normal = $sobrepeso = $obesidad = '';
-    if ($imc < 18.5) {
-        $delgadez = $imc;
-    } elseif ($imc >= 18.5 && $imc < 24.9) {
-        $normal = $imc;
-    } elseif ($imc >= 25 && $imc < 29.9) {
-        $sobrepeso = $imc;
-    } elseif ($imc >= 30) {
-        $obesidad = $imc;
-    } */
 
+	switch (true) {
+		case $d["IMC"]< 18.5:
+			$delgadez=$d["IMC"];
+			break;
+		case $d["IMC"] >= 18.5 && $d["IMC"] < 24.9:
+    	    $normal = $d["IMC"];
+    	    break;
+    	case $d["IMC"] >= 25 && $d["IMC"] < 29.9:
+    	    $sobrepeso = $d["IMC"];
+    	    break;
+    	case $d["IMC"] >= 30:
+    	    $obesidad= $d["IMC"];
+    	    break;
+		default:
+			# code...
+			break;
+	}
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">
@@ -119,22 +124,22 @@ function cmp_rptindv(){
             <div class="btn-group">
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"></div>
+                <div class="btn-value low-risk"> '.$delgadez = isset($delgadez) ? $delgadez : '' ;.'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk"><div>
+                <div class="btn-value normal-risk">'.$normal = isset($normal) ? $normal : '' ;.'<div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk"><div>
+                <div class="btn-value medium-risk">'.$sobrepeso = isset($sobrepeso) ? $sobrepeso : '' ;.'<div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> <div>
+                <div class="btn-value high-risk"> '.$Obesidad = isset($Obesidad) ? $Obesidad : '' ;.'<div>
               </div>
             </div>
          </div>
@@ -248,7 +253,7 @@ function men_rptindv(){
   }
    
 	function opc_flocfter($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' AND valor='4' ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' AND valor='' ORDER BY 1",$id);
 	}
 	
 

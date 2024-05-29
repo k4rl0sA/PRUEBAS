@@ -248,7 +248,7 @@ function men_rptindv(){
   }
    
 	function opc_flocfter($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' AND valor='' ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' AND valor='4' ORDER BY 1",$id);
 	}
 	
 

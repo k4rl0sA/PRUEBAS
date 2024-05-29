@@ -73,23 +73,18 @@ function cmp_rptindv(){
 	// var_dump($d);
 
 
-	switch (true) {
-		case $d["IMC"]< 18.5:
-			$delgadez=$d["IMC"];
-			break;
-		case $d["IMC"] >= 18.5 && $d["IMC"] < 24.9:
-    	    $normal = $d["IMC"];
-    	    break;
-    	case $d["IMC"] >= 25 && $d["IMC"] < 29.9:
-    	    $sobrepeso = $d["IMC"];
-    	    break;
-    	case $d["IMC"] >= 30:
-    	    $obesidad= $d["IMC"];
-    	    break;
-		default:
-			# code...
-			break;
-	}
+	$imc = $d['imc'];
+    $delgadez = $normal = $sobrepeso = $obesidad = '';
+    if ($imc < 18.5) {
+        $delgadez = $imc;
+    } elseif ($imc >= 18.5 && $imc < 24.9) {
+        $normal = $imc;
+    } elseif ($imc >= 25 && $imc < 29.9) {
+        $sobrepeso = $imc;
+    } elseif ($imc >= 30) {
+        $obesidad = $imc;
+    }
+
 	$rta='
 	<div class="title-risk">Identificación</div>
     <div class="user-info section medium-risk">

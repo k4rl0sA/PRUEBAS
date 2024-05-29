@@ -150,25 +150,25 @@ function cmp_rptindv(){
          </div>
          <div class="user-details">
             <div><b>SRQ:</b> 20</div>
-            <div><b>Findrisc:</b> '.$d["Puntaje_Findrisc"].'</div>
+            <div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
          </div>
         <div class="user-details">
             <div><b>RQC:</b> 30</div>
-            <div><b>COPE 28:</b> '.$d["Puntaje_Cope"].'</div>
+            <div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
         </div>
         <div class="user-details">
-            <div><b>EPOC:</b> '.$d["Riesgo_Epoc"].'</div>
+            <div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
         </div>
     </div>
     <div class="title-risk">Atención Individual</div>
     <div class="user-info section">
         <div class="user-details">
-            <div><b>Zarith:</b> '.$d["Riesgo_Zarit"].'</div>
-            <div><b>Hamilton:</b> '.$d["Riesgo_Hamilton"].'</div>
+            <div><b>Zarith:</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
+            <div><b>Hamilton:</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
         </div>
         <div class="user-details">
-            <div><b>Zung:</b> '.$d["Riesgo_Zung"].'</div>
-            <div><b>Ophi II:</b> '.$d[""].'</div>
+            <div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
+            <div><b>Ophi II:</b> '.$d[""].' '.$d[""].'</div>
         </div>
     </div>
 </div>
@@ -199,7 +199,7 @@ return $rta;
 		A.puntaje AS Puntaje_Apgar, UPPER(A.descripcion) AS Riesgo_Apgar,
 		F.puntaje AS Puntaje_Findrisc, UPPER(F.descripcion) AS Riesgo_Findrisc,
 		O.puntaje AS Puntaje_Oms, UPPER(O.descripcion) AS Riesgo_Oms,
-		C.cope_puntajea AS Puntaje_Cope, UPPER(C.cope_descripciona),
+		C.cope_puntajea AS Puntaje_Cope, UPPER(C.cope_descripciona) AS Riesgo_Cope,
 		E.puntaje AS Puntaje_Epoc, UPPER(E.descripcion) AS Riesgo_Epoc,
 		Z.zarit_puntaje AS Puntaje_Zarit, UPPER(Z.zarit_analisis) AS Riesgo_Zarit,
 		ZU.zung_puntaje AS Puntaje_Zung, UPPER(ZU.zung_analisis) AS Riesgo_Zung,

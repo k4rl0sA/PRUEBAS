@@ -151,7 +151,7 @@ function cmp_rptindv(){
         </div>
         <div class="user-details">
             <div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-            <div><b>Ophi II:</b> '.$d[""].' '.$d[""].'</div>
+            <div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].' '.$d[""].'</div>
         </div>
     </div>
 </div>
@@ -186,7 +186,8 @@ return $rta;
 		E.puntaje AS Puntaje_Epoc, LOWER(E.descripcion) AS Riesgo_Epoc,
 		Z.zarit_puntaje AS Puntaje_Zarit, LOWER(Z.zarit_analisis) AS Riesgo_Zarit,
 		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.zung_analisis) AS Riesgo_Zung,
-		H.hamilton_total AS Puntaje_Hamilton, LOWER(H.hamilton_analisis) AS Riesgo_Hamilton
+		H.hamilton_total AS Puntaje_Hamilton, LOWER(H.hamilton_analisis) AS Riesgo_Hamilton,
+		OP.ophi_puntaje AS Puntaje_Ophi
 		FROM personas P 
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
@@ -198,6 +199,7 @@ return $rta;
 		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona
 		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona
 		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona
+		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.ophi_tipodoc AND P.idpersona = OP.ophi_idpersona
 		WHERE P.idpersona ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
@@ -236,27 +238,10 @@ function men_rptindv(){
 	return $rta;
   }
    
-	function opc_ophi_tipodoc($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	function opc_flocfter($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' AND valor='' ORDER BY 1",$id);
 	}
-	function opc_sexo($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_momento($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=116 and estado='A'  ORDER BY 1 ",$id);
-	}
-	function opc_departamento($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=105 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_salud_mental($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=104 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_estado_civil($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=47 and estado='A' ORDER BY 1",$id);
-	}
-	function opc_niv_educativo($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=52 and estado='A' ORDER BY 1",$id);
-	}
+	
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

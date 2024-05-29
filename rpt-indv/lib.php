@@ -182,7 +182,6 @@ return $rta;
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		 
 		$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCIONES,
 		FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
 		P.vivipersona AS Cod_Familia,

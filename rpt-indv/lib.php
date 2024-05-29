@@ -119,22 +119,22 @@ function cmp_rptindv(){
             <div class="btn-group">
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> '..'</div>
+                <div class="btn-value low-risk"></div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk">'..'<div>
+                <div class="btn-value normal-risk"><div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk">'..'<div>
+                <div class="btn-value medium-risk"><div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> '..'<div>
+                <div class="btn-value high-risk"> <div>
               </div>
             </div>
          </div>

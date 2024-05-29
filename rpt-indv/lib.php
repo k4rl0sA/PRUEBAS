@@ -192,6 +192,7 @@ return $rta;
 		FROM personas P 
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpersona = D.dc_documento
 		LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
 		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
 		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona

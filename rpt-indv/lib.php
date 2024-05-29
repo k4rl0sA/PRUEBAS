@@ -119,7 +119,7 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> '.$delgade.'</div>
+                <div class="btn-value low-risk"> '.$delgadez.'</div>
               </div>
 
               <div class="btn-contain">

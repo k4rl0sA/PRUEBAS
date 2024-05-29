@@ -28,27 +28,10 @@ function lis_rptindv(){
 	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
 	$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCIONES,
-	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
-	P.vivipersona AS Cod_Familia,
-	P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,
-	TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
-    CASE
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'PRIMERA INFANCIA'
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'INFANCIA'
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'ADOLESCENCIA'
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'JUVENTUD'
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'ADULTEZ'
-        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
-        ELSE 'Edad Desconocida'
-    END AS Rango_Edad,
-	A.puntaje AS Puntaje_Apgar, A.descripcion AS Riesgo_Apgar,
-	F.puntaje AS Puntaje_Findrisc, F.descripcion AS Riesgo_Findrisc,
-	O.puntaje AS Puntaje_Oms, O.descripcion AS Riesgo_Oms,
-	C.cope_puntajea AS Puntaje_Cope, C.cope_descripciona,
-	E.puntaje AS Puntaje_Epoc, E.descripcion AS Riesgo_Epoc,
-	Z.zarit_puntaje AS Puntaje_Zarit, Z.zarit_analisis AS Riesgo_Zarit,
-	ZU.zung_puntaje AS Puntaje_Zung, ZU.zung_analisis AS Riesgo_Zung,
-	H.hamilton_total AS Puntaje_Hamilton, H.hamilton_analisis AS Riesgo_Hamilton
+		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario,
+	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, 
+	CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono,
+	P.vivipersona AS Cod_Familia
 	FROM personas P 
 	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo

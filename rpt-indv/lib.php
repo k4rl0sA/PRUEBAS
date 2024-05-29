@@ -151,7 +151,7 @@ function cmp_rptindv(){
         </div>
         <div class="user-details">
             <div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-            <div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].' '.$d[""].'</div>
+            <div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].'</div>
         </div>
     </div>
 </div>

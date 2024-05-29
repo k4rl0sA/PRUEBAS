@@ -66,13 +66,7 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','imc'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'','imc'=>'30',
-	'ophi_actividad'=>'','ophi_evento'=>'','ophi_comportamiento'=>'','ophi_identidad1'=>'','ophi_identidad2'=>'','ophi_identidad3'=>'','ophi_identidad4'=>'',
-	 'ophi_identidad5'=>'','ophi_identidad6'=>'','ophi_identidad7'=>'', 'ophi_identidad8'=>'','ophi_identidad9'=>'','ophi_identidad10'=>'',
-	 'ophi_copetencia1'=>'','ophi_copetencia2'=>'','ophi_copetencia3'=>'','ophi_copetencia4'=>'','ophi_copetencia5'=>'','ophi_copetencia6'=>'',
-	  'ophi_copetencia7'=>'','ophi_copetencia8'=>'','ophi_copetencia9'=>'',	'ophi_ambiente1'=>'','ophi_ambiente2'=>'','ophi_ambiente3'=>'',
-	  'ophi_ambiente4'=>'','ophi_ambiente5'=>'','ophi_ambiente6'=>'','ophi_ambiente7'=>'','ophi_ambiente8'=>'','ophi_ambiente9'=>'','ophi_psicologico'=>'',
-	  'ophi_social'=>'','ophi_manejo'=>'']; 
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','IMC'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'']; 
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}

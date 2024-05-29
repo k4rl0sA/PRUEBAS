@@ -112,22 +112,22 @@ function cmp_rptindv(){
 
               <div class="btn-contain">
                 <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> 30</div>
+                <div class="btn-value low-risk"> '.$d["IMC"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk"> 20</div>
+                <div class="btn-value normal-risk"> '.$d["IMC"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk"> 20</div>
+                <div class="btn-value medium-risk"> '.$d["IMC"].'</div>
               </div>
 
               <div class="btn-contain">
                 <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk"> 20</div>
+                <div class="btn-value high-risk">  '.$d["IMC"].'</div>
               </div>
             </div>
          </div>
@@ -179,6 +179,7 @@ return $rta;
     	    WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
     	    ELSE 'Edad Desconocida'
     	END AS Rango_Edad,
+		D.imc AS IMC,
 		A.puntaje AS Puntaje_Apgar, LOWER(A.descripcion) AS Riesgo_Apgar,
 		F.puntaje AS Puntaje_Findrisc, LOWER(F.descripcion) AS Riesgo_Findrisc,
 		O.puntaje AS Puntaje_Oms, LOWER(O.descripcion) AS Riesgo_Oms,

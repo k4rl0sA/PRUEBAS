@@ -85,84 +85,108 @@ function cmp_rptindv(){
         $obesidad = $imc;
     }
 	$rta='
-	<div class="title-risk">Identificación</div>
-    <div class="user-info section medium-risk">
-        <div class="user-details">
-            <div class="user-name">'.$d['Usuario'].'</div>
-            <div><b>Documento:</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
-            <div><b>Sexo:</b> '.$d["Sexo"].'</div>
-            <div><b>Género:</b> '.$d["Genero"].'</div>
-            <div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
-        </div>
-        <div class="risk-info">
-            <div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].'</div>
-            <div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
-        </div>
+	<div class="container">
+    <h1>Prueba Tab Panel</h1>
+    <div class="tab-panel">
+      <ul class="tab-nav">
+        <li class="active" data-tab="1"><i class="fa-solid fa-book-medical"></i>Tab 1</li>
+        <li data-tab="2"><i class="fa-solid fa-hand-holding-medical"></i>Tab 2</li>
+        <li data-tab="3"><i class="fa-solid fa-viruses"></i>Tab 3</li>
+      </ul>
+      <div class="tab-content active" data-content="1">
+        <p>
+		
+		<div class="title-risk">Identificación</div>
+		<div class="user-info section medium-risk">
+			<div class="user-details">
+				<div class="user-name">'.$d['Usuario'].'</div>
+				<div><b>Documento:</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
+				<div><b>Sexo:</b> '.$d["Sexo"].'</div>
+				<div><b>Género:</b> '.$d["Genero"].'</div>
+				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
+			</div>
+			<div class="risk-info">
+				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].'</div>
+				<div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
+			</div>
+		</div>
+	
+		<div class="title-risk">Ubicación</div>
+		<div class="user-info section">
+			<div class="user-details">
+				<div><b>Localidad:</b> '.$d["Localidad"].'</div>
+				<div><b>Dirección:</b> '.$d["Direccion"].'</div>
+				<div><b>Teléfono:</b> '.$d["Telefono_Contacto"].'</div>
+			</div>
+		</div>
+	
+		 <div class="title-risk">Caracterización</div>
+		<div class="user-info section">
+			<div class="user-detail">
+				<div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
+				<div><br></div>
+	
+				<div class="btn-group">
+	
+				  <div class="btn-contain">
+					<span class="custom-btn low-risk">Delgadez</span>
+					<div class="btn-value low-risk"> '.$delgadez.'</div>
+				  </div>
+	
+				  <div class="btn-contain">
+					<span class="custom-btn normal-risk">Normal</span>
+					<div class="btn-value normal-risk"> '.$normal.'</div>
+				  </div>
+	
+				  <div class="btn-contain">
+					<span class="custom-btn medium-risk">Sobrepeso</span>
+					<div class="btn-value medium-risk"> '.$sobrepeso.'</div>
+				  </div>
+	
+				  <div class="btn-contain">
+					<span class="custom-btn high-risk">Obesidad</span>
+					<div class="btn-value high-risk">  '.$obesidad.'</div>
+				  </div>
+				</div>
+			 </div>
+			 <div class="user-details">
+				<div><b>SRQ:</b> 20</div>
+				<div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
+			 </div>
+			<div class="user-details">
+				<div><b>RQC:</b> 30</div>
+				<div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+			</div>
+			<div class="user-details">
+				<div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
+			</div>
+		</div>
+		<div class="title-risk">Atención Individual</div>
+		<div class="user-info section">
+			<div class="user-details">
+				<div><b>Zarith:</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
+				<div><b>Hamilton:</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
+			</div>
+			<div class="user-details">
+				<div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
+				<div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].'</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+		</p>
+      </div>
+      <div class="tab-content" data-content="2">
+        <p>Un buen hábito de salud es evitar el consumo excesivo de azúcares y grasas, ya que esto puede aumentar el
+          riesgo de enfermedades crónicas.</p>
+      </div>
+      <div class="tab-content" data-content="3">
+        <p>Un buen hábito de salud es dormir lo suficiente, entre 7 y 8 horas diarias. Esto ayuda a mejorar la
+          concentración, la memoria y el sistema inmunológico.</p>
+      </div>
     </div>
-
-    <div class="title-risk">Ubicación</div>
-    <div class="user-info section">
-        <div class="user-details">
-            <div><b>Localidad:</b> '.$d["Localidad"].'</div>
-            <div><b>Dirección:</b> '.$d["Direccion"].'</div>
-            <div><b>Teléfono:</b> '.$d["Telefono_Contacto"].'</div>
-        </div>
-    </div>
-
-     <div class="title-risk">Caracterización</div>
-    <div class="user-info section">
-        <div class="user-detail">
-            <div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
-            <div><br></div>
-
-            <div class="btn-group">
-
-              <div class="btn-contain">
-                <span class="custom-btn low-risk">Delgadez</span>
-                <div class="btn-value low-risk"> '.$delgadez.'</div>
-              </div>
-
-              <div class="btn-contain">
-                <span class="custom-btn normal-risk">Normal</span>
-                <div class="btn-value normal-risk"> '.$normal.'</div>
-              </div>
-
-              <div class="btn-contain">
-                <span class="custom-btn medium-risk">Sobrepeso</span>
-                <div class="btn-value medium-risk"> '.$sobrepeso.'</div>
-              </div>
-
-              <div class="btn-contain">
-                <span class="custom-btn high-risk">Obesidad</span>
-                <div class="btn-value high-risk">  '.$obesidad.'</div>
-              </div>
-            </div>
-         </div>
-         <div class="user-details">
-            <div><b>SRQ:</b> 20</div>
-            <div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
-         </div>
-        <div class="user-details">
-            <div><b>RQC:</b> 30</div>
-            <div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
-        </div>
-        <div class="user-details">
-            <div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
-        </div>
-    </div>
-    <div class="title-risk">Atención Individual</div>
-    <div class="user-info section">
-        <div class="user-details">
-            <div><b>Zarith:</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
-            <div><b>Hamilton:</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
-        </div>
-        <div class="user-details">
-            <div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-            <div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].'</div>
-        </div>
-    </div>
-</div>
-</div>';
+  </div>';
 return $rta;
    }
 

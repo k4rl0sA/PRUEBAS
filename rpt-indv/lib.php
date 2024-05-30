@@ -86,7 +86,6 @@ function cmp_rptindv(){
     }
 	$rta='
 	<div class="container">
-    <h1>Prueba Tab Panel</h1>
     <div class="tab-panel">
       <ul class="tab-nav">
         <li class="tabs activ" data-tab="1"><i class="fa-solid fa-book-medical"></i>Tab 1</li>

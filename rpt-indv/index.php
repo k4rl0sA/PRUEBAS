@@ -36,30 +36,10 @@ function addEventHandler(selector, eventType, handler, options = {}) {
     eventMap.get(selector).push({ handler, options });
 }
 
-// Funciones de ejemplo
-addEventHandler('button#myButton', 'click', function(event) {
-    console.log('Button clicked');
-}, { preventDefault: true });
-
-addEventHandler('button#myButton', 'mouseover', function(event) {
-    console.log('Mouse over button');
-});
-
-addEventHandler('div.title-risk', 'click', function(event) {
-    alert('Div clicked');
+//EVENTOS
+addEventHandler('ul.tab-nav', 'click', function(event) {
+  setupTabClickEvents();
 }, { stopPropagation: true });
-
-addEventHandler('input#myInput', 'input', function(event) {
-    console.log('Input changed');
-});
-
-addEventHandler('input#myInput', 'focus', function(event) {
-    console.log('Input focused');
-}, { preventDefault: true });
-
-addEventHandler('form#myForm', 'submit', function(event) {
-    console.log('Form submitted');
-}, { preventDefault: true });
 
 // Agregar un único listener para una lista ampliada de eventos de interés
 const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];

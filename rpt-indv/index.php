@@ -38,6 +38,7 @@ function addEventHandler(selector, eventType, handler, options = {}) {
 
 //EVENTOS
 addEventHandler('li.tab', 'click', function(event) {
+  alert('CLICKED');
   setupTabClickEvents();
 }, { stopPropagation: true });
 

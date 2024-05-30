@@ -37,7 +37,7 @@ function addEventHandler(selector, eventType, handler, options = {}) {
 }
 
 //EVENTOS
-addEventHandler('ul.tab-nav', 'click', function(event) {
+addEventHandler('ul.tab-nav li', 'click', function(event) {
   setupTabClickEvents();
 }, { stopPropagation: true });
 

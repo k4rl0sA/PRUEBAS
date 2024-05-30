@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
 		<link href="../libs/css/styleNav.css" rel="stylesheet" type="text/css">
 		<link href="../libs/css/s.css" rel="stylesheet">

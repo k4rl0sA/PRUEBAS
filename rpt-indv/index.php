@@ -18,9 +18,11 @@ var ruta_app='lib.php';
 
 function actualizar(){
 	act_lista(mod);
+  tabs();
 }
 
-    const tabLinks = document.querySelectorAll('.tab-nav li');
+function tabs(){
+  const tabLinks = document.querySelectorAll('.tab-nav li');
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabLinks.forEach(link => {
@@ -31,11 +33,12 @@ function actualizar(){
         tabLinks.forEach(tab => tab.classList.remove('activ'));
         tabContents.forEach(content => content.classList.remove('activ'));
 
-        // Add active class to the clicked tab and corresponding content
+        // Add activ class to the clicked tab and corresponding content
         link.classList.add('activ');
         document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
       });
     });
+}
 
 </script>
 <style>

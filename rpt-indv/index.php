@@ -279,7 +279,7 @@ body {
       border-bottom: 1px solid #ddd;
     }
 
-    .tab-nav li .tab{
+    .tab-nav li{
       padding: 15px 20px;
       cursor: pointer;
       background-color: #f4f4f4;
@@ -315,7 +315,7 @@ body {
         flex-direction: column;
       }
 
-      .tab-nav li.tab {
+      .tab-nav li {
         padding: 10px 15px;
         font-size: 14px;
         text-align: center;

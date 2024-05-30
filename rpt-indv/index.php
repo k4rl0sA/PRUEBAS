@@ -39,7 +39,7 @@ function addEventHandler(selector, eventType, handler, options = {}) {
 
 //PESTAÑAS
 addEventHandler('li.tab', 'click', function(event) {
-  Exec=false;
+  Exec=true;
   setupTabClickEvents();
 }, { stopPropagation: true });
 

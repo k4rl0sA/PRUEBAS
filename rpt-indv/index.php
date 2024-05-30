@@ -20,6 +20,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
+let Exec = false;
 
 // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
 const eventHandlers = new Map();
@@ -72,7 +73,8 @@ function handleEvent(event, eventType) {
 
 
   function setupTabClickEvents() {
-    const tabLinks = document.querySelectorAll('.tab-nav li');
+    if(Exec){
+      const tabLinks = document.querySelectorAll('.tab-nav li');
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabLinks.forEach(link => {
@@ -88,6 +90,8 @@ function handleEvent(event, eventType) {
         document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
       });
     });
+      Exec=false;
+    }
   }
 
 </script>

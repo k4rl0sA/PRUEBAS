@@ -303,7 +303,7 @@ body {
     }
 
     .tab-content {
-      padding: 20px;
+      /* padding: 20px; */
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease;

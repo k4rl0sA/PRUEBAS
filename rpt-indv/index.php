@@ -46,7 +46,7 @@ addEventHandler('button#myButton', 'mouseover', function(event) {
 });
 
 addEventHandler('div.title-risk', 'click', function(event) {
-    console.log('Div clicked');
+    alert('Div clicked');
 }, { stopPropagation: true });
 
 addEventHandler('input#myInput', 'input', function(event) {

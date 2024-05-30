@@ -36,9 +36,9 @@ function addEventHandler(selector, eventType, handler, options = {}) {
     eventMap.get(selector).push({ handler, options });
 }
 
-//EVENTOS
+//PESTAÑAS
 addEventHandler('li.tab', 'click', function(event) {
-  alert('CLICKED');
+  // alert('CLICKED');
   setupTabClickEvents();
 }, { stopPropagation: true });
 

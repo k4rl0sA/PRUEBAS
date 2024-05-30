@@ -89,11 +89,11 @@ function cmp_rptindv(){
     <h1>Prueba Tab Panel</h1>
     <div class="tab-panel">
       <ul class="tab-nav">
-        <li class="active" data-tab="1"><i class="fa-solid fa-book-medical"></i>Tab 1</li>
+        <li class="activ" data-tab="1"><i class="fa-solid fa-book-medical"></i>Tab 1</li>
         <li data-tab="2"><i class="fa-solid fa-hand-holding-medical"></i>Tab 2</li>
         <li data-tab="3"><i class="fa-solid fa-viruses"></i>Tab 3</li>
       </ul>
-      <div class="tab-content active" data-content="1">
+      <div class="tab-content activ" data-content="1">
         <p>
 		
 		<div class="title-risk">Identificación</div>

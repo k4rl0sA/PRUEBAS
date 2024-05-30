@@ -222,7 +222,7 @@ body {
       gap: 10px;
     }
 
-    .tab-nav li.active {
+    .tab-nav li.activ {
       background-color: #fff;
       color: #007bff;
       border-bottom: 3px solid #007bff;
@@ -235,7 +235,7 @@ body {
       transition: opacity 0.3s ease;
     }
 
-    .tab-content.active {
+    .tab-content.activ {
       display: block;
       opacity: 1;
     }

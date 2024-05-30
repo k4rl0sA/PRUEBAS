@@ -6,7 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>REPORTE INDIVIDUAL || SIGINF</title>
-<link href="../libs/css/stylePop.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
 <script src="../libs/js/d.js"></script>

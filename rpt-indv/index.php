@@ -20,6 +20,23 @@ function actualizar(){
 	act_lista(mod);
 }
 
+    const tabLinks = document.querySelectorAll('.tab-nav li');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const tabIndex = link.getAttribute('data-tab');
+
+        // Remove active class from all tabs and contents
+        tabLinks.forEach(tab => tab.classList.remove('activ'));
+        tabContents.forEach(content => content.classList.remove('activ'));
+
+        // Add active class to the clicked tab and corresponding content
+        link.classList.add('activ');
+        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
+      });
+    });
+
 </script>
 <style>
 :root {
@@ -310,23 +327,4 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>			
 </div>
-
-<script>
-    const tabLinks = document.querySelectorAll('.tab-nav li');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const tabIndex = link.getAttribute('data-tab');
-
-        // Remove active class from all tabs and contents
-        tabLinks.forEach(tab => tab.classList.remove('activ'));
-        tabContents.forEach(content => content.classList.remove('activ'));
-
-        // Add active class to the clicked tab and corresponding content
-        link.classList.add('activ');
-        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
-      });
-    });
-  </script>
 </body>

@@ -173,6 +173,89 @@ function actualizar(){
 }
 
 
+/* Tab Panel Styling */
+
+body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+.tab-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-nav {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab-nav li {
+      padding: 15px 20px;
+      cursor: pointer;
+      background-color: #f4f4f4;
+      color: #333;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tab-nav li.active {
+      background-color: #fff;
+      color: #007bff;
+      border-bottom: 3px solid #007bff;
+    }
+
+    .tab-content {
+      padding: 20px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+    }
+
+@media (max-width: 600px) {
+      .tab-nav {
+        flex-direction: column;
+      }
+
+      .tab-nav li {
+        padding: 10px 15px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .tab-content {
+        padding: 15px;
+      }
+    }
+
 </style>
 </head>
 <body Onload="actualizar();">

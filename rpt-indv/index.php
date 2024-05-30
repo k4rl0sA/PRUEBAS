@@ -80,12 +80,12 @@ function handleEvent(event, eventType) {
         const tabIndex = link.getAttribute('data-tab');
 
         // Remove active class from all tabs and contents
-        tabLinks.forEach(tab => tab.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
+        tabLinks.forEach(tab => tab.classList.remove('activ'));
+        tabContents.forEach(content => content.classList.remove('activ'));
 
         // Add active class to the clicked tab and corresponding content
         link.classList.add('active');
-        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('active');
+        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
       });
     });
   }

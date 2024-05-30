@@ -20,9 +20,75 @@ function actualizar(){
 	act_lista(mod);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    setupTabClickEvents();
-  });
+
+// Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
+const eventHandlers = new Map();
+
+// Añadir manejadores para diferentes elementos y eventos
+function addEventHandler(selector, eventType, handler, options = {}) {
+    if (!eventHandlers.has(eventType)) {
+        eventHandlers.set(eventType, new Map());
+    }
+    const eventMap = eventHandlers.get(eventType);
+    if (!eventMap.has(selector)) {
+        eventMap.set(selector, []);
+    }
+    eventMap.get(selector).push({ handler, options });
+}
+
+// Funciones de ejemplo
+addEventHandler('button#myButton', 'click', function(event) {
+    console.log('Button clicked');
+}, { preventDefault: true });
+
+addEventHandler('button#myButton', 'mouseover', function(event) {
+    console.log('Mouse over button');
+});
+
+addEventHandler('div.title-risk', 'click', function(event) {
+    console.log('Div clicked');
+}, { stopPropagation: true });
+
+addEventHandler('input#myInput', 'input', function(event) {
+    console.log('Input changed');
+});
+
+addEventHandler('input#myInput', 'focus', function(event) {
+    console.log('Input focused');
+}, { preventDefault: true });
+
+addEventHandler('form#myForm', 'submit', function(event) {
+    console.log('Form submitted');
+}, { preventDefault: true });
+
+// Agregar un único listener para una lista ampliada de eventos de interés
+const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
+
+eventTypes.forEach(eventType => {
+    document.addEventListener(eventType, function(event) {
+        handleEvent(event, eventType);
+    });
+});
+
+// Función para manejar el evento
+function handleEvent(event, eventType) {
+    const target = event.target;
+    if (eventHandlers.has(eventType)) {
+        const eventMap = eventHandlers.get(eventType);
+        for (let [selector, handlers] of eventMap.entries()) {
+            if (target.matches(selector)) {
+                handlers.forEach(({ handler, options }) => {
+                    if (options.preventDefault) event.preventDefault();
+                    if (options.stopPropagation) event.stopPropagation();
+                    handler.call(target, event);
+                });
+            }
+        }
+    }
+}
+
+
+
 
   function setupTabClickEvents() {
     const tabLinks = document.querySelectorAll('.tab-nav li');

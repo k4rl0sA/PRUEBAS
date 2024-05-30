@@ -18,11 +18,14 @@ var ruta_app='lib.php';
 
 function actualizar(){
 	act_lista(mod);
-  tabs();
 }
 
-function tabs(){
-  const tabLinks = document.querySelectorAll('.tab-nav li');
+document.addEventListener('DOMContentLoaded', () => {
+    setupTabClickEvents();
+  });
+
+  function setupTabClickEvents() {
+    const tabLinks = document.querySelectorAll('.tab-nav li');
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabLinks.forEach(link => {
@@ -30,15 +33,15 @@ function tabs(){
         const tabIndex = link.getAttribute('data-tab');
 
         // Remove active class from all tabs and contents
-        tabLinks.forEach(tab => tab.classList.remove('activ'));
-        tabContents.forEach(content => content.classList.remove('activ'));
+        tabLinks.forEach(tab => tab.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
 
-        // Add activ class to the clicked tab and corresponding content
-        link.classList.add('activ');
-        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
+        // Add active class to the clicked tab and corresponding content
+        link.classList.add('active');
+        document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('active');
       });
     });
-}
+  }
 
 </script>
 <style>

@@ -84,7 +84,7 @@ function handleEvent(event, eventType) {
         tabContents.forEach(content => content.classList.remove('activ'));
 
         // Add active class to the clicked tab and corresponding content
-        link.classList.add('active');
+        link.classList.add('activ');
         document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
       });
     });

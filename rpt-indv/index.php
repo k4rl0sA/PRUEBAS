@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/popup.js"></script>
 
 <script>
-var mod='rptindv';	
+/* var mod='rptindv';	
 var ruta_app='lib.php';
 
 function actualizar(){
@@ -33,7 +33,7 @@ addEventHandler('li.tabs', 'click', function(event) {
 const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
 
 
-/* // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
+ // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
 const eventHandlers = new Map();
 
 // Añadir manejadores para diferentes elementos y eventos
@@ -70,9 +70,9 @@ function handleEvent(event, eventType) {
         }
     }
 }
- */
+ 
 
- const eventHandlers=new Map;function addEventHandler(e,n,t,a={}){eventHandlers.has(n)||eventHandlers.set(n,new Map);const s=eventHandlers.get(n);s.has(e)||s.set(e,[]),s.get(e).push({handler:t,options:a})}function handleEvent(e,n){const t=e.target;if(eventHandlers.has(n)){const a=eventHandlers.get(n);for(let[n,s]of a.entries())t.matches(n)&&s.forEach((({handler:n,options:a})=>{a.preventDefault&&e.preventDefault(),a.stopPropagation&&e.stopPropagation(),n.call(t,e)}))}}eventTypes.forEach((e=>{document.addEventListener(e,(function(n){handleEvent(n,e)}))}));
+ 
 
   function setupTabClickEvents() {
     if(Exec){
@@ -96,7 +96,9 @@ function handleEvent(event, eventType) {
     }
   }
 
-</script>
+ */
+var mod="rptindv",ruta_app="lib.php";function actualizar(){act_lista(mod)}let Exec=!1;addEventHandler("li.tabs","click",(function(e){Exec=!0,setupTabClickEvents()}),{stopPropagation:!0});const eventTypes=["click","mouseover","input","focus","blur","change","keydown","keyup","submit"],eventHandlers=new Map;function addEventHandler(e,t,n,a={}){eventHandlers.has(t)||eventHandlers.set(t,new Map);const c=eventHandlers.get(t);c.has(e)||c.set(e,[]),c.get(e).push({handler:n,options:a})}function handleEvent(e,t){const n=e.target;if(eventHandlers.has(t)){const a=eventHandlers.get(t);for(let[t,c]of a.entries())n.matches(t)&&c.forEach((({handler:t,options:a})=>{a.preventDefault&&e.preventDefault(),a.stopPropagation&&e.stopPropagation(),t.call(n,e)}))}}function setupTabClickEvents(){if(Exec){const e=document.querySelectorAll(".tab-nav li"),t=document.querySelectorAll(".tab-content");e.forEach((n=>{n.addEventListener("click",(()=>{const a=n.getAttribute("data-tab");e.forEach((e=>e.classList.remove("activ"))),t.forEach((e=>e.classList.remove("activ"))),n.classList.add("activ"),document.querySelector(`.tab-content[data-content="${a}"]`).classList.add("activ")}))})),Exec=!1}}eventTypes.forEach((e=>{document.addEventListener(e,(function(t){handleEvent(t,e)}))}));
+ </script>
 <style>
 :root {
   --high-risk-color: red;

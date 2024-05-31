@@ -155,7 +155,7 @@ function get_persona(){
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-  		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR ))% 30 AS dia
+  		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) - TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) * 30.436875) AS dia
 		from personas P left join hog_viv V ON idviv=vivipersona 
 		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 		// echo $sql;

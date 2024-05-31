@@ -68,7 +68,7 @@ function men_medidas(){
 	$o='infbas';
 	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
 	$ocu= ($p['ano']>5) ? true : false ;
-	$meses = $d['año'] * 12 + $d['mes'];
+	$meses = $p['ano'] * 12 + $p['mes'];
 	// $esc=($p['ano']>=5 && $p['ano']<18 ) ? true : false ;
 	$ed=$p['ano'];
 	switch (true) {

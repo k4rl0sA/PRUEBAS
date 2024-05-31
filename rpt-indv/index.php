@@ -22,7 +22,18 @@ function actualizar(){
 
 let Exec = false;
 
-// Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
+
+//PESTAÑAS
+addEventHandler('li.tabs', 'click', function(event) {
+  Exec=true;
+  setupTabClickEvents();
+}, { stopPropagation: true });
+
+// Agregar un único listener para una lista ampliada de eventos de interés
+const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
+
+
+/* // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
 const eventHandlers = new Map();
 
 // Añadir manejadores para diferentes elementos y eventos
@@ -36,15 +47,6 @@ function addEventHandler(selector, eventType, handler, options = {}) {
     }
     eventMap.get(selector).push({ handler, options });
 }
-
-//PESTAÑAS
-addEventHandler('li.tabs', 'click', function(event) {
-  Exec=true;
-  setupTabClickEvents();
-}, { stopPropagation: true });
-
-// Agregar un único listener para una lista ampliada de eventos de interés
-const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
 
 eventTypes.forEach(eventType => {
     document.addEventListener(eventType, function(event) {
@@ -68,9 +70,9 @@ function handleEvent(event, eventType) {
         }
     }
 }
+ */
 
-
-
+ const eventHandlers=new Map;function addEventHandler(e,n,t,a={}){eventHandlers.has(n)||eventHandlers.set(n,new Map);const s=eventHandlers.get(n);s.has(e)||s.set(e,[]),s.get(e).push({handler:t,options:a})}function handleEvent(e,n){const t=e.target;if(eventHandlers.has(n)){const a=eventHandlers.get(n);for(let[n,s]of a.entries())t.matches(n)&&s.forEach((({handler:n,options:a})=>{a.preventDefault&&e.preventDefault(),a.stopPropagation&&e.stopPropagation(),n.call(t,e)}))}}eventTypes.forEach((e=>{document.addEventListener(e,(function(n){handleEvent(n,e)}))}));
 
   function setupTabClickEvents() {
     if(Exec){

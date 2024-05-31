@@ -33,7 +33,7 @@ addEventHandler('li.tabs', 'click', function(event) {
 const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
 
 
- // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
+// Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
 const eventHandlers = new Map();
 
 // Añadir manejadores para diferentes elementos y eventos
@@ -70,9 +70,9 @@ function handleEvent(event, eventType) {
         }
     }
 }
- 
 
- 
+
+
 
   function setupTabClickEvents() {
     if(Exec){
@@ -95,7 +95,8 @@ function handleEvent(event, eventType) {
       Exec=false;
     }
   }
- </script>
+
+</script>
 <style>
 :root {
   --high-risk-color: red;

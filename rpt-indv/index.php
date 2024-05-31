@@ -21,21 +21,8 @@ function actualizar(){
 }
 
 let Exec = false;
-
-
-//PESTAÑAS
-addEventHandler('li.tabs', 'click', function(event) {
-  Exec=true;
-  setupTabClickEvents();
-}, { stopPropagation: true });
-
-// Agregar un único listener para una lista ampliada de eventos de interés
-const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
-
-
 // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
 const eventHandlers = new Map();
-
 // Añadir manejadores para diferentes elementos y eventos
 function addEventHandler(selector, eventType, handler, options = {}) {
     if (!eventHandlers.has(eventType)) {
@@ -47,13 +34,18 @@ function addEventHandler(selector, eventType, handler, options = {}) {
     }
     eventMap.get(selector).push({ handler, options });
 }
-
+//PESTAÑAS
+addEventHandler('li.tabs', 'click', function(event) {
+  Exec=true;
+  setupTabClickEvents();
+}, { stopPropagation: true });
+// Agregar un único listener para una lista ampliada de eventos de interés
+const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
 eventTypes.forEach(eventType => {
     document.addEventListener(eventType, function(event) {
         handleEvent(event, eventType);
     });
 });
-
 // Función para manejar el evento
 function handleEvent(event, eventType) {
     const target = event.target;
@@ -70,23 +62,16 @@ function handleEvent(event, eventType) {
         }
     }
 }
-
-
-
-
   function setupTabClickEvents() {
     if(Exec){
       const tabLinks = document.querySelectorAll('.tab-nav li');
     const tabContents = document.querySelectorAll('.tab-content');
-
     tabLinks.forEach(link => {
       link.addEventListener('click', () => {
         const tabIndex = link.getAttribute('data-tab');
-
         // Remove active class from all tabs and contents
         tabLinks.forEach(tab => tab.classList.remove('activ'));
         tabContents.forEach(content => content.classList.remove('activ'));
-
         // Add active class to the clicked tab and corresponding content
         link.classList.add('activ');
         document.querySelector(`.tab-content[data-content="${tabIndex}"]`).classList.add('activ');
@@ -95,7 +80,6 @@ function handleEvent(event, eventType) {
       Exec=false;
     }
   }
-
 </script>
 <style>
 :root {

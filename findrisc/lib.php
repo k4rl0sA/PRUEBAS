@@ -109,7 +109,7 @@ function cmp_tamfindrisc(){
 		// print_r($_POST);
 		$sql="SELECT `id_findrisc`,O.`idpersona`,O.`tipodoc`,diabetes,
 		peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
-        O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,sexo,P.fecha_nacimiento fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
+        O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,sexo,P.fecha_nacimiento fechanacimiento, TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) edad
 		FROM `hog_tam_findrisc` O
 		LEFT JOIN personas P ON O.idpersona = P.idpersona and O.tipodoc=P.tipo_doc
 		WHERE O.idpersona ='{$id[0]}' AND O.tipodoc='{$id[1]}'";
@@ -123,7 +123,7 @@ function cmp_tamfindrisc(){
 function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) edad
+	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
 from personas
 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
 	

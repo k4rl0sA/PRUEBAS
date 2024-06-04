@@ -621,8 +621,8 @@ function get_Moment1(){
 	$id=divide($_POST['id']);
 		$sql="SELECT zung_analisis zung1,hamilton_analisis ham1,whodas_analisis who1
 		FROM hog_tam_zung Z 
-		INNER JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
-		INNER JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
+		LEFT JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
+		LEFT JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
 				WHERE zung_tipodoc ='".$id[0]."' AND zung_idpersona='".$id[1]."' AND Z.zung_momento=1 AND H.hamilton_momento=1 AND W.whodas_momento=1";
 
 	  $datos=datos_mysql($sql);
@@ -637,8 +637,8 @@ function get_Moment2(){
 	$id=divide($_POST['id']);
 		$sql="SELECT zung_analisis zung2,hamilton_analisis ham2,whodas_analisis who2
 		FROM hog_tam_zung Z 
-		INNER JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
-		INNER JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
+		LEFT JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
+		LEFT JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
 				WHERE zung_tipodoc ='".$id[0]."' AND zung_idpersona='".$id[1]."' AND Z.zung_momento=2 AND H.hamilton_momento=2 AND W.whodas_momento=2";
 
 	  $datos=datos_mysql($sql);

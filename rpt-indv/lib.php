@@ -145,18 +145,19 @@ function cmp_rptindv(){
 					</div>
 				</div>
 			</div>
-			 <div class="user-details">
-				<div><b>SRQ:</b> 20</div>
-				<div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
-			 </div>
-			<div class="user-details">
-				<div><b>RQC:</b> 30</div>
-				<div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+			<div class="user-info section">
+				<div class="user-details">
+					<div><b>SRQ:</b> 20</div>
+					<div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
+			 	</div>
+				<div class="user-details">
+					<div><b>RQC:</b> 30</div>
+					<div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+				</div>
+				<div class="user-details">
+					<div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
+				</div>
 			</div>
-			<div class="user-details">
-				<div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
-			</div>
-		</div>
 		<div class="title-risk">Atención Individual</div>
 		<div class="user-info section">
 			<div class="user-details">

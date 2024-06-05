@@ -169,7 +169,7 @@ function cmp_rptindv(){
 			<div class="user-info section">
 				<div class="user-details">
 					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)"><b>SRQ :</b> 20</div>
-					<div><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
+					<div title="(Finnish Diabetes Risk Score)"><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
 					<div title="Reporting Questionnaire for Children. Para identificar problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)"><b>RQC :</b> 30</div>

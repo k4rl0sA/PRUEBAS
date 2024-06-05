@@ -287,7 +287,7 @@ body {
       background-color: #fff;
       color: #007bff;
       border-bottom: 3px solid #007bff;
-      font-size: x-large;
+      font-size: large;
     }
 
     .tab-content {

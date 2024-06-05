@@ -176,7 +176,7 @@ function cmp_rptindv(){
 					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">
-					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
+					<div title="Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
 				</div>
 			</div>
 		<div class="user-info section">

@@ -119,35 +119,32 @@ function cmp_rptindv(){
 			</div>
 		</div>
 	
-		 <div class="title-risk">Caracterización</div>
-		<div class="user-info section">
-			<div class="user-detail">
-				<div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
-				<div><br></div>
+		<div class="title-risk">Caracterización</div>
+			<div class="user-info section">
+				<div class="user-detail">
+					<div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
+					<div><br></div>
 	
-				<div class="btn-group">
-	
-				  <div class="btn-contain">
-					<span class="custom-btn low-risk">Delgadez</span>
-					<div class="btn-value low-risk"> '.$delgadez.'</div>
-				  </div>
-	
-				  <div class="btn-contain">
-					<span class="custom-btn normal-risk">Normal</span>
-					<div class="btn-value normal-risk"> '.$normal.'</div>
-				  </div>
-	
-				  <div class="btn-contain">
-					<span class="custom-btn medium-risk">Sobrepeso</span>
-					<div class="btn-value medium-risk"> '.$sobrepeso.'</div>
-				  </div>
-	
-				  <div class="btn-contain">
-					<span class="custom-btn high-risk">Obesidad</span>
-					<div class="btn-value high-risk">  '.$obesidad.'</div>
-				  </div>
+					<div class="btn-group">
+						<div class="btn-contain">
+							<span class="custom-btn low-risk">Delgadez</span>
+							<div class="btn-value low-risk"> '.$delgadez.'</div>
+				  		</div>
+						<div class="btn-contain">
+							<span class="custom-btn normal-risk">Normal</span>
+							<div class="btn-value normal-risk"> '.$normal.'</div>
+				  		</div>
+				  		<div class="btn-contain">
+							<span class="custom-btn medium-risk">Sobrepeso</span>
+							<div class="btn-value medium-risk"> '.$sobrepeso.'</div>
+				  		</div>
+				  		<div class="btn-contain">
+							<span class="custom-btn high-risk">Obesidad</span>
+							<div class="btn-value high-risk">  '.$obesidad.'</div>
+				  		</div>
+					</div>
 				</div>
-			 </div>
+			</div>
 			 <div class="user-details">
 				<div><b>SRQ:</b> 20</div>
 				<div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>

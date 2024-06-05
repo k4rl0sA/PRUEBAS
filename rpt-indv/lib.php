@@ -73,23 +73,28 @@ function cmp_rptindv(){
 	var_dump($d);
 
 	
-	$oms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
-
-	$total=$oms;
-	var_dump($total);
 	// Riesgo Baja-Riesgo Moderada-Riesgo Alto-Riesgo Muy Alto-Riesgo Extremadamente Alto
 
 	$imc = $d['IMC'];
     $delgadez = $normal = $sobrepeso = $obesidad = '';
     if ($imc < 18.5) {
         $delgadez = $imc;
+		$Rimc=0;
     } elseif ($imc >= 18.5 && $imc < 24.9) {
         $normal = $imc;
+		$Rimc=0;
     } elseif ($imc >= 25 && $imc < 29.9) {
         $sobrepeso = $imc;
+		$Rimc=0;
     } elseif ($imc >= 30) {
         $obesidad = $imc;
+		$Rimc=1;
     }
+	
+	$oms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
+	$total=$Roms+$Rimc+;
+	var_dump($total);
+
 	$rta='
 	<div class="container">
     <div class="tab-panel">
@@ -287,7 +292,7 @@ function men_rptindv(){
 	   // var_dump($rta);
 		   if ($a=='rptindv' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptindv','pro',event,'','lib.php',7,'rptindv');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Reporte De Riesgos' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptindv','pro',event,'','lib.php',7,'rptindv');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }

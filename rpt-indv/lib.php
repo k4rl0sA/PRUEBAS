@@ -71,6 +71,14 @@ function cmp_rptindv(){
 	//  $d="";
 	 if ($d=="") {$d=$t;}
 	var_dump($d);
+
+	
+	$oms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
+
+	$total=$oms;
+	var_dump($total);
+	// Riesgo Baja-Riesgo Moderada-Riesgo Alto-Riesgo Muy Alto-Riesgo Extremadamente Alto
+
 	$imc = $d['IMC'];
     $delgadez = $normal = $sobrepeso = $obesidad = '';
     if ($imc < 18.5) {
@@ -236,7 +244,7 @@ return $rta;
 	} 
 
 
-function get_person(){
+/* function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
 $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad,estado_civil
@@ -249,7 +257,7 @@ left JOIN personas_datocomp ON idpersona=dc_documento and tipo_doc=dc_tipo_doc
 		return json_encode (new stdClass);
 	}
 return json_encode($info['responseResult'][0]);
-}
+} */
 
 function focus_rptindv(){
 	return 'rptindv';

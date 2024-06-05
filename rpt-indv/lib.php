@@ -99,9 +99,9 @@ function cmp_rptindv(){
 	<div class="container">
     <div class="tab-panel">
       <ul class="tab-nav">
-        <li class="tabs activ" data-tab="1"><i class="fa-solid fa-book-medical"></i>Tab 1</li>
-        <li class="tabs " data-tab="2"><i class="fa-solid fa-hand-holding-medical"></i>Tab 2</li>
-        <li class="tabs " data-tab="3"><i class="fa-solid fa-viruses"></i>Tab 3</li>
+        <li class="tabs activ" data-tab="1"><i class="fa-solid fa-book-medical"></i>Individual</li>
+        <li class="tabs " data-tab="2"><i class="fa-solid fa-hand-holding-medical"></i>Familiar</li>
+        <li class="tabs " data-tab="3"><i class="fa-solid fa-viruses"></i>Historico</li>
       </ul>
       <div class="tab-content activ" data-content="1">
         <p>

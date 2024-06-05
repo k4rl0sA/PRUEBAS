@@ -145,6 +145,7 @@ function cmp_rptindv(){
 					</div>
 				</div>
 			</div>
+			<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-details">
 					<div><b>SRQ:</b> 20</div>
@@ -158,7 +159,6 @@ function cmp_rptindv(){
 					<div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
 				</div>
 			</div>
-		<div class="title-risk">Atención Individual</div>
 		<div class="user-info section">
 			<div class="user-details">
 				<div><b>Zarith:</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>

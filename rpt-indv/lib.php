@@ -70,9 +70,7 @@ function cmp_rptindv(){
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
-	// var_dump($d);
-
-
+	var_dump($d);
 	$imc = $d['IMC'];
     $delgadez = $normal = $sobrepeso = $obesidad = '';
     if ($imc < 18.5) {

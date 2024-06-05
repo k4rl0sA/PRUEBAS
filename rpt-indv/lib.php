@@ -66,7 +66,7 @@ function whe_rptindv() {
 function cmp_rptindv(){
 
 	$t=['Usuario'=>'','Tipo_Documento'=>'','N°_Documento'=>'','Sexo'=>'','Genero'=>'','Nacionalidad'=>'','Curso_de_Vida'=>'','Localidad'=>'',
-	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','IMC'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'']; 
+	'Direccion'=>'','Telefono_Contacto'=>'','Rango_Edad'=>'','IMC'=>'','Puntaje_Oms'=>'','Puntaje_Findrisc'=>'','Fecha_Nacimiento'=>'','Edad'=>'']; 
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
@@ -115,9 +115,13 @@ function cmp_rptindv(){
 				<div><b>Sexo:</b> '.$d["Sexo"].'</div>
 				<div><b>Género:</b> '.$d["Genero"].'</div>
 				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
+				<div><b>Fecha de Nacimiento:</b> '.$d["Fecha_Nacimiento"].'</div>
+				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
+				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
+				
 			</div>
 			<div class="risk-info">
-				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].'</div>
+				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].' ('.$d["Edad"].') </div>
 				<div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
 			</div>
 		</div>

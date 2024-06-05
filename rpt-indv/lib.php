@@ -92,7 +92,7 @@ function cmp_rptindv(){
     }
 	
 	$oms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
-	$total=$Roms+$Rimc+;
+	$total=$Roms+$Rimc;
 	var_dump($total);
 
 	$rta='

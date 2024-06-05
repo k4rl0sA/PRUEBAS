@@ -85,7 +85,7 @@ function cmp_rptindv(){
 		$Rimc=0;
     } elseif ($imc >= 25 && $imc < 29.9) {
         $sobrepeso = $imc;
-		$Rimc=0;
+		$Rimc=1;
     } elseif ($imc >= 30) {
         $obesidad = $imc;
 		$Rimc=1;

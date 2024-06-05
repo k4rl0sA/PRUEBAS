@@ -116,9 +116,6 @@ function cmp_rptindv(){
 				<div><b>Género:</b> '.$d["Genero"].'</div>
 				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
 				<div><b>Fecha de Nacimiento:</b> '.$d["Fecha_Nacimiento"].'</div>
-				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
-				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
-				
 			</div>
 			<div class="risk-info">
 				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].' ('.$d["Edad"].') </div>
@@ -215,11 +212,11 @@ return $rta;
 		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,
 		P.fecha_nacimiento AS Fecha_Nacimiento,
     	CONCAT(
-        	TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()), ' años, ', 
-        	TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12, ' meses, y ', 
+        	TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()), ' Años, ', 
+        	TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12, ' Meses y ', 
         	DATEDIFF(CURDATE(), DATE_ADD(DATE_ADD(P.fecha_nacimiento, 
             INTERVAL TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) YEAR), 
-            INTERVAL TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12 MONTH)), ' días'
+            INTERVAL TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12 MONTH)), ' Días'
     	) AS Edad,
 		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
     	CASE

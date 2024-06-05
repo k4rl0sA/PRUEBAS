@@ -94,8 +94,8 @@ function cmp_rptindv(){
 	$Roms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 1 : 0 ;
 	$Rfindr = strpos($d["Riesgo_Findrisc"],'alto') ? 1 : 0 ;
-	$Rfindr = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
-	$Rfindr = strpos($d["Riesgo_Zarit"],'alto') ? 1 : 0 ;
+	$Rcope = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
+	$R = strpos($d["Riesgo_Zarit"],'alto') ? 1 : 0 ;
 	$Rfindr = strpos($d["Riesgo_Zung"],'alto') ? 1 : 0 ;
 	$Rfindr = strpos($d["Riesgo_Hamilton"],'alto') ? 1 : 0 ;
 	$total=$Roms+$Rimc+$Repoc+$Rfindr;
@@ -168,25 +168,25 @@ function cmp_rptindv(){
 			<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-details">
-					<div><b>SRQ :</b> 20</div>
+					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>SRQ :</b> 20</div>
 					<div><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
-					<div><b>RQC:</b> 30</div>
-					<div><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>RQC :</b> 30</div>
+					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">
-					<div><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
+					<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
 				</div>
 			</div>
 		<div class="user-info section">
 			<div class="user-details">
-				<div><b>Zarith :</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
-				<div><b>Hamilton :</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
+				<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>Zarith :</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
+				<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>Hamilton :</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
 			</div>
 			<div class="user-details">
-				<div><b>Zung :</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-				<div><b>Ophi II :</b> '.$d["Puntaje_Ophi"].'</div>
+				<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>Zung :</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
+				<div title="Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental"><b>Ophi II :</b> '.$d["Puntaje_Ophi"].'</div>
 			</div>
 		</div>
 	</div>

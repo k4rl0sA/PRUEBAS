@@ -111,11 +111,12 @@ function cmp_rptindv(){
 		<div class="user-info section medium-risk">
 			<div class="user-details">
 				<div class="user-name">'.$d['Usuario'].'</div>
-				<div><b>Documento:</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
-				<div><b>Sexo:</b> '.$d["Sexo"].'</div>
-				<div><b>Género:</b> '.$d["Genero"].'</div>
-				<div><b>Nacionalidad:</b> '.$d["Nacionalidad"].'</div>
-				<div><b>Fecha de Nacimiento:</b> '.$d["Fecha_Nacimiento"].'</div>
+				<div><b>Documento :</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
+				<div><b>Sexo :</b> '.$d["Sexo"].'</div>
+				<div><b>Género :</b> '.$d["Genero"].'</div>
+				<div><b>Nacionalidad :</b> '.$d["Nacionalidad"].'</div>
+				<div><b>Fecha de Nacimiento :</b> '.$d["Fecha_Nacimiento"].'</div>
+				<div><b>Edad :</b> '.$d["Edad"].'</div>
 			</div>
 			<div class="risk-info">
 				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].' ('.$d["Edad"].') </div>
@@ -126,9 +127,10 @@ function cmp_rptindv(){
 		<div class="title-risk">Ubicación</div>
 		<div class="user-info section">
 			<div class="user-details">
-				<div><b>Localidad:</b> '.$d["Localidad"].'</div>
-				<div><b>Dirección:</b> '.$d["Direccion"].'</div>
-				<div><b>Teléfono:</b> '.$d["Telefono_Contacto"].'</div>
+				<div><b>Localidad :</b> '.$d["Localidad"].'</div>
+				<div><b>Upz :</b> '.$d["Upz"].'</div>
+				<div><b>Dirección :</b> '.$d["Direccion"].'</div>
+				<div><b>Teléfono :</b> '.$d["Telefono_Contacto"].'</div>
 			</div>
 		</div>
 	
@@ -161,25 +163,25 @@ function cmp_rptindv(){
 			<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-details">
-					<div><b>SRQ:</b> 20</div>
-					<div><b>Findrisc:</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
+					<div><b>SRQ :</b> 20</div>
+					<div><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
 					<div><b>RQC:</b> 30</div>
-					<div><b>COPE 28:</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+					<div><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">
-					<div><b>EPOC:</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
+					<div><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>
 				</div>
 			</div>
 		<div class="user-info section">
 			<div class="user-details">
-				<div><b>Zarith:</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
-				<div><b>Hamilton:</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
+				<div><b>Zarith :</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
+				<div><b>Hamilton :</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
 			</div>
 			<div class="user-details">
-				<div><b>Zung:</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-				<div><b>Ophi II:</b> '.$d["Puntaje_Ophi"].'</div>
+				<div><b>Zung :</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
+				<div><b>Ophi II :</b> '.$d["Puntaje_Ophi"].'</div>
 			</div>
 		</div>
 	</div>

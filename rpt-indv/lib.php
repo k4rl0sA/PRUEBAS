@@ -91,7 +91,7 @@ function cmp_rptindv(){
 		$Rimc=1;
     }
 	
-	$oms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
+	$Roms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$total=$Roms+$Rimc;
 	var_dump($total);
 
@@ -101,7 +101,7 @@ function cmp_rptindv(){
       <ul class="tab-nav">
         <li class="tabs activ" data-tab="1"><i class="fa-solid fa-book-medical"></i>Individual</li>
         <li class="tabs " data-tab="2"><i class="fa-solid fa-hand-holding-medical"></i>Familiar</li>
-        <li class="tabs " data-tab="3"><i class="fa-solid fa-viruses"></i>Historico</li>
+        <li class="tabs " data-tab="3"><i class="fa-solid fa-viruses"></i>Analisis</li>
       </ul>
       <div class="tab-content activ" data-content="1">
         <p>

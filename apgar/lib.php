@@ -228,7 +228,7 @@ function gra_tamApgar(){
 		$sql="INSERT INTO hog_tam_apgar VALUES (null,
 		{$idmomento},
 		trim(upper('{$_POST['tipodoc']}')),
-		trim(upper('{'$_POST['idpersona']'}')),
+		trim(upper('{$_POST['idpersona']}')),
 		trim(upper('{$_POST['ayuda_fam']}')),
 		trim(upper('{$_POST['fam_comprobl']}')),
 		trim(upper('{$_POST['fam_percosnue']}')),

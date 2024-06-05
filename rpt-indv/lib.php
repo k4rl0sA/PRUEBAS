@@ -94,6 +94,10 @@ function cmp_rptindv(){
 	$Roms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 1 : 0 ;
 	$Rfindr = strpos($d["Riesgo_Findrisc"],'alto') ? 1 : 0 ;
+	$Rfindr = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
+	$Rfindr = strpos($d["Riesgo_Zarit"],'alto') ? 1 : 0 ;
+	$Rfindr = strpos($d["Riesgo_Zung"],'alto') ? 1 : 0 ;
+	$Rfindr = strpos($d["Riesgo_Hamilton"],'alto') ? 1 : 0 ;
 	$total=$Roms+$Rimc+$Repoc+$Rfindr;
 	var_dump($total);
 

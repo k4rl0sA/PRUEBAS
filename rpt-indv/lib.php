@@ -92,6 +92,7 @@ function cmp_rptindv(){
     }
 	
 	$Roms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
+	$Roms = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$total=$Roms+$Rimc;
 	var_dump($total);
 
@@ -208,6 +209,14 @@ return $rta;
 		FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
 		P.vivipersona AS Cod_Familia,
 		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,
+		P.fecha_nacimiento AS Fecha_Nacimiento,
+    	CONCAT(
+        	TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()), ' años, ', 
+        	TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12, ' meses, y ', 
+        	DATEDIFF(CURDATE(), DATE_ADD(DATE_ADD(P.fecha_nacimiento, 
+            INTERVAL TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) YEAR), 
+            INTERVAL TIMESTAMPDIFF(MONTH, P.fecha_nacimiento, CURDATE()) % 12 MONTH)), ' días'
+    	) AS Edad,
 		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS Curso_de_Vida,
     	CASE
     	    WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'PRIMERA INFANCIA'

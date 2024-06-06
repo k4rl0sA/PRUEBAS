@@ -311,7 +311,7 @@ function errors(msj){
 	openModal();
 }
 function ok(msj){
-	document.getElementById(d+'-modal').innerHTML=msj;
+	document.getElementById(mod+'-modal').innerHTML=msj;
 	document.getElementById(mod+'-image').innerHTML = '<div class="icon-popup rtaok"></div>';
 }
 

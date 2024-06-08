@@ -321,9 +321,10 @@ body {
         z-index: 1;
         opacity: 0;
         transition: opacity 0.3s, transform 0.3s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
-        transform: translateY(10px); /* Efecto de profundidad */
-        word-wrap: break-word; /* Ajuste dinámico del texto */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        transform: translateY(10px); 
+        white-space: normal;
+        word-wrap: break-word;
     }
 
     .tooltip:hover .tooltiptext {
@@ -332,7 +333,6 @@ body {
         transform: translateY(0);
     }
 
-    /* Ajuste automático del tooltip para evitar que se salga de la pantalla */
     .tooltip .tooltiptext {
         bottom: 125%;
         left: 50%;
@@ -349,7 +349,6 @@ body {
         border-style: solid;
         border-color: #333 transparent transparent transparent;
     }
-
 
 @media (max-width: 600px) {
   /**TAB****/
@@ -436,4 +435,39 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>			
 </div>
+<!-- Script para ajustar la posición del tooltip dinámicamente -->
+<script>
+    document.querySelectorAll('.tooltip').forEach(function(tooltip) {
+        tooltip.addEventListener('mouseover', function() {
+            var tooltipText = tooltip.querySelector('.tooltiptext');
+            var rect = tooltipText.getBoundingClientRect();
+            var overflowX = rect.left < 0 || rect.right > window.innerWidth;
+            var overflowY = rect.top < 0 || rect.bottom > window.innerHeight;
+
+            if (overflowX) {
+                tooltipText.style.left = 'auto';
+                tooltipText.style.right = '0';
+                tooltipText.style.transform = 'none';
+            } else {
+                tooltipText.style.left = '50%';
+                tooltipText.style.right = 'auto';
+                tooltipText.style.transform = 'translateX(-50%)';
+            }
+
+            if (overflowY) {
+                tooltipText.style.bottom = 'auto';
+                tooltipText.style.top = '125%';
+                tooltipText.querySelector('::after').style.top = '-10px';
+                tooltipText.querySelector('::after').style.bottom = 'auto';
+                tooltipText.querySelector('::after').style.borderColor = 'transparent transparent #333 transparent';
+            } else {
+                tooltipText.style.bottom = '125%';
+                tooltipText.style.top = 'auto';
+                tooltipText.querySelector('::after').style.top = '100%';
+                tooltipText.querySelector('::after').style.bottom = 'auto';
+                tooltipText.querySelector('::after').style.borderColor = '#333 transparent transparent transparent';
+            }
+        });
+    });
+</script>
 </body>

@@ -311,7 +311,7 @@ body {
 
     .tooltip .tooltiptext {
         visibility: hidden;
-        width: 500px;
+        width: 700px;
         background-color: #333;
         color: #fff;
         text-align: center;

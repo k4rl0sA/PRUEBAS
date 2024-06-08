@@ -303,13 +303,13 @@ body {
     }
 
     /**TOOLTIP ****/
-    .tooltip {
+    .tooltips {
         position: relative;
         /* display: inline-block; */
         cursor: pointer;
     }
 
-    .tooltip .tooltiptext {
+    .tooltips .tooltiptext {
         visibility: hidden;
         max-width: 350px;
         background-color: #333;
@@ -327,18 +327,18 @@ body {
         word-wrap: break-word;
     }
 
-    .tooltip:hover .tooltiptext {
+    .tooltips:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
     }
 
-    .tooltip .tooltiptext {
+    .tooltips .tooltiptext {
         bottom: 125%;
         left: 50%;
         transform: translateX(-50%);
     }
 
-    .tooltip .tooltiptext::after {
+    .tooltips .tooltiptext::after {
         content: "";
         position: absolute;
         top: 100%;

@@ -172,8 +172,8 @@ function cmp_rptindv(){
 					<div title="Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)"><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
-					<div class="tooltip"><b>RQC :</b> 30<span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></div>
-					<div class="tooltip"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'<span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)</span></div>
+					<div class="tooltips"><b>RQC :</b> 30<span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></div>
+					<div class="tooltips"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'<span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)</span></div>
 				</div>
 				<div class="user-details">
 					<div title="Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>

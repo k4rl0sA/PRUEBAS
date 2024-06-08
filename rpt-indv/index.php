@@ -337,7 +337,7 @@ body {
         margin-left: -60px;
     }
 
-    .tooltip .tooltiptext::after {
+   /*  .tooltip .tooltiptext::after {
         content: "";
         position: absolute;
         top: 100%;
@@ -346,7 +346,7 @@ body {
         border-width: 5px;
         border-style: solid;
         border-color: #333 transparent transparent transparent;
-    }
+    } */
 
 @media (max-width: 600px) {
   /**TAB****/

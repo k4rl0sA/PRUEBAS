@@ -168,7 +168,7 @@ function cmp_rptindv(){
 			<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-details">
-					<div class="tooltip"><b>SRQ :</b> 20<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)"<span class="tooltiptext"></span></div>
+					<div class="tooltip"><b>SRQ :</b> 20<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)"</span></div>
 					<div class="tooltip"> Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)"><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'<span class="tooltiptext"></span></div>
 			 	</div>
 				<div class="user-details">

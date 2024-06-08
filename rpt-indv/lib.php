@@ -182,11 +182,11 @@ function cmp_rptindv(){
 		<div class="user-info section">
 			<div class="user-details">
 				<div><b class="tooltips">Zarith :<span class="tooltiptext">El Zarit Burden Inventory, Cuantifica el grado de sobrecarga que padecen los cuidadores de las personas dependientes</span></b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
-				<div><b class="tooltips">Hamilton :<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
+				<div><b class="tooltips">Hamilton :<span class="tooltiptext">Hamilton depresión rating scale (HDRS)) es una escala, heteroaplicada, diseñada para ser utilizada en pacientes diagnosticados previamente de depresión.</span></b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
 			</div>
 			<div class="user-details">
-				<div><b class="tooltips">Zung :<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></b> '.$d["Puntaje_Ophi"].'</div>
+				<div><b class="tooltips">Zung :<span class="tooltiptext">Instrumento que consta de 20 componentes. Explora síntomas relacionados con la presencia de un episodio depresivo mayor.</span></b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
+				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Entrevista Histórica del Desempeño Ocupacional II, Incluye la exploración de la historia ocupacional, la identidad ocupacional, la competencia ocupacional y el impacto del contexto. </span></b> '.$d["Puntaje_Ophi"].'</div>
 			</div>
 		</div>
 	</div>

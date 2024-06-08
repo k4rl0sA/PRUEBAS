@@ -330,7 +330,6 @@ body {
     .tooltip:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
-        transform: translateY(0);
     }
 
     .tooltip .tooltiptext {

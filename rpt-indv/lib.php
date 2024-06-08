@@ -94,13 +94,13 @@ function cmp_rptindv(){
 	$ophi=$d["Puntaje_Ophi"]/ 112*100;
 	
 	if($ophi<0.25){
-		$ophi='Riesgo Alto';
+		$Pophi='Riesgo Alto';
 	}elseif($ophi>=0.26 && $ophi<0.50){
-		$ophi='Riesgo Medio';
+		$Pophi='Riesgo Medio';
 	}elseif($ophi>=0.51 && $ophi<0.75){
-		$ophi='Riesgo Bajo';
+		$Pophi='Riesgo Bajo';
 	}elseif($ophi>=0.76 && $ophi<1){
-		$ophi='Riesgo Bajo';
+		$Pophi='Riesgo Bajo';
 	}
 
 
@@ -123,6 +123,7 @@ function cmp_rptindv(){
 	$Rzari = strpos($d["Riesgo_Zarit"],'alto') ? 1 : 0 ;
 	$Rzung = strpos($d["Riesgo_Zung"],'alto') ? 1 : 0 ;
 	$Rhami = strpos($d["Riesgo_Hamilton"],'alto') ? 1 : 0 ;
+	$Rophi = strpos($Pophi,'Alto') ? 1 : 0 ;
 
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami;
 	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami;
@@ -213,7 +214,7 @@ function cmp_rptindv(){
 			</div>
 			<div class="user-details">
 				<div><b class="tooltips">Zung :<span class="tooltiptext">Instrumento que consta de 20 componentes. Explora síntomas relacionados con la presencia de un episodio depresivo mayor.</span></b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Entrevista Histórica del Desempeño Ocupacional II, Incluye la exploración de la historia ocupacional, la identidad ocupacional, la competencia ocupacional y el impacto del contexto. </span></b> '.$d["Puntaje_Ophi"].' '.$ophi.'</div>
+				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Entrevista Histórica del Desempeño Ocupacional II, Incluye la exploración de la historia ocupacional, la identidad ocupacional, la competencia ocupacional y el impacto del contexto. </span></b> '.$d["Puntaje_Ophi"].' '.$Pophi.'</div>
 			</div>
 		</div>
 	</div>

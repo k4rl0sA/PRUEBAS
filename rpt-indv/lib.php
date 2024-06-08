@@ -176,7 +176,7 @@ function cmp_rptindv(){
 					<div class="tooltip"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'<span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)</span></div>
 				</div>
 				<div class="user-details">
-					<div class="tooltip"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'<span class="tooltiptext">Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)</span></div>
+					<div class="tooltip"><b>EPOC :</b>'.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'<span class="tooltiptext">Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)</span></div>
 				</div>
 			</div>
 		<div class="user-info section">

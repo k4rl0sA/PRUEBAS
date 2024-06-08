@@ -343,7 +343,7 @@ body {
         content: "";
         position: absolute;
         top: 100%;
-        left: 2%;
+        left: 50%;
         transform: translateX(-50%);
         border-width: 5px;
         border-style: solid;

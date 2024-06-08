@@ -302,7 +302,54 @@ body {
       opacity: 1;
     }
 
+    /**TOOLTIP ****/
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.3s, transform 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+        transform: translateY(10px);
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .tooltip .tooltiptext {
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent;
+    }
+
 @media (max-width: 600px) {
+  /**TAB****/
       .tab-nav {
         flex-direction: column;
       }
@@ -316,6 +363,20 @@ body {
       .tab-content {
         padding: 15px;
       }
+
+      /**TOOLTIP ****/
+      .tooltip .tooltiptext {
+            bottom: auto;
+            top: 125%;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .tooltip .tooltiptext::after {
+            top: -10px;
+            border-color: transparent transparent #333 transparent;
+            bottom: auto;
+        }
     }
 
 </style>

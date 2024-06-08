@@ -168,25 +168,25 @@ function cmp_rptindv(){
 			<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-details">
-					<div class="tooltip"><b>SRQ :</b> 20<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)"</span></div>
-					<div class="tooltip"><b>Findrisc :</b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'<span class="tooltiptext">Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)</span></div>
+					<div class="tooltip"><b>SRQ : 20</b><span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)"</span></div>
+					<div class="tooltip"><b>Findrisc :'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</b><span class="tooltiptext">Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)</span></div>
 			 	</div>
 				<div class="user-details">
-					<div class="tooltip"> <b>RQC :</b> 30<span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></div>
-					<div class="tooltip"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'<span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)"></span></div>
+					<div class="tooltip"> <b>RQC : 30</b><span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></div>
+					<div class="tooltip"><b>COPE 28 :'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</b><span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)"></span></div>
 				</div>
 				<div class="user-details">
-					<div class="tooltip"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'<span class="tooltiptext">Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)"</span></div>
+					<div class="tooltip"><b>EPOC : '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</b><span class="tooltiptext">Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)"</span></div>
 				</div>
 			</div>
 		<div class="user-info section">
 			<div class="user-details">
-				<div class="tooltip"> <b>Zarith :</b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'<span class="tooltiptext">El Zarit Burden Inventory, conocido en nuestro medio como cuestionario de Zarit (aunque tiene diversas denominaciones tanto en inglés como en español), es un instrumento que cuantifica el grado de sobrecarga que padecen los cuidadores de las personas dependientes.</span></div>
-				<div class="tooltip"> <b>Hamilton :</b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
+				<div class="tooltip"> <b>Zarith : '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</b><span class="tooltiptext">El Zarit Burden Inventory, conocido en nuestro medio como cuestionario de Zarit (aunque tiene diversas denominaciones tanto en inglés como en español), es un instrumento que cuantifica el grado de sobrecarga que padecen los cuidadores de las personas dependientes.</span></div>
+				<div class="tooltip"> <b>Hamilton : '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</b><span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
 			</div>
 			<div class="user-details">
-				<div class="tooltip"> <b>Zung :</b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
-				<div class="tooltip"> <b>Ophi II :</b> '.$d["Puntaje_Ophi"].'<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
+				<div class="tooltip"> <b>Zung : '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</b><span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
+				<div class="tooltip"> <b>Ophi II : '.$d["Puntaje_Ophi"].'</b><span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></div>
 			</div>
 		</div>
 	</div>

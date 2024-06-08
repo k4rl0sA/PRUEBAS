@@ -311,7 +311,7 @@ body {
 
     .tooltip .tooltiptext {
         visibility: hidden;
-        width: 700px;
+        max-width: 500px;
         background-color: #333;
         color: #fff;
         text-align: center;
@@ -321,8 +321,9 @@ body {
         z-index: 1;
         opacity: 0;
         transition: opacity 0.3s, transform 0.3s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
-        transform: translateY(10px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efecto de sombra */
+        transform: translateY(10px); /* Efecto de profundidad */
+        word-wrap: break-word; /* Ajuste dinámico del texto */
     }
 
     .tooltip:hover .tooltiptext {
@@ -331,22 +332,24 @@ body {
         transform: translateY(0);
     }
 
+    /* Ajuste automático del tooltip para evitar que se salga de la pantalla */
     .tooltip .tooltiptext {
         bottom: 125%;
         left: 50%;
-        margin-left: -60px;
+        transform: translateX(-50%);
     }
 
-   /*  .tooltip .tooltiptext::after {
+    .tooltip .tooltiptext::after {
         content: "";
         position: absolute;
         top: 100%;
         left: 50%;
-        margin-left: -5px;
+        transform: translateX(-50%);
         border-width: 5px;
         border-style: solid;
         border-color: #333 transparent transparent transparent;
-    } */
+    }
+
 
 @media (max-width: 600px) {
   /**TAB****/

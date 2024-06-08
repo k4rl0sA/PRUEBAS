@@ -339,6 +339,17 @@ body {
         transform: translateX(-50%);
     }
 
+    .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 2%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent;
+    }
+
 @media (max-width: 600px) {
   /**TAB****/
       .tab-nav {

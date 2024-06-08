@@ -305,7 +305,7 @@ body {
     /**TOOLTIP ****/
     .tooltip {
         position: relative;
-        display: inline-block;
+        /* display: inline-block; */
         cursor: pointer;
     }
 

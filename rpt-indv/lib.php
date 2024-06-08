@@ -91,14 +91,31 @@ function cmp_rptindv(){
 		$Rimc=1;
     }
 
-	$Timc = ($imc=='') ? 0 : 1 ;
+	$ophi=$d["Puntaje_Ophi"]/ 112*100;
+	var_dump($ophi);
+
+	if($ophi<0.25){
+		$ophi='Riesgo Alto';
+	}elseif($ophi>=0.26 && $ophi<0.50){
+		$ophi='Riesgo Medio';
+	}elseif($ophi>=0.51 && $ophi<0.75){
+		$ophi='Riesgo Bajo';
+	}elseif($ophi>=0.76 && $ophi<1){
+		$ophi='Riesgo Bajo';
+	}
+
+
 	$Toms = ($d["Riesgo_Oms"]=='') ? 0 : 1 ;
-	$Tepoc = ($d["Riesgo_Epoc"]=='') ? 0 : 1 ;
+	$Timc = ($imc=='') ? 0 : 1 ;
+
 	$Tfind = ($d["Riesgo_Findrisc"]=='') ? 0 : 1 ;
+
 	$Tcope = ($d["Riesgo_Cope"]=='') ? 0 : 1 ;
+	$Tepoc = ($d["Riesgo_Epoc"]=='') ? 0 : 1 ;
 	$Tzari = ($d["Riesgo_Zarit"]=='') ? 0 : 1 ;
-	$Tzung = ($d["Riesgo_Zung"]=='') ? 0 : 1 ;
 	$Thami = ($d["Riesgo_Hamilton"]=='') ? 0 : 1 ;
+	$Tzung = ($d["Riesgo_Zung"]=='') ? 0 : 1 ;
+	
 	
 	$Roms  = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 1 : 0 ;
@@ -150,7 +167,7 @@ function cmp_rptindv(){
 			</div>
 		</div>
 	
-		<div class="title-risk">Caracterización</div>
+		<div class="title-risk">Atención Individual</div>
 			<div class="user-info section">
 				<div class="user-detail">
 					<div><b>OMS</b> '.$d["Puntaje_Oms"].' '.$d["Riesgo_Oms"].'</div>
@@ -176,7 +193,7 @@ function cmp_rptindv(){
 					</div>
 				</div>
 			</div>
-			<div class="title-risk">Atención Individual</div>
+			
 			<div class="user-info section">
 				<div class="user-details">
 					<div><b class="tooltips">SRQ :<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)</span></b>20</div>
@@ -197,7 +214,7 @@ function cmp_rptindv(){
 			</div>
 			<div class="user-details">
 				<div><b class="tooltips">Zung :<span class="tooltiptext">Instrumento que consta de 20 componentes. Explora síntomas relacionados con la presencia de un episodio depresivo mayor.</span></b> '.$d["Puntaje_Zung"].' '.$d["Riesgo_Zung"].'</div>
-				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Entrevista Histórica del Desempeño Ocupacional II, Incluye la exploración de la historia ocupacional, la identidad ocupacional, la competencia ocupacional y el impacto del contexto. </span></b> '.$d["Puntaje_Ophi"].'</div>
+				<div><b class="tooltips">Ophi II :<span class="tooltiptext">Entrevista Histórica del Desempeño Ocupacional II, Incluye la exploración de la historia ocupacional, la identidad ocupacional, la competencia ocupacional y el impacto del contexto. </span></b> '.$d["Puntaje_Ophi"].' '.$ophi.'</div>
 			</div>
 		</div>
 	</div>

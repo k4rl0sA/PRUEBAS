@@ -181,7 +181,7 @@ function cmp_rptindv(){
 			</div>
 		<div class="user-info section">
 			<div class="user-details">
-				<div><b class="tooltips">Zarith :<span class="tooltiptext">El Zarit Burden Inventory, conocido en nuestro medio como cuestionario de Zarit (aunque tiene diversas denominaciones tanto en inglés como en español), es un instrumento que cuantifica el grado de sobrecarga que padecen los cuidadores de las personas dependientes</span></b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
+				<div><b class="tooltips">Zarith :<span class="tooltiptext">El Zarit Burden Inventory, Cuantifica el grado de sobrecarga que padecen los cuidadores de las personas dependientes</span></b> '.$d["Puntaje_Zarit"].' '.$d["Riesgo_Zarit"].'</div>
 				<div><b class="tooltips">Hamilton :<span class="tooltiptext">Self Reporting Questionnaire. Para identificar pacientes con alta probabilidad de estar sufriendo una enfermedad mental</span></b> '.$d["Puntaje_Hamilton"].' '.$d["Riesgo_Hamilton"].'</div>
 			</div>
 			<div class="user-details">

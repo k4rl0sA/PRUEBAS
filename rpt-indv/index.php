@@ -311,7 +311,7 @@ body {
 
     .tooltip .tooltiptext {
         visibility: hidden;
-        width: 500px;
+        max-width: 350px;
         background-color: #333;
         color: #fff;
         text-align: center;
@@ -337,17 +337,6 @@ body {
         bottom: 125%;
         left: 50%;
         transform: translateX(-50%);
-    }
-
-    .tooltip .tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 5px;
-        border-style: solid;
-        border-color: #333 transparent transparent transparent;
     }
 
 @media (max-width: 600px) {
@@ -435,39 +424,5 @@ $territorios=opc_sql("SELECT idcatadeta,descripcion FROM `catadeta` WHERE idcata
 		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
 	</div>			
 </div>
-<!-- Script para ajustar la posición del tooltip dinámicamente -->
-<script>
-    document.querySelectorAll('.tooltip').forEach(function(tooltip) {
-        tooltip.addEventListener('mouseover', function() {
-            var tooltipText = tooltip.querySelector('.tooltiptext');
-            var rect = tooltipText.getBoundingClientRect();
-            var overflowX = rect.left < 0 || rect.right > window.innerWidth;
-            var overflowY = rect.top < 0 || rect.bottom > window.innerHeight;
 
-            if (overflowX) {
-                tooltipText.style.left = 'auto';
-                tooltipText.style.right = '0';
-                tooltipText.style.transform = 'none';
-            } else {
-                tooltipText.style.left = '50%';
-                tooltipText.style.right = 'auto';
-                tooltipText.style.transform = 'translateX(-50%)';
-            }
-
-            if (overflowY) {
-                tooltipText.style.bottom = 'auto';
-                tooltipText.style.top = '125%';
-                tooltipText.querySelector('::after').style.top = '-10px';
-                tooltipText.querySelector('::after').style.bottom = 'auto';
-                tooltipText.querySelector('::after').style.borderColor = 'transparent transparent #333 transparent';
-            } else {
-                tooltipText.style.bottom = '125%';
-                tooltipText.style.top = 'auto';
-                tooltipText.querySelector('::after').style.top = '100%';
-                tooltipText.querySelector('::after').style.bottom = 'auto';
-                tooltipText.querySelector('::after').style.borderColor = '#333 transparent transparent transparent';
-            }
-        });
-    });
-</script>
 </body>

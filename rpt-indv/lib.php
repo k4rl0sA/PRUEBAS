@@ -91,7 +91,7 @@ function cmp_rptindv(){
 		$Rimc=1;
     }
 
-	$ophi=$d["Puntaje_Ophi"]/ 112*100;
+	$ophi=intval($d["Puntaje_Ophi"])/ 112*100;
 	var_dump($ophi);
 	if($ophi<0.25){
 		$Pophi='Riesgo Alto';

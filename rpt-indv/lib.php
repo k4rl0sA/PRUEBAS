@@ -173,7 +173,7 @@ function cmp_rptindv(){
 			 	</div>
 				<div class="user-details">
 					<div title="Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)"><b>RQC :</b> 30</div>
-					<div title="Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)"><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
+					<div><b>COPE 28 :</b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">
 					<div title="Enfermedad Pulmonar Obstructiva Crónica (Población de 40 años o más)"><b>EPOC :</b> '.$d["Puntaje_Epoc"].' '.$d["Riesgo_Epoc"].'</div>

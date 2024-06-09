@@ -93,8 +93,6 @@ function handleEvent(event, eventType) {
   --bord-radiu-l: 80rem;
 }
 
-.capital{text-transform:capitalize;}
-
 .section {
     border: 1px solid #d1d1d1;
     margin-top: 8px;

@@ -103,6 +103,13 @@ function cmp_rptindv(){
 		$Pophi='Riesgo Bajo';
 	}
 
+	if(intval($d["anos"])<16){
+		$rqc=$d["Puntaje_Srq"];
+	}else{
+		$srq=$d["Puntaje_Srq"];
+	}
+	
+
 
 	$Toms = ($d["Riesgo_Oms"]=='') ? 0 : 1 ;
 	$Timc = ($imc=='') ? 0 : 1 ;
@@ -197,11 +204,11 @@ function cmp_rptindv(){
 			
 			<div class="user-info section">
 				<div class="user-details">
-					<div><b class="tooltips">SRQ :<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)</span></b>20</div>
+					<div><b class="tooltips">SRQ :<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)</span></b>'.$srq.'</div>
 					<div><b class="tooltips">Findrisc :<span class="tooltiptext">Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)</span></b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
-					<div><b class="tooltips">RQC : <span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></b>30</div>
+					<div><b class="tooltips">RQC : <span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></b>'.$rqc.'</div>
 					<div><b class="tooltips">COPE 28 : <span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)</span></b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">
@@ -266,6 +273,7 @@ return $rta;
     	    WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
     	    ELSE 'Edad Desconocida'
     	END AS Rango_Edad,
+		TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) anos,
 		D.imc AS IMC,
 		A.puntaje AS Puntaje_Apgar, LOWER(A.descripcion) AS Riesgo_Apgar,
 		F.puntaje AS Puntaje_Findrisc, LOWER(F.descripcion) AS Riesgo_Findrisc,
@@ -275,11 +283,13 @@ return $rta;
 		Z.zarit_puntaje AS Puntaje_Zarit, LOWER(Z.zarit_analisis) AS Riesgo_Zarit,
 		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.zung_analisis) AS Riesgo_Zung,
 		H.hamilton_total AS Puntaje_Hamilton, LOWER(H.hamilton_analisis) AS Riesgo_Hamilton,
-		OP.ophi_puntaje AS Puntaje_Ophi
+		OP.ophi_puntaje AS Puntaje_Ophi,
+		S.srq_totalsi AS Puntaje_Srq
 		FROM personas P 
 		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpersona = D.dc_documento
+		LEFT JOIN hog_tam_srq S ON P.tipo_doc = S.srq_tipodoc AND P.idpersona = S.srq_idpersona
 		LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
 		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
 		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona

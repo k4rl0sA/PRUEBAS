@@ -114,19 +114,20 @@ function cmp_rptindv(){
 	$Tzari = ($d["Riesgo_Zarit"]=='') ? 0 : 1 ;
 	$Thami = ($d["Riesgo_Hamilton"]=='') ? 0 : 1 ;
 	$Tzung = ($d["Riesgo_Zung"]=='') ? 0 : 1 ;
+	$Tophi = ($Pophi=='') ? 0 : 1 ;
 	
 	
 	$Roms  = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
 	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 1 : 0 ;
 	$Rfind = strpos($d["Riesgo_Findrisc"],'alto') ? 1 : 0 ;
 	$Rcope = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
-	$Rzari = strpos($d["Riesgo_Zarit"],'alto') ? 1 : 0 ;
+	$Rzari = strpos($d["Riesgo_Zarit"],'intensa') ? 1 : 0 ;
 	$Rzung = strpos($d["Riesgo_Zung"],'alto') ? 1 : 0 ;
-	$Rhami = strpos($d["Riesgo_Hamilton"],'alto') ? 1 : 0 ;
+	$Rhami = strpos($d["Riesgo_Hamilton"],'severa') ? 1 : 0 ;
 	$Rophi = strpos($Pophi,'Alto') ? 1 : 0 ;
 
-	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami;
-	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami;
+	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi;
+	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi;
 	var_dump($total);
 
 	$rta='

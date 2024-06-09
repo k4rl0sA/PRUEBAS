@@ -122,7 +122,7 @@ function cmp_rptindv(){
 	$Rfind = strpos($d["Riesgo_Findrisc"],'alto') ? 1 : 0 ;
 	$Rcope = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
 	$Rzari = strpos($d["Riesgo_Zarit"],'intensa') ? 1 : 0 ;
-	$Rzung = strpos($d["Riesgo_Zung"],'alto') ? 1 : 0 ;
+	$Rzung = strpos($d["Riesgo_Zung"],'grave') ? 1 : 0 ;
 	$Rhami = strpos($d["Riesgo_Hamilton"],'severa') ? 1 : 0 ;
 	$Rophi = strpos($Pophi,'Alto') ? 1 : 0 ;
 

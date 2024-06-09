@@ -107,9 +107,19 @@ function cmp_rptindv(){
 	$rqc='';
 
 	if(intval($d["anos"])<16){
-		$rqc=$d["Puntaje_Srq"];
+		$rqc=intval($d["Puntaje_Srq"]);
+		if($rqc>0){
+			$Prqc='Riesgo Alto';
+		}else{
+			$Prqc='Riesgo Bajo';
+		}
 	}else{
-		$srq=$d["Puntaje_Srq"];
+		$srq=intval($d["Puntaje_Srq"]);
+		if($srq>10){
+			$Psrq='Riesgo Alto';
+		}else{
+			$Psrq='Riesgo Bajo';
+		}
 	}
 	
 
@@ -125,6 +135,9 @@ function cmp_rptindv(){
 	$Thami = ($d["Riesgo_Hamilton"]=='') ? 0 : 1 ;
 	$Tzung = ($d["Riesgo_Zung"]=='') ? 0 : 1 ;
 	$Tophi = ($Pophi=='') ? 0 : 1 ;
+	$Trqc = ($rqc=='') ? 0 : 1 ;
+	$Tsrq = ($srq=='') ? 0 : 1 ;
+
 	
 	
 	$Roms  = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
@@ -135,10 +148,12 @@ function cmp_rptindv(){
 	$Rzung = strpos($d["Riesgo_Zung"],'grave') ? 1 : 0 ;
 	$Rhami = strpos($d["Riesgo_Hamilton"],'severa') ? 1 : 0 ;
 	$Rophi = strpos($Pophi,'Alto') ? 1 : 0 ;
+	$Rsrq = strpos($Psrq,'Alto') ? 1 : 0 ;
+	$Rrqc = strpos($Prqc,'Alto') ? 1 : 0 ;
 
-	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi;
-	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi;
-	var_dump($total);
+	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
+	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq+$Rrqc;
+	var_dump('Total='.$total.' Suma='.$sum);
 
 	$rta='
 	<div class="container">

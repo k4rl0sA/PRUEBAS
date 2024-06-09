@@ -126,17 +126,17 @@ function cmp_rptindv(){
 
 	$Toms = ($d["Riesgo_Oms"]=='') ? 0 : 1 ;
 	$Timc = ($imc=='') ? 0 : 1 ;
-
+	$Tsrq = ($srq=='') ? 0 : 1 ;
 	$Tfind = ($d["Riesgo_Findrisc"]=='') ? 0 : 1 ;
-
+	$Trqc = ($rqc=='') ? 0 : 1 ;
 	$Tcope = ($d["Riesgo_Cope"]=='') ? 0 : 1 ;
 	$Tepoc = ($d["Riesgo_Epoc"]=='') ? 0 : 1 ;
 	$Tzari = ($d["Riesgo_Zarit"]=='') ? 0 : 1 ;
 	$Thami = ($d["Riesgo_Hamilton"]=='') ? 0 : 1 ;
 	$Tzung = ($d["Riesgo_Zung"]=='') ? 0 : 1 ;
 	$Tophi = ($Pophi=='') ? 0 : 1 ;
-	$Trqc = ($rqc=='') ? 0 : 1 ;
-	$Tsrq = ($srq=='') ? 0 : 1 ;
+	
+	
 
 	
 	
@@ -222,11 +222,11 @@ function cmp_rptindv(){
 			
 			<div class="user-info section">
 				<div class="user-details">
-					<div><b class="tooltips">SRQ :<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)</span></b>'.$srq.'</div>
+					<div><b class="tooltips">SRQ :<span class="tooltiptext">Self Reporting Questionnaire. Identifica pacientes con alta probabilidad de estar sufriendo una enfermedad mental.(Población mayor a 16 años)</span></b>'.$srq.' '.$Psrq.'</div>
 					<div><b class="tooltips">Findrisc :<span class="tooltiptext">Finnish Diabetes Risk Score. Evalua el riesgo de una persona de desarrollar diabetes mellitus tipo 2 en los próximos 10 años.(Población mayor a 17 años)</span></b>'.$d["Puntaje_Findrisc"].' '.$d["Riesgo_Findrisc"].'</div>
 			 	</div>
 				<div class="user-details">
-					<div><b class="tooltips">RQC : <span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></b>'.$rqc.'</div>
+					<div><b class="tooltips">RQC : <span class="tooltiptext">Reporting Questionnaire for Children. Identifica problemas de salud mental en población infantil no psiquiátrica.(Población entre 5 y 15 años)</span></b>'.$rqc.' '.$Prqc.'</div>
 					<div><b class="tooltips">COPE 28 : <span class="tooltiptext">Cuestionario Multidimensional de Afrontamiento (Evalua las diferentes formas de respuesta ante el estrés.)</span></b>'.$d["Puntaje_Cope"].' '.$d["Riesgo_Cope"].'</div>
 				</div>
 				<div class="user-details">

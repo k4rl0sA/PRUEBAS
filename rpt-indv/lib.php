@@ -103,6 +103,9 @@ function cmp_rptindv(){
 		$Pophi='Riesgo Bajo';
 	}
 
+	$srq='';
+	$rqc='';
+
 	if(intval($d["anos"])<16){
 		$rqc=$d["Puntaje_Srq"];
 	}else{

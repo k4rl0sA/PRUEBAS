@@ -96,9 +96,9 @@ function cmp_rptindv(){
 	if($ophi<25){
 		$Pophi='Riesgo Alto';
 	}elseif($ophi>=26 && $ophi<51){
-		$Pophi='Riesgo Medio';
+		$Pophi='Riesgo Alto';
 	}elseif($ophi>=51 && $ophi<76){
-		$Pophi='Riesgo Bajo';
+		$Pophi='Riesgo Medio';
 	}elseif($ophi>=76 && $ophi<101){
 		$Pophi='Riesgo Bajo';
 	}

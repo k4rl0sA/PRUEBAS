@@ -164,6 +164,9 @@ function cmp_rptindv(){
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
 	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq1+$Rrqc1;
 	var_dump('Total='.$total.'/ Suma='.$sum);
+
+	var_dump($avg=$sum/$total);
+
 /* 	if($suma>=($total/2)){
 
 	} */

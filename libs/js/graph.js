@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         xhr.open('POST', 'lib.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('a=gra&tb=tb_valor'); // Ajusta 'tb=tb_valor' según sea necesario
+        xhr.send('a=gra&tb='+mod+'&type=radar'); // Ajusta 'tb=tb_valor' según sea necesario
     }
 });
 

@@ -164,12 +164,25 @@ function cmp_rptindv(){
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
 	$sum=$Rimc+$Roms+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq1+$Rrqc1;
 	
-	//
-	//;
-
-
 	var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);
-	$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi;
+
+	$avg=$sum/$total;
+
+	/* Promedio 0 a <1.5: Riesgo Bajo
+Promedio 1.5 a <2.5: Riesgo Medio
+Promedio 2.5 a 3: Riesgo Alto
+ */
+if($avg<1.5){
+ $Rtotal='Riesgo Bajo';
+ $Riesgo='';
+}elseif($avg>=1.5 && $avg<2.5){
+	$Rtotal='Riesgo Medio';
+	$Riesgo='';
+}else{
+	$Rtotal='Riesgo Alto';
+	$Riesgo='';
+}
+
 	var_dump('');
 
 /* 	if($suma>=($total/2)){
@@ -200,7 +213,7 @@ function cmp_rptindv(){
 			</div>
 			<div class="risk-info">
 				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].' ('.$d["Edad"].') </div>
-				<div class="risk-level medium-risk"><span class="point medium-risk"></span> Riesgo Medio</div>
+				<div class="risk-level medium-risk"><span class="point medium-risk"></span> '.$Rtotal.'</div>
 			</div>
 		</div>
 	

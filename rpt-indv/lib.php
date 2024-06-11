@@ -162,9 +162,9 @@ function cmp_rptindv(){
 	$Rrqc1 = strpos($Prqc,'Alto') ? 3 : 0;
 
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
-	$sum=$Roms+$Rimc;
+	$sum=$Roms;
 	
-	//+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami
+	//+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami
 	//+$Rophi+$Rsrq1+$Rrqc1;
 
 

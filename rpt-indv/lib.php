@@ -166,8 +166,8 @@ function cmp_rptindv(){
 
 
 	var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);
-	$Roms+$Rimc+$Repoc;
-	var_dump($Rfind);
+	$Roms+$Rimc+$Repoc+$Rfind;
+	var_dump($Rcope);
 
 /* 	if($suma>=($total/2)){
 

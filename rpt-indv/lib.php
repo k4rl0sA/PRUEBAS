@@ -140,20 +140,33 @@ function cmp_rptindv(){
 
 	
 	
-	$Roms  = strpos($d["Riesgo_Oms"],'alto') ? 1 : 0 ;
-	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 1 : 0 ;
-	$Rfind = strpos($d["Riesgo_Findrisc"],'alto') ? 1 : 0 ;
-	$Rcope = strpos($d["Riesgo_Cope"],'alto') ? 1 : 0 ;
-	$Rzari = strpos($d["Riesgo_Zarit"],'intensa') ? 1 : 0 ;
-	$Rzung = strpos($d["Riesgo_Zung"],'grave') ? 1 : 0 ;
-	$Rhami = strpos($d["Riesgo_Hamilton"],'severa') ? 1 : 0 ;
-	$Rophi = strpos($Pophi,'Alto') ? 1 : 0 ;
-	$Rsrq = strpos($Psrq,'Alto') ? 1 : 0 ;
-	$Rrqc = strpos($Prqc,'Alto') ? 1 : 0 ;
+	/* $Roms  = strpos($d["Riesgo_Oms"],'alto') ? 3 : 0 ; *//* 
+	if(strpos($d["Riesgo_Oms"],'alto')){
+		$Roms=3;
+	}elseif(strpos($d["Riesgo_Oms"],'medio')){
+		$Roms=2;
+	}else{
+		$Roms=1;
+	}
+ */
+
+	$Roms = (strpos($d["Riesgo_Oms"], 'alto')) ? 3 : ((strpos($d["Riesgo_Oms"], 'medio')) ? 2 : 0);
+	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 3 :0;
+	$Rfind = (strpos($d["Riesgo_Findrisc"],'alto')) ? 3 : ((strpos($d["Riesgo_Findrisc"],'moderado')) ? 2 :0);
+	$Rcope = (strpos($d["Riesgo_Cope"],'alto')) ? 3 : ((strpos($d["Riesgo_Cope"],'medio')) ? 2 :0);
+	$Rzari = (strpos($d["Riesgo_Zarit"],'intensa')) ? 3 : ((strpos($d["Riesgo_Zarit"],'leve')) ? 2 :0);
+	$Rzung = (strpos($d["Riesgo_Zung"],'grave')) ? 3 : ((strpos($d["Riesgo_Zung"],'moderada')) ? 2 :0);
+	$Rhami = (strpos($d["Riesgo_Hamilton"],'severa')) ? 3 : ((strpos($d["Riesgo_Hamilton"],'moderada')) ? 2 :0);
+	$Rophi = (strpos($Pophi,'Alto')) ? 3 : ((strpos($Pophi,'Medio')) ? 2 :0);
+	$Rsrq1 = strpos($Psrq,'Alto') ? 3 : 0;
+	$Rrqc1 = strpos($Prqc,'Alto') ? 3 : 0;
 
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
-	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq+$Rrqc;
+	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq1+$Rrqc1;
 	var_dump('Total='.$total.' Suma='.$sum);
+/* 	if($suma>=($total/2)){
+
+	} */
 
 	$rta='
 	<div class="container">

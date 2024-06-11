@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         };
         xhr.open('GET', 'lib.php', true);
-        xhr.send();
+        xhr.send('a=gra&tb='+mod+'&type=radar');
     }
 
     // Cargar el gráfico al cargar la página

@@ -263,6 +263,11 @@ if($avg<1.5){
 		</p>
       </div>
       <div class="tab-content" data-content="2">
+
+	  	<div id="graficoContainer">
+        
+    	</div>
+		
         <p>Un buen hábito de salud es evitar el consumo excesivo de azúcares y grasas, ya que esto puede aumentar el
           riesgo de enfermedades crónicas.</p>
       </div>

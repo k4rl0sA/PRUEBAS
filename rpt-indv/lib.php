@@ -174,13 +174,13 @@ Promedio 2.5 a 3: Riesgo Alto
  */
 if($avg<1.5){
  $Rtotal='Riesgo Bajo';
- $Riesgo='';
+ $Riesgo='normal';
 }elseif($avg>=1.5 && $avg<2.5){
 	$Rtotal='Riesgo Medio';
-	$Riesgo='';
+	$Riesgo='medium';
 }else{
 	$Rtotal='Riesgo Alto';
-	$Riesgo='';
+	$Riesgo='high';
 }
 
 	var_dump('');
@@ -201,7 +201,7 @@ if($avg<1.5){
         <p>
 		
 		<div class="title-risk">Identificación</div>
-		<div class="user-info section medium-risk">
+		<div class="user-info section '.$Riesgo.'-risk">
 			<div class="user-details">
 				<div class="user-name">'.$d['Usuario'].'</div>
 				<div><b>Documento :</b> '.$d["Tipo_Documento"].' '.$d["N°_Documento"].'</div>
@@ -213,7 +213,7 @@ if($avg<1.5){
 			</div>
 			<div class="risk-info">
 				<div class="extra-info"><b>Curso de Vida:</b> '.$d["Rango_Edad"].' ('.$d["Edad"].') </div>
-				<div class="risk-level medium-risk"><span class="point medium-risk"></span> '.$Rtotal.'</div>
+				<div class="risk-level '.$Riesgo.'-risk"><span class="point '.$Riesgo.'-risk"></span> '.$Rtotal.'</div>
 			</div>
 		</div>
 	

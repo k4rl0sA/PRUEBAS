@@ -11,7 +11,6 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="../libs/js/a.js"></script>
 <script src="../libs/js/d.js"></script>
-<script src="../libs/js/graph.js"></script>
 <script src="../libs/js/popup.js"></script>
 
 <script>

@@ -70,7 +70,7 @@ function cmp_rptindv(){
 	 $d=get_rptindv(); 
 	//  $d="";
 	 if ($d=="") {$d=$t;}
-	var_dump($d);
+	// var_dump($d);
 
 	
 	// Riesgo Baja-Riesgo Moderada-Riesgo Alto-Riesgo Muy Alto-Riesgo Extremadamente Alto
@@ -138,17 +138,6 @@ function cmp_rptindv(){
 	
 	
 
-	
-	
-	/* $Roms  = strpos($d["Riesgo_Oms"],'alto') ? 3 : 0 ; *//* 
-	if(strpos($d["Riesgo_Oms"],'alto')){
-		$Roms=3;
-	}elseif(strpos($d["Riesgo_Oms"],'medio')){
-		$Roms=2;
-	}else{
-		$Roms=1;
-	}
- */
 
 	$Roms = (strpos($d["Riesgo_Oms"], 'alto')) ? 3 : ((strpos($d["Riesgo_Oms"], 'medio')) ? 2 : 0);
 	$Repoc = strpos($d["Riesgo_Epoc"],'alto') ? 3 :0;
@@ -164,14 +153,10 @@ function cmp_rptindv(){
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
 	$sum=$Rimc+$Roms+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq1+$Rrqc1;
 	
-	var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);
+	// var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);
 
 	$avg=$sum/$total;
 
-	/* Promedio 0 a <1.5: Riesgo Bajo
-Promedio 1.5 a <2.5: Riesgo Medio
-Promedio 2.5 a 3: Riesgo Alto
- */
 if($avg<1.5){
  $Rtotal='Riesgo Bajo';
  $Riesgo='normal';
@@ -183,11 +168,6 @@ if($avg<1.5){
 	$Riesgo='high';
 }
 
-	var_dump('');
-
-/* 	if($suma>=($total/2)){
-
-	} */
 
 	$rta='
 	<div class="container">

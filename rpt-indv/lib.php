@@ -92,7 +92,7 @@ function cmp_rptindv(){
     }
 
 	$ophi=intval($d["Puntaje_Ophi"])/ 112*100;
-	var_dump($ophi);
+	// var_dump($ophi);
 	if($ophi<25){
 		$Pophi='Riesgo Alto';
 	}elseif($ophi>=26 && $ophi<51){

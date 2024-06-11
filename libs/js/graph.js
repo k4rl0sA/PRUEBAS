@@ -33,20 +33,24 @@ document.addEventListener("DOMContentLoaded", function() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 if (xhr.status == 200) {
                     var responseData = JSON.parse(xhr.responseText);
-                    data.setValue(0, 1, responseData.riesgo);
-                    chart.draw(data, options);
+                    if (responseData.riesgo !== undefined) {
+                        data.setValue(0, 1, responseData.riesgo);
+                        chart.draw(data, options);
+                    } else {
+                        console.error('Error en los datos recibidos:', responseData);
+                    }
                 }
             }
         };
         xhr.open('POST', 'lib.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('a=gra&tb='+mod+'&type=radar'); // Ajusta 'tb=tb_valor' según sea necesario
+        xhr.send('a=gra&tb=tb_valor'); // Ajusta 'tb=tb_valor' según sea necesario
     }
 });
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+/* document.addEventListener("DOMContentLoaded", function() {
     // Función para cargar el gráfico en el contenedor
     function cargarGrafico() {
         var xhr = new XMLHttpRequest();
@@ -59,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
         };
         xhr.open('GET', 'lib.php', true);
         xhr.send('a=gra&tb='+mod+'&type=radar');
-    }
+    } 
 
     // Cargar el gráfico al cargar la página
     cargarGrafico();
@@ -67,3 +71,5 @@ document.addEventListener("DOMContentLoaded", function() {
     // Actualizar el gráfico cada 5 segundos
     setInterval(cargarGrafico, 5000);
 });
+
+*/

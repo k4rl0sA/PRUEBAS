@@ -85,10 +85,10 @@ function cmp_rptindv(){
 		$Rimc=0;
     } elseif ($imc >= 25 && $imc < 29.9) {
         $sobrepeso = $imc;
-		$Rimc=1;
+		$Rimc=2;
     } elseif ($imc >= 30) {
         $obesidad = $imc;
-		$Rimc=1;
+		$Rimc=3;
     }
 
 	$ophi=intval($d["Puntaje_Ophi"])/ 112*100;
@@ -162,10 +162,10 @@ function cmp_rptindv(){
 	$Rrqc1 = strpos($Prqc,'Alto') ? 3 : 0;
 
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
-	$sum=$Rimc;
+	$sum=$Rimc+$Roms+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi+$Rsrq1+$Rrqc1;
 	
-	//$Roms++$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami
-	//+$Rophi+$Rsrq1+$Rrqc1;
+	//
+	//;
 
 
 	var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);

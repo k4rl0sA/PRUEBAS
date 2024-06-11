@@ -162,9 +162,9 @@ function cmp_rptindv(){
 	$Rrqc1 = strpos($Prqc,'Alto') ? 3 : 0;
 
 	$total=$Toms+$Timc+$Tepoc+$Tfind+$Tcope+$Tzari+$Tzung+$Thami+$Tophi+$Tsrq+$Trqc;
-	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami+$Rophi;
+	$sum=$Roms+$Rimc+$Repoc+$Rfind+$Rcope+$Rzari+$Rzung+$Rhami;
 	
-	//+$Rsrq1+$Rrqc1;
+	//+$Rophi+$Rsrq1+$Rrqc1;
 
 
 	var_dump('Total/Suma='.$total.'/'.$sum.'='.$sum/$total);

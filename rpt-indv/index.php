@@ -10,6 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
 <script src="../libs/js/d.js"></script>
+<script src="../libs/js/graph.js"></script>
 <script src="../libs/js/popup.js"></script>
 
 <script>

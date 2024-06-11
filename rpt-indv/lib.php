@@ -338,6 +338,18 @@ return $rta;
 		}
 	} 
 
+	function gra_datos() {
+		// Aquí obtén los datos necesarios, por ejemplo:
+		$datos = array(
+			'riesgo' => rand(0, 100) // Simulando un valor de riesgo aleatorio
+		);
+	
+		$html = '<div class="chart-container zoomable">';
+		$html .= '<div id="chart_div" style="width: 100%; height: 100%;"></div>';
+		$html .= '</div>';
+	
+		echo $html;
+	}
 
 /* function get_person(){
 	// print_r($_POST);

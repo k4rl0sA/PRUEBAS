@@ -84,7 +84,7 @@ function lis_predios(){
 			break;
 		case '3':				
 			if($docume!==''){	
-				$sql="SELECT hg.idgeo 'Cod Predio',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,hg.territorio,hg.direccion Direccion,u.nombre 'Creo',u.perfil,p.fecha_create 'Fecha Creo',hv.idviv 'Cod Familia',FN_CATALOGODESC(44, hg.estado_v) Estado
+				$sql="SELECT hg.idgeo 'Cod Predio',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,hg.territorio,hg.direccion Direccion,u.nombre 'Creo',u.perfil,u.equipo,p.fecha_create 'Fecha Creo',hv.idviv 'Cod Familia',FN_CATALOGODESC(44, hg.estado_v) Estado
 				FROM hog_viv hv 
 				left JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
 				LEFT JOIN personas p ON hv.idviv=p.vivipersona

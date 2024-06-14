@@ -243,7 +243,7 @@ function gra_tamApgar(){
 		trim(upper('{$des}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		echo $sql;
+		//echo $sql;
 		$rta=dato_mysql($sql);
 	}else{
 		// print_r($_POST);

@@ -44,12 +44,14 @@ function grabar(tb='',ev){
 			const gat=document.getElementById('numero_gatos');
 			const gva=document.getElementById('gato_vacunas');
 			const ges=document.getElementById('gato_esterilizado');
+			const upd=document.getElementById('motivoupd');
 			if(pva.value>per.value || pes.value>per.value || gva.value>gat.value || ges.value>gat.value){
 				document.getElementById(tb+'-modal').innerHTML='El valor de vacunados o esterilizados esta errado, no puede ser superior al numero de mascotas,por favor valide e intente nuevamente';
 				document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
 				openModal();
 				return
 			}
+			if(upd.value!=3) return;
 			if(valTel('telefono1')===true) return;
 		}
 		if(tb=='medidas'){

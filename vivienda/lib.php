@@ -828,82 +828,38 @@ function gra_person(){
 			return opc_sql($sql,'');		
 	}
 
-	function opc_equipo($id=''){
+/* 	function opc_equipo($id=''){
 	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
-}  
+}   */
 
-	
-	
-	/* function cmp_placuifam(){
-	    $rta="";
-	// $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	//<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>";
-	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_accfam();
-	if ($d==""){$d=$t;}
-	$u=($d['id']=='')?true:false;
-	$hoy=date('Y-m-d');
-    $w="placuifam";
-	$o='accide';
-	$e="";
-	$key='pln';
-	$c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('fecha_caracteriza','d','10',$d['fecha'],$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2','validDate(this,-3,0);');
-	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3','selectDepend(\'accion1\',\'desc_accion1\',\'lib.php\');');
-	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
-    $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5','selectDepend(\'accion2\',\'desc_accion2\',\'lib.php\');');
-    $c[]=new cmp('desc_accion2','s','3',$d['desc_accion2'],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion3','s','3',$d['accion3'],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5','selectDepend(\'accion3\',\'desc_accion3\',\'lib.php\');');
-    $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5','selectDepend(\'accion4\',\'desc_accion4\',\'lib.php\');');
-    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
-    
-	$c[]=new cmp('observacion','a',500,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+function opc_equipo($id=''){
+	$fam=divide($_POST['id']);
+	$sql="SELECT CASE WHEN EXISTS (SELECT 1 FROM hog_viv c WHERE c.idviv = $fam[0] AND NOT EXISTS (
+        SELECT 1 FROM usuarios u WHERE u.id_usuario ='{$_SESSION['us_sds']}' AND u.equipo = c.equipo_car)) 
+	THEN FALSE
+    ELSE TRUE
+    END AS RTA";
+	$info = datos_mysql($sql);
+	$rta1 = $info['responseResult'][0]['RTA'];
 
-	$o='plancon';
-	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-	$c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
-	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='planc-lis' >".lis_planc()."</div></div>";
-	// $rta.="<div class='contenido' id='plancon-lis' >".lis_planc()."</div></div>";
-	return $rta;
-	} */
 
-/* 	function lis_planc(){
-		// print_r($_POST);
-		$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-	$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
-	WHERE idviv=".$id[0]."");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-planc']))? ($_POST['pag-planc']-1)* $regxPag:0;
-
-		$sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
-			FN_CATALOGODESC(26,equipo) 'Equipo',cumple
-			FROM `hog_planconc` 
-				WHERE idviv='".$id[0];
-			$sql.="' ORDER BY fecha_create";
-			$sql.=' LIMIT '.$pag.','.$regxPag;
-			//  echo $sql;
-			// $_SESSION['sql_planc']=$sql;
-			$datos=datos_mysql($sql);
-			return create_table($total,$datos["responseResult"],"planc",$regxPag);
-			 //return panel_content($datos["responseResult"],"planc-lis",10); 
-	} */
-	
-/* 	function focus_placuifam(){
-		return 'placuifam';
+	if (count($fam)===1){
+		return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+	}else{
+		if ($rta1=="0"){
+			$sql="SELECT equipo_car,equipo_car equipo FROM hog_viv WHERE idviv='$fam[0]' and estado='A' ORDER BY 1";
+			$info = datos_mysql($sql);
+			$rta = $info['responseResult'][0]['equipo'];
+			// var_dump($rta);
+			// return $rta;
+			return opc_sql($sql,$rta);
+		}else{
+			//if ($fam[0]==='')
+			return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+		}
 	}
-	   
-	function men_placuifam(){
-		$rta=cap_menus('placuifam','pro');
-		return $rta;
 	}
- */
+	
 	function get_accfam() {
 		// print_r($_POST);
 			if (!$_POST['id']) {
@@ -923,174 +879,6 @@ function gra_person(){
 			}
 	}
 
-/* function get_placuifam() {
-	// print_r($_POST);
-		if (!$_POST['id']) {
-			return '';
-		}
-		$id = divide($_POST['id']);
-		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion,P.compromiso,P.equipo,P.cumple
-		FROM hog_plancuid A
-		LEFT JOIN hog_planconc P ON A.idviv=P.idviv
-		WHERE P.idviv='{$id[0]}' and P.idcon='{$id[1]}'";
-		// echo $sql;		
-		$info = datos_mysql($sql);
-		// echo $sql; 
-		// print_r($info['responseResult'][0]);
-		if (!$info['responseResult']) {
-			return '';
-		}else{
-			return json_encode($info['responseResult'][0]);
-		}
-}
- */
-/* 	function get_plancon() {
-		print_r($_POST);
-			if (!$_POST['id']) {
-				return '';
-			}
-			$id = divide($_POST['id']);
-			$sql = "SELECT concat(idcon,'_',idviv) 'id',compromiso,equipo,cumple
-					FROM `hog_planconc` 
-					WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
-					LIMIT 1";
-			// echo $sql;		
-			$info = datos_mysql($sql);
-			if (!$info['responseResult']) {
-				return '';
-			}
-			return json_encode($info['responseResult'][0]);
-		} */
-
-
-/* function gra_placuifam(){
-	// print_r($_POST);
-	$id=divide($_POST['idp']);
-		$sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
-		$info = datos_mysql($sql1);
-		if (!$info['responseResult']) {
-			$sql="INSERT INTO hog_plancuid VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['fecha_caracteriza']}')),
-			TRIM('{$_POST['accion1']}'),TRIM('{$_POST['desc_accion1']}'),TRIM(UPPER('{$_POST['accion2']}')),TRIM('{$_POST['desc_accion2']}'),TRIM(UPPER('{$_POST['accion3']}')),TRIM('{$_POST['desc_accion3']}'),TRIM(UPPER('{$_POST['accion4']}')),TRIM('{$_POST['desc_accion4']}'),TRIM(UPPER('{$_POST['observacion']}')),TRIM(UPPER('{$_SESSION['us_sds']}')),
-			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-			$rta1=dato_mysql($sql);
-					
-			$sql2="INSERT INTO hog_planconc VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['obs']}')),
-			TRIM(UPPER('{$_POST['equipo']}')),TRIM(UPPER('{$_POST['cumplio']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),NULL,NULL,'A');";
-			$rta2=dato_mysql($sql2);
-			// echo $sql1;
-			
-			if (strpos($rta1, "Correctamente") && strpos($rta2, "Correctamente")  !== false) {
-				$rta = "Se ha Insertado: 1 Registro Correctamente.";
-			} else {
-				$rta = "Error: No se pudo guardar el registro en la tabla";
-			}	
-		}else{
-			$sql="UPDATE `hog_plancuid` SET `fecha`=TRIM(UPPER('{$_POST['fecha_caracteriza']}')),`accion1`=TRIM(UPPER('{$_POST['accion1']}')),`desc_accion1`=TRIM(UPPER('{$_POST['desc_accion1']}')),`accion2`=TRIM(UPPER('{$_POST['accion2']}')),`desc_accion2`=TRIM(UPPER('{$_POST['desc_accion2']}'))`accion3`=TRIM(UPPER('{$_POST['accion3']}')),`desc_accion3`=TRIM(UPPER('{$_POST['desc_accion3']}')),`accion4`=TRIM(UPPER('{$_POST['accion4']}')),`desc_accion4`=TRIM(UPPER('{$_POST['desc_accion4']}')),`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
-			usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-			WHERE idviv='{$id[0]}'";
-
-			$sql2="INSERT INTO hog_planconc VALUES (NULL,TRIM(UPPER('{$id[0]}')),TRIM(UPPER('{$_POST['obs']}')),
-			TRIM(UPPER('{$_POST['equipo']}')),TRIM(UPPER('{$_POST['cumplio']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),NULL,NULL,'A');";
-			$rta2=dato_mysql($sql2);
-
-			if (strpos($rta2, "Correctamente")  !== false) {
-				$rta = "Se ha insertado: 1 Registro Correctamente.";
-			} else {
-				$rta = "Error: No se pudo guardar el registro en la tabla";
-			}
-		}
-	// echo $sql1.'-------------------------'.$sql;
-	// $rta=dato_mysql($sql);
-	return $rta;
-}
- */
-
-
-/* function opc_accion1desc_accion1($id=''){
-if($_REQUEST['id']!=''){
-			$id=divide($_REQUEST['id']);
-			$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-			$info=datos_mysql($sql);
-			return json_encode($info['responseResult']);
-    }
-}
-
-function opc_accion2desc_accion2($id=''){
-  if($_REQUEST['id']!=''){
-        $id=divide($_REQUEST['id']);
-        $sql="SELECT idcatadeta,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        $info=datos_mysql($sql);		
-        return json_encode($info['responseResult']);
-      }
-  }
-  function opc_accion3desc_accion3($id=''){
-    if($_REQUEST['id']!=''){
-          $id=divide($_REQUEST['id']);
-          $sql="SELECT idcatadeta 'id',descripcion 'asc' FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-          $info=datos_mysql($sql);		
-          return json_encode($info['responseResult']);
-        }
-    }
-    function opc_accion4desc_accion4($id=''){
-    if($_REQUEST['id']!=''){
-          $id=divide($_REQUEST['id']);
-          $sql="SELECT idcatadeta 'id',descripcion 'asc' FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-          $info=datos_mysql($sql);		
-          return json_encode($info['responseResult']);
-        }
-    }
-
-function opc_desc_accion1($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
-  }
-function opc_desc_accion2($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
-}
-function opc_desc_accion3($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
-}
-function opc_accion1($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
-}
-function opc_accion2($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
-}
-function opc_accion3($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
-}
-function opc_accion4($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
-}
-
-*/
-
-/*
-//Inicio 5. RIESGOS AMBIENTALES DE LA VIVIENDA
-function cmp_rieamb(){
-    
-   	$rta="";
-	$t=['id'=>'','plagas1'=>'','plagas2'=>'','plagas3'=>'','plagas4'=>''];
-	$d=get_rieamb();
-	if ($d==""){$d=$t;}
-	$u=($d['id']=='')?true:false;
-	$hoy=date('Y-m-d');
-    $w="rieamb";
-	$o='accide';
-	$e="";
-	$c[]=new cmp($o,'e',null,'MANEJO DE PLAGAS',$w);
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('plagas1','s','3',$d['plagas1'],$w.' '.$o,'No hay presencia de plagas en la vivienda (roedores, insectos, piojos, pulgas, palomas)','plagas1',null,null,true,true,'','col-2');
-	$c[]=new cmp('plagas2','s','3',$d['plagas2'],$w.' '.$o,'Se realiza adecuado control preventivo de plagas (químico o alternativo)','plagas2',null,null,false,true,'','col-2');
-	$c[]=new cmp('plagas3','s','3',$d['plagas3'],$w.' '.$o,'Las prácticas higiénicos-sanitarias no fomentan la proliferación de vectores en la vivienda','plagas3',null,null,false,true,'','col-2');
-	$c[]=new cmp('plagas4','s','3',$d['plagas4'],$w.' '.$o,'Adecuada disposición de envases de plaguicidas y productos de uso veterinario','plagas4',null,null,false,true,'','col-2');
-
-
-}
-
-
-//Fin 5. RIESGOS AMBIENTALES DE LA VIVIENDA
-
-*/
 function plan($id){
 	$sql="select id FROM hog_plancuid where idviv='".$id."'";
 	$info=datos_mysql($sql);

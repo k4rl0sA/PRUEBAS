@@ -112,47 +112,7 @@ function disabledCmp(clsCmp){
 	}
 }
 
-
-
-/* function enabEtni(etniaSelector, ocuCls, idiCls) {
-	const ele = document.querySelectorAll(`select.${ocuCls}, input.${ocuCls}`);
-	const idi = document.querySelectorAll(`select.${idiCls}, input.${idiCls}`);
-	const act = document.getElementById(etniaSelector);
-  
-	const bloquearCampos = (bloquear) => {
-	  for (let j = 0; j < ele.length; j++) {
-		if (ele[j].classList.contains(ocuCls)) {
-		  enaFie(ele[j], bloquear);
-		}
-	  }
-	};
-  
-	if (act.value === '1' || act.value === '3') {
-	  // Ninguno o Afro
-	  bloquearCampos(true);
-	  // Bloquea el campo de idioma en los casos de etnia '1' o '3'
-	  for (let j = 0; j < idi.length; j++) {
-		enaFie(idi[j], true);
-	  }
-	} else if (act.value === '2') {
-	  // Indígena
-	  for (let j = 0; j < ele.length; j++) {
-		enaFie(ele[j], false);
-	  }
-	  // Desbloquea el campo de idioma en el caso de etnia '2' (Indígena)
-	  for (let j = 0; j < idi.length; j++) {
-		enaFie(idi[j], false);
-	  }
-	} else {
-	  // Otros casos
-	  bloquearCampos(true);
-	  // Bloquea el campo de idioma en otros casos
-	  for (let j = 0; j < idi.length; j++) {
-		enaFie(idi[j], false);
-	  }
-	}
-  } */
-  
+ 
   function enabEtni(a, clsCmp, i) {
 	const ele = document.querySelectorAll(`select.${clsCmp}, input.${clsCmp}`);
 	const idi = document.querySelectorAll(`select.${i}, input.${i}`);

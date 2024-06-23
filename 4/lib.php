@@ -12,21 +12,44 @@ if (!isset($_SESSION["us_sds"])) {
     exit();
 }
 
-// Función para exportar datos según el parámetro recibido
+// Función para obtener y exportar datos
 function exp_datos($conexion) {
     try {
-        // Aquí deberías realizar la consulta o proceso necesario para obtener los datos a exportar
-        $query = "SELECT * FROM usuarios"; // Ejemplo de consulta
+        // Realizar tu consulta SQL aquí
+        $query = "SELECT * FROM tabla_datos"; // Ejemplo de consulta
         
         $statement = $conexion->prepare($query);
         $statement->execute();
         
-        // Preparar los datos para exportar (aquí puedes usar PHPExcel o alguna librería similar para generar el archivo Excel)
-        // En este ejemplo, simplemente se retorna un mensaje para fines ilustrativos
-        return "Datos exportados correctamente";
+        // Obtener todos los resultados como un array asociativo
+        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        // Crear un archivo Excel
+        $excelFile = 'datos_exportados.xls'; // Nombre del archivo Excel
+
+        // Crear el contenido del archivo Excel
+        $content = '';
+        
+        // Encabezados de columna
+        $columns = array_keys($results[0]); // Suponiendo que la primera fila contiene los encabezados
+        $content .= implode("\t", $columns) . "\n";
+
+        // Datos
+        foreach ($results as $data) {
+            $content .= implode("\t", $data) . "\n";
+        }
+
+        // Encabezados para descargar el archivo
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $excelFile . '"');
+        header('Cache-Control: max-age=0');
+
+        // Salida del archivo Excel
+        echo $content;
+        exit;
         
     } catch (PDOException $e) {
-        return "Error al exportar datos: " . $e->getMessage();
+        die("Error al exportar datos: " . $e->getMessage());
     }
 }
 
@@ -38,11 +61,7 @@ if (isset($_GET['funcion'])) {
     
     switch ($funcion) {
         case 'exp_datos':
-            $resultado = exp_datos($conexion);
-            if (is_string($resultado)) {
-                // Aquí se podría manejar el resultado de la función, por ejemplo, enviar un mensaje JSON con el resultado
-                echo json_encode(array('mensaje' => $resultado));
-            }
+            exp_datos($conexion);
             break;
         // Otros casos para otras funciones si las tienes definidas
         default:
@@ -50,20 +69,4 @@ if (isset($_GET['funcion'])) {
             break;
     }
 }
-
-function getConnection() {
-	$env = ($_SERVER['SERVER_NAME']==='www.siginf-sds.com') ? 'prod' : 'pru' ;
-	$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
-	$dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
-	$username = $comy[$env]['u'];
-	$password = $comy[$env]['p'];
-	$options = [
-		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	];
-	try {
-		return new PDO($dsn, $username, $password, $options);
-	} catch (PDOException $e) {
-		die("Error de conexión: " . $e->getMessage());
-	}
-  }
+?>

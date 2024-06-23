@@ -2,47 +2,36 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Exportar Datos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Eventos y Exportación</title>
 </head>
 <body>
-    <h1>Exportar Datos</h1>
-    <button onclick="exportarDatos()">Exportar a XLS</button>
+    <h1>Gestión de Eventos y Exportación de Datos</h1>
 
+    <!-- Botón para exportar datos -->
+    <button onclick="exportarDatos('exp_datos')">Exportar Datos</button>
+
+    <!-- Script para manejar la exportación de datos -->
     <script>
-        function exportarDatos() {
-            // Ejemplo de consulta SQL para exportar
-            const sql = "SELECT * FROM usuarios";
-            const nombreArchivo = "datos_exportados";
-
-            // Configuración de la petición Fetch para llamar a lib.php
-            fetch('lib.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ sql: sql, name: nombreArchivo })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error al exportar datos');
+        function exportarDatos(funcion) {
+            // Aquí se podría agregar lógica adicional si se requiere
+            
+            // Hacer una petición AJAX a lib.php con la función deseada
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'lib.php?funcion=' + funcion, true);
+            xhr.responseType = 'blob'; // Esperamos una respuesta binaria (para el archivo Excel)
+            
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var blob = xhr.response;
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'datos_exportados.xls'; // Nombre del archivo Excel
+                    link.click();
                 }
-                return response.blob();
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(new Blob([blob]));
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = `${nombreArchivo}.xls`;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                alert('Datos exportados correctamente');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Ocurrió un error al exportar los datos');
-            });
+            };
+            
+            xhr.send();
         }
     </script>
 </body>

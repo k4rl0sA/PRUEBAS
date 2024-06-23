@@ -30,6 +30,32 @@ function grabar(tb='',ev){
     myFetch(ruta_app,"a=gra&tb="+tb,mod);  
 }   
 
+async function exportarDatos() {
+            try {
+                const response = await fetch('lib.php', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'datos.xls';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } catch (error) {
+                console.error('Error al exportar datos:', error);
+            }
+        }
+
 </script>
 </head>
 <body Onload="actualizar();">

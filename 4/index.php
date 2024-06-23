@@ -35,6 +35,7 @@
             Exec=true;
             event.preventDefault();
             exportarDatos('exp_datos');
+            Exec=false;
         });
 
       
@@ -42,6 +43,7 @@
          
         // Función para exportar datos utilizando fetch
         function exportarDatos(funcion) {
+            if(Exec){
             // Construir la URL para la petición a lib.php
             const url = `lib.php?funcion=${funcion}`;
 
@@ -74,6 +76,7 @@
                     });
                 })
                 .catch(error => console.error('Error:', error));
+            }
         }
 
 

@@ -43,6 +43,12 @@ async function exportarDatos(a,tb) {
             }
         }
 
+        document.getElementById('exportBtn').addEventListener('click', async function () {
+            const a = 'exp';  // Definir valor de 'a'
+            const tb = 'usuarios';  // Definir valor de 'tb'
+            await exportarDatos(a, tb);
+        });
+
 function actualizar(){
 	act_lista(mod);
 }
@@ -76,6 +82,7 @@ function grabar(tb='',ev){
 <div class='col-8 panel' id=''>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
+        <button id="exportBtn">Exportar a XLS</button>
     <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos('exp','usuarios');"><!-- actualizar() -->
     <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>

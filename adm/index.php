@@ -16,6 +16,31 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 var mod='creausu';	
 var ruta_app='lib.php';
 
+async function exportarDatos() {
+            try {
+                const response = await fetch('exportar.php', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'datos.xls';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } catch (error) {
+                console.error('Error al exportar datos:', error);
+            }
+        }
 
 function actualizar(){
 	act_lista(mod);

@@ -43,12 +43,16 @@ async function exportarDatos(a,tb) {
             }
         }
 
-        document.getElementById('exportBtn').addEventListener('click', async function () {
-            const a = 'exp';  // Definir valor de 'a'
-            const tb = 'usuarios';  // Definir valor de 'tb'
-            await exportarDatos(a, tb);
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('exportBtn').addEventListener('click', async function () {
+                const a = 'exp';  // Definir valor de 'a'
+                const tb = 'usuarios';  // Definir valor de 'tb'
+
+                await exportarDatos(a, tb);
+            });
         });
 
+        
 function actualizar(){
 	act_lista(mod);
 }

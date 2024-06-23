@@ -24,6 +24,9 @@ function exp_datos($conexion) {
         // Obtener todos los resultados como un array asociativo
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+        // Contar el total de registros
+        $totalRegistros = count($results);
+
         // Crear un archivo Excel
         $excelFile = 'datos_exportados.xls'; // Nombre del archivo Excel
 
@@ -35,9 +38,12 @@ function exp_datos($conexion) {
         $content .= implode("\t", $columns) . "\n";
 
         // Datos
-	        foreach ($results as $data) {
+        foreach ($results as $data) {
             $content .= implode("\t", $data) . "\n";
         }
+
+        // Agregar total de registros como última fila
+        $content .= "Total de registros:\t" . $totalRegistros . "\n";
 
         // Encabezados para descargar el archivo
         header('Content-Type: application/vnd.ms-excel');

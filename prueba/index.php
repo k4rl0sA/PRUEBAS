@@ -77,9 +77,6 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 <div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
 <div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
 
-<!-- <div class="campo"><div>Estado</div>
-	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>
-</div> -->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

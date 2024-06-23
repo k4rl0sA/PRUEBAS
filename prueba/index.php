@@ -17,33 +17,7 @@ var mod='creausu';
 var ruta_app='lib.php';
 
 
-async function exportarDatos() {
-            try {
-                const response = await fetch('../libs/main.php', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'datos.xls';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            } catch (error) {
-                console.error('Error al exportar datos:', error);
-            }
-        }
-
-        function actualizar(){
+function actualizar(){
 	act_lista(mod);
 }
 
@@ -54,7 +28,8 @@ function grabar(tb='',ev){
      if (!valido(f[i])) {f[i].focus(); return};
   }
     myFetch(ruta_app,"a=gra&tb="+tb,mod);  
-}
+}   
+
 </script>
 </head>
 <body Onload="actualizar();">
@@ -77,12 +52,15 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 <div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
 <div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
 
+<!-- <div class="campo"><div>Estado</div>
+	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>
+</div> -->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
-    <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos();"><!-- actualizar() -->
+    <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
     <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>
 		<nav class='menu right' >

@@ -35,7 +35,7 @@ function exp_datos($conexion) {
         $content .= implode("\t", $columns) . "\n";
 
         // Datos
-        foreach ($results as $data) {
+	        foreach ($results as $data) {
             $content .= implode("\t", $data) . "\n";
         }
 
@@ -71,7 +71,7 @@ if (isset($_GET['funcion'])) {
 }
 
 function getConnection() {
-	$env = ($_SERVER['SERVER_NAME']==='www.siginf-sds.com') ? 'prod' : 'pru' ;
+	$env = ($_SERVER['SERVER_NAME']!=='www.siginf-sds.com') ? 'prod' : 'pru' ;
 	$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
 	$dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
 	$username = $comy[$env]['u'];

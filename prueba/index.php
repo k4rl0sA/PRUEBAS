@@ -61,7 +61,7 @@ function grabar(tb='',ev){
 <?php
 
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");exit();}
+if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='creausu';
 $hoy = date("Y-m-d");

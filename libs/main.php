@@ -12,9 +12,11 @@ if (!isset($_SESSION["us_sds"])) {
     exit();
 }
 
+var_dump($_SERVER['SERVER_NAME']);
+
 function getConnection() {
     $env='prod';
-    $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
+    $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
     $dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
     $username = $comy[$env]['u'];
     $password = $comy[$env]['p'];

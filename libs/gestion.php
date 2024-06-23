@@ -418,31 +418,6 @@ function pags_table($tb, $pg, $np, $nr,$mod) {
   return $rta;
 }
 
-function envia_mail($to,$tit,$body,$copia=''){
-  $rta="";
-  require_once('../libs/mailer/PHPMailerAutoload.php');
-  $mail = new PHPMailer();
-  $mail->IsSMTP();
-  $mail->CharSet="UTF-8";
-  $mail->SMTPSecure = 'tls';
-  $mail->Host = 'smtp.gmail.com';
-  $mail->Port = 587;
-  $mail->Username = 'gerenciadelainformaciongif@gmail.com';
-  $mail->Password = 'G3r3nc14+';
-  $mail->SMTPAuth = true;
-  $mail->From = 'gerenciadelainformaciongif@gmail.com';
-  $mail->FromName = 'APLICATIVO GIF EAC-HOG';
-  $mail->AddAddress($to);
-  if ($copia!='')  $mail->AddCC($copia);
-  $mail->IsHTML(true);
-  $mail->Subject    = $tit;
-  $mail->AltBody    = "Utilice un lector de Mail apropiado!";
-  $mail->Body       = $body;
-  if(!$mail->Send()) $rta="Mailer Error: " . $mail->ErrorInfo;
-  else $rta="Notificacion Enviada";
-  return $rta;
-  }
-
   function initializeMail(&$mail, $config) {
     $mail->SMTPDebug = 2;
     $mail->IsSMTP();

@@ -12,8 +12,6 @@ if (!isset($_SESSION["us_sds"])) {
     exit();
 }
 
-var_dump($_SERVER['SERVER_NAME']);
-
 function getConnection() {
   $env = ($_SERVER['SERVER_NAME']==='www.siginf-sds.com') ? 'prod' : 'pru' ;
   $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);

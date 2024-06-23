@@ -1,140 +1,49 @@
-<?php
-ini_set('display_errors','1');
-include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
-?>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creación de Usuarios || SIGINF</title>
-<link href="../libs/css/stylePop.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
-<script src="../libs/js/a.js"></script>
-<script src="../libs/js/x.js"></script>
-<script src="../libs/js/d.js"></script>
-<script src="../libs/js/popup.js"></script>
-<script>
-var mod='creausu';	
-var ruta_app='lib.php';
+    <meta charset="UTF-8">
+    <title>Exportar Datos</title>
+</head>
+<body>
+    <h1>Exportar Datos</h1>
+    <button onclick="exportarDatos()">Exportar a XLS</button>
 
-async function exportarDatos(a,tb) {
-            try {
-                const response = await fetch('lib.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ a: a, tb: tb })
-                });
+    <script>
+        function exportarDatos() {
+            // Ejemplo de consulta SQL para exportar
+            const sql = "SELECT * FROM usuarios";
+            const nombreArchivo = "datos_exportados";
 
+            // Configuración de la petición Fetch para llamar a lib.php
+            fetch('lib.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ sql: sql, name: nombreArchivo })
+            })
+            .then(response => {
                 if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
+                    throw new Error('Error al exportar datos');
                 }
-
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
+                return response.blob();
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
                 const a = document.createElement('a');
+                a.style.display = 'none';
                 a.href = url;
-                a.download = 'datos.xls';
+                a.download = `${nombreArchivo}.xls`;
                 document.body.appendChild(a);
                 a.click();
-                a.remove();
-            } catch (error) {
-                console.error('Error al exportar datos:', error);
-            }
+                window.URL.revokeObjectURL(url);
+                alert('Datos exportados correctamente');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Ocurrió un error al exportar los datos');
+            });
         }
-
- 
-    document.addEventListener("DOMContentLoaded", () => {
-    const exportBtn = document.getElementById('exportBtn');
-
-    exportBtn.addEventListener("click", () => {
-        var formData = new FormData();
-        formData.append("a", 'exp');
-        formData.append("tb", "usuarios");
-
-        fetch("lib.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la respuesta del servidor');
-            }
-            return response.blob(); // Parse the response as Blob
-        })
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'datos.xls';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-});
-
-
-
-        
-function actualizar(){
-	act_lista(mod);
-}
-
-function grabar(tb='',ev){
-  if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  var f=document.getElementsByClassName('valido '+tb);
-   for (i=0;i<f.length;i++) {
-     if (!valido(f[i])) {f[i].focus(); return};
-  }
-    myFetch(ruta_app,"a=gra&tb="+tb,mod);  
-}   
-
-</script>
-</head>
-<body Onload="">
-
-
-<form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='-fil'>
-	
-
-<div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
-<div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
-
-<!-- <div class="campo"><div>Estado</div>
-	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>
-</div> -->
-	
-</div>
-<div class='col-8 panel' id=''>
-      <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
-		<nav class='menu left' >
-        <button id="exportBtn">Exportar a XLS</button>
-    <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos('exp','usuarios');"><!-- actualizar() -->
-    <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
-    </nav>
-		<nav class='menu right' >
-			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>
-            <li class='icono cancelar'      title='Salir'            Onclick="location.href='../main/'"></li>
-        </nav>               
-      </div>
-  </form>
-		<span class='mensaje' id='-msj' ></span>
-     <div class='contenido' id='-lis' ></div>
-	 <div class='contenido' id='cmprstss' ></div>
-</div>			
-		
-<div class='load' id='loader' z-index='0' ></div>
-
-<div class="overlay" id="overlay" onClick="closeModal();">
-	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
-		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
-		<h3><div class='image' id='-image'></div></h3>
-		<h4><div class='message' id='-modal'></div></h4>
-	</div>
-</div>
+    </script>
 </body>
+</html>

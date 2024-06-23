@@ -43,19 +43,36 @@ async function exportarDatos(a,tb) {
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const exportBtn = document.getElementById('exportBtn');
-            if (exportBtn) {
-                exportBtn.addEventListener('click', async function () {
-                    const a = 'exp';  
-                    const tb = 'usuarios';  
+    
+        const exportBtn = document.getElementById('exportBtn');
 
-                    await exportarDatos(a, tb);
-                });
-            } else {
-                console.error('No se encontró el botón de exportación');
-            }
-        });
+        exportBtn.addEventListener("click", () => {
+		var formData = new FormData();
+		formData.append("a", 'exp');
+		formData.append("tb", "usuarios");
+
+		fetch("lib.php", {
+			method: "POST",
+			body: formData
+		})
+
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Error en la respuesta del servidor');
+			}
+            const blob = response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'datos.xls';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+		})
+		.catch(error => {
+			console.error("Error:", error);
+		});
+});
 
         
 function actualizar(){

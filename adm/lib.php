@@ -1,5 +1,6 @@
 <?php
- require_once '../libs/gestion.php';
+//  require_once '../libs/gestion.php';
+require_once 'exportar.php';
 ini_set('display_errors','1');
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
@@ -49,6 +50,10 @@ function whe_creausu() {
     return $sql;
 }
 
+function exp_usuarios(){
+	$sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
+	return exportarDatos($sql);
+}
 
 function focus_creausu(){
  return 'creausu';

@@ -42,7 +42,6 @@ function exportarDatos($sql,$name) {
     } else {
         $datos[] = ["Total de registros" => 0];
     }
-    return $resultados;
     header("Content-Type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename={$name}.xls");
     header("Pragma: no-cache");

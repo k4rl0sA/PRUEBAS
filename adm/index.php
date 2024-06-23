@@ -58,7 +58,7 @@ function grabar(tb='',ev){
 
 </script>
 </head>
-<body Onload="actualizar();">
+<body Onload="">
 <?php
 
 require_once "../libs/gestion.php";

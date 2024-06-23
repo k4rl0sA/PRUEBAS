@@ -43,36 +43,40 @@ async function exportarDatos(a,tb) {
             }
         }
 
-        const exportBtn = document.getElementById('exportBtn');
+ 
+    document.addEventListener("DOMContentLoaded", () => {
+    const exportBtn = document.getElementById('exportBtn');
 
-exportBtn.addEventListener("click", () => {
-    var formData = new FormData();
-    formData.append("a", 'exp');
-    formData.append("tb", "usuarios");
+    exportBtn.addEventListener("click", () => {
+        var formData = new FormData();
+        formData.append("a", 'exp');
+        formData.append("tb", "usuarios");
 
-    fetch("lib.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
-        }
-        return response.blob(); // Parse the response as Blob
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'datos.xls';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-    })
-    .catch(error => {
-        console.error("Error:", error);
+        fetch("lib.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.blob(); // Parse the response as Blob
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'datos.xls';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
     });
 });
+
 
 
         

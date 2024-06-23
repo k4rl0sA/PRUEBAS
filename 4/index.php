@@ -36,8 +36,10 @@
             exportarDatos('exp_datos');
         });
 
-        // Función para exportar datos utilizando fetch
-        function exportarDatos(funcion) {
+      
+
+         // Función para exportar datos utilizando fetch
+         function exportarDatos(funcion) {
             // Construir la URL para la petición a lib.php
             const url = `lib.php?funcion=${funcion}`;
 
@@ -55,21 +57,22 @@
                     if (!response.ok) {
                         throw new Error('Error en la petición.');
                     }
-                    return response.blob(); // Convertir la respuesta a tipo Blob (para archivo Excel)
+                    return response.json(); // Convertir la respuesta a JSON
                 })
-                .then(blob => {
-                    // Crear un enlace para descargar el archivo
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = 'datos_exportados.xls'; // Nombre del archivo Excel
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
+                .then(data => {
+                    // Descargar el archivo generado
+                    const downloadUrl = `lib.php?download=${data.archivo}`;
+                    const link = document.createElement('a');
+                    link.href = downloadUrl;
+                    link.style.display = 'none';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
                 })
                 .catch(error => console.error('Error:', error));
         }
+
+        
 
         // Agregar un único listener para una lista ampliada de eventos de interés
         const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];

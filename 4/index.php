@@ -39,9 +39,9 @@
 
       
 
-         // Función para exportar datos utilizando fetch
-         function exportarDatos(funcion) {
-            if(Exec){
+         
+        // Función para exportar datos utilizando fetch
+        function exportarDatos(funcion) {
             // Construir la URL para la petición a lib.php
             const url = `lib.php?funcion=${funcion}`;
 
@@ -49,33 +49,32 @@
             const fetchOptions = {
                 method: 'GET', // Método GET para este ejemplo
                 headers: {
-                    'Content-Type': 'application/json' // Tipo de contenido JSON
+                    'Content-Type': 'application/vnd.ms-excel' // Tipo de contenido Excel
                 }
             };
 
             // Realizar la petición fetch
             fetch(url, fetchOptions)
                 .then(response => {
+                    // Verificar el estado de la respuesta
                     if (!response.ok) {
-                        throw new Error('Error en la petición.');
+                        throw new Error('Error al exportar datos.');
                     }
-                    return response.json(); // Convertir la respuesta a JSON
-                })
-                .then(data => {
-                    // Descargar el archivo generado
-                    const downloadUrl = `lib.php?download=${data.archivo}`;
-                    const link = document.createElement('a');
-                    link.href = downloadUrl;
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    
+                    // Crear un enlace para descargar el archivo
+                    response.blob().then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'datos_exportados.xls'; // Nombre del archivo Excel
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    });
                 })
                 .catch(error => console.error('Error:', error));
-                Exec=false;
-            }
         }
-
 
 
         // Agregar un único listener para una lista ampliada de eventos de interés

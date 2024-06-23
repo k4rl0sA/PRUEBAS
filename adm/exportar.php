@@ -52,7 +52,7 @@ header("Content-Disposition: attachment; filename=datos.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-$separator = "\t";
+$separator = ";";
 
 // Imprimir nombres de columnas
 echo "ID" . $separator . "Nombre" . $separator . "Apellido" . $separator . "Email" . "\n";

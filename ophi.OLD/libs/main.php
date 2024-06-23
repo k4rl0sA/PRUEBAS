@@ -14,7 +14,7 @@ if (!isset($_SESSION["us_sds"])) {
 
 function getConnection() {
     $env='prod';
-    $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
+    $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
     $dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
     $username = $comy[$env]['u'];
     $password = $comy[$env]['p'];
@@ -31,26 +31,35 @@ function getConnection() {
 
 $con= getConnection();
 
-function exportarDatos($sql) {
+function exportarDatos($sql,$name) {
     $con = getConnection();
     $stmt = $con->prepare($sql);
     $stmt->execute();
     $resultados = $stmt->fetchAll();
     $totalRegistros = count($resultados);
     if ($totalRegistros > 0) {
-        $resultados[] = ["Total de registros" => $totalRegistros];
+        $datos[] = ["Total de registros" => $totalRegistros];
     } else {
-        $resultados[] = ["Total de registros" => 0];
+        $datos[] = ["Total de registros" => 0];
     }
     return $resultados;
+    header("Content-Type: application/vnd.ms-excel");
+    header("Content-Disposition: attachment; filename={$name}.xls");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+    $separator = "\t";
+    echo "ID" . $separator . "Nombre" . $separator . "Apellido" . $separator . "Email" . "\n";
+    foreach ($datos as $row) {
+      echo implode($separator, array_values($row)) . "\n";
+    }
 }
 
 // Consulta SQL
-$sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
-$datos = exportarDatos($sql);
+/* $sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
+$datos = exportarDatos($sql,$name);
 
 header("Content-Type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=datos.xls");
+header("Content-Disposition: attachment; filename={$name}.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 
@@ -63,7 +72,7 @@ echo "ID" . $separator . "Nombre" . $separator . "Apellido" . $separator . "Emai
 foreach ($datos as $row) {
     echo implode($separator, array_values($row)) . "\n";
 }
-
+ */
 
 function header_csv($a) {
   $now = gmdate("D, d M Y H:i:s");

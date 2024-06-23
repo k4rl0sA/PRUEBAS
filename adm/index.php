@@ -16,13 +16,14 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 var mod='creausu';	
 var ruta_app='lib.php';
 
-async function exportarDatos() {
+async function exportarDatos(a,tb) {
             try {
-                const response = await fetch('exportar.php', {
-                    method: 'GET',
+                const response = await fetch('lib.php', {
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    body: JSON.stringify({ a: a, tb: tb })
                 });
 
                 if (!response.ok) {
@@ -85,7 +86,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
-    <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos();"><!-- actualizar() -->
+    <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos('export','creausu');"><!-- actualizar() -->
     <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>
 		<nav class='menu right' >

@@ -59,20 +59,10 @@ function grabar(tb='',ev){
 </script>
 </head>
 <body Onload="">
-<?php
-
-require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
-
-$mod='creausu';
-$hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
-$estados=array('A'=>'Activo','I'=>'Inactivo');
-?>
 
 
 <form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
+<div class="col-2 menu-filtro" id='-fil'>
 	
 
 <div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
@@ -83,7 +73,7 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 </div> -->
 	
 </div>
-<div class='col-8 panel' id='<?php echo $mod; ?>'>
+<div class='col-8 panel' id=''>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="exportarDatos('exp','usuarios');"><!-- actualizar() -->
@@ -95,8 +85,8 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
         </nav>               
       </div>
   </form>
-		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
-     <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
+		<span class='mensaje' id='-msj' ></span>
+     <div class='contenido' id='-lis' ></div>
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
 		
@@ -105,8 +95,8 @@ $estados=array('A'=>'Activo','I'=>'Inactivo');
 <div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
-		<h3><div class='image' id='<?php echo$mod; ?>-image'></div></h3>
-		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
+		<h3><div class='image' id='-image'></div></h3>
+		<h4><div class='message' id='-modal'></div></h4>
 	</div>
 </div>
 </body>

@@ -16,7 +16,7 @@ if (!isset($_SESSION["us_sds"])) {
 function exp_datos($conexion) {
     try {
         // Realizar tu consulta SQL aquí
-        $query = "SELECT * FROM tabla_datos"; // Ejemplo de consulta
+        $query = "SELECT * FROM usuarios"; // Ejemplo de consulta
         
         $statement = $conexion->prepare($query);
         $statement->execute();

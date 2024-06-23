@@ -32,7 +32,7 @@ function grabar(tb='',ev){
 
 async function exportarDatos() {
             try {
-                const response = await fetch('main.php', {
+                const response = await fetch('../libs/main.php', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

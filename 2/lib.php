@@ -17,6 +17,8 @@ function exp_usuarios(){
 	exportarDatos($sql,'usuarios');
 }
 
+var_dump($_POST);
+
 function lis_creausu(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
 	WHERE 1 ".whe_creausu());

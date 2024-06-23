@@ -51,7 +51,7 @@ function whe_creausu() {
 
 function exp_usuarios(){
 	$sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
-	return exportarDatos($sql);
+	exportarDatos($sql);
 }
 
 function focus_creausu(){

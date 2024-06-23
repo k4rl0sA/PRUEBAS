@@ -17,19 +17,6 @@ var mod='creausu';
 var ruta_app='lib.php';
 
 
-function actualizar(){
-	act_lista(mod);
-}
-
-function grabar(tb='',ev){
-  if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  var f=document.getElementsByClassName('valido '+tb);
-   for (i=0;i<f.length;i++) {
-     if (!valido(f[i])) {f[i].focus(); return};
-  }
-    myFetch(ruta_app,"a=gra&tb="+tb,mod);  
-}   
-
 async function exportarDatos() {
             try {
                 const response = await fetch('../libs/main.php', {
@@ -56,13 +43,25 @@ async function exportarDatos() {
             }
         }
 
+        function actualizar(){
+	act_lista(mod);
+}
+
+function grabar(tb='',ev){
+  if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
+  var f=document.getElementsByClassName('valido '+tb);
+   for (i=0;i<f.length;i++) {
+     if (!valido(f[i])) {f[i].focus(); return};
+  }
+    myFetch(ruta_app,"a=gra&tb="+tb,mod);  
+}
 </script>
 </head>
 <body Onload="actualizar();">
 <?php
 
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
+if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");exit();}
 
 $mod='creausu';
 $hoy = date("Y-m-d");

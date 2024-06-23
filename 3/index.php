@@ -44,12 +44,17 @@ async function exportarDatos(a,tb) {
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('exportBtn').addEventListener('click', async function () {
-                const a = 'exp';  // Definir valor de 'a'
-                const tb = 'usuarios';  // Definir valor de 'tb'
+            const exportBtn = document.getElementById('exportBtn');
+            if (exportBtn) {
+                exportBtn.addEventListener('click', async function () {
+                    const a = 'exp';  
+                    const tb = 'usuarios';  
 
-                await exportarDatos(a, tb);
-            });
+                    await exportarDatos(a, tb);
+                });
+            } else {
+                console.error('No se encontró el botón de exportación');
+            }
         });
 
         

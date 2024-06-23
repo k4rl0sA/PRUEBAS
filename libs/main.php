@@ -15,20 +15,20 @@ if (!isset($_SESSION["us_sds"])) {
 var_dump($_SERVER['SERVER_NAME']);
 
 function getConnection() {
-    $env='prod';
-    $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
-    $dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
-    $username = $comy[$env]['u'];
-    $password = $comy[$env]['p'];
-    $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ];
-    try {
-        return new PDO($dsn, $username, $password, $options);
-    } catch (PDOException $e) {
-        die("Error de conexión: " . $e->getMessage());
-    }
+  $env = ($_SERVER['SERVER_NAME']==='www.siginf-sds.com') ? 'prod' : 'pru' ;
+  $comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_06','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_06'],'pru'=>['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
+  $dsn = 'mysql:host='.$comy[$env]['s'].';dbname='.$comy[$env]['bd'].';charset=utf8';
+  $username = $comy[$env]['u'];
+  $password = $comy[$env]['p'];
+  $options = [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+  ];
+  try {
+      return new PDO($dsn, $username, $password, $options);
+  } catch (PDOException $e) {
+      die("Error de conexión: " . $e->getMessage());
+  }
 }
 
 $con= getConnection();

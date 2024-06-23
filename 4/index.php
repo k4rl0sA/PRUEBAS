@@ -32,6 +32,7 @@
 
         // Manejador para el botón de exportar datos
         addEventHandler('#exportarBtn', 'click', function(event) {
+            Exec=true;
             event.preventDefault();
             exportarDatos('exp_datos');
         });
@@ -40,6 +41,7 @@
 
          // Función para exportar datos utilizando fetch
          function exportarDatos(funcion) {
+            if(Exec){
             // Construir la URL para la petición a lib.php
             const url = `lib.php?funcion=${funcion}`;
 
@@ -70,9 +72,10 @@
                     document.body.removeChild(link);
                 })
                 .catch(error => console.error('Error:', error));
+            }
         }
 
-        
+
 
         // Agregar un único listener para una lista ampliada de eventos de interés
         const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];

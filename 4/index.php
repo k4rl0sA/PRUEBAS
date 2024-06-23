@@ -72,6 +72,7 @@
                     document.body.removeChild(link);
                 })
                 .catch(error => console.error('Error:', error));
+                Exec=false;
             }
         }
 

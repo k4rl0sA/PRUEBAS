@@ -1,8 +1,27 @@
 <?php
  require_once '../libs/main.php';
 ini_set('display_errors','1');
-if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
-else {
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+if (!isset($_SESSION['us_sds'])){
+	http_response_code(401); 
+	die(json_encode(["error" => "Unauthorized"]));
+}else {
+	$input = json_decode(file_get_contents('php://input'), true);
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        http_response_code(400); 
+        die(json_encode(["error" => "Invalid JSON"]));
+    }
+	$a = $input['a'] ?? '';
+    $tb = $input['tb'] ?? '';
+
+	if (empty($a) || empty($tb)) {
+        http_response_code(400); // Código de estado HTTP 400 Bad Request
+        die(json_encode(["error" => "Missing parameters"]));
+    }
+
   $rta=""; 
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)){

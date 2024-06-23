@@ -34,22 +34,25 @@ function exportarDatos($sql,$name) {
     $con = getConnection();
     $stmt = $con->prepare($sql);
     $stmt->execute();
-    $resultados = $stmt->fetchAll();
-    $totalRegistros = count($resultados);
+    $rta = $stmt->fetchAll();
+    $totalRegistros = count($rta);
     if ($totalRegistros > 0) {
-        $datos[] = ["Total de registros" => $totalRegistros];
+        $rta[] = ["Total de registros" => $totalRegistros];
     } else {
-        $datos[] = ["Total de registros" => 0];
+        $rta[] = ["Total de registros" => 0];
     }
     header("Content-Type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename={$name}.xls");
     header("Pragma: no-cache");
     header("Expires: 0");
     $separator = "\t";
-    echo "ID" . $separator . "Nombre" . $separator . "Apellido" . $separator . "Email" . "\n";
-    foreach ($datos as $row) {
-      echo implode($separator, array_values($row)) . "\n";
-    }
+    if (count($rta) > 0) {
+      $keys = array_keys($rta[0]);
+      echo implode($separator, $keys) . "\n";
+  }
+  foreach ($rta as $row) {
+    echo implode($separator, array_values($row)) . "\n";
+}
 }
 
 // Consulta SQL

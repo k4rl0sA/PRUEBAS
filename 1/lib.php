@@ -3,19 +3,18 @@
 ini_set('display_errors','1');
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
-  $rta="";
-  switch ($_POST['a']){
-  case 'csv': 
-    header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
-    echo csv($rs,'');
-    die;
-    break;
-  default:
+  $rta=""; 
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
-    if (is_array($rta)) json_encode($rta);
-	else echo $rta;
-  }   
+    if (is_array($rta)){
+		json_encode($rta);
+	}else{
+		echo $rta;
+	}
+}
+
+function exp_usuarios(){
+	$sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
+	exportarDatos($sql,'usuarios');
 }
 
 function lis_creausu(){
@@ -49,10 +48,7 @@ function whe_creausu() {
     return $sql;
 }
 
-function exp_usuarios(){
-	$sql = "SELECT id_usuario, nombre, clave, correo FROM usuarios";
-	exportarDatos($sql);
-}
+
 
 function focus_creausu(){
  return 'creausu';

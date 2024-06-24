@@ -38,9 +38,6 @@
             Exec=false;
         });
 
-      
-
-         
         // Función para exportar datos utilizando fetch
         function exportarDatos(funcion) {
             if(Exec){

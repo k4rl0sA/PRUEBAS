@@ -8,7 +8,6 @@
 <body>
     <h1>Gestión de Eventos y Exportación de Datos</h1>
 
-    <!-- Botón para exportar datos -->
     <button id="exportarBtn">Exportar Datos</button>
 
     <!-- Script para manejar la exportación de datos -->
@@ -52,14 +51,11 @@
                 }
             };
 
-            // Realizar la petición fetch
             fetch(url, fetchOptions)
                 .then(response => {
-                    // Verificar el estado de la respuesta
                     if (!response.ok) {
                         throw new Error('Error al exportar datos.');
                     }
-                    
                     // Crear un enlace para descargar el archivo
                     response.blob().then(blob => {
                         const url = window.URL.createObjectURL(blob);

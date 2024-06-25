@@ -87,7 +87,7 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$until_day_open=20;//dia del mes fecha abierta
+	$until_day_open=24;//dia del mes fecha abierta
 	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-30 ;//fechas abiertas hasta un determinado dia
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
@@ -394,7 +394,12 @@ function lis_planos() {
 			$tab = "Casos_Derivados_Eac";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_derivaeac($tab);
-            break;    
+            break;
+        case '47':
+			$tab = "Tamizaje_Epoc";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_epoc($tab);
+            break;
         default:
             break;    
     }
@@ -1609,7 +1614,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,U.equipo AS Cod_Bina,
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Creado,U.equipo AS Cod_Bina,
 A.users_bina AS Usuarios_Bina
 
 FROM `vsp_vihgest` A
@@ -1876,6 +1881,33 @@ WHERE A.deriva_eac = 1 AND A.necesidad_eac IS NOT null";
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
+
+function lis_epoc($txt){
+	$sql="SELECT
+G.subred AS Subred,A.id_epoc ,FN_CATALOGODESC(42,G.estrategia) estrategia,G.localidad AS Localidad,G.territorio AS Territorio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS NOMBRES,CONCAT(P.apellido1, ' ', P.apellido2) AS APELLIDOS,   P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21, P.sexo) AS SEXO,FN_CATALOGODESC(30, P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17, P.regimen) AS Regimen,    FN_CATALOGODESC(18, P.eapb) AS Eapb,
+IF(A.tose_muvedias = 0, 'NO', 'SI') AS Tose_Muchas_Veces,IF(A.tiene_flema = 0, 'NO', 'SI') AS Tiene_Flemas_Mayoria_Dias,IF(A.aire_facil = 0, 'NO', 'SI') AS Se_Queda_Sin_Aire_Facilmente,IF(A.mayor = 0, 'NO', 'SI') AS Mayor_40_Años,IF(A.fuma = 0, 'NO', 'SI') AS Fuma_o_Exfumador,
+A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
+A.usu_creo AS Cod_Creo,U.nombre AS Nombre_Creo,U.perfil AS Perfil_Creo,U.equipo AS Equipo,A.fecha_create AS Fecha_Creacion
+FROM `tam_epoc` A
+LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
+LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
+	$sql.=whe_date10();
+	//echo $sql;
+	$tot="SELECT COUNT(*) total FROM `tam_epoc` A LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+
+}
+
+
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

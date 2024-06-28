@@ -62,7 +62,7 @@
                         const a = document.createElement('a');
                         a.style.display = 'none';
                         a.href = url;
-                        a.download = 'datos_exportados.xls'; // Nombre del archivo Excel
+                        a.download = 'datos_exportados.xlsx'; // Nombre del archivo Excel
                         document.body.appendChild(a);
                         a.click();
                         window.URL.revokeObjectURL(url);

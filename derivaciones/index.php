@@ -35,8 +35,12 @@ function grabar(tb='',ev){
      if (!valido(f[i])) {f[i].focus(); return};
   }
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-	
+	resetFrm();
 }   
+
+function resetFrm() {
+	document.getElementById('fapp').reset();
+}
 
 </script>
 </head>

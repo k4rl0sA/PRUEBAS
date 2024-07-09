@@ -91,7 +91,7 @@ function lis_predios(){
 				LEFT  JOIN usuarios u ON hg.asignado=u.id_usuario";
 				$sql.=" WHERE p.idpersona=".$docume;
 				$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"predios-lis",2);	
+			return panel_content($datos["responseResult"],"predios-lis",4);	
 			}else{
 				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
 					<strong style='text-transform:uppercase'>NOTA:</strong> No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.

@@ -67,7 +67,7 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
       $nav.='<li class="nav-link"><a href="'.$menu['link'].'">';
     }  
 
-    $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['enlace'].'</span>';
+    $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['link'].'</span>';
     // $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
     //     <br>'.$menu['link'].'</a>';
     if($menu['contenedor']=="SI"){

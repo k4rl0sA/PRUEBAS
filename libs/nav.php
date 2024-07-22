@@ -61,9 +61,9 @@ $total=count($rtaMenu['responseResult']);
 foreach ($rtaMenu['responseResult'] as $key => $menu) {
   if($menu['tipo']=="MEN" && $menu['menu']==0 ){
     if($menu['contenedor']=="SI"){
-      $nav.='<div class="subnav"><button class="subnavbtn">';
+      $nav.='<li class="nav-link"><div class="subnav"><button class="subnavbtn">';
     }else{
-      $nav.='<a href="'.$menu['enlace'].'">';
+      $nav.='<li class="nav-link"><a href="'.$menu['enlace'].'">';
     }  
     $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
         <br>'.$menu['link'].'</a>';
@@ -83,14 +83,10 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
     $nav.='<a href="'.$menu['enlace'].'" class="eff-text-menu" >'.$menu['link'].'</a></li></div>';
   }
 }
-
-$nav.= '<a href="../logout.php">
-	<svg class="nav"><use xlink:href="#cerrar-sesion"/></svg>
-	<br>Salir</a>
-  ';
-
 $nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_'.$vers.'</div>';
-$nav.='</div></div>';
+$nav.='</div><div class="bottom-content"><li><a href="../../logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon"></i><span class="text nav-text">Cerrar Sesión</span>
+        </a></li><li class="mode"><div class="moon-sun"><i class="fa fa-moon icon moon"></i><i class="fa fa-sun icon sun"></i></div><span class="mode-text text">Oscuro</span>
+        <div class="toggle-switch"><span class="switch"></span></div></li></div></div></div>';
 echo $nav;
 ?>
 

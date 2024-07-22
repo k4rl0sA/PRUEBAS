@@ -28,7 +28,7 @@
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="javascript:void(0);" class="main-item">
-                            <i class="fa-solid fa-house-chimney icon"></i>
+                            <i class="fa-solid fa-flag icon"></i>
                             <span class="text nav-text">Inicio</span>
                         </a>
 <?php

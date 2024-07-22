@@ -64,7 +64,7 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
       $nav.='<li class="nav-link"><div class="subnav"><button class="subnavbtn">';
     }else{
       //<li class="nav-link"><a href="#"><i class="fa-regular fa-rectangle-list icon"></i><span class="text nav-text">Item1</span></a></li>
-      $nav.='<li class="nav-link"><a href="'.$menu['link'].'">';
+      $nav.='<li class="nav-link"><a href="'.$menu['enlace'].'">';
     }  
 
     $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['link'].'</span>';

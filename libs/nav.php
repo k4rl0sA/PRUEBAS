@@ -1,5 +1,5 @@
 <head>
-		<link href="../libs/css/styleNav.css" rel="stylesheet" type="text/css">
+		<link href="../libs/css/menu.css" rel="stylesheet" type="text/css">
 		<link href="../libs/css/s.css" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

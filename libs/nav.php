@@ -63,10 +63,13 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
     if($menu['contenedor']=="SI"){
       $nav.='<li class="nav-link"><div class="subnav"><button class="subnavbtn">';
     }else{
-      $nav.='<li class="nav-link"><a href="'.$menu['enlace'].'" class="main-item">';
+      //<li class="nav-link"><a href="#"><i class="fa-regular fa-rectangle-list icon"></i><span class="text nav-text">Item1</span></a></li>
+      $nav.='<li class="nav-link"><a href="'.$menu['link'].'">';
     }  
-    $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
-        <br>'.$menu['link'].'</a>';
+
+    $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['enlace'].'</span>';
+    // $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
+    //     <br>'.$menu['link'].'</a>';
     if($menu['contenedor']=="SI"){
       $nav.='<i class="fa fa-caret-down"></i></button><div class="subnav-content">';
     }

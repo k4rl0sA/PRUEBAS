@@ -1,6 +1,5 @@
 <head>
 		<link href="../libs/css/menu.css" rel="stylesheet" type="text/css">
-		<link href="../libs/css/s.css" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="../libs/js/app.js"></script>

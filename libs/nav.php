@@ -2,15 +2,36 @@
 		<link href="../libs/css/menu.css" rel="stylesheet" type="text/css">
 		<link href="../libs/css/s.css" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="./libs/js/app.js"></script>
 	</head>
 
-	<div class="navbar" id="myNavbar">
-	<a href=" ../main">
-		<svg class="nav"><use xlink:href="#home"/></svg>	
-		<br>Inicio
-	</a>
+  <div class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="./libs/img/Logo128.png" alt="logo">
+                </span>
+                <div class="text header-text">
+                    <span class="name">Secretaria de Salud</span>
+                    <span class="profession">SIGINF</span>
+                </div>
+            </div>
+            <i class="fa-solid fa-angle-right toggle"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <input id="search" type="search" placeholder="Buscar . . .">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="javascript:void(0);" class="main-item">
+                            <i class="fa-solid fa-house-chimney icon"></i>
+                            <span class="text nav-text">Inicio</span>
+                        </a>
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');

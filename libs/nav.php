@@ -62,7 +62,7 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
   if($menu['tipo']=="MEN" && $menu['menu']==0 ){
     if($menu['contenedor']=="SI"){
       $nav.='<li class="nav-link">';
-      $nav.='<a href="javascript:void(0); class="main-item>"';
+      $nav.='<a href="javascript:void(0);" class="main-item>"';
     }else{
       //<li class="nav-link"><a href="#"><i class="fa-regular fa-rectangle-list icon"></i><span class="text nav-text">Item1</span></a></li>
       $nav.='<li class="nav-link"><a href="'.$menu['enlace'].'">';

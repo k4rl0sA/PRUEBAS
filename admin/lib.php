@@ -993,7 +993,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,
 A.liker_dificul AS Liker_Dificultad,A.liker_emocion AS Liker_Emocion,A.liker_decision AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+A.fecha_create Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_acompsic` A
  
@@ -1029,7 +1029,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultad,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emocion,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultad,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emocion,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_apopsicduel` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1063,7 +1063,7 @@ FN_CATALOGODESC(22,A.desc_accion2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion3
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_3,FN_CATALOGODESC(75,A.acciones_3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_bpnpret` A
 
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1099,7 +1099,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_bpnterm` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1133,7 +1133,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.supera_problema) AS Supera_Problemas_Practicos,
-FN_CATALOGODESC(170,A.supera_emocional) AS Supera_Estado_Emocional,FN_CATALOGODESC(170,A.supera_dolor) AS Supera_Valoracion_Dolor,FN_CATALOGODESC(170,A.supera_funcional) AS Supera_Valoracion_Funcional,FN_CATALOGODESC(170,A.supera_educacion) AS Supera_Necesidades_Educacion,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.supera_emocional) AS Supera_Estado_Emocional,FN_CATALOGODESC(170,A.supera_dolor) AS Supera_Valoracion_Dolor,FN_CATALOGODESC(170,A.supera_funcional) AS Supera_Valoracion_Funcional,FN_CATALOGODESC(170,A.supera_educacion) AS Supera_Necesidades_Educacion,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_cancinfa` A
 
@@ -1175,7 +1175,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento,FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion,FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento,FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion,
-FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
  FROM `vsp_condsuic` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1246,7 +1246,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_dntsevymod` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1282,7 +1282,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
  FROM `vsp_eraira` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1355,7 +1355,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_hbgest` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1404,7 +1404,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_mnehosp` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1437,7 +1437,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_otroprio` A
 
@@ -1476,7 +1476,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,
 A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,A.mejora_practica AS Mejora_Practicas,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,A.mejora_practica AS Mejora_Practicas,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_saludoral` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1511,7 +1511,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Fecha_Creacion,U.equipo AS Cod_Bina,A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_sificong` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1550,9 +1550,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Creado,U.equipo AS Cod_Bina,
-A.users_bina AS Usuarios_Bina
-
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_sifigest` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1614,8 +1612,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Creado,U.equipo AS Cod_Bina,
-A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 
 FROM `vsp_vihgest` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
@@ -1637,14 +1634,10 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 function lis_violges($txt){
 	$sql="SELECT
 G.idgeo Cod_Predio,V.idviv AS Cod_Familia,V.idgeo AS ID_FAMILIAR,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,G.territorio AS Territorio,FN_CATALOGODESC(42,G.estrategia) AS Estrategia,V.numfam AS FAMILIA_N°,
-
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
-
 A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento, FN_CATALOGODESC(87,A.evento) AS Evento, FN_CATALOGODESC(73,A.estado_s) AS Estado,
 FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado, FN_CATALOGODESC(136,A.etapa) AS Etapa, FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
-
 FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal, FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio, FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes, 
-
 A.fecha_obstetrica AS Fecha_Evento_Obstetrico, FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento, FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion,
 FN_CATALOGODESC(170,A.meto_fecunda) AS Cuenta_Metodo_Fecundidad, FN_CATALOGODESC(138,A.cual) AS Cual_Metodo, FN_CATALOGODESC(170,A.peso_nacer) AS Peso_RN_Nacer,
 FN_CATALOGODESC(170,A.asiste_control) AS Asiste_control_CYD, FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva, FN_CATALOGODESC(170,A.persis_riesgo) AS Persisten_Riesgos_Asociados, FN_CATALOGODESC(170,A.apoy_sector) AS Apoyo_Otro_Sector,
@@ -1654,12 +1647,9 @@ FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.est
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
-
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta, FN_CATALOGODESC(79,A.ruta) AS Ruta, FN_CATALOGODESC(77,A.novedades) AS Novedades, FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid, A.caso_afirmativo AS Relacione_Cuales, A.otras_condiciones AS Otras_Condiciones, A.observaciones AS Observaciones,
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,
-FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades, FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones, FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones, FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento, FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion, FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento, FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Creado,U.equipo AS Cod_Bina, A.users_bina AS Usuarios_Bina
-
-
+FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades, FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones, FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones, FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento, FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion, FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento, FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_violges` A
 LEFT JOIN personas P ON A.tipo_doc = P.tipo_doc AND A.documento=P.idpersona
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
@@ -1694,8 +1684,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) 
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create Creado,U.equipo AS Cod_Bina,
-A.users_bina AS Usuarios_Bina
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.fecha_create AS Fecha_Creacion,A.equipo_bina AS Cod_Bina,A.users_bina AS Usuarios_Bina
 FROM `vsp_violreite` A
 LEFT JOIN personas P ON A.documento = P.idpersona AND A.tipo_doc = P.tipo_doc
 LEFT JOIN hog_viv V ON P.vivipersona = V.idviv

@@ -45,18 +45,9 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 ?>
 
 
-
-<div class="campo"><div>Colaborador</div>
-<select class="captura" id="festado" name="festado" OnChange="actualizar();">
-			<?php echo $digitadores; ?>
-		</select>
-</div>
-
-
-
 <form method='post' id='fapp'>
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
-	
+
 <div class="campo">
 		<div>N° Documento</div>
 		<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
@@ -67,6 +58,14 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 			<?php echo $estados; ?>
 		</select>
 	</div>
+
+    <div class="campo"><div>Colaborador</div>
+        <select class="captura" id="festado" name="festado" OnChange="actualizar();">
+			<?php echo $digitadores; ?>
+		</select>
+    </div>
+
+
 	<div class="campo">
 		<div>Fecha Desde</div>
 		<input type="date" class="captura" size=10 id="fdes" name="fdes" OnChange="actualizar();">

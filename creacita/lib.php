@@ -39,14 +39,20 @@ function lis_solcita(){
 
 function whe_solcita() {
     $sql = "";
-    if ($_POST['fcaso']) {
-        $sql .= " AND id_usu = '" . $_POST['fcaso'] . "'";
-    } elseif ($_POST['fdoc']) {
-        $sql .= " AND documento LIKE '%" . $_POST['fdoc'] . "%'";
-    } else {
-        $sql .= " AND DATE(fecha_create) BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND CURDATE() AND SUBRED=(select subred from usuarios where id_usuario='" . $_SESSION['us_sds'] . "')";
-    }
-    return $sql;
+	if ($_POST['fidpersona'])
+		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
+	if ($_POST['fdigita'])
+		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
+	if ($_POST['festado'])
+		$sql .= " AND estado = '".$_POST['festado']."' ";
+	if ($_POST['fdes']) {
+		if ($_POST['fhas']) {
+			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
+		} else {
+			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
+		}
+	}
+	return $sql;
 }
 
 
@@ -71,22 +77,56 @@ function cap_menus($a,$b='cap',$con='con') {
 
 
 function cmp_solcita(){
-	$rta="";
-	$hoy=date('Y-m-d');
-	$t=['gestion'=>'','perfil'=>'','documento'=>'','nombre'=>'','correo'=>'','bina'=>'','territorio'=>''];
-	$d='';
-	if ($d==""){$d=$t;}
-	$w='adm_usuarios';
-	$o='creusu';
-	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('documento','n',20,$d['documento'],$w.' '.$o,'N° Documento','documento',null,'',false,true,'','col-15');
-	$c[]=new cmp('nombre','t',50,$d['nombre'],$w.' '.$o,'Nombres y Apellidos','nombre',null,'',false,true,'','col-3');
-	$c[]=new cmp('correo','t',30,$d['correo'],$w.' '.$o,'Correo','correo',null,'',false,true,'','col-25');
-	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-1',"enabDepeValu('perfil','TEr',['2','6','7'],false);enabDepeValu('perfil','bIN',['4'],false);");//enabDepeValu('perfil','bIN',['4']);
-	$c[]=new cmp('bina','s',3,$d['bina'],$w.' bIN '.$o,'Bina','bina',null,'',false,false,'','col-2');
-	$c[]=new cmp('territorio','s',3,$d['territorio'],$w.' TEr '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta;
+	$t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
+ 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','direccion'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>''];
+ $w='frecuencia';
+  $d='';//get_solcita(); 
+  //~ var_dump($d);
+ if ($d=="") {$d=$t;}
+ $u=($d['id_persona']=='')?true:false;
+ $o='percit';
+ $rta=" <span class='mensaje' id='".$w."-msj' ></span>";
+ $c[]=new cmp($o,'e',null,'SOLICITAR CITA',$w);
+ $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
+  //~ $c[]=new cmp('ipe','h',10,$_POST['id'],$w,'','idp',null,'','',''); 
+ $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
+  $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
+ $c[]=new cmp('no1','t',20,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
+ $c[]=new cmp('no2','t',20,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-4');
+ $c[]=new cmp('ap1','t',20,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-3');
+ $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
+ $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,true,'','col-4');
+ $c[]=new cmp('gen','s',3,$d['sexo'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
+ $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
+ $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
+ $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','etnia',null,null,true,false,'','col-4');
+ $c[]=new cmp('dir','t',20,$d['direccion'],$w.' '.$o,'Direccion','etnia',null,null,false,true,'','col-6');
+ $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
+ 
+
+ $w='especialidades';
+ $o='espec';
+ $c[]=new cmp(null,'e',null,'ESPECIALIDADES',$w);
+ $c[]=new cmp('card','o',2,$d['card'],$w.' '.$o,'Cardiologia',null,null,true,false,'','col-0');
+$c[]=new cmp('gast','o',2,$d['gast'],$w.' '.$o,'Gastroenterologia',null,null,true,false,'','col-0');
+$c[]=new cmp('gine','o',2,$d['gine'],$w.' '.$o,'Ginecobstetricia',null,null,true,false,'','col-0');
+$c[]=new cmp('mein','o',2,$d['mein'],$w.' '.$o,'Medicina Interna',null,null,true,false,'','col-0');
+$c[]=new cmp('nudi','o',2,$d['nudi'],$w.' '.$o,'Nutricion y Dietetica',null,null,true,false,'','col-0');
+$c[]=new cmp('ofta','o',2,$d['ofta'],$w.' '.$o,'Oftalmologia',null,null,true,false,'','col-0');
+$c[]=new cmp('ortr','o',2,$d['ortr'],$w.' '.$o,'Ortopedia y/o Traumatologia',null,null,true,false,'','col-0');
+$c[]=new cmp('pedi','o',2,$d['pedi'],$w.' '.$o,'Pediatria',null,null,true,false,'','col-0');
+$c[]=new cmp('psic','o',2,$d['psic'],$w.' '.$o,'Psicologia',null,null,true,false,'','col-0');
+$c[]=new cmp('psiq','o',2,$d['psiq'],$w.' '.$o,'Psiquiatria',null,null,true,false,'','col-0');
+$c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'','col-0');
+
+ $w='promocion';
+ $o='pyd';
+ $c[]=new cmp(null,'e',null,'PROMOCION Y DETECCCIÒN TEMPRANA',$w);
+ $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
+ for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+ //$rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
+ $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
+ return $rta;
 }
 
 function get_creausu(){

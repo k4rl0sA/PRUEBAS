@@ -104,7 +104,7 @@ function cmp_solcita(){
  $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','',null,null,true,false,'','col-3');
  $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','',null,null,true,false,'','col-4');
  $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','',null,null,true,false,'','col-4');
- $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'adir\');');
+ $c[]=new cmp('edi2','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'adir\');');
  $c[]=new cmp('dir','t',20,$d['direccion'],$w.' adir '.$o,'Direccion','',null,null,false,false,'','col-6');
  $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
  

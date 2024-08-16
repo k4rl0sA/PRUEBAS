@@ -1,36 +1,16 @@
 <head>
-		<link href="../libs/css/menu.css" rel="stylesheet" type="text/css">
+		<link href="../libs/css/styleNav.css" rel="stylesheet" type="text/css">
+		<link href="../libs/css/s.css" rel="stylesheet">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="../libs/js/app.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
 	</head>
 
-  <div class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="../libs/img/Logo128.png" alt="logo">
-                </span>
-                <div class="text header-text">
-                    <span class="name">Secretaria de Salud</span>
-                    <span class="profession">SIGINF</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-angle-right toggle"></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <li class="search-box">
-                    <i class="fa-solid fa-magnifying-glass icon"></i>
-                    <input id="search" type="search" placeholder="Buscar . . .">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="javascript:void(0);" class="main-item">
-                            <i class="fa-solid fa-flag icon"></i>
-                            <span class="text nav-text">Inicio</span>
-                        </a>
+	<div class="navbar" id="myNavbar">
+	<a href=" ../main">
+		<svg class="nav"><use xlink:href="#home"/></svg>	
+		<br>Inicio
+	</a>
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');
@@ -61,21 +41,15 @@ $total=count($rtaMenu['responseResult']);
 foreach ($rtaMenu['responseResult'] as $key => $menu) {
   if($menu['tipo']=="MEN" && $menu['menu']==0 ){
     if($menu['contenedor']=="SI"){
-      $nav.='<li class="nav-link">';
-      $nav.='<a href="javascript:void(0);" class="main-item>"';
+      $nav.='<div class="subnav"><button class="subnavbtn">';
     }else{
-      //<li class="nav-link"><a href="#"><i class="fa-regular fa-rectangle-list icon"></i><span class="text nav-text">Item1</span></a></li>
-      $nav.='<li class="nav-link"><a href="'.$menu['enlace'].'">';
+      $nav.='<a href="'.$menu['enlace'].'">';
     }  
-    /* if($menu['contenedor']=="SI"){
-      $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['link'].'</span><a/>
-      <ul class="sub-menu">';
+    $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
+        <br>'.$menu['link'].'</a>';
+    if($menu['contenedor']=="SI"){
       $nav.='<i class="fa fa-caret-down"></i></button><div class="subnav-content">';
-    } */
-    $nav.='<i class="'.$menu['icono'].' icon"></i><span class="text nav-text">'.$menu['link'].'</span>';
-    // $nav.='<svg class="nav '.$menu['icono'].'"><use xlink:href="#'.$menu['icono'].'"/></svg>
-    //     <br>'.$menu['link'].'</a>';
-    
+    }
     foreach ($rtaMenu['responseResult'] as $key => $item){
       if($item['tipo']=="SUB" && $item['menu']==$menu['id']){
         $nav.='<a href="'.$item['enlace'].'"
@@ -89,10 +63,14 @@ foreach ($rtaMenu['responseResult'] as $key => $menu) {
     $nav.='<a href="'.$menu['enlace'].'" class="eff-text-menu" >'.$menu['link'].'</a></li></div>';
   }
 }
+
+$nav.= '<a href="../logout.php">
+	<svg class="nav"><use xlink:href="#cerrar-sesion"/></svg>
+	<br>Salir</a>
+  ';
+
 $nav.= '<div class="usuario">'.$rta['responseResult'][0]['nombre'].' - '.$rta['responseResult'][0]['perfil'].'_'.$vers.'</div>';
-$nav.='</div><div class="bottom-content"><li><a href="../../logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon"></i><span class="text nav-text">Cerrar Sesión</span>
-        </a></li><li class="mode"><div class="moon-sun"><i class="fa fa-moon icon moon"></i><i class="fa fa-sun icon sun"></i></div><span class="mode-text text">Oscuro</span>
-        <div class="toggle-switch"><span class="switch"></span></div></li></div></div></div>';
+$nav.='</div></div>';
 echo $nav;
 ?>
 

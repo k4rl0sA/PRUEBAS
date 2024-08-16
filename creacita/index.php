@@ -41,7 +41,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil IN('ADM')",$_SESSION['us_sds']);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN('ADM')",$_SESSION['us_sds']);
 ?>
 
 

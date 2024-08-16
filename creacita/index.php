@@ -68,10 +68,10 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	</div>
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS
+      <div class='titulo' > SOLICITAR CITA
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <li class='icono crear'      title='Creación de Usuarios' onclick="mostrar('creausu','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
+    <li class='icono crear'       title='Solicitar Cita'     Onclick="mostrar('solcita','pro',event,'','lib.php',7,'Solicitar Cita');"></li> <!--hideMotiv();-->
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

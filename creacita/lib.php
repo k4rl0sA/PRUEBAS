@@ -81,7 +81,7 @@ function cmp_solcita(){
  'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','direccion'=>'','nacionalidad'=>'',
  'tipo_cita'=>'','tel1'=>'','tel2'=>'','tel3'=>'','fecha_create'=>'','motivo'=>'',
  'sexo','tipo'=>'','card'=>'','gast'=>'','gine'=>'','mein'=>'','nudi'=>'','ofta'=>'','ortr'=>'','pedi'=>'',
- 'psic'=>'','psiq'=>'','urol'=>'','pyd'=>'';
+ 'psic'=>'','psiq'=>'','urol'=>'','pyd'=>''];
  $w='frecuencia';
   $d='';//get_solcita(); 
   //~ var_dump($d);

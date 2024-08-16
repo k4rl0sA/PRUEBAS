@@ -30,6 +30,15 @@ function grabar(tb='',ev){
     myFetch(ruta_app,"a=gra&tb="+tb,mod);  
 }   
 
+function enableUpd(a,b){
+	const update= document.querySelectorAll('input.'+b);
+	if(a.value=='SI'){
+		enaFie(update[i],false);
+  	}else{
+		enaFie(update[i],true);
+	}
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

@@ -48,14 +48,24 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 <form method='post' id='fapp'>
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 	
-
-<div class="campo"><div>Caso</div><input class="captura" type="number" size=20 id="fcaso" name="fcaso" onChange="actualizar();"></div>
-<div class="campo"><div>Documento Colaborador</div><input class="captura" type="number" size=10 id="fdoc" name="fdoc" onChange="actualizar();"></div>
-
-<!-- <div class="campo"><div>Estado</div>
-	<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php /* echo $estados; */?></select>
-</div> -->
+<div class="campo">
+		<div>N° Documento</div>
+		<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
+	</div>
 	
+	<div class="campo"><div>Estado Solicitud</div>
+		<select class="captura" id="festado" name="festado" OnChange="actualizar();">
+			<?php echo $estados; ?>
+		</select>
+	</div>
+	<div class="campo">
+		<div>Fecha Desde</div>
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" OnChange="actualizar();">
+	</div>
+	<div class="campo">
+		<div>Fecha Hasta</div>
+		<input type="date" class="captura" size=10 id="fhas" name="fhas" OnChange="actualizar();">
+	</div>
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > ZONA DE CREACIÓN DE USUARIOS

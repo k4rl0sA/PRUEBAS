@@ -80,7 +80,7 @@ function cmp_solcita(){
 	$t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
  'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','direccion'=>'','nacionalidad'=>'',
  'tipo_cita'=>'','tel1'=>'','tel2'=>'','tel3'=>'','fecha_create'=>'','motivo'=>'',
- 'sexo','tipo'=>'','card'=>'','gast'=>'','gine'=>'','mein'=>'','nudi'=>'','ofta'=>'','ortr'=>'','pedi'=>'',
+ 'sexo'=>'','tipo'=>'','card'=>'','gast'=>'','gine'=>'','mein'=>'','nudi'=>'','ofta'=>'','ortr'=>'','pedi'=>'',
  'psic'=>'','psiq'=>'','urol'=>'','pyd'=>''];
  $w='frecuencia';
   $d='';//get_solcita(); 

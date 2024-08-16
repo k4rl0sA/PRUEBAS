@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creación de Usuarios || SIGINF</title>
+<title>Solicitar Cita || Sigrev</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='creausu';	
+var mod='solcita';	
 var ruta_app='lib.php';
 
 
@@ -38,10 +38,10 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='creausu';
-$hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
-$estados=array('A'=>'Activo','I'=>'Inactivo');
+$mod='solcita';
+$ya = new DateTime();
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",''); 
 ?>
 
 

@@ -18,7 +18,7 @@ else {
   }   
 }
 
-function lis_creausu(){
+function lis_solcita(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
 	WHERE 1 ".whe_creausu());
 	$total=$info['responseResult'][0]['total'];
@@ -37,7 +37,7 @@ function lis_creausu(){
 	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
 } 
 
-function whe_creausu() {
+function whe_solcita() {
     $sql = "";
     if ($_POST['fcaso']) {
         $sql .= " AND id_usu = '" . $_POST['fcaso'] . "'";
@@ -50,11 +50,11 @@ function whe_creausu() {
 }
 
 
-function focus_creausu(){
+function focus_solcita(){
  return 'creausu';
 }
 
-function men_creausu(){
+function men_solcita(){
  $rta=cap_menus('creausu','pro');
  return $rta;
 } 
@@ -70,7 +70,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-function cmp_creausu(){
+function cmp_solcita(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['gestion'=>'','perfil'=>'','documento'=>'','nombre'=>'','correo'=>'','bina'=>'','territorio'=>''];

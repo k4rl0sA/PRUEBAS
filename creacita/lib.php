@@ -98,12 +98,14 @@ function cmp_solcita(){
  $c[]=new cmp('no2','t',20,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-4');
  $c[]=new cmp('ap1','t',20,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-3');
  $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
- $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,true,'','col-4');
+ $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Fecha ?','edi',null,null,false,true,'','col-2','enableAddr(this,\'afec\');');
+ $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' afec '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,true,'','col-4');
  $c[]=new cmp('gen','s',3,$d['sexo'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
- $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
- $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
- $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','etnia',null,null,true,false,'','col-4');
- $c[]=new cmp('dir','t',20,$d['direccion'],$w.' '.$o,'Direccion','etnia',null,null,false,true,'','col-6');
+ $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','',null,null,true,false,'','col-3');
+ $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','',null,null,true,false,'','col-4');
+ $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','',null,null,true,false,'','col-4');
+ $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,null,false,true,'','col-2','enableAddr(this,\'adur\');');
+ $c[]=new cmp('dir','t',20,$d['direccion'],$w.' adur '.$o,'Direccion','',null,null,false,true,'','col-6');
  $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
  
 
@@ -127,22 +129,7 @@ $c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'
  $c[]=new cmp(null,'e',null,'PROMOCION Y DETECCCIÒN TEMPRANA',$w);
  $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
- //$rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  return $rta;
-}
-
-function get_creausu(){
-	/* if($_POST['idgeo']=='0'){
-		return "";
-	}else{
-		$id=divide($_POST['idgeo']);
-		$sql="SELECT estrategia,subred,zona,localidad,upz,barrio,territorio,microterritorio,sector_catastral,direccion,direccion_nueva,nummanzana,predio_num,unidad_habit,vereda,vereda_nueva,
-		cordx,cordy,estrato,asignado,estado_v,motivo_estado 
-		FROM `hog_geo` WHERE  estrategia='{$id[0]}' AND sector_catastral='{$id[1]}' AND nummanzana='{$id[2]}' AND predio_num='{$id[3]}' AND unidad_habit='{$id[4]}' AND estado_v='{$id[5]}'";
-
-		$info=datos_mysql($sql);
-		return $info['responseResult'][0];
-	}  */
 }
 
 function gra_creausu(){
@@ -224,10 +211,9 @@ function opc_estados($id=''){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-// $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-	if ($a=='creausu' && $b=='acciones'){//a mnombre del modulo
+	if ($a=='creausu' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('creausu','pro',event,'','lib.php',7);\"></li>";
 	}

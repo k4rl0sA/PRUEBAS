@@ -41,7 +41,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('AUX','MED') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",$_SESSION['us_sds']);
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil IN('ADM')",$_SESSION['us_sds']);
 ?>
 
 
@@ -60,7 +60,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` 
 	</div>
 
     <div class="campo"><div>Colaborador</div>
-        <select class="captura" id="festado" name="festado" OnChange="actualizar();">
+        <select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
 			<?php echo $digitadores; ?>
 		</select>
     </div>

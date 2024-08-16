@@ -93,19 +93,19 @@ function cmp_solcita(){
  $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
   //~ $c[]=new cmp('ipe','h',10,$_POST['id'],$w,'','idp',null,'','',''); 
  $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
-  $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
+ $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
  $c[]=new cmp('no1','t',20,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',20,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-4');
  $c[]=new cmp('ap1','t',20,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-3');
  $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
  $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Fecha ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'afec\');');
- $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' afec '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,true,'','col-4');
+ $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' afec '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['sexo'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
  $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','',null,null,true,false,'','col-3');
  $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','',null,null,true,false,'','col-4');
  $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','',null,null,true,false,'','col-4');
  $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'adir\');');
- $c[]=new cmp('dir','t',20,$d['direccion'],$w.' adir '.$o,'Direccion','',null,null,false,true,'','col-6');
+ $c[]=new cmp('dir','t',20,$d['direccion'],$w.' adir '.$o,'Direccion','',null,null,false,false,'','col-6');
  $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
  
 

@@ -20,7 +20,7 @@ else {
 
 function lis_solcita(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
-	WHERE 1 ".whe_creausu());
+	WHERE 1 ".whe_solcita());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
@@ -29,7 +29,7 @@ function lis_solcita(){
 	$sql="SELECT id_usu Caso,DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
 	FROM adm_usunew 
 	 WHERE 1 ";
-	$sql.=whe_creausu();
+	$sql.=whe_solcita();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

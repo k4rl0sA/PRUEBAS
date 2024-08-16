@@ -128,7 +128,6 @@ $c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'
  $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  //$rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
- $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
  return $rta;
 }
 

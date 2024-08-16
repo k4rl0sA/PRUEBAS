@@ -203,29 +203,24 @@ function gra_creausu(){
 	return $rta;
 }
 
-
-function opc_perfil($id=''){
-	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
-	$adm=$info['responseResult'][0]['perfil'];
-	if ($adm=='ADM') {
-		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
-	}else {
-		$sql ="SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'";
-		$com=datos_mysql($sql);
-		$comp = $com['responseResult'][0]['componente'];
-		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor IN('{$comp}')",$id);
-	}
+function opc_tipo_doc($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 }
 
-function opc_bina($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=217 and estado='A' and valor=(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+function opc_genero($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
-function opc_territorio($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and valor=(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+
+function opc_pyd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=39 and estado='A' AND idcatadeta<16 ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
-function opc_subred($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
+function opc_tipo_cita($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=146 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
+function opc_estados($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=11 and estado='A' ORDER BY 1",$id);
+}
+
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

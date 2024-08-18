@@ -23,7 +23,7 @@ $catalogos = opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `
 		var ruta_app = 'lib.php';
 
 		function csv(b) {
-			var myWindow = window.open("../libs/gestion.php?a=exportar&b=" + b, "Descargar archivo");
+			var myWindow = window.open("../lib/gestion.php?a=exportar&b=" + b, "Descargar archivo");
 		}
 
 		function actualizar() {

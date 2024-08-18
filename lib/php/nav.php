@@ -31,43 +31,24 @@ $sql1="SELECT nombre,perfil FROM usuarios WHERE id_usuario = '".$_SESSION["us_sd
 $rta=datos_mysql($sql1);
 //print_r($rtaMenu);
 $nav='';
-/* $menu = array(
-  array(
-      'text' => 'Inicio',
-      'icon' => 'fa-solid fa-house-chimney',
-      'link' => 'javascript:void(0);',
-      'submenu' => array(
-          array('text' => 'Novedades', 'icon' => 'fa-solid fa-bell', 'link' => '#'),
-          array('text' => 'Notas', 'icon' => 'fa-solid fa-file-pen', 'link' => '../Notas'),
-      ),
-  ),
-  array(
-      'text' => 'Item1',
-      'icon' => 'fa-regular fa-rectangle-list',
-      'link' => '#',
-  ),
-  // Otros ítems del menú
-); */
-
 
 $responseResult = $rtaMenu['responseResult'];
 $menu = array();
 
-// Primero, recorremos los menús principales
 foreach ($responseResult as $item) {
   // print_r($item);
   if (isset($item['menu']) && $item['menu'] == 0) {
       $menu[] = array(
-          'id' => isset($item['id']) ? $item['id'] : null, // Asegura que 'id' esté definido
+          'id' => isset($item['id']) ? $item['id'] : null, 
           'text' => $item['link'],
           'icon' => $item['icono'],
           'link' => $item['enlace'] != '-' ? $item['enlace'] : 'javascript:void(0);',
-          'submenu' => array() // Inicializamos vacío para luego agregar los submenús
+          'submenu' => array()
       );
   }
 }
 
-// Ahora, añadimos los submenús a sus respectivos menús principales
+//submenús 
 foreach ($menu as &$mainMenuItem) {
   foreach ($responseResult as $item) {
       if (isset($item['menu']) && isset($mainMenuItem['id']) && $item['menu'] == $mainMenuItem['id']) {
@@ -80,10 +61,9 @@ foreach ($menu as &$mainMenuItem) {
   }
 }
 
-// Remueve la clave 'id' después de añadir los submenús si no la necesitas en la salida final
-foreach ($menu as &$mainMenuItem) {
+/* foreach ($menu as &$mainMenuItem) {
   unset($mainMenuItem['id']);
-}
+} */
 
 ?>
 

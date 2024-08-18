@@ -50,7 +50,7 @@ $nav='';
 ); */
 
 
-$responseResult = [$rtaMenu];
+$responseResult = [$rtaMenu['responseResult']];
 $menu = array();
 
 // Primero, recorremos los menús principales

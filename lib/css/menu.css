@@ -15,7 +15,7 @@
     --primary-color: #0b4d8f;
     --secundary-color: #0c63cb;
     --primary-color-light: #F6F5FF;
-    --toggle-color:#000000;
+    --toggle-color:var(--text-color);
     --text-color: #000000;
     --color-icons: #eee;
     --btn-color-hover: #0c63cb;
@@ -59,7 +59,6 @@ body.dark {
     --secundary-color: #0c63cb;
     --primary-color-light: #3A3B3C;
     --text-color: #ffffff;
-    --toggle-color:#DDD;
     --btn-color-hover: #0c63cb;
     --txt-btn-color-hover: var(--color-icons);
     --dt-text-col: var(--text-color);

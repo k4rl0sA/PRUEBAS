@@ -336,7 +336,7 @@ body.dark .switch::before {
 }
 
 .sub-menu li .icon {
-    aling-items: center;
+    align-items: center;
 }
 
 .nav-link.open .sub-menu {

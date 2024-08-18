@@ -55,28 +55,35 @@ $menu = array();
 
 // Primero, recorremos los menús principales
 foreach ($responseResult as $item) {
-    if ($item['menu'] == 0) {
-        $menu[] = array(
-            'text' => $item['link'],
-            'icon' => $item['icono'],
-            'link' => $item['enlace'] != '-' ? $item['enlace'] : 'javascript:void(0);',
-            'submenu' => array() // Inicializamos vacío para luego agregar los submenús
-        );
-    }
+  if (isset($item['menu']) && $item['menu'] == 0) {
+      $menu[] = array(
+          'id' => isset($item['id']) ? $item['id'] : null, // Asegura que 'id' esté definido
+          'text' => $item['link'],
+          'icon' => $item['icono'],
+          'link' => $item['enlace'] != '-' ? $item['enlace'] : 'javascript:void(0);',
+          'submenu' => array() // Inicializamos vacío para luego agregar los submenús
+      );
+  }
 }
 
 // Ahora, añadimos los submenús a sus respectivos menús principales
 foreach ($menu as &$mainMenuItem) {
-    foreach ($responseResult as $item) {
-        if ($item['menu'] == $mainMenuItem['id']) {
-            $mainMenuItem['submenu'][] = array(
-                'text' => $item['link'],
-                'icon' => $item['icono'],
-                'link' => $item['enlace']
-            );
-        }
-    }
+  foreach ($responseResult as $item) {
+      if (isset($item['menu']) && isset($mainMenuItem['id']) && $item['menu'] == $mainMenuItem['id']) {
+          $mainMenuItem['submenu'][] = array(
+              'text' => $item['link'],
+              'icon' => $item['icono'],
+              'link' => $item['enlace']
+          );
+      }
+  }
 }
+
+// Remueve la clave 'id' después de añadir los submenús si no la necesitas en la salida final
+foreach ($menu as &$mainMenuItem) {
+  unset($mainMenuItem['id']);
+}
+
 ?>
 
 <div class="sidebar close">

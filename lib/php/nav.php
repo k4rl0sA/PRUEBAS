@@ -1,8 +1,8 @@
 <head>
-		<link href="../libs/css/menu.css" rel="stylesheet" type="text/css">
+		<link href="../lib/css/menu.css" rel="stylesheet" type="text/css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="../libs/js/app.js"></script>
+    <script src="../lib/js/app.js"></script>
 	</head>
 
   <div class="sidebar close">
@@ -36,7 +36,7 @@
 ini_set('display_errors','1');
 $vers='1.03.29.1';
 // if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
-require_once $_SERVER['DOCUMENT_ROOT'].'/libs/gestion.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/lib/gestion.php';
   $sql="SELECT *
   FROM adm_menu
   WHERE id IN (

@@ -14,10 +14,10 @@ $catalogos = opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Catalogo || Proteger</title>
-	<link rel="stylesheet" href="../libs/css/main.css">
-	<script src="../libs/js/a.js"></script>
-	<script src="../libs/js/d.js"></script>
-	<script src="../libs/js/popup.js"></script>
+	<link rel="stylesheet" href="../lib/css/main.css">
+	<script src="../lib/js/a.js"></script>
+	<script src="../lib/js/d.js"></script>
+	<script src="../lib/js/popup.js"></script>
 	<script>
 		var mod = 'catalogo';
 		var ruta_app = 'lib.php';

@@ -4,33 +4,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="../lib/js/app.js"></script>
 	</head>
-
-  <div class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="../libs/img/Logo128.png" alt="logo">
-                </span>
-                <div class="text header-text">
-                    <span class="name">Secretaria de Salud</span>
-                    <span class="profession">SIGINF</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-angle-right toggle"></i>
-        </header>
-
-        <!-- <div class="menu-bar">
-            <div class="menu">
-                <li class="search-box">
-                    <i class="fa-solid fa-magnifying-glass icon"></i>
-                    <input id="search" type="search" placeholder="Buscar . . .">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="javascript:void(0);" class="main-item">
-                            <i class="fa-solid fa-flag icon"></i>
-                            <span class="text nav-text">Inicio</span>
-                        </a> -->
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');
@@ -76,64 +49,68 @@ $menu = array(
 );
 ?>
 
+<div class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="../libs/img/Logo128.png" alt="logo">
+            </span>
+            <div class="text header-text">
+                <span class="name">Secretaria de Salud</span>
+                <span class="profession">SIGINF</span>
+            </div>
+        </div>
+        <i class="fa-solid fa-angle-right toggle"></i>
+    </header>
 
+    <div class="menu-bar">
+        <div class="menu">
+            <li class="search-box">
+                <i class="fa-solid fa-magnifying-glass icon"></i>
+                <input id="search" type="search" placeholder="Buscar . . .">
+            </li>
+            <ul class="menu-links">
+                <?php foreach ($menu as $item): ?>
+                    <li class="nav-link">
+                        <a href="<?php echo $item['link']; ?>" class="main-item <?php echo isset($item['submenu']) ? 'has-submenu' : ''; ?>">
+                            <i class="<?php echo $item['icon']; ?> icon"></i>
+                            <span class="text nav-text"><?php echo $item['text']; ?></span>
+                        </a>
+                        <?php if (isset($item['submenu'])): ?>
+                            <ul class="sub-menu">
+                                <?php foreach ($item['submenu'] as $subitem): ?>
+                                    <li class="nav-link">
+                                        <a href="<?php echo $subitem['link']; ?>">
+                                            <i class="<?php echo $subitem['icon']; ?> icon"></i>
+                                            <span class="text nav-text"><?php echo $subitem['text']; ?></span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
 
-<div class="menu-bar">
-    <div class="menu">
-        <li class="search-box">
-            <i class="fa-solid fa-magnifying-glass icon"></i>
-            <input id="search" type="search" placeholder="Buscar . . .">
-        </li>
-        <ul class="menu-links">
-            <?php foreach ($menu as $item): ?>
-                <?php if (isset($item['submenu'])): ?>
-                    <li class="nav-link">
-                        <a href="<?php echo $item['link']; ?>" class="main-item <?php echo ($item['text'] == 'Inicio' ? 'active' : ''); ?>">
-                            <i class=" <?php echo $item['icon']; ?> icon"></i>
-                            <span class="text nav-text"> <?php echo $item['text']; ?> </span>
-                        </a>
-                        <ul class="sub-menu">
-                            <?php foreach ($item['submenu'] as $subitem): ?>
-                                <li class="nav-link">
-                                    <a href="<?php echo $subitem['link']; ?>">
-                                        <i class=" <?php echo $subitem['icon']; ?> icon"></i>
-                                        <span class="text nav-text"> <?php echo $subitem['text']; ?> </span>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </li>
-                <?php else: ?>
-                    <li class="nav-link">
-                        <a href="<?php echo $item['link']; ?>" class="<?php echo ($item['text'] == 'Inicio' ? 'active' : ''); ?>">
-                            <i class=" <?php echo $item['icon']; ?> icon"></i>
-                            <span class="text nav-text"> <?php echo $item['text']; ?> </span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
+        <div class="bottom-content">
+            <li>
+                <a href="../../logout.php">
+                    <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+                    <span class="text nav-text">Cerrar Sesión</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class="fa fa-moon icon moon"></i>
+                    <i class="fa fa-sun icon sun"></i>
+                </div>
+                <span class="mode-text text">Oscuro</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
     </div>
-
-    <div class="bottom-content">
-        <li>
-            <a href="../../logout.php">
-                <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
-                <span class="text nav-text">Cerrar Sesión</span>
-            </a>
-        </li>
-
-        <li class="mode">
-            <div class="moon-sun">
-                <i class="fa fa-moon icon moon"></i>
-                <i class="fa fa-sun icon sun"></i>
-            </div>
-            <span class="mode-text text">Oscuro</span>
-
-            <div class="toggle-switch">
-                <span class="switch"></span>
-            </div>
-        </li>
-   
-
+</div>
 

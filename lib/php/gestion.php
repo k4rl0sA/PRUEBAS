@@ -475,18 +475,14 @@ function rol($a){ //a=modulo, b=perfil c=componente
 
 function perfil($a){
 	$perf=rol($a);
-	// var_dump($perf);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
-		echo "<H1>ACCESO NO AUTORIZADO,PARA {$a} VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
-		exit();
+		echo '<div class="lock">
+          <i class="fas fa-lock fa-5x lock-icon"></i>
+          <h2>Acceso No Autorizado</h2>
+          Lo siento, no tienes permiso para acceder a esta área.
+          </div>';
+          exit();
 		 }
-}
-
-function perfil1($a = null) {
-  if ($a === null) $a = $_SESSION['us_sds'];
-  $per = datos_mysql("SELECT FN_PERFIL({$a}) AS perfil");
-  $perfil = $per["responseResult"][0]['perfil'];
-  return $perfil;
 }
 
 function acceso($a){

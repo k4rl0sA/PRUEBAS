@@ -49,6 +49,8 @@ $nav='';
   // Otros ítems del menú
 ); */
 
+
+$responseResult = [$rtaMenu];
 $menu = array();
 
 // Primero, recorremos los menús principales

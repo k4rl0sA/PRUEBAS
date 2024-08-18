@@ -208,7 +208,6 @@ body.dark .sidebar header .toggle {
 }
 
 .sidebar li a {
-    height: 100%;
     width: 100%;
     display: flex;
     align-items: center;

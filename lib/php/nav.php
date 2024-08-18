@@ -19,7 +19,7 @@
             <i class="fa-solid fa-angle-right toggle"></i>
         </header>
 
-        <div class="menu-bar">
+        <!-- <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
                     <i class="fa-solid fa-magnifying-glass icon"></i>
@@ -30,7 +30,7 @@
                         <a href="javascript:void(0);" class="main-item">
                             <i class="fa-solid fa-flag icon"></i>
                             <span class="text nav-text">Inicio</span>
-                        </a>
+                        </a> -->
 <?php
 // require_once 'config.php';
 ini_set('display_errors','1');

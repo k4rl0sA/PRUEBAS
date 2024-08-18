@@ -55,6 +55,7 @@ $menu = array();
 
 // Primero, recorremos los menús principales
 foreach ($responseResult as $item) {
+  print_r($item);
   if (isset($item['menu']) && $item['menu'] == 0) {
       $menu[] = array(
           'id' => isset($item['id']) ? $item['id'] : null, // Asegura que 'id' esté definido

@@ -29,9 +29,9 @@ $rtaMenu=datos_mysql($sql);
 // print_r($rtaMenu);
 $sql1="SELECT nombre,perfil FROM usuarios WHERE id_usuario = '".$_SESSION["us_sds"]."'";
 $rta=datos_mysql($sql1);
-print_r($rtaMenu);
+//print_r($rtaMenu);
 $nav='';
-$menu = array(
+/* $menu = array(
   array(
       'text' => 'Inicio',
       'icon' => 'fa-solid fa-house-chimney',
@@ -47,7 +47,34 @@ $menu = array(
       'link' => '#',
   ),
   // Otros ítems del menú
-);
+); */
+
+$menu = array();
+
+// Primero, recorremos los menús principales
+foreach ($responseResult as $item) {
+    if ($item['menu'] == 0) {
+        $menu[] = array(
+            'text' => $item['link'],
+            'icon' => $item['icono'],
+            'link' => $item['enlace'] != '-' ? $item['enlace'] : 'javascript:void(0);',
+            'submenu' => array() // Inicializamos vacío para luego agregar los submenús
+        );
+    }
+}
+
+// Ahora, añadimos los submenús a sus respectivos menús principales
+foreach ($menu as &$mainMenuItem) {
+    foreach ($responseResult as $item) {
+        if ($item['menu'] == $mainMenuItem['id']) {
+            $mainMenuItem['submenu'][] = array(
+                'text' => $item['link'],
+                'icon' => $item['icono'],
+                'link' => $item['enlace']
+            );
+        }
+    }
+}
 ?>
 
 <div class="sidebar close">

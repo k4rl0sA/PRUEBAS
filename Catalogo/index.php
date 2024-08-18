@@ -2,7 +2,7 @@
 ini_set('display_errors', '1');
 include $_SERVER['DOCUMENT_ROOT'] . '/libs/php/nav.php';
 require_once "../libs/php/gestion.php";
-if (!isset($_SESSION["us_proteger"])) {
+if (!isset($_SESSION["us_sds"])) {
 	die("<script>window.top.location.href = '/';</script>");
 }
 $mod = 'catalogo';

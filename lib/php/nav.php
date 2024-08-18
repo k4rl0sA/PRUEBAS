@@ -29,7 +29,7 @@ $rtaMenu=datos_mysql($sql);
 // print_r($rtaMenu);
 $sql1="SELECT nombre,perfil FROM usuarios WHERE id_usuario = '".$_SESSION["us_sds"]."'";
 $rta=datos_mysql($sql1);
-echo $rta;
+print_r($rta);
 $nav='';
 $menu = array(
   array(

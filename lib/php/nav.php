@@ -57,7 +57,26 @@ $rtaMenu=datos_mysql($sql);
 $sql1="SELECT nombre,perfil FROM usuarios WHERE id_usuario = '".$_SESSION["us_sds"]."'";
 $rta=datos_mysql($sql1);
 $nav='';
+$menu = array(
+  array(
+      'text' => 'Inicio',
+      'icon' => 'fa-solid fa-house-chimney',
+      'link' => 'javascript:void(0);',
+      'submenu' => array(
+          array('text' => 'Novedades', 'icon' => 'fa-solid fa-bell', 'link' => '#'),
+          array('text' => 'Notas', 'icon' => 'fa-solid fa-file-pen', 'link' => '../Notas'),
+      ),
+  ),
+  array(
+      'text' => 'Item1',
+      'icon' => 'fa-regular fa-rectangle-list',
+      'link' => '#',
+  ),
+  // Otros ítems del menú
+);
 ?>
+
+
 
 <div class="menu-bar">
     <div class="menu">

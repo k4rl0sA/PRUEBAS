@@ -57,25 +57,64 @@ $rtaMenu=datos_mysql($sql);
 $sql1="SELECT nombre,perfil FROM usuarios WHERE id_usuario = '".$_SESSION["us_sds"]."'";
 $rta=datos_mysql($sql1);
 $nav='';
-foreach ($rtaMenu['responseResult'] as $menu) {
-  if ($menu['tipo'] == "MEN" && $menu['menu'] == 0) {
-      $nav .= '<li class="nav-link">';
-      if ($menu['contenedor'] == "SI") {
-          $nav .= '<a href="javascript:void(0);" class="main-item">';
-      } else {
-          $nav .= '<a href="' . $menu['enlace'] . '">';
-      }
-      $nav .= '<i class="' . $menu['icono'] . ' icon"></i><span class="text nav-text">' . $menu['link'] . '</span>';
-      // ...
-  }
-}
-$nav .= '<div class="usuario">' . $rta['responseResult'][0]['nombre'] . ' - ' . $rta['responseResult'][0]['perfil'] . '_' . $vers . '</div>';
-$nav .= '<div class="bottom-content">';
-$nav .= '<li><a href="../../logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon"></i><span class="text nav-text">Cerrar Sesión</span></a></li>';
-$nav .= '<li class="mode"><div class="moon-sun"><i class="fa fa-moon icon moon"></i><i class="fa fa-sun icon sun"></i></div><span class="mode-text text">Oscuro</span>';
-$nav .= '<div class="toggle-switch"><span class="switch"></span></div></li>';
-$nav .= '</div>';
-echo $nav;
 ?>
+
+<div class="menu-bar">
+    <div class="menu">
+        <li class="search-box">
+            <i class="fa-solid fa-magnifying-glass icon"></i>
+            <input id="search" type="search" placeholder="Buscar . . .">
+        </li>
+        <ul class="menu-links">
+            <?php foreach ($menu as $item): ?>
+                <?php if (isset($item['submenu'])): ?>
+                    <li class="nav-link">
+                        <a href="<?php echo $item['link']; ?>" class="main-item <?php echo ($item['text'] == 'Inicio' ? 'active' : ''); ?>">
+                            <i class=" <?php echo $item['icon']; ?> icon"></i>
+                            <span class="text nav-text"> <?php echo $item['text']; ?> </span>
+                        </a>
+                        <ul class="sub-menu">
+                            <?php foreach ($item['submenu'] as $subitem): ?>
+                                <li class="nav-link">
+                                    <a href="<?php echo $subitem['link']; ?>">
+                                        <i class=" <?php echo $subitem['icon']; ?> icon"></i>
+                                        <span class="text nav-text"> <?php echo $subitem['text']; ?> </span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-link">
+                        <a href="<?php echo $item['link']; ?>" class="<?php echo ($item['text'] == 'Inicio' ? 'active' : ''); ?>">
+                            <i class=" <?php echo $item['icon']; ?> icon"></i>
+                            <span class="text nav-text"> <?php echo $item['text']; ?> </span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="bottom-content">
+        <li>
+            <a href="../../logout.php">
+                <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
+                <span class="text nav-text">Cerrar Sesión</span>
+            </a>
+        </li>
+
+        <li class="mode">
+            <div class="moon-sun">
+                <i class="fa fa-moon icon moon"></i>
+                <i class="fa fa-sun icon sun"></i>
+            </div>
+            <span class="mode-text text">Oscuro</span>
+
+            <div class="toggle-switch">
+                <span class="switch"></span>
+            </div>
+        </li>
+   
 
 

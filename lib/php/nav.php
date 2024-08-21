@@ -93,15 +93,8 @@ foreach ($menu as &$mainMenuItem) {
                         <a href="<?php echo $item['link']; ?>" class="main-item <?php echo isset($item['submenu']) ? 'has-submenu' : ''; ?>">
                             <i class="<?php echo $item['icon']; ?> icon"></i>
                             <span class="text nav-text"><?php echo $item['text']; ?></span>
-                        
-                        <?php if (isset($item['submenu'])): ?>
-
-
-                            <!-- Flecha hacia abajo si tiene submenu -->
-                            <i class="fa-solid fa-chevron-down submenu-arrow"></i>
-                            <?php endif; ?>
                             </a>
-
+                        <?php if (isset($item['submenu'])): ?>
                             <ul class="sub-menu">
                                 <?php foreach ($item['submenu'] as $subitem): ?>
                                     <li class="nav-link">

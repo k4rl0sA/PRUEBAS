@@ -366,3 +366,8 @@ body.dark .switch::before {
     transition: border-color 0.3s;
     border-color: black;
 }
+
+.menu-links .submenu-icon {
+    margin-left: auto; /* Mueve la flecha al final */
+    font-size: 0.8em; /* Tamaño de la flecha */
+}

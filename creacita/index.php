@@ -65,29 +65,34 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 
 
 							<div class="input-box">
-    					        <input type="number" class='captura'  id="fidp" name="fidp" >
+    					        <input type="number" class='captura'  id="fidp" name="fidp" OnChange="actualizar();" required>
     					        <label for="fidp">N° Documento</label>
     						</div>
-						
+
 							<div class="input-box">
-    					        <select class='captura' id="fest" name="fest">
+    					        <input type="number" class='captura'  id="fidp" name="fidp" OnChange="actualizar();" required>
+    					        <label for="fidp">N° Documento</label>
+    						</div>
+
+							<div class="input-box">
+    					        <select class='captura' id="fest" name="fest" OnChange="actualizar();" required>
 									<?php echo $estados; ?>
     					        </select>
     					        <label for="fest">Estado Solicitud</label>
     					    </div>
 
 							<div class="input-box">
-    					        <input  type="date" class='captura' id="fdes" name="fdes">
+    					        <input  type="date" class='captura' id="fdes" name="fdes" OnChange="actualizar();" required>
     					        <label for="fdes">Fecha Desde</label>
     					    </div>
 
 							<div class="input-box">
-    					        <input  type="date" class='captura' id="fhas" name="fhas">
+    					        <input  type="date" class='captura' id="fhas" name="fhas" OnChange="actualizar();" required>
     					        <label for="fhas">Fecha Hasta</label>
     					    </div>
 
 
-    					    <button type="submit" class="btn" Onclick='actualizar();'>Aplicar</button>
+    					    <button type="submit" class="btn">Aplicar</button>
     					</form>
 					</div>
 				<div class='load' id='loader' z-index='0'></div>

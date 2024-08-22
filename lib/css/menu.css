@@ -378,7 +378,7 @@ body.dark .switch::before {
 }
 
 li.nav-link.open.active {
-    border-right: 5px solid #1ABB9C;
+    border-right: 5px solid var(--secundary-color);
 }
 
 /* Posiciona la flecha hacia abajo en los elementos con submenu */

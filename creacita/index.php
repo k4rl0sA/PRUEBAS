@@ -71,6 +71,9 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					        <label for="fidp">N° Documento</label>
     						</div>
 
+							<label for="fidp">N° Documento</label>
+                			<input type="number" id="fidp" name="fidp">
+
 							<div class="input-box">
     					        <select class='captura' id="fest" name="fest" OnChange="actualizar();" required>
 									<?php echo $estados; ?>

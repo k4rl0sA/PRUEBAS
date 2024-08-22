@@ -66,29 +66,35 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					<form method='post' id='fapp'>
 
 						<div class="input-box">
-							<label for="fidp">N° Documento</label>
+							<label for="fidp">N° Documento:</label>
                 			<input type="number" id="fidp" name="fidp">
 						</div>
 
 							<div class="input-box">
-    					        <select class='captura' id="fest" name="fest" OnChange="actualizar();" required>
+    					        <select class='captura' id="fest" name="fest">
 									<?php echo $estados; ?>
     					        </select>
     					        <label for="fest">Estado Solicitud</label>
+
+							<div class="input-box">
+								<label for="single-select">Estado Solicitud:</label>
+                				<select id="single-select fest" class='captura' id="fest" name="fest">
+									<?php echo $estados; ?>
+                				</select>
     					    </div>
 
 							<div class="input-box">
-    					        <input  type="date" class='captura' id="fdes" name="fdes" OnChange="actualizar();" required>
+    					        <input  type="date" class='captura' id="fdes" name="fdes">
     					        <label for="fdes">Fecha Desde</label>
     					    </div>
 
 							<div class="input-box">
-    					        <input  type="date" class='captura' id="fhas" name="fhas" OnChange="actualizar();" required>
+    					        <input  type="date" class='captura' id="fhas" name="fhas">
     					        <label for="fhas">Fecha Hasta</label>
     					    </div>
 
 
-    					    <button type="submit" class="btn">Aplicar</button>
+    					    <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button>
     					</form>
 					</div>
 				<div class='load' id='loader' z-index='0'></div>

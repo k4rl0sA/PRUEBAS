@@ -324,4 +324,49 @@
           section .content p{
           text-align: justify;
           }
-/*========= ZONE FILTERS AND DATA FIN =============*/
+     /*======================*/
+  /*=========TEXTO=============*/
+  .poppins-font {
+    font-family: 'Poppins', sans-serif;
+}
+
+.merienda-font {
+    font-family: 'Merienda', cursive;
+}
+
+  .txt-center {
+    text-align: center;
+  }
+  .txt-left {
+    text-align: left;
+  }
+  .txt-right {
+    text-align: right;
+  }
+  .txt-upper {
+    text-transform: uppercase;
+  }
+  .txt-lower {
+    text-transform:lowercase;
+  }
+  .txt-capit {
+    text-transform:capitalize;
+  }
+/*===========ACCESS LOCK=================*/
+.lock{
+  text-align: center;
+  font-size: 16px;
+  color:var(--text-color);
+}
+
+.lock-icon {
+  color: var(--error-color);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+/*=============================*/

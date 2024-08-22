@@ -37,7 +37,7 @@
     text-align: center;
     line-height: 50px;
     cursor: pointer;
-    position: relative;  /*=========ZONE FILTERS AND DATA=============*/
+    position: relative;
     top:8px;
     z-index: 1;
     color: var(--color-icons);

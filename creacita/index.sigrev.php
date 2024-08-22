@@ -253,19 +253,22 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 		<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
 	</div>
 	
+	<div class="campo">
+		<div>Fecha Desde</div>
+		<input type="date" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $hoy; ?>' OnChange="actualizar();">
+	</div>
+
+	<div class="campo">
+		<div>Fecha Hasta</div>
+		<input type="date" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
+	</div>
+
 	<div class="campo"><div>Estado Solicitud</div>
 		<select class="captura" id="festado" name="festado" OnChange="actualizar();">
 			<?php echo $estados; ?>
 		</select>
 	</div>
-	<div class="campo">
-		<div>Fecha Desde</div>
-		<input type="date" class="captura" size=10 id="fdes" name="fdes" OnChange="actualizar();">
-	</div>
-	<div class="campo">
-		<div>Fecha Hasta</div>
-		<input type="date" class="captura" size=10 id="fhas" name="fhas" OnChange="actualizar();">
-	</div>
+	 
 </div>
 <div class='col-8 panel' id='<?php echo$mod; ?>'>
       <div class='titulo' >SOLICITAR CITA

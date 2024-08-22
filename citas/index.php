@@ -106,7 +106,7 @@ $import = ($perfil == 'TEC'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
   <script>
 	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
 	btnLoad.addEventListener("click", () => {
-	uploadCsv(30, "geografico", inputFile1, "../libs/import.php", mod);
+	uploadCsv(14, "PGP", inputFile1, "../libs/import.php", mod);
   });
 </script>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>

@@ -51,6 +51,9 @@ $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN('ADM')",$_SESSION['us_sds']);
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
+$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 ?>
 
 
@@ -83,6 +86,10 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN
 		<div>Fecha Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" OnChange="actualizar();">
 	</div>
+
+	<?php echo $import; ?>
+
+	
 	</div>
 	<div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > SOLICITAR CITA
@@ -104,7 +111,6 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN
 </script>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
      <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
-	 <div class='contenido' id='cmprstss' ></div>
 	 <div class='contenido' id='cmprstss' ></div>
 </div>			
 		

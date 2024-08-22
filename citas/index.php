@@ -55,9 +55,9 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN
 
 
 <form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
+	<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 
-<div class="campo">
+	<div class="campo">
 		<div>N° Documento</div>
 		<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
 	</div>
@@ -83,8 +83,8 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN
 		<div>Fecha Hasta</div>
 		<input type="date" class="captura" size=10 id="fhas" name="fhas" OnChange="actualizar();">
 	</div>
-</div>
-<div class='col-8 panel' id='<?php echo $mod; ?>'>
+	</div>
+	<div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > SOLICITAR CITA
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
@@ -95,7 +95,13 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN
             <li class='icono cancelar'      title='Salir'            Onclick="location.href='../main/'"></li>
         </nav>               
       </div>
-  </form>
+</form>
+  <script>
+	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
+	btnLoad.addEventListener("click", () => {
+	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
+  });
+</script>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
      <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
 	 <div class='contenido' id='cmprstss' ></div>

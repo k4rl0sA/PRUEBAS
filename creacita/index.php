@@ -1,6 +1,7 @@
 <?php
 session_start();
 ini_set('display_errors','1');
+include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');

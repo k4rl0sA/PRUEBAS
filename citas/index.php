@@ -9,8 +9,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="https://fonts.googleapis.com/css2?family=Economica&family=Spicy+Rice&family=Trade+Winds&display=swap" rel="stylesheet">
 <link href="../libs/css/styleNav.css" rel="stylesheet" type="text/css">
 <link href="../libs/css/s.css" rel="stylesheet">
-<script src="../libs/js/c.js"></script>
+<script src="../libs/js/a.js"></script>
+<script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
+<script src="../libs/js/popup.js"></script>
 <script >
 var mod='solcita';	
 var ruta_app='lib.php';

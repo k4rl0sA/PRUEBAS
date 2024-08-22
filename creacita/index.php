@@ -1,5 +1,4 @@
 <?php
-session_start();
 ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='solcita';

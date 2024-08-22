@@ -40,7 +40,6 @@ foreach ($responseResult as $item) {
   if (isset($item['menu']) && $item['menu'] == 0) {
       $menu[] = array(
           'id' => isset($item['id']) ? $item['id'] : null, 
-                        <a href="<?php echo $it
           'text' => $item['link'],
           'icon' => $item['icono'],
           'link' => $item['enlace'] != '-' ? $item['enlace'] : 'javascript:void(0);',

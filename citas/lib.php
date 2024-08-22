@@ -6,6 +6,12 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
+  case 'csv': 
+    header_csv ($_REQUEST['tb'].'.csv');
+    $rs=array('','');    
+    echo csv($rs);
+    die;
+    break;
   default:
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);

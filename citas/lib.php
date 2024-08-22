@@ -1,7 +1,6 @@
 <?php
-require_once "../libs/gestion.php";
-ini_set('display_errors','0');
-
+require_once '../libs/gestion.php';
+ini_set('display_errors','1');
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
   $rta="";
@@ -9,7 +8,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
@@ -19,13 +18,27 @@ else {
   }   
 }
 
-function divide($a){
-	$id=explode("_", $a);
-	return ($id);
-}
+function lis_solcita(){
+	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew
+	WHERE 1 ".whe_solcita());
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=10;
+	$pag=(isset($_POST['pag-creausu']))? ($_POST['pag-creausu']-1)* $regxPag:0; 
+
+	
+	$sql="SELECT id_usu Caso,DOCUMENTO,NOMBRES,CORREO,PERFIL,TERRITORIO,BINA,COMPONENTE,USU_CREO CREO,FECHA_CREATE CREO,ESTADO
+	FROM adm_usunew 
+	 WHERE 1 ";
+	$sql.=whe_solcita();
+	$sql.=" ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	// echo $sql;
+		$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"creausu",$regxPag);
+} 
 
 function whe_solcita() {
-	$sql = "";
+    $sql = "";
 	if ($_POST['fidpersona'])
 		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
@@ -42,86 +55,33 @@ function whe_solcita() {
 	return $sql;
 }
 
-function lis_solcita(){
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
-	concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
-from solcita WHERE '1'='1'";
-	$sql.=whe_solcita();
-	$sql.=" ORDER BY 10 DESC";
-//~ echo $sql;
-	$sql1="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
-	concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`, usu_creo
-from solcita WHERE '1'='1'";
-	$sql1.=whe_solcita();
-	$sql1.=" ORDER BY 10 DESC";
-	$_SESSION['sql_solcita']=$sql1;
-	$datos=datos_mysql($sql);
-return panel_content($datos["responseResult"],"solcita",19);
-}
 
 function focus_solcita(){
- return 'solcita';
+ return 'creausu';
 }
 
 function men_solcita(){
- $rta=cap_menus('solcita','pro');
+ $rta=cap_menus('creausu','pro');
  return $rta;
-}
-
-
-function get_solcita(){
-	if ($_POST['id']){
-		$id=divide($_POST['id']);			
-	$sql="SELECT T1.fecha_create,T1.id_persona,T1.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.genero,T3.fecha,T1.observaciones,motivo,
-	punto_atencion,tipo_cita 
-	from solcita T1 
-	left join personas T2 ON T1.id_persona=T2.idpersona
-	LEFT join caracterizacion T3 ON T2.ficha=T3.idficha 
-	WHERE T1.id_persona='{$id[0]}' AND T1.tipo_doc=upper('{$id[1]}') AND tipo_cita='{$id[2]}' AND REALIZADA='{$id[3]}'";
-		$info=datos_mysql($sql);
-		 //~ echo $sql;
-		 
-		return $info['responseResult'][0];
-	}
-}
-
-function get_persona(){
-	if ($_REQUEST['id']){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.genero,T2.fecha
-	 FROM personas T1
-	 LEFT join caracterizacion T2 ON T1.ficha=T2.idficha
-	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
-	}
-}
-function get_persona_ext(){
-	if ($_REQUEST['id']){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,genero,fecha_envio
-	 FROM personas1 
-	 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	 //~ echo $sql;
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
-	}
-}
+} 
 
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  //~ $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-  //~ $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  $rta .= "<li class='icono $a cancelar'    title='Cerrar'          Onclick=\"ocultar('".$a."','".$b."');\" >";
+  if ($a=='creausu'){  
+	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
+  	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+  }
   return $rta;
 }
 
+
 function cmp_solcita(){
- $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
- 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','direccion'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>''];
+	$t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
+ 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','direccion'=>'','nacionalidad'=>'',
+ 'tipo_cita'=>'','tel1'=>'','tel2'=>'','tel3'=>'','fecha_create'=>'','motivo'=>'',
+ 'sexo'=>'','tipo'=>'','card'=>'','gast'=>'','gine'=>'','mein'=>'','nudi'=>'','ofta'=>'','ortr'=>'','pedi'=>'',
+ 'psic'=>'','psiq'=>'','urol'=>'','pyd'=>''];
  $w='frecuencia';
   $d='';//get_solcita(); 
   //~ var_dump($d);
@@ -133,17 +93,19 @@ function cmp_solcita(){
  $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
   //~ $c[]=new cmp('ipe','h',10,$_POST['id'],$w,'','idp',null,'','',''); 
  $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
-  $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
+ $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
  $c[]=new cmp('no1','t',20,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',20,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-4');
  $c[]=new cmp('ap1','t',20,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-3');
  $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
- $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,true,'','col-4');
+ $c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Fecha ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'afec\');');
+ $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' afec '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['sexo'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
- $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
- $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
- $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','etnia',null,null,true,false,'','col-4');
- $c[]=new cmp('dir','t',20,$d['direccion'],$w.' '.$o,'Direccion','etnia',null,null,false,true,'','col-6');
+ $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','',null,null,true,false,'','col-3');
+ $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','',null,null,true,false,'','col-4');
+ $c[]=new cmp('te3','h',10,$d['tel3'],$w.' '.$o,'Teléfono 3','',null,null,true,false,'','col-4');
+ $c[]=new cmp('edi2','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,null,false,true,'','col-2','enableUpd(this,\'adir\');');
+ $c[]=new cmp('dir','t',20,$d['direccion'],$w.' adir '.$o,'Direccion','',null,null,false,false,'','col-6');
  $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
  
 
@@ -162,27 +124,70 @@ $c[]=new cmp('psic','o',2,$d['psic'],$w.' '.$o,'Psicologia',null,null,true,false
 $c[]=new cmp('psiq','o',2,$d['psiq'],$w.' '.$o,'Psiquiatria',null,null,true,false,'','col-0');
 $c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'','col-0');
 
-$w='promocion';
+ $w='promocion';
  $o='pyd';
  $c[]=new cmp(null,'e',null,'PROMOCION Y DETECCCIÒN TEMPRANA',$w);
  $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
- //$rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
- $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
  return $rta;
 }
 
- function lis_citasUsuario(){
-	 $id=divide($_POST['id']);
-	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(39,tipo_cita) `tipo de cita`, 
-	`observaciones` 
-	FROM `solcita` 
-	WHERE `id_persona`='{$id[0]}' AND `tipo_doc`='{$id[1]}' AND `realizada`='NO'";
-//~ echo $sql;
-	$datos=datos_mysql($sql);
-return panel_content($datos["responseResult"],"citasUsuario",5);
-}
+function gra_creausu(){
+  
+	$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+	$usu=divide($rta["responseResult"][0]['usu']);
+ 
+	$rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
+	$data=$rta["responseResult"][0];
 
+
+	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
+	if (isset($data['bina'])) {
+		$equ =$data['bina'];
+	} elseif(isset($data['terr'])) {
+		$equ =$data['terr'];
+	}else{
+		$equ ='';
+	}
+	
+	$params1 = [
+		['type' => 'i', 'value' => $_POST['documento']],
+		['type' => 's', 'value' => $_POST['nombre']],
+		['type' => 's', 'value' => $_POST['correo']],
+		['type' => 'z', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
+		['type' => 's', 'value' => $data['perfil']],
+		['type' => 'i', 'value' => $usu[2]],
+		['type' => 's', 'value' => $equ],
+		['type' => 's', 'value' => $usu[4]],
+		['type' => 's', 'value' => 'P']];
+		$rta2 = mysql_prepd($sql1, $params1);
+
+	if (strpos($rta2, "Correctamente")!== false) {
+		$rta = "Se ha Insertado: 1 Registro Correctamente.";
+		$sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+   
+
+   $params = [
+	['type' => 'i', 'value' => NULL],
+	['type' => 'i', 'value' => $_POST['documento']],
+	['type' => 's', 'value' => $_POST['nombre']],
+	['type' => 's', 'value' => $_POST['correo']],
+	['type' => 's', 'value' => $data['perfil']],
+	['type' => 's', 'value' => $data['terr']],
+	['type' => 's', 'value' => $data['bina']],
+	['type' => 'i', 'value' => $usu[2]],
+	['type' => 's', 'value' => $usu[4]],
+	['type' => 'i', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => date("Y-m-d H:i:s")],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => 'R']];
+	$rta1 = mysql_prepd($sql, $params);
+	} else {
+		$rta = "Error: msj['No se puede crear la solicitud, el usuario ya se ha creado anteriormente']";
+	}
+	return $rta;
+}
 
 function opc_tipo_doc($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
@@ -202,40 +207,17 @@ function opc_estados($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=11 and estado='A' ORDER BY 1",$id);
 }
 
-function gra_frecuencia(){
-	if ($_POST['mot3']){
-		 $mot="'".$_POST['mot3']."'";
-	 }else if($_POST['mot2']){
-		 $mot="'".$_POST['mot2']."'";
-	 }else{
-		 $mot='NULL';
-	 }
-	 
- if ($_POST['key']){
-	 $id=divide($_POST['key']);
-	$sql="UPDATE solcita SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
- motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
- WHERE id_persona={$id[0]} AND tipo_doc=UPPER('{$id[1]}') AND tipo_cita='{$id[2]}' AND `realizada`='NO';";
- }else{
-	 $sql="INSERT INTO solcita VALUES ({$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
- }
-	//~ echo $sql;
-	$rta=dato_mysql($sql);
-return $rta;
-}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-  if ($a=='solcita'&& $b=='id'){$rta= "<div class='txt-center'>".$c['ID']."</div>";}
-  //~ var_dump($c);
- if (($a=='solcita') && ($b=='acciones'))    {
-		$rta="<nav class='menu right'>";
-	if ($c['realizada']=='NO'){
-		$rta.="<li class='icon editar min' title='Editar Frecuencia' id='".$c['ACCIONES']."' Onclick=\"mostrar('solcita','pro',event,'','lib.php',4);hideMotiv();loadMotiv();\"></li>"; //hideMotiv();
+// var_dump($a);
+// var_dump($rta);
+	if ($a=='creausu' && $b=='acciones'){
+		$rta="<nav class='menu right'>";		
+		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('creausu','pro',event,'','lib.php',7);\"></li>";
 	}
-		$rta.="</nav>";
-	}    
+	
  return $rta;
 }
 

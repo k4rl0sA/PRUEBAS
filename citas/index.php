@@ -237,8 +237,8 @@ function grabar(tb='',ev){
 <body Onload="actualizar();">
 <?php
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
-$info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
+if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
+$info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
 $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');

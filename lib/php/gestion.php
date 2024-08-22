@@ -2,7 +2,6 @@
 session_start();
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
-// $GLOBALS['app']='sds';
 ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
@@ -17,9 +16,6 @@ $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$en
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;
-// $cv=array(isset($_SESSION["us_{$GLOBALS['app']}"])?$_SESSION["us_{$GLOBALS['app']}"]:"","NOW()");
-// $SESSION['perfil']=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_{$GLOBALS['app']}"]."'");
-//$cabecera = "<html><head><link rel='stylesheet' href='s.css' type='text/css' media='screen'><script src='js/c.js'></script></head>";
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
 //~ var_dump($req);
 // var_dump($con);
@@ -40,7 +36,7 @@ switch ($req) {
 		}
 		die;
 		break;
-	case 'upload':
+	/* case 'upload':
 		$cr = $_REQUEST['c'];
 		$ya = new DateTime();
 		$tb = $_POST['b'];
@@ -52,18 +48,7 @@ switch ($req) {
 			mkdir($ru);
 		if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $fi))
 			echo "Error " . $_FILES['archivo']['error'] . " " . $fi;
-		else {
-			/* echo $cabecera;
-			echo "Archivo <b>" . $_POST['b'] . "</b>" . $ar . "<br>";
-			echo "<center>";
-			echo "<div id='progress-ordennovedadvalor'></div>";
-			$GLOBALS['def_' . $tb] = define_objeto($tb, $_REQUEST['d']);
-			if (isset($GLOBALS['def_' . $tb]))
-				importar($tb, $fi, $_REQUEST['d']);
-			echo "<input type=button value='Continuar' OnClick=\"retornar('" . $cr . "','" . $ar . ".csv')\" >";
-			echo "</center>"; */
-		}
-		break;
+		break; */
 }
 
 function header_csv($a) {

@@ -10,13 +10,13 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Crear Cita || Proteger</title>
+	<title>Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/main.css">
 	<script src="../lib/js/a.js"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
 	<script>
-		var mod = 'catalogo';
+		var mod = 'solcita';
 		var ruta_app = 'lib.php';
 
 		function csv(b) {
@@ -73,45 +73,19 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					        <input class='captura' type="text" id="fcatalogo" name="fcatalogo" OnChange="actualizar();" required>
     					        <label for="fcatalogo">Nombre del catalogo</label>
     					    </div>
-
 							<div class="input-box">
     					        <select class='captura' id="festado" name="festado" OnChange="actualizar();" required>
 									<?php echo $estados; ?>
     					        </select>
     					        <label for="festado">Estado</label>
     					    </div>
-
-    					    <!-- <div class="input-box">
-    					        <input class='captura' type="date" id="birthdate" name="birthdate" OnChange="actualizar();" required>
-    					        <label for="birthdate">fecha de nacimiento</label>
-    					    </div>
-							<div class="input-box">
-    					        <input class='captura' type="checkbox" id="agree" name="agree" OnChange="actualizar();" required>
-    					        <label for="agree">Yo acepto los terminos y condiciones</label>
-    					    </div>
-							<div class="input-box">
-    					        <textarea class='captura' id="message" name="message" rows="4" required></textarea>
-    					        <label for="message">Observaciones</label>
-    					    </div>
-						-->
-
-    					    
-
-							
-    					    
-
-    					    
-
     					    <button type="submit" class="btn">Aplicar</button>
     					</form>
 					</div>
-
-
-					
-						<div class='load' id='loader' z-index='0'></div>
+				<div class='load' id='loader' z-index='0'></div>
 				</div>
 				<div class="content content-2">
-					<div class="title txt-center"><h2>CATALOGO</h2></div>
+					<div class="title txt-center"><h2>SOLICITAR CITA</h2></div>
 					<div class='panel' id='<?php echo $mod; ?>'>
 							<!-- <nav class='menu left'>
 								<li class='icono exportar' title='Exportar CSV' Onclick="csv(mod);"></li>

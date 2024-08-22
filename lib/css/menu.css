@@ -95,9 +95,18 @@ body.dark {
     visibility: visible;
 }
 
+/* .sidebar i.fa-solid.fa-chevron-down{
+    visibility: visible;
+}
+ */
 .sidebar.close .text {
     visibility: hidden;
 }
+
+.sidebar.close i.fa-solid.fa-chevron-down{
+    visibility: collapse;
+}
+
 
 .sidebar .image {
     margin-top: 5px;
@@ -365,6 +374,10 @@ body.dark .switch::before {
     border: 1px solid transparent;
     transition: border-color 0.3s;
     border-color: black;
+}
+
+li.nav-link.open.active {
+    border-right: 5px solid #1ABB9C;
 }
 
 /* Posiciona la flecha hacia abajo en los elementos con submenu */

@@ -214,9 +214,9 @@ h2 {
   border-bottom: 3px solid var(--primary-color);
 }
 
-.input-box input:not(:focus):not(:valid):not(:disabled),
-.input-box select:not(:focus):not(:valid):not(:disabled),
-.input-box textarea:not(:focus):not(:valid):not(:disabled) {
+.input-box input:not(:focus):not(:disabled),
+.input-box select:not(:focus):not(:disabled),
+.input-box textarea:not(:focus):not(:disabled) {
   border-bottom: 3px solid var(--primary-color);
   animation: fillBorder 1s ease forwards;
 }

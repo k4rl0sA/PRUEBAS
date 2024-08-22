@@ -2,7 +2,7 @@
 		<link href="../lib/css/menu.css" rel="stylesheet" type="text/css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="../lib/js/app.js"></script>
+    <script src="../lib/js/menu.js"></script>
 	</head>
 <?php
 // require_once 'config.php';

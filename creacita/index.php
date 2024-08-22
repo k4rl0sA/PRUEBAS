@@ -1,19 +1,16 @@
 <?php
-ini_set('display_errors', '1');
-include $_SERVER['DOCUMENT_ROOT'] . '/lib/php/nav.php';
-require_once "../lib/php/gestion.php";
-if (!isset($_SESSION["us_sds"])) {
-	die("<script>window.top.location.href = '/';</script>");
-}
-$mod = 'catalogo';
-$estados = opc_sql("SELECT idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1", '');
-$catalogos = opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `catalogo` ORDER BY 1", '');
+session_start();
+ini_set('display_errors','1');
+$mod='solcita';
+$ya = new DateTime();
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",'');
 ?>
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Catalogo || Proteger</title>
+	<title>Crear Cita || Proteger</title>
 	<link rel="stylesheet" href="../lib/css/main.css">
 	<script src="../lib/js/a.js"></script>
 	<script src="../lib/js/d.js"></script>

@@ -211,7 +211,7 @@ function grabar(tb='',ev){
   }else if(cit.value==13 && obs.value==1 && mot2.value==''){
 	  alert('El valor del campo Motivo,No corresponde con respecto al tipo de Cita asignado, por favor valide');
   }else if(obs.value==2 && mot3.value==''){
-	  alert('El valor del campo Motivo debe contener una fecha valida,No puede estar vacio, por favor valide');
+	  alert('El valor del caSOLICITAR CITAmpo Motivo debe contener una fecha valida,No puede estar vacio, por favor valide');
   }else if(obs.value==2 ){
 	  validDate('mot3');
 	if (Array.isArray(valDate('mot3'))){

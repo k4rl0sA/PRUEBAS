@@ -76,7 +76,7 @@ body.dark {
     position: fixed;
     top: 0;
     left: 0;
-    height: 80%;
+    height: 100%;
     padding: 0 0;
     background: var(--sidebar-color);
     transition: var(--tran-05);

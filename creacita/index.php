@@ -63,6 +63,13 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 					<div class="frm-filter poppins-font" id='<?php echo $mod; ?>-fil'>
     					<form method='post' id='fapp'>
 
+
+							<div class="input-box">
+    					        <input class='captura' type="text" id="fcatalogo" name="fcatalogo" OnChange="actualizar();" required>
+    					        <label for="fcatalogo">Nombre del catalogo</label>
+    						</div>
+
+
 							<div class="input-box">
 							<input class="captura" type="text" id="fidpersona" name="fidpersona" OnChange="actualizar();">
     					        <label for="fidpersona">N° Documento</label>

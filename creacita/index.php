@@ -64,8 +64,8 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					<form method='post' id='fapp'>
 
 							<div class="input-box">
-							<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
-    					        <label for="fidpersona">Documento</label>
+							<input class="captura" type="text" size=20 id="fidpersona" name="fidpersona" OnChange="actualizar();">
+    					        <label for="fidpersona">N° Documento</label>
     					    </div>
 
     					    <div class="input-box">

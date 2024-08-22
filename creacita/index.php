@@ -71,6 +71,17 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 						</div>
 
 						<div class="input-box">
+						<label for="choices-multiple-remove-button">Select Múltiple Único con Botón de Eliminar:</label>
+                		<select id="choices-multiple-remove-button" multiple>
+                		    <option value="html">HTML</option>
+                		    <option value="css">CSS</option>
+                		    <option value="javascript">JavaScript</option>
+                		    <option value="php">PHP</option>
+                		    <option value="python">Python</option>
+                		</select>
+                		</div>
+
+						<div class="input-box">
 							<label for="single-select">Estado Solicitud:</label>
                 			<select id="single-select fest" class='captura' id="fest" name="fest">
 								 <?php echo $estados; ?>
@@ -78,14 +89,14 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					</div>
 
 						<div class="input-box">
-    					       <input  type="date" class='captura' id="fdes" name="fdes">
-    					       <label for="fdes">Fecha Desde</label>
-    					   </div>
+    					    <input  type="date" class='captura' id="fdes" name="fdes">
+    					    <label for="fdes">Fecha Desde</label>
+    					</div>
 						
 						<div class="input-box">
-    					       <input  type="date" class='captura' id="fhas" name="fhas">
-    					       <label for="fhas">Fecha Hasta</label>
-    					   </div>
+    					    <input  type="date" class='captura' id="fhas" name="fhas">
+    					    <label for="fhas">Fecha Hasta</label>
+    					</div>
 
    					    <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button>
     					</form>

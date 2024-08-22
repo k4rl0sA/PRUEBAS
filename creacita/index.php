@@ -5,6 +5,7 @@ $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",'');
+// $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
 ?>
 
 <head>
@@ -63,10 +64,8 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					<form method='post' id='fapp'>
 
 							<div class="input-box">
-    					        <select class='captura' id="fidcata" name="fidcata" OnChange="actualizar();" required>
-									<?php echo $catalogos; ?>
-    					        </select>
-    					        <label for="fidcata">Catalogo</label>
+							<input class="captura" size=50 id="fidpersona" name="fidpersona" OnChange="actualizar();">
+    					        <label for="fidpersona">Documento</label>
     					    </div>
 
     					    <div class="input-box">
@@ -79,6 +78,8 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					        </select>
     					        <label for="festado">Estado</label>
     					    </div>
+
+
     					    <button type="submit" class="btn">Aplicar</button>
     					</form>
 					</div>

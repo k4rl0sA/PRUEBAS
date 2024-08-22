@@ -65,15 +65,9 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 
 
 							<div class="input-box">
-    					        <input class='captura' type="text" id="fcatalogo" name="fcatalogo" OnChange="actualizar();" required>
-    					        <label for="fcatalogo">Nombre del catalogo</label>
+    					        <input type="text" class='captura'  id="fidp" name="fidp" OnChange="actualizar();" required>
+    					        <label for="fidp">N° Documento</label>
     						</div>
-
-
-							<div class="input-box">
-							<input class="captura" type="text" id="fidpersona" name="fidpersona" OnChange="actualizar();">
-    					        <label for="fidpersona">N° Documento</label>
-    					    </div>
 
     					    <div class="input-box">
     					        <input class='captura' type="text" id="fcatalogo" name="fcatalogo" OnChange="actualizar();" required>

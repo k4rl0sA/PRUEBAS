@@ -53,7 +53,7 @@ $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE perfil IN('ADM')",$_SESSION['us_sds']);
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
-$import = ($perfil == 'TEC'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
+$import = ($perfil == 'TEC'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class="campo"><div>Cargar PGP</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 ?>
 
 
@@ -106,7 +106,7 @@ $import = ($perfil == 'TEC'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
   <script>
 	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
 	btnLoad.addEventListener("click", () => {
-	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
+	uploadCsv(30, "geografico", inputFile1, "../libs/import.php", mod);
   });
 </script>
 		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>

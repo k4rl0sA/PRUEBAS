@@ -16,7 +16,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<script src="../lib/js/a.js"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
-	<link rel="stylesheet" href="choices.min.css">
+	<link rel="stylesheet" href="../lib/css/choices.min.css">
     <script src="choices.min.js"></script>
 	<script>
 		var mod = 'solcita';

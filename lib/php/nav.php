@@ -96,7 +96,7 @@ foreach ($menu as &$mainMenuItem) {
                             <!-- </a> -->
                         <?php if (isset($item['submenu'])): ?>
 
-                            <i class="fa-solid fa-chevron-down submenu-icon"></i>
+                            <i class="fa-solid fa-chevron-down submenu-arrow"></i>
                             <?php endif; ?>
                             </a>
                             <?php if (isset($item['submenu'])): ?>

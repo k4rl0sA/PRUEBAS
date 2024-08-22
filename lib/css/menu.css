@@ -367,7 +367,14 @@ body.dark .switch::before {
     border-color: black;
 }
 
-.menu-links .submenu-icon {
-    margin-left: auto; /* Mueve la flecha al final */
-    font-size: 0.8em; /* Tamaño de la flecha */
+/* Posiciona la flecha hacia abajo en los elementos con submenu */
+.has-submenu .submenu-arrow {
+    margin-left: auto; /* Coloca la flecha al final */
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Rotación de la flecha cuando el submenu está abierto */
+.nav-link.open .submenu-arrow {
+    transform: rotate(180deg); /* Rotar la flecha hacia arriba */
 }

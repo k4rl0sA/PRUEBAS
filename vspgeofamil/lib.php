@@ -133,7 +133,7 @@ function cmp_fam_geo(){
 }
 
 function opc_fuente($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo= and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_estrategia($id=''){

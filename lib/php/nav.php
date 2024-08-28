@@ -71,7 +71,7 @@ foreach ($menu as &$mainMenuItem) {
     <header>
         <div class="image-text">
             <span class="image">
-                <img src="../libs/img/Logo128.png" alt="logo">
+                <img src="../lib/img/Logo128.png" alt="logo">
             </span>
             <div class="text header-text">
                 <span class="name">Secretaria de Salud</span>

@@ -421,14 +421,14 @@ function pags_table($tb, $pg, $np, $nr,$mod) {
   }
   
   function sendMail($mails, $subject, $body) {
-    require_once('../libs/mailer/PHPMailerAutoload.php');
+    require_once('../lib/mailer/PHPMailerAutoload.php');
     $mail = new PHPMailer();
     initializeMail($mail, ["Subject" => $subject, "Body" => $body]);
     foreach ($mails as $x) {
       $mail->AddAddress($x);
     }
     $plantilla = "";
-    $file = fopen("../libs/plantilla.html", "r");
+    $file = fopen("../lib/plantilla.html", "r");
     while ($buff = fgets($file)) {
       $plantilla .= $buff;
     }

@@ -323,26 +323,6 @@ function alinea($a){
   elseif (strlen($a)<=2) return 'txt-center';
   else return 'txt-left';
 }
-function menu_reg($tb,$pg,$np,$nr){
-  $rta="<nav class='menu left'>";
-  $rta.="<li class='icono regini' OnClick=\"ir_pagina('".$tb."',1,".$np.");\" ></li>";
-  $rta.="<li class='icono pgatra' OnClick=\"ir_pagina('".$tb."',$pg-1,".$np.");\"></li>";
-  $rta.="<li class='icono pgsigu' OnClick=\"ir_pagina('".$tb."',$pg+1,".$np.");\"></li>";
-  $rta.="<li class='icono regfin' OnClick=\"ir_pagina('".$tb."',$np,".$np.");\"></li>&nbsp;";
-  $rta.="<input type='text' class='pagina ".$tb." filtro txt-right' maxlength=5 id='pag-".$tb."' value='".$pg."' 
-             Onkeypress=\"return solo_numero(event);\" OnChange=\"ir_pagina('".$tb."',this.value,".$np.");\" > ";
-  $rta.="<span><b> DE ".$np." PAGINAS ";
-  $rta.="<input type='text' class='pagina txt-right' id='rec-".$tb."' value='".$nr."' disabled >"; 
-  $rta.=" REGISTROS</b></span>";
-  $rta.="</nav><nav class='menu right'>";
-  $rta.="<li class='icono regini' OnClick=\"ir_pagina('".$tb."',1,".$np.");\" ></li>";
-  $rta.="<li class='icono pgatra' OnClick=\"ir_pagina('".$tb."',$pg-1,".$np.");\"></li>";
-  $rta.="<li class='icono pgsigu' OnClick=\"ir_pagina('".$tb."',$pg+1,".$np.");\"></li>";
-  $rta.="<li class='icono regfin' OnClick=\"ir_pagina('".$tb."',$np,".$np.");\"></li>";
-  $rta.="</nav>";
-  return $rta;
-}
-
 function create_table($totalReg, $data_arr, $obj_name, $rp = 20,$mod='lib.php', $no = array('R')) {
   $rta = "";
   $pg = si_noexiste('pag-'.$obj_name, 1);
@@ -451,7 +431,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
-  print_r($data);
+  print_r($sql);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
     }

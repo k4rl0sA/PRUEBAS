@@ -73,7 +73,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 
 						<div class="input-box">
 						<label for="choices-multiple-remove-button">Estado Solicitud:</label>
-                		<select id="choices-multiple-remove-button" multiple>
+                		<select id="choices-multiple-remove-button" name="fest" multiple>
 							<?php echo $estados; ?>
                 		</select>
                 		</div>

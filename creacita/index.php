@@ -72,22 +72,18 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 						</div>
 
 						<div class="input-box">
-						<label for="choices-multiple-remove-button">Select Múltiple Único con Botón de Eliminar:</label>
+						<label for="choices-multiple-remove-button">Estado Solicitud:</label>
                 		<select id="choices-multiple-remove-button" multiple>
-                		    <option value="html">HTML</option>
-                		    <option value="css">CSS</option>
-                		    <option value="javascript">JavaScript</option>
-                		    <option value="php">PHP</option>
-                		    <option value="python">Python</option>
+							<?php echo $estados; ?>
                 		</select>
                 		</div>
 
-						<div class="input-box">
+						<!-- <div class="input-box">
 							<label for="single-select">Estado Solicitud:</label>
                 			<select id="single-select" class='captura' id="fest" name="fest">
-								 <?php echo $estados; ?>
+								 <?php /* echo $estados; */ ?>
                 			</select>
-    					</div>
+    					</div> -->
 
 						<div class="input-box">
 							<label for="fdes">Fecha Desde</label>

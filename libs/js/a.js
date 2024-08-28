@@ -1497,3 +1497,33 @@ if (localStorage.getItem('demo-theme')) {
   }); */
 
  
+  document.addEventListener('DOMContentLoaded', function() {
+    //select con múltiples opciones
+    const multipleRemoveSelect = document.getElementById('choices-multiple-remove-button');
+    if (multipleRemoveSelect) {
+        const multipleRemoveChoices = new Choices(multipleRemoveSelect, {
+            removeItemButton: true,
+            itemSelectText: 'Selecciona una opción',
+            loadingText: 'Cargando...',
+            noResultsText: 'No hay resultados',
+            noChoicesText: 'No hay más opciones',
+        });
+    } else {
+        console.warn('El elemento #choices-multiple-remove-button no está disponible.');
+    }
+
+    //select para una sola opción
+    const singleSelect = document.getElementById('single-select');
+    if (singleSelect) {
+        const choices = new Choices(singleSelect, {
+            searchEnabled: true,
+            itemSelectText: 'Selecciona una opción',
+            position: 'bottom',
+            loadingText: 'Cargando...',
+            noResultsText: 'No hay resultados',
+            noChoicesText: 'No hay una opcion',
+        });
+    } else {
+        console.warn('El elemento #single-select no está disponible.');
+    }
+});

@@ -89,13 +89,14 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					</div>
 
 						<div class="input-box">
+							<label for="fdes">Fecha Desde</label>
     					    <input  type="date" class='captura' id="fdes" name="fdes">
-    					    <label for="fdes">Fecha Desde</label>
+    					    
     					</div>
 						
 						<div class="input-box">
+						<label for="fhas">Fecha Hasta</label>
     					    <input  type="date" class='captura' id="fhas" name="fhas">
-    					    <label for="fhas">Fecha Hasta</label>
     					</div>
 
    					    <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button>

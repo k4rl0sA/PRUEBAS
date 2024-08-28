@@ -22,12 +22,17 @@ if (!isset($_SESSION['us_sds'])) {
 
 function whe_catalogo() {
 	$sql = "";
-	if ($_POST['fidcata'])
-		$sql .= " AND idcatalogo='".$_POST['fidcata']."' ";
-	if ($_POST['fcatalogo'])
-		$sql .= " AND descripcion like '%".$_POST['fcatalogo']."%' ";
-	if ($_POST['festado'])
-		$sql .= " AND estado = '".$_POST['festado']."' ";
+	if ($_POST['fidp'])
+		$sql .= " AND idcatalogo='".$_POST['fidp']."' ";
+	if ($_POST['fest'])
+		$sql .= " AND descripcion like '%".$_POST['fest']."%' ";
+	if ($_POST['fdes']) {
+		if ($_POST['fhas']) {
+		      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
+		} else {
+		    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
+		}
+	}
 	return $sql;
 }
 

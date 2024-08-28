@@ -5,6 +5,8 @@ $mod='solcita';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",'');
+$hoy = date("Y-m-d");
+$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
 ?>
 
@@ -87,13 +89,13 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 
 						<div class="input-box">
 							<label for="fdes">Fecha Desde</label>
-    					    <input  type="date" class='captura' id="fdes" name="fdes">
+    					    <input  type="date" class='captura' id="fdes" name="fdes" value='<?php echo $ayer; ?>'>
     					    
     					</div>
 						
 						<div class="input-box">
 						<label for="fhas">Fecha Hasta</label>
-    					    <input  type="date" class='captura' id="fhas" name="fhas">
+    					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>'>
     					</div>
 
    					    <!-- <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button> -->

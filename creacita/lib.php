@@ -27,6 +27,8 @@ function whe_catalogo() {
 	if ($_POST['fest'])
 		$sql .= " AND descripcion like '%".$_POST['fest']."%' ";
 	if ($_POST['fdes']) {
+		$fefin=date('Y-m-d');
+		$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
 		if ($_POST['fhas']) {
 		      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
 		} else {

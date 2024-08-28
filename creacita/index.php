@@ -74,8 +74,8 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 						</div>
 
 						<div class="input-box">
-						<label for="choices-multiple-remove-button">Estado Solicitud:</label>
-                		<select name="fest" id="choices-multiple-remove-button" multiple>
+						<label for="fest">Estado Solicitud:</label>
+                		<select name="fest" id="fest" multiple>
 							<?php echo $estados; ?>
                 		</select>
                 		</div>

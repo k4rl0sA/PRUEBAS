@@ -99,7 +99,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
     					    <input  type="date" class='captura' id="fhas" name="fhas">
     					</div>
 
-   					    <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button>
+   					    <!-- <button type="submit" class="btn" OnChange="actualizar();">Aplicar</button> -->
     					</form>
 					</div>
 				<div class='load' id='loader' z-index='0'></div>

@@ -82,7 +82,7 @@ function csv($a,$b,$tot= null){
   return ob_get_clean();
 }
 
-function cleanTxt($val) {
+/* function cleanTxt($val) {
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
@@ -103,7 +103,7 @@ function cleanTx($val) {
   $val = preg_replace($pattern,'', $val);
   $val = str_replace(array("\n", "\r", "\t"),'', $val);
   return $val;
-}
+} */
 
 function fechas_app($modu){
     switch ($modu) {
@@ -431,7 +431,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
-  print_r($sql);
+  // print_r($sql);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
     }

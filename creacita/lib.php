@@ -31,7 +31,7 @@ function whe_catalogo() {
 	return $sql;
 }
 
-function lis_catalogo(){	
+function lis_solcita(){	
 	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_catalogo());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=17;

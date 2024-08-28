@@ -13,7 +13,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/app.css">
-	<script src="../lib/js/a.js"></script>
+	<script src="../lib/js/main.js"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
 	<link rel="stylesheet" href="../lib/css/choices.min.css">

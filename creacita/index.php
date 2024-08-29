@@ -68,12 +68,12 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 
 						<div class="input-box">
 							<label for="fidp">N° Documento:</label>
-                			<input type="number" id="fidp" name="fidp">
+                			<input type="number" id="fidp" name="fidp" OnChange="actualizar();">
 						</div>
 
 						<div class="input-box">
 						<label for="choices-multiple-remove-button">Estado Solicitud:</label>
-                		<select name="fest" class='choices-multiple-remove-button' id="fest" multiple>
+                		<select name="fest" class='choices-multiple-remove-button' id="fest" multiple OnChange="actualizar();">
 							<?php echo $estados; ?>
                 		</select>
                 		</div>
@@ -87,13 +87,13 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 
 						<div class="input-box">
 							<label for="fdes">Fecha Desde</label>
-    					    <input  type="date" class='captura' id="fdes" name="fdes" value='<?php echo $ayer; ?>'>
+    					    <input  type="date" class='captura' id="fdes" name="fdes" value='<?php echo $ayer; ?>' OnChange="actualizar();">
     					    
     					</div>
 						
 						<div class="input-box">
 						<label for="fhas">Fecha Hasta</label>
-    					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>'>
+    					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
     					</div>
 
    					    <button  class="btn" OnChange="actualizar();">Aplicar</button>

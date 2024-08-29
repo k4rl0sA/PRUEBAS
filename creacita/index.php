@@ -96,7 +96,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
     					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
     					</div>
 
-   					    <button  class="btn" OnChange="actualizar();">Aplicar</button>
+   					    <button  class="btn" OnClick="actualizar();">Aplicar</button>
     					</form>
 					</div>
 				<div class='load' id='loader' z-index='0'></div>

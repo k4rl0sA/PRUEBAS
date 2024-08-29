@@ -30,9 +30,9 @@ function whe_catalogo() {
 		$fefin=date('Y-m-d');
 		$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
 		if ($_POST['fhas']) {
-		      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
+		      $sql .= " AND fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
 		} else {
-		    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
+		    $sql .= " AND fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
 		}
 	}
 	return $sql;

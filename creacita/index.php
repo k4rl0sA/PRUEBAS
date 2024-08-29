@@ -25,9 +25,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 		var mod = 'solcita';
 		var ruta_app = 'lib.php';
 
-		function csv(b) {
-			var myWindow = window.open("../lib/gestion.php?a=exportar&b=" + b, "Descargar archivo");
-		}
+		
 
 		function actualizar() {
 			act_lista(mod);

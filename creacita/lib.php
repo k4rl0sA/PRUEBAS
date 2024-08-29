@@ -25,7 +25,7 @@ function whe_catalogo() {
 	if ($_POST['fidp'])
 		$sql .= " AND idcatalogo='".$_POST['fidp']."' ";
 	if ($_POST['fest'])
-		$sql .= " AND descripcion like '%".$_POST['fest']."%' ";
+		$sql .= " AND descripcion IN (".$_POST['fest'].")";
 	/* if ($_POST['fdes']) {
 		$fefin=date('Y-m-d');
 		$feini = date("Y-m-d",strtotime($fefin."- 2 days"));

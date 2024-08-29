@@ -20,7 +20,7 @@ if (!isset($_SESSION['us_sds'])) {
 	}
 }
 
-function whe_catalogo() {
+function whe_solcita() {
 	$sql = "";
 	if ($_POST['fidp'])
 		$sql .= " AND idcatalogo='".$_POST['fidp']."' ";
@@ -39,14 +39,14 @@ function whe_catalogo() {
 }
 
 function lis_solcita(){	
-	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_catalogo());
+	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_solcita());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=17;
 	$pag=(isset($_POST['pag-catalogo']))? ($_POST['pag-catalogo']-1)* $regxPag:0; 
 
 	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
 	 WHERE 1  ";
-	$sql.=whe_catalogo();
+	$sql.=whe_solcita();
 	$sql.=" ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
@@ -54,11 +54,11 @@ function lis_solcita(){
 	return create_table($total,$datos["responseResult"],"catalogo",$regxPag);
 }
 
-function focus_catalogo(){
+function focus_solcita(){
 	return 'catalogo';
    }
    
-   function men_catalogo(){
+   function men_solcita(){
 	$rta=cap_menus('catalogo','pro');
 	return $rta;
    }
@@ -73,12 +73,12 @@ function focus_catalogo(){
 	return $rta;
   }
 
-  function cmp_catalogo(){
+  function cmp_solcita(){
 	$rta="";
 	$t=['idcatalogo'=>'','idcatadeta'=>'','descripcion'=>'','valor'=>'','estado'=>'A'];
 	$w='catalogo';
 	//~ $id=explode('-',$_REQUEST['id']);
-	$d=get_catalogo(); 
+	$d=get_solcita(); 
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
 	$d['estado']=($d['estado']=='A')?'SI':'NO';
@@ -95,11 +95,11 @@ function focus_catalogo(){
 	return $rta;
 	}
 
-	function opc_catalogo(){
+	function opc_solcita(){
 	 return opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `catalogo` ORDER BY 1",$id = ($_POST['id'] == '') ? '' : divide($_POST['id'])[0]);
 	}
 
-	function get_catalogo(){
+	function get_solcita(){
 		if($_POST['id']=='0'){
 			return "";
 		}else{

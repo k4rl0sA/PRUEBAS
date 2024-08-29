@@ -828,11 +828,11 @@ function gra_person(){
 			return opc_sql($sql,'');		
 	}
 
-/* 	function opc_equipo($id=''){
+	function opc_equipo($id=''){
 	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
-}   */
+}  
 
-function opc_equipo($id=''){
+/* function opc_equipo($id=''){
 	$fam=divide($_POST['id']);
 	$sql="SELECT CASE WHEN EXISTS (SELECT 1 FROM hog_viv c WHERE c.idviv = $fam[0] AND NOT EXISTS (
         SELECT 1 FROM usuarios u WHERE u.id_usuario ='{$_SESSION['us_sds']}' AND u.equipo = c.equipo_car)) 
@@ -858,7 +858,7 @@ function opc_equipo($id=''){
 			return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
 		}
 	}
-	}
+	} */
 	
 	function get_accfam() {
 		// print_r($_POST);

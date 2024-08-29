@@ -42,7 +42,7 @@ function lis_solcita(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_solcita());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=17;
-	$pag=(isset($_POST['pag-catalogo']))? ($_POST['pag-catalogo']-1)* $regxPag:0; 
+	$pag=(isset($_POST['pag-solcita']))? ($_POST['pag-solcita']-1)* $regxPag:0; 
 
 	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
 	 WHERE 1  ";
@@ -51,15 +51,15 @@ function lis_solcita(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"catalogo",$regxPag);
+	return create_table($total,$datos["responseResult"],"solcita",$regxPag);
 }
 
 function focus_solcita(){
-	return 'catalogo';
+	return 'solcita';
    }
    
    function men_solcita(){
-	$rta=cap_menus('catalogo','pro');
+	$rta=cap_menus('solcita','pro');
 	return $rta;
    }
    
@@ -76,7 +76,7 @@ function focus_solcita(){
   function cmp_solcita(){
 	$rta="";
 	$t=['idcatalogo'=>'','idcatadeta'=>'','descripcion'=>'','valor'=>'','estado'=>'A'];
-	$w='catalogo';
+	$w='solcita';
 	//~ $id=explode('-',$_REQUEST['id']);
 	$d=get_solcita(); 
 	//~ var_dump($d);
@@ -113,10 +113,10 @@ function focus_solcita(){
    function formato_dato($a,$b,$c,$d){
 	$b=strtolower($b);
 	$rta=$c[$d];
-	 if ($a=='catalogo'&& $b=='id'){$rta= "<div class='txt-center'>".$c['ID']."</div>";}
-	if (($a=='catalogo') && ($b=='acciones'))    {
+	 if ($a=='solcita'&& $b=='id'){$rta= "<div class='txt-center'>".$c['ID']."</div>";}
+	if (($a=='solcita') && ($b=='acciones'))    {
 		   $rta="<nav class='menu right'>";
-		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('catalogo','pro',event,'','lib.php',4);\"></li>";
+		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('solcita','pro',event,'','lib.php',4);\"></li>";
 		   $rta.="</nav>";
 	   }    
 	return $rta;

@@ -95,7 +95,7 @@ function focus_solcita(){
 	return $rta;
 	}
 
-	function opc_solcita(){
+	function opc_catalogo(){
 	 return opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `catalogo` ORDER BY 1",$id = ($_POST['id'] == '') ? '' : divide($_POST['id'])[0]);
 	}
 

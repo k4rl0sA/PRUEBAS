@@ -95,7 +95,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 						<label for="fhas">Fecha Hasta</label>
     					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
     					</div>
-						<button  type=reset class="btn" OnClick="actualizar();">Quitar Filtros</button>
+						<button  type=button class="btn" OnClick="actualizar();">Quitar Filtros</button>
     					</form>
 						<button  class="btn" OnClick="actualizar();">Aplicar</button>
 					</div>

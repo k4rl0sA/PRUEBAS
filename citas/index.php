@@ -36,9 +36,11 @@ function enableUpd(a,b){
 	if(a.value=='SI'){
 		enaFie(update[0],false);
 		update[0].value=val;
+		return;
   	}else{
 		enaFie(update[0],true);
 		update[0].value=val;
+		return;
 	}
 }
 

@@ -34,9 +34,9 @@ function enableUpd(a,b){
 	const fe=document.getElementById(b);
 	const update= document.querySelectorAll('input.'+b);
 	if(a.value=='SI'){
-		fe.disabled = false;
+		fe.readOnly = false;
   	}else{
-		fe.disabled = true;
+		fe.readOnly = true;
 	}
 }
 

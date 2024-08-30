@@ -235,7 +235,7 @@ function fetch(&$con, &$rs, $resulttype, &$arr) {
 	return $arr;
 }
 
-function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
+/* function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 	$rta = "";
 	$pg = si_noexiste('pag-'.$obj_name,1);
 	$rta.= "<table class='tablesorter' cellspacing=0>";
@@ -275,7 +275,7 @@ function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 	$rta.= "</table>";
 	return $rta;
 }
-
+ */
 function opc_sql($sql,$val,$str=true){
 	$rta="<option value class='alerta' >SELECCIONE</option>";
 	$con=$GLOBALS['con'];
@@ -326,17 +326,17 @@ function alinea($a){
 function create_table($totalReg, $data_arr, $obj_name, $rp = 20,$mod='lib.php', $no = array('R')) {
   $rta = "";
   $pg = si_noexiste('pag-'.$obj_name, 1);
-  $rta .= "<table class='tablesorter' cellspacing=0>";
+  $rta .= "<div class='datatable-container'><div class='header-tools'><div class='tools'></div></div><table class='datatable'>";
   if (!empty($data_arr)) {
     $np = ceil(($totalReg) / $rp);
     $ri = ($pg - 1) * $rp;
-    $rta .= "<thead>";
+    $rta .= "<thead><tr>";
     foreach ($data_arr[0] as $key => $cmp) {
         if (!in_array($key, $no)) {
            $rta .= "<th>".$key."</th>";
         }
     }
-    $rta .= "</thead id='".$obj_name."_cab'>";
+    $rta .= "</tr></thead id='".$obj_name."_cab'>";
     $rta .= "<tbody id='".$obj_name."_fil'>";
     for ($idx = 0; $idx <= ($ri + $rp); $idx++) {
       if (isset($data_arr[$idx])) {
@@ -364,22 +364,17 @@ function create_table($totalReg, $data_arr, $obj_name, $rp = 20,$mod='lib.php', 
 
 function pags_table($tb, $pg, $np, $nr,$mod) {
   $np= ($np>$nr) ? ($np-1) : $np;
-  $rta = "<nav class='menu left'>";
-  $rta .= "<li class='icono regini' OnClick=\"ir_pag('".$tb."', 1, ".$np.",'".$mod."');\"></li>";
-  $rta .= "<li class='icono pgatra' OnClick=\"ir_pag('".$tb."', $pg-1, ".$np.",'".$mod."');\"></li>";
-  $rta .= "<li class='icono pgsigu' OnClick=\"ir_pag('".$tb."', $pg+1, ".$np.",'".$mod."');\"></li>";
-  $rta .= "<li class='icono regfin' OnClick=\"ir_pag('".$tb."', $np, ".$np.",'".$mod."');\"></li>&nbsp;";
+  $rta = "<nav class='menu'>";
+  $rta .= "<li class='fa-solid fa-angles-left' OnClick=\"ir_pag('".$tb."', 1, ".$np.",'".$mod."');\"></li>";
+  $rta .= "<li class='fa-solid fa-angle-left'  OnClick=\"ir_pag('".$tb."', $pg-1, ".$np.",'".$mod."');\"></li>";
   $rta .= "<input type='text' class='pagina ".$tb." filtro txt-right' maxlength=8 id='pag-".$tb."' value='".$pg."' 
             Onkeypress=\"return solo_numero(event);\" OnChange=\"ir_pag('".$tb."', this.value, ".$np.",'".$mod."');\">";
-  $rta .= "<span><b> DE ".$np." PAGINAS ";
+  $rta .= "<span> de ".$np." Paginas ";
   $rta .= "<input type='text' class='pagina txt-right' id='rec-".$tb."' value='".$nr."' disabled>"; 
-  $rta .= " REGISTROS</b></span>";
-  $rta .= "</nav><nav class='menu right'>";
-  $rta .= "<li class='icono regini' OnClick=\"ir_pag('".$tb."', 1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgatra' OnClick=\"ir_pag('".$tb."', $pg-1, ".$np.");\"></li>";
-  $rta .= "<li class='icono pgsigu' OnClick=\"ir_pag('".$tb."', $pg+1, ".$np.");\"></li>";
-  $rta .= "<li class='icono regfin' OnClick=\"ir_pag('".$tb."', $np, ".$np.");\"></li>";
-  $rta .= "</nav>";
+  $rta .= " Registros</span>";
+  $rta .= "<li class='fa-solid fa-angle-right' OnClick=\"ir_pag('".$tb."', $pg+1, ".$np.");\"></li>";
+  $rta .= "<li class='fa-solid fa-angles-right' OnClick=\"ir_pag('".$tb."', $np, ".$np.");\"></li>";
+  $rta .= "</div>";
   return $rta;
 }
 
@@ -427,7 +422,7 @@ function divide($a){
 	return ($id);
 }
 
-function rol($a){ //a=modulo, b=perfil c=componente
+/* function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
@@ -437,7 +432,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
     }
 	return $rta;
 }
-
+ */
 function perfil($a){
 	$perf=rol($a);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
@@ -451,7 +446,14 @@ function perfil($a){
 }
 
 function acceso($a){
-  $acc=rol($a);
+  $rta=array();
+	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
+	$data=datos_mysql($sql);
+  // print_r($sql);
+	if ($data && isset($data['responseResult'][0])) {
+        $rta = $data['responseResult'][0];
+    }
+    $acc=$rta;
   // print_r($acc);
   if (!empty($acc['perfil'])){
     return true;

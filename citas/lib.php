@@ -82,7 +82,7 @@ function cmp_solcita(){
  'tipo_cita'=>'','tel1'=>'','tel2'=>'','tel3'=>'','fecha_create'=>'','motivo'=>'',
  'sexo'=>'','tipo'=>'','card'=>'','gast'=>'','gine'=>'','mein'=>'','nudi'=>'','ofta'=>'','ortr'=>'','pedi'=>'',
  'psic'=>'','psiq'=>'','urol'=>'','pyd'=>''];
- $w='frecuencia';
+ $w='solcita';
   $d='';//get_solcita(); 
   //~ var_dump($d);
  if ($d=="") {$d=$t;}

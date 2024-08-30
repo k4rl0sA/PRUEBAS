@@ -110,25 +110,26 @@ function cmp_solcita(){
 
  $w='tipcita';
  $o='espyd';
- $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3');
+ $c[]=new cmp('tipo','s',3,$d['tipo'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,false,true,'','col-3',"enabEtap('tipo',['sPe','pyD']);");
  
 
  $w='especialidades';
  $o='espec';
+ $cl='sPe';
  $c[]=new cmp(null,'e',null,'ESPECIALIDADES',$w);
-$c[]=new cmp('gine','o',2,$d['gine'],$w.' '.$o,'Ginecobstetricia',null,null,true,false,'','col-0');
-$c[]=new cmp('mein','o',2,$d['mein'],$w.' '.$o,'Medicina Interna',null,null,true,false,'','col-0');
-$c[]=new cmp('nudi','o',2,$d['nudi'],$w.' '.$o,'Nutricion y Dietetica',null,null,true,false,'','col-0');
-$c[]=new cmp('ofta','o',2,$d['ofta'],$w.' '.$o,'Oftalmologia',null,null,true,false,'','col-0');
-$c[]=new cmp('ortr','o',2,$d['ortr'],$w.' '.$o,'Ortopedia y/o Traumatologia',null,null,true,false,'','col-0');
-$c[]=new cmp('pedi','o',2,$d['pedi'],$w.' '.$o,'Pediatria',null,null,true,false,'','col-0');
-$c[]=new cmp('psic','o',2,$d['psic'],$w.' '.$o,'Psicologia',null,null,true,false,'','col-0');
-$c[]=new cmp('psiq','o',2,$d['psiq'],$w.' '.$o,'Psiquiatria',null,null,true,false,'','col-0');
+ $c[]=new cmp('gine','o',2,$d['gine'],$w.' '.$o.' '.$cl,'Ginecobstetricia',null,null,true,false,'','col-0');
+ $c[]=new cmp('mein','o',2,$d['mein'],$w.' '.$o.' '.$cl,'Medicina Interna',null,null,true,false,'','col-0');
+ $c[]=new cmp('nudi','o',2,$d['nudi'],$w.' '.$o.' '.$cl,'Nutricion y Dietetica',null,null,true,false,'','col-0');
+ $c[]=new cmp('ofta','o',2,$d['ofta'],$w.' '.$o.' '.$cl,'Oftalmologia',null,null,true,false,'','col-0');
+ $c[]=new cmp('ortr','o',2,$d['ortr'],$w.' '.$o.' '.$cl,'Ortopedia y/o Traumatologia',null,null,true,false,'','col-0');
+ $c[]=new cmp('pedi','o',2,$d['pedi'],$w.' '.$o.' '.$cl,'Pediatria',null,null,true,false,'','col-0');
+ $c[]=new cmp('psic','o',2,$d['psic'],$w.' '.$o.' '.$cl,'Psicologia',null,null,true,false,'','col-0');
+ $c[]=new cmp('psiq','o',2,$d['psiq'],$w.' '.$o.' '.$cl,'Psiquiatria',null,null,true,false,'','col-0');
 
  $w='promocion';
  $o='pyd';
  $c[]=new cmp(null,'e',null,'PROMOCION Y DETECCCIÒN TEMPRANA',$w);
- $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
+ $c[]=new cmp('pyd','s',3,$d['pyd'],$w.' pyD '.$o,'Promocion y Detecciòn','pyd',null,null,false,true,'','col-0');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

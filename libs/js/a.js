@@ -343,16 +343,20 @@ function valor(a, b) {
 	}
 }
 
-function ir_pagina(tb, p, t) {
+function ir_pagina(tb, pag, tot) {
+	let p = +pag;
+	let t = +tot;
 	if ((p > 0) && (p <= t))
 		document.getElementById('pag-'+tb).value = p;
 	act_lista(tb, document.getElementById('pag-'+tb));
 }
 
-function ir_pag(tb, p, t,mo) {
+function ir_pag(tb, pag, tot,file) {
+	let p = +pag;
+	let t = +tot;
 	if ((p > 0) && (p <= t))
 		document.getElementById('pag-'+tb).value = p;
-	act_lista(tb, document.getElementById('pag-'+tb),mo);
+	act_lista(tb, document.getElementById('pag-'+tb),file);
 }
 
 function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {

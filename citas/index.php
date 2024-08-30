@@ -31,14 +31,11 @@ function grabar(tb='',ev){
 }   
 
 function enableUpd(a,b){
-	const fe=document.getElementById(b);
 	const update= document.querySelectorAll('input.'+b);
 	if(a.value=='SI'){
-		fe.readOnly = false;
-		fe.ClassList.remove('bloqueo');
+		enaFie(update[0],false);
   	}else{
-		fe.readOnly = true;
-		fe.ClassList.add('bloqueo');
+		enaFie(update[0],true);
 	}
 }
 

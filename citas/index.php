@@ -33,10 +33,9 @@ function grabar(tb='',ev){
 function enableUpd(a,b){
 	const update= document.querySelectorAll('input.'+b);
 	let val=update[0].value;
-	if(a.value=='SI'){
+	if(a.value=='SI' || a.checked){
 		enaFie(update[0],false);
 		update[0].value=val;
-		return;
   	}else{
 		enaFie(update[0],true);
 		update[0].value=val;

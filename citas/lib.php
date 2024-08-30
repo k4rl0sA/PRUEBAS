@@ -116,8 +116,6 @@ function cmp_solcita(){
  $w='especialidades';
  $o='espec';
  $c[]=new cmp(null,'e',null,'ESPECIALIDADES',$w);
- $c[]=new cmp('card','o',2,$d['card'],$w.' '.$o,'Cardiologia',null,null,true,false,'','col-0');
-$c[]=new cmp('gast','o',2,$d['gast'],$w.' '.$o,'Gastroenterologia',null,null,true,false,'','col-0');
 $c[]=new cmp('gine','o',2,$d['gine'],$w.' '.$o,'Ginecobstetricia',null,null,true,false,'','col-0');
 $c[]=new cmp('mein','o',2,$d['mein'],$w.' '.$o,'Medicina Interna',null,null,true,false,'','col-0');
 $c[]=new cmp('nudi','o',2,$d['nudi'],$w.' '.$o,'Nutricion y Dietetica',null,null,true,false,'','col-0');
@@ -126,7 +124,6 @@ $c[]=new cmp('ortr','o',2,$d['ortr'],$w.' '.$o,'Ortopedia y/o Traumatologia',nul
 $c[]=new cmp('pedi','o',2,$d['pedi'],$w.' '.$o,'Pediatria',null,null,true,false,'','col-0');
 $c[]=new cmp('psic','o',2,$d['psic'],$w.' '.$o,'Psicologia',null,null,true,false,'','col-0');
 $c[]=new cmp('psiq','o',2,$d['psiq'],$w.' '.$o,'Psiquiatria',null,null,true,false,'','col-0');
-$c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'','col-0');
 
  $w='promocion';
  $o='pyd';

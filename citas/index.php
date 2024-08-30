@@ -35,8 +35,10 @@ function enableUpd(a,b){
 	const update= document.querySelectorAll('input.'+b);
 	if(a.value=='SI'){
 		fe.readOnly = false;
+		fe.ClassList.remove('bloqueo');
   	}else{
 		fe.readOnly = true;
+		fe.ClassList.add('bloqueo');
 	}
 }
 

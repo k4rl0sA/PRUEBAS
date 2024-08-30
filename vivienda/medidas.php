@@ -51,7 +51,7 @@ function men_medidas(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"medidas-lis",2);
+	return panel_content($datos["responseResult"],"medidas-lis",5);
    }
  
    function cmp_medidas(){

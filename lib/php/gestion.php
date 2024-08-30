@@ -434,7 +434,7 @@ function divide($a){
 }
  */
 function perfil($a){
-	$perf=rol($a);
+	$perf=acceso($a);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
 		echo '<div class="lock">
           <i class="fas fa-lock fa-5x lock-icon"></i>

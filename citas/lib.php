@@ -139,7 +139,7 @@ $c[]=new cmp('urol','o',2,$d['urol'],$w.' '.$o,'Urologia',null,null,true,false,'
 function get_persona(){
 	if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idpgp, documento,tipodoc, nombre1, nombre2, apellido1, apellido2,fecha_nacio ,sexo , direccion, telefono, celular, mes, ano
+		$sql="SELECT documento,tipodoc, nombre1, nombre2, apellido1, apellido2,'NO',fecha_nacio ,sexo ,telefono, celular,NULL,'NO',direccion
 	 FROM PGP
 	 WHERE documento='".$id[0]."' AND tipodoc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);

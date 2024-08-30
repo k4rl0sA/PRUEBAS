@@ -37,7 +37,7 @@
     --backgr-color-head: var(--sidebar-color);
     --dt-hover-cel-col: var(--highlight-color);
     --dt-separa-row-color: var(--text-color);
-    --highlight-color: #3282b8;
+    --highlight-color: rgba(0, 123, 255, 0.25);
     --dt-status-A-color: greenyellow;
     --dt-status-P-color: lightsalmon;
     --dt-status-I-color: lightgray;

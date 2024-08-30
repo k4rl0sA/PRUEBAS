@@ -40,7 +40,7 @@ function enableUpd(a,b){
   	}else{
 		enaFie(update[0],true);
 		update[0].value=val;
-		return;
+		a.value='NO';
 	}
 }
 

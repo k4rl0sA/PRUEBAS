@@ -31,11 +31,12 @@ function grabar(tb='',ev){
 }   
 
 function enableUpd(a,b){
+	const fe=document.getElementById(b);
 	const update= document.querySelectorAll('input.'+b);
 	if(a.value=='SI'){
-		enaFie(update[0],false);
+		fe.disabled = false;
   	}else{
-		enaFie(update[0],true);
+		fe.disabled = true;
 	}
 }
 

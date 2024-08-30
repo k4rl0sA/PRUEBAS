@@ -38,6 +38,7 @@ function enableUpd(a,b){
 		update[0].value=val;
   	}else{
 		enaFie(update[0],true);
+		update[0].value=val;
 	}
 }
 

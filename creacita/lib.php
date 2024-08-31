@@ -39,16 +39,25 @@ function whe_solcita() {
 }
 
 function lis_solcita(){	
-	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_solcita());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=10;
-	$pag=(isset($_POST['pag-solcita']))? ($_POST['pag-solcita']-1)* $regxPag:0; 
+	$total=" SELECT count(*) as total
+	FROM hog_geo H
+	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
+WHERE estado_v =('7') ".whe_solcita();
 
-	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
-	 WHERE 1  ".whe_solcita()." 
-	 ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta
-	LIMIT $pag,$regxPag";
-	echo $sql;
+	$info=datos_mysql($total);
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-solcita']))? ($_POST['pag-solcita']-1)* $regxPag:0;
+
+	
+	$sql="SELECT H.idgeo AS ACCIONES, H.idgeo AS Cod_Predio, FN_CATALOGODESC(42, H.estrategia) AS estrategia, H.direccion, H.territorio, H.sector_catastral AS Sector, H.nummanzana AS Manzana, H.predio_num AS predio, H.unidad_habit AS 'Unidad', FN_CATALOGODESC(2, H.localidad) AS 'Localidad', U.nombre AS nombre, H.fecha_create, FN_CATALOGODESC(44, H.estado_v) AS estado 
+	FROM hog_geo H
+	LEFT JOIN usuarios U ON H.asignado = U.id_usuario
+ WHERE estado_v =('7') ".whe_solcita()." 
+	GROUP BY ACCIONES
+	ORDER BY nummanzana, predio_num
+    LIMIT $pag, $regxPag";
+ echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"solcita",$regxPag);
 }

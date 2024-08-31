@@ -367,10 +367,10 @@ function pags_table($tb, $pg, $np, $nr,$mod) {
   $rta = "<nav class='menu'>";
   $rta .= "<li class='fa-solid fa-angles-left' OnClick=\"ir_pag('".$tb."', 1, ".$np.",'".$mod."');\"></li>";
   $rta .= "<li class='fa-solid fa-angle-left'  OnClick=\"ir_pag('".$tb."', $pg-1, ".$np.",'".$mod."');\"></li>";
-  $rta .= "<input type='text' class='pagina ".$tb." filtro txt-right' maxlength=8 id='pag-".$tb."' value='".$pg."' 
+  $rta .= "<input type='text' size=10 class='pagina ".$tb." filtro txt-right' maxlength=10 id='pag-".$tb."' value='".$pg."' 
             Onkeypress=\"return solo_numero(event);\" OnChange=\"ir_pag('".$tb."', this.value, ".$np.",'".$mod."');\">";
   $rta .= "<span> de ".$np." Paginas ";
-  $rta .= "<input type='text' class='pagina txt-right' id='rec-".$tb."' value='".$nr."' disabled>"; 
+  $rta .= "<input type='text' size=10 class='pagina txt-right' id='rec-".$tb."' value='".$nr."' disabled>"; 
   $rta .= " Registros</span>";
   $rta .= "<li class='fa-solid fa-angle-right' OnClick=\"ir_pag('".$tb."', $pg+1, ".$np.");\"></li>";
   $rta .= "<li class='fa-solid fa-angles-right' OnClick=\"ir_pag('".$tb."', $np, ".$np.");\"></li>";

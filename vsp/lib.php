@@ -39,7 +39,7 @@ function lis_homes(){
     $total=" SELECT count(*) as total
 	FROM hog_geo H
 	LEFT JOIN derivacion D ON H.idgeo = D.cod_predio
-WHERE 1 ".whe_homes()." AND estado_v in('7')";
+WHERE estado_v =('7') ".whe_homes()." AND estado_v in('7')";
 
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];

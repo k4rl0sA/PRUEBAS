@@ -50,7 +50,7 @@ function lis_solcita(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"solcita",$regxPag);
+	return create_table($total,$datos["responseResult"],"solcita",$regxPag,"lib.php");
 }
 
 function focus_solcita(){

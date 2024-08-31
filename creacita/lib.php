@@ -41,14 +41,13 @@ function whe_solcita() {
 function lis_solcita(){	
 	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_solcita());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=17;
+	$regxPag=10;
 	$pag=(isset($_POST['pag-solcita']))? ($_POST['pag-solcita']-1)* $regxPag:0; 
 
 	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
-	 WHERE 1  ";
-	$sql.=whe_solcita();
-	$sql.=" ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
+	 WHERE 1  ".whe_solcita()." 
+	 ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta
+	LIMIT $pag,$regxPag";
 	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"solcita",$regxPag);

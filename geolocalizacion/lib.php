@@ -103,7 +103,7 @@ $sql = "SELECT DISTINCT CONCAT(H.estrategia, '_', H.sector_catastral, '_', H.num
     ORDER BY nummanzana, predio_num
     LIMIT $pag, $regxPag";
 
-		 echo $sql;
+		//  echo $sql;
 		$sql1="";
 		//$_SESSION['sql_hog_geoloc']=$sql1;
 		$data = datos_mysql($sql);

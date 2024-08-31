@@ -702,7 +702,7 @@ padding: var(--dt-padding-s) var(--dt-padding-s);
   cursor: pointer; 
 }
 .datatable-container .resumen input.pagina {
-  width: 30px; 
+  width: 90px; 
   margin-right: 5px; 
 }
 .datatable-container .resumen span {

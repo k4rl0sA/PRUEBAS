@@ -49,7 +49,7 @@ function lis_solcita(){
 	$sql.=whe_solcita();
 	$sql.=" ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"solcita",$regxPag);
 }

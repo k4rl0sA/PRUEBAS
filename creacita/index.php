@@ -80,7 +80,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 3px;
+    height: 5px;
     width: 100%;
 
 }

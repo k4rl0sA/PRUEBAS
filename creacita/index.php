@@ -9,7 +9,34 @@ $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
 ?>
-
+<Style>
+	.loader-wrapper {
+    width: 150px;
+    height: 100px;
+    float: left!important;
+}
+.d-flex {
+    display: flex!important;
+}
+.ball-pulse>div:nth-child(1) {
+    animation: scale .75s -.24s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+.ball-pulse>div:nth-child(2) {
+    animation: scale .75s -.12s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+.ball-pulse>div:nth-child(3) {
+    animation: scale .75s 0s infinite cubic-bezier(.2,.68,.18,1.08);
+}
+.ball-pulse>div {
+    background-color: #3f6ad8;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    animation-fill-mode: both;
+    display: inline-block;
+}
+</Style>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,7 +127,16 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 						<!-- <button  type=button class="btn" OnClick="actualizar();">Quitar Filtros</button> -->
 						<button  class="btn" OnClick="actualizar();">Aplicar</button>
 					</div>
-				<div class='load' id='loader' z-index='0'></div>
+					<div class="loader-wrapper d-flex justify-content-center align-items-center">
+						<div class="loader">
+							<div class="ball-pulse">
+								<div style="background-color: rgb(63, 106, 216);"></div>
+								<div style="background-color: rgb(63, 106, 216);"></div>
+								<div style="background-color: rgb(63, 106, 216);"></div>
+							</div>
+						</div>
+					</div>
+				<div class='load'id='loader' z-index='0'></div>
 				</div>
 				<div class="content content-2">
 					<div class="title txt-center"><h2>SOLICITAR CITA</h2></div>

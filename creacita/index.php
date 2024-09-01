@@ -50,8 +50,8 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 </head>
 
 <body Onload="actualizar();">
-<form method='post' id='fapp'>
 	<div class="wrapper main" id='<?php echo $mod; ?>-main'>
+	<form method='post' id='fapp'>
 		<div class="top-menu">
 			<input type="radio" name="slider"  id="filtros">
 			<input type="radio" name="slider" checked id="datos">
@@ -120,8 +120,8 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 				</div>
 			</section>
 		</div>
+		</form>
 	</div>
-	</form>
 	<div class="overlay" id="overlay" onClick="closeModal();">
 		<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 			<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

@@ -96,7 +96,6 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
     					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
     					</div>
 						<!-- <button  type=button class="btn" OnClick="actualizar();">Quitar Filtros</button> -->
-    					</form>
 						<button  class="btn" OnClick="actualizar();">Aplicar</button>
 					</div>
 				<div class='load' id='loader' z-index='0'></div>
@@ -114,7 +113,6 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 								<li
 								 class='icono cancelar' title='Salir' Onclick="location.href='../main/'"></li>
 							</nav>-->
-						</form>
 						<span class='mensaje' id='<?php echo $mod; ?>-msj'></span>
 						<div class='contenido' id='<?php echo $mod; ?>-lis'></div>
 					</div>
@@ -122,7 +120,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 			</section>
 		</div>
 	</div>
-
+	</form>
 	<div class="overlay" id="overlay" onClick="closeModal();">
 		<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 			<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

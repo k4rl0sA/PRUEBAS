@@ -285,7 +285,7 @@ button:hover {
 		<div class="overlay" id="overlay" onClick="closeModal();">
 		</div>
 			<div class="toast" id="loader">
-				<div class="toast-content">
+				<div class="toast-content active">
 			    	<i class="fas fa-solid fa-check check"></i>
 				   	<div class="message">
 					   <div class='image' id='<?php echo $mod; ?>-image'></div>

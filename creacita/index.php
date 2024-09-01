@@ -284,7 +284,7 @@ button:hover {
 	</div>
 		<div class="overlay" id="overlay" onClick="closeModal();">
 		</div>
-			<div class="toast active" id="loader">
+			<div class="toast" id="loader">
 				<div class="toast-content">
 			    	<i class="fas fa-solid fa-check check"></i>
 				   	<div class="message">

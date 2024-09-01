@@ -285,6 +285,7 @@ button:hover {
 		</form>
 	</div>
 		<div class="overlay" id="overlay" onClick="closeModal();">
+		</div>
 			<div class="toast active">
 				<div class="toast-content">
 			    	<i class="fas fa-solid fa-check check"></i>
@@ -308,7 +309,7 @@ button:hover {
 				<div class='message' id='<?php /* echo $mod; */ ?>-modal'></div>
 			</h4>
 		</div> -->
-	</div>
+	
 	<script>
 		
 	</script>

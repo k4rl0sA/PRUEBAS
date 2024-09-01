@@ -191,22 +191,20 @@ button:hover {
                 progress.classList.remove("active");
             }, 5300);
         });
+
+        closeIcon.addEventListener("click", () => {
+            console.log('click para cerrar la alerta ya sea manual o automáticamente.');
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+
+            toast.classList.remove("active");
+            progress.classList.remove("active");
+        });
     } else {
         console.error('Uno o más elementos no fueron encontrados en el DOM.');
     }
 });
 
-closeIcon.addEventListener("click", () => {
-            console.log('click para cerrar la alerta ya sea manual o automáticamente.');
-            toast.classList.remove("active");
-
-            setTimeout(() => {
-                progress.classList.remove("active");
-            }, 300);
-
-            clearTimeout(timer1);
-            clearTimeout(timer2);
-        });
 	</script>
 </head>
 

@@ -28,6 +28,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 		
 
 		function actualizar() {
+			event.preventDefault();
 			act_lista(mod);
 		}
 

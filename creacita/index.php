@@ -255,20 +255,8 @@ closeIcon.addEventListener("click", () => {
 						<!-- <button  type=button class="btn" OnClick="actualizar();">Quitar Filtros</button> -->
 						<button  class="btn" OnClick="actualizar();">Aplicar</button>
 					</div>
-					<div class="toast active">
-						<div class="toast-content">
-					    	<i class="fas fa-solid fa-check check"></i>
-					    	<div class="message">
-					      		<span class="text text-1">Felicitaciones 🥇</span>
-					      		<span class="text text-2">Excelente notificación para tu Sistema.</span>
-					    	</div>
-					  	</div>
-					  	<i class="fa-solid fa-xmark close"></i>
-					  	<div class="progress active"></div>
-					</div>
-
-
-				<div class='load'id='loader' z-index='0'></div>
+					
+					<div class='load'id='loader' z-index='0'></div>
 				</div>
 				<div class="content content-2">
 					<div class="title txt-center"><h2>SOLICITAR CITA</h2></div>
@@ -291,16 +279,30 @@ closeIcon.addEventListener("click", () => {
 		</div>
 		</form>
 	</div>
-	<div class="overlay" id="overlay" onClick="closeModal();">
-		<div class="popup" id="popup" z-index="0" onClick="closeModal();">
+		<div class="overlay" id="overlay" onClick="closeModal();">
+			<div class="toast active">
+				<div class="toast-content">
+			    	<i class="fas fa-solid fa-check check"></i>
+				   	<div class="message">
+					   <div class='image' id='<?php echo $mod; ?>-image'></div>
+					   <div class='message' id='<?php echo $mod; ?>-modal'></div>	   
+				   		<span class="text text-1">Felicitaciones 🥇</span>
+				   		<span class="text text-2">Excelente notificación para tu Sistema.</span>
+				   	</div>
+				</div>
+				<i class="fa-solid fa-xmark close"></i>
+				<div class="progress active"></div>
+			</div>
+
+		<!-- <div class="popup" id="popup" z-index="0" onClick="closeModal();">
 			<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
 			<h3>
-				<div class='image' id='<?php echo $mod; ?>-image'></div>
+				<div class='image' id='<?php /* echo $mod;  */?>-image'></div>
 			</h3>
 			<h4>
-				<div class='message' id='<?php echo $mod; ?>-modal'></div>
+				<div class='message' id='<?php /* echo $mod; */ ?>-modal'></div>
 			</h4>
-		</div>
+		</div> -->
 	</div>
 	<script>
 		

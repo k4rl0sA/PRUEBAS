@@ -50,6 +50,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 </head>
 
 <body Onload="actualizar();">
+<form method='post' id='fapp'>
 	<div class="wrapper main" id='<?php echo $mod; ?>-main'>
 		<div class="top-menu">
 			<input type="radio" name="slider"  id="filtros">
@@ -64,7 +65,7 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 					<div class="title txt-center"><h2>Filtros</h2></div>
 
 					<div class="frm-filter poppins-font" id='<?php echo $mod; ?>-fil'>
-    					<form method='post' id='fapp'>
+    					
 
 						<div class="input-box">
 							<label for="fidp">N° Documento:</label>

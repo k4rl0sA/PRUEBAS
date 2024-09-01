@@ -191,8 +191,12 @@ button:hover {
                 progress.classList.remove("active");
             }, 5300);
         });
+    } else {
+        console.error('Uno o más elementos no fueron encontrados en el DOM.');
+    }
+});
 
-        closeIcon.addEventListener("click", () => {
+closeIcon.addEventListener("click", () => {
             console.log('click para cerrar la alerta ya sea manual o automáticamente.');
             toast.classList.remove("active");
 
@@ -203,10 +207,6 @@ button:hover {
             clearTimeout(timer1);
             clearTimeout(timer2);
         });
-    } else {
-        console.error('Uno o más elementos no fueron encontrados en el DOM.');
-    }
-});
 	</script>
 </head>
 
@@ -286,7 +286,7 @@ button:hover {
 	</div>
 		<div class="overlay" id="overlay" onClick="closeModal();">
 		</div>
-			<div class="toast active">
+			<div class="toast" id="loader">
 				<div class="toast-content">
 			    	<i class="fas fa-solid fa-check check"></i>
 				   	<div class="message">

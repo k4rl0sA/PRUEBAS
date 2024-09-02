@@ -250,12 +250,15 @@ button:hover {
 		</div>
 			<div class="toast" id="loader">
 				<div class="toast-content">
-			    	<i class="fas fa-solid fa-check check"></i>
+				<!-- <div class='image' id='<?php echo $mod; ?>-image'>
+					<i class="fas fa-solid fa-check check"></i>
+					</div> -->
 				   	<div class="message">
-					   <div class='image' id='<?php echo $mod; ?>-image'></div>
-					   <div class='message' id='<?php echo $mod; ?>-modal'></div>	   
+					   <!-- <i class="fas fa-solid fa-check check"></i> -->
+					   <div class='message' id='<?php echo $mod; ?>-modal'>	   
 				   		<span class="text text-1">Felicitaciones 🥇</span>
 				   		<span class="text text-2">Excelente notificación para tu Sistema.</span>
+						   </div>
 				   	</div>
 				</div>
 				<i class="fa-solid fa-xmark close"></i>

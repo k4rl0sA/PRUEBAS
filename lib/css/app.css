@@ -88,14 +88,10 @@
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
-
-        input[type="text"]:disabled,
-        input[type="email"]:disabled,
-        input[type="number"]:disabled,
-        input[type="date"]:disabled,
-        input[type="time"]:disabled{
-          background-color: var(--color-input-disab);
-        }
+        input[readonly] {
+          background-color: var(--color-input-disab); /* Cambia este color por el que prefieras */
+          color: #000; /* Opcional: cambiar el color del texto */
+      }
         .buttons {
             display: flex;
             justify-content: space-between;

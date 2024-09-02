@@ -246,8 +246,6 @@ button:hover {
 		</div>
 		</form>
 	</div>
-		<div class="overlay" id="overlay" onClick="closeModal();">
-		</div>
 			<div class="toast" id="loader">
 				<div class="toast-content">
 				<!-- <div class='image' id='<?php echo $mod; ?>-image'>
@@ -255,13 +253,12 @@ button:hover {
 					</div> -->
 				   	<div class="message">
 					   <!-- <i class="fas fa-solid fa-check check"></i> -->
-					   <div class='message' id='<?php echo $mod; ?>-modal'>	   
-				   		<span class="text text-1">Felicitaciones 🥇</span>
-				   		<span class="text text-2">Excelente notificación para tu Sistema.</span>
+					   <div class='message' id='<?php echo $mod; ?>-toast'>	   
+				   		<span class="text text-1">🥇</span>
+				   		<span class="text text-2"></span>
 						   </div>
 				   	</div>
 				</div>
-				<i class="fa-solid fa-xmark close"></i>
 				<div class="progress active"></div>
 			</div>
 

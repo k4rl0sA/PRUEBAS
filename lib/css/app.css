@@ -89,6 +89,13 @@
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
 
+        input[type="text"]:disabled,
+        input[type="email"]:disabled,
+        input[type="number"]:disabled,
+        input[type="date"]:disabled,
+        input[type="time"]:disabled{
+          background-color: var(--color-input-disab);
+        }
         .buttons {
             display: flex;
             justify-content: space-between;
@@ -137,7 +144,7 @@
         .btn:not(:disabled):not(.disabled) {
             cursor: pointer;
         }
-
+        
         .btn-group {
             position: relative;
             display: -ms-inline-flexbox;

@@ -30,6 +30,7 @@
     --tran-04: all 0.4s ease;
     --tran-05: all 0.5s ease;
     --col: 10;
+    --color-input-disab:#807c7c6e;
     --dt-text-col: var(--text-color);
     --dt-borde-col: var(--text-color);
     --dt-bg-act-btn: var(--highlight-color);
@@ -37,7 +38,7 @@
     --backgr-color-head: var(--sidebar-color);
     --dt-hover-cel-col: var(--highlight-color);
     --dt-separa-row-color: var(--text-color);
-    --highlight-color: #6dbaec4f;
+    --highlight-color: #c4e7ff;
     --dt-status-A-color: greenyellow;
     --dt-status-P-color: lightsalmon;
     --dt-status-I-color: lightgray;

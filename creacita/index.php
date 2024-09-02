@@ -247,20 +247,17 @@ button:hover {
 		</form>
 	</div>
 			<div class="toast" id="loader">
-				<div class="toast-content">
-				<!-- <div class='image' id='<?php echo $mod; ?>-image'>
-					<i class="fas fa-solid fa-check check"></i>
-					</div> -->
-				   	<div class="message">
-					   <!-- <i class="fas fa-solid fa-check check"></i> -->
-					   <div class='message' id='<?php echo $mod; ?>-toast'>	   
-				   		<span class="text text-1">🥇</span>
-				   		<span class="text text-2"></span>
-						   </div>
+				<div class="overlay" id="overlay" onClick="closeModal();">
+					<div class="toast-content">
+					   	<div class='message' id='<?php echo $mod; ?>-toast'>	   
+				   			<span class="text text-1">🥇</span>
+				   			<span class="text text-2"></span>
+						</div>
 				   	</div>
 				</div>
 				<div class="progress active"></div>
 			</div>
+			
 
 		<!-- <div class="popup" id="popup" z-index="0" onClick="closeModal();">
 			<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

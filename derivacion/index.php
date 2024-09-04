@@ -4,7 +4,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='deriva';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",'');
+$colaborador=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' ORDER BY 1",'');
+$tipdoc=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
@@ -189,25 +190,26 @@ button:hover {
 
 					<div class="frm-filter poppins-font" id='<?php echo $mod; ?>-fil'>
     					
-
+						<div class="input-box">
+							<label for="choices-multiple-remove-button">Tipo de Documento:</label>
+                			<select class='choices-multiple-remove-button' id="ftip" name="ftip" multiple OnChange="actualizar();">
+								 <?php echo $tipdoc; ?>
+                			</select>
+    					</div>
+						
 						<div class="input-box">
 							<label for="fidp">N° Documento:</label>
                 			<input type="number" id="fidp" name="fidp" OnChange="actualizar();">
 						</div>
 
 						<div class="input-box">
-						<label for="choices-multiple-remove-button">Estado Solicitud:</label>
+						<label for="choices-multiple-remove-button">Derivado A:</label>
                 		<select name="fest" class='choices-multiple-remove-button' id="fest" multiple OnChange="actualizar();">
-							<?php echo $estados; ?>
+							<?php echo $colaborador; ?>
                 		</select>
                 		</div>
 
-						<!-- <div class="input-box">
-							<label for="single-select">Estado Solicitud:</label>
-                			<select id="single-select" class='captura' id="fest" name="fest">
-								 <?php /* echo $estados; */ ?>
-                			</select>
-    					</div> -->
+						
 
 						<div class="input-box">
 							<label for="fdes">Fecha Desde</label>

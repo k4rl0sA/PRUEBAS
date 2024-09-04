@@ -3,7 +3,7 @@ ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='deriva';
 $ya = new DateTime();
-$estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'SI');
+$estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');
 	
 //	[['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO'], ['v' => 'SI']]);
 // [v='SI','NO']

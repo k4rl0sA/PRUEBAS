@@ -241,7 +241,7 @@ button:hover {
 					<div class='load'id='loader' z-index='0'></div>
 				</div>
 				<div class="content content-2">
-					<div class="title txt-center"><h2>SOLICITAR CITA</h2></div>
+					<div class="title txt-center"><h2>DERIVACIONES</h2></div>
 					<div class='panel' id='<?php echo $mod; ?>'>
 							<!-- <nav class='menu left'>
 								<li class='icono exportar' title='Exportar CSV' Onclick="csv(mod);"></li>

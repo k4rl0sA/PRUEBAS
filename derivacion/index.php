@@ -256,6 +256,7 @@ button:hover {
 					</div>
 				</div>
 			</div>
+			<i class="fa-solid fa-xmark close"></i>
 			<div class="progress"></div>
 		</div>
 			

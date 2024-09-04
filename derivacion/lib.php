@@ -46,9 +46,9 @@ function lis_deriva(){
 	$regxPag=17;
 	$pag=(isset($_POST['pag-deriva']))? ($_POST['pag-deriva']-1)* $regxPag:0; 
 
-	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
+	$sql="SELECT `documento`, `tipo_doc`, `predio`, `derivado_colaborador`, `realizado`, `observacion`, `usu_creo`, `fecha_create`, `id_deriva` from derivaciones
 	 WHERE 1 ".whe_deriva()." 
-	 ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta";
+	 ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);

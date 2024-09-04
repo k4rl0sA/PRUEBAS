@@ -74,12 +74,12 @@ function focus_deriva(){
 	return $rta;
   }
 
-  function cmp_solcita(){
+  function cmp_deriva(){
 	$rta="";
 	$t=['idcatalogo'=>'','idcatadeta'=>'','descripcion'=>'','valor'=>'','estado'=>'A'];
-	$w='solcita';
+	$w='deriva';
 	//~ $id=explode('-',$_REQUEST['id']);
-	$d=get_solcita(); 
+	$d=get_deriva(); 
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
 	$d['estado']=($d['estado']=='A')?'SI':'NO';
@@ -100,7 +100,7 @@ function focus_deriva(){
 	 return opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `catalogo` ORDER BY 1",$id = ($_POST['id'] == '') ? '' : divide($_POST['id'])[0]);
 	}
 
-	function get_solcita(){
+	function get_deriva(){
 		if($_POST['id']=='0'){
 			return "";
 		}else{
@@ -117,7 +117,7 @@ function focus_deriva(){
 	 if ($a=='deriva'&& $b=='id'){$rta= "<div class='txt-center'>".$c['ID']."</div>";}
 	if (($a=='deriva') && ($b=='acciones'))    {
 		   $rta="<nav class='menu right'>";
-		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('solcita','pro',event,'','lib.php',4);\"></li>";
+		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('deriva','pro',event,'','lib.php',4);\"></li>";
 		   $rta.="</nav>";
 	   }    
 	return $rta;

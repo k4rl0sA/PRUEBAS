@@ -256,7 +256,7 @@ button:hover {
 					</div>
 				</div>
 			</div>
-			<div class="progress active"></div>
+			<div class="progress"></div>
 		</div>
 			
 

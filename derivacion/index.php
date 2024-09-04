@@ -255,9 +255,9 @@ button:hover {
 						<span class="text text-2"></span>
 					</div>
 				</div>
+				<i class="fa-solid fa-xmark close"></i>
+				<div class="progress"></div>
 			</div>
-			<i class="fa-solid fa-xmark close"></i>
-			<div class="progress"></div>
 		</div>
 			
 

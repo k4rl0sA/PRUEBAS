@@ -4,8 +4,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='deriva';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",'');
-$tipdoc=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('PROFAM','AUXHOG') and estado='A' ORDER BY 2",'');
-$colaborador=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');
+$colaborador=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('PROFAM','AUXHOG') and estado='A' ORDER BY 2",'');
+$tipdoc=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days")); 
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
@@ -191,13 +191,6 @@ button:hover {
 					<div class="frm-filter poppins-font" id='<?php echo $mod; ?>-fil'>
     					
 						<div class="input-box">
-							<label for="choices-multiple-remove-button">Tipo de Documento:</label>
-                			<select class='choices-multiple-remove-button' id="ftip" name="ftip" multiple OnChange="actualizar();">
-								 <?php echo $tipdoc; ?>
-                			</select>
-    					</div>
-						
-						<div class="input-box">
 							<label for="fidp">N° Documento:</label>
                 			<input type="number" id="fidp" name="fidp" OnChange="actualizar();">
 						</div>
@@ -208,6 +201,17 @@ button:hover {
 								 <?php echo $colaborador; ?>
                 			</select>
     					</div>
+						
+						<div class="input-box">
+							<label for="choices-multiple-remove-button">Tipo de Documento:</label>
+                			<select class='choices-multiple-remove-button' id="ftip" name="ftip" multiple OnChange="actualizar();">
+								 <?php echo $tipdoc; ?>
+                			</select>
+    					</div>
+						
+						
+
+						
 
 						<div class="input-box">
 							<label for="choices-multiple-remove-button">Estados:</label>

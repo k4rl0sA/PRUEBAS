@@ -204,7 +204,7 @@ button:hover {
 
 						<div class="input-box">
 						<label for="choices-multiple-remove-button">Derivado A:</label>
-                		<select name="fest" class='choices-multiple-remove-button' id="fest" multiple OnChange="actualizar();">
+                		<select  class='choices-multiple-remove-button' id="fcol" name="fcol" multiple OnChange="actualizar();">
 							<?php echo $colaborador; ?>
                 		</select>
                 		</div>

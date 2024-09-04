@@ -210,9 +210,9 @@ button:hover {
     					</div>
 
 						<div class="input-box">
-							<label for="choices-multiple-remove-button">Derivado A:</label>
-                			<select  class='choices-multiple-remove-button' id="fcol" name="fcol" multiple OnChange="actualizar();">
-								<?php echo $colaborador; ?>
+							<label for="choices-multiple-remove-button">Estados:</label>
+                			<select  class='choices-multiple-remove-button' id="fest" name="fest" multiple OnChange="actualizar();">
+								<?php echo $estados; ?>
                 			</select>
                 		</div>
 

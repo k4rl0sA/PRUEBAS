@@ -3,7 +3,8 @@ ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='deriva';
 $ya = new DateTime();
-$estados=opc_arr(['SI','NO','JEISSON','CARLOS']);
+$estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO'], ['v' => 'SI']]);
+// [v='SI','NO']
 /* $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",''); */
 $colaborador=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('PROFAM','AUXHOG') and estado='A' ORDER BY 2",'');
 $tipdoc=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');

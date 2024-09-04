@@ -307,36 +307,36 @@ function opc_sql($sql,$val,$str=true){
 }
 
 
-function opc_arr($a=[],$b="",$c=true){ // $a = arreglo de datos, $b = dato previamente seleccionado
-  $rta="<option value='' class='alerta' >SELECCIONE</option>";
-  $on="";	
-  if ($a!=null) {
-	for ($f=0;$f<count($a);$f++){
-		$on="";			
-		if(is_array($a[$f]) && count($a[$f])==2){
-			if (strtoupper($a[$f][1])==strtoupper($b) or strtoupper($a[$f][0])==strtoupper($b)) {
-				$on=" selected='selected' ";
-				$rta.="<option $on value='".$a[$f][0]."'>".$a[$f][1]."</option>\n";
-			}
-			else {
-				if ($c===false) $on=" disabled='disabled' ";
-				$rta.="<option $on value='".$a[$f][0]."'>".$a[$f][1]."</option>\n";
-			}
-		}
-		else{
-			if (strtoupper($a[$f])==strtoupper($b)) {
-				$on=" selected='selected' ";
-				$rta.="<option $on value='$a[$f]'>".$a[$f]."</option>\n";
-			}
-			else {
-				if ($c===false) $on=" disabled='disabled' ";
-				$rta.="<option $on value='$a[$f]'>".$a[$f]."</option>\n";
-			}
-		}
-	}
-  }
+function opc_arr($a = [], $b = "", $c = true) { 
+  // $a = arreglo de datos, $b = dato previamente seleccionado
+  $rta = "<option value='' class='alerta'>SELECCIONE</option>";
+  $on = "";	
+  if ($a != null) {
+      for ($f = 0; $f < count($a); $f++) {
+          $on = "";			
+          if (is_array($a[$f]) && isset($a[$f]['v']) && isset($a[$f]['l'])) {
+              // Compara el valor seleccionado con 'v' y 'l'
+              if (strtoupper($a[$f]['v']) == strtoupper($b) || strtoupper($a[$f]['l']) == strtoupper($b)) {
+                  $on = " selected='selected' ";
+              } else {
+                  if ($c === false) $on = " disabled='disabled' ";
+              }
+              $rta .= "<option $on value='".$a[$f]['v']."'>".$a[$f]['l']."</option>\n";
+          } else {
+              // Manejo de elementos que no siguen el formato de 'v' y 'l'
+              if (strtoupper($a[$f]) == strtoupper($b)) {
+                  $on = " selected='selected' ";
+                  $rta .= "<option $on value='".$a[$f]."'>".$a[$f]."</option>\n";
+              } else {
+                  if ($c === false) $on = " disabled='disabled' ";
+                  $rta .= "<option $on value='".$a[$f]."'>".$a[$f]."</option>\n";
+              }
+          }
+      }
+  }  
   return $rta;
 }
+
 
 
 

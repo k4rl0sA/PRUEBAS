@@ -311,18 +311,22 @@ function opc_arr($a = [], $b = "", $c = true) {
   // $a = arreglo de datos, $b = dato previamente seleccionado
   $rta = "<option value='' class='alerta'>SELECCIONE</option>";
   $on = "";	
+  
   if ($a != null) {
       for ($f = 0; $f < count($a); $f++) {
           $on = "";			
           if (is_array($a[$f]) && isset($a[$f]['v']) && isset($a[$f]['l'])) {
               // Compara el valor seleccionado con 'v' y 'l'
-              if (strtoupper($a[$f]['v']) == strtoupper($b) || strtoupper($a[$f]['l']) == strtoupper($b)) {
+              $valor = strtoupper($a[$f]['v']);
+              $label = strtoupper($a[$f]['l']);
+              
+              if ($valor == strtoupper($b) || $label == strtoupper($b)) {
                   $on = " selected='selected' ";
               } else {
                   if ($c === false) $on = " disabled='disabled' ";
               }
               $rta .= "<option $on value='".$a[$f]['v']."'>".$a[$f]['l']."</option>\n";
-          } else {
+          } else if (!is_array($a[$f])) {
               // Manejo de elementos que no siguen el formato de 'v' y 'l'
               if (strtoupper($a[$f]) == strtoupper($b)) {
                   $on = " selected='selected' ";
@@ -333,9 +337,11 @@ function opc_arr($a = [], $b = "", $c = true) {
               }
           }
       }
-  }  
+  }
+  
   return $rta;
 }
+
 
 
 

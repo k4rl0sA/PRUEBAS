@@ -40,27 +40,27 @@ function whe_solcita() {
 	return $sql;
 }
 
-function lis_solcita(){	
-	$info=datos_mysql("SELECT COUNT(*) total FROM catadeta	WHERE 1 ".whe_solcita());
+function lis_deriva(){	
+	$info=datos_mysql("SELECT COUNT(*) total FROM derivaciones WHERE 1 ".whe_deriva());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=17;
-	$pag=(isset($_POST['pag-solcita']))? ($_POST['pag-solcita']-1)* $regxPag:0; 
+	$pag=(isset($_POST['pag-deriva']))? ($_POST['pag-deriva']-1)* $regxPag:0; 
 
 	$sql="SELECT idcatalogo ACCIONES,idcatadeta ID,descripcion,estado,valor from catadeta
-	 WHERE 1 ".whe_solcita()." 
+	 WHERE 1 ".whe_deriva()." 
 	 ORDER BY 1,2,CAST(idcatadeta AS UNSIGNED), idcatadeta";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"solcita",$regxPag,"lib.php");
+	return create_table($total,$datos["responseResult"],"deriva",$regxPag,"lib.php");
 }
 
-function focus_solcita(){
-	return 'solcita';
+function focus_deriva(){
+	return 'deriva';
    }
    
-   function men_solcita(){
-	$rta=cap_menus('solcita','pro');
+   function men_deriva(){
+	$rta=cap_menus('deriva','pro');
 	return $rta;
    }
    

@@ -135,6 +135,33 @@ button:hover {
     0% {transform: translateY(0px);}
     100% {transform: translateY(-10px);}
   }
+
+  /*********FIN TOAST*****/
+  /*********INICIO BADGE*****/
+  .badge {
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    min-width: 19px;
+
+	display: inline-block;
+    font-size: 75%;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+.badge-pill {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+	border-radius: 10rem;
+}
+.badge-warning {
+    color: #212529;
+    background-color: #f7b924;
+}
+  /*********FIN TOAST*****/
 </Style>
 <head>
 	<meta charset="UTF-8">

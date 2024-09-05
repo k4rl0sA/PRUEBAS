@@ -150,6 +150,7 @@ require_once "../libs/gestion.php";
 $img=datos_mysql("SELECT `id_key` FROM `medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
 // $drv="https://drive.google.com/uc?export=view&id=";
 $drv="https://drive.google.com/uc?export=download&id=";
+$dr="https://drive.google.com/uc?export=view&id=18RX_EwpYdZsKU0QobLvNidmhvqJPEhrH"
 //~ var_dump($datos["responseResult"]);
 ?>
 <!--
@@ -169,7 +170,7 @@ $drv="https://drive.google.com/uc?export=download&id=";
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 6</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$dr."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">

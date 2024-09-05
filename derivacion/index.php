@@ -201,7 +201,7 @@ button:hover {
 			}
 		}
 
-	function contarElementosConValor() {
+	function countFilter() {
     // Seleccionamos el contenedor con id 'deriva-fil'
     const contenedor = document.getElementById('deriva-fil');
     
@@ -228,6 +228,28 @@ button:hover {
     
     return contador;
 }
+function badgeFilter() {
+    const conta = countFilter();
+    const spanCont = document.getElementById('fil-badge');
+
+    if (conta === 0) {
+        // Si el span existe, lo removemos
+        if (spanCont) {
+            spanCont.remove();
+        }
+    } else {
+        // Si el span no existe, lo creamos
+        if (!spanCont) {
+            const nuevoSpan = document.createElement('span');
+            nuevoSpan.id = 'fil-badge';
+            nuevoSpan.textContent = `Elementos con valor: ${conta}`;
+            document.body.appendChild(nuevoSpan); // Lo puedes insertar en el lugar que necesites
+        } else {
+            // Si el span ya existe, solo actualizamos su contenido
+            spanCont.textContent = `Elementos con valor: ${conta}`;
+        }
+    }
+}
 	</script>
 </head>
 
@@ -239,7 +261,7 @@ button:hover {
 			<input type="radio" name="slider" checked id="datos">
 			<nav>
 				<label for="filtros" class="filtros"><i class="fa-solid fa-sliders fa-rotate-90"></i>Filtros
-				<span class="badge badge-pill badge-warning">0</span></label>
+				<span class="badge badge-pill badge-warning" id='fil-badge'>0</span></label>
 				<label for="datos" class="datos"><i class="fas fa-table"></i>Datos</label>
 				<div class="slider"></div>
 			</nav>

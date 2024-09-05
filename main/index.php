@@ -149,8 +149,8 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 require_once "../libs/gestion.php";
 $img=datos_mysql("SELECT `id_key` FROM `medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
 // $drv="https://drive.google.com/uc?export=view&id=";
-$drv="https://drive.google.com/uc?export=download&id=";
-$dr="https://drive.google.com/thumbnail?id=1c79WTsxeuzdyAL3xMn9kTKuHwnQjYS6A"
+$drv="https://drive.google.com/thumbnail?id=";
+//$dr="https://drive.google.com/thumbnail?id=1c79WTsxeuzdyAL3xMn9kTKuHwnQjYS6A"
 //~ var_dump($datos["responseResult"]);
 ?>
 <!--
@@ -170,7 +170,7 @@ $dr="https://drive.google.com/thumbnail?id=1c79WTsxeuzdyAL3xMn9kTKuHwnQjYS6A"
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 6</div>
-    <img src=<?php echo "'".$dr."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$dr.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">

@@ -174,6 +174,33 @@ button:hover {
 			}
 		}
 
+	function contarElementosConValor() {
+    // Seleccionamos el contenedor con id 'deriva-fil'
+    const contenedor = document.getElementById('deriva-fil');
+    
+    // Seleccionamos todos los inputs y selects dentro del contenedor
+    const inputs = contenedor.querySelectorAll('input, select');
+    
+    let contador = 0;
+    
+    // Iteramos sobre todos los inputs y selects
+    inputs.forEach(elemento => {
+        // Verificamos si el elemento es un checkbox
+        if (elemento.type === 'checkbox') {
+            // Contamos si el checkbox está marcado
+            if (elemento.checked) {
+                contador++;
+            }
+        } else {
+            // Para inputs normales o selects, verificamos si tienen un valor
+            if (elemento.value.trim() !== '') {
+                contador++;
+            }
+        }
+    });
+    
+    return contador;
+}
 	</script>
 </head>
 

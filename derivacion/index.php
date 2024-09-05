@@ -247,7 +247,7 @@ function badgeFilter() {
             document.body.appendChild(nuevoSpan); // Lo puedes insertar en el lugar que necesites
         } else {
             // Si el span ya existe, solo actualizamos su contenido
-            spanCont.textContent = `Elementos con valor: ${conta}`;
+            spanCont.textContent = `${conta}`;
         }
     }
 }

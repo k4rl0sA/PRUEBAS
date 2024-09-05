@@ -114,8 +114,7 @@ function focus_deriva(){
    function formato_dato($a,$b,$c,$d){
 	$b=strtolower($b);
 	$rta=$c[$d];
-	 if ($a=='deriva'&& $b=='id'){$rta= "<div class='txt-center'>".$c['ID']."</div>";}
-	if (($a=='deriva') && ($b=='acciones'))    {
+	if (($a=='deriva') && ($b=='acciones')){
 		   $rta="<nav class='menu right'>";
 		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('deriva','pro',event,'','lib.php',4);\"></li>";
 		   $rta.="</nav>";

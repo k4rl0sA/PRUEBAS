@@ -407,11 +407,15 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .btn-cerrar i {
   color: white;
-  font-size: 24px;
+  font-size: 30px;
+  position: fixed;
+  left: 9px;
+  top: 8px;
 }
 
 .frm-menu{

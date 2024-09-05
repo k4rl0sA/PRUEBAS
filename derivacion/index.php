@@ -243,7 +243,7 @@ function badgeFilter() {
         if (!spanCont) {
             const nuevoSpan = document.createElement('span');
             nuevoSpan.id = 'fil-badge';
-            nuevoSpan.textContent = `Elementos con valor: ${conta}`;
+            nuevoSpan.textContent = `${conta}`;
             document.body.appendChild(nuevoSpan); // Lo puedes insertar en el lugar que necesites
         } else {
             // Si el span ya existe, solo actualizamos su contenido

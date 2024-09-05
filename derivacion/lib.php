@@ -3,7 +3,7 @@ require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {
-    http_response_code(401); // Código 401 para indicar que no está autorizado
+    http_response_code(401);
     echo json_encode(['redirect' => '/']);
     exit();
 } else {
@@ -46,7 +46,7 @@ function lis_deriva(){
 	$regxPag=17;
 	$pag=(isset($_POST['pag-deriva']))? ($_POST['pag-deriva']-1)* $regxPag:0; 
 
-	$sql="SELECT  `id_deriva` ACCIONES,`documento`, `tipo_doc` , `predio`, `derivado_colaborador` Colaborador, `realizado`, `observacion`, `usu_creo`, `fecha_create` from derivaciones
+	$sql="SELECT  `id_deriva` ACCIONES,`documento`, `tipo_doc` , `derivado_colaborador` Colaborador, `realizado`, `observacion` from derivaciones
 	 WHERE 1 ".whe_deriva()." 
 	 ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

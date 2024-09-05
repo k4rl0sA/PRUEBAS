@@ -149,7 +149,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 require_once "../libs/gestion.php";
 $img=datos_mysql("SELECT `id_key` FROM `medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
 // $drv="https://drive.google.com/uc?export=view&id=";
-$drv="https://drive.google.com/uc?export=view&id=";
+$drv="https://drive.google.com/uc?export=download&id=";
 //~ var_dump($datos["responseResult"]);
 ?>
 <!--

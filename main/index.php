@@ -148,7 +148,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 // if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 require_once "../libs/gestion.php";
 $img=datos_mysql("SELECT `id_key` FROM `medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
-// $drv="https://drive.google.com/uc?export=view&id=";
+$vid="https://drive.google.com/file/d/";
 $drv="https://drive.google.com/thumbnail?id=";
 //$dr="https://drive.google.com/thumbnail?id=1c79WTsxeuzdyAL3xMn9kTKuHwnQjYS6A"
 //~ var_dump($datos["responseResult"]);
@@ -160,12 +160,10 @@ $drv="https://drive.google.com/thumbnail?id=";
 <div class="container">
   <div class="mySlides fade">
     <div class="numbertext" id='video1'>1 / 6<div id='duration'></div></div>
-		<video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
-			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
-		</video>
-<!--
-    
--->
+    <iframe src=<?php echo "'".$vid.$img['responseResult'][0]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
+		<!-- <video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
+			<source src=<?php /* echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; */ ?> type="video/mp4">		
+		</video> -->
   </div>
 
   <div class="mySlides fade">

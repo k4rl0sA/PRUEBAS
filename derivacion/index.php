@@ -183,7 +183,7 @@ button:hover {
 		function actualizar() {
 			event.preventDefault();
 			act_lista(mod);
-			badgeFilter();
+			badgeFilter(mod);
 		}
 
 		function grabar(tb = '', ev) {
@@ -202,9 +202,9 @@ button:hover {
 			}
 		}
 
-	function countFilter() {
+	function countFilter(a) {
     // Seleccionamos el contenedor con id 'deriva-fil'
-    const contenedor = document.getElementById('deriva-fil');
+    const contenedor = document.getElementById(a+'-fil');
     
     // Seleccionamos todos los inputs y selects dentro del contenedor
     const inputs = contenedor.querySelectorAll('input, select');
@@ -229,8 +229,8 @@ button:hover {
     
     return contador;
 }
-function badgeFilter() {
-    const conta = countFilter();
+function badgeFilter(x) {
+    const conta = countFilter(x);
     const spanCont = document.getElementById('fil-badge');
 
     if (conta === 0) {

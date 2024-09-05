@@ -234,19 +234,16 @@ function badgeFilter() {
     const spanCont = document.getElementById('fil-badge');
 
     if (conta === 0) {
-        // Si el span existe, lo removemos
         if (spanCont) {
             spanCont.remove();
         }
     } else {
-        // Si el span no existe, lo creamos
         if (!spanCont) {
             const nuevoSpan = document.createElement('span');
             nuevoSpan.id = 'fil-badge';
             nuevoSpan.textContent = `${conta}`;
             document.body.appendChild(nuevoSpan); // Lo puedes insertar en el lugar que necesites
         } else {
-            // Si el span ya existe, solo actualizamos su contenido
             spanCont.textContent = `${conta}`;
         }
     }

@@ -239,7 +239,7 @@ button:hover {
 			<input type="radio" name="slider" checked id="datos">
 			<nav>
 				<label for="filtros" class="filtros"><i class="fa-solid fa-sliders fa-rotate-90"></i>Filtros
-				<span class="badge badge-pill badge-warning">3</span></label>
+				<span class="badge badge-pill badge-warning">0</span></label>
 				<label for="datos" class="datos"><i class="fas fa-table"></i>Datos</label>
 				<div class="slider"></div>
 			</nav>

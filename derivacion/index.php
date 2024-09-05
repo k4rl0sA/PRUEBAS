@@ -183,6 +183,7 @@ button:hover {
 		function actualizar() {
 			event.preventDefault();
 			act_lista(mod);
+			badgeFilter();
 		}
 
 		function grabar(tb = '', ev) {

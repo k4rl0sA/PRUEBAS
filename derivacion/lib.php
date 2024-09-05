@@ -116,7 +116,7 @@ function focus_deriva(){
 	$rta=$c[$d];
 	if (($a=='deriva') && ($b=='acciones')){
 		   $rta="<nav class='menu right'>";
-		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."_".$c['ID']."' Onclick=\"mostrar('deriva','pro',event,'','lib.php',4);\"></li>";
+		   $rta.="<li class='fa-solid fa-pen-to-square' title='Editar $a' id='".$c['ACCIONES']."' Onclick=\"mostrar('deriva','pro',event,'','lib.php',4);\"></li>";
 		   $rta.="</nav>";
 	   }    
 	return $rta;

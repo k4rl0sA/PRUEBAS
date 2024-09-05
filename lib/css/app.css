@@ -234,7 +234,7 @@
         .wrapper{
             max-width: 100%;
             width: 90%;
-            height: max-content;
+            /* height: max-content; */
             padding: 15px 20px;
             border-radius: 5px;
             overflow: hidden;
@@ -657,8 +657,8 @@ padding: var(--dt-padding-s) var(--dt-padding-s);
   /* color:rgb(61,68,73); */
 }
 .datatable-container .datatable tbody tr:hover{
-  background-color: var(--dt-hover-cel-col);
-  color:var(--color-icons) ;
+  background-color: var(--highlight-color);
+  color:var(--text-color) ;
 }
 
 .datatable-container .datatable tbody tr .A::after,

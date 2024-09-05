@@ -79,7 +79,8 @@ function focus_deriva(){
 	$t=['idcatalogo'=>'','idcatadeta'=>'','descripcion'=>'','valor'=>'','estado'=>'A'];
 	$w='deriva';
 	//~ $id=explode('-',$_REQUEST['id']);
-	$d=get_deriva(); 
+	$d='';
+	// $d=get_deriva(); 
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
 	$d['estado']=($d['estado']=='A')?'SI':'NO';

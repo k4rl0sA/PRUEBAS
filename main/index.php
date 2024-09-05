@@ -170,7 +170,7 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 6</div>
-    <img src=<?php echo "'".$dr.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">

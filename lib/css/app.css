@@ -136,7 +136,7 @@
       .chk:before {
         content: 'SI';
         font: 15px/30px Arial, sans-serif;
-        color: lime;
+        color: #e4ff00;
         position: absolute;
         left: 10px;
         z-index: 0;
@@ -145,7 +145,7 @@
       .chk input[type=checkbox]:checked + label {
         left: auto;
         right: 5px;
-        background: linear-gradient(to top, #49d000 0%, #72b518 40%, #ffffff 100%);
+        background: linear-gradient(to top, #f0b85a 0%, #f7e11d 40%, #e4ff00 100%);
     }
       /********CHECKBOX*******/
         .buttons {

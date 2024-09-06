@@ -76,11 +76,11 @@ function focus_deriva(){
 
   function cmp_deriva(){
 	$rta="";
-	$t=['idcatalogo'=>'','idcatadeta'=>'','descripcion'=>'','valor'=>'','estado'=>'A'];
+	$t=['id_deriva'=>'','documento'=>'','doc_asignado'=>'','cod_predio'=>'','cod_familia'=>'','usu_creo'=>'','estado'=>''];
 	$w='deriva';
 	//~ $id=explode('-',$_REQUEST['id']);
 	$d='';
-	// $d=get_deriva(); 
+	$d=get_deriva(); 
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
 	$d['estado']=($d['estado']=='A')?'SI':'NO';
@@ -106,7 +106,7 @@ function focus_deriva(){
 			return "";
 		}else{
 			$id=divide($_POST['id']);
-			$sql="SELECT * FROM catadeta WHERE idcatalogo='".$id[0]."' AND idcatadeta='".$id[1]."'";
+			$sql="SELECT * FROM derivacion WHERE id_deriva='".$id[0]."'";
 			$info=datos_mysql($sql);
 			return $info['responseResult'][0];		
 		} 

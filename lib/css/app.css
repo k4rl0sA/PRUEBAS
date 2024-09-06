@@ -112,7 +112,7 @@
         height: 22px;
         border-radius: 50%;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px 0px;
-        background: linear-gradient(to top, rgb(252, 255, 244) 0%, rgb(223, 229, 215) 40%, rgb(179, 190, 173) 100%);
+        background: linear-gradient(to bottom, rgb(252, 255, 244) 0%, rgb(223, 229, 215) 40%, rgb(182 186 194) 100%);
         cursor: pointer;
         position: absolute;
         top: 4px;

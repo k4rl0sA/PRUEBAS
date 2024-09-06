@@ -92,6 +92,11 @@
           background-color: var(--color-input-disab); /* Cambia este color por el que prefieras */
           color: #000; /* Opcional: cambiar el color del texto */
       }
+      /********CHECKBOX*******/
+      input[type="checkbox"] {
+        visibility: hidden;
+      }
+      /********CHECKBOX*******/
         .buttons {
             display: flex;
             justify-content: space-between;

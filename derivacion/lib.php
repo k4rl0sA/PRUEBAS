@@ -100,7 +100,7 @@ function focus_deriva(){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}
 	function opc_asignado($id=''){
-		return opc_sql("SELECT id_usuario,nombre FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+		return opc_sql("SELECT id_usuario,nombre FROM usuarios WHERE perfil in('PROFAM','AUXHOG') and estado='A' ORDER BY 1",$id);
 	}
 
 

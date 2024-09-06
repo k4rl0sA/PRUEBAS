@@ -104,7 +104,7 @@ function focus_deriva(){
 			return "";
 		}else{
 			$id=divide($_POST['id']);
-			$sql="SELECT * FROM derivacion WHERE id_deriva='".$id[0]."'";
+			$sql="SELECT * FROM derivaciones WHERE id_deriva='".$id[0]."'";
 			$info=datos_mysql($sql);
 			return $info['responseResult'][0];		
 		} 

@@ -83,7 +83,7 @@ function focus_deriva(){
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
-	$c[]=new cmp('id','h',100,$d['id_deriva']$w,'',0,'','','',false,'','col-1');
+	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');
 	/*$c[]=new cmp('doc','s',3,$d['documento'],$w.' '.$o,'Documento','',null,'',false,false,'','col-2');
 	$c[]=new cmp('tip','s',3,$d['tipo_doc'],$w.' '.$o,'tipo_doc','',null,'',false,false,'','col-2');
 	$c[]=new cmp('pre','h',15,$d['predio'],$w.' '.$o,'Predio',null,null,'',false,false,'','col-2');

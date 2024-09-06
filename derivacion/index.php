@@ -169,7 +169,7 @@ button:hover {
 	<title>Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/app.css">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
-	<script src="../lib/js/main.js?v=8.0.2"></script>
+	<script src="../lib/js/main.js?v=1.1.2"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
 	<link rel="stylesheet" href="../lib/css/choices.min.css">

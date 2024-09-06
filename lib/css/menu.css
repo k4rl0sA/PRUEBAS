@@ -16,8 +16,8 @@
     --secundary-color: #0c63cb;
     --primary-color-light: #F6F5FF;
     --toggle-color:var(--text-color);
-    --text-color: #000000;
-    --color-icons: #eee;
+    --text-color: var(--color-black);
+    --color-icons: var(--color-light);
     --btn-color-hover: #0c63cb;
     --txt-btn-color-hover: var(--color-icons);
     --error-color: red;
@@ -42,6 +42,15 @@
     --dt-status-A-color: greenyellow;
     --dt-status-P-color: lightsalmon;
     --dt-status-I-color: lightgray;
+    --color-primary:#3f6ad8;
+    --color-secundary:#6c757d;
+    --color-success:#3ac47d;
+    --color-info:#16aaff;
+    --color-warning:#f7b924;
+    --color-danger:#d92550;
+    --color-light:#eee;
+    --color-dark:#343a40;
+    --color-black:#000000;
     --dt-padding: 12px;
     --dt-padding-s: 6px;
     --dt-padding-xs: 2px;

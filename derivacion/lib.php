@@ -98,6 +98,10 @@ function focus_deriva(){
 	function opc_catalogo(){
 	 return opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `catalogo` ORDER BY 1",$id = ($_POST['id'] == '') ? '' : divide($_POST['id'])[0]);
 	}
+	function opc_tipodoc($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	}
+
 
 	function get_deriva(){
 		if($_POST['id']=='0'){

@@ -76,22 +76,20 @@ function focus_deriva(){
 
   function cmp_deriva(){
 	$rta="";
-	$t=['id_deriva'=>'','documento'=>'','doc_asignado'=>'','cod_predio'=>'','cod_familia'=>'','usu_creo'=>'','estado'=>''];
+	$t=['id_deriva'=>'','documento'=>'','tipo_doc'=>'','predio'=>'','derivado_colaborador'=>'','realizado'=>'','observacion'=>''];
 	$w='deriva';
 	//~ $id=explode('-',$_REQUEST['id']);
-	$d='';
 	$d=get_deriva(); 
 	//~ var_dump($d);
 	if ($d=="") {$d=$t;}
-	$d['estado']=($d['estado']=='A')?'SI':'NO';
-	if($d['idcatalogo']){$ids=$d['idcatalogo'].'_'.$d['idcatadeta'];}else{$ids='';}
-	$o='infcat';
-	$c[]=new cmp('id','h',100,$ids,$w,'',0,'','','',false,'','col-1');
-	$c[]=new cmp('cat','s',3,$d['idcatalogo'],$w.' '.$o,'Nombre Catalogo','catalogo',null,'',false,false,'','col-2');
-	$c[]=new cmp('cod','t',12,$d['idcatadeta'],$w.' '.$o,'Codigo Item','',null,'',false,false,'','col-2');
-	$c[]=new cmp('des','t',40,$d['descripcion'],$w.' '.$o,'Texto Descriptivo Item',null,null,'',false,false,'','col-2');
-	$c[]=new cmp('est','o',1,$d['estado'],$w.' '.$o,'Item Activo',null,null,'',false,false,'','col-2');
-	$c[]=new cmp('val','n',10,$d['valor'],$w.' '.$o,'Valor',0,'rgxdfnum','NNNN',false,true,'Número de 4 a 10 Digitos','col-1');
+	$o='docder';
+	$c[]=new cmp('id','h',100,$d['id_deriva']$w,'',0,'','','',false,'','col-1');
+	$c[]=new cmp('doc','s',3,$d['documento'],$w.' '.$o,'Documento','',null,'',false,false,'','col-2');
+	$c[]=new cmp('tip','s',3,$d['tipo_doc'],$w.' '.$o,'tipo_doc','',null,'',false,false,'','col-2');
+	$c[]=new cmp('pre','h',15,$d['predio'],$w.' '.$o,'Predio',null,null,'',false,false,'','col-2');
+	$c[]=new cmp('asi','t',12,$d['derivado_colaborador'],$w.' '.$o,'Asignado A','',null,'',false,false,'','col-2');
+	$c[]=new cmp('rea','o',1,$d['realizado'],$w.' '.$o,'Realizado',null,null,'',false,false,'','col-2');
+	$c[]=new cmp('obs','a',10,$d['observacion'],$w.' '.$o,'Observacion',null,null,'',false,true,'Número de 4 a 10 Digitos','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="</div>";
 	return $rta;

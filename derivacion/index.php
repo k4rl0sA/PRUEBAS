@@ -48,6 +48,12 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 
 .toast-content .check {
     background-color: #4070f4;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    border-radius: 50%;
 }
 
 .toast-content .danger {

@@ -80,7 +80,7 @@ function focus_deriva(){
 	$w='deriva';
 	//~ $id=explode('-',$_REQUEST['id']);
 	$d=get_deriva(); 
-	var_dump($d);
+	//var_dump($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
 	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');

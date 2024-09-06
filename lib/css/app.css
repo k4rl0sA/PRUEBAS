@@ -133,6 +133,16 @@
         font-weight: bold;
         text-shadow: 1px 1px 0px rgba(255,255,255,.20);
       }
+      .chk:before {
+        content: 'SI';
+        font: 15px/30px Arial, sans-serif;
+        color: lime;
+        position: absolute;
+        left: 10px;
+        z-index: 0;
+        font-weight: bold;
+        top: -4px;
+    }
       .chk input[type=checkbox]:checked + label {
         left: auto;
         right: 5px;

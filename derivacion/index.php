@@ -37,18 +37,21 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 .toast .toast-content {
     display: flex;
     align-items: center;
+
+	justify-content: center;
+	height: 35px;
+    min-width: 35px;
+	font-size: 20px;
+    border-radius: 50%;
+	color: #fff;
 }
 
 .toast-content .check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    min-width: 35px;
     background-color: #4070f4;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
+}
+
+.toast-content .danger {
+    background-color:var(--color-danger);
 }
 
 .toast-content .message {
@@ -169,7 +172,7 @@ button:hover {
 	<title>Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/app.css">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
-	<script src="../lib/js/main.js?v=1.3.2"></script>
+	<script src="../lib/js/main.js?v=1.4.2"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
 	<link rel="stylesheet" href="../lib/css/choices.min.css">

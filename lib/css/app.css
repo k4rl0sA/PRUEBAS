@@ -144,7 +144,7 @@
     }
       .chk input[type=checkbox]:checked + label {
         left: auto;
-        right: 5px;
+        right: 4px;
         background: linear-gradient(to top, #f0b85a 0%, #f7e11d 40%, #e4ff00 100%);
     }
       /********CHECKBOX*******/

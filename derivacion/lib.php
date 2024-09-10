@@ -117,6 +117,7 @@ function focus_deriva(){
 
 	function btn_deriva(){
 		print_r(acceBtns('derivacion'));
+		echo json_encode(acceBtns('derivacion'));
 	}
 
    function formato_dato($a,$b,$c,$d){

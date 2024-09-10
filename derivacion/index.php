@@ -229,7 +229,7 @@ button:hover {
 			pFetch('lib.php', data, (responseData) => {
 			// Asumiendo que responseData contiene los permisos
 				if (responseData) {
-					crearBotones(responseData);
+					crearBotones(responseData,mod);
 				}
 			});
 		}
@@ -363,8 +363,8 @@ function badgeFilter(x) {
 				<div class="content content-2">
 					<div class="title txt-center"><h2>DERIVACIONES</h2></div>
 
-					<div class="header">
-						<?php echo $hoy; ?>
+					<div id='<?php echo $mod; ?>-btns' class="header">
+						
         			</div>
 
 

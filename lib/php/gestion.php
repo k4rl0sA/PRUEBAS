@@ -492,7 +492,7 @@ function acceso($a){
   }
 }
 
-function acceBtns(){
+function acceBtns($a){
   $rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);

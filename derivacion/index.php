@@ -220,6 +220,21 @@ button:hover {
 			badgeFilter(mod);
 		}
 
+	
+		function creaBtns() {
+		// Datos que se envían al servidor (si los necesitas)
+			const data = 'a=btn&tb='+mod; 
+
+		// Llamada a pFetch con callback para crear botones
+			pFetch('lib.php', data, (responseData) => {
+			// Asumiendo que responseData contiene los permisos
+				if (responseData) {
+					crearBotones(responseData);
+				}
+			});
+		}
+
+
 		function grabar(tb = '', ev) {
 			if (tb == '' && ev.target.classList.contains(proc)) tb = proc;
 			var f = document.getElementsByClassName('valido ' + tb);
@@ -285,7 +300,7 @@ function badgeFilter(x) {
 	</script>
 </head>
 
-<body Onload="actualizar();">
+<body Onload="actualizar();creaBtns();">
 	<div class="wrapper main" id='<?php echo $mod; ?>-main'>
 	<form method='post' id='fapp'>
 		<div class="top-menu">

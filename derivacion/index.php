@@ -17,7 +17,7 @@ $btns='';
 /* if ($a=='derivacion' && isset($acc['crear'])=='SI') {
 	.$btns='<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
 /* 	<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
-	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> */
+	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> 
 } */
 	/* <button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button> */
 

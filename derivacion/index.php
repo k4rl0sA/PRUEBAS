@@ -4,7 +4,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/lib/php/nav.php';
 $mod='deriva';
 $ya = new DateTime();
 $estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');
-	
+
 //	[['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO'], ['v' => 'SI']]);
 // [v='SI','NO']
 /* $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",''); */
@@ -15,15 +15,12 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 $acc=acciones($a);
 $btns='';
 if ($a=='derivacion' && isset($acc['crear'])=='SI') {
-	.$btns='<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';	
-
-
-	<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
-	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button>
-
+	.$btns='<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
+/* 	<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
+	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> */
 }
 if ($a=='derivacion' && isset($acc['crear'])=='SI') {
-	<button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button>
+	/* <button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button> */
 }
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
 ?>
@@ -326,18 +323,12 @@ function badgeFilter(x) {
                 			</select>
     					</div>
 						
-						
-
-						
-
 						<div class="input-box">
 							<label for="choices-multiple-remove-button">Estados:</label>
                 			<select  class='choices-multiple-remove-button' id="fest" name="fest" multiple OnChange="actualizar();">
 								<?php echo $estados; ?>
                 			</select>
                 		</div>
-
-						
 
 						<div class="input-box">
 							<label for="fdes">Fecha Desde</label>

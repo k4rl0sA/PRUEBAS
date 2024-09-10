@@ -257,9 +257,7 @@ button:hover {
     
     // Seleccionamos todos los inputs y selects dentro del contenedor
     const inputs = contenedor.querySelectorAll('input, select');
-    
     let contador = 0;
-    
     // Iteramos sobre todos los inputs y selects
     inputs.forEach(elemento => {
         // Verificamos si el elemento es un checkbox

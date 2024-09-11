@@ -12,8 +12,9 @@ $colaborador=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` I
 $tipdoc=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');
 $hoy = date("Y-m-d");
 $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
-//$acc=acciones($a);
+$acc=acceBtns($a);
 $btns='';
+print_r($acc);
 /* if ($a=='derivacion' && isset($acc['crear'])=='SI') {
 	.$btns='<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
 /* 	<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
@@ -362,7 +363,10 @@ function badgeFilter(x) {
 					<div class="title txt-center"><h2>DERIVACIONES</h2></div>
 
 					<div id='<?php echo $mod; ?>-btns' class="header">
-						
+						<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>
+            			<button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button>
+            			<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
+            			<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button>
         			</div>
 
 

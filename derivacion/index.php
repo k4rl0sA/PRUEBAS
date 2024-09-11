@@ -223,7 +223,7 @@ button:hover {
 			event.preventDefault();
 			act_lista(mod);
 			badgeFilter(mod);
-			creaBtns(mod);
+			//creaBtns(mod);
 		}
 
 	

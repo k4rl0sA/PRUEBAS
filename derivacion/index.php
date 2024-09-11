@@ -19,7 +19,7 @@ if (isset($acc['crear']) && $acc['crear'] == 'SI') {
     $btns .= '<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
 }
 if (isset($acc['importar']) && $acc['importar'] == 'SI') {
-    $btns .= '<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
+    $btns .= '<button class="upload-btn" title="Nuevo"><i class="fas fa-upload"></i></button>';
 }
 
 // Para depurar: imprimir el contenido de $acc

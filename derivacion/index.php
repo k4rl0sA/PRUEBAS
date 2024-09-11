@@ -369,6 +369,7 @@ function badgeFilter(x) {
 
 					<div id='<?php echo $mod; ?>-btns' class="header">
 					<?php echo $btns ?>
+					<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button>
 					
 						<!-- <button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>
             			<button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button>

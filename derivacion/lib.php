@@ -1,6 +1,7 @@
 <?php
 require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
+var_dump($_POST['tb']);
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {
     http_response_code(401);
@@ -13,12 +14,28 @@ if (!isset($_SESSION['us_sds'])) {
 			header_csv($_REQUEST['tb'] . '.csv');
 			$rs = array('', '');
 			echo csv($rs, '');
-			die;
+			exit();
 			break;
 		default:
-			eval('$rta=' . $_POST['a'] . '_' . $_POST['tb'] . '();');
-			if (is_array($rta)) json_encode($rta);
-			else echo $rta;
+			if (isset($_REQUEST['t']) && $_REQUEST['t'] == 'json') {
+				header('Content-Type: application/json');
+			} else {
+				header('Content-Type: text/html; charset=UTF-8');
+			}
+			$func = $_POST['a'] . '_' . $_POST['tb'];
+			if (function_exists($func)) {
+				$rta = $func();
+			} else {
+				http_response_code(400);
+				echo json_encode(['error' => 'Función no encontrada']);
+				exit();
+			}
+			// Si $rta es un arreglo, devolverlo como JSON
+			if (is_array($rta)) {
+				echo json_encode($rta);
+			} else {
+				echo $rta; // Si no es un arreglo, devolver la respuesta directamente
+			}
 	}
 }
 

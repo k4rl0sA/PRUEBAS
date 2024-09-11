@@ -23,7 +23,8 @@ if (isset($acc['importar']) && $acc['importar'] == 'SI') {
 }
 
 // Para depurar: imprimir el contenido de $acc
-print_r($acc);
+
+//print_r($acc);
  	/*<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
 	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> */
 

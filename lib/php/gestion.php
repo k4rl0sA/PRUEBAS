@@ -500,7 +500,7 @@ function acceBtns($a){
   // print_r($sql);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
-    }
+  }
 	return $rta;
 }
 

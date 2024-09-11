@@ -353,7 +353,7 @@ function badgeFilter(x) {
     					    <input  type="date" class='captura' id="fhas" name="fhas" value='<?php echo $hoy; ?>' OnChange="actualizar();">
     					</div>
 						<!-- <button  type=button class="btn" OnClick="actualizar();">Quitar Filtros</button> -->
-						<button  class="btn" OnClick="creaBtns(<?php echo $mod; ?>);">Aplicar</button>
+						<button  class="btn" OnClick="creaBtns('<?php echo $mod; ?>');">Aplicar</button>
 					</div>
 					
 					<div class='load'id='loader' z-index='0'></div>

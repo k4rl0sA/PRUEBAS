@@ -363,10 +363,12 @@ function badgeFilter(x) {
 					<div class="title txt-center"><h2>DERIVACIONES</h2></div>
 
 					<div id='<?php echo $mod; ?>-btns' class="header">
-						<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>
+					<?php echo $acc; ?>
+					
+						<!-- <button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>
             			<button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button>
             			<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
-            			<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button>
+            			<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> -->
         			</div>
 
 

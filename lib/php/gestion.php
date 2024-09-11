@@ -472,7 +472,8 @@ function rol($a){ //a=modulo, b=perfil c=componente
 
 function perfil($a){
 	$perf=rol($a);
-  print_r('PErfil:'.$perf);
+  echo 'PErfil:';
+  print_r($perf);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
 		echo '<div class="lock">
           <i class="fas fa-lock fa-5x lock-icon"></i>

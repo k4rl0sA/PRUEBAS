@@ -15,11 +15,11 @@ $ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
 $acc=acceBtns('deriva');
 $btns='';
 print_r($acc);
-/* if ($a=='derivacion' && isset($acc['crear'])=='SI') {
+if ($a=='deriva' && isset($acc['crear'])=='SI') {
 	.$btns='<button class="add-btn" title="Nuevo"><i class="fas fa-plus"></i></button>';
 /* 	<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
-	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> 
-} */
+	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> */
+}
 	/* <button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button> */
 
 // $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");

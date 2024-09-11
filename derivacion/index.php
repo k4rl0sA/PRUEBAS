@@ -310,7 +310,7 @@ function badgeFilter(x) {
 
 <body Onload="actualizar();">
 	<div class="wrapper main" id='<?php echo $mod; ?>-main'>
-	<form method='post' id='fapp'>
+	<form method='post' id='fapp' onsubmit="return false;">
 		<div class="top-menu">
 			<input type="radio" name="slider"  id="filtros">
 			<input type="radio" name="slider" checked id="datos">

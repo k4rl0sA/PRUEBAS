@@ -218,18 +218,19 @@ button:hover {
 			event.preventDefault();
 			act_lista(mod);
 			badgeFilter(mod);
+			creaBtns(mod);
 		}
 
 	
-		function creaBtns() {
+		function creaBtns(a) {
 		// Datos que se envían al servidor (si los necesitas)
-			const data = 'a=btn&tb='+mod; 
+			const data = 'a=btn&tb='+a; 
 
 		// Llamada a pFetch con callback para crear botones
 			pFetch('lib.php', data, (responseData) => {
 			// Asumiendo que responseData contiene los permisos
 				if (responseData) {
-					crearBotones(responseData,mod);
+					crearBotones(responseData,a);
 				}
 			});
 		}
@@ -298,7 +299,7 @@ function badgeFilter(x) {
 	</script>
 </head>
 
-<body Onload="actualizar();creaBtns();">
+<body Onload="actualizar();">
 	<div class="wrapper main" id='<?php echo $mod; ?>-main'>
 	<form method='post' id='fapp'>
 		<div class="top-menu">

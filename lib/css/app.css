@@ -148,6 +148,16 @@
         background: linear-gradient(to top, #f0b85a 0%, #f7e11d 40%, #e4ff00 100%);
     }
       /********CHECKBOX*******/
+      .header button {
+        background-color: #2E8acb;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    
         .buttons {
             display: flex;
             justify-content: space-between;

@@ -515,7 +515,7 @@ class cmp { //ntwplcsdxhvuf
   public $c; //list
   public $x; //regexp
   public $h; //holder
-  public $v; //vaild
+  public $v; //valid
   public $u; //update 
   public $tt; //title
   public $ww; //width field

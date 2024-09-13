@@ -96,7 +96,6 @@ function focus_deriva(){
 	$t=['id_deriva'=>'','documento'=>'','tipo_doc'=>'','predio'=>'','derivado_colaborador'=>'','realizado'=>'','observacion'=>''];
 	$w='deriva';
 	$uPd = $_REQUEST['id']=='0' ? true : false;
-	var_dump($_REQUEST['id']);
 	$d=get_deriva(); 
 	//var_dump($d);
 	if ($d=="") {$d=$t;}

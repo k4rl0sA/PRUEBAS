@@ -95,19 +95,18 @@ function focus_deriva(){
 	$rta="";
 	$t=['id_deriva'=>'','documento'=>'','tipo_doc'=>'','predio'=>'','derivado_colaborador'=>'','realizado'=>'','observacion'=>''];
 	$w='deriva';
-	$id=explode('-',$_REQUEST['id']);
-	echo $_REQUEST['id'];
+	$uPd = explode('-',$_REQUEST['id'])==0 ? true : false;
 	$d=get_deriva(); 
 	//var_dump($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
 	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');
-	$c[]=new cmp('doc','t',20,$d['documento'],$w.' '.$o,'Documento','',NULL,'',true,false,'','col-2');
-	$c[]=new cmp('tip','s',3,$d['tipo_doc'],$w.' '.$o,'tipo_doc','tipo_doc',null,'',true,false,'','col-2');
+	$c[]=new cmp('doc','t',20,$d['documento'],$w.' '.$o,'Documento','',NULL,'',true,$uPd,'','col-2');
+	$c[]=new cmp('tip','s',3,$d['tipo_doc'],$w.' '.$o,'tipo_doc','tipo_doc',null,'',true,$uPd,'','col-2');
 	$c[]=new cmp('pre','h',15,$d['predio'],$w.' '.$o,'Predio',null,null,'',false,false,'','col-2');
-	$c[]=new cmp('asi','s',12,$d['derivado_colaborador'],$w.' '.$o,'Asignado A','asignado',null,'',true,false,'','col-2');
-	$c[]=new cmp('rea','o',1,$d['realizado'],$w.' '.$o,'Realizado',null,null,'',true,false,'','col-2');
-	$c[]=new cmp('obs','t',10,$d['observacion'],$w.' '.$o,'Observación',null,null,'',true,false,'Número de 4 a 10 Digitos','col-1');
+	$c[]=new cmp('asi','s',12,$d['derivado_colaborador'],$w.' '.$o,'Asignado A','asignado',null,'',true,$uPd,'','col-2');
+	$c[]=new cmp('rea','o',1,$d['realizado'],$w.' '.$o,'Realizado',null,null,'',true,true,'','col-2');
+	$c[]=new cmp('obs','t',10,$d['observacion'],$w.' '.$o,'Observación',null,null,'',true,$uPd,'Número de 4 a 10 Digitos','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="</div>";
 	return $rta;

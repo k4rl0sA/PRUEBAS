@@ -92,6 +92,13 @@
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);
       }
+      select:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
       /********CHECKBOX*******/
       input[type="checkbox"] {
         visibility: hidden;

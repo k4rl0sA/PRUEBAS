@@ -212,7 +212,7 @@ button:hover {
 	<title>Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/app.css">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
-	<script src="../lib/js/main.js?v=3.3.1"></script>
+	<script src="../lib/js/main.js?v=3.4.1"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
 	<link rel="stylesheet" href="../lib/css/choices.min.css">
@@ -323,7 +323,7 @@ function badgeFilter(x) {
 			<section>
 				<div class="content content-1">
 					<div class="title txt-center"><h2>Filtros</h2></div>
-
+					main
 					<div class="frm-filter poppins-font" id='<?php echo $mod; ?>-fil'>
     					
 						<div class="input-box">

@@ -91,7 +91,7 @@
         input:disabled {
           border-color: initial;
       }
-        input[readonly] {
+        input[readonly],select {
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);
           cursor: not-allowed;

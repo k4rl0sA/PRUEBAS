@@ -31,7 +31,7 @@
     --tran-05: all 0.5s ease;
     --col: 10;
     --color-input-disab:#f4f4f4;
-    --color-txt-disab:#ccc;
+    --color-txt-disab:#adadad;
     --dt-text-col: var(--text-color);
     --dt-borde-col: var(--text-color);
     --dt-bg-act-btn: var(--highlight-color);

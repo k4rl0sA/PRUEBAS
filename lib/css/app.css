@@ -91,6 +91,7 @@
         input[readonly] {
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);
+          cursor: not-allowed;
       }
       select:focus {
         color: #495057;

@@ -104,7 +104,7 @@ function focus_deriva(){
 	$c[]=new cmp('tip','s',3,$d['tipo_doc'],$w.' '.$o,'tipo_doc','tipo_doc',null,'',true,$uPd,'','col-2');
 	$c[]=new cmp('pre','h',15,$d['predio'],$w.' '.$o,'Predio',null,null,'',false,false,'','col-2');
 	$c[]=new cmp('asi','s',12,$d['derivado_colaborador'],$w.' '.$o,'Asignado A','asignado',null,'',true,$uPd,'','col-2');
-	$c[]=new cmp('rea','o',1,$d['realizado'],$w.' '.$o,'Realizado',null,null,'',true,true,'','col-2');
+	$c[]=new cmp('rea','o',1,$d['realizado'],$w.' '.$o,'Realizado',null,null,'',true,false,'','col-2');
 	$c[]=new cmp('obs','t',10,$d['observacion'],$w.' '.$o,'Observación',null,null,'',true,true,'Número de 4 a 10 Digitos','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="</div>";

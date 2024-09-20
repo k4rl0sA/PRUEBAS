@@ -80,14 +80,14 @@
             border-radius: 5px;
             transition: border-color 0.3s ease-in-out;
         }
+        input:not([type="search"][name="search_terms"]):not(:disabled):focus {
+          color: #495057;
+          background-color: var(--sidebar-color);
+          border-color: #80bdff;
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
 
-        input:not([type="search"][name="search_terms"]):focus {
-            color: #495057;
-            background-color: #fff;
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
         input:disabled {
           border-color: initial;
       }

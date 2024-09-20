@@ -95,6 +95,7 @@
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);
           cursor: not-allowed;
+          border: none;
           box-shadow:none;
       }
       select:focus {

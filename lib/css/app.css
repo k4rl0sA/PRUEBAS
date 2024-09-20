@@ -80,7 +80,7 @@
             border-radius: 5px;
             transition: border-color 0.3s ease-in-out;
         }
-        input:not([type="search"][name="search_terms"]:disabled):focus {
+        input:not([type="search"][name="search_terms"]):not(:disabled):focus {
           color: #495057;
           background-color: var(--sidebar-color);
           border-color: #80bdff;
@@ -88,9 +88,9 @@
           box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
       }
       input:disabled {
-        border: none; 
+        background-color: initial;
         box-shadow: none;
-    }
+      }
         input[readonly],select[readonly] {
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);

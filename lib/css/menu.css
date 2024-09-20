@@ -32,6 +32,7 @@
     --col: 10;
     --color-input-disab:#f4f4f4;
     --color-txt-disab:#adadad;
+    --color-check-disab:gainsboro;
     --dt-text-col: var(--text-color);
     --dt-borde-col: var(--text-color);
     --dt-bg-act-btn: var(--highlight-color);

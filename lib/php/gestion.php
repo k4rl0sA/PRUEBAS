@@ -608,7 +608,7 @@ function select_mult($a){
   $rta.=" name='f{$a->n}[]'";  
   $rta.=" class='{$a->w} captura check mult close ";
   $rta.= ($a->v==true) ? 'valido ' : '';
-  if (!$a->u) $rta.="' disabled='true ' ";
+  if (!$a->u) $rta.="is-disabled ' disabled='true ' ";
   $rta.="' onBlur='showMult(this,false);'";
    $rta.=" required onChange=\"";
   if ($a->v) $rta.="valido(this);";

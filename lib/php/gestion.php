@@ -506,22 +506,22 @@ function acceBtns($a){
 
 /*COMPONENTES*/
 class cmp { //ntwplcsdxhvuf
-  public $n; //name
-  public $t; //type
-  public $s; //size
-  public $d; //default
-  public $w; //div
-  public $l; //label
-  public $c; //list
-  public $x; //regexp
-  public $h; //holder
-  public $v; //valid
-  public $u; //update 
-  public $tt; //title
-  public $ww; //width field
-  public $vc;//Validaciones personalizadas
-  public $sd;//Select dependientes
-  public $so;//Validaciones personalizadas otro evento
+  public $n; //name 1
+  public $t; //type 2
+  public $s; //size 3
+  public $d; //default 4
+  public $w; //div 5
+  public $l; //label 6
+  public $c; //list 7
+  public $x; //regexp 8
+  public $h; //holder 9
+  public $v; //valid 10
+  public $u; //update 11 
+  public $tt; //title 12
+  public $ww; //width field 13
+  public $vc;//Validaciones personalizadas 14
+  public $sd;//Select dependientes 15
+  public $so;//Validaciones personalizadas otro evento 16s
   function __construct($n='dato',$t='t',$s=10,$d='',$w='div',$l='',$c='',$x='rgxtxt',$h='..',$v=true,$u=true,$tt='',$ww='col-10',$vc=false,array $sd=array(''),$so=false) {
     $this->n=$n; 
     $this->t=$t; 

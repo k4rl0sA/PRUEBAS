@@ -88,10 +88,11 @@
             outline: 0;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
-        input[readonly] {
+        input[readonly]:disabled {
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);
           cursor: not-allowed;
+          border-color: initial;
       }
       select:focus {
         color: #495057;

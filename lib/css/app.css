@@ -87,10 +87,10 @@
           outline: 0;
           box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
       }
-
-        input:disabled {
-          border-color: initial;
-      }
+      input:disabled {
+        border: none; 
+        box-shadow: none;
+    }
         input[readonly],select[readonly] {
           background-color: var(--color-input-disab);
           color: var(--color-txt-disab);

@@ -640,7 +640,7 @@ function input_opt($a){
   $rta.=" class='{$a->w} captura ";
   if($a->vc) $rta.="validar";
   $rta.="' title='{$a->tt}'";
-  if (!$a->u) $rta.=" readonly ";
+  if (!$a->u) $rta.=" readonly disabled";
   if($a->d=='SI') {
 	$rta.=" checked value ='SI'"; 
   }else{

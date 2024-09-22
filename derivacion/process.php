@@ -1,7 +1,6 @@
 <?php
 ini_set("display_errors", 1);
-error_reporting(E_ALL);
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 $response = [
     'status' => 'error',
@@ -11,10 +10,13 @@ $response = [
 
 try {
     require_once "../lib/php/gestion.php";
-    
-    // Si no hay errores hasta aquí, podrías continuar procesando.
-    $response['status'] = 'success';
-    $response['message'] = 'Consulta exitosa';
+    $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
+    if (!empty($perfil)) {
+        $response['status'] = 'success';
+        $response['message'] = 'Consulta exitosa';
+    } else {
+        $response['message'] = 'No se encontró el perfil del usuario';
+    }
 } catch (Throwable $e) {
     // Capturamos cualquier error en la carga del archivo gestion.php
     $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage();

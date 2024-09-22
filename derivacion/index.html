@@ -131,7 +131,7 @@ function startLoading(file) {
             }
         } else {
             // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
-            console.log('Respuesta no JSON del servidor:', data);
+            console.error('Respuesta no JSON del servidor:', data);
             statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
         }
     })

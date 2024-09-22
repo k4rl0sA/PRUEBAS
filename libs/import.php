@@ -95,7 +95,7 @@ if ($perfil['responseResult'][0]['perfil']=='GEO' || $perfil['responseResult'][0
 		echo "<script>actualizar();</script>";
 		fclose($handle);
 	} else {
-		echo "El archivo contiene una extensión invalida! ".strtolower(end($ext)); //NO CORRESPONDE LA EXTENSION CSV
+		echo "El archivo contiene una extensión invalida! ".strtolower(end($ext));
 	}
 }else{
 	echo "No tiene el perfil permitido para cargar el archivo Csv, por favor consulte al administrador del sistema";

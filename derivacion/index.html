@@ -107,25 +107,32 @@ function startLoading(file) {
     .then(response => {
         // Validar si la respuesta es exitosa
         if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
+            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
         }
 
-        // Verificar si la respuesta es JSON válida
+        // Probar si la respuesta es JSON, si no, devolver como texto
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
-            return response.json();  // Si es JSON, lo procesamos
+            return response.json();  // Si es JSON, lo procesamos como tal
         } else {
-            throw new Error('Respuesta del servidor no es JSON');
+            return response.text();  // Si no es JSON, lo procesamos como texto
         }
     })
     .then(data => {
-        if (data.status === 'success') {
-            progress = data.progress;
-            updateProgress(progress);
-            statusMessage.textContent = data.message;
-            closeModalBtn.style.display = 'inline-block';
+        // Si la respuesta es JSON
+        if (typeof data === 'object') {
+            if (data.status === 'success') {
+                progress = data.progress;
+                updateProgress(progress);
+                statusMessage.textContent = data.message;
+                closeModalBtn.style.display = 'inline-block';
+            } else {
+                statusMessage.textContent = data.message;
+            }
         } else {
-            statusMessage.textContent = data.message;
+            // Si la respuesta fue texto (HTML probablemente)
+            console.log('Respuesta no JSON del servidor:', data);
+            statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
         }
     })
     .catch(error => {

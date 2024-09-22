@@ -3,17 +3,41 @@ session_start();
 ini_set("display_errors", 1);
 require_once "../lib/php/gestion.php";
 
-header('Content-Type: application/json'); // Respondemos siempre en JSON
+// Inicia el buffer de salida
+ob_start();
 
+header('Content-Type: application/json');
+
+// Inicializa la respuesta con error por defecto
 $response = [
     'status' => 'error',
     'message' => '',
     'progress' => 0
 ];
 
+// Simula la consulta del perfil del usuario
 $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
 
-$response['message'] = $perfil;
+// Verifica si la consulta fue exitosa y actualiza el mensaje
+if (!empty($perfil)) {
+    $response['status'] = 'success';
+    $response['message'] = 'Consulta exitosa';
+} else {
+    $response['message'] = 'No se encontró el perfil del usuario';
+}
+
+// Captura cualquier salida previa y la incluye en la respuesta para depuración
+$output = ob_get_clean(); // Limpia el buffer de salida
+
+// Si hay alguna salida previa (advertencias, errores, etc.), la agregamos a la respuesta
+if (!empty($output)) {
+    $response['status'] = 'error';
+    $response['message'] = 'Error en el servidor: ' . $output;
+}
+
+// Envía la respuesta JSON
+echo json_encode($response);
+?>
 
 /* if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
     if (isset($_FILES['archivo'])) {
@@ -75,5 +99,3 @@ $response['message'] = $perfil;
     $response['message'] = "No tiene el perfil permitido para cargar el archivo CSV.";
 } */
 
-echo json_encode($response);
-?>

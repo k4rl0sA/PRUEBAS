@@ -1,22 +1,25 @@
 <?php
 ini_set("display_errors", 1);
 header('Content-Type: application/json');
+session_start();
+
 $response = [
     'status' => 'error',
     'message' => '',
     'progress' => 0
 ];
+
 try {
     require_once "../lib/php/gestion.php";
     $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
+    
     if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
         if (isset($_FILES['archivo'])) {
             $file = $_FILES['archivo']['tmp_name'];
             $name = $_FILES['archivo']['name'];
-            $type = $_FILES['archivo']['type'];
-            $size = $_FILES['archivo']['size'];
             $ext = explode(".", $name);
-            $delimit = ",";  
+            $delimit = ",";
+            
             if (strtolower(end($ext)) == "csv") {
                 $handle = fopen($file, "r");
                 if ($handle === FALSE) {
@@ -24,13 +27,14 @@ try {
                     echo json_encode($response);
                     exit;
                 }
+                
                 $nFil = 1;
                 $ok = 0;
                 $ncol = $_POST['ncol'];
                 $tab = $_POST['tab'];
                 $ope = isset($_POST['ope']) ? $_POST['ope'] : 'insert';
-                $totalRows = count(file($file));  // Contamos las filas para obtener el total de registros
-                $_SESSION['progress'] = 0; // Inicializamos el progreso en la sesión
+                $totalRows = count(file($file));
+                
                 if ($ope == 'insert') {
                     while (($campo = fgetcsv($handle, 1024, $delimit)) !== false) {
                         if ($nFil !== 1) {
@@ -45,14 +49,22 @@ try {
                                 $ok++;
                             }
                         }
-                        // Actualizamos el progreso en cada fila procesada
-                        $_SESSION['progress'] = intval(($nFil / $totalRows) * 100);
+                        $progress = intval(($nFil / $totalRows) * 100);
+                        $_SESSION['progress'] = $progress;
                         $nFil++;
+                        
+                        // Enviar progreso cada 10%
+                        if ($progress % 10 == 0) {
+                            $response['status'] = 'progress';
+                            $response['progress'] = $progress;
+                            echo json_encode($response);
+                            ob_flush();
+                            flush();
+                        }
                     }
                     fclose($handle);
                     $response['status'] = 'success';
                     $response['message'] = "Se han insertado " . $ok . " Registro(s) correctamente.";
-                    $response['message'] .= " " . $sql ;
                     $response['progress'] = 100;
                 }
             } else {
@@ -67,5 +79,6 @@ try {
 } catch (Throwable $e) {
     $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage();
 }
+
 echo json_encode($response);
 ?>

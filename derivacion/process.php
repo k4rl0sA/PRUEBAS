@@ -32,9 +32,9 @@ $response['message'] = 'Consulta exitosa';
 $output = ob_get_clean();
 
 // Si hay alguna salida previa, la incluimos en el mensaje para depuración
-if (!empty($output)) {
+/* if (!empty($output)) {
     $response['message'] = 'Error del servidor: ' . $output;
-}
+} */
 
 // Envía la respuesta JSON
 echo json_encode($response);

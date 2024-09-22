@@ -214,31 +214,35 @@
         const errorsAll = []; 
         let endInd =  parts.length - 1;
 
-        parts.forEach(part,index => {
-            if (part.trim()) {  // Evitar líneas en blanco
-                try {
-                    const json = JSON.parse(part);  // Procesar el JSON válido
-                    console.log('JSON recibido:', json);
-                    if (json.status === 'progress') {
-                        updateProgress(json.progress);
-                        statusMessage.textContent =json.message+"\n";
-                        errorsAll.push(json.errors);
-                    } else if (json.status === 'success') {
-                        updateProgress(json.progress);
-                        errorsAll.push(json.errors);
-                        closeModalBtn.style.display = 'inline-block';
-                    } else {
-                        errorsAll.push(json.errors);
-                        // statusMessage.textContent = json.message;
-                    }
-                    if (index === endInd) {
-                        statusMessage.textContent = json.message + "\n" + errorsAcumulados.join("\n");
-                    }
-                } catch (error) {
-                    console.error("Error al procesar JSON:", error, part);
-                }
+        parts.forEach((part, index) => {  // Corrección aquí, paréntesis alrededor de (part, index)
+    if (part.trim()) {  // Evitar líneas en blanco
+        try {
+            const json = JSON.parse(part);  // Procesar el JSON válido
+            console.log('JSON recibido:', json);
+            
+            if (json.status === 'progress') {
+                updateProgress(json.progress);
+                statusMessage.textContent = json.message + "\n"; // Asignar el mensaje temporal
+                errorsAcumulados.push(json.errors); // Acumular errores
+            } else if (json.status === 'success') {
+                updateProgress(json.progress);
+                errorsAcumulados.push(json.errors); // Acumular errores
+                closeModalBtn.style.display = 'inline-block';
+            } else {
+                errorsAcumulados.push(json.errors); // Acumular errores para otros estados
             }
-        });
+
+            // Si es el último elemento
+            if (index === ultimoIndice) {
+                // Mostrar el mensaje y los errores acumulados
+                statusMessage.textContent = json.message + "\n" + errorsAcumulados.join("\n");
+            }
+
+        } catch (error) {
+            console.error("Error al procesar JSON:", error, part);
+        }
+    }
+});
 
         reader.read().then(processText);  // Continuar leyendo el siguiente chunk
     }

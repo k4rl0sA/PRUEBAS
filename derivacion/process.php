@@ -26,18 +26,18 @@ if (!empty($perfil)) {
     $response['message'] = 'No se encontró el perfil del usuario';
 }
 
-// Captura cualquier salida previa y la incluye en la respuesta para depuración
-$output = ob_get_clean(); // Limpia el buffer de salida
+// Captura cualquier salida previa
+$output = ob_get_clean();
 
-// Si hay alguna salida previa (advertencias, errores, etc.), la agregamos a la respuesta
+// Si hay alguna salida previa, la incluimos en el mensaje para depuración
 if (!empty($output)) {
-    $response['status'] = 'error';
-    $response['message'] = 'Error en el servidor: ' . $output;
+    $response['message'] = 'Error del servidor: ' . $output;
 }
 
 // Envía la respuesta JSON
 echo json_encode($response);
 ?>
+
 
 /* if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
     if (isset($_FILES['archivo'])) {

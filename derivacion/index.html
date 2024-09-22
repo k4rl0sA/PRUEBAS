@@ -222,14 +222,20 @@
             
             if (json.status === 'progress') {
                 updateProgress(json.progress);
-                statusMessage.textContent = json.message + "\n"; // Asignar el mensaje temporal
-                errorsAll.push(json.errors); // Acumular errores
+                statusMessage.textContent = json.message + "\n";
+                if (json.errors) {
+                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                }
             } else if (json.status === 'success') {
                 updateProgress(json.progress);
-                errorsAll.push(json.errors); // Acumular errores
+                if (json.errors) {
+                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                }
                 closeModalBtn.style.display = 'inline-block';
             } else {
-                errorsAll.push(json.errors); // Acumular errores para otros estados
+                if (json.errors) {
+                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                }
             }
 
             // Si es el último elemento

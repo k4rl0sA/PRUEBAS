@@ -48,7 +48,7 @@ try {
                         $sql .= ");";
                         $r = dato_mysql($sql);
                         if (preg_match('/Error/i', $r)) {
-                            $errors[] = "Error en la fila $nFil: " . $r;
+                            $errors[] = "Fila $nFil: " . $r;
                         } else {
                             $ok++;
                         }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 ini_set("display_errors", 1);
-/*  */require_once "../lib/php/gestion.php";
+// require_once "../lib/php/gestion.php";
 
 // Inicia el buffer de salida
 ob_start();

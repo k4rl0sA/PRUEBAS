@@ -224,17 +224,17 @@
                 updateProgress(json.progress);
                 statusMessage.textContent = json.message + "\n";
                 if (json.errors) {
-                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
                 }
             } else if (json.status === 'success') {
                 updateProgress(json.progress);
                 if (json.errors) {
-                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
                 }
                 closeModalBtn.style.display = 'inline-block';
             } else {
                 if (json.errors) {
-                    errorsAcumulados.push(`Fila ${index + 1}: ${json.errors}\n`); 
+                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
                 }
             }
 

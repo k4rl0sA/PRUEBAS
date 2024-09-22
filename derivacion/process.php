@@ -21,6 +21,5 @@ try {
     // Capturamos cualquier error en la carga del archivo gestion.php
     $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage();
 }
-
-print_r($response);
+echo json_encode($response);
 ?>

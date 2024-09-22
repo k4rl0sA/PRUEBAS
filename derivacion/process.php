@@ -1,7 +1,7 @@
 <?php
 session_start();
 ini_set("display_errors", 1);
-require_once "../lib/php/gestion.php";
+/*  */require_once "../lib/php/gestion.php";
 
 // Inicia el buffer de salida
 ob_start();
@@ -16,15 +16,17 @@ $response = [
 ];
 
 // Simula la consulta del perfil del usuario
-$perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
+// $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
 
 // Verifica si la consulta fue exitosa y actualiza el mensaje
-if (!empty($perfil)) {
+/* if (!empty($perfil)) {
     $response['status'] = 'success';
     $response['message'] = 'Consulta exitosa';
 } else {
     $response['message'] = 'No se encontró el perfil del usuario';
 }
+ */
+$response['message'] = 'Consulta exitosa';
 
 // Captura cualquier salida previa
 $output = ob_get_clean();

@@ -200,54 +200,6 @@
 
             cancelLoadingBtn.onclick = cancelLoading;
 
-            /* function startLoading(file) {
-                loading = true;
-                progress = 0;
-                updateProgress(progress);
-                startLoadingBtn.style.display = 'none';
-                cancelLoadingBtn.style.display = 'inline-block';
-                closeModalBtn.style.display = 'none';
-                statusMessage.textContent = '';
-        
-                const formData = new FormData();
-                formData.append('archivo', file);
-                formData.append('ncol', 9);  // Ajustar según el número de columnas
-                formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
-        
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', 'process.php', true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            try {
-                                const response = JSON.parse(xhr.responseText);
-                                if (response.status === 'success') {
-                                    updateProgress(100);
-                                    statusMessage.textContent = response.message;
-                                    loading = false;
-                                    cancelLoadingBtn.style.display = 'none';
-                                    closeModalBtn.style.display = 'inline-block';
-                                } else if (response.status === 'progress') {
-                                    updateProgress(response.progress);
-                                } else {
-                                    throw new Error(response.message);
-                                }
-                            } catch (error) {
-                                console.error('Error:', error);
-                                statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
-                                loading = false;
-                                resetProgress();
-                            }
-                        } else {
-                            console.error('Error en la respuesta del servidor:', xhr.status);
-                            statusMessage.textContent = `Error en la respuesta del servidor: ${xhr.status}`;
-                            loading = false;
-                            resetProgress();
-                        }
-                    }
-                };
-                xhr.send(formData);
-            } */
             function startLoading(file) {
                 const formData = new FormData(); 
                     formData.append('archivo', file); 

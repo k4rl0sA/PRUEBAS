@@ -56,13 +56,13 @@ try {
                         $nFil++;
                         
                         // Enviar progreso cada 10%
-                       /*  if ($progress % 10 == 0) {
+                        if ($progress % 10 == 0) {
                             $response['status'] = 'progress';
                             $response['progress'] = $progress;
                             echo json_encode($response);
                             ob_flush();
                             flush();
-                        } */
+                        }
                     }
                     
                     fclose($handle);

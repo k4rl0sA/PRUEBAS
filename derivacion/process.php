@@ -1,87 +1,88 @@
-<?php 
 ini_set("display_errors", 1); 
 header('Content-Type: application/json');
-$response = [ 'status' => 'error', 'message' => '', 'progress' => 0 ];
 
-try { 
-    require_once "../lib/php/gestion.php";
+$response = [
+    'status' => 'error',
+    'message' => '',
+    'progress' => 0,
+    'errors' => []
+];
+
+try {
+    require_once "../lib/php/gestion.php";  // Conexión y funciones de la BD
+
     $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
     
-    if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) { 
+    if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
         if (isset($_FILES['archivo'])) {
             $file = $_FILES['archivo']['tmp_name'];
-            $name = $_FILES['archivo']['name'];
-            $type = $_FILES['archivo']['type'];
-            $size = $_FILES['archivo']['size'];
-            $ext = explode(".", $name);
-            $delimit = ",";
+            $ext = explode(".", $_FILES['archivo']['name']);
             
-            if (strtolower(end($ext)) == "csv") { 
-                $handle = fopen($file, "r"); 
+            if (strtolower(end($ext)) == "csv") {
+                $handle = fopen($file, "r");
                 
                 if ($handle === FALSE) {
-                    $response['message'] = "No se pudo abrir el archivo " . $name; 
+                    $response['message'] = "No se pudo abrir el archivo.";
                     echo json_encode($response);
                     exit;
                 }
                 
                 $nFil = 1; 
-                $ok = 0; 
+                $ok = 0;
+                $errors = [];
                 $ncol = $_POST['ncol'];
                 $tab = $_POST['tab'];
-                $ope = isset($_POST['ope']) ? $_POST['ope'] : 'insert'; 
-                $totalRows = count(file($file)); // Contamos las filas para obtener el total de registros 
-                
-                if ($ope == 'insert') {
-                    while (($campo = fgetcsv($handle, 1024, $delimit)) !== false) {
-                        if ($nFil !== 1) {
-                            $sql = "INSERT INTO " . $tab . " VALUES("; 
-                            
-                            for ($i = 0; $i < $ncol; $i++) {
-                                $sql .= ($i + 1 == $ncol) 
-                                    ? ($campo[$i] != 'NULL' ? "'" . trim($campo[$i]) . "'" : "NULL") 
-                                    : ($campo[$i] != 'NULL' ? "'" . trim($campo[$i]) . "'," : "NULL,");
-                            } 
-                            
-                            $sql .= ");"; 
-                            $r = dato_mysql($sql);
-                            
-                            if (!preg_match('/Error/i', $r)) {
-                                $ok++;
-                            }
+                $totalRows = count(file($file));  // Contamos todas las filas para conocer el total
+
+                // Iniciar la inserción fila por fila
+                while(($campo = fgetcsv($handle, 1024, ",")) !== false) {
+                    if ($nFil !== 1) { // Saltar la cabecera
+                        $sql = "INSERT INTO " . $tab . " VALUES(";
+                        for ($i = 0; $i < $ncol; $i++) {
+                            $sql .= ($i + 1 == $ncol) ? "'" . trim($campo[$i]) . "'" : "'" . trim($campo[$i]) . "',";
                         }
-                        
-                        $progress = intval(($nFil / $totalRows) * 100);
-                        $_SESSION['progress'] = $progress;
-                        $nFil++;
-                        
-                        // Enviar progreso cada 10%
-                        if ($progress % 10 == 0) {
-                            $response['status'] = 'progress';
-                            $response['progress'] = $progress;
-                            echo json_encode($response);
-                            ob_flush();
-                            flush();
+                        $sql .= ");";
+
+                        $r = dato_mysql($sql); // Ejecuta la consulta
+                        if (preg_match('/Error/i', $r)) {
+                            $errors[] = "Error en la fila $nFil: " . $r;  // Guarda el error específico de la fila
+                        } else {
+                            $ok++;
                         }
                     }
-                    
-                    fclose($handle);
-                    $response['status'] = 'success';
-                    $response['message'] = "Se han insertado " . $ok . " Registro(s) correctamente.";
-                    $response['progress'] = 100;
+
+                    // Calcular el progreso
+                    $progress = intval(($nFil / $totalRows) * 100);
+                    $nFil++;
+
+                    // Enviar progreso cada 10%
+                    if ($progress % 10 == 0) {
+                        $response['status'] = 'progress';
+                        $response['progress'] = $progress;
+                        $response['errors'] = $errors;
+                        echo json_encode($response);
+                        ob_flush();
+                        flush();
+                    }
                 }
+                fclose($handle);
+                
+                $response['status'] = 'success';
+                $response['message'] = "Se han insertado $ok registros correctamente.";
+                $response['errors'] = $errors;
+                $response['progress'] = 100;
             } else {
-                $response['message'] = "El archivo contiene una extensión inválida: " . strtolower(end($ext));
+                $response['message'] = "El archivo tiene una extensión no válida.";
             }
         } else {
             $response['message'] = "No se ha subido ningún archivo.";
         }
     } else {
-        $response['message'] = "No tiene el perfil permitido para cargar el archivo CSV.";
+        $response['message'] = "No tiene permisos para realizar esta acción.";
     }
     
 } catch (Throwable $e) {
-    $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage(); 
+    $response['message'] = "Error: " . $e->getMessage();
 }
 
 echo json_encode($response);

@@ -4,47 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carga de Registros</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
         .modal {
-          display: none;
-          position: fixed;
-          z-index: 1;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0,0,0,0.4);
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
         }
         .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto;
-          padding: 20px;
-          border: 1px solid #888;
-          width: 80%;
-          max-width: 500px;
-          border-radius: 5px;
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .modal-content p {
+            color: #666;
+            font-size: 14px;
         }
         .progress-container {
-          width: 100%;
-          background-color: #f3f3f3;
-          border-radius: 13px;
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px 0;
+            position: relative;
         }
         .progress-bar {
-          width: 0%;
-          height: 20px;
-          background-color: #4CAF50;
-          border-radius: 13px;
-          transition: width 0.5s ease-in-out;
+            width: 0;
+            height: 8px;
+            background-color: #007bff;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+        #progressText {
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
         }
         .button-container {
-          margin-top: 20px;
-          text-align: right;
+            display: flex;
+            justify-content: flex-end;
         }
         button {
-          padding: 10px 20px;
-          margin-left: 10px;
-          cursor: pointer;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+        }
+        .modal-close:hover {
+            color: #333;
         }
     </style>
 </head>
@@ -53,17 +97,16 @@
 
     <div id="modal" class="modal">
         <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
             <h2>Cargando Registros</h2>
-            <p id="statusMessage">Por favor, espere mientras se cargan los registros a la base de datos.</p>
+            <p>Por favor, espere mientras se cargan los registros a la base de datos.</p>
             <div class="progress-container">
                 <div id="progressBar" class="progress-bar"></div>
             </div>
             <p id="progressText">0% completado</p>
             <div class="button-container">
-                <input type="file" id="fileInput">
                 <button id="startLoading">Iniciar Carga</button>
                 <button id="cancelLoading" style="display: none;">Cancelar</button>
-                <button id="closeModal" style="display: none;">Cerrar</button>
             </div>
         </div>
     </div>
@@ -77,77 +120,67 @@
             const closeModalBtn = document.getElementById('closeModal');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
-            const statusMessage = document.getElementById('statusMessage');
-            const fileInput = document.getElementById('fileInput');
 
             let loading = false;
             let progress = 0;
 
             openModalBtn.onclick = () => modal.style.display = "block";
-            closeModalBtn.onclick = () => modal.style.display = "none";
-            startLoadingBtn.onclick = () => {
-    const file = fileInput.files[0];
-    if (file) {
-        startLoading(file);
-    } else {
-        statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
-    }
-};
+            closeModalBtn.onclick = () => {
+                modal.style.display = "none";
+                resetProgress();
+            };
 
-function startLoading(file) {
-    const formData = new FormData();
-    formData.append('archivo', file);
-    formData.append('ncol', 9);  // Ajustar según el número de columnas
-    formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
+            startLoadingBtn.onclick = startLoading;
+            cancelLoadingBtn.onclick = cancelLoading;
 
-    fetch('process.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        // Validar si la respuesta es exitosa
-        if (!response.ok) {
-            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
-        }
-
-        // Leer el cuerpo de la respuesta una sola vez
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-            return response.json();  // Si es JSON, lo procesamos como tal
-        } else {
-            return response.text();  // Si no es JSON, lo procesamos como texto
-        }
-    })
-    .then(data => {
-        // Si la respuesta es JSON (un objeto), procesamos como tal
-        if (typeof data === 'object') {
-            if (data.status === 'success') {
-                progress = data.progress;
-                updateProgress(progress);
-                statusMessage.textContent = data.message;
-                closeModalBtn.style.display = 'inline-block';
-            } else {
-                statusMessage.textContent = data.message;
+            function startLoading() {
+                loading = true;
+                progress = 0;
+                updateProgress();
+                startLoadingBtn.style.display = 'none';
+                cancelLoadingBtn.style.display = 'inline-block';
+                simulateLoading();
             }
-        } else {
-            // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
-            console.error('Respuesta no JSON del servidor:', data);
-            statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
-    });
-}
 
+            function cancelLoading() {
+                loading = false;
+                resetProgress();
+            }
 
-function updateProgress(progress) {
-    progressBar.style.width = `${progress}%`;
-    progressText.textContent = `${progress}% completado`;
-}
+            function resetProgress() {
+                progress = 0;
+                updateProgress();
+                startLoadingBtn.style.display = 'inline-block';
+                cancelLoadingBtn.style.display = 'none';
+            }
 
-                  });
+            function updateProgress() {
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${progress}% completado`;
+            }
+
+            function simulateLoading() {
+                if (!loading) return;
+
+                fetch('process.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        progress = data.progress;
+                        updateProgress();
+
+                        if (progress < 100 && loading) {
+                            setTimeout(simulateLoading, 500);
+                        } else if (progress >= 100) {
+                            loading = false;
+                            cancelLoadingBtn.style.display = 'none';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        loading = false;
+                    });
+            }
+        });
     </script>
 </body>
 </html>

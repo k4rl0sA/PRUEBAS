@@ -211,7 +211,10 @@
         let parts = buffer.split('\n');
         buffer = parts.pop();  // Mantener cualquier fragmento incompleto
 
-        parts.forEach(part => {
+        const errorsAll = []; 
+        let endInd =  parts.length - 1;
+
+        parts.forEach(part,index => {
             if (part.trim()) {  // Evitar líneas en blanco
                 try {
                     const json = JSON.parse(part);  // Procesar el JSON válido
@@ -219,13 +222,17 @@
                     if (json.status === 'progress') {
                         updateProgress(json.progress);
                         statusMessage.textContent =json.message+"\n";
-                        statusMessage.textContent += json.errors + "\n";
+                        errorsAll.push(json.errors);
                     } else if (json.status === 'success') {
                         updateProgress(json.progress);
-                        statusMessage.textContent += json.errors + "\n";
+                        errorsAll.push(json.errors);
                         closeModalBtn.style.display = 'inline-block';
                     } else {
-                        statusMessage.textContent = json.message;
+                        errorsAll.push(json.errors);
+                        // statusMessage.textContent = json.message;
+                    }
+                    if (index === endInd) {
+                        statusMessage.textContent = json.message + "\n" + errorsAcumulados.join("\n");
                     }
                 } catch (error) {
                     console.error("Error al procesar JSON:", error, part);

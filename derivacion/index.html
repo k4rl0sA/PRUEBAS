@@ -120,7 +120,7 @@ function startLoading(file) {
     })
     .then(data => {
         // Si la respuesta es JSON
-        if (typeof data === 'object') {
+        if (typeof data === 'object' && data !== null) {
             if (data.status === 'success') {
                 progress = data.progress;
                 updateProgress(progress);
@@ -140,6 +140,7 @@ function startLoading(file) {
         statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
     });
 }
+
 
 function updateProgress(progress) {
     progressBar.style.width = `${progress}%`;

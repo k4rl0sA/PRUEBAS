@@ -90,6 +90,37 @@
         .modal-close:hover {
             color: #333;
         }
+
+
+        p#statusMessage {
+            color: red;
+            font-size: medium;
+        }
+        p#statusMessage::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+        
+        p#statusMessage::-webkit-scrollbar:vertical {
+            width:10px;
+        }
+        
+        p#statusMessage::-webkit-scrollbar-button:increment,p#statusMessage::-webkit-scrollbar-button {
+            display: none;
+        } 
+        
+        p#statusMessage::-webkit-scrollbar:horizontal {
+            height: 10px;
+        }
+        
+        p#statusMessage::-webkit-scrollbar-thumb {
+            background-color: #797979;
+            border-radius: 20px;
+            border: 2px solid #f1f2f3;
+        }
+        
+        p#statusMessage::-webkit-scrollbar-track {
+            border-radius: 10px;  
+        }
      </style>
 </head>
 <body>

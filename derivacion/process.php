@@ -1,5 +1,4 @@
 <?php
-session_start();
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 // header('Content-Type: application/json');
@@ -21,5 +20,5 @@ try {
     $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage();
 }
 
-echo $response;
+print_r($response);
 ?>

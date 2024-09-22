@@ -201,70 +201,49 @@
             cancelLoadingBtn.onclick = cancelLoading;
 
             function startLoading(file) {
-    const formData = new FormData();
-    formData.append('archivo', file);
-    formData.append('ncol', 9);  // Número de columnas
-    formData.append('tab', 'usuarios');  // Tabla de inserción
-
-    fetch('process.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let receivedText = '';
-
-        function read() {
-            return reader.read().then(({ done, value }) => {
-                if (done) return;  // Termina la lectura cuando no hay más datos
-
-                receivedText += decoder.decode(value, { stream: true });
-
-                // Intentar parsear el JSON progresivo
-                try {
-                    const json = JSON.parse(receivedText);
-                    
-                    if (json.status === 'progress') {
-                        updateProgress(json.progress);
-                        statusMessage.textContent = `Progreso: ${json.progress}% completado`;
-                        if (json.errors.length > 0) {
-                            console.error('Errores: ', json.errors.join("\n"));
+                const formData = new FormData(); 
+                    formData.append('archivo', file); 
+                    formData.append('ncol', 9); // Ajustar según el número de columnas 
+                    formData.append('tab', 'usuarios'); // Ajustar según el nombre de la tabla
+                fetch('process.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        // Validar si la respuesta es exitosa
+                        if (!response.ok) {
+                            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
                         }
-                    } else if (json.status === 'success') {
-                        updateProgress(100);
-                        statusMessage.textContent = json.message;
-                        if (json.errors.length > 0) {
-                            console.error('Errores finales: ', json.errors.join("\n"));
+                        // Leer el cuerpo de la respuesta una sola vez
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json();  // Si es JSON, lo procesamos como tal
+                        } else {
+                            return response.text();  // Si no es JSON, lo procesamos como texto
                         }
-                        closeModalBtn.style.display = 'inline-block';
-                    } else {
-                        statusMessage.textContent = json.message;
-                    }
-                    
-                    // Reiniciar texto para el siguiente fragmento de JSON
-                    receivedText = '';
-                } catch (e) {
-                    // Si el JSON no está completo, continuar recibiendo
-                }
-
-                return read();
-            });
-        }
-
-        return read();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        statusMessage.textContent = `Ocurrió un error: ${error.message}`;
-    });
-}
-
-function updateProgress(progress) {
-    progressBar.style.width = `${progress}%`;
-    progressText.textContent = `${progress}% completado`;
-}
-
+                    })
+                    .then(data => {
+                        // Si la respuesta es JSON (un objeto), procesamos como tal
+                        if (typeof data === 'object') {
+                            if (data.status === 'success') {
+                                progress = data.progress;
+                                updateProgress(progress);
+                                statusMessage.textContent = data.message;
+                                closeModalBtn.style.display = 'inline-block';
+                            } else {
+                                statusMessage.textContent = data.message;
+                            }
+                        } else {
+                            // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
+                            console.error('Respuesta no JSON del servidor:', data);
+                            statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
+                    });
+            }
 
             function cancelLoading() {
                 loading = false;

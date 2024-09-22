@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga de Registros CSV</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-     <style>
-         body {
+    <title>Carga de Registros</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
             font-family: Arial, sans-serif;
         }
         .modal {
@@ -90,131 +90,97 @@
         .modal-close:hover {
             color: #333;
         }
-     </style>
+    </style>
 </head>
 <body>
-    <button id="openModal">Cargar Registros CSV</button>
+    <button id="openModal">Cargar Registros</button>
 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h2>Cargando Registros CSV</h2>
-            <p>Por favor, seleccione un archivo CSV para cargar a la base de datos.</p>
-            <input type="file" id="fileInput" accept=".csv">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h2>Cargando Registros</h2>
+            <p>Por favor, espere mientras se cargan los registros a la base de datos.</p>
             <div class="progress-container">
                 <div id="progressBar" class="progress-bar"></div>
             </div>
             <p id="progressText">0% completado</p>
-            <p id="statusMessage"></p>
             <div class="button-container">
                 <button id="startLoading">Iniciar Carga</button>
                 <button id="cancelLoading" style="display: none;">Cancelar</button>
-                <button id="closeModal" style="display: none;">Cerrar</button>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modal');
-    const openModalBtn = document.getElementById('openModal');
-    const startLoadingBtn = document.getElementById('startLoading');
-    const cancelLoadingBtn = document.getElementById('cancelLoading');
-    const closeModalBtn = document.getElementById('closeModal');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const statusMessage = document.getElementById('statusMessage');
-    const fileInput = document.getElementById('fileInput');
+            const modal = document.getElementById('modal');
+            const openModalBtn = document.getElementById('openModal');
+            const startLoadingBtn = document.getElementById('startLoading');
+            const cancelLoadingBtn = document.getElementById('cancelLoading');
+            const closeModalBtn = document.getElementById('closeModal');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
 
-    let loading = false;
-    let progress = 0;
+            let loading = false;
+            let progress = 0;
 
-    openModalBtn.onclick = () => modal.style.display = "block";
-    closeModalBtn.onclick = () => {
-        modal.style.display = "none";
-        resetProgress();
-    };
+            openModalBtn.onclick = () => modal.style.display = "block";
+            closeModalBtn.onclick = () => {
+                modal.style.display = "none";
+                resetProgress();
+            };
 
-    startLoadingBtn.onclick = () => {
-        const file = fileInput.files[0];
-        if (file) {
-            startLoading(file);
-        } else {
-            statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
-        }
-    };
+            startLoadingBtn.onclick = startLoading;
+            cancelLoadingBtn.onclick = cancelLoading;
 
-    cancelLoadingBtn.onclick = cancelLoading;
+            function startLoading() {
+                loading = true;
+                progress = 0;
+                updateProgress();
+                startLoadingBtn.style.display = 'none';
+                cancelLoadingBtn.style.display = 'inline-block';
+                simulateLoading();
+            }
 
-    function startLoading(file) {
-        loading = true;
-        progress = 0;
-        updateProgress(progress);
-        startLoadingBtn.style.display = 'none';
-        cancelLoadingBtn.style.display = 'inline-block';
-        closeModalBtn.style.display = 'none';
-        statusMessage.textContent = '';
+            function cancelLoading() {
+                loading = false;
+                resetProgress();
+            }
 
-        const formData = new FormData();
-        formData.append('archivo', file);
-        formData.append('ncol', 9);  // Ajustar según el número de columnas
-        formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
+            function resetProgress() {
+                progress = 0;
+                updateProgress();
+                startLoadingBtn.style.display = 'inline-block';
+                cancelLoadingBtn.style.display = 'none';
+            }
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'process.php', true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.status === 'success') {
-                            updateProgress(100);
-                            statusMessage.textContent = response.message;
+            function updateProgress() {
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${progress}% completado`;
+            }
+
+            function simulateLoading() {
+                if (!loading) return;
+
+                fetch('process.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        progress = data.progress;
+                        updateProgress();
+
+                        if (progress < 100 && loading) {
+                            setTimeout(simulateLoading, 500);
+                        } else if (progress >= 100) {
                             loading = false;
                             cancelLoadingBtn.style.display = 'none';
-                            closeModalBtn.style.display = 'inline-block';
-                        } else if (response.status === 'progress') {
-                            updateProgress(response.progress);
-                        } else {
-                            throw new Error(response.message);
                         }
-                    } catch (error) {
+                    })
+                    .catch(error => {
                         console.error('Error:', error);
-                        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
                         loading = false;
-                        resetProgress();
-                    }
-                } else {
-                    console.error('Error en la respuesta del servidor:', xhr.status);
-                    statusMessage.textContent = `Error en la respuesta del servidor: ${xhr.status}`;
-                    loading = false;
-                    resetProgress();
-                }
+                    });
             }
-        };
-        xhr.send(formData);
-    }
-
-    function cancelLoading() {
-        loading = false;
-        resetProgress();
-        statusMessage.textContent = 'Carga cancelada por el usuario.';
-    }
-
-    function resetProgress() {
-        progress = 0;
-        updateProgress(progress);
-        startLoadingBtn.style.display = 'inline-block';
-        cancelLoadingBtn.style.display = 'none';
-        closeModalBtn.style.display = 'none';
-    }
-
-    function updateProgress(newProgress) {
-        progress = newProgress;
-        progressBar.style.width = `${progress}%`;
-        progressText.textContent = `${progress}% completado`;
-    }
-});
+        });
     </script>
 </body>
 </html>
-

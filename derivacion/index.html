@@ -218,6 +218,7 @@
                     console.log('JSON recibido:', json);
                     if (json.status === 'progress') {
                         updateProgress(json.progress);
+                        statusMessage.textContent =json.message+"\n";
                         statusMessage.textContent += json.errors + "\n";
                     } else if (json.status === 'success') {
                         updateProgress(json.progress);

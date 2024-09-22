@@ -16,14 +16,16 @@ try { require_once "../lib/php/gestion.php";
                 $handle = fopen($file, "r"); 
                 if($handle === FALSE){
                     $response['message'] = "No se pudo abrir el archivo " . $name; echo json_encode($response);
+                    echo json_encode($response);
                     exit;
                 } 
                 $nFil = 1; 
                 $ok = 0; 
                 $ncol = $_POST['ncol'];
                 $tab = $_POST['tab'];
-                $ope = isset($_POST['ope']) ? $_POST['ope'] : 'insert'; $totalRows = count(file($file)); // Contamos las filas para obtener el total de registros 
-                $_SESSION['progress'] = 0; // Inicializamos el progreso en la sesión 
+                $ope = isset($_POST['ope']) ? $_POST['ope'] : 'insert'; 
+                $totalRows = count(file($file)); // Contamos las filas para obtener el total de registros 
+                
                 if ($ope == 'insert'){
                     while(($campo = fgetcsv($handle, 1024, $delimit)) !== false){
                         if ($nFil !== 1){
@@ -36,14 +38,22 @@ try { require_once "../lib/php/gestion.php";
                                 $ok++;
                             }
                         }
-                        // Actualizamos el progreso en cada fila procesada
-                        $_SESSION['progress'] = intval(($nFil / $totalRows) * 100);
+                        $progress = intval(($nFil / $totalRows) * 100);
+                        $_SESSION['progress'] = $progress;
                         $nFil++;
+                        
+                        // Enviar progreso cada 10%
+                        if ($progress % 10 == 0) {
+                            $response['status'] = 'progress';
+                            $response['progress'] = $progress;
+                            echo json_encode($response);
+                            ob_flush();
+                            flush();
+                        }
                     }
                     fclose($handle);
                     $response['status'] = 'success';
                     $response['message'] = "Se han insertado " . $ok . " Registro(s) correctamente.";
-                    $response['message'] .= " " . $sql ;
                     $response['progress'] = 100;
                 }
             } else {

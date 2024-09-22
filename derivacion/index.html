@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carga de Registros CSV</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
-     <style>
-         body {
+    <style>
+        body {
             font-family: Arial, sans-serif;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -19,6 +21,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.4);
         }
+
         .modal-content {
             background-color: #fff;
             margin: 15% auto;
@@ -30,6 +33,7 @@
             position: relative;
             font-size: 1.2rem;
         }
+
         .modal-content h2 {
             margin-top: 0;
             text-align: center;
@@ -37,10 +41,12 @@
             font-weight: 600;
             color: #333;
         }
+
         .modal-content p {
             color: #666;
             text-align: center;
         }
+
         .progress-container {
             width: 100%;
             height: 8px;
@@ -49,6 +55,7 @@
             margin: 20px 0;
             position: relative;
         }
+
         .progress-bar {
             width: 0;
             height: 8px;
@@ -56,16 +63,19 @@
             border-radius: 4px;
             transition: width 0.4s ease;
         }
+
         #progressText {
             text-align: center;
             margin-bottom: 15px;
             font-weight: 570;
             letter-spacing: .1rem;
         }
+
         .button-container {
             display: flex;
             justify-content: flex-end;
         }
+
         button {
             background-color: #000;
             color: #fff;
@@ -76,13 +86,16 @@
             font-size: 14px;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #333;
         }
+
         button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
         }
+
         .modal-close {
             position: absolute;
             top: 10px;
@@ -90,6 +103,7 @@
             color: #666;
             cursor: pointer;
         }
+
         .modal-close:hover {
             color: #333;
         }
@@ -98,17 +112,19 @@
         p#statusMessage {
             color: red;
         }
+
         p#statusMessage::-webkit-scrollbar {
             -webkit-appearance: none;
         }
 
         p#statusMessage::-webkit-scrollbar:vertical {
-            width:10px;
+            width: 10px;
         }
 
-        p#statusMessage::-webkit-scrollbar-button:increment,p#statusMessage::-webkit-scrollbar-button {
+        p#statusMessage::-webkit-scrollbar-button:increment,
+        p#statusMessage::-webkit-scrollbar-button {
             display: none;
-        } 
+        }
 
         p#statusMessage::-webkit-scrollbar:horizontal {
             height: 10px;
@@ -121,10 +137,11 @@
         }
 
         p#statusMessage::-webkit-scrollbar-track {
-            border-radius: 10px;  
+            border-radius: 10px;
         }
-     </style>
+    </style>
 </head>
+
 <body>
     <button id="openModal">Cargar Registros CSV</button>
 
@@ -149,110 +166,156 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modal');
-    const openModalBtn = document.getElementById('openModal');
-    const startLoadingBtn = document.getElementById('startLoading');
-    const cancelLoadingBtn = document.getElementById('cancelLoading');
-    const closeModalBtn = document.getElementById('closeModal');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const statusMessage = document.getElementById('statusMessage');
-    const fileInput = document.getElementById('fileInput');
+            const modal = document.getElementById('modal');
+            const openModalBtn = document.getElementById('openModal');
+            const startLoadingBtn = document.getElementById('startLoading');
+            const cancelLoadingBtn = document.getElementById('cancelLoading');
+            const closeModalBtn = document.getElementById('closeModal');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const statusMessage = document.getElementById('statusMessage');
+            const fileInput = document.getElementById('fileInput');
 
-    let loading = false;
-    let progress = 0;
+            let loading = false;
+            let progress = 0;
 
-    openModalBtn.onclick = () => {
-        modal.style.display = "block";
-        closeModalBtn.style.display="block";
-        };
+            openModalBtn.onclick = () => {
+                modal.style.display = "block";
+                closeModalBtn.style.display = "block";
+            };
+
+            closeModalBtn.onclick = () => {
+                modal.style.display = "none";
+                resetProgress();
+            };
+
+            startLoadingBtn.onclick = () => {
+                const file = fileInput.files[0];
+                if (file) {
+                    startLoading(file);
+                } else {
+                    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
+                }
+            };
+
+            cancelLoadingBtn.onclick = cancelLoading;
+
+            /* function startLoading(file) {
+                loading = true;
+                progress = 0;
+                updateProgress(progress);
+                startLoadingBtn.style.display = 'none';
+                cancelLoadingBtn.style.display = 'inline-block';
+                closeModalBtn.style.display = 'none';
+                statusMessage.textContent = '';
         
-    closeModalBtn.onclick = () => {
-        modal.style.display = "none";
-        resetProgress();
-    };
-
-    startLoadingBtn.onclick = () => {
-        const file = fileInput.files[0];
-        if (file) {
-            startLoading(file);
-        } else {
-            statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
-        }
-    };
-
-    cancelLoadingBtn.onclick = cancelLoading;
-
-    function startLoading(file) {
-        loading = true;
-        progress = 0;
-        updateProgress(progress);
-        startLoadingBtn.style.display = 'none';
-        cancelLoadingBtn.style.display = 'inline-block';
-        closeModalBtn.style.display = 'none';
-        statusMessage.textContent = '';
-
-        const formData = new FormData();
-        formData.append('archivo', file);
-        formData.append('ncol', 9);  // Ajustar según el número de columnas
-        formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'process.php', true);
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.status === 'success') {
-                            updateProgress(100);
-                            statusMessage.textContent = response.message;
-                            loading = false;
-                            cancelLoadingBtn.style.display = 'none';
-                            closeModalBtn.style.display = 'inline-block';
-                        } else if (response.status === 'progress') {
-                            updateProgress(response.progress);
+                const formData = new FormData();
+                formData.append('archivo', file);
+                formData.append('ncol', 9);  // Ajustar según el número de columnas
+                formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
+        
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'process.php', true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            try {
+                                const response = JSON.parse(xhr.responseText);
+                                if (response.status === 'success') {
+                                    updateProgress(100);
+                                    statusMessage.textContent = response.message;
+                                    loading = false;
+                                    cancelLoadingBtn.style.display = 'none';
+                                    closeModalBtn.style.display = 'inline-block';
+                                } else if (response.status === 'progress') {
+                                    updateProgress(response.progress);
+                                } else {
+                                    throw new Error(response.message);
+                                }
+                            } catch (error) {
+                                console.error('Error:', error);
+                                statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
+                                loading = false;
+                                resetProgress();
+                            }
                         } else {
-                            throw new Error(response.message);
+                            console.error('Error en la respuesta del servidor:', xhr.status);
+                            statusMessage.textContent = `Error en la respuesta del servidor: ${xhr.status}`;
+                            loading = false;
+                            resetProgress();
                         }
-                    } catch (error) {
+                    }
+                };
+                xhr.send(formData);
+            } */
+            function startLoading(file) {
+                const formData = new FormData(); 
+                    formData.append('archivo', file); 
+                    formData.append('ncol', 9); // Ajustar según el número de columnas 
+                    formData.append('tab', 'usuarios'); // Ajustar según el nombre de la tabla
+
+                fetch('process.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        // Validar si la respuesta es exitosa
+                        if (!response.ok) {
+                            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
+                        }
+
+                        // Leer el cuerpo de la respuesta una sola vez
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json();  // Si es JSON, lo procesamos como tal
+                        } else {
+                            return response.text();  // Si no es JSON, lo procesamos como texto
+                        }
+                    })
+                    .then(data => {
+                        // Si la respuesta es JSON (un objeto), procesamos como tal
+                        if (typeof data === 'object') {
+                            if (data.status === 'success') {
+                                progress = data.progress;
+                                updateProgress(progress);
+                                statusMessage.textContent = data.message;
+                                closeModalBtn.style.display = 'inline-block';
+                            } else {
+                                statusMessage.textContent = data.message;
+                            }
+                        } else {
+                            // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
+                            console.error('Respuesta no JSON del servidor:', data);
+                            statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
+                        }
+                    })
+                    .catch(error => {
                         console.error('Error:', error);
                         statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
-                        loading = false;
-                        resetProgress();
-                    }
-                } else {
-                    console.error('Error en la respuesta del servidor:', xhr.status);
-                    statusMessage.textContent = `Error en la respuesta del servidor: ${xhr.status}`;
-                    loading = false;
-                    resetProgress();
-                }
+                    });
             }
-        };
-        xhr.send(formData);
-    }
 
-    function cancelLoading() {
-        loading = false;
-        resetProgress();
-        statusMessage.textContent = 'Carga cancelada por el usuario.';
-    }
+            function cancelLoading() {
+                loading = false;
+                resetProgress();
+                statusMessage.textContent = 'Carga cancelada por el usuario.';
+            }
 
-    function resetProgress() {
-        progress = 0;
-        updateProgress(progress);
-        startLoadingBtn.style.display = 'inline-block';
-        cancelLoadingBtn.style.display = 'none';
-        closeModalBtn.style.display = 'none';
-    }
+            function resetProgress() {
+                progress = 0;
+                updateProgress(progress);
+                startLoadingBtn.style.display = 'inline-block';
+                cancelLoadingBtn.style.display = 'none';
+                closeModalBtn.style.display = 'none';
+            }
 
-    function updateProgress(newProgress) {
-        progress = newProgress;
-        progressBar.style.width = `${progress}%`;
-        progressText.textContent = `${progress}% completado`;
-    }
-});
+            function updateProgress(newProgress) {
+                progress = newProgress;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${progress}% completado`;
+            }
+        });
     </script>
 </body>
-</html>
 
+</html>

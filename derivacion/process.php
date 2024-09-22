@@ -13,9 +13,9 @@ $response = [
 
 $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
 
-/* $response['message'] = $perfil; */
+$response['message'] = $perfil;
 
-if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
+/* if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
     if (isset($_FILES['archivo'])) {
         $file = $_FILES['archivo']['tmp_name'];
         $name = $_FILES['archivo']['name'];
@@ -73,7 +73,7 @@ if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'S
     }
 } else {
     $response['message'] = "No tiene el perfil permitido para cargar el archivo CSV.";
-}
+} */
 
 echo json_encode($response);
 ?>

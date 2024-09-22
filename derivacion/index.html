@@ -97,8 +97,8 @@
 function startLoading(file) {
     const formData = new FormData();
     formData.append('archivo', file);
-    formData.append('ncol', 5);  // Ajustar según el número de columnas
-    formData.append('tab', 'nombre_tabla');  // Ajustar según el nombre de la tabla
+    formData.append('ncol', 9);  // Ajustar según el número de columnas
+    formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
 
     fetch('process.php', {
         method: 'POST',

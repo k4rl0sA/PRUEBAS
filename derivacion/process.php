@@ -59,6 +59,7 @@ try {
     
                     $response['status'] = 'success';
                     $response['message'] = "Se han insertado " . $ok . " Registro(s) correctamente.";
+                    $response['message'] .= " " . $sql ;
                     $response['progress'] = 100;
                 }
             } else {

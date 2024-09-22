@@ -1,13 +1,11 @@
 <?php
 ini_set("display_errors", 1);
 header('Content-Type: application/json');
-
 $response = [
     'status' => 'error',
     'message' => '',
     'progress' => 0
 ];
-
 try {
     require_once "../lib/php/gestion.php";
     $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
@@ -18,8 +16,7 @@ try {
             $type = $_FILES['archivo']['type'];
             $size = $_FILES['archivo']['size'];
             $ext = explode(".", $name);
-            $delimit = ",";
-    
+            $delimit = ",";  
             if (strtolower(end($ext)) == "csv") {
                 $handle = fopen($file, "r");
                 if ($handle === FALSE) {
@@ -27,16 +24,13 @@ try {
                     echo json_encode($response);
                     exit;
                 }
-    
                 $nFil = 1;
                 $ok = 0;
                 $ncol = $_POST['ncol'];
                 $tab = $_POST['tab'];
                 $ope = isset($_POST['ope']) ? $_POST['ope'] : 'insert';
                 $totalRows = count(file($file));  // Contamos las filas para obtener el total de registros
-    
                 $_SESSION['progress'] = 0; // Inicializamos el progreso en la sesión
-    
                 if ($ope == 'insert') {
                     while (($campo = fgetcsv($handle, 1024, $delimit)) !== false) {
                         if ($nFil !== 1) {
@@ -56,7 +50,6 @@ try {
                         $nFil++;
                     }
                     fclose($handle);
-    
                     $response['status'] = 'success';
                     $response['message'] = "Se han insertado " . $ok . " Registro(s) correctamente.";
                     $response['message'] .= " " . $sql ;
@@ -72,7 +65,6 @@ try {
         $response['message'] = "No tiene el perfil permitido para cargar el archivo CSV.";
     }
 } catch (Throwable $e) {
-    // Capturamos cualquier error en la carga del archivo gestion.php
     $response['message'] = 'Error al cargar gestion.php: ' . $e->getMessage();
 }
 echo json_encode($response);

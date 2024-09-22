@@ -223,19 +223,19 @@
             if (json.status === 'progress') {
                 updateProgress(json.progress);
                 statusMessage.textContent = json.message + "\n"; // Asignar el mensaje temporal
-                errorsAcumulados.push(json.errors); // Acumular errores
+                errorsAll.push(json.errors); // Acumular errores
             } else if (json.status === 'success') {
                 updateProgress(json.progress);
-                errorsAcumulados.push(json.errors); // Acumular errores
+                errorsAll.push(json.errors); // Acumular errores
                 closeModalBtn.style.display = 'inline-block';
             } else {
-                errorsAcumulados.push(json.errors); // Acumular errores para otros estados
+                errorsAll.push(json.errors); // Acumular errores para otros estados
             }
 
             // Si es el último elemento
-            if (index === ultimoIndice) {
+            if (index === endInd) {
                 // Mostrar el mensaje y los errores acumulados
-                statusMessage.textContent = json.message + "\n" + errorsAcumulados.join("\n");
+                statusMessage.textContent = json.message + "\n" + errorsAll.join("\n");
             }
 
         } catch (error) {

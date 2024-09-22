@@ -58,15 +58,15 @@ try {
                     $progress = intval(($nFil / $totalRows) * 100);
 
                      // Enviar progreso cada 10%
-                    if ($progress % 10 === 0) {
+                    if ($progress % 10 === 0 || !empty($errors)) {
                         $response['status'] = 'progress';
                         $response['progress'] = $progress;
                         $response['message'] = "Progreso: $progress%";
-                    
-                        // Añadir un delimitador (nueva línea) después de cada JSON
-                        echo json_encode($response) . "\n"; // Añadir "\n" para facilitar el parseo en el cliente
+                        $response['errors'] = $errors;
+                        echo json_encode($response) . "\n";
                         ob_flush();
                         flush();
+                        $errors = [];
                     }
                     
                     $nFil++;
@@ -76,7 +76,8 @@ try {
                 $response['status'] = 'success';
                 $response['message'] = "Se han insertado $ok registros correctamente.";
                 $response['progress'] = 100;
-                echo json_encode($response) . "\n"; // Enviar respuesta final
+                $response['errors'] = $errors;
+                echo json_encode($response) . "\n";
                 ob_flush();
                 flush();
             } else {

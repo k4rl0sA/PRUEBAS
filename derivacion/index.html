@@ -31,11 +31,15 @@
         }
         .modal-content h2 {
             margin-top: 0;
-            font-size: 20px;
+            text-align: center;
+            font-size: 1.125rem;
+            letter-spacing: -0.025em;
+            font-weight: 600;
             color: #333;
         }
         .modal-content p {
             color: #666;
+            text-align: center;
             font-size: 14px;
         }
         .progress-container {
@@ -54,9 +58,11 @@
             transition: width 0.4s ease;
         }
         #progressText {
-            font-size: 14px;
+            font-size: 1rem;
             text-align: center;
             margin-bottom: 15px;
+            font-weight: 570;
+            letter-spacing: .1rem;
         }
         .button-container {
             display: flex;
@@ -83,8 +89,8 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            font-size: 18px;
-            color: #999;
+            font-size: 1.125rem;
+            color: #666;
             cursor: pointer;
         }
         .modal-close:hover {
@@ -99,25 +105,25 @@
         p#statusMessage::-webkit-scrollbar {
             -webkit-appearance: none;
         }
-        
+
         p#statusMessage::-webkit-scrollbar:vertical {
             width:10px;
         }
-        
+
         p#statusMessage::-webkit-scrollbar-button:increment,p#statusMessage::-webkit-scrollbar-button {
             display: none;
         } 
-        
+
         p#statusMessage::-webkit-scrollbar:horizontal {
             height: 10px;
         }
-        
+
         p#statusMessage::-webkit-scrollbar-thumb {
             background-color: #797979;
             border-radius: 20px;
             border: 2px solid #f1f2f3;
         }
-        
+
         p#statusMessage::-webkit-scrollbar-track {
             border-radius: 10px;  
         }
@@ -160,7 +166,11 @@
     let loading = false;
     let progress = 0;
 
-    openModalBtn.onclick = () => modal.style.display = "block";
+    openModalBtn.onclick = () => {
+        modal.style.display = "block";
+        closeModalBtn.style.display="block";
+        };
+        
     closeModalBtn.onclick = () => {
         modal.style.display = "none";
         resetProgress();

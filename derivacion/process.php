@@ -55,11 +55,15 @@ try {
 
                     // Calcular el progreso y enviar actualizaciones al cliente
                     $progress = intval(($nFil / $totalRows) * 100);
+
+                     // Enviar progreso cada 10%
                     if ($progress % 10 === 0) {
                         $response['status'] = 'progress';
                         $response['progress'] = $progress;
                         $response['message'] = "Progreso: $progress%";
-                        echo json_encode($response);
+                    
+                        // Añadir un delimitador (nueva línea) después de cada JSON
+                        echo json_encode($response) . "\n"; // Añadir "\n" para facilitar el parseo en el cliente
                         ob_flush();
                         flush();
                     }
@@ -70,8 +74,10 @@ try {
                 fclose($handle);
                 $response['status'] = 'success';
                 $response['message'] = "Se han insertado $ok registros correctamente.";
-                $response['errors'] = $errors;
                 $response['progress'] = 100;
+                echo json_encode($response) . "\n"; // Enviar respuesta final
+                ob_flush();
+                flush();
             } else {
                 $response['message'] = "El archivo tiene una extensión no válida.";
             }
@@ -83,6 +89,9 @@ try {
     }
 } catch (Throwable $e) {
     $response['message'] = "Error: " . $e->getMessage();
+    echo json_encode($response) . "\n";
+    ob_flush();
+    flush();
 }
-echo json_encode($response);
-ob_end_flush(); // Asegurarse de que todo el contenido se envíe al cliente
+/* echo json_encode($response);
+ob_end_flush(); // Asegurarse de que todo el contenido se envíe al cliente */

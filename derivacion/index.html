@@ -110,15 +110,15 @@ function startLoading(file) {
             throw new Error(`Error en la respuesta del servidor: ${response.status}`);
         }
 
-        // Leer el cuerpo de la respuesta solo una vez
-        return response.text();  // Usamos .text() para leer el cuerpo como texto
+        // Leer el cuerpo como texto (siempre)
+        return response.text();  // Solo se lee como texto una vez
     })
     .then(data => {
+        // Intentar convertir el cuerpo de respuesta en JSON
         try {
-            // Intentamos parsear el cuerpo como JSON
-            const jsonData = JSON.parse(data);
+            const jsonData = JSON.parse(data);  // Si es JSON, lo parseamos
 
-            // Si la respuesta es JSON válida
+            // Procesar la respuesta JSON
             if (jsonData.status === 'success') {
                 progress = jsonData.progress;
                 updateProgress(progress);
@@ -128,18 +128,17 @@ function startLoading(file) {
                 statusMessage.textContent = jsonData.message;
             }
         } catch (error) {
-            // Si no es JSON válido, se trata como texto
+            // Si la respuesta no es un JSON válido, manejar como texto o HTML
             console.log('Respuesta no JSON del servidor:', data);
             statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
         }
     })
     .catch(error => {
+        // Captura de errores en la petición o procesamiento de la respuesta
         console.error('Error:', error);
         statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
     });
 }
-
-
 
 function updateProgress(progress) {
     progressBar.style.width = `${progress}%`;

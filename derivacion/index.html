@@ -110,40 +110,16 @@
 
 
         p#statusMessage {
-            color: red;
             max-height: 160px;
             overflow-y: auto;
             padding: 10px;
+        }
+
+        p#statusMessage.has-cont {
+            color: red;
             border: 1px solid #ccc;
-            background-color: #f9f9f9;
+            background-color: #f9f9f9; /* Aplica el color de fondo */
         }
-
-        /* p#statusMessage::-webkit-scrollbar {
-            -webkit-appearance: none;
-        }
-
-        p#statusMessage::-webkit-scrollbar:vertical {
-            width: 10px;
-        }
-
-        p#statusMessage::-webkit-scrollbar-button:increment,
-        p#statusMessage::-webkit-scrollbar-button {
-            display: none;
-        }
-
-        p#statusMessage::-webkit-scrollbar:horizontal {
-            height: 10px;
-        }
-
-        p#statusMessage::-webkit-scrollbar-thumb {
-            background-color: #797979;
-            border-radius: 20px;
-            border: 2px solid #f1f2f3;
-        }
-
-        p#statusMessage::-webkit-scrollbar-track {
-            border-radius: 10px;
-        } */
     </style>
 </head>
 
@@ -286,6 +262,17 @@
                 progressBar.style.width = `${progress}%`;
                 progressText.textContent = `${progress}% completado`;
             }
+
+            const observer = new MutationObserver(() => {
+                if (statusMessage.textContent.trim() !== "") {
+                    statusMessage.classList.add('has-cont');
+                } else {
+                    statusMessage.classList.remove('has-cont');
+                }
+            });
+        // Observa los cambios dentro del contenedor
+        observer.observe(statusMessage, { childList: true, subtree: true });
+
         });
     </script>
 </body>

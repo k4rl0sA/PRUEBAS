@@ -55,14 +55,14 @@ try {
 
                     // Calcular el progreso y enviar actualizaciones al cliente
                     $progress = intval(($nFil / $totalRows) * 100);
-                    if ($progress % 10 === 0) {
+                  /*   if ($progress % 10 === 0) {
                         $response['status'] = 'progress';
                         $response['progress'] = $progress;
                         $response['message'] = "Progreso: $progress%";
                         echo json_encode($response);
                         ob_flush();
                         flush();
-                    }
+                    } */
                     
                     $nFil++;
                 }

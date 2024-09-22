@@ -110,27 +110,29 @@ function startLoading(file) {
             throw new Error(`Error en la respuesta del servidor: ${response.status}`);
         }
 
-        // Leer el cuerpo como texto
-        return response.text();  
+        // Leer el cuerpo de la respuesta una sola vez
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return response.json();  // Si es JSON, lo procesamos como tal
+        } else {
+            return response.text();  // Si no es JSON, lo procesamos como texto
+        }
     })
     .then(data => {
-        console.log('Respuesta recibida del servidor:', data);  // Ver la respuesta en la consola
-
-        try {
-            // Intentar convertir el texto a JSON
-            const jsonData = JSON.parse(data);  
-            if (jsonData.status === 'success') {
-                progress = jsonData.progress;
+        // Si la respuesta es JSON (un objeto), procesamos como tal
+        if (typeof data === 'object') {
+            if (data.status === 'success') {
+                progress = data.progress;
                 updateProgress(progress);
-                statusMessage.textContent = jsonData.message;
+                statusMessage.textContent = data.message;
                 closeModalBtn.style.display = 'inline-block';
             } else {
-                statusMessage.textContent = jsonData.message;
+                statusMessage.textContent = data.message;
             }
-        } catch (error) {
-            // Si no es JSON, mostrar el texto como HTML o mensaje de error
+        } else {
+            // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
+            console.log('Respuesta no JSON del servidor:', data);
             statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
-            console.log('Error al parsear JSON:', error);
         }
     })
     .catch(error => {

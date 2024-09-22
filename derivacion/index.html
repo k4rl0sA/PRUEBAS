@@ -210,44 +210,56 @@
         method: 'POST',
         body: formData
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
+    .then(response => response.body) // Retorna el stream de la respuesta
+.then(body => {
+    const reader = body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let buffer = '';  // Almacenamos lo que vamos recibiendo
+
+    function processText({ done, value }) {
+        if (done) {
+            console.log("Carga completada.");
+            return;
         }
-        return response.body;  // Retorna el stream de la respuesta
-    })
-    .then(body => {
-        const reader = body.getReader();
-        let decoder = new TextDecoder("utf-8");
-        let result = '';
 
-        reader.read().then(function processText({ done, value }) {
-            if (done) {
-                console.log("Carga completada.");
-                return;
+        // Decodificar y mostrar el contenido crudo para depuración
+        buffer += decoder.decode(value, { stream: true });
+        console.log("Contenido crudo recibido:", buffer);
+
+        // Intenta procesar cada JSON por separado
+        let parts = buffer.split('\n');
+        buffer = parts.pop();  // Mantener cualquier fragmento incompleto
+
+        parts.forEach(part => {
+            if (part.trim()) {  // Evitar líneas en blanco
+                try {
+                    const json = JSON.parse(part);  // Procesar el JSON válido
+                    console.log('JSON recibido:', json);
+                    if (json.status === 'progress') {
+                        updateProgress(json.progress);
+                        statusMessage.textContent = json.message;
+                    } else if (json.status === 'success') {
+                        updateProgress(json.progress);
+                        statusMessage.textContent = json.message;
+                        closeModalBtn.style.display = 'inline-block';
+                    } else {
+                        statusMessage.textContent = json.message;
+                    }
+                } catch (error) {
+                    console.error("Error al procesar JSON:", error, part);
+                }
             }
-
-            result += decoder.decode(value, { stream: true });
-            const json = JSON.parse(result);
-
-            if (json.status === 'progress') {
-                updateProgress(json.progress);
-                statusMessage.textContent = json.message;
-            } else if (json.status === 'success') {
-                updateProgress(json.progress);
-                statusMessage.textContent = json.message;
-                closeModalBtn.style.display = 'inline-block';
-            } else {
-                statusMessage.textContent = json.message;
-            }
-
-            return reader.read().then(processText);
         });
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
-    });
+
+        reader.read().then(processText);  // Continuar leyendo el siguiente chunk
+    }
+
+    reader.read().then(processText);
+})
+.catch(error => {
+    console.error('Error:', error);
+    statusMessage.textContent = `Ocurrió un error: ${error.message}`;
+});
 }
 
             function cancelLoading() {

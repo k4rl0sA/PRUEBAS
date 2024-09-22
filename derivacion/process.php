@@ -8,6 +8,7 @@ header('Cache-Control: no-cache'); // Para asegurar que el cliente no cachee la 
 header('Connection: keep-alive');
 
 // Iniciar el buffer de salida
+ob_clean();
 ob_start();
 
 $response = [
@@ -93,5 +94,4 @@ try {
     ob_flush();
     flush();
 }
-/* echo json_encode($response);
-ob_end_flush(); // Asegurarse de que todo el contenido se envíe al cliente */
+?>

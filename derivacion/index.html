@@ -201,49 +201,54 @@
             cancelLoadingBtn.onclick = cancelLoading;
 
             function startLoading(file) {
-                const formData = new FormData(); 
-                    formData.append('archivo', file); 
-                    formData.append('ncol', 9); // Ajustar según el número de columnas 
-                    formData.append('tab', 'usuarios'); // Ajustar según el nombre de la tabla
-                fetch('process.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => {
-                        // Validar si la respuesta es exitosa
-                        if (!response.ok) {
-                            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
-                        }
-                        // Leer el cuerpo de la respuesta una sola vez
-                        const contentType = response.headers.get('content-type');
-                        if (contentType && contentType.includes('application/json')) {
-                            return response.json();  // Si es JSON, lo procesamos como tal
-                        } else {
-                            return response.text();  // Si no es JSON, lo procesamos como texto
-                        }
-                    })
-                    .then(data => {
-                        // Si la respuesta es JSON (un objeto), procesamos como tal
-                        if (typeof data === 'object') {
-                            if (data.status === 'success') {
-                                progress = data.progress;
-                                updateProgress(progress);
-                                statusMessage.textContent = data.message;
-                                closeModalBtn.style.display = 'inline-block';
-                            } else {
-                                statusMessage.textContent = data.message;
-                            }
-                        } else {
-                            // Si la respuesta fue texto (probablemente HTML), lo mostramos en la consola
-                            console.error('Respuesta no JSON del servidor:', data);
-                            statusMessage.textContent = 'Respuesta inesperada del servidor. Consulte la consola para más detalles.';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
-                    });
+    const formData = new FormData();
+    formData.append('archivo', file);
+    formData.append('ncol', 9);  // Ajustar según el número de columnas
+    formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
+
+    fetch('process.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Error en la respuesta del servidor: ${response.status}`);
+        }
+        return response.body;  // Retorna el stream de la respuesta
+    })
+    .then(body => {
+        const reader = body.getReader();
+        let decoder = new TextDecoder("utf-8");
+        let result = '';
+
+        reader.read().then(function processText({ done, value }) {
+            if (done) {
+                console.log("Carga completada.");
+                return;
             }
+
+            result += decoder.decode(value, { stream: true });
+            const json = JSON.parse(result);
+
+            if (json.status === 'progress') {
+                updateProgress(json.progress);
+                statusMessage.textContent = json.message;
+            } else if (json.status === 'success') {
+                updateProgress(json.progress);
+                statusMessage.textContent = json.message;
+                closeModalBtn.style.display = 'inline-block';
+            } else {
+                statusMessage.textContent = json.message;
+            }
+
+            return reader.read().then(processText);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        statusMessage.textContent = `Ocurrió un error durante la carga: ${error.message}`;
+    });
+}
 
             function cancelLoading() {
                 loading = false;

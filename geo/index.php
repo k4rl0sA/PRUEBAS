@@ -1,301 +1,198 @@
 <?php
 ini_set('display_errors','1');
-include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
-?>
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Información Geografica || SIGINF</title>
-<link href="../libs/css/stylePop.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
-<script src="../libs/js/a.js"></script>
-<script src="../libs/js/x.js"></script>
-<script src="../libs/js/d.js"></script>
-<script src="../libs/js/popup.js"></script>
-<script>
-var mod='hog_geoloc';	
-var ruta_app='lib.php';
-
-function csv(b){
-		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
-}
-
-document.onkeyup=function(ev) {
-	ev=ev||window.event;
-	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
-	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
-};
-
-
-function actualizar(){
-	act_lista(mod);
-}
-
-/* function getData(a, ev,i,blo) {
-	if (ev.type == 'click') {
-		var c = document.getElementById(a+'-pro-con');
-		var cmp=c.querySelectorAll('.captura,.bloqueo')
-		if (loader != undefined) loader.style.display = 'block';
-			if (window.XMLHttpRequest)
-				xmlhttp = new XMLHttpRequest();
-			else
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				xmlhttp.onreadystatechange = function () {
-				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-					data =JSON.parse(xmlhttp.responseText);
-					if (loader != undefined) loader.style.display = 'none';
-						console.log(data)
-					}
-				}
-				xmlhttp.open("POST", ruta_app,false);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('a=get&tb='+a+'&id=' + i.id);
-				var rta =data;
-				var data=Object.values(rta);
-				for (i=0;i<cmp.length;i++) {
-					//~ if cmp[i]==27{
-						cmp[i].value=data[i];
-						if(cmp[i].type==='checkbox')cmp[i].checked=false;
-							if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
-								cmp[i].checked=true;
-							}else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
-								cmp[i].value='NO';
-							}
-							for (x=0;x<blo.length;x++) {
-								if(cmp[i].name==blo[x]) cmp[i].disabled = true;
-							}
-				}
-	}
-} */
-
-
-function grabar(tb='',ev){
-  if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  var f=document.getElementsByClassName('valido '+tb);
-   for (i=0;i<f.length;i++) {
-     if (!valido(f[i])) {f[i].focus(); return};
-  }
-	if (tb == 'hog_geoloc') {
-		var ndir = document.getElementById('direccion_nueva'),
-			sec = document.getElementById('sector_catastral'),
-			cox = document.getElementById('cordx'),
-			ver = document.getElementById('vereda'),
-			coy = document.getElementById('cordy');
-		if (sec.value == 2  && ndir.value!=='') {
-			var err='No se puede ingresar una nueva dirección ya que esta no aplica para el sector Catastral,por favor valide e intente nuevamente';		
-			showErr(err,tb);
-			return
-		}else if(sec.value == 2  && (cox.value=='' || coy.value==''|| ver.value=='' )){
-			var err='las Coordenadas ó la Vereda no pueden estar vacias, para el sector Catastral,por favor valide e intente nuevamente';
-			showErr(err,tb);
-			return
-		}
-	}
-	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-	setTimeout(actualizar,500);
-	
-}   
-
-
-function enableAddr(a,b,c,d){
-	const eru= document.querySelectorAll('input.'+b);
-	const eur= document.querySelectorAll('input.'+c);
-	const zon=document.getElementById(d).value;
-	if(zon==='1'){
-		for (i=0; i<eru.length;i++) {
-		if(a.value=='SI'){
-			enaFie(eru[i],false);
-  		}else{
-			enaFie(eru[i],true);
-		}
-		}	
-	}else{
-		for (i=0; i<eur.length;i++) {
-		if(a.value=='SI'){
-			enaFie(eur[i],false);
-  		}else{
-			enaFie(eur[i],true);
-		}
-	}
-	}
-	
-}
-
-function enaFie(ele, flag) {
-	if(ele.type==='checkbox' && ele.checked==true){
-		ele.checked=false;
-	}else{
-		ele.value = '';
-	}
-    ele.disabled = flag;
-    ele.required = !flag;
-    ele.classList.toggle('valido', !flag);
-    ele.classList.toggle('captura', !flag);
-    ele.classList.toggle('bloqueo', flag);
-    flag ? ele.setAttribute('readonly', true) : ele.removeAttribute('readonly');
-}
-
-
-function enabFielSele(a, b, c, d) {
-	for (i = 0; i < c.length; i++) {
-    	var ele = document.getElementById(c[i]);
-    	enaFie(ele, !d.includes(a.value) || !b);
-  	}
-}
-
-
-
-/* function hideExpres(a,b) {
-  var sel = document.getElementById(a);
-  var ele = document.querySelectorAll('#' + mod + '-pro-con .expres');
-  hideSection(sel,ele,b);
-}
-
-function hideSection(a,b,c){
-	for (i = 0; i < b.length; i++) {
-    	b[i].hidden = a.value === '' || c.indexOf(a.value) === -1;
-    	if (b[i].hidden) {
-      		b[i].value = '';
-      		b[i].required = false;
-    	}
-  	}	
-} */
-
-  /* for (i = 0; i < ele.length; i++) {
-    ele[i].hidden = sel.value === '' || d.indexOf(sel.value) === -1;
-    if (ele[i].hidden) {
-      ele[i].value = '';
-      ele[i].required = false;
-    }
-  }
-
-  function showFil(a){
-	desplegar(a+'-fil');
-	if (document.getElementById(a) != undefined) {
-		var w=document.getElementById(a);
-		if(w.classList.contains('col-8')){
-			w.classList.replace('col-8','col');
-		}else{
-			w.classList.replace('col','col-8');
-		}
-		
-	}
-}
-
-function disaFielChec(a, b,c) {
-	for (let i = 0; i < c.length; i++) {
-		let ele = document.getElementById(c[i]);
-		ele.disabled = a.checked ? false : true;
-		ele.required = a.checked ? true : false;
-		// ele.classList.toggle('valido', false);
-		ele.classList.toggle('captura', a.checked ? true : false);
-		ele.classList.toggle('bloqueo', a.checked ? false : true);
-		a.checked ? ele.removeAttribute('readonly'):ele.setAttribute('readonly', true);
-	}
-}
- */
-
-
-/* function load(){
-var a=document.getElementById('tcv');
-hidePanel(a,'SI',5);
-hidePanel(a,'NO',13);
-} */
-
-/* function plegar(){
-	var a='integrantes';
-	var b=['tracui','jefhog','afisss','infsan','tampri','aterut','alepri','matper','salmen','cervas','higora','pobvul','discap','resmed'];
-	for(h=0;h<b.length;h++){
-		plegarPanel(a,b[h]);
-	}
-} */
-
-/* function colorRow(){
-var table = document.getElementById("myTable");
-  var rows = table.getElementsByTagName("tr");
-
-  for (var i = 0; i < rows.length; i++) {
-    rows[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("selected-row");
-      if (current.length > 0) {
-        current[0].classList.remove("selected-row");
-      }
-      this.classList.add("selected-row");
-    });
-  }
-}
- */
-</script>
-</head>
-<body Onload="actualizar();">
-<?php
-
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
+if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
+if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
+else {
+  $rta="";
+  switch ($_POST['a']){
+  case 'csv': 
+    header_csv ($_REQUEST['tb'].'.csv');
+    $rs=array('','');    
+    echo csv($rs,'');
+    die;
+    break;
+  default:
+    eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
+    if (is_array($rta)) json_encode($rta);
+	else echo $rta;
+  }   
+}
 
-$mod='hog_geoloc';
-$hoy = date("Y-m-d");
 
-//  ["usu"]=> string(44) "CARLOS EDUARDO ACEVEDO AREVALO_ADM_5_SDS_EAC_EQU" }
-//$rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-//$usu=divide($rta["responseResult"][0]['usu']);
-/*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
-$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=44 and estado='A' order by 1",'1');
-$localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('AUX','MED') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",$_SESSION['us_sds']);
-$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
-$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
+function lis_geoloc(){
+}
 
-$import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class="campo"><div>Colaborador</div><select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div><div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
-$crea = ($perfil == 'ADM' ||$perfil == 'SUPHOG' ) ? "<li class='icono crear' title='Crear' onclick=\"mostrar('{$mod}','pro');\"></li><li class='icono exportar'      title='Exportar Información General'    Onclick='csv(mod);'></li>":"";
+function focus_geoloc(){
+ return 'geoloc';
+}
+
+
+function men_geoloc(){
+ $rta=cap_menus('geoloc','pro');
+ return $rta;
+}
+
+
+function cap_menus($a,$b='cap',$con='con') {
+  $rta = "";
+  $acc=rol($a);
+  if ($a=='geoloc'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+	// $rta .= "<li class='icono $a crear'  title='Actualizar'   id='".print_r($_REQUEST)."'   Onclick=\"\"></li>";
+  }
+  return $rta;
+}
+
+function cmp_geoloc(){
+	$rta="";
+	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
+	$d='';
+	if ($d==""){$d=$t;}
+	$w='geoloc';
+	$o='deriva';
+	$key='dOC';
+	$c[]=new cmp($o,'e',null,'PREDIO',$w);
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
+	$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25');
+	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
+    $c[]=new cmp('zona','s','3',$d['zona'],$w.' '.$o,'Zona','zona',null,'',false,false,'','col-25');
+	$c[]=new cmp('localidad','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');
+	$c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,'',false,false,'','col-25',false,['bar']);
+    $c[]=new cmp('barrio','s','8',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('sector_catastral','n','6',$d['sector_catastral'],$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,'',false,false,'','col-25');
+    $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,'',false,false,'','col-25');
+    $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,'',false,false,'','col-25');
+    $c[]=new cmp('unidad_habit','n','4',$d['unidad_habit'],$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('direccion','t','50',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-25');
+    $c[]=new cmp('vereda','t','50',$d['vereda'],$w.' '.$o,'Vereda','vereda',null,'',false,false,'','col-25');
+    $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,'',false,false,'','col-25');
+    $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('territorio','t','6',$d['territorio'],$w.' '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
+	
+	$o='infasi';
+	$c[]=new cmp($o,'e',null,'GESTIÓN DEL PREDIO',$w);
+	$c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,'',false,true,'','col-1','enableAddr(this,\'adur\',\'adru\',\'zona\');');//enabFiel(this,true,[adi]);updaAddr(this,false,[\'zona\',\'direccion_nueva\',\'vereda_nueva\',\'cordxn\',\'cordyn\'])
+	$c[]=new cmp('direccion_nueva','t','50',$d['direccion_nueva'],$w.' adur '.$o,'Direccion Nueva','direccion_nueva',null,'',false,false,'','col-25');
+    $c[]=new cmp('vereda_nueva','t','50',$d['vereda_nueva'],$w.' adru '.$o,'Vereda Nueva','vereda_nueva',null,'',true,false,'','col-25');
+    $c[]=new cmp('cordxn','t','15',$d['cordx'],$w.' adru '.$o,'Cordx Nueva','cordx',null,'',true,false,'','col-2');
+    $c[]=new cmp('cordyn','t','15',$d['cordy'],$w.' adru '.$o,'Cordy Nueva','cordy',null,'',true,false,'','col-2');
+	
+	$c[]=new cmp('estado_v','s',2,$d['estado_v'],$w.' '.$o,'estado','estado',null,'',true,true,'','col-3',"enabFielSele(this,true,['motivo_estado'],['5']);");//hideExpres(\'estado_v\',[\'7\']);
+    $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'Motivo de Estado','motivo_estado',null,'',true,false,'','col-3');
+
+ 
+	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	return $rta;
+}
+
+
+function get_person(){
+	// print_r($_POST);
+	$id=divide($_POST['id']);
+	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad,sexo,localidad ,direccion,telefono1,telefono2,telefono3,g.idgeo,v.idviv
+	from personas p
+	LEFT JOIN hog_viv v ON p.vivipersona=v.idviv 
+	LEFT JOIN hog_geo g ON v.idpre=g.idgeo 
+	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+	$info=datos_mysql($sql);
+	if (!$info['responseResult']) {
+		return json_encode (new stdClass);
+	}
+return json_encode($info['responseResult'][0]);
+}
+function opc_zona($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=3 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_upz($id=''){
+	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=7 and estado='A' ORDER BY 1",$id);
+}
+function opc_barrio($id=''){
+	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=20 and estado='A' ORDER BY 1",$id);
+}
+function opc_estado($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=44 and estado='A' ORDER BY 1",$id);
+}
+function opc_motivo_estado($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
+}
+
+
+
+
+function opc_rol($id=''){
+	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 1",$id);
+}
+function opc_asignado($id=''){
+	return opc_sql("SELECT id_usuario,nombre FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND estado='A' ORDER BY 1",$id);
+}
+function opc_rolasignado(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT id_usuario,CONCAT(id_usuario,'-',nombre) FROM usuarios WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}')  AND estado='A' and perfil='".$id[0]."' ORDER BY 1 ASC";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
+function opc_tipo_doc($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_sexo($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_localidad($id=''){
+	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=2 ORDER BY cast(idcatadeta as signed)",$id);
+}
+
+
+function gra_geoloc(){
+	$documento=cleanTxt($_POST['documento']);
+	$asignado = cleanTxt($_POST['asignado']);
+	$predio = cleanTxt($_POST['predio']);
+	$family = cleanTxt($_POST['family']);
+
+	$sql="INSERT INTO derivacion VALUES(NULL, 
+	$documento,
+	$asignado,
+	$predio,
+	$family,
+	{$_SESSION['us_sds']},
+	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	// echo $sql;
+  $rta=dato_mysql($sql);
+  return $rta;
+}
+
+function formato_dato($a,$b,$c,$d){
+ $b=strtolower($b);
+ $rta=$c[$d];
+// $rta=iconv('UTF-8','ISO-8859-1',$rta);
+// var_dump($a);
+// var_dump($c);
+	if ($a=='geoloc' && $b=='acciones'){
+		$rta="<nav class='menu right'>";		
+		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('geoloc','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
+	}
+	if ($a=='adm-lis' && $b=='acciones'){
+		$rta="<nav class='menu right'>";		
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'geoloc',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
+	}
+	
+	
+ return $rta;
+}
+
+function bgcolor($a,$c,$f='c'){
+ $rta="";
+ return $rta;
+}
 ?>
-<form method='post' id='fapp' >
-<div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-	
-	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca" OnChange="actualizar();"></div>
-	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
-	<div class="campo"><div>Predio</div><input class="captura" size=3 id="fpred" name="fpred" OnChange="actualizar();"></div>
-	<div class="campo"><div>Estado</div>
-		<select class="captura" id="festado" name="festado" onChange="actualizar();">'.<?php echo $estados;?></select>
-	</div>
-	<?php echo $import; ?>
-	</div>
-	
-<div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' >LOCALIZACIÓN GEOGRAFICA
-		<nav class='menu left' >
-			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
-			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
-			<?php echo $crea; ?>
-					
-			
-		</nav>
-		<nav class='menu right' >
-			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>
-            <li class='icono cancelar'      title='Salir'            Onclick="location.href='../main/'"></li>
-        </nav>               
-      </div>
-      <div>
-		</div>
-		<span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
-     <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
-	 <div class='contenido' id='cmprstss' ></div>
-</div>			
-		
-<div class='load' id='loader' z-index='0' ></div>
-</form>
-<script>
-	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
-	btnLoad.addEventListener("click", () => {
-	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
-  });
-</script>	
-<div class="overlay" id="overlay" onClick="closeModal();">
-	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
-		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
-		<h3><div class='image' id='<?php echo$mod; ?>-image'></div></h3>
-		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
-	</div>			
-</div>
-</body>

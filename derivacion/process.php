@@ -84,7 +84,7 @@ try {
 
                 fclose($handle);
                 $response['status'] = 'success';
-                $response['message'] = "Se han insertado $ok registros correctamente de $totalRows en Total";
+                $response['message'] = "Se han insertado $ok registros correctamente de " .$totalRows-1." en Total";
                 $response['progress'] = 100;
                 $response['errors'] = $errors;
                 echo json_encode($response) . "\n";

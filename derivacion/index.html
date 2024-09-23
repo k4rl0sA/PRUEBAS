@@ -239,57 +239,49 @@
             function startLoading(file) {
     const formData = new FormData();
     formData.append('archivo', file);
-    formData.append('ncol', 9);  // Ajustar según el número de columnas
-    formData.append('tab', 'usuarios');  // Ajustar según el nombre de la tabla
+    formData.append('ncol', 9);
+    formData.append('tab', 'usuarios');
 
     fetch('process.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.body) // Retorna el stream de la respuesta
+    .then(response => response.body)
 .then(body => {
     const reader = body.getReader();
     const decoder = new TextDecoder("utf-8");
-    let buffer = '';  // Almacenamos lo que vamos recibiendo
+    let buffer = '';
 
     function processText({ done, value }) {
         if (done) {
             console.log("Carga completada.");
             return;
         }
-
-        // Decodificar y mostrar el contenido crudo para depuración
         buffer += decoder.decode(value, { stream: true });
         console.log("Contenido crudo recibido:", buffer);
-
-        // Intenta procesar cada JSON por separado
         let parts = buffer.split('\n');
-        buffer = parts.pop();  // Mantener cualquier fragmento incompleto
-
+        buffer = parts.pop();
         const errorsAll = []; 
         let endInd =  parts.length - 1;
-
-        parts.forEach((part, index) => {  // Corrección aquí, paréntesis alrededor de (part, index)
-    if (part.trim()) {  // Evitar líneas en blanco
+        parts.forEach((part, index) => {
+    if (part.trim()) {
         try {
-            const json = JSON.parse(part);  // Procesar el JSON válido
+            const json = JSON.parse(part);
             console.log('JSON recibido:', json);
             
             if (json.status === 'progress') {
                 updateProgress(json.progress);
-                statusMessage.textContent = json.message + "\n"; // Asignar el mensaje temporal
-                errorsAll.push(json.errors); // Acumular errores
+                statusMessage.textContent = json.message + "\n";
+                errorsAll.push(json.errors);
+                statusMessage.textContent+=json.errors;
             } else if (json.status === 'success') {
                 updateProgress(json.progress);
-                errorsAll.push(json.errors); // Acumular errores
+                errorsAll.push(json.errors);
                 closeModalBtn.style.display = 'inline-block';
             } else {
-                errorsAll.push(json.errors); // Acumular errores para otros estados
+                errorsAll.push(json.errors);
             }
-
-            // Si es el último elemento
             if (index === endInd) {
-                // Mostrar el mensaje y los errores acumulados
                 statusMessage.textContent = json.message + "\n" + errorsAll.join("\n");
             }
 

@@ -120,12 +120,30 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9; /* Aplica el color de fondo */
         }
-        .jFiler {
-            font-family: sans-serif;
-            font-size: 14px;
-            color: #494949;
+        .file-upload-container {
+          border: 2px dashed #ccc;
+          padding: 50px;
+          text-align: center;
+          cursor: pointer;
         }
-
+        .file-upload-container:hover {
+          background-color: #f2f2f2;
+        }
+        .file-upload-icon {
+          font-size: 50px;
+          color: #ccc;
+        }
+        .file-upload-text {
+          margin-top: 10px;
+        }
+        .file-upload-button {
+          background-color: #008CBA;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+          margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -137,26 +155,7 @@
             <span class="modal-close" id="closeModal">&times;</span>
             <h2>Cargando Registros CSV</h2>
             <p>Por favor, seleccione un archivo CSV para cargar a la base de datos.</p>
-            
-
-            <div class="file-upload-container">
-                <div id="drop-zone" class="drop-zone">
-                    <svg class="cloud-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-                        <path d="M17 14v6"/>
-                        <path d="m14 17 3 3 3-3"/>
-                    </svg>
-                    <p>Drag & Drop files here</p>
-                    <p class="or-text">or</p>
-                    <button id="browse-button" class="browse-button">Browse Files</button>
-                </div>
                 <input type="file" id="fileInput" accept=".csv" style="display: none;">
-                <p id="file-name" class="file-name"></p>
-            </div>
-
-
-                
-            
             <div class="progress-container">
                 <div id="progressBar" class="progress-bar"></div>
             </div>

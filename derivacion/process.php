@@ -1,6 +1,5 @@
 <?php
 ini_set("display_errors", 1); 
-session_start(); // Asegúrate de iniciar la sesión
 header('Content-Type: application/json');
 
 // Enviar headers para desactivar buffering en algunos navegadores

@@ -247,6 +247,7 @@ function startLoading(file) {
         try {
             const json = JSON.parse(part);
             console.log('JSON recibido:', json);
+            statusMessage.textContent = json.errors + "\n";
             if (json.status === 'progress') {
                 updateProgress(json.progress);
                 statusMessage.textContent = json.message + "\n";

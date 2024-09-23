@@ -177,12 +177,6 @@ $mod='geoloc';
 		
 <div class='load' id='loader' z-index='0' ></div>
 </form>
-<script>
-	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
-	btnLoad.addEventListener("click", () => {
-	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
-  });
-</script>	
 <div class="overlay" id="overlay" onClick="closeModal();">
 	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
 		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>

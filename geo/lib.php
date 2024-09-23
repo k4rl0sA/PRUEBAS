@@ -58,7 +58,7 @@ function cmp_geoloc(){
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
 	$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$key.' '.$p,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',false,false);
-	$c[]=new cmp('zona1','h','3',$d['zona'],$w.' '.$o,'Zona','zona',null,'',false,false,'','col-25');
+	$c[]=new cmp('zona','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');
     $c[]=new cmp('zona','s','3',$d['zona'],$w.' '.$o,'Zona','zona',null,'',false,false,'','col-25');
 	$c[]=new cmp('localidad','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');
 	$c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,'',false,false,'','col-25',false,['bar']);

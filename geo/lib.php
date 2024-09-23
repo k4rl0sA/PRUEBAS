@@ -51,11 +51,11 @@ function cmp_geoloc(){
 	$d='';
 	if ($d==""){$d=$t;}
 	$w='geoloc';
-	$o='deriva';
-	$key='dOC';
+	$o='geo';
+	$key='pRE';
 	$c[]=new cmp($o,'e',null,'PREDIO',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25');
+	$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
     $c[]=new cmp('zona','s','3',$d['zona'],$w.' '.$o,'Zona','zona',null,'',false,false,'','col-25');
 	$c[]=new cmp('localidad','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');

@@ -1,5 +1,6 @@
 <?php
 ini_set("display_errors", 1); 
+session_start(); // Asegúrate de iniciar la sesión
 header('Content-Type: application/json');
 
 // Enviar headers para desactivar buffering en algunos navegadores
@@ -17,8 +18,10 @@ $response = [
     'progress' => 0,
     'errors' => []
 ];
+
 try {
     require_once "../lib/php/gestion.php";
+    // Se debe usar consultas preparadas para mayor seguridad
     $perfil = datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='" . $_SESSION["us_sds"] . "'");
     
     if (in_array($perfil['responseResult'][0]['perfil'], ['GEO', 'ADM', 'TECFAM', 'SUPHOG'])) {
@@ -84,7 +87,7 @@ try {
 
                 fclose($handle);
                 $response['status'] = 'success';
-                $response['message'] = "Se han insertado $ok registros correctamente de " .$totalRows-1." en Total";
+                $response['message'] = "Se han insertado $ok registros correctamente de " . ($totalRows - 1) . " en Total";
                 $response['progress'] = 100;
                 $response['errors'] = $errors;
                 echo json_encode($response) . "\n";
@@ -105,5 +108,6 @@ try {
     ob_flush();
     flush();
 }
+
 echo json_encode($response) . "\n";
 ?>

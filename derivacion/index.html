@@ -236,7 +236,7 @@
 
             cancelLoadingBtn.onclick = cancelLoading;
 
-            function startLoading(file) {
+function startLoading(file) {
     const formData = new FormData();
     formData.append('archivo', file);
     formData.append('ncol', 9);
@@ -247,10 +247,10 @@
         body: formData
     })
     .then(response => response.body)
-.then(body => {
-    const reader = body.getReader();
-    const decoder = new TextDecoder("utf-8");
-    let buffer = '';
+    .then(body => {
+        const reader = body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let buffer = '';
 
     function processText({ done, value }) {
         if (done) {
@@ -268,7 +268,6 @@
         try {
             const json = JSON.parse(part);
             console.log('JSON recibido:', json);
-            
             if (json.status === 'progress') {
                 updateProgress(json.progress);
                 statusMessage.textContent = json.message + "\n";
@@ -284,16 +283,13 @@
             if (index === endInd) {
                 statusMessage.textContent = json.message + "\n" + errorsAll.join("\n");
             }
-
         } catch (error) {
             console.error("Error al procesar JSON:", error, part);
         }
     }
 });
-
         reader.read().then(processText);  // Continuar leyendo el siguiente chunk
     }
-
     reader.read().then(processText);
 })
 .catch(error => {
@@ -301,38 +297,32 @@
     statusMessage.textContent = `Ocurrió un error: ${error.message}`;
 });
 }
-
-            function cancelLoading() {
-                loading = false;
-                resetProgress();
-                statusMessage.textContent = 'Carga cancelada por el usuario.';
-            }
-
-            function resetProgress() {
-                progress = 0;
-                updateProgress(progress);
-                startLoadingBtn.style.display = 'inline-block';
-                cancelLoadingBtn.style.display = 'none';
-                closeModalBtn.style.display = 'none';
-            }
-
-            function updateProgress(newProgress) {
-                progress = newProgress;
-                progressBar.style.width = `${progress}%`;
-                progressText.textContent = `${progress}% completado`;
-            }
-
-            const observer = new MutationObserver(() => {
-                if (statusMessage.textContent.trim() !== "") {
-                    statusMessage.classList.add('has-cont');
-                } else {
-                    statusMessage.classList.remove('has-cont');
-                }
-            });
-        // Observa los cambios dentro del contenedor
-        observer.observe(statusMessage, { childList: true, subtree: true });
-
-        });
+    function cancelLoading() {
+        loading = false;
+        resetProgress();
+        statusMessage.textContent = 'Carga cancelada por el usuario.';
+    }
+    function resetProgress() {
+        progress = 0;
+        updateProgress(progress);
+        startLoadingBtn.style.display = 'inline-block';
+        cancelLoadingBtn.style.display = 'none';
+        closeModalBtn.style.display = 'none';
+    }
+    function updateProgress(newProgress) {
+        progress = newProgress;
+        progressBar.style.width = `${progress}%`;
+        progressText.textContent = `${progress}% completado`;
+    }
+    const observer = new MutationObserver(() => {
+        if (statusMessage.textContent.trim() !== "") {
+            statusMessage.classList.add('has-cont');
+        } else {
+            statusMessage.classList.remove('has-cont');
+        }
+    });
+    observer.observe(statusMessage, { childList: true, subtree: true });
+});
     </script>
 </body>
 </html>

@@ -95,7 +95,7 @@ function cmp_geoloc(){
 function get_predio(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
+	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
  	FROM `hog_geo` G 
   	WHERE G.idgeo ='".$id[0]."'";
 	$info=datos_mysql($sql);

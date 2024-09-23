@@ -181,7 +181,7 @@
 
             cancelLoadingBtn.onclick = cancelLoading;
 
-    function startLoading(file) {
+            function startLoading(file) {
     const formData = new FormData();
     formData.append('archivo', file);
     formData.append('ncol', 9);  // Ajustar según el número de columnas
@@ -222,20 +222,14 @@
             
             if (json.status === 'progress') {
                 updateProgress(json.progress);
-                statusMessage.textContent = json.message + "\n";
-                if (json.errors) {
-                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
-                }
+                statusMessage.textContent = json.message + "\n"; // Asignar el mensaje temporal
+                errorsAll.push(json.errors); // Acumular errores
             } else if (json.status === 'success') {
                 updateProgress(json.progress);
-                if (json.errors) {
-                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
-                }
+                errorsAll.push(json.errors); // Acumular errores
                 closeModalBtn.style.display = 'inline-block';
             } else {
-                if (json.errors) {
-                    errorsAll.push(`Fila ${index + 1}: ${json.errors}\n`); 
-                }
+                errorsAll.push(json.errors); // Acumular errores para otros estados
             }
 
             // Si es el último elemento

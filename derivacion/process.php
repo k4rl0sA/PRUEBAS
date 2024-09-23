@@ -59,7 +59,7 @@ try {
                         }
                     }else{
                         if(count($campo) != $ncol){
-                            $errors[] = "El archivo tiene un número incorrecto de columnas, con relacion a la tabla.";
+                            $errors[] = "El archivo tiene un número incorrecto de columnas, valida la información";
                             break;
                         }
                     }

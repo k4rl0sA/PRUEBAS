@@ -160,7 +160,7 @@ $mod='geoloc';
 <div class='col-0 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >ASIGNACIÓN GEOGRAFICA
 		<nav class='menu left' >
-			<li class='icono Asignar_Predio' title='Crear' onclick="mostrar('geoloc','pro');"></li>
+			<li class='icono crear' title='Asignar Predio' onclick="mostrar('geoloc','pro');"></li>
 			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
 		</nav>
 		<nav class='menu right' >

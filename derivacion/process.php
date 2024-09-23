@@ -41,16 +41,26 @@ try {
                 $totalRows = count(file($file));
                 while(($campo = fgetcsv($handle, 1024, ",")) !== false) {
                     if ($nFil !== 1) {
-                        $sql = "INSERT INTO " . $tab . " VALUES(";
-                        for ($i = 0; $i < $ncol; $i++) {
-                            $sql .= ($i + 1 == $ncol) ? "'" . trim($campo[$i]) . "'" : "'" . trim($campo[$i]) . "',";
+                        if(count($campo) != $ncol){
+                            $errors[] = "La fila $nFil tiene un número incorrecto de columnas.";
+                            break;
+                        }else{
+                            $sql = "INSERT INTO " . $tab . " VALUES(";
+                            for ($i = 0; $i < $ncol; $i++) {
+                                $sql .= ($i + 1 == $ncol) ? "'" . trim($campo[$i]) . "'" : "'" . trim($campo[$i]) . "',";
+                            }
+                            $sql .= ");";
+                            $r = dato_mysql($sql);
+                            if (preg_match('/Error/i', $r)) {
+                                $errors[] = "Fila $nFil: " . $r;
+                            } else {
+                                $ok++;
+                            }
                         }
-                        $sql .= ");";
-                        $r = dato_mysql($sql);
-                        if (preg_match('/Error/i', $r)) {
-                            $errors[] = "Fila $nFil: " . $r;
-                        } else {
-                            $ok++;
+                    }else{
+                        if(count($campo) != $ncol){
+                            $errors[] = "El archivo tiene un número incorrecto de columnas, con relacion a la tabla.";
+                            break;
                         }
                     }
 
@@ -74,7 +84,7 @@ try {
 
                 fclose($handle);
                 $response['status'] = 'success';
-                $response['message'] = "Se han insertado $ok registros correctamente.";
+                $response['message'] = "Se han insertado $ok registros correctamente de $totalRows en Total";
                 $response['progress'] = 100;
                 $response['errors'] = $errors;
                 echo json_encode($response) . "\n";
@@ -95,4 +105,5 @@ try {
     ob_flush();
     flush();
 }
+echo json_encode($response) . "\n";
 ?>

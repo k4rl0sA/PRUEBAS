@@ -120,29 +120,51 @@
             border: 1px solid #ccc;
             background-color: #f9f9f9; /* Aplica el color de fondo */
         }
-        .file-upload-container {
-          border: 2px dashed #ccc;
-          padding: 50px;
-          text-align: center;
-          cursor: pointer;
+        .file-upload {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            position: relative;
         }
-        .file-upload-container:hover {
-          background-color: #f2f2f2;
+        .file-upload input[type="file"] {
+            display: none;
         }
-        .file-upload-icon {
-          font-size: 50px;
-          color: #ccc;
+        .file-upload .cloud-icon {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/892/892692.png'); /* Aquí puedes cambiar por tu propia imagen */
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
         }
-        .file-upload-text {
-          margin-top: 10px;
+        .file-upload p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
         }
-        .file-upload-button {
-          background-color: #008CBA;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          cursor: pointer;
-          margin-top: 20px;
+        .file-upload span {
+            font-size: 14px;
+            color: #999;
+        }
+        .file-upload .browse-btn {
+            background-color: #00bfa5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .file-upload .browse-btn:hover {
+            background-color: #008f7a;
         }
     </style>
 </head>
@@ -155,14 +177,17 @@
             <span class="modal-close" id="closeModal">&times;</span>
             <h2>Cargando Registros CSV</h2>
             <p>Por favor, seleccione un archivo CSV para cargar a la base de datos.</p>
-            <label for="fileInput" class="file-upload-container">
-                <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
-                <p class="file-upload-text">Drag & Drop files here</p>
+
+            <div class="file-upload">
+                <input type="file" id="fileInput" accept=".csv" />
+                <i class="cloud-icon"></i>
+                <p>Drag & Drop files here</p>
                 <span>or</span>
-                <button class="file-upload-button">Browse Files</button>
-                <input type="file" id="fileInput" accept=".csv" style="display: none;">
-              </label>
-                
+                <button type="button" class="browse-btn" onclick="document.getElementById('fileInput').click();">
+                    Browse Files
+                </button>
+            </div>
+
             <div class="progress-container">
                 <div id="progressBar" class="progress-bar"></div>
             </div>

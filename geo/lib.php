@@ -91,7 +91,7 @@ function cmp_geoloc(){
 }
 
 
-function get_person(){
+function get_predio(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
 	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad,sexo,localidad ,direccion,telefono1,telefono2,telefono3,g.idgeo,v.idviv

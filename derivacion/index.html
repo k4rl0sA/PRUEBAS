@@ -203,23 +203,23 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         
-        const fileInput = document.getElementById('fileInput'),
-        startLoadingBtn = document.getElementById('startLoading');
+        const fileInput = document.getElementById('fileInput');
 
     startLoadingBtn.onclick = () => {
     	const file = fileInput.files[0];
 	    if (file) {
-    	    startLoading(file);
+            let ncol=9,tab='usuarios';
+    	    startLoading(file,ncol,tab);
         } else {
     	    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
         }
     };
 
-function startLoading(file) {
+/* function startLoading(file,ncol,tab) {
     const formData = new FormData();
     formData.append('archivo', file);
-    formData.append('ncol', 9);
-    formData.append('tab', 'usuarios');
+    formData.append('ncol', ncol);
+    formData.append('tab', tab);
 
     fetch('process.php', {
         method: 'POST',
@@ -276,7 +276,7 @@ function startLoading(file) {
     console.error('Error:', error);
     statusMessage.textContent = `Ocurrió un error: ${error.message}`;
 });
-}
+} */
     
     
 });

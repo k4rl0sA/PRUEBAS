@@ -214,72 +214,7 @@
         } else {
     	    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
         }
-    };
-
-/* function startLoading(file,ncol,tab) {
-    const formData = new FormData();
-    formData.append('archivo', file);
-    formData.append('ncol', ncol);
-    formData.append('tab', tab);
-
-    fetch('process.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.body)
-    .then(body => {
-        const reader = body.getReader();
-        const decoder = new TextDecoder("utf-8");
-        let buffer = '';
-
-    function processText({ done, value }) {
-        if (done) {
-            console.log("Carga completada.");
-            return;
-        }
-        buffer += decoder.decode(value, { stream: true });
-        console.log("Contenido crudo recibido:", buffer);
-        let parts = buffer.split('\n');
-        buffer = parts.pop();
-        const errorsAll = []; 
-        let endInd =  parts.length - 1;
-        parts.forEach((part, index) => {
-    if (part.trim()) {
-        try {
-            const json = JSON.parse(part);
-            console.log('JSON recibido:', json);
-            statusMessage.textContent = json.errors + "\n";
-            if (json.status === 'progress') {
-                updateProgress(json.progress);
-                statusMessage.textContent = json.message + "\n";
-                errorsAll.push(json.errors);
-                statusMessage.textContent+=json.errors;
-            } else if (json.status === 'success') {
-                updateProgress(json.progress);
-                errorsAll.push(json.errors);
-                closeModalBtn.style.display = 'inline-block';
-            } else {
-                errorsAll.push(json.errors);
-            }
-            if (index === endInd) {
-                statusMessage.textContent = json.message + "\n" + errorsAll.join("\n");
-            }
-        } catch (error) {
-            console.error("Error al procesar JSON:", error, part);
-        }
-    }
-});
-        reader.read().then(processText);  // Continuar leyendo el siguiente chunk
-    }
-    reader.read().then(processText);
-})
-.catch(error => {
-    console.error('Error:', error);
-    statusMessage.textContent = `Ocurrió un error: ${error.message}`;
-});
-} */
-    
-    
+    };   
 });
     </script>
 </body>

@@ -30,7 +30,7 @@ try {
             if (strtolower(end($ext)) == "csv") {
                 $handle = fopen($file, "r");
                 if ($handle === FALSE) {
-                    $response['message'] = "No se pudo abrir el archivo.";
+                    $response['errors'] = "No se pudo abrir el archivo.";
                     echo json_encode($response);
                     exit;
                 }
@@ -93,20 +93,19 @@ try {
                 ob_flush();
                 flush();
             } else {
-                $response['message'] = "El archivo tiene una extensión no válida.";
+                $response['errors'] = "El archivo tiene una extensión no válida.";
             }
         } else {
-            $response['message'] = "No se ha subido ningún archivo.";
+            $response['errors'] = "No se ha subido ningún archivo.";
         }
     } else {
-        $response['message'] = "No tiene permisos para realizar esta acción.";
+        $response['errors'] = "No tiene permisos para realizar esta acción.";
     }
 } catch (Throwable $e) {
-    $response['message'] = "Error: " . $e->getMessage();
+    $response['errors'] = "Error: " . $e->getMessage();
     echo json_encode($response) . "\n";
     ob_flush();
     flush();
 }
-
 echo json_encode($response) . "\n";
 ?>

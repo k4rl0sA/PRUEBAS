@@ -203,13 +203,14 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
         
-        const fileInput = document.getElementById('fileInput');
+        const fileInput = document.getElementById('fileInput'),
+        startLoadingBtn = document.getElementById('startLoading');
 
     startLoadingBtn.onclick = () => {
     	const file = fileInput.files[0];
 	    if (file) {
-            let ncol=9,tab='usuarios';
-    	    startLoading(file,ncol,tab);
+            let b=9,c='usuarios',d='process.php';
+    	    startLoading(file,b,c,d);
         } else {
     	    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
         }

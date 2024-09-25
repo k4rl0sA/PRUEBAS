@@ -576,7 +576,8 @@ h2 {
   text-align: center;
   letter-spacing: -0.025em;
   font-weight: 600;
-  color: #333;
+  color: var(--text-color);
+  font-family: 'Poiret One';
 }
 
 .modal-content p {

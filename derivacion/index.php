@@ -413,6 +413,34 @@ function badgeFilter(x) {
 				<div class="progress"></div>
 			</div>
 		</div>
+
+		<div id="modal" class="modal">
+        	<div class="modal-content">
+        	    <span class="modal-close" id="closeModal">&times;</span>
+        	    <h2>Cargar Registros</h2>
+        	    <p>Por favor, seleccione un archivo CSV para cargar a la base de datos.</p>
+
+        	    <div class="file-upload">
+        	        <input type="file" id="fileInput" accept=".csv" />
+        	        <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+        	        <p id="file-name">Selecciona un archivo aquí</p>
+        	        <button type="button" class="browse-btn" onclick="document.getElementById('fileInput').click();">
+        	            Examinar
+        	        </button>
+        	    </div>
+
+        	    <div class="progress-container">
+        	        <div id="progressBar" class="progress-bar"></div>
+        	    </div>
+        	    <p id="progressText">0% completado</p>
+        	    <p id="statusMessage"></p>
+        	    <div class="button-container">
+        	        <button id="startLoading">Iniciar Carga</button>
+        	        <button id="cancelLoading" style="display: none;">Cancelar</button>
+        	        <button id="closeModal" style="display: none;">Cerrar</button>
+        	    </div>
+        	</div>
+    	</div>
 			
 
 		<!-- <div class="popup" id="popup" z-index="0" onClick="closeModal();">
@@ -426,6 +454,26 @@ function badgeFilter(x) {
 		</div> -->
 	
 	<script>
-		
+		document.addEventListener('DOMContentLoaded', () => {
+        	const fileInput = document.getElementById('fileInput'),
+        		startLoadingBtn = document.getElementById('startLoading');
+    
+			startLoadingBtn.onclick = async () => {
+    			const file = fileInput.files[0];
+    			if (file) {
+        			try {
+        	    		const userData = await getJSON('get', 'imp', 0, 'lib.php');
+        	    		console.log(userData);
+        	    		// Luego llamas a startImport con los parámetros adecuados
+        	    		startImport(file, b, c, d);
+        			} catch (error) {
+        			    console.error('Error al obtener los datos: ', error);
+        			    statusMessage.textContent = 'Error al procesar la solicitud.';
+        			}
+    			} else {
+        			statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
+    			}
+			};
+		});
 	</script>
 </body>

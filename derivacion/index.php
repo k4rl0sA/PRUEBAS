@@ -19,7 +19,7 @@ if (isset($acc['crear']) && $acc['crear'] == 'SI') {
     $btns .= '<button class="add-btn" data-mod='.$mod.' title="Nuevo"><i class="fas fa-plus"></i></button>';
 }
 if (isset($acc['importar']) && $acc['importar'] == 'SI') {
-    $btns .= '<button class="upload-btn" data-mod='.$mod.' title="Importar"><i class="fas fa-upload"></i></button>';
+    $btns .= '<button id="openModalBtn" class="upload-btn" data-mod='.$mod.' title="Importar"><i class="fas fa-upload"></i></button>';
 }
 
 // Para depurar: imprimir el contenido de $acc
@@ -430,7 +430,7 @@ function badgeFilter(x) {
         	    </div>
 
         	    <div class="progress-container">
-        	        <div id="progressBar" class="progress-bar"></div>
+				id="openModalBtn"       <div id="progressBar" class="progress-bar"></div>
         	    </div>
         	    <p id="progressText">0% completado</p>
         	    <p id="statusMessage"></p>

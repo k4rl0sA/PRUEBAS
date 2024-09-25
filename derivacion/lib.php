@@ -133,7 +133,7 @@ function focus_deriva(){
 
 	function imp_deriva(){
 		$id=$_POST['id'];
-		$info['responseResult']
+		// $info['responseResult'];
 		/* if ($_POST['id']=== 0 ) {
 			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
 				from personas
@@ -145,7 +145,7 @@ function focus_deriva(){
 		}else{
 
 		} */
-	return json_encode($info['responseResult'][0]);	 */
+	return json_encode($info['responseResult'][0]);
 	}
 
 	function btn_deriva(){

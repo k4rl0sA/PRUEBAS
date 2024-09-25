@@ -430,7 +430,7 @@ function badgeFilter(x) {
         	    </div>
 
         	    <div class="progress-container">
-				id="openModalBtn"       <div id="progressBar" class="progress-bar"></div>
+				<div id="progressBar" class="progress-bar"></div>
         	    </div>
         	    <p id="progressText">0% completado</p>
         	    <p id="statusMessage"></p>

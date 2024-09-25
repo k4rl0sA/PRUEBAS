@@ -19,7 +19,7 @@ if (isset($acc['crear']) && $acc['crear'] == 'SI') {
     $btns .= '<button class="add-btn" data-mod='.$mod.' title="Nuevo"><i class="fas fa-plus"></i></button>';
 }
 if (isset($acc['importar']) && $acc['importar'] == 'SI') {
-    $btns .= '<button id="openModalBtn" class="upload-btn" data-mod='.$mod.' title="Importar"><i class="fas fa-upload"></i></button>';
+    $btns .= '<button id="openModal" class="upload-btn" data-mod='.$mod.' title="Importar"><i class="fas fa-upload"></i></button>';
 }
 
 // Para depurar: imprimir el contenido de $acc
@@ -280,7 +280,7 @@ button:hover {
             // Para inputs normales o selects, verificamos si tienen un valor
             if (elemento.value.trim() !== '') {
                 contador++;
-            }
+            }openModal
         }
     });
     

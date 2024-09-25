@@ -560,7 +560,7 @@ h2 {
 }
 
 .modal-content {
-  background-color: var(--body-color);
+  background-color: var(--primary-color-light);
   margin: 15% auto;
   padding: 20px;
   border-radius: 10px;
@@ -583,6 +583,8 @@ h2 {
 .modal-content p {
   color: var(--text-color);
   text-align: center;
+  font-family: 'Play';
+  margin: 1rem;
 }
 
 .progress-container {
@@ -617,7 +619,7 @@ h2 {
 .modal-close {
   font-size: 2.5rem;
   position: absolute;
-  top: 10px;
+  top: 0;
   right: 10px;
   color: var(--text-color);
   cursor: pointer;
@@ -647,7 +649,7 @@ p#statusMessage.has-cont {
   align-items: center;
   justify-content: center;
   padding: 2.5rem;
-  height: 5rem;
+  height: 10rem;
   text-align: center;
   position: relative;
   background-color:#f4f4f4;

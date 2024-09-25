@@ -210,7 +210,7 @@ button:hover {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Crear Cita || SIGREV</title>
-	<link rel="stylesheet" href="../lib/css/app.css?v=4.0">
+	<link rel="stylesheet" href="../lib/css/app.css?v=5.0">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
 	<script src="../lib/js/main.js?v=2.0"></script>
 	<script src="../lib/js/d.js"></script>

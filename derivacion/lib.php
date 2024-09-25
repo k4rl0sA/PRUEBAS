@@ -1,7 +1,7 @@
 <?php
 require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
-var_dump($_POST['a'].'-'.$_POST['tb']);
+// var_dump($_POST['a'].'-'.$_POST['tb']);
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {
     http_response_code(401);
@@ -127,25 +127,8 @@ function focus_deriva(){
 			$id=divide($_POST['id']);
 			$sql="SELECT * FROM derivaciones WHERE id_deriva='".$id[0]."'";
 			$info=datos_mysql($sql);
-			return imp_deriva$info['responseResult'][0];		
+			return $info['responseResult'][0];		
 		} 
-	}
-
-	function imp_deriva(){
-		$id=$_POST['id'];
-		$id = ($_POST['id']) ? 0 : '' ;
-		if ($_POST['id']=== 0 ) {
-			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
-				from personas
-				WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-			$info=datos_mysql($sql);
-			if (!$info['responseResult']) {
-				return json_encode (new stdClass);
-			}	
-		}else{
-
-		}
-	return json_encode($info['responseResult'][0]);	
 	}
 
 	function btn_deriva(){

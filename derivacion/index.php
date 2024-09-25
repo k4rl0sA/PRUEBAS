@@ -148,7 +148,7 @@ if (isset($acc['importar']) && $acc['importar'] == 'SI') {
 }
 
 @keyframes progress {
-    100% {
+    100% {fa-solid fa-location-dot icon
         right: 100%;
     }
 }
@@ -210,7 +210,7 @@ button:hover {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Crear Cita || SIGREV</title>
-	<link rel="stylesheet" href="../lib/css/app.css?v=1.11">
+	<link rel="stylesheet" href="../lib/css/app.css?v=2.0">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
 	<script src="../lib/js/main.js?v=2.0"></script>
 	<script src="../lib/js/d.js"></script>

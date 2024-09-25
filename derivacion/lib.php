@@ -1,7 +1,7 @@
 <?php
 require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
-// var_dump($_POST['a'].'-'.$_POST['tb']);
+var_dump($_POST['a'].'-'.$_POST['tb']);
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {
     http_response_code(401);

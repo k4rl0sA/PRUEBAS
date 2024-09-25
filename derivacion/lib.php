@@ -96,7 +96,7 @@ function focus_deriva(){
 	$w='deriva';
 	$uPd = $_REQUEST['id']=='0' ? true : false;
 	$d=get_deriva(); 
-	// var_dump($d);
+	var_dump($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
 	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');

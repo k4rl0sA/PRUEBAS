@@ -96,7 +96,7 @@ function focus_deriva(){
 	$w='deriva';
 	$uPd = $_REQUEST['id']=='0' ? true : false;
 	$d=get_deriva(); 
-	// var_dump($d);
+	//var_dump($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
 	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');
@@ -135,7 +135,6 @@ function focus_deriva(){
 		$id=$_POST['id'];
 		$id = ($_POST['id']) ? 0 : '' ;
 		if ($_POST['id']=== 0 ) {
-			$info['responseResult']
 			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
 				from personas
 				WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";

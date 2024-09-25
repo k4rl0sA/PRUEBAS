@@ -206,16 +206,35 @@
         const fileInput = document.getElementById('fileInput'),
         startLoadingBtn = document.getElementById('startLoading');
 
-    startLoadingBtn.onclick = () => {
+  /*   startLoadingBtn.onclick = () => {
     	const file = fileInput.files[0];
 	    if (file) {
+            const userData = getJSON('get','imp',0,'lib.php');
             let b=9,c='usuarios',d='process.php';
     	    startImport(file,b,c,d);
         } else {
     	    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
         }
-    };   
+    };   */ 
+
+    startLoadingBtn.onclick = async () => {
+    const file = fileInput.files[0];
+    if (file) {
+        try {
+            const userData = await getJSON('get', 'imp', 0, 'lib.php');
+            console.log(userData);
+            // Luego llamas a startImport con los parámetros adecuados
+            startImport(file, b, c, d);
+        } catch (error) {
+            console.error('Error al obtener los datos: ', error);
+            statusMessage.textContent = 'Error al procesar la solicitud.';
+        }
+    } else {
+        statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
+    }
+};
+
 });
-    </script>
+</script>
 </body>
 </html>

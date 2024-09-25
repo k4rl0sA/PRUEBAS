@@ -221,8 +221,6 @@ button:hover {
 		var mod = 'deriva';
 		var ruta_app = 'lib.php';
 
-		
-
 		function actualizar() {
 			event.preventDefault();
 			act_lista(mod);

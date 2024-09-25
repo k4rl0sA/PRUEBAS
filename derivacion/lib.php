@@ -131,6 +131,23 @@ function focus_deriva(){
 		} 
 	}
 
+	function imp_deriva(){
+		$id=$_POST['id'];
+		$id = ($_POST['id']) ? 0 : '' ;
+		if ($_POST['id']=== 0 ) {
+			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
+				from personas
+				WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+			$info=datos_mysql($sql);
+			if (!$info['responseResult']) {
+				return json_encode (new stdClass);
+			}	
+		}else{
+
+		}
+	return json_encode($info['responseResult'][0]);	
+	}
+
 	function btn_deriva(){
 		print_r(acceBtns('derivacion'));
 		echo json_encode(acceBtns('derivacion'));

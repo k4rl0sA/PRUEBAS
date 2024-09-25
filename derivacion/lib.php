@@ -133,7 +133,10 @@ function focus_deriva(){
 
 	function imp_deriva(){
 		$id=$_POST['id'];
-		// [["id_deriva"]=> "1", ["documento"]=> string(8) "80811594" ["tipo_doc"]=> string(2) "CC" ["predio"]=> string(6) "452147" ["derivado_colaborador"]=> string(1) "1" ["realizado"]=> string(2) "NO" ["observacion"]=> string(1) "H" ["usu_creo"]=> string(8) "80811594" ["fecha_create"]=> string(19) "2024-09-04 19:07:18"]
+		$info['responseResult'][['id_deriva'] => 1,
+			['documento'] => '80811594',
+		  	['tipo_doc'] => 'CC',
+			['predio'] => 452147];
 		// $info['responseResult'];
 		/* if ($_POST['id']=== 0 ) {
 			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad

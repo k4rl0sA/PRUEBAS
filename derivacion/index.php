@@ -463,7 +463,7 @@ function badgeFilter(x) {
         	    		// const userData = await getJSON('imp', 'deriva', 0, 'lib.php');
         	    		console.log(userData);
         	    		// Luego llamas a startImport con los parámetros adecuados
-        	    		startImport(file, b, c, d);
+        	    		//startImport(file, b, c, d);
         			} catch (error) {
         			    console.error('Error al obtener los datos: ', error);
         			    statusMessage.textContent = 'Error al procesar la solicitud.';

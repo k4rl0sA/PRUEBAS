@@ -460,7 +460,7 @@ function badgeFilter(x) {
     			const file = fileInput.files[0];
     			if (file) {
         			try {
-        	    		const userData = await getJSON('imp', 'deriva', 0, 'lib.php');
+        	    		// const userData = await getJSON('imp', 'deriva', 0, 'lib.php');
         	    		console.log(userData);
         	    		// Luego llamas a startImport con los parámetros adecuados
         	    		startImport(file, b, c, d);

@@ -96,7 +96,7 @@ function focus_deriva(){
 	$w='deriva';
 	$uPd = $_REQUEST['id']=='0' ? true : false;
 	$d=get_deriva(); 
-	var_dump($d);
+	print_r($d);
 	if ($d=="") {$d=$t;}
 	$o='docder';
 	$c[]=new cmp('id','h',100,$d['id_deriva'],$w,'',0,'','','',false,'','col-1');
@@ -133,6 +133,7 @@ function focus_deriva(){
 
 	function imp_deriva(){
 		$id=$_POST['id'];
+		// [["id_deriva"]=> "1", ["documento"]=> string(8) "80811594" ["tipo_doc"]=> string(2) "CC" ["predio"]=> string(6) "452147" ["derivado_colaborador"]=> string(1) "1" ["realizado"]=> string(2) "NO" ["observacion"]=> string(1) "H" ["usu_creo"]=> string(8) "80811594" ["fecha_create"]=> string(19) "2024-09-04 19:07:18"]
 		// $info['responseResult'];
 		/* if ($_POST['id']=== 0 ) {
 			$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad

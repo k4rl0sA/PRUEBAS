@@ -81,6 +81,16 @@ function handleEvent(event, eventType) {
       Exec=false;
     }
   }
+
+  async function main() {
+    const token = await authenticateUser();  
+    if (token) {
+        const tipoID = 'CC';  
+        const id = '1233254';  
+        const persona = await consultarPersona(tipoID, id, token);  // Consultamos la persona
+    }
+}
+
 </script>
 <style>
 :root {

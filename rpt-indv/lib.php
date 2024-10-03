@@ -19,8 +19,6 @@ else {
   }   
 }
 
-
-
 function lis_rptindv(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona	LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona WHERE '1' ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
@@ -399,7 +397,7 @@ function men_rptindv(){
 	   // var_dump($rta);
 		   if ($a=='rptindv' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Reporte De Riesgos' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptindv','pro',event,'','lib.php',7,'rptindv');\"></li>";  //act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Reporte De Riesgos' id='".$c['ACCIONES']."' Onclick=\"mostrar('rptindv','pro',event,'','lib.php',7,'rptindv');apiGet('".$c['ACCIONES']."');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }

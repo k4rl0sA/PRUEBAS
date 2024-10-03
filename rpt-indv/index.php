@@ -102,6 +102,7 @@ async function authenticateUser() {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)
@@ -113,7 +114,7 @@ async function authenticateUser() {
 
         const data = await response.json();
         console.log('Token de autenticación:', data.token);  // Suponiendo que se recibe un token
-        return data.token;  // Retorna el token si es necesario para la siguiente consulta
+        return data.token;  // Retorna el token
 
     } catch (error) {
         console.error('Error en la autenticación:', error);

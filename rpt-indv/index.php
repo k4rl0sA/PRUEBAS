@@ -82,7 +82,7 @@ function handleEvent(event, eventType) {
     }
   }
 
-  async function main() {
+  async function main(a) {
     const token = await authenticateUser();  
     if (token) {
         const tipoID = 'CC';  

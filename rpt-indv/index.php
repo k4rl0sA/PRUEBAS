@@ -100,6 +100,7 @@ async function authenticateUser() {
 
     try {
         const response = await fetch(url, {
+          'mode': 'cors',
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

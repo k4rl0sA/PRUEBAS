@@ -91,20 +91,20 @@ function handleEvent(event, eventType) {
     }
 }
 
+
 async function authenticateUser() {
     const url = 'https://us-central1-interoperabilidad-sds.cloudfunctions.net/Consulta_Personas/entry_init';
     const body = {
         "user": "ebextramurales@saludcapital.gov.co",
         "password": "FDhfcuTjUnlk324*·vy67"
     };
+    
     try {
         const response = await fetch(url, {
-            mode: 'no-cors',
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
+                'Accept': 'application/json',  // Esperamos JSON como respuesta
+                'Content-Type': 'application/json'  // Enviamos JSON
             },
             body: JSON.stringify(body)
         });
@@ -114,14 +114,13 @@ async function authenticateUser() {
         }
 
         const data = await response.json();
-        console.log('Token de autenticación:', data.token);  // Suponiendo que se recibe un token
-        return data.token;  // Retorna el token
+        console.log('Token de autenticación:', data.token);
+        return data.token;
 
     } catch (error) {
         console.error('Error en la autenticación:', error);
     }
 }
-
 
 </script>
 <style>

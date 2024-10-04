@@ -20,16 +20,16 @@ else {
 }
 
 
-function lis_reasignacion(){
+function lis_asigpred(){
 }
 
-function focus_reasignacion(){
- return 'reasignacion';
+function focus_asigpred(){
+ return 'asigpred';
 }
 
 
-function men_reasignacion(){
- $rta=cap_menus('reasignacion','pro');
+function men_asigpred(){
+ $rta=cap_menus('asigpred','pro');
  return $rta;
 }
 
@@ -37,7 +37,7 @@ function men_reasignacion(){
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
-  if ($a=='reasignacion'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+  if ($a=='asigpred'  && isset($acc['crear']) && $acc['crear']=='SI'){  
     $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
 	// $rta .= "<li class='icono $a crear'  title='Actualizar'   id='".print_r($_REQUEST)."'   Onclick=\"\"></li>";
@@ -45,12 +45,12 @@ function cap_menus($a,$b='cap',$con='con') {
   return $rta;
 }
 
-function cmp_reasignacion(){
+function cmp_asigpred(){
 	$rta="";
 	$t=['id_deriva'=>'','documento'=>'','doc_asignado'=>'','cod_predio'=>'','cod_familia'=>'','tipo_doc'=>'','nombres'=>'','fechanacio'=>'','edad'=>'','sexo'=>'','localidad'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
-	$w='reasignacion';
+	$w='asigpred';
 	$o='deriva';
 	$key='dOC';
 	$c[]=new cmp($o,'e',null,'DATOS DEL USUARIO',$w);
@@ -125,7 +125,7 @@ function opc_localidad($id=''){
 }
 
 
-function gra_reasignacion(){
+function gra_asigpred(){
 	$documento=cleanTxt($_POST['documento']);
 	$asignado = cleanTxt($_POST['asignado']);
 	$predio = cleanTxt($_POST['predio']);
@@ -149,14 +149,14 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($c);
-	if ($a=='reasignacion' && $b=='acciones'){
+	if ($a=='asigpred' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('reasignacion','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		$rta.="<li class='icono admsi1' title='Información de la Facturación' id='".$c['ACCIONES']."' Onclick=\"mostrar('asigpred','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		$rta.="<li class='icono crear' title='Nueva Admisión' id='".$c['ACCIONES']."' Onclick=\"newAdmin('{$c['ACCIONES']}');\"></li>";
 	}
 	if ($a=='adm-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'reasignacion',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar ' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'asigpred',event,this,'lib.php');Color('adm-lis');\"></li>";  //act_lista(f,this);
 	}
 	
 	

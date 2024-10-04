@@ -130,6 +130,9 @@ function opc_localidad($id=''){
 function opc_zona($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=3 and estado='A' ORDER BY 1",$id);
 }
+function opc_upz($id=''){
+	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=7 and estado='A' ORDER BY 1",$id);
+}
 
 function gra_asigpred(){
 	$documento=cleanTxt($_POST['documento']);

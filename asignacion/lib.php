@@ -54,6 +54,7 @@ function cmp_asigpred(){
 	$o='geo';
 	$p='pre';
 	$key='pRE';
+	$esta = (perfil1()!=='GEO') ? true : false;
 	// $c[]=new cmp($p,'e',null,'PREDIO',$w);
 	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);

@@ -106,7 +106,7 @@ function get_person(){
 return json_encode($info['responseResult'][0]);
 }
 
-function opc_rol($id=''){
+/* function opc_rol($id=''){
 	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 1",$id);
 }
 function opc_asignado($id=''){
@@ -121,18 +121,15 @@ function opc_rolasignado(){
 	} 
 }
 
-function opc_tipo_doc($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-}
 
-function opc_sexo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
-}
 
 function opc_localidad($id=''){
 	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=2 ORDER BY cast(idcatadeta as signed)",$id);
-}
+} */
 
+function opc_zona($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=3 and estado='A' ORDER BY 1",$id);
+}
 
 function gra_asigpred(){
 	$documento=cleanTxt($_POST['documento']);

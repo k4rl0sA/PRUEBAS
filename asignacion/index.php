@@ -54,7 +54,7 @@ $mod='asigpred';
 ?>
 <form method='post' id='fapp'>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > DERIVAR O REASIGNAR
+      <div class='titulo' >DERIVAR O REASIGNAR
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>

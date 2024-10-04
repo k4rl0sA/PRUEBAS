@@ -91,14 +91,13 @@ function cmp_asigpred(){
 }
 
 
-function get_person(){
+function get_predio(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad,sexo,localidad ,direccion,telefono1,telefono2,telefono3,g.idgeo,v.idviv
-	from personas p
-	LEFT JOIN hog_viv v ON p.vivipersona=v.idviv 
-	LEFT JOIN hog_geo g ON v.idpre=g.idgeo 
-	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
+ 	FROM `geo_asig` A 
+  	LEFT JOIN hog_geo G ON A.id_geo=G.idgeo 
+   	WHERE A.estado='A' AND A.id_geo ='".$id[0]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);
@@ -106,13 +105,6 @@ function get_person(){
 return json_encode($info['responseResult'][0]);
 }
 
-/* 
-
-
-
-
-
- */
 function opc_rolasignado(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);

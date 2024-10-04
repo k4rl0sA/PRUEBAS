@@ -98,22 +98,23 @@ async function authenticateUser() {
         "user": "ebextramurales@saludcapital.gov.co",
         "password": "FDhfcuTjUnlk324*·vy67"
     };
-    
+
     try {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',  // Esperamos JSON como respuesta
-                'Content-Type': 'application/json'  // Enviamos JSON
+                'Accept': 'application/json',  // Aceptar respuestas JSON
+                'Content-Type': 'application/json'  // Tipo de contenido que estás enviando
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify(body)  // Convertimos el body a JSON
         });
 
+        // Verificamos si la respuesta es correcta
         if (!response.ok) {
             throw new Error(`Error de autenticación: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data = await response.json();  // Parseamos la respuesta como JSON
         console.log('Token de autenticación:', data.token);
         return data.token;
 
@@ -121,6 +122,7 @@ async function authenticateUser() {
         console.error('Error en la autenticación:', error);
     }
 }
+
 
 </script>
 <style>

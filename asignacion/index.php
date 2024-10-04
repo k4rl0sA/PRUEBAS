@@ -42,6 +42,13 @@ function resetFrm() {
 	document.getElementById('fapp').reset();
 }
 
+function enabFielSele(a, b, c, d) {
+	for (i = 0; i < c.length; i++) {
+    	var ele = document.getElementById(c[i]);
+    	enaFie(ele, !d.includes(a.value) || !b);
+  	}
+}
+
 </script>
 </head>
 <body Onload="showFil(mod);">

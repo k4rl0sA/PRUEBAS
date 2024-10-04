@@ -47,35 +47,46 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_asigpred(){
 	$rta="";
-	$t=['id_deriva'=>'','documento'=>'','doc_asignado'=>'','cod_predio'=>'','cod_familia'=>'','tipo_doc'=>'','nombres'=>'','fechanacio'=>'','edad'=>'','sexo'=>'','localidad'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
+	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
-	$w='asigpred';
-	$o='deriva';
-	$key='dOC';
-	$c[]=new cmp($o,'e',null,'DATOS DEL USUARIO',$w);
-	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o.' '.$key,'N° Identificación','documento',null,'',true,true,'','col-5');
-	$c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o.' '.$key,'tipo doc','tipo_doc',null,'',true,true,'','col-5',"getDatForm('dOC','person',['deriva']);");
-	$c[]=new cmp('nombres','t','50',$d['nombres'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-5');
+	$w='geoloc';
+	$o='geo';
+	$p='pre';
+	$key='pRE';
+	// $c[]=new cmp($p,'e',null,'PREDIO',$w);
+	$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
+	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
+	//$c[]=new cmp('cod_pre','n','6',$d['cod_pre'],$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',false,false);
+	$c[]=new cmp('zona','s','3',$d['zona'],$w.' '.$o,'Zona','zona',null,'',false,false,'','col-25');
+    $c[]=new cmp('localidad','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');
+	$c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,'',false,false,'','col-25',false,['bar']);
+    $c[]=new cmp('barrio','s','8',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('sector_catastral','n','6',$d['sector_catastral'],$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,'',false,false,'','col-25');
+    $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,'',false,false,'','col-25');
+    $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,'',false,false,'','col-25');
+    $c[]=new cmp('unidad_habit','n','4',$d['unidad_habit'],$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('direccion','t','50',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-25');
+    $c[]=new cmp('vereda','t','50',$d['vereda'],$w.' '.$o,'Vereda','vereda',null,'',false,false,'','col-25');
+    $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,'',false,false,'','col-25');
+    $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,'',false,false,'','col-25');
+    
+    $c[]=new cmp('territorio','t','6',$d['territorio'],$w.' '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
 	
-	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacio'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-2'); 
-    $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-15');
-	$c[]=new cmp('sexo','s',3,$d['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-15');
-
-	$c[]=new cmp('localidad','s',3,$d['localidad'],$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-5');
-	$c[]=new cmp('direccion','t','20',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,'',false,false,'','col-5');
- 	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,'',false,false,'','col-15');
-	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,'',false,false,'','col-15');
-	$c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,'',false,false,'','col-15');
-
-	$c[]=new cmp('predio','t','20',$d['predio'],$w.' '.$o,'Cod. Predio','predio',null,'',false,false,'','col-25');
-	$c[]=new cmp('family','t','20',$d['family'],$w.' '.$o,'Cod. Familia','family',null,'',false,false,'','col-3');
-
 	$o='infasi';
-	$c[]=new cmp($o,'e',null,'GESTIÓN PARA LA ASIGNACIÓN',$w);
-	$c[]=new cmp('rol','s',3,$d['rol'],$w.' '.$o,'rol','rol',null,'',true,true,'','col-2',false,['asignado']);
-	$c[]=new cmp('asignado','s',3,$d['asignado'],$w.' '.$o,'Asignar A','asignado',null,'',true,true,'','col-5');
+	$c[]=new cmp($o,'e',null,'GESTIÓN DEL PREDIO',$w);
+	$c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,'',false,true,'','col-1','enableAddr(this,\'adur\',\'adru\',\'zona\');');//enabFiel(this,true,[adi]);updaAddr(this,false,[\'zona\',\'direccion_nueva\',\'vereda_nueva\',\'cordxn\',\'cordyn\'])
+	$c[]=new cmp('direccion_nueva','t','50',$d['direccion_nueva'],$w.' adur '.$o,'Direccion Nueva','direccion_nueva',null,'',false,false,'','col-25');
+    $c[]=new cmp('vereda_nueva','t','50',$d['vereda_nueva'],$w.' adru '.$o,'Vereda Nueva','vereda_nueva',null,'',true,false,'','col-25');
+    $c[]=new cmp('cordxn','t','15',$d['cordx'],$w.' adru '.$o,'Cordx Nueva','cordx',null,'',true,false,'','col-2');
+    $c[]=new cmp('cordyn','t','15',$d['cordy'],$w.' adru '.$o,'Cordy Nueva','cordy',null,'',true,false,'','col-2');
+	
+	$c[]=new cmp('estado_v','s',2,$d['estado_v'],$w.' '.$o,'estado','estado',null,'',true,true,'','col-3',"enabFielSele(this,true,['motivo_estado'],['5']);");//hideExpres(\'estado_v\',[\'7\']);
+    $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'Motivo de Estado','motivo_estado',null,'',true,false,'','col-3');
+
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

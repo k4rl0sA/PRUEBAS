@@ -98,6 +98,7 @@ function get_predio(){
  	FROM `geo_asig` A 
   	LEFT JOIN hog_geo G ON A.id_geo=G.idgeo 
    	WHERE A.estado='A' AND A.id_geo ='".$id[0]."'";
+	var_dump($sql);
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

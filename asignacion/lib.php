@@ -108,6 +108,11 @@ return json_encode($info['responseResult'][0]);
 
 /* 
 
+
+
+
+
+ */
 function opc_rolasignado(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
@@ -116,10 +121,6 @@ function opc_rolasignado(){
 		return json_encode($info['responseResult']);
 	} 
 }
-
-
-
- */
 function opc_asignado($id=''){
 	return opc_sql("SELECT id_usuario,nombre FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND estado='A' ORDER BY 1",$id);
 }
@@ -137,6 +138,12 @@ function opc_zona($id=''){
 }
 function opc_upz($id=''){
 	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=7 and estado='A' ORDER BY 1",$id);
+}
+function opc_estado($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=44 and estado='A' ORDER BY 1",$id);
+}
+function opc_motivo_estado($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
 }
 
 function gra_asigpred(){

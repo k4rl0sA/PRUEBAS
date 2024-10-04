@@ -131,7 +131,7 @@ function focus_deriva(){
 		} 
 	}
 
-	function imp_deriva(){
+/* 	function imp_deriva(){
 		$id=$_POST['id'];
 		$info['responseResult'][['id_deriva'] => 1,
 			['documento'] => '80811594',
@@ -150,7 +150,7 @@ function focus_deriva(){
 
 		} */
 	return json_encode($info['responseResult'][0]);
-	}
+	} */
 
 	function btn_deriva(){
 		print_r(acceBtns('derivacion'));

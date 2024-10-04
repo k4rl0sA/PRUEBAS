@@ -97,7 +97,6 @@ async function authenticateUser() {
         "user": "ebextramurales@saludcapital.gov.co",
         "password": "FDhfcuTjUnlk324*·vy67"
     };
-
     try {
         const response = await fetch(url, {
             mode: 'no-cors',

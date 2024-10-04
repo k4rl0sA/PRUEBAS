@@ -107,9 +107,7 @@ return json_encode($info['responseResult'][0]);
 }
 
 /* 
-function opc_asignado($id=''){
-	return opc_sql("SELECT id_usuario,nombre FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND estado='A' ORDER BY 1",$id);
-}
+
 function opc_rolasignado(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
@@ -122,6 +120,9 @@ function opc_rolasignado(){
 
 
  */
+function opc_asignado($id=''){
+	return opc_sql("SELECT id_usuario,nombre FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND estado='A' ORDER BY 1",$id);
+}
 function opc_rol($id=''){
 	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 1",$id);
 }

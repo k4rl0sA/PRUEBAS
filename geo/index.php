@@ -55,10 +55,13 @@ function grabar(tb='',ev){
 		}
 	}
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-	setTimeout(actualizar,500);
-	
+	resetFrm();
+	setTimeout(actualizar,500);	
 }   
 
+function resetFrm() {
+	document.getElementById('fapp').reset();
+}
 
 function enableAddr(a,b,c,d){
 	const eru= document.querySelectorAll('input.'+b);

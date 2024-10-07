@@ -177,6 +177,7 @@ function opc_localidad($id=''){
 
 
 function gra_geoloc(){
+	print_r($_POST);
 	$id=divide($_POST['id']);
 	$sql = "INSERT INTO geo_gest VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(

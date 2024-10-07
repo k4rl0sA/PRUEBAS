@@ -94,14 +94,20 @@ function cmp_geoloc(){
 }
 
 function lis_geoloc(){
-	$sql="SELECT hg.idgeo 'Cod Predio',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,hg.territorio,hg.direccion Direccion,u.nombre 'Creo',u.perfil,u.equipo,p.fecha_create 'Fecha Creo',hv.idviv 'Cod Familia',FN_CATALOGODESC(44, hg.estado_v) Estado
-		FROM hog_viv hv 
-			left JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
-			LEFT JOIN personas p ON hv.idviv=p.vivipersona
-			LEFT  JOIN usuarios u ON hg.asignado=u.id_usuario";
-	$sql.=" WHERE p.idpersona=".$docume;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"geoloc-lis",4);	
+	$id =divide($_POST['id']);
+	$info=datos_mysql("SELECT COUNT(*) total FROM geo_gest GG WHERE id_geo='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+	$pag=(isset($_POST['pag-geoloc']))? ($_POST['pag-geoloc']-1)* $regxPag:0;
+
+	$sql="SELECT `id_ges` 'Cod Registro',
+	idgeo 'Codigo Predio', FN_CATALOGODESC(44,hg.estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,Usu_creo Creo,fecha_create 'Fecha de Creación'
+	FROM geo_gest GG WHERE id_geo='".$id[0]"'";
+	$sql.="' ORDER BY estado_v";
+		$sql.=' LIMIT '.$pag.','.$regxPag;
+		// echo $sql;
+		$datos=datos_mysql($sql);
+		return create_table($total,$datos["responseResult"],"geoloc-lis",$regxPag);
 }
 
 

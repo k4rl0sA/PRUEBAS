@@ -46,8 +46,9 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_geoloc(){
-	$rta="<div class='encabezado predios'>TABLA ESTADOS DEL PREDIO</div>
-	<div class='contenido' id='predios-lis'>".lis_geoloc()."</div></div>";
+	$rta="";
+	/* $rta="<div class='encabezado predios'>TABLA ESTADOS DEL PREDIO</div>
+	<div class='contenido' id='predios-lis'>".lis_geoloc()."</div></div>"; */
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}

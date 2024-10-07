@@ -46,9 +46,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_geoloc(){
-	/* $rta=""; */
-	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
+	$rta="";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -57,7 +55,7 @@ function cmp_geoloc(){
 	$p='pre';
 	$key='pRE';
 	// $c[]=new cmp($p,'e',null,'PREDIO',$w);
-	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);mostrar('geoloc','pro',event,'','lib.php',7,'Asignar Predio');");
+	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);mostrar('predios','pro',event,'','lib.php',7,'Asignar Predio');");
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
 	//$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',false,false);
@@ -90,6 +88,13 @@ function cmp_geoloc(){
     $c[]=new cmp('motivo_estado','s','3','',$w.' '.$o,'Motivo de Estado','motivo_estado',null,'',true,false,'','col-3');
 
  
+	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	return $rta;
+}
+
+function cmp_predios(){
+	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
+	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

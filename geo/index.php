@@ -56,7 +56,7 @@ function grabar(tb='',ev){
 	}
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);
 	resetFrm();
-	setTimeout(actualizar,500);	
+	act_lista('predios');
 }   
 
 function resetFrm() {

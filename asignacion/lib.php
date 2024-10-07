@@ -81,8 +81,6 @@ function cmp_asigpred(){
 	$c[]=new cmp($o,'e',null,'GESTIÓN PARA LA ASIGNACIÓN',$w);
 	$c[]=new cmp('rol','s',3,'',$w.' '.$o,'rol','rol',null,'',true,true,'','col-2',false,['asignado']);
 	$c[]=new cmp('asignado','s',3,'',$w.' '.$o,'Asignar A','asignado',null,'',true,true,'','col-5');
-	$c[]=new cmp('estado_v','s',2,'',$w.' '.$o,'estado','estado',null,null,true,$esta,'','col-25',"enabFielSele(this,true,['motivo_estado'],['5']);");//hideExpres(\'estado_v\',[\'7\']);
-	$c[]=new cmp('motivo_estado','s','3','',$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,false,'','col-4');
 
 	
  

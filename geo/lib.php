@@ -103,12 +103,10 @@ FUNCTION lis_predios(){
   $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
-	$sql="SELECT `id_otroprio` ACCIONES, id_otroprio 'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
-fecha_cierre 'Fecha de Cierre',nombre Creó 
-FROM vsp_otroprio A
+	$sql="SELECT  id_ges 'Cod Registro',idgeo 'Codigo Predio', FN_CATALOGODESC(44,hg.estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
+	FROM geo_gest A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
+$sql.="WHERE id_geo='".$id[0];
 $sql.="' ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

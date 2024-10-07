@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
 /******************START IMPORT***********************/
 const modal = document.getElementById('modal'),
 	openModalBtn = document.getElementById('openModal'),
@@ -68,7 +67,6 @@ const observer = new MutationObserver(() => {
 });
 
 observer.observe(statusMessage, { childList: true, subtree: true });
-});
 
 function startImport(file,ncol,tab,imp) {
 	const formData = new FormData();

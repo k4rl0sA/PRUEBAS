@@ -12,7 +12,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="../libs/js/popup.js"></script>
-<script src="../libs/js/import.js?v=2.0"></script>
+<script src="../libs/js/import.js?v=3.0"></script>
 <script>
 var mod='asigpred';	
 var ruta_app='lib.php';

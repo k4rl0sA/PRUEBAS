@@ -46,7 +46,8 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_asigpred(){
-	$rta="";
+	$rta="<div class='encabezado'>ESTADOS DEL PREDIO</div>
+	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -56,7 +57,7 @@ function cmp_asigpred(){
 	$key='pRE';
 	$esta = (perfil1()!=='GEO') ? true : false;
 	// $c[]=new cmp($p,'e',null,'PREDIO',$w);
-	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
+	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);act_lista('predios');");
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
 	//$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',false,false);
@@ -87,6 +88,26 @@ function cmp_asigpred(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+
+FUNCTION lis_predios(){
+	// var_dump($_POST['id']);
+	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
+$info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE estado_v!=1 AND id_geo='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
+
+  
+	$sql="SELECT  id_ges 'Cod Registro',id_geo 'Codigo Predio', FN_CATALOGODESC(44,estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
+	FROM geo_gest A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+$sql.="WHERE estado_v!=1 AND id_geo='".$id[0];
+$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"predios",$regxPag);
+   }
 
 
 function get_predio(){

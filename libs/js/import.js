@@ -59,7 +59,7 @@ closeModalBtn.onclick = () => {
 
 cancelLoadingBtn.onclick = cancelLoading;
 
-const observer = new MutationObserver(() => {
+/* const observer = new MutationObserver(() => {
 	if (statusMessage.textContent.trim() !== "") {
 		statusMessage.classList.add('has-cont');
 	} else {
@@ -67,7 +67,7 @@ const observer = new MutationObserver(() => {
 	}
 });
 
-observer.observe(statusMessage, { childList: true, subtree: true });
+observer.observe(statusMessage, { childList: true, subtree: true }); */
 });
 
 function startImport(file,ncol,tab,imp) {

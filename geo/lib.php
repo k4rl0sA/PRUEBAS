@@ -46,7 +46,8 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_geoloc(){
-	$rta="";
+	$rta="<div class='encabezado predios'>TABLA ESTADOS DEL PREDIO</div>
+	<div class='contenido' id='predios-lis'>".lis_geoloc()."</div></div>";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -90,6 +91,17 @@ function cmp_geoloc(){
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
+}
+
+function lis_geoloc(){
+	$sql="SELECT hg.idgeo 'Cod Predio',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,hg.territorio,hg.direccion Direccion,u.nombre 'Creo',u.perfil,u.equipo,p.fecha_create 'Fecha Creo',hv.idviv 'Cod Familia',FN_CATALOGODESC(44, hg.estado_v) Estado
+		FROM hog_viv hv 
+			left JOIN hog_geo hg ON hv.idgeo=CONCAT(hg.estrategia,'_',hg.sector_catastral,'_',hg.nummanzana,'_',hg.predio_num,'_',hg.unidad_habit,'_7')   
+			LEFT JOIN personas p ON hv.idviv=p.vivipersona
+			LEFT  JOIN usuarios u ON hg.asignado=u.id_usuario";
+	$sql.=" WHERE p.idpersona=".$docume;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"geoloc-lis",4);	
 }
 
 

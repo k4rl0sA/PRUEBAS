@@ -103,7 +103,7 @@ FUNCTION lis_predios(){
   $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
-	$sql="SELECT  id_ges 'Cod Registro',id_geo 'Codigo Predio', FN_CATALOGODESC(44,hg.estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
+	$sql="SELECT  id_ges 'Cod Registro',id_geo 'Codigo Predio', FN_CATALOGODESC(44,estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
 	FROM geo_gest A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 $sql.="WHERE id_geo='".$id[0];

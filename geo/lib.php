@@ -107,7 +107,7 @@ $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE estado_v!=1 AND id_
 	$sql="SELECT  id_ges 'Cod Registro',id_geo 'Codigo Predio', FN_CATALOGODESC(44,estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
 	FROM geo_gest A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE id_geo='".$id[0];
+$sql.="WHERE estado_v!=1 AND id_geo='".$id[0];
 $sql.="' ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

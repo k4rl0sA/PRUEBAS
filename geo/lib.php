@@ -108,6 +108,7 @@ function lis_geoloc(){
 		// echo $sql;
 		$datos=datos_mysql($sql);
 		return create_table($total,$datos["responseResult"],"predios-lis",$regxPag); */
+		return '';
 }
 
 

@@ -94,11 +94,11 @@ function cmp_geoloc(){
 }
 
 function lis_geoloc(){
-	$id =divide($_POST['id']);
+	/* $id =divide($_POST['id']);
 	$info=datos_mysql("SELECT COUNT(*) total FROM geo_gest GG WHERE id_geo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-	$pag=(isset($_POST['pag-geoloc']))? ($_POST['pag-geoloc']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-geoloc']))? ($_POST['pag-geoloc']-1)* $regxPag:0; */
 
 /* 	$sql="SELECT `id_ges` 'Cod Registro',
 	idgeo 'Codigo Predio', FN_CATALOGODESC(44,hg.estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,Usu_creo Creo,fecha_create 'Fecha de Creación'

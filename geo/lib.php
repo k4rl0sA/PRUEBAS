@@ -178,19 +178,21 @@ function opc_localidad($id=''){
 
 function gra_geoloc(){
 	$id=divide($_POST['id']);
-	$sql = "INSERT INTO asigpsico VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO geo_gest VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	  array('type' => 'i', 'value' => NULL),
 	  array('type' => 's', 'value' => $id[0]),
-	  array('type' => 's', 'value' => $id[1]),
-	  array('type' => 'i', 'value' => $_POST['estado_cierre']),
-	  array('type' => 's', 'value' => $_POST['motivo_cierre']),
-	  array('type' => 'i', 'value' => $_POST['asignado']),
+	  array('type' => 's', 'value' => $_POST['direccion_nueva']),
+	  array('type' => 's', 'value' => $_POST['vereda_nueva']),
+	  array('type' => 's', 'value' => $_POST['cordxn']),
+	  array('type' => 's', 'value' => $_POST['cordyn']),
+	  array('type' => 's', 'value' => $_POST['estado_v']),
+	  array('type' => 's', 'value' => $_POST['motivo_estado']),
 	  array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	  array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 	  array('type' => 's', 'value' => NULL),
 	  array('type' => 's', 'value' => NULL),
-	  array('type' => 'i', 'value' => 1)
+	  array('type' => 's', 'value' => 'A')
 	);
 	$rta = mysql_prepd($sql, $params);
 return $rta;

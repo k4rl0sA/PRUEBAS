@@ -47,8 +47,8 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_geoloc(){
 	/* $rta=""; */
-	$rta="<div class='encabezado predios'>TABLA ESTADOS DEL PREDIO</div>
-	<div class='contenido' id='predios-lis'>".lis_geoloc()."</div></div>";
+	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
+	<div class='contenido' id='otroprio-lis'>".lis_otroprio()."</div></div>";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -94,9 +94,28 @@ function cmp_geoloc(){
 	return $rta;
 }
 
-function lis_geoloc(){
-	return 'OK';
-}
+FUNCTION lis_otroprio(){
+	// var_dump($_POST['id']);
+	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_otroprio']) ? divide($_POST['id_otroprio']) : null);
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_otroprio A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-otroprio']))? ($_POST['pag-otroprio']-1)* $regxPag:0;
+
+  
+	$sql="SELECT `id_otroprio` ACCIONES, id_otroprio 'Cod Registro',
+tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+fecha_cierre 'Fecha de Cierre',nombre Creó 
+FROM vsp_otroprio A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
+$sql.="' ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"otroprio",$regxPag,'otroprio.php');
+   }
 
 function get_predio(){
 	// print_r($_POST);

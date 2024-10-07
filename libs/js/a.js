@@ -949,7 +949,7 @@ function myFetch(b, c, d) {
   }
 
   
-  function getDatForm(clsKey, fun,clsCmp) {
+  function getDatForm(clsKey, fun,clsCmp,disab) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
 	let id = '';
 		for (let i = 0; i < c.length; i++) {
@@ -989,7 +989,7 @@ function myFetch(b, c, d) {
 	  }	
   }
 
-  function getDaTab(clsKey, fun,clsCmp) {
+/*   function getDaTab(clsKey, fun,clsCmp) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
 	let id = '';
 		for (let i = 0; i < c.length; i++) {
@@ -1027,7 +1027,7 @@ function myFetch(b, c, d) {
 				  })
 			  .catch(handleRequestError);
 	  }	
-  }
+  } */
 
   function validDate(a,b,c){
 	let Ini=dateAdd(b);

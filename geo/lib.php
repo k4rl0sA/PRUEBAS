@@ -47,8 +47,6 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_geoloc(){
 	$rta="";
-	/* $rta="<div class='encabezado predios'>TABLA ESTADOS DEL PREDIO</div>
-	<div class='contenido' id='predios-lis'>".lis_geoloc()."</div></div>"; */
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -92,24 +90,6 @@ function cmp_geoloc(){
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
-}
-
-function lis_geoloc(){
-	/* $id =divide($_POST['id']);
-	$info=datos_mysql("SELECT COUNT(*) total FROM geo_gest GG WHERE id_geo='".$id[0]."'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=4;
-	$pag=(isset($_POST['pag-geoloc']))? ($_POST['pag-geoloc']-1)* $regxPag:0; */
-
-/* 	$sql="SELECT `id_ges` 'Cod Registro',
-	idgeo 'Codigo Predio', FN_CATALOGODESC(44,hg.estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,Usu_creo Creo,fecha_create 'Fecha de Creación'
-	FROM geo_gest GG WHERE id_geo='".$id[0]"'";
-	$sql.="' ORDER BY estado_v";
-		$sql.=' LIMIT '.$pag.','.$regxPag;
-		// echo $sql;
-		$datos=datos_mysql($sql);
-		return create_table($total,$datos["responseResult"],"predios-lis",$regxPag); */
-		return 'OK';
 }
 
 

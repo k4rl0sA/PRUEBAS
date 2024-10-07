@@ -83,11 +83,11 @@ function cmp_geoloc(){
 	$c[]=new cmp('edi','o',2,'',$w.' '.$o,'Actualiza Dirección ?','edi',null,'',false,true,'','col-1','enableAddr(this,\'adur\',\'adru\',\'zona\');');//enabFiel(this,true,[adi]);updaAddr(this,false,[\'zona\',\'direccion_nueva\',\'vereda_nueva\',\'cordxn\',\'cordyn\'])
 	$c[]=new cmp('direccion_nueva','t','50','',$w.' adur '.$o,'Direccion Nueva','direccion_nueva',null,'',false,false,'','col-25');
     $c[]=new cmp('vereda_nueva','t','50','',$w.' adru '.$o,'Vereda Nueva','vereda_nueva',null,'',false,false,'','col-25');
-    $c[]=new cmp('cordxn','t','15','',$w.' adru '.$o,'Cordx Nueva','cordx',null,'',true,false,'','col-2');
-    $c[]=new cmp('cordyn','t','15','',$w.' adru '.$o,'Cordy Nueva','cordy',null,'',true,false,'','col-2');
+    $c[]=new cmp('cordxn','t','15','',$w.' adru '.$o,'Cordx Nueva','cordx',null,'',false,false,'','col-2');
+    $c[]=new cmp('cordyn','t','15','',$w.' adru '.$o,'Cordy Nueva','cordy',null,'',false,false,'','col-2');
 	
 	$c[]=new cmp('estado_v','s',2,'',$w.' '.$o,'estado','estado',null,'',true,true,'','col-3',"enabFielSele(this,true,['motivo_estado'],['5']);");//hideExpres(\'estado_v\',[\'7\']);
-    $c[]=new cmp('motivo_estado','s','3','',$w.' '.$o,'Motivo de Estado','motivo_estado',null,'',true,false,'','col-3');
+    $c[]=new cmp('motivo_estado','s','3','',$w.' '.$o,'Motivo de Estado','motivo_estado',null,'',false,false,'','col-3');
 
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

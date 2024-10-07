@@ -70,9 +70,6 @@ $mod='asigpred';
 			<li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>
 			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
 			<li class='icono upload-btn' data-mod="asignacion" title='Importar' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
-
-			<button id="openModal" class="upload-btn" data-mod="deriva" title="Importar"><i class="fas fa-upload"></i></button>
-
 		</nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

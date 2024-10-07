@@ -94,6 +94,9 @@ function cmp_geoloc(){
 	return $rta;
 }
 
+function lis_geoloc(){
+	return 'OK';
+}
 
 function get_predio(){
 	// print_r($_POST);

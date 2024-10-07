@@ -515,7 +515,7 @@ li.icono.desplegar-panel{margin-top:-25px;margin-right: -95%;}
 
   /*===================INICIO IMPORT=================*/
 .modal {
-	display: block;
+	display: none;
 	position: fixed;
 	z-index: 1;
 	left: 0;

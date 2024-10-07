@@ -949,7 +949,7 @@ function myFetch(b, c, d) {
   }
 
   
-  function getDatForm(clsKey, fun,clsCmp,disab) {
+  function getDatForm(clsKey, fun,clsCmp,cab) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
 	let id = '';
 		for (let i = 0; i < c.length; i++) {

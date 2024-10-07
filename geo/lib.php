@@ -97,7 +97,7 @@ function cmp_geoloc(){
 
 FUNCTION lis_predios(){
 	// var_dump($_POST['id']);
-	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : 0;
+	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
   $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE id_geo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;

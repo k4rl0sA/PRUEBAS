@@ -47,7 +47,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_geoloc(){
 	/* $rta=""; */
-	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
+	$rta="<div class='encabezado'>ESTADOS DEL PREDIO</div>
 	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';

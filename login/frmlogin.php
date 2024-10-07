@@ -31,7 +31,7 @@ include ('claves.php');
                     <input type="password" name="passwd" class="form-control" placeholder="CONTRASEÑA" required="required" autocomplete="off">
                     <i class="fas fa-lock"></i>
                 </div>
-                <button  class='submit' id='btn' disabled>Ingresar</button>
+                <button  class='submit' id='btn'>Ingresar</button>
                 <input type='hidden' name='token' id='token' />
             </form>
         </div>

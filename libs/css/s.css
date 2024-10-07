@@ -526,7 +526,7 @@ li.icono.desplegar-panel{margin-top:-25px;margin-right: -95%;}
   }
   
   .modal-content {
-	background-color: var(--primary-color-light);
+	background-color: white;
 	margin: 15% auto;
 	padding: 20px;
 	border-radius: 10px;

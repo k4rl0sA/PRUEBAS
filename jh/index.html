@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infinto by Carlos A.</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <style>
+body {
+    background-color: black;
+      background-image: url('ruta/a/tu/imagen.gif'); /* Reemplaza con la ruta correcta */
+      background-size: cover; /* Ajusta la imagen al tamaño de la pantalla */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+    }
+
+#loading {
+    position: relative;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 40px;
+    top: 350px;
+}
+
+#miVideo {
+  display: none; 
+}
+  </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="infinity-loader">
+            <img src="load.gif" alt="Loading..." class="loading-gif"> <span></span>
+        </div>
+        <p>Cargando...</p>
+    </div>
+
+  <video id="miVideo" width="100%" height="auto" controls>
+    <source src="video1.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+  </video>
+
+  <script>
+    window.addEventListener('load', function() {
+  var loader = document.getElementById('loading');
+  var video = document.getElementById('miVideo');
+
+  setTimeout(function() {
+    loader.style.display = 'none'; // Ocultar la animación
+    video.style.display = 'block'; // Mostrar el video
+    video.play(); // Iniciar la reproducción
+  },10000); // Esperar 3 segundos (ajusta según la duración de tu animación)
+});
+  </script>
+</body>
+</html>

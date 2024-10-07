@@ -61,8 +61,6 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='asigpred';
 ?>
 <form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-	
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >DERIVAR O REASIGNAR
 		<nav class='menu left' >

@@ -48,7 +48,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_geoloc(){
 	/* $rta=""; */
 	$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div>
-	<div class='contenido' id='otroprio-lis'>".lis_otroprio()."</div></div>";
+	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
 	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -94,11 +94,10 @@ function cmp_geoloc(){
 	return $rta;
 }
 
-FUNCTION lis_otroprio(){
+FUNCTION lis_predios(){
 	// var_dump($_POST['id']);
-	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_otroprio']) ? divide($_POST['id_otroprio']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_otroprio A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+	$id =divide($_POST['id']);
+  $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-otroprio']))? ($_POST['pag-otroprio']-1)* $regxPag:0;

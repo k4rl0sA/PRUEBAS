@@ -100,7 +100,7 @@ FUNCTION lis_predios(){
   $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE id_geo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-otroprio']))? ($_POST['pag-otroprio']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_otroprio` ACCIONES, id_otroprio 'Cod Registro',
@@ -113,7 +113,7 @@ $sql.="' ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"otroprio",$regxPag,'otroprio.php');
+	return create_table($total,$datos["responseResult"],"predios",$regxPag);
    }
 
 function get_predio(){

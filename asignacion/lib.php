@@ -97,7 +97,7 @@ $info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE id_geo='".$id[0]."'
 	$sql="SELECT  A.id_asig 'Cod Registro',A.id_geo 'CodigoPredio', U.nombre 'Colaborador Asignado', A.usu_create ,A.fecha_create 'Fecha de Creación'
 	FROM geo_asig A
 	LEFT JOIN  usuarios U ON A.doc_asignado=U.id_usuario
-	LEFT JOIN  usuarios U1 ON A.usu_creo=U1.id_usuario ";
+	LEFT JOIN  usuarios U1 ON A.usu_create=U1.id_usuario ";
 $sql.="WHERE id_geo='".$id[0];
 $sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

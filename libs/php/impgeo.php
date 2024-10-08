@@ -42,7 +42,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 				$ncol=$_POST['ncol'];
 				$tab='geo_asig';
 				$ope=(isset($_POST['ope'])) ? $_POST['ope']:'insert';
-				if($ncol!=30){
+				if($ncol!=8){
 					$rta = array(
 						'type' => 'Error','msj'=>'El número de campos no es valido por favor valide con el Administrador.'
 					);

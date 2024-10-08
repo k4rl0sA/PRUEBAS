@@ -24,7 +24,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 		);
 		response ($rta);
 	}
-		if($_POST['tab']!=='geografico'){
+		if($_POST['tab']!=='geo_asig'){
 			$rta = array(
 				'type' => 'Error','msj'=>'La tabla '.$_POST["tab"].' no corresponde, consulte con el administrador' 
 			);

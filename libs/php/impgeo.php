@@ -50,14 +50,8 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 				}
 				$sub=datos_mysql("SELECT subred FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
 				$subred=$sub['responseResult'][0]['subred'];
-				$estrategias=catalogo(42,1);
-				$localidades=catalogo(2,2);
-				$upzs=catalogo(7,3);
-				// $estratos=catalogo(101,1);
 				$estados=catalogo(44,1);
 				$asignados=asignados();
-				
-
 				while (($campo = fgetcsv($handle, 1024, $delimit)) !== false) {
 					if ($nFil === 1) {
 						$campos = $campo;
@@ -158,75 +152,6 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 											response ($rta);
     									}
 									}
-									if ($i === 8) {//microterritorio- Manzana del cuidado
-										$valor = trim($campo[$i]);
-    									if (strlen($valor) != 2 || $valor === '0' && $valor>25) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en Manzana del Cuidado debe contener 2 digitos'
-											);
-											response ($rta);
-    									}else{
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 10 || $i === 11 || $i === 15 || $i === 16 || $i === 19 || $i === 20 || $i === 23 || $i=== 25) {//direccion,vereda,vereda NUEVA,23Equipos
-											$sql .= "'" . trim($campo[$i]) . "',";
-									}
-									if ($i === 12 ||$i === 13 || $i === 14) {//manzana,predio,unidad habitacional
-										$valor = trim($campo[$i]);
-    									if (strlen($valor) != 3 ) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener 3 digitos'
-											);
-											response ($rta);
-    									}else{
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 17 || $i === 18 ) {
-										$valor = trim($campo[$i]);
-										if (substr_count($valor, '.') === 1) {
-											$sql .= "'" . $valor . "',";
-										} else {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener una coordenada correcta.'
-											);
-											response($rta);
-										}
-									}
-									if ($i === 21) { //estrato
-										$valor = trim($campo[$i]);
-										if ($valor < 1 || $valor > 7) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' esta fuera del rango (1 a 7).'
-											);
-											response ($rta);
-										} else {
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 22) { //asignado
-										$valor = trim($campo[$i]);
-										if (!in_array($valor, $asignados)) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' No se encuentra dentro de los usuarios del sistema para su subred.'
-											);
-											response ($rta);
-										} else {
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 24) { //estados
-										$valor = trim($campo[$i]);
-										if (!in_array($valor, $estados)) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' esta fuera del rango permitido.'
-											);
-											response ($rta);
-										} else {
-											$sql .= "'" . $valor . "',";
-										}
-									}
 									if ($i === 26 ) {//USU_CREO
 											$sql .= "'" . $_SESSION['us_sds'] . "',";
 									}
@@ -259,21 +184,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 				// $rta .= "Se han insertado " . $ok . " Registro(s) de " . $total . " en total, Correctamente para la tabla ";
 				
 				fclose($handle);
-
-function catalogo($id,$nd){
-	$info=datos_mysql('select idcatadeta from catadeta where idcatalogo ='.$id.' ORDER BY cast(idcatadeta as signed)');
-	$valores = array(); 
-	if (is_array($info['responseResult'])) {
-		foreach ($info['responseResult'] as $item) {
-			if (isset($item['idcatadeta'])) {
-				$valor = str_pad($item['idcatadeta'], $nd, '0', STR_PAD_LEFT);
-				$valores[] = $valor;
-			}
-		}
-		return $valores;
-	}
-}
-
+                
 function asignados(){
 	$info=datos_mysql("SELECT id_usuario FROM usuarios WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."') and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and estado='A' ");
 	$valores = array(); 

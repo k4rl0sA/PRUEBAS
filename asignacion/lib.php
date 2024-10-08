@@ -159,21 +159,21 @@ function opc_motivo_estado($id=''){
 }
 
 function gra_asigpred(){
-	$documento=cleanTxt($_POST['documento']);
-	$asignado = cleanTxt($_POST['asignado']);
-	$predio = cleanTxt($_POST['predio']);
-	$family = cleanTxt($_POST['family']);
-
-	$sql="INSERT INTO derivacion VALUES(NULL, 
-	$documento,
-	$asignado,
-	$predio,
-	$family,
-	{$_SESSION['us_sds']},
-	DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-	// echo $sql;
-  $rta=dato_mysql($sql);
-  return $rta;
+	
+	$id=divide($_POST['cod_pre']);
+	$sql = "INSERT INTO geo_asig VALUES(?,?,?,?,?,?,?,?)";
+	$params = array(
+	  array('type' => 'i', 'value' => NULL),
+	  array('type' => 's', 'value' => $id[0]),
+	  array('type' => 's', 'value' => $_POST['asignado']),
+	  array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	  array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	  array('type' => 's', 'value' => NULL),
+	  array('type' => 's', 'value' => NULL),
+	  array('type' => 's', 'value' => 'A')
+	);
+	$rta = mysql_prepd($sql, $params);
+return $rta;
 }
 
 function formato_dato($a,$b,$c,$d){

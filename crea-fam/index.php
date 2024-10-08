@@ -374,8 +374,8 @@ function searPers(a){
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='homes';
-$hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 2 days"));
+/* $hoy = date("Y-m-d");
+$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); */
 /* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']); */
 // var_dump($usu);
@@ -392,16 +392,6 @@ $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) 
 
 	<div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div>
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
-	<div class="campo">
-		<!-- <div>Fecha Asignado Desde</div> -->
-		<input type="hidden" class="captura" size=10 id="fdes" name="fdes" value='<?php echo $hoy; ?>'  disabled="true">
-		
-	</div>
-	<div class="campo">
-		<!-- <div>Fecha Asignado Hasta</div> -->
-		<input type="hidden" class="captura" size=10 id="fhas" name="fhas" value='<?php echo $hoy; ?>'  disabled="true">
-	</div> 
-
 	<?php
 		$rta="";
 		$rta = ($perfil =='ADM'||'MED') ? '<div class="campo"><div>Colaborador</div>

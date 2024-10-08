@@ -44,14 +44,10 @@ function opc_usuario(){
 
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
-		SELECT DISTINCT CONCAT_WS('_',H.estrategia,H.sector_catastral,H.nummanzana,H.predio_num,H.unidad_habit,H.estado_v,H.idgeo) AS ACCIONES
-		FROM hog_geo H
-		LEFT JOIN usuarios U ON H.subred = U.subred
-	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
-	LEFT JOIN adscrip A ON H.territorio=A.territorio 
-	LEFT JOIN personas_datocomp M ON U.id_usuario =M.asignado_eac  
+		SELECT id_ges AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
+		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.id_geo	LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	".whe_deriva()."
-		WHERE H.estado_v IN ('7') ".whe_homes()."
+		WHERE G.estado_v IN ('7') ".whe_homes()."
 			AND U.id_usuario = '{$_SESSION['us_sds']}'
 ) AS Subquery";
 	$info=datos_mysql($total);
@@ -60,26 +56,24 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT  AS ACCIONES,
-	H.idgeo AS Cod_Predio,
-	FN_CATALOGODESC(42,H.estrategia) AS estrategia,
-	direccion,
-	H.territorio,
+$sql="SELECT id_ges AS ACCIONES,
+	G.idgeo AS Cod_Predio,
+	H.direccion,
 	H.sector_catastral Sector,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad',
 	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
 	U1.nombre,
-	H.fecha_create,
-	FN_CATALOGODESC(44,H.estado_v) AS estado
-	FROM geo_gest H
+	G.fecha_create,
+	FN_CATALOGODESC(44,G.estado_v) AS estado
+	FROM geo_gest G
+	LEFT JOIN hog_geo H ON G.idgeo = H.id_geo
 	LEFT JOIN usuarios U ON H.subred = U.subred
 	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 	".whe_deriva()."
-WHERE H.estado_v in('7') ".whe_homes()." 
+WHERE G.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
-	GROUP BY ACCIONES
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
@@ -110,24 +104,9 @@ function whe_homes() {
 		} else {
 			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'    OR D.doc_asignado='{$_SESSION['us_sds']}'  OR M.asignado_eac='{$_SESSION['us_sds']}')";
 		}
-		if ($_POST['fdigita']) {
-			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
-		}
 	} else {
-		if ($_POST['fterri']) {
-			$sql .= " AND (H.territorio='" . $_POST['fterri'] . "' OR H.usu_creo = '{$_SESSION['us_sds']}')";
-		} else {
-			$sql .= " AND (H.territorio IN (SELECT A.territorio FROM adscrip where A.doc_asignado='{$_SESSION['us_sds']}') OR H.usu_creo = '{$_SESSION['us_sds']}'  )";//OR D.doc_asignado='{$_SESSION['us_sds']}'     OR M.asignado_eac='{$_SESSION['us_sds']}'
-		}
 		if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
-		}
-		if ($_POST['fdes']) {
-			if ($_POST['fhas']) {
-			      $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$fefin 23:59:59' ";
-			} else {
-			    $sql .= " AND H.fecha_create BETWEEN '$feini 00:00:00' and '$feini 23:59:59' ";
-			}
 		}
 	}
 	return $sql;

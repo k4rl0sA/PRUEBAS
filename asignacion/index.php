@@ -65,6 +65,11 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class="campo"><div>Cargar Datos Geográficos</div></div><input class="button filtro" type="file" id="inputFile1" accept=".csv" name="inputFile1" style="width: 350px; dsisplay:none;"><br><button class="button campo" title="Cargar Archivo" id="btnLoad" type="button">IMPORTAR</button></div></div>':'';
 ?>
 <form method='post' id='fapp'>
+
+<div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
+	<?php echo $import; ?>
+	</div>
+
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >DERIVAR O REASIGNAR
 		<nav class='menu left' >

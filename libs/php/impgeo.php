@@ -48,10 +48,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 					);
 					response ($rta);
 				}
-				$sub=datos_mysql("SELECT subred FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
-				$subred=$sub['responseResult'][0]['subred'];
-				$estados=catalogo(44,1);
-				$asignados=asignados();
+				$asignado=asignados();
 				while (($campo = fgetcsv($handle, 1024, $delimit)) !== false) {
 					if ($nFil === 1) {
 						$campos = $campo;
@@ -66,98 +63,42 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 										$sql .= "NULL";
 									}
 								} else { */
-								if ($i === 0 || $i === 29 ||$i === 28) {//idgeo
-									if ($i === 29){
-										$sql .='NULL);';
-									}else{
-										$sql .= 'NULL,';
-									}
-								}
 								if (isset($campo[$i])) {
-									if ($i === 1) { //estrategia
+                                    if ($i === 0 || $i === 5 ||$i === 6) {//id
+                                        $sql .= 'NULL,';
+                                    }
+									if ($i === 2) { //asignado
 										$valor = trim($campo[$i]);
-										// $valor=trim($nFil);
-										if (!in_array($valor, $estrategias) || strlen($valor) != 1) {
+										if (!in_array($valor, $asignado)) {
 											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' esta fuera del rango ('.$estrategias[0].' a '.count($estrategias).').'
+												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido debe estar Activo el usuario y ser de la subred correspondiente.'
 											);
 											response ($rta);
 										} else {
 											$sql .= "'" . $valor . "',";
 										}
 									}
-									if ($i === 2) {//subred
+                                    if ($i === 1) { //Predio
 										$valor = trim($campo[$i]);
-										if ($valor!=$subred) {
+                                        $predio=predios($valor);
+										if (!in_array($valor, $predio)) {
 											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' esta fuera del rango (1-4) o no corresponde a su subred = '.trim($subred)
+												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido.'
 											);
 											response ($rta);
 										} else {
 											$sql .= "'" . $valor . "',";
 										}
 									}
-									if ($i === 3) {//zona
-										$valor = trim($campo[$i]);
-										if ($valor < 1 || $valor > 2) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es (1 ó 2).'
-											);
-											response ($rta);
-										} else {
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 4) {//localidad
-										$valor = trim($campo[$i]);
-    									if (!in_array($valor, $localidades) || strlen($valor) != 2) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener 2 digitos y un rango de ('.$localidades[0].' a '.count($localidades).').' 
-											);
-											response ($rta);
-    									}else{
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 5) {//upz
-										$valor = trim($campo[$i]);
-    									if (!in_array($valor, $upzs) || strlen($valor) != 3) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener 3 digitos y un rango de (001 a 117) o (R01 a R05).' 
-											);
-											response ($rta);
-    									}else{
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 6 || $i===9) {//barrio,sector catastral
-										$valor = trim($campo[$i]);
-    									if (strlen($valor) != 6) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener 6 digitos.' 
-											);
-											response ($rta);
-    									}else{
-											$sql .= "'" . $valor . "',";
-										}
-									}
-									if ($i === 7) {//territorio
-										$valor = trim($campo[$i]);
-										if (is_string($valor) && (strlen($valor) === 6 || $valor === '0')) {
-											$sql .= "'" . $valor . "',";
-										} else {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' debe contener 6 caracteres ó 0 sino posee.'
-											);
-											response ($rta);
-    									}
-									}
-									if ($i === 26 ) {//USU_CREO
-											$sql .= "'" . $_SESSION['us_sds'] . "',";
-									}
-									if ($i === 27 ) {//FECHA_CREO
-											$sql .= "'".date(format: 'Y-m-d H:i:s')."',";
-									}
+                                    if ($i === 3 ) {//USU_CREO
+                                        $sql .= "'" . $_SESSION['us_sds'] . "',";
+                                    }
+                                    if ($i === 4 ) {//FECHA_CREO
+                                        $sql .= "'".date(format: 'Y-m-d H:i:s')."',";
+                                    }
+                                    if ($i === 7 ) {//estado
+                                        $sql .= 'A);';
+                                    }
 								}else{
 									$rta = array(
 										'type' => 'Error','msj'=>'El archivo no se encuentra delimitado por "," (comas) realiza la conversión e intenta nuevamente.'
@@ -184,9 +125,22 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 				// $rta .= "Se han insertado " . $ok . " Registro(s) de " . $total . " en total, Correctamente para la tabla ";
 				
 				fclose($handle);
-                
+
 function asignados(){
-	$info=datos_mysql("SELECT id_usuario FROM usuarios WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."') and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and estado='A' ");
+	$info=datos_mysql("SELECT id_usuario FROM usuarios WHERE componente IN(SELECT componente from usuarios where id_usuario='".$_SESSION['us_sds']."') and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and estado='A';");
+	$valores = array(); 
+	if (is_array($info['responseResult'])) {
+		foreach ($info['responseResult'] as $item) {
+			if (isset($item['id_usuario'])) {
+				$valores[] = $item['id_usuario'];
+			}
+		}
+		return $valores;
+	}
+}
+
+function predios($a){
+	$info=datos_mysql("SELECT id_geo FROM hog_geo WHERE id_geo =$a and subred in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."') and estado='A';");
 	$valores = array(); 
 	if (is_array($info['responseResult'])) {
 		foreach ($info['responseResult'] as $item) {

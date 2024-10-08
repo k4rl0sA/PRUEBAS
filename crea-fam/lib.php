@@ -86,11 +86,10 @@ function whe_homes() {
 	$sql = "";
 	if (!empty($_POST['fpred'])) {
 		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "'";
-	} else {
-		if ($_POST['fdigita']) {
+	} 
+	if ($_POST['fdigita']) {
 			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
 		}
-	}
 	return $sql;
 }
 

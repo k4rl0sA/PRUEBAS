@@ -106,8 +106,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 									response ($rta);
 								}
 						}
-                        echo "<script>alert($sql);</script>";
-							$r = dato_mysql($sql);				
+						$r = dato_mysql($sql);				
 						if (preg_match('/Error/i', $r)){
 							$rta = array(
 								'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' '.$r.'<br><br>Se insertaron ' . ($nFil - 2) . ' Registro(s) previamente'
@@ -154,5 +153,5 @@ function predios($a){
 
 function response($a){
 	echo json_encode($a);
-	//exit;
+	exit;
 }

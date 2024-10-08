@@ -67,7 +67,7 @@ $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
 	<?php echo $import; ?>
 	</div>
 
-<div class='col-0 panel' id='<?php echo $mod; ?>'>
+<div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >DERIVAR O REASIGNAR
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">

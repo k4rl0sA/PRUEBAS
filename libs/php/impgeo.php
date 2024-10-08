@@ -60,7 +60,8 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                         $sql .= 'NULL,';
                                     }
                                     if ($i === 1) { //Predio
-										$valor = trim($campo[$i]);
+                                        $sql .= "'" . $campo[$i] . "',";
+									/* 	$valor = trim($campo[$i]);
                                         $predio=predios($valor);
 										if (!in_array($valor, $predio)) {
 											$rta = array(
@@ -69,7 +70,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 											response ($rta);
 										} else {
 											$sql .= "'" . $valor . "',";
-										}
+										} */
 									}
                                     if ($i === 3 ) {//USU_CREO
                                         $sql .= "'" . $_SESSION['us_sds'] . "',";
@@ -81,8 +82,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                         $sql .= 'A);';
                                     }
 									if ($i === 2) { //asignado
-                                        $sql .= "'" . $campo[$i] . "',";
-										/* $valor = trim($campo[$i]);
+										$valor = trim($campo[$i]);
 										if (!in_array($valor, $asignado)) {
 											$rta = array(
 												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido debe estar Activo el usuario y ser de la subred correspondiente.'
@@ -90,7 +90,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 											response ($rta);
 										} else {
 											$sql .= "'" . $valor . "',";
-										} */
+										}
 									}
                                     
 								}else{

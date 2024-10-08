@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 date_default_timezone_set('America/Bogota');
 $rta = array();
 $perfil=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
-if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult'][0]['perfil'] != 'ADM' && $perfil['responseResult'][0]['perfil'] != 'TECFAM' && $perfil['responseResult'][0]['perfil'] != 'SUPHOG') {
+if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult'][0]['perfil'] != 'ADM' && $perfil['responseResult'][0]['perfil'] != 'TEC' && $perfil['responseResult'][0]['perfil'] != 'SUPHOG') {
 	$rta = array(
 		'type' => 'Error',
     	'msj' => 'No tiene el perfil permitido para cargar el archivo Csv, por favor consulte al administrador del sistema ' . $perfil['responseResult'][0]['perfil']

@@ -76,8 +76,6 @@ $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>
 			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
-			<li class='icono ' data-mod="asignacion" title='Importar' Onclick="">
-			<?php echo $import; ?>
 		</nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

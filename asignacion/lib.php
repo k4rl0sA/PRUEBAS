@@ -19,20 +19,14 @@ else {
   }   
 }
 
-
-function lis_asigpred(){
-}
-
 function focus_asigpred(){
  return 'asigpred';
 }
-
 
 function men_asigpred(){
  $rta=cap_menus('asigpred','pro');
  return $rta;
 }
-
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
@@ -83,8 +77,6 @@ function cmp_asigpred(){
 	$c[]=new cmp('rol','s',3,'',$w.' '.$o,'rol','rol',null,'',true,true,'','col-2',false,['asignado']);
 	$c[]=new cmp('asignado','s',3,'',$w.' '.$o,'Asignar A','asignado',null,'',true,true,'','col-5');
 
-	
- 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

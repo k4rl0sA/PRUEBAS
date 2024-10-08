@@ -101,7 +101,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                     }
 								}else{
 									$rta = array(
-										'type' => 'Error','msj'=>'El archivo no se encuentra delimitado por "," (comas) realiza la conversión e intenta nuevamente.'
+                                    'type' => 'Error','msj'=>'El archivo NO se encuentra delimitado por "," (comas) realiza la conversión e intenta nuevamente.'
 									);
 									response ($rta);
 								}

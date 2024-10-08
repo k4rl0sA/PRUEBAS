@@ -79,7 +79,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                         $sql .= "'".date(format: 'Y-m-d H:i:s')."',";
                                     }
                                     if ($i === 7 ) {//estado
-                                        $sql .= 'A);';
+                                        $sql .= "'A');";
                                     }
 									if ($i === 2) { //asignado
 										$valor = trim($campo[$i]);

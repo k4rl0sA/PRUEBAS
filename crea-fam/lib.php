@@ -84,12 +84,9 @@ function whe_homes() {
 	$fefin=date('Y-m-d');
 	$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
 	$sql = "";
-	if (!empty($_POST['fpred'])) {
-		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "'";
+	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
+		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "' AND G.usu_creo ='" . $_POST['fdigita'] . "'";
 	} 
-	if ($_POST['fdigita']) {
-			$sql .= " AND H.usu_creo ='" . $_POST['fdigita'] . "'";
-		}
 	return $sql;
 }
 

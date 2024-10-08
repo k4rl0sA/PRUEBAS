@@ -91,7 +91,7 @@ $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
 <script>
 	let btnEnviar = document.querySelector("#btnEnviar"),btnLoad = document.querySelector("#btnLoad"),inputFile = document.querySelector("#inputFile");
 	btnLoad.addEventListener("click", () => {
-	uploadCsv(30, "geografico", inputFile1, "../libs/impGeo.php", mod);
+	uploadCsv(8, "geo_asig", inputFile1, "../libs/import.php", mod);
   });
 </script>	
 <div class="overlay" id="overlay" onClick="closeModal();">

@@ -1,6 +1,6 @@
 <?php
 ini_set("display_errors", 1);
-require_once "../libs/gestion.php";
+require_once "../gestion.php";
 header('Content-Type: application/json');
 date_default_timezone_set('America/Bogota');
 $rta = array();

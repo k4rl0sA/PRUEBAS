@@ -164,7 +164,7 @@ function gra_asigpred(){
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
 	array('type' => 's', 'value' => $id[0]),
-	array('type' => 's', 'value' => $_POST['asignado']);
+	array('type' => 's', 'value' => $_POST['asignado']),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 	array('type' => 's', 'value' => NULL),

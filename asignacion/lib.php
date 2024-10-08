@@ -94,7 +94,7 @@ $info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE id_geo='".$id[0]."'
   $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
-	$sql="SELECT  A.id_asig 'Cod Registro',A.id_geo 'Codigo Predio', U.nombre Colaborador Asignado, A.usu_creo ,fecha_create 'Fecha de Creación'
+	$sql="SELECT  A.id_asig 'Cod Registro',A.id_geo 'Codigo Predio', U.nombre Colaborador Asignado, A.usu_creo ,A.fecha_create 'Fecha de Creación'
 	FROM geo_asig A
 	LEFT JOIN  usuarios U ON A.doc_asignado=U.id_usuario
 	LEFT JOIN  usuarios U1 ON A.usu_creo=U1.id_usuario ";

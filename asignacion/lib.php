@@ -42,7 +42,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_asigpred(){
 	$rta="<div class='encabezado'>ESTADOS DEL PREDIO</div>
 	<div class='contenido' id='predios-lis'>".lis_predios()."</div></div>";
-	$t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
+	// $t=['id_deriva'=>'','cod_pre'=>'','zona'=>'','localidad'=>'','upz'=>'','barrio'=>'','sector_catastral'=>'','nummanzana'=>'','predio_num'=>'','unidad_habit'=>'','direccion'=>'','vereda'=>'','cordx'=>'','cordy'=>'','territorio'=>'','direccion_nueva'=>'','vereda_nueva'=>'','cordxn'=>'','cordxy'=>'','estado_v'=>'','motivo_estado'=>'','predio'=>'','family'=>'','rol'=>'','asignado'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
 	$w='geoloc';
@@ -88,13 +88,13 @@ function lis_asigpred(){
 FUNCTION lis_predios(){
 	var_dump($_POST);
 	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
-$info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE id_geo='".$id[0]."'");
+$info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE idgeo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
-	$sql="SELECT  A.id_asig 'Cod Registro',A.id_geo 'Cod Predio', A.fecha_create 'Fecha de Asignación', U.nombre 'Colaborador Asignado', concat_ws(' - ',U1.perfil,U1.nombre) 'Quien Asignó'
+	$sql="SELECT  A.idasig 'Cod Registro',A.id_geo 'Cod Predio', A.fecha_create 'Fecha de Asignación', U.nombre 'Colaborador Asignado', concat_ws(' - ',U1.perfil,U1.nombre) 'Quien Asignó'
 	FROM geo_asig A
 	LEFT JOIN  usuarios U ON A.doc_asignado=U.id_usuario
 	LEFT JOIN  usuarios U1 ON A.usu_create=U1.id_usuario ";

@@ -81,6 +81,10 @@ function cmp_asigpred(){
 	return $rta;
 }
 
+function lis_asigpred(){
+
+}
+
 FUNCTION lis_predios(){
 	var_dump($_POST);
 	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);

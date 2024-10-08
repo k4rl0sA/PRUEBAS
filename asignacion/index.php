@@ -51,7 +51,7 @@ function enabFielSele(a, b, c, d) {
 
 </script>
 </head>
-<body Onload="showFil(mod);">
+<body Onload="actualizar();">
 <?php
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
@@ -71,6 +71,7 @@ $import = ($perfil == 'GEO'||$perfil =='ADM'||$perfil =='SUPHOG') ? '<div class=
       <div class='titulo' >DERIVAR O REASIGNAR
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
+			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>
 			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">
 		</nav>

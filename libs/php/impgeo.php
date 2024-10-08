@@ -53,32 +53,12 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 					if ($nFil === 1) {
 						$campos = $campo;
 					}else{
-						$sql = "INSERT INTO " . $tab . " VALUES(";
-				
+						$sql = "INSERT INTO " . $tab . " VALUES(";				
 						for ($i = 0; $i < $ncol; $i++) {
-							//if ($i + 1 == $ncol) {
-								/* if ($campo[$i] != 'NULL') {
-										$sql .= "'" . trim($campo[$i]) . "'";
-									} else {
-										$sql .= "NULL";
-									}
-								} else { */
 								if (isset($campo[$i])) {
                                     if ($i === 0 || $i === 5 ||$i === 6) {//id
                                         $sql .= 'NULL,';
                                     }
-									if ($i === 2) { //asignado
-                                        $sql .= "'" . $campo[$i] . "',";
-										/* $valor = trim($campo[$i]);
-										if (!in_array($valor, $asignado)) {
-											$rta = array(
-												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido debe estar Activo el usuario y ser de la subred correspondiente.'
-											);
-											response ($rta);
-										} else {
-											$sql .= "'" . $valor . "',";
-										} */
-									}
                                     if ($i === 1) { //Predio
 										$valor = trim($campo[$i]);
                                         $predio=predios($valor);
@@ -100,6 +80,19 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                     if ($i === 7 ) {//estado
                                         $sql .= 'A);';
                                     }
+									if ($i === 2) { //asignado
+                                        $sql .= "'" . $campo[$i] . "',";
+										/* $valor = trim($campo[$i]);
+										if (!in_array($valor, $asignado)) {
+											$rta = array(
+												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido debe estar Activo el usuario y ser de la subred correspondiente.'
+											);
+											response ($rta);
+										} else {
+											$sql .= "'" . $valor . "',";
+										} */
+									}
+                                    
 								}else{
 									$rta = array(
                                     'type' => 'Error','msj'=>'El archivo NO se encuentra delimitado por "," (comas) realiza la conversión e intenta nuevamente.'

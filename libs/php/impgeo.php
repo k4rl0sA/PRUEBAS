@@ -112,7 +112,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 				}
 				$total = $nFil - 2;
 				$rta = array(
-					'type' => 'OK','msj'=>'Se han insertado ' . ($nFil - 2) . ' Registro(s) de '.$total
+					'type' => 'Error','msj'=>'Se han insertado ' . ($nFil - 2) . ' Registro(s) de '.$total
 				);
 				response ($rta);
 				// $rta .= "Se han insertado " . $ok . " Registro(s) de " . $total . " en total, Correctamente para la tabla ";

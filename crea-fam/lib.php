@@ -85,7 +85,7 @@ WHERE H.estado_v in('7') ".whe_homes()."
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
 
-// echo $sql;
+echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }

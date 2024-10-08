@@ -68,6 +68,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                         $sql .= 'NULL,';
                                     }
 									if ($i === 2) { //asignado
+                                        $sql .= "'" . $campo[$i] . "',";
 										/* $valor = trim($campo[$i]);
 										if (!in_array($valor, $asignado)) {
 											$rta = array(

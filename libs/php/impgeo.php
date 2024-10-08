@@ -68,7 +68,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
                                         $sql .= 'NULL,';
                                     }
 									if ($i === 2) { //asignado
-										$valor = trim($campo[$i]);
+										/* $valor = trim($campo[$i]);
 										if (!in_array($valor, $asignado)) {
 											$rta = array(
 												'type' => 'Error','msj'=>'Registro #' . ($nFil - 1) . ' - El valor "'.$valor.'" en '.$campos[$i].' no es valido debe estar Activo el usuario y ser de la subred correspondiente.'
@@ -76,7 +76,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 											response ($rta);
 										} else {
 											$sql .= "'" . $valor . "',";
-										}
+										} */
 									}
                                     if ($i === 1) { //Predio
 										$valor = trim($campo[$i]);

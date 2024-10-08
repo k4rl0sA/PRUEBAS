@@ -144,8 +144,8 @@ function predios($a){
 	$valores = array(); 
 	if (is_array($info['responseResult'])) {
 		foreach ($info['responseResult'] as $item) {
-			if (isset($item['id_usuario'])) {
-				$valores[] = $item['id_usuario'];
+			if (isset($item['id_geo'])) {
+				$valores[] = $item['id_geo'];
 			}
 		}
 		return $valores;

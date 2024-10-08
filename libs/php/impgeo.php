@@ -154,5 +154,5 @@ function predios($a){
 
 function response($a){
 	echo json_encode($a);
-	exit;
+	//exit;
 }

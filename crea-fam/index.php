@@ -414,7 +414,7 @@ $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) 
 	?>
  </div>
  <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' >ATENCIONES
+      <div class='titulo' > CREACIÓN DE FAMILIAS
 		<nav class='menu left' >
 			<li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
 			<!-- <li class='icono exportar'      title='Exportar Información General'    Onclick="csv(mod);"></li> -->

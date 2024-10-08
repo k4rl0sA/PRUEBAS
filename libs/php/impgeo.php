@@ -106,7 +106,7 @@ if ($perfil['responseResult'][0]['perfil'] != 'GEO' && $perfil['responseResult']
 									response ($rta);
 								}
 						}
-                        var_dump($sql);
+                        echo "<script>alert($sql);</script>";
 							$r = dato_mysql($sql);				
 						if (preg_match('/Error/i', $r)){
 							$rta = array(

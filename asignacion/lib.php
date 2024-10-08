@@ -88,17 +88,18 @@ function lis_asigpred(){
 FUNCTION lis_predios(){
 	var_dump($_POST);
 	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
-$info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE estado_v!=1 AND id_geo='".$id[0]."'");
+$info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE id_geo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
   
-	$sql="SELECT  id_ges 'Cod Registro',id_geo 'Codigo Predio', FN_CATALOGODESC(44,estado_v) Estado,FN_CATALOGODESC(5,motivo_estado) Motivo,nombre Creó,fecha_create 'Fecha de Creación'
-	FROM geo_gest A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE estado_v!=1 AND id_geo='".$id[0];
-$sql.="' ORDER BY fecha_create";
+	$sql="SELECT  A.id_asig 'Cod Registro',A.id_geo 'Codigo Predio', U.nombre Colaborador Asignado, A.usu_creo ,fecha_create 'Fecha de Creación'
+	FROM geo_asig A
+	LEFT JOIN  usuarios U ON A.doc_asignado=U.id_usuario
+	LEFT JOIN  usuarios U1 ON A.usu_creo=U1.id_usuario ";
+$sql.="WHERE id_geo='".$id[0];
+$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);

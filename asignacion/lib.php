@@ -82,7 +82,7 @@ function cmp_asigpred(){
 }
 
 FUNCTION lis_predios(){
-	// var_dump($_POST['id']);
+	var_dump($_POST);
 	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
 $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE estado_v!=1 AND id_geo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];

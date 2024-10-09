@@ -67,11 +67,6 @@ function actualizar(){
 }
 
 function grabar(tb='',ev){
-	/* if (tb=='prinfancia'){
-		const id=document.getElementById('p_infancia_documento').value;
-		const tip=document.getElementById('p_infancia_tipo_doc').value;
-		const aten= atenReal(id+'_'+tip,'../atencion/prinfancia.php');
-	} */
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);
    for (i=0;i<f.length;i++) {
@@ -87,12 +82,7 @@ function grabar(tb='',ev){
 		'statFam':'stateFami.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
-	// if(aten!==0){
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);
-/* 	}else{
-		warnin('Para realizar esta operacion, debe tener una atención previa, valida e intenta nuevamente');
-	} */
-
 	if (tb == 'person') {
   		setTimeout(function() {
     		mostrar('person1', 'fix', event, '', 'lib.php', 0, 'person1', document.querySelector('input[type="hidden"]').value.split('_')[0]);

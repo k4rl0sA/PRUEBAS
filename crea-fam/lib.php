@@ -178,11 +178,10 @@ function cmp_homes(){
 }
 
 function num_fam(){
-	var_dump($_POST);
-	if($_POST['id']==''){
+	if($_POST['idg']==''){
 		return "";
 	}else{
-		$id=$_POST['id'];
+		$id=$_POST['idg'];
 		$sql="SELECT max(numfam) nfam
 		FROM  hog_fam
 		WHERE idpre=$id";

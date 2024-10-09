@@ -195,7 +195,7 @@ function num_fam(){
 		if (!$info['responseResult']) {
 			return json_encode (new stdClass);
 		}
-		return json_encode($info['responseResult'][0]);
+		return json_encode($info['responseResult'][0]['nfam']);
 	} 
 }
 

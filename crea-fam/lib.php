@@ -158,12 +158,13 @@ function cmp_homes(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$w='homes';
-	$numfam=0;
+	$numf=num_fam(); 
+	if ($numf=="") {$numf=1;}
    	$d='';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('numfam','s',3,$d,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
+	$c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
 	$c[]=new cmp('fecha','d','10',$d,$w.' oculto '.$o,'fecha Caracterización','fecha',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-15');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
@@ -179,20 +180,20 @@ function cmp_homes(){
 	return $rta;
 }
 
-/* function num_fam($a){
+function num_fam(){
 	if($_POST['id']==''){
 		return "";
 	}else{
 		$id=$_POST['id'];
-		$sql="SELECT max(numfam
+		$sql="SELECT max(numfam)
 		FROM  hog_fam
-		WHERE idviv 0]}' AND idgeo=concat('".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."','_','".$id[6]."');
+		WHERE id_pre=$id";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
 		return json_encode($info['responseResult'][0]);
 	} 
-} */
+}
 
 function opc_incluofici($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=179 and estado='A' ORDER BY 1",$id);

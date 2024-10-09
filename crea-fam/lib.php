@@ -135,7 +135,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function lis_famili(){
 	// $id=divide($_POST['id']);
-	$sql="SELECT id_fam ACCIONES,idfam AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,
+	$sql="SELECT id_fam ACCIONES,id_fam AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_fam` V 
 			left join usuarios P ON V.usu_creo=id_usuario

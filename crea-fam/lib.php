@@ -293,6 +293,7 @@ function gra_homes(){
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A')
 	);
+	var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	return $rta;
 	}

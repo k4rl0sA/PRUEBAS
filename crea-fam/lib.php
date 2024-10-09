@@ -159,7 +159,7 @@ function cmp_homes(){
 	$hoy=date('Y-m-d');
 	$w='homes';
 	$numf=num_fam(); 
-	if ($numf=="") {$numf=1;}
+	if ($numf=="null") {$numf=1;}
 	var_dump($numf);
    	$d='';
 	$o='inf';

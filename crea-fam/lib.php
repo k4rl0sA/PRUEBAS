@@ -160,18 +160,19 @@ function cmp_homes(){
 	$w='homes';
 	
 	$nf = num_fam();
-var_dump($nf);  // Depuración: Verifica el valor original de $nf
-
-// Si $nf es null, una cadena vacía o algo que no puede convertirse en número
-if (is_null($nf) || $nf === '' || !is_numeric($nf)) {
-    $numf = 1;  // Inicializamos en 1 si $nf no es numérico
-} else {
-    $n = intval($nf);  // Convertimos a entero si es numérico
-    var_dump($n);  // Depuración: Verifica el valor convertido
-    $numf = $n + 1;  // Suma 1 al valor convertido
-}
-var_dump($numf);  // Depuración: Verifica el valor final de $numf
-
+	var_dump($nf);  // Verifica qué valor está recibiendo $nf
+	
+	if (is_null($nf)) {
+		// Si $nf es null, asignamos 1
+		$numf = 1;
+	} else {
+		// Si no es numérico, igual sumamos 1, tratamos $nf como no numérico
+		$n = is_numeric($nf) ? intval($nf) : 0;  // Si es numérico lo convertimos, si no, lo tratamos como 0
+		var_dump($n);  // Depuración: Verifica el valor de $n después de intval() o 0
+		$numf = $n + 1;  // Suma 1 al valor convertido o 0
+	}
+	var_dump($numf);  // Depuración: Verifica el valor final de $numf
+	
 
 
    	$d='';

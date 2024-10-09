@@ -178,6 +178,7 @@ function cmp_homes(){
 }
 
 function num_fam(){
+	var_dump($_POST);
 	if($_POST['id']==''){
 		return "";
 	}else{

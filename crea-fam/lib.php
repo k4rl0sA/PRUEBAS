@@ -135,11 +135,11 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function lis_famili(){
 	// $id=divide($_POST['id']);
-	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
+	$sql="SELECT idfam ACCIONES,idfam AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos
 		V.fecha_create Creado,nombre Creó
-		FROM `hog_viv` V 
-			left join usuarios P ON usu_creo=id_usuario
-		WHERE '1'='1' and idgeo='".$_POST['id'];
+		FROM `hog_fam` V 
+			left join usuarios P ON V.usu_creo=id_usuario
+		WHERE idpre='".$_POST['id'];
 		$sql.="' ORDER BY fecha_create";
 		//  echo $sql;
 			$datos=datos_mysql($sql);

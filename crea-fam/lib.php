@@ -158,23 +158,11 @@ function cmp_homes(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$w='homes';
-	$nf = num_fam();
-	if (is_null($nf)) {
-		$numf = 1;
-	} else {
-		$nf_limpio = preg_replace('/\D/', '', $nf);
-		if ($nf_limpio === '') {
-			$n = 0;
-		} else {
-			$n = intval($nf_limpio);
-		}
-		$numf = $n + 1;
-	}
    	$d='';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',false,false,'','col-2');
+	// $c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-15');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
  	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o,'complemento2','complemento',null,'',false,true,'','col-15');
@@ -203,7 +191,19 @@ function num_fam(){
 		if (!$info['responseResult']) {
 			return '';
 		}
-		return json_encode($info['responseResult'][0]['nfam']);
+		$nf = json_encode($info['responseResult'][0]['nfam']);
+	if (is_null($nf)) {
+		$numf = 1;
+	} else {
+		$nf_limpio = preg_replace('/\D/', '', $nf);
+		if ($nf_limpio === '') {
+			$n = 0;
+		} else {
+			$n = intval($nf_limpio);
+		}
+		$numf = $n + 1;
+	}
+	return $numf;
 	} 
 }
 
@@ -216,7 +216,7 @@ function namequipo(){
 			return '';
 		}
 		var_dump($info['responseResult'][0]['equipo']);
-		return json_encode($info['responseResult'][0]['equipo']);
+		return $info['responseResult'][0]['equipo'];
 }
 
 function opc_incluofici($id=''){
@@ -283,7 +283,7 @@ function gra_homes(){
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
 	array('type' => 'i', 'value' => $id),
-	array('type' => 'i', 'value' => $_POST['numfam']),
+	array('type' => 'i', 'value' => num_fam()),
 	array('type' => 's', 'value' => $_POST['complemento1']),
 	array('type' => 's', 'value' => $_POST['nuc1']),
 	array('type' => 's', 'value' => $_POST['complemento2']),

@@ -162,25 +162,29 @@ function cmp_homes(){
 
 
 	$nf = num_fam();
-	var_dump($nf);  // Verifica el valor exacto que está devolviendo num_fam()
-	
-	// Usamos gettype() para saber el tipo exacto de $nf
+	var_dump($nf);  // Verifica el valor original de $nf
 	echo "El tipo de \$nf es: " . gettype($nf) . "\n";
 	
+	// Si $nf es null, el valor será 1
 	if (is_null($nf)) {
-		// Si $nf es null, asignamos 1
 		$numf = 1;
 	} else {
-		// Si no es numérico, lo tratamos como 0
-		if (!is_numeric($nf)) {
-			$n = 0;  // Para valores no numéricos, tratamos como 0
+		// Limpiamos la cadena para mantener solo los dígitos si tiene caracteres extraños
+		$nf_limpio = preg_replace('/\D/', '', $nf);  // Elimina todo lo que no sea un número
+		var_dump($nf_limpio);  // Depuración: Verifica la cadena limpia
+		
+		if ($nf_limpio === '') {
+			// Si la cadena limpia no tiene ningún número, lo tratamos como 0
+			$n = 0;
 		} else {
-			// Si es numérico, lo convertimos a entero
-			$n = intval($nf);
+			// Si hay números en la cadena, los convertimos a entero
+			$n = intval($nf_limpio);
 		}
-		var_dump($n);  // Depuración: Verifica el valor después de convertirlo a número
-		$numf = $n + 1;  // Suma 1 al valor
+		
+		var_dump($n);  // Verifica el valor después de limpiar y convertir a número
+		$numf = $n + 1;  // Suma 1 al valor final
 	}
+	
 	var_dump($numf);  // Verifica el valor final de $numf
 	
 

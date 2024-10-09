@@ -158,37 +158,18 @@ function cmp_homes(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$w='homes';
-	
-
-
 	$nf = num_fam();
-	var_dump($nf);  // Verifica el valor original de $nf
-	echo "El tipo de \$nf es: " . gettype($nf) . "\n";
-	
-	// Si $nf es null, el valor será 1
 	if (is_null($nf)) {
 		$numf = 1;
 	} else {
-		// Limpiamos la cadena para mantener solo los dígitos si tiene caracteres extraños
-		$nf_limpio = preg_replace('/\D/', '', $nf);  // Elimina todo lo que no sea un número
-		var_dump($nf_limpio);  // Depuración: Verifica la cadena limpia
-		
+		$nf_limpio = preg_replace('/\D/', '', $nf);
 		if ($nf_limpio === '') {
-			// Si la cadena limpia no tiene ningún número, lo tratamos como 0
 			$n = 0;
 		} else {
-			// Si hay números en la cadena, los convertimos a entero
 			$n = intval($nf_limpio);
 		}
-		
-		var_dump($n);  // Verifica el valor después de limpiar y convertir a número
-		$numf = $n + 1;  // Suma 1 al valor final
+		$numf = $n + 1;
 	}
-	
-	var_dump($numf);  // Verifica el valor final de $numf
-	
-
-
    	$d='';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);

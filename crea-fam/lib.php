@@ -207,7 +207,7 @@ function namequipo(){
 		if (!$info['responseResult']) {
 			return '';
 		}
-		print_r($info['responseResult'][0]['equipo']);
+		// print_r($info['responseResult'][0]['equipo']);
 		return json_encode($info['responseResult'][0]['equipo']);
 }
 
@@ -270,8 +270,7 @@ function men_homes1(){
 }
    
 function gra_homes(){
-	var_dump($_POST);
-	$id=$_POST['id'];
+	$id=$_POST['idg'];
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	array('type' => 'i', 'value' => NULL),

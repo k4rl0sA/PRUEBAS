@@ -200,7 +200,7 @@ function num_fam(){
 }
 
 function namequipo(){
-		$sql="SELECT equipo 
+	/* 	$sql="SELECT equipo 
 		FROM  usuarios
 		WHERE id_usuario=$_SESSION['us_sds']";
 		// echo $sql;
@@ -209,7 +209,7 @@ function namequipo(){
 		if (!$info['responseResult']) {
 			return '';
 		}
-		return json_encode($info['responseResult'][0]['equipo']);
+		return json_encode($info['responseResult'][0]['equipo']); */
 }
 
 function opc_incluofici($id=''){

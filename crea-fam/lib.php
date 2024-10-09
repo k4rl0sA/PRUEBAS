@@ -147,7 +147,6 @@ function lis_famili(){
 		return panel_content($datos["responseResult"],"famili-lis",8);
 		}
 	
-
 function cmp_homes1(){
 	$rta="";
 	$rta.="<div class='encabezado vivienda'>TABLA DE FAMILIAS POR VIVIENDA</div>

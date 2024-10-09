@@ -164,7 +164,7 @@ function cmp_homes(){
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',true,true,'','col-2');
+	$c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',false,true,'','col-2');
 	$c[]=new cmp('fecha','d','10',$d,$w.' oculto '.$o,'fecha Caracterización','fecha',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-15');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');

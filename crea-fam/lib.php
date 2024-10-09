@@ -141,7 +141,7 @@ function lis_famili(){
 			left join usuarios P ON usu_creo=id_usuario
 		WHERE '1'='1' and idgeo='".$_POST['id'];
 		$sql.="' ORDER BY fecha_create";
-		 echo $sql;
+		//  echo $sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",8);
 		}
@@ -179,12 +179,12 @@ function cmp_homes(){
 	return $rta;
 }
 
-function num_fam($a){
+/* function num_fam($a){
 	if($_POST['id']==''){
 		return "";
 	}else{
 		$id=$_POST['id'];
-		$sql="SELECT max(numfam)
+		$sql="SELECT max(numfam
 		FROM  hog_fam
 		WHERE idviv 0]}' AND idgeo=concat('".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."','_','".$id[6]."');
 		// echo $sql;
@@ -192,7 +192,7 @@ function num_fam($a){
 		$info=datos_mysql($sql);
 		return json_encode($info['responseResult'][0]);
 	} 
-}
+} */
 
 function opc_incluofici($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=179 and estado='A' ORDER BY 1",$id);

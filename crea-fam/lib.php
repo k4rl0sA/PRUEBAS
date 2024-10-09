@@ -162,13 +162,11 @@ function cmp_homes(){
 	if ($numf=="null") {
 		$numf=1;
 	}else{$numf=$numf+1;}
-
    	$d='';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',false,false,'','col-2');
-	$c[]=new cmp('fecha','d','10',$d,$w.' oculto '.$o,'fecha Caracterización','fecha',null,'',false,false,'','col-2');
 	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-15');
     $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
  	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o,'complemento2','complemento',null,'',false,true,'','col-15');
@@ -199,6 +197,19 @@ function num_fam(){
 		}
 		return json_encode($info['responseResult'][0]['nfam']);
 	} 
+}
+
+function namequipo(){
+		$sql="SELECT equipo 
+		FROM  usuarios
+		WHERE id_usuario=$_SESSION['us_sds']";
+		// echo $sql;
+		//print_r($id);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return json_encode (new stdClass);
+		}
+		return json_encode($info['responseResult'][0]['equipo']);
 }
 
 function opc_incluofici($id=''){
@@ -260,44 +271,30 @@ function men_homes1(){
 }
    
 function gra_homes(){
-	$id=divide($_POST['idg']);
-	// print_r($id);
-	$cod=$id[0].'_'.$id[1].'_'.$id[2].'_'.$id[3].'_'.$id[4].'_'.$id[5];
-	if(count($id)==1){
-	$sql="UPDATE `hog_viv` SET
-	`fecha`=TRIM(UPPER('{$_POST['fecha']}')),
-	`Complemento1`=TRIM(UPPER('{$_POST['complemento1']}')),`nuc1`=TRIM(UPPER('{$_POST['nuc1']}')),
-	`complemento2`=TRIM(UPPER('{$_POST['complemento2']}')),`nuc2`=TRIM(UPPER('{$_POST['nuc2']}')),
-	`complemento3`=TRIM(UPPER('{$_POST['complemento3']}')),`nuc3`=TRIM(UPPER('{$_POST['nuc3']}')),
-	telefono1=TRIM(UPPER('{$_POST['telefono1']}')),telefono2=TRIM(UPPER('{$_POST['telefono2']}')),
-	telefono3=TRIM(UPPER('{$_POST['telefono3']}')),
-	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-	WHERE idviv='{$id[0]}'";
-	// echo $sql;
-	}elseif(count($id)==7){
-		$sql="INSERT INTO hog_viv VALUES (null,
-		{$id[6]},
-		TRIM(UPPER('{$cod}')),
-		TRIM(UPPER('{$_POST['numfam']}')),
-		TRIM(UPPER('{$_POST['fecha']}')),
-		'','','','','','','','',
-		TRIM(UPPER('{$_POST['complemento1']}')),TRIM(UPPER('{$_POST['nuc1']}')),
-		TRIM(UPPER('{$_POST['complemento2']}')),TRIM(UPPER('{$_POST['nuc2']}')),
-		TRIM(UPPER('{$_POST['complemento3']}')),TRIM(UPPER('{$_POST['nuc3']}')),
-		TRIM(UPPER('{$_POST['telefono1']}')),TRIM(UPPER('{$_POST['telefono2']}')),TRIM(UPPER('{$_POST['telefono3']}')),
-		'','','','','','','','','','','','','','','','','','','','','','','','','',
-		'','','','','','','','','','','','','','','','','','','','','','','','','',
-		'','','','','','','','','','',
-		'','','','','','',
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-		// echo $sql;
-	}
-	  $rta=dato_mysql($sql);
-	  
-	//   return "correctamente";
-	  return $rta;
+	$id=$_POST['id'];
+	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$params = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 'i', 'value' => $id),
+	array('type' => 'i', 'value' => $_POST['numfam']),
+	array('type' => 's', 'value' => $_POST['complemento1']),
+	array('type' => 's', 'value' => $_POST['nuc1']),
+	array('type' => 's', 'value' => $_POST['complemento2']),
+	array('type' => 's', 'value' => $_POST['nuc1']),
+	array('type' => 's', 'value' => $_POST['complemento3']),
+	array('type' => 's', 'value' => $_POST['nuc1']),
+	array('type' => 's', 'value' => $_POST['telefono1']),
+	array('type' => 's', 'value' => $_POST['telefono2']),
+	array('type' => 's', 'value' => $_POST['telefono3']),
+
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => 'A')
+	);
+	$rta = mysql_prepd($sql, $params);
+	return $rta;
 	}
 
 

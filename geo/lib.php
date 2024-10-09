@@ -120,8 +120,8 @@ function get_predio(){
 	$id=divide($_POST['id']);
 	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
  	FROM `geo_asig` A 
-  	LEFT JOIN hog_geo G ON A.id_geo=G.idgeo 
-   	WHERE A.estado='A' AND A.id_geo ='".$id[0]."'";
+  	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo 
+   	WHERE A.estado='A' AND A.idgeo ='".$id[0]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

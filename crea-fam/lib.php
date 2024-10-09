@@ -186,13 +186,13 @@ function num_fam(){
 		return "";
 	}else{
 		$id=$_POST['id'];
-		$sql="SELECT max(numfam)
+		$sql="SELECT max(numfam) nfam
 		FROM  hog_fam
 		WHERE idpre=$id";
 		// echo $sql;
 		print_r($id);
 		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
+		return json_encode($info['responseResult'][0]['nfam']);
 	} 
 }
 

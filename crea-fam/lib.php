@@ -74,7 +74,7 @@ WHERE G.estado_v in('7') ".whe_homes()."
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	ORDER BY nummanzana, predio_num
 	LIMIT $pag, $regxPag";
-echo $sql;
+// echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
@@ -141,7 +141,7 @@ function lis_famili(){
 			LEFT JOIN usuarios P ON V.usu_create=id_usuario
 			LEFT JOIN hog_carac C ON V.id_fam=C.idfam
 		WHERE idpre='".$_POST['id'];
-		$sql.="' ORDER BY fecha_create";
+		$sql.="' ORDER BY V.fecha_create";
 		//  echo $sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",8);

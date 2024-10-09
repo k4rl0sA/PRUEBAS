@@ -20,8 +20,8 @@ var ruta_app='lib.php';
 
 document.onkeyup=function(ev) {
 	ev=ev||window.event;
-	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
-	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
+/* 	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
+	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder; */
 };
 
 

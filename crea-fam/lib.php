@@ -164,6 +164,7 @@ function cmp_homes(){
 		$numf=1;
 	}else{
 		$numf=(int)$numf+1;
+		var_dump($numf);
 	}
    	$d='';
 	$o='inf';

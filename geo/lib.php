@@ -96,7 +96,7 @@ function cmp_geoloc(){
 
 
 FUNCTION lis_predios(){
-	// var_dump($_POST['id']);
+	//var_dump($_POST['id']);
 	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
 $info=datos_mysql("SELECT COUNT(*) total FROM geo_gest WHERE estado_v!=1 AND idgeo='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
@@ -116,7 +116,7 @@ $sql.="' ORDER BY fecha_create";
    }
 
 function get_predio(){
-	// print_r($_POST);
+	 print_r($_POST);
 	$id=divide($_POST['id']);
 	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
  	FROM `geo_asig` A 

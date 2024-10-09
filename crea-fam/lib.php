@@ -161,7 +161,9 @@ function cmp_homes(){
 	$numf=num_fam(); 
 	if ($numf=="null") {
 		$numf=1;
-	}else{$numf=((int)$numf)+1;}
+	}else{
+		$numf=(int)$numf+1;
+	}
 
    	$d='';
 	$o='inf';

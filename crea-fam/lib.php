@@ -271,7 +271,7 @@ function men_homes1(){
 }
    
 function gra_homes(){
-	$id=$_POST['id'];
+	/* $id=$_POST['id'];
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
@@ -294,7 +294,7 @@ function gra_homes(){
 	array('type' => 's', 'value' => 'A')
 	);
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
+	return $rta; */
 	}
 
 

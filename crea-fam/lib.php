@@ -159,8 +159,10 @@ function cmp_homes(){
 	$hoy=date('Y-m-d');
 	$w='homes';
 	$numf=num_fam(); 
-	if ($numf=="null") {$numf=1;}
-	var_dump($numf);
+	if ($numf=="null") {
+		$numf=1;
+	}else{$numf=$numf+1}
+
    	$d='';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);

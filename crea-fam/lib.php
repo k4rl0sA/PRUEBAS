@@ -162,25 +162,27 @@ function cmp_homes(){
 
 
 	$nf = num_fam();
-	var_dump($nf);  // Depuración: Verifica el valor original de $nf
+	var_dump($nf);  // Verifica el valor exacto que está devolviendo num_fam()
+	
+	// Usamos gettype() para saber el tipo exacto de $nf
+	echo "El tipo de \$nf es: " . gettype($nf) . "\n";
 	
 	if (is_null($nf)) {
-		// Si $nf es null, el valor será 1
+		// Si $nf es null, asignamos 1
 		$numf = 1;
 	} else {
-		// Si no es numérico, lo tratamos como 0 y sumamos 1
+		// Si no es numérico, lo tratamos como 0
 		if (!is_numeric($nf)) {
-			$n = 0;  // Para valores no numéricos, lo tratamos como 0
+			$n = 0;  // Para valores no numéricos, tratamos como 0
 		} else {
 			// Si es numérico, lo convertimos a entero
 			$n = intval($nf);
 		}
-		var_dump($n);  // Depuración: Verifica el valor de $n
-		$numf = $n + 1;  // Sumamos 1, sea numérico o no
+		var_dump($n);  // Depuración: Verifica el valor después de convertirlo a número
+		$numf = $n + 1;  // Suma 1 al valor
 	}
-	var_dump($numf);  // Depuración: Verifica el valor final de $numf
+	var_dump($numf);  // Verifica el valor final de $numf
 	
-
 
 
    	$d='';

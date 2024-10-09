@@ -141,7 +141,7 @@ function lis_famili(){
 			left join usuarios P ON usu_creo=id_usuario
 		WHERE '1'='1' and idgeo='".$_POST['id'];
 		$sql.="' ORDER BY fecha_create";
-		//  echo $sql;
+		 echo $sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",8);
 		}

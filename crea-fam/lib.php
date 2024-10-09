@@ -215,7 +215,6 @@ function namequipo(){
 		if (!$info['responseResult']) {
 			return '';
 		}
-		var_dump($info['responseResult'][0]['equipo']);
 		return $info['responseResult'][0]['equipo'];
 }
 

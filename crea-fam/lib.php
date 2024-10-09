@@ -286,7 +286,7 @@ function gra_homes(){
 	array('type' => 's', 'value' => $_POST['telefono1']),
 	array('type' => 's', 'value' => $_POST['telefono2']),
 	array('type' => 's', 'value' => $_POST['telefono3']),
-
+	array('type' => 's', 'value' => namequipo()),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 	array('type' => 's', 'value' => NULL),

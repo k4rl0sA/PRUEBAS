@@ -187,7 +187,7 @@ function num_fam(){
 		$id=$_POST['id'];
 		$sql="SELECT max(numfam)
 		FROM  hog_fam
-		WHERE id_pre=$id";
+		WHERE idpre=$id";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);

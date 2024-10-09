@@ -163,7 +163,8 @@ function cmp_homes(){
 	if ($numf=="null") {
 		$numf=1;
 	}else{
-		$numf=(int)$numf+1;
+		$num=(int)$numf;
+		$numf=$num+1;
 		var_dump($numf);
 	}
    	$d='';

@@ -136,7 +136,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function lis_famili(){
 	// $id=divide($_POST['id']);
 	$cod=divide($_POST['id']);
-	$id=$cod[0].'_'.$cod[1].'_'.$cod[2].'_'.$cod[3].'_'.$cod[4].'_'.$cod[5];
+	$id=$cod[0]
 	$sql="SELECT concat(idviv,'_',idgeo) ACCIONES,idviv AS Cod_Familiar,numfam AS N°_FAMILIA,fecha,CONCAT_WS(' ',FN_CATALOGODESC(6,complemento1),nuc1,FN_CATALOGODESC(6,complemento2),nuc2,FN_CATALOGODESC(6,complemento3),nuc3) Complementos,FN_CATALOGODESC(4,tipo_vivienda) 'Tipo de Vivienda',
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_viv` V 

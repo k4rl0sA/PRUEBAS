@@ -165,7 +165,7 @@ var_dump($nf);
 if ($nf === null) {
     $numf = 1;  // Si $nf es null, inicializamos $numf con 1
 } else {
-    $numf = intval($nf) + 1;  // Si $nf no es null, convertimos a entero y sumamos 1
+    $numf = intval($nf) + 2;  // Si $nf no es null, convertimos a entero y sumamos 1
 }
 var_dump($numf);
 

@@ -159,10 +159,7 @@ function cmp_homes(){
 	$t=['complemento1'=>'','nuc1'=>'','complemento2'=>'','nuc2'=>'','complemento3'=>'','nuc3'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$w='homes';
 	$d = get_homes();
-	var_dump($_POST);
-	var_dump($_GET);
 	if ($d==""){$d=$t;}
-	var_dump($d);
 	$o='inf';
 	// var_dump($_REQUEST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
@@ -186,10 +183,10 @@ function get_homes(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
-		$id=$_REQUEST['id'];
+		$id=divide($_REQUEST['id']);
 		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
 		FROM `hog_fam` 
-		WHERE id_fam ='{$id}'";
+		WHERE id_fam ='{$id[1]}'";
 		// echo $sql;
 		print_r($id);
 		$info=datos_mysql($sql);

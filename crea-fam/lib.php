@@ -182,6 +182,24 @@ function cmp_homes(){
 	return $rta;
 }
 
+function get_homes(){
+	if($_REQUEST['id']==''){
+		return "";
+	}else{
+		$id=$_REQUEST['id'];
+		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
+		FROM `hog_fam` 
+		WHERE id_fam ='{$id}'";
+		// echo $sql;
+		print_r($id);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return json_encode($info['responseResult'][0]);
+	} 
+}
+
 function num_fam(){
 	if($_POST['idg']==''){
 		return "";
@@ -250,23 +268,7 @@ function opc_ingreso($id=''){
 function opc_encuentra($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
-function get_homes(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		$id=$_REQUEST['id'];
-		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
-		FROM `hog_fam` 
-		WHERE id_fam ='{$id}'";
-		// echo $sql;
-		print_r($id);
-		$info=datos_mysql($sql);
-		if (!$info['responseResult']) {
-			return json_encode (new stdClass);
-		}
-	return json_encode($info['responseResult'][0]);
-	} 
-}
+
 
 function focus_homes(){
 	return 'homes';

@@ -79,7 +79,8 @@ function grabar(tb='',ev){
 		'admision':'admision.php',
 		'pregnant':'gestantes.php',
 		'prechronic':'cronicos.php',
-		'statFam':'stateFami.php'
+		'statFam':'stateFami.php',
+		'caract':'../crea-caract/lib.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

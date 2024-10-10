@@ -55,7 +55,7 @@ function cmp_caract(){
 	$o='fam';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN FAMILIAR',$w);
 	$c[]=new cmp('tipo_vivienda','s','3',$d,$w.' '.$o,'Tipo de Vivienda','tipo_vivienda',null,null,true,true,'','col-25',"tipVivi('tipo_vivienda','bed');");
-	$c[]=new cmp('tendencia','s','3',$d,$w.' '.$o,'Tenencia de la Vivienda','tendencia',null,null,true,true,'','col-25');
+	$c[]=new cmp('tenencia','s','3',$d,$w.' '.$o,'Tenencia de la Vivienda','tenencia',null,null,true,true,'','col-25');
 	$c[]=new cmp('dormitorios','n',2,$d,$w.' bed '.$o,'Número de dormitorios','dormitorios',null,null,true,true,'','col-25');
 	$c[]=new cmp('actividad_economica','o',2,$d,$w.' '.$o,'Uso para  actividad económicas','actividad_economica',null,null,false,true,'','col-25');
 	$c[]=new cmp('tipo_familia','s','3',$d,$w.' '.$o,'Tipo de Familia','tipo_familia',null,true,true,true,'','col-4');
@@ -154,7 +154,15 @@ function opc_fam_peretn($id=''){
 function opc_fam_rurcer($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
 }
- 
+function opc_tenencia($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=8 and estado='A' ORDER BY 1",$id);
+}
+function opc_tipo_vivienda($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=4 and estado='A' ORDER BY 1",$id);
+}
+function opc_tipo_familia($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=10 and estado='A' ORDER BY 1",$id);
+}
 
 function bgcolor($a,$c,$f='c'){
     $rta="";

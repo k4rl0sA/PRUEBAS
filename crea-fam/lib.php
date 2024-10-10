@@ -158,6 +158,7 @@ function cmp_homes(){
 	$rta="";
 	$t=['complemento1'=>'','nuc1'=>'','complemento2'=>'','nuc2'=>'','complemento3'=>'','nuc3'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$w='homes';
+	var_dump($_REQUEST['idg']);
 	$d = (!isset($_REQUEST['idg'])) ? '' : get_homes();
 	var_dump($d);
 	if ($d==""){$d=$t;}

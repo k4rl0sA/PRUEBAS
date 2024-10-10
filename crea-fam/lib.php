@@ -193,7 +193,7 @@ function get_homes(){
 		if (!$info['responseResult']) {
 			return '';
 		}
-	return json_encode($info['responseResult'][0]);
+	return $info['responseResult'][0];
 	} 
 }
 

@@ -267,7 +267,7 @@ array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 array('type' => 's', 'value' => NULL), */
 array('type' => 's', 'value' => 'A')
 );
-print_r($params);
+// print_r($params);
     $rta = mysql_prepd($sql, $params);
     return $rta;
 }

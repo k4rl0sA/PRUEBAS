@@ -415,6 +415,7 @@ function cmp_person(){
 }
      
 function lista_persons(){ //revisar
+	var_dump($_POST);
 	$id=divide($_POST['id']);
 		$sql="SELECT DISTINCT concat(idpersona,'_',tipo_doc,'_',vivipersona) ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',

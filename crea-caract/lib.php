@@ -159,6 +159,9 @@ function opc_estado_aux($id=''){
 function opc_motivo_estaux($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=171 and estado='A' ORDER BY 1",$id);
 }
+function opc_equipo($id=''){
+	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
+}
 
 
 function bgcolor($a,$c,$f='c'){

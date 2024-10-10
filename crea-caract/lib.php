@@ -137,7 +137,7 @@ function cmp_caract(){
 }
 
 function focus_caract(){
-	return 'homes';
+	return 'caract';
    }
    
 function men_caract(){

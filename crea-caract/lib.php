@@ -143,9 +143,9 @@ function lis_caracterizaciones(){
     var_dump($_POST);
 
     $total="SELECT COUNT(*) AS total FROM (
-		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
-		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
-			AND U.id_usuario = '{$_SESSION['us_sds']}'
+		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, C.motivoupd AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
+        FROM `hog_carac` C
+		LEFT JOIN usuarios U ON C.usu_create = U.id_persona
             ) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 

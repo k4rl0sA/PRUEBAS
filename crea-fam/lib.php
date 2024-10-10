@@ -667,7 +667,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"></li>";  //act_lista(f,this);
-		$rta.="<li class='icono familia' title='Crear Caracterización Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
+		$rta.="<li class='icono familia' title='Crear Caracterización Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','../cara.php',0,'person1');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 		$rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"></li>";
 		
 		/* $rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"></li>";

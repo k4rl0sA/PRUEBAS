@@ -21,8 +21,8 @@ else {
 
 function cmp_caract(){
     $rta="";
-	$rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='datos-lis' >".lis_caracterizaciones()."</div></div>";
+	$rta .="<div class='encabezado vivienda'>TABLA DE CARACTERIZACIONES</div>
+	<div class='contenido' id='caracteriza-lis' >".lis_caracterizaciones()."</div></div>";
 
 	$hoy=date('Y-m-d');
 	/* $t=['idviv'=>'','tipo_familia'=>'','vinculos'=>'','ingreso'=>'','seg_pre1'=>'','seg_pre2'=>'','seg_pre3'=>'','seg_pre4'=>'','seg_pre5'=>'','seg_pre6'=>'',
@@ -140,7 +140,7 @@ function cmp_caract(){
 }
 
 function lis_caracterizaciones(){
-    
+
 }
 
 function focus_caract(){

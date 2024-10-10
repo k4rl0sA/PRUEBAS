@@ -182,7 +182,7 @@ function gra_caract(){
     array('type' => 's', 'value' => $id[0]),
     
 
-array('type' => 'i', 'value' => $_POST['idfam']),
+array('type' => 'i', 'value' => $id),
 array('type' => 's', 'value' => $_POST['fecha']),
 array('type' => 's', 'value' => $_POST['motivoupd']),
 array('type' => 's', 'value' => $_POST['eventoupd']),

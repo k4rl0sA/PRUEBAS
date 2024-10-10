@@ -1793,7 +1793,7 @@ function estado($id){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-// print_r($c);
+print_r($c);
 // var_dump($a);
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

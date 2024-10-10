@@ -222,6 +222,20 @@ function cap_menus($a,$b='cap',$con='con') {
     return $rta;
   }
 
+
+  function formato_dato($a,$b,$c,$d){
+    $b=strtolower($b);
+    $rta=$c[$d];
+   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
+   // var_dump($c['ACCIONES']);
+   // var_dump($c); 
+       if ($a=='caract' && $b=='acciones'){
+           $rta="<nav class='menu right'>";	
+               $rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
+               $rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
+           }
+   return $rta;
+   }
   
 
 function bgcolor($a,$c,$f='c'){

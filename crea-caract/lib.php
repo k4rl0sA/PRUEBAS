@@ -136,6 +136,15 @@ function cmp_caract(){
 	return $rta;
 }
 
+function focus_caract(){
+	return 'homes';
+   }
+   
+function men_caract(){
+	$rta=cap_menus('caract','pro');
+	return $rta;
+}
+
 function opc_numfam($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=172 and estado='A' ORDER BY 1",$id);
 }

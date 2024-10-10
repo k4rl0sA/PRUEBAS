@@ -264,8 +264,8 @@ array('type' => 's', 'value' => $_POST['observacion']),
 array('type' => 's', 'value' => namequipo()),*/
 array('type' => 's', 'value' => $_SESSION['us_sds']),
 array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-array('type' => 's', 'value' => NULL),
-array('type' => 's', 'value' => NULL),
+/* array('type' => 's', 'value' => NULL),
+array('type' => 's', 'value' => NULL), */
 array('type' => 's', 'value' => 'A')
 );
 print_r($params);

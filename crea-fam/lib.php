@@ -260,7 +260,7 @@ function get_homes(){
 		FROM `hog_fam` 
 		WHERE id_fam ='{$id}'";
 		// echo $sql;
-		// print_r($id);
+		print_r($id);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return json_encode (new stdClass);

@@ -259,7 +259,10 @@ function get_homes(){
 		echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
+		if (!$info['responseResult']) {
+			return json_encode (new stdClass);
+		}
+	return json_encode($info['responseResult'][0]);
 	} 
 }
 

@@ -19,7 +19,7 @@ else {
   }   
 }
 
-function cmp_homes(){
+function cmp_caract(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	/* $t=['idviv'=>'','tipo_familia'=>'','vinculos'=>'','ingreso'=>'','seg_pre1'=>'','seg_pre2'=>'','seg_pre3'=>'','seg_pre4'=>'','seg_pre5'=>'','seg_pre6'=>'',

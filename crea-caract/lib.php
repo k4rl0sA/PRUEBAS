@@ -173,6 +173,97 @@ function men_caract(){
 	return $rta;
 }
 
+function gra_caract(){
+    $id=divide($_POST['id']);
+    $sql = "INSERT INTO hog_carac VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $params = array(
+    array('type' => 'i', 'value' => NULL),
+    array('type' => 's', 'value' => $id[0]),
+    
+
+array('type' => 'i', 'value' => $_POST['idfam']),
+array('type' => 's', 'value' => $_POST['fecha']),
+array('type' => 's', 'value' => $_POST['motivoupd']),
+array('type' => 's', 'value' => $_POST['eventoupd']),
+array('type' => 's', 'value' => $_POST['fechanot']),
+array('type' => 's', 'value' => $_POST['crit_epi']),
+array('type' => 's', 'value' => $_POST['crit_geo']),
+array('type' => 's', 'value' => $_POST['estr_inters']),
+array('type' => 's', 'value' => $_POST['fam_peretn']),
+array('type' => 's', 'value' => $_POST['fam_rurcer']),
+array('type' => 's', 'value' => $_POST['tipo_vivienda']),
+array('type' => 's', 'value' => $_POST['tenencia']),
+array('type' => 'i', 'value' => $_POST['dormitorios']),
+array('type' => 's', 'value' => $_POST['actividad_economica']),
+array('type' => 's', 'value' => $_POST['tipo_familia']),
+array('type' => 'i', 'value' => $_POST['personas']),
+array('type' => 's', 'value' => $_POST['ingreso']),
+array('type' => 's', 'value' => $_POST['seg_pre1']),
+array('type' => 's', 'value' => $_POST['seg_pre2']),
+array('type' => 's', 'value' => $_POST['seg_pre3']),
+array('type' => 's', 'value' => $_POST['seg_pre4']),
+array('type' => 's', 'value' => $_POST['seg_pre5']),
+array('type' => 's', 'value' => $_POST['seg_pre6']),
+array('type' => 's', 'value' => $_POST['seg_pre7']),
+array('type' => 's', 'value' => $_POST['seg_pre8']),
+array('type' => 's', 'value' => $_POST['subsidio_1']),
+array('type' => 's', 'value' => $_POST['subsidio_2']),
+array('type' => 's', 'value' => $_POST['subsidio_3']),
+array('type' => 's', 'value' => $_POST['subsidio_4']),
+array('type' => 's', 'value' => $_POST['subsidio_5']),
+array('type' => 's', 'value' => $_POST['subsidio_6']),
+array('type' => 's', 'value' => $_POST['subsidio_7']),
+array('type' => 's', 'value' => $_POST['subsidio_8']),
+array('type' => 's', 'value' => $_POST['subsidio_9']),
+array('type' => 's', 'value' => $_POST['subsidio_10']),
+array('type' => 's', 'value' => $_POST['subsidio_11']),
+array('type' => 's', 'value' => $_POST['subsidio_12']),
+array('type' => 's', 'value' => $_POST['subsidio_13']),
+array('type' => 's', 'value' => $_POST['subsidio_14']),
+array('type' => 's', 'value' => $_POST['subsidio_15']),
+array('type' => 's', 'value' => $_POST['subsidio_16']),
+array('type' => 's', 'value' => $_POST['subsidio_17']),
+array('type' => 's', 'value' => $_POST['subsidio_18']),
+array('type' => 's', 'value' => $_POST['subsidio_19']),
+array('type' => 's', 'value' => $_POST['subsidio_20']),
+array('type' => 's', 'value' => $_POST['energia']),
+array('type' => 's', 'value' => $_POST['gas']),
+
+array('type' => 's', 'value' => $_POST['acueducto']),
+array('type' => 's', 'value' => $_POST['alcantarillado']),
+array('type' => 's', 'value' => $_POST['basuras']),
+array('type' => 's', 'value' => $_POST['pozo']),
+array('type' => 's', 'value' => $_POST['aljibe']),
+array('type' => 's', 'value' => $_POST['perros']),
+array('type' => 'i', 'value' => $_POST['numero_perros']),
+array('type' => 'i', 'value' => $_POST['perro_vacunas']),
+array('type' => 'i', 'value' => $_POST['perro_esterilizado']),
+array('type' => 's', 'value' => $_POST['gatos']),
+array('type' => 'i', 'value' => $_POST['numero_gatos']),
+array('type' => 'i', 'value' => $_POST['gato_vacunas']),
+array('type' => 'i', 'value' => $_POST['gato_esterilizado']),
+array('type' => 's', 'value' => $_POST['otros']),
+array('type' => 's', 'value' => $_POST['facamb1']),
+array('type' => 's', 'value' => $_POST['facamb2']),
+array('type' => 's', 'value' => $_POST['facamb3']),
+array('type' => 's', 'value' => $_POST['facamb4']),
+array('type' => 's', 'value' => $_POST['facamb5']),
+array('type' => 's', 'value' => $_POST['facamb6']),
+array('type' => 's', 'value' => $_POST['facamb7']),
+array('type' => 's', 'value' => $_POST['facamb8']),
+array('type' => 's', 'value' => $_POST['facamb9']),
+array('type' => 's', 'value' => $_POST['observacion']),
+array('type' => 's', 'value' => $_POST['equipo']),
+array('type' => 'i', 'value' => $_SESSION['us_sds']),
+array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+array('type' => 's', 'value' => NULL),
+array('type' => 's', 'value' => NULL),
+array('type' => 's', 'value' => 'A')
+);
+    $rta = mysql_prepd($sql, $params);
+    return $rta;
+}
+
 function opc_numfam($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=172 and estado='A' ORDER BY 1",$id);
 }

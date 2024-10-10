@@ -178,6 +178,21 @@ function opc_tipo_familia($id=''){
 function opc_ingreso($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=13 and estado='A' ORDER BY 1",$id);
 }
+
+function cap_menus($a,$b='cap',$con='con') {
+    $rta = ""; 
+    $acc=rol($a);
+    if ($a=='caract' && isset($acc['crear']) && $acc['crear']=='SI') {  
+  //   $rta .= "<li class='icono crear'       title='Crear Nuevo'     Onclick=\"mostrar(mod,'pro');\"></li>"; 
+    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+    
+     }
+    return $rta;
+  }
+
+  
+
 function bgcolor($a,$c,$f='c'){
     $rta="";
     return $rta;

@@ -20,7 +20,10 @@ else {
 }
 
 function cmp_caract(){
-	$rta="";
+    $rta="";
+	$rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
+	<div class='contenido' id='datos-lis' >".lista_caracterizaciones()."</div></div>";
+
 	$hoy=date('Y-m-d');
 	/* $t=['idviv'=>'','tipo_familia'=>'','vinculos'=>'','ingreso'=>'','seg_pre1'=>'','seg_pre2'=>'','seg_pre3'=>'','seg_pre4'=>'','seg_pre5'=>'','seg_pre6'=>'',
 	'seg_pre7'=>'','seg_pre8'=>'','subsidio_1'=>'','subsidio_2'=>'','subsidio_3'=>'','subsidio_4'=>'','subsidio_5'=>'','subsidio_6'=>'','subsidio_7'=>'',
@@ -36,7 +39,7 @@ function cmp_caract(){
 	$o='inf';
 	$n='fal';
 	$days=fechas_app('vivienda');
-	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
+	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('motivoupd','h','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');

@@ -417,9 +417,9 @@ function cmp_person(){
 function lista_persons(){ //revisar
 	var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
+		$sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Nació',
-		FN_CATALOGODESC(21,sexo) 'Sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
+		FN_CATALOGODESC(21,sexo) 'Sexo'
 		FROM `personas` 
 			WHERE '1'='1' and vivipersona='".$id[0]."'";
 		$sql.=" ORDER BY fecha_create";

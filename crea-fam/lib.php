@@ -418,7 +418,7 @@ function lista_persons(){ //revisar
 	var_dump($_POST);
 	$id=divide($_POST['id']);
 		$sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
-		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Nació',
+		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
 		FN_CATALOGODESC(21,sexo) 'Sexo'
 		FROM `personas` 
 			WHERE '1'='1' and vivipersona='".$id[0]."'";

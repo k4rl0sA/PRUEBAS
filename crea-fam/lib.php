@@ -44,7 +44,7 @@ function opc_usuario(){
 
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
-		SELECT concat_ws('_',G.idgeo,F.idpre) AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
+		SELECT concat_ws('_',G.idgeo,F.id_fam) AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
 		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN hog_fam F ON G.idgeo = F.idpre LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 			WHERE G.estado_v IN ('7') ".whe_homes()."
 			AND U.id_usuario = '{$_SESSION['us_sds']}'
@@ -55,7 +55,7 @@ function lis_homes(){
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
 	
-$sql="SELECT concat_ws('_',G.idgeo,F.idpre) AS ACCIONES,
+$sql="SELECT concat_ws('_',G.idgeo,F.id_fam) AS ACCIONES,
 	G.idgeo AS Cod_Predio,
 	H.direccion,
 	H.sector_catastral Sector,

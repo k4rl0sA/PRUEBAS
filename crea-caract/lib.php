@@ -155,14 +155,11 @@ function lis_caracterizaciones(){
 
 
     $id=divide($_POST['id']);
-    $sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
-        concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
-        FN_CATALOGODESC(21,sexo) 'Sexo'
-        FROM `personas` 
-        WHERE '1'='1' and vivipersona='".$id[0]."'";
-    $sql.=" ORDER BY fecha_create";
+    $sql="SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, C.motivoupd AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
+        FROM `hog_carac` C
+		LEFT JOIN usuarios U ON C.usu_create = U.id_persona";
+    $sql.=" ORDER BY C.fecha_create";
     // echo $sql;
-      $_SESSION['sql_person']=$sql;
       $datos=datos_mysql($sql);
     return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }

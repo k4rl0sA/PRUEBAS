@@ -140,7 +140,32 @@ function cmp_caract(){
 }
 
 function lis_caracterizaciones(){
+    var_dump($_POST);
 
+    $total="SELECT COUNT(*) AS total FROM (
+		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
+		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
+			WHERE G.estado_v IN ('7') ".whe_homes()."
+			AND U.id_usuario = '{$_SESSION['us_sds']}'
+            ) AS Subquery";
+	$info=datos_mysql($total);
+	$total=$info['responseResult'][0]['total']; 
+	$regxPag=5;
+	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
+
+
+
+    $id=divide($_POST['id']);
+    $sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
+        concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
+        FN_CATALOGODESC(21,sexo) 'Sexo'
+        FROM `personas` 
+        WHERE '1'='1' and vivipersona='".$id[0]."'";
+    $sql.=" ORDER BY fecha_create";
+    // echo $sql;
+      $_SESSION['sql_person']=$sql;
+      $datos=datos_mysql($sql);
+    return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }
 
 function focus_caract(){

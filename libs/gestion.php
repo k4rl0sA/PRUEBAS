@@ -206,6 +206,7 @@ function mysql_prepd($sql, $params) {
         foreach ($params as $param) {
           $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
           $values[] = ($param['type'] === 's') ? cleanTx(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
+          var_dump($values);
         }        
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);

@@ -695,13 +695,6 @@ return $rta;
 }
 
 function bgcolor($a,$c,$f='c'){
-	$rta = 'red';
-	if ($a=='datos-lis'){
-		if($c['Cronico']==='SIN'){
-			return ($rta !== '') ? "style='background-color: $rta;'" : '';
-		}
-		if($c['Gestante']==='SIN'){
-			return ($rta !== '') ? "style='background-color: $rta;'" : '';
-		}
-	}
+	$rta = '';
+	return $rta;
 }

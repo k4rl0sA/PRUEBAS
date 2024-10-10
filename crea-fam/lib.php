@@ -180,10 +180,9 @@ function cmp_homes(){
 }
 
 function get_homes(){
-	if($_REQUEST['id']==''){
+	if($_REQUEST['id']=='' || count(divide($_REQUEST['id']))!=2){
 		return "";
 	}else{
-		$id=divide($_REQUEST['id']);
 		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
 		FROM `hog_fam` 
 		WHERE id_fam ='{$id[1]}'";

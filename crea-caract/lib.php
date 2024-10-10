@@ -1,3 +1,24 @@
+<?php
+ini_set('display_errors','1');
+require_once "../libs/gestion.php";
+if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
+if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
+else {
+  $rta="";
+  switch ($_POST['a']){
+  case 'csv':
+    header_csv ($_REQUEST['tb'].'.csv');
+    $rs=array('','');    
+    echo csv($rs,'');
+    die;
+    break;
+  default:
+    eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
+    if (is_array($rta)) json_encode($rta);
+	else echo $rta;
+  }   
+}
+
 function cmp_homes(){
 	$rta="";
 	$hoy=date('Y-m-d');
@@ -128,3 +149,9 @@ function cmp_homes(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+
+
+function bgcolor($a,$c,$f='c'){
+    $rta="";
+    return $rta;
+   }

@@ -417,18 +417,17 @@ function cmp_person(){
 function lista_persons(){ //revisar
 	var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT idpeople ACCIONES,idpeople AS Cod_Persona,idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
-		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'fecha de nacimiento',
-		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365)  'edad actual',
-		FN_CATALOGODESC(21,sexo) 'sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
-		FROM `personas` p 
-			LEFT JOIN eac_atencion a ON p.idpersona=a.atencion_idpersona
-			WHERE vivipersona='".$id[0]."'";
+		$sql="SELECT idpeople ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',FN_CATALOGODESC(1,tipo_doc) 'Tipo de Documento',
+		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Nació',
+		FN_CATALOGODESC(21,sexo) 'Sexo',FN_CATALOGODESC(19,genero) 'Genero',FN_CATALOGODESC(30,nacionalidad) 'Nacionalidad'
+		FROM `personas` 
+			WHERE '1'='1' and vivipersona='".$id[0]."'";
+		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
-} 
+}
 
 function focus_person(){
 	return 'person';

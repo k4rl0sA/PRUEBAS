@@ -332,7 +332,7 @@ function cmp_person(){
 	$d='';
 	$o='infgen';
 	// print_r($_POST);
-	var_dump($_REQEST);
+	var_dump($_REQUEST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');

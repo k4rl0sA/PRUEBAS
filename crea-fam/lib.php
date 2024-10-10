@@ -326,17 +326,9 @@ function cmp_person1(){
 
 function cmp_person(){
 	$rta="";
-	/* $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='datos-lis' >".lista_persons()."</div></div>"; */
-	// $t=['anos'=>0];
-	$hoy=date('Y-m-d');
 	// $p=get_edad();
     $w="person";
 	// if ($p==""){$p=$t;}
-	/* $ocu= ($p['anos']>5) ? true : false ; */
-	/* $t=['vivipersona'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>'','discapacidad'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','regimen'=>'','eapb'=>'','localidad'=>'','upz'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];$w='person';
-	$d=get_person(); 
-	if ($d=="") {$d=$t;}$u=($d['vivipersona']=='')?true:false; */
 	$d='';
 	$o='infgen';
 	// print_r($_POST);

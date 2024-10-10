@@ -160,6 +160,7 @@ function cmp_homes(){
 	$w='homes';
 	var_dump($_REQUEST['idg']);
 	$d = (!isset($_REQUEST['idg'])) ? '' : get_homes();
+	var_dump($_REQUEST);
 	var_dump($d);
 	if ($d==""){$d=$t;}
 	$o='inf';

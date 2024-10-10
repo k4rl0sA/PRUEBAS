@@ -173,6 +173,17 @@ function men_caract(){
 	return $rta;
 }
 
+function namequipo(){
+    $sql="SELECT equipo FROM  usuarios WHERE id_usuario='".$_SESSION['us_sds']."'";
+    // echo $sql;
+    //print_r($id);
+    $info=datos_mysql($sql);
+    if (!$info['responseResult']) {
+        return '';
+    }
+    return $info['responseResult'][0]['equipo'];
+}
+
 function gra_caract(){
     var_dump($_POST);
     $id=divide($_POST['idg']);
@@ -253,7 +264,7 @@ array('type' => 's', 'value' => $_POST['factor_7']),
 array('type' => 's', 'value' => $_POST['factor_8']),
 array('type' => 's', 'value' => $_POST['factor_9']),
 array('type' => 's', 'value' => $_POST['observacion']),
-array('type' => 's', 'value' => $_POST['equipo']),
+array('type' => 's', 'value' => namequipo()),
 array('type' => 'i', 'value' => $_SESSION['us_sds']),
 array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 array('type' => 's', 'value' => NULL),

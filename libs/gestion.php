@@ -110,6 +110,7 @@ function cleanTxt($val) {
 }
 
 function cleanTx($val) {
+  var_dump($val);
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');

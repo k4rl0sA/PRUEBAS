@@ -166,15 +166,15 @@ function cmp_homes(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	// $c[]=new cmp('numfam','s',3,$numf,$w.' '.$o,'Número de Familia','numfam',null,'',false,false,'','col-2');
-	$c[]=new cmp('complemento1','s','3',$d,$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-2');
-    $c[]=new cmp('nuc1','t','4',$d,$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
- 	$c[]=new cmp('complemento2','s','3',$d,$w.' '.$o,'complemento2','complemento',null,'',false,true,'','col-2');
- 	$c[]=new cmp('nuc2','t','4',$d,$w.' '.$o,'nuc2','nuc2',null,'',false,true,'','col-15');
- 	$c[]=new cmp('complemento3','s','3',$d,$w.' '.$o,'complemento3','complemento',null,'',false,true,'','col-2');
- 	$c[]=new cmp('nuc3','t','4',$d,$w.' '.$o,'nuc3','nuc3',null,'',false,true,'','col-15');
-	$c[]=new cmp('telefono1','n','10',$d,$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
-	$c[]=new cmp('telefono2','n','10',$d,$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
-	$c[]=new cmp('telefono3','n','10',$d,$w.' '.$o,'telefono3','telefono3','rgxphone1',null,false,true,'','col-4');
+	$c[]=new cmp('complemento1','s','3',$d['complemento1'],$w.' '.$o,'complemento1','complemento',null,'',true,true,'','col-2');
+    $c[]=new cmp('nuc1','t','4',$d['nuc1'],$w.' '.$o,'nuc1','nuc1',null,'',true,true,'','col-1');
+ 	$c[]=new cmp('complemento2','s','3',$d['complemento2'],$w.' '.$o,'complemento2','complemento',null,'',false,true,'','col-2');
+ 	$c[]=new cmp('nuc2','t','4',$d['nuc2'],$w.' '.$o,'nuc2','nuc2',null,'',false,true,'','col-15');
+ 	$c[]=new cmp('complemento3','s','3',$d['complemento3'],$w.' '.$o,'complemento3','complemento',null,'',false,true,'','col-2');
+ 	$c[]=new cmp('nuc3','t','4',$d['nuc3'],$w.' '.$o,'nuc3','nuc3',null,'',false,true,'','col-15');
+	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
+	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
+	$c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'telefono3','telefono3','rgxphone1',null,false,true,'','col-4');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

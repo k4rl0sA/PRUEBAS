@@ -255,7 +255,7 @@ function get_homes(){
 		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
 		FROM `hog_fam` 
 		WHERE id_fam ='{$id}'";
-		echo $sql;
+		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

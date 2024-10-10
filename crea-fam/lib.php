@@ -188,7 +188,7 @@ function get_homes(){
 		FROM `hog_fam` 
 		WHERE id_fam ='{$id[1]}'";
 		// echo $sql;
-		print_r($id);
+		// print_r($id);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';

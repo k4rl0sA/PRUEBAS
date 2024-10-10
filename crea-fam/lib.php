@@ -249,10 +249,10 @@ function get_homes(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT idviv,numfam,fecha,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
-		FROM `hog_viv` 
-		WHERE idviv ='{$id[0]}' AND idgeo=concat('".$id[1]."','_','".$id[2]."','_','".$id[3]."','_','".$id[4]."','_','".$id[5]."','_','".$id[6]."')";
+		$id=$_REQUEST['id'];
+		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
+		FROM `hog_fam` 
+		WHERE id_fam ='{$id}'";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);

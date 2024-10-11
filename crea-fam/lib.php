@@ -288,7 +288,7 @@ function gra_homes(){
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $id),
+	array('type' => 'i', 'value' => $id[0]),
 	array('type' => 'i', 'value' => num_fam()),
 	array('type' => 's', 'value' => $_POST['complemento1']),
 	array('type' => 's', 'value' => $_POST['nuc1']),

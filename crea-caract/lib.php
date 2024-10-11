@@ -222,7 +222,7 @@ function gra_caract(){
     array('type' => 'i', 'value' => NULL),
     array('type' => 'i', 'value' => $id),
     array('type' => 's', 'value' => $_POST['fecha']),
-	 array('type' => 's', 'value' => $_POST['motivoupd']),
+	array('type' => 's', 'value' => $_POST['motivoupd']),
 	array('type' => 's', 'value' => $_POST['eventoupd']),
 	array('type' => 's', 'value' => $_POST['fechanot']),
 	array('type' => 's', 'value' => $_POST['crit_epi']),

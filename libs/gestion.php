@@ -125,7 +125,7 @@ function cleanTx($val) {
       $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea, etc.
       return json_encode(['status' => 'success', 'data' => $val]);
   } catch (Exception $e) {
-      return json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+      return json_encode(['status' => 'error', 'message' => 'Error = '.$e->getMessage()]);
   }
 }
 
@@ -217,13 +217,13 @@ function mysql_prepd($sql, $params) {
               // Limpieza del valor usando cleanTx según su tipo
               if ($param['type'] === 's') {
                   // Si es un string, lo limpiamos y lo convertimos a mayúsculas
-                  $values[] = cleanTx(strtoupper($param['value']));
+                  $values[] = cleanTx(strtoupper($param['value'])['data']);
               } elseif ($param['type'] === 'z') {
                   // Si es de tipo 'z', se limpia pero no se convierte a mayúsculas
-                  $values[] = cleanTx($param['value']);
+                  $values[] = cleanTx($param['value']['data']);
               } else {
                   // Otros tipos como enteros o decimales
-                  $values[] = cleanTx($param['value']);
+                  $values[] = cleanTx($param['value']['data']);
               }
           }
           $stmt->bind_param($types, ...$values);

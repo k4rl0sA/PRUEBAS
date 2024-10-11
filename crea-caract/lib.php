@@ -298,7 +298,7 @@ function gra_caract(){
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A'));
-	print_r($params);
+	// print_r($params);
     $rta = mysql_prepd($sql, $params);
     return $rta;
 }

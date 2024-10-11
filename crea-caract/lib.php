@@ -187,7 +187,7 @@ function namequipo(){
 function gra_caract(){
     $id=divide($_POST['idg']);
 
-	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
+	/* $perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
 	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
 	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];
 	$gatos  = empty($_POST['numero_gatos']) ? 0 : $_POST['numero_gatos'];
@@ -216,9 +216,8 @@ function gra_caract(){
 
 	var_dump($sql);
 	$rta=dato_mysql($sql);
-	return $rta;
+	return $rta; */
 
-	/*
     $sql = "INSERT INTO hog_carac VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $params = array(
     array('type' => 'i', 'value' => NULL),
@@ -299,9 +298,9 @@ function gra_caract(){
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A'));
-	// print_r($params);
+	print_r($params);
     $rta = mysql_prepd($sql, $params);
-    return $rta;*/
+    return $rta;
 }
 
 function opc_numfam($id=''){

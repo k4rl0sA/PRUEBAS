@@ -335,6 +335,12 @@ function opc_tipo_familia($id=''){
 function opc_ingreso($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=13 and estado='A' ORDER BY 1",$id);
 }
+function opc_motivoupd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=215 and estado='A' ORDER BY 1",$id);
+}
+function opc_evenupd($id=''){
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=87 and estado='A' ORDER BY 1",$id);
+}
 
 function cap_menus($a,$b='cap',$con='con') {
     $rta = ""; 

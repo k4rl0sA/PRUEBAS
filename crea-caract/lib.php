@@ -44,7 +44,7 @@ function cmp_caract(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('motivoupd','s','3',$d,$w.' '.$o,'Motivo Actualización','motivoupd',null,'',false,true,'','col-3');
 	$c[]=new cmp('eventoupd','s','3',$d,$w.' '.$o,'Evento Actualización','evenupd',null,'',false,true,'','col-3');
-	$c[]=new cmp('fechanot','d','10',$d,$w.' '.$o,'fecha Notificación','fechanot',null,'',false,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('fechanot','d','10',$d,$w.' '.$o,'fecha Notificación','fechanot',null,'',false,true,'','col-2',"validDate(this,$days,0);");
 	
     
 	$o='cri';

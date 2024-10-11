@@ -212,7 +212,7 @@ function gra_caract(){
 	trim(upper('{$_POST['factor_6']}')),trim(upper('{$_POST['factor_7']}')),trim(upper('{$_POST['factor_8']}')),trim(upper('{$_POST['factor_9']}')),trim(upper('{$_POST['observacion']}')),	
 	$equ,TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
 
-
+	var_dump($sql);
 	$rta=dato_mysql($sql);
 	return $rta;
 

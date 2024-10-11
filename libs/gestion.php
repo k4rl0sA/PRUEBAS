@@ -208,6 +208,7 @@ function mysql_prepd($sql, $params) {
               $type = $param['type'];// Validar el tipo de parámetro
               $types .= ($type === 'z' || $type === 's') ? 's' : $type;
               $values[] = cleanTx($param['value']); // limpiar
+              var_dump($values);
           }
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {

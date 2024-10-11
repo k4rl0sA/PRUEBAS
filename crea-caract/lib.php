@@ -197,7 +197,8 @@ function gra_caract(){
 
 
 	$sql="INSERT INTO hog_carac VALUES (null,
-	$id[0],TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
+	$id[0],
+	TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
 	trim(upper('{$_POST['crit_geo']}')),trim(upper('{$_POST['estr_inters']}')),trim(upper('{$_POST['fam_peretn']}')),trim(upper('{$_POST['fam_rurcer']}')),trim(upper('{$_POST['tipo_vivienda']}')),
 	trim(upper('{$_POST['tenencia']}')),trim(upper('{$_POST['dormitorios']}')),trim(upper('{$_POST['actividad_economica']}')),trim(upper('{$_POST['tipo_familia']}')),trim(upper('{$_POST['personas']}')),
 	trim(upper('{$_POST['ingreso']}')),trim(upper('{$_POST['seg_pre1']}')),trim(upper('{$_POST['seg_pre2']}')),trim(upper('{$_POST['seg_pre3']}')),trim(upper('{$_POST['seg_pre4']}')),
@@ -210,7 +211,8 @@ function gra_caract(){
 	trim(upper('{$_POST['aljibe']}')),trim(upper('{$_POST['perros']}')),$perros,$pvacun,$peste,TRIM(UPPER('{$_POST['gatos']}')),$gatos,$gvacun,$geste,trim(upper('{$_POST['otros']}')),
 	trim(upper('{$_POST['factor_1']}')),trim(upper('{$_POST['factor_2']}')),trim(upper('{$_POST['factor_3']}')),trim(upper('{$_POST['factor_4']}')),trim(upper('{$_POST['factor_5']}')),
 	trim(upper('{$_POST['factor_6']}')),trim(upper('{$_POST['factor_7']}')),trim(upper('{$_POST['factor_8']}')),trim(upper('{$_POST['factor_9']}')),trim(upper('{$_POST['observacion']}')),	
-	upper('$equ'),TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	upper('$equ'),
+	TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
 
 	var_dump($sql);
 	$rta=dato_mysql($sql);

@@ -817,6 +817,8 @@ function myFetch(b, c, d) {
 		case rta.includes('Table'):
 		  errors('Error en la sintaxis, asociada a la tabla');
 		  break;
+		case rta.includes('must be of type string, array given in'):
+			errors('Error en la sintaxis, se reqiere un string para el valor del parametro');
 		default:
 			const err = rta.match(/msj\['(.*?)'\]/);
 			if (err && err[1]) {

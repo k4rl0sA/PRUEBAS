@@ -110,15 +110,23 @@ function cleanTxt($val) {
 }
 
 function cleanTx($val) {
-  var_dump($val);
-  $val = trim($val);
-  $val = addslashes($val);
-  $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-  $pattern = '/[;\|\/\*><\[\{\]\}\x1F\x7F]/';
-  $val = preg_replace('/\s+/', ' ', $val);
-  $val = preg_replace($pattern,'', $val);
-  $val = str_replace(array("\n", "\r", "\t"),'', $val);
-  return $val;
+  try {
+      if (!is_string($val)) {
+          throw new Exception('El valor proporcionado no es una cadena de texto.');
+      }
+      $val = trim($val);
+      $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
+      $pattern = '/[;\|\/\*><\[\{\]\}\x1F\x7F]/';
+      if (@preg_match($pattern, '') === false) {
+          throw new Exception('La expresión regular contiene un error.');
+      }
+      $val = preg_replace('/\s+/', ' ', $val); // Reducir espacios
+      $val = preg_replace($pattern, '', $val); // Eliminar caracteres peligrosos
+      $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea, etc.
+      return json_encode(['status' => 'success', 'data' => $val]);
+  } catch (Exception $e) {
+      return json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+  }
 }
 
 function fechas_app($modu){
@@ -202,12 +210,22 @@ function mysql_prepd($sql, $params) {
       $stmt = $con->prepare($sql);
       if ($stmt) {
           $types = '';
-          $values = array();
-        foreach ($params as $param) {
-          $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
-          $values[] = ($param['type'] === 's') ? cleanTx(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
-          // var_dump($values);
-        }        
+          $values = [];
+          foreach ($params as $param) {
+              // Asignación del tipo (s para cadenas, i para enteros, d para dobles)
+              $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
+              // Limpieza del valor usando cleanTx según su tipo
+              if ($param['type'] === 's') {
+                  // Si es un string, lo limpiamos y lo convertimos a mayúsculas
+                  $values[] = cleanTx(strtoupper($param['value']));
+              } elseif ($param['type'] === 'z') {
+                  // Si es de tipo 'z', se limpia pero no se convierte a mayúsculas
+                  $values[] = cleanTx($param['value']);
+              } else {
+                  // Otros tipos como enteros o decimales
+                  $values[] = cleanTx($param['value']);
+              }
+          }
           $stmt->bind_param($types, ...$values);
           $sqlType = strtoupper($sql);
           if (strpos($sqlType, 'DELETE') !== false) {
@@ -219,20 +237,23 @@ function mysql_prepd($sql, $params) {
           } else {
               $op = 'Operación desconocida';
           }
+          // Ejecutamos la consulta y verificamos el resultado
           if (!$stmt->execute()) {
-            $rs = "Error al ejecutar la consulta: " . $stmt->error;
-        } else {
-            $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " Registro Correctamente.";
-        }
+              $rs = "Error al ejecutar la consulta: " . $stmt->error;
+          } else {
+              $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " registro(s) correctamente.";
+          }
           $stmt->close();
       } else {
-        $rs = "Error: " . $con->error;
+          $rs = "Error en la preparación de la consulta: " . $con->error;
       }
   } catch (mysqli_sql_exception $e) {
-    $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
+      // Capturamos errores de MySQLi y devolvemos el código y mensaje del error
+      $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;
 }
+
 
 
 

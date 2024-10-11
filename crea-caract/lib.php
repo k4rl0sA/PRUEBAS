@@ -309,19 +309,19 @@ function opc_equipo($id=''){
 	return opc_sql("SELECT equipo,equipo FROM usuarios WHERE id_usuario= '{$_SESSION['us_sds']}' and estado='A' ORDER BY 1",$id);
 }
 function opc_estr_inters($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=168 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=168 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_crit_epi($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=166 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=166 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_crit_geo($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=167 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=167 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_fam_peretn($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=169 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=169 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_fam_rurcer($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0')",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_tenencia($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=8 and estado='A' ORDER BY 1",$id);

@@ -197,7 +197,7 @@ function gra_caract(){
 
 
 	$sql="INSERT INTO hog_carac VALUES (null,
-	$id,TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
+	$id[0],TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
 	trim(upper('{$_POST['crit_geo']}')),trim(upper('{$_POST['estr_inters']}')),trim(upper('{$_POST['fam_peretn']}')),trim(upper('{$_POST['fam_rurcer']}')),trim(upper('{$_POST['tipo_vivienda']}')),
 	trim(upper('{$_POST['tenencia']}')),trim(upper('{$_POST['dormitorios']}')),trim(upper('{$_POST['actividad_economica']}')),trim(upper('{$_POST['tipo_familia']}')),trim(upper('{$_POST['personas']}')),
 	trim(upper('{$_POST['ingreso']}')),trim(upper('{$_POST['seg_pre1']}')),trim(upper('{$_POST['seg_pre2']}')),trim(upper('{$_POST['seg_pre3']}')),trim(upper('{$_POST['seg_pre4']}')),

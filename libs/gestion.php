@@ -113,7 +113,7 @@ function cleanTxt($val) {
 function cleanTx($val) {
   $val = trim($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');//maneja las inyecciones XSS
-  $pattern = '/[^\w\s\.\-@]/'; //permitimos alfanuméricos, espacios, puntos, guiones y arroba
+  $pattern = '/[^\w\s\.\-@:]/'; //permitimos alfanuméricos, espacios, puntos, guiones y arroba
   $val = preg_replace('/\s+/', ' ', $val); // Remover múltiples espacios
   $val = preg_replace($pattern, '', $val); // Quitar caracteres no permitidos
   $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea y tabulaciones

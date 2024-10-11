@@ -42,9 +42,9 @@ function cmp_caract(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA VIVIENDA',$w);
 	$c[]=new cmp('idg','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha Caracterización','fecha',null,'',true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('motivoupd','h','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
-	$c[]=new cmp('eventoupd','h','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
-	$c[]=new cmp('fechanot','h','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('motivoupd','s','3',$d,$w.' hid '.$o,'Motivo Actualización','motivoupd',null,'',false,false,'','col-3');
+	$c[]=new cmp('eventoupd','s','3',$d,$w.' hid '.$o,'Evento Actualización','evenupd',null,'',false,false,'','col-3');
+	$c[]=new cmp('fechanot','d','10',$d,$w.' hid '.$o,'fecha Notificación','fechanot',null,'',false,false,'','col-15',"validDate(this,$days,0);");
 	
     
 	$o='cri';
@@ -141,7 +141,6 @@ function cmp_caract(){
 
 function lis_caracterizaciones(){
     // var_dump($_POST);
-
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, C.motivoupd AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C

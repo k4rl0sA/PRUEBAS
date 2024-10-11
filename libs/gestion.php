@@ -214,16 +214,18 @@ function mysql_prepd($sql, $params) {
           foreach ($params as $param) {
               // Asignación del tipo (s para cadenas, i para enteros, d para dobles)
               $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
+              // Verificación de si el parámetro tiene la clave 'data'
+              $paramValue = isset($param['value']['data']) ? $param['value']['data'] : $param['value'];
               // Limpieza del valor usando cleanTx según su tipo
               if ($param['type'] === 's') {
                   // Si es un string, lo limpiamos y lo convertimos a mayúsculas
-                  $values[] = cleanTx(strtoupper($param['value'])['data']);
+                  $values[] = cleanTx(strtoupper($paramValue));
               } elseif ($param['type'] === 'z') {
                   // Si es de tipo 'z', se limpia pero no se convierte a mayúsculas
-                  $values[] = cleanTx($param['value']['data']);
+                  $values[] = cleanTx($paramValue);
               } else {
                   // Otros tipos como enteros o decimales
-                  $values[] = cleanTx($param['value']['data']);
+                  $values[] = cleanTx($paramValue);
               }
           }
           $stmt->bind_param($types, ...$values);
@@ -237,7 +239,6 @@ function mysql_prepd($sql, $params) {
           } else {
               $op = 'Operación desconocida';
           }
-          // Ejecutamos la consulta y verificamos el resultado
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error;
           } else {
@@ -248,11 +249,11 @@ function mysql_prepd($sql, $params) {
           $rs = "Error en la preparación de la consulta: " . $con->error;
       }
   } catch (mysqli_sql_exception $e) {
-      // Capturamos errores de MySQLi y devolvemos el código y mensaje del error
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;
 }
+
 
 
 

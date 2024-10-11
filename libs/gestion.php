@@ -231,14 +231,15 @@ function mysql_prepd($sql, $params) {
               }
           }
           $stmt->close();
-      } else {
+        } else {
           $rs = "Error preparando la consulta: " . $con->error . " | SQL: " . $sql;
       }
+  } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
+
   return $rs;
 }
-
 
 
 

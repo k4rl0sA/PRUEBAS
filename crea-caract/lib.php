@@ -140,7 +140,7 @@ function cmp_caract(){
 }
 
 function lis_caracterizaciones(){
-    var_dump($_POST);
+    // var_dump($_POST);
 
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, C.motivoupd AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 

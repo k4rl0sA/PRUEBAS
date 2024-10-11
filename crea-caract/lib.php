@@ -186,12 +186,44 @@ function namequipo(){
 
 function gra_caract(){
     $id=divide($_POST['idg']);
+
+	$perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
+	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
+	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];
+	$gatos  = empty($_POST['numero_gatos']) ? 0 : $_POST['numero_gatos'];
+	$gvacun = empty($_POST['gato_vacunas']) ? 0 : $_POST['gato_vacunas'];
+	$geste  = empty($_POST['gato_esterilizado']) ? 0:$_POST['gato_esterilizado'];
+	$equ=namequipo();
+
+
+	$sql="INSERT INTO hog_carac VALUES (null,
+	$id,TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
+	trim(upper('{$_POST['crit_geo']}')),trim(upper('{$_POST['estr_inters']}')),trim(upper('{$_POST['fam_peretn']}')),trim(upper('{$_POST['fam_rurcer']}')),trim(upper('{$_POST['tipo_vivienda']}')),
+	trim(upper('{$_POST['tenencia']}')),trim(upper('{$_POST['dormitorios']}')),trim(upper('{$_POST['actividad_economica']}')),trim(upper('{$_POST['tipo_familia']}')),trim(upper('{$_POST['personas']}')),
+	trim(upper('{$_POST['ingreso']}')),trim(upper('{$_POST['seg_pre1']}')),trim(upper('{$_POST['seg_pre2']}')),trim(upper('{$_POST['seg_pre3']}')),trim(upper('{$_POST['seg_pre4']}')),
+	trim(upper('{$_POST['seg_pre5']}')),trim(upper('{$_POST['seg_pre6']}')),trim(upper('{$_POST['seg_pre7']}')),trim(upper('{$_POST['seg_pre8']}')),trim(upper('{$_POST['subsidio_1']}')),
+	trim(upper('{$_POST['subsidio_2']}')),trim(upper('{$_POST['subsidio_3']}')),trim(upper('{$_POST['subsidio_4']}')),trim(upper('{$_POST['subsidio_5']}')),trim(upper('{$_POST['subsidio_6']}')),
+	trim(upper('{$_POST['subsidio_7']}')),trim(upper('{$_POST['subsidio_8']}')),trim(upper('{$_POST['subsidio_9']}')),trim(upper('{$_POST['subsidio_10']}')),trim(upper('{$_POST['subsidio_11']}')),
+	trim(upper('{$_POST['subsidio_12']}')),trim(upper('{$_POST['subsidio_13']}')),trim(upper('{$_POST['subsidio_14']}')),trim(upper('{$_POST['subsidio_15']}')),trim(upper('{$_POST['subsidio_16']}')),
+	trim(upper('{$_POST['subsidio_17']}')),trim(upper('{$_POST['subsidio_18']}')),trim(upper('{$_POST['subsidio_19']}')),trim(upper('{$_POST['subsidio_20']}')),trim(upper('{$_POST['energia']}')),
+	trim(upper('{$_POST['gas']}')),trim(upper('{$_POST['acueducto']}')),trim(upper('{$_POST['alcantarillado']}')),trim(upper('{$_POST['basuras']}')),trim(upper('{$_POST['pozo']}')),
+	trim(upper('{$_POST['aljibe']}')),trim(upper('{$_POST['perros']}')),$perros,$pvacun,$peste,TRIM(UPPER('{$_POST['gatos']}')),$gatos,$gvacun,$geste,trim(upper('{$_POST['otros']}')),
+	trim(upper('{$_POST['factor_1']}')),trim(upper('{$_POST['factor_2']}')),trim(upper('{$_POST['factor_3']}')),trim(upper('{$_POST['factor_4']}')),trim(upper('{$_POST['factor_5']}')),
+	trim(upper('{$_POST['factor_6']}')),trim(upper('{$_POST['factor_7']}')),trim(upper('{$_POST['factor_8']}')),trim(upper('{$_POST['factor_9']}')),trim(upper('{$_POST['observacion']}')),	
+	$equ,TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+
+
+	$rta=dato_mysql($sql);
+	return $rta;
+
+
+	/*
     $sql = "INSERT INTO hog_carac VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $params = array(
     array('type' => 'i', 'value' => NULL),
     array('type' => 'z', 'value' => $id),
     array('type' => 's', 'value' => $_POST['fecha']),
-	/* array('type' => 's', 'value' => $_POST['motivoupd']),
+	 array('type' => 's', 'value' => $_POST['motivoupd']),
 	array('type' => 's', 'value' => $_POST['eventoupd']),
 	array('type' => 's', 'value' => $_POST['fechanot']),
 	array('type' => 's', 'value' => $_POST['crit_epi']),
@@ -260,15 +292,15 @@ function gra_caract(){
 	array('type' => 's', 'value' => $_POST['factor_8']),
 	array('type' => 's', 'value' => $_POST['factor_9']),
 	array('type' => 's', 'value' => $_POST['observacion']), 
-	array('type' => 's', 'value' => namequipo()),*/
+	array('type' => 's', 'value' => namequipo()),
 	array('type' => 's', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	/* array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL), */
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A'));
 	// print_r($params);
     $rta = mysql_prepd($sql, $params);
-    return $rta;
+    return $rta;*/
 }
 
 function opc_numfam($id=''){

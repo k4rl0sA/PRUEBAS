@@ -98,6 +98,7 @@ function csv($a,$b,$tot= null){
 }
 
 function cleanTxt($val) {
+  var_dump($val);
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
@@ -110,24 +111,15 @@ function cleanTxt($val) {
 }
 
 function cleanTx($val) {
-  try {
-      if (!is_string($val)) {
-          throw new Exception('El valor proporcionado no es una cadena de texto.');
-      }
-      $val = trim($val);
-      $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-      $pattern = '/[;\|\/\*><\[\{\]\}\x1F\x7F]/';
-      if (@preg_match($pattern, '') === false) {
-          throw new Exception('La expresión regular contiene un error.');
-      }
-      $val = preg_replace('/\s+/', ' ', $val); // Reducir espacios
-      $val = preg_replace($pattern, '', $val); // Eliminar caracteres peligrosos
-      $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea, etc.
-      return json_encode(['status' => 'success', 'data' => $val]);
-  } catch (Exception $e) {
-      return json_encode(['status' => 'error', 'message' => 'Error = '.$e->getMessage()]);
-  }
+  $val = trim($val);
+  $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');//maneja las inyecciones XSS
+  $pattern = '/[^\w\s\.\-@]/'; //permitimos alfanuméricos, espacios, puntos, guiones y arroba
+  $val = preg_replace('/\s+/', ' ', $val); // Remover múltiples espacios
+  $val = preg_replace($pattern, '', $val); // Quitar caracteres no permitidos
+  $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea y tabulaciones
+  return $val;
 }
+
 
 function fechas_app($modu){
     switch ($modu) {
@@ -202,6 +194,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
   return $rs;
 }
 
+
 function mysql_prepd($sql, $params) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
@@ -210,51 +203,41 @@ function mysql_prepd($sql, $params) {
       $stmt = $con->prepare($sql);
       if ($stmt) {
           $types = '';
-          $values = [];
+          $values = array();
           foreach ($params as $param) {
-              // Asignación del tipo (s para cadenas, i para enteros, d para dobles)
-              $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
-              // Verificación de si el parámetro tiene la clave 'data'
-              $paramValue = isset($param['value']['data']) ? $param['value']['data'] : $param['value'];
-              // Limpieza del valor usando cleanTx según su tipo
-              if ($param['type'] === 's') {
-                  // Si es un string, lo limpiamos y lo convertimos a mayúsculas
-                  $values[] = cleanTx(strtoupper($paramValue));
-              } elseif ($param['type'] === 'z') {
-                  // Si es de tipo 'z', se limpia pero no se convierte a mayúsculas
-                  $values[] = cleanTx($paramValue);
-              } else {
-                  // Otros tipos como enteros o decimales
-                  $values[] = cleanTx($paramValue);
-              }
+              $type = $param['type'];// Validar el tipo de parámetro
+              $types .= ($type === 'z' || $type === 's') ? 's' : $type;
+              $values[] = cleanTx($param['value']); // limpiar
           }
           $stmt->bind_param($types, ...$values);
-          $sqlType = strtoupper($sql);
-          if (strpos($sqlType, 'DELETE') !== false) {
-              $op = 'Eliminado';
-          } elseif (strpos($sqlType, 'INSERT') !== false) {
-              $op = 'Insertado';
-          } elseif (strpos($sqlType, 'UPDATE') !== false) {
-              $op = 'Actualizado';
-          } else {
-              $op = 'Operación desconocida';
-          }
           if (!$stmt->execute()) {
-              $rs = "Error al ejecutar la consulta: " . $stmt->error;
+              $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $sql;
           } else {
-              $rs = "Se ha " . $op . ": " . $stmt->affected_rows . " registro(s) correctamente.";
+              $sqlType = strtoupper($sql);
+              if (strpos($sqlType, 'DELETE') !== false) {
+                  $op = 'Eliminado';
+              } elseif (strpos($sqlType, 'INSERT') !== false) {
+                  $op = 'Insertado';
+              } elseif (strpos($sqlType, 'UPDATE') !== false) {
+                  $op = 'Actualizado';
+              } else {
+                  $op = 'Operación desconocida';
+              }
+              $affected = $stmt->affected_rows;
+              if ($affected > 0) {
+                  $rs = "Se ha " . $op . ": " . $affected . " registro(s) correctamente.";
+              } else {
+                  $rs = "No se afectaron registros con la operación: " . $op;
+              }
           }
           $stmt->close();
       } else {
-          $rs = "Error en la preparación de la consulta: " . $con->error;
+          $rs = "Error preparando la consulta: " . $con->error . " | SQL: " . $sql;
       }
-  } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;
 }
-
-
 
 
 

@@ -217,6 +217,8 @@ function gra_caract(){
 	$rta=dato_mysql($sql);
 	return $rta; */
 
+	$actual = date("Y-m-d H:i:s");
+
     $sql = "INSERT INTO hog_carac VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $params = array(
     array('type' => 'i', 'value' => NULL),
@@ -293,7 +295,7 @@ function gra_caract(){
 	array('type' => 's', 'value' => $_POST['observacion']), 
 	array('type' => 's', 'value' => namequipo()),
 	array('type' => 's', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => $actual),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A'));
@@ -301,6 +303,7 @@ function gra_caract(){
     $rta = mysql_prepd($sql, $params);
     return $rta;
 }
+
 
 function opc_numfam($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=172 and estado='A' ORDER BY 1",$id);

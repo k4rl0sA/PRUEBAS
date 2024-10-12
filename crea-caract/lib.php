@@ -391,7 +391,7 @@ function cap_menus($a,$b='cap',$con='con') {
                $rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
                $rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
            }
-		if ($a=='adm' && $b=='acciones'){
+		if ($a=='homes' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 			$rta.="<li class='icono editar ' title='Editar Caracterización' id='".$c['Cod_Familia']."_".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'caracteriza',event,this,'','lib.php');Color('caracteriza-lis');\"></li>";
 			// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);

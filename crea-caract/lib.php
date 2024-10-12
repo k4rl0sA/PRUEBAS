@@ -142,7 +142,7 @@ function cmp_caract(){
 function lis_caracterizaciones(){
     // var_dump($_POST);
     $total="SELECT COUNT(*) AS total FROM (
-		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
+		SELECT C.id_viv ACCIONES,C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
             ) AS Subquery";
@@ -356,18 +356,46 @@ function cap_menus($a,$b='cap',$con='con') {
     return $rta;
   }
 
+  function get_caracteriza(){
+	if($_REQUEST['id']==''){
+		return "";
+	}else{
+		// print_r($_POST);
+		$id=divide($_REQUEST['id']);
+		// print_r($id);
+		$sql="SELECT id_viv, idfam, fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion, equipo, usu_create, fecha_create, usu_update, fecha_update, estado
+		FROM hog_carac
+		
+		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
+		LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
+		LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+        			FROM hog_geo ) AS G ON H.idgeo = G.geo
+
+		WHERE id_viv='{$id[1]}'";
+		// echo $sql;
+		// print_r($id);
+		$info=datos_mysql($sql);
+		 return json_encode($info['responseResult'][0]);
+	    } 
+}
 
   function formato_dato($a,$b,$c,$d){
     $b=strtolower($b);
     $rta=$c[$d];
    // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-   // var_dump($c['ACCIONES']);
-   // var_dump($c); 
+   var_dump($c);
+   var_dump($a);
+   var_dump($b); 
        if ($a=='caract' && $b=='acciones'){
            $rta="<nav class='menu right'>";	
                $rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
                $rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";
            }
+		if ($a=='adm' && $b=='acciones'){
+			$rta="<nav class='menu right'>";
+			$rta.="<li class='icono editar ' title='Editar Caracterización' id='".$c['ACCIONES']."_".$c[''].'" Onclick=\"setTimeout(getData,500,'caracteriza',event,this,'','lib.php');Color('caracteriza-lis');\"></li>";  //act_lista(f,this);
+			// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		}
    return $rta;
    }
   
@@ -375,4 +403,4 @@ function cap_menus($a,$b='cap',$con='con') {
 function bgcolor($a,$c,$f='c'){
     $rta="";
     return $rta;
-   }
+}

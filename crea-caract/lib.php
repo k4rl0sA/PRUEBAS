@@ -357,7 +357,7 @@ function cap_menus($a,$b='cap',$con='con') {
            }
 		if ($a=='homes' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-			$rta.="<li class='icono editar ' title='Editar Caracterización' id='".$c['Cod_Familia']."_".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'caract',event,this,'','../crea-caract/lib.php');Color('caracteriza-lis');\"></li>";
+			$rta.="<li class='icono editar ' title='Editar Caracterización' id='".$c['Cod_Familia']."_".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'caract',event,this,'../crea-caract/lib.php',['fecha']);Color('caracteriza-lis');\"></li>";
 			// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		}
    return $rta;

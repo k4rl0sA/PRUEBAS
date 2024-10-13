@@ -991,6 +991,35 @@ function myFetch(b, c, d) {
 	  }	
   }
 
+  async function getDataFetch(a, ev, i,url, blo) {
+	if (ev.type === 'click') {
+	  const c = document.getElementById(`${a}-pro-con`);
+	  const cmp = c.querySelectorAll('.captura, .bloqueo');
+	  if (loader) loader.style.display = 'block';
+	  try {
+		const data = await getJSON('get', a, i.id,url);
+		if (!data || Object.keys(data).length === 0) {
+		  errors("No data returned or empty response");
+		  return;
+		}
+		const values = Object.values(data); // Convertimos los datos a un array de valores  
+		cmp.forEach((element, index) => { 		// Rellenar los campos con los valores obtenidos
+		  element.value = values[index];
+		  if (element.type === 'checkbox') {
+			element.checked = element.value === 'SI';
+			element.value = element.checked ? 'SI' : 'NO';
+		  }
+		  blo.forEach((bloqueado) => {
+			if (element.name === bloqueado) element.disabled = true; // Deshabilitar campos según el arreglo 'blo'
+		  });
+		});
+	  } catch (error) {
+		errors('Error en la solicitud:', error);
+	  }
+	}
+  }
+  
+
 /*   function getDaTab(clsKey, fun,clsCmp) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
 	let id = '';

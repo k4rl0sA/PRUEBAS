@@ -630,7 +630,7 @@ function gra_person(){
 		}else if(count($id)==3){
 			$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[2]' and idpersona<>'$id[0]'";
 		}
-		// var_dump($id);
+		var_dump($id);
 			return opc_sql($sql,'');		
 	}
 

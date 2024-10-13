@@ -198,9 +198,10 @@ function gra_caract() {
     );
 
     if (count($id) == 1) {
-		$total_campos = count($campos); // Aquí, 8 son los campos adicionales fijos
-
-		$sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", array_fill(0, count($campos), '?')) . ",?,?,?,?,?,'A')";
+		$total_columnas = 78;
+		 $holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
+		 $sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", $holders) . ", ?, ?, 'A')";
+		 
 
 		$params = array(
             array('type' => 'i', 'value' => $id[0]),
@@ -209,10 +210,19 @@ function gra_caract() {
             array('type' => 's', 'value' => $_POST['eventoupd']),
             array('type' => 's', 'value' => $_POST['fechanot'])
         );
-		$params = array_merge($params, params($campos));
+		$params = array_merge($params, params($campos));// Agregar los valores dinámicos
 		$params[] = array('type' => 's', 'value' => namequipo());
         $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
         $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+
+		// Calcular el número total de placeholders
+        $total_placeholders = count($params) + 1; // +1 por el campo NULL
+
+        // Validar el número de campos
+        if ($total_placeholders !== $total_columnas) {
+            die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");
+        }
+
 	
 		// echo $total_campos;
 		echo $sql;

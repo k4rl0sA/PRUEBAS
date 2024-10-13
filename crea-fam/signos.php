@@ -141,7 +141,21 @@ function men_signos(){
 	 }
    }
 
-
+   function formato_dato($a,$b,$c,$d){
+    $b=strtolower($b);
+    $rta=$c[$d];
+   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
+/*    var_dump($c);
+   var_dump($a);
+   var_dump($b);  */
+		if ($a=='signos' && $b=='acciones'){
+			$rta="<nav class='menu right'>";
+			$rta.="<li class='icono editar ' title='Editar Signos' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'caract',event,this,'../crea-caract/lib.php',['fecha','motivoupd','eventoupd','fechanot']);Color('caracteriza-lis');\"></li>";
+			// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
+		}
+   return $rta;
+   }
+ 
 
 
 

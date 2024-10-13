@@ -446,7 +446,7 @@ function get_person(){
 		descanso_unidad,reside_localidad,localidad_vive,transporta
 		FROM `personas` 
 		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc 
-		WHERE idpersona ='{$id[0]}' and tipo_doc='{$id[1]}'" ;
+		WHERE idpeople ='{$id[0]}'" ;
 		$info=datos_mysql($sql);
 		//  echo $sql;
 	 return json_encode($info['responseResult'][0]); 

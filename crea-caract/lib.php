@@ -193,8 +193,8 @@ function gra_caract() {
 		'subsidio_1','subsidio_2','subsidio_3','subsidio_4','subsidio_5','subsidio_6','subsidio_7','subsidio_8','subsidio_9','subsidio_10',
         'subsidio_11','subsidio_12','subsidio_13','subsidio_14','subsidio_15','subsidio_16','subsidio_17','subsidio_18','subsidio_19','subsidio_20',
 		'energia','gas','acueducto','alcantarillado','basuras','pozo','aljibe','perros','numero_perros','perro_vacunas',
-		'perro_esterilizado','gatos','numero_gatos','gato_vacunas','gato_esterilizado','otros','factor_1','factor_2','factor_3','factor_4',
-		'factor_5','factor_6','factor_7','factor_8','factor_9','observacion'
+		'perro_esterilizado','gatos','numero_gatos','gato_vacunas','gato_esterilizado','otros','facamb1','facamb2','facamb3','facamb4',
+		'facamb5','facamb6','facamb7','facamb8','facamb9','observacion'
     );
 
     if (count($id) == 1) {

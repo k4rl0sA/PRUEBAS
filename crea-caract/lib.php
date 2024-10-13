@@ -185,7 +185,6 @@ function namequipo(){
 
 function gra_caract() {
     $id = divide($_POST['idg']);
-    
     // Campos comunes para INSERT y UPDATE
     $campos = array(
         'crit_epi','crit_geo','estr_inters','fam_peretn', 'fam_rurcer','tipo_vivienda','tenencia','dormitorios','actividad_economica','tipo_familia',

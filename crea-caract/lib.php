@@ -200,7 +200,7 @@ function gra_caract() {
     if (count($id) == 1) {
 		$total_columnas = 78;
 		 $holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
-		 $sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", $holders) . ", ?, ?, 'A')";
+		 $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,'A')";
 		 
 
 		$params = array(
@@ -220,13 +220,13 @@ function gra_caract() {
 
         // Validar el número de campos
         if ($total_placeholders !== $total_columnas) {
+			echo $sql;
+			print_r($params);
             die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");
         }
 
 	
 		// echo $total_campos;
-		echo $sql;
-		echo implode(", ", array_fill(0, count($campos), '?'));
     }
 	if (count($id) == 2) {
 		$sql = "UPDATE hog_carac SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";
@@ -236,7 +236,7 @@ function gra_caract() {
 		 $params[] = array('type' => 'i', 'value' => $id[1]);
 	}
 	
-print_r($params);
+
     return mysql_prepd($sql, $params);
 }
 

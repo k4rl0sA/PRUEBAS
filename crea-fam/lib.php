@@ -459,7 +459,7 @@ function gra_person(){
 	// print_r($_POST);
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
-	if(count($id)!=7){
+	if(count($id)!=1){
 		$sql="UPDATE `personas` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),
 		`tipo_doc`=TRIM(UPPER('{$_POST['tipo_doc']}')),

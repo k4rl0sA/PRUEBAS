@@ -201,6 +201,7 @@ function gra_caract() {
 		$total_campos = count($campos); // Aquí, 8 son los campos adicionales fijos
 
 		$sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", array_fill(0, count($campos), '?')) . ",?,?,?,?,?,'A')";
+
 		$params = array(
             array('type' => 'i', 'value' => $id[0]),
             array('type' => 's', 'value' => $_POST['fecha']),
@@ -213,7 +214,7 @@ function gra_caract() {
         $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
         $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
 	
-		echo $total_campos;
+		// echo $total_campos;
 		echo $sql;
 		echo implode(", ", array_fill(0, count($campos), '?'));
     }

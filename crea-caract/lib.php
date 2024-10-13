@@ -198,7 +198,7 @@ function gra_caract() {
     );
 
     if (count($id) == 1) {
-		$total_campos = count($campos) + 8; // Aquí, 8 son los campos adicionales fijos
+		$total_campos = count($campos); // Aquí, 8 son los campos adicionales fijos
 
 		$sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", array_fill(0, count($campos), '?')) . ", ?, ?, 'A')";
 		$params = array(

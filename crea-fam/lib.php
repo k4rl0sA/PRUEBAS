@@ -432,8 +432,8 @@ function men_person(){
 
 
 function get_person(){
-	// print_r($_POST);
-	if($_POST['id']==''){
+	print_r($_REQUEST);
+	/* if($_POST['id']==''){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
@@ -449,6 +449,23 @@ function get_person(){
 		//  echo $sql;
 	 return json_encode($info['responseResult'][0]); 
 	} 
+
+
+	$id=divide($_REQUEST['id']);
+	if($_REQUEST['id']=='' || count($id)!=2){
+		return "";
+	}else{
+		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
+		FROM `hog_fam` 
+		WHERE id_fam ='{$id[1]}'";
+		// echo $sql;
+		// print_r($id);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return $info['responseResult'][0];
+	}  */
 }
 
 

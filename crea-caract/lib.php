@@ -188,17 +188,13 @@ function gra_caract() {
     
     // Campos comunes para INSERT y UPDATE
     $campos = array(
-        'crit_epi', 'crit_geo', 'estr_inters', 'fam_peretn', 'fam_rurcer', 'tipo_vivienda', 
-        'tenencia', 'dormitorios', 'actividad_economica', 'tipo_familia', 'personas', 
-        'ingreso', 'seg_pre1', 'seg_pre2', 'seg_pre3', 'seg_pre4', 'seg_pre5', 'seg_pre6', 
-        'seg_pre7', 'seg_pre8', 'subsidio_1', 'subsidio_2', 'subsidio_3', 'subsidio_4', 
-        'subsidio_5', 'subsidio_6', 'subsidio_7', 'subsidio_8', 'subsidio_9', 'subsidio_10', 
-        'subsidio_11', 'subsidio_12', 'subsidio_13', 'subsidio_14', 'subsidio_15', 'subsidio_16', 
-        'subsidio_17', 'subsidio_18', 'subsidio_19', 'subsidio_20', 'energia', 'gas', 
-        'acueducto', 'alcantarillado', 'basuras', 'pozo', 'aljibe', 'perros', 'numero_perros', 
-        'perro_vacunas', 'perro_esterilizado', 'gatos', 'numero_gatos', 'gato_vacunas', 
-        'gato_esterilizado', 'otros', 'factor_1', 'factor_2', 'factor_3', 'factor_4', 'factor_5', 
-        'factor_6', 'factor_7', 'factor_8', 'factor_9', 'observacion'
+        'crit_epi','crit_geo','estr_inters','fam_peretn', 'fam_rurcer','tipo_vivienda','tenencia','dormitorios','actividad_economica','tipo_familia',
+		'personas','ingreso','seg_pre1','seg_pre2','seg_pre3','seg_pre4','seg_pre5','seg_pre6','seg_pre7','seg_pre8',
+		'subsidio_1','subsidio_2','subsidio_3','subsidio_4','subsidio_5','subsidio_6','subsidio_7','subsidio_8','subsidio_9','subsidio_10',
+        'subsidio_11','subsidio_12','subsidio_13','subsidio_14','subsidio_15','subsidio_16','subsidio_17','subsidio_18','subsidio_19','subsidio_20',
+		'energia','gas','acueducto','alcantarillado','basuras','pozo','aljibe','perros','numero_perros','perro_vacunas',
+		'perro_esterilizado','gatos','numero_gatos','gato_vacunas','gato_esterilizado','otros','factor_1','factor_2','factor_3','factor_4',
+		'factor_5','factor_6','factor_7','factor_8','factor_9','observacion'
     );
 
     if (count($id) == 1) {
@@ -223,6 +219,7 @@ function gra_caract() {
 		 $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
 		 $params[] = array('type' => 'i', 'value' => $id[1]);
 	}
+	echo $sql;
 print_r($params);
     return mysql_prepd($sql, $params);
 }

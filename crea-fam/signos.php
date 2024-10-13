@@ -97,6 +97,24 @@ function cmp_signos(){
 	return $rta;
    }
 
+   function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
+		FN_EDAD(fecha_nacimiento,CURDATE()),
+		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) - TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) * 30.436875) AS dia
+		from personas P left join hog_viv V ON idviv=vivipersona 
+		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+		// echo $sql;
+		$info=datos_mysql($sql);
+				return $info['responseResult'][0];
+		}
+	} 
+
    function lis_signos(){
     // var_dump($_POST);
     $total="SELECT COUNT(*) AS total FROM (

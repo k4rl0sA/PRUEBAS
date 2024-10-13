@@ -201,20 +201,19 @@ function gra_caract() {
         'factor_6', 'factor_7', 'factor_8', 'factor_9', 'observacion'
     );
 
-    $params = params($campos);
-    $params[] = array('type' => 's', 'value' => namequipo());
-    $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
-    $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
-
     if (count($id) == 1) {
         // SQL para INSERT
         $sql = "INSERT INTO hog_carac VALUES (?,?,?,?,?,? " . str_repeat("?, ", count($campos)) . "?, ?, 'A')";
-        $params[] = array('type' => 'i', 'value' => null);
+        $params= array('type' => 'i', 'value' => null);
         $params[] = array('type' => 'i', 'value' => $id[0]);
         $params[] = array('type' => 's', 'value' => $_POST['fecha']);
         $params[] = array('type' => 's', 'value' => $_POST['motivoupd']);
         $params[] = array('type' => 's', 'value' => $_POST['eventoupd']);
         $params[] = array('type' => 's', 'value' => $_POST['fechanot']);
+		$params[]= params($campos);
+		$params[] = array('type' => 's', 'value' => namequipo());
+    	$params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
+    	$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
     }
 	if (count($id) == 2) {
 		// SQL para UPDATE

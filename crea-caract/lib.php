@@ -329,7 +329,7 @@ function cap_menus($a,$b='cap',$con='con') {
 		// print_r($_POST);
 		$id=divide($_REQUEST['id']);
 		// print_r($id);
-		$sql="SELECT concat_ws('_',idfam,id_viv), fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion, equipo, usu_create, fecha_create, usu_update, fecha_update, estado
+		$sql="SELECT concat_ws('_',idfam,id_viv), fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion
 		FROM hog_carac
 		WHERE id_viv='{$id[1]}'";
 		// echo $sql;
@@ -347,9 +347,9 @@ function cap_menus($a,$b='cap',$con='con') {
     $b=strtolower($b);
     $rta=$c[$d];
    // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-   var_dump($c);
+/*    var_dump($c);
    var_dump($a);
-   var_dump($b); 
+   var_dump($b);  */
        if ($a=='caract' && $b=='acciones'){
            $rta="<nav class='menu right'>";	
                $rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//mostrar('person1','fix',event,'','lib.php',0,'person1'),500);

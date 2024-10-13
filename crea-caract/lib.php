@@ -220,7 +220,7 @@ function gra_caract() {
 		$sql = "UPDATE hog_carac SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";
 		$params[] = array('type' => 'i', 'value' => $id[1]);
 	}
-var_dump($params);
+print_r($params);
     // return mysql_prepd($sql, $params);
 }
 

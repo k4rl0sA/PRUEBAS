@@ -123,15 +123,15 @@ function cmp_caract(){
       
 	$o='amb';
 	$c[]=new cmp($o,'e',null,'FACTORTES AMBIENTALES',$w);
-	$c[]=new cmp('factor_1','o',2,$d,$w.' '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_2','o',2,$d,$w.' '.$o,'Edificaciones o vías en construcción o vías no pavimentadas a menos de una cuadra o 100 metros.','fm2',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_3','o',2,$d,$w.' '.$o,'Cercanía de la vivienda a zonas recreativas, zonas verdes y/o de esparcimiento.','fm3',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_4','o',2,$d,$w.' '.$o,'Cercanía a la vivienda relleno sanitario, rondas hídricas, canales, cementerios, humedales, terminales aéreos o terrestres','fm4',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_5','o',2,$d,$w.' '.$o,'En la vivienda se almacena y conserva los alimentos de forma adecuada','fm5',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_6','o',2,$d,$w.' '.$o,'En la vivienda se manipula adecuadamente agua para consumo humano (desinfección adecuada, uso seguro de utensilios)','fm6',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_7','o',2,$d,$w.' '.$o,'Las personas que habitan en la vivienda adquieren medicamentos con fórmula médica','fm7',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_8','o',2,$d,$w.' '.$o,'En la vivienda los productos quimicos estan almacenados de manera segura','fm8',null,null,false,true,'','col-10');
-	$c[]=new cmp('factor_9','o',2,$d,$w.' '.$o,'En la vivienda se realiza adecuado manejo de residuos sólidos','fm9',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb1','o',2,$d,$w.' '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb2','o',2,$d,$w.' '.$o,'Edificaciones o vías en construcción o vías no pavimentadas a menos de una cuadra o 100 metros.','fm2',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb3','o',2,$d,$w.' '.$o,'Cercanía de la vivienda a zonas recreativas, zonas verdes y/o de esparcimiento.','fm3',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb4','o',2,$d,$w.' '.$o,'Cercanía a la vivienda relleno sanitario, rondas hídricas, canales, cementerios, humedales, terminales aéreos o terrestres','fm4',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb5','o',2,$d,$w.' '.$o,'En la vivienda se almacena y conserva los alimentos de forma adecuada','fm5',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb6','o',2,$d,$w.' '.$o,'En la vivienda se manipula adecuadamente agua para consumo humano (desinfección adecuada, uso seguro de utensilios)','fm6',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb7','o',2,$d,$w.' '.$o,'Las personas que habitan en la vivienda adquieren medicamentos con fórmula médica','fm7',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb8','o',2,$d,$w.' '.$o,'En la vivienda los productos quimicos estan almacenados de manera segura','fm8',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb9','o',2,$d,$w.' '.$o,'En la vivienda se realiza adecuado manejo de residuos sólidos','fm9',null,null,false,true,'','col-10');
 
 	$c[]=new cmp('observacion','a',1500,$d,$w.'','Observacion','observacion',null,null,true,true,'','col-10');
 	
@@ -201,8 +201,6 @@ function gra_caract() {
 		$total_columnas = 78;
 		 $holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
 		 $sql = "INSERT INTO hog_carac VALUES (?,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,?,?,?,?)";
-		 
-
 		$params = array(
 			array('type' => 'i', 'value' => NULL),
             array('type' => 'i', 'value' => $id[0]),
@@ -219,18 +217,7 @@ function gra_caract() {
 		$params[] = array('type' => 's', 'value' => NULL);
 		$params[] = array('type' => 's', 'value' => 'A');
 
-		// Calcular el número total de placeholders
-        $total_placeholders = count($params) + 1; // +1 por el campo NULL
-
         // Validar el número de campos
-        if ($total_placeholders !== $total_columnas) {
-			echo count($campos);
-			echo $sql;
-			print_r($params);
-            //die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");
-        }
-
-	
 		// echo $total_campos;
     }
 	if (count($id) == 2) {

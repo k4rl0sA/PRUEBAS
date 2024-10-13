@@ -214,6 +214,7 @@ function gra_caract() {
         $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
 	
 		echo $total_campos;
+		echo $sql;
 		echo implode(", ", array_fill(0, count($campos), '?'));
     }
 	if (count($id) == 2) {

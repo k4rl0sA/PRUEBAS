@@ -202,17 +202,13 @@ function mysql_prepd($sql, $params) {
       $stmt = $con->prepare($sql);
       if ($stmt) {
           $types = '';
-          $values = array();
+          $values = [];
           foreach ($params as $param) {
               $type = $param['type'];// Validar el tipo de parámetro
-              $values[] = ($type === 's') ? cleanTx(strtoupper($param['value'])) : (($type === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
-              // $values[] = cleanTx(strtoupper($param['value'])); // limpiar
+              $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);// Limpiar el valor dependiendo del tipo
+              $types .= ($type === 'z') ? 's' : $type; // // Agregar el tipo correspondiente a $types
+              $values[] = $value;// Agregar el valor limpio al array $values
           }
-
-          $types .= ($param['type'] === 'z') ? 's' : (($param['type'] === 's') ? 's' : $param['type']);
-          $values[] = ($param['type'] === 's') ? cleanTx(strtoupper($param['value'])) : (($param['type'] === 'z') ? cleanTx($param['value']) : cleanTx($param['value']));
-
-
           // var_dump($values);
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {

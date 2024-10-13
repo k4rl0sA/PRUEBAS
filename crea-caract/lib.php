@@ -200,7 +200,7 @@ function gra_caract() {
     if (count($id) == 1) {
 		$total_columnas = 78;
 		 $holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
-		 $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,'A')";
+		 $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,?,?,?,'A')";
 		 
 
 		$params = array(

@@ -634,7 +634,7 @@ function gra_person(){
 
 	
 
-function get_personas(){
+function get_persona(){
 		if($_REQUEST['id']==''){
 			return "";
 		}else{

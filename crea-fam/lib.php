@@ -625,10 +625,10 @@ function gra_person(){
 	}
 	function opc_cuida(){
 		$id=divide($_REQUEST['id']);
-		if(count($id)==7){
-			$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
-		}else if(count($id)==3){
-			$sql="SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[2]' and idpersona<>'$id[0]'";
+		if(count($id)==1){
+			$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
+		}else if(count($id)==2){
+			$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[1]' and idpeople<>'$id[0]'";
 		}
 		var_dump($id);
 			return opc_sql($sql,'');		

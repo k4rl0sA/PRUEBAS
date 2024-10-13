@@ -202,8 +202,7 @@ function gra_caract() {
     );
 
     if (count($id) == 1) {
-        // SQL para INSERT
-        $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,? " . str_repeat("?, ", count($campos)) . "?, ?, 'A')";
+		$sql = "INSERT INTO hog_carac VALUES (NULL, ?, ?, ?, ?, ?, " . implode(", ", array_fill(0, count($campos), '?')) . ", ?, ?, 'A')";
 		$params = array(
             array('type' => 'i', 'value' => $id[0]),
             array('type' => 's', 'value' => $_POST['fecha']),
@@ -218,10 +217,8 @@ function gra_caract() {
 		
     }
 	if (count($id) == 2) {
-		// SQL para UPDATE
 		$sql = "UPDATE hog_carac SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";
-		 // Para UPDATE, agregamos los valores dinámicos
-		 $params = params($campos);
+		 $params = params($campos);		 // Para UPDATE, agregamos los valores dinámicos
 		 $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
 		 $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
 		 $params[] = array('type' => 'i', 'value' => $id[1]);
@@ -236,8 +233,7 @@ function params($campos) {
         if (isset($_POST[$campo])) {
             $params[] = array('type' => is_numeric($_POST[$campo]) ? 'i' : 's', 'value' => $_POST[$campo]);
         } else {
-            // Manejar el caso donde el campo no está presente
-            $params[] = array('type' => 's', 'value' => '');
+            $params[] = array('type' => 's', 'value' => '');// Manejar el caso donde el campo no está presente
         }
     }
     return $params;
@@ -248,9 +244,6 @@ function params($campos) {
     return is_numeric($valor) ? 'i' : 's';
 } */
 
-/* function generarCamposUpdate($campos) {
-    return implode(" = ?, ", $campos) . " = ?";
-} */
 
 
 

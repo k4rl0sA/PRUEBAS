@@ -220,6 +220,7 @@ function gra_caract() {
 
         // Validar el número de campos
         if ($total_placeholders !== $total_columnas) {
+			echo count($campos);
 			echo $sql;
 			print_r($params);
             die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");

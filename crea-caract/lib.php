@@ -214,6 +214,7 @@ function gra_caract() {
         $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
 	
 		echo $total_campos;
+		echo implode(", ", array_fill(0, count($campos), '?'));
     }
 	if (count($id) == 2) {
 		$sql = "UPDATE hog_carac SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";

@@ -185,40 +185,6 @@ function namequipo(){
 
 function gra_caract(){
     $id=divide($_POST['idg']);
-
-	/* $perros = empty($_POST['numero_perros']) ? 0 :$_POST['numero_perros'];
-	$pvacun = empty($_POST['perro_vacunas']) ? 0 :$_POST['perro_vacunas'];
-	$peste  = empty($_POST['perro_esterilizado']) ? 0:$_POST['perro_esterilizado'];
-	$gatos  = empty($_POST['numero_gatos']) ? 0 : $_POST['numero_gatos'];
-	$gvacun = empty($_POST['gato_vacunas']) ? 0 : $_POST['gato_vacunas'];
-	$geste  = empty($_POST['gato_esterilizado']) ? 0:$_POST['gato_esterilizado'];
-	$equ=namequipo();
-
-
-	$sql="INSERT INTO hog_carac VALUES (null,
-	$id[0],
-	TRIM(UPPER('{$_POST['fecha']}')),TRIM(UPPER('{$_POST['motivoupd']}')),TRIM(UPPER('{$_POST['eventoupd']}')),TRIM(UPPER('{$_POST['fechanot']}')),trim(upper('{$_POST['crit_epi']}')),
-	trim(upper('{$_POST['crit_geo']}')),trim(upper('{$_POST['estr_inters']}')),trim(upper('{$_POST['fam_peretn']}')),trim(upper('{$_POST['fam_rurcer']}')),trim(upper('{$_POST['tipo_vivienda']}')),
-	trim(upper('{$_POST['tenencia']}')),trim(upper('{$_POST['dormitorios']}')),trim(upper('{$_POST['actividad_economica']}')),trim(upper('{$_POST['tipo_familia']}')),trim(upper('{$_POST['personas']}')),
-	trim(upper('{$_POST['ingreso']}')),trim(upper('{$_POST['seg_pre1']}')),trim(upper('{$_POST['seg_pre2']}')),trim(upper('{$_POST['seg_pre3']}')),trim(upper('{$_POST['seg_pre4']}')),
-	trim(upper('{$_POST['seg_pre5']}')),trim(upper('{$_POST['seg_pre6']}')),trim(upper('{$_POST['seg_pre7']}')),trim(upper('{$_POST['seg_pre8']}')),trim(upper('{$_POST['subsidio_1']}')),
-	trim(upper('{$_POST['subsidio_2']}')),trim(upper('{$_POST['subsidio_3']}')),trim(upper('{$_POST['subsidio_4']}')),trim(upper('{$_POST['subsidio_5']}')),trim(upper('{$_POST['subsidio_6']}')),
-	trim(upper('{$_POST['subsidio_7']}')),trim(upper('{$_POST['subsidio_8']}')),trim(upper('{$_POST['subsidio_9']}')),trim(upper('{$_POST['subsidio_10']}')),trim(upper('{$_POST['subsidio_11']}')),
-	trim(upper('{$_POST['subsidio_12']}')),trim(upper('{$_POST['subsidio_13']}')),trim(upper('{$_POST['subsidio_14']}')),trim(upper('{$_POST['subsidio_15']}')),trim(upper('{$_POST['subsidio_16']}')),
-	trim(upper('{$_POST['subsidio_17']}')),trim(upper('{$_POST['subsidio_18']}')),trim(upper('{$_POST['subsidio_19']}')),trim(upper('{$_POST['subsidio_20']}')),trim(upper('{$_POST['energia']}')),
-	trim(upper('{$_POST['gas']}')),trim(upper('{$_POST['acueducto']}')),trim(upper('{$_POST['alcantarillado']}')),trim(upper('{$_POST['basuras']}')),trim(upper('{$_POST['pozo']}')),
-	trim(upper('{$_POST['aljibe']}')),trim(upper('{$_POST['perros']}')),$perros,$pvacun,$peste,TRIM(UPPER('{$_POST['gatos']}')),$gatos,$gvacun,$geste,trim(upper('{$_POST['otros']}')),
-	trim(upper('{$_POST['factor_1']}')),trim(upper('{$_POST['factor_2']}')),trim(upper('{$_POST['factor_3']}')),trim(upper('{$_POST['factor_4']}')),trim(upper('{$_POST['factor_5']}')),
-	trim(upper('{$_POST['factor_6']}')),trim(upper('{$_POST['factor_7']}')),trim(upper('{$_POST['factor_8']}')),trim(upper('{$_POST['factor_9']}')),trim(upper('{$_POST['observacion']}')),	
-	upper('$equ'),
-	TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
-
-	var_dump($sql);
-	$rta=dato_mysql($sql);
-	return $rta; */
-
-	$actual = date("Y-m-d H:i:s");
-var_dump($actual);
     $sql = "INSERT INTO hog_carac VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     $params = array(
     array('type' => 'i', 'value' => NULL),
@@ -295,7 +261,7 @@ var_dump($actual);
 	array('type' => 's', 'value' => $_POST['observacion']), 
 	array('type' => 's', 'value' => namequipo()),
 	array('type' => 's', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => $actual),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => NULL),
 	array('type' => 's', 'value' => 'A'));
@@ -365,14 +331,12 @@ function cap_menus($a,$b='cap',$con='con') {
 		// print_r($id);
 		$sql="SELECT id_viv, idfam, fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion, equipo, usu_create, fecha_create, usu_update, fecha_update, estado
 		FROM hog_carac
-		
-		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
-		LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-		LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
-        			FROM hog_geo ) AS G ON H.idgeo = G.geo
-
 		WHERE id_viv='{$id[1]}'";
 		// echo $sql;
+		// LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
+		// LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
+		// LEF JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+        			// FROM hog_geo ) AS G ON H.idgeo = G.geo
 		// print_r($id);
 		$info=datos_mysql($sql);
 		 return json_encode($info['responseResult'][0]);

@@ -98,7 +98,6 @@ function csv($a,$b,$tot= null){
 }
 
 function cleanTxt($val) {
-  var_dump($val);
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
@@ -207,12 +206,12 @@ function mysql_prepd($sql, $params) {
           foreach ($params as $param) {
               $type = $param['type'];// Validar el tipo de parámetro
               $types .= ($type === 'z' || $type === 's') ? 's' : $type;
-              $values[] = cleanTx($param['value']); // limpiar
+              $values[] = cleanTxstrtoupper(($param['value'])); // limpiar
           }
-          var_dump($values);
+          // var_dump($values);
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {
-              $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $sql;
+              $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $github;
           } else {
               $sqlType = strtoupper($sql);
               if (strpos($sqlType, 'DELETE') !== false) {

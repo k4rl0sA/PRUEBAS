@@ -203,25 +203,31 @@ function gra_caract() {
 
     if (count($id) == 1) {
         // SQL para INSERT
-        $sql = "INSERT INTO hog_carac VALUES (?,?,?,?,?,? " . str_repeat("?, ", count($campos)) . "?, ?, 'A')";
-        $params= array('type' => 'i', 'value' => null);
-        $params[] = array('type' => 'i', 'value' => $id[0]);
-        $params[] = array('type' => 's', 'value' => $_POST['fecha']);
-        $params[] = array('type' => 's', 'value' => $_POST['motivoupd']);
-        $params[] = array('type' => 's', 'value' => $_POST['eventoupd']);
-        $params[] = array('type' => 's', 'value' => $_POST['fechanot']);
-		$params[]= params($campos);
+        $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,? " . str_repeat("?, ", count($campos)) . "?, ?, 'A')";
+		$params = array(
+            array('type' => 'i', 'value' => $id[0]),
+            array('type' => 's', 'value' => $_POST['fecha']),
+            array('type' => 's', 'value' => $_POST['motivoupd']),
+            array('type' => 's', 'value' => $_POST['eventoupd']),
+            array('type' => 's', 'value' => $_POST['fechanot'])
+        );
+		$params = array_merge($params, params($campos));
 		$params[] = array('type' => 's', 'value' => namequipo());
-    	$params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
-    	$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+        $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
+        $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+		
     }
 	if (count($id) == 2) {
 		// SQL para UPDATE
 		$sql = "UPDATE hog_carac SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";
-		$params[] = array('type' => 'i', 'value' => $id[1]);
+		 // Para UPDATE, agregamos los valores dinámicos
+		 $params = params($campos);
+		 $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
+		 $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+		 $params[] = array('type' => 'i', 'value' => $id[1]);
 	}
 print_r($params);
-    // return mysql_prepd($sql, $params);
+    return mysql_prepd($sql, $params);
 }
 
 function params($campos) {

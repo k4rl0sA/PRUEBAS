@@ -200,10 +200,11 @@ function gra_caract() {
     if (count($id) == 1) {
 		$total_columnas = 78;
 		 $holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
-		 $sql = "INSERT INTO hog_carac VALUES (NULL,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,?,?,?,'A')";
+		 $sql = "INSERT INTO hog_carac VALUES (?,?,?,?,?,?, " . implode(", ", $holders) . ",?,?,?,?,?,'A')";
 		 
 
 		$params = array(
+			array('type' => 'i', 'value' => NULL),
             array('type' => 'i', 'value' => $id[0]),
             array('type' => 's', 'value' => $_POST['fecha']),
             array('type' => 's', 'value' => $_POST['motivoupd']),
@@ -214,6 +215,9 @@ function gra_caract() {
 		$params[] = array('type' => 's', 'value' => namequipo());
         $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
         $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+		$params[] = array('type' => 's', 'value' => NULL);
+		$params[] = array('type' => 's', 'value' => NULL);
+		$params[] = array('type' => 's', 'value' => 'A');
 
 		// Calcular el número total de placeholders
         $total_placeholders = count($params) + 1; // +1 por el campo NULL

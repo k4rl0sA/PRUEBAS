@@ -322,7 +322,7 @@ function cap_menus($a,$b='cap',$con='con') {
     return $rta;
   }
 
-  function get_caracteriza(){
+  function get_caract(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{

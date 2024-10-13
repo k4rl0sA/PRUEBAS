@@ -206,7 +206,7 @@ function mysql_prepd($sql, $params) {
           foreach ($params as $param) {
               $type = $param['type'];// Validar el tipo de parámetro
               $types .= ($type === 'z' || $type === 's') ? 's' : $type;
-              $values[] = cleanTxstrtoupper(($param['value'])); // limpiar
+              $values[] = cleanTx(strtoupper($param['value'])); // limpiar
           }
           // var_dump($values);
           $stmt->bind_param($types, ...$values);

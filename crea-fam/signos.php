@@ -97,6 +97,30 @@ function cmp_signos(){
 	return $rta;
    }
 
+   function lis_signos(){
+    // var_dump($_POST);
+    $total="SELECT COUNT(*) AS total FROM (
+		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
+        FROM `hog_carac` C
+		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
+            ) AS Subquery";
+	$info=datos_mysql($total);
+	$total=$info['responseResult'][0]['total']; 
+	$regxPag=5;
+	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
+
+
+
+    $id=divide($_POST['id']);
+    $sql="SELECT C.id_viv ACCIONES,C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
+        FROM `hog_carac` C
+		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario";
+    $sql.=" ORDER BY C.fecha_create";
+    // echo $sql;
+      $datos=datos_mysql($sql);
+    return create_table($total,$datos["responseResult"],"homes",$regxPag);
+}
+
 function focus_signos(){
 	return 'signos';
 }

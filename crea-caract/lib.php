@@ -223,7 +223,7 @@ function gra_caract() {
 			echo count($campos);
 			echo $sql;
 			print_r($params);
-            die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");
+            //die("Error: el número de campos no coincide. Se esperaban {$total_columnas} campos, pero se recibieron {$total_placeholders}.");
         }
 
 	

@@ -159,18 +159,25 @@ function men_signos(){
    }
 
    function gra_signos(){
-	var_dump($_POST);
-		$id=divide($_POST['variable']);
-		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?)";
+		var_dump($_POST);
+		$id=divide($_POST['idp']);
+		$campos = array(
+        	'peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','zscore','glucom'
+    	);
+		$holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
+		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
 		$params = array(
-		array('type' => 'i', 'value' => NULL),
-		array('type' => 's', 'value' => $id[0]),
-		array('type' => 'i', 'value' => $_SESSION['us_sds']),
-		array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-		array('type' => 's', 'value' => NULL),
-		array('type' => 's', 'value' => NULL),
-		array('type' => 's', 'value' => 'A')
+			array('type' => 'i', 'value' => NULL),
+			array('type' => 's', 'value' => $id[0]),
 		);
+			$params = array_merge($params, params($campos));// Agregar los valores dinámicos
+			$params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
+			$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+			$params[] = array('type' => 's', 'value' => NULL);
+			$params[] = array('type' => 's', 'value' => NULL);
+			$params[] = array('type' => 's', 'value' => 'A');
+	
+		
 		$rta = mysql_prepd($sql, $params);
 		return $rta;
    }

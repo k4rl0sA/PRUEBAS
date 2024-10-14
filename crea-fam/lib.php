@@ -432,7 +432,7 @@ function men_person(){
 
 
 function get_person(){
-	 print_r($_REQUEST);
+	//  print_r($_REQUEST);
 	 $id=divide($_REQUEST['id']);
 	if($_REQUEST['id']=='' || count($id)!=2){
 		return "";

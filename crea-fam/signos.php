@@ -159,7 +159,7 @@ function men_signos(){
    }
 
    function gra_signos(){
-		var_dump($_POST);
+		// var_dump($_POST);
 		$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');

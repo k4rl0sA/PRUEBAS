@@ -230,17 +230,7 @@ function gra_caract() {
     return mysql_prepd($sql, $params);
 }
 
-function params($campos) {
-    $params = [];
-    foreach ($campos as $campo) {
-        if (isset($_POST[$campo])) {
-            $params[] = array('type' => is_numeric($_POST[$campo]) ? 'i' : 's', 'value' => $_POST[$campo]);
-        } else {
-            $params[] = array('type' => 's', 'value' => '');// Manejar el caso donde el campo no está presente
-        }
-    }
-    return $params;
-}
+
 
 
 /* function getTipoDato($valor) {

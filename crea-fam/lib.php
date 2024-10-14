@@ -326,7 +326,7 @@ function cmp_person1(){
 
 function cmp_person(){
 	$rta="";
-	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo_cuida'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
+	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
 	$d = get_person();
 	if ($d==""){$d=$t;}
 	// $p=get_edad();
@@ -372,7 +372,7 @@ function cmp_person(){
 	$c[]=new cmp('perscuidada','s','3',$d['perscuidada'],$w.' cUi '.$o,'N° de identificacion y Nombres','cuida',null,null,false,false,'','col-35');
 	$c[]=new cmp('tiempo_cuidador','n','20',$d['tiempo_cuidador'],$w.' cUi '.$o,'¿Por cuánto tiempo ha sido cuidador?','tiempo_cuidador',null,null,false,false,'','col-2');
 	$c[]=new cmp('cuidador_unidad','s','3',$d['cuidador_unidad'],$w.' cUi '.$o,'Unidad de medida tiempo cuidador','cuidador_unidad',null,null,false,false,'','col-2');
-	$c[]=new cmp('vinculo_cuida','s','3',$d['vinculo_cuida'],$w.' cUi '.$o,'Vinculo con la persona cuidada','vinculo_cuida',null,null,false,false,'','col-2');
+	$c[]=new cmp('vinculo_cuida','s','3',$d['vinculo'],$w.' cUi '.$o,'Vinculo con la persona cuidada','vinculo_cuida',null,null,false,false,'','col-2');
 	$c[]=new cmp('tiempo_descanso','n','20',$d['tiempo_descanso'],$w.' cUi '.$o,'¿Cada cuánto descansa?','tiempo_descanso',null,null,false,false,'','col-2');
 	$c[]=new cmp('descanso_unidad','s','3',$d['descanso_unidad'],$w.' cUi '.$o,'Unidad de medida tiempo descanso','descanso_unidad',null,null,false,false,'','col-2');
 	$c[]=new cmp('reside_localidad','o','2',$d['reside_localidad'],$w.' cUi '.$o,'Reside en la localidad','reside_localidad',null,null,false,false,'','col-3',"enabLoca('reside_localidad','lochi');");

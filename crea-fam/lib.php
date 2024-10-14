@@ -433,6 +433,25 @@ function men_person(){
 
 function get_person(){
 	 print_r($_REQUEST);
+	 $id=divide($_REQUEST['id']);
+	if($_REQUEST['id']=='' || count($id)!=2){
+		return "";
+	}else{
+		$sql="SELECT concat_ws('_',idpeople,vivipersona),encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
+		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
+		descanso_unidad,reside_localidad,localidad_vive,transporta
+		FROM `personas` 
+		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc 
+		WHERE idpeople ='{$id[0]}'" ;
+		// echo $sql;
+		// print_r($id);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return $info['responseResult'][0];
+	} 
 	/* if($_POST['id']==''){
 		return "";
 	}else{
@@ -451,21 +470,7 @@ function get_person(){
 	} 
 
 
-	$id=divide($_REQUEST['id']);
-	if($_REQUEST['id']=='' || count($id)!=2){
-		return "";
-	}else{
-		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
-		FROM `hog_fam` 
-		WHERE id_fam ='{$id[1]}'";
-		// echo $sql;
-		// print_r($id);
-		$info=datos_mysql($sql);
-		if (!$info['responseResult']) {
-			return '';
-		}
-	return $info['responseResult'][0];
-	}  */
+	 */
 }
 
 function gra_person(){

@@ -80,7 +80,8 @@ function grabar(tb='',ev){
 		'pregnant':'gestantes.php',
 		'prechronic':'cronicos.php',
 		'statFam':'stateFami.php',
-		'caract':'../crea-caract/lib.php'
+		'caract':'../crea-caract/lib.php',
+		'signos':'signos.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

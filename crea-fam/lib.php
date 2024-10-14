@@ -326,7 +326,7 @@ function cmp_person1(){
 
 function cmp_person(){
 	$rta="";
-	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliacion'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo_cuida'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
+	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo_cuida'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
 	$d = get_person();
 	if ($d==""){$d=$t;}
 	// $p=get_edad();
@@ -361,7 +361,7 @@ function cmp_person(){
 	$c[]=new cmp('discapacidad','s','3',$d['discapacidad'],$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');
 	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
 	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
-	$c[]=new cmp('afiliacion','o','2',$d['afiliacion'],$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
+	$c[]=new cmp('afiliacion','o','2',$d['afiliaoficio'],$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
 	$c[]=new cmp('sisben','s','3',$d['sisben'],$w.' '.$o,'Grupo Sisben','sisben',null,null,true,true,'','col-2');
 	$c[]=new cmp('catgosisb','n','2',$d['catgosisb'],$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');
 	$c[]=new cmp('pobladifer','s','3',$d['pobladifer'],$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-2');

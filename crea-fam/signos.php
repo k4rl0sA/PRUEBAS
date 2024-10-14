@@ -26,15 +26,13 @@ function cmp_signos(){
 	$p=get_persona();
 	// if ($d==""){$d=$t;}
 	$id=divide($_POST['id']);
-	// $doc = (is_array($p) && isset($p['dc_documento'])) ? $p['dc_documento'] : $id[0] ;
-	// $tip = (is_array($p) && isset($p['dc_tipo_doc'])) ? $p['dc_tipo_doc'] : $id[1] ;
 	$d='';
     $w="signos";
 	$o='infbas';
 	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
 	$ocu= ($p['ano']>5) ? true : false ;
 	$meses = $p['ano'] * 12 + $p['mes'];
-	// $esc=($p['ano']>=5 && $p['ano']<18 ) ? true : false ;
+	$adul = ($p['ano']>=18) ? true : false;
 	$ed=$p['ano'];
 	switch (true) {
 			case $ed>=0 && $ed<=5 :
@@ -81,7 +79,7 @@ function cmp_signos(){
 		$c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','##',true,true,'','col-2',"ValTensions('tas',this);valDist('tad');");
 		$c[]=new cmp('frecard','n',3, $d,$w.' '.$o,'Frecuencia Cardiaca Mín=60 - Máx=120','frecard',null,'##',true,true,'','col-2');
 	    $c[]=new cmp('satoxi','n',3, $d,$w.' '.$o,'saturación de Oxigeno Mín=60 - Máx=100','satoxi',null,'##',true,true,'','col-2'); 
-        $c[]=new cmp('peri_abdomi','n',4,$x,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','peri_abdomi','rgxperabd','###',$adul,$adul,'','col-3');
+        $c[]=new cmp('peri_abdomi','n',4,$d,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','peri_abdomi','rgxperabd','###',$adul,$adul,'','col-3');
     }
 
     if($meses>= 6 && $meses < 60){

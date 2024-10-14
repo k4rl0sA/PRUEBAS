@@ -327,13 +327,13 @@ function cmp_person1(){
 function cmp_person(){
 	$rta="";
 	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliacion'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo_cuida'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
-	$d = get_persona();
+	$d = get_person();
 	if ($d==""){$d=$t;}
 	// $p=get_edad();
     $w="person";
 	// if ($p==""){$p=$t;}
 	$o='infgen';
-	print_r($_POST);
+	// print_r($_POST);
 	// var_dump($_REQUEST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
@@ -432,7 +432,7 @@ function men_person(){
 
 
 function get_person(){
-	print_r($_REQUEST);
+	 print_r($_REQUEST);
 	/* if($_POST['id']==''){
 		return "";
 	}else{
@@ -447,7 +447,7 @@ function get_person(){
 		WHERE idpeople ='{$id[0]}'" ;
 		$info=datos_mysql($sql);
 		//  echo $sql;
-	 return json_encode($info['responseResult'][0]); 
+	return json_encode($info['responseResult'][0]); 
 	} 
 
 
@@ -467,8 +467,6 @@ function get_person(){
 	return $info['responseResult'][0];
 	}  */
 }
-
-
 
 function gra_person(){
 	// print_r($_POST);
@@ -537,12 +535,10 @@ function gra_person(){
 		TRIM(UPPER('{$_POST['oriensexual']}')),
 		TRIM(UPPER('{$_POST['nacionalidad']}')),
 		TRIM(UPPER('{$_POST['estado_civil']}')),
-
 		TRIM(UPPER('{$_POST['niveduca']}')),
 		TRIM(UPPER('{$_POST['abanesc']}')),
 		TRIM(UPPER('{$_POST['ocupacion']}')),
 		TRIM(UPPER('{$_POST['tiemdesem']}')),
-
 		TRIM(UPPER('{$_POST['vinculo_jefe']}')),
 		TRIM(UPPER('{$_POST['etnia']}')),
 		TRIM(UPPER('{$_POST['pueblo']}')),
@@ -568,8 +564,8 @@ function gra_person(){
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 
 	}
-	  $rta=dato_mysql($sql);
-	  return $rta;
+		$rta=dato_mysql($sql);
+		return $rta;
 	}
 	
 	function opc_abanesc($id=''){
@@ -600,13 +596,13 @@ function gra_person(){
 	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
     }
     function opc_etnia($id=''){
-	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=16 and estado='A' ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=16 and estado='A' ORDER BY 1",$id);
     }
 	function opc_regimen($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY 1",$id);
     }
     function opc_eapb($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
     }
 	function opc_sisben($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=48 and estado='A' ORDER BY 1",$id);
@@ -624,7 +620,7 @@ function gra_person(){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=54 and estado='A' ORDER BY 1",$id);
 	}
 	function opc_localidad_vive($id=''){
-	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=2  ORDER BY 1",$id);
+		return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=2  ORDER BY 1",$id);
     }
 	function opc_transporta($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=25 and estado='A' ORDER BY 1",$id);
@@ -638,36 +634,35 @@ function gra_person(){
 	function opc_discapacidad($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=14 and estado='A' ORDER BY 1",$id);
 	}
-	function opc_cuida(){
-		$id=divide($_REQUEST['id']);
-		if(count($id)==1){
-			$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
-		}else if(count($id)==2){
-			$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[1]' and idpeople<>'$id[0]'";
-		}
-		var_dump($id);
-			return opc_sql($sql,'');		
+
+function opc_cuida(){
+	$id=divide($_REQUEST['id']);
+	if(count($id)==1){
+		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
+	}else if(count($id)==2){
+		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[1]' and idpeople<>'$id[0]'";
 	}
-
-	
-
-function get_persona(){
-		if($_REQUEST['id']==''){
-			return "";
-		}else{
-			$id=divide($_REQUEST['id']);
-			//  `atencion_fechaatencion`, `atencion_codigocups`, `atencion_finalidadconsulta`, `atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`, `atencion_diagnosticoprincipal`, `atencion_diagnosticorelacion1`, `atencion_diagnosticorelacion2`, `atencion_diagnosticorelacion3`, `atencion_fertil`, `atencion_preconcepcional`, `atencion_metodo`, `atencion_anticonceptivo`, `atencion_planificacion`, `atencion_mestruacion`, `atencion_gestante`, `atencion_gestaciones`, `atencion_partos`, `atencion_abortos`, `atencion_cesarias`, `atencion_vivos`, `atencion_muertos`, `atencion_vacunaciongestante`, `atencion_edadgestacion`, `atencion_ultimagestacion`, `atencion_probableparto`, `atencion_prenatal`, `atencion_fechaparto`, `atencion_rpsicosocial`, `atencion_robstetrico`, `atencion_rtromboembo`, `atencion_rdepresion`, `atencion_sifilisgestacional`, `atencion_sifiliscongenita`, `atencion_morbilidad`, `atencion_hepatitisb`, `atencion_vih`, `atencion_cronico`, `atencion_asistenciacronica`, `atencion_tratamiento`, `atencion_vacunascronico`, `atencion_menos5anios`, `atencion_esquemavacuna`, `atencion_signoalarma`, `atencion_cualalarma`, `atencion_dxnutricional`, `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, `atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenpsicologia`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenimagenes`, `atencion_imagenes`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_relevo`  ON a.atencion_idpersona = b.idpersona AND a.atencion_tipodoc = b.tipo_doc
-			$sql="SELECT  a.tipo_doc,a.idpersona,concat_ws(' ',a.nombre1,a.nombre2,a.apellido1,a.apellido2) nombres,a.fecha_nacimiento,a.sexo,a.genero,a.nacionalidad,
-			b.fecha_consulta,b.tipo_consulta,cod_cups,fecha_consulta,tipo_consulta,final_consul
-			FROM personas a
-			LEFT JOIN adm_facturacion b ON a.idpersona = b.documento AND a.tipo_doc = b.tipo_doc
-			WHERE a.idpeople ='{$id[0]}'";
-			// echo $sql;
-			$info=datos_mysql($sql);
-			return $info['responseResult'][0];			
-		}
+	// var_dump($id);
+		return opc_sql($sql,'');
 }
 
+function get_persona(){
+	$id=divide($_REQUEST['id']);
+	if($_REQUEST['id']==''){
+		return "";
+	}else{
+		$sql="SELECT id_fam,complemento1,nuc1,complemento2,nuc2,complemento3,nuc3,telefono1,telefono2,telefono3
+		FROM `hog_fam` 
+		WHERE id_fam ='{$id[1]}'";
+		// echo $sql;
+		// print_r($id);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return $info['responseResult'][0];			
+	}
+}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
@@ -690,14 +685,14 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>"; */
 	}
 	if ($a=='datos-lis' && $b=='acciones'){
-		$rta="<nav class='menu right'>";		
+		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono editar ' title='Editar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');
 		$rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"></li>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
 		// $rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','medidas.php',7,'medidas');Color('datos-lis');\"></li>";
 		}
 		if ($a=='planc-lis' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
+			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'planDCui',event,this,['id','fecha_caracteriza']);\"></li>";  //   act_lista(f,this);
 			}
 return $rta;

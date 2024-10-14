@@ -100,7 +100,7 @@ function cmp_signos(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		 var_dump($id);
+		//  var_dump($id);
 		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS ano,
@@ -156,6 +156,23 @@ function men_signos(){
 	
 	 return $rta;
 	 }
+   }
+
+   function gra_signos(){
+	var_dump($_POST);
+		$id=divide($_POST['variable']);
+		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?)";
+		$params = array(
+		array('type' => 'i', 'value' => NULL),
+		array('type' => 's', 'value' => $id[0]),
+		array('type' => 'i', 'value' => $_SESSION['us_sds']),
+		array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+		array('type' => 's', 'value' => NULL),
+		array('type' => 's', 'value' => NULL),
+		array('type' => 's', 'value' => 'A')
+		);
+		$rta = mysql_prepd($sql, $params);
+		return $rta;
    }
 
    function formato_dato($a,$b,$c,$d){

@@ -970,10 +970,10 @@ function myFetch(b, c, d) {
 	  return responseData;
 	} catch (error) {
 	  console.error("Error:", error);
-	handleRequestError(error+response.text());
 	} finally {
 	  const loader = document.getElementById("loader");
 	  if (loader) loader.style.display = "none";
+	  handleRequestError(error+response.text());
 	}
   }
   

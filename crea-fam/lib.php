@@ -436,7 +436,7 @@ function get_person(){
 }
 
 function get_personOld(){
-	print_r($_REQUEST);
+	// print_r($_REQUEST);
 	$id=divide($_POST['id']);
 	$sql="SELECT encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,

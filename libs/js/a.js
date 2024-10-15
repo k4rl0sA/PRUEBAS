@@ -390,7 +390,7 @@ function crear_menu(){
         // Cargar el archivo CSS externo (menuCntx.css)
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
-        cssLink.href = 'menuCntx.css';
+        cssLink.href = '../libs/css/menuCntx.css';
         document.head.appendChild(cssLink);
         // Cargar FontAwesome
         const fontAwesomeLink = document.createElement('link');

@@ -326,7 +326,7 @@ function cmp_person1(){
 
 function cmp_person(){
 	$rta="";
-	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
+	//$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
 	$d = get_person();
 	if ($d==""){$d=$t;}
 	// $p=get_edad();
@@ -335,76 +335,57 @@ function cmp_person(){
 	$o='infgen';
 	// print_r($_POST);
 	// var_dump($_REQUEST);
+	$key='pRE';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
-	$c[]=new cmp('encuentra','s','2',$d['encuentra'],$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
-	$c[]=new cmp('idpersona','n','18',$d['idpersona'],$w.' '.$o,'Identificación','idpersona',null,null,true,true,'','col-4');
-	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4');
-	$c[]=new cmp('nombre1','t','30',$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
-	$c[]=new cmp('nombre2','t','30',$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
-	$c[]=new cmp('apellido1','t','30',$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
-	$c[]=new cmp('apellido2','t','30',$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','d','',$d['fecha_nacimiento'],$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
-	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
-	$c[]=new cmp('genero','s','3',$d['genero'],$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
-	$c[]=new cmp('oriensexual','s','3',$d['oriensexual'],$w.' osx '.$o,'Orientacion Sexual','oriensexual',null,null,true,true,'','col-2');
-	$c[]=new cmp('nacionalidad','s','3',$d['nacionalidad'],$w.' '.$o,'nacionalidad','nacionalidad',null,null,true,true,'','col-2');
-	$c[]=new cmp('estado_civil','s','3',$d['estado_civil'],$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
-	$c[]=new cmp('niveduca','s','3',$d['niveduca'],$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
-	$c[]=new cmp('abanesc','s','3',$d['abanesc'],$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
-	$c[]=new cmp('ocupacion','s','3',$d['ocupacion'],$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,true,'','col-25',"timeDesem(this,'des');");//true
-	$c[]=new cmp('tiemdesem','n','3',$d['tiemdesem'],$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
-	$c[]=new cmp('vinculo_jefe','s','3',$d['vinculo_jefe'],$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
-	$c[]=new cmp('etnia','s','3',$d['etnia'],$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ocu','idi');");
-	$c[]=new cmp('pueblo','s','50',$d['pueblo'],$w.' ocu cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
-	$c[]=new cmp('idioma','o','2',$d['idioma'],$w.' ocu cmhi idi '.$o,'Habla Español','idioma',null,null,false,true,'','col-2');
-	$c[]=new cmp('discapacidad','s','3',$d['discapacidad'],$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');
-	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
-	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
-	$c[]=new cmp('afiliacion','o','2',$d['afiliaoficio'],$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
-	$c[]=new cmp('sisben','s','3',$d['sisben'],$w.' '.$o,'Grupo Sisben','sisben',null,null,true,true,'','col-2');
-	$c[]=new cmp('catgosisb','n','2',$d['catgosisb'],$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');
-	$c[]=new cmp('pobladifer','s','3',$d['pobladifer'],$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-2');
-	$c[]=new cmp('incluofici','s','3',$d['incluofici'],$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-2');
+	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
+	$c[]=new cmp('idpersona','n','18',$d,$w.' '.$key.' '$o,'Identificación','idpersona',null,null,true,true,'','col-4');
+	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pRE','predio',['geo'],this);");
+	$c[]=new cmp('nombre1','t','30',$d,$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
+	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
+	$c[]=new cmp('apellido1','t','30',$d,$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
+	$c[]=new cmp('apellido2','t','30',$d,$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
+	$c[]=new cmp('fecha_nacimiento','d','',$d,$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
+	$c[]=new cmp('sexo','s','3',$d,$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
+	$c[]=new cmp('genero','s','3',$d,$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
+	$c[]=new cmp('oriensexual','s','3',$d,$w.' osx '.$o,'Orientacion Sexual','oriensexual',null,null,true,true,'','col-2');
+	$c[]=new cmp('nacionalidad','s','3',$d,$w.' '.$o,'nacionalidad','nacionalidad',null,null,true,true,'','col-2');
+	$c[]=new cmp('estado_civil','s','3',$d,$w.' '.$o,'Estado Civil','estado_civil',null,null,true,true,'','col-2');
+	$c[]=new cmp('niveduca','s','3',$d,$w.' '.$o,'Nivel Educativo','niveduca',null,'',true,true,'','col-25',"enabDesEsc('niveduca','aE',fecha_nacimiento);");//true
+	$c[]=new cmp('abanesc','s','3',$d,$w.' aE '.$o,'Razón del abandono Escolar','abanesc',null,'',false,false,'','col-25');
+	$c[]=new cmp('ocupacion','s','3',$d,$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,true,'','col-25',"timeDesem(this,'des');");//true
+	$c[]=new cmp('tiemdesem','n','3',$d,$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
+	$c[]=new cmp('vinculo_jefe','s','3',$d,$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
+	$c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ocu','idi');");
+	$c[]=new cmp('pueblo','s','50',$d,$w.' ocu cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
+	$c[]=new cmp('idioma','o','2',$d,$w.' ocu cmhi idi '.$o,'Habla Español','idioma',null,null,false,true,'','col-2');
+	$c[]=new cmp('discapacidad','s','3',$d,$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');
+	$c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
+	$c[]=new cmp('eapb','s','3',$d,$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
+	$c[]=new cmp('afiliacion','o','2',$d,$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
+	$c[]=new cmp('sisben','s','3',$d,$w.' '.$o,'Grupo Sisben','sisben',null,null,true,true,'','col-2');
+	$c[]=new cmp('catgosisb','n','2',$d,$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');
+	$c[]=new cmp('pobladifer','s','3',$d,$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-2');
+	$c[]=new cmp('incluofici','s','3',$d,$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-2');
 	
 	$o='relevo';
-	$c[]=new cmp('cuidador','o','2',$d['cuidador'],$w.' '.$o,'¿Es cuidador de una persona residente en la vivienda?','cuidador',null,null,true,true,'','col-25',"hideCuida('cuidador','cUi');");
-	$c[]=new cmp('perscuidada','s','3',$d['perscuidada'],$w.' cUi '.$o,'N° de identificacion y Nombres','cuida',null,null,false,false,'','col-35');
-	$c[]=new cmp('tiempo_cuidador','n','20',$d['tiempo_cuidador'],$w.' cUi '.$o,'¿Por cuánto tiempo ha sido cuidador?','tiempo_cuidador',null,null,false,false,'','col-2');
-	$c[]=new cmp('cuidador_unidad','s','3',$d['cuidador_unidad'],$w.' cUi '.$o,'Unidad de medida tiempo cuidador','cuidador_unidad',null,null,false,false,'','col-2');
-	$c[]=new cmp('vinculo_cuida','s','3',$d['vinculo'],$w.' cUi '.$o,'Vinculo con la persona cuidada','vinculo_cuida',null,null,false,false,'','col-2');
-	$c[]=new cmp('tiempo_descanso','n','20',$d['tiempo_descanso'],$w.' cUi '.$o,'¿Cada cuánto descansa?','tiempo_descanso',null,null,false,false,'','col-2');
-	$c[]=new cmp('descanso_unidad','s','3',$d['descanso_unidad'],$w.' cUi '.$o,'Unidad de medida tiempo descanso','descanso_unidad',null,null,false,false,'','col-2');
-	$c[]=new cmp('reside_localidad','o','2',$d['reside_localidad'],$w.' cUi '.$o,'Reside en la localidad','reside_localidad',null,null,false,false,'','col-3',"enabLoca('reside_localidad','lochi');");
-	$c[]=new cmp('localidad_vive','s','3',$d['localidad_vive'],$w.' lochi cUi '.$o,'¿En qué localidad vive?','localidad_vive',null,null,false,false,'','col-3');
-	$c[]=new cmp('transporta','s','3',$d['transporta'],$w.' lochi cUi  '.$o,'¿En que se transporta?','transporta',null,null,false,false,'','col-4');
+	$c[]=new cmp('cuidador','o','2',$d,$w.' '.$o,'¿Es cuidador de una persona residente en la vivienda?','cuidador',null,null,true,true,'','col-25',"hideCuida('cuidador','cUi');");
+	$c[]=new cmp('perscuidada','s','3',$d,$w.' cUi '.$o,'N° de identificacion y Nombres','cuida',null,null,false,false,'','col-35');
+	$c[]=new cmp('tiempo_cuidador','n','20',$d,$w.' cUi '.$o,'¿Por cuánto tiempo ha sido cuidador?','tiempo_cuidador',null,null,false,false,'','col-2');
+	$c[]=new cmp('cuidador_unidad','s','3',$d,$w.' cUi '.$o,'Unidad de medida tiempo cuidador','cuidador_unidad',null,null,false,false,'','col-2');
+	$c[]=new cmp('vinculo_cuida','s','3',$d,$w.' cUi '.$o,'Vinculo con la persona cuidada','vinculo_cuida',null,null,false,false,'','col-2');
+	$c[]=new cmp('tiempo_descanso','n','20',$d,$w.' cUi '.$o,'¿Cada cuánto descansa?','tiempo_descanso',null,null,false,false,'','col-2');
+	$c[]=new cmp('descanso_unidad','s','3',$d,$w.' cUi '.$o,'Unidad de medida tiempo descanso','descanso_unidad',null,null,false,false,'','col-2');
+	$c[]=new cmp('reside_localidad','o','2',$d,$w.' cUi '.$o,'Reside en la localidad','reside_localidad',null,null,false,false,'','col-3',"enabLoca('reside_localidad','lochi');");
+	$c[]=new cmp('localidad_vive','s','3',$d,$w.' lochi cUi '.$o,'¿En qué localidad vive?','localidad_vive',null,null,false,false,'','col-3');
+	$c[]=new cmp('transporta','s','3',$d,$w.' lochi cUi  '.$o,'¿En que se transporta?','transporta',null,null,false,false,'','col-4');
 	
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
    }
 
-   function get_edad(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		$id=divide($_REQUEST['id']);
-		if(count($id)!==7){
-			$sql="SELECT FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365) AS anos,
-				FLOOR((DATEDIFF(CURDATE(), fecha_nacimiento) % 365) / 30) AS meses,
-			DATEDIFF(CURDATE(), fecha_nacimiento) % 30 AS dias
-			FROM `personas` P
-			WHERE P.idpersona='{$id[0]}'AND P.tipo_doc='{$id[1]}'"; 
-			// echo $sql." ".count($id);
-			// print_r($id);
-			$info=datos_mysql($sql);
-			return $info['responseResult'][0];
-		}else{
-			return "";
-		}
-	}
-}
-     
+      
 function lista_persons(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);

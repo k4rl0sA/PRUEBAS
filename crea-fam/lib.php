@@ -669,7 +669,7 @@ function get_persona(){
 	}
 }
 
-function menu_aux(){
+function opc_aux(){
 	$rta="[
 		{icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
 		{icon: 'fas fa-trash', text: 'Eliminar', color: 'white',short:'Ctrl Supr'},

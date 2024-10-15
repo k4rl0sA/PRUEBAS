@@ -1049,7 +1049,9 @@ function myFetch(b, c, d) {
 	  console.error(`Response: ${rawData}`);
 
 	  const data = JSON.parse(rawData);
-  
+	  if (data[0].indexOf('Error:') !== -1) {
+		errors(data[0]);
+	}
 	  if (loader?.style) loader.style.display = "none";
 	  return data;
 	} catch (error) {

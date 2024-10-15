@@ -1,3 +1,6 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +12,34 @@
             flex-direction: column;
             border: 2px solid #0069b4;
             border-radius: 10px;
-            background-color: black;
+            background-color:black;
         }
 
         .toolbar button {
-            border: none;
+             border: none;
         }
-
+        
         .toolbar button:hover {
             background-color: #0069b4;
         }
 
-        .actionTitle {
-            visibility: hidden;
-            display: none;
+        ::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+            background: #ffffff;
         }
 
+        ::-webkit-scrollbar-thumb:horizontal {
+            background: #2E8acb;
+            border-radius: 10px;
+        }
+
+        .actionTitle {
+            visibility: hidden;
+            display:none;
+        }
         .divider {
-            display: none;
+            display:none;
         }
 
         .closePanelAcc {
@@ -43,15 +56,10 @@
             max-width: 198px;
             margin: 50px auto;
             border-radius: 10px;
-            transform: translateY(100%);
-            transition: transform 0.5s ease-out;
+            /*padding: 20px;*/
         }
 
-        .panel-acc.visible {
-            transform: translateY(0);
-        }
-
-        .shortcut {
+        .shortcut{
             display: block;
             margin-left: auto;
             font-weight: bold;
@@ -59,37 +67,66 @@
         }
 
         .action {
-            display: flex;
+           display: flex;
             align-items: center;
             padding: 10px;
             border-radius: 4px;
             background-color: black;
             cursor: pointer;
         }
-
+       
         .icon {
             margin-right: 10px;
         }
 
-        .icon:hover {
-            color: white;
+        .icon:hover{
+            color:white;
         }
-
+        
         /* Estilos para dispositivos móviles */
         @media (max-width: 768px) {
+
+            .action {
+               display: block;
+            }
+            
             .panel-acc {
                 padding: 10px;
+                border: 1px solid #0069b4;
                 max-width: 95%;
                 position: fixed;
                 bottom: 0;
-                margin: 0 auto;
+                margin: 0px auto;
                 transform: translateY(100%);
-                transition: transform 1.5s ease;
+                transition: transform 1.5s;
                 border-radius: 10px 10px 0 0;
             }
-
+            
             body {
                 margin: 0;
+            }
+
+            .ind-move {
+                -webkit-box-align: stretch;
+                align-items: stretch;
+                border-width: 0px;
+                border-style: solid;
+                box-sizing: border-box;
+                display: flex;
+                flex-basis: auto;
+                flex-direction: row;
+                flex-shrink: 0;
+                outline: none;
+                min-height: 0px;
+                min-width: 0px;
+                border-radius: 4px;
+                width: 40px;
+                height: 2px;
+                visibility: visible;
+                background: #0069b4;
+                transition-property: opacity, width, height, background-color;
+                transition-timing-function: ease-out;
+                margin: auto;
             }
 
             .toolbar {
@@ -131,29 +168,42 @@
                 text-transform: capitalize;
                 text-shadow: 0 1px black;
             }
-
+            
             .divider {
-                display: block;
+                display:block;
             }
-
-            .shortcut {
+            
+            .shortcut{
                 visibility: hidden;
             }
         }
     </style>
+    <script>
+       window.onload = () => {
+            panelAccion.style.transform = 'translateY(0)';
+        };
+    </script>
 </head>
-<body>
-    <button id="showPanelBtn">Mostrar Panel</button>
 
+<body>
     <div class="panel-acc">
         <div class="grip ind-move"></div>
         <div class="actionTitle">acciones<span class="closePanelAcc">X</span></div>
         <hr class="divider">
-        <div class="toolbar"></div>
+        <div class="toolbar">
+        </div>
     </div>
 
     <script>
-        // Función para agregar botones dinámicamente
+        // agregar botones dinámicamente
+        const panelAccion = document.querySelector('.panel-acc');
+        const closePanelAcc = document.querySelector('.closePanelAcc');
+
+        // Ocultar el panel al hacer click en la X
+        closePanelAcc.addEventListener('click', () => {
+            panelAccion.style.transform = 'translateY(100%)';
+        });
+
         function addButtons(buttons) {
             const toolbar = document.querySelector('.toolbar');
             buttons.forEach(button => {
@@ -163,31 +213,17 @@
                 toolbar.appendChild(btn);
             });
         }
-
         const buttons = [
-            {icon: 'fas fa-plus', text: 'Nuevo', color: 'white', short: 'Ctrl N'},
-            {icon: 'fas fa-trash', text: 'Eliminar', color: 'white', short: 'Ctrl Supr'},
-            {icon: 'fas fa-file-pdf', text: 'PDF', color: 'white', short: 'Ctrl P'},
-            {icon: 'fas fa-eye', text: 'Ver', color: 'white', short: 'Ctrl E'},
-            {icon: 'fas fa-pregnant', text: 'Gestantes', color: 'white', short: 'Ctrl G'},
-            {icon: 'fas fa-vial', text: 'Caracterización', color: 'white', short: 'Ctrl R'},
-            {icon: 'fas fa-medkit', text: 'Atención Médica', color: 'white', short: 'Ctrl A'},
+            {icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
+            {icon: 'fas fa-trash', text: 'Eliminar', color: 'white',short:'Ctrl Supr'},
+            {icon: 'fas fa-file-pdf', text: 'PDF', color: 'white',short:'Ctrl P'},
+            {icon: 'fas fa-eye', text: 'Ver', color: 'white',short:'Ctrl E'},
+            {icon: 'fas fa-pregnant', text: 'Gestantes', color: 'white',short:'Ctrl G'},
+            {icon: 'fas fa-vial', text: 'Caracterización', color: 'white',short:'Ctrl R'},
+            {icon: 'fas fa-medkit', text: 'Atención Médica', color: 'white',short:'Ctrl A'},
         ];
-
         addButtons(buttons);
-
-        const panelAccion = document.querySelector('.panel-acc');
-        const closePanelAcc = document.querySelector('.closePanelAcc');
-        const showPanelBtn = document.getElementById('showPanelBtn');
-
-        // Mostrar el panel al hacer clic en el botón "Mostrar Panel"
-        showPanelBtn.addEventListener('click', () => {
-            panelAccion.classList.add('visible');
-        });
-
-        // Ocultar el panel al hacer clic en la "X"
-        closePanelAcc.addEventListener('click', () => {
-            panelAccion.classList.remove('visible');
-        });
     </script>
+</body>
 
+</html>

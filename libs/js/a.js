@@ -388,15 +388,18 @@ function crear_menu(){
         document.getElementById('panelContainer').innerHTML = html;
         document.getElementById('panelContainer').style.display = 'block'; // Mostrar el panel
 
+	
+		// Agregar event listener para cerrar el panel cuando se haga click fuera
 		document.addEventListener('click', function cerrarPanel(e) {
-			// Verificar si el click fue fuera del panel
-			if (!panelContainer.contains(e.target)) {
+			// Verificar si el clic fue fuera del panel
+			if (!e.target.closest('#panelContainer')) {
 				panelContainer.innerHTML = ''; // Limpiar contenido
 				panelContainer.style.display = 'none'; // Ocultar el panel
 				document.removeEventListener('click', cerrarPanel); // Remover el listener después de cerrar
 			}
 		});
-		
+
+
         // Cargar el archivo CSS externo (menuCntx.css)
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';

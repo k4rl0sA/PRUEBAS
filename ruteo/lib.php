@@ -290,8 +290,10 @@ function get_rute(){
 		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
-    // var_dump($info['responseResult'][0]);
-		return json_encode($info['responseResult'][0]);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return $info['responseResult'][0];
 	} 
 }
 

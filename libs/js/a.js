@@ -386,7 +386,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		const Id = ev.target.id;
 		crear_menu(Id,lib); */
 		
-		if(document.querySelector('.panel-acc')!=undefined)	{
+		if(document.querySelector('.panel-acc')!=undefined || document.querySelector('.panel-acc')==null)	{
 			const panelAccion = document.querySelector('.panel-acc');
 		}
 		if(document.querySelector('.closePanelAcc')!=undefined)	{

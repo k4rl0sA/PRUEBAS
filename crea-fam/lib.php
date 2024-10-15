@@ -436,7 +436,7 @@ function get_person(){
 }
 
 function get_personOld(){
-	// print_r($_POST);
+	print_r($_REQUEST);
 	$id=divide($_POST['id']);
 	$sql="SELECT null AS ,encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
@@ -444,6 +444,7 @@ function get_personOld(){
 		descanso_unidad,reside_localidad,localidad_vive,transporta
 		FROM `personas` 
 		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
+		LEFT JOIN hog_cara
    	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

@@ -122,7 +122,7 @@ function cmp_rute(){
 
  $o='datcup';
  $c[]=new cmp($o,'e',null,'CONSULTA AUTORIZADA',$w);
- $c[]=new cmp('fecha_consulta','d','90',$d['direccion'],$w.' '.$o,'Fecha Ultima Consulta',null,null,false,$u,'','col-3');
+ $c[]=new cmp('fecha_consulta','d','90',$d['direccion'],$w.' '.$o,'Fecha Ultima Consulta','fecha_consulta',null,null,false,$u,'','col-3');
  $c[]=new cmp('cod_cups','n','10',$d['cod_cups'],$w.' '.$o,'Cups Autorizado por EAPB','cod_cups',null,null,false,$u,'','col-3');
  $c[]=new cmp('per_consul','n','10',$d['per_consul'],$w.' '.$o,'Perfil de la Consulta','per_consul',null,null,false,$u,'','col-4');
  

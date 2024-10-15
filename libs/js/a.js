@@ -373,15 +373,16 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
 	if(a=='men'){
-		crear_menu();
+		const Id = ev.target.id;
+		crear_menu(Id,lib);
 	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
 }
 
-function crear_menu(){
-	fetch('../libs/menu.html')
+function crear_menu(itemId,url){
+	fetch(url)
     .then(response => response.text())
     .then(html => {
          // Crear un contenedor para el panel con el id del ítem

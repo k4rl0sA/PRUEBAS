@@ -409,7 +409,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 }
 
 
-function addBtnsMenu(panel,buttons) {
+function addBtnsMenu(panel) {
 	const toolbar = document.createElement('div'); // Crear una barra de herramientas
 	toolbar.className = 'toolbar'; // Añadir clase
 
@@ -424,7 +424,7 @@ function addBtnsMenu(panel,buttons) {
 }
 
 
-function addButtonsToPanel(panel) {
+function addButtonsToPanel(panel,buttons) {
 	const toolbar = document.createElement('div'); // Crear una barra de herramientas
 	toolbar.className = 'toolbar'; // Añadir clase
 

@@ -436,12 +436,15 @@ function get_person(){
 }
 
 function get_personOld(){
-	//  print_r($_POST);
+	print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
- 	FROM `geo_asig` A 
-  	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo 
-   	WHERE A.estado='A' AND A.idgeo ='".$id[0]."'";
+	$sql="SELECT null,encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
+		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
+		descanso_unidad,reside_localidad,localidad_vive,transporta
+		FROM `personas` 
+		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
+   	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

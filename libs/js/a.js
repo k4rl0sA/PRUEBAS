@@ -1063,7 +1063,7 @@ function myFetch(b, c, d) {
   function handleRequestError(error) {
 	if (loader?.style) loader.style.display = "none";
 	console.error(error);
-	errors("Error al realizar la solicitud"+ error);
+	errors("Error al realizar la solicitud "+ error);
   }
    
   

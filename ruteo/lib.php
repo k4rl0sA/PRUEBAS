@@ -125,7 +125,7 @@ function cmp_rute(){
  $c[]=new cmp('fecha_consulta','t','90',$d['direccion'],$w.' '.$o,'Direccion','fecha_consulta',null,null,false,$u,'','col-4');
  $c[]=new cmp('cod_cups','n','10',$d['cod_cups'],$w.' '.$o,'Telefono 1','cod_cups',null,null,false,$u,'','col-2');
  $c[]=new cmp('per_consul','n','10',$d['per_consul'],$w.' '.$o,'Telefono 2','per_consul',null,null,false,$u,'','col-2');
- c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,$u,'','col-2');
+ $c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,$u,'','col-2');
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);

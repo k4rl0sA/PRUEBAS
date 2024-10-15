@@ -115,7 +115,7 @@ function cmp_signos(){
 	} 
 
    function lis_signos(){
-    // var_dump($_POST);
+    var_dump($_POST);
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
@@ -129,10 +129,12 @@ function cmp_signos(){
 
 
     $id=divide($_POST['id']);
-    $sql="SELECT C.id_viv ACCIONES,C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
-        FROM `hog_carac` C
-		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario";
-    $sql.=" ORDER BY C.fecha_create";
+
+    $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
+        FROM `hog_signos` S
+		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
+		ORDER BY S.fecha_create WHERE idpeople=$id[0]";
+    $sql.="";
     // echo $sql;
       $datos=datos_mysql($sql);
     return create_table($total,$datos["responseResult"],"homes",$regxPag);
@@ -184,12 +186,13 @@ function men_signos(){
    // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 /*    var_dump($c);
    var_dump($a);
-   var_dump($b);  */
+   var_dump($b);  
 		if ($a=='signos' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-			$rta.="<li class='icono editar ' title='Editar Signos' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'caract',event,this,'../crea-caract/lib.php',['fecha','motivoupd','eventoupd','fechanot']);Color('caracteriza-lis');\"></li>";
+			// $rta.="<li class='icono editar ' title='Editar Signos' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'caract',event,this,'../crea-caract/lib.php',['fecha','motivoupd','eventoupd','fechanot']);Color('caracteriza-lis');\"></li>";
 			// $rta.="<li class='icono editar' title='Editar Información de Facturación' id='".$c['ACCIONES']."' Onclick=\"getData('admision','pro',event,'','lib.php',7);\"></li>"; //setTimeout(hideExpres,1000,'estado_v',['7']);
 		}
+			*/
    return $rta;
    }
  

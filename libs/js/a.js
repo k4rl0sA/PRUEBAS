@@ -384,18 +384,19 @@ function crear_menu(){
 	fetch('../libs/menu.html')
     .then(response => response.text())
     .then(html => {
-        // Inyectar el contenido del panel en el div
-        document.getElementById('panelContainer').innerHTML = html;
-        document.getElementById('panelContainer').style.display = 'block'; // Mostrar el panel
+         // Crear un contenedor para el panel con el id del ítem
+		 const panelContainer = document.getElementById('panelContainer');
+		 panelContainer.innerHTML = `<div id="${itemId}" class="panel">${html}</div>`;
+		 panelContainer.style.display = 'block';
 
 	
-		// Agregar event listener para cerrar el panel cuando se haga click fuera
+		// Agregar event listener para cerrar el panel al hacer clic fuera
 		document.addEventListener('click', function cerrarPanel(e) {
-			// Verificar si el clic fue fuera del panel
-			if (!e.target.closest('#panelContainer')) {
-				panelContainer.innerHTML = ''; // Limpiar contenido
+			const panel = document.getElementById(`${itemId}`); // Seleccionar el panel según el id del ítem
+			if (panel && !panel.contains(e.target) && e.target.id !== itemId) {
+				panelContainer.innerHTML = ''; // Limpiar el contenido del panel
 				panelContainer.style.display = 'none'; // Ocultar el panel
-				document.removeEventListener('click', cerrarPanel); // Remover el listener después de cerrar
+				document.removeEventListener('click', cerrarPanel); // Remover el listener
 			}
 		});
 

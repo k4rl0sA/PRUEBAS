@@ -118,7 +118,7 @@ function cmp_signos(){
     // var_dump($_POST);
 	$id=divide($_POST['id']);
     $total="SELECT COUNT(*) AS total FROM (
-		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
+		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE idpeople=$id[0] 
@@ -129,7 +129,7 @@ function cmp_signos(){
 	$regxPag=5;
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
-    $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
+    $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE idpeople=$id[0] 

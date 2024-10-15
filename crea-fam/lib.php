@@ -335,12 +335,12 @@ function cmp_person(){
 	$o='infgen';
 	// print_r($_POST);
 	// var_dump($_REQUEST);
-	$key='pRE';
+	$key='pEr';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
 	$c[]=new cmp('idpersona','n','18',$d,$w.' '.$key.' '$o,'Identificación','idpersona',null,null,true,true,'','col-4');
-	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pRE','predio',['geo'],this);");
+	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pEr','person',['geo'],this);");
 	$c[]=new cmp('nombre1','t','30',$d,$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t','30',$d,$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
@@ -411,6 +411,19 @@ function men_person(){
 	return $rta;
 }
 
+function get_persona(){
+	//  print_r($_POST);
+	$id=divide($_POST['id']);
+	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
+	 FROM `geo_asig` A 
+	  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo 
+	   WHERE A.estado='A' AND A.idgeo ='".$id[0]."'";
+	$info=datos_mysql($sql);
+	if (!$info['responseResult']) {
+		return json_encode (new stdClass);
+	}
+	return json_encode($info['responseResult'][0]);
+}
 
 function get_person(){
 	//  print_r($_REQUEST);
@@ -432,26 +445,7 @@ function get_person(){
 			return '';
 		}
 	return $info['responseResult'][0];
-	} 
-	/* if($_POST['id']==''){
-		return "";
-	}else{
-		$id=divide($_POST['id']);
-		// print_r($id);
-		$sql="SELECT concat(idpersona,'_',tipo_doc),encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
-		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
-		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
-		descanso_unidad,reside_localidad,localidad_vive,transporta
-		FROM `personas` 
-		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc 
-		WHERE idpeople ='{$id[0]}'" ;
-		$info=datos_mysql($sql);
-		//  echo $sql;
-	return json_encode($info['responseResult'][0]); 
-	} 
-
-
-	 */
+	}
 }
 
 function gra_person(){

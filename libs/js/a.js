@@ -1046,8 +1046,9 @@ function myFetch(b, c, d) {
 	  }
   
 	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
-	  console.error(`Response: ${rawData}`);
-
+	  if(rawData.includes('Error')){
+		typeErrors(response.text());
+	  }
 	  const data = JSON.parse(rawData);
   
 	  if (loader?.style) loader.style.display = "none";

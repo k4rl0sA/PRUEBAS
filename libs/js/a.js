@@ -1058,7 +1058,10 @@ function myFetch(b, c, d) {
 	  	if (rawData) {
       		console.error(`Error Response: ${rawData}`);
     	}
-	  handleRequestError(error.message);
+		if(error.includes('Error')){
+			errors(error);
+		  }
+	  	handleRequestError(error.message);
 	}
   }
   

@@ -133,7 +133,8 @@ function cmp_signos(){
     $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
-		ORDER BY S.fecha_create WHERE idpeople=$id[0]";
+		WHERE idpeople=$id[0] 
+		ORDER BY S.fecha_create";
     $sql.="";
     // echo $sql;
       $datos=datos_mysql($sql);

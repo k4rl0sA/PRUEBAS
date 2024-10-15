@@ -372,9 +372,40 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		panel_static(tb, a, w, lib, tit);
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
+	if(a=='men'){
+		crear_menu();
+	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
+}
+
+function crear_menu(){
+	fetch('panel.html')
+    .then(response => response.text())
+    .then(html => {
+        // Inyectar el contenido del panel en el div
+        document.getElementById('panelContainer').innerHTML = html;
+        document.getElementById('panelContainer').style.display = 'block'; // Mostrar el panel
+        // Cargar el archivo CSS externo (menuCntx.css)
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = 'menuCntx.css';
+        document.head.appendChild(cssLink);
+        // Cargar FontAwesome
+        const fontAwesomeLink = document.createElement('link');
+        fontAwesomeLink.rel = 'stylesheet';
+        fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+        document.head.appendChild(fontAwesomeLink);
+        // Ejecutar los scripts que están en el panel.html (si existen)
+        const scriptTags = document.getElementById('panelContainer').querySelectorAll('script');
+        scriptTags.forEach(oldScriptTag => {
+        	const newScriptTag = document.createElement('script');
+        	newScriptTag.textContent = oldScriptTag.textContent;
+        	document.body.appendChild(newScriptTag);
+    	});
+    })
+    .catch(error => console.error('Error al cargar el panel:', error));
 }
 
 function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {

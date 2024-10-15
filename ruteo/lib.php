@@ -80,6 +80,7 @@ function cmp_rute(){
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
  $w='rute';
  $d=get_rute(); 
+ var_dump($d);
  if ($d=="") {$d=$t;}
  $u=($d['id_ruteo']=='')?true:false;
 //  var_dump($d['estado_g']);

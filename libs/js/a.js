@@ -381,7 +381,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 }
 
 function crear_menu(){
-	fetch('panel.html')
+	fetch('../libs/menu.html')
     .then(response => response.text())
     .then(html => {
         // Inyectar el contenido del panel en el div

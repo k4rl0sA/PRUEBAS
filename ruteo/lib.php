@@ -107,13 +107,13 @@ function cmp_rute(){
  $c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,false,$u,'','col-2');
  $c[]=new cmp('eapb','s','3',$d,$w.'  '.$o,'eapb','eapb',null,null,false,$u,'','col-2');
  
- $o='datacu';
+ //$o='datacu';
  $c[]=new cmp($o,'e',null,'DATOS DEL ACUDIENTE (Estas variables se diligencian para los menores de edad), o datos del usuario quien coloco la solicitud  PQR',$w);
  $c[]=new cmp('tipo_doc_acu','s','3',$d['tipo_doc_acu'],$w.' '.$o,'TIPO DE DOCUMENTO ACUDIENTE','tipo_doc_acu',null,null,false,$u,'','col-2');
  $c[]=new cmp('documento_acu','t','20',$d['documento_acu'],$w.' '.$o,'DOCUMENTO ACUDIENTE','documento_acu',null,null,false,$u,'','col-2');
  $c[]=new cmp('nombres_acu','t','80',$d['nombres_acu'],$w.' '.$o,'NOMBRES Y APELLIDOS DEL ACUDIENTE','nombres_acu',null,null,false,$u,'','col-6');
 
- $o='datcon';
+ //$o='datcon';
  $c[]=new cmp($o,'e',null,'DATOS DE CONTACTO',$w);
  $c[]=new cmp('direccion','t','90',$d['direccion'],$w.' '.$o,'Direccion','direccion',null,null,false,$u,'','col-4');
  $c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,$u,'','col-2');

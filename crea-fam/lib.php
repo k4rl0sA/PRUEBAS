@@ -444,7 +444,6 @@ function get_personOld(){
 		descanso_unidad,reside_localidad,localidad_vive,transporta
 		FROM `personas` 
 		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
-		LEFT JOIN hog_cara
    	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

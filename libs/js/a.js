@@ -1048,10 +1048,10 @@ function myFetch(b, c, d) {
 	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
 
 	  const data = JSON.parse(rawData);
-	  if(data.contains('Error:')){
-		errors(data[0]);	
-		return;
-	  }
+	  	if (data[0].indexOf('Error:') !== -1) {
+			errors(data[0]);
+			return;
+		}
 	  if (loader?.style) loader.style.display = "none";
 	  return data;
 	} catch (error) {

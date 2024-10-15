@@ -387,6 +387,16 @@ function crear_menu(){
         // Inyectar el contenido del panel en el div
         document.getElementById('panelContainer').innerHTML = html;
         document.getElementById('panelContainer').style.display = 'block'; // Mostrar el panel
+
+		document.addEventListener('click', function cerrarPanel(e) {
+			// Verificar si el click fue fuera del panel
+			if (!panelContainer.contains(e.target)) {
+				panelContainer.innerHTML = ''; // Limpiar contenido
+				panelContainer.style.display = 'none'; // Ocultar el panel
+				document.removeEventListener('click', cerrarPanel); // Remover el listener después de cerrar
+			}
+		});
+		
         // Cargar el archivo CSS externo (menuCntx.css)
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';

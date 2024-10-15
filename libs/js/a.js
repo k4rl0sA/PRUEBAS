@@ -379,7 +379,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		if(document.querySelector('.closePanelAcc')!=undefined)	{
 			const closePanelAcc = document.querySelector('.closePanelAcc');
 		}
-		buttons=pFetch(lib=ruta_app,'a=opc&tb='+ tb.toLowerCase(), false)
+		const buttons = pFetch(lib=ruta_app,'a=opc&tb='+ tb.toLowerCase());
 		if(buttons!=undefined){
 			const buttons = [];
 		}

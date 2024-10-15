@@ -413,6 +413,27 @@ function addBtnsMenu(panel) {
 	panel.appendChild(toolbar); // Agregar la barra de herramientas al panel
 }
 
+function crear_panel_acc() {
+    const panelAccion = document.createElement('div');
+    panelAccion.classList.add('panel-acc');
+    panelAccion.innerHTML = `
+        <div class="grip ind-move"></div>
+        <div class="actionTitle">acciones<span class="closePanelAcc">X</span></div>
+        <hr class="divider">
+        <div class="toolbar"></div>
+    `;
+    
+    document.body.appendChild(panelAccion);
+
+    // Agregar evento para cerrar el panel
+    const closePanelAcc = panelAccion.querySelector('.closePanelAcc');
+    closePanelAcc.addEventListener('click', () => {
+        panelAccion.style.transform = 'translateY(100%)';
+    });
+    
+    return panelAccion;
+}
+
 function crear_menu(itemId,url){
 	fetch(url)
     .then(response => response.text())

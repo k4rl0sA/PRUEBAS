@@ -43,6 +43,8 @@
 }
 
 .panel-acc {
+    z-index: 1;
+    position: fixed;
     background-color: white;
     max-width: 198px;
     margin: 50px auto;

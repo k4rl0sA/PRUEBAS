@@ -373,6 +373,9 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
 	if(a=='men'){
+		if(document.querySelector('.panel-acc')!=undefined)	{
+			const panelAccion = document.querySelector('.panel-acc');
+		}
 		const Id = ev.target.id;
 		crear_menu(Id,lib);
 	}

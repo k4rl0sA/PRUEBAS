@@ -115,11 +115,13 @@ function cmp_signos(){
 	} 
 
    function lis_signos(){
-    var_dump($_POST);
+    // var_dump($_POST);
     $total="SELECT COUNT(*) AS total FROM (
-		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
-        FROM `hog_carac` C
-		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
+		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
+        FROM `hog_signos` S
+		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
+		WHERE idpeople=$id[0] 
+		ORDER BY S.fecha_create
             ) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 

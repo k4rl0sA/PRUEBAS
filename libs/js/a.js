@@ -1046,12 +1046,10 @@ function myFetch(b, c, d) {
 	  }
   
 	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
+	  console.error(`Response: ${rawData}`);
 
 	  const data = JSON.parse(rawData);
-	  	if (data[0].indexOf('Error:') !== -1) {
-			errors(data[0]);
-			return;
-		}
+  
 	  if (loader?.style) loader.style.display = "none";
 	  return data;
 	} catch (error) {
@@ -1059,7 +1057,7 @@ function myFetch(b, c, d) {
 	  	if (rawData) {
       		console.error(`Error Response: ${rawData}`);
     	}
-	  	handleRequestError(error.message);
+	  handleRequestError(error.message);
 	}
   }
   
@@ -1069,6 +1067,13 @@ function myFetch(b, c, d) {
 	errors("Error al realizar la solicitud");
   }
    
+  
+  function handleRequestError(error) {
+	if (loader?.style) loader.style.display = 'none';
+	console.error(error); // Cambia console.log por console.error
+	errors('Error al realizar la solicitud');
+  }
+
   
   function getDatForm(clsKey, fun,clsCmp,cab) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);

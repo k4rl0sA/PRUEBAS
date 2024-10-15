@@ -402,7 +402,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
             {icon: 'fas fa-medkit', text: 'Atención Médica', color: 'white',short:'Ctrl A'},
         ];
 		/* buttons=pFetch(lib=ruta_app,{ a: 'opc', tb: tb.toLowerCase() }, false) */
-		if(buttons!=undefined){
+		if(buttons==undefined){
 			const buttons = [];
 		}
 		const Id = ev.target.id;

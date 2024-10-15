@@ -386,7 +386,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		const Id = ev.target.id;
 		crear_menu(Id,lib); */
 		
-	/* 	if(document.querySelector('.panel-acc')!=undefined)	{
+		if(document.querySelector('.panel-acc')!=undefined)	{
 			const panelAccion = document.querySelector('.panel-acc');
 		}
 		if(document.querySelector('.closePanelAcc')!=undefined)	{
@@ -395,23 +395,87 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		buttons=pFetch(lib=ruta_app,'a=menu&tb='+ tb.toLowerCase(), false)
 		if(buttons!=undefined){
 			const buttons = [];
-		} 
+		}
 		const Id = ev.target.id;
-		crear_menu(Id,lib);*/
-		crear_menu();
+		crear_menu(Id,lib);
 	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
 }
 
-function crear_menu(){
-	fetch('../libs/menu.html')
+
+function addBtnsMenu(panel) {
+	const toolbar = document.createElement('div'); // Crear una barra de herramientas
+	toolbar.className = 'toolbar'; // Añadir clase
+
+	buttons.forEach(button => {
+		const btn = document.createElement('button');
+		btn.classList.add('action');
+		btn.innerHTML = `<i class="${button.icon}" style="color:${button.color}"></i><span style="color:${button.color}">${button.text}</span><span class="shortcut">${button.short}</span>`;
+		toolbar.appendChild(btn);
+	});
+
+	panel.appendChild(toolbar); // Agregar la barra de herramientas al panel
+}
+
+
+function addButtonsToPanel(panel) {
+	const toolbar = document.createElement('div'); // Crear una barra de herramientas
+	toolbar.className = 'toolbar'; // Añadir clase
+
+	buttons.forEach(button => {
+		const btn = document.createElement('button');
+		btn.classList.add('action');
+		btn.innerHTML = `<i class="${button.icon}" style="color:${button.color}"></i><span style="color:${button.color}">${button.text}</span><span class="shortcut">${button.short}</span>`;
+		toolbar.appendChild(btn);
+	});
+	panel.appendChild(toolbar); // Agregar la barra de herramientas al panel
+}
+
+// Función para crear el panel de acciones
+function crear_panel_acc() {
+    const panelAccion = document.createElement('div');
+    panelAccion.classList.add('panel-acc');
+    panelAccion.innerHTML = `
+        <div class="grip ind-move"></div>
+        <div class="actionTitle">acciones<span class="closePanelAcc">X</span></div>
+        <hr class="divider">
+        <div class="toolbar"></div>
+    `;
+    
+    document.body.appendChild(panelAccion);
+
+    // Agregar evento para cerrar el panel
+    const closePanelAcc = panelAccion.querySelector('.closePanelAcc');
+    closePanelAcc.addEventListener('click', () => {
+        panelAccion.style.transform = 'translateY(100%)';
+    });
+    
+    return panelAccion;
+}
+
+function crear_menu(itemId,url){
+	fetch(url)
     .then(response => response.text())
     .then(html => {
-        // Inyectar el contenido del panel en el div
-        document.getElementById('panelContainer').innerHTML = html;
-        document.getElementById('panelContainer').style.display = 'block'; // Mostrar el panel
+         // Crear un contenedor para el panel con el id del ítem
+		 const panelContainer = document.getElementById('panelContainer');
+		 panelContainer.innerHTML = `<div id="${itemId}" class="panel">${html}</div>`;
+		 panelContainer.style.display = 'block';
+
+	
+		// Agregar event listener para cerrar el panel al hacer clic fuera
+		document.addEventListener('click', function cerrarPanel(e) {
+			const panel = document.getElementById(`${itemId}`); // Seleccionar el panel según el id del ítem
+			if (panel && !panel.contains(e.target) && e.target.id !== itemId) {
+				panelContainer.innerHTML = ''; // Limpiar el contenido del panel
+				panelContainer.style.display = 'none'; // Ocultar el panel
+				document.removeEventListener('click', cerrarPanel); // Remover el listener
+			}
+		});
+
+
         // Cargar el archivo CSS externo (menuCntx.css)
         const cssLink = document.createElement('link');
         cssLink.rel = 'stylesheet';
@@ -422,18 +486,16 @@ function crear_menu(){
         fontAwesomeLink.rel = 'stylesheet';
         fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
         document.head.appendChild(fontAwesomeLink);
-		   // Ejecutar los scripts que están en el panel.html (si existen)
-		   const scriptTags = document.getElementById('panelContainer').querySelectorAll('script');
-		   scriptTags.forEach(oldScriptTag => {
-			   const newScriptTag = document.createElement('script');
-			   newScriptTag.textContent = oldScriptTag.textContent;
-			   document.body.appendChild(newScriptTag);
-		   });
-	   })
-	   .catch(error => console.error('Error al cargar el panel:', error));
-   }
-
-
+        // Ejecutar los scripts que están en el panel.html (si existen)
+        const scriptTags = document.getElementById('panelContainer').querySelectorAll('script');
+        scriptTags.forEach(oldScriptTag => {
+        	const newScriptTag = document.createElement('script');
+        	newScriptTag.textContent = oldScriptTag.textContent;
+        	document.body.appendChild(newScriptTag);
+    	});
+    })
+    .catch(error => console.error('Error al cargar el panel:', error));
+}
 
 function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;

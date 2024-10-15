@@ -380,17 +380,9 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 			const closePanelAcc = document.querySelector('.closePanelAcc');
 		}
 		buttons=pFetch(lib=ruta_app,'a=menu&tb='+ tb.toLowerCase(), false)
-		if(buttons!=undefined)	{
-		const buttons = [
-            {icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
-            {icon: 'fas fa-trash', text: 'Eliminar', color: 'white',short:'Ctrl Supr'},
-            {icon: 'fas fa-file-pdf', text: 'PDF', color: 'white',short:'Ctrl P'},
-            {icon: 'fas fa-eye', text: 'Ver', color: 'white',short:'Ctrl E'},
-            {icon: 'fas fa-pregnant', text: 'Gestantes', color: 'white',short:'Ctrl G'},
-            {icon: 'fas fa-vial', text: 'Caracterización', color: 'white',short:'Ctrl R'},
-            {icon: 'fas fa-medkit', text: 'Atención Médica', color: 'white',short:'Ctrl A'},
-        ];
-	}
+		if(buttons!=undefined){
+			const buttons = [];
+		}
 		const Id = ev.target.id;
 		crear_menu(Id,lib);
 	}

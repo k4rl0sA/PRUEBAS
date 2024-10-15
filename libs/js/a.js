@@ -379,6 +379,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		if(document.querySelector('.closePanelAcc')!=undefined)	{
 			const closePanelAcc = document.querySelector('.closePanelAcc');
 		}
+		buttons=pFetch(lib=ruta_app,'a=menu&tb='+ tb.toLowerCase(), false)
 		if(buttons!=undefined)	{
 		const buttons = [
             {icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
@@ -398,6 +399,20 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
     foco(inner(id+'-foco'));
 }
 
+
+function addBtnsMenu(panel) {
+	const toolbar = document.createElement('div'); // Crear una barra de herramientas
+	toolbar.className = 'toolbar'; // Añadir clase
+
+	buttons.forEach(button => {
+		const btn = document.createElement('button');
+		btn.classList.add('action');
+		btn.innerHTML = `<i class="${button.icon}" style="color:${button.color}"></i><span style="color:${button.color}">${button.text}</span><span class="shortcut">${button.short}</span>`;
+		toolbar.appendChild(btn);
+	});
+
+	panel.appendChild(toolbar); // Agregar la barra de herramientas al panel
+}
 
 function crear_menu(itemId,url){
 	fetch(url)

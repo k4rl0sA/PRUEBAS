@@ -386,12 +386,8 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		const Id = ev.target.id;
 		crear_menu(Id,lib); */
 		
-		if(document.querySelector('.panel-acc')!=undefined || document.querySelector('.panel-acc')==null)	{
-			const panelAccion = document.querySelector('.panel-acc');
-		}
-		if(document.querySelector('.closePanelAcc')!=undefined)	{
-			const closePanelAcc = document.querySelector('.closePanelAcc');
-		}
+		const panelAccion = document.querySelector('.panel-acc') || crear_panel_acc();
+		// const buttons = pFetch(lib, { a: 'opc', tb: tb.toLowerCase() });
 		const buttons = [
             {icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
             {icon: 'fas fa-trash', text: 'Eliminar', color: 'white',short:'Ctrl Supr'},
@@ -401,12 +397,11 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
             {icon: 'fas fa-vial', text: 'Caracterización', color: 'white',short:'Ctrl R'},
             {icon: 'fas fa-medkit', text: 'Atención Médica', color: 'white',short:'Ctrl A'},
         ];
-		/* buttons=pFetch(lib=ruta_app,{ a: 'opc', tb: tb.toLowerCase() }, false) */
-		if(buttons==undefined){
-			const buttons = [];
+		if (buttons) {
+			addButtonsToPanel(panelAccion, buttons); // Asegúrate de definir esta función
+			const Id = ev.target.id;
+			crear_menu(Id, lib);
 		}
-		const Id = ev.target.id;
-		crear_menu(Id,lib);
 	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";

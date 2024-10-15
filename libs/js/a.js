@@ -1048,7 +1048,10 @@ function myFetch(b, c, d) {
 	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
 
 	  const data = JSON.parse(rawData);
-  
+	  if(data.contains('Error:')){
+		errors(data[0]);	
+		return;
+	  }
 	  if (loader?.style) loader.style.display = "none";
 	  return data;
 	} catch (error) {
@@ -1063,7 +1066,7 @@ function myFetch(b, c, d) {
   function handleRequestError(error) {
 	if (loader?.style) loader.style.display = "none";
 	console.error(error);
-	errors("Error al realizar la solicitud "+ error);
+	errors("Error al realizar la solicitud");
   }
    
   

@@ -452,10 +452,11 @@ function get_personOld(){
 		return json_encode (new stdClass);
 	}
 	return json_encode($info['responseResult'][0]);
-	}else{
+	}
+	/*else{
 		// return $rta=["Error: El usuario con este número de documento ya se encuentra registrado."];
 
-	}
+	}*/
 }
 
 function gra_person(){

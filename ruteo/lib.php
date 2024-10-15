@@ -89,10 +89,10 @@ function cmp_rute(){
  $o='segrep';
  $c[]=new cmp($o,'e',null,'SEGUIMIENTO REPORTE',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('estrategia','s','3',$d['estrategia'],$w.' '.$o,'Estrategia','fuente',null,null,false,$u,'','col-25');
- $c[]=new cmp('fuente','s','3',$d['fuente'],$w.' '.$o,'FUENTE O REMITENTE','fuente',null,null,false,$u,'','col-25');
  $c[]=new cmp('fecha_asig','d','10',$d['fecha_asig'],$w.' '.$o,'FECHA DE REMISIÓN A SUBRED','fecha_asig',null,null,false,$u,'','col-25');
- $c[]=new cmp('priorizacion','s','3',$d['priorizacion'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','priorizacion',null,null,false,$u,'','col-25');
+ $c[]=new cmp('fuente','s','3',$d['fuente'],$w.' '.$o,'FUENTE O REMITENTE','fuente',null,null,false,$u,'','col-25');
+ $c[]=new cmp('priorizacion','s','3',$d['priorizacion'],$w.' '.$o,'COHORTE DE RIESGO','priorizacion',null,null,false,$u,'','col-25');
+ $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','tipo_prior',null,null,false,$u,'','col-25');
 
  $o='atemed';
  $c[]=new cmp($o,'e',null,'DATOS DEL USUARIO QUE REQUIERE LA ATENCIÓN MEDICA',$w);
@@ -102,7 +102,10 @@ function cmp_rute(){
  $c[]=new cmp('fecha_nac','d','10',$d['fecha_nac'],$w.' '.$o,'FECHA DE NACIMIENTO','fecha_nac',null,null,false,$u,'','col-2');
  $c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'SEXO','sexo',null,null,false,$u,'','col-2');
  $c[]=new cmp('nacionalidad','s','3',$d['nacionalidad'],$w.' '.$o,'NACIONALIDAD','nacionalidad',null,null,false,$u,'','col-2');
-
+ $c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,false,$u,'','col-2');
+ $c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,false,$u,'','col-2');
+ $c[]=new cmp('eapb','s','3',$d,$w.'  '.$o,'eapb','eapb',null,null,false,$u,'','col-2');
+ 
  $o='datacu';
  $c[]=new cmp($o,'e',null,'DATOS DEL ACUDIENTE (Estas variables se diligencian para los menores de edad), o datos del usuario quien coloco la solicitud  PQR',$w);
  $c[]=new cmp('tipo_doc_acu','s','3',$d['tipo_doc_acu'],$w.' '.$o,'TIPO DE DOCUMENTO ACUDIENTE','tipo_doc_acu',null,null,false,$u,'','col-2');
@@ -115,6 +118,9 @@ function cmp_rute(){
  $c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,$u,'','col-2');
  $c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,$u,'','col-2');
  $c[]=new cmp('telefono3','n','10',$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,$u,'','col-2');
+ 
+ $o='datesp';
+ $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
  $c[]=new cmp('subred','s','3',$d['subred'],$w.' '.$o,'Subred','subred',null,null,false,$u,'','col-3');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,$u,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,$u,'','col-2');
@@ -123,10 +129,9 @@ function cmp_rute(){
  $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,null,false,$u,'','col-25');
  $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,null,false,$u,'','col-25');
  $c[]=new cmp('unidad_habit','n','4',$d['unidad_habit'],$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,null,false,$u,'','col-25');
-
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,$u,'','col-4');
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-4');
- $c[]=new cmp('perfil_asignado','t','30',$d['perfil_asignado'],$w.' '.$o,'Perfil Asignado','perfil_asignado',null,null,false,$u,'','col-2');
+
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);

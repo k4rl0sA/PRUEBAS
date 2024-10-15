@@ -340,7 +340,7 @@ function cmp_person(){
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
 	$c[]=new cmp('idpersona','n','18',$d,$w.' '.$key.' '$o,'Identificación','idpersona',null,null,true,true,'','col-4');
-	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pEr','person',['geo'],this);");
+	$c[]=new cmp('tipo_doc','s','3',$d,$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pEr','persona',['geo'],this);");
 	$c[]=new cmp('nombre1','t','30',$d,$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d,$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t','30',$d,$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');

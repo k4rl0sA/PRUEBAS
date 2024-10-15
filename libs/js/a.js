@@ -1047,7 +1047,7 @@ function myFetch(b, c, d) {
   
 	  const rawData = await response.text(); // Obtén el contenido de la respuesta como texto
 	  if(rawData.includes('Error')){
-		typeErrors(response.text());
+		errors(response.text());
 	  }
 	  const data = JSON.parse(rawData);
   

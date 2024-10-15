@@ -997,11 +997,11 @@ function myFetch(b, c, d) {
   
 	  return responseData;
 	} catch (error) {
+		handleRequestError(error+response.text());
 	  console.error("Error:", error);
 	} finally {
 	  const loader = document.getElementById("loader");
 	  if (loader) loader.style.display = "none";
-	  handleRequestError(error+response.text());
 	}
   }
   

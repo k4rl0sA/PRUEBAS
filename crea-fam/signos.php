@@ -116,6 +116,7 @@ function cmp_signos(){
 
    function lis_signos(){
     // var_dump($_POST);
+	$id=divide($_POST['id']);
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
         FROM `hog_signos` S
@@ -127,10 +128,6 @@ function cmp_signos(){
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
-
-
-
-    $id=divide($_POST['id']);
 
     $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,U.nombre AS Colaborador,U.perfil AS Perfil 
         FROM `hog_signos` S

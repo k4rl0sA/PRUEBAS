@@ -386,11 +386,11 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		const Id = ev.target.id;
 		crear_menu(Id,lib); */
 		const panelAccion = document.querySelector('.panel-acc') || crear_panel_acc();
-            const buttons = await pFetch(lib, { a: 'opc', tb: tb.toLowerCase() });
+            const buttons = pFetch(lib, { a: 'opc', tb: tb.toLowerCase() });
             if (buttons) {
-                addButtonsToPanel(panelAccion, buttons); // Asegúrate de tener esta función
+                addButtonsToPanel(panelAccion, buttons); // Asegúrate de definir esta función
                 const Id = ev.target.id;
-                await crear_menu(Id, lib);
+                crear_menu(Id, lib);
             }
 	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";

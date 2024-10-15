@@ -436,9 +436,9 @@ function get_person(){
 }
 
 function get_personOld(){
-	print_r($_POST);
+	// print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT null,encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+	$sql="SELECT null AS ,encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta

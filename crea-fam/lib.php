@@ -326,16 +326,20 @@ function cmp_person1(){
 
 function cmp_person(){
 	$rta="";
-	/*$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
-	$d = get_person();
-	if ($d==""){$d=$t;}*/
 	// $p=get_edad();
-	$d='';
     $w='person';
 	$o='infgen';
 	$key='pEr';
 	print_r($_POST);
-	var_dump($_REQUEST);
+	if (count($_POST['id'])==2){
+		$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
+		$d = get_person();
+		if ($d==""){$d=$t;}
+	}else{
+		$d='';
+		if ($d==""){$d=$t;}
+	}
+	// var_dump($_REQUEST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d,$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');

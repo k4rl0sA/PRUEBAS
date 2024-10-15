@@ -434,6 +434,19 @@ function crear_panel_acc() {
     return panelAccion;
 }
 
+function addButtonsToPanel(panel) {
+	const toolbar = document.createElement('div'); // Crear una barra de herramientas
+	toolbar.className = 'toolbar'; // Añadir clase
+
+	buttons.forEach(button => {
+		const btn = document.createElement('button');
+		btn.classList.add('action');
+		btn.innerHTML = `<i class="${button.icon}" style="color:${button.color}"></i><span style="color:${button.color}">${button.text}</span><span class="shortcut">${button.short}</span>`;
+		toolbar.appendChild(btn);
+	});
+	panel.appendChild(toolbar); // Agregar la barra de herramientas al panel
+}
+
 function crear_menu(itemId,url){
 	fetch(url)
     .then(response => response.text())

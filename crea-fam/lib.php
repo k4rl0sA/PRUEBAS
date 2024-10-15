@@ -14,7 +14,7 @@ else {
     break;
   default:
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
-    if (is_array($rta)) json_encode($rta);
+    if (is_array($rta)) echo json_encode($rta);
 	else echo $rta;
   }
 }

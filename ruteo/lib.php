@@ -31,7 +31,7 @@ function lis_rute(){
 	$sql.=" AND  subred_report in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	$_SESSION['sql_rute']=$sql;
+	echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 	}

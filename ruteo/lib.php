@@ -150,6 +150,7 @@ function cmp_rute(){
  $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
  $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-9');
  $c[]=new cmp('integrantes','n',1,$d['integrantes'],$w.' '.$o,'N° Integrantes','observacion',null,null,true,true,'','col-1');
+
  /* $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('estado','s',3,'',$w.' PuE StG '.$o,'estado','estado',null,null,false,false,'','col-2',"changeSelect('estado','famili');");
@@ -293,8 +294,10 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, `fuente`, `fecha_asig`, 'tipo_prior',`priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred_report`, `localidad`, `upz`, `barrio`, 
-		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin
-		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin,localidad
+		 FROM `eac_ruteo` R
+		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
+		 WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';

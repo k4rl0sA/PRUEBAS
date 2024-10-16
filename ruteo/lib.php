@@ -88,7 +88,7 @@ function cmp_rute(){
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?true:false;
  
-var_dump($_POST);
+//var_dump($_POST);
 //var_dump($d);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'SEGUIMIENTO REPORTE',$w);

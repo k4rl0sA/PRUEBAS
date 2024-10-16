@@ -194,7 +194,7 @@ function valSelDep(a,val,clsCmp,v){
 	}
   }
  	
-  function habilitarPorValor(idSelect, valoresHabilitar, clases) {
+  function EnabXVal(idSelect, valoresHabilitar, clases) {
     const selectElement = document.getElementById(idSelect);
     const valorSeleccionado = parseInt(selectElement.value, 10);
     clases.forEach(cls => {// Buscar todos los elementos que tengan una de las `clases`

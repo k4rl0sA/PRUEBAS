@@ -19,7 +19,6 @@ else {
   }
 }
 
-
 function opc_usuario(){
 	$id=$_REQUEST['id'];
 	$sql="SELECT hg.idgeo,FN_CATALOGODESC(72,hg.subred) AS subred,
@@ -92,15 +91,13 @@ function whe_homes() {
 	return $sql;
 }
 
-
 function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
   if ($a=='homes' && isset($acc['crear']) && $acc['crear']=='SI') {  
   $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 //   $rta .= "<li class='icono $a exportar'       title='Exportar'    Onclick=\"csv('$a');\"></li>"; 
-  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
+  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
    }
    if ($a=='person' && isset($acc['crear']) && $acc['crear']=='SI') {  
 
@@ -687,18 +684,23 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono editar' title='Editar Familia' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"></li>";  //act_lista(f,this);
 		$rta.="<li class='icono familia' title='Crear Caracterización Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 		$rta.="<li class='icono casa' title='Mostrar Integrantes' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";
+		$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
+		if(plan($c['Cod_Familia'])===true){
+			$rta.="<li class='icono comp1' title='Compromisos Concertados' id='".$c['ACCIONES']."' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"></li>";
+		}
+		$rta.="<li class='icono ambi1' title='Ambiental' id='".$c['ACCIONES']."' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"></li>";
 		$rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"></li>";
-		
+
 		/* $rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"></li>";
 		$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>"; */
 	}
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono editar' title='Editar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"></li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
-		$rta.="<li class='icono medida' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"></li>";
+		$rta.="<li class='icono medida' title='Signos' id='".$c['ACCIONES']."' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"></li>";
 		$rta.="<li class='icono menubtn' title='Menu' id='".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"></li><div id='panelContainer'></div>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
-		// $rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','medidas.php',7,'medidas');Color('datos-lis');\"></li>";
+		$rta.="<li class='icono medida ' title='Medidas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','medidas.php',7,'medidas');Color('datos-lis');\"></li>";
 		}
 		if ($a=='planc-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

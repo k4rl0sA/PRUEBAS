@@ -344,7 +344,7 @@ function gra_rute(){
 	array('type' => 'i', 'value' => NULL),
 	array('type' => 'i', 'value' => $id[0]),
 	array('type' => 's', 'value' => $_POST['fecha_gestion']),
-	array('type' => 's', 'value' => $_POST['direccion_nueva']),
+	array('type' => 's', 'value' => $_POST['direccion_nueva_v']),
 	array('type' => 's', 'value' => $_POST['sector_catastral_v']),
 	array('type' => 's', 'value' => $_POST['nummanzana_v']),
 	array('type' => 's', 'value' => $_POST['predio_num_v']),

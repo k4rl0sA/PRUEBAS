@@ -76,16 +76,16 @@ function cmp_rute(){
 	$rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
 	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
 
- $t=['id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
+ $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
  $w='rute';
  $d=get_rute(); 
  if ($d=="") {$d=$t;}
- $u=($d['id_ruteo']=='')?true:false;
+ $u=($d['id']=='')?true:false;
 //  var_dump($d['estado_g']);
- $x=($d['id_ruteo']=='')?true:false;
+ $x=($d['id']=='')?true:false;
  
 var_dump($_POST);
 var_dump($d);

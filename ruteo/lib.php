@@ -337,33 +337,54 @@ function get_rute(){
 
  
 function gra_rute(){
-/* 	 $sql="INSERT INTO eac_ruteo VALUES 
-	(NULL,TRIM(UPPER('{$_POST['fuente']}')),TRIM(UPPER('{$_POST['fecha_asig']}')),TRIM(UPPER('{$_POST['priorizacion']}')),TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['documento']}')),TRIM(UPPER('{$_POST['nombres']}')),TRIM(UPPER('{$_POST['fecha_nac']}')),TRIM(UPPER('{$_POST['sexo']}')),TRIM(UPPER('{$_POST['nacionalidad']}')),TRIM(UPPER('{$_POST['tipo_doc_acu']}')),TRIM(UPPER('{$_POST['documento_acu']}')),TRIM(UPPER('{$_POST['nombres_acu']}')),TRIM(UPPER('{$_POST['direccion']}')),TRIM(UPPER('{$_POST['telefono1']}')),TRIM(UPPER('{$_POST['telefono2']}')),TRIM(UPPER('{$_POST['telefono']}')),TRIM(UPPER('{$_POST['subred']}')),TRIM(UPPER('{$_POST['localidad']}')),TRIM(UPPER('{$_POST['upz']}')),TRIM(UPPER('{$_POST['barrio']}')),TRIM(UPPER('{$_POST['cordx']}')),TRIM(UPPER('{$_POST['cordy']}')),TRIM(UPPER('{$_POST['perfil_asignado']}')),TRIM(UPPER('{$_POST['fecha_gestion']}')),TRIM(UPPER('{$_POST['estado_g']}')),TRIM(UPPER('{$_POST['motivo_estado']}')),TRIM(UPPER('{$_POST['direccion_nueva']}')),TRIM(UPPER('{$_POST['complemento']}')),TRIM(UPPER('{$_POST['observacion']}')),
-	TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');"; */
+ 	 
+	$id=divide($_POST['id']);
+	$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$params = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 'i', 'value' => $id[0]),
+	array('type' => 's', 'value' => $_POST['fecha_gestion']),
+	array('type' => 's', 'value' => $_POST['direccion_nueva']),
+	array('type' => 's', 'value' => $_POST['sector_catastral']),
+	array('type' => 's', 'value' => $_POST['nummanzana']),
+	array('type' => 's', 'value' => $_POST['predio_num']),
+	array('type' => 's', 'value' => $_POST['telefono_1']),
+	array('type' => 's', 'value' => $_POST['telefono_2']),
+	array('type' => 's', 'value' => $_POST['telefono_3']),
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => 'A')
+	);
+	// var_dump($params);
+	$rta = mysql_prepd($sql, $params);
+	return $rta;
 
-
-	/* $sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
+/* 	$sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 	`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 
 	sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,gestion, `fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,predio,cod_admin
 	FROM `eac_ruteo` WHERE  id_ruteo='{$_POST['id']}'";
 	$info=datos_mysql($sql);
 
-	return $info['responseResult'][0]; */
+	return $info['responseResult'][0];
+ */
+
 
 	// `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
 
-$sql="UPDATE `eac_ruteo` SET 
-fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
-`motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
-`direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
-`complemento`=TRIM(UPPER('{$_POST['complemento']}')),
-`observacion`=TRIM(UPPER('{$_POST['observacion']}')),
-`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-	WHERE id_ruteo='{$_POST['id']}'";
-	//echo $sql; `predio`=TRIM(UPPER('{$_POST['estado']}')),
-  $rta=dato_mysql($sql);
-  return $rta;
+// $sql="UPDATE `eac_ruteo` SET 
+// fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
+// `motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
+// `direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
+// `complemento`=TRIM(UPPER('{$_POST['complemento']}')),
+// `observacion`=TRIM(UPPER('{$_POST['observacion']}')),
+// `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
+// `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
+// 	WHERE id_ruteo='{$_POST['id']}'";
+// 	//echo $sql; `predio`=TRIM(UPPER('{$_POST['estado']}')),
+//   $rta=dato_mysql($sql);
+//   return $rta;
 }
 
 function formato_dato($a,$b,$c,$d){

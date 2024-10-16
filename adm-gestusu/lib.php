@@ -85,6 +85,7 @@ function cmp_gestuser(){
 }
 
 function get_gestuser(){
+	
 }
 
 function gra_gestuser(){

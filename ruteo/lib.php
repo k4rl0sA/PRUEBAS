@@ -78,7 +78,7 @@ function cmp_rute(){
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
- 'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','estado_g'=>'',
+ 'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
@@ -157,7 +157,7 @@ var_dump($_POST);
  }else{
 	$o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN ',$w);
- $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('fecha_gest','d','10',$d['fecha_gest'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$u,'','col-25');
@@ -359,11 +359,30 @@ function gra_rute(){
 	);
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
-	}else{
-
-	}
 	
+	}else{
+		$sql = "INSERT INTO eac_ruteo_ges VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$params = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 'i', 'value' => $id[0]),
+	array('type' => 's', 'value' => $_POST['fecha_gest']),
+	array('type' => 's', 'value' => $_POST['estado_g']),
+	array('type' => 's', 'value' => $_POST['motivo_estado']),
+	array('type' => 's', 'value' => $_POST['direccion_nueva']),
+	array('type' => 's', 'value' => $_POST['sector_catastral_n']),
+	array('type' => 's', 'value' => $_POST['nummanzana_n']),
+	array('type' => 's', 'value' => $_POST['predio_num_n']),
+	array('type' => 's', 'value' => $_POST['observacion']),
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => 'A')
+	);
+	// var_dump($params);
+	$rta = mysql_prepd($sql, $params);
+	}
+	return $rta;
 
 /* 	$sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 	`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 

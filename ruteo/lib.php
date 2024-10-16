@@ -147,7 +147,7 @@ function cmp_rute(){
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");//
- $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this,\'estado_g\');');
+ $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$u,'','col-25');
  $c[]=new cmp('sector_catastral_n','n','6',$d['sector_catastral_n'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('nummanzana_n','n','3',$d['nummanzana_n'],$w.' '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$u,'','col-25');

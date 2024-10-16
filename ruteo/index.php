@@ -90,8 +90,7 @@ function grabar(tb='',ev){
 
 function validState(a,b){
 	var ele = document.getElementById(b);
-	if(a.value>5 && ele.value==3 ) a.value='';
-	if(a.value<6 && ele.value==6) a.value='';
+	if(a.value=3 && ele.value==3 ) a.value='';
 }
 
 </script>

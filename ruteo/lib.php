@@ -73,6 +73,9 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rute(){
  $rta="";
+	$rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
+	<div class='contenido' id='datos-lis' >".lista_persons()."</div></div>";
+
  $t=['id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
@@ -142,6 +145,22 @@ function cmp_rute(){
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
+function lista_persons(){ //revisar
+	// var_dump($_POST);
+	$id=divide($_POST['id']);
+		$sql="SELECT concat_ws('_',idpeople,$id[0]) ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
+		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
+		FN_CATALOGODESC(21,sexo) 'Sexo'
+		FROM `personas` 
+			WHERE '1'='1' and vivipersona='".$id[0]."'";
+		$sql.=" ORDER BY fecha_create";
+		// echo $sql;
+		$_SESSION['sql_person']=$sql;
+			$datos=datos_mysql($sql);
+		return panel_content($datos["responseResult"],"datos-lis",10);
+}
+
+
 
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);

@@ -88,6 +88,28 @@ function grabar(tb='',ev){
 }   
 
 
+function enabFielSele(a, b) {
+	var ele = document.getElementById(b);
+	if(a.value==3 || a.value==6){
+		enaFie(ele,false);
+	}else{
+		enaFie(ele,true);
+	}
+	if(a.value==6){
+		const c = document.querySelectorAll('.dir input');
+		for (i = 0; i < c.length; i++) {
+			var el = document.getElementById(c[i].id);
+			enaFie(el, false);		
+		}
+	}else{
+		const d = document.querySelectorAll('.dir input');
+		for (i = 0; i < d.length; i++) {
+			var e = document.getElementById(d[i].id);
+			enaFie(e, true);		
+		}
+	}
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

@@ -88,7 +88,7 @@ function cmp_rute(){
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?true:false;
  
-//var_dump($_POST);
+var_dump($_POST);
 //var_dump($d);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'SEGUIMIENTO REPORTE',$w);
@@ -338,7 +338,8 @@ function get_rute(){
  
 function gra_rute(){
  	 
-	$id=divide($_POST['id']);
+	if($d['idgeo']=='0'){
+		$id=divide($_POST['id']);
 	$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
@@ -360,6 +361,10 @@ function gra_rute(){
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	return $rta;
+	}else{
+
+	}
+	
 
 /* 	$sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 	`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 

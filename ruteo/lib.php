@@ -79,7 +79,7 @@ function cmp_rute(){
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','estado_g'=>'',
- 'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
+ 'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
  $d=get_rute(); 
@@ -144,7 +144,7 @@ function cmp_rute(){
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-5');
     
  $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
+ $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN ',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
@@ -153,6 +153,20 @@ function cmp_rute(){
  $c[]=new cmp('nummanzana_n','n','3',$d['manz'],$w.' dir '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('predio_num_n','n','3',$d['pred'],$w.' dir '.$o,'Predio de Num (3)','predio_num_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+ 
+ $o='gesefc';
+ $c[]=new cmp($o,'e',null,'PROCESO VALIDACION',$w);
+ $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('direccion_nueva_v','t','90',$d['dir_new'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,false,$u,'','col-25');
+ $c[]=new cmp('sector_catastral_v','n','6',$d['sector'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,false,$u,'','col-25');
+ $c[]=new cmp('nummanzana_v','n','3',$d['manzana'],$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,false,$u,'','col-25');
+ $c[]=new cmp('predio_num_v','n','3',$d['predio'],$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,false,$u,'','col-25');
+ $c[]=new cmp('telefono1_v','n','10',$d['tel_1'],$w.' '.$o,'Telefono 1','telefono1_v',null,null,false,$u,'','col-2');
+ $c[]=new cmp('telefono2_v','n','10',$d['tel_2'],$w.' '.$o,'Telefono 2','telefono2_v',null,null,false,$u,'','col-2');
+ $c[]=new cmp('telefono3_v','n','10',$d['tel_3'],$w.' '.$o,'Telefono 3','telefono3_v',null,null,false,$u,'','col-2');
+ 
+ 
+ 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -304,10 +318,11 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, R.`idgeo`,`fuente`, `fecha_asig`, `priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, `etnia`,`regimen`,`eapb`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, R.direccion,`telefono1`, `telefono2`, `telefono3`, `fecha_consulta`,`cod_cups`,`per_consul`,R.`subred_report`, G.`localidad`, G.`upz`, G.`barrio`, 
-		G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.`cordx`, G.`cordy`,RG.fecha_gestion,RG.estado_g,RG.motivo_estado,RG.direccion_nueva, RG.sector_catastral as 'sect',RG.nummanzana 'manz',RG.predio_num 'pred',RG.observaciones 'obse'
+		G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.`cordx`, G.`cordy`, RG.fecha_gestion, RG.estado_g, RG.motivo_estado, RG.direccion_nueva, RG.sector_catastral AS sect, RG.nummanzana AS manz, RG.predio_num AS pred, RG.observaciones AS obse, RV.direccion_nueva AS dir_new, RV.sector_catastral AS sector, RV.nummanzana AS manzana, RV.predio_num AS predio, RV.telefono_1 AS tel_1, RV.telefono_2 AS tel_2, RV.telefono_3 AS tel_3
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo=RG.idruteo
+         LEFT JOIN eac_ruteo_val RV ON R.id_ruteo=RV.idruteo
 		 WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

@@ -79,7 +79,7 @@ function cmp_rute(){
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','estado_g'=>'',
- 'motivo_estado'=>'','direccion_nueva'=>'','sector_catastral_n'=>'', 'nummanzana_n'=>'','predio_num_n'=>'', 'observacion'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
+ 'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
  $d=get_rute(); 
@@ -304,7 +304,7 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, R.`idgeo`,`fuente`, `fecha_asig`, `priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, `etnia`,`regimen`,`eapb`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, R.direccion,`telefono1`, `telefono2`, `telefono3`, `fecha_consulta`,`cod_cups`,`per_consul`,R.`subred_report`, G.`localidad`, G.`upz`, G.`barrio`, 
-		G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.`cordx`, G.`cordy`,RG.fecha_gestion,RG.estado_g,RG.motivo_estado,RG.direccion_nueva, RG.sector_catastral as 'sector_catastral_n',RG.nummanzana,RG.predio_num,RG.observaciones
+		G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.`cordx`, G.`cordy`,RG.fecha_gestion,RG.estado_g,RG.motivo_estado,RG.direccion_nueva, RG.sector_catastral as 'sect',RG.nummanzana 'manz',RG.predio_num 'pred',RG.observaciones 'obse'
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo=RG.idruteo

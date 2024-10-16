@@ -198,7 +198,7 @@ function valSelDep(a,val,clsCmp,v){
     const selectElement = document.getElementById(idSelect);
     const valorSeleccionado = parseInt(selectElement.value, 10);
     clases.forEach(cls => {// Buscar todos los elementos que tengan una de las `clases`
-      const elementos = document.querySelectorAll(`.${cls}`);
+      const elementos = document.querySelectorAll(`select.${clsToEnable}, input.${clsToEnable}`);
       elementos.forEach(elemento => {
         
         if (valoresHabilitar.includes(valorSeleccionado)) {// Si el valor seleccionado está en el array de valores para habilitar, los habilitamos

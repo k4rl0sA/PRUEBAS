@@ -196,7 +196,7 @@ function valSelDep(a,val,clsCmp,v){
  	
   function EnabXVal(idSelect, valoresHabilitar, clases) {
     const selectElement = document.getElementById(idSelect);
-    const valorSeleccionado = parseInt(selectElement.value, 10);
+    const valorSeleccionado = selectElement.value;
     clases.forEach(cls => {// Buscar todos los elementos que tengan una de las `clases`
       const elementos = document.querySelectorAll(`select.${clases}, input.${clases}`);
       elementos.forEach(elemento => {

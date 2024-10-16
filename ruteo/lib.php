@@ -307,6 +307,7 @@ function get_rute(){
 		G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.`cordx`, G.`cordy`
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
+		 LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo=RG.idruteo
 		 WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

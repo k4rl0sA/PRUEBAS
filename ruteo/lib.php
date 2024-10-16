@@ -75,7 +75,7 @@ function cmp_rute(){
  $rta="";
  $t=['id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
- 'cod_cups'=>'','per_consul'=>'','subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
+ 'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
  $w='rute' ;
  $d=get_rute(); 
@@ -127,7 +127,7 @@ function cmp_rute(){
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
- $c[]=new cmp('subred','s','3',$d['subred'],$w.' '.$o,'Subred','subred',null,null,false,$u,'','col-3');
+ $c[]=new cmp('subred','s','3',$d['subred'],$w.' '.$o,'Subred','subred_report',null,null,false,$u,'','col-3');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,$u,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,$u,'','col-2');
  $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,$u,'','col-3');

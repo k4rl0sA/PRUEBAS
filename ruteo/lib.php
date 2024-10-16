@@ -79,7 +79,7 @@ function cmp_rute(){
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
- 'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
+ 'fecha_update'=>'', 'estado'=>''];
  $w='rute';
  $d=get_rute(); 
  if ($d=="") {$d=$t;}
@@ -148,9 +148,9 @@ var_dump($d);
  $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);tipVivi('estado_g','StG');");//
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this,\'estado_g\');');
  $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-25');
- $c[]=new cmp('sector_catastral','n','6',$d['sector_catastral'],$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,null,false,$u,'','col-25');
- $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,null,false,$u,'','col-25');
- $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,null,false,$u,'','col-25');
+ $c[]=new cmp('sector_catastral_n','n','6',$d['sector_catastral_n'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$u,'','col-25');
+ $c[]=new cmp('nummanzana_n','n','3',$d['nummanzana_n'],$w.' '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$u,'','col-25');
+ $c[]=new cmp('predio_num_n','n','3',$d['predio_num_n'],$w.' '.$o,'Predio de Num (3)','predio_num_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;

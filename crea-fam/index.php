@@ -5,10 +5,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Información Geografica || SIGINF</title>
+<title>Información Geografica || EBEH</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="../libs/js/a.js?v=31.0"></script>
 <script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>

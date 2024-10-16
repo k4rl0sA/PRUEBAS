@@ -152,7 +152,7 @@ function cmp_rute(){
  $c[]=new cmp('sector_catastral_n','n','6',$d['sect'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('nummanzana_n','n','3',$d['manz'],$w.' '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$u,'','col-25');
  $c[]=new cmp('predio_num_n','n','3',$d['pred'],$w.' '.$o,'Predio de Num (3)','predio_num_n',null,null,false,$u,'','col-25');
- $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+ $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

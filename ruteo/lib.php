@@ -148,11 +148,9 @@ function cmp_rute(){
 function lista_persons(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT concat_ws('_',idpeople,$id[0]) ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
-		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
-		FN_CATALOGODESC(21,sexo) 'Sexo'
-		FROM `personas` 
-			WHERE '1'='1' and vivipersona='".$id[0]."'";
+		$sql="SELECT fecha_gestion,estado_g,fecha_create 'Fecha de Creación'
+		FROM eac_ruteo_ges 
+			WHERE  usu_creo='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;

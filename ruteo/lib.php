@@ -127,7 +127,7 @@ function cmp_rute(){
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
- $c[]=new cmp('subred','s','3',$d['subred'],$w.' '.$o,'Subred','subred_report',null,null,false,$u,'','col-3');
+ $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,$u,'','col-3');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,$u,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,$u,'','col-2');
  $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,$u,'','col-3');

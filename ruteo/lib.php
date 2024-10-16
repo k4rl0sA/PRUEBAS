@@ -84,9 +84,9 @@ function cmp_rute(){
  $w='rute';
  $d=get_rute(); 
  if ($d=="") {$d=$t;}
- $u=($d['id']=='')?true:false;
+ $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);
- $x=($d['id']=='')?true:false;
+ $x=($d['idgeo']=='0')?true:false;
  
 var_dump($_POST);
 var_dump($d);

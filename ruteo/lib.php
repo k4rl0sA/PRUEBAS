@@ -153,7 +153,7 @@ function lista_persons(){ //revisar
 			WHERE  usu_creo='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
-		$_SESSION['sql_person']=$sql;
+		//$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }

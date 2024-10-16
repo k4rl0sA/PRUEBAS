@@ -274,9 +274,9 @@ function get_rute(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT `id_ruteo`, `fuente`, `fecha_asig`, 'tipo_prior',`priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
-		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, R.direccion, `telefono1`, `telefono2`, `telefono3`, `subred_report`, `localidad`, `upz`, `barrio`, 
-		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin,localidad
+		$sql="SELECT `id_ruteo`, `fuente`, `fecha_asig`, `priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, `etnia`,`regimen`,`eapb`, 
+		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `telefono1`, `telefono2`, `telefono3`, R.direccion,R.`subred_report`, G.`localidad`, G.`upz`, G.`barrio`, 
+		G.sector_catastral,G.nummanzana,G.predio_num,G.unidad_habit,G.`cordx`, G.`cordy`
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 WHERE  id_ruteo='{$id[0]}'";

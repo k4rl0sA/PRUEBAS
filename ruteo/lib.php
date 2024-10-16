@@ -106,9 +106,9 @@ function cmp_rute(){
  $c[]=new cmp('fecha_nac','d','10',$d['fecha_nac'],$w.' '.$o,'FECHA DE NACIMIENTO','fecha_nac',null,null,false,$u,'','col-2');
  $c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'SEXO','sexo',null,null,false,$u,'','col-2');
  $c[]=new cmp('nacionalidad','s','3',$d['nacionalidad'],$w.' '.$o,'NACIONALIDAD','nacionalidad',null,null,false,$u,'','col-2');
- $c[]=new cmp('etnia','s','3',$d,$w.' '.$o,'Pertenencia Etnica','etnia',null,null,false,$u,'','col-2');
- $c[]=new cmp('regimen','s','3',$d,$w.' '.$o,'regimen','regimen',null,null,false,$u,'','col-2');
- $c[]=new cmp('eapb','s','3',$d,$w.'  '.$o,'eapb','eapb',null,null,false,$u,'','col-2');
+ $c[]=new cmp('etnia','s','3',$d['etnia'],$w.' '.$o,'Pertenencia Etnica','etnia',null,null,false,$u,'','col-2');
+ $c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,false,$u,'','col-2');
+ $c[]=new cmp('eapb','s','3',$d['eapb'],$w.'  '.$o,'eapb','eapb',null,null,false,$u,'','col-2');
  
  $o='datacu';
  //$c[]=new cmp($o,'e',null,'DATOS DEL ACUDIENTE (Estas variables se diligencian para los menores de edad), o datos del usuario quien coloco la solicitud  PQR',$w);

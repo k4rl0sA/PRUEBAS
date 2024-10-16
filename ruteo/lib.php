@@ -142,7 +142,7 @@ function cmp_rute(){
  $c[]=new cmp('unidad_habit','n','4',$d['unidad_habit'],$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,null,false,$u,'','col-25');
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,$u,'','col-5');
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-5');
-
+    
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');

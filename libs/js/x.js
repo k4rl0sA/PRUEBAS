@@ -194,22 +194,6 @@ function valSelDep(a,val,clsCmp,v){
 	}
   }
  	
-  function EnabXVal(idSelect, valoresHabilitar, clases) {
-    const selectElement = document.getElementById(idSelect);
-    const valorSeleccionado = selectElement.value;
-    clases.forEach(cls => {// Buscar todos los elementos que tengan una de las `clases`
-      const elementos = document.querySelectorAll(`select.${clases}, input.${clases}`);
-      elementos.forEach(elemento => {
-        
-        if (valoresHabilitar.includes(valorSeleccionado)) {// Si el valor seleccionado está en el array de valores para habilitar, los habilitamos
-          enaFie(elemento, false); // Habilitar
-        } else {
-          enaFie(elemento, true);  // Deshabilitar
-        }
-      });
-    });
-  }
-
 function enabEapb(a,clsCmp){
 	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);
 	const act=document.getElementById(a);

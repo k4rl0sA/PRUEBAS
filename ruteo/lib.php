@@ -139,25 +139,7 @@ function cmp_rute(){
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,$u,'','col-5');
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-5');
 
-
- $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN EFECTIVA',$w);
-//  $c[]=new cmp('gestion','s',2,$d['gestion'],$w.' '.$o,'Gestion','gestion',null,null,true,true,'','col-2',"enabOthSi('gestion','pRe')");
- $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-2',"tipVivi('estado_g','StG');enabStatPreAdm(this,['motivo_estado']);");//
- $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-2','validState(this,\'estado_g\');');
- $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,false,'','col-2');
- $c[]=new cmp('complemento','t','20',$d['complemento'],$w.' dir '.$o,'complemento','complemento',null,'',false, false,'','col-2');
- $c[]=new cmp('observacion','a',50,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-9');
- $c[]=new cmp('integrantes','n',1,$d['integrantes'],$w.' '.$o,'N° Integrantes','observacion',null,null,true,true,'','col-1');
-
- /* $o='gesres';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
- $c[]=new cmp('estado','s',3,'',$w.' PuE StG '.$o,'estado','estado',null,null,false,false,'','col-2',"changeSelect('estado','famili');");
- $c[]=new cmp('famili','s',3,'',$w.' PuE StG '.$o,'famili','famili',null,'',false, false,'','col-3',"changeSelect('famili','usuario');");//N° FAMILIA
- $c[]=new cmp('usuario','s',3,'',$w.' PuE StG '.$o,'usuario','usuario',null,'',false, false,'','col-3',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE StG '.$o,'cod_admin','cod_admin',null,'',false, false,'','col-2');//traer los codigos del usuario de atencion
- */
+ 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

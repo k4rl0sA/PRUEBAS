@@ -148,7 +148,7 @@ function cmp_rute(){
 function lista_persons(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT fecha_gestion,estado_g,fecha_create 'Fecha de Creación'
+		$sql="SELECT fecha_gestion Fecha,estado_g Estado,fecha_create 'Fecha de Creación'
 		FROM eac_ruteo_ges 
 			WHERE  usu_creo='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";

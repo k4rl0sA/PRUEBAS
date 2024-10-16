@@ -276,7 +276,7 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, `fuente`, `fecha_asig`, 'tipo_prior',`priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, R.direccion, `telefono1`, `telefono2`, `telefono3`, `subred_report`, `localidad`, `upz`, `barrio`, 
-		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin,localidad
+		sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, R.perfil_asignado,`fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,integrantes,predio,cod_admin,localidad
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 WHERE  id_ruteo='{$id[0]}'";

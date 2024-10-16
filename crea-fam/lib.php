@@ -669,6 +669,17 @@ function opc_aux() {
     return json_encode($rta);
 }
 
+function plan($id){
+	$sql="select id FROM hog_plancuid where idviv='".$id."'";
+	$info=datos_mysql($sql);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

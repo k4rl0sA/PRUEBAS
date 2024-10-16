@@ -87,7 +87,7 @@ function cmp_rute(){
 //  var_dump($d['estado_g']);
  $x=($d['id_ruteo']=='')?true:false;
  
-
+var_dump($_POST);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'SEGUIMIENTO REPORTE',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');

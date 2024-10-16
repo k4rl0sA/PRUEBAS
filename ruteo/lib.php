@@ -20,7 +20,8 @@ else {
 
 
 function lis_rute(){
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo where subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute());
+	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo 
+	where subred in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
@@ -37,7 +38,7 @@ function lis_rute(){
 
 function whe_rute() {
 	$sql = " AND estado='A' ";
-	if ($_POST['flocalidad'])
+	/* if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
 	if ($_POST['fgrupo'])
 		$sql .= " AND priorizacion = '".$_POST['fgrupo']."'";
@@ -46,7 +47,7 @@ function whe_rute() {
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
 	if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
+		$sql .= " AND predio_num ='".$_POST['fpred']."' "; */
 	return $sql;
 }
 

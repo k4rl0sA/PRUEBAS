@@ -88,11 +88,6 @@ function grabar(tb='',ev){
 }   
 
 
-function validState(a,b){
-	var ele = document.getElementById(b);
-	if(a.value=3 && ele.value==3 ) a.value='';
-}
-
 </script>
 </head>
 <body Onload="actualizar();">

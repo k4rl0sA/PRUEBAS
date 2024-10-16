@@ -74,13 +74,13 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_rute(){
  $rta="";
 	$rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	<div class='contenido' id='datos-lis' >".lista_persons()."</div></div>";
+	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
 
  $t=['id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
- $w='rute' ;
+ $w='rute';
  $d=get_rute(); 
  if ($d=="") {$d=$t;}
  $u=($d['id_ruteo']=='')?true:false;
@@ -145,7 +145,7 @@ function cmp_rute(){
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
-function lista_persons(){ //revisar
+function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
 		$sql="SELECT fecha_gestion Fecha,estado_g Estado,fecha_create 'Fecha de Creación'

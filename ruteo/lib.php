@@ -75,7 +75,7 @@ function cmp_rute(){
  $rta="";
  $t=['id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
- 'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','perfil_asignado'=>'','fecha_gestion'=>'','estado_g'=>'',
+ 'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','perfil_asignado'=>'','fecha_gestion'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'', 'complemento'=>'', 'observacion'=>'','integrantes'=>'', 'usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
  $w='rute';
@@ -83,7 +83,7 @@ function cmp_rute(){
  if ($d=="") {$d=$t;}
  $u=($d['id_ruteo']=='')?true:false;
 //  var_dump($d['estado_g']);
- $x=($d['estado_g']=='')?true:false;
+ //$x=($d['estado_g']=='')?true:false;
  
 
  $o='segrep';
@@ -247,9 +247,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_perfil_asignado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=3 and estado='A' ORDER BY 1",$id);
 }
-function opc_estado_g($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=35 and estado='A' ORDER BY 1",$id);
-}
+
 function opc_localidad($id=''){
 	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=2 ORDER BY cast(idcatadeta as signed)",$id);
 }
@@ -307,7 +305,6 @@ function gra_rute(){
 
 $sql="UPDATE `eac_ruteo` SET 
 fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
-`estado_g`=TRIM(UPPER('{$_POST['estado_g']}')),
 `motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
 `direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
 `complemento`=TRIM(UPPER('{$_POST['complemento']}')),

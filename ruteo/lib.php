@@ -85,7 +85,7 @@ function cmp_rute(){
  if ($d=="") {$d=$t;}
  $u=($d['id_ruteo']=='')?true:false;
 //  var_dump($d['estado_g']);
- //$x=($d['estado_g']=='')?true:false;
+ $x=($d['id_ruteo']=='')?true:false;
  
 
  $o='segrep';

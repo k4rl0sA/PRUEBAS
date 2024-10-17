@@ -122,7 +122,7 @@ function cmp_signos(){
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE idpeople=$id[0]  ORDER BY S.fecha_create
-            ) AS Subquery;
+            ) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;

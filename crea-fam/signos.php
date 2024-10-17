@@ -217,7 +217,7 @@ function men_signos(){
 		$pbr = $_POST['perime_braq'] ?? null;
 		$per = $_POST['percentil'] ?? null;
 		$des = $_POST['zscore'] ?? null;
-		
+
 		$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
@@ -229,7 +229,7 @@ function men_signos(){
 			array('type' => 'i', 'value' => $_POST['peso']),
 			array('type' => 'i', 'value' => $_POST['talla']),
 			array('type' => 'i', 'value' => $_POST['imc']),
-			array('type' => 'i', 'value' => cleanTx($_POST['tas'])),
+			array('type' => 'i', 'value' => $tas),
 			array('type' => 'i', 'value' => $_POST['tad']),
 			array('type' => 'i', 'value' => $_POST['frecard']),
 			array('type' => 'i', 'value' => $_POST['satoxi']),

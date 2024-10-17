@@ -131,8 +131,6 @@ function men_alertas(){
 	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' '.$o,'Cronico Sin Control','rta',null,null,true,true,'','col-2');
 	
 	$c[]=new cmp('esq_vacun','s','2',$d,$w.' '.$o,'Esquema de Vacunacion Completo','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','ges_sinctrl',null,'',$gest,$gest,'','col-25');//true
-	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"valGluc('glucometria');");
 	
 	
 	/* $c[]=new cmp('pobladifer','s','3',$d,$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-25');//true

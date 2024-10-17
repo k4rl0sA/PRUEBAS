@@ -108,6 +108,8 @@ function men_alertas(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
 	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-3');
+	
+
 
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);

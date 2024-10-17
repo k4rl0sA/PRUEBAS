@@ -35,8 +35,7 @@ function men_alertas(){
 	 $rta = "";
 	 $acc=rol($a);
 	 if ($a=='alertas'  && isset($acc['crear']) && $acc['crear']=='SI'){
-	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	
+	 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 return $rta;
 	 }
    }
@@ -219,10 +218,7 @@ function gra_alertas(){
 		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$codoral}')),
 		trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
 		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['necesidad_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
-		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),
-		trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),
-		trim(upper('{$tas}')),trim(upper('{$tad}')),trim(upper('{$glu}')),trim(upper('{$pbr}')),trim(upper('{$per}')),
-		trim(upper('{$des}')),";
+		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}'))";
 
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }

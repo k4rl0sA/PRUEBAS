@@ -618,7 +618,7 @@ function Zsco(a,b='../vivienda/medidas.php'){
 				glu.value=JSON.parse(rta);
 			}else{
 				val=JSON.parse(rta);
-				document.getElementById('clasi_nutri').value=val[1];
+				document.getElementById('zscore').value=val[1];
 				glu.value=val[0];
 			}
 			

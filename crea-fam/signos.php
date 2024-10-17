@@ -209,14 +209,14 @@ function men_signos(){
 	 }
    }
 
-   function gra_signos(){
+	function gra_signos(){
 		// var_dump($_POST);
-	/* 	$id=divide($_POST['idp']);
+		$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
 		$zscore=explode("=",$_POST['zscore']);
-		$params = array(
+		/* $params = array(
 			array('type' => 'i', 'value' => NULL),
 			array('type' => 'i', 'value' => $id[0]),
 			array('type' => 'i', 'value' => $_POST['peso']),
@@ -237,12 +237,12 @@ function men_signos(){
 			array('type' => 's', 'value' => NULL);
 			array('type' => 's', 'value' => 'A');
 
-		);
+		); */
 			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
-		return mysql_prepd($sql, $params); */
-   }
+		return mysql_prepd($sql, $params);
+   	} 
 
-   function formato_dato($a,$b,$c,$d){
+    function formato_dato($a,$b,$c,$d){
     $b=strtolower($b);
     $rta=$c[$d];
    // $rta=iconv('UTF-8','ISO-8859-1',$rta);

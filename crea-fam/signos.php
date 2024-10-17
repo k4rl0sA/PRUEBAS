@@ -34,29 +34,6 @@ function cmp_signos(){
 	$meses = $p['ano'] * 12 + $p['mes'];
 	$adul = ($p['ano']>=18) ? true : false;
 	$ed=$p['ano'];
-	switch (true) {
-			case $ed>=0 && $ed<=5 :
-				$curso=1;
-				break;
-			case $ed>=6 && $ed<=11 :
-				$curso=2;
-				break;
-			case $ed>=12 && $ed <=17 :
-				$curso=3;
-				break;
-			case $ed>=18 && $ed <=28 :
-				$curso=4;
-				break;
-			case $ed>=29 && $ed <=59 :
-				$curso=5;
-				break;
-			case $ed>=60 :
-				$curso=6;
-				break;
-		default:
-			$curso='';
-			break;
-	}
 	$des='des';
 	$z='zS';
 	$days=fechas_app('vivienda');

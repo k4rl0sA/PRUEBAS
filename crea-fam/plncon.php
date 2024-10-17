@@ -42,8 +42,7 @@ function focus_compConc(){
 function lis_compConc(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc 
-WHERE idviv=".$id[0]."");
+$info=datos_mysql("SELECT COUNT(*) total FROM hog_planconc WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-compConc']))? ($_POST['pag-compConc']-1)* $regxPag:0;

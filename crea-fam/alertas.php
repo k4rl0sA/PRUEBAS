@@ -266,7 +266,7 @@ function get_alertas(){
 		$id=divide($_POST['id']);
 		// print_r($id);
 		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
-		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE id_alert='{$id[0]}'";
+		from personas P left join hog_alert D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE id_alert='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
 

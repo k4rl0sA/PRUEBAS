@@ -66,7 +66,7 @@ function cmp_signos(){
 	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
     $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-2');
-	$c[]=new cmp('fecha_toma','d','10',$p['fecha_toma'],$w.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('fecha_toma','d','10',$p['fecha_toma'],$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	
 	
 	$o='med';
@@ -107,8 +107,7 @@ function cmp_signos(){
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS ano,
     	TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) % 12 AS mes,
-    	DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia,
-		fecha_toma
+    	DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from personas P left join hog_carac V ON P.vivipersona=V.id_viv
 		WHERE idpeople='".$id[0]."'";
 		// echo $sql;

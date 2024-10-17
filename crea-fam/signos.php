@@ -123,10 +123,11 @@ function cmp_signos(){
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE S.idpeople = $id[0]
 	) AS Subquery";
+	var_dump($total);
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
-	var_dump($total);
+	
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
     $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 

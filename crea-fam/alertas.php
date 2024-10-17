@@ -21,42 +21,42 @@ else {
 
 
 
-function focus_medidas(){
-	return 'medidas';
+function focus_alertas(){
+	return 'alertas';
 }
    
    
-function men_medidas(){
-	$rta=cap_menus('medidas','pro');
+function men_alertas(){
+	$rta=cap_menus('alertas','pro');
 	return $rta;
 }
    
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = "";
 	 $acc=rol($a);
-	 if ($a=='medidas'  && isset($acc['crear']) && $acc['crear']=='SI'){
+	 if ($a=='alertas'  && isset($acc['crear']) && $acc['crear']=='SI'){
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	
 	 return $rta;
 	 }
    }
 
-   function lis_medidas(){
+   function lis_alertas(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT idmedidas ACCIONES,idmedidas AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT idalertas ACCIONES,idalertas AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM personas_datocomp P
 	LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
 	$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"medidas-lis",5);
+	return panel_content($datos["responseResult"],"alertas-lis",5);
    }
  
-   function cmp_medidas(){
+   function cmp_alertas(){
 	$rta="<div class='encabezado medid'>TABLA DE TOMAS DE MEDIDA</div>
-	<div class='contenido' id='medidas-lis'>".lis_medidas()."</div></div>";
+	<div class='contenido' id='alertas-lis'>".lis_alertas()."</div></div>";
 	// $t=['nombres'=>'','fechanacimiento'=>'','edad'=>'','peso'=>'','talla'=>'','imc'=>'','tas'=>'','tad'=>'','glucometria'=>'','perime_braq'=>'','perime_abdom'=>'','percentil'=>'','zscore'=>'','findrisc'=>'','oms'=>'','alert1'=>'','alert2'=>'','alert3'=>'','alert4'=>'','alert5'=>'','alert6'=>'','alert7'=>'','alert8'=>'','alert9'=>'','alert10'=>'','select1'=>'','selmul1'=>'[]','selmul2'=>'[]','selmul3'=>'[]','selmul4'=>'[]','selmul5'=>'[]','selmul6'=>'[]','selmul7'=>'[]','selmul8'=>'[]','selmul9'=>'[]','selmul10'=>'[]','fecha'=>'','tipo'=>''];
 	$p=get_persona();
 	// if ($d==""){$d=$t;}
@@ -64,7 +64,7 @@ function men_medidas(){
 	// $doc = (is_array($p) && isset($p['dc_documento'])) ? $p['dc_documento'] : $id[0] ;
 	// $tip = (is_array($p) && isset($p['dc_tipo_doc'])) ? $p['dc_tipo_doc'] : $id[1] ;
 	$d='';
-    $w="medidas";
+    $w="alertas";
 	$o='infbas';
 	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
 	$ocu= ($p['ano']>5) ? true : false ;
@@ -98,7 +98,7 @@ function men_medidas(){
 	$z='zS';
 	$days=fechas_app('vivienda');
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
-	$c[]=new cmp($o,'e',null,'INFORMACION DE MEDIDAS',$w); 
+	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
 	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-3');
 	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$o,'nombres','nombre',null,'',true,false,'','col-4');
@@ -149,7 +149,7 @@ function men_medidas(){
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 
 	$o='med';
-	$c[]=new cmp($o,'e',null,'TOMA DE SIGNOS Y MEDIDAS ANTROPOMÉTRICAS',$w);
+	$c[]=new cmp($o,'e',null,'TOMA DE SIGNOS Y alertas ANTROPOMÉTRICAS',$w);
 	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore');calImc('peso','talla','imc');");
 	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore');valTalla('talla');valGluc('glucometria');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
@@ -252,7 +252,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	} 
 
 
-function gra_medidas(){
+function gra_alertas(){
 	// print_r($_POST);
 	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)){$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
@@ -384,7 +384,7 @@ function opc_evento($id=''){
 	}
 }
 
-function get_medidas(){
+function get_alertas(){
 	// print_r($_POST);
 	if($_POST['id']==''){
 		return '';
@@ -392,7 +392,7 @@ function get_medidas(){
 		$id=divide($_POST['id']);
 		// print_r($id);
 		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
-		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE idmedidas='{$id[0]}'";
+		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE idalertas='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
 
@@ -414,7 +414,7 @@ function get_medidas(){
 		$sql.=" FROM personas_datocomp D
 				LEFT JOIN personas P ON dc_documento=idpersona AND dc_tipo_doc=tipo_doc
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
-				WHERE idmedidas ='{$id[0]}'" ;
+				WHERE idalertas ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);
 		 //echo $sql; 
 		// print_r($info['responseResult'][0]);
@@ -513,9 +513,9 @@ function opc_selmul10($id=''){
 function formato_dato($a,$b,$c,$d){
     $b=strtolower($b);
 	$rta=$c[$d];
-	if ($a=='medidas-lis' && $b=='acciones'){
+	if ($a=='alertas-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'medidas',event,this,['fecha','tipo_activi'],'../vivienda/medidas.php');\"></li>";  //   act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'alertas',event,this,['fecha','tipo_activi'],'../vivienda/alertas.php');\"></li>";  //   act_lista(f,this);
 	}
 return $rta;
 }

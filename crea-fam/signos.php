@@ -126,6 +126,7 @@ function cmp_signos(){
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
+	var_dump($total);
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
     $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 

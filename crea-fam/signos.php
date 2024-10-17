@@ -117,11 +117,13 @@ function cmp_signos(){
    function lis_signos(){
     // var_dump($_POST);
 	$id=divide($_POST['id']);
-    $total="SELECT COUNT(*) AS total FROM (
-		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 
-        FROM hog_signos S
+	$id= (int)$id[0];
+    $total = "SELECT COUNT(*) AS total FROM (
+		SELECT S.id_signos AS Cod_Registro, S.peso, S.talla, S.imc, S.zscore, U.nombre AS Colaborador, S.fecha_create AS 'Fecha Toma', U.perfil AS Perfil 
+		FROM hog_signos S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
-		WHERE idpeople=$id[0] ) AS Subquery";
+		WHERE S.idpeople = $id
+	) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 
 	$regxPag=5;
@@ -132,7 +134,7 @@ function cmp_signos(){
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE idpeople=$id[0] 
 		ORDER BY S.fecha_create";
-    $sql.="";
+
     // echo $sql;
       $datos=datos_mysql($sql);
     return create_table($total,$datos["responseResult"],"homes",$regxPag);

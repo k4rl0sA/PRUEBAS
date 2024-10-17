@@ -216,7 +216,7 @@ function men_signos(){
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
 		$zscore=explode("=",$_POST['zscore']);
-		$params = array(
+		/* $params = array(
 			array('type' => 'i', 'value' => NULL),
 			array('type' => 'i', 'value' => $id[0]),
 			array('type' => 'i', 'value' => $_POST['peso']),
@@ -237,7 +237,7 @@ function men_signos(){
 			array('type' => 's', 'value' => NULL),
 			array('type' => 's', 'value' => 'A');
 
-		);
+		); */
 			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
 		return mysql_prepd($sql, $params);
    	} 

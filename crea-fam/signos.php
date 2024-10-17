@@ -211,7 +211,7 @@ function men_signos(){
 
    function gra_signos(){
 		// var_dump($_POST);
-		$id=divide($_POST['idp']);
+	/* 	$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
@@ -239,7 +239,7 @@ function men_signos(){
 
 		);
 			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
-		return mysql_prepd($sql, $params);
+		return mysql_prepd($sql, $params); */
    }
 
    function formato_dato($a,$b,$c,$d){

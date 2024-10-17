@@ -112,6 +112,7 @@ function men_alertas(){
 	
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
+	
 	if($p['ano']<5){
 		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,true,'','col-2')
 		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,true,'','col-2')
@@ -119,9 +120,10 @@ function men_alertas(){
 
 	if($gest){
 		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gest,'','col-2',"valGluc('glucometria');enabOthSi('gestante','eTp');");
-	$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,$gest,'','col-25');//true
-	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,$gest,'','col-25');//true
+		$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,$gest,'','col-25');//true
+		$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,$gest,'','col-25');//true
 	}
+
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('cro_hiper','s','2',$d,$w.' '.$o,'Hipertension','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('cro_diabe','s','2',$d,$w.' '.$o,'Diabetes','rta',null,null,true,true,'','col-2');

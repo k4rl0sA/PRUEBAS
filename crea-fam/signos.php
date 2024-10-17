@@ -216,7 +216,7 @@ function men_signos(){
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
-		$zscore=explode("=",$_POST['zscore']);
+		$zscore=explode("=",$_POST['zscore'] ?? null);
 		$params = array(
 			array('type' => 'i', 'value' => NULL),
 			array('type' => 'i', 'value' => $id[0]),

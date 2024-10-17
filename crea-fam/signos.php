@@ -165,7 +165,6 @@ function cmp_signos(){
 		}
 	}
  
-
    function lis_signos(){
 	$id=divide($_POST['id']);
     $total = "SELECT COUNT(*) AS total FROM (
@@ -193,8 +192,7 @@ function cmp_signos(){
 function focus_signos(){
 	return 'signos';
 }
-   
-   
+     
 function men_signos(){
 	$rta=cap_menus('signos','pro');
 	return $rta;

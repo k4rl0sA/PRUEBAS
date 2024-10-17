@@ -169,7 +169,7 @@ function cmp_signos(){
    function lis_signos(){
 	$id=divide($_POST['id']);
     $total = "SELECT COUNT(*) AS total FROM (
-		SELECT S.id_signos AS Cod_Registro, S.peso, S.talla, S.imc, S.zscore, U.nombre AS Colaborador, S.fecha_toma, U.perfil AS Perfil 
+		SELECT S.id_signos AS Cod_Registro, S.peso, S.talla, S.imc, S.zscore, U.nombre AS Colaborador, S.fecha_toma,S.fecha_create Creo ,U.perfil AS Perfil 
 		FROM hog_signos S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE S.idpeople = $id[0]

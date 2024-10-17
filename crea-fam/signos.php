@@ -121,7 +121,7 @@ function cmp_signos(){
 		SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_create 'Fecha Toma',U.perfil AS Perfil 
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
-		WHERE idpeople=$id[0] ORDER BY S.fecha_create
+		WHERE idpeople=$id[0]  ORDER BY S.fecha_create
             ) AS Subquery;
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 

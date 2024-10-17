@@ -45,7 +45,7 @@ function men_alertas(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM personas_datocomp P
+	FROM hog_alert P
 	LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
 	$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
 	$sql.="' ORDER BY fecha_create";
@@ -207,7 +207,7 @@ function gra_alertas(){
 
 	$id=divide($_POST['idp']);
 
-		$sql="INSERT INTO personas_datocomp VALUES (NULL,
+		$sql="INSERT INTO hog_alert VALUES (NULL,
 		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),trim(upper('{$_POST['cursovida']}')),
 		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),trim(upper('{$_POST['cronico']}')),	
@@ -271,6 +271,7 @@ function get_alertas(){
 		$edad=$data['responseResult'][0];
 
 
+		
 		$sql="SELECT concat(dc_documento,'_',dc_tipo_doc,'_',tipo) as id,dc_documento,dc_tipo_doc,
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
@@ -285,7 +286,8 @@ function get_alertas(){
 		if ($edad['ano'] < 5) {
 			$sql.=",zscore" ;
 		} 
-		$sql.=" FROM personas_datocomp D
+		$sql.=" FROM hog_alert D
+
 				LEFT JOIN personas P ON dc_documento=idpersona AND dc_tipo_doc=tipo_doc
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
 				WHERE id_alert ='{$id[0]}'" ;

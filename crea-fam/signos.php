@@ -222,7 +222,7 @@ function men_signos(){
 			array('type' => 'i', 'value' => $_POST['peso']),
 			array('type' => 'i', 'value' => $_POST['talla']),
 			array('type' => 'i', 'value' => $_POST['imc']),
-			array('type' => 'i', 'value' => $_POST['tas']),
+			array('type' => 'i', 'value' => cleanTx($_POST['tas'])),
 			array('type' => 'i', 'value' => $_POST['tad']),
 			array('type' => 'i', 'value' => $_POST['frecard']),
 			array('type' => 'i', 'value' => $_POST['satoxi']),

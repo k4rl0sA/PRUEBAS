@@ -207,47 +207,6 @@ function gra_alertas(){
 
 	$id=divide($_POST['idp']);
 
-		/*
-		$sql="UPDATE hog_viv SET asignado=trim(upper('{$_POST['medico']}')) 
-		WHERE idviv =TRIM(UPPER('{$id[2]}'))";
-		// echo $sql;
-		$rta=dato_mysql($sql);
-		if (strpos($rta, 'Correctamente')) {
-			// $resp="\ny Se ha asignado el caso al Medico";
-			$resp=$rta;
-		}else{
-			$resp="\nError: No se pudo asignar,consulte al admin del sistema";
-		}
-		$rta1=$resp;
-		*/
-	/*
-	$sql="UPDATE `personas_datocomp` SET 
-		fecha=trim(upper('{$_POST['fecha']}')),tipo=trim(upper('{$_POST['tipo']}')),alert1=trim(upper('{$_POST['alert1']}')),selmul1=trim(upper('{$_POST['selmul1']}')),alert2=trim(upper('{$_POST['alert2']}')),selmul2=trim(upper('{$_POST['selmul2']}')),alert3=trim(upper('{$_POST['alert3']}')),selmul3=trim(upper('{$_POST['selmul3']}')),alert4=trim(upper('{$_POST['alert4']}')),selmul4=trim(upper('{$_POST['selmul4']}')),alert5=trim(upper('{$_POST['alert5']}')),selmul5=trim(upper('{$_POST['selmul5']}')),alert6=trim(upper('{$_POST['alert6']}')),selmul6=trim(upper('{$_POST['selmul6']}')),alert7=trim(upper('{$_POST['alert7']}')),selmul7=trim(upper('{$_POST['selmul7']}')),alert8=trim(upper('{$_POST['alert8']}')),selmul8=trim(upper('{$_POST['selmul8']}')),alert9=trim(upper('{$_POST['alert9']}')),selmul9=trim(upper('{$_POST['selmul9']}')),alert10=trim(upper('{$_POST['alert10']}')),selmul10=trim(upper('{$_POST['selmul10']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),tas=trim(upper('{$_POST['tas']}')),tad=trim(upper('{$_POST['tad']}')),glucometria=trim(upper('{$_POST['glucometria']}')),perime_braq=trim(upper('{$_POST['perime_braq']}')),perime_abdom=trim(upper('{$_POST['perime_abdom']}')),percentil=trim(upper('{$_POST['percentil']}')),zscore=trim(upper('{$_POST['zscore']}')),findrisc=trim(upper('{$_POST['findrisc']}')),oms=trim(upper('{$_POST['oms']}')),epoc=trim(upper('{$_POST['epoc']}')),
-		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE dc_documento =TRIM(UPPER('{$id[0]}')) AND dc_tipo_doc=TRIM(UPPER('{$id[1]}'))";
-	}else if($_POST['tipo']==1){
- 	*/
-
- 	/* $sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes from personas P left join hog_viv V ON idviv=vivipersona WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	$data=datos_mysql($sql1);
-	$edad=$data['responseResult'][0]; */
-
-	/* $sql="INSERT INTO personas_datocomp VALUES (NULL,
-		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['fecha']}')),
-		trim(upper('{$_POST['tipo']}')),
-		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),
-		trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
-		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),
-		trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
-		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),
-		trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
-		trim(upper('{$_POST['alert7']}')),trim(upper('{$sm7}')),
-		trim(upper('{$_POST['alert8']}')),trim(upper('{$sm8}')),
-		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),
-		trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
-		trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),FN_IMC({$_POST['peso']},{$_POST['talla']}),
-		trim(upper('{$tas}')),trim(upper('{$tad}')),trim(upper('{$glu}')),"; */
-
 		$sql="INSERT INTO personas_datocomp VALUES (NULL,
 		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),trim(upper('{$_POST['cursovida']}')),
@@ -264,24 +223,6 @@ function gra_alertas(){
 		trim(upper('{$tas}')),trim(upper('{$tad}')),trim(upper('{$glu}')),trim(upper('{$pbr}')),trim(upper('{$per}')),
 		trim(upper('{$des}')),";
 
-		/* trim(upper('{$_POST['percentil']}')),trim(upper('{$_POST['zscore']}')),trim(upper('{$_POST['findrisc']}')),
-		trim(upper('{$_POST['oms']}')),trim(upper('{$_POST['epoc']}')),"; */
-		
-
-	/* if ($edad['ano'] == 0 && $edad['mes'] <= 1) {
-		$sql.="trim(upper('0')),trim(upper('0')),trim(upper('{$per}')),trim(upper('{$des}')),trim(upper('0')),
-		trim(upper('0')),trim(upper('0')),";
-	 } elseif ($edad['ano'] < 5 && $edad['mes'] >= 6) {
-		$sql.="trim(upper('{$pbr}')),trim(upper('0')),trim(upper('0')),trim(upper('{$des}')),trim(upper('0')),
-		trim(upper('0')),trim(upper('0')),";
-	 } elseif ($edad['ano'] >= 18) {
-		$sql.="trim(upper('0')),trim(upper('{$pab}')),trim(upper('0')),trim(upper('0')),
-		trim(upper('{$fin}')),trim(upper('0')),trim(upper('0')),";
-	 } elseif ($edad['ano'] >= 40) {
-		$sql.="trim(upper('0')),
-		trim(upper('{$pab}')),trim(upper('0')),trim(upper('0')),trim(upper('{$fin}')),
-		trim(upper('{$oms}')),trim(upper('{$epo}')),";
-	 } */
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
 		// echo $sql;
@@ -290,7 +231,7 @@ function gra_alertas(){
 		return $rta;
 }
 
-function opc_evento($id=''){
+/* function opc_evento($id=''){
 	$d=get_persona();
 	if($d['sexo']=='M'){
 	  if($d['ano']<6){
@@ -315,7 +256,7 @@ function opc_evento($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5) and estado='A' ORDER BY 2",$id); 
 	  }
 	}
-}
+} */
 
 function get_alertas(){
 	// print_r($_POST);

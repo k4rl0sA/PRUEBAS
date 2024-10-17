@@ -120,6 +120,15 @@ function men_alertas(){
 	if($gest){
 		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gest,'','col-2',"valGluc('glucometria');enabOthSi('gestante','eTp');");
 	$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,$gest,'','col-25');//true
+	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,$gest,'','col-25');//true
+
+	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('cro_hiper','s','2',$d,$w.' '.$o,'Hipertension','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('cro_diabe','s','2',$d,$w.' '.$o,'Diabetes','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('cro_epoc','s','2',$d,$w.' '.$o,'Epoc','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' '.$o,'Cronico Sin Control','rta',null,null,true,true,'','col-2');
+	
+	$c[]=new cmp('esq_vacun','s','2',$d,$w.' '.$o,'Esquema de Vacunacion Completo','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','ges_sinctrl',null,'',$gest,$gest,'','col-25');//true
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"valGluc('glucometria');");
 	}

@@ -211,6 +211,13 @@ function men_signos(){
 
 	function gra_signos(){
 		var_dump($_POST);
+		$tas = $_POST['tas'] ?? null;
+		$tad = $_POST['tad'] ?? null;
+		$glu = $_POST['glucometria'] ?? null;
+		$pbr = $_POST['perime_braq'] ?? null;
+		$per = $_POST['percentil'] ?? null;
+		$des = $_POST['zscore'] ?? null;
+		
 		$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');

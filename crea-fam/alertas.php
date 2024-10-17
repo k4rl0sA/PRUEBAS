@@ -149,90 +149,11 @@ function men_alertas(){
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','evento',null,null,false,false,'','col-5');
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
-
-	$o='med';
-	$c[]=new cmp($o,'e',null,'TOMA DE SIGNOS Y alertas ANTROPOMÉTRICAS',$w);
-	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore');calImc('peso','talla','imc');");
-	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore');valTalla('talla');valGluc('glucometria');");
-	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
-	if($meses>= 6 && $meses < 60){
-		$c[]=new cmp('perime_braq','sd',4, $d,$w.' '.$o,'Perimetro Braquial (Cm)',0,null,'#,#',true,true,'','col-15');
-	}
-	if($p['ano']<5){
-		$c[]=new cmp('zscore','t',15,'',$w.' '.$o,'Z-score','des',null,null,false,false,'','col-35');
-	}
-	/* if( $p['ano']==0 && $p['mes']<=1 ){
-		$c[]=new cmp('percentil','n',4, $d,$w,'Percentil Fen','pef',null,null,false,true,'','col-2');
-	} 
-	*/
-		
-	if($p['ano']>=18){
-		$c[]=new cmp('tas','n',3, $d,$w.' '.$o,'Tensión Sistolica Mín=60 - Máx=310','tas','rgxsisto','###',true,true,'','col-2',"valSist('tas');");
-		$c[]=new cmp('tad','n',3, $d,$w.' '.$o,'Tensión Diastolica Mín=40 - Máx=185','tad','rgxdiast','##',true,true,'','col-2',"ValTensions('tas',this);valDist('tad');");
-		$c[]=new cmp('glucometria','n',4, $d,$w.' gL '.$o,'Glucometría Mín=5 - Máx=600','glu','','###',false,true,'','col-2',"valGluco('glucometria');");//findrisc >12
-		/* $c[]=new cmp('tas','n',3, $d,$w,'Tensión Sistolica Mín=90 - Máx=185','tas','rgxsisto','###',true,true,'','col-2');
-		$c[]=new cmp('tad','n',3, $d,$w,'Tensión Diastolica Mín=70 - Máx=130','tad','rgxdiast','##',true,true,'','col-2');
-		$c[]=new cmp('glucometria','n',4, $d,$w,'Glucometría Mín=70 - Máx=190','glu','','###',true,true,'','col-2'); */
-		// $c[]=new cmp('perime_abdom','n',4, $d,$w,'Perimetro Abdominal (Cm) Mín=50 - Máx=150','abd','rgxperabd',null,true,true,'','col-2');
-		// $c[]=new cmp('findrisc','s',15,$d,$w,'Findrisc','fin',null,null,true,true,'','col-2');
-	}
-	/* if($p['ano']>=40){
-		$c[]=new cmp('oms','s',15,$d,$w,'OMS','oms',null,null,true,true,'','col-2');
-		$c[]=new cmp('epoc','s',15,$d,$w,'EPOC','epoc',null,null,true,true,'','col-2');
-	} */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
    }
 
-function get_zscore(){
-	$id=divide($_POST['val']);
-	 $fechaNacimiento = new DateTime($id[1]);
-	 $fechaActual = new DateTime();
-	 $diferencia = $fechaNacimiento->diff($fechaActual);
-	 $edadEnDias = $diferencia->days;
-	$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
-	$sex=$id[2];
 
-$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
-	(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
-	((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
- (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
-//   echo $sql;
- $info=datos_mysql($sql);
- 	if (!$info['responseResult']) {
-		return '';
-	}else{
-		$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
-		switch ($z) {
-			case ($z <=-3):
-				$des='DESNUTRICIÓN AGUDA SEVERA';
-				break;
-			case ($z >-3 && $z <=-2):
-				$des='DESNUTRICIÓN AGUDA MODERADA';
-				break;
-			case ($z >-2 && $z <=-1):
-				$des='RIESGO DESNUTRICIÓN AGUDA';
-				break;
-			case ($z>-1 && $z <=1):
-					$des='PESO ADECUADO PARA LA TALLA';
-				break;
-			case ($z >1 && $z <=2):
-					$des='RIESGO DE SOBREPESO';
-				break;
-			case ($z >2 && $z <=3):
-					$des='SOBREPESO';
-				break;
-				case ($z >3):
-					$des='OBESIDAD';
-				break;
-			default:
-				$des='Error en el rango, por favor valide';
-				break;
-		}
-
-		return json_encode($z." = ".$des);
-	}
-}
    
    
    function get_persona(){
@@ -244,7 +165,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) - TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) * 30.436875) AS dia
+		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from personas P left join hog_viv V ON idviv=vivipersona 
 		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 		// echo $sql;
@@ -266,12 +187,6 @@ function gra_alertas(){
 	if (($smu8 = $_POST['fselmul8'] ?? null) && is_array($smu8)) {$sm8 = implode(",",str_replace("'", "", $smu8));}
 	if (($smu9 = $_POST['fselmul9'] ?? null) && is_array($smu9)) {$sm9 = implode(",",str_replace("'", "", $smu9));}
 	if (($smu10 = $_POST['fselmul10'] ?? null) && is_array($smu10)) {$sm10 = implode(",",str_replace("'", "", $smu10));}
-	$tas = $_POST['tas'] ?? null;
-	$tad = $_POST['tad'] ?? null;
-	$glu = $_POST['glucometria'] ?? null;
-	$pbr = $_POST['perime_braq'] ?? null;
-	$per = $_POST['percentil'] ?? null;
-	$des = $_POST['zscore'] ?? null;
 	$codoral= $_POST['codoral']?? null;
 
 	$id=divide($_POST['idp']);

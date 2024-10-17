@@ -44,7 +44,7 @@ function men_alertas(){
    function lis_alertas(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT idalertas ACCIONES,idalertas AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM personas_datocomp P
 	LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
 	$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
@@ -392,7 +392,7 @@ function get_alertas(){
 		$id=divide($_POST['id']);
 		// print_r($id);
 		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
-		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE idalertas='{$id[0]}'";
+		from personas P left join personas_datocomp D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE id_alert='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
 
@@ -414,7 +414,7 @@ function get_alertas(){
 		$sql.=" FROM personas_datocomp D
 				LEFT JOIN personas P ON dc_documento=idpersona AND dc_tipo_doc=tipo_doc
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
-				WHERE idalertas ='{$id[0]}'" ;
+				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);
 		 //echo $sql; 
 		// print_r($info['responseResult'][0]);

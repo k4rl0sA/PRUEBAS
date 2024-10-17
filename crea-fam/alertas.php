@@ -112,7 +112,6 @@ function men_alertas(){
 	
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
-	
 	if($p['ano']<5){
 		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,true,'','col-2')
 		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,true,'','col-2')

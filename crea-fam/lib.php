@@ -687,7 +687,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono casa' title='Caracterización del Hogar' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
+		$rta.="<li class='icono casa' title='Caracterización del Hogar'  Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"><i class='fa-solid fa-house-chimney' id='".$c['ACCIONES']."'></i></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
 		$rta.="<li class='icono crear' title='Crear Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"></li>";		
 	}
 	if ($a=='famili-lis' && $b=='acciones'){

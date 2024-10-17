@@ -211,13 +211,6 @@ function men_signos(){
 
 	function gra_signos(){
 		var_dump($_POST);
-		$tas = $_POST['tas'] ?? null;
-		$tad = $_POST['tad'] ?? null;
-		$glu = $_POST['glucometria'] ?? null;
-		$pbr = $_POST['perime_braq'] ?? null;
-		$per = $_POST['percentil'] ?? null;
-		$des = $_POST['zscore'] ?? null;
-
 		$id=divide($_POST['idp']);
 		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
@@ -229,15 +222,15 @@ function men_signos(){
 			array('type' => 'i', 'value' => $_POST['peso']),
 			array('type' => 'i', 'value' => $_POST['talla']),
 			array('type' => 'i', 'value' => $_POST['imc']),
-			array('type' => 'i', 'value' => $tas),
-			array('type' => 'i', 'value' => $_POST['tad']),
-			array('type' => 'i', 'value' => $_POST['frecard']),
-			array('type' => 'i', 'value' => $_POST['satoxi']),
-			array('type' => 'i', 'value' => $_POST['peri_abdomi']),
-			array('type' => 'i', 'value' => $_POST['peri_braq']),
-			array('type' => 'i', 'value' => $zscore[0]),
-			array('type' => 'i', 'value' => $zscore[1]),
-			array('type' => 'i', 'value' => $_POST['glucom']),
+			array('type' => 'i', 'value' => $_POST['tas'] ?? null),
+			array('type' => 'i', 'value' => $_POST['tad'] ?? null),
+			array('type' => 'i', 'value' => $_POST['frecard']?? null),
+			array('type' => 'i', 'value' => $_POST['satoxi']?? null),
+			array('type' => 'i', 'value' => $_POST['peri_abdomi']?? null),
+			array('type' => 'i', 'value' => $_POST['peri_braq']?? null),
+			array('type' => 'i', 'value' => $zscore[0]?? null),
+			array('type' => 'i', 'value' => $zscore[1]?? null),
+			array('type' => 'i', 'value' => $_POST['glucometria'] ?? null),
 			array('type' => 's', 'value' => $_SESSION['us_sds']),
 			array('type' => 's', 'value' => date("Y-m-d H:i:s")),
 			array('type' => 's', 'value' => NULL),

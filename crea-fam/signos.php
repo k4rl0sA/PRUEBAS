@@ -70,8 +70,8 @@ function cmp_signos(){
 	
 	$o='med';
 	$c[]=new cmp($o,'e',null,'TOMA DE SIGNOS Y signos ANTROPOMÉTRICAS',$w);
-	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore');calImc('peso','talla','imc');");
-	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore');valTalla('talla');valGluc('glucometria');");
+	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','signos.php');calImc('peso','talla','imc');");
+	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','signos.php');valTalla('talla');valGluc('glucometria');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
 		
 	if($p['ano']>=18){
@@ -113,6 +113,57 @@ function cmp_signos(){
 				return $info['responseResult'][0];
 		}
 	} 
+
+	function get_zscore(){
+		$id=divide($_POST['val']);
+		 $fechaNacimiento = new DateTime($id[1]);
+		 $fechaActual = new DateTime();
+		 $diferencia = $fechaNacimiento->diff($fechaActual);
+		 $edadEnDias = $diferencia->days;
+		$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+		$sex=$id[2];
+	
+	$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+		(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+		((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+	 (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+	//   echo $sql;
+	 $info=datos_mysql($sql);
+		 if (!$info['responseResult']) {
+			return '';
+		}else{
+			$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+			switch ($z) {
+				case ($z <=-3):
+					$des='DESNUTRICIÓN AGUDA SEVERA';
+					break;
+				case ($z >-3 && $z <=-2):
+					$des='DESNUTRICIÓN AGUDA MODERADA';
+					break;
+				case ($z >-2 && $z <=-1):
+					$des='RIESGO DESNUTRICIÓN AGUDA';
+					break;
+				case ($z>-1 && $z <=1):
+						$des='PESO ADECUADO PARA LA TALLA';
+					break;
+				case ($z >1 && $z <=2):
+						$des='RIESGO DE SOBREPESO';
+					break;
+				case ($z >2 && $z <=3):
+						$des='SOBREPESO';
+					break;
+					case ($z >3):
+						$des='OBESIDAD';
+					break;
+				default:
+					$des='Error en el rango, por favor valide';
+					break;
+			}
+	
+			return json_encode($z." = ".$des);
+		}
+	}
+ 
 
    function lis_signos(){
 	$id=divide($_POST['id']);
@@ -161,20 +212,33 @@ function men_signos(){
    function gra_signos(){
 		// var_dump($_POST);
 		$id=divide($_POST['idp']);
-		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','zscore','glucom');
+		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
+		$zscore=explode("=",$_POST['zscore']);
 		$params = array(
 			array('type' => 'i', 'value' => NULL),
 			array('type' => 'i', 'value' => $id[0]),
+			array('type' => 'i', 'value' => $_POST['peso']),
+			array('type' => 'i', 'value' => $_POST['talla']),
+			array('type' => 'i', 'value' => $_POST['imc']),
+			array('type' => 'i', 'value' => $_POST['tas']),
+			array('type' => 'i', 'value' => $_POST['tad']),
+			array('type' => 'i', 'value' => $_POST['frecard']),
+			array('type' => 'i', 'value' => $_POST['satoxi']),
+			array('type' => 'i', 'value' => $_POST['peri_abdomi']),
+			array('type' => 'i', 'value' => $_POST['peri_braq']),
+			array('type' => 'i', 'value' => $zscore[0]),
+			array('type' => 'i', 'value' => $zscore[1]),
+			array('type' => 'i', 'value' => $_POST['glucom']),
+			array('type' => 's', 'value' => $_SESSION['us_sds']);
+			array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+			array('type' => 's', 'value' => NULL);
+			array('type' => 's', 'value' => NULL);
+			array('type' => 's', 'value' => 'A');
+
 		);
-			$params = array_merge($params, params($campos));// Agregar los valores dinámicos
-			$params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
-			$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
-			$params[] = array('type' => 's', 'value' => NULL);
-			$params[] = array('type' => 's', 'value' => NULL);
-			$params[] = array('type' => 's', 'value' => 'A');
-	
+			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
 		return mysql_prepd($sql, $params);
    }
 

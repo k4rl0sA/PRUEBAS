@@ -94,6 +94,7 @@ function men_alertas(){
 			$curso='';
 			break;
 	}
+
 	$des='des';
 	$z='zS';
 	$days=fechas_app('vivienda');
@@ -271,7 +272,7 @@ function get_alertas(){
 		$edad=$data['responseResult'][0];
 
 
-		
+
 		$sql="SELECT concat(dc_documento,'_',dc_tipo_doc,'_',tipo) as id,dc_documento,dc_tipo_doc,
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
@@ -287,7 +288,6 @@ function get_alertas(){
 			$sql.=",zscore" ;
 		} 
 		$sql.=" FROM hog_alert D
-
 				LEFT JOIN personas P ON dc_documento=idpersona AND dc_tipo_doc=tipo_doc
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
 				WHERE id_alert ='{$id[0]}'" ;

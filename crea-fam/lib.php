@@ -711,7 +711,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono' title='Signos' id='".$c['ACCIONES']."' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='icono fa-solid fa-ruler-vertical' id='".$c['ACCIONES']."'></i></li>";
 		$rta.="<li class='icono menubtn' title='Menu' id='".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"></li><div id='panelContainer'></div>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
-		$rta.="<li class='icono medida ' title='Alertas' id='".$c['ACCIONES']."' Onclick=\"mostrar('medidas','pro',event,'','medidas.php',7,'medidas');Color('datos-lis');\"></li>";
+		$rta.="<li class='icono medida ' title='Alertas' id='".$c['ACCIONES']."' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"></li>";
 		}
 		if ($a=='planc-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

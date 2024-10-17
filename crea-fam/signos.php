@@ -115,7 +115,6 @@ function cmp_signos(){
 	} 
 
    function lis_signos(){
-    var_dump($_POST);
 	$id=divide($_POST['id']);
     $total = "SELECT COUNT(*) AS total FROM (
 		SELECT S.id_signos AS Cod_Registro, S.peso, S.talla, S.imc, S.zscore, U.nombre AS Colaborador, S.fecha_create AS 'Fecha Toma', U.perfil AS Perfil 

@@ -180,7 +180,7 @@ function cmp_signos(){
 	
 	$pag=(isset($_POST['pag-homes']))? ($_POST['pag-homes']-1)* $regxPag:0;
 
-    $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_toma,U.perfil AS Perfil 
+    $sql="SELECT S.id_signos AS Cod_Registro,S.peso,S.talla,S.imc,S.zscore,U.nombre AS Colaborador,S.fecha_toma,S.fecha_create Creo,U.perfil AS Perfil 
         FROM `hog_signos` S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
 		WHERE idpeople='".$id[0]."' 

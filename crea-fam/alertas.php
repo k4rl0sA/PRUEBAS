@@ -41,16 +41,16 @@ function men_alertas(){
    }
 
    function lis_alertas(){
-	// var_dump($_POST['id']);
-	$id=divide($_POST['id']);
-	$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_alert P
-	LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
-	$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"alertas-lis",5);
+		// var_dump($_POST['id']);
+		$id=divide($_POST['id']);
+		$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
+		FROM hog_alert P
+		LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
+		$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
+		$sql.="' ORDER BY fecha_create";
+		// echo $sql;
+		$datos=datos_mysql($sql);
+		return panel_content($datos["responseResult"],"alertas-lis",5);
    }
  
    function cmp_alertas(){

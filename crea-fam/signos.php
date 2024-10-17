@@ -117,12 +117,11 @@ function cmp_signos(){
    function lis_signos(){
     // var_dump($_POST);
 	$id=divide($_POST['id']);
-	$id= (int)$id[0];
     $total = "SELECT COUNT(*) AS total FROM (
 		SELECT S.id_signos AS Cod_Registro, S.peso, S.talla, S.imc, S.zscore, U.nombre AS Colaborador, S.fecha_create AS 'Fecha Toma', U.perfil AS Perfil 
 		FROM hog_signos S
 		LEFT JOIN usuarios U ON S.usu_create = U.id_usuario 
-		WHERE S.idpeople = $id
+		WHERE S.idpeople = $id[0]
 	) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 

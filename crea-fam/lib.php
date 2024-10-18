@@ -717,7 +717,7 @@ function formato_dato($a,$b,$c,$d){
 		if(plan($c['Cod_Familiar'])===true){
 			$rta.="<li title='Compromisos Concertados' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-regular fa-address-book ico '  id='".$c['ACCIONES']."'></i></li>";
 		}
-		$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-house-fire ico' id='".$c['ACCIONES']."' ></i></li>";
+		$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city' ico' id='".$c['ACCIONES']."' ></i></li>";
 		$rta.="<li title='Crear Integrante Familia' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"><i class='fa-solid fa-person-circle-plus ico'  id='".$c['ACCIONES']."'></i></li>";
 
 		/* $rta.="<li class='icono crear' title='Crear Integrante Familia' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"></li>";

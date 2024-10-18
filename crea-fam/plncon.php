@@ -121,7 +121,7 @@ return $rta;
 
 
 	function get_compConc(){
-        // print_r($_POST);
+        print_r($_POST);
         if (!$_POST['id']) {
             return '';
         }

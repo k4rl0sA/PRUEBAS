@@ -182,7 +182,7 @@ function men_alertas(){
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from person P left join hog_carac V ON vivipersona=idfam
-		WHERE idpersona='".$id[0]."'";
+		WHERE idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

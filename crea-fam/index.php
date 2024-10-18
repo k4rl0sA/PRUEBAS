@@ -81,6 +81,8 @@ function grabar(tb='',ev){
 		'prechronic':'cronicos.php',
 		'statFam':'stateFami.php',
 		'caract':'../crea-caract/lib.php',
+		'plancui':'plancui.php',
+		'plncon':'plncon.php',
 		'signos':'signos.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';

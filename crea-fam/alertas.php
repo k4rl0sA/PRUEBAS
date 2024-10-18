@@ -226,7 +226,7 @@ function gra_alertas(){
 		return $rta;
 }
 
-/* function opc_evento($id=''){
+function opc_evento($id=''){
 	$d=get_persona();
 	if($d['sexo']=='M'){
 	  if($d['ano']<6){
@@ -251,7 +251,7 @@ function gra_alertas(){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5) and estado='A' ORDER BY 2",$id); 
 	  }
 	}
-} */
+}
 
 function get_alertas(){
 	// print_r($_POST);

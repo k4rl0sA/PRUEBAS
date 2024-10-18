@@ -133,8 +133,7 @@ header span {color:#FFF;margin:5px;font-size:12px;font-weight:bold;float:left;}
 header nav {float:right;}
 header nav {float:right;}
 a:link {text-decoration:none;}
-nav li {display:inline-block;color:#000;height:25px;}
-.link {cursor:pointer;}
+nav li {display:inline-block;color:#000;}
 .link:hover {background:#8D8;cursor:url('../img/icons.gif'), 360px -000px;font-size:larger;text-decoration:buttonface;animation:blinker;}
 .logo {margin-right:auto;margin-left:auto;display: block;}
 .menu {cursor:pointer;margin:0px;min-height:22px;}

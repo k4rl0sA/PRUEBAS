@@ -133,7 +133,7 @@ function cmp_caract(){
 	$c[]=new cmp('facamb8','o',2,$d,$w.' '.$o,'En la vivienda los productos quimicos estan almacenados de manera segura','fm8',null,null,false,true,'','col-10');
 	$c[]=new cmp('facamb9','o',2,$d,$w.' '.$o,'En la vivienda se realiza adecuado manejo de residuos sólidos','fm9',null,null,false,true,'','col-10');
 
-	$c[]=new cmp('observacion','a',1500,$d,$w.'','Observacion','observacion',null,null,true,true,'','col-10');
+	$c[]=new cmp('observacion','a',1500,$d,$w.''.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

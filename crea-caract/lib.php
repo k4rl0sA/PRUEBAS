@@ -141,6 +141,7 @@ function cmp_caract(){
 
 function lis_caracterizaciones(){
     // var_dump($_POST);
+	$id=divide($_POST['id']);
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
@@ -155,7 +156,7 @@ function lis_caracterizaciones(){
 
 
 
-    $id=divide($_POST['id']);
+    
     $sql="SELECT C.id_viv ACCIONES,C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
 		LEFT JOIN hog_fam F ON C.idfam=F.id_fam

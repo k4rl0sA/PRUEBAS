@@ -125,16 +125,25 @@ return $rta;
             return '';
         }
         $id = divide($_POST['id']);
-        $sql = "SELECT concat(idviv,'_',idcon) 'id',compromiso,equipo,cumple
+        if(count($id)==2){
+          $sql = "SELECT concat(idviv,'_',idcon) 'id',compromiso,equipo,cumple
                 FROM `hog_planconc` 
                 WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
                 LIMIT 1";
         // echo $sql;		
-        $info = datos_mysql($sql);
-        if (!$info['responseResult']) {
-            return '';
+          $info = datos_mysql($sql);
+        }else{
+          $sql = "SELECT idviv 'id',compromiso,equipo,cumple
+                FROM `hog_planconc` 
+                WHERE idviv='{$id[0]}'
+                LIMIT 1";
+                $info = datos_mysql($sql);
         }
-        return json_encode($info['responseResult'][0]);
+        if (!$info['responseResult']) {
+          return '';
+        }else{
+          return json_encode($info['responseResult'][0]);
+        }
 	}
 
     function opc_accion1desc_accion1($id=''){

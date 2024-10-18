@@ -146,6 +146,7 @@ function lis_caracterizaciones(){
         FROM `hog_carac` C
 		LEFT JOIN hog_fam F ON C.idfam=F.id_fam
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
+		WHERE C.idfam='$id[0]'
             ) AS Subquery";
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total']; 

@@ -282,27 +282,33 @@ function men_homes1(){
    
 function gra_homes(){
 	// var_dump($_POST);
+	if(count(divide($_POST['idg']))==2){
+
+	}else{
+		$id=$_POST['idg']
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $_POST['idg']),
-	array('type' => 'i', 'value' => num_fam()),
-	array('type' => 's', 'value' => $_POST['complemento1']),
-	array('type' => 's', 'value' => $_POST['nuc1']),
-	array('type' => 's', 'value' => $_POST['complemento2']),
-	array('type' => 's', 'value' => $_POST['nuc2']),
-	array('type' => 's', 'value' => $_POST['complemento3']),
-	array('type' => 's', 'value' => $_POST['nuc3']),
-	array('type' => 's', 'value' => $_POST['telefono1']),
-	array('type' => 's', 'value' => $_POST['telefono2']),
-	array('type' => 's', 'value' => $_POST['telefono3']),
-	array('type' => 's', 'value' => namequipo()),
-	array('type' => 'i', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => 'A')
+		array('type' => 'i', 'value' => NULL),
+		array('type' => 'i', 'value' => $id),
+		array('type' => 'i', 'value' => num_fam()),
+		array('type' => 's', 'value' => $_POST['complemento1']),
+		array('type' => 's', 'value' => $_POST['nuc1']),
+		array('type' => 's', 'value' => $_POST['complemento2']),
+		array('type' => 's', 'value' => $_POST['nuc2']),
+		array('type' => 's', 'value' => $_POST['complemento3']),
+		array('type' => 's', 'value' => $_POST['nuc3']),
+		array('type' => 's', 'value' => $_POST['telefono1']),
+		array('type' => 's', 'value' => $_POST['telefono2']),
+		array('type' => 's', 'value' => $_POST['telefono3']),
+		array('type' => 's', 'value' => namequipo()),
+		array('type' => 'i', 'value' => $_SESSION['us_sds']),
+		array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+		array('type' => 's', 'value' => NULL),
+		array('type' => 's', 'value' => NULL),
+		array('type' => 's', 'value' => 'A')
 	);
+	}
+	
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	return $rta;

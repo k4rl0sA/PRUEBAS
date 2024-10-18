@@ -89,7 +89,11 @@ function cmp_signos(){
 		WHERE idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}	
 		}
 	} 
 

@@ -140,7 +140,7 @@ function cmp_caract(){
 }
 
 function lis_caracterizaciones(){
-    var_dump($_POST);
+    // var_dump($_POST);
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
@@ -159,7 +159,7 @@ function lis_caracterizaciones(){
         FROM `hog_carac` C
 		LEFT JOIN hog_fam F ON C.idfam=F.id_fam
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
-	";//	WHERE C.idfam=[]
+	WHERE C.idfam='$id[0]'";//	
     $sql.=" ORDER BY C.fecha_create";
     echo $sql;
       $datos=datos_mysql($sql);

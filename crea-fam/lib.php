@@ -282,18 +282,10 @@ function gra_homes(){
 	// var_dump($_POST);
 	$id=divide($_POST['idg']);
 
-	$campos = array(
-        'complemento1','nuc1','complemento2','nuc2', 'complemento3','nuc3','telefono1','telefono2','telefono3','tipo_familia',
-		'personas','ingreso','seg_pre1','seg_pre2','seg_pre3','seg_pre4','seg_pre5','seg_pre6','seg_pre7','seg_pre8',
-		'subsidio_1','subsidio_2','subsidio_3','subsidio_4','subsidio_5','subsidio_6','subsidio_7','subsidio_8','subsidio_9','subsidio_10',
-        'subsidio_11','subsidio_12','subsidio_13','subsidio_14','subsidio_15','subsidio_16','subsidio_17','subsidio_18','subsidio_19','subsidio_20',
-		'energia','gas','acueducto','alcantarillado','basuras','pozo','aljibe','perros','numero_perros','perro_vacunas',
-		'perro_esterilizado','gatos','numero_gatos','gato_vacunas','gato_esterilizado','otros','facamb1','facamb2','facamb3','facamb4',
-		'facamb5','facamb6','facamb7','facamb8','facamb9','observacion'
-    );
+	$campos = array('complemento1','nuc1','complemento2','nuc2', 'complemento3','nuc3','telefono1','telefono2','telefono3');
 
 	if(count($id)==2){
-		$sql = "UPDATE hog_fam SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_viv = ?";
+		$sql = "UPDATE hog_fam SET " . implode(" = ?, ", $campos) . " = ?, usu_update = ?, fecha_update = ? WHERE id_fam = ?";
 		 $params = params($campos);		 // Para UPDATE, agregamos los valores dinámicos
 		 $params[] = array('type' => 's', 'value' => $_SESSION['us_sds']);
 		 $params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));

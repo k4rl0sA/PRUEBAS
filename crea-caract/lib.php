@@ -144,6 +144,7 @@ function lis_caracterizaciones(){
     $total="SELECT COUNT(*) AS total FROM (
 		SELECT C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
+		LEFT JOIN hog_fam F ON C.idfam=F.id_fam
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
             ) AS Subquery";
 	$info=datos_mysql($total);
@@ -156,6 +157,7 @@ function lis_caracterizaciones(){
     $id=divide($_POST['id']);
     $sql="SELECT C.id_viv ACCIONES,C.id_viv AS Cod_Registro, C.idfam AS Cod_Familia, C.fecha AS Fecha_Caracterizacion, FN_CATALOGODESC(215,C.motivoupd) AS Motivo, U.nombre AS Colaborador, U.perfil AS Perfil 
         FROM `hog_carac` C
+		LEFT JOIN hog_fam F ON C.idfam=F.id_fam
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario";
     $sql.=" ORDER BY C.fecha_create";
     // echo $sql;

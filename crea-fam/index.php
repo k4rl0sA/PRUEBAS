@@ -81,7 +81,7 @@ function grabar(tb='',ev){
 		'prechronic':'cronicos.php',
 		'statFam':'stateFami.php',
 		'caract':'../crea-caract/lib.php',
-		'plancui':'plancui.php',
+		'planDcui':'plancui.php',
 		'plncon':'plncon.php',
 		'signos':'signos.php'
  	};

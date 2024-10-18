@@ -20,26 +20,26 @@ else {
 }
 
 
-function focus_planDCui(){
-	return 'planDCui';
+function focus_planDcui(){
+	return 'planDcui';
    }
    
    
-   function men_planDCui(){
-	$rta=cap_menus('planDCui','pro');
+   function men_planDcui(){
+	$rta=cap_menus('planDcui','pro');
 	return $rta;
    }
    
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
-	   if ($a=='planDCui'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+	   if ($a=='planDcui'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 
 	   }
   return $rta;
 }
-FUNCTION lis_planDCui(){
+FUNCTION lis_planDcui(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
@@ -49,19 +49,19 @@ FUNCTION lis_planDCui(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"planDCui-lis",5);
+	return panel_content($datos["responseResult"],"planDcui-lis",5);
    }
 
 
-function cmp_planDCui(){
+function cmp_planDcui(){
 	$rta="";
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_planDCui();
+	$d=get_planDcui();
 	if ($d==""){$d=$t;}
 //var_dump($d);
 	$u=($d['fecha']=='')?true:false;
 	$hoy=date('Y-m-d');
-    $w="planDCui";
+    $w="planDcui";
 	$o='accide';
 	$e="";
 	$key='pln';
@@ -82,7 +82,7 @@ function cmp_planDCui(){
 	return $rta;
 }
 
-	function gra_planDCui(){
+	function gra_planDcui(){
 		// print_r($_POST);
 	$id=divide($_POST['idp']);
     $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
@@ -132,7 +132,7 @@ $params = [
 return $rta;
 	}
 
-	function get_planDCui(){
+	function get_planDcui(){
 		if (!$_POST['id']) {
 			return '';
 		}
@@ -215,9 +215,9 @@ return $rta;
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];
-		if ($a=='planDCui-lis' && $b=='acciones'){
+		if ($a=='planDcui-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDCui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
+				// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

@@ -281,12 +281,11 @@ function men_homes1(){
 }
    
 function gra_homes(){
-	var_dump($_POST);
-	$id=$_POST['idg'];
+	// var_dump($_POST);
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $id[0]),
+	array('type' => 'i', 'value' => $_POST['idg']),
 	array('type' => 'i', 'value' => num_fam()),
 	array('type' => 's', 'value' => $_POST['complemento1']),
 	array('type' => 's', 'value' => $_POST['nuc1']),

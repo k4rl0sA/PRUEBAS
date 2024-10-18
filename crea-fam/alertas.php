@@ -181,7 +181,7 @@ function men_alertas(){
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from person P left join hog_fam V ON vivipersona=id_fam
+		from person P left join hog_carac V ON vivipersona=idfam
 		WHERE idpersona='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);

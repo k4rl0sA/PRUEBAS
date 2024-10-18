@@ -692,8 +692,8 @@ function formato_dato($a,$b,$c,$d){
 	}
 	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li title='Editar Familia' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."'></li>";  //act_lista(f,this);
-		$rta.="<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['ACCIONES']."'></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
+		$rta.="<li title='Editar Familia' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."'></i></li>";  //act_lista(f,this);
+		$rta.="<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 		$rta.="<li class='icono familia' title='Mostrar Integrantes' id='".$c['ACCIONES']."' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"></li>";
 		$rta.="<li class='icono plan1' title='Planes de Cuidado Familiar' id='".$c['ACCIONES']."' Onclick=\"mostrar('planDCui','pro',event,'','plancui.php',7);Color('famili-lis');\"></li>";
 		if(plan($c['Cod_Familiar'])===true){

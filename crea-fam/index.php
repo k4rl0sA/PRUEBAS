@@ -82,7 +82,7 @@ function grabar(tb='',ev){
 		'statFam':'stateFami.php',
 		'caract':'../crea-caract/lib.php',
 		'planDcui':'plancui.php',
-		'plncon':'plncon.php',
+		'compConc':'plncon.php',
 		'signos':'signos.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';

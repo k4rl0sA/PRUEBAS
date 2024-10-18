@@ -119,6 +119,7 @@ function gra_compConc(){
 return $rta;
 }
 
+
 	function get_compConc(){
         // print_r($_POST);
         if (!$_POST['id']) {

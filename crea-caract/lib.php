@@ -163,7 +163,7 @@ function lis_caracterizaciones(){
 		LEFT JOIN usuarios U ON C.usu_create = U.id_usuario
 	WHERE C.idfam='$id[0]'";//	
     $sql.=" ORDER BY C.fecha_create";
-    echo $sql;
+    // echo $sql;
       $datos=datos_mysql($sql);
     return create_table($total,$datos["responseResult"],"homes",$regxPag);
 }

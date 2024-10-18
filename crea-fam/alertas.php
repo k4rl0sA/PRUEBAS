@@ -181,8 +181,8 @@ function men_alertas(){
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from personas P left join hog_viv V ON idviv=vivipersona 
-		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+		from person P left join hog_fam V ON vivipersona=id_fam
+		WHERE idpersona='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
@@ -262,7 +262,7 @@ function get_alertas(){
 		$id=divide($_POST['id']);
 		// print_r($id);
 		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
-		from personas P left join hog_alert D ON P.idpeople=D.idpeople WHERE id_alert='{$id[0]}'";
+		from person P left join hog_alert D ON P.idpeople=D.idpeople WHERE id_alert='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
 
@@ -283,7 +283,7 @@ function get_alertas(){
 			$sql.=",zscore" ;
 		} 
 		$sql.=" FROM hog_alert D
-				LEFT JOIN personas P ON idpeople=idpeople
+				LEFT JOIN person P ON idpeople=idpeople
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);

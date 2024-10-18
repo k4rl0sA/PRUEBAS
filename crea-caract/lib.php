@@ -123,15 +123,15 @@ function cmp_caract(){
       
 	$o='amb';
 	$c[]=new cmp($o,'e',null,'FACTORTES AMBIENTALES',$w);
-	$c[]=new cmp('facamb1','o',2,$d,$w.' '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb2','o',2,$d,$w.' '.$o,'Edificaciones o vías en construcción o vías no pavimentadas a menos de una cuadra o 100 metros.','fm2',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb3','o',2,$d,$w.' '.$o,'Cercanía de la vivienda a zonas recreativas, zonas verdes y/o de esparcimiento.','fm3',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb4','o',2,$d,$w.' '.$o,'Cercanía a la vivienda relleno sanitario, rondas hídricas, canales, cementerios, humedales, terminales aéreos o terrestres','fm4',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb5','o',2,$d,$w.' '.$o,'En la vivienda se almacena y conserva los alimentos de forma adecuada','fm5',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb6','o',2,$d,$w.' '.$o,'En la vivienda se manipula adecuadamente agua para consumo humano (desinfección adecuada, uso seguro de utensilios)','fm6',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb7','o',2,$d,$w.' '.$o,'Las personas que habitan en la vivienda adquieren medicamentos con fórmula médica','fm7',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb8','o',2,$d,$w.' '.$o,'En la vivienda los productos quimicos estan almacenados de manera segura','fm8',null,null,false,true,'','col-10');
-	$c[]=new cmp('facamb9','o',2,$d,$w.' '.$o,'En la vivienda se realiza adecuado manejo de residuos sólidos','fm9',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb1','o',2,$d,$w.'  '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb2','o',2,$d,$w.'  '.$o,'Edificaciones o vías en construcción o vías no pavimentadas a menos de una cuadra o 100 metros.','fm2',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb3','o',2,$d,$w.'  '.$o,'Cercanía de la vivienda a zonas recreativas, zonas verdes y/o de esparcimiento.','fm3',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb4','o',2,$d,$w.'  '.$o,'Cercanía a la vivienda relleno sanitario, rondas hídricas, canales, cementerios, humedales, terminales aéreos o terrestres','fm4',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb5','o',2,$d,$w.'  '.$o,'En la vivienda se almacena y conserva los alimentos de forma adecuada','fm5',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb6','o',2,$d,$w.'  '.$o,'En la vivienda se manipula adecuadamente agua para consumo humano (desinfección adecuada, uso seguro de utensilios)','fm6',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb7','o',2,$d,$w.'  '.$o,'Las personas que habitan en la vivienda adquieren medicamentos con fórmula médica','fm7',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb8','o',2,$d,$w.'  '.$o,'En la vivienda los productos quimicos estan almacenados de manera segura','fm8',null,null,false,true,'','col-10');
+	$c[]=new cmp('facamb9','o',2,$d,$w.'  '.$o,'En la vivienda se realiza adecuado manejo de residuos sólidos','fm9',null,null,false,true,'','col-10');
 
 	$c[]=new cmp('observacion','a',1500,$d,$w.''.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 	

@@ -60,8 +60,6 @@ function men_alertas(){
 	$p=get_persona();
 	// if ($d==""){$d=$t;}
 	$id=divide($_POST['id']);
-	// $doc = (is_array($p) && isset($p['dc_documento'])) ? $p['dc_documento'] : $id[0] ;
-	// $tip = (is_array($p) && isset($p['dc_tipo_doc'])) ? $p['dc_tipo_doc'] : $id[1] ;
 	$d='';
     $w="alertas";
 	$o='infbas';
@@ -284,7 +282,7 @@ function get_alertas(){
 			$sql.=",zscore" ;
 		} 
 		$sql.=" FROM hog_alert D
-				LEFT JOIN personas P ON idpeople=idpersona AND dc_tipo_doc=tipo_doc
+				LEFT JOIN personas P ON idpeople=idpeople
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);

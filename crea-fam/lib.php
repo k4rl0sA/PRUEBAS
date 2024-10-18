@@ -26,9 +26,9 @@ function opc_usuario(){
 	IFNULL(u.nombre,u1.nombre) asignado,
 	IFNULL(u.perfil,u1.perfil) perfil,
 	hg.territorio 
-	FROM hog_viv hv 
+	FROM hog_carac hv 
 	LEFT JOIN hog_geo hg ON hv.idpre=hg.idgeo
-	LEFT JOIN personas p ON hv.idviv=p.vivipersona
+	LEFT JOIN person p ON hv.idviv=p.vivipersona
 	LEFT JOIN usuarios u ON hg.asignado=u.id_usuario
 	LEFT JOIN usuarios u1 ON hg.usu_creo=u1.id_usuario
 	WHERE p.idpersona='".$id."' and hg.estado_v='7'";
@@ -156,7 +156,7 @@ function cmp_homes(){
 	$t=['complemento1'=>'','nuc1'=>'','complemento2'=>'','nuc2'=>'','complemento3'=>'','nuc3'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>''];
 	$d = get_homes();
 	if ($d==""){$d=$t;}
-	// var_dump($d);
+	var_dump($d);
 	$w='homes';
 	$o='inf';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN COMPLEMENTARIA DE LA VIVIENDA',$w);

@@ -276,19 +276,10 @@ function get_alertas(){
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		D.fecha,`tipo`,D.crit_epi,cursovida,gestante,etapgest,cronico,`alert1`,`selmul1`,`alert2`,`selmul2`,`alert3`,`selmul3`, `alert4`, `selmul4`, `alert5`, `selmul5`, `alert6`, `selmul6`, `alert7`, `selmul7`, `alert8`, `selmul8`, `alert9`, `selmul9`, codoral,`alert10`, `selmul10`,
-		D.deriva_eac,D.necesidad_eac,D.asignado_eac,deriva_pf,evento_pf,`peso`, `talla`,imc";
-		if ($edad['ano'] > 17 ) {
-		    $sql.=",`tas`, `tad`, `glucometria`";
-		}
-		if ($edad['ano'] < 5 && $edad['mes'] >= 6) {
-			$sql.=",`perime_braq`" ;
-		}
-		if ($edad['ano'] < 5) {
-			$sql.=",zscore" ;
-		} 
+		D.deriva_eac,D.necesidad_eac,D.asignado_eac,deriva_pf";
 		$sql.=" FROM hog_alert D
 				LEFT JOIN person P ON idpeople=idpeople
-				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
+				LEFT JOIN hog_carac V ON P.vivipersona=V.idfam
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);
 		 //echo $sql; 

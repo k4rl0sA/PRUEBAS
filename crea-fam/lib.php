@@ -280,10 +280,11 @@ function men_homes1(){
    
 function gra_homes(){
 	// var_dump($_POST);
-	/* if(count(divide($_POST['idg']))==2){
+	$id=divide($_POST['idg']);
+	if(count($id)==2){
 
 	}else{
-		$id=$_POST['idg']
+		$id=$_POST['idg'];
 	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = array(
 		array('type' => 'i', 'value' => NULL),
@@ -309,7 +310,7 @@ function gra_homes(){
 	
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
-	return $rta; */
+	return $rta;
 	}
 
 

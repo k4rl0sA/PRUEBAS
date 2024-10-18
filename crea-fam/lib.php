@@ -292,11 +292,15 @@ function gra_homes(){
 		 $params[] = array('type' => 'i', 'value' => $id[1]);
 	}else{
 		$id=$_POST['idg'];
-	$sql = "INSERT INTO hog_fam VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	$params = array(
-		array('type' => 'i', 'value' => NULL),
-		array('type' => 'i', 'value' => $id),
-		array('type' => 'i', 'value' => num_fam()),
+		$holders = array_fill(0, count($campos), '?');// Crear placeholders para los valores
+		$sql = "INSERT INTO hog_fam VALUES (?,?,?, " . implode(", ", $holders) . ",?,?,?,?,?,?)";
+		$params = array(
+			array('type' => 'i', 'value' => NULL),
+			array('type' => 'i', 'value' => $id),
+			array('type' => 'i', 'value' => num_fam())
+		);
+
+		$params = array_merge($params, params($campos));// Agregar los valores dinámicos
 
 		/* array('type' => 's', 'value' => $_POST['complemento1']),
 		array('type' => 's', 'value' => $_POST['nuc1']),
@@ -309,13 +313,12 @@ function gra_homes(){
 		array('type' => 's', 'value' => $_POST['telefono3']),
  */
 
-		array('type' => 's', 'value' => namequipo()),
-		array('type' => 'i', 'value' => $_SESSION['us_sds']),
-		array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-		array('type' => 's', 'value' => NULL),
-		array('type' => 's', 'value' => NULL),
-		array('type' => 's', 'value' => 'A')
-	);
+ 		$params[] = array('type' => 's', 'value' => namequipo());
+ 		$params[] = array('type' => 'i', 'value' => $_SESSION['us_sds']);
+ 		$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+ 		$params[] = array('type' => 's', 'value' => NULL);
+ 		$params[] = array('type' => 's', 'value' => NULL);
+ 		$params[] = array('type' => 's', 'value' => 'A');
 	}
 	
 	// var_dump($params);

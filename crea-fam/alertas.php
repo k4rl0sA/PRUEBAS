@@ -46,7 +46,7 @@ function men_alertas(){
 		$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 		FROM hog_alert P
 		LEFT JOIN  usuarios U ON P.usu_creo=U.id_usuario ";
-		$sql.="WHERE dc_tipo_doc='".$id[1]."' AND dc_documento='".$id[0]."";
+		$sql.="WHERE idpeople='".$id[0]."";
 		$sql.="' ORDER BY fecha_create";
 		// echo $sql;
 		$datos=datos_mysql($sql);
@@ -263,13 +263,13 @@ function get_alertas(){
 		$id=divide($_POST['id']);
 		// print_r($id);
 		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
-		from personas P left join hog_alert D ON P.idpersona=D.dc_documento AND P.tipo_doc=D.dc_tipo_doc WHERE id_alert='{$id[0]}'";
+		from personas P left join hog_alert D ON P.idpeople=D.idpeople WHERE id_alert='{$id[0]}'";
 		$data=datos_mysql($sql1);
 		$edad=$data['responseResult'][0];
 
 
 
-		$sql="SELECT concat(dc_documento,'_',dc_tipo_doc,'_',tipo) as id,dc_documento,dc_tipo_doc,
+		$sql="SELECT concat(idpeople,tipo) as id,documento,tipo_doc,
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		D.fecha,`tipo`,D.crit_epi,cursovida,gestante,etapgest,cronico,`alert1`,`selmul1`,`alert2`,`selmul2`,`alert3`,`selmul3`, `alert4`, `selmul4`, `alert5`, `selmul5`, `alert6`, `selmul6`, `alert7`, `selmul7`, `alert8`, `selmul8`, `alert9`, `selmul9`, codoral,`alert10`, `selmul10`,
@@ -284,7 +284,7 @@ function get_alertas(){
 			$sql.=",zscore" ;
 		} 
 		$sql.=" FROM hog_alert D
-				LEFT JOIN personas P ON dc_documento=idpersona AND dc_tipo_doc=tipo_doc
+				LEFT JOIN personas P ON idpeople=idpersona AND dc_tipo_doc=tipo_doc
 				LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);

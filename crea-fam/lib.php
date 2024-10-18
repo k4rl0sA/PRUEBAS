@@ -280,7 +280,7 @@ function men_homes1(){
    
 function gra_homes(){
 	// var_dump($_POST);
-	if(count(divide($_POST['idg']))==2){
+	/* if(count(divide($_POST['idg']))==2){
 
 	}else{
 		$id=$_POST['idg']
@@ -309,7 +309,7 @@ function gra_homes(){
 	
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
+	return $rta; */
 	}
 
 

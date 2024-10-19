@@ -29,7 +29,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
- function getData(a, ev,i,blo) {
+ /* function getData(a, ev,i,blo) {
 	if (ev.type == 'click') {
 		var c = document.getElementById(a+'-pro-con');
 		var cmp=c.querySelectorAll('.captura,.bloqueo')
@@ -64,7 +64,7 @@ function actualizar(){
 							}
 				}
 	}
-}
+} */
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

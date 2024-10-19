@@ -56,7 +56,6 @@ $pag=(isset($_POST['pag-compConc']))? ($_POST['pag-compConc']-1)* $regxPag:0;
         //  echo $sql;
         $datos=datos_mysql($sql);
         return create_table($total,$datos["responseResult"],"compConc",$regxPag,'plncon.php');
-        /* return panel_content($datos["responseResult"],"planc-lis",10); */
 }
 
 

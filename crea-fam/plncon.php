@@ -220,7 +220,7 @@ return $rta;
         // var_dump($a);
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'compConc',event,this,['fecha','tipo_activi'],'plncon.php');\"></li>";  //   act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar Compromiso' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'compConc',event,this,['fecha','tipo_activi'],'plncon.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

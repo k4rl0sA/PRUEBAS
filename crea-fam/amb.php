@@ -63,7 +63,7 @@ function cmp_ambient(){
 	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'RIESGOS AMBIENTALES DE LA VIVIENDA',$w);
 	$c[]=new cmp('idvivamb','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
-	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5','validDate(this,$days,0);');
+	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'Tipo de Activi','tipo_activi',null,null,true,true,'','col-5');
 
 	$o='espvit';

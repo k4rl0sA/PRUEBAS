@@ -466,7 +466,7 @@ function opc_tipo_activi($id=''){
 		$rta=$c[$d];
 		if ($a=='ambient-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'ambient',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'ambient',event,this,['fecha','tipo_activi'],'amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

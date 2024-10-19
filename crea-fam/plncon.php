@@ -64,11 +64,11 @@ function cmp_compConc(){
     $rta="";
 	// $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
 	//<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>";
-	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_compConc();
-	if ($d==""){$d=$t;}
+	// $t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
+	// $d=get_compConc();
+	// if ($d==""){$d=$t;}
   var_dump($d);
-	$u=($d['id']=='')?true:false;
+	// $u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
     $w="placuifam";
 	$o='accide';
@@ -219,8 +219,8 @@ return $rta;
 		$rta=$c[$d];
         // var_dump($a);
 		if ($a=='compConc' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar Compromiso' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'compConc',event,this,['fecha','tipo_activi'],'plncon.php');\"></li>";  //   act_lista(f,this);
+			$rta="<nav class='menu right'>";
+				$rta.="<li class='icono editar ' title='Editar Compromiso' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['fecha','tipo_activi']);\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

@@ -112,7 +112,7 @@ function men_alertas(){
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
-	if($p/*['ano']<5*/){
+	if($p['ano']<5){
 		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,true,'','col-15', "enabOthSi('men_dnt','dNt');");
 		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,true,'','col-15');
 	}

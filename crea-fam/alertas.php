@@ -149,18 +149,13 @@ function men_alertas(){
 	$c[]=new cmp('selmul5[]','m',3,$d,$w.' inf '.$o,'Infancia','selmul5',null,'',false,false,'','col-4');
 	$c[]=new cmp('alert6','o',15,$d,$w.' '.$o,'Mujeres','alert6',null,null,true,true,'','col-1',"enabAlert(this,'muj');");
 	$c[]=new cmp('selmul6[]','m',3,$d,$w.' muj '.$o,'Mujeres','selmul6',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert7','o',15,$d,$w.' '.$o,'Discapacidad','alert7',null,null,true,true,'','col-1',"enabAlert(this,'dis');");
-	$c[]=new cmp('selmul7[]','m',3,$d,$w.' dis '.$o,'Discapacidad - Limitaciones para la actividad','selmul7',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert8','o',15,$d,$w.' '.$o,'Comunidades Étnicas ','alert8',null,null,true,true,'','col-15',"enabAlert(this,'etn');");
-	$c[]=new cmp('selmul8[]','m',3,$d,$w.' etn '.$o,'Étnicas','selmul8',null,'',false,false,'','col-35');
-	$c[]=new cmp('alert9','o',15,$d,$w.' '.$o,'Salud Bucal','alert9',null,null,true,true,'','col-1',"enabAlert(this,'orl');");
-	$c[]=new cmp('selmul9[]','m',3,$d,$w.' orl '.$o,'Salud Bucal','selmul9',null,'',false,false,'','col-4');
-	$c[]=new cmp('codoral','n',1,$d,$w.' '.$o,'Cod. Salud Bucal','codoral','rgx1codora',null,false,true,'','col-1');
-	$c[]=new cmp('alert10','o',15,$d,$w.' '.$o,'Derivaciones','alert10',null,null,true,true,'','col-1',"enabAlert(this,'der');");
-	$c[]=new cmp('selmul10[]','m',3,$d,$w.' der '.$o,'Derivaciones','selmul10',null,'',false,false,'','col-3');
-	$c[]=new cmp('deriva_eac','s',15,$d,$w.' '.$o,'Deriva a EAC','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_eac','eAc');enabSelMulSel('fselmul10[]', 'deriva_eac', ['5A', '5B']);");
-	$c[]=new cmp('necesidad_eac','s',15,$d,$w.' eAc '.$o,'Derivaciones EAC','necesidad',null,null,false,false,'','col-45');
-	$c[]=new cmp('asignado_eac','s',15,$d,$w.' eAc '.$o,'Asigna a EAC','medico',null,null,false,false,'','col-45');
+	
+	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"enabAlert(this,'dis');");
+	$c[]=new cmp('servicio','o',15,$d,$w.' '.$o,'Servicio Agendado','servicio',null,null,true,true,'','col-15',"enabAlert(this,'etn');");
+	$c[]=new cmp('fecha_cita','d','10',$d,$w.' '.$o,'Fecha de la Cita','fecha_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('hora_cita','d','10',$d,$w.' '.$o,'Hora de la Cita','hora_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('lugar_cita','o',15,$d,$w.' '.$o,'Lugar de la Cita','lugra_cita',null,null,true,true,'','col-15',"enabAlert(this,'etn');");
+	
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','evento',null,null,false,false,'','col-5');
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');

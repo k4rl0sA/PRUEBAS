@@ -146,6 +146,7 @@ return $rta;
           return '';
         }else{
           return $info['responseResult'][0];
+          
         }
 	}
 

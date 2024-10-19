@@ -144,6 +144,7 @@ return $rta;
         }
         if (!$info['responseResult']) {
           return '';
+          
         }else{
           return $info['responseResult'][0];
           

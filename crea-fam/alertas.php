@@ -124,10 +124,10 @@ function men_alertas(){
 	}
 
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"enabYes('cronico','cRo');");
-	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('cro_diabe','s','2',$d,$w.' cRo '.$o,'Diabetes','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('cro_epoc','s','2',$d,$w.' cRo '.$o,'Epoc','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' cRo '.$o,'Cronico Sin Control','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,true,false,'','col-2');
+	$c[]=new cmp('cro_diabe','s','2',$d,$w.' cRo '.$o,'Diabetes','rta',null,null,true,false,'','col-2');
+	$c[]=new cmp('cro_epoc','s','2',$d,$w.' cRo '.$o,'Epoc','rta',null,null,true,false,'','col-2');
+	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' cRo '.$o,'Cronico Sin Control','rta',null,null,true,false,'','col-2');
 	
 	$c[]=new cmp('esq_vacun','s','2',$d,$w.' '.$o,'Esquema de Vacunacion Completo','rta',null,null,true,true,'','col-2');
 	

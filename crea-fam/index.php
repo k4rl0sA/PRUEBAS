@@ -83,7 +83,8 @@ function grabar(tb='',ev){
 		'caract':'../crea-caract/lib.php',
 		'planDcui':'plancui.php',
 		'compConc':'plncon.php',
-		'signos':'signos.php'
+		'signos':'signos.php',
+		'ambient':'amb.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

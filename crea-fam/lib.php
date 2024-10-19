@@ -411,11 +411,11 @@ function lista_persons(){ //revisar
 		$sql="SELECT concat_ws('_',idpeople,$id[0]) ACCIONES,idpeople 'Cod Persona',idpersona 'Identificación',tipo_doc 'Tipo de Documento',
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombre',fecha_nacimiento 'Fecha Nacimiento',
 		FN_CATALOGODESC(21,sexo) 'Sexo'
-		FROM `personas` 
-			WHERE '1'='1' and vivipersona='".$id[0]."'";
+		FROM `person` 
+			WHERE vivipersona='".$id[0]."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
-		$_SESSION['sql_person']=$sql;
+		// $_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }

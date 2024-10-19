@@ -97,8 +97,6 @@ function grabar(tb='',ev){
 }   
 
 
-
-
 async function atenReal(a,b) {
 	try {
 		const data = await getJSON('get','atenc',a,b);

@@ -122,7 +122,7 @@ return $rta;
 
 	function get_compConc(){
         // print_r($_POST);
-        if (!$_POST['id']) {
+        /* if (!$_POST['id']) {
             return '';
         }
         $id = divide($_POST['id']);
@@ -147,8 +147,29 @@ return $rta;
         }else{
           return $info['responseResult'][0];
           
-        }
+        } */
 
+
+
+
+        if($_REQUEST['id']==''){
+          return "";
+        }else{
+          // print_r($_POST);
+          $id=divide($_REQUEST['id']);
+          // print_r($id);
+          $sql="SELECT concat(idviv,'_',idcon) 'id',compromiso,equipo,cumple
+                FROM `hog_planconc` 
+                WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'";
+          // echo $sql;
+          // LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
+          // LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
+          // LEF JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+                    // FROM hog_geo ) AS G ON H.idgeo = G.geo
+          // print_r($id);
+          $info=datos_mysql($sql);
+           return json_encode($info['responseResult'][0]);
+            } 
         
 	}
 

@@ -96,6 +96,7 @@ function grabar(tb='',ev){
 	}
 }   
 
+
 function resetFrm() {
 	document.getElementById('fapp').reset();
 }

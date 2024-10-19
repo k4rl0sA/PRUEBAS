@@ -148,6 +148,8 @@ return $rta;
           return $info['responseResult'][0];
           
         }
+
+        
 	}
 
     function opc_accion1desc_accion1($id=''){

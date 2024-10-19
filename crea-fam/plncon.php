@@ -60,22 +60,14 @@ $pag=(isset($_POST['pag-compConc']))? ($_POST['pag-compConc']-1)* $regxPag:0;
 
 
 function cmp_compConc(){
-    $rta="";
-	// $rta .="<div class='encabezado vivienda'>TABLA DE INTEGRANTES FAMILIA</div>
-	//<div class='contenido' id='datos-lis' >".lis_datos()."</div></div>";
-	// $t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	// $d=get_compConc();
-	// if ($d==""){$d=$t;}
-  // var_dump($d);
-	// $u=($d['id']=='')?true:false;
-	$hoy=date('Y-m-d');
-    $w="placuifam";
+  $rta="";
+  $w="placuifam";
 	$o='accide';
 	$e="";
 	$key='pln';
 	$o='compConc';
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-    $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
+  $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
 	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
 	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
@@ -86,9 +78,6 @@ function cmp_compConc(){
 }
 
 function gra_compConc(){
-	 	    print_r($_POST);
-        print_r($_GET);
-        print_r($_REQUEST); 
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){

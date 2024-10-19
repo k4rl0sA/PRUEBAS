@@ -66,7 +66,7 @@ function cmp_compConc(){
 	// $t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	// $d=get_compConc();
 	// if ($d==""){$d=$t;}
-  var_dump($d);
+  // var_dump($d);
 	// $u=($d['id']=='')?true:false;
 	$hoy=date('Y-m-d');
     $w="placuifam";

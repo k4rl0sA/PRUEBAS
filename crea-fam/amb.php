@@ -447,6 +447,7 @@ function opc_tipo_activi($id=''){
 	}
 
 	function get_ambient(){
+		var_dump($_POST);
 		if($_REQUEST['id']==''){
 			return "";
 		  }else{

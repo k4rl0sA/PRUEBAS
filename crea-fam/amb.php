@@ -447,7 +447,7 @@ function opc_tipo_activi($id=''){
 	}
 
 	function get_ambient(){
-		if($_REQUEST['id']==''){
+		/* if($_REQUEST['id']==''){
 			return "";
 		  }else{
 			$id=divide($_REQUEST['id']);
@@ -458,7 +458,7 @@ function opc_tipo_activi($id=''){
 			// print_r($id);
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
-		  } 
+		  }  */
 	}
 
 	function formato_dato($a,$b,$c,$d){

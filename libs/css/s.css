@@ -125,6 +125,7 @@ input[type=checkbox]{visibility: hidden;}
 .encabezado {background:#000;text-align: center;width: 99%;float: left !important;color: #FFF;text-transform: uppercase;font-weight: bold;margin: 2px;line-height: 20px;font-family: 'Cabin Sketch', cursive;}
 .subtitulo {background-image: linear-gradient(to right, #000000, #140d10, #1e161d, #261e2b, #2a273b, #3a3a4f, #4b4d64, #5c6279, #848699, #acadb9, #d5d5dc, #ffffff);text-align: center;width: 99%;float: left !important;color: #FFF;text-transform: uppercase;font-weight: bold;margin: 2px;line-height: 20px;font-family: 'Cabin Sketch', cursive;}
 input:disabled{background:#CCC;cursor:not-allowed;}
+textarea:disabled{background:#CCC;cursor:not-allowed;}
 input:focus {background-color:#EAF2F8 ;}
 textarea {font-size:12px;border:0px;max-width:240px;text-transform:uppercase;margin:2px;text-align:left;padding-left:4px;}
 iframe{width:100%;resize:vertical;min-height:50vh;height:90vh;}

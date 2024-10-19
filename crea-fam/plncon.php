@@ -146,7 +146,7 @@ return $rta;
           return '';
 
         }else{
-          return $info['responseResult'][0];
+          return json_encode($info['responseResult'][0]);
           
         }
 

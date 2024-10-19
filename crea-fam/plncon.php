@@ -122,7 +122,7 @@ return $rta;
 
 
 	function get_compConc(){
-        print_r($_POST);
+        // print_r($_POST);
         if (!$_POST['id']) {
             return '';
         }
@@ -132,7 +132,7 @@ return $rta;
                 FROM `hog_planconc` 
                 WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
                 LIMIT 1";
-        echo $sql;		
+        // echo $sql;		
           $info = datos_mysql($sql);
         }else{
           $sql = "SELECT idviv 'id',compromiso,equipo,cumple

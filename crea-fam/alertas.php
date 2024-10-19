@@ -98,12 +98,12 @@ function men_alertas(){
 	$days=fechas_app('vivienda');
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
-	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
-	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-3');
-	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$o,'nombres','nombre',null,'',true,false,'','col-4');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
-    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-2');
+	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-15');
+	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-15');
+	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$o,'nombres','nombre',null,'',true,false,'','col-2');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-2');
+	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
+    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-15');
 	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
@@ -112,7 +112,7 @@ function men_alertas(){
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
-	if($p['ano']<5){
+	if($p/*['ano']<5*/){
 		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,true,'','col-2');
 		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,true,'','col-2');
 	}
@@ -137,18 +137,18 @@ function men_alertas(){
 
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
-	$c[]=new cmp('alert1','o',15,$d,$w.' '.$o,'Condición crónica','alert1',null,null,true,true,'','col-1',"enabAlert(this,'cro');");
-	$c[]=new cmp('selmul1[]','m',3,$d,$w.' cro '.$o,'Condición crónica','selmul1',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert2','o',15,$d,$w.' '.$o,'Enfermedad Transmisible y ETV','alert2',null,null,true,true,'','col-2',"enabAlert(this,'etv');");
-	$c[]=new cmp('selmul2[]','m',3,$d,$w.' etv '.$o,'Enfermedad Transmisible y ETV','selmul2',null,'',false,false,'','col-3');
-	$c[]=new cmp('alert3','o',15,$d,$w.' '.$o,'Nutricional','alert3',null,null,true,true,'','col-1',"enabAlert(this,'nut');");
-	$c[]=new cmp('selmul3[]','m',3,$d,$w.' nut '.$o,'Nutricional','selmul3',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert4','o',15,$d,$w.' '.$o,'Psicosocial','alert4',null,null,true,true,'','col-1',"enabAlert(this,'psi');");
-	$c[]=new cmp('selmul4[]','m',3,$d,$w.' psi '.$o,'Psicosociales','selmul4',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert5','o',15,$d,$w.' '.$o,'Infancia','alert5',null,null,true,true,'','col-1',"enabAlert(this,'inf');");
-	$c[]=new cmp('selmul5[]','m',3,$d,$w.' inf '.$o,'Infancia','selmul5',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert6','o',15,$d,$w.' '.$o,'Mujeres','alert6',null,null,true,true,'','col-1',"enabAlert(this,'muj');");
-	$c[]=new cmp('selmul6[]','m',3,$d,$w.' muj '.$o,'Mujeres','selmul6',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert1',null,null,true,true,'','col-1',"enabAlert(this,'cro');");
+	$c[]=new cmp('selmul1[]','m',3,$d,$w.' cro '.$o,'Descripcion Alerta N° 1','selmul1',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert2','o',15,$d,$w.' '.$o,'Alerta N° 2','alert2',null,null,true,true,'','col-2',"enabAlert(this,'etv');");
+	$c[]=new cmp('selmul2[]','m',3,$d,$w.' etv '.$o,'Descripcion Alerta N° 2','selmul2',null,'',false,false,'','col-3');
+	$c[]=new cmp('alert3','o',15,$d,$w.' '.$o,'Alerta N° 3','alert3',null,null,true,true,'','col-1',"enabAlert(this,'nut');");
+	$c[]=new cmp('selmul3[]','m',3,$d,$w.' nut '.$o,'Descripcion Alerta N° 3','selmul3',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert4','o',15,$d,$w.' '.$o,'Alerta N° 4','alert4',null,null,true,true,'','col-1',"enabAlert(this,'psi');");
+	$c[]=new cmp('selmul4[]','m',3,$d,$w.' psi '.$o,'Descripcion Alerta N° 4','selmul4',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert5','o',15,$d,$w.' '.$o,'Alerta N° 5','alert5',null,null,true,true,'','col-1',"enabAlert(this,'inf');");
+	$c[]=new cmp('selmul5[]','m',3,$d,$w.' inf '.$o,'Descripcion Alerta N° 5','selmul5',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert6','o',15,$d,$w.' '.$o,'Alerta N° 6','alert6',null,null,true,true,'','col-1',"enabAlert(this,'muj');");
+	$c[]=new cmp('selmul6[]','m',3,$d,$w.' muj '.$o,'Descripcion Alerta N° 6','selmul6',null,'',false,false,'','col-4');
 	
 	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"enabAlert(this,'dis');");
 	$c[]=new cmp('servicio','o',15,$d,$w.' '.$o,'Servicio Agendado','servicio',null,null,true,true,'','col-15',"enabAlert(this,'etn');");

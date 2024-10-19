@@ -97,9 +97,7 @@ function grabar(tb='',ev){
 }   
 
 
-function resetFrm() {
-	document.getElementById('fapp').reset();
-}
+
 
 async function atenReal(a,b) {
 	try {

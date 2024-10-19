@@ -1595,6 +1595,13 @@ function calImc(a, b, i) {
 	}
 }
 
+//*************DELETE DATA FORM******************************/
+function resetFrm() {
+	document.getElementById('fapp').reset();
+}
+//*******************************************/
+
+
 /* function enabSelMulSel(act, sel, val) {
     alert('ZXDFGHJKJMNBVDCVFBGNHM');
     const selMul = document.getElementById(act);

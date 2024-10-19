@@ -363,7 +363,7 @@ function opc_tipo_activi($id=''){
 		}
 
 	function gra_ambient(){
-		// print_r($_POST);
+		print_r($_POST);
 		$id=divide($_POST['idvivamb']);
 		if(count($id)==2){
 			$sql = "UPDATE hog_amb SET 

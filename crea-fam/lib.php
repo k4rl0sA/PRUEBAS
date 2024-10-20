@@ -710,10 +710,10 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Caracterización del Hogar'  Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"><i class='fa-solid fa-house-user ico' id='".$c['ACCIONES']."'></i></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
 		$rta.="<li title='Crear Familia'  Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"><i class='fa-solid fa-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";		
 	}
-/* 	if ($a=='famili-lis' && $b=='acciones'){
+ 	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		
-		$rta.="<li title='Editar Familia' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."'></i></li>";  //act_lista(f,this);
+	/*	$rta.="<li title='Editar Familia' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."'></i></li>";  //act_lista(f,this);
 		$rta.="<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 		$rta.="<li title='Mostrar Integrantes' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"><i class='fa-solid fa-people-group ico' id='".$c['Cod_Familiar']."'></i></li>";
 		<br>
@@ -723,10 +723,10 @@ function formato_dato($a,$b,$c,$d){
 		}
 		$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>";
 		$rta.="<li title='Crear Integrante Familia' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";
-		
+	*/	
 
 	
-	}*/ 
+	} 
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);

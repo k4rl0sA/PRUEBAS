@@ -726,7 +726,7 @@ function formato_dato($a,$b,$c,$d){
 		
 
 	
-	}
+	}*/ 
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
@@ -738,7 +738,7 @@ function formato_dato($a,$b,$c,$d){
 		if ($a=='planc-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'planDcui',event,this,['id','fecha_caracteriza']);\"></li>";  //   act_lista(f,this);
-			} */ 
+			} 
 return $rta;
 }
 

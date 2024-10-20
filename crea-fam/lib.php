@@ -718,10 +718,10 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Mostrar Integrantes' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"><i class='fa-solid fa-people-group ico' id='".$c['Cod_Familiar']."'></i></li>";
 		
 		$rta.="<li title='Planes de Cuidado Familiar' Onclick=\"mostrar('planDcui','pro',event,'','plancui.php',7);Color('famili-lis');\"><i class='fa-solid fa-file-contract ico'  id='".$c['Cod_Familiar']."'></i></li>";
-	/*	if(plan($c['Cod_Familiar'])===true){
-			$rta.="<li title='Compromisos Concertados' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico '  id='".$c['Cod_Familiar']."'></i></li>";
+		if(plan($c['Cod_Familiar'])===true){
+			$rta.="<li title='Compromisos Concertados' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico'  id='".$c['Cod_Familiar']."'></i></li>";
 		}
-	*/	$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>";
+		$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>";
 		$rta.="<li title='Crear Integrante Familia' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";
 		
 

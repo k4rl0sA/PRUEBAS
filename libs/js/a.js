@@ -409,7 +409,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 }
 
 
-function addBtnsMenu(panel) {
+/* function addBtnsMenu(panel) {
 	const toolbar = document.createElement('div'); // Crear una barra de herramientas
 	toolbar.className = 'toolbar'; // Añadir clase
 
@@ -500,7 +500,7 @@ function crear_menu(itemId,url){
     })
     .catch(error => console.error('Error al cargar el panel:', error));
 }
-
+ */
 function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
 	if (document.getElementById(id) == undefined) {

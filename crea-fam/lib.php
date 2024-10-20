@@ -710,7 +710,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Caracterización del Hogar'  Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"><i class='fa-solid fa-house-user ico' id='".$c['ACCIONES']."'></i></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
 		$rta.="<li title='Crear Familia'  Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"><i class='fa-solid fa-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";		
 	}
-	if ($a=='famili-lis' && $b=='acciones'){
+/* 	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		
 		$rta.="<li title='Editar Familia' Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('famili-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."_".$c['Cod_Familiar']."'></i></li>";  //act_lista(f,this);
@@ -738,7 +738,7 @@ function formato_dato($a,$b,$c,$d){
 		if ($a=='planc-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'planDcui',event,this,['id','fecha_caracteriza']);\"></li>";  //   act_lista(f,this);
-			} 
+			} */ 
 return $rta;
 }
 

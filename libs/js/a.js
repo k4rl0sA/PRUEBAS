@@ -1595,7 +1595,7 @@ function calImc(a, b, i) {
 	}
 }
 
-//*************DELETE DATA FORM******************************/
+//*************ELIMINAR DATA FORM******************************/
 function resetFrm() {
 	document.getElementById('fapp').reset();
 }

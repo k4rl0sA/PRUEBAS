@@ -78,8 +78,8 @@ WHERE G.estado_v in('7') ".whe_homes()."
 
 
 function whe_homes() {
-	$fefin=date('Y-m-d');
-	$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
+	/* $fefin=date('Y-m-d');
+	$feini = date("Y-m-d",strtotime($fefin."- 2 days")); */
 	$sql = "";
 	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
 		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "' AND G.usu_creo ='" . $_POST['fdigita'] . "'";

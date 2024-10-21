@@ -739,18 +739,22 @@ function input_date($a) {
 }
 
 function input_clock($a){
-  var_dump($a);
-  $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
+  $name = htmlspecialchars($a->n, ENT_QUOTES, 'UTF-8');
+  $label = htmlspecialchars($a->l, ENT_QUOTES, 'UTF-8');
+  $title = htmlspecialchars($a->tt, ENT_QUOTES, 'UTF-8');
+  $value = htmlspecialchars($a->d, ENT_QUOTES, 'UTF-8');
+  $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$label}</div>";
   $rta .= "<input type='time' ";
-  $rta .= " id='{$a->n}'";
-  $rta .= " name='{$a->n}'";  
+  $rta .= " id='{$name}'";
+  $rta .= " name='{$name}'";
   $rta .= " class='{$a->w} " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
-  $rta .= " title='{$a->tt}'";
+  $rta .= " title='{$title}'";
+  if ($a->vc != false) $rta .= "onfocus=\"{$a->vc};\"";
+  if ($a->so != false) $rta .= "onchange=\"{$a->so};\"";
   if (!$a->u) $rta .= " readonly ";
-  if ($a->d != '') $rta .= " value=\"{$a->d}\" ";
+  if ($value != '') $rta .= " value=\"{$value}\" ";
   $rta .= ">";
-
-  return $rta;	
+  return $rta;
 }
 
 function encabezado($a){

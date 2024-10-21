@@ -382,7 +382,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 				.then(html => {
 					cargarRecursosCSSyFontAwesome();
 					menu.innerHTML = html;
-					setupMenuBehavior(menu,togg);
+					setupMenuBehavior(id,togg);
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 
@@ -529,33 +529,34 @@ function cargarRecursosCSSyFontAwesome() {
 
 function setupMenuBehavior(m,t) {
 	const isMobile = window.innerWidth <= 768;
+	const contextMenu = m.querySelector('.panel-acc');
 
 	t.addEventListener('click', (e) => {
 		e.stopPropagation();
 		if (isMobile) {
-			m.classList.toggle('show');
+			contextMenu.classList.toggle('show');
 		} else {
-			m.style.display = m.style.display === 'none' ? 'block' : 'none';
+			contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
 		}
 	});
 
-		const closeButton = m.querySelector('.closePanelAcc');
+		const closeButton = contextMenu.querySelector('.closePanelAcc');
 		if (closeButton) {
 			closeButton.addEventListener('click', () => {
 				if (isMobile) {
-					m.classList.remove('show');
+					contextMenu.classList.remove('show');
 				} else {
-					m.style.display = 'none';
+					contextMenu.style.display = 'none';
 				}
 			});
 		}
 
-const actions = m.querySelectorAll('.action');
+const actions = contextMenu.querySelectorAll('.action');
 actions.forEach(action => {
 	action.addEventListener('click', () => {
 		const actionName = action.querySelector('.actionTitle').textContent;
 		console.log(`Acción seleccionada: ${actionName}`);
-		m.classList.remove('show');
+		contextMenu.classList.remove('show');
 	});
 });
 
@@ -563,11 +564,11 @@ actions.forEach(action => {
 
 
 		document.addEventListener('click', (e) => {
-			if (!m.contains(e.target) && e.target !== t) {
+			if (!contextMenu.contains(e.target) && e.target !== t) {
 				if (isMobile) {
-					m.classList.remove('show');
+					contextMenu.classList.remove('show');
 				} else {
-					m.style.display = 'none';
+					contextMenu.style.display = 'none';
 				}
 			}
 		});
@@ -575,15 +576,15 @@ actions.forEach(action => {
 		
 
 let touchStartY;
-m.addEventListener('touchstart', (e) => {
+contextMenu.addEventListener('touchstart', (e) => {
 	touchStartY = e.touches[0].clientY;
 });
 
-m.addEventListener('touchmove', (e) => {
+contextMenu.addEventListener('touchmove', (e) => {
 	const touchEndY = e.touches[0].clientY;
 	const diff = touchEndY - touchStartY;
 	if (diff > 50) {
-		m.classList.remove('show');
+		contextMenu.classList.remove('show');
 	}
 });
 }

@@ -185,7 +185,7 @@ function men_alertas(){
 
 
 function gra_alertas(){
-	 print_r($_POST);
+	//  print_r($_POST);
 	$id=divide($_POST['idp']);
 	
 	
@@ -219,7 +219,7 @@ function gra_alertas(){
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => 'A');
-		//var_dump($params);
+		var_dump($params);
 
 		 $rta = mysql_prepd($sql, $params);
 		 return $rta;

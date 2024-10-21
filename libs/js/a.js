@@ -376,7 +376,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 		const menuToggle = document.getElementById('menuToggle');
 		const menuContainer = document.getElementById('menuContainer');
 
-			fetch('menu.html')
+			fetch('../menu.html')
 				.then(response => response.text())
 				.then(html => {
 					menuContainer.innerHTML = html;
@@ -384,7 +384,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 
-		fetch('menu.html')
+		fetch('../menu.html')
 		.then(response => response.text())
 		.then(html => {
 			menuContainer.innerHTML = html;

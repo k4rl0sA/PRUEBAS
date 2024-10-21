@@ -373,20 +373,26 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
 	if(a=='men'){
-		/* if(document.querySelector('.panel-acc')!=undefined)	{
-			const panelAccion = document.querySelector('.panel-acc');
-		}
-		if(document.querySelector('.closePanelAcc')!=undefined)	{
-			const closePanelAcc = document.querySelector('.closePanelAcc');
-		}
-		const buttons = pFetch(lib=ruta_app,'a=opc&tb='+ tb.toLowerCase());
-		if(buttons!=undefined){
-			const buttons = [];
-		}
-		const Id = ev.target.id;
-		crear_menu(Id,lib); */
+		const menuToggle = document.getElementById('menuToggle');
+		const menuContainer = document.getElementById('menuContainer');
+
+			fetch('menu.html')
+				.then(response => response.text())
+				.then(html => {
+					menuContainer.innerHTML = html;
+					setupMenuBehavior();
+				})
+				.catch(error => console.error('Error al cargar el menú:', error));
+
+		fetch('menu.html')
+		.then(response => response.text())
+		.then(html => {
+			menuContainer.innerHTML = html;
+			setupMenuBehavior();
+		})
+		.catch(error => console.error('Error al cargar el menú:', error));
 		
-		const panelAccion = document.querySelector('.panel-acc') || crear_panel_acc();
+		/* const panelAccion = document.querySelector('.panel-acc') || crear_panel_acc();
 		// const buttons = pFetch(lib, { a: 'opc', tb: tb.toLowerCase() });
 		const buttons = [
             {icon: 'fas fa-plus', text: 'Nuevo', color: 'white',short:'Ctrl N'},
@@ -401,7 +407,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 			addButtonsToPanel(panelAccion, buttons); // Asegúrate de definir esta función
 			const Id = ev.target.id;
 			crear_menu(Id, lib);
-		}
+		} */
 	}
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";

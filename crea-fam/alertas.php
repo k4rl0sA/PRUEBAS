@@ -283,10 +283,10 @@ function get_alertas(){
 	}
 }
 
-function opc_alertupz(){
+function opc_alert1selmul1(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=233 and estado='A' and valor='".$id[0]."' ORDER BY 1";
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 

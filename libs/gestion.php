@@ -554,6 +554,7 @@ class cmp { //ntwplcsdxhvuf
     $this->vc=$vc;    
     $this->sd=$sd;
     $this->so=$so;
+    $this->path=$path;
   }
   function put(){    
     switch ($this->t) {
@@ -602,9 +603,9 @@ function input_sel($a){
   if (!$a->u) $rta.=" disabled='true' ";
   for($i=0;$i<count($a->sd);$i++){
 	if ($i==0){
-		if ($a->sd[$i]!='') $rta.=" onblur=\"changeSelect('{$a->n}','{$a->sd[$i]}');";
+		if ($a->sd[$i]!='') $rta.=" onblur=\"changeSelect('{$a->n}','{$a->sd[$i]}','{$a->path}');";
 	}else{
-		if ($a->sd[$i]!='') $rta.="changeSelect('{$a->n}','{$a->sd[$i]}');";
+		if ($a->sd[$i]!='') $rta.="changeSelect('{$a->n}','{$a->sd[$i]}','{$a->path}');";
 	}
   }
   if ($a->so)$rta.=" OnChange='{$a->so}(this)'";

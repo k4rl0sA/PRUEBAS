@@ -740,7 +740,6 @@ function input_date($a) {
 }
 
 function input_clock($a){
-  var_dump($a);
   $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
   $rta .= "<input type='time' ";
   $rta .= " id='{$a->n}'";

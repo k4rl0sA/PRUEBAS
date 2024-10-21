@@ -146,10 +146,10 @@ function men_alertas(){
 	$c[]=new cmp('selmul6','m',3,$d,$w.' muj '.$o,'Descripcion Alerta N° 6','selmul6',null,'',false,false,'','col-4');
 	
 	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"fieldsValue('cronico','aIM','1',true);");
-	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false'','col-15');
-	$c[]=new cmp('fecha_cita','d','10',$d,$w.' aIM '.$o,'Fecha de la Cita','fecha_cita',null,'',false,false'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita','hora_cita',null,'',false,false'','col-15');
-	$c[]=new cmp('lugar_cita','t',15,$d,$w.' aIM '.$o,'Lugar de la Cita','lugar_cita',null,null,false,false'','col-15');
+	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false,'','col-15');
+	$c[]=new cmp('fecha_cita','d','10',$d,$w.' aIM '.$o,'Fecha de la Cita','fecha_cita',null,'',false,false,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita','hora_cita',null,'',false,false,'','col-15');
+	$c[]=new cmp('lugar_cita','t',15,$d,$w.' aIM '.$o,'Lugar de la Cita','lugar_cita',null,null,false,false,'','col-15');
 	
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','evento',null,null,false,false,'','col-5');

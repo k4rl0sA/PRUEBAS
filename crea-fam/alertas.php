@@ -283,7 +283,7 @@ function get_alertas(){
 	}
 }
 
-function opc_alert1selmul1(){
+function opc_alert1selmul1[](){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=233 and estado='A' and valor='".$id[0]."' ORDER BY 1";

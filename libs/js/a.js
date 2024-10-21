@@ -373,15 +373,16 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
 	if(a=='men'){
+		const id=ev.target.id;
 		const menuToggle = document.getElementById('menuToggle');
-		const menuContainer = document.getElementById('menu_'+ev.target.id);
+		const menuContainer = document.getElementById('menu_'+id);
 
 			fetch('../libs/menu.html')
 				.then(response => response.text())
 				.then(html => {
 					cargarRecursosCSSyFontAwesome();
 					menuContainer.innerHTML = html;
-					setupMenuBehavior();
+					setupMenuBehavior(menuContainer);
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 
@@ -526,36 +527,35 @@ function cargarRecursosCSSyFontAwesome() {
     }
 }
 
-function setupMenuBehavior() {
-	const contextMenu = menuContainer.querySelector('.panel-acc');
+function setupMenuBehavior(el) {
 	const isMobile = window.innerWidth <= 768;
 
 	menuToggle.addEventListener('click', (e) => {
 		e.stopPropagation();
 		if (isMobile) {
-			contextMenu.classList.toggle('show');
+			el.classList.toggle('show');
 		} else {
-			contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
+			el.style.display = el.style.display === 'none' ? 'block' : 'none';
 		}
 	});
 
-		const closeButton = contextMenu.querySelector('.closePanelAcc');
+		const closeButton = el.querySelector('.closePanelAcc');
 		if (closeButton) {
 			closeButton.addEventListener('click', () => {
 				if (isMobile) {
-					contextMenu.classList.remove('show');
+					el.classList.remove('show');
 				} else {
-					contextMenu.style.display = 'none';
+					el.style.display = 'none';
 				}
 			});
 		}
 
-const actions = contextMenu.querySelectorAll('.action');
+const actions = el.querySelectorAll('.action');
 actions.forEach(action => {
 	action.addEventListener('click', () => {
 		const actionName = action.querySelector('.actionTitle').textContent;
 		console.log(`Acción seleccionada: ${actionName}`);
-		contextMenu.classList.remove('show');
+		el.classList.remove('show');
 	});
 });
 

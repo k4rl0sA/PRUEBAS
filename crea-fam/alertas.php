@@ -233,7 +233,8 @@ if ($num_placeholders !== $num_params) {
     die("Error: El número de placeholders (?) no coincide con el número de parámetros. Placeholders: $num_placeholders, Parámetros: $num_params.");
 }
 
-
+var_dump($num_placeholders);
+var_dump($num_params);
 		 $rta = mysql_prepd($sql, $params);
 		 return $rta;
 }

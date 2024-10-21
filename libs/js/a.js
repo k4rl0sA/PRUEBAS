@@ -373,9 +373,9 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
         act_html(id+'-con',lib,'a=cmp&tb='+tb+'&id='+k);        
 	}
 	if(a=='men'){
-		const id=ev.target.id;
-		const togg = document.getElementById('togg_'+id);
-		const menu = document.getElementById('men_'+id);
+		const id=ev.target.id.split("_");
+		const togg = document.getElementById('togg_'+id[1]);
+		const menu = document.getElementById('men_'+id[1]);
 
 			fetch('../libs/menu.html')
 				.then(response => response.text())

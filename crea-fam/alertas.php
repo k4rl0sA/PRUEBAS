@@ -221,6 +221,19 @@ function gra_alertas(){
  		$params[] = array('type' => 's', 'value' => 'A');
 		var_dump($params);
 
+		// 1. Contar el número de placeholders "?" en la cadena SQL
+$num_placeholders = substr_count($sql, '?');
+
+// 2. Contar el número de parámetros en el array $params
+$num_params = count($params);
+
+// 3. Verificar si ambos valores son iguales
+if ($num_placeholders !== $num_params) {
+    // Si no coinciden, mostrar un error
+    die("Error: El número de placeholders (?) no coincide con el número de parámetros. Placeholders: $num_placeholders, Parámetros: $num_params.");
+}
+
+
 		 $rta = mysql_prepd($sql, $params);
 		 return $rta;
 }

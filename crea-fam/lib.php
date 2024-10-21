@@ -723,9 +723,6 @@ function formato_dato($a,$b,$c,$d){
 		}
 		$rta.="<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>";
 		$rta.="<li title='Crear Integrante Familia' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";
-		
-
-	
 	} 
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";

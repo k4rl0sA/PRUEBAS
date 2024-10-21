@@ -187,6 +187,7 @@ function men_alertas(){
 function gra_alertas(){
 	//  print_r($_POST);
 	$id=divide($_POST['idp']);
+	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
 	
 	
 	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun');
@@ -202,7 +203,7 @@ function gra_alertas(){
 		);
 		$params = array_merge($params, params($campos));
 		$params[] = array('type' => 's', 'value' => $_POST['alert1']);
-		$params[] = array('type' => 's', 'value' => $_POST['fselmul1']);
+		$params[] = array('type' => 's', 'value' => $sm1);
 		$params[] = array('type' => 's', 'value' => $_POST['alert2']);
 		$params[] = array('type' => 's', 'value' => $_POST['fselmul2']);
 		$params[] = array('type' => 's', 'value' => $_POST['alert3']);

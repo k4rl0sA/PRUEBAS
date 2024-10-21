@@ -537,7 +537,7 @@ class cmp { //ntwplcsdxhvuf
   public $vc;//Validaciones personalizadas
   public $sd;//Select dependientes
   public $so;//Validaciones personalizadas otro evento
-  function __construct($n='dato',$t='t',$s=10,$d='',$w='div',$l='',$c='',$x='rgxtxt',$h='..',$v=true,$u=true,$tt='',$ww='col-10',$vc=false,array $sd=array(''),$so=false) {
+  function __construct($n='dato',$t='t',$s=10,$d='',$w='div',$l='',$c='',$x='rgxtxt',$h='..',$v=true,$u=true,$tt='',$ww='col-10',$vc=false,array $sd=array(''),$so=false,$path='lib.php') {
     $this->n=$n; 
     $this->t=$t; 
     $this->w=$w;  

@@ -731,7 +731,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";
 		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
 		$rta.="<li title='Signos' id='".$c['ACCIONES']."' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico .naranja' id='".$c['ACCIONES']."'></i></li>";
-		$rta.="<li class='icono menubtn' title='Menu' id='".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"></li><div id='menuToggle'></div><div id='menuContainer'></div>";
+		$rta.="<li class='icono menubtn' title='Menu' id='".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"></li><div id='menuToggle'></div><div id='menuContainer_".$c['ACCIONES']."'></div>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
 		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";
 		}

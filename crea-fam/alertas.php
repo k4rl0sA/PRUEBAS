@@ -292,6 +292,10 @@ function opc_alert1fselmul1(){
 	} 
 }
 
+function opc_alert2fselmul2(){
+	return opc_alert1fselmul1();
+}
+
 function opc_necesidad($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=225 AND estado='A' ORDER BY LPAD(idcatadeta, 2, '0')", $id);
 }

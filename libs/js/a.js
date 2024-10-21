@@ -374,15 +374,15 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 	}
 	if(a=='men'){
 		const id=ev.target.id;
-		const menuToggle = document.getElementById('menuToggle');
-		const menuContainer = document.getElementById('menu_'+id);
+		const togg = document.getElementById('tog_'+id);
+		const menu = document.getElementById('menu_'+id);
 
 			fetch('../libs/menu.html')
 				.then(response => response.text())
 				.then(html => {
 					cargarRecursosCSSyFontAwesome();
-					menuContainer.innerHTML = html;
-					setupMenuBehavior(menuContainer);
+					menu.innerHTML = html;
+					setupMenuBehavior(menu,togg);
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 
@@ -527,35 +527,35 @@ function cargarRecursosCSSyFontAwesome() {
     }
 }
 
-function setupMenuBehavior(el) {
+function setupMenuBehavior(m,t) {
 	const isMobile = window.innerWidth <= 768;
 
-	menuToggle.addEventListener('click', (e) => {
+	t.addEventListener('click', (e) => {
 		e.stopPropagation();
 		if (isMobile) {
-			el.classList.toggle('show');
+			m.classList.toggle('show');
 		} else {
-			el.style.display = el.style.display === 'none' ? 'block' : 'none';
+			m.style.display = m.style.display === 'none' ? 'block' : 'none';
 		}
 	});
 
-		const closeButton = el.querySelector('.closePanelAcc');
+		const closeButton = m.querySelector('.closePanelAcc');
 		if (closeButton) {
 			closeButton.addEventListener('click', () => {
 				if (isMobile) {
-					el.classList.remove('show');
+					m.classList.remove('show');
 				} else {
-					el.style.display = 'none';
+					m.style.display = 'none';
 				}
 			});
 		}
 
-const actions = el.querySelectorAll('.action');
+const actions = m.querySelectorAll('.action');
 actions.forEach(action => {
 	action.addEventListener('click', () => {
 		const actionName = action.querySelector('.actionTitle').textContent;
 		console.log(`Acción seleccionada: ${actionName}`);
-		el.classList.remove('show');
+		m.classList.remove('show');
 	});
 });
 
@@ -563,11 +563,11 @@ actions.forEach(action => {
 
 
 		document.addEventListener('click', (e) => {
-			if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
+			if (!m.contains(e.target) && e.target !== t) {
 				if (isMobile) {
-					contextMenu.classList.remove('show');
+					m.classList.remove('show');
 				} else {
-					contextMenu.style.display = 'none';
+					m.style.display = 'none';
 				}
 			}
 		});
@@ -575,15 +575,15 @@ actions.forEach(action => {
 		
 
 let touchStartY;
-contextMenu.addEventListener('touchstart', (e) => {
+m.addEventListener('touchstart', (e) => {
 	touchStartY = e.touches[0].clientY;
 });
 
-contextMenu.addEventListener('touchmove', (e) => {
+m.addEventListener('touchmove', (e) => {
 	const touchEndY = e.touches[0].clientY;
 	const diff = touchEndY - touchStartY;
 	if (diff > 50) {
-		contextMenu.classList.remove('show');
+		m.classList.remove('show');
 	}
 });
 }

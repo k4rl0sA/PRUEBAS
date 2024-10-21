@@ -219,10 +219,10 @@ function gra_alertas(){
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => 'A');
-		var_dump($params);
+		//var_dump($params);
 
-		//  $rta = mysql_prepd($sql, $params);
-		//  return $rta;
+		 $rta = mysql_prepd($sql, $params);
+		 return $rta;
 }
 	/* 
 	/* if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}

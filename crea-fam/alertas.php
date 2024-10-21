@@ -132,7 +132,7 @@ function men_alertas(){
 	
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
-	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert',null,null,true,true,'','col-1',"enabAlert(this,'cro');",['selmul1']);
+	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert',null,null,true,true,'','col-1',"enabAlert(this,'cro');",['fselmul1']);
 	$c[]=new cmp('selmul1[]','m',3,$d,$w.' cro '.$o,'Descripcion Alerta N° 1','selmul1',null,'',false,false,'','col-4');
 	$c[]=new cmp('alert2','s',15,$d,$w.' '.$o,'Alerta N° 2','alert',null,null,true,true,'','col-1',"enabAlert(this,'etv');");
 	$c[]=new cmp('selmul2[]','m',3,$d,$w.' etv '.$o,'Descripcion Alerta N° 2','selmul2',null,'',false,false,'','col-4');

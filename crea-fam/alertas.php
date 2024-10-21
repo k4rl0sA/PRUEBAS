@@ -187,7 +187,11 @@ function men_alertas(){
 function gra_alertas(){
 	//  print_r($_POST);
 	$id=divide($_POST['idp']);
-	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
+	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {
+        $sm1 = implode(",", str_replace("'", "", $smu1));
+    } else {
+        $sm1 = '';
+    }
 	
 	
 	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun');

@@ -741,15 +741,16 @@ function input_date($a) {
 
 function input_clock($a){ 
   var_dump($a);
-  $rta="<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
-  $rta.="<input type='time' ";
-  $rta.=" id='{$a->n}'";
-  $rta.=" name='{$a->n}'";  
-  $rta.=" class='{$a->w} ".($a->v?'valido':'')." ".($a->u?'captura':'bloqueo')." ".($a->t=='t'?'':'txt-right')."'";
-  $rta.=" title='{$a->tt}'";
-  if (!$a->u) $rta.=" readonly ";
-  if ($a->d!='')$rta.=" value=\"{$a->d}\" ";
-  $rta.=">";
+  $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
+  $rta .= "<input type='time' ";
+  $rta .= " id='{$a->n}'";
+  $rta .= " name='{$a->n}'";  
+  $rta .= " class='{$a->w} " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
+  $rta .= " title='{$a->tt}'";
+  if (!$a->u) $rta .= " readonly ";
+  if ($a->d != '') $rta .= " value=\"{$a->d}\" ";
+  $rta .= ">";
+
   return $rta;	
 }
 

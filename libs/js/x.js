@@ -993,3 +993,18 @@ function enabSelMulSel(act, sel, val) {
 		enabOthSi('deriva_eac','eAc');
 	}
 }
+
+// Función para habilitar/deshabilitar campos dependiendo de un valor
+function fieldsValue(a, b, value, flag = true) {
+    const elem = document.querySelectorAll('select.' + b + ',input.' + b + ',textarea.' + b);
+    const act = document.getElementById(a);
+    
+    for (let i = 0; i < elem.length; i++) {
+        // Si el valor del activador coincide con el valor esperado
+        if (act.value == value) {
+            enaFie(elem[i], !flag); // Si flag es true, habilita los campos, si es false, los deshabilita
+        } else {
+            enaFie(elem[i], flag);  // Caso contrario, invierte la acción
+        }
+    }
+}

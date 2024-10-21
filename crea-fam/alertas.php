@@ -141,7 +141,7 @@ function men_alertas(){
 	$c[]=new cmp('alert4','s',15,$d,$w.' '.$o,'Alerta N° 4','alert',null,null,false,true,'','col-1',"enabAlert(this,'psi');",['fselmul4'],false,'alertas.php');
 	$c[]=new cmp('selmul4','m',3,$d,$w.' psi '.$o,'Descripcion Alerta N° 4','selmul4',null,'',false,false,'','col-4');
 	$c[]=new cmp('alert5','s',15,$d,$w.' '.$o,'Alerta N° 5','alert',null,null,false,true,'','col-1',"enabAlert(this,'inf');",['fselmul5'],false,'alertas.php');
-	$c[]=new cmp('selmul5','m',3,$d,$w.' inf '.$o,'Descripcion Alerta N° 5','selmul5',null,'',false,false,'','col-4');
+	$c[]=new cmp('selmul5','m',3,$d,$w.' inf '.$o,'Descripcigon Alerta N° 5','selmul5',null,'',false,false,'','col-4');
 	$c[]=new cmp('alert6','s',15,$d,$w.' '.$o,'Alerta N° 6','alert',null,null,false,true,'','col-1',"enabAlert(this,'muj');",['fselmul6'],false,'alertas.php');
 	$c[]=new cmp('selmul6','m',3,$d,$w.' muj '.$o,'Descripcion Alerta N° 6','selmul6',null,'',false,false,'','col-4');
 	

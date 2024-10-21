@@ -379,19 +379,12 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 			fetch('../libs/menu.html')
 				.then(response => response.text())
 				.then(html => {
+					cargarRecursosCSSyFontAwesome();
 					menuContainer.innerHTML = html;
 					setupMenuBehavior();
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 
-		fetch('../libs/menu.html')
-		.then(response => response.text())
-		.then(html => {
-			menuContainer.innerHTML = html;
-			setupMenuBehavior();
-		})
-		.catch(error => console.error('Error al cargar el menú:', error));
-		
 		/* const panelAccion = document.querySelector('.panel-acc') || crear_panel_acc();
 		// const buttons = pFetch(lib, { a: 'opc', tb: tb.toLowerCase() });
 		const buttons = [
@@ -507,6 +500,31 @@ function crear_menu(itemId,url){
     .catch(error => console.error('Error al cargar el panel:', error));
 }
  */
+
+function cargarRecursosCSSyFontAwesome() {
+    // Cargar el archivo CSS externo (menuCntx.css)
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = '../libs/css/menu1.css';
+    document.head.appendChild(cssLink);
+
+    // Cargar FontAwesome
+    const fontAwesomeLink = document.createElement('link');
+    fontAwesomeLink.rel = 'stylesheet';
+    fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';
+    document.head.appendChild(fontAwesomeLink);
+
+    // Ejecutar los scripts que están en el panelContainer (si existen)
+    const panelContainer = document.getElementById('panelContainer');
+    if (panelContainer) {
+        const scriptTags = panelContainer.querySelectorAll('script');
+        scriptTags.forEach((scriptTag) => {
+            const newScript = document.createElement('script');
+            newScript.textContent = scriptTag.textContent;  // Clonar el contenido del script original
+            document.body.appendChild(newScript);  // Agregar el script clonado al body para ejecutarlo
+        });
+    }
+}
 
 function setupMenuBehavior() {
 	const contextMenu = menuContainer.querySelector('.panel-acc');

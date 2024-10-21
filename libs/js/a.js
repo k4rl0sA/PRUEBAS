@@ -382,7 +382,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 				.then(html => {
 					cargarRecursosCSSyFontAwesome();
 					menu.innerHTML = html;
-					setupMenuBehavior(id,togg);
+					setupMenuBehavior(menu,togg);
 				})
 				.catch(error => console.error('Error al cargar el menú:', error));
 

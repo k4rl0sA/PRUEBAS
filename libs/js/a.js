@@ -374,7 +374,7 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 	}
 	if(a=='men'){
 		const menuToggle = document.getElementById('menuToggle');
-		const menuContainer = document.getElementById('menuContainer');
+		const menuContainer = document.getElementById('menuContainer'+ev.target.id);
 
 			fetch('../libs/menu.html')
 				.then(response => response.text())

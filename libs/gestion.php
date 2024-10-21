@@ -578,6 +578,7 @@ class cmp { //ntwplcsdxhvuf
 		break;
 	case 'c':
 		 $b=input_clock($this);
+     break;
   case 'm':
       $b=select_mult($this);
 		break;
@@ -740,22 +741,16 @@ function input_date($a) {
 
 function input_clock($a){
   var_dump($a);
-  $name = htmlspecialchars($a->n, ENT_QUOTES, 'UTF-8');
-  $label = htmlspecialchars($a->l, ENT_QUOTES, 'UTF-8');
-  $title = htmlspecialchars($a->tt, ENT_QUOTES, 'UTF-8');
-  $value = htmlspecialchars($a->d, ENT_QUOTES, 'UTF-8');
-  $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$label}</div>";
+  $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
   $rta .= "<input type='time' ";
-  $rta .= " id='{$name}'";
-  $rta .= " name='{$name}'";
+  $rta .= " id='{$a->n}'";
+  $rta .= " name='{$a->n}'";  
   $rta .= " class='{$a->w} " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
-  $rta .= " title='{$title}'";
-  if ($a->vc != false) $rta .= "onfocus=\"{$a->vc};\"";
-  if ($a->so != false) $rta .= "onchange=\"{$a->so};\"";
+  $rta .= " title='{$a->tt}'";
   if (!$a->u) $rta .= " readonly ";
-  if ($value != '') $rta .= " value=\"{$value}\" ";
+  if ($a->d != '') $rta .= " value=\"{$a->d}\" ";
   $rta .= ">";
-  return $rta;
+  return $rta;	
 }
 
 function encabezado($a){

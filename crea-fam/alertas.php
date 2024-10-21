@@ -148,7 +148,7 @@ function men_alertas(){
 	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"fieldsValue('cronico','cRo','1',true);");
 	$c[]=new cmp('servicio','s',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,true,true,'','col-15');
 	$c[]=new cmp('fecha_cita','d','10',$d,$w.' aIM '.$o,'Fecha de la Cita','fecha_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita',null,null,null,true,true,'','col-15');
+	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita',null,null,'hora_cita',true,true,'','col-15');
 	$c[]=new cmp('lugar_cita','s',15,$d,$w.' aIM '.$o,'Lugar de la Cita','lugar_cita',null,null,true,true,'','col-15');
 	
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");

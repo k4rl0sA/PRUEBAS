@@ -145,11 +145,11 @@ function men_alertas(){
 	$c[]=new cmp('alert6','s',15,$d,$w.' '.$o,'Alerta N° 6','alert',null,null,false,true,'','col-1',"enabAlert(this,'muj');",['fselmul6'],false,'alertas.php');
 	$c[]=new cmp('selmul6','m',3,$d,$w.' muj '.$o,'Descripcion Alerta N° 6','selmul6',null,'',false,false,'','col-4');
 	
-	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"enabAlert(this,'dis');");
-	$c[]=new cmp('servicio','o',15,$d,$w.' '.$o,'Servicio Agendado','servicio',null,null,true,true,'','col-15',"enabAlert(this,'etn');");
-	$c[]=new cmp('fecha_cita','d','10',$d,$w.' '.$o,'Fecha de la Cita','fecha_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('hora_cita','d','10',$d,$w.' '.$o,'Hora de la Cita','hora_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('lugar_cita','o',15,$d,$w.' '.$o,'Lugar de la Cita','lugra_cita',null,null,true,true,'','col-15',"enabAlert(this,'etn');");
+	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"fieldsValue('cronico','cRo','1',true);");
+	$c[]=new cmp('servicio','s',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,true,true,'','col-15');
+	$c[]=new cmp('fecha_cita','d','10',$d,$w.' aIM '.$o,'Fecha de la Cita','fecha_cita',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita','hora_cita',null,'',true,true,'','col-15');
+	$c[]=new cmp('lugar_cita','s',15,$d,$w.' aIM '.$o,'Lugar de la Cita','lugar_cita',null,null,true,true,'','col-15');
 	
 	$c[]=new cmp('deriva_pf','s',15,$d,$w.' '.$o,'Deriva a PCF','rta',null,null,true,true,'','col-1',"enabOthSi('deriva_pf','pCf');");
 	$c[]=new cmp('evento_pf','s',15,$d,$w.' pCf '.$o,'Asigna a PCF','evento',null,null,false,false,'','col-5');
@@ -290,6 +290,13 @@ function opc_alert1fselmul1(){
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 
+}
+
+function opc_servicio(){
+
+}
+function opc_lugar_cita(){
+	
 }
 
 function opc_alert2fselmul2(){

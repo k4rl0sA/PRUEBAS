@@ -286,7 +286,7 @@ function get_alertas(){
 function opc_alert1fselmul1(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idcatadeta 'id',descripcion FROM `catadeta` WHERE idcatalogo=233 and estado='A' and valor='".$id[0]."' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id;
+		$sql="SELECT idcatadeta 'id',descripcion FROM `catadeta` WHERE idcatalogo=233 and estado='A' and valor='".$id[0]."' ORDER BY CAST(idcatadeta AS UNSIGNED)";
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
 	} 

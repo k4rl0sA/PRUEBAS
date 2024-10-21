@@ -739,6 +739,7 @@ function input_date($a) {
 }
 
 function input_clock($a){
+  var_dump($a);
   $name = htmlspecialchars($a->n, ENT_QUOTES, 'UTF-8');
   $label = htmlspecialchars($a->l, ENT_QUOTES, 'UTF-8');
   $title = htmlspecialchars($a->tt, ENT_QUOTES, 'UTF-8');

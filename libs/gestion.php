@@ -576,7 +576,7 @@ class cmp { //ntwplcsdxhvuf
 	case 'l':
 		 $b=subtitulo($this);
 		break;
-	case 'c':
+	case 'r':
 		 $b=input_clock($this);
   case 'm':
       $b=select_mult($this);
@@ -720,7 +720,6 @@ function input_txt($a){
 }  
 
 function input_date($a) {
-  var_dump($a);
   $name = htmlspecialchars($a->n, ENT_QUOTES, 'UTF-8');
   $label = htmlspecialchars($a->l, ENT_QUOTES, 'UTF-8');
   $title = htmlspecialchars($a->tt, ENT_QUOTES, 'UTF-8');
@@ -740,7 +739,6 @@ function input_date($a) {
 }
 
 function input_clock($a){ 
-  var_dump($a);
   $rta = "<div class='campo {$a->w} {$a->ww} borde1 oscuro'><div>{$a->l}</div>";
   $rta .= "<input type='time' ";
   $rta .= " id='{$a->n}'";

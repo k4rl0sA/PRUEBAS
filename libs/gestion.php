@@ -576,7 +576,7 @@ class cmp { //ntwplcsdxhvuf
 	case 'l':
 		 $b=subtitulo($this);
 		break;
-	case 'r':
+	case 'c':
 		 $b=input_clock($this);
   case 'm':
       $b=select_mult($this);

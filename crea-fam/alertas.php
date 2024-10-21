@@ -185,12 +185,11 @@ function men_alertas(){
 
 
 function gra_alertas(){
-	/* print_r($_POST);
+	 print_r($_POST);
 	$id=divide($_POST['idp']);
 	
 	
-	
-	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun'):
+	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun');
 	$field1 = array('agen_intra', 'servicio', 'fecha_cita', 'hora_cita', 'lugar_cita', 'deriva_pf', 'evento_pf');
 
 	$holders = array_fill(0, count($campos), '?');
@@ -220,11 +219,11 @@ function gra_alertas(){
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => 'A');
-		var_dump($params); */
+		var_dump($params);
 
 		//  $rta = mysql_prepd($sql, $params);
 		//  return $rta;
-
+}
 	/* 
 	/* if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
@@ -266,7 +265,7 @@ function gra_alertas(){
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta; */
-}
+
 
 function opc_evento($id=''){
 	$d=get_persona();

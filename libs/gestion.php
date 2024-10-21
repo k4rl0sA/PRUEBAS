@@ -620,7 +620,7 @@ function select_mult($a){
   $rta.="<input type='search' id='{$a->n}' class='mult' placeholder='-- SELECCIONE --' onClick='showMult(this,true);' onSearch='searchMult(this);'>"; 
   $rta.="<select multiple";
   $rta.=" id='f{$a->n}'";
-  $rta.=" name='f{$a->n}[]'";  
+  $rta.=" name='f{$a->n}'";  
   $rta.=" class='{$a->w} captura check mult close ";
   $rta.= ($a->v==true) ? 'valido ' : '';
   if (!$a->u) $rta.="' disabled='true ' ";

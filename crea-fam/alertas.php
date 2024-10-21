@@ -283,6 +283,15 @@ function get_alertas(){
 	}
 }
 
+function opc_alertupz(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
 function opc_necesidad($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=225 AND estado='A' ORDER BY LPAD(idcatadeta, 2, '0')", $id);
 }

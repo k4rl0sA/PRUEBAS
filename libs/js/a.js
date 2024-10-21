@@ -278,9 +278,9 @@ function is_option(a) {
 
 function valido(a) {
 	a.classList.remove('alerta','invalid');
-	if (a.multiple)document.querySelector('select[name="'+a.id+'[]"]').previousElementSibling.classList.remove('alerta');
+	if (a.multiple)document.querySelector('select[name="'+a.id+'"]').previousElementSibling.classList.remove('alerta');
 		if (a.value == '') a.classList.add('alerta','invalid');
-		if (a.value == '' && a.multiple)document.querySelector('select[name="'+a.id+'[]"]').previousElementSibling.classList.add('alerta');
+		if (a.value == '' && a.multiple)document.querySelector('select[name="'+a.id+'"]').previousElementSibling.classList.add('alerta');
 		/* if(a.tagName=='SELECT'){
 			if(a.firstChild.classList.contains('alerta') && a.value =='0')a.classList.add('alerta','invalid');
 		} */
@@ -1328,7 +1328,7 @@ function myFetch(b, c, d) {
 			  }
 	  mul.value = out;
 	  sel.focus();
-		if(sel.id=='fselmul10[]')enabSelMulSel('fselmul10[]','deriva_eac',['5A', '5B']);
+		if(sel.id=='fselmul10')enabSelMulSel('fselmul10','deriva_eac',['5A', '5B']);
 	}
 	
 	function showMult(a,b){

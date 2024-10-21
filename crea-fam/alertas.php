@@ -293,7 +293,7 @@ function opc_alert1fselmul1(){
 }
 
 function opc_alert2fselmul2(){
-	return opc_alert1fselmul1();
+	opc_alert1fselmul1();
 }
 
 function opc_necesidad($id=''){

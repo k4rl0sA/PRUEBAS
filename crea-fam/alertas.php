@@ -185,7 +185,7 @@ function men_alertas(){
 
 
 function gra_alertas(){
-	print_r($_POST);
+	/* print_r($_POST);
 	$id=divide($_POST['idp']);
 
 	$sm1 = isset($_POST['fselmul1']) ? (is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : $_POST['fselmul1']) : '';
@@ -236,7 +236,7 @@ if ($num_placeholders !== $num_params) {
 }
 		 $rta = mysql_prepd($sql, $params);
 		 return $rta;
-} 
+}  */
 	 
 	/*  if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
@@ -245,12 +245,12 @@ if ($num_placeholders !== $num_params) {
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
-	/*  $sm1 = ($_POST['fselmul1'] ?? null) && is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : '';
-	 $sm2 = ($_POST['fselmul2'] ?? null) && is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : '';
-	 $sm3 = ($_POST['fselmul3'] ?? null) && is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : '';
-	 $sm4 = ($_POST['fselmul4'] ?? null) && is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : '';
-	 $sm5 = ($_POST['fselmul5'] ?? null) && is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : '';
-	 $sm6 = ($_POST['fselmul6'] ?? null) && is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : '';
+	$sm1 = isset($_POST['fselmul1']) ? (is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : $_POST['fselmul1']) : '';
+    $sm2 = isset($_POST['fselmul2']) ? (is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : $_POST['fselmul2']) : '';
+    $sm3 = isset($_POST['fselmul3']) ? (is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : $_POST['fselmul3']) : '';
+    $sm4 = isset($_POST['fselmul4']) ? (is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : $_POST['fselmul4']) : '';
+    $sm5 = isset($_POST['fselmul5']) ? (is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : $_POST['fselmul5']) : '';
+    $sm6 = isset($_POST['fselmul6']) ? (is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : $_POST['fselmul6']) : '';
  
 	
 
@@ -284,7 +284,7 @@ if ($num_placeholders !== $num_params) {
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta;
-} */
+} 
 
 
 function opc_evento($id=''){

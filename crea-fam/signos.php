@@ -254,7 +254,7 @@ function men_signos(){
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
         DATE_SUB(NOW(), INTERVAL 5 HOUR),
 		 NULL, NULL, 'A')";
-		echo $sql;
+		// echo $sql;
 		$rta = dato_mysql($sql);
 		return $rta;
    	} 

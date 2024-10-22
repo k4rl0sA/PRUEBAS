@@ -1,4 +1,4 @@
-<?php
+ <?php
 include ('claves.php');
 ?>
 <!DOCTYPE html>

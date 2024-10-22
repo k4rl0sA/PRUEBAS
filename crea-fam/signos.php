@@ -231,8 +231,8 @@ function men_signos(){
 		$abd=$_POST['peri_abdomi']?? null;
 		$bra=$_POST['peri_braq']?? null;
 		$zsco=explode("=",$_POST['zscore']?? null);
-		$z1=$zsco[0];
-		$z2=$zsco[1];
+		$z1=$zsco[0]??null;
+		$z2=$zsco[1]??null;
 		$glu=$_POST['glucometria'] ?? null;
 		
 

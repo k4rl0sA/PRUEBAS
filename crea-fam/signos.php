@@ -220,6 +220,7 @@ function men_signos(){
 			array('type' => 's', 'value' => 'A')
 
 		); 
+		var_dump($params);
 			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
 		return mysql_prepd($sql, $params);
    	} 

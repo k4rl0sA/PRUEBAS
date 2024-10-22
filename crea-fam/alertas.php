@@ -188,12 +188,13 @@ function gra_alertas(){
 	print_r($_POST);
 	$id=divide($_POST['idp']);
 
-	$sm1 = ($_POST['fselmul1'] ?? null) && is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : '';
-	$sm2 = ($_POST['fselmul2'] ?? null) && is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : '';
-	$sm3 = ($_POST['fselmul3'] ?? null) && is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : '';
-	$sm4 = ($_POST['fselmul4'] ?? null) && is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : '';
-	$sm5 = ($_POST['fselmul5'] ?? null) && is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : '';
-	$sm6 = ($_POST['fselmul6'] ?? null) && is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : '';
+	$sm1 = isset($_POST['fselmul1']) ? (is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : $_POST['fselmul1']) : '';
+    $sm2 = isset($_POST['fselmul2']) ? (is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : $_POST['fselmul2']) : '';
+    $sm3 = isset($_POST['fselmul3']) ? (is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : $_POST['fselmul3']) : '';
+    $sm4 = isset($_POST['fselmul4']) ? (is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : $_POST['fselmul4']) : '';
+    $sm5 = isset($_POST['fselmul5']) ? (is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : $_POST['fselmul5']) : '';
+    $sm6 = isset($_POST['fselmul6']) ? (is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : $_POST['fselmul6']) : '';
+
 		
 	
 	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun');

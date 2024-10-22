@@ -441,7 +441,7 @@ function get_person(){
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta
-		FROM `personas` 
+		FROM `person` 
 		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc 
 		WHERE idpeople ='{$id[0]}'" ;
 		// echo $sql;

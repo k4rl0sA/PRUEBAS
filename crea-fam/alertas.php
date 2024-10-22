@@ -270,7 +270,7 @@ var_dump($num_params);
 		trim(upper('{$id[0]}')),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),
 		trim(upper('{$dnt}')),trim(upper('{$dnt_sinctrl}')),
-		trim(upper('{$gestante}')),trim(upper('{$etapa}')),
+		trim(upper('{$gest}')),trim(upper('{$etapa}')),
 		trim(upper('{$ges_sinctrl}')),
 		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),
 		trim(upper('{$_POST['cro_diabe']}')),trim(upper('{$_POST['cro_epoc']}')),

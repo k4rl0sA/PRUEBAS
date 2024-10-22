@@ -34,13 +34,13 @@ if (version) {
     version.textContent = actual + '_' + window.appVersion;
   }
 }
-
+/* 
 document.addEventListener('keydown', function (event) {
 	if (event.ctrlKey && event.key === 'v') {
 		inform('Esta acción no esta permitida');
 	  event.preventDefault();
 	}
-  });
+  }); */
 
    document.addEventListener('contextmenu', function (event) {
 	inform('Esta acción no esta permitida');

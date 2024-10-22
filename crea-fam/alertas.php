@@ -280,7 +280,7 @@ if ($num_placeholders !== $num_params) {
 		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),";
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
-		// echo $sql;
+		 echo $sql;
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
 		return $rta;

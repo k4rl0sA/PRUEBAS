@@ -251,7 +251,7 @@ var_dump($num_params);
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
-	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)){$sm1 = implode(",",str_replace("'", "", $smu1));}
+	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
 	if (($smu3 = $_POST['fselmul3'] ?? null) && is_array($smu3)) {$sm3 = implode(",",str_replace("'", "", $smu3));}
 	if (($smu4 = $_POST['fselmul4'] ?? null) && is_array($smu4)) {$sm4 = implode(",",str_replace("'", "", $smu4));}
@@ -260,8 +260,8 @@ var_dump($num_params);
 
 	$id=divide($_POST['idp']);
 
-		$sql="INSERT INTO hog_alert VALUES (NULL,
-		trim(upper('{$id[0])),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
+	$sql="INSERT INTO hog_alert VALUES (NULL,
+		trim(upper('{$id[0]}')),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),trim(upper('{$_POST['cursovida']}')),
 		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),trim(upper('{$_POST['cronico']}')),	
 		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),

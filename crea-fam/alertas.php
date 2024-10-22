@@ -280,7 +280,7 @@ if ($num_placeholders !== $num_params) {
         DATE_SUB(NOW(), INTERVAL 5 HOUR), TRIM(UPPER('{$_SESSION['us_sds']}')), NULL, NULL, 'A')";
 
     // Echo para revisar la consulta
-    echo $sql;
+    // echo $sql;
 
     // Ejecutar la consulta
     $rta = dato_mysql($sql);

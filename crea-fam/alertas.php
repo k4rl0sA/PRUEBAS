@@ -245,57 +245,46 @@ if ($num_placeholders !== $num_params) {
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
-	if (($smu1 = $_POST['fselmul1'] ?? null)) {
-        $sm1 = str_replace(["'", '"'], '', $smu1); // Limpiar comillas simples y dobles
-    }
-    if (($smu2 = $_POST['fselmul2'] ?? null)) {
-        $sm2 = str_replace(["'", '"'], '', $smu2);
-    }
-    if (($smu3 = $_POST['fselmul3'] ?? null)) {
-        $sm3 = str_replace(["'", '"'], '', $smu3);
-    }
-    if (($smu4 = $_POST['fselmul4'] ?? null)) {
-        $sm4 = str_replace(["'", '"'], '', $smu4);
-    }
-    if (($smu5 = $_POST['fselmul5'] ?? null)) {
-        $sm5 = str_replace(["'", '"'], '', $smu5);
-    }
-    if (($smu6 = $_POST['fselmul6'] ?? null)) {
-        $sm6 = str_replace(["'", '"'], '', $smu6);
-    }
- 
-	
+	$sm1 = isset($_POST['fselmul1']) ? str_replace(["'", '"'], '', $_POST['fselmul1']) : '';
+    $sm2 = isset($_POST['fselmul2']) ? str_replace(["'", '"'], '', $_POST['fselmul2']) : '';
+    $sm3 = isset($_POST['fselmul3']) ? str_replace(["'", '"'], '', $_POST['fselmul3']) : '';
+    $sm4 = isset($_POST['fselmul4']) ? str_replace(["'", '"'], '', $_POST['fselmul4']) : '';
+    $sm5 = isset($_POST['fselmul5']) ? str_replace(["'", '"'], '', $_POST['fselmul5']) : '';
+    $sm6 = isset($_POST['fselmul6']) ? str_replace(["'", '"'], '', $_POST['fselmul6']) : '';
+    
+    $dnt = $_POST['men_dnt'] ?? null;
+    $dnt_sinctrl = $_POST['men_sinctrl'] ?? null;
+    $gest = $_POST['gestante'] ?? null;
+    $etapa = $_POST['etapgest'] ?? null;
+    $ges_sinctrl = $_POST['ges_sinctrl'] ?? null;
 
-	$dnt = $_POST['men_dnt'] ?? null;
-	$dnt_sinctrl = $_POST['men_sinctrl'] ?? null;
-	$gest = $_POST['gestante'] ?? null;
-	$etapa = $_POST['etapgest'] ?? null;
-	$ges_sinctrl = $_POST['ges_sinctrl'] ?? null;
+    $id = divide($_POST['idp']);
 
-	$id=divide($_POST['idp']);
+    // Construir la consulta SQL
+    $sql = "INSERT INTO hog_alert VALUES (NULL,
+        trim(upper('{$id[0]}')), trim(upper('{$_POST['cursovida']}')), trim(upper('{$_POST['fecha']}')),
+        trim(upper('{$_POST['tipo']}')), trim(upper('{$_POST['crit_epi']}')),
+        trim(upper('{$dnt}')), trim(upper('{$dnt_sinctrl}')),
+        trim(upper('{$gest}')), trim(upper('{$etapa}')),
+        trim(upper('{$ges_sinctrl}')),
+        trim(upper('{$_POST['cronico']}')), trim(upper('{$_POST['cro_hiper']}')),
+        trim(upper('{$_POST['cro_diabe']}')), trim(upper('{$_POST['cro_epoc']}')),
+        trim(upper('{$_POST['cro_sinctrl']}')), trim(upper('{$_POST['esq_vacun']}')),
+        trim(upper('{$_POST['alert1']}')), trim(upper('{$sm1}')), trim(upper('{$_POST['alert2']}')), trim(upper('{$sm2}')),
+        trim(upper('{$_POST['alert3']}')), trim(upper('{$sm3}')), trim(upper('{$_POST['alert4']}')), trim(upper('{$sm4}')),
+        trim(upper('{$_POST['alert5']}')), trim(upper('{$sm5}')), trim(upper('{$_POST['alert6']}')), trim(upper('{$sm6}')),
+        trim(upper('{$_POST['agen_intra']}')), trim(upper('{$_POST['servicio']}')),
+        trim(upper('{$_POST['fecha_cita']}')), trim(upper('{$_POST['hora_cita']}')),
+        trim(upper('{$_POST['lugar_cita']}')),
+        trim(upper('{$_POST['deriva_pf']}')), trim(upper('{$_POST['evento_pf']}')),
+        DATE_SUB(NOW(), INTERVAL 5 HOUR), TRIM(UPPER('{$_SESSION['us_sds']}')), NULL, NULL, 'A')";
 
-	$sql="INSERT INTO hog_alert VALUES (NULL,
-		trim(upper('{$id[0]}')),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
-		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),
-		trim(upper('{$dnt}')),trim(upper('{$dnt_sinctrl}')),
-		trim(upper('{$gest}')),trim(upper('{$etapa}')),
-		trim(upper('{$ges_sinctrl}')),
-		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),
-		trim(upper('{$_POST['cro_diabe']}')),trim(upper('{$_POST['cro_epoc']}')),
-		trim(upper('{$_POST['cro_sinctrl']}')),trim(upper('{$_POST['esq_vacun']}')),
-		trim(upper('{$_POST['alert1']}')),trim(upper({$sm1})),trim(upper('{$_POST['alert2']}')),trim(upper({$sm2})),
-		trim(upper('{$_POST['alert3']}')),trim(upper({$sm3})),trim(upper('{$_POST['alert4']}')),trim(upper({$sm4})),
-		trim(upper('{$_POST['alert5']}')),trim(upper({$sm5})),trim(upper('{$_POST['alert6']}')),trim(upper({$sm6})),
-		trim(upper('{$_POST['agen_intra']}')),trim(upper('{$_POST['servicio']}')),
-		trim(upper('{$_POST['fecha_cita']}')),trim(upper('{$_POST['hora_cita']}')),
-		trim(upper('{$_POST['lugar_cita']}')),
-		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),";
-	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
-		// }
-		 echo $sql;
-		$rta=dato_mysql($sql);
-		//return $rta.' '.$rta1;
-		return $rta;
+    // Echo para revisar la consulta
+    echo $sql;
+
+    // Ejecutar la consulta
+    $rta = dato_mysql($sql);
+    return $rta;
 } 
 
 

@@ -275,7 +275,7 @@ var_dump($num_params);
 		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),
 		trim(upper('{$_POST['cro_diabe']}')),trim(upper('{$_POST['cro_epoc']}')),
 		trim(upper('{$_POST['cro_sinctrl']}')),trim(upper('{$_POST['esq_vacun']}')),
-		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
+		trim(upper('{$_POST['alert1']}')),trim(upper('{$_POST['fselmul1']}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
 		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
 		trim(upper('{$_POST['agen_intra']}')),trim(upper('{$_POST['servicio']}')),

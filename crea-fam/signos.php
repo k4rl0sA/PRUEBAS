@@ -193,7 +193,7 @@ function men_signos(){
 	function gra_signos(){
 		// var_dump($_POST);
 		$id=divide($_POST['idp']);
-		$campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
+		/* $campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
 		$holders = array_fill(0, count($campos), '?');
 		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
 		$zscore=explode("=",$_POST['zscore'] ?? null);
@@ -222,7 +222,40 @@ function men_signos(){
 		); 
 		var_dump($params);
 			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
-		return mysql_prepd($sql, $params);
+		return mysql_prepd($sql, $params); */
+
+		$tas=$_POST['tas'] ?? null;
+		$tad=$_POST['tad'] ?? null;
+		$fre=$_POST['frecard']?? null;
+		$sat=$_POST['satoxi']?? null;
+		$abd=$_POST['peri_abdomi']?? null;
+		$bra=$_POST['peri_braq']?? null;
+		$z1=$zscore[0]?? null;
+		$z2=$zscore[1]?? null;
+		$glu=$_POST['glucometria'] ?? null;
+		
+
+		$sql = "INSERT INTO hog_signos VALUES (NULL,
+        trim(upper('{$id[0]}')), 
+		trim(upper('{$_POST['fecha_toma']}')),
+		trim(upper('{$_POST['peso']}')),
+        trim(upper('{$_POST['talla']}')), 
+		trim(upper('{$_POST['imc']}')),
+        trim(upper('{$tas}')),
+		trim(upper('{$tad}')),
+        trim(upper('{$fre}')),
+		trim(upper('{$sat}')),
+        trim(upper('{$abd}')),
+        trim(upper('{$bra}')),
+		trim(upper('{$z1}')),
+        trim(upper('{$z2}')),
+		trim(upper('{$glu}')),
+		TRIM(UPPER('{$_SESSION['us_sds']}')),
+        DATE_SUB(NOW(), INTERVAL 5 HOUR),
+		 NULL, NULL, 'A')";
+		echo $sql;
+		$rta = dato_mysql($sql);
+		return $rta;
    	} 
 
     function formato_dato($a,$b,$c,$d){

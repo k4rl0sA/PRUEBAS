@@ -731,6 +731,31 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li class='icono menubtn' title='Menu' id='togg_".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"><div id='men_".$c['ACCIONES']."'></div></li>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
 		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";
+		if (perfil1()=='MEDATE' || perfil1()=='ADM' || perfil1()=='ENFATE'|| perfil1()=='ADMEAC' || perfil1()=='SUPEAC' || perfil1()=='RELENF' ){
+			$rta.="<li class='icono aten1' title='Crear Atención' id='".$c['ACCIONES']."' Onclick=\"mostrar('atencion','pro',event,'','lib.php',7,'atencion');\"></li>"
+			if($c['edad actual'] >= '0' && $c['edad actual'] <'6'){
+				$rta.="<li class='icono aterm1' title='PRIMERA INFANCIA' id='".$c['ACCIONES']."' Onclick=\"mostrar('prinfancia','pro',event,'','prinfancia.php',7,'prinfancia');Color('datos-lis');\"></li>";
+			}
+			if($c['edad actual'] > '5' && $c['edad actual'] <='11'){
+				$rta.="<li class='icono canin1' title='INFANCIA' id='".$c['ACCIONES']."' Onclick=\"mostrar('infancia','pro',event,'','infancia.php',7,'infancia');Color('datos-lis');\"></li>";
+			}else if($c['edad actual'] > '11' && $c['edad actual'] <='17'){
+				$rta.="<li class='icono adol1' title='ADOLESCENCIA' id='".$c['ACCIONES']."' Onclick=\"mostrar('adolesce','pro',event,'','adolescencia.php',7,'adolesce');Color('datos-lis');\"></li>";
+			}else if($c['edad actual'] > '17' && $c['edad actual'] <='28' ){
+				$rta.="<li class='icono juve1' title='JUVENTUD' id='".$c['ACCIONES']."' Onclick=\"mostrar('eac_juventud','pro',event,'','lib.php',7,'eac_juventud');Color('datos-lis');\"></li>";
+			}else if($c['edad actual'] > '28' && $c['edad actual'] <='59'){
+				$rta.="<li class='icono adul1' title='ADULTEZ' id='".$c['ACCIONES']."' Onclick=\"mostrar('eac_adultez','pro',event,'','lib.php',7,'eac_adultez');Color('datos-lis');\"></li>";
+			}else if($c['edad actual'] > '59' ){
+				$rta.="<li class='icono veje1' title='VEJEZ' id='".$c['ACCIONES']."' Onclick=\"mostrar('eac_vejez','pro',event,'','lib.php',7,'eac_vejez');Color('datos-lis');\"></li>";
+			}
+			if(($c['edad actual'] > '10' && $c['edad actual'] <= '54') && $c['sexo'] == 'MUJER'){
+				$rta.= (!empty(get_condicion($c['ACCIONES'])) && get_condicion($c['ACCIONES'])['gestante']=='SI') ? "<li class='icono gesta1' title='GESTANTES' id='".$c['ACCIONES']."' Onclick=\"mostrar('pregnant','pro',event,'','gestantes.php',7,'pregnant');Color('datos-lis');setTimeout(hidFieOpt('gestante','ges_hide',this,true),2000);\"></li>" : '' ;
+			}
+			$rta.= (!empty(get_condicion($c['ACCIONES'])) && get_condicion($c['ACCIONES'])['cronico']=='SI') ? "<li class='icono cronic' title='Cronicos' id='".$c['ACCIONES']."' Onclick=\"mostrar('prechronic','pro',event,'','cronicos.php',7,'prechronic');Color('datos-lis');\"></li>" : '' ;
+		}
+		}
+		if($a=='atencion' && $b=='acciones'){
+			$rta="<nav class='menu right'>";
+			$rta.="<li class='icono editar ' title='Editar Atención' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(getData,1300,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(getData,1500,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(changeSelect,1100,'letra1','rango1');setTimeout(changeSelect,1150,'letra2','rango2');setTimeout(changeSelect,1280,'letra3','rango3');setTimeout(changeSelect,1385,'rango1','diagnostico1');setTimeout(changeSelect,1385,'rango2','diagnostico2');setTimeout(changeSelect,1385,'rango3','diagnostico3');Color('datos-lis');\"></li>";
 		}
 		if ($a=='planc-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

@@ -187,7 +187,7 @@ function men_alertas(){
 function gra_alertas(){
 	//  print_r($_POST);
 	$id=divide($_POST['idp']);
-	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {
+	/* if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {
         $sm1 = implode(",", str_replace("'", "", $smu1));
     } else {
         $sm1 = '';
@@ -242,14 +242,14 @@ var_dump($num_placeholders);
 var_dump($num_params);
 		 $rta = mysql_prepd($sql, $params);
 		 return $rta;
-}
-	/* 
-	/* if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
+} */
+	 
+	/*  if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
 	if (($smu3 = $_POST['fselmul3'] ?? null) && is_array($smu3)) {$sm3 = implode(",",str_replace("'", "", $smu3));}
 	if (($smu4 = $_POST['fselmul4'] ?? null) && is_array($smu4)) {$sm4 = implode(",",str_replace("'", "", $smu4));}
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
-	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));}
+	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
 	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)){$sm1 = implode(",",str_replace("'", "", $smu1));}
 	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
@@ -257,24 +257,16 @@ var_dump($num_params);
 	if (($smu4 = $_POST['fselmul4'] ?? null) && is_array($smu4)) {$sm4 = implode(",",str_replace("'", "", $smu4));}
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));}
-	if (($smu7 = $_POST['fselmul7'] ?? null) && is_array($smu7)) {$sm7 = implode(",",str_replace("'", "", $smu7));}
-	if (($smu8 = $_POST['fselmul8'] ?? null) && is_array($smu8)) {$sm8 = implode(",",str_replace("'", "", $smu8));}
-	if (($smu9 = $_POST['fselmul9'] ?? null) && is_array($smu9)) {$sm9 = implode(",",str_replace("'", "", $smu9));}
-	if (($smu10 = $_POST['fselmul10'] ?? null) && is_array($smu10)) {$sm10 = implode(",",str_replace("'", "", $smu10));}
-	$codoral= $_POST['codoral']?? null;
 
 	$id=divide($_POST['idp']);
 
 		$sql="INSERT INTO hog_alert VALUES (NULL,
-		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['fecha']}')),
+		trim(upper('{$id[0])),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),trim(upper('{$_POST['cursovida']}')),
 		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),trim(upper('{$_POST['cronico']}')),	
 		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
 		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
-		trim(upper('{$_POST['alert7']}')),trim(upper('{$sm7}')),trim(upper('{$_POST['alert8']}')),trim(upper('{$sm8}')),
-		trim(upper('{$_POST['alert9']}')),trim(upper('{$sm9}')),trim(upper('{$codoral}')),
-		trim(upper('{$_POST['alert10']}')),trim(upper('{$sm10}')),
 		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['necesidad_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
 		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}'))";
 
@@ -283,7 +275,8 @@ var_dump($num_params);
 		// echo $sql;
 		$rta=dato_mysql($sql);
 		//return $rta.' '.$rta1;
-		return $rta; */
+		return $rta;
+}
 
 
 function opc_evento($id=''){

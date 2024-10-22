@@ -258,12 +258,14 @@ var_dump($num_params);
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));}
 
+	$men_dnt = $_POST['men_dnt'] ?? null;
+
 	$id=divide($_POST['idp']);
 
 	$sql="INSERT INTO hog_alert VALUES (NULL,
 		trim(upper('{$id[0]}')),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
 		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),
-		trim(upper('{$_POST['men_dnt']}')),trim(upper('{$_POST['men_sinctrl']}')),
+		trim(upper('{$men_dnt}')),trim(upper('{$_POST['men_sinctrl']}')),
 		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),
 		trim(upper('{$_POST['ges_sinctrl']}')),
 		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),

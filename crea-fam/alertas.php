@@ -262,14 +262,20 @@ var_dump($num_params);
 
 	$sql="INSERT INTO hog_alert VALUES (NULL,
 		trim(upper('{$id[0]}')),trim(upper('{$_POST['cursovida']}')),trim(upper('{$_POST['fecha']}')),
-		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),trim(upper('{$_POST['cursovida']}')),
-		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),trim(upper('{$_POST['cronico']}')),	
+		trim(upper('{$_POST['tipo']}')),trim(upper('{$_POST['crit_epi']}')),
+		trim(upper('{$_POST['men_dnt']}')),trim(upper('{$_POST['men_sinctrl']}')),
+		trim(upper('{$_POST['gestante']}')),trim(upper('{$_POST['etapgest']}')),
+		trim(upper('{$_POST['ges_sinctrl']}')),
+		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),
+		trim(upper('{$_POST['cro_diabe']}')),trim(upper('{$_POST['cro_epoc']}')),
+		trim(upper('{$_POST['cro_sinctrl']}')),trim(upper('{$_POST['esq_vacun']}')),
 		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
 		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
-		trim(upper('{$_POST['deriva_eac']}')),trim(upper('{$_POST['necesidad_eac']}')),trim(upper('{$_POST['asignado_eac']}')),
+		trim(upper('{$_POST['agen_intra']}')),trim(upper('{$_POST['servicio']}')),
+		trim(upper('{$_POST['fecha_cita']}')),trim(upper('{$_POST['hora_cita']}')),
+		trim(upper('{$_POST['lugar_cita']}')),
 		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}'))";
-
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
 		// echo $sql;

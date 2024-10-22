@@ -225,7 +225,7 @@ function mysql_prepd($sql, $params) {
           if ($num_placeholders !== $num_params) {
               die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
           }
-          var_dump($values);
+          // var_dump($values);
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $github;

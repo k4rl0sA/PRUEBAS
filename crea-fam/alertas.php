@@ -185,7 +185,7 @@ function men_alertas(){
 
 
 function gra_alertas(){
-	//  print_r($_POST);
+	print_r($_POST);
 	$id=divide($_POST['idp']);
 	/* if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {
         $sm1 = implode(",", str_replace("'", "", $smu1));
@@ -281,7 +281,7 @@ var_dump($num_params);
 		trim(upper('{$_POST['agen_intra']}')),trim(upper('{$_POST['servicio']}')),
 		trim(upper('{$_POST['fecha_cita']}')),trim(upper('{$_POST['hora_cita']}')),
 		trim(upper('{$_POST['lugar_cita']}')),
-		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}'))";
+		trim(upper('{$_POST['deriva_pf']}')),trim(upper('{$_POST['evento_pf']}')),";
 	$sql.="DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
 		// }
 		// echo $sql;

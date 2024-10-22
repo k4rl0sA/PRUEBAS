@@ -251,12 +251,14 @@ var_dump($num_params);
 	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
 	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
-	if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
-	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
-	if (($smu3 = $_POST['fselmul3'] ?? null) && is_array($smu3)) {$sm3 = implode(",",str_replace("'", "", $smu3));}
-	if (($smu4 = $_POST['fselmul4'] ?? null) && is_array($smu4)) {$sm4 = implode(",",str_replace("'", "", $smu4));}
-	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
-	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));}
+	 $sm1 = ($_POST['fselmul1'] ?? null) && is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : '';
+	 $sm2 = ($_POST['fselmul2'] ?? null) && is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : '';
+	 $sm3 = ($_POST['fselmul3'] ?? null) && is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : '';
+	 $sm4 = ($_POST['fselmul4'] ?? null) && is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : '';
+	 $sm5 = ($_POST['fselmul5'] ?? null) && is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : '';
+	 $sm6 = ($_POST['fselmul6'] ?? null) && is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : '';
+ 
+	
 
 	$dnt = $_POST['men_dnt'] ?? null;
 	$dnt_sinctrl = $_POST['men_sinctrl'] ?? null;
@@ -275,7 +277,7 @@ var_dump($num_params);
 		trim(upper('{$_POST['cronico']}')),trim(upper('{$_POST['cro_hiper']}')),
 		trim(upper('{$_POST['cro_diabe']}')),trim(upper('{$_POST['cro_epoc']}')),
 		trim(upper('{$_POST['cro_sinctrl']}')),trim(upper('{$_POST['esq_vacun']}')),
-		trim(upper('{$_POST['alert1']}')),trim(upper('{$_POST['fselmul1']}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
+		trim(upper('{$_POST['alert1']}')),trim(upper('{$sm1}')),trim(upper('{$_POST['alert2']}')),trim(upper('{$sm2}')),
 		trim(upper('{$_POST['alert3']}')),trim(upper('{$sm3}')),trim(upper('{$_POST['alert4']}')),trim(upper('{$sm4}')),
 		trim(upper('{$_POST['alert5']}')),trim(upper('{$sm5}')),trim(upper('{$_POST['alert6']}')),trim(upper('{$sm6}')),
 		trim(upper('{$_POST['agen_intra']}')),trim(upper('{$_POST['servicio']}')),

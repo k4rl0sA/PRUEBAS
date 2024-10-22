@@ -220,7 +220,12 @@ function mysql_prepd($sql, $params) {
               $types .= ($type === 'z') ? 's' : $type; // // Agregar el tipo correspondiente a $types
               $values[] = $value;// Agregar el valor limpio al array $values
           }
-          // var_dump($values);
+          $num_placeholders = substr_count($sql, '?');
+          $num_params = count($values);
+          if ($num_placeholders !== $num_params) {
+              die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
+          }
+          var_dump($values);
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $github;

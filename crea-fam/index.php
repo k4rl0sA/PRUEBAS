@@ -340,21 +340,14 @@ function crearMenu(id){
         	.then(response => response.text())
         	.then(html => {
             	menuContainer.innerHTML = html;
-            	setupMenuBehavior();
+            	setupMenuBehavior(menuContainer,menuToggle);
             })
     	.catch(error => console.error('Error al cargar el menú:', error));
-        fetch('../libs/menu.html')
-        .then(response => response.text())
-        .then(html => {
-            menuContainer.innerHTML = html;
-            setupMenuBehavior();
-        })
-        .catch(error => console.error('Error al cargar el menú:', error));
 }
 
 
                 
-                    function setupMenuBehavior() {
+                    function setupMenuBehavior(menuContainer) {
                     const contextMenu = menuContainer.querySelector('.panel-acc');
                     const isMobile = window.innerWidth <= 768;
 

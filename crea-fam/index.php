@@ -327,7 +327,7 @@ function searPers(a){
 
 document.body.addEventListener('click', function(event) {
   if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
-	const id=ev.target.id.split("_");
+	const id=event.target.id.split("_");
     crearMenu();
   }
 });

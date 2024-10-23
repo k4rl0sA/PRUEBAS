@@ -187,7 +187,10 @@ $o='prurap';
 
 
 /*************INICIO MENU***********************/
-
+function men_atencion(){
+	$rta=cap_menus('atencion','pro');
+	return $rta;
+   }
 
 
 /****************FIN MENU*****************+*****/

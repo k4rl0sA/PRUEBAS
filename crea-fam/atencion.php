@@ -213,6 +213,9 @@ function opc_consultamedica($id=''){
 function opc_aler($id=''){
 	return opc_sql("SELECT `descripcion`,descripcion,valor FROM `catadeta` WHERE idcatalogo=170 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_alarma5($id=''){
+	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

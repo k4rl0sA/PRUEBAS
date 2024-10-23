@@ -24,13 +24,13 @@ else {
 function lis_adm(){
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_factura']) ? divide($_POST['id_factura']) : null);
 	// $id=divide($_POST['id']);
- 	$info=datos_mysql("SELECT  COUNT(DISTINCT concat(tipo_doc,'_',documento,'_',id_factura)) total
-	 FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'");
+ 	$info=datos_mysql("SELECT  COUNT(DISTINCT concat_WS('_',idpeople,'_',id_factura)) total
+	 FROM `adm_facturacion` F WHERE idpeople ='{$id[0]}'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=3;
 	$pag=(isset($_POST['pag-adm']))? ($_POST['pag-adm']-1)* $regxPag:0;	
-	$sql="SELECT DISTINCT concat(tipo_doc,'_',documento,'_',id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
-	FROM `adm_facturacion` F WHERE tipo_doc ='{$id[0]}' and documento='{$id[1]}'";
+	$sql="SELECT DISTINCT concat_WS('_',idpeople,id_factura) ACCIONES,`cod_admin` 'Cod. Ingreso', FN_CATALOGODESC(126,cod_cups) 'Cod. CUPS', FN_CATALOGODESC(127,final_consul) 'Consulta'
+	FROM `adm_facturacion` F WHERE idpeople ='{$id[0]}'";
 	$sql.=" ORDER BY F.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
@@ -44,8 +44,8 @@ function lis_admision(){
 	$regxPag=4;
 	
 	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT(tipo_doc,'_',documento,'_',id_factura) ACCIONES, 
-	`tipo_doc` 'Tipo de Documento', `documento`,`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT_WS('_',idpeople,id_factura) ACCIONES, 
+	idpeople 'usuario',`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
 	FROM `adm_facturacion` A 
 	JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
@@ -60,22 +60,13 @@ function lis_admision(){
 function whe_admision() {
 	$sql = "";
 	 if ($_POST['fdocumento'])
-		$sql .= " AND documento = '".$_POST['fdocumento']."'";
+		$sql .= " AND idpeople = '".$_POST['fdocumento']."'";
 	if ($_POST['fcod_admin'])
 		$sql .= " AND cod_admin ='".$_POST['fcod_admin']."' ";
 	if($_POST['fdigita']) 
 	    $sql .= " AND usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['festado_hist'])
 		$sql .= " AND estado_hist ='".$_POST['festado_hist']."' ";
-	/*if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' ";
-	if ($_POST['festado'])
-		$sql .= " AND estado_v ='".$_POST['festado']."'";
-	if (isset($_POST['fdigita'])){
-		if($_POST['fdigita']) $sql .= " AND asignado ='".$_POST['fdigita']."'";
-	}else{
-		$sql .= " AND asignado ='".$_SESSION['us_sds']."'";
-	} */
 	return $sql;
 }
 

@@ -24,7 +24,6 @@ function cmp_atencion(){
 	$rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
 	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>";
 	$hoy=date('Y-m-d');
-	// $x=['ida'=>'','atencion_tipodoc'=>'','atencion_idpersona'=>'','atencion_fechaatencion'=>'','atencion_codigocups'=>'','atencion_finalidadconsulta'=>'','atencion_peso'=>'','atencion_talla'=>'','atencion_sistolica'=>'','atencion_diastolica'=>'','atencion_abdominal'=>'','atencion_brazo'=>'','atencion_diagnosticoprincipal'=>'','atencion_diagnosticorelacion1'=>'','atencion_diagnosticorelacion2'=>'','atencion_diagnosticorelacion3'=>'','atencion_fertil'=>'','atencion_preconcepcional'=>'','atencion_metodo'=>'','atencion_anticonceptivo'=>'','atencion_planificacion'=>'','atencion_mestruacion'=>'','atencion_gestante'=>'','atencion_gestaciones'=>'','atencion_partos'=>'','atencion_abortos'=>'','atencion_cesarias'=>'','atencion_vivos'=>'','atencion_muertos'=>'','atencion_vacunaciongestante'=>'','atencion_edadgestacion'=>'','atencion_ultimagestacion'=>'','atencion_probableparto'=>'','atencion_prenatal'=>'','atencion_fechaparto'=>'','atencion_rpsicosocial'=>'','atencion_robstetrico'=>'','atencion_rtromboembo'=>'','atencion_rdepresion'=>'','atencion_sifilisgestacional'=>'','atencion_sifiliscongenita'=>'','atencion_morbilidad'=>'','atencion_hepatitisb'=>'','atencion_vih'=>'','atencion_cronico'=>'','atencion_asistenciacronica'=>'','atencion_tratamiento'=>'','atencion_vacunascronico'=>'','atencion_menos5anios'=>'','atencion_esquemavacuna'=>'','atencion_signoalarma'=>'','atencion_cualalarma'=>'','atencion_dxnutricional'=>'','atencion_eventointeres'=>'','atencion_evento'=>'','atencion_cualevento'=>'','atencion_sirc'=>'','atencion_rutasirc'=>'','atencion_remision'=>'','atencion_cualremision'=>'','atencion_ordenpsicologia'=>'','atencion_ordenvacunacion'=>'','atencion_vacunacion'=>'','atencion_ordenlaboratorio'=>'','atencion_laboratorios'=>'','atencion_ordenimagenes'=>'','atencion_imagenes'=>'','atencion_ordenmedicamentos'=>'','atencion_medicamentos'=>'','atencion_rutacontinuidad'=>'','atencion_continuidad'=>'','atencion_relevo'=>''];
 	$t=['idpersona'=>'','tipo_doc'=>'','nombres'=>'','fecha_atencion'=>'','tipo_consulta'=>'','cod_cups'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>''];
 	$d=get_personas();
 	$x="";
@@ -43,8 +42,8 @@ function cmp_atencion(){
 	
 	$c[]=new cmp($o,'e',null,'Datos atención medica usuario',$w);
 	$c[]=new cmp('ida','h',15,$_POST['id'],$w.' '.$o,'ida','ida',null,'####',false,false,'col-1');
-	$c[]=new cmp('atencion_tipodoc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo','atencion_tipodoc',null,'',false,false,'','col-1');
-	$c[]=new cmp('atencion_idpersona','t','20',$d['idpersona'],$w.' '.$o,'N° Identificación','atencion_idpersona',null,'',false,false,'','col-2');
+	$c[]=new cmp('tipodoc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo','tipodoc',null,'',false,false,'','col-1');
+	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',false,false,'','col-2');
 	$c[]=new cmp('nombre1','t','20',$d['nombres'],$w.' '.$o,'Nombres','nombre1',null,'',false,false,'','col-3');
 	$c[]=new cmp('fecha_nacimiento','t','20',$d['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fecha_nacimiento',null,'',false,false,'','col-1','validDate');
 	$c[]=new cmp('sexo','s','20',$d['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
@@ -54,21 +53,21 @@ function cmp_atencion(){
 	$o='consulta';
 	$c[]=new cmp($o,'e',null,'Datos de la atencion medica	',$w);
 	$c[]=new cmp('idf','h',15,'',$w.' '.$o,'idf','idf',null,'####',false,false,'','col-1');
-	$c[]=new cmp('atencion_fechaatencion','d',20,$x,$w.' '.$o,'Fecha de la consulta','atencion_fechaatencion',null,'',true,false,'','col-2');
+	$c[]=new cmp('fechaatencion','d',20,$x,$w.' '.$o,'Fecha de la consulta','fechaatencion',null,'',true,false,'','col-2');
 	$c[]=new cmp('tipo_consulta','s',3,$x,$w.' '.$o,'Tipo de Consulta','tipo_consulta',null,'',true,false,'','col-2');
-	$c[]=new cmp('atencion_codigocups','s',3,$x,$w.' '.$o,'Código CUPS','cups',null,'',true,false,'','col-3');
-	$c[]=new cmp('atencion_finalidadconsulta','s',3,$x,$w.' '.$o,'Finalidad de la Consulta','consultamedica',null,'',true,false,'','col-3');
+	$c[]=new cmp('codigocups','s',3,$x,$w.' '.$o,'Código CUPS','cups',null,'',true,false,'','col-3');
+	$c[]=new cmp('finalidadconsulta','s',3,$x,$w.' '.$o,'Finalidad de la Consulta','consultamedica',null,'',true,false,'','col-3');
 
 
-	$c[]=new cmp('atencion_cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
+	$c[]=new cmp('cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
 	
 	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');periAbd('gestante','AbD',$adult);");
 
-	$c[]=new cmp('atencion_peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','atencion_peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('atencion_peso');ZscoAte('dxnutricional');");
-	$c[]=new cmp('atencion_talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','atencion_talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('atencion_talla');ZscoAte('dxnutricional');");
-	$c[]=new cmp('atencion_sistolica','n',3, $x,$w,'TAS Mín=40 - Máx=250','atencion_sistolica','rgxsisto','###',$adul,$adul,'','col-2',"valSist('atencion_sistolica');");
-	$c[]=new cmp('atencion_diastolica','n',3, $x,$w,'TAD Mín=40 - Máx=150','atencion_diastolica','rgxdiast','###',$adul,$adul,'','col-2',"ValTensions('atencion_sistolica',this);valDist('atencion_diastolica');");
-	$c[]=new cmp('atencion_abdominal','n',4,$x,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','atencion_abdominal','rgxperabd','###',$adul,$adul,'','col-3');
+	$c[]=new cmp('peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');ZscoAte('dxnutricional');");
+	$c[]=new cmp('talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('talla');ZscoAte('dxnutricional');");
+	$c[]=new cmp('sistolica','n',3, $x,$w,'TAS Mín=40 - Máx=250','sistolica','rgxsisto','###',$adul,$adul,'','col-2',"valSist('sistolica');");
+	$c[]=new cmp('diastolica','n',3, $x,$w,'TAD Mín=40 - Máx=150','diastolica','rgxdiast','###',$adul,$adul,'','col-2',"ValTensions('sistolica',this);valDist('diastolica');");
+	$c[]=new cmp('abdominal','n',4,$x,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','abdominal','rgxperabd','###',$adul,$adul,'','col-3');
 	
 	
 	$c[]=new cmp('perime_braq','sd',4, $x,$w,'Perimetro Braquial (Cm)',0,null,'##,#',$meno,$meno,'','col-3');
@@ -99,7 +98,7 @@ $o='cronico';
 	$c[]=new cmp('metodo','s',3,$x,$w.' pre fer '.$o,'Uso actual de método anticonceptivo','aler',null,'',$gest,false,'','col-2','enabAlert(this,\'met\');');
 	$c[]=new cmp('anticonceptivo','s',3,$x,$w.' pre fer met '.$o,'Metodo anticonceptivo','metodoscons',null,'',$gest,false,'','col-2');
 	$c[]=new cmp('planificacion','s',3,$x,$w.' pre fer '.$o,'Tiene consulta de PF','aler',null,'',$gest,false,'','col-2');
-	$c[]=new cmp('mestruacion','d',3,$x,$w.'  '.$o,'Fecha de ultima Mestruacion','atencion_mestruacion',null,'',false,true,'','col-2');	
+	$c[]=new cmp('mestruacion','d',3,$x,$w.'  '.$o,'Fecha de ultima Mestruacion','mestruacion',null,'',false,true,'','col-2');	
 // }	
 
 $o='prurap';
@@ -115,28 +114,28 @@ $o='prurap';
 
  $o='plancuidado';
 	$c[]=new cmp($o,'e',null,'Plan de Cuidado Individual',$w);
-	$c[]=new cmp('atencion_eventointeres','o',3,$x,$w.' '.$o,'Notificacion de eventos de interés en salud pública','atencion_eventointeres	',null,'',false,$u,'','col-35','enabEven(this,\'even\',\'whic\');');//,'hidFieOpt(\'atencion_eventointeres\',\'event_hid\',this,true)'
-	$c[]=new cmp('atencion_evento','s',3,$x,$w.' even '.$o,'Evento de Interes en Salud Publica','evento',null,'',false,false,'','col-4','cualEven(this,\'whic\');');//,'hidFieselet(\'atencion_evento\',\'hidd_aten\',this,true,\'5\')'
-	$c[]=new cmp('atencion_cualevento','t',300,$x,$w.' whic '.$o,'Otro, Cual?','atencion_cualevento	',null,'',false,false,'','col-25');
-	$c[]=new cmp('atencion_sirc','o',3,$x,$w.' '.$o,'Activación rutas SIRC (usuarios otras EAPB)','atencion_sirc	',null,'',false,true,'','col-5',"enabAlert(this,'sirc');");//,'hidFieOpt(\'atencion_sirc\',\'sirc\',this,true)'
-	$c[]=new cmp('atencion_rutasirc[]','m',3,$x,$w.' sirc '.$o,'Rutas SIRC','rutapoblacion',null,'',false,false,'','col-5');
-	$c[]=new cmp('atencion_remision','o',3,$x,$w.' '.$o,'Usuario que require control','atencion_remision	',null,'',false,true,'','col-5','enabAlert(this,\'rem\');');//,'hidFieOpt(\'atencion_remision\',\'espe_hid\',this,true)'
-	$c[]=new cmp('atencion_cualremision[]','m',3,$x,$w.' rem '.$o,'Cuales?	','remision	',null,'',false,false,'','col-5');
+	$c[]=new cmp('eventointeres','o',3,$x,$w.' '.$o,'Notificacion de eventos de interés en salud pública','eventointeres	',null,'',false,$u,'','col-35','enabEven(this,\'even\',\'whic\');');//,'hidFieOpt(\'eventointeres\',\'event_hid\',this,true)'
+	$c[]=new cmp('evento','s',3,$x,$w.' even '.$o,'Evento de Interes en Salud Publica','evento',null,'',false,false,'','col-4','cualEven(this,\'whic\');');//,'hidFieselet(\'evento\',\'hidd_aten\',this,true,\'5\')'
+	$c[]=new cmp('cualevento','t',300,$x,$w.' whic '.$o,'Otro, Cual?','cualevento	',null,'',false,false,'','col-25');
+	$c[]=new cmp('sirc','o',3,$x,$w.' '.$o,'Activación rutas SIRC (usuarios otras EAPB)','sirc	',null,'',false,true,'','col-5',"enabAlert(this,'sirc');");//,'hidFieOpt(\'sirc\',\'sirc\',this,true)'
+	$c[]=new cmp('rutasirc[]','m',3,$x,$w.' sirc '.$o,'Rutas SIRC','rutapoblacion',null,'',false,false,'','col-5');
+	$c[]=new cmp('remision','o',3,$x,$w.' '.$o,'Usuario que require control','remision	',null,'',false,true,'','col-5','enabAlert(this,\'rem\');');//,'hidFieOpt(\'remision\',\'espe_hid\',this,true)'
+	$c[]=new cmp('cualremision[]','m',3,$x,$w.' rem '.$o,'Cuales?	','remision	',null,'',false,false,'','col-5');
 	
-	$c[]=new cmp('atencion_ordenvacunacion','o',3,$x,$w.' '.$o,'Orden Vacunación?','atencion_ordenvacunacion	',null,'',false,true,'','col-1','enabAlert(this,\'vac\');');//,'hidFieOpt(\'atencion_ordenvacunacion\',\'vacu_hid\',this,true)'
-	$c[]=new cmp('atencion_vacunacion','s',3,$x,$w.' vac '.$o,'Vacunación	','vacunacion',null,'',false,false,'','col-2');
+	$c[]=new cmp('ordenvacunacion','o',3,$x,$w.' '.$o,'Orden Vacunación?','ordenvacunacion	',null,'',false,true,'','col-1','enabAlert(this,\'vac\');');//,'hidFieOpt(\'ordenvacunacion\',\'vacu_hid\',this,true)'
+	$c[]=new cmp('vacunacion','s',3,$x,$w.' vac '.$o,'Vacunación	','vacunacion',null,'',false,false,'','col-2');
 	
-	$c[]=new cmp('atencion_ordenlaboratorio','o',3,$x,$w.' '.$o,'Ordena Laboratorio ?','atencion_ordenlaboratorio	',null,'',false,true,'','col-15','enabAlert(this,\'lab\');');//,'hidFieOpt(\'atencion_ordenlaboratorio\',\'lab_hid\',this,true)'
-	$c[]=new cmp('atencion_laboratorios','s',3,$x,$w.' lab '.$o,'Laboratorio','solicitud',null,'',false,false,'','col-2');
+	$c[]=new cmp('ordenlaboratorio','o',3,$x,$w.' '.$o,'Ordena Laboratorio ?','ordenlaboratorio	',null,'',false,true,'','col-15','enabAlert(this,\'lab\');');//,'hidFieOpt(\'ordenlaboratorio\',\'lab_hid\',this,true)'
+	$c[]=new cmp('laboratorios','s',3,$x,$w.' lab '.$o,'Laboratorio','solicitud',null,'',false,false,'','col-2');
 	
-	$c[]=new cmp('atencion_ordenmedicamentos','o',3,$x,$w.' '.$o,'Ordena Medicamentos ?','atencion_ordenmedicamentos	',null,'',false,true,'','col-15','enabAlert(this,\'med\');');//,'hidFieOpt(\'atencion_ordenmedicamentos\',\'medi_hid\',this,true)'
-	$c[]=new cmp('atencion_medicamentos','s',3,$x,$w.' med '.$o,'Medicamentos','medicamentos',null,'',false,false,'','col-2');
+	$c[]=new cmp('ordenmedicamentos','o',3,$x,$w.' '.$o,'Ordena Medicamentos ?','ordenmedicamentos	',null,'',false,true,'','col-15','enabAlert(this,\'med\');');//,'hidFieOpt(\'ordenmedicamentos\',\'medi_hid\',this,true)'
+	$c[]=new cmp('medicamentos','s',3,$x,$w.' med '.$o,'Medicamentos','medicamentos',null,'',false,false,'','col-2');
 	
-	$c[]=new cmp('atencion_rutacontinuidad','o',3,$x,$w.' '.$o,'Remisión para continuidad a rutas integrales de atencion en salud por parte de la subred','prueba	',null,'',false,true,'','col-5',"enabAlert(this,'rut');");//,'hidFieOpt(\'atencion_rutacontinuidad\',\'cont_hid\',this,true)'
-	$c[]=new cmp('atencion_continuidad[]','m',3,$x,$w.' rut '.$o,'.','rutapoblacion',null,'',false,false,'','col-5');
-	$c[]=new cmp('atencion_ordenimagenes','o',3,$x,$w.' '.$o,'Ordena Imágenes Diagnósticas','atencion_ordenimagenes	',null,'',true,true,'','col-3');//,'hidFieOpt(\'atencion_ordenimagenes\',\'img_hid\',this,true)'
-	$c[]=new cmp('atencion_ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
-	$c[]=new cmp('atencion_relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
+	$c[]=new cmp('rutacontinuidad','o',3,$x,$w.' '.$o,'Remisión para continuidad a rutas integrales de atencion en salud por parte de la subred','prueba	',null,'',false,true,'','col-5',"enabAlert(this,'rut');");//,'hidFieOpt(\'rutacontinuidad\',\'cont_hid\',this,true)'
+	$c[]=new cmp('continuidad','m',3,$x,$w.' rut '.$o,'.','rutapoblacion',null,'',false,false,'','col-5');
+	$c[]=new cmp('ordenimagenes','o',3,$x,$w.' '.$o,'Ordena Imágenes Diagnósticas','ordenimagenes	',null,'',true,true,'','col-3');//,'hidFieOpt(\'ordenimagenes\',\'img_hid\',this,true)'
+	$c[]=new cmp('ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
+	$c[]=new cmp('relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
 	$c[]=new cmp('prioridad','s',3,$x,$w.' '.$o,'Prioridad','prioridad',null,'',true,true,'','col-4');
 	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4');
 
@@ -170,7 +169,7 @@ $o='prurap';
 			return "";
 		}else{
 			$id=divide($_REQUEST['id']);
-			//  `atencion_fechaatencion`, `atencion_codigocups`, `atencion_finalidadconsulta`, `atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`, `atencion_diagnosticoprincipal`, `atencion_diagnosticorelacion1`, `atencion_diagnosticorelacion2`, `atencion_diagnosticorelacion3`, `atencion_fertil`, `atencion_preconcepcional`, `atencion_metodo`, `atencion_anticonceptivo`, `atencion_planificacion`, `atencion_mestruacion`, `atencion_gestante`, `atencion_gestaciones`, `atencion_partos`, `atencion_abortos`, `atencion_cesarias`, `atencion_vivos`, `atencion_muertos`, `atencion_vacunaciongestante`, `atencion_edadgestacion`, `atencion_ultimagestacion`, `atencion_probableparto`, `atencion_prenatal`, `atencion_fechaparto`, `atencion_rpsicosocial`, `atencion_robstetrico`, `atencion_rtromboembo`, `atencion_rdepresion`, `atencion_sifilisgestacional`, `atencion_sifiliscongenita`, `atencion_morbilidad`, `atencion_hepatitisb`, `atencion_vih`, `atencion_cronico`, `atencion_asistenciacronica`, `atencion_tratamiento`, `atencion_vacunascronico`, `atencion_menos5anios`, `atencion_esquemavacuna`, `atencion_signoalarma`, `atencion_cualalarma`, `atencion_dxnutricional`, `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, `atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenpsicologia`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenimagenes`, `atencion_imagenes`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_relevo`  ON a.atencion_idpersona = b.idpersona AND a.atencion_tipodoc = b.tipo_doc
+			//  `fechaatencion`, `codigocups`, `finalidadconsulta`, `peso`, `talla`, `sistolica`, `diastolica`, `abdominal`, `brazo`, `diagnosticoprincipal`, `diagnosticorelacion1`, `diagnosticorelacion2`, `diagnosticorelacion3`, `fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, `mestruacion`, `gestante`, `gestaciones`, `partos`, `abortos`, `cesarias`, `vivos`, `muertos`, `vacunaciongestante`, `edadgestacion`, `ultimagestacion`, `probableparto`, `prenatal`, `fechaparto`, `rpsicosocial`, `robstetrico`, `rtromboembo`, `rdepresion`, `sifilisgestacional`, `sifiliscongenita`, `morbilidad`, `hepatitisb`, `vih`, `cronico`, `asistenciacronica`, `tratamiento`, `vacunascronico`, `menos5anios`, `esquemavacuna`, `signoalarma`, `cualalarma`, `dxnutricional`, `eventointeres`, `evento`, `cualevento`, `sirc`, `rutasirc`, `remision`, `cualremision`, `ordenpsicologia`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenimagenes`, `imagenes`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `relevo`  ON a.idpersona = b.idpersona AND a.tipodoc = b.tipo_doc
 			$sql="SELECT  a.idpeople,concat_ws(' ',a.nombre1,a.nombre2,a.apellido1,a.apellido2) nombres,a.fecha_nacimiento,a.sexo,a.genero,a.nacionalidad,
 			b.fecha_consulta,b.tipo_consulta,cod_cups,fecha_consulta,tipo_consulta,final_consul
 			FROM person a

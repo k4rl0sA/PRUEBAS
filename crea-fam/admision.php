@@ -160,7 +160,8 @@ function gra_admision(){
 		$rta = "'NO ES POSIBLE ACTUALIZAR EL REGISTRO'";
 	//    echo $sql;
 	}else if(count($id)==3){
-		$id=json_decode($id[0]);
+		$id=$id[0];
+		var_dump($id);
 		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{

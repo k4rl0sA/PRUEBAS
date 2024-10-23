@@ -198,6 +198,9 @@ function opc_sexo($id=''){
 function opc_genero($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
 }
+function opc_nacionalidad($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

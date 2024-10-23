@@ -335,7 +335,7 @@ document.body.addEventListener('click', function(event) {
 
 function crearMenu(id){
 	const menuToggle = document.getElementById('menuToggle_'+id);
-	const menuContainer = document.getElementById('menuContainer');
+	const menuContainer = document.getElementById('menuContainer_'+id);
 		fetch('../libs/menu.html')
         	.then(response => response.text())
         	.then(html => {

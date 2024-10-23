@@ -341,6 +341,7 @@ function crearMenu(id){
         	.then(html => {
 				cargarRecursosCSSyFontAwesome();
             	menuContainer.innerHTML = html;
+				
             	setupMenuBehavior(menuContainer,menuToggle);
             })
     	.catch(error => console.error('Error al cargar el menú:', error));
@@ -352,11 +353,14 @@ function crearMenu(id){
                     const contextMenu = menuContainer.querySelector('.panel-acc');
                     const isMobile = window.innerWidth <= 768;
 
+					
+
                     menuToggle.addEventListener('click', (e) => {
                         e.stopPropagation();
                         if (isMobile) {
                             contextMenu.classList.toggle('show');
                         } else {
+							contextMenu.style.top=menuToggle.getBoundingClientRect().bottom;
                             contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
                         }
                     });

@@ -232,6 +232,9 @@ function opc_diagnostico1($id=''){
 			return opc_sql("SELECT `iddiagnostico`,descripcion FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
 		} */
 }
+function opc_letra2($id=''){
+	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

@@ -328,13 +328,13 @@ function searPers(a){
 document.body.addEventListener('click', function(event) {
   if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
 	const id=event.target.id.split("_");
-    crearMenu();
+    crearMenu(id[1]+'_'+id[2]);
   }
 });
 
 
 function crearMenu(){
-	const menuToggle = document.getElementById('menuToggle');
+	const menuToggle = document.getElementById('menuToggle_'+id);
 	const menuContainer = document.getElementById('menuContainer');
 		fetch('../libs/menu.html')
         	.then(response => response.text())

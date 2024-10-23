@@ -165,7 +165,7 @@ function gra_admision(){
 		if(get_admi($tip,$doc)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
-			  $sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$_POST['tipo_doc']}')),trim(upper('{$_POST['documento']}')),trim(upper('{$_POST['soli_admis']}')),
+			  $sql="INSERT INTO adm_facturacion VALUES (NULL,$id[0],trim(upper('{$_POST['soli_admis']}')),
 			  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
 			  trim(upper('{$_POST['cod_factura']}')),
 			  TRIM(UPPER('{$_POST['estado_hist']}')),

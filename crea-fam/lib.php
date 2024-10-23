@@ -726,6 +726,7 @@ function formato_dato($a,$b,$c,$d){
 	} 
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
+		$rta.="<button id='menuToggle'>Abrir Menú</button>";
 		$rta.="<li class='icono menubtn' title='Menu' id='togg_".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"><div id='men_".$c['ACCIONES']."'></div></li>";
 		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,700,'regimen','eaf');setTimeout(enabEtni,700,'etnia','ocu','idi');setTimeout(enabLoca,700,'reside_localidad','lochi');setTimeout(EditOcup,800,'ocupacion','true');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
 		$rta.="<li title='Signos' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico .naranja' id='".$c['ACCIONES']."'></i></li>";

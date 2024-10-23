@@ -240,6 +240,11 @@ function opc_rango2($id=''){
 		return opc_sql("SELECT iddiagnostico,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
 	} */
 }
+function opc_diagnostico2($id=''){
+	/* if (count(divide($_POST['id']))==2){
+		return opc_sql("SELECT `iddiagnostico`,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
+	} */
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

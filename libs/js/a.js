@@ -506,7 +506,7 @@ function cargarRecursosCSSyFontAwesome() {
     // Cargar el archivo CSS externo (menuCntx.css)
     const cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';
-    cssLink.href = '../libs/css/menu1.css?v=1.0';
+    cssLink.href = '../libs/css/menu1.css?v=2.0';
     document.head.appendChild(cssLink);
 
     // Cargar FontAwesome

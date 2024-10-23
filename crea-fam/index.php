@@ -333,7 +333,7 @@ document.body.addEventListener('click', function(event) {
 });
 
 
-function crearMenu(){
+function crearMenu(id){
 	const menuToggle = document.getElementById('menuToggle_'+id);
 	const menuContainer = document.getElementById('menuContainer');
 		fetch('../libs/menu.html')

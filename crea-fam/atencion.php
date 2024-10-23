@@ -336,6 +336,9 @@ function opc_remision($id=''){
 function opc_vacunacion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=185 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_solicitud($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=133 and estado='A'  ORDER BY 1 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

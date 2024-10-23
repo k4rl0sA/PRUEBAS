@@ -325,30 +325,25 @@ function searPers(a){
 }
 
 
+function crearMenu(){
+	const menuToggle = document.getElementById('menuToggle');
+	const menuContainer = document.getElementById('menuContainer');
+		fetch('../libs/menu.html')
+        	.then(response => response.text())
+        	.then(html => {
+            	menuContainer.innerHTML = html;
+            	setupMenuBehavior();
+            })
+    	.catch(error => console.error('Error al cargar el menú:', error));
+        fetch('../libs/menu.html')
+        .then(response => response.text())
+        .then(html => {
+            menuContainer.innerHTML = html;
+            setupMenuBehavior();
+        })
+        .catch(error => console.error('Error al cargar el menú:', error));
+}
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-                const menuToggle = document.getElementById('menuToggle');
-                const menuContainer = document.getElementById('menuContainer');
-
-
-                    fetch('../libs/menu.html')
-                        .then(response => response.text())
-                        .then(html => {
-                            menuContainer.innerHTML = html;
-                            setupMenuBehavior();
-                        })
-                        .catch(error => console.error('Error al cargar el menú:', error));
-
-
-                fetch('../libs/menu.html')
-                .then(response => response.text())
-                .then(html => {
-                    menuContainer.innerHTML = html;
-                    setupMenuBehavior();
-                })
-                .catch(error => console.error('Error al cargar el menú:', error));
 
                 
                     function setupMenuBehavior() {
@@ -412,8 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
                 }
-                });
-
 </script>
 </head>
 <body Onload="actualizar();">

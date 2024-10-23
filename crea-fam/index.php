@@ -327,6 +327,93 @@ function searPers(a){
 
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+                const menuToggle = document.getElementById('menuToggle');
+                const menuContainer = document.getElementById('menuContainer');
+
+
+                    fetch('../libs/menu.html')
+                        .then(response => response.text())
+                        .then(html => {
+                            menuContainer.innerHTML = html;
+                            setupMenuBehavior();
+                        })
+                        .catch(error => console.error('Error al cargar el menú:', error));
+
+
+                fetch('../libs/menu.html')
+                .then(response => response.text())
+                .then(html => {
+                    menuContainer.innerHTML = html;
+                    setupMenuBehavior();
+                })
+                .catch(error => console.error('Error al cargar el menú:', error));
+
+                
+                    function setupMenuBehavior() {
+                    const contextMenu = menuContainer.querySelector('.panel-acc');
+                    const isMobile = window.innerWidth <= 768;
+
+                    menuToggle.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (isMobile) {
+                            contextMenu.classList.toggle('show');
+                        } else {
+                            contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
+                        }
+                    });
+
+                        const closeButton = contextMenu.querySelector('.closePanelAcc');
+                        if (closeButton) {
+                            closeButton.addEventListener('click', () => {
+                                if (isMobile) {
+                                    contextMenu.classList.remove('show');
+                                } else {
+                                    contextMenu.style.display = 'none';
+                                }
+                            });
+                        }
+
+                const actions = contextMenu.querySelectorAll('.action');
+                actions.forEach(action => {
+                    action.addEventListener('click', () => {
+                        const actionName = action.querySelector('.actionTitle').textContent;
+                        console.log(`Acción seleccionada: ${actionName}`);
+                        contextMenu.classList.remove('show');
+                    });
+                });
+
+
+
+
+                        document.addEventListener('click', (e) => {
+                            if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
+                                if (isMobile) {
+                                    contextMenu.classList.remove('show');
+                                } else {
+                                    contextMenu.style.display = 'none';
+                                }
+                            }
+                        });
+
+                        
+
+                let touchStartY;
+                contextMenu.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
+                });
+
+                contextMenu.addEventListener('touchmove', (e) => {
+                    const touchEndY = e.touches[0].clientY;
+                    const diff = touchEndY - touchStartY;
+                    if (diff > 50) {
+                        contextMenu.classList.remove('show');
+                    }
+                });
+                }
+                });
+
 </script>
 </head>
 <body Onload="actualizar();">

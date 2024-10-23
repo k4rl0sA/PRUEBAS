@@ -101,8 +101,6 @@ function cmp_admision(){
 	$c[]=new cmp('cod_admin','n','10',$e,$w.' '.$o,'Codigo Ingreso','cod_admin',null,null,false,$p,'','col-15');
 	$c[]=new cmp('cod_factura','n','10',$e,$w.' '.$o,'Codigo de Factura','cod_factura',null,null,false,$p,'','col-15');
 	$c[]=new cmp('estado_hist','s','3',$e,$w.' '.$o,'Estado Admision','estado_hist',null,null,false,false,'','col-2');
-	$c[]=new cmp('tipo_docnew','s','3',$e,$w.' '.$o,'Tipo Documento','tipo_docnew',null,'',false,false,'','col-25');
-	$c[]=new cmp('documento_new','t','20',$e,$w.' '.$o,'N° Identificación','documento_new',null,'',false,false,'','col-25');
 	 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -168,8 +166,6 @@ function gra_admision(){
 			  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
 			  trim(upper('{$_POST['cod_factura']}')),
 			  TRIM(UPPER('{$_POST['estado_hist']}')),
-			  TRIM(UPPER('{$_POST['tipo_docnew']}')),
-			  TRIM(UPPER('{$_POST['documento_new']}')),
 			  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 			echo $sql;
 			$rta=dato_mysql($sql);
@@ -183,8 +179,6 @@ function gra_admision(){
 		  trim(upper('{$_POST['fecha_consulta']}')), trim(upper('{$_POST['tipo_consulta']}')),trim(upper('{$_POST['cod_admin']}')),trim(upper('{$_POST['cod_cups']}')),trim(upper('{$_POST['final_consul']}')),
 		  trim(upper('{$_POST['cod_factura']}')),
 		  TRIM(UPPER('{$_POST['estado_hist']}')),
-		  TRIM(UPPER('{$_POST['tipo_docnew']}')),
-		  TRIM(UPPER('{$_POST['documento_new']}')),
 		  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		  echo $sql;
 		  $rta=dato_mysql($sql);
@@ -214,7 +208,7 @@ function get_admision(){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT concat(F.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
 		F.tipo_doc,F.documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombres,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,
-		soli_admis,fecha_consulta,tipo_consulta,cod_cups,final_consul,cod_admin,cod_factura,estado_hist,tipo_docnew,documento_new
+		soli_admis,fecha_consulta,tipo_consulta,cod_cups,final_consul,cod_admin,cod_factura,estado_hist
 		FROM `adm_facturacion` F
 		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
 		WHERE id_factura='{$id[0]}'";

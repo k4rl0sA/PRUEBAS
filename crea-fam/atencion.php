@@ -235,6 +235,11 @@ function opc_diagnostico1($id=''){
 function opc_letra2($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
+function opc_rango2($id=''){
+	/* if (count(divide($_POST['id']))==2){
+		return opc_sql("SELECT iddiagnostico,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
+	} */
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

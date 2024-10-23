@@ -160,9 +160,8 @@ function gra_admision(){
 		$rta = "'NO ES POSIBLE ACTUALIZAR EL REGISTRO'";
 	//    echo $sql;
 	}else if(count($id)==3){
-		$tip=$_POST['tipo_doc'];
-        $doc=$_POST['documento'];
-		if(get_admi($tip,$doc)){
+		$id=$id[0];
+		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
 			  $sql="INSERT INTO adm_facturacion VALUES (NULL,$id[0],trim(upper('{$_POST['soli_admis']}')),
@@ -178,7 +177,7 @@ function gra_admision(){
 	}else{
 		$tip=$_POST['tipo_doc'];
         $doc=$_POST['documento'];
-		if(get_admi($tip,$doc)){
+		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
 			$sql="INSERT INTO adm_facturacion VALUES (NULL,$id[0],trim(upper('{$_POST['soli_admis']}')),
@@ -195,10 +194,10 @@ function gra_admision(){
 	 return $rta;
 }
 
-function get_admi($tip,$doc){
+function get_admi($id){
 	$hoy=date('Y-m-d');
 	$sql="select * from adm_facturacion 
-	where usu_creo='{$_SESSION['us_sds']}' and DATE(fecha_create)='$hoy' and documento='$doc' AND tipo_doc ='$tip'";
+	where usu_creo='{$_SESSION['us_sds']}' and DATE(fecha_create)='$hoy' and idpeople='$id'";
 	// echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){ 

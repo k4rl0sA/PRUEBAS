@@ -732,8 +732,8 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Signos' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico .naranja' id='".$c['ACCIONES']."'></i></li>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
 		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";
-		$rta.="<li title='Crear Admisión' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='".$c['ACCIONES']."'></i></li>";
-		$rta.="<li class='icono aten1' title='Crear Atención' id='".$c['ACCIONES']."' Onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"></li>";
+		$rta.="<li title='Solicitar Admisión' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='".$c['ACCIONES']."'></i></li>";
+		$rta.="<li title='Crear Atención' Onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='".$c['ACCIONES']."' ></i></li>";
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

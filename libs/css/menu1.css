@@ -58,7 +58,7 @@ body {
 }
 
 .actionTitle {
-    visibility: hidden;
+/*     visibility: hidden; */
     display: block;
 }
 

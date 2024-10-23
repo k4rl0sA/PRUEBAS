@@ -315,6 +315,9 @@ function opc_rango3diagnostico3(){
 		return json_encode($info['responseResult']);
 	} 
 }
+function opc_metodoscons($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=129 and estado='A'  ORDER BY 1 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

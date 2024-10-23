@@ -339,6 +339,7 @@ function crearMenu(id){
 		fetch('../libs/menu.html')
         	.then(response => response.text())
         	.then(html => {
+				cargarRecursosCSSyFontAwesome();
             	menuContainer.innerHTML = html;
             	setupMenuBehavior(menuContainer,menuToggle);
             })

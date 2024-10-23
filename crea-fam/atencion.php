@@ -191,6 +191,9 @@ function men_atencion(){
 	$rta=cap_menus('atencion','pro');
 	return $rta;
    }
+   function focus_atencion(){
+	return 'atencion';
+   }
 
 
 /****************FIN MENU*****************+*****/

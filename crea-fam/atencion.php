@@ -169,7 +169,7 @@ $o='prurap';
 	}
 
 	function get_personas(){
-		var_dump($_REQUEST);
+		//var_dump($_REQUEST);
 		if($_REQUEST['id']==''){
 			return "";
 		}else{

@@ -172,7 +172,7 @@ function gra_admision(){
 			  TRIM(UPPER('{$_POST['tipo_docnew']}')),
 			  TRIM(UPPER('{$_POST['documento_new']}')),
 			  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			//   echo $sql;
+			echo $sql;
 			$rta=dato_mysql($sql);
 		}
 	}else{
@@ -188,6 +188,7 @@ function gra_admision(){
 		  TRIM(UPPER('{$_POST['tipo_docnew']}')),
 		  TRIM(UPPER('{$_POST['documento_new']}')),
 		  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+		  echo $sql;
 		  $rta=dato_mysql($sql);
 	  	}
 	}

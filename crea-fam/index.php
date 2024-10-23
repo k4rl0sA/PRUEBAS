@@ -325,6 +325,8 @@ function searPers(a){
 }
 
 
+let currentOpenMenu = null;  // Variable para almacenar el menú actualmente abierto
+
 document.body.addEventListener('click', function(event) {
   // Verifica si el click fue en un botón de menú
   if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
@@ -367,11 +369,7 @@ function setupMenuBehavior(menuContainer, menuToggle) {
   const closeButton = contextMenu.querySelector('.closePanelAcc');
   if (closeButton) {
     closeButton.addEventListener('click', () => {
-      if (isMobile) {
-        contextMenu.classList.remove('show');
-      } else {
-        contextMenu.style.display = 'none';
-      }
+      closeMenu(menuContainer);
     });
   }
 
@@ -381,18 +379,14 @@ function setupMenuBehavior(menuContainer, menuToggle) {
     action.addEventListener('click', () => {
       const actionName = action.querySelector('.actionTitle').textContent;
       console.log(`Acción seleccionada: ${actionName}`);
-      contextMenu.classList.remove('show');
+      closeMenu(menuContainer);
     });
   });
 
   // Cerrar el menú cuando se haga clic fuera de él
   document.addEventListener('click', (e) => {
     if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
-      if (isMobile) {
-        contextMenu.classList.remove('show');
-      } else {
-        contextMenu.style.display = 'none';
-      }
+      closeMenu(menuContainer);
     }
   });
 
@@ -406,7 +400,7 @@ function setupMenuBehavior(menuContainer, menuToggle) {
     const touchEndY = e.touches[0].clientY;
     const diff = touchEndY - touchStartY;
     if (diff > 50) {
-      contextMenu.classList.remove('show');
+      closeMenu(menuContainer);
     }
   });
 }
@@ -415,6 +409,11 @@ function toggleMenu(menuContainer, menuToggle) {
   const contextMenu = menuContainer.querySelector('.panel-acc');
   const isMobile = window.innerWidth <= 768;
 
+  // Si hay un menú actualmente abierto, lo cerramos antes de abrir el nuevo
+  if (currentOpenMenu && currentOpenMenu !== menuContainer) {
+    closeMenu(currentOpenMenu);
+  }
+
   if (isMobile) {
     contextMenu.classList.toggle('show');
   } else {
@@ -422,7 +421,29 @@ function toggleMenu(menuContainer, menuToggle) {
     contextMenu.style.top = rect.bottom + 'px'; // Ajusta la posición top
     contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
   }
+
+  // Actualiza la variable global para guardar el menú actualmente abierto
+  if (contextMenu.style.display === 'block' || contextMenu.classList.contains('show')) {
+    currentOpenMenu = menuContainer;
+  } else {
+    currentOpenMenu = null;  // Si el menú está cerrado, reseteamos la variable
+  }
 }
+
+function closeMenu(menuContainer) {
+  const contextMenu = menuContainer.querySelector('.panel-acc');
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    contextMenu.classList.remove('show');
+  } else {
+    contextMenu.style.display = 'none';
+  }
+
+  // Resetea la variable para indicar que no hay menú abierto
+  currentOpenMenu = null;
+}
+
 
 </script>
 </head>

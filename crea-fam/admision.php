@@ -55,7 +55,7 @@ function focus_admision(){
    */
    
    function lis_admision(){
-	//var_dump($_POST['id']);
+	var_dump($_POST);
 		// echo $sql;
 	$id=divide($_POST['id']);	
 	// id_factura ACCIONES,

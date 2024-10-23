@@ -345,6 +345,9 @@ function opc_medicamentos($id=''){
 function opc_prioridad($id=''){
 	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=201 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_estrategia($id=''){
+	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=203 and estado='A'  ORDER BY 1 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

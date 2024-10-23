@@ -205,7 +205,7 @@ function get_admision(){
 		// print_r($_POST);
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT concat_ws('_',F.idpeople,P.vivipersona,id_factura) id,
-		P.tipo_doc,P.documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombres,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,
+		P.tipo_doc,P.idpersona,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombres,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,
 		soli_admis,fecha_consulta,tipo_consulta,cod_cups,final_consul,cod_admin,cod_factura,estado_hist
 		FROM `adm_facturacion` F
 		LEFT JOIN person P ON F.idpeople=P.idpeople 

@@ -179,7 +179,7 @@ $o='prurap';
 			b.fecha_consulta,b.tipo_consulta,cod_cups,fecha_consulta,tipo_consulta,final_consul
 			FROM person a
 			LEFT JOIN adm_facturacion b ON a.idpersona = b.documento AND a.tipo_doc = b.tipo_doc
-			WHERE a.idpersona ='{$id[0]}'";
+			WHERE a.idpeople ='{$id[0]}'";
 			// echo $sql;
 			$info=datos_mysql($sql);
 			return $info['responseResult'][0];			

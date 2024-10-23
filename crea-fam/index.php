@@ -325,7 +325,7 @@ function searPers(a){
 }
 
 
-let currentOpenMenu = null;  // Variable para almacenar el menú actualmente abierto
+let currentOpenMenu = null;  
 
 document.body.addEventListener('click', function(event) {
   // Verifica si el click fue en un botón de menú
@@ -382,6 +382,7 @@ function setupMenuBehavior(menuContainer, menuToggle) {
   actions.forEach(action => {
     action.addEventListener('click', () => {
       const actionName = action.querySelector('.actionTitle').textContent;
+	  
       console.log(`Acción seleccionada: ${actionName}`);
       closeMenu(menuContainer);
     });

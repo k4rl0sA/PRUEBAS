@@ -327,6 +327,9 @@ function opc_rep($id=''){
 function opc_evento($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=134 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_rutapoblacion($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=131 and estado='A'  ORDER BY 1 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

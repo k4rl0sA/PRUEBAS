@@ -351,6 +351,7 @@ function crearMenu(id) {
       cargarRecursosCSSyFontAwesome();
       menuContainer.innerHTML = html;
       setupMenuBehavior(menuContainer, menuToggle);
+      toggleMenu(menuContainer, menuToggle);  // Mostrar el menú al cargarlo por primera vez
     })
     .catch(error => console.error('Error al cargar el menú:', error));
 }
@@ -359,11 +360,14 @@ function setupMenuBehavior(menuContainer, menuToggle) {
   const contextMenu = menuContainer.querySelector('.panel-acc');
   const isMobile = window.innerWidth <= 768;
 
-  // Manejo del toggle del menú
-  menuToggle.addEventListener('click', (e) => {
+  // Prevenir que se añadan múltiples listeners al mismo toggle
+  menuToggle.removeEventListener('click', menuToggleClickHandler);
+  menuToggle.addEventListener('click', menuToggleClickHandler);
+
+  function menuToggleClickHandler(e) {
     e.stopPropagation();
     toggleMenu(menuContainer, menuToggle);
-  });
+  }
 
   // Botón de cierre del menú
   const closeButton = contextMenu.querySelector('.closePanelAcc');
@@ -414,12 +418,13 @@ function toggleMenu(menuContainer, menuToggle) {
     closeMenu(currentOpenMenu);
   }
 
+  // Maneja la visibilidad del menú correctamente
   if (isMobile) {
     contextMenu.classList.toggle('show');
   } else {
     const rect = menuToggle.getBoundingClientRect();
-    contextMenu.style.top = rect.bottom + 'px'; // Ajusta la posición top
-    contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
+    contextMenu.style.top = rect.bottom + 'px';  // Ajusta la posición top
+    contextMenu.style.display = contextMenu.style.display === 'none' || contextMenu.style.display === '' ? 'block' : 'none';
   }
 
   // Actualiza la variable global para guardar el menú actualmente abierto

@@ -325,6 +325,13 @@ function searPers(a){
 }
 
 
+document.body.addEventListener('click', function(event) {
+  if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
+    crearMenu();
+  }
+});
+
+
 function crearMenu(){
 	const menuToggle = document.getElementById('menuToggle');
 	const menuContainer = document.getElementById('menuContainer');

@@ -65,6 +65,10 @@ body {
 .divider {
     display: none;
 }
+button.action {
+    color: white;
+    font-weight: bold;
+}
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {

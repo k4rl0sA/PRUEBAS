@@ -195,6 +195,9 @@ $o='prurap';
 function opc_sexo($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
+function opc_genero($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

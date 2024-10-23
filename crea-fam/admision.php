@@ -115,7 +115,7 @@ function get_personas(){
 		$sql="SELECT  tipo_doc,idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,sexo,genero,nacionalidad
 			FROM person 
 		WHERE idpeople ='{$id[0]}'";
-		// echo $sql;
+		echo $sql;
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];			
 	} 

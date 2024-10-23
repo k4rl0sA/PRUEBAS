@@ -115,8 +115,8 @@ function get_personas(){
 	}else{
 		 $id=divide($_REQUEST['id']);
 		$sql="SELECT  tipo_doc,idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,sexo,genero,nacionalidad
-			FROM personas 
-		WHERE idpersona ='{$id[0]}' AND tipo_doc='{$id[1]}'";
+			FROM person 
+		WHERE idpeople ='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];			

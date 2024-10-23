@@ -161,7 +161,6 @@ function gra_admision(){
 	//    echo $sql;
 	}else if(count($id)==3){
 		$id=$id[0];
-		var_dump($id);
 		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
@@ -176,8 +175,7 @@ function gra_admision(){
 			$rta=dato_mysql($sql);
 		}
 	}else{
-		$tip=$_POST['tipo_doc'];
-        $doc=$_POST['documento'];
+		$id=$id[0];
 		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{

@@ -347,7 +347,7 @@ function crearMenu(id){
 
 
                 
-                    function setupMenuBehavior(menuContainer) {
+                    function setupMenuBehavior(menuContainer,menuToggle) {
                     const contextMenu = menuContainer.querySelector('.panel-acc');
                     const isMobile = window.innerWidth <= 768;
 

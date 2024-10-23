@@ -184,3 +184,10 @@ $o='prurap';
 			return $info['responseResult'][0];			
 		}
 }
+
+
+/*************INICIO DESPLEGABLES***********************/
+function opc_sexo($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
+}
+/****************FIN DESPLEGABLES*****************+*****/

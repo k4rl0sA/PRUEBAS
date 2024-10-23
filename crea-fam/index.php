@@ -326,93 +326,104 @@ function searPers(a){
 
 
 document.body.addEventListener('click', function(event) {
+  // Verifica si el click fue en un botón de menú
   if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
-	const id=event.target.id.split("_");
-    crearMenu(id[1]+'_'+id[2]);
+    const id = event.target.id.split("_");
+    crearMenu(id[1] + '_' + id[2]);
   }
 });
 
+function crearMenu(id) {
+  const menuToggle = document.getElementById('menuToggle_' + id);
+  const menuContainer = document.getElementById('menuContainer_' + id);
 
-function crearMenu(id){
-	const menuToggle = document.getElementById('menuToggle_'+id);
-	const menuContainer = document.getElementById('menuContainer_'+id);
-		fetch('../libs/menu.html')
-        	.then(response => response.text())
-        	.then(html => {
-				cargarRecursosCSSyFontAwesome();
-            	menuContainer.innerHTML = html;
-				
-            	setupMenuBehavior(menuContainer,menuToggle);
-            })
-    	.catch(error => console.error('Error al cargar el menú:', error));
+  // Si el menú ya está cargado, solo muestra/oculta
+  if (menuContainer.innerHTML.trim() !== "") {
+    toggleMenu(menuContainer, menuToggle);
+    return;
+  }
+
+  fetch('../libs/menu.html')
+    .then(response => response.text())
+    .then(html => {
+      cargarRecursosCSSyFontAwesome();
+      menuContainer.innerHTML = html;
+      setupMenuBehavior(menuContainer, menuToggle);
+    })
+    .catch(error => console.error('Error al cargar el menú:', error));
 }
 
+function setupMenuBehavior(menuContainer, menuToggle) {
+  const contextMenu = menuContainer.querySelector('.panel-acc');
+  const isMobile = window.innerWidth <= 768;
 
-                
-                    function setupMenuBehavior(menuContainer,menuToggle) {
-                    const contextMenu = menuContainer.querySelector('.panel-acc');
-                    const isMobile = window.innerWidth <= 768;
+  // Manejo del toggle del menú
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu(menuContainer, menuToggle);
+  });
 
-					
+  // Botón de cierre del menú
+  const closeButton = contextMenu.querySelector('.closePanelAcc');
+  if (closeButton) {
+    closeButton.addEventListener('click', () => {
+      if (isMobile) {
+        contextMenu.classList.remove('show');
+      } else {
+        contextMenu.style.display = 'none';
+      }
+    });
+  }
 
-                    menuToggle.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        if (isMobile) {
-                            contextMenu.classList.toggle('show');
-                        } else {
-							contextMenu.style.top=menuToggle.getBoundingClientRect().bottom;
-                            contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
-                        }
-                    });
+  // Acciones dentro del menú
+  const actions = contextMenu.querySelectorAll('.action');
+  actions.forEach(action => {
+    action.addEventListener('click', () => {
+      const actionName = action.querySelector('.actionTitle').textContent;
+      console.log(`Acción seleccionada: ${actionName}`);
+      contextMenu.classList.remove('show');
+    });
+  });
 
-                        const closeButton = contextMenu.querySelector('.closePanelAcc');
-                        if (closeButton) {
-                            closeButton.addEventListener('click', () => {
-                                if (isMobile) {
-                                    contextMenu.classList.remove('show');
-                                } else {
-                                    contextMenu.style.display = 'none';
-                                }
-                            });
-                        }
+  // Cerrar el menú cuando se haga clic fuera de él
+  document.addEventListener('click', (e) => {
+    if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
+      if (isMobile) {
+        contextMenu.classList.remove('show');
+      } else {
+        contextMenu.style.display = 'none';
+      }
+    }
+  });
 
-                const actions = contextMenu.querySelectorAll('.action');
-                actions.forEach(action => {
-                    action.addEventListener('click', () => {
-                        const actionName = action.querySelector('.actionTitle').textContent;
-                        console.log(`Acción seleccionada: ${actionName}`);
-                        contextMenu.classList.remove('show');
-                    });
-                });
+  // Deslizamiento táctil para cerrar el menú
+  let touchStartY;
+  contextMenu.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  });
 
+  contextMenu.addEventListener('touchmove', (e) => {
+    const touchEndY = e.touches[0].clientY;
+    const diff = touchEndY - touchStartY;
+    if (diff > 50) {
+      contextMenu.classList.remove('show');
+    }
+  });
+}
 
+function toggleMenu(menuContainer, menuToggle) {
+  const contextMenu = menuContainer.querySelector('.panel-acc');
+  const isMobile = window.innerWidth <= 768;
 
+  if (isMobile) {
+    contextMenu.classList.toggle('show');
+  } else {
+    const rect = menuToggle.getBoundingClientRect();
+    contextMenu.style.top = rect.bottom + 'px'; // Ajusta la posición top
+    contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
+  }
+}
 
-                        document.addEventListener('click', (e) => {
-                            if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
-                                if (isMobile) {
-                                    contextMenu.classList.remove('show');
-                                } else {
-                                    contextMenu.style.display = 'none';
-                                }
-                            }
-                        });
-
-                        
-
-                let touchStartY;
-                contextMenu.addEventListener('touchstart', (e) => {
-                    touchStartY = e.touches[0].clientY;
-                });
-
-                contextMenu.addEventListener('touchmove', (e) => {
-                    const touchEndY = e.touches[0].clientY;
-                    const diff = touchEndY - touchStartY;
-                    if (diff > 50) {
-                        contextMenu.classList.remove('show');
-                    }
-                });
-                }
 </script>
 </head>
 <body Onload="actualizar();">

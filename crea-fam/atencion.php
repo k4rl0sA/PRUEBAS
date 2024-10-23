@@ -216,6 +216,9 @@ function opc_aler($id=''){
 function opc_alarma5($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
+function opc_letra1($id=''){
+	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

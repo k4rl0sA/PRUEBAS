@@ -60,7 +60,7 @@ function focus_admision(){
 	$id=divide($_POST['id']);	
 	// id_factura ACCIONES,
 	$sql="SELECT `cod_admin` 'Codigo Ingreso', FN_CATALOGODESC(126,cod_cups) 'Codigo CUPS', FN_CATALOGODESC(127,final_consul) 'Finalidad de la Consulta' 
-	FROM `adm_facturacion` WHERE tipo_doc ='{$id[1]}' and documento ='{$id[0]}'";
+	FROM `adm_facturacion` WHERE idpeople ='{$id[0]}'";
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"admision-lis",10); 

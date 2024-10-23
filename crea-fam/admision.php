@@ -147,9 +147,7 @@ function opc_final_consul($id=''){
 function opc_estado_hist($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=184 and estado='A' ORDER BY 1",$id);
 }
-function opc_tipo_docnew($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-}
+
 
 function gra_admision(){
 	print_r($_POST);
@@ -206,11 +204,11 @@ function get_admision(){
 	}else{
 		// print_r($_POST);
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT concat(F.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
-		F.tipo_doc,F.documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombres,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,
+		$sql="SELECT concat_ws('_',F.idpeople,P.vivipersona,id_factura) id,
+		P.tipo_doc,P.documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombres,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,
 		soli_admis,fecha_consulta,tipo_consulta,cod_cups,final_consul,cod_admin,cod_factura,estado_hist
 		FROM `adm_facturacion` F
-		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
+		LEFT JOIN person P ON F.idpeople=P.idpeople 
 		WHERE id_factura='{$id[0]}'";
 		// echo $sql;
 		// print_r($id);

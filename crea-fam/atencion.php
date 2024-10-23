@@ -58,26 +58,6 @@ function cmp_atencion(){
 	$c[]=new cmp('codigocups','s',3,$x,$w.' '.$o,'Código CUPS','cups',null,'',true,false,'','col-3');
 	$c[]=new cmp('finalidadconsulta','s',3,$x,$w.' '.$o,'Finalidad de la Consulta','consultamedica',null,'',true,false,'','col-3');
 
-
-	$c[]=new cmp('cronico','s',3,$x,$w.'  '.$o,'¿Usuario con patologia Cronica?','aler',null,'',true,true,'','col-3');
-	
-	$c[]=new cmp('gestante','s',3,$x,$w.' '.$o,'¿Usuaria Gestante?','aler',null,'',$gest,$gest,'','col-3',"alerPreg(this,'pre','nfe','fer','mef');periAbd('gestante','AbD',$adult);");
-
-	$c[]=new cmp('peso','sd',6,$x,$w.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','peso','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');ZscoAte('dxnutricional');");
-	$c[]=new cmp('talla','sd',5, $x,$w.' '.$o,'Talla (Cm) Mín=40 - Máx=210','talla','rgxtalla','###.#',true,true,'','col-2',"valTalla('talla');ZscoAte('dxnutricional');");
-	$c[]=new cmp('sistolica','n',3, $x,$w,'TAS Mín=40 - Máx=250','sistolica','rgxsisto','###',$adul,$adul,'','col-2',"valSist('sistolica');");
-	$c[]=new cmp('diastolica','n',3, $x,$w,'TAD Mín=40 - Máx=150','diastolica','rgxdiast','###',$adul,$adul,'','col-2',"ValTensions('sistolica',this);valDist('diastolica');");
-	$c[]=new cmp('abdominal','n',4,$x,$w.' AbD '.$o,'Perímetro Abdominal (Cm) Mín=50 - Máx=150','abdominal','rgxperabd','###',$adul,$adul,'','col-3');
-	
-	
-	$c[]=new cmp('perime_braq','sd',4, $x,$w,'Perimetro Braquial (Cm)',0,null,'##,#',$meno,$meno,'','col-3');
-
-	$c[]=new cmp('dxnutricional','t',15,$x,$w.'  '.$o,'Dx Nutricional','des',null,null,false,false,'','col-5');
-
-	$c[]=new cmp('signoalarma','s',2,$x,$w.'  '.$o,'niño o niña con signos de alarma ','aler',null,'',$meno,$meno,'','col-25','AlarChild(this,\'ala\');');
-	$c[]=new cmp('cualalarma','s',3,$x,$w.' ala '.$o,'cual?','alarma5',null,'',false,false,'','col-25');
-	
-
 	$c[]=new cmp('letra1','s','3',$x,$w.' '.$o,'Letra CIE(1)','letra1',null,null,true,true,'','col-1','valPyd(this,\'tipo_consulta\');valResol(\'tipo_consulta\',\'letra1\');',['rango1']);
  	$c[]=new cmp('rango1','s','3',$x,$w.' '.$o,'Tipo1','rango1',null,null,true,true,'','col-45',false,['diagnostico1']);
  	$c[]=new cmp('diagnostico1','s','8',$x,$w.' '.$o,'Diagnostico Principal','diagnostico1',null,null,true,true,'','col-45');

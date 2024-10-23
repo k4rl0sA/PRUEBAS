@@ -248,6 +248,73 @@ function opc_diagnostico2($id=''){
 function opc_letra3($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
+function opc_rango3($id=''){
+	/* if (count(divide($_POST['id']))==2){
+		return opc_sql("SELECT iddiagnostico,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
+	} */
+}
+function opc_diagnostico3($id=''){
+	/* if (count(divide($_POST['id']))==2){
+		return opc_sql("SELECT `iddiagnostico`,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
+	} */
+}
+
+function opc_letra1rango1(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='2' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
+function opc_rango1diagnostico1(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='3' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		// echo $_REQUEST['id'];
+		return json_encode($info['responseResult']);
+	} 
+}
+
+function opc_letra2rango2(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='2' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
+function opc_rango2diagnostico2(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='3' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		// echo $sql;
+		return json_encode($info['responseResult']);
+	} 
+}
+
+	function opc_letra3rango3(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='2' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
+function opc_rango3diagnostico3(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT iddiagnostico 'id',descripcion 'asc' FROM `diagnosticos` WHERE iddiag='3' and estado='A' and valor='".$id[0]."' ORDER BY 1";
+		$info=datos_mysql($sql);		
+		// echo $sql;
+		return json_encode($info['responseResult']);
+	} 
+}
 /****************FIN DESPLEGABLES*****************+*****/
 
 

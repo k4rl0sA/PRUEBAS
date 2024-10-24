@@ -190,7 +190,7 @@ function get_admision(){
 		LEFT JOIN hog_carac H ON P.vivipersona = H.idviv
 			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
-		WHERE id_factura='{$id[2]}'";
+		WHERE id_factura='{$id[1]}'";
 		// echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);

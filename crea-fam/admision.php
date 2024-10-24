@@ -9,7 +9,7 @@ else {
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs,'');
+    echo csv($rs,'');cmp_
     die;
     break;
   default:

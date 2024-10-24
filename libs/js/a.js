@@ -384,84 +384,16 @@ function cargarRecursosCSSyFontAwesome() {
     cssLink.href = '../libs/css/menu1.css?v=2.0';
     document.head.appendChild(cssLink);
 
-    // Cargar FontAwesome
-    const fontAwesomeLink = document.createElement('link');
-    fontAwesomeLink.rel = 'stylesheet';
-    fontAwesomeLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css';
-    document.head.appendChild(fontAwesomeLink);
-
     // Ejecutar los scripts que están en el panelContainer (si existen)
     const panelContainer = document.getElementById('panelContainer');
     if (panelContainer) {
         const scriptTags = panelContainer.querySelectorAll('script');
         scriptTags.forEach((scriptTag) => {
             const newScript = document.createElement('script');
-            newScript.textContent = scriptTag.textContent;  // Clonar el contenido del script original
-            document.body.appendChild(newScript);  // Agregar el script clonado al body para ejecutarlo
+            newScript.textContent = scriptTag.textContent; 
+            document.body.appendChild(newScript);  
         });
     }
-}
-
-function setupMenuBehavior(m,t) {
-	const isMobile = window.innerWidth <= 768;
-	const contextMenu = m.querySelector('.panel-acc');
-
-	t.addEventListener('click', (e) => {
-		e.stopPropagation();
-		if (isMobile) {
-			contextMenu.classList.toggle('show');
-		} else {
-			contextMenu.style.display = contextMenu.style.display === 'none' ? 'block' : 'none';
-		}
-	});
-
-		const closeButton = contextMenu.querySelector('.closePanelAcc');
-		if (closeButton) {
-			closeButton.addEventListener('click', () => {
-				if (isMobile) {
-					contextMenu.classList.remove('show');
-				} else {
-					contextMenu.style.display = 'none';
-				}
-			});
-		}
-
-const actions = contextMenu.querySelectorAll('.action');
-actions.forEach(action => {
-	action.addEventListener('click', () => {
-		const actionName = action.querySelector('.actionTitle').textContent;
-		console.log(`Acción seleccionada: ${actionName}`);
-		contextMenu.classList.remove('show');
-	});
-});
-
-
-
-
-		document.addEventListener('click', (e) => {
-			if (!contextMenu.contains(e.target) && e.target !== t) {
-				if (isMobile) {
-					contextMenu.classList.remove('show');
-				} else {
-					contextMenu.style.display = 'none';
-				}
-			}
-		});
-
-		
-
-let touchStartY;
-contextMenu.addEventListener('touchstart', (e) => {
-	touchStartY = e.touches[0].clientY;
-});
-
-contextMenu.addEventListener('touchmove', (e) => {
-	const touchEndY = e.touches[0].clientY;
-	const diff = touchEndY - touchStartY;
-	if (diff > 50) {
-		contextMenu.classList.remove('show');
-	}
-});
 }
 
 

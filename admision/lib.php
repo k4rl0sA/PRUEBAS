@@ -51,7 +51,7 @@ function lis_admision(){
 	left JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
 	$sql.=whe_admision();
-	$sql.=" ORDER BY fecha_create";
+	$sql.=" ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 		$datos=datos_mysql($sql);

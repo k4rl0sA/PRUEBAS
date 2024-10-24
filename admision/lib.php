@@ -279,9 +279,6 @@ function gra_admision(){
 	`final_consul`=TRIM(UPPER('{$_POST['final_consul']}')),
 	`cod_factura`=TRIM(UPPER('{$_POST['cod_factura']}')),
 	`estado_hist`=TRIM(UPPER('{$_POST['estado_hist']}')),
-	`tipo_docnew`=TRIM(UPPER('{$_POST['tipo_docnew']}')),
-	`documento_new`=TRIM(UPPER('{$_POST['documento_new']}')),
-	
 	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 	fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR),
 	`estado`='{$estado}' WHERE id_factura='{$id[3]}'";
@@ -294,7 +291,7 @@ function gra_admision(){
 }
 
 function fac($id){
-	var_dump($id);
+	// var_dump($id);
 	$id=divide($id);
 	$sql="SELECT fecha_consulta fecha
 			FROM adm_facturacion F

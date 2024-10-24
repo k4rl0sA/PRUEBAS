@@ -51,7 +51,7 @@ function opc_menu(){
 		["iconClass" => "fas fa-sign-out-alt", "title" => "Salir", "shortcut" => "Ctrl+Q"]
 	];
 	
-	return echo json_encode($buttons);
+	return json_encode($buttons);
 }
 
 function lis_homes(){

@@ -42,12 +42,20 @@ function opc_usuario(){
 }
 
 function opc_menu(){
-	$buttons = [
-		["iconClass" => "fas fa-home", "title" => "Cronicos", "shortcut" => "Ctrl+H"],
-		["iconClass" => "fas fa-search", "title" => "Buscar", "shortcut" => "Ctrl+F"],
-		["iconClass" => "fas fa-cog", "title" => "Configuración", "shortcut" => "Ctrl+S"],
-		["iconClass" => "fas fa-user", "title" => "Perfil", "shortcut" => "Ctrl+P"],
+	/* $buttons = [
+		["iconClass" => "fas fa-cog", "title" => "Plan de Cuidado", "shortcut" => "Ctrl+S"],
+		["iconClass" => "fas fa-user", "title" => "Compromisos", "shortcut" => "Ctrl+P"],
+		["iconClass" => "fas fa-search", "title" => "Riesgo Ambiental", "shortcut" => "Ctrl+F"],
+		["iconClass" => "fas fa-home", "title" => "Apgar", "shortcut" => "Ctrl+H"],
 		["iconClass" => "fas fa-bell", "title" => "Notificaciones", "shortcut" => "Ctrl+N"],
+		["iconClass" => "fas fa-sign-out-alt", "title" => "Salir", "shortcut" => "Ctrl+Q"]
+	]; */
+	$buttons = [
+		["iconClass" => "fas fa-cog", "title" => "Signos", "shortcut" => "Ctrl+S"],
+		["iconClass" => "fas fa-user", "title" => "Alertas", "shortcut" => "Ctrl+P"],
+		["iconClass" => "fas fa-search", "title" => "Solicitar Admisión", "shortcut" => "Ctrl+F"],
+		["iconClass" => "fas fa-home", "title" => "Atención", "shortcut" => "Ctrl+H"],
+		["iconClass" => "fas fa-bell", "title" => "Evento VSP", "shortcut" => "Ctrl+N"],
 		["iconClass" => "fas fa-sign-out-alt", "title" => "Salir", "shortcut" => "Ctrl+Q"]
 	];
 	

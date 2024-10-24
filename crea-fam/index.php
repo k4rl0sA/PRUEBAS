@@ -276,10 +276,10 @@ function setupMenuBehavior(menuContainer, menuToggle) {
   const actions = contextMenu.querySelectorAll('.action');
   actions.forEach(action => {
     action.addEventListener('click', (event) => {
-    event.preventDefault(); // Evita el comportamiento por defecto al hacer click
     const actionName = action.querySelector('.actionTitle').textContent;
     console.log(`Acción seleccionada: ${actionName}`);
     closeMenu(menuContainer);
+    event.preventDefault();
   });
 });
 

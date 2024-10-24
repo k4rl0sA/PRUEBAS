@@ -375,7 +375,7 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 	<?php
 		$rta="";
 		$rta = ($perfil =='ADM'||'SUPHOG'||'SUPEAC') ? '<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div>':'';
+		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" disabled >'.$digitadores.'</select></div>':'';
 		echo $rta;
 	?>
  </div>

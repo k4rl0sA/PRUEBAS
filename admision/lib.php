@@ -138,12 +138,7 @@ function cmp_admision(){
 	$c[]=new cmp('cod_factura','n','12',$e,$w.' '.$o,'Codigo de Factura','cod_factura',null,null,false,true,'','col-15');
 	$c[]=new cmp('estado_hist','s','3',$e,$w.' '.$o,'Estado Admision','estado_hist',null,null,true,true,'','col-2');
 	
-	$o='admfac';
-	$c[]=new cmp($o,'e',null,'AJUSTE IDENTIFICACION DEL USUARIO',$w);
-	$c[]=new cmp('tipo_docnew','s','3',$e,$w.' '.$o,'Ajuste Tipo Documento','tipo_docnew',null,'',false,true,'','col-25');
-	$c[]=new cmp('documento_new','t','20',$e,$w.' '.$o,'Ajuste N° Identificación','documento_new',null,'',false,true,'','col-25');
-	
-	 
+
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -165,11 +160,11 @@ function get_personas(){
 		//  print_r($id);
 		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,FN_CATALOGODESC(2,G.localidad) localidad,FN_CATALOGODESC(20,G.barrio) barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3
 			FROM adm_facturacion F
-			LEFT JOIN personas P ON F.tipo_doc = P.tipo_doc AND F.documento = P.idpersona 
+			LEFT JOIN person P ON F.idpeople = P.idpeople 
 			LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
-		WHERE  P.tipo_doc='{$id[0]}' AND P.idpersona='{$id[1]}'";
+		WHERE  P.idpeople='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

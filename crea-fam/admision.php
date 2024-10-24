@@ -42,13 +42,13 @@ function focus_admision(){
    }
 
    function lis_admision(){
-	var_dump($_POST);
+	// var_dump($_POST);
 		// echo $sql;
 	$id=divide($_POST['id']);
 	// id_factura ACCIONES,
 	$sql="SELECT `cod_admin` 'Codigo Ingreso', FN_CATALOGODESC(126,cod_cups) 'Codigo CUPS', FN_CATALOGODESC(127,final_consul) 'Finalidad de la Consulta' 
 	FROM `adm_facturacion` WHERE idpeople ='{$id[0]}'";
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"admision-lis",10);
    }

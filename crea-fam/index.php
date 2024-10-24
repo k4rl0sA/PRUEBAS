@@ -373,22 +373,10 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 	<!-- <div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div> -->
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<?php
-    // Validar si el perfil es uno de los permitidos
-    $filtro = ($perfil == 'ADM' || $perfil == 'SUPHOG' || $perfil == 'SUPEAC') ? true : false;
-
-    // Construir el select dependiendo del perfil
-    $rta = ($filtro) ? 
-    '<div class="campo">
-        <div>Colaborador</div>
-        <select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.($filtro ? '' : 'disabled').'>
-            '.$digitadores.'
-        </select>
-    </div>' : '';
-
-    // Mostrar el resultado
-    echo $rta;
-?>
-
+  $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC');
+    $rta='<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.($filtro ? '' : 'disabled').'>';
+		echo $rta;
+	?>
  </div>
  <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > CREACIÓN DE FAMILIAS

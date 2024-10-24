@@ -372,15 +372,10 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 
 	<!-- <div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div> -->
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
-	<?php
-  /* $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC');
-    $rta='<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" >';
-		echo $rta; */
-	?>
   <?php
   $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC') ? true : false ;
 		$rta = '<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" >'.$digitadores.'</select></div>':'';
+		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div>';
 		echo $rta;
 	?>
  </div>

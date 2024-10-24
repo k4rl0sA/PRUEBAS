@@ -45,9 +45,10 @@ function lis_admision(){
 	
 	$pag=(isset($_POST['pag-admision']))? ($_POST['pag-admision']-1)* $regxPag:0;
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R, CONCAT_WS('_',idpeople,id_factura) ACCIONES, 
-	idpeople 'usuario',`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
+	idpeople 'usuario',P.idpersona`cod_admin` 'Cod. Ingreso',A.fecha_create AS Fecha_Solicitud,U.nombre Creó,U.perfil Perfil, FN_CATALOGODESC(184,A.estado_hist) Estado 
 	FROM `adm_facturacion` A 
-	JOIN usuarios U ON A.usu_creo = U.id_usuario
+	LEFT JOIN person P ON A.idpeople=P.idpeople
+	left JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')  AND soli_admis='SI' ";
 	$sql.=whe_admision();
 	$sql.=" ORDER BY fecha_create";
@@ -60,7 +61,7 @@ function lis_admision(){
 function whe_admision() {
 	$sql = "";
 	 if ($_POST['fdocumento'])
-		$sql .= " AND idpeople = '".$_POST['fdocumento']."'";
+		$sql .= " AND P.idpersona = '".$_POST['fdocumento']."'";
 	if ($_POST['fcod_admin'])
 		$sql .= " AND cod_admin ='".$_POST['fcod_admin']."' ";
 	if($_POST['fdigita']) 

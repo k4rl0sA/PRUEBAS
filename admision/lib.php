@@ -188,8 +188,8 @@ function get_admision(){
 		FROM `adm_facturacion` F
 		LEFT JOIN person P ON F.idpeople=P.idpeople 
 		LEFT JOIN hog_fam H ON P.vivipersona = H.id_fam
-			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
-        			FROM hog_geo ) AS G ON H.idgeo = G.geo
+		LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
+        			FROM hog_geo ) AS G ON H.idpre = G.geo
 		WHERE id_factura='{$id[1]}'";
 		// echo $sql;
 		// print_r($id);

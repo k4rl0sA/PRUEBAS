@@ -212,7 +212,7 @@ function crearMenu(id) {
   fetch('lib.php', 
     { method: 'POST',  
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      body: 'a=menu&tb=aux'
+      body: 'a=opc&tb=menu'
     })
     .then(response => response.json())
     .then(buttonsData => {

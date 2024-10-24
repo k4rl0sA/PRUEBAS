@@ -87,7 +87,7 @@ $sql="SELECT G.idgeo AS ACCIONES,
 	FROM geo_gest G
 	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo
 	LEFT JOIN usuarios U ON H.subred = U.subred
-	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
+	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario 
 WHERE G.estado_v in('7') ".whe_homes()." 
 	AND U.id_usuario = '{$_SESSION['us_sds']}'
 	ORDER BY nummanzana, predio_num

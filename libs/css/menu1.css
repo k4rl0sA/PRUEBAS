@@ -31,10 +31,11 @@ body {
 .closePanelAcc {
     position: absolute;
     right: 10px;
-    top: 10px;
-    color: black;
+    top: -23px;
+    color: blue;
     cursor: pointer;
     font-family: 'FontAwesome';
+    font-size: x-large;
 }
 
 .action {

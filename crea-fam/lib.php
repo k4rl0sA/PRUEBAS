@@ -369,10 +369,11 @@ function cmp_person(){
 	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>''];
 	print_r($_POST);
 	if (count(divide($_POST['id']))==2){
+		$edit=true;
 		$d = get_person();
 		if ($d==""){$d=$t;}
-
 	}else{
+		$edit=false;
 		$d='';
 		if ($d==""){$d=$t;}
 	}
@@ -381,14 +382,14 @@ function cmp_person(){
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	
 	$c[]=new cmp('encuentra','s','2',$d['encuentra'],$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
-	$c[]=new cmp('idpersona','n','18',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,true,'','col-4');
-	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pEr','personOld',['infgen'],this);");
+	$c[]=new cmp('idpersona','n','18',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,$edit,'','col-4');
+	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,$edit,'','col-4',"getDatForm('pEr','personOld',['infgen'],this);");
 	$c[]=new cmp('nombre1','t','30',$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t','30',$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
 	$c[]=new cmp('apellido2','t','30',$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','d','',$d['fecha_nacimiento'],$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
-	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
+	$c[]=new cmp('fecha_nacimiento','d','',$d['fecha_nacimiento'],$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,$edit,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
+	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,null,true,$edit,'','col-2');
 	$c[]=new cmp('genero','s','3',$d['genero'],$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
 	$c[]=new cmp('oriensexual','s','3',$d['oriensexual'],$w.' osx '.$o,'Orientacion Sexual','oriensexual',null,null,true,true,'','col-2');
 	$c[]=new cmp('nacionalidad','s','3',$d['nacionalidad'],$w.' '.$o,'nacionalidad','nacionalidad',null,null,true,true,'','col-2');

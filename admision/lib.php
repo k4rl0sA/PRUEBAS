@@ -303,7 +303,7 @@ function fac($id){
 	$id=divide($id);
 	$sql="SELECT fecha_consulta fecha
 			FROM adm_facturacion F
-			WHERE  F.id_factura='{$id[2]}'";
+			WHERE  F.id_factura='{$id[1]}'";
 	// echo $sql;
 	$info=datos_mysql($sql);
 	return $f=$info['responseResult'][0]['fecha'];

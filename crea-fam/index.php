@@ -209,7 +209,11 @@ function crearMenu(id) {
   }
 
   // Hacer la solicitud al backend para obtener los datos de los botones
-  fetch('../libs/lib.php')  // Cambiar la ruta si es necesario
+  fetch('lib.php', 
+    { method: 'POST',  
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: 'a=menu&tb=aux'
+    })
     .then(response => response.json())
     .then(buttonsData => {
       cargarRecursosCSSyFontAwesome(); // Función que carga los estilos necesarios

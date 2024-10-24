@@ -545,7 +545,7 @@ function gra_person(){
 		`transporta`=TRIM(UPPER('{$_POST['transporta']}')),
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE idpersona =TRIM(UPPER('{$id[0]}')) AND tipo_doc=TRIM(UPPER('{$id[1]}'))";
+		WHERE idpeople =TRIM(UPPER('{$id[0]}'))";
 		//    echo $sql;
 		//    echo $sql."    ".$rta;
 	}else{

@@ -275,13 +275,13 @@ function setupMenuBehavior(menuContainer, menuToggle) {
   // Acciones dentro del menú
   const actions = contextMenu.querySelectorAll('.action');
   actions.forEach(action => {
-    action.addEventListener('click', () => {
-      const actionName = action.querySelector('.actionTitle').textContent;
-
-      console.log(`Acción seleccionada: ${actionName}`);
-      closeMenu(menuContainer);
-    });
+    action.addEventListener('click', (event) => {
+    event.preventDefault(); // Evita el comportamiento por defecto al hacer click
+    const actionName = action.querySelector('.actionTitle').textContent;
+    console.log(`Acción seleccionada: ${actionName}`);
+    closeMenu(menuContainer);
   });
+});
 
   // Cerrar el menú cuando se haga clic fuera de él
   document.addEventListener('click', (e) => {

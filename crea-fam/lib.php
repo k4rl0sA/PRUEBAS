@@ -755,6 +755,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";
 		$rta.="<li title='Solicitar Admisión' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='".$c['ACCIONES']."'></i></li>";
 		$rta.="<li title='Crear Atención' Onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='".$c['ACCIONES']."' ></i></li>";
+		$rta.="<li class='icono admsi1' title='Validar Evento' id='".$c['ACCIONES']."' Onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>";
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

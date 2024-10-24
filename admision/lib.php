@@ -179,16 +179,16 @@ function get_admision(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
-		// print_r($_POST);
+		print_r($_POST);
 		$id=divide($_REQUEST['id']);
 		// print_r($id);
-		$sql="SELECT concat(F.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
+		$sql="SELECT concat(P.documento,'_',F.tipo_doc,'_',P.vivipersona,'_',id_factura) id,
 		F.tipo_doc,F.documento,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,G.localidad,G.barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3,fecha_consulta,tipo_consulta,
 		cod_cups,final_consul,cod_admin,cod_factura,estado_hist,tipo_docnew,documento_new
 		FROM `adm_facturacion` F
-		LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
-		LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-			LEFT JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+		LEFT JOIN person P ON F.idpeople=P.idpeople 
+		LEFT JOIN hog_carac H ON P.vivipersona = H.idviv
+			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
 		WHERE id_factura='{$id[2]}'";
 		// echo $sql;

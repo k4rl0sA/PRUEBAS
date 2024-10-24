@@ -161,6 +161,64 @@ $o='prurap';
 		}
 }
 
+function get_atencion(){
+	if($_REQUEST['id']==''){
+		return "";
+	}else{
+		 $id=$_REQUEST['id'];
+			// print_r($id[0]);
+			// print_r($_REQUEST['id']);
+			$sql1="SELECT COUNT(*) rta
+			FROM adm_facturacion a
+			LEFT JOIN eac_atencion c ON a.tipo_doc = c.atencion_tipodoc AND a.documento = c.atencion_idpersona
+			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
+			$info=datos_mysql($sql1);
+			$total=$info['responseResult'][0]['rta'];
+			// echo $sql;
+			/* $info=datos_mysql($sql); */
+			// return json_encode($info['responseResult'][0]);
+
+			if ($total==1){		
+				$sql="SELECT concat(a.idpeople) id,b.tipo_doc,b.idpersona,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
+			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
+			atencion_cronico, `gestante`, 
+				`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
+				dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
+				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
+				`mestruacion`,
+				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+				`atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
+				`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
+				,prioridad,estrategia
+			FROM adm_facturacion a
+			LEFT JOIN person b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
+			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona
+			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
+			//  echo $sql;
+			$info=datos_mysql($sql);
+			return json_encode($info['responseResult'][0]);
+			}else{
+				$sql="SELECT concat(a.documento,'_',a.tipo_doc) id,a.tipo_doc,a.documento,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
+				b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
+				`atencion_cronico`,`gestante`,
+				`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
+			dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
+			`diagnostico3`, `fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
+			`mestruacion`, vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+			  `atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
+			`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
+			,prioridad,estrategia
+			FROM adm_facturacion a
+			LEFT JOIN person b ON a.tipo_doc=b.tipo_doc AND a.documento=b.idpersona
+			LEFT JOIN eac_atencion c ON a.tipo_doc=c.atencion_tipodoc AND a.documento=c.atencion_idpersona AND a.id_factura=c.id_factura
+			WHERE a.id_factura='{$id}'";
+		//  echo $sql;
+			/*  */
+			$info=datos_mysql($sql);
+			return json_encode($info['responseResult'][0]);
+			}
+		 }
+	}
 
 /*************INICIO MENU***********************/
 function men_atencion(){

@@ -51,7 +51,7 @@ function opc_menu(){
 		["iconClass" => "fas fa-sign-out-alt", "title" => "Salir", "shortcut" => "Ctrl+Q"]
 	]; */
 	$buttons = [
-		["iconClass" => "fas fa-cog", "title" => "Signos", "shortcut" => "Ctrl+S"],
+		["iconClass" => "fas fa-house-user", "title" => "Caracterización del Hogar", "shortcut" => "Ctrl+S"],
 		["iconClass" => "fas fa-user", "title" => "Alertas", "shortcut" => "Ctrl+P"],
 		["iconClass" => "fas fa-search", "title" => "Solicitar Admisión", "shortcut" => "Ctrl+F"],
 		["iconClass" => "fas fa-home", "title" => "Atención", "shortcut" => "Ctrl+H"],

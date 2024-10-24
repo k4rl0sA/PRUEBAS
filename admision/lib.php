@@ -187,7 +187,7 @@ function get_admision(){
 		cod_cups,final_consul,cod_admin,cod_factura,estado_hist,tipo_docnew,documento_new
 		FROM `adm_facturacion` F
 		LEFT JOIN person P ON F.idpeople=P.idpeople 
-		LEFT JOIN hog_carac H ON P.vivipersona = H.idviv
+		LEFT JOIN hog_fam H ON P.vivipersona = H.idviv
 			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
 		WHERE id_factura='{$id[1]}'";

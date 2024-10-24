@@ -374,7 +374,7 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<?php
   $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC');
-    $rta='<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.($filtro ? '' : 'disabled').'>';
+    $rta='<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" >';
 		echo $rta;
 	?>
   <?php

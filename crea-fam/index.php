@@ -377,6 +377,12 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
     $rta='<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.($filtro ? '' : 'disabled').'>';
 		echo $rta;
 	?>
+  <?php
+  $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC') ? true : false ;
+		$rta = '<div class="campo"><div>Colaborador</div>
+		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.$activo = ($filtro) ? '' :'disabled' ;.' >'.$digitadores.'</select></div>':'';
+		echo $rta;
+	?>
  </div>
  <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > CREACIÓN DE FAMILIAS

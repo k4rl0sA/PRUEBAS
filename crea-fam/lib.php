@@ -41,6 +41,19 @@ function opc_usuario(){
 	}
 }
 
+function opc_menu(){
+	$buttons = [
+		["iconClass" => "fas fa-home", "title" => "Cronicos", "shortcut" => "Ctrl+H"],
+		["iconClass" => "fas fa-search", "title" => "Buscar", "shortcut" => "Ctrl+F"],
+		["iconClass" => "fas fa-cog", "title" => "Configuración", "shortcut" => "Ctrl+S"],
+		["iconClass" => "fas fa-user", "title" => "Perfil", "shortcut" => "Ctrl+P"],
+		["iconClass" => "fas fa-bell", "title" => "Notificaciones", "shortcut" => "Ctrl+N"],
+		["iconClass" => "fas fa-sign-out-alt", "title" => "Salir", "shortcut" => "Ctrl+Q"]
+	];
+	
+	return echo json_encode($buttons);
+}
+
 function lis_homes(){
 	$total="SELECT COUNT(*) AS total FROM (
 		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 

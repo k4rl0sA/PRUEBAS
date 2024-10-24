@@ -380,7 +380,7 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
   <?php
   $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC') ? true : false ;
 		$rta = '<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" '.$activo = ($filtro) ? '' :'disabled' ;.' >'.$digitadores.'</select></div>':'';
+		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" >'.$digitadores.'</select></div>':'';
 		echo $rta;
 	?>
  </div>

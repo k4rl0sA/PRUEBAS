@@ -404,7 +404,7 @@ function cmp_person(){
 	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
 	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 	$c[]=new cmp('afiliacion','o','2',$d['afiliaoficio'],$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
-	$c[]=new cmp('sisben','s','3',$d['sisben'],$w.' '.$o,'Grupo Sisben','sisben',null,null,true,true,'','col-2');
+	$c[]=new cmp('sisben','s','3',$d['sisben'],$w.' '.$o,'Grupo Sisben <a href="https://www.sisben.gov.co/paginas/consulta-tu-grupo.html" target="_blank">     Abrir SISBEN</a>','sisben',null,null,true,true,'','col-2');
 	$c[]=new cmp('catgosisb','n','2',$d['catgosisb'],$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');
 	$c[]=new cmp('pobladifer','s','3',$d['pobladifer'],$w.' '.$o,'Poblacion Direferencial y de Inclusión','pobladifer',null,'',true,true,'','col-2');
 	$c[]=new cmp('incluofici','s','3',$d['incluofici'],$w.' '.$o,'Población Inclusion por Oficio','incluofici',null,'',true,true,'','col-2');

@@ -179,7 +179,7 @@ function get_admision(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
-		print_r($_POST);
+		// print_r($_POST);
 		$id=divide($_REQUEST['id']);
 		// print_r($id);
 		$sql="SELECT concat(P.idpersona,'_',P.tipo_doc,'_',P.vivipersona,'_',id_factura) id,

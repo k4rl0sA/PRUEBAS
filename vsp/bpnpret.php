@@ -169,7 +169,7 @@ function get_persona(){
      $edadEnDias = $diferencia->days;
     $ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
     $sex=$id[2];
-  
+  var_dump($_POST);
   $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
     (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
     ((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *

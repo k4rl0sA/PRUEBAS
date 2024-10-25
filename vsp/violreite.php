@@ -46,7 +46,7 @@ function focus_violreite(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_violreite']) ? divide($_POST['id_violreite']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_violreite A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+  WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-violreite']))? ($_POST['pag-violreite']-1)* $regxPag:0;
@@ -293,7 +293,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='violreite' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
-		$rta.="<li class='icono editar' title='Editar Cambiar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'violreite',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'violreite.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'violreite',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/violreite.php');\"></li>"; //CAMBIO tener en cuenta el evento
 	}
 	
  return $rta;

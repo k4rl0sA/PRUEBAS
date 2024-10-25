@@ -81,7 +81,7 @@ function cmp_sifigest(){
   $x=false;
   $block=['hab','acc','infpue','infacc'];
   $event=divide($_POST['id']);
-  $ev=$event[3];
+  $ev=$event[2];
   $days=fechas_app('vsp');
 
 	$c[]=new cmp('id_sifigest','h','50',$_POST['id'],$w.' '.$o,'Id de sifigest','id_sifigest',null,null,false,false,'','col-2');

@@ -51,7 +51,7 @@ function focus_acompsic(){
   $pag=(isset($_POST['pag-acompsic']))? ($_POST['pag-acompsic']-1)* $regxPag:0;
 
   // CAMBIO P.tipo_doc,P.idpersona
-	$sql="SELECT `id_acompsic` ACCIONE00000S,id_acompsic 'Cod Registro',
+	$sql="SELECT `id_acompsic` ACCIONES,id_acompsic 'Cod Registro',
   P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra, 
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_acompsic A

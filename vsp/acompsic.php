@@ -293,7 +293,7 @@ function gra_acompsic(){
       fecha_seg,numsegui,evento,estado_s,motivo_estado,autocono,cumuni_aser,toma_decis,pensa_crea,manejo_emo,rela_interp,solu_prob,pensa_critico,manejo_tension,empatia,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,liker_dificul,liker_emocion,liker_decision,redu_riesgo_cierre,users_bina
       FROM vsp_acompsic
       WHERE id_acompsic ='{$id[0]}'";
-      // echo $sql;
+      echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);

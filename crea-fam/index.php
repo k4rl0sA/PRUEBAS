@@ -247,11 +247,12 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 	<!-- <div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div> -->
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
   <?php
-  $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC') ? true : false ;
-  $enab = ($filtro) ? '' : 'disabled' ;
-		$rta = '<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();"'.$enab.' >'.$digitadores.'</select></div>';
-		echo $rta;
+    $filtro = in_array($perfil, ['ADM', 'SUPHOG', 'SUPEAC']);
+    $enab = $filtro ? '' : 'disabled';
+    $rta = '<div class="campo"><div>Colaborador</div>
+            <select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" ' . $enab . '>' . $digitadores . '</select>
+            </div>';
+    echo $rta;
 	?>
  </div>
  <div class='col-8 panel' id='<?php echo $mod; ?>'>

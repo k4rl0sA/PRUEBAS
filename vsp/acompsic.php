@@ -268,7 +268,7 @@ function gra_acompsic(){
 	    
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_acompsic =TRIM(UPPER('{$id[0]}'))";
-     echo $sql;
+    //  echo $sql;
   }else if(count($id)==3){//CAMBIO 4 por 3
     $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1] [trim(upper('{$id[1]}')),]
     $sql="INSERT INTO vsp_acompsic VALUES (NULL,trim(upper('{$id[0]}')),

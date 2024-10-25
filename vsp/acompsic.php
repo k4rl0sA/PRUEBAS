@@ -233,7 +233,7 @@ function gra_acompsic(){
   print_r($_POST);
   $id=divide($_POST['id_acompsic']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==5){
+  if(count($id)==4){
     $sql="UPDATE vsp_acompsic SET 
             autocono = TRIM(UPPER('{$_POST['autocono']}')),
             cumuni_aser = TRIM(UPPER('{$_POST['cumuni_aser']}')),

@@ -160,14 +160,14 @@ function gra_vspeve(){
             fecha_even = TRIM(UPPER('{$_POST['fecha_even']}')),
             `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
             WHERE id_eve =TRIM(UPPER('{$id[0]}'))";
-    // echo $sql;
+    echo $sql;
   }else if(count($id)==3){
     $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['docum_base']}')),
     trim(upper('{$_POST['evento']}')),
     trim(upper('{$_POST['fecha_even']}')),
     TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-    // echo $sql;
+    echo $sql;
   }
     $rta=dato_mysql($sql);
     return $rta;
@@ -187,7 +187,7 @@ function get_persona(){
 		left join vspeve E ON P.idpeople = E.idpeople
     WHERE P.idpeople='{$id[0]}'"; 
     // echo $sql;
-    print_r($_REQUEST);
+    // print_r($_REQUEST);
     $info=datos_mysql($sql);
     return $info['responseResult'][0];
   }

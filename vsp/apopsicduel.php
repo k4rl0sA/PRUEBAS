@@ -53,7 +53,7 @@ function focus_apopsicduel(){
 
   
 	$sql="SELECT `id_psicduel` ACCIONES, id_psicduel 'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_apopsicduel A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario

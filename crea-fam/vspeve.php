@@ -178,16 +178,16 @@ function get_persona(){
     return "";
   }else{
     $id=divide($_REQUEST['id']);
-    $sql="SELECT concat(P.idpersona,'_',P.tipo_doc),P.idpersona idpersona,P.tipo_doc tipodoc,CONCAT_WS(' ',nombre1,nombre2,apellido1,apellido2) nombre,P.fecha_nacimiento fechanacimiento,
+    $sql="SELECT P.idpeople,P.idpersona idpersona,P.tipo_doc tipodoc,CONCAT_WS(' ',nombre1,nombre2,apellido1,apellido2) nombre,P.fecha_nacimiento fechanacimiento,
 		P.sexo sexo,
     FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365) AS anos,
     FLOOR((DATEDIFF(CURDATE(), fecha_nacimiento) % 365) / 30) AS meses,
-    DATEDIFF(CURDATE(), fecha_nacimiento) % 30 AS dias
-		FROM `personas` P
-		left join vspeve E ON P.idpersona=E.documento AND P.tipo_doc=E.tipo_doc 
-    WHERE P.idpersona='{$id[0]}'AND P.tipo_doc='{$id[1]}'"; 
+    DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dias
+		FROM person P
+		left join vspeve E ON P.idpeople = E.idpeople
+    WHERE P.idpersona='{$id[0]}'"; 
     // echo $sql;
-    // print_r($id);
+    print_r($_REQUEST);
     $info=datos_mysql($sql);
     return $info['responseResult'][0];
   }

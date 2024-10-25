@@ -45,7 +45,7 @@ function focus_acompsic(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_acompsic']) ? divide($_POST['id_acompsic']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_acompsic A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+  WHERE idpeople='".$id[0]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-acompsic']))? ($_POST['pag-acompsic']-1)* $regxPag:0;

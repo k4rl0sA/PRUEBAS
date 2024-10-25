@@ -79,7 +79,7 @@ function cmp_acompsic(){
   $x=false;
   $block=['hab','acc'];
   $event=divide($_POST['id']);
-  $ev=$event[2];
+  $ev=$event[2];//CAMBIAO 3 A 2
   $days=fechas_app('vsp');
 	//este campo no cambiar
   $c[]=new cmp('id_acompsic','h','50',$_POST['id'],$w.' '.$o,'Id de Acompsic','id_acompsic',null,null,false,false,'','col-2');

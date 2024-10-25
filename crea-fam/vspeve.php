@@ -74,7 +74,7 @@ function lis_eventos(){
     $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"eventos-lis",$regxPag);
+	return create_table($total,$datos["responseResult"],"eventos-lis",$regxPag,'vspeve.php');
 }
 
 function cmp_vspeve(){

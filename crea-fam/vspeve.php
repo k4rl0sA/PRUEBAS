@@ -151,7 +151,7 @@ function opc_evento($id=''){
 
 
 function gra_vspeve(){
-  print_r($_POST);
+  // print_r($_POST);
   $id=divide($_POST['id']);
   if(count($id)==1){
     $sql="UPDATE vspeve SET 

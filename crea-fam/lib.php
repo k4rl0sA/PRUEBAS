@@ -403,8 +403,8 @@ function cmp_person(){
 	$c[]=new cmp('pueblo','s','50',$d['pueblo'],$w.' ocu cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
 	$c[]=new cmp('idioma','o','2',$d['idioma'],$w.' ocu cmhi idi '.$o,'Habla Español','idioma',null,null,false,true,'','col-2');
 	$c[]=new cmp('discapacidad','s','3',$d['discapacidad'],$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');
-	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2','enabAfil(\'regimen\',\'eaf\');enabEapb(\'regimen\',\'rgm\');');//enabEapb(\'regimen\',\'reg\');
-	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
+	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2',"enabAfil('regimen','eaf');enabEapb('regimen','rgm');");
+	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2',"enabAfil('regimen','eaf');enabEapb('regimen','rgm');");
 	$c[]=new cmp('afiliacion','o','2',$d['afiliaoficio'],$w.' eaf cmhi '.$o,'¿Esta interesado en afiliación por oficio?','afiliacion',null,null,false,true,'','col-2');
 	$c[]=new cmp('sisben','s','3',$d['sisben'],$w.' '.$o,'Grupo Sisben <a href="https://www.sisben.gov.co/paginas/consulta-tu-grupo.html" target="_blank">     Abrir SISBEN</a>','sisben',null,null,true,true,'','col-2');
 	$c[]=new cmp('catgosisb','n','2',$d['catgosisb'],$w.' '.$o,'Categoria Sisben','catgosisb','rgxsisben',null,true,true,'','col-2');
@@ -751,7 +751,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono menubtn' id='menuToggle_".$c['ACCIONES']."'></li><div id='menuContainer_".$c['ACCIONES']."'></div>";
 		//$rta.="<li class='icono menubtn' title='Menu' id='togg_".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"><div id='men_".$c['ACCIONES']."'></div></li>";
-		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,1000,'regimen','eaf');setTimeout(enabEtni,1000,'etnia','ocu','idi');setTimeout(enabLoca,1000,'reside_localidad','lochi');setTimeout(EditOcup,1000,'ocupacion','true');setTimeout(hideCuida,1000,'cuidador','cUi');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
+		$rta.="<li title='Editar Usuario' Onclick=\"funcEditPers();\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
 		$rta.="<li title='Signos' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico .naranja' id='".$c['ACCIONES']."'></i></li>";
 		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
 		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";

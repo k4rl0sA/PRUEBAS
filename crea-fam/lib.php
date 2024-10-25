@@ -723,6 +723,61 @@ function plan($id){
 	}
 }
 
+function eventAsign($key) {
+    $id = divide($key);
+    $sql = "SELECT evento as eve
+            FROM vspeve
+            WHERE idpeople ='{$id[0]}'";
+    // echo $sql;
+    print_r($id);
+    $info = datos_mysql($sql);
+    $rta = $info['responseResult'];
+    $eventos = array(
+      1 => ['icono' => 'siges1', 'titulo' => 'SIFILIS GESTACIONAL', 'modulo' => 'sifigest'],
+	  2 => ['icono' => 'hbges1', 'titulo' => 'HB GESTACIONAL', 'modulo' => 'hbgest'],
+	  3 => ['icono' => 'vihge1', 'titulo' => 'VIH GESTACIONAL', 'modulo' => 'vihgest'],
+	  4 => ['icono' => 'gesta1', 'titulo' => 'BAJO PESO GESTACIONAL', 'modulo' => 'gestantes'],
+	  5 => ['icono' => 'gesta1', 'titulo' => 'FAMILIAS CON GESTANTES', 'modulo' => 'gestantes'],
+	  6 => ['icono' => 'gesta3', 'titulo' => 'MORBILIDAD MATERNA EXTREMA', 'modulo' => 'mme'],
+	  7 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (CONSUMADO)', 'modulo' => 'condsuic'],
+	  8 => ['icono' => 'siges1', 'titulo' => 'VIOLENCIA EN GESTANTES', 'modulo' => 'violgest'],
+	  9 => ['icono' => 'desnu1', 'titulo' => 'DNT AGUDA MODERADA O SEVERA', 'modulo' => 'dntsevymod'],
+	  10 => ['icono' => 'desnu1', 'titulo' => 'MENORES CON EXCESO DE PESO', 'modulo' => 'dntsevymod'],
+	  11 => ['icono' => 'aterm1', 'titulo' => 'BPN A TÉRMNO', 'modulo' => 'bpnterm'],
+	  12 => ['icono' => 'prete1', 'titulo' => 'BPN PRETERMINO', 'modulo' => 'bpnpret'],
+	  13 => ['icono' => 'hipot1', 'titulo' => 'MNE HIPOTIRODISMO', 'modulo' => 'mnehosp'],
+	  14 => ['icono' => 'siges1', 'titulo' => 'ERA - IRA', 'modulo' => 'eraira'],
+	  15 => ['icono' => 'desnu1', 'titulo' => 'FAMILIAS CON MENORES DE 5 AÑOS', 'modulo' => 'dntsevymod'],
+	  16 => ['icono' => 'canin1', 'titulo' => 'CANCER INFANTIL', 'modulo' => 'cancinfa'],
+	  17 => ['icono' => 'sifil1', 'titulo' => 'SIFILIS CONGENITA', 'modulo' => 'sificong'],
+	  18 => ['icono' => 'psico1', 'titulo' => 'ACOMPAÑAMIENTO PSICOSOCIAL', 'modulo' => 'acompsic'],
+	  19 => ['icono' => 'duelo1', 'titulo' => 'APOYO PSICOLOGICO EN DUELO', 'modulo' => 'apopsicduel'],
+	  20 => ['icono' => 'croni2', 'titulo' => 'CRONICOS', 'modulo' => 'cronicos'],
+	  21 => ['icono' => 'viole1', 'titulo' => 'VIOLENCIA REITERADA', 'modulo' => 'violreite'],
+	  22 => ['icono' => 'salor1', 'titulo' => 'SALUD ORAL', 'modulo' => 'saludoral'],
+	  23 => ['icono' => 'otrca1', 'titulo' => 'OTROS CASOS PRIORIZADOS', 'modulo' => 'otroprio'],
+	  24 => ['icono' => 'gesta1', 'titulo' => 'OBESIDAD GESTACIONAL', 'modulo' => 'gestantes'],
+	  25 => ['icono' => 'gesta1', 'titulo' => 'MATERNAS ADOLESCENTES', 'modulo' => 'gestantes'],
+	  26 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (AMENAZA)', 'modulo' => 'condsuic'],
+	  27 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (IDEACIÓN)', 'modulo' => 'condsuic'],
+	  28 => ['icono' => 'condu1', 'titulo' => 'CONDUCTA SUICIDA (INTENTO)', 'modulo' => 'condsuic']
+    );
+    $eve = '';
+    foreach ($rta as $evento) {
+		// print_r($_POST);
+        $id = $evento['eve'];
+        if (isset($eventos[$id])) {
+            $icono = $eventos[$id]['icono'];
+            $titulo = $eventos[$id]['titulo'];
+            $modulo = $eventos[$id]['modulo'];
+            $eve .= "<li class='icono $icono' title='$titulo' id='".$key."_".$id."' Onclick=\"mostrar('$modulo','pro',event,'','../vsp/$modulo.php',7,'$modulo');Color('datos-lis');\"></li>";
+        } else {
+            $eve .= "ERROR EN EL ID DEL EVENTO";
+        }
+    }
+    return $eve;
+}
+
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
@@ -758,6 +813,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Solicitar Admisión' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='".$c['ACCIONES']."'></i></li>";
 		$rta.="<li title='Crear Atención' Onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='".$c['ACCIONES']."' ></i></li>";
 		$rta.="<li class='icono admsi1' title='Validar Evento' id='".$c['ACCIONES']."' Onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>";
+		$rta.=eventAsign($c['ACCIONES']);
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

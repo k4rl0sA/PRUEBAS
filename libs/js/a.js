@@ -355,7 +355,7 @@ function ir_pag(tb, p, t,mo) {
 	act_lista(tb, document.getElementById('pag-'+tb),mo);
 }
 
-function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
+/* function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 	var id = tb+'-'+a;
 	if (a == 'pro') {
         if (ev!=undefined) {tit=ev.currentTarget.title;k=ev.target.id;}
@@ -375,7 +375,38 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
+} */
+
+function mostrar(tb, a = '', ev, m = '', lib = ruta_app, w = 7, tit = '', k = '0') {
+    return new Promise((resolve, reject) => {
+        var id = tb + '-' + a;
+        if (ev != undefined) {
+            tit = ev.currentTarget.title;
+            k = ev.target.id;
+        }
+        let panelPromise;
+        if (a === 'pro') {
+            panelPromise = crear_panel(tb, a, w, lib, tit);
+        } else if (a === 'fix') {
+            panelPromise = panel_fix(tb, a, w, lib, tit);
+        } else if (a === 'sta') {
+            panelPromise = panel_static(tb, a, w, lib, tit);
+        } else {
+            reject('Parámetro no válido para "a"');
+            return;
+        }
+        panelPromise
+            .then(() => act_html(id + '-con', lib, 'a=cmp&tb=' + tb + '&id=' + k))
+            .then(() => {
+                if (document.getElementById(id + '-msj') != undefined) document.getElementById(id + '-msj').innerHTML = "";
+                if (document.getElementById(tb + '-msj') != undefined) document.getElementById(tb + '-msj').innerHTML = "";
+                foco(inner(id + '-foco'));
+                resolve();
+            })
+            .catch(reject);
+    });
 }
+
 
 function cargarRecursosCSSyFontAwesome() {
     // Cargar el archivo CSS externo (menuCntx.css)

@@ -50,15 +50,15 @@ function focus_acompsic(){
 	$regxPag=4;
   $pag=(isset($_POST['pag-acompsic']))? ($_POST['pag-acompsic']-1)* $regxPag:0;
 
-  
+  // CAMBIO P.tipo_doc,P.idpersona
 	$sql="SELECT `id_acompsic` ACCIONES,id_acompsic 'Cod Registro',
   P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra, 
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_acompsic A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO
-	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO 
-	$sql.="' ORDER BY A.fecha_create"; // CAMBIO 
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO AGREGAR ESTA LINEA
+	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO  AGREGAR ESTA LINEA 
+	$sql.="' ORDER BY A.fecha_create"; // CAMBIO  AGREGAR ESTA LINEA
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -233,7 +233,7 @@ function gra_acompsic(){
   // print_r($_POST);
   $id=divide($_POST['id_acompsic']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==4){//CAMBIO
+  if(count($id)==4){//CAMBIO 5 por 4
     $sql="UPDATE vsp_acompsic SET 
             autocono = TRIM(UPPER('{$_POST['autocono']}')),
             cumuni_aser = TRIM(UPPER('{$_POST['cumuni_aser']}')),
@@ -271,8 +271,8 @@ function gra_acompsic(){
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_acompsic =TRIM(UPPER('{$id[0]}'))";
      echo $sql;
-  }else if(count($id)==3){//CAMBIO
-    $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1]
+  }else if(count($id)==3){//CAMBIO 4 por 3
+    $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1] [trim(upper('{$id[1]}')),]
     $sql="INSERT INTO vsp_acompsic VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['autocono']}')),trim(upper('{$_POST['cumuni_aser']}')),trim(upper('{$_POST['toma_decis']}')),trim(upper('{$_POST['pensa_crea']}')),trim(upper('{$_POST['manejo_emo']}')),trim(upper('{$_POST['rela_interp']}')),trim(upper('{$_POST['solu_prob']}')),trim(upper('{$_POST['pensa_critico']}')),trim(upper('{$_POST['manejo_tension']}')),trim(upper('{$_POST['empatia']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['liker_dificul']}')),trim(upper('{$_POST['liker_emocion']}')),trim(upper('{$_POST['liker_decision']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),TRIM(UPPER('{$smbin}')),
     '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";

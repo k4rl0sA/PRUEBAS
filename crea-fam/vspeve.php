@@ -64,7 +64,7 @@ function lis_eventos(){
     $info=datos_mysql($total);
     $total=$info['responseResult'][0]['total']; 
     $regxPag=5;
-    $pag=(isset($_POST['pag-eventos-lis']))? ($_POST['pag-eventos-lis']-1)* $regxPag:0;
+    $pag=(isset($_POST['pag-eventos']))? ($_POST['pag-eventos']-1)* $regxPag:0;
 
 
 
@@ -74,12 +74,12 @@ function lis_eventos(){
     $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"eventos-lis",$regxPag,'vspeve.php');
+	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'vspeve.php');
 }
 
 function cmp_vspeve(){
 	$rta="<div class='encabezado medid'>TABLA DE EVENTOS POR USUARIO</div>
-	<div class='contenido' id='medidas-lis'>".lis_eventos()."</div></div>";
+	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>'']; 
 	$d=get_persona();
 	if ($d==""){$d=$t;}

@@ -52,11 +52,12 @@ function focus_acompsic(){
 
   
 	$sql="SELECT `id_acompsic` ACCIONES,id_acompsic 'Cod Registro',
-  tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+  P.tipo_doc,P.documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra, 
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_acompsic A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO
+	$sql.="WHERE A.idpeople='".$id[0]."'"; // CAMBIO 
 	$sql.="' ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

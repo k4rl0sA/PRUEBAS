@@ -71,7 +71,7 @@ function lis_eventos(){
     $sql="SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
     FROM vspeve E 
     WHERE E.idpeople='{$id[0]}'";  
-    $sql.=" ORDER BY 4 LIMIT $pag, $regxPag";
+    $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"eventos-lis",$regxPag);

@@ -613,7 +613,7 @@ function sobreponer(a, b = '', c = null) {
 }
 }
 
-/* function act_html(a, b, c, d = false) {  
+function act_html(a, b, c, d = false) {  
 	if (document.getElementById(a) != undefined) {
 		pajax(b, c+form_input('fapp'), function () { 
             var x=document.getElementById(a);
@@ -631,8 +631,8 @@ function sobreponer(a, b = '', c = null) {
 		});
     }
 }
- */
-function act_html(a, b, c, d = false) {  
+
+/* function act_html(a, b, c, d = false) {  
     return new Promise(function(resolve, reject) {
         if (document.getElementById(a) != undefined) {
             pajax(b, c + form_input('fapp'), function () { 
@@ -653,7 +653,7 @@ function act_html(a, b, c, d = false) {
             reject('Elemento no encontrado');
         }
     });
-}
+} */
 
 function pajax(path, data, callback, method = "POST", headers = null) {    
 	var req = new XMLHttpRequest();

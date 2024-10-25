@@ -68,10 +68,9 @@ function grabar(tb='',ev){
     'sifigest':'../vsp/sifigest.php',
     'vihgest':'../vsp/vihgest.php',
     'violreite':'../vsp/violreite.php',
-    'vspeve':'vspeve.php',
-    'dntsevymod':'dntsevymod.php',
-    'condsuic':'condsuic.php',
-    'violgest':'violgest.php'
+    'dntsevymod':'../vsp/dntsevymod.php',
+    'condsuic':'../vsp/condsuic.php',
+    'violgest':'../vsp/violgest.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

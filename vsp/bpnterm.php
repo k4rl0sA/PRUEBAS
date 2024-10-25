@@ -54,7 +54,7 @@ function focus_bpnterm(){
 
   
 	$sql="SELECT `id_bpnterm` ACCIONES,id_bpnterm  'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+p.tipo_doc,p.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_bpnterm A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 

@@ -154,7 +154,7 @@ function get_persona(){
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
   		FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) - TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) * 30.436875) AS dia
 		from person P left join hog_viv V ON idviv=vivipersona 
-		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+		WHERE idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];

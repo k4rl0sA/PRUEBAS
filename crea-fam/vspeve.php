@@ -162,7 +162,7 @@ function gra_vspeve(){
             WHERE id_eve =TRIM(UPPER('{$id[0]}'))";
     echo $sql;
   }else if(count($id)==2){
-    $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['docum_base']}')),
     trim(upper('{$_POST['evento']}')),
     trim(upper('{$_POST['fecha_even']}')),

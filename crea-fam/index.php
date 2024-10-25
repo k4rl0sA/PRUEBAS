@@ -219,6 +219,17 @@ function closeMenu(menuContainer) {
   currentOpenMenu = null;
 }
 
+function funcEditPers() {
+    mostrar('person','pro',event,'','lib.php',7,'person')
+        .then(() => Color('datos-lis'))
+        .then(() => enabAfil('regimen','eaf'))
+        .then(() => enabEtni('etnia','ocu','idi'))
+        .then(() => enabLoca('reside_localidad','lochi'))
+        .then(() => EditOcup('ocupacion','true'))
+        .then(() => hideCuida('cuidador','cUi'))
+        .then(() => funcionAdicional())
+        .catch(error => console.error(error));
+}
 
 </script>
 </head>

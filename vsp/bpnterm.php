@@ -57,7 +57,7 @@ function focus_bpnterm(){
 tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_bpnterm A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
 	LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO AGREGAR ESTA LINEA
 	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO  AGREGAR ESTA LINEA 
 	$sql.="' ORDER BY A.fecha_create"; // CAMBIO  AGREGAR ESTA LINEA

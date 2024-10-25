@@ -729,7 +729,7 @@ function eventAsign($key) {
             FROM vspeve
             WHERE idpeople ='{$id[0]}'";
     // echo $sql;
-    print_r($id);
+    // print_r($id);
     $info = datos_mysql($sql);
     $rta = $info['responseResult'];
     $eventos = array(

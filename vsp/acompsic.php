@@ -58,7 +58,7 @@ FROM vsp_acompsic A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO
 	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO 
-	$sql.="' ORDER BY A.fecha_create";
+	$sql.="' ORDER BY A.fecha_create"; // CAMBIO 
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 	$datos=datos_mysql($sql);

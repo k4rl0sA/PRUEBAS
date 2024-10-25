@@ -81,9 +81,7 @@ function cmp_acompsic(){
   $event=divide($_POST['id']);
   $ev=$event[2];//CAMBIAO 3 A 2
   $days=fechas_app('vsp');
-	//este campo no cambiar
   $c[]=new cmp('id_acompsic','h','50',$_POST['id'],$w.' '.$o,'Id de Acompsic','id_acompsic',null,null,false,false,'','col-2');
-  //este campo no cambiar
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');

@@ -60,7 +60,7 @@ FROM vsp_acompsic A
 	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO 
 	$sql.="' ORDER BY A.fecha_create"; // CAMBIO 
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"acompsic",$regxPag,'acompsic.php');
    }

@@ -151,9 +151,9 @@ function opc_evento($id=''){
 
 
 function gra_vspeve(){
-  // print_r($_POST);
+  print_r($_POST);
   $id=divide($_POST['id']);
-  if(count($id)==2){
+  if(count($id)==1){
     $sql="UPDATE vspeve SET 
             docum_base = TRIM(UPPER('{$_POST['docum_base']}')),
             evento = TRIM(UPPER('{$_POST['evento']}')),
@@ -161,7 +161,7 @@ function gra_vspeve(){
             `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
             WHERE id_eve =TRIM(UPPER('{$id[0]}'))";
     echo $sql;
-  }else if(count($id)==3){
+  }else if(count($id)==2){
     $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['docum_base']}')),
     trim(upper('{$_POST['evento']}')),

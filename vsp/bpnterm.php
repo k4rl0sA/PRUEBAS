@@ -308,14 +308,14 @@ function gra_bpnterm(){
   // print_r($_POST);
   $id=divide($_POST['id_bpnterm']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==5){
+  if(count($id)==4){//CAMBIO 5 por 4
     $sql="UPDATE vsp_bpnterm SET 
     asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),zscore=trim(upper('{$_POST['zscore']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),gana_peso_dia=trim(upper('{$_POST['gana_peso_dia']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_bpnterm =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==4){
-    $eq=opc_equ();
+  }else if(count($id)==3){//CAMBIO 4 por 3
+    $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1] [trim(upper('{$id[1]}')),]
     $sql="INSERT INTO vsp_bpnterm VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['zscore']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['gana_peso_dia']}')),trim(upper('{$_POST['signos_alarma']}')),trim(upper('{$_POST['signos_alarma_seg']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
     '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
@@ -331,7 +331,7 @@ function gra_bpnterm(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_bpnterm,'_',D.tipo_doc,'_',D.documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_bpnterm,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       asiste_control,vacuna_comple,lacmate_exclu,peso,talla,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
@@ -353,7 +353,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='bpnterm' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
-		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'bpnterm',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'bpnterm.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'bpnterm',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/bpnterm.php');\"></li>"; //CAMBIO tener en cuenta el evento
 	}
 	
  return $rta;

@@ -452,7 +452,7 @@ function cargarRecursosCSSyFontAwesome() {
 	//document.getElementById(id+"-con").innerHTML="";		
 } */
 
-function crear_panel(tb, a, w = 7, lib = ruta_app, tit = '') {
+function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
     return new Promise((resolve, reject) => {
         var id = tb + '-' + a;
         if (document.getElementById(id) == undefined) {

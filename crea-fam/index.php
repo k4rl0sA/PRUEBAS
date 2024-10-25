@@ -50,7 +50,28 @@ function grabar(tb='',ev){
 		'signos':'signos.php',
 		'ambient':'amb.php',
 		'alertas':'alertas.php',
-    'vspeve':'vspeve.php'
+    'vspeve':'vspeve.php',
+    'acompsic': 'acompsic.php',
+    'apopsicduel': 'apopsicduel.php',
+    'bpnpret':'bpnpret.php',
+    'bpnterm':'bpnterm.php',
+    'cancinfa':'cancinfa.php',
+    'cronicos': 'cronicos.php',
+    'eraira':'eraira.php',
+    'gestantes':'gestantes.php',
+    'hbgest':'hbgest.php',
+    'mnehosp': 'mnehosp.php',
+    'mme':'mme.php',
+    'otroprio': 'otroprio.php',
+    'saludoral': 'saludoral.php',
+    'sificong':'sificong.php',
+    'sifigest':'sifigest.php',
+    'vihgest':'vihgest.php',
+    'violreite': 'violreite.php',
+    'vspeve':'vspeve.php',
+    'dntsevymod':'dntsevymod.php',
+    'condsuic':'condsuic.php',
+    'violgest':'violgest.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

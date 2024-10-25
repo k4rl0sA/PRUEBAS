@@ -79,6 +79,7 @@ function cmp_acompsic(){
   $x=false;
   $block=['hab','acc'];
   $event=divide($_POST['id']);
+  var_dump($_POST);
   $ev=$event[3];
   $days=fechas_app('vsp');
 	//este campo no cambiar

@@ -49,7 +49,8 @@ function grabar(tb='',ev){
 		'compConc':'plncon.php',
 		'signos':'signos.php',
 		'ambient':'amb.php',
-		'alertas':'alertas.php'
+		'alertas':'alertas.php',
+    'vspeve':'vspeve.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

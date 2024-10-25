@@ -80,7 +80,7 @@ function cmp_apopsicduel(){
   $bl='bL';
   $x=false;
   $event=divide($_POST['id']);
-  $ev=$event[3];
+  $ev=$event[2];
    $block=['hab','acc'];
   $days=fechas_app('vsp');
 // $nb='disa oculto';

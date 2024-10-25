@@ -62,133 +62,6 @@ function grabar(tb='',ev){
 	}
 }   
 
-
-/* let currentOpenMenu = null;  
-
-document.body.addEventListener('click', function(event) {
-  // Verifica si el click fue en un botón de menú
-  if (event.target.classList.contains('icono') && event.target.classList.contains('menubtn')) {
-    const id = event.target.id.split("_");
-    crearMenu(id[1] + '_' + id[2]);
-  }
-});
-
-function crearMenu(id) {
-  const menuToggle = document.getElementById('menuToggle_' + id);
-  const menuContainer = document.getElementById('menuContainer_' + id);
-
-  // Si el menú ya está cargado, solo muestra/oculta
-  if (menuContainer.innerHTML.trim() !== "") {
-    toggleMenu(menuContainer, menuToggle);
-    return;
-  }
-
-  fetch('../libs/menu.html')
-    .then(response => response.text())
-    .then(html => {
-      cargarRecursosCSSyFontAwesome();
-      menuContainer.innerHTML = html;
-      setupMenuBehavior(menuContainer, menuToggle);
-      toggleMenu(menuContainer, menuToggle);  // Mostrar el menú al cargarlo por primera vez
-    })
-    .catch(error => console.error('Error al cargar el menú:', error));
-}
-
-function setupMenuBehavior(menuContainer, menuToggle) {
-  const contextMenu = menuContainer.querySelector('.panel-acc');
-  const isMobile = window.innerWidth <= 768;
-
-  // Prevenir que se añadan múltiples listeners al mismo toggle
-  menuToggle.removeEventListener('click', menuToggleClickHandler);
-  menuToggle.addEventListener('click', menuToggleClickHandler);
-
-  function menuToggleClickHandler(e) {
-    e.stopPropagation();
-    toggleMenu(menuContainer, menuToggle);
-  }
-
-  // Botón de cierre del menú
-  const closeButton = contextMenu.querySelector('.closePanelAcc');
-  if (closeButton) {
-    closeButton.addEventListener('click', () => {
-      closeMenu(menuContainer);
-    });
-  }
-
-  // Acciones dentro del menú
-  const actions = contextMenu.querySelectorAll('.action');
-  actions.forEach(action => {
-    action.addEventListener('click', () => {
-      const actionName = action.querySelector('.actionTitle').textContent;
-
-      console.log(`Acción seleccionada: ${actionName}`);
-      closeMenu(menuContainer);
-    });
-  });
-
-  // Cerrar el menú cuando se haga clic fuera de él
-  document.addEventListener('click', (e) => {
-    if (!contextMenu.contains(e.target) && e.target !== menuToggle) {
-      closeMenu(menuContainer);
-    }
-  });
-
-  // Deslizamiento táctil para cerrar el menú
-  let touchStartY;
-  contextMenu.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  });
-
-  contextMenu.addEventListener('touchmove', (e) => {
-    const touchEndY = e.touches[0].clientY;
-    const diff = touchEndY - touchStartY;
-    if (diff > 50) {
-      closeMenu(menuContainer);
-    }
-  });
-}
-
-function toggleMenu(menuContainer, menuToggle) {
-  const contextMenu = menuContainer.querySelector('.panel-acc');
-  const isMobile = window.innerWidth <= 768;
-
-  // Si hay un menú actualmente abierto, lo cerramos antes de abrir el nuevo
-  if (currentOpenMenu && currentOpenMenu !== menuContainer) {
-    closeMenu(currentOpenMenu);
-  }
-
-  // Maneja la visibilidad del menú correctamente
-  if (isMobile) {
-    contextMenu.classList.toggle('show');
-  } else {
-    const rect = menuToggle.getBoundingClientRect();
-    contextMenu.style.top = rect.bottom + 'px';  // Ajusta la posición top
-    contextMenu.style.display = contextMenu.style.display === 'none' || contextMenu.style.display === '' ? 'block' : 'none';
-  }
-
-  // Actualiza la variable global para guardar el menú actualmente abierto
-  if (contextMenu.style.display === 'block' || contextMenu.classList.contains('show')) {
-    currentOpenMenu = menuContainer;
-  } else {
-    currentOpenMenu = null;  // Si el menú está cerrado, reseteamos la variable
-  }
-}
-
-function closeMenu(menuContainer) {
-  const contextMenu = menuContainer.querySelector('.panel-acc');
-  const isMobile = window.innerWidth <= 768;
-
-  if (isMobile) {
-    contextMenu.classList.remove('show');
-  } else {
-    contextMenu.style.display = 'none';
-  }
-
-  // Resetea la variable para indicar que no hay menú abierto
-  currentOpenMenu = null;
-}
- */
-
  let currentOpenMenu = null;
 
 document.body.addEventListener('click', function(event) {
@@ -375,8 +248,9 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
   <?php
   $filtro = ($perfil =='ADM'||$perfil =='SUPHOG'||$perfil =='SUPEAC') ? true : false ;
+  $enab = ($filtro) ? '' : 'disabled' ;
 		$rta = '<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();">'.$digitadores.'</select></div>';
+		<select class="captura" id="fdigita" name="fdigita" onChange="actualizar();"'.$enab.' >'.$digitadores.'</select></div>';
 		echo $rta;
 	?>
  </div>

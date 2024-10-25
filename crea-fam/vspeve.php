@@ -56,9 +56,9 @@ function focus_vspeve(){
 function lis_eventos(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
-    $sql="SELECT id_eve 'Cod Registro',tipo_doc,documento,FN_CATALOGODESC(87,evento),fecha_even
+    $sql="SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
     FROM vspeve E 
-    WHERE E.documento='{$id[0]}'AND E.tipo_doc='{$id[1]}'"; 
+    WHERE E.idpeople='{$id[0]}'"; 
     $sql.=" ORDER BY 4";
     // echo $sql;
     $datos=datos_mysql($sql);
@@ -185,7 +185,7 @@ function get_persona(){
     DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dias
 		FROM person P
 		left join vspeve E ON P.idpeople = E.idpeople
-    WHERE P.idpersona='{$id[0]}'"; 
+    WHERE P.idpeople='{$id[0]}'"; 
     // echo $sql;
     print_r($_REQUEST);
     $info=datos_mysql($sql);
@@ -198,7 +198,7 @@ function get_vspeve(){
     return "";
   }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_eve,'_',tipo_doc,'_',documento),docum_base,evento,fecha_even
+      $sql="SELECT concat_ws('_',id_eve,idpeople),docum_base,evento,fecha_even
       FROM vspeve
       WHERE id_eve ='{$id[0]}'";
       // echo $sql;

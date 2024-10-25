@@ -59,7 +59,7 @@ FROM vsp_apopsicduel A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO
 	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO 
-	$sql.="' ORDER BY A.fecha_create"; // CAMBIO 
+	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -272,18 +272,17 @@ function gra_apopsicduel(){
   // print_r($_POST);
   $id=divide($_POST['id_psicduel']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==3){//CAMBIO
+  if(count($id)==4){//CAMBIO
     $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1]
     $sql="UPDATE vsp_apopsicduel SET 
     causa_duelo=trim(upper('{$_POST['causa_duelo']}')),fecha_defun=trim(upper('{$_POST['fecha_defun']}')),parent_fallec=trim(upper('{$_POST['parent_fallec']}')),lugar_defun=trim(upper('{$_POST['lugar_defun']}')),vincu_afect=trim(upper('{$_POST['vincu_afect']}')),senti_ident_1=trim(upper('{$_POST['senti_ident_1']}')),senti_ident_2=trim(upper('{$_POST['senti_ident_2']}')),senti_ident_3=trim(upper('{$_POST['senti_ident_3']}')),etapa_duelo=trim(upper('{$_POST['etapa_duelo']}')),sintoma_duelo_1=trim(upper('{$_POST['sintoma_duelo_1']}')),sintoma_duelo_2=trim(upper('{$_POST['sintoma_duelo_2']}')),sintoma_duelo_3=trim(upper('{$_POST['sintoma_duelo_3']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),liker_dificul=trim(upper('{$_POST['liker_dificul']}')),liker_emocion=trim(upper('{$_POST['liker_emocion']}')),liker_decision=trim(upper('{$_POST['liker_decision']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_psicduel =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
     $sql="INSERT INTO vsp_apopsicduel VALUES (
     NULL,
-    trim(upper('{$id[1]}')),
     trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),
@@ -337,7 +336,7 @@ function gra_apopsicduel(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);//CAMBIO ABAJO tener en cuenta el evento
-      $sql="SELECT concat(id_psicduel,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_psicduel,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,causa_duelo,fecha_defun,parent_fallec,lugar_defun,vincu_afect,senti_ident_1,senti_ident_2,senti_ident_3,etapa_duelo,sintoma_duelo_1,sintoma_duelo_2,sintoma_duelo_3,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,liker_dificul,liker_emocion,liker_decision,redu_riesgo_cierre,users_bina
       FROM vsp_apopsicduel
       WHERE id_psicduel ='{$id[0]}'";
@@ -358,11 +357,12 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='apopsicduel' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     //$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'apopsicduel',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'apopsicduel.php');\"></li>";
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'acompsic',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/apopsicduel.php');\"></li>"; //CAMBIO tener en cuenta el evento
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'apopsicduel',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/apopsicduel.php');\"></li>"; //CAMBIO tener en cuenta el evento
   }
 	
  return $rta;
 }
+
 
 
 function bgcolor($a,$c,$f='c'){

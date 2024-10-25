@@ -51,7 +51,7 @@ function grabar(tb='',ev){
 		'ambient':'amb.php',
 		'alertas':'alertas.php',
     'vspeve':'vspeve.php',
-    'acompsic': 'acompsic.php',
+    'acompsic': '../vsp/acompsic.php',
     'apopsicduel': 'apopsicduel.php',
     'bpnpret':'bpnpret.php',
     'bpnterm':'bpnterm.php',

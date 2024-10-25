@@ -37,7 +37,7 @@ function focus_acompsic(){
    $acc=rol($a);
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"mostrar('acompsic','pro',event,'','../vsp/acompsic.php',7,'acompsic');\"></li>";//act_lista('$a',this);
-   return $rta;
+  return $rta;
  }
 
 

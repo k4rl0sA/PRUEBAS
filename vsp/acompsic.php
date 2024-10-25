@@ -306,8 +306,8 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 // var_dump($rta);
 	if ($a=='acompsic' && $b=='acciones'){//a mnombre del modulo
-		$rta="<nav class='menu right'>";	
-		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'acompsic',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'acompsic.php');\"></li>";
+		$rta="<nav class=getData'menu right'>";	
+		$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'acompsic',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'../vsp/acompsic.php');\"></li>"; //CAMBIO
 	}
 	
  return $rta;

@@ -9,7 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<script src="../libs/js/a.js?v=27.0"></script>
+<script src="../libs/js/a.js?v=28.0"></script>
 <script src="../libs/js/x.js?v1.0"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
@@ -227,7 +227,6 @@ function funcEditPers() {
         .then(() => enabLoca('reside_localidad','lochi'))
         .then(() => EditOcup('ocupacion','true'))
         .then(() => hideCuida('cuidador','cUi'))
-        .then(() => funcionAdicional())
         .catch(error => console.error(error));
 }
 

@@ -56,13 +56,25 @@ function focus_vspeve(){
 function lis_eventos(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
+
+    $total="SELECT COUNT(*) AS total FROM (
+      SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
+    FROM vspeve E 
+    WHERE E.idpeople='{$id[0]}') AS Subquery";
+    $info=datos_mysql($total);
+    $total=$info['responseResult'][0]['total']; 
+    $regxPag=5;
+    $pag=(isset($_POST['pag-eventos-lis']))? ($_POST['pag-eventos-lis']-1)* $regxPag:0;
+
+
+
     $sql="SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
     FROM vspeve E 
-    WHERE E.idpeople='{$id[0]}'"; 
+    WHERE E.idpeople='{$id[0]}' LIMIT $pag, $regxPag"; 
     $sql.=" ORDER BY 4";
     // echo $sql;
-    $datos=datos_mysql($sql);
-    return panel_content($datos["responseResult"],"eventos-lis",5);
+		$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"eventos-lis",$regxPag);
 }
 
 function cmp_vspeve(){
@@ -160,7 +172,7 @@ function gra_vspeve(){
             fecha_even = TRIM(UPPER('{$_POST['fecha_even']}')),
             `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
             WHERE id_eve =TRIM(UPPER('{$id[0]}'))";
-    echo $sql;
+    // echo $sql;
   }else if(count($id)==2){
     $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['docum_base']}')),

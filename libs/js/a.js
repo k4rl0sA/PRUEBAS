@@ -355,7 +355,7 @@ function ir_pag(tb, p, t,mo) {
 	act_lista(tb, document.getElementById('pag-'+tb),mo);
 }
 
-/* function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
+function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 	var id = tb+'-'+a;
 	if (a == 'pro') {
         if (ev!=undefined) {tit=ev.currentTarget.title;k=ev.target.id;}
@@ -375,38 +375,7 @@ function ir_pag(tb, p, t,mo) {
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
-} */
-
-function mostrar(tb, a = '', ev, m = '', lib = ruta_app, w = 7, tit = '', k = '0') {
-    return new Promise((resolve, reject) => {
-        var id = tb + '-' + a;
-        if (ev != undefined) {
-            tit = ev.currentTarget.title;
-            k = ev.target.id;
-        }
-        let panelPromise;
-        if (a === 'pro') {
-            panelPromise = crear_panel(tb, a, w, lib, tit);
-        } else if (a === 'fix') {
-            panelPromise = panel_fix(tb, a, w, lib, tit);
-        } else if (a === 'sta') {
-            panelPromise = panel_static(tb, a, w, lib, tit);
-        } else {
-            reject('Parámetro no válido para "a"');
-            return;
-        }
-        panelPromise
-            .then(() => act_html(id + '-con', lib, 'a=cmp&tb=' + tb + '&id=' + k))
-            .then(() => {
-                if (document.getElementById(id + '-msj') != undefined) document.getElementById(id + '-msj').innerHTML = "";
-                if (document.getElementById(tb + '-msj') != undefined) document.getElementById(tb + '-msj').innerHTML = "";
-                foco(inner(id + '-foco'));
-                resolve();
-            })
-            .catch(reject);
-    });
 }
-
 
 function cargarRecursosCSSyFontAwesome() {
     // Cargar el archivo CSS externo (menuCntx.css)
@@ -428,7 +397,7 @@ function cargarRecursosCSSyFontAwesome() {
 }
 
 
-/* function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
+function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
 	if (document.getElementById(id) == undefined) {
 		var p = document.createElement('div');
@@ -436,7 +405,7 @@ function cargarRecursosCSSyFontAwesome() {
 		p.className = a+' panel'+(a=='frm'?'col-0':' movil col-'+b);
 		var txt = "<div id='"+id+"-tit' class='titulo'><span>"+(tit==''?tb.replace('_', ' '):tit)+"</span>";
 		txt += "<span id='"+id+"-foco' class='oculto'></span>";
-		// txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >";
+		/* txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >"; */
 		txt += "<nav class='left'><ul class='menu' id='"+id+"-menu'></ul></nav><nav class='menu right'><li class='icono "+tb+ " cancelar' title='Cerrar' Onclick=\"ocultar('"+tb+"','"+a+"');\"></li></nav></div>";
 		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
         txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
@@ -450,77 +419,8 @@ function cargarRecursosCSSyFontAwesome() {
 	}
 	document.getElementById(id).style.display = "block";	
 	//document.getElementById(id+"-con").innerHTML="";		
-} */
-
-function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
-    return new Promise((resolve, reject) => {
-        var id = tb + '-' + a;
-        if (document.getElementById(id) == undefined) {
-            var p = document.createElement('div');
-            p.id = id;
-            p.className = a + ' panel' + (a == 'frm' ? 'col-0' : ' movil col-' + b);
-            var txt = "<div id='" + id + "-tit' class='titulo'><span>" + (tit == '' ? tb.replace('_', ' ') : tit) + "</span>";
-            txt += "<span id='" + id + "-foco' class='oculto'></span>";
-            txt += "<nav class='left'><ul class='menu' id='" + id + "-menu'></ul></nav><nav class='menu right'><li class='icono " + tb + " cancelar' title='Cerrar' onclick=\"ocultar('" + tb + "','" + a + "');\"></li></nav></div>";
-            txt += "<span id='" + id + "-msj' class='mensaje'></span>";
-            txt += "<div class='contenido " + (a == 'lib' ? 'lib-con' : '') + "' id='" + id + "-con'></div>";
-            p.innerHTML = txt;
-            document.getElementById('fapp').appendChild(p);
-            resolve();
-        } else {
-            resolve(); // Resuelve la promesa si el elemento ya existe
-        }
-    });
 }
 
-function panel_fix(tb, a, w = 7, lib = ruta_app, tit = '') {
-    return new Promise((resolve, reject) => {
-        var id = tb+'-'+a;
-	if (document.getElementById(id) == undefined){
-		var p = document.createElement('div');
-		p.id = id;
-		p.className = a+' panel'+(a=='fix'?' col-8':' col-'+b);
-		var txt = "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
-		p.innerHTML = txt;
-		document.getElementById('fapp').appendChild(p);
-		Drag.init(document.getElementById(id+'-con'),p);
-		document.getElementById(id).style.top=(screen.height-p.style.height)/7;
-		document.getElementById(id).style.left=(screen.width-p.style.width)/10.5;
-        act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
-        act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false); 
-	}
-	document.getElementById(id).style.display = "block";	
-        resolve();
-    });
-}
-
-function panel_static(tb, a, w = 7, lib = ruta_app, tit = '') {
-    return new Promise((resolve, reject) => {
-        var id = tb+'-'+a;
-	if (document.getElementById(id) == undefined) {
-		var p = document.createElement('div');
-		p.id = id;
-		p.className = a+' panel'+(a=='frm'?'col-0':' static col-'+b);
-		var txt = "<div id='"+id+"-tit'>";
-		txt += "<span id='"+id+"-foco' class='oculto'></span>";
-		txt += "<nav cass='left'></nav><nav class='menu right'></nav></div>";
-		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
-        txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
-		p.innerHTML = txt;
-		document.getElementById('fapp').appendChild(p);
-		Drag.init(document.getElementById(id+'-tit'),p);
-		document.getElementById(id).style.top=(screen.height-p.style.height)/7;
-		document.getElementById(id).style.left=(screen.width-p.style.width)/10.5;
-        act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
-        act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false); 
-	}
-	document.getElementById(id).style.display = "block";	
-        resolve();
-    });
-}
-
-
-/* 
 function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
 	if (document.getElementById(id) == undefined){
@@ -538,8 +438,8 @@ function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 	}
 	document.getElementById(id).style.display = "block";	
 }
- */
-/* function panel_static(tb, a, b = 7, lib = ruta_app, tit = '') {
+
+function panel_static(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
 	if (document.getElementById(id) == undefined) {
 		var p = document.createElement('div');
@@ -560,7 +460,7 @@ function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 	}
 	document.getElementById(id).style.display = "block";	
 	//document.getElementById(id+"-con").innerHTML="";		
-} */
+}
 
 function foco(a){
     if (document.getElementById(a)!=undefined) document.getElementById(a).focus();
@@ -714,26 +614,22 @@ function sobreponer(a, b = '', c = null) {
 }
 
 function act_html(a, b, c, d = false) {  
-    return new Promise(function(resolve, reject) {
-        if (document.getElementById(a) != undefined) {
-            pajax(b, c + form_input('fapp'), function () { 
-                var x = document.getElementById(a);
-                if (x.tagName == "INPUT")
-                    x.value = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
-                else 
-                    x.innerHTML = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
-                if (x.classList.contains('contenido')) {
-                    var f = x.id.replace('con', 'foco');
-                    if (document.getElementById(f) != undefined)
-                        foco(document.getElementById(f).innerText);
-                }
-                if (d != false) d.apply('a');
-                resolve();
-            });
-        } else {
-            reject('Elemento no encontrado');
-        }
-    });
+	if (document.getElementById(a) != undefined) {
+		pajax(b, c+form_input('fapp'), function () { 
+            var x=document.getElementById(a);
+            if (x.tagName=="INPUT")
+                x.value = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
+            else 
+			    x.innerHTML = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
+			if (x.classList.contains('contenido')){
+				var f=x.id.replace('con','foco');
+				if (document.getElementById(f)!=undefined)
+				   foco(document.getElementById(f).innerText);
+			}
+			if (d != false)
+				d.apply('a');
+		});
+    }
 }
 
 function pajax(path, data, callback, method = "POST", headers = null) {    

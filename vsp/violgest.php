@@ -140,7 +140,7 @@ $ob='Ob';
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
-    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Se aplicó tamizaje POST test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cLk');disaOthNo('aplica_tamiz','LKr');");
+    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$ob.' '.$no.' '.$o,'Se aplicó tamizaje POST test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cLk');disaOthNo('aplica_tamiz','LKr');");
     $c[]=new cmp('liker_dificul','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_emocion','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_decision','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');

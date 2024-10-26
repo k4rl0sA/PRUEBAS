@@ -81,12 +81,11 @@ function cmp_cancinfa(){
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-$ev=$event[2];
+  $ev=$event[2];
   $days=fechas_app('vsp');
   
 
-	  $c[]=new cmp('id_cancinfa','h','50',$_POST['id'],$w.' '.$o,'','id_cancinfa',null,null,false,true,'','col-2');
-    
+	$c[]=new cmp('id_cancinfa','h','50',$_POST['id'],$w.' '.$o,'','id_cancinfa',null,null,false,true,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');

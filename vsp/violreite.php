@@ -61,7 +61,7 @@ LEFT JOIN   person P ON A.idpeople=P.idpeople
 $sql.=" WHERE A.idpeople='".$id[0];
 $sql.="' ORDER BY A.fecha_create"; 
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"violreite",$regxPag,'violreite.php');
    }

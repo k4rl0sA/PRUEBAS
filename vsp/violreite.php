@@ -53,7 +53,7 @@ function focus_violreite(){
 
   
 	$sql="SELECT `id_violreite` ACCIONES,id_violreite 'Cod Registro',
-P.tipo_doc,P.documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_violreite A
 LEFT JOIN   person P ON A.idpeople=P.idpeople

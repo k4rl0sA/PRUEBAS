@@ -355,7 +355,7 @@ function gra_bpnpret(){
       FROM vsp_bpnpret D
       LEFT JOIN personas P ON D.idpeople=P.idpeople
       WHERE id_bpnpret ='{$id[0]}'";
-      // echo $sql;
+       echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);

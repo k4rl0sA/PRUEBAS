@@ -338,7 +338,7 @@ function gra_bpnterm(){
       FROM vsp_bpnterm D
       LEFT JOIN person P ON D.idpeople=P.idpeople
       WHERE id_bpnterm ='{$id[0]}'";
-      echo $sql;
+      // echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);

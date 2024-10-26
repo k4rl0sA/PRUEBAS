@@ -264,7 +264,7 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_eraira,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_eraira,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,adecua_oxi,adhe_tratam,signos_alarma,signos_alarma_seg,adhe_lavamano,reing_hospita,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_eraira
       WHERE id_eraira ='{$id[0]}'";

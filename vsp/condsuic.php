@@ -81,7 +81,7 @@ function cmp_condsuic(){
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-$ev=$event[2];
+  $ev=$event[2];
   $days=fechas_app('vsp');
   $ge='pRe';
   $pu='PuE';

@@ -336,7 +336,7 @@ function gra_bpnterm(){
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       asiste_control,vacuna_comple,lacmate_exclu,peso,talla,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_bpnterm D
-      LEFT JOIN personas P ON D.tipo_doc=P.tipo_doc AND D.documento=P.idpersona
+      LEFT JOIN person P ON D.tipo_doc=P.tipo_doc AND D.documento=P.idpersona
       WHERE id_bpnterm ='{$id[0]}'";
       // echo $sql;
       // print_r($id);

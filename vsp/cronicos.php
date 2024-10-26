@@ -268,7 +268,7 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_cronicos,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_cronicos,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,condi_diag,dx1,dx2,dx3,asiste_control,trata_farma,adhere_tratami,mantien_dieta,actividad_fisica,metodo_fecun,cual,hemoglobina,fecha_hemo,valor_hemo,tas,tad,glucometria,peso,talla,imc,peri_cintura,fuma,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,fecha_cierre,motivo_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_cronicos
       WHERE id_cronicos ='{$id[0]}'";

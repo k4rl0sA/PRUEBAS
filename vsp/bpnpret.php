@@ -162,7 +162,7 @@ function get_persona(){
 	}
 
   function get_zscore(){
-    $id=divide($_POST['val']);
+    $id=divide($_POST['val']);//0=peso_1=fechanacimiento_2=sexo_3=talla
      $fechaNacimiento = new DateTime($id[1]);
      $fechaActual = new DateTime();
      $diferencia = $fechaNacimiento->diff($fechaActual);
@@ -174,7 +174,7 @@ function get_persona(){
     (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
     ((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
    (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
-    // echo $sql;
+    echo $sql;
    $info=datos_mysql($sql);
      if (!$info['responseResult']) {
       return '';

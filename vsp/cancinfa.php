@@ -253,15 +253,15 @@ function gra_cancinfa(){
 
   $id=divide($_POST['id_cancinfa']);
 if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}	
-  if(count($id)==5){
+  if(count($id)==4){
     $sql="UPDATE vsp_cancinfa SET 
     diagnosticado=trim(upper('{$_POST['diagnosticado']}')),fecha_dx=trim(upper('{$_POST['fecha_dx']}')),tratamiento=trim(upper('{$_POST['tratamiento']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),cual_espe=trim(upper('{$_POST['cual_espe']}')),trata_orde=trim(upper('{$_POST['trata_orde']}')),fecha_cirug=trim(upper('{$_POST['fecha_cirug']}')),fecha_quimio=trim(upper('{$_POST['fecha_quimio']}')),fecha_radiote=trim(upper('{$_POST['fecha_radiote']}')),fecha_otro=trim(upper('{$_POST['fecha_otro']}')),otro_cual=trim(upper('{$_POST['otro_cual']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),supera_problema=trim(upper('{$_POST['supera_problema']}')),supera_emocional=trim(upper('{$_POST['supera_emocional']}')),supera_dolor=trim(upper('{$_POST['supera_dolor']}')),supera_funcional=trim(upper('{$_POST['supera_funcional']}')),supera_educacion=trim(upper('{$_POST['supera_educacion']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_cancinfa =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
-    $sql="INSERT INTO vsp_cancinfa VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_cancinfa VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['diagnosticado']}')),$fecha_dx,trim(upper('{$_POST['tratamiento']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['cual_espe']}')),trim(upper('{$_POST['trata_orde']}')),$fecha_cirug,$fecha_quimio,$fecha_radiote,$fecha_otro,trim(upper('{$_POST['otro_cual']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),$fecha_cierre,trim(upper('{$_POST['supera_problema']}')),trim(upper('{$_POST['supera_emocional']}')),trim(upper('{$_POST['supera_dolor']}')),trim(upper('{$_POST['supera_funcional']}')),trim(upper('{$_POST['supera_educacion']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
     '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;
@@ -275,7 +275,7 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_cancinfa,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_cancinfa,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,diagnosticado,fecha_dx,tratamiento,asiste_control,cual_espe,trata_orde,fecha_cirug,fecha_quimio,fecha_radiote,fecha_otro,otro_cual,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,supera_problema,supera_emocional,supera_dolor,supera_funcional,supera_educacion,redu_riesgo_cierre,users_bina
       FROM vsp_cancinfa
       WHERE id_cancinfa ='{$id[0]}'";

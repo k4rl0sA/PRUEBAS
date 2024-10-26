@@ -241,7 +241,7 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_saludoral,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_saludoral,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,clasi_riesgo,sangra_cepilla,evide_anormal,explica_breve,urg_odonto,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,mejora_practica,redu_riesgo_cierre,users_bina
       FROM vsp_saludoral
       WHERE id_saludoral ='{$id[0]}'";

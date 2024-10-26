@@ -155,7 +155,7 @@ function get_persona(){
       DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from person P left join hog_carac V ON vivipersona=id_viv 
 		WHERE idpeople='".$id[0]."'";
-		// echo $sql;
+		 echo $sql;
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
 		}

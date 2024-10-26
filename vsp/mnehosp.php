@@ -260,10 +260,10 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat_ws('_',id_mnehosp,D.idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,even_prio,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,adhe_tratam,ira_eda,signos_alarma_seg,reing_hospita,signos_alarma,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
-      FROM vsp_mnehosp
+      FROM vsp_mnehosp D
       LEFT JOIN person P ON D.idpeople=P.idpeople
       WHERE id_mnehosp ='{$id[0]}'";
-      echo $sql;
+      // echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);

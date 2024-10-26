@@ -305,7 +305,7 @@ function gra_hbgest(){
       fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,asiste_control,vacuna_comple,lacmate_comple,vacuna_hb,fec_hb_recnac,reci_inmunoglo,seg_eps,antige_super1,resultado1,anticor_igm_hb1,resultado2,anticor_toigm_hb1,resultado3,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_hbgest
       WHERE id_hbgestacio ='{$id[0]}'";
-      // echo $sql;
+      echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
  

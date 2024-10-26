@@ -356,6 +356,7 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
     }else{
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat_ws('_',id_dntsevymod,D.idpeople,numsegui,evento),
+      fecha_seg,numsegui,evento,estado_s,motivo_estado,
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       patolo_base,segui_medico,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,peso,talla,zscore,clasi_nutri,gana_peso,trata_desnutri,tratamiento,consume_fruyverd,consume_carnes,consume_azucares,actividad_fisica,apoyo_alimentario,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_dntsevymod D

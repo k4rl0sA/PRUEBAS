@@ -54,7 +54,7 @@ function focus_condsuic(){
   
   
 	$sql="SELECT `id_condsuic` ACCIONES,id_condsuic  'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_condsuic A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -81,7 +81,7 @@ function cmp_condsuic(){
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-$ev=$event[3];
+$ev=$event[2];
   $days=fechas_app('vsp');
   $ge='pRe';
   $pu='PuE';
@@ -311,15 +311,15 @@ function gra_condsuic(){
   // print_r($_POST);
   $id=divide($_POST['id_condsuic']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==5){
+  if(count($id)==4){
     $sql="UPDATE vsp_condsuic SET 
     etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),peso_nacer=trim(upper('{$_POST['peso_nacer']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),persis_morir=trim(upper('{$_POST['persis_morir']}')),proce_eapb=trim(upper('{$_POST['proce_eapb']}')),otra_conduc=trim(upper('{$_POST['otra_conduc']}')),cual_conduc=trim(upper('{$_POST['cual_conduc']}')),conduc_otrofam=trim(upper('{$_POST['conduc_otrofam']}')),tam_cope=trim(upper('{$_POST['tam_cope']}')),total_afron=trim(upper('{$_POST['total_afron']}')),total_evita=trim(upper('{$_POST['total_evita']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),aplica_tamiz=trim(upper('{$_POST['aplica_tamiz']}')),liker_dificul=trim(upper('{$_POST['liker_dificul']}')),liker_emocion=trim(upper('{$_POST['liker_emocion']}')),liker_decision=trim(upper('{$_POST['liker_decision']}')),cope_afronta=trim(upper('{$_POST['cope_afronta']}')),cope_evitacion=trim(upper('{$_POST['cope_evitacion']}')),incremen_afron=trim(upper('{$_POST['incremen_afron']}')),incremen_evita=trim(upper('{$_POST['incremen_evita']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_condsuic =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
-    $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_condsuic VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),
     trim(upper('{$_POST['numsegui']}')),
     trim(upper('{$_POST['evento']}')),

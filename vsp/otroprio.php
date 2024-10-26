@@ -79,7 +79,7 @@ function cmp_otroprio(){
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-  $ev=$event[3];
+  $ev=$event[2];
   $days=fechas_app('vsp');
   
 

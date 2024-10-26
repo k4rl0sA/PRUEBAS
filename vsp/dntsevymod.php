@@ -53,7 +53,7 @@ function focus_dntsevymod(){
 
   
 	$sql="SELECT `id_dntsevymod` ACCIONES,id_dntsevymod  'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_dntsevymod A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
@@ -80,7 +80,7 @@ function cmp_dntsevymod(){
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-$ev=$event[3];
+$ev=$event[2];
   $days=fechas_app('vsp');
   $p=get_persona();
 
@@ -333,15 +333,15 @@ function gra_dntsevymod(){
     // print_r($_POST);
     $id=divide($_POST['id_dntsevymod']);
 if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-    if(count($id)==5){
+    if(count($id)==4){
     $sql="UPDATE vsp_dntsevymod SET  patolo_base=trim(upper('{$_POST['patolo_base']}')),segui_medico=trim(upper('{$_POST['segui_medico']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),lacmate_comple=trim(upper('{$_POST['lacmate_comple']}')),alime_complemen=trim(upper('{$_POST['alime_complemen']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),zscore=trim(upper('{$_POST['zscore']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),trata_desnutri=trim(upper('{$_POST['trata_desnutri']}')),tratamiento=trim(upper('{$_POST['tratamiento']}')),consume_fruyverd=trim(upper('{$_POST['consume_fruyverd']}')),consume_carnes=trim(upper('{$_POST['consume_carnes']}')),consume_azucares=trim(upper('{$_POST['consume_azucares']}')),actividad_fisica=trim(upper('{$_POST['actividad_fisica']}')),apoyo_alimentario=trim(upper('{$_POST['apoyo_alimentario']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),
 fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_dntsevymod =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
-    $sql="INSERT INTO vsp_dntsevymod VALUES (null,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_dntsevymod VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['patolo_base']}')),trim(upper('{$_POST['segui_medico']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['lacmate_comple']}')),trim(upper('{$_POST['alime_complemen']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['zscore']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['trata_desnutri']}')),trim(upper('{$_POST['tratamiento']}')),trim(upper('{$_POST['consume_fruyverd']}')),trim(upper('{$_POST['consume_carnes']}')),trim(upper('{$_POST['consume_azucares']}')),trim(upper('{$_POST['actividad_fisica']}')),trim(upper('{$_POST['apoyo_alimentario']}')),trim(upper('{$_POST['signos_alarma']}')),trim(upper('{$_POST['signos_alarma_seg']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
     '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;

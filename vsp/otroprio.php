@@ -233,7 +233,7 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_otroprio,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
+      $sql="SELECT concat_ws('_',id_otroprio,idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_otroprio
       WHERE id_otroprio ='{$id[0]}'";

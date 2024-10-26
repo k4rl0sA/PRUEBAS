@@ -331,7 +331,7 @@ function gra_bpnterm(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat_ws('_',id_bpnterm,idpeople,numsegui,evento),
+      $sql="SELECT concat_ws('_',id_bpnterm,D.idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       asiste_control,vacuna_comple,lacmate_exclu,peso,talla,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina

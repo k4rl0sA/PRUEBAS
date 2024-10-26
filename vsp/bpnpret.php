@@ -6,9 +6,9 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
+  case 'csv':
     header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
+    $rs=array('','');
     echo csv($rs,'');
     die;
     break;
@@ -16,27 +16,27 @@ else {
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }
 }
 
 
 function focus_bpnpret(){
   return 'bpnpret';
  }
- 
- 
+
+
  function men_bpnpret(){
   $rta=cap_menus('bpnpret','pro');
   return $rta;
  }
- 
- 
+
+
  function cap_menus($a,$b='cap',$con='con') {
-   $rta = ""; 
+   $rta = "";
    $acc=rol($a);
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-   
+
    return $rta;
  }
 
@@ -44,21 +44,21 @@ function focus_bpnpret(){
  FUNCTION lis_bpnpret(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_bpnpret']) ? divide($_POST['id_bpnpret']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_bpnpret A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_bpnpret A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-bpnpret']))? ($_POST['pag-bpnpret']-1)* $regxPag:0;
 
 
-  
+
 	$sql="SELECT `id_bpnpret` ACCIONES,id_bpnpret 'Cod Registro',
 P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
-fecha_cierre 'Fecha de Cierre',nombre Creó 
+fecha_cierre 'Fecha de Cierre',nombre Creó
 FROM vsp_bpnpret A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   LEFT JOIN   person P ON A.idpeople=P.idpeople";
-	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.=" WHERE A.idpeople='".$id[0];
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
@@ -83,18 +83,18 @@ $ob='Ob';
   $ev=$event[2];
   $days=fechas_app('vsp');
   $p=get_persona();
-  
+
 
 	$c[]=new cmp('id_bpnpret','h','50',$_POST['id'],$w.' '.$o,'Id de bpnpret','id_bpnpret',null,null,false,false,'','col-2');
-  
+
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','t','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
-    
+  $c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
+
     $o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ',$w);
     $c[]=new cmp('sem_ges','s','3',$d,$w.' '.$o,'Semana gestacional de nacimiento','sem_ges',null,null,false,$x,'','col-2');
@@ -111,8 +111,8 @@ $ob='Ob';
     $c[]=new cmp('gana_peso_dia','s','3',$d,$w.' gP '.$o,'Ganancia de Peso Diaria','gana_peso_dia',null,null,false,$x,'','col-3');
     $c[]=new cmp('signos_alarma','s','2',$d,$w.' '.$o,'¿El cuidador identifica signos de alarma?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('signos_alarma_seg','s','2',$d,$w.' '.$o,'Menor con signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-4');
-    
-    
+
+
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
     $c[]=new cmp('estrategia_1','s','3',$d,$w.' '.$o,'Estrategia PF_1','estrategia_1',null,null,false,$x,'','col-5');
@@ -137,8 +137,8 @@ $ob='Ob';
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
     $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
-    
-	
+
+
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -148,14 +148,14 @@ function get_persona(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
+		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha,
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
       DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from person P left join hog_carac V ON vivipersona=id_viv 
+		from person P left join hog_carac V ON vivipersona=id_viv
 		WHERE idpeople='".$id[0]."'";
-		 echo $sql;
+		//  echo $sql;
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
 		}
@@ -171,7 +171,7 @@ function get_persona(){
     $sex=$id[2];
   // var_dump($_POST);
   $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
-    (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+    (SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) /
     ((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
    (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
     // echo $sql;
@@ -270,7 +270,7 @@ function opc_acciones_1desc_accion1($id=''){
 if($_REQUEST['id']!=''){
 			$id=divide($_REQUEST['id']);
 			$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-			$info=datos_mysql($sql);		
+			$info=datos_mysql($sql);
 			return json_encode($info['responseResult']);
     }
 }
@@ -278,7 +278,7 @@ function opc_acciones_2desc_accion2($id=''){
   if($_REQUEST['id']!=''){
         $id=divide($_REQUEST['id']);
         $sql="SELECT idcatadeta,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        $info=datos_mysql($sql);		
+        $info=datos_mysql($sql);
         return json_encode($info['responseResult']);
       }
   }
@@ -286,7 +286,7 @@ function opc_acciones_2desc_accion2($id=''){
     if($_REQUEST['id']!=''){
           $id=divide($_REQUEST['id']);
           $sql="SELECT idcatadeta 'id',descripcion 'asc' FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-          $info=datos_mysql($sql);		
+          $info=datos_mysql($sql);
           return json_encode($info['responseResult']);
         }
     }
@@ -310,7 +310,7 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 }
 function opc_equ(){
   $sql="SELECT equipo FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'";
-  $info=datos_mysql($sql);		
+  $info=datos_mysql($sql);
   return $info['responseResult'][0]['equipo'];
 }
 
@@ -320,14 +320,14 @@ function gra_bpnpret(){
   $id=divide($_POST['id_bpnpret']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==4){//CAMBIO 5 por 4
-    $sql="UPDATE vsp_bpnpret SET 
+    $sql="UPDATE vsp_bpnpret SET
     sem_ges=trim(upper('{$_POST['sem_ges']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),edad_ges=trim(upper('{$_POST['edad_ges']}')),diag_nutri=trim(upper('{$_POST['diag_nutri']}')),zscore=trim(upper('{$_POST['zscore']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),gana_peso_dia=trim(upper('{$_POST['gana_peso_dia']}')),signos_alarma=trim(upper('{$_POST['signos_alarma']}')),signos_alarma_seg=trim(upper('{$_POST['signos_alarma_seg']}')),
     estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),
     acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),
     desc_accion2=trim(upper('{$_POST['desc_accion2']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),
     acciones_2=trim(upper('{$_POST['acciones_2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),
     activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
-    `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
+    `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
     WHERE id_bpnpret =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
   }else if(count($id)==3){//CAMBIO 4 por 3
@@ -338,9 +338,9 @@ function gra_bpnpret(){
   }
     $rta=dato_mysql($sql);
     return $rta;
-  } 
+  }
 
-  
+
 
   function get_bpnpret(){
     if($_REQUEST['id']==''){
@@ -355,11 +355,11 @@ function gra_bpnpret(){
       FROM vsp_bpnpret D
       LEFT JOIN person P ON D.idpeople=P.idpeople
       WHERE id_bpnpret ='{$id[0]}'";
-       echo $sql;
+      //  echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);
-    } 
+    }
   }
 
 function formato_dato($a,$b,$c,$d){
@@ -369,11 +369,11 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 // var_dump($rta);
 	if ($a=='bpnpret' && $b=='acciones'){//a mnombre del modulo
-		$rta="<nav class='menu right'>";	
+		$rta="<nav class='menu right'>";
 		//$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'bpnpret',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'bpnpret.php');\"></li>";
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'bpnpret',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/bpnpret.php');\"></li>"; //CAMBIO tener en cuenta el evento
 	}
-	
+
  return $rta;
 }
 

@@ -51,10 +51,10 @@ $sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',
 P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_violges A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
-LEFT JOIN   person P ON A.idpeople=P.idpeople";
-$sql.=" WHERE A.idpeople='".$id[0];  
-$sql.="' ORDER BY A.fecha_create";  
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";
+	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.="' ORDER BY A.fecha_create";
   $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -74,7 +74,7 @@ $ob='Ob';
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-  $ev=$event[2];
+  $ev=$event[3];
   $days=fechas_app('vsp');
   $ge='pRe';
   $pu='PuE';
@@ -345,7 +345,7 @@ function gra_violgest(){
 		FN_EDAD(fecha_nacimiento,CURDATE()),
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-      FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) - TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) * 30.436875) AS dia
+      DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from personas P left join hog_viv V ON idviv=vivipersona 
 		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 		// echo $sql;

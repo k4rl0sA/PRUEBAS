@@ -263,7 +263,7 @@ if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = im
       FROM vsp_mnehosp
       LEFT JOIN person P ON D.idpeople=P.idpeople
       WHERE id_mnehosp ='{$id[0]}'";
-      // echo $sql;
+      echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);

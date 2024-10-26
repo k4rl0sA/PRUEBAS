@@ -353,6 +353,7 @@ function gra_bpnpret(){
       sem_ges,asiste_control,vacuna_comple,lacmate_exclu,peso,talla,edad_ges,diag_nutri,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,
       acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_bpnpret D
+      LEFT JOIN personas P ON D.idpeople=P.idpeople
       WHERE id_bpnpret ='{$id[0]}'";
       // echo $sql;
       // print_r($id);

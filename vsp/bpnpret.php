@@ -347,7 +347,7 @@ function gra_bpnpret(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat('_',id_bpnpret,idpeople,numsegui,evento),
+      $sql="SELECT concat('_',id_bpnpret,D.idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       sem_ges,asiste_control,vacuna_comple,lacmate_exclu,peso,talla,edad_ges,diag_nutri,zscore,clasi_nutri,gana_peso,gana_peso_dia,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,

@@ -45,19 +45,20 @@ function focus_saludoral(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_saludoral']) ? divide($_POST['id_saludoral']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_saludoral A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+  WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-saludoral']))? ($_POST['pag-saludoral']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_saludoral` ACCIONES,id_saludoral  'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_saludoral A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
-$sql.="' ORDER BY fecha_create";
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";
+	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -218,15 +219,15 @@ function opc_equ(){
 function gra_saludoral(){
   $id=divide($_POST['id_saludoral']);
 if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==5){
+  if(count($id)==4){
     $sql="UPDATE vsp_saludoral SET 
     clasi_riesgo=trim(upper('{$_POST['clasi_riesgo']}')),sangra_cepilla=trim(upper('{$_POST['sangra_cepilla']}')),evide_anormal=trim(upper('{$_POST['evide_anormal']}')),explica_breve=trim(upper('{$_POST['explica_breve']}')),urg_odonto=trim(upper('{$_POST['urg_odonto']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre = TRIM(UPPER('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),mejora_practica=trim(upper('{$_POST['mejora_practica']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_saludoral =TRIM(UPPER('{$id[0]}'))";
     // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
-    $sql="INSERT INTO vsp_saludoral VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_saludoral VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['clasi_riesgo']}')),trim(upper('{$_POST['sangra_cepilla']}')),trim(upper('{$_POST['evide_anormal']}')),trim(upper('{$_POST['explica_breve']}')),trim(upper('{$_POST['urg_odonto']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['mejora_practica']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
       '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
@@ -259,7 +260,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='saludoral' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'saludoral',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'saludoral.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'saludoral',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/saludoral.php');\"></li>";
 	}
 	
  return $rta;

@@ -45,7 +45,7 @@ function focus_bpnpret(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_bpnpret']) ? divide($_POST['id_bpnpret']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_bpnpret A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE idpeople='".$id[0]."'");  // CAMBIO
+  WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-bpnpret']))? ($_POST['pag-bpnpret']-1)* $regxPag:0;
@@ -57,9 +57,9 @@ P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,e
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_bpnpret A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO AGREGAR ESTA LINEA
-	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO  AGREGAR ESTA LINEA 
-	$sql.="' ORDER BY A.fecha_create"; // CAMBIO  AGREGAR ESTA LINEA
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";
+	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);

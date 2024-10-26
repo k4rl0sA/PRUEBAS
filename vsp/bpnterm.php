@@ -46,7 +46,7 @@ function focus_bpnterm(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_bpnterm']) ? divide($_POST['id_bpnterm']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_bpnterm A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE idpeople='".$id[0]."'");  // CAMBIO
+  WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-bpnterm']))? ($_POST['pag-bpnterm']-1)* $regxPag:0;
@@ -58,9 +58,9 @@ P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,e
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_bpnterm A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-	LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO AGREGAR ESTA LINEA
-	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO  AGREGAR ESTA LINEA 
-	$sql.="' ORDER BY A.fecha_create"; // CAMBIO  AGREGAR ESTA LINEA
+	LEFT JOIN   person P ON A.idpeople=P.idpeople";
+	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -316,7 +316,7 @@ function gra_bpnterm(){
     // echo $sql;
   }else if(count($id)==3){//CAMBIO 4 por 3
     $eq=opc_equ();//CAMBIO ABAJO  ELIMINAR ID[1] [trim(upper('{$id[1]}')),]
-    $sql="INSERT INTO vsp_bpnterm VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_bpnterm VALUES (NULL,trim(upper('{$id[0]}')),
     trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['zscore']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['gana_peso_dia']}')),trim(upper('{$_POST['signos_alarma']}')),trim(upper('{$_POST['signos_alarma_seg']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
     '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
     // echo $sql;

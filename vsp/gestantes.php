@@ -46,19 +46,20 @@ function focus_gestantes(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_gestante']) ? divide($_POST['id_gestante']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_gestantes A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE tipo_doc='".$id[1]."' AND documento='".$id[0]."'");
+  WHERE idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-gestantes']))? ($_POST['pag-gestantes']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_gestante` ACCIONES,id_gestante  'Cod Registro',
-tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
+P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_gestantes A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
-	$sql.="' ORDER BY fecha_create";
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  LEFT JOIN   person P ON A.idpeople=P.idpeople";
+	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.="' ORDER BY A.fecha_create";
   $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
@@ -286,15 +287,15 @@ function gra_gestantes(){
   // print_r($_POST);
   $id=divide($_POST['id_gestante']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
-  if(count($id)==5){
+  if(count($id)==4){
     $sql="UPDATE vsp_gestantes SET 
    etapa=trim(upper('{$_POST['etapa']}')),sema_gest=trim(upper('{$_POST['sema_gest']}')),asis_ctrpre=trim(upper('{$_POST['asis_ctrpre']}')),exam_lab=trim(upper('{$_POST['exam_lab']}')),esqu_vacuna=trim(upper('{$_POST['esqu_vacuna']}')),cons_micronutr=trim(upper('{$_POST['cons_micronutr']}')),peso=trim(upper('{$_POST['peso']}')),talla=trim(upper('{$_POST['talla']}')),imc=trim(upper('{$_POST['imc']}')),clasi_nutri=trim(upper('{$_POST['clasi_nutri']}')),gana_peso=trim(upper('{$_POST['gana_peso']}')),cant_ganapesosem=trim(upper('{$_POST['cant_ganapesosem']}')),ante_patogest=trim(upper('{$_POST['ante_patogest']}')),num_frutas=trim(upper('{$_POST['num_frutas']}')),num_carnes=trim(upper('{$_POST['num_carnes']}')),num_azucar=trim(upper('{$_POST['num_azucar']}')),cant_actifisica=trim(upper('{$_POST['cant_actifisica']}')),adop_recomenda=trim(upper('{$_POST['adop_recomenda']}')),apoy_alim=trim(upper('{$_POST['apoy_alim']}')),fecha_obstetrica=trim(upper('{$_POST['fecha_obstetrica']}')),edad_gesta=trim(upper('{$_POST['edad_gesta']}')),resul_gest=trim(upper('{$_POST['resul_gest']}')),meto_fecunda=trim(upper('{$_POST['meto_fecunda']}')),cual=trim(upper('{$_POST['cual']}')),peso_nacer=trim(upper('{$_POST['peso_nacer']}')),asiste_control=trim(upper('{$_POST['asiste_control']}')),vacuna_comple=trim(upper('{$_POST['vacuna_comple']}')),lacmate_exclu=trim(upper('{$_POST['lacmate_exclu']}')),estrategia_1=trim(upper('{$_POST['estrategia_1']}')),estrategia_2=trim(upper('{$_POST['estrategia_2']}')),acciones_1=trim(upper('{$_POST['acciones_1']}')),desc_accion1=trim(upper('{$_POST['desc_accion1']}')),acciones_2=trim(upper('{$_POST['acciones_2']}')),desc_accion2=trim(upper('{$_POST['desc_accion2']}')),acciones_3=trim(upper('{$_POST['acciones_3']}')),desc_accion3=trim(upper('{$_POST['desc_accion3']}')),activa_ruta=trim(upper('{$_POST['activa_ruta']}')),ruta=trim(upper('{$_POST['ruta']}')),novedades=trim(upper('{$_POST['novedades']}')),signos_covid=trim(upper('{$_POST['signos_covid']}')),caso_afirmativo=trim(upper('{$_POST['caso_afirmativo']}')),otras_condiciones=trim(upper('{$_POST['otras_condiciones']}')),observaciones=trim(upper('{$_POST['observaciones']}')),cierre_caso=trim(upper('{$_POST['cierre_caso']}')),motivo_cierre=trim(upper('{$_POST['motivo_cierre']}')),fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upper('{$_POST['redu_riesgo_cierre']}')),
     `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
     WHERE id_gestante =TRIM(UPPER('{$id[0]}'))";
       // echo $sql;
-  }else if(count($id)==4){
+  }else if(count($id)==3){
     $eq=opc_equ();
-    $sql="INSERT INTO vsp_gestantes VALUES (NULL,trim(upper('{$id[1]}')),trim(upper('{$id[0]}')),
+    $sql="INSERT INTO vsp_gestantes VALUES (NULL,trim(upper('{$id[0]}')),
    trim(upper('{$_POST['fecha_seg']}')),trim(upper('{$_POST['numsegui']}')),trim(upper('{$_POST['evento']}')),trim(upper('{$_POST['estado_s']}')),trim(upper('{$_POST['motivo_estado']}')),trim(upper('{$_POST['etapa']}')),trim(upper('{$_POST['sema_gest']}')),trim(upper('{$_POST['asis_ctrpre']}')),trim(upper('{$_POST['exam_lab']}')),trim(upper('{$_POST['esqu_vacuna']}')),trim(upper('{$_POST['cons_micronutr']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['clasi_nutri']}')),trim(upper('{$_POST['gana_peso']}')),trim(upper('{$_POST['cant_ganapesosem']}')),trim(upper('{$_POST['ante_patogest']}')),trim(upper('{$_POST['num_frutas']}')),trim(upper('{$_POST['num_carnes']}')),trim(upper('{$_POST['num_azucar']}')),trim(upper('{$_POST['cant_actifisica']}')),trim(upper('{$_POST['adop_recomenda']}')),trim(upper('{$_POST['apoy_alim']}')),trim(upper('{$_POST['fecha_obstetrica']}')),trim(upper('{$_POST['edad_gesta']}')),trim(upper('{$_POST['resul_gest']}')),trim(upper('{$_POST['meto_fecunda']}')),trim(upper('{$_POST['cual']}')),trim(upper('{$_POST['peso_nacer']}')),trim(upper('{$_POST['asiste_control']}')),trim(upper('{$_POST['vacuna_comple']}')),trim(upper('{$_POST['lacmate_exclu']}')),trim(upper('{$_POST['estrategia_1']}')),trim(upper('{$_POST['estrategia_2']}')),trim(upper('{$_POST['acciones_1']}')),trim(upper('{$_POST['desc_accion1']}')),trim(upper('{$_POST['acciones_2']}')),trim(upper('{$_POST['desc_accion2']}')),trim(upper('{$_POST['acciones_3']}')),trim(upper('{$_POST['desc_accion3']}')),trim(upper('{$_POST['activa_ruta']}')),trim(upper('{$_POST['ruta']}')),trim(upper('{$_POST['novedades']}')),trim(upper('{$_POST['signos_covid']}')),trim(upper('{$_POST['caso_afirmativo']}')),trim(upper('{$_POST['otras_condiciones']}')),trim(upper('{$_POST['observaciones']}')),trim(upper('{$_POST['cierre_caso']}')),trim(upper('{$_POST['motivo_cierre']}')),trim(upper('{$_POST['fecha_cierre']}')),trim(upper('{$_POST['redu_riesgo_cierre']}')),trim(upper('{$smbin}')),
       '{$eq}',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
       // echo $sql;
@@ -346,7 +347,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='gestantes' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'gestantes',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'gestantes.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'gestantes',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/gestantes.php');\"></li>";
 	}
  return $rta;
 }

@@ -355,12 +355,12 @@ fecha_cierre=trim(upper('{$_POST['fecha_cierre']}')),redu_riesgo_cierre=trim(upp
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat(id_dntsevymod,'_',D.tipo_doc,'_',D.documento,'_',numsegui,'_',evento),fecha_seg,numsegui,evento,estado_s,motivo_estado,
+      $sql="SELECT concat_ws('_',id_dntsevymod,D.idpeople,numsegui,evento),
       FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
       patolo_base,segui_medico,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,peso,talla,zscore,clasi_nutri,gana_peso,trata_desnutri,tratamiento,consume_fruyverd,consume_carnes,consume_azucares,actividad_fisica,apoyo_alimentario,signos_alarma,signos_alarma_seg,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_dntsevymod D
-      LEFT JOIN personas P ON D.tipo_doc=P.tipo_doc AND D.documento=P.idpersona
-      WHERE id_dntsevymod ='{$id[0]}'";
+      LEFT JOIN person P ON D.idpeople=P.idpeople
+      WHERE id_bpnpret ='{$id[0]}'";
       // echo $sql;
       // print_r($id);
       $info=datos_mysql($sql);

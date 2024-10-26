@@ -295,6 +295,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='cancinfa' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'cancinfa',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'cancinfa.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'cancinfa',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/cancinfa.php');\"></li>"; 
 	}
 	
  return $rta;

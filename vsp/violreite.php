@@ -276,7 +276,7 @@ function gra_violreite(){
       $id=divide($_REQUEST['id']);
       $sql="SELECT concat_ws('_',id_violreite,D.idpeople,numsegui,evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,asiste_control,vacuna_comple,lacmate_exclu,lacmate_comple,alime_complemen,riesgo_violen,apoyo_sector,cual_sector,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,liker_dificul,liker_emocion,liker_decision,redu_riesgo_cierre,users_bina
-      FROM vsp_violreite
+      FROM vsp_violreite D
       LEFT JOIN person P ON D.idpeople=P.idpeople
       WHERE id_violreite ='{$id[0]}'";
       // echo $sql;

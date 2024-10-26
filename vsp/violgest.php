@@ -51,7 +51,7 @@ $sql="SELECT `id_gestante` ACCIONES,id_gestante 'Cod Registro',
 P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
 fecha_cierre 'Fecha de Cierre',nombre Creó 
 FROM vsp_violges A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   LEFT JOIN   person P ON A.idpeople=P.idpeople";
 	$sql.=" WHERE A.idpeople='".$id[0]; 
 	$sql.="' ORDER BY A.fecha_create";
@@ -74,12 +74,12 @@ $ob='Ob';
   $x=false;
    $block=['hab','acc'];
   $event=divide($_POST['id']);
-  $ev=$event[2];
+  $ev=$event[3];
   $days=fechas_app('vsp');
   $ge='pRe';
   $pu='PuE';
   $pg='PYg';
-
+  
 	$c[]=new cmp('id_gestante','h','50',$_POST['id'],$w.' '.$o,'','id_gestante',null,null,false,true,'','col-2');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');enabOthSi('numsegui','PCo');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
@@ -91,6 +91,7 @@ $ob='Ob';
   
   $o='gest';
   $c[]=new cmp($o,'e',null,'INFORMACIÓN GESTANTE',$w);
+    
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('exam_lab','s','2',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-25');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-25');
@@ -140,7 +141,7 @@ $ob='Ob';
     //igual
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
-    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Se aplicó tamizaje POST test COPE?','rta',null,null,false,$x,'','col-15',"enabOthSi('aplica_tamiz','cLk');disaOthNo('aplica_tamiz','LKr');");
+    $c[]=new cmp('aplica_tamiz','s','2',$d,$w.' cc '.$ob.' '.$bl.' '.$o,'Se aplicó tamizaje POST test COPE?','rta',null,null,true,$x,'','col-15',"enabOthSi('aplica_tamiz','cLk');disaOthNo('aplica_tamiz','LKr');");
     $c[]=new cmp('liker_dificul','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Dificultades','liker_dificul',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_emocion','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Emociones','liker_emocion',null,null,false,$x,'','col-3');
     $c[]=new cmp('liker_decision','s','3',$d,$w.' LKr '.$bl.' '.$no.' '.$o,'Liker de Decisiones','liker_decision',null,null,false,$x,'','col-25');
@@ -345,8 +346,8 @@ function gra_violgest(){
 		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
       DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from personas P left join hog_viv V ON idviv=vivipersona 
-		WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+    from person P left join hog_carac V ON vivipersona=id_viv
+		WHERE idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
@@ -359,7 +360,7 @@ function gra_violgest(){
       return "";
     }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat_ws('_',id_gestante,idpeople,numsegui,evento),
+      $sql="SELECT concat(id_gestante,'_',tipo_doc,'_',documento,'_',numsegui,'_',evento),
       fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,persis_riesgo,apoy_sector,cual_sec,tam_cope,total_afron,total_evita,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,aplica_tamiz,liker_dificul,liker_emocion,liker_decision,cope_afronta,cope_evitacion,incremen_afron,incremen_evita,redu_riesgo_cierre,users_bina
       -- fecha_seg,numsegui,evento,estado_s,motivo_estado,etapa,sema_gest,asis_ctrpre,exam_lab,esqu_vacuna,cons_micronutr,peso,talla,imc,clasi_nutri,gana_peso,cant_ganapesosem,ante_patogest,num_frutas,num_carnes,num_azucar,cant_actifisica,adop_recomenda,apoy_alim,fecha_obstetrica,edad_gesta,resul_gest,meto_fecunda,cual,peso_nacer,asiste_control,vacuna_comple,lacmate_exclu,estrategia_1,estrategia_2,acciones_1,desc_accion1,acciones_2,desc_accion2,acciones_3,desc_accion3,activa_ruta,ruta,novedades,signos_covid,caso_afirmativo,otras_condiciones,observaciones,cierre_caso,motivo_cierre,fecha_cierre,redu_riesgo_cierre,users_bina
       FROM vsp_violges
@@ -379,7 +380,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 	if ($a=='violgest' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'violgest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/violgest.php');\"></li>"; //CAMBIO tener en cuenta el evento
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'violgest',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/violgest.php');\"></li>";
 	}
  return $rta;
 }

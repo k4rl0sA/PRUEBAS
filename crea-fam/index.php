@@ -9,7 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<script src="../libs/js/a.js?v=8.0"></script>
+<script src="../libs/js/a.js?v=7.0"></script>
 <script src="../libs/js/x.js?v1.0"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
@@ -17,22 +17,19 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 var mod='homes';
 var ruta_app='lib.php';
 
-function editForm(mod, a, url, w, t, c) {
-    mostrar(mod, a, event, '', url, w, t)
-        .then(() => Color(c))
-        .then(() => waitForElement('#regimen')) // Asegura que el elemento #regimen esté presente
-        .then(() => enabAfil('regimen', 'eaf'))
-        .then(() => waitForElement('#etnia'))
-        .then(() => enabEtni('etnia', 'ocu', 'idi'))
-        .then(() => waitForElement('#reside_localidad'))
-        .then(() => enabLoca('reside_localidad', 'lochi'))
-        .then(() => waitForElement('#ocupacion'))
-        .then(() => EditOcup('ocupacion', 'true'))
-        .then(() => waitForElement('#cuidador'))
-        .then(() => hideCuida('cuidador', 'cUi'))
-        .catch(error => console.error(error));
+async function editForm(mod, a, url, w, t, c) {
+    try {
+        await mostrar(mod, a, event, '', url, w, t);
+        Color(c);
+        await waitForElement('#regimen');enabAfil('regimen', 'eaf');
+        await waitForElement('#etnia');enabEtni('etnia', 'ocu', 'idi');
+        await waitForElement('#reside_localidad');enabLoca('reside_localidad', 'lochi');
+        await waitForElement('#ocupacion');EditOcup('ocupacion', 'true');
+        await waitForElement('#cuidador');hideCuida('cuidador', 'cUi');
+    } catch (error) {
+        console.error(error);
+    }
 }
-
 
 function waitForElement(selector, maxRetries = 10, delay = 100) {
     return new Promise((resolve, reject) => {

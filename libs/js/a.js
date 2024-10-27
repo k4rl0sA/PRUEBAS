@@ -424,7 +424,7 @@ function cargarRecursosCSSyFontAwesome() {
 	
 	function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 		const id = `${tb}-${a}`;
-		if (document.getElementById(id) === undefined) {
+		if (document.getElementById(id) == undefined) {
 			const p = document.createElement('div');
 			p.id = id;
 			p.className = `${a} panel${a === 'frm' ? ' col-0' : ` movil col-${b}`}`;

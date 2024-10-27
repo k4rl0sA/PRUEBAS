@@ -103,7 +103,7 @@ function cmp_sificong(){
     $c[]=new cmp('resul_ser','s','3',$d,$w.' sL '.$bl.' '.$o,'Resultado Serología','resul_ser',null,null,false,$x,'','col-15');
     $c[]=new cmp('trata_rn','s','2',$d,$w.' sL '.$bl.' '.$o,'Tratamiento del recién nacido','rta',null,null,false,$x,'','col-15');
     $c[]=new cmp('ctrl_serolo','s','3',$d,$w.' sL '.$bl.' '.$o,'Control de Serología','rta',null,null,false,$x,'','col-1',"enabOthSi('ctrl_serolo','Cs');");
-    $c[]=new cmp('fecha_controlser','d','10',$d,$w.' Cs '.$bl.' '.$o,'Fecha Control Serológico primer Trimestre','fecha_controlser',null,null,false,$x,'','col-15');
+    $c[]=new cmp('fecha_controlser','d','10',$d,$w.' Cs '.$bl.' '.$no.' '.$o,'Fecha Control Serológico primer Trimestre','fecha_controlser',null,null,false,$x,'','col-15');
     $c[]=new cmp('resul_controlser','s','3',$d,$w.' Cs '.$bl.' '.$o,'Resultado Control serología','resul_controlser',null,null,false,$x,'','col-2');
     
     $o='acc';

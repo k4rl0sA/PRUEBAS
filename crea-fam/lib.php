@@ -460,14 +460,16 @@ function get_person(){
 	if($_REQUEST['id']=='' || count($id)!=2){
 		return "";
 	}else{
-		$sql="SELECT concat_ws('_',idpeople,vivipersona),encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
-		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
-		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
-		descanso_unidad,reside_localidad,localidad_vive,transporta
+		$sql="SELECT concat_ws('_',idpeople,vivipersona),encuentra,idpersona,tipo_doc,nombre1,nombre2,
+		apellido1,apellido2,fecha_nacimiento,sexo,genero,oriensexual,nacionalidad,estado_civil,
+		niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
+		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,
+		cuidador_unidad,vinculo,tiempo_descanso,descanso_unidad,reside_localidad,localidad_vive,
+		transporta
 		FROM `person` 
 		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc 
 		WHERE idpeople ='{$id[0]}'" ;
-		// echo $sql;
+		echo $sql;
 		// print_r($id);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

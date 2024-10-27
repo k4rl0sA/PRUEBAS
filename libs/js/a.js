@@ -661,7 +661,7 @@ function sobreponer(a, b = '', c = null) {
 }
 }
 
-function act_html(a, b, c, d = false) {  
+/* function act_html(a, b, c, d = false) {  
 	if (document.getElementById(a) != undefined) {
 		pajax(b, c+form_input('fapp'), function () { 
             var x=document.getElementById(a);
@@ -678,30 +678,31 @@ function act_html(a, b, c, d = false) {
 				d.apply('a');
 		});
     }
-}
-
-/* function act_html(a, b, c, d = false) {  
-    return new Promise(function(resolve, reject) {
-        if (document.getElementById(a) != undefined) {
-            pajax(b, c + form_input('fapp'), function () { 
-                var x = document.getElementById(a);
-                if (x.tagName == "INPUT")
-                    x.value = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
-                else 
-                    x.innerHTML = this.responseText.replace(/(\r\n|\n|\r)/gm,"");
-                if (x.classList.contains('contenido')) {
-                    var f = x.id.replace('con', 'foco');
-                    if (document.getElementById(f) != undefined)
-                        foco(document.getElementById(f).innerText);
-                }
-                if (d != false) d.apply('a');
-                resolve(); // Resuelve la promesa cuando termina de cargar el contenido
-            });
-        } else {
-            reject('Elemento no encontrado');
-        }
-    });
 } */
+
+	function act_html(a, b, c, d = false) {  
+		const element = document.getElementById(a);
+		if (element) {
+			pajax(b, c + form_input('fapp'), function () { 
+				const responseText = this.responseText.replace(/(\r\n|\n|\r)/gm, "");
+				if (element.tagName === "INPUT") {
+					element.value = responseText;
+				} else {
+					element.innerHTML = responseText;
+				}
+				if (element.classList.contains('contenido')) {
+					const focusId = element.id.replace('con', 'foco');
+					const focusElement = document.getElementById(focusId);
+					if (focusElement) {
+						foco(focusElement.innerText);
+					}
+				}
+				if (d) {
+					d.apply('a');
+				}
+			});
+		}
+	}
 
 function pajax(path, data, callback, method = "POST", headers = null) {    
 	var req = new XMLHttpRequest();

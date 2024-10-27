@@ -1649,6 +1649,22 @@ async function editForm(mod, a, url, w, t, c, actions) {
         console.error(error);
     }
 }
+
+function waitForElement(selector, maxRetries = 10, delay = 100) {
+    return new Promise((resolve, reject) => {
+        let retries = 0;
+        const interval = setInterval(() => {
+            if (document.querySelector(selector)) {
+                clearInterval(interval);
+                resolve();
+            } else if (retries >= maxRetries) {
+                clearInterval(interval);
+                reject(new Error(`Elemento ${selector} no se encontró en el DOM.`));
+            }
+            retries++;
+        }, delay);
+    });
+}
 //*******************************************/
 
 /* function enabSelMulSel(act, sel, val) {

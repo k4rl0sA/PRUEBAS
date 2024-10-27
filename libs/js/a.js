@@ -377,6 +377,112 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
     foco(inner(id+'-foco'));
 }
 
+function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
+	const id = `${tb}-${a}`;
+	if (document.getElementById(id) == undefined) {
+		const p = document.createElement('div');
+		p.id = id;
+		p.className = `${a} panel${a === 'frm' ? ' col-0' : ` movil col-${b}`}`;
+		const title = tit === '' ? tb.replace('_', ' ') : tit;
+		const txt = `
+			<div id="${id}-tit" class="titulo">
+				<span>${title}</span>
+				<span id="${id}-foco" class="oculto"></span>
+				<nav class="left">
+					<ul class="menu" id="${id}-menu"></ul>
+				</nav>
+				<nav class="menu right">
+					<li class="icono ${tb} cancelar" title="Cerrar" onclick="ocultar('${tb}', '${a}');"></li>
+				</nav>
+			</div>
+			<span id="${id}-msj" class="mensaje"></span>
+			<div class="contenido ${a === 'lib' ? 'lib-con' : ''}" id="${id}-con"></div>
+		`;
+		p.innerHTML = txt;
+		document.getElementById('fapp').appendChild(p);
+		Drag.init(document.getElementById(`${id}-tit`), p);
+		p.style.top = `${(screen.height - p.offsetHeight) / 7}px`;
+		p.style.left = `${(screen.width - p.offsetWidth) / 10.5}px`;
+		// Función auxiliar para manejar fetch
+		const fetchContent = (url, elemId) => {
+			fetch(`${lib}?${url}`)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.text();
+				})
+				.then(data => {
+					document.getElementById(elemId).innerHTML = data;
+				})
+				.catch(error => console.error('There was a problem with the fetch operation:', error));
+		};
+		// Llamadas a la función fetch
+		act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
+		act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false);
+	}
+	document.getElementById(id).style.display = "block";	
+}
+
+function act_html(a, b, c, d = false) {
+	const element = document.getElementById(a);
+	if (element) {
+		const data = c + form_input('fapp'); // Prepara los datos para enviar
+		pajax(b, data, function (responseText) {
+			const cleanedText = responseText.replace(/(\r\n|\n|\r)/gm, "");
+			if (element.tagName === "INPUT") {
+				element.value = cleanedText;
+			} else {
+				element.innerHTML = cleanedText;
+			}
+			if (element.classList.contains('contenido')) {
+				const focusId = element.id.replace('con', 'foco');
+				const focusElement = document.getElementById(focusId);
+				if (focusElement) {
+					foco(focusElement.innerText);
+				}
+			}
+			if (d) {
+				d.apply('a');
+			}
+		});
+	}
+}
+
+function pajax(path, data, callback, method = "POST", headers = {}) {
+	const loader = document.getElementById('loader');
+	if (loader) {
+		loader.style.display = 'block';
+	}
+	const options = {
+		method: method,
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded",
+			...headers // Combina los encabezados adicionales
+		},
+		body: data
+	};
+	fetch(path, options)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			return response.text(); // O response.json() si esperas un JSON
+		})
+		.then(responseText => {
+			callback(responseText); // Llamamos al callback directamente con el texto de respuesta
+		})
+		.catch(error => {
+			console.error('Error en la solicitud fetch:', error);
+		})
+		.finally(() => {
+			if (loader) {
+				loader.style.display = 'none';
+			}
+		});
+}
+
+
 function cargarRecursosCSSyFontAwesome() {
     // Cargar el archivo CSS externo (menuCntx.css)
     const cssLink = document.createElement('link');
@@ -397,77 +503,6 @@ function cargarRecursosCSSyFontAwesome() {
 }
 
 
-/* function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
-	var id = tb+'-'+a;
-	if (document.getElementById(id) == undefined) {
-		var p = document.createElement('div');
-		p.id = id;
-		p.className = a+' panel'+(a=='frm'?'col-0':' movil col-'+b);
-		var txt = "<div id='"+id+"-tit' class='titulo'><span>"+(tit==''?tb.replace('_', ' '):tit)+"</span>";
-		txt += "<span id='"+id+"-foco' class='oculto'></span>";
-		// txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >"; 
-		txt += "<nav class='left'><ul class='menu' id='"+id+"-menu'></ul></nav><nav class='menu right'><li class='icono "+tb+ " cancelar' title='Cerrar' Onclick=\"ocultar('"+tb+"','"+a+"');\"></li></nav></div>";
-		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
-        txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
-		p.innerHTML = txt;
-		document.getElementById('fapp').appendChild(p);
-		Drag.init(document.getElementById(id+'-tit'),p);
-		document.getElementById(id).style.top=(screen.height-p.style.height)/7;
-		document.getElementById(id).style.left=(screen.width-p.style.width)/10.5;
-        act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
-        act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false); 
-	}
-	document.getElementById(id).style.display = "block";	
-	//document.getElementById(id+"-con").innerHTML="";		
-} */
-
-	
-	function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
-		const id = `${tb}-${a}`;
-		if (document.getElementById(id) == undefined) {
-			const p = document.createElement('div');
-			p.id = id;
-			p.className = `${a} panel${a === 'frm' ? ' col-0' : ` movil col-${b}`}`;
-			const title = tit === '' ? tb.replace('_', ' ') : tit;
-			const txt = `
-				<div id="${id}-tit" class="titulo">
-					<span>${title}</span>
-					<span id="${id}-foco" class="oculto"></span>
-					<nav class="left">
-						<ul class="menu" id="${id}-menu"></ul>
-					</nav>
-					<nav class="menu right">
-						<li class="icono ${tb} cancelar" title="Cerrar" onclick="ocultar('${tb}', '${a}');"></li>
-					</nav>
-				</div>
-				<span id="${id}-msj" class="mensaje"></span>
-				<div class="contenido ${a === 'lib' ? 'lib-con' : ''}" id="${id}-con"></div>
-			`;
-			p.innerHTML = txt;
-			document.getElementById('fapp').appendChild(p);
-			Drag.init(document.getElementById(`${id}-tit`), p);
-			p.style.top = `${(screen.height - p.offsetHeight) / 7}px`;
-			p.style.left = `${(screen.width - p.offsetWidth) / 10.5}px`;
-			// Función auxiliar para manejar fetch
-			const fetchContent = (url, elemId) => {
-				fetch(`${lib}?${url}`)
-					.then(response => {
-						if (!response.ok) {
-							throw new Error('Network response was not ok');
-						}
-						return response.text();
-					})
-					.then(data => {
-						document.getElementById(elemId).innerHTML = data;
-					})
-					.catch(error => console.error('There was a problem with the fetch operation:', error));
-			};
-			// Llamadas a la función fetch
-			act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
-        	act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false);
-		}
-		document.getElementById(id).style.display = "block";	
-	}
 
 function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
@@ -661,7 +696,32 @@ function sobreponer(a, b = '', c = null) {
 }
 }
 
-/* function act_html(a, b, c, d = false) {  
+/* 
+/* function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
+	var id = tb+'-'+a;
+	if (document.getElementById(id) == undefined) {
+		var p = document.createElement('div');
+		p.id = id;
+		p.className = a+' panel'+(a=='frm'?'col-0':' movil col-'+b);
+		var txt = "<div id='"+id+"-tit' class='titulo'><span>"+(tit==''?tb.replace('_', ' '):tit)+"</span>";
+		txt += "<span id='"+id+"-foco' class='oculto'></span>";
+		// txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >"; 
+		txt += "<nav class='left'><ul class='menu' id='"+id+"-menu'></ul></nav><nav class='menu right'><li class='icono "+tb+ " cancelar' title='Cerrar' Onclick=\"ocultar('"+tb+"','"+a+"');\"></li></nav></div>";
+		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
+        txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
+		p.innerHTML = txt;
+		document.getElementById('fapp').appendChild(p);
+		Drag.init(document.getElementById(id+'-tit'),p);
+		document.getElementById(id).style.top=(screen.height-p.style.height)/7;
+		document.getElementById(id).style.left=(screen.width-p.style.width)/10.5;
+        act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
+        act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false); 
+	}
+	document.getElementById(id).style.display = "block";	
+	//document.getElementById(id+"-con").innerHTML="";		
+}
+
+function act_html(a, b, c, d = false) {  
 	if (document.getElementById(a) != undefined) {
 		pajax(b, c+form_input('fapp'), function () { 
             var x=document.getElementById(a);
@@ -678,67 +738,9 @@ function sobreponer(a, b = '', c = null) {
 				d.apply('a');
 		});
     }
-} */
+}
 
-	function act_html(a, b, c, d = false) {
-		const element = document.getElementById(a);
-		if (element) {
-			const data = c + form_input('fapp'); // Prepara los datos para enviar
-			pajax(b, data, function (responseText) {
-				const cleanedText = responseText.replace(/(\r\n|\n|\r)/gm, "");
-				if (element.tagName === "INPUT") {
-					element.value = cleanedText;
-				} else {
-					element.innerHTML = cleanedText;
-				}
-				if (element.classList.contains('contenido')) {
-					const focusId = element.id.replace('con', 'foco');
-					const focusElement = document.getElementById(focusId);
-					if (focusElement) {
-						foco(focusElement.innerText);
-					}
-				}
-				if (d) {
-					d.apply('a');
-				}
-			});
-		}
-	}
-	
-	function pajax(path, data, callback, method = "POST", headers = {}) {
-		const loader = document.getElementById('loader');
-		if (loader) {
-			loader.style.display = 'block';
-		}
-		const options = {
-			method: method,
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-				...headers // Combina los encabezados adicionales
-			},
-			body: data
-		};
-		fetch(path, options)
-			.then(response => {
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				return response.text(); // O response.json() si esperas un JSON
-			})
-			.then(responseText => {
-				callback(responseText); // Llamamos al callback directamente con el texto de respuesta
-			})
-			.catch(error => {
-				console.error('Error en la solicitud fetch:', error);
-			})
-			.finally(() => {
-				if (loader) {
-					loader.style.display = 'none';
-				}
-			});
-	}
-
-/* function pajax(path, data, callback, method = "POST", headers = null) {    
+ function pajax(path, data, callback, method = "POST", headers = null) {    
 	var req = new XMLHttpRequest();
     loader=document.getElementById('loader');
 	if (loader != undefined) loader.style.display = 'block';
@@ -761,8 +763,6 @@ function sobreponer(a, b = '', c = null) {
 	}
 	req.send(data);
 } */
-
-	
 
 function form_input(a) {
 	var d = "";

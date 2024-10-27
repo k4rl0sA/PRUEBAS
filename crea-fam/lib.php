@@ -798,7 +798,7 @@ function formato_dato($a,$b,$c,$d){
 
 		$rta .= acceso('planDcui') ? "<li title='Planes de Cuidado Familiar' onclick=\"mostrar('planDcui','pro',event,'','plancui.php',7);Color('famili-lis');\"><i class='fa-solid fa-file-contract ico' id='{$c['Cod_Familiar']}'></i></li>" : "";
 
-		$rta .= acceso('compConc') ? "<li title='Compromisos Concertados' onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico' id='{$c['Cod_Familiar']}'></i></li>" : "";
+		$rta .= "<li title='Compromisos Concertados' onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico' id='{$c['Cod_Familiar']}'></i></li>";
 		if(plan($c['Cod_Familiar'])===true){
 			echo "hola compromisos";
 		}

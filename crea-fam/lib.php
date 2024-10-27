@@ -399,7 +399,7 @@ function cmp_person(){
 	$c[]=new cmp('ocupacion','s','3',$d['ocupacion'],$w.' OcU '.$o,'Ocupacion','ocupacion',null,'',false,true,'','col-25',"timeDesem(this,'des');");//true
 	$c[]=new cmp('tiemdesem','n','3',$d['tiemdesem'],$w.' des '.$o,'Tiempo de desempleo (Meses)','tiemdesem',null,'',false,false,'','col-25');
 	$c[]=new cmp('vinculo_jefe','s','3',$d['vinculo_jefe'],$w.' '.$o,'Vinculo con el jefe del Hogar','vinculo_jefe',null,null,true,true,'','col-2');
-	$c[]=new cmp('etnia','s','3',$d['etnia'],$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enbValue('etnia','ETn',2);");//enabEtni('etnia','ETn','idi');
+	$c[]=new cmp('etnia','s','3',$d['etnia'],$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enbValue('etnia','ETn',2);enabEtni('etnia','ETn','idi');");
 	$c[]=new cmp('pueblo','s','50',$d['pueblo'],$w.' ETn cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
 	$c[]=new cmp('idioma','o','2',$d['idioma'],$w.' ETn cmhi idi '.$o,'Habla Español','idioma',null,null,false,true,'','col-2');
 	$c[]=new cmp('discapacidad','s','3',$d['discapacidad'],$w.' '.$o,'discapacidad','discapacidad',null,null,true,true,'','col-2');

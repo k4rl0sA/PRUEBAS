@@ -19,7 +19,7 @@ var ruta_app='lib.php';
 
 const editUsers = [
     { selector: '#regimen', func: enabAfil, params: ['regimen', 'eaf'] },
-    { selector: '#etnia', func: enbValue, params: ['etnia', 'ETn',2] },
+    { selector: '#etnia', func: enabEtni, params: ['etnia', 'ETn', 'idi'] },
     { selector: '#reside_localidad', func: enabLoca, params: ['reside_localidad', 'lochi'] },
     { selector: '#ocupacion', func: EditOcup, params: ['ocupacion', 'true'] },
     { selector: '#cuidador', func: hideCuida, params: ['cuidador', 'cUi'] }

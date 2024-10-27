@@ -1636,6 +1636,20 @@ function resetFrm() {
 }
 //*******************************************/
 
+//*************ACTIONS BEFORE OF EDIT FORM******************************/
+async function editForm(mod, a, url, w, t, c, actions) {
+    try {
+        await mostrar(mod, a, event, '', url, w, t);
+        Color(c);
+        for (const action of actions) {
+            await waitForElement(action.selector);
+            action.func(...action.params); // Llama a la función con los parámetros
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+//*******************************************/
 
 /* function enabSelMulSel(act, sel, val) {
     alert('ZXDFGHJKJMNBVDCVFBGNHM');

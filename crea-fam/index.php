@@ -17,36 +17,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 var mod='homes';
 var ruta_app='lib.php';
 
-async function editForm(mod, a, url, w, t, c) {
-    try {
-        await mostrar(mod, a, event, '', url, w, t);
-        Color(c);
-        await waitForElement('#regimen');enabAfil('regimen', 'eaf');
-        await waitForElement('#etnia');enabEtni('etnia', 'ocu', 'idi');
-        await waitForElement('#reside_localidad');enabLoca('reside_localidad', 'lochi');
-        await waitForElement('#ocupacion');EditOcup('ocupacion', 'true');
-        await waitForElement('#cuidador');hideCuida('cuidador', 'cUi');
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-function waitForElement(selector, maxRetries = 10, delay = 100) {
-    return new Promise((resolve, reject) => {
-        let retries = 0;
-        const interval = setInterval(() => {
-            if (document.querySelector(selector)) {
-                clearInterval(interval);
-                resolve();
-            } else if (retries >= maxRetries) {
-                clearInterval(interval);
-                reject(new Error(`Elemento ${selector} no se encontró en el DOM.`));
-            }
-            retries++;
-        }, delay);
-    });
-}
-
+const editUsers = [
+    { selector: '#regimen', func: enabAfil, params: ['regimen', 'eaf'] },
+    { selector: '#etnia', func: enabEtni, params: ['etnia', 'ocu', 'idi'] },
+    { selector: '#reside_localidad', func: enabLoca, params: ['reside_localidad', 'lochi'] },
+    { selector: '#ocupacion', func: EditOcup, params: ['ocupacion', 'true'] },
+    { selector: '#cuidador', func: hideCuida, params: ['cuidador', 'cUi'] }
+];
 
 
 

@@ -795,7 +795,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta.="<li title='Crear Integrante Familia' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('famili-lis');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";
 		$rta.="<li title='Mostrar Integrantes' Onclick=\"mostrar('person1','fix',event,'','lib.php',0,'person1');Color('famili-lis');\"><i class='fa-solid fa-people-group ico' id='".$c['Cod_Familiar']."'></i></li>";
 
-		$caracte = (acceso('crea-caract')) ? "<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>" : "" ;
+		$caracte = (acceso('caract')) ? "<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>" : "" ;
 		$rta.=$caracte;
 		//$rta.="<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>";//setTimeout(plegar,500);mostrar('person','pro',event,'','lib.php',7);
 		$rta.="<li title='Planes de Cuidado Familiar' Onclick=\"mostrar('planDcui','pro',event,'','plancui.php',7);Color('famili-lis');\"><i class='fa-solid fa-file-contract ico'  id='".$c['Cod_Familiar']."'></i></li>";

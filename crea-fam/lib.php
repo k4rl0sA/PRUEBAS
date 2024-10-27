@@ -797,12 +797,12 @@ function formato_dato($a,$b,$c,$d){
 
 		$rta. = (acceso('caract')) ? "<li title='Crear Caracterización Familiar' Onclick=\"mostrar('caract','pro',event,'','../crea-caract/lib.php',7,'caract');Color('famili-lis');\"><i class='fa-solid fa-file-circle-plus ico' id='".$c['Cod_Familiar']."'></i></li>" : "" ;
 	
-		$rta.=(acceso('planDcui')) ? "<li title='Planes de Cuidado Familiar' Onclick=\"mostrar('planDcui','pro',event,'','plancui.php',7);Color('famili-lis');\"><i class='fa-solid fa-file-contract ico'  id='".$c['Cod_Familiar']."'></i></li>" : "" ;
+		//$rta.=(acceso('planDcui')) ? "<li title='Planes de Cuidado Familiar' Onclick=\"mostrar('planDcui','pro',event,'','plancui.php',7);Color('famili-lis');\"><i class='fa-solid fa-file-contract ico'  id='".$c['Cod_Familiar']."'></i></li>" : "" ;
 
 		if(plan($c['Cod_Familiar'])===true){
-			$rta.=(acceso('compConc')) ? "<li title='Compromisos Concertados' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico'  id='".$c['Cod_Familiar']."'></i></li>":'';
+			//$rta.=(acceso('compConc')) ? "<li title='Compromisos Concertados' Onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico'  id='".$c['Cod_Familiar']."'></i></li>":'';
 		}
-		$rta.=(acceso('ambient')) ? "<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
+		//$rta.=(acceso('ambient')) ? "<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
 		
 	} 
 	if ($a=='datos-lis' && $b=='acciones'){

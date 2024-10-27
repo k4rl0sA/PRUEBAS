@@ -680,15 +680,16 @@ function sobreponer(a, b = '', c = null) {
     }
 } */
 
-	function act_html(a, b, c, d = false) {  
+	function act_html(a, b, c, d = false) {
 		const element = document.getElementById(a);
 		if (element) {
-			pajax(b, c + form_input('fapp'), function () { 
-				const responseText = this.responseText.replace(/(\r\n|\n|\r)/gm, "");
+			const data = c + form_input('fapp'); // Prepara los datos para enviar
+			pajax(b, data, function (responseText) {
+				const cleanedText = responseText.replace(/(\r\n|\n|\r)/gm, "");
 				if (element.tagName === "INPUT") {
-					element.value = responseText;
+					element.value = cleanedText;
 				} else {
-					element.innerHTML = responseText;
+					element.innerHTML = cleanedText;
 				}
 				if (element.classList.contains('contenido')) {
 					const focusId = element.id.replace('con', 'foco');
@@ -703,8 +704,41 @@ function sobreponer(a, b = '', c = null) {
 			});
 		}
 	}
+	
+	function pajax(path, data, callback, method = "POST", headers = {}) {
+		const loader = document.getElementById('loader');
+		if (loader) {
+			loader.style.display = 'block';
+		}
+		const options = {
+			method: method,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				...headers // Combina los encabezados adicionales
+			},
+			body: data
+		};
+		fetch(path, options)
+			.then(response => {
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				return response.text(); // O response.json() si esperas un JSON
+			})
+			.then(responseText => {
+				callback(responseText); // Llamamos al callback directamente con el texto de respuesta
+			})
+			.catch(error => {
+				console.error('Error en la solicitud fetch:', error);
+			})
+			.finally(() => {
+				if (loader) {
+					loader.style.display = 'none';
+				}
+			});
+	}
 
-function pajax(path, data, callback, method = "POST", headers = null) {    
+/* function pajax(path, data, callback, method = "POST", headers = null) {    
 	var req = new XMLHttpRequest();
     loader=document.getElementById('loader');
 	if (loader != undefined) loader.style.display = 'block';
@@ -726,7 +760,9 @@ function pajax(path, data, callback, method = "POST", headers = null) {
 		req.setRequestHeader(i, headers[i]);
 	}
 	req.send(data);
-}
+} */
+
+	
 
 function form_input(a) {
 	var d = "";

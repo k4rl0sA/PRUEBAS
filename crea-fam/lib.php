@@ -787,7 +787,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='homes' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li title='Caracterización del Hogar'  Onclick=\"mostrar('homes1','fix',event,'','lib.php',0,'homes1');hideFix('person1','fix');Color('homes-lis');\"><i class='fa-solid fa-house-user ico' id='".$c['ACCIONES']."'></i></li>";//setTimeout(mostrar('person1','fix',event,'','lib.php',0,'person1'),500);
-		$rta.="<li title='Crear Ubicación de la Familia'  Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');setTimeout(DisableUpdate,300,'fechaupd','hid');Color('homes-lis');\"><i class='fa-solid fa-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";		
+		$rta.="<li title='Crear Ubicación de la Familia'  Onclick=\"mostrar('homes','pro',event,'','lib.php',7,'homes');Color('homes-lis');\"><i class='fa-solid fa-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";//setTimeout(DisableUpdate,300,'fechaupd','hid');		
 	}
  	if ($a=='famili-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
@@ -799,13 +799,14 @@ function formato_dato($a,$b,$c,$d){
 		if(plan($c['Cod_Familiar'])===true){
 			$rta .= "<li title='Compromisos Concertados' onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico' id='{$c['Cod_Familiar']}'></i></li>";
 		}
-		//$rta.=(acceso('ambient')) ? "<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
+		$rta.=(acceso('ambient')) ? "<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
 		
 	} 
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono menubtn' id='menuToggle_".$c['ACCIONES']."'></li><div id='menuContainer_".$c['ACCIONES']."'></div>";
-		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,1000,'regimen','eaf');setTimeout(enabEtni,1000,'etnia','ocu','idi');setTimeout(enabLoca,1000,'reside_localidad','lochi');setTimeout(EditOcup,1000,'ocupacion','true');setTimeout(hideCuida,1000,'cuidador','cUi');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
+		$rta.="<li title='Editar Usuario' Onclick=\"editUsu('person','pro','lib.php',7,'person','datos-lis');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
+		//mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,1000,'regimen','eaf');setTimeout(enabEtni,1000,'etnia','ocu','idi');setTimeout(enabLoca,1000,'reside_localidad','lochi');setTimeout(EditOcup,1000,'ocupacion','true');setTimeout(hideCuida,1000,'cuidador','cUi')
 		
 		$rta .= acceso('signos') ? "<li title='Signos' onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('alertas') ? "<li title='Alertas' onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='{$c['ACCIONES']}'></i></li>" : "";

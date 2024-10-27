@@ -30,7 +30,8 @@ if (version) {
   if (ver[1] !== window.appVersion) {
 	alert('Por favor recuerda borrar tu Cache, para utilizar la versión más estable del sistema '+window.appVersion);
 	window.location.href = '/logout.php';
-	exit;
+	window.location.href = '/';
+	return;
     version.textContent = actual + '_' + window.appVersion;
   }
 }
@@ -55,6 +56,8 @@ function startInactivityTimer() {
   const inactivityTimeout = 60 * 60 * 1000;
   inactivityTimer = setTimeout(function() {
     window.location.href = '/logout.php';
+	window.location.href = '/';
+	return;
   }, inactivityTimeout);
 }
 

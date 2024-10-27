@@ -805,14 +805,13 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono menubtn' id='menuToggle_".$c['ACCIONES']."'></li><div id='menuContainer_".$c['ACCIONES']."'></div>";
-		//$rta.="<li class='icono menubtn' title='Menu' id='togg_".$c['ACCIONES']."' Onclick=\"mostrar('aux','men',event,'','lib.php');Color('datos-lis');\"><div id='men_".$c['ACCIONES']."'></div></li>";
 		$rta.="<li title='Editar Usuario' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');Color('datos-lis');setTimeout(enabAfil,1000,'regimen','eaf');setTimeout(enabEtni,1000,'etnia','ocu','idi');setTimeout(enabLoca,1000,'reside_localidad','lochi');setTimeout(EditOcup,1000,'ocupacion','true');setTimeout(hideCuida,1000,'cuidador','cUi');\"><i class='fa-solid fa-pen-to-square ico' id='".$c['ACCIONES']."'></i> </li>";//setTimeout(enabEapb,700,'regimen','rgm');setTimeout(getData,600,'person',event,this,['idpersona','tipo_doc','fecha_nacimiento','sexo']);
-		$rta.="<li title='Signos' Onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico .naranja' id='".$c['ACCIONES']."'></i></li>";
-		// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('person','pro',event,'','lib.php',7,'person');setTimeout(getData('person',event,this,['idpersona','tipo_doc']),500);Color('datos-lis');\"></li>"; //setTimeout(function(){},800);
-		$rta.="<li title='Alertas' Onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='".$c['ACCIONES']."' ></i></li>";
-		$rta.="<li title='Solicitar Admisión' Onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='".$c['ACCIONES']."'></i></li>";
-		$rta.="<li title='Crear Atención' Onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='".$c['ACCIONES']."' ></i></li>";
-		$rta.="<li class='icono admsi1' title='Validar Evento' id='".$c['ACCIONES']."' Onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>";
+		
+		$rta .= acceso('signos') ? "<li title='Signos' onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico naranja' id='{$c['ACCIONES']}'></i></li>" : "";
+		$rta .= acceso('alertas') ? "<li title='Alertas' onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='{$c['ACCIONES']}'></i></li>" : "";
+		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";
+		$rta .= acceso('atencion') ? "<li title='Crear Atención' onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='{$c['ACCIONES']}'></i></li>" : "";
+		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";
 		$rta.=eventAsign($c['ACCIONES']);
 		}
 		if($a=='atencion' && $b=='acciones'){

@@ -770,7 +770,7 @@ function eventAsign($key) {
             $icono = $eventos[$id]['icono'];
             $titulo = $eventos[$id]['titulo'];
             $modulo = $eventos[$id]['modulo'];
-            $eve .= "<li class='icono $icono' title='$titulo' id='".$key."_".$id."' Onclick=\"mostrar('$modulo','pro',event,'','../vsp/$modulo.php',7,'$modulo');Color('datos-lis');\"></li>";
+            $eve .= acceso($modulo)? "<li class='icono $icono' title='$titulo' id='".$key."_".$id."' Onclick=\"mostrar('$modulo','pro',event,'','../vsp/$modulo.php',7,'$modulo');Color('datos-lis');\"></li>":"";
         } else {
             $eve .= "ERROR EN EL ID DEL EVENTO";
         }

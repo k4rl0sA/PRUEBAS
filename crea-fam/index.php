@@ -9,13 +9,25 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-<script src="../libs/js/a.js?v=6.0"></script>
+<script src="../libs/js/a.js?v=7.0"></script>
 <script src="../libs/js/x.js?v1.0"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
 var mod='homes';
 var ruta_app='lib.php';
+
+function editForm(mod,a,url,w,t,c) {
+        mostrar(mod,a,event,'',url,w,t)
+        .then(() => Color(c))
+        .then(() => enabAfil('regimen', 'eaf'))
+        .then(() => enabEtni('etnia', 'ocu', 'idi'))
+        .then(() => enabLoca('reside_localidad', 'lochi'))
+        .then(() => EditOcup('ocupacion', 'true'))
+        .then(() => hideCuida('cuidador', 'cUi'))
+        .catch(error => console.error(error));
+}
+
 
 
 document.onkeyup=function(ev) {
@@ -239,16 +251,6 @@ function closeMenu(menuContainer) {
   currentOpenMenu = null;
 }
 
-function editForm(mod,a,url,w,t,c) {
-        mostrar(mod,a,event,'',url,w,t)
-        .then(() => Color(c))
-        .then(() => enabAfil('regimen', 'eaf'))
-        .then(() => enabEtni('etnia', 'ocu', 'idi'))
-        .then(() => enabLoca('reside_localidad', 'lochi'))
-        .then(() => EditOcup('ocupacion', 'true'))
-        .then(() => hideCuida('cuidador', 'cUi'))
-        .catch(error => console.error(error));
-}
 
 </script>
 </head>

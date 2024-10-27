@@ -355,7 +355,7 @@ function ir_pag(tb, p, t,mo) {
 	act_lista(tb, document.getElementById('pag-'+tb),mo);
 }
 
-function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
+/* function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
 	var id = tb+'-'+a;
 	if (a == 'pro') {
         if (ev!=undefined) {tit=ev.currentTarget.title;k=ev.target.id;}
@@ -375,7 +375,37 @@ function mostrar(tb, a='', ev, m='', lib=ruta_app, w=7, tit='', k='0') {
     if (document.getElementById(id+'-msj')!=undefined) document.getElementById(id+'-msj').innerHTML="";
 	if (document.getElementById(tb+'-msj')!=undefined) document.getElementById(tb+'-msj').innerHTML="";
     foco(inner(id+'-foco'));
-}
+} */
+
+	function mostrar(tb, a = '', ev, m = '', lib = ruta_app, w = 7, tit = '', k = '0') {
+		return new Promise((resolve, reject) => {
+			try {
+				var id = tb + '-' + a;
+				if (a == 'pro') {
+					if (ev != undefined) { tit = ev.currentTarget.title; k = ev.target.id; }
+					crear_panel(tb, a, w, lib, tit);
+					act_html(id + '-con', lib, 'a=cmp&tb=' + tb + '&id=' + k);
+				}
+				if (a == 'fix') {
+					if (ev != undefined) { tit = ev.currentTarget.title; k = ev.target.id; }
+					panel_fix(tb, a, w, lib, tit);
+					act_html(id + '-con', lib, 'a=cmp&tb=' + tb + '&id=' + k);
+				}
+				if (a == 'sta') {
+					if (ev != undefined) { tit = ev.currentTarget.title; k = ev.target.id; }
+					panel_static(tb, a, w, lib, tit);
+					act_html(id + '-con', lib, 'a=cmp&tb=' + tb + '&id=' + k);
+				}
+				if (document.getElementById(id + '-msj') != undefined) document.getElementById(id + '-msj').innerHTML = "";
+				if (document.getElementById(tb + '-msj') != undefined) document.getElementById(tb + '-msj').innerHTML = "";
+				foco(inner(id + '-foco'));
+				resolve(); 
+			} catch (error) {
+				reject(error); 
+			}
+		});
+	}
+// Función para crear un panel de comparación
 
 function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	const id = `${tb}-${a}`;

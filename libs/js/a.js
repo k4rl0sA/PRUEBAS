@@ -397,7 +397,7 @@ function cargarRecursosCSSyFontAwesome() {
 }
 
 
-function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
+/* function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;
 	if (document.getElementById(id) == undefined) {
 		var p = document.createElement('div');
@@ -405,7 +405,7 @@ function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 		p.className = a+' panel'+(a=='frm'?'col-0':' movil col-'+b);
 		var txt = "<div id='"+id+"-tit' class='titulo'><span>"+(tit==''?tb.replace('_', ' '):tit)+"</span>";
 		txt += "<span id='"+id+"-foco' class='oculto'></span>";
-		/* txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >"; */
+		// txt += "<input id='"+id+"-file' type=hidden readonly style='background:none;color:white;' >"; 
 		txt += "<nav class='left'><ul class='menu' id='"+id+"-menu'></ul></nav><nav class='menu right'><li class='icono "+tb+ " cancelar' title='Cerrar' Onclick=\"ocultar('"+tb+"','"+a+"');\"></li></nav></div>";
 		txt += "<span id='"+id+"-msj' class='mensaje' ></span>";
         txt += "<div class='contenido "+(a=='lib'?'lib-con':'')+"' id='"+id+"-con' ></div>";
@@ -419,7 +419,55 @@ function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
 	}
 	document.getElementById(id).style.display = "block";	
 	//document.getElementById(id+"-con").innerHTML="";		
-}
+} */
+
+	
+	function crear_panel(tb, a, b = 7, lib = ruta_app, tit = '') {
+		const id = `${tb}-${a}`;
+		if (document.getElementById(id) === undefined) {
+			const p = document.createElement('div');
+			p.id = id;
+			p.className = `${a} panel${a === 'frm' ? ' col-0' : ` movil col-${b}`}`;
+			const title = tit === '' ? tb.replace('_', ' ') : tit;
+			const txt = `
+				<div id="${id}-tit" class="titulo">
+					<span>${title}</span>
+					<span id="${id}-foco" class="oculto"></span>
+					<nav class="left">
+						<ul class="menu" id="${id}-menu"></ul>
+					</nav>
+					<nav class="menu right">
+						<li class="icono ${tb} cancelar" title="Cerrar" onclick="ocultar('${tb}', '${a}');"></li>
+					</nav>
+				</div>
+				<span id="${id}-msj" class="mensaje"></span>
+				<div class="contenido ${a === 'lib' ? 'lib-con' : ''}" id="${id}-con"></div>
+			`;
+			p.innerHTML = txt;
+			document.getElementById('fapp').appendChild(p);
+			Drag.init(document.getElementById(`${id}-tit`), p);
+			p.style.top = `${(screen.height - p.offsetHeight) / 7}px`;
+			p.style.left = `${(screen.width - p.offsetWidth) / 10.5}px`;
+			// Función auxiliar para manejar fetch
+			const fetchContent = (url, elemId) => {
+				fetch(`${lib}?${url}`)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Network response was not ok');
+						}
+						return response.text();
+					})
+					.then(data => {
+						document.getElementById(elemId).innerHTML = data;
+					})
+					.catch(error => console.error('There was a problem with the fetch operation:', error));
+			};
+			// Llamadas a la función fetch
+			fetchContent(`tb=${tb}&a=men&b=${a}`, `${id}-menu`);
+			fetchContent(`tb=${tb}&a=focus&b=${a}`, `${id}-foco`);
+		}
+		document.getElementById(id).style.display = "block";	
+	}
 
 function panel_fix(tb, a, b = 7, lib = ruta_app, tit = '') {
 	var id = tb+'-'+a;

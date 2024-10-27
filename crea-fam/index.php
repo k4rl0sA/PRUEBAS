@@ -17,16 +17,39 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 var mod='homes';
 var ruta_app='lib.php';
 
-function editForm(mod,a,url,w,t,c) {
-        mostrar(mod,a,event,'',url,w,t)
+function editForm(mod, a, url, w, t, c) {
+    mostrar(mod, a, event, '', url, w, t)
         .then(() => Color(c))
+        .then(() => waitForElement('#regimen')) // Asegura que el elemento #regimen esté presente
         .then(() => enabAfil('regimen', 'eaf'))
+        .then(() => waitForElement('#etnia'))
         .then(() => enabEtni('etnia', 'ocu', 'idi'))
+        .then(() => waitForElement('#reside_localidad'))
         .then(() => enabLoca('reside_localidad', 'lochi'))
+        .then(() => waitForElement('#ocupacion'))
         .then(() => EditOcup('ocupacion', 'true'))
+        .then(() => waitForElement('#cuidador'))
         .then(() => hideCuida('cuidador', 'cUi'))
         .catch(error => console.error(error));
 }
+
+
+function waitForElement(selector, maxRetries = 10, delay = 100) {
+    return new Promise((resolve, reject) => {
+        let retries = 0;
+        const interval = setInterval(() => {
+            if (document.querySelector(selector)) {
+                clearInterval(interval);
+                resolve();
+            } else if (retries >= maxRetries) {
+                clearInterval(interval);
+                reject(new Error(`Elemento ${selector} no se encontró en el DOM.`));
+            }
+            retries++;
+        }, delay);
+    });
+}
+
 
 
 

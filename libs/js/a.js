@@ -463,8 +463,8 @@ function cargarRecursosCSSyFontAwesome() {
 					.catch(error => console.error('There was a problem with the fetch operation:', error));
 			};
 			// Llamadas a la función fetch
-			fetchContent(`tb=${tb}&a=men&b=${a}`, `${id}-menu`);
-			fetchContent(`tb=${tb}&a=focus&b=${a}`, `${id}-foco`);
+			act_html(id+'-menu',lib,'tb='+tb+'&a=men&b='+a, false);
+        	act_html(id+'-foco',lib,'tb='+tb+'&a=focus&b='+a, false);
 		}
 		document.getElementById(id).style.display = "block";	
 	}

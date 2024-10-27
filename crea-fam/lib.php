@@ -779,7 +779,6 @@ function eventAsign($key) {
     return $eve;
 }
 
-
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

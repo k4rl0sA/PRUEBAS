@@ -30,8 +30,6 @@ if (version) {
   if (ver[1] !== window.appVersion) {
 	alert('Por favor recuerda borrar tu Cache, para utilizar la versión más estable del sistema '+window.appVersion);
 	window.location.href = '/logout.php';
-	window.location.href = '/';
-	return;
     version.textContent = actual + '_' + window.appVersion;
   }
 }

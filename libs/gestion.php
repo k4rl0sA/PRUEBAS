@@ -500,8 +500,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
 
 function perfil($a){
 	$perf=rol($a);
-	 var_dump($perf);
-   echo "<=FUNCION PERFIL                      ";
+	//  var_dump($perf);
 	if (empty($perf['perfil']) || $perf['perfil'] === array()){
 		echo "<H1>ACCESO NO AUTORIZADO,PARA {$a} VALIDA TUS PERMISOS CON EL ADMINISTRADOR DEL SISTEMA</H1><div class='messag rtawarn'></div>";
 		exit();
@@ -517,8 +516,7 @@ function perfil1($a = null) {
 
 function acceso($a){
   $acc=rol($a);
-  print_r($acc);
-  echo "<=FUNCION ACCESO                      ";
+  // print_r($acc);
   if (!empty($acc['perfil'])){
     return true;
   }else{

@@ -478,7 +478,7 @@ function get_person(){
 	} 
 }
 
-/* function get_personOld(){
+ function get_personOld(){
 	// print_r($_REQUEST);
 	$id=divide($_POST['id']);
 	$info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
@@ -500,7 +500,7 @@ function get_person(){
 		return $rta="Error: El usuario con este número de documento ya se encuentra registrado.";
 
 	}
-} */
+} 
 
 function gra_person(){
 	// print_r($_POST);

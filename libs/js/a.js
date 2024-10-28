@@ -1103,7 +1103,7 @@ function myFetch(b, c, d) {
   }
    
     
-  function getDatForm(clsKey, fun,clsCmp,cab) {
+  function getDatForm(clsKey, fun,clsCmp,cab,path=ruta_app) {
 	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
 	let id = '';
 		for (let i = 0; i < c.length; i++) {
@@ -1117,7 +1117,7 @@ function myFetch(b, c, d) {
 		  return false;
 		}else{
 			id = id.slice(0, -1);
-				getJSON('get', fun, id)
+				getJSON('get', fun, id,path)
 				  .then(data => {
 					if (Object.keys(data).length === 0) {
 						inform('No se encontraron registros asociados');

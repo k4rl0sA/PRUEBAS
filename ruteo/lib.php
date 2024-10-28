@@ -423,6 +423,15 @@ $sql.="' ORDER BY A.fecha_create";
 return json_encode($info['responseResult'][0]);
 }
 
+function opc_rolasignado(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT id_usuario,CONCAT(id_usuario,'-',nombre) FROM usuarios WHERE subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}')  AND estado='A' and perfil='".$id[0]."' ORDER BY 1 ASC";
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+	} 
+}
+
 /**********************************FIN ASIGNACIÓN*************************** */
 
 function formato_dato($a,$b,$c,$d){

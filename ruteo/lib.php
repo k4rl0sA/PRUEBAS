@@ -388,7 +388,26 @@ function gra_rute(){
 
 /**********************************INICIO ASIGNACIÓN*************************** */
 
+FUNCTION lis_predios(){
+	// var_dump($_POST);
+	$id =isset($_POST['cod_pre']) ? divide($_POST['cod_pre']) : json_encode (new stdClass);
+$info=datos_mysql("SELECT COUNT(*) total FROM geo_asig WHERE idgeo='".$id[0]."'");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-predios']))? ($_POST['pag-predios']-1)* $regxPag:0;
 
+  
+	$sql="SELECT  A.id_asig 'Cod Registro',A.idgeo 'Cod Predio', A.fecha_create 'Fecha de Asignación', U.nombre 'Colaborador Asignado', concat_ws(' - ',U1.perfil,U1.nombre) 'Quien Asignó'
+	FROM geo_asig A
+	LEFT JOIN  usuarios U ON A.doc_asignado=U.id_usuario
+	LEFT JOIN  usuarios U1 ON A.usu_create=U1.id_usuario ";
+$sql.="WHERE idgeo='".$id[0];
+$sql.="' ORDER BY A.fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"predios",$regxPag);
+   }
 
 /**********************************FIN ASIGNACIÓN*************************** */
 

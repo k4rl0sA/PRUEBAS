@@ -88,8 +88,8 @@ function cmp_rute(){
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?false:true;
  
-var_dump($_POST);
-var_dump($d);
+// var_dump($_POST);
+// var_dump($d);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'SEGUIMIENTO REPORTE',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,false,'','col-1');
@@ -143,7 +143,7 @@ var_dump($d);
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,false,'','col-5');
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,false,'','col-5');
     
-  if($_POST['idgeo']==='0'){
+  if($d['idgeo']==='0'){
 	$o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO VALIDACION',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');

@@ -431,6 +431,22 @@ function opc_rolasignado(){
 		return json_encode($info['responseResult']);
 	} 
 }
+function gra_asigpred(){
+	$id=divide($_POST['cod_pre']);
+	$sql = "INSERT INTO geo_asig VALUES(?,?,?,?,?,?,?,?)";
+	$params = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 's', 'value' => $id[0]),
+	array('type' => 's', 'value' => $_POST['asignado']),
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => 'A')
+	);
+	$rta = mysql_prepd($sql, $params);
+	return $rta;
+}
 
 /**********************************FIN ASIGNACIÓN*************************** */
 

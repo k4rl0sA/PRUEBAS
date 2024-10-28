@@ -383,32 +383,14 @@ function gra_rute(){
 	$rta = mysql_prepd($sql, $params);
 	}
 	return $rta;
-
-/* 	$sql="SELECT `id_ruteo`, estrategia,`fuente`, `fecha_asig`, `priorizacion`, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, 
-	`tipo_doc_acu`, `documento_acu`, `nombres_acu`, `direccion`, `telefono1`, `telefono2`, `telefono3`, `subred`, `localidad`, `upz`, `barrio`, 
-	sector_catastral,nummanzana,predio_num,unidad_habit,`cordx`, `cordy`, `perfil_asignado`,gestion, `fecha_gestion`, `estado_g`, `motivo_estado`, `direccion_nueva`, `complemento`, `observacion`,predio,cod_admin
-	FROM `eac_ruteo` WHERE  id_ruteo='{$_POST['id']}'";
-	$info=datos_mysql($sql);
-
-	return $info['responseResult'][0];
- */
-
-
-	// `cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
-
-// $sql="UPDATE `eac_ruteo` SET 
-// fecha_gestion=TRIM(UPPER('{$_POST['fecha_gestion']}')),
-// `motivo_estado`=TRIM(UPPER('{$_POST['motivo_estado']}')),
-// `direccion_nueva`=TRIM(UPPER('{$_POST['direccion_nueva']}')),
-// `complemento`=TRIM(UPPER('{$_POST['complemento']}')),
-// `observacion`=TRIM(UPPER('{$_POST['observacion']}')),
-// `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-// `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-// 	WHERE id_ruteo='{$_POST['id']}'";
-// 	//echo $sql; `predio`=TRIM(UPPER('{$_POST['estado']}')),
-//   $rta=dato_mysql($sql);
-//   return $rta;
 }
+
+
+/**********************************INICIO ASIGNACIÓN*************************** */
+
+
+
+/**********************************FIN ASIGNACIÓN*************************** */
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
@@ -419,6 +401,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono crear' title='Asignación Predios' id='".$c['ACCIONES']."' Onclick=\"mostrar('asigpred','pro',event,'','../asignacion/lib.php',7);\"></li>";
 		// $rta.="<li class='icono canin1' title='GESTIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('ruteresol','pro',event,'','ruteoresolut.php',7,'ruteresol');\"></li>";
 		// if($c['Gestionado']== '1' || $c['Gestionado']=='2'){
 	

@@ -146,7 +146,7 @@ function cmp_rute(){
   if($d['idgeo']==='0'){
 	$o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO VALIDACION',$w);
- $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$u,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('direccion_nueva_v','t','90',$d['dir_new'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,false,$u,'','col-25');
  $c[]=new cmp('sector_catastral_v','n','6',$d['sector'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,false,$u,'','col-25');
  $c[]=new cmp('nummanzana_v','n','3',$d['manzana'],$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,false,$u,'','col-25');

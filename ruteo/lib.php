@@ -143,7 +143,7 @@ var_dump($d);
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,false,'','col-5');
  $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,false,'','col-5');
     
-  if($_POST['id']==0){
+  if($_POST['idgeo']==='0'){
 	$o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO VALIDACION',$w);
  $c[]=new cmp('fecha_gestion','d','10',$d['fecha_gestion'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');

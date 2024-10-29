@@ -487,9 +487,8 @@ function get_person(){
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta
-		FROM `personas` 
-		left join personas_datocomp ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
-   	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
+		FROM `person` 
+   	WHERE idpeople ='".$id[0]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);
@@ -675,9 +674,9 @@ function gra_person(){
 function opc_cuida(){
 	$id=divide($_REQUEST['id']);
 	if(count($id)==1){
-		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[0]'";
+		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from person where vivipersona='$id[0]'";
 	}else if(count($id)==2){
-		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from personas where vivipersona='$id[1]' and idpeople<>'$id[0]'";
+		$sql="SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' from person where vivipersona='$id[1]' and idpeople<>'$id[0]'";
 	}
 	// var_dump($id);
 		return opc_sql($sql,'');

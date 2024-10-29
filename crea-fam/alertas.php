@@ -469,7 +469,7 @@ function formato_dato($a,$b,$c,$d){
 	$rta=$c[$d];
 	if ($a=='alertas-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'alertas',event,this,['fecha','tipo_activi'],'../vivienda/alertas.php');\"></li>";  //   act_lista(f,this);
+		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'alertas',event,this,['fecha','tipo_activi'],'../crea-fam/alertas.php');\"></li>";  //   act_lista(f,this);
 	}
 return $rta;
 }

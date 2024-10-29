@@ -487,7 +487,7 @@ function get_person(){
 		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta
-		FROM `person` 
+		FROM `personas` 
    	WHERE idpeople ='".$id[0]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

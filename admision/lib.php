@@ -104,6 +104,7 @@ function cmp_admision(){
 	$e="";
 	$w='admision';
 	$o='infusu';
+	var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('tipo_doc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo Documento','atencion_tipo_doc',null,'',true,false,'','col-5');
@@ -137,7 +138,6 @@ function cmp_admision(){
 	$c[]=new cmp('cod_admin','n','12',$e,$w.' '.$o,'Codigo ingreso','cod_admin',null,null,true,true,'','col-15');
 	$c[]=new cmp('cod_factura','n','12',$e,$w.' '.$o,'Codigo de Factura','cod_factura',null,null,false,true,'','col-15');
 	$c[]=new cmp('estado_hist','s','3',$e,$w.' '.$o,'Estado Admision','estado_hist',null,null,true,true,'','col-2');
-	
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

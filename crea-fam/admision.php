@@ -47,7 +47,7 @@ function focus_admision(){
 	// id_factura ACCIONES,
 	$sql="SELECT `cod_admin` 'Codigo Ingreso', FN_CATALOGODESC(126,cod_cups) 'Codigo CUPS', FN_CATALOGODESC(127,final_consul) 'Finalidad de la Consulta' 
 	FROM `adm_facturacion` WHERE idpeople ='{$id[0]}'";
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"admision-lis",10);
    }
@@ -151,7 +151,7 @@ function gra_admision(){
 			  trim(upper('{$_POST['cod_factura']}')),
 			  TRIM(UPPER('{$_POST['estado_hist']}')),
 			  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			echo $sql;
+			// echo $sql;
 			$rta=dato_mysql($sql);
 		}
 	}else{

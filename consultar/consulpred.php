@@ -50,22 +50,6 @@ function lis_predios(){
 	$docume=  ($_REQUEST['documento'])??'';
 	switch ($filtro) {
 		case '1':
-			if($sector!=='' && $manzana!=='' && $predio!=='' && $unidad!==''){
-				$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,territorio,direccion,u.nombre Asignado,hg.equipo,FN_CATALOGODESC(44,hg.estado_v) Estado,usu_creo Creo 
-				from hog_geo hg
-				left join usuarios u ON hg.asignado=u.id_usuario";
-				$sql.=" WHERE sector_catastral=".$sector." AND nummanzana=".$manzana."  
-				 AND predio_num=".$predio." AND unidad_habit=".$unidad;
-				$sql.=" ORDER BY hg.estrategia,hg.sector_catastral,hg.nummanzana,hg.predio_num,hg.unidad_habit,hg.estado_v";
-				echo $sql;
-				$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"predios-lis",7);	
-			}else{
-				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong>Recuerde que debe tener la totalidad de los datos del ID(Sector,manzana,predio y unidad habitacional).
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
-				return $rta;
-			}
 			break;
 		case '2':
 			if($codpre!==''){

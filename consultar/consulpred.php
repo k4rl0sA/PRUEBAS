@@ -65,7 +65,7 @@ function lis_predios(){
 							LEFT JOIN geo_gest gg ON hg.idgeo=gg.idgeo
 							left join usuarios u ON	gg.usu_creo= u.id_usuario";
 				$sql.=" WHERE hg.idgeo=".$codpre;
-				$sql.=" ORDER BY ORDER BY gg.estado_v,gg.fecha_create";
+				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
 				echo $sql;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	

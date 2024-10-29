@@ -67,7 +67,8 @@ function whe_admision() {
 	if($_POST['fdigita']) 
 	    $sql .= " AND usu_creo ='".$_POST['fdigita']."'";
 	if ($_POST['festado_hist'])
-		$sql .= " AND estado_hist ='".$_POST['festado_hist']."' ";
+		$estado = (isset($_POST['festado_hist'])) ? '' : $_POST['festado_hist'];
+		$sql .= " AND estado_hist ='".$estado."'";
 	return $sql;
 }
 

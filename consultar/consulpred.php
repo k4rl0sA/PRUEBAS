@@ -53,14 +53,7 @@ function lis_predios(){
 			break;
 		case '2':
 			if($codpre!==''){
-				$sql="select
-							FN_CATALOGODESC(72,	hg.subred) Subred,
-							direccion,
-							gg.fecha_create	Creado
-							u.nombre Creo,
-							u.perfil Perfil,
-							u.equipo Equipo,
-							FN_CATALOGODESC(44,	gg.estado_v) Estado,
+				$sql="select FN_CATALOGODESC(72,hg.subred) Subred,direccion,gg.fecha_create	Creado,	u.nombre Creo,u.perfil Perfil,u.equipo Equipo,FN_CATALOGODESC(44,	gg.estado_v) Estado,
 						from hog_geo hg
 							LEFT JOIN geo_gest gg ON hg.idgeo=gg.idgeo
 							left join usuarios u ON	gg.usu_creo= u.id_usuario";

@@ -57,6 +57,7 @@ function lis_predios(){
 				$sql.=" WHERE sector_catastral=".$sector." AND nummanzana=".$manzana."  
 				 AND predio_num=".$predio." AND unidad_habit=".$unidad;
 				$sql.=" ORDER BY hg.estrategia,hg.sector_catastral,hg.nummanzana,hg.predio_num,hg.unidad_habit,hg.estado_v";
+				echo $sql;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
@@ -73,6 +74,7 @@ function lis_predios(){
 				left join usuarios u ON hg.asignado=u.id_usuario";
 				$sql.=" WHERE idgeo=".$codpre;
 				$sql.=" ORDER BY hg.estrategia,hg.sector_catastral,hg.nummanzana,hg.predio_num,hg.unidad_habit,hg.estado_v";
+				echo $sql;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	
 			}else{
@@ -90,6 +92,7 @@ function lis_predios(){
 				LEFT JOIN personas p ON hv.idviv=p.vivipersona
 				LEFT  JOIN usuarios u ON hg.asignado=u.id_usuario";
 				$sql.=" WHERE p.idpersona=".$docume;
+				echo $sql;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",4);	
 			}else{

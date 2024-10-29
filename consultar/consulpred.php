@@ -56,11 +56,11 @@ function lis_predios(){
 				$sql="select
 							FN_CATALOGODESC(72,	hg.subred) Subred,
 							direccion,
+							gg.fecha_create	Creado
 							u.nombre Creo,
 							u.perfil Perfil,
 							u.equipo Equipo,
 							FN_CATALOGODESC(44,	gg.estado_v) Estado,
-							gg.fecha_create	Creado
 						from hog_geo hg
 							LEFT JOIN geo_gest gg ON hg.idgeo=gg.idgeo
 							left join usuarios u ON	gg.usu_creo= u.id_usuario";

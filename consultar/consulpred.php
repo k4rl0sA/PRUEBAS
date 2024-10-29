@@ -53,11 +53,19 @@ function lis_predios(){
 			break;
 		case '2':
 			if($codpre!==''){
-				$sql="select idgeo 'Codigo',FN_CATALOGODESC(42,hg.estrategia) Estrategia,FN_CATALOGODESC(72,hg.subred) Subred,territorio,direccion,u.nombre Asignado,hg.equipo,FN_CATALOGODESC(44,hg.estado_v) Estado,usu_creo Creo 
-				from hog_geo hg
-				left join usuarios u ON hg.asignado=u.id_usuario";
-				$sql.=" WHERE idgeo=".$codpre;
-				$sql.=" ORDER BY hg.estrategia,hg.sector_catastral,hg.nummanzana,hg.predio_num,hg.unidad_habit,hg.estado_v";
+				$sql="select
+							FN_CATALOGODESC(72,	hg.subred) Subred,
+							direccion,
+							u.nombre Creo,
+							u.perfil Perfil,
+							u.equipo Equipo,
+							FN_CATALOGODESC(44,	gg.estado_v) Estado,
+							gg.fecha_create	Creado
+						from hog_geo hg
+							LEFT JOIN geo_gest gg ON hg.idgeo=gg.idgeo
+							left join usuarios u ON	gg.usu_creo= u.id_usuario";
+				$sql.=" WHERE hg.idgeo=".$codpre;
+				$sql.=" ORDER BY ORDER BY gg.estado_v,gg.fecha_create";
 				echo $sql;
 				$datos=datos_mysql($sql);
 			return panel_content($datos["responseResult"],"predios-lis",7);	

@@ -61,7 +61,7 @@ function lis_predios(){
 				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
 				echo $sql;
 				$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"predios-lis",7);	
+			return panel_content($datos["responseResult"],"predios-lis",10);	
 			}else{
 				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
 					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.

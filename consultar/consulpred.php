@@ -83,7 +83,7 @@ function lis_predios(){
 FROM
 	hog_fam hf
 left JOIN hog_geo hg ON	hf.idpre = hg.idgeo
-LEFT JOIN person p ON hf.id_fam = p.vivipesona
+LEFT JOIN person p ON hf.id_fam = p.vivipersona
 LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
 WHERE
 	p.idpersona =".$docume;

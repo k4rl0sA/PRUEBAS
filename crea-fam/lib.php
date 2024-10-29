@@ -488,7 +488,7 @@ function get_person(){
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
 		descanso_unidad,reside_localidad,localidad_vive,transporta
 		FROM `personas` 
-   	WHERE idpeople ='".$id[0]."'";
+   	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

@@ -75,11 +75,11 @@ $mod='admision';
 $ya = new DateTime();
 $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
 $usu=divide($rta["responseResult"][0]['usu']);
-$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=184 and estado='A' order by 1",'1');
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=184 and estado='A' order by 1",'0');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`IN('ENFATE','MEDATE','PSIEAC') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 2",$_SESSION['us_sds']);
 ?>
 <form method='post' id='fapp'>
-<div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
+<div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
 	<div class="campo"><div>Documento Usuario</div><input class="captura" size=6 id="fdocumento" name="fdocumento" OnChange="actualizar();"></div>
 	<div class="campo"><div>Cod. Admisión</div><input class="captura" size=6 id="fcod_admin" name="fcod_admin" OnChange="actualizar();"></div>
 	<div class="campo"><div>Cod. Factura</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>

@@ -38,87 +38,88 @@ function focus_predios(){
 	   }
   return $rta;
 }
+
 function lis_predios(){
-	// var_dump($_REQUEST);
-	// $id=divide($_POST['id']);
-	 $filtro=  ($_REQUEST['filtro'])??'';
-	/*$sector=  ($_REQUEST['sector'])??'';
-	$manzana=($_REQUEST['manzana'])??'';
-	$predio=  ($_REQUEST['predio'])??'';
-	$unidad=  ($_REQUEST['unidad'])??''; */
-	$codpre=  ($_REQUEST['codpre'])??'';
-	$docume=  ($_REQUEST['documento'])??'';
-	switch ($filtro) {
-		case '1':
-			break;
-		case '2':
-			if (trim($codpre) !== '') {
-				$codpre = intval($codpre); // Sanitizamos
-				$sql = "SELECT 
-							FN_CATALOGODESC(72, hg.subred) AS Subred,
-							direccion,
-							gg.fecha_create AS Creado,
-							u.nombre AS Creo,
-							u.perfil AS Perfil,
-							u.equipo AS Equipo,
-							FN_CATALOGODESC(44, gg.estado_v) AS Estado
-						FROM hog_geo hg
-						LEFT JOIN geo_gest gg ON hg.idgeo = gg.idgeo
-						LEFT JOIN usuarios u ON gg.usu_creo = u.id_usuario
-						WHERE hg.idgeo = $codpre
-						ORDER BY gg.estado_v, gg.fecha_create";
-				$datos = datos_mysql($sql);
-				if (empty($datos["responseResult"])) {
-					return getErrorMessage("No hay registros asociados, por favor valide el código ingresado.",'#ff0909a6');
-				} else {
-					return panel_content($datos["responseResult"], "predios-lis", 10);
-				}
-			} else {
-				return getErrorMessage("Por favor ingrese un código valido.",'#ff9700');
-			}
-			break;
-		case '3':				
-			if(trim($docume)!== ''){	
-				$docume = intval($docume); // Sanitizamos
-				$sql="SELECT hg.idgeo 'Cod Predio',
-	FN_CATALOGODESC(72,	hg.subred) Subred,
-	hg.direccion Direccion,
-	u.nombre 'Creo',
-	u.perfil,
-	u.equipo,
-	p.fecha_create 'Fecha Creo',
-	hf.id_fam 'Cod Familia',
-	FN_CATALOGODESC(44,	hg.estado_v) Estado
-FROM
-	hog_fam hf
-left JOIN hog_geo hg ON	hf.idpre = hg.idgeo
-LEFT JOIN person p ON hf.id_fam = p.vivipersona
-LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
- WHERE
-	p.idpersona =".$docume;
-				$datos=datos_mysql($sql);
-				if (empty($datos["responseResult"])) {
-					return getErrorMessage("El número del documento del usuario ingresado, no se encuentra registrado en ningún predio. Por favor valide.",'#ff0909a6');
-				} else {
-					return panel_content($datos["responseResult"], "predios-lis", 10);
-				}
-			}else{
-				return getErrorMessage("El numero de documento del usuario no puede estar vacio,aca encontrara usuarios que ya fueron creados en el sistema y por ende en predios efectivos.",'#ff9700');
-			}
-			break;
-		default:
-		return getErrorMessage("Recuerde que Debe seleccionar el tipo de filtro",'#00a3ffa6');
-		break;
-	}
-	// echo $sql;
+    $filtro = $_REQUEST['filtro'] ?? '';
+    $codpre = $_REQUEST['codpre'] ?? '';
+    $docume = $_REQUEST['documento'] ?? '';
+
+    switch ($filtro) {
+        case '1':
+            // Código para el caso 1, si es necesario agregarlo aquí
+            break;
+
+        case '2':
+            if (trim($codpre) !== '') {
+                $codpre = intval($codpre);
+                $sql = "SELECT 
+                            FN_CATALOGODESC(72, hg.subred) AS Subred,
+                            direccion,
+                            gg.fecha_create AS Creado,
+                            u.nombre AS Creo,
+                            u.perfil AS Perfil,
+                            u.equipo AS Equipo,
+                            FN_CATALOGODESC(44, gg.estado_v) AS Estado
+                        FROM hog_geo hg
+                        LEFT JOIN geo_gest gg ON hg.idgeo = gg.idgeo
+                        LEFT JOIN usuarios u ON gg.usu_creo = u.id_usuario
+                        WHERE hg.idgeo = $codpre
+                        ORDER BY gg.estado_v, gg.fecha_create";
+                $datos = datos_mysql($sql);
+
+                if (empty($datos["responseResult"])) {
+                    return getErrorMessage("No se encontraron registros para el código ingresado. Verifique el código e intente nuevamente.", '#ff0909a6');
+                } else {
+                    return panel_content($datos["responseResult"], "predios-lis", 10);
+                }
+            } else {
+                return getErrorMessage("Por favor, ingrese un código de predio válido para realizar la búsqueda.", '#ff9700');
+            }
+            break;
+
+        case '3':
+            if (trim($docume) !== '') {
+                $docume = intval($docume);
+                $sql = "SELECT 
+                            hg.idgeo AS 'Cod Predio',
+                            FN_CATALOGODESC(72, hg.subred) AS Subred,
+                            hg.direccion AS Direccion,
+                            u.nombre AS Creo,
+                            u.perfil,
+                            u.equipo,
+                            p.fecha_create AS 'Fecha Creo',
+                            hf.id_fam AS 'Cod Familia',
+                            FN_CATALOGODESC(44, hg.estado_v) AS Estado
+                        FROM hog_fam hf
+                        LEFT JOIN hog_geo hg ON hf.idpre = hg.idgeo
+                        LEFT JOIN person p ON hf.id_fam = p.vivipersona
+                        LEFT JOIN usuarios u ON p.usu_creo = u.id_usuario
+                        WHERE p.idpersona = $docume";
+                $datos = datos_mysql($sql);
+
+                if (empty($datos["responseResult"])) {
+                    return getErrorMessage("No se encontró ningún predio asociado al documento ingresado. Verifique el documento e intente nuevamente.", '#ff0909a6');
+                } else {
+                    return panel_content($datos["responseResult"], "predios-lis", 10);
+                }
+            } else {
+                return getErrorMessage("El campo de documento no puede estar vacío. Ingrese un número de documento válido para la búsqueda.", '#ff9700');
+            }
+            break;
+
+        default:
+            return getErrorMessage("Por favor, seleccione un tipo de filtro válido para proceder.", '#00a3ffa6');
+            break;
+    }
 }
 
-function getErrorMessage($message,$color) {
+function getErrorMessage($message, $color) {
     return "<div class='error' style='padding: 12px; background-color:$color;color: white; border-radius: 25px; z-index:100; top:0;'>
                 <strong style='text-transform:uppercase'>NOTA:</strong> $message
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 }
+
 
 
 function cmp_predios(){

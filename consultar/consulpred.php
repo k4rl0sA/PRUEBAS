@@ -68,6 +68,7 @@ function lis_predios(){
 					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 				return $rta;
 			}else{
+				echo 'No hay datos';
 				var_dump($datos["responseResult"]);
 			}
 			break;

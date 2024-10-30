@@ -74,7 +74,7 @@ function lis_predios(){
 					return panel_content($datos["responseResult"], "predios-lis", 10);
 				}
 			} else {
-				return getErrorMessage("Por favor ingrese un código valido.",'#00a3ffa6');
+				return getErrorMessage("Por favor ingrese un código valido.",'#ff9700');
 			}
 			break;
 		case '3':				
@@ -102,7 +102,7 @@ LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
 					return panel_content($datos["responseResult"], "predios-lis", 10);
 				}
 			}else{
-				return getErrorMessage("El numero de documento del usuario no puede estar vacio,aca encontrara usuarios que ya fueron creados en el sistema y por ende en predios efectivos.",'#00a3ffa6');
+				return getErrorMessage("El numero de documento del usuario no puede estar vacio,aca encontrara usuarios que ya fueron creados en el sistema y por ende en predios efectivos.",'#ff9700');
 			}
 			break;
 		default:

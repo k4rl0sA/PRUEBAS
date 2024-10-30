@@ -61,8 +61,14 @@ function lis_predios(){
 				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
 				echo $sql;
 				$datos=datos_mysql($sql);
-				var_dump($datos["responseResult"]);
-			return panel_content($datos["responseResult"],"predios-lis",10);	
+				if($datos["responseResult"]=='[]'){
+					$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
+					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
+					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
+				return $rta;
+				}else{
+					return panel_content($datos["responseResult"],"predios-lis",10);	
+				}
 			}else if($codpre==''){
 				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
 					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.

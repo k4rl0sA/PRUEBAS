@@ -78,7 +78,8 @@ function lis_predios(){
 			}
 			break;
 		case '3':				
-			if($docume!==''){	
+			if(trim($docume)!== ''){	
+				$codpre = intval($codpre); // Sanitizamos
 				$sql="SELECT hg.idgeo 'Cod Predio',
 	FN_CATALOGODESC(72,	hg.subred) Subred,
 	hg.direccion Direccion,

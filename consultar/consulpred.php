@@ -59,7 +59,6 @@ function lis_predios(){
 							left join usuarios u ON	gg.usu_creo= u.id_usuario";
 				$sql.=" WHERE hg.idgeo=".$codpre;
 				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
-				echo $sql;
 				$datos=datos_mysql($sql);
 				if($datos["responseResult"]==[]){
 					$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>

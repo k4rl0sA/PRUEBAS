@@ -52,27 +52,29 @@ function lis_predios(){
 		case '1':
 			break;
 		case '2':
-			if($codpre!==''){
-				$sql="select FN_CATALOGODESC(72,hg.subred) Subred,direccion,gg.fecha_create	Creado,	u.nombre Creo,u.perfil Perfil,u.equipo Equipo,FN_CATALOGODESC(44,	gg.estado_v) Estado
-						from hog_geo hg
-							LEFT JOIN geo_gest gg ON hg.idgeo=gg.idgeo
-							left join usuarios u ON	gg.usu_creo= u.id_usuario";
-				$sql.=" WHERE hg.idgeo=".$codpre;
-				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
-				$datos=datos_mysql($sql);
-				if($datos["responseResult"]==[]){
-					$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
-				return $rta;
-				}else{
-					return panel_content($datos["responseResult"],"predios-lis",10);	
+			if (trim($codpre) !== '') {
+				$codpre = intval($codpre); // Sanitizamos
+				$sql = "SELECT 
+							FN_CATALOGODESC(72, hg.subred) AS Subred,
+							direccion,
+							gg.fecha_create AS Creado,
+							u.nombre AS Creo,
+							u.perfil AS Perfil,
+							u.equipo AS Equipo,
+							FN_CATALOGODESC(44, gg.estado_v) AS Estado
+						FROM hog_geo hg
+						LEFT JOIN geo_gest gg ON hg.idgeo = gg.idgeo
+						LEFT JOIN usuarios u ON gg.usu_creo = u.id_usuario
+						WHERE hg.idgeo = $codpre
+						ORDER BY gg.estado_v, gg.fecha_create";
+				$datos = datos_mysql($sql);
+				if (empty($datos["responseResult"])) {
+					return getErrorMessage("No hay registros asociados, por favor valide el código ingresado.");
+				} else {
+					return panel_content($datos["responseResult"], "predios-lis", 10);
 				}
-			}else{
-				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong>No hay registros asociados, por favor valide el codigo ingresado.
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
-				return $rta;
+			} else {
+				return getErrorMessage("Por favor ingrese un código valido.");
 			}
 			break;
 		case '3':				
@@ -111,6 +113,13 @@ LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
 		break;
 	}
 	// echo $sql;
+}
+
+function getErrorMessage($message) {
+    return "<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px; z-index:100; top:0;'>
+                <strong style='text-transform:uppercase'>NOTA:</strong> $message
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
 }
 
 

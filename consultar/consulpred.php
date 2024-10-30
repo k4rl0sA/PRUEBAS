@@ -114,8 +114,8 @@ function lis_predios(){
 }
 
 function getErrorMessage($message, $color) {
-    return "<div class='error' style='padding: 12px; background-color:$color;color: white; border-radius: 25px; z-index:100; top:0;'>
-                <strong style='text-transform:uppercase'>NOTA:</strong> $message
+    return "<div class='error' style='padding: 12px; background-color:$color;color: white; border-radius: 25px; z-index:100; top:0;text-transform:uppercase;'>
+                <strong>NOTA:</strong> $message
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 }

@@ -69,12 +69,12 @@ function lis_predios(){
 						ORDER BY gg.estado_v, gg.fecha_create";
 				$datos = datos_mysql($sql);
 				if (empty($datos["responseResult"])) {
-					return getErrorMessage("No hay registros asociados, por favor valide el código ingresado.");
+					return getErrorMessage("No hay registros asociados, por favor valide el código ingresado.",'#ff0909a6');
 				} else {
 					return panel_content($datos["responseResult"], "predios-lis", 10);
 				}
 			} else {
-				return getErrorMessage("Por favor ingrese un código valido.");
+				return getErrorMessage("Por favor ingrese un código valido.",'#00a3ffa6');
 			}
 			break;
 		case '3':				
@@ -95,19 +95,20 @@ LEFT JOIN person p ON hf.id_fam = p.vivipersona
 LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
  WHERE
 	p.idpersona =".$docume;
-				echo $sql;
 				$datos=datos_mysql($sql);
-			return panel_content($datos["responseResult"],"predios-lis",4);	
+				if (empty($datos["responseResult"])) {
+					return getErrorMessage("El número del documento del usuario ingresado, no se encuentra registrado en ningún predio. Por favor valide.",'#ff0909a6');
+				} else {
+					return panel_content($datos["responseResult"], "predios-lis", 10);
+				}
 			}else{
-				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong> No hay registros asociados, recuerde ingresar el numero de documento del usuario, esta busqueda aplica para usuarios que ya fueron creados en el sistema y por ende en predios efectivos.
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
-				return $rta;
+				return getErrorMessage("El numero de documento del usuario no puede estar vacio,aca encontrara usuarios que ya fueron creados en el sistema y por ende en predios efectivos.",'#00a3ffa6');
 			}
 			break;
 		default:
-		$rta="<div class='error' style='padding: 12px; background-color: #00a3ffa6;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong> Recuerde que Debe seleccionar el tipo de filtro
+		return getErrorMessage("Recuerde que Debe seleccionar el tipo de filtro",'#00a3ffa6');
+		$rta="<div class='error' style='padding: 12px; background-color: ;color: white; border-radius: 25px;z-index:100;top:0;'>
+					<strong style='text-transform:uppercase'>NOTA:</strong> 
 					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
 		return $rta;
 		break;
@@ -115,8 +116,8 @@ LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
 	// echo $sql;
 }
 
-function getErrorMessage($message) {
-    return "<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px; z-index:100; top:0;'>
+function getErrorMessage($message,$color) {
+    return "<div class='error' style='padding: 12px; background-color:$color;color: white; border-radius: 25px; z-index:100; top:0;'>
                 <strong style='text-transform:uppercase'>NOTA:</strong> $message
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";

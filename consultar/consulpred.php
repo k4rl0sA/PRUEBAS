@@ -41,8 +41,8 @@ function focus_predios(){
 function lis_predios(){
 	// var_dump($_REQUEST);
 	// $id=divide($_POST['id']);
-	/* $filtro=  ($_REQUEST['filtro'])??'';
-	$sector=  ($_REQUEST['sector'])??'';
+	 $filtro=  ($_REQUEST['filtro'])??'';
+	/*$sector=  ($_REQUEST['sector'])??'';
 	$manzana=($_REQUEST['manzana'])??'';
 	$predio=  ($_REQUEST['predio'])??'';
 	$unidad=  ($_REQUEST['unidad'])??''; */

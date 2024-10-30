@@ -61,7 +61,7 @@ function lis_predios(){
 				$sql.=" ORDER BY gg.estado_v,gg.fecha_create";
 				echo $sql;
 				$datos=datos_mysql($sql);
-				var_dump($datos);
+				var_dump($datos["responseResult"]);
 			return panel_content($datos["responseResult"],"predios-lis",10);	
 			}else if($codpre==''){
 				$rta="<div class='error' style='padding: 12px; background-color: #ff0909a6;color: white; border-radius: 25px;z-index:100;top:0;'>

@@ -79,7 +79,7 @@ function lis_predios(){
 			break;
 		case '3':				
 			if(trim($docume)!== ''){	
-				$codpre = intval($codpre); // Sanitizamos
+				$docume = intval($docume); // Sanitizamos
 				$sql="SELECT hg.idgeo 'Cod Predio',
 	FN_CATALOGODESC(72,	hg.subred) Subred,
 	hg.direccion Direccion,
@@ -108,10 +108,6 @@ LEFT JOIN usuarios u ON	p.usu_creo = u.id_usuario
 			break;
 		default:
 		return getErrorMessage("Recuerde que Debe seleccionar el tipo de filtro",'#00a3ffa6');
-		$rta="<div class='error' style='padding: 12px; background-color: ;color: white; border-radius: 25px;z-index:100;top:0;'>
-					<strong style='text-transform:uppercase'>NOTA:</strong> 
-					<span style='margin-left: 15px;	color: white;font-weight: bold;float: right;font-size: 22px;line-height: 20px;cursor: pointer;transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span></div>";
-		return $rta;
 		break;
 	}
 	// echo $sql;

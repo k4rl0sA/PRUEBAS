@@ -133,28 +133,64 @@ function cmp_tamApgar(){
 	return $rta;
    }
 
-function get_tamApgar(){//CAMBIO function modificada
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		var_dump($_POST);
-		var_dump($_REQUEST);
-		var_dump($_GET);
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT A.id_apgar,P.idpersona,P.tipo_doc,
-		concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,
-		P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad,
-		A.fecha_toma,A.ayuda_fam,A.fam_comprobl,A.fam_percosnue,A.fam_feltrienf,A.fam_comptiemjun,
-		A.sati_famayu,A.sati_famcompro,A.sati_famapoemp,A.sati_famemosion,A.sati_famcompar,A.puntaje,
-		A.descripcion
-		FROM hog_tam_apgar A
-		LEFT JOIN person P ON A.idpeople = P.idpeople
-		WHERE A.id_apgar='{$id[0]}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		 return json_encode($info['responseResult'][0]);
-	    }
+   function get_tamApgar() {//CAMBIO funcion nueva
+    if ($_REQUEST['id'] == '') {
+        return "";
+    } else {
+        $id = divide($_REQUEST['id']);
+        $sql = "SELECT A.id_apgar, P.idpersona, P.tipo_doc,
+                concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) apgar_nombre,
+                P.fecha_nacimiento apgar_fechanacimiento, 
+                YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS apgar_edad,
+                A.fecha_toma, A.ayuda_fam, A.fam_comprobl, A.fam_percosnue, 
+                A.fam_feltrienf, A.fam_comptiemjun, A.sati_famayu, A.sati_famcompro, 
+                A.sati_famapoemp, A.sati_famemosion, A.sati_famcompar, A.puntaje, A.descripcion
+                FROM hog_tam_apgar A
+                LEFT JOIN person P ON A.idpeople = P.idpeople
+                WHERE A.id_apgar='{$id[0]}'";
+        
+        $info = datos_mysql($sql);
+        $data = $info['responseResult'][0];
+        
+        // Verificar edad y filtrar los resultados
+        if ($data['apgar_edad'] < 18) {
+            // Solo muestra los valores para menores de 18
+            $filtered_data = [
+                'id_apgar' => $data['id_apgar'],
+                'idpersona' => $data['idpersona'],
+                'tipo_doc' => $data['tipo_doc'],
+                'apgar_nombre' => $data['apgar_nombre'],
+                'apgar_fechanacimiento' => $data['apgar_fechanacimiento'],
+                'apgar_edad' => $data['apgar_edad'],
+                'fecha_toma' => $data['fecha_toma'],
+                'ayuda_fam' => $data['ayuda_fam'],
+                'fam_comprobl' => $data['fam_comprobl'],
+                'fam_percosnue' => $data['fam_percosnue'],
+                'fam_feltrienf' => $data['fam_feltrienf'],
+                'fam_comptiemjun' => $data['fam_comptiemjun']
+            ];
+        } else {
+            // Solo muestra los valores para mayores de 18
+            $filtered_data = [
+                'id_apgar' => $data['id_apgar'],
+                'idpersona' => $data['idpersona'],
+                'tipo_doc' => $data['tipo_doc'],
+                'apgar_nombre' => $data['apgar_nombre'],
+                'apgar_fechanacimiento' => $data['apgar_fechanacimiento'],
+                'apgar_edad' => $data['apgar_edad'],
+                'fecha_toma' => $data['fecha_toma'],
+                'sati_famayu' => $data['sati_famayu'],
+                'sati_famcompro' => $data['sati_famcompro'],
+                'sati_famapoemp' => $data['sati_famapoemp'],
+                'sati_famemosion' => $data['sati_famemosion'],
+                'sati_famcompar' => $data['sati_famcompar']
+            ];
+        }
+        
+        return json_encode($filtered_data);
+    }
 }
+
 
 function get_tapgar(){//CAMBIO function nueva
 	if($_POST['id']==0){

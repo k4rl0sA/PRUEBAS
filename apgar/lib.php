@@ -217,7 +217,6 @@ function gra_tamApgar(){
 					case ($suma_apgar >= 7 && $suma_apgar <= 10):
 						$des='FUNCIÓN FAMILIAR NORMAL';
 						break;
-					
 					default:
 						$des='Error en el rango, por favor valide';
 						break;

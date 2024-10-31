@@ -171,7 +171,7 @@ function gra_tamApgar(){
 		// echo $sql;
 		$idp=datos_mysql($sql);//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
-			$idper = json_encode($idp['responseResult'][0]);//CAMBIO ADD linea
+			$idper = $idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea
 
 		if ($_POST['fam_comprobl']!='' || $_POST['sati_famcompro']!=''){

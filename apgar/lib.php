@@ -65,14 +65,15 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 
 function cmp_tamApgar(){
 	$rta="";
-	$t=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
+	$a=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
+	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
 	$d=get_tamApgar();
 	var_dump($d);
 	if (isset($d['id_apgar'])) {
 		echo 'id apgar=SI';
 	}else{
-		$d=$t;
+		$d=$p;
 		echo 'id apgar=NO';
 	}
 	$u = ($d['id_apgar']!='') ? false : true ;

@@ -90,8 +90,8 @@ function cmp_tamApgar(){
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';
     $key='apg';
-	var_dump($d);
-	var_dump($_POST);
+	// var_dump($d);
+	// var_dump($_POST);
 	$days=fechas_app('vivienda');//CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);

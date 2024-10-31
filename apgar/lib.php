@@ -311,7 +311,7 @@ function gra_tamApgar(){
 			}
 			if ($a=='apgar-lis' && $b=='acciones'){
 				$rta="<nav class='menu right'>";		
-					$rta.="<li title='Ver Apgar'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'tamApgar',event,this,['puntaje','descripcion'],'../apgar/lib.php');\"></i></li>";  //   act_lista(f,this);
+					$rta.="<li title='Ver Apgar'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'tamApgar',event,this,'../apgar/lib.php',['puntaje','descripcion']);\"></i></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	   }

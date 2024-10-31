@@ -726,7 +726,7 @@ function plan($id){
 function apg($id){
 	$id=divide($id);
 	$sql="select id_apgar FROM hog_tam_apgar where idpeople='".$id[0]."'";
-	echo $sql;
+	// echo $sql;
 	$info=datos_mysql($sql);
 	if(isset($info['responseResult'][0])){
 		return true;

@@ -166,8 +166,8 @@ function gra_tamApgar(){
 	print_r($_POST);
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
-	}else{
-		$idp=datos_mysql("SELECT idpeople FROM person WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ={$_POST['tipodoc']}");
+	}else{ 
+		$idp=datos_mysql("SELECT idpeople FROM person WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ={$_POST['tipodoc']}");//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){
 			$idper = $idp['responseResult'][0];
 		}
@@ -223,7 +223,7 @@ function gra_tamApgar(){
 				}
 				// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 			}
-
+//cambio ipersona por idpeople en la variable $idper
 			$sql="INSERT INTO hog_tam_apgar VALUES (null,
 			{$idper},
 			trim(upper('{$_POST['fecha_toma']}')),
@@ -241,7 +241,7 @@ function gra_tamApgar(){
 			trim(upper('{$des}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			//echo $sql;
+			echo $sql;
 			$rta=dato_mysql($sql);
 		}else{
 			// print_r($_POST);

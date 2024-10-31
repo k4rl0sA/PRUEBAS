@@ -192,37 +192,6 @@ function men_signos(){
 	function gra_signos(){
 		// var_dump($_POST);
 		$id=divide($_POST['idp']);
-		/* $campos = array('peso','talla','imc','tas','tad','frecard','satoxi','peri_abdomi','peri_braq','res_zscore','zscore','glucom');
-		$holders = array_fill(0, count($campos), '?');
-		$sql = "INSERT INTO hog_signos VALUES (?,?, " . implode(", ", $holders) . ",?,?,?,?,?)";
-		$zscore=explode("=",$_POST['zscore'] ?? null);
-		$params = array(
-			array('type' => 'i', 'value' => NULL),
-			array('type' => 'i', 'value' => $id[0]),
-			array('type' => 's', 'value' => $_POST['fecha_toma']),
-			array('type' => 'i', 'value' => $_POST['peso']),
-			array('type' => 'i', 'value' => $_POST['talla']),
-			array('type' => 'i', 'value' => $_POST['imc']),
-			array('type' => 'i', 'value' => $_POST['tas'] ?? null),
-			array('type' => 'i', 'value' => $_POST['tad'] ?? null),
-			array('type' => 'i', 'value' => $_POST['frecard']?? null),
-			array('type' => 'i', 'value' => $_POST['satoxi']?? null),
-			array('type' => 'i', 'value' => $_POST['peri_abdomi']?? null),
-			array('type' => 'i', 'value' => $_POST['peri_braq']?? null),
-			array('type' => 'i', 'value' => $zscore[0]?? null),
-			array('type' => 'i', 'value' => $zscore[1]?? null),
-			array('type' => 'i', 'value' => $_POST['glucometria'] ?? null),
-			array('type' => 's', 'value' => $_SESSION['us_sds']),
-			array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-			array('type' => 's', 'value' => NULL),
-			array('type' => 's', 'value' => NULL),
-			array('type' => 's', 'value' => 'A')
-
-		); 
-		var_dump($params);
-			// $params = array_merge($params, params($campos));// Agregar los valores dinámicos
-		return mysql_prepd($sql, $params); */
-
 		$tas=$_POST['tas'] ?? null;
 		$tad=$_POST['tad'] ?? null;
 		$fre=$_POST['frecard']?? null;

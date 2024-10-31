@@ -299,20 +299,32 @@ function gra_tamApgar(){
 				}
 				// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 			}
-//cambio ipersona por idpeople en la variable $idper
+
+			$tas=$_POST['tas'] ?? null;
+			$cop=$_POST['fam_comprobl']??null;
+			$per=$_POST['fam_percosnue']??null;
+			$fel=$_POST['fam_feltrienf']??null;
+			$cti=$_POST['fam_comptiemjun']??null;
+			$ayu=$_POST['sati_famayu']??null;
+			$com=$_POST['sati_famcompro']??null;
+			$apo=$_POST['sati_famapoemp']??null;
+			$emo=$_POST['sati_famemosion']??null;
+			$cmr=$_POST['sati_famcompar']??null;
+
+			 //cambio ipersona por idpeople en la variable $idper
 			$sql="INSERT INTO hog_tam_apgar VALUES (null,
 			{$idper},
 			trim(upper('{$_POST['fecha_toma']}')),
-			trim(upper('{$_POST['ayuda_fam']}')),
-			trim(upper('{$_POST['fam_comprobl']}')),
-			trim(upper('{$_POST['fam_percosnue']}')),
-			trim(upper('{$_POST['fam_feltrienf']}')),
-			trim(upper('{$_POST['fam_comptiemjun']}')),
-			trim(upper('{$_POST['sati_famayu']}')),
-			trim(upper('{$_POST['sati_famcompro']}')),
-			trim(upper('{$_POST['sati_famapoemp']}')),
-			trim(upper('{$_POST['sati_famemosion']}')),
-			trim(upper('{$_POST['sati_famcompar']}')),
+			trim(upper('{$tas}')),
+			trim(upper('{$cop}')),
+			trim(upper('{$per}')),
+			trim(upper('{$fel}')),
+			trim(upper('{$cti}')),
+			trim(upper('{$ayu}')),
+			trim(upper('{$com}')),
+			trim(upper('{$apo}')),
+			trim(upper('{$emo}')),
+			trim(upper('{$cmr}')),
 			'{$suma_apgar}',
 			trim(upper('{$des}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),

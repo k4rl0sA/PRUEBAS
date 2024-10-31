@@ -75,7 +75,7 @@ function cmp_tamApgar(){
 	$days=fechas_app('vivienda');//CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-2');
+	$c[]=new cmp('idpersona','n','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-2');//CAMBIO CAMBIAR  T POR N 
 	$c[]=new cmp('tipodoc','s','3',$d['tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-25',"getDatForm('apg','person',['datos']);setTimeout(function() {TamizxApgar('edad');}, 1000);");
 	$c[]=new cmp('nombre','t','50',$d['apgar_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['apgar_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
@@ -130,7 +130,7 @@ function cmp_tamApgar(){
 
 
 function get_person(){//CAMBIO TABLA PERSON DEL FROM LINEA 136
-	 print_r($_POST);
+	//  print_r($_POST);
 	$id=divide($_POST['id']);
 $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
 from person

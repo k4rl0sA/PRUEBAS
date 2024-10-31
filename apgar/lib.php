@@ -72,6 +72,7 @@ function cmp_tamApgar(){
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';
     $key='apg';
+	var_dump($d);
 	$days=fechas_app('vivienda');//CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
@@ -121,7 +122,7 @@ function cmp_tamApgar(){
 		FROM `hog_tam_apgar` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 			WHERE P.idpeople ='{$id[0]}'";
-		echo $sql;
+		// echo $sql;
 		$info=datos_mysql($sql);
 			return $info['responseResult'][0];
 		}

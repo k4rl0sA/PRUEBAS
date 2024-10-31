@@ -88,7 +88,7 @@ function cmp_tamApgar(){
 	$c[]=new cmp('nombre','t','50',$d['apgar_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['apgar_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('edad','n','3',$d['apgar_edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
-	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,$u,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 
 	if($d['apgar_edad']>6 && $d['apgar_edad']<18){
 		$o=' cuestionario1';

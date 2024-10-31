@@ -89,7 +89,7 @@ function cmp_tamApgar(){
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 
 	if($d['apgar_edad']>6 && $d['apgar_edad']<18){
-		$o=' cuestionario1 oculto ';
+		$o=' cuestionario1';
 		$c[]=new cmp($o,'e',null,'APGAR FAMILIAR 7 A 17 AÑOS',$w);
 		$c[]=new cmp('ayuda_fam','s','3',$d['ayuda_fam'],$w.' '.$o,'Cuando algo le preocupa, puede pedir ayuda a su familia','respmenor',null,null,false,true,'','col-10');
 		$c[]=new cmp('fam_comprobl','s','3',$d['fam_comprobl'],$w.' '.$o,'Le gusta la manera como su familia habla y comparte los problemas','respmenor',null,null,false,true,'','col-10');
@@ -100,7 +100,7 @@ function cmp_tamApgar(){
 	
 
 	if($d['apgar_edad']>17){
-		$o=' cuestionario2 oculto ';
+		$o=' cuestionario20';
 		$c[]=new cmp($o,'e',null,'APGAR FAMILIAR 18 AÑOS EN ADELANTE',$w);
 		$c[]=new cmp('sati_famayu','s','3',$d['sati_famayu'],$w.' '.$o,'Me siento satisfecho con la ayuda que recibo de mi familia cuando tengo algún problema o necesidad','respmayor',null,null,false,true,'','col-10');
 		$c[]=new cmp('sati_famcompro','s','3',$d['sati_famcompro'],$w.' '.$o,'Me siento satisfecho con la forma en que mi familia habla de las cosas y comparte los problemas conmigo','respmayor',null,null,false,true,'','col-10');

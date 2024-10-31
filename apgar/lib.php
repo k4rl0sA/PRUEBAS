@@ -138,8 +138,13 @@ function get_tamApgar(){
 		return "";
 	}else{
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT id_apgar, idpeople,fecha_toma,ayuda_fam,fam_comprobl,fam_percosnue,fam_feltrienf,fam_comptiemjun,sati_famayu,sati_famcompro,sati_famapoemp,sati_famemosion,sati_famcompar,puntaje,descripcion
-		FROM hog_tam_apgar
+		$sql="SELECT A.id_apgar,A.idpeople,A.fecha_toma,A.ayuda_fam,A.fam_comprobl,A.fam_percosnue,
+		A.fam_feltrienf,A.fam_comptiemjun,A.sati_famayu,A.sati_famcompro,A.sati_famapoemp,
+		A.sati_famemosion,A.sati_famcompar,A.puntaje,A.descripcion,
+		P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,
+		P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
+		FROM hog_tam_apgar A
+		LEFT JOIN person P ON A.idpeople = P.idpeople
 		WHERE id_apgar='{$id[0]}'";
 		$info=datos_mysql($sql);
 		 return json_encode($info['responseResult'][0]);
@@ -152,10 +157,7 @@ function get_tapgar(){//CAMBIO function nueva
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT `id_apgar`,O.idpeople,`ayuda_fam`,`fam_comprobl`,`fam_percosnue`,`fam_feltrienf`,`fam_comptiemjun`,`sati_famayu`,`sati_famcompro`,`sati_famapoemp`,`sati_famemosion`,`sati_famcompar`,`puntaje`,`descripcion`,
-        O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
-		FROM `hog_tam_apgar` O
-		LEFT JOIN person P ON O.idpeople = P.idpeople
+		$sql="SELECT `id_apgar`,O.idpeopapgar_nombre = P.idpeople
 			WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);

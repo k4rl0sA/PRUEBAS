@@ -63,8 +63,23 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
     return $sql;
 }
 
+function lis_apgar(){
+	// var_dump($_POST['id']);
+	$id=divide($_POST['id']);
+	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_amb A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idvivamb='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"apgar-lis",5);
+}
+
 function cmp_tamApgar(){
-	$rta="";
+	$rta="<div class='encabezado apgar'>TABLA APGAR</div>
+	<div class='contenido' id='apgar-lis'>".lis_apgar()."</div></div>";
+
 	$a=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';

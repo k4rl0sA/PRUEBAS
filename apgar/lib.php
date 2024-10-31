@@ -137,10 +137,35 @@ function cmp_tamApgar(){
    }
 
 function get_tamApgar(){
+	if($_REQUEST['id']==''){
+		return "";
+	}else{
+		// print_r($_POST);
+		$id=divide($_REQUEST['id']);
+		// print_r($id);
+		$sql="SELECT concat_ws('_',idfam,id_viv), fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion
+		FROM hog_carac
+		WHERE id_viv='{$id[1]}'";
+		// echo $sql;
+		// LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
+		// LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
+		// LEF JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
+        			// FROM hog_geo ) AS G ON H.idgeo = G.geo
+		// print_r($id);
+		$info=datos_mysql($sql);
+		 return json_encode($info['responseResult'][0]);
+	    }
+
+
+
+	
+}
+
+function get_tapgar(){//CAMBIO function nueva
 	if($_POST['id']==0){
 		return "";
 	}else{
-		 $id=divide($_POST['id']);//CAMBIO SELECT
+		 $id=divide($_POST['id']);
 		print_r($_POST);
 		$sql="SELECT `id_apgar`,O.idpeople,`ayuda_fam`,`fam_comprobl`,`fam_percosnue`,`fam_feltrienf`,`fam_comptiemjun`,`sati_famayu`,`sati_famcompro`,`sati_famapoemp`,`sati_famemosion`,`sati_famcompar`,`puntaje`,`descripcion`,
         O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
@@ -161,27 +186,6 @@ function get_tamApgar(){
 			}
 		return $info['responseResult'][0];
 	}
-}
-
-function get_tapgar(){
-	if($_REQUEST['id']==''){
-		return "";
-	}else{
-		// print_r($_POST);
-		$id=divide($_REQUEST['id']);
-		// print_r($id);
-		$sql="SELECT concat_ws('_',idfam,id_viv), fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion
-		FROM hog_carac
-		WHERE id_viv='{$id[1]}'";
-		// echo $sql;
-		// LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
-		// LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-		// LEF JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
-        			// FROM hog_geo ) AS G ON H.idgeo = G.geo
-		// print_r($id);
-		$info=datos_mysql($sql);
-		 return json_encode($info['responseResult'][0]);
-	    } 
 }
 
 

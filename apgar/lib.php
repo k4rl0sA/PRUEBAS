@@ -167,7 +167,6 @@ function cmp_tamApgar(){
     foreach ($edadCampos as $campo) {
         $baseData[$campo] = $data[$campo];
     }
-    var_dump($baseData);  // Para depuración, luego se puede eliminar
     return json_encode($baseData);
 }
 

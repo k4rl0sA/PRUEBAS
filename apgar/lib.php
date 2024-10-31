@@ -155,7 +155,7 @@ function cmp_tamApgar(){
         // Verificar edad y filtrar los resultados
         if ($data['apgar_edad'] < 18) {
             // Solo muestra los valores para menores de 18
-            $filtered_data = [
+            $datos = [
                 'id_apgar' => $data['id_apgar'],
                 'idpersona' => $data['idpersona'],
                 'tipo_doc' => $data['tipo_doc'],
@@ -169,9 +169,10 @@ function cmp_tamApgar(){
                 'fam_feltrienf' => $data['fam_feltrienf'],
                 'fam_comptiemjun' => $data['fam_comptiemjun']
             ];
+			var_dump($datos);
         } else {
             // Solo muestra los valores para mayores de 18
-            $filtered_data = [
+            $datos = [
                 'id_apgar' => $data['id_apgar'],
                 'idpersona' => $data['idpersona'],
                 'tipo_doc' => $data['tipo_doc'],
@@ -185,9 +186,9 @@ function cmp_tamApgar(){
                 'sati_famemosion' => $data['sati_famemosion'],
                 'sati_famcompar' => $data['sati_famcompar']
             ];
+			var_dump($datos);
         }
-        
-        return json_encode($filtered_data);
+        return json_encode($datos);
     }
 }
 

@@ -137,11 +137,12 @@ function get_tamApgar(){
 		return "";
 	}else{
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT A.id_apgar,A.idpeople,A.fecha_toma,A.ayuda_fam,A.fam_comprobl,A.fam_percosnue,
-		A.fam_feltrienf,A.fam_comptiemjun,A.sati_famayu,A.sati_famcompro,A.sati_famapoemp,
-		A.sati_famemosion,A.sati_famcompar,A.puntaje,A.descripcion,
-		P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,
-		P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
+		$sql="SELECT A.id_apgar,P.idpersona,P.tipo_doc,
+		concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,
+		P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad,
+		A.fecha_toma,A.ayuda_fam,A.fam_comprobl,A.fam_percosnue,A.fam_feltrienf,A.fam_comptiemjun,
+		A.sati_famayu,A.sati_famcompro,A.sati_famapoemp,A.sati_famemosion,A.sati_famcompar,A.puntaje,
+		A.descripcion
 		FROM hog_tam_apgar A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
 		WHERE A.id_apgar='{$id[0]}'";

@@ -122,7 +122,7 @@ function cmp_tamApgar(){
 		FROM `hog_tam_apgar` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 			WHERE P.idpersona ='{$id[0]}' AND P.tipo_doc='{$id[1]}'";
-		// echo $sql;
+		echo $sql;
 		$info=datos_mysql($sql);
 			return $info['responseResult'][0];
 		}

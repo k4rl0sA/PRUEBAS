@@ -309,6 +309,10 @@ function gra_tamApgar(){
 			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamApgar','pro',event,'','lib.php',7,'tamApgar');setTimeout(hiddxedad,300,'edad','cuestionario1','cuestionario2');\"></li>";  //act_lista(f,this);
 			}
+			if ($a=='apgar-lis' && $b=='acciones'){
+				$rta="<nav class='menu right'>";		
+					$rta.="<li title='Ver Apgar' Onclick=\"setTimeout(getData,500,'ambient',event,this,['fecha','tipo_activi'],'amb.php');\"><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."'></i></li>";  //   act_lista(f,this);
+			}
 		return $rta;
 	   }
 

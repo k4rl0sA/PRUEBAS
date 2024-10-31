@@ -115,7 +115,7 @@ function cmp_tamApgar(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);//CAMBIO TABLA PERSON LINEA 123
-		// print_r($_POST);
+		print_r($_POST);
 		$sql="SELECT `id_apgar`,O.`idpersona`,O.`tipodoc`,
 		FN_CATALOGODESC(116,momento) momento,`ayuda_fam`,`fam_comprobl`,`fam_percosnue`,`fam_feltrienf`,`fam_comptiemjun`,`sati_famayu`,`sati_famcompro`,`sati_famapoemp`,`sati_famemosion`,`sati_famcompar`,`puntaje`,`descripcion`,
         O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad

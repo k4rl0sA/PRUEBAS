@@ -66,8 +66,8 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 function lis_apgar(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_amb A
+	$sql="SELECT id_apgar ACCIONES,id_apgar 'Cod Registro',fecha_toma,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_apgar A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idvivamb='".$id[0];
 	$sql.="' ORDER BY fecha_create";

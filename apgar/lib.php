@@ -45,7 +45,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
 	}else{
-		return $_POST;	
+		return '';	
 	}
 }
 

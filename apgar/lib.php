@@ -138,6 +138,8 @@ function get_tamApgar(){//CAMBIO function modificada
 		return "";
 	}else{
 		var_dump($_POST);
+		var_dump($_REQUEST);
+		var_dump($_GET);
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT A.id_apgar,P.idpersona,P.tipo_doc,
 		concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,

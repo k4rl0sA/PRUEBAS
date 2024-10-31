@@ -159,13 +159,11 @@ function cmp_tamApgar(){
         'apgar_nombre' => $data['apgar_nombre'],
         'apgar_fechanacimiento' => $data['apgar_fechanacimiento'],
         'apgar_edad' => $data['apgar_edad'],
-        'fecha_toma' => $data['fecha_toma'],
-        'puntaje' => $data['puntaje'],
-        'descripcion' => $data['descripcion']
+        'fecha_toma' => $data['fecha_toma']
     ];
     $edadCampos = ($data['apgar_edad'] < 18) 
-        ? ['ayuda_fam', 'fam_comprobl', 'fam_percosnue', 'fam_feltrienf', 'fam_comptiemjun'] //MENORES DE 18
-        : ['sati_famayu', 'sati_famcompro', 'sati_famapoemp', 'sati_famemosion', 'sati_famcompar'];//MAYORES DE 18
+        ? ['ayuda_fam', 'fam_comprobl', 'fam_percosnue', 'fam_feltrienf', 'fam_comptiemjun','puntaje','descripcion'] //MENORES DE 18
+        : ['sati_famayu', 'sati_famcompro', 'sati_famapoemp', 'sati_famemosion', 'sati_famcompar','puntaje','descripcion'];//MAYORES DE 18
 
     foreach ($edadCampos as $campo) {
         $baseData[$campo] = $data[$campo];

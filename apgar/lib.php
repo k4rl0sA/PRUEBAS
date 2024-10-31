@@ -32,7 +32,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		$regxPag=12;
 		$pag=(isset($_POST['pag-tamApgar']))? ($_POST['pag-tamApgar']-1)* $regxPag:0;
 
-		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.perfil perfil  
+		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.perfil perfil  
 	FROM hog_tam_apgar O 
 		LEFT JOIN person P ON O.idpeople = P.idpeople 
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
@@ -45,7 +45,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
 	}else{
-		return "<div class='error' style='padding: 12px; background-color:#ff9700;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";

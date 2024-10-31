@@ -145,7 +145,7 @@ function get_tamApgar(){
 		FROM hog_tam_apgar A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
 		WHERE A.id_apgar='{$id[0]}'";
-		echo $sql;
+		// echo $sql;
 		$info=datos_mysql($sql);
 		 return json_encode($info['responseResult'][0]);
 	    }

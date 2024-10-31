@@ -102,25 +102,28 @@ function cmp_tamApgar(){
     $c[]=new cmp('edad','n','3',$d['apgar_edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 
+	$ed=false;
 	if($d['apgar_edad']>6 && $d['apgar_edad']<18){
 		$o=' cuestionario1';
+		$ed=true;
 		$c[]=new cmp($o,'e',null,'APGAR FAMILIAR 7 A 17 AÑOS',$w);
-		$c[]=new cmp('ayuda_fam','s','3','',$w.' '.$o,'Cuando algo le preocupa, puede pedir ayuda a su familia','respmenor',null,null,false,true,'','col-10');
-		$c[]=new cmp('fam_comprobl','s','3','',$w.' '.$o,'Le gusta la manera como su familia habla y comparte los problemas','respmenor',null,null,false,true,'','col-10');
-		$c[]=new cmp('fam_percosnue','s','3','',$w.' '.$o,'Le gusta como su familia le permite hacer las cosas nuevas que quiere hacer','respmenor',null,null,false,true,'','col-10');
-		$c[]=new cmp('fam_feltrienf','s','3','',$w.' '.$o,'Le gusta lo que su familia hace cuando está feliz, triste, enfadado','respmenor',null,null,false,true,'','col-10');
-		$c[]=new cmp('fam_comptiemjun','s','3','',$w.' '.$o,'Le gusta como su familia y él comparten tiempo juntos','respmenor',null,null,false,true,'','col-10');
+		$c[]=new cmp('ayuda_fam','s','3','',$w.' '.$o,'Cuando algo le preocupa, puede pedir ayuda a su familia','respmenor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('fam_comprobl','s','3','',$w.' '.$o,'Le gusta la manera como su familia habla y comparte los problemas','respmenor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('fam_percosnue','s','3','',$w.' '.$o,'Le gusta como su familia le permite hacer las cosas nuevas que quiere hacer','respmenor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('fam_feltrienf','s','3','',$w.' '.$o,'Le gusta lo que su familia hace cuando está feliz, triste, enfadado','respmenor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('fam_comptiemjun','s','3','',$w.' '.$o,'Le gusta como su familia y él comparten tiempo juntos','respmenor',null,null,$ed,true,'','col-10');
 	}
 	
 
 	if($d['apgar_edad']>17){
 		$o=' cuestionario20';
+		$ed=true;
 		$c[]=new cmp($o,'e',null,'APGAR FAMILIAR 18 AÑOS EN ADELANTE',$w);
-		$c[]=new cmp('sati_famayu','s','3','',$w.' '.$o,'Me siento satisfecho con la ayuda que recibo de mi familia cuando tengo algún problema o necesidad','respmayor',null,null,false,true,'','col-10');
-		$c[]=new cmp('sati_famcompro','s','3','',$w.' '.$o,'Me siento satisfecho con la forma en que mi familia habla de las cosas y comparte los problemas conmigo','respmayor',null,null,false,true,'','col-10');
-		$c[]=new cmp('sati_famapoemp','s','3','',$w.' '.$o,'Me siento satisfecho con la forma como mi familia acepta y apoya mis deseos de emprender nuevas actividades','respmayor',null,null,false,true,'','col-10');
-		$c[]=new cmp('sati_famemosion','s','3','',$w.' '.$o,'Me siento satisfecho con la forma como mi familia expresa afecto y responde a mis emociones como rabia, tristeza o amor','respmayor',null,null,false,true,'','col-10');
-		$c[]=new cmp('sati_famcompar','s','3','',$w.' '.$o,'Me siento satisfecho con la manera como compartimos en mi familia el tiempo para estar juntos, los espacios en la casa o el dinero ','respmayor',null,null,false,true,'','col-10');
+		$c[]=new cmp('sati_famayu','s','3','',$w.' '.$o,'Me siento satisfecho con la ayuda que recibo de mi familia cuando tengo algún problema o necesidad','respmayor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('sati_famcompro','s','3','',$w.' '.$o,'Me siento satisfecho con la forma en que mi familia habla de las cosas y comparte los problemas conmigo','respmayor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('sati_famapoemp','s','3','',$w.' '.$o,'Me siento satisfecho con la forma como mi familia acepta y apoya mis deseos de emprender nuevas actividades','respmayor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('sati_famemosion','s','3','',$w.' '.$o,'Me siento satisfecho con la forma como mi familia expresa afecto y responde a mis emociones como rabia, tristeza o amor','respmayor',null,null,$ed,true,'','col-10');
+		$c[]=new cmp('sati_famcompar','s','3','',$w.' '.$o,'Me siento satisfecho con la manera como compartimos en mi familia el tiempo para estar juntos, los espacios en la casa o el dinero ','respmayor',null,null,$ed,true,'','col-10');
 	}
 	
 

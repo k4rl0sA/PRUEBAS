@@ -83,7 +83,7 @@ function cmp_tamApgar(){
 	$a=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
-	$d=get_tamApgar();
+	$d=get_tapgar();
 	var_dump($d);
 	if (isset($d['id_apgar'])) {
 		echo 'id apgar=SI';
@@ -332,7 +332,7 @@ function gra_tamApgar(){
 			}
 			if ($a=='apgar-lis' && $b=='acciones'){
 				$rta="<nav class='menu right'>";		
-					$rta.="<li title='Ver Apgar'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'tapgar',event,this,'../apgar/lib.php',['puntaje','descripcion']);\"></i></li>";  //   act_lista(f,this);
+					$rta.="<li title='Ver Apgar'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'tamApgar',event,this,'../apgar/lib.php',['puntaje','descripcion']);\"></i></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	   }

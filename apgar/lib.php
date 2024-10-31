@@ -70,8 +70,10 @@ function cmp_tamApgar(){
 	$d=get_tamApgar();
 	var_dump($d);
 	if (isset($d['id_apgar'])) {
+		echo 'id apgar=SI';
 		$d=$t;
 	}else{
+		echo 'id apgar=NO';
 	}
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';

@@ -32,7 +32,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		$regxPag=12;
 		$pag=(isset($_POST['pag-tamApgar']))? ($_POST['pag-tamApgar']-1)* $regxPag:0;
 
-		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',P.idpersona Documento,FN_CATALOGODESC(1,P.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.perfil perfil  
+		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.perfil perfil  
 	FROM hog_tam_apgar O 
 		LEFT JOIN person P ON O.idpeople = P.idpeople 
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam

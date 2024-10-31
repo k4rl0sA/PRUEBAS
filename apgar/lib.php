@@ -73,8 +73,7 @@ function cmp_tamApgar(){
 	if (isset($d['id_apgar'])) {
 		echo 'id apgar=SI';
 	}else{
-		$resultado = array_merge($d,$a);
-		$d=$p;
+		$d = array_merge($d,$a);
 		echo 'id apgar=NO';
 	}
 	$u = ($d['id_apgar']!='') ? false : true ;

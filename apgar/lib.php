@@ -66,7 +66,7 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 function lis_apgar(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT id_apgar ACCIONES,id_apgar 'Cod Registro',fecha_toma,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT id_apgar ACCIONES,id_apgar 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_apgar A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

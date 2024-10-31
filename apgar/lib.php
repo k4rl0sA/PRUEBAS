@@ -129,7 +129,7 @@ function cmp_tamApgar(){
 
 	$o='totalresul';
 		$c[]=new cmp($o,'e',null,'TOTAL',$w);
-		$c[]=new cmp('puntaje','t','2',$d,$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
+		$c[]=new cmp('puntaje','t','2','',$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
 		$c[]=new cmp('descripcion','t','3','',$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

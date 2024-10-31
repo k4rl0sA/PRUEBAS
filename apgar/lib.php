@@ -300,16 +300,16 @@ function gra_tamApgar(){
 				// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 			}
 
-			$tas=$_POST['tas'] ?? null;
-			$cop=$_POST['fam_comprobl']??null;
-			$per=$_POST['fam_percosnue']??null;
-			$fel=$_POST['fam_feltrienf']??null;
-			$cti=$_POST['fam_comptiemjun']??null;
-			$ayu=$_POST['sati_famayu']??null;
-			$com=$_POST['sati_famcompro']??null;
-			$apo=$_POST['sati_famapoemp']??null;
-			$emo=$_POST['sati_famemosion']??null;
-			$cmr=$_POST['sati_famcompar']??null;
+			$tas=empty($_POST['tas']) ?? null;
+			$cop=empty($_POST['fam_comprobl'])??null;
+			$per=empty($_POST['fam_percosnue'])??null;
+			$fel=empty($_POST['fam_feltrienf'])??null;
+			$cti=empty($_POST['fam_comptiemjun'])??null;
+			$ayu=empty($_POST['sati_famayu'])??null;
+			$com=empty($_POST['sati_famcompro'])??null;
+			$apo=empty($_POST['sati_famapoemp'])??null;
+			$emo=empty($_POST['sati_famemosion'])??null;
+			$cmr=empty($_POST['sati_famcompar'])??null;
 
 			 //cambio ipersona por idpeople en la variable $idper
 			$sql="INSERT INTO hog_tam_apgar VALUES (null,

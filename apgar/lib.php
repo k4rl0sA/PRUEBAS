@@ -6,9 +6,9 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
+  case 'csv':
     header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
+    $rs=array('','');
     echo csv($rs,'');
     die;
     break;
@@ -16,27 +16,27 @@ else {
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }
 }
 
 
 function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEFT JOIN), cambiar el id de acciones en el sql
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
-		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_apgar O 
-		LEFT JOIN person P ON O.idpeople = P.idpeople 
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_apgar O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
-		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario 
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		where ".whe_tamApgar());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
 		$pag=(isset($_POST['pag-tamApgar']))? (intval($_POST['pag-tamApgar'])-1)* $regxPag:0;
 
-		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil  
-	FROM hog_tam_apgar O 
-		LEFT JOIN person P ON O.idpeople = P.idpeople 
+		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_apgar O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		WHERE ";
 	$sql.=whe_tamApgar();
@@ -65,9 +65,9 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 
 function cmp_tamApgar(){
 	$rta="";
-	$t=['id_apgar'=>'','momento'=>'','tipodoc'=>'','idpersona'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; 
+	$t=['id_apgar'=>'','momento'=>'','tipodoc'=>'','idpersona'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>''];
 	$w='tamapgar';
-	$d=get_tamApgar(); 
+	$d=get_tamApgar();
 	if ($d=="") {$d=$t;}
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';
@@ -75,7 +75,7 @@ function cmp_tamApgar(){
 	$days=fechas_app('vivienda');//CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('idpersona','n','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-2');//CAMBIO CAMBIAR  T POR N 
+	$c[]=new cmp('idpersona','n','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-2');//CAMBIO CAMBIAR  T POR N
 	$c[]=new cmp('tipodoc','s','3',$d['tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-25',"getDatForm('apg','person',['datos']);setTimeout(function() {TamizxApgar('edad');}, 1000);");
 	$c[]=new cmp('nombre','t','50',$d['apgar_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['apgar_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
@@ -106,7 +106,7 @@ function cmp_tamApgar(){
 				$c[]=new cmp('descripcion','t','3',$d['descripcion'],$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
+
 	return $rta;
    }
 
@@ -126,7 +126,7 @@ function cmp_tamApgar(){
 		$info=datos_mysql($sql);
 			return $info['responseResult'][0];
 		}
-	} 
+	}
 
 
 function get_person(){//CAMBIO TABLA PERSON DEL FROM LINEA 136
@@ -145,30 +145,30 @@ return json_encode($info['responseResult'][0]);
 function focus_tamApgar(){
 	return 'tamApgar';
    }
-   
+
 function men_tamApgar(){
 	$rta=cap_menus('tamApgar','pro');
 	return $rta;
    }
 
    function cap_menus($a,$b='cap',$con='con') {
-	$rta = ""; 
+	$rta = "";
 	$acc=rol($a);
-	if ($a=='tamApgar') {  
+	if ($a=='tamApgar') {
 		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
-		
+
 	}
 	return $rta;
   }
-   
+
 function gra_tamApgar(){
 	$id=$_POST['id'];
 	print_r($_POST);
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
-	}else{ 
+	}else{
 		$sql="SELECT idpeople FROM person WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'";
-		echo $sql;
+		// echo $sql;
 		$idp=datos_mysql($sql);//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
 			$idper = $idp['responseResult'][0];//CAMBIO ADD linea
@@ -250,7 +250,7 @@ function gra_tamApgar(){
 			return 'TAMIZAJE NO APLICA PARA LA EDAD';
 		}
 	}
-  return $sql; 
+  return $sql;
 }
 
 
@@ -272,13 +272,12 @@ function gra_tamApgar(){
 	   // var_dump($a);
 	   // var_dump($rta);
 		   if ($a=='tamApgar' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
+			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamApgar','pro',event,'','lib.php',7,'tamApgar');setTimeout(hiddxedad,300,'edad','cuestionario1','cuestionario2');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }
-	   
+
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;
 	   }
-	

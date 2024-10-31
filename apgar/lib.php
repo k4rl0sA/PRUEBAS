@@ -147,7 +147,7 @@ function get_tamApgar(){
 		FROM `hog_tam_apgar` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 			WHERE P.idpeople ='{$id[0]}'";
-		// echo $sql;
+		echo $sql;
 		$info=datos_mysql($sql);
 			if (!$info['responseResult']) {
 				$sql="SELECT P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,
@@ -155,7 +155,7 @@ function get_tamApgar(){
 				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
 				FROM person P 
 				WHERE P.idpeople ='{$id[0]}'";
-				// echo $sql;
+				echo $sql;
 				$info=datos_mysql($sql);
 			return $info['responseResult'][0];
 			}

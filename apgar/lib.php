@@ -124,7 +124,7 @@ function cmp_tamApgar(){
 			WHERE P.idpersona ='{$id[0]}' AND P.tipo_doc='{$id[1]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
+			return $info['responseResult'][0];
 		}
 	} 
 

@@ -237,7 +237,7 @@ function men_tamApgar(){
   }
 
 function gra_tamApgar(){
-	$id=$_POST['id'];
+	$id=divide($_POST['id']);
 	// print_r($_POST);
 	if(count($id)!==2){
 		return "No es posible actualizar el tamizaje";

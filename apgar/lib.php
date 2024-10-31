@@ -69,7 +69,7 @@ function lis_apgar(){
 	$sql="SELECT id_apgar ACCIONES,id_apgar 'Cod Registro',fecha_toma,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_apgar A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idvivamb='".$id[0];
+	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);

@@ -137,6 +137,7 @@ function get_tamApgar(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
+		var_dump($_POST);
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT A.id_apgar,P.idpersona,P.tipo_doc,
 		concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,

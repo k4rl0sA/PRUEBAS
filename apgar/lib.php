@@ -68,9 +68,12 @@ function cmp_tamApgar(){
 	$t=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
 	$w='tamapgar';
 	$d=get_tamApgar();
-	if ($d['id_apgar']=='Undefined') {
+	if (isset($d['id_apgar'])) {
 		var_dump($d);
-	}	
+		$d=$t;
+	}else{
+		var_dump($d);
+	}
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';
     $key='apg';

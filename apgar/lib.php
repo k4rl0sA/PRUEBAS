@@ -163,7 +163,7 @@ function men_tamApgar(){
 
 function gra_tamApgar(){
 	$id=$_POST['id'];
-	print_r($_POST);
+	// print_r($_POST);
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
 	}else{

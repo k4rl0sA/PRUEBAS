@@ -41,7 +41,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		WHERE 1 ";
 	$sql.=whe_tamApgar();
 	$sql.=" ORDER BY O.fecha_create DESC";
-	//echo $sql;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
 	}else{

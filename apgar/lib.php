@@ -239,7 +239,7 @@ function men_tamApgar(){
 function gra_tamApgar(){
 	$id=$_POST['id'];
 	// print_r($_POST);
-	if($id != "0"){
+	if(count($id)!==2){
 		return "No es posible actualizar el tamizaje";
 	}else{
 		// echo $sql;

@@ -72,6 +72,7 @@ function cmp_tamApgar(){
 	$u = ($d['id_apgar']!='') ? false : true ;
 	$o='datos';
     $key='apg';
+	$days=fechas_app('vivienda');//CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-2');
@@ -79,9 +80,8 @@ function cmp_tamApgar(){
 	$c[]=new cmp('nombre','t','50',$d['apgar_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['apgar_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('edad','n','3',$d['apgar_edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
-   
-    //$c[]=new cmp('act','o','3','',$w.' '.$o,'Desea continuar','act',null,'',true,$u,'','col-3');//,'hiddxedad(\'edad\',\'cuestionario1\',\'cuestionario2\');'
-  
+	$c[]=new cmp('fecha_toma','d','10',$d,$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-15',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
+
 
 	$o=' cuestionario1 oculto ';
 				$c[]=new cmp($o,'e',null,'APGAR FAMILIAR 7 A 17 AÑOS',$w);
@@ -114,14 +114,14 @@ function cmp_tamApgar(){
 	if($_POST['id']==0){
 		return "";
 	}else{
-		 $id=divide($_POST['id']);
+		 $id=divide($_POST['id']);//CAMBIO TABLA PERSON LINEA 123
 		// print_r($_POST);
 		$sql="SELECT `id_apgar`,O.`idpersona`,O.`tipodoc`,
 		FN_CATALOGODESC(116,momento) momento,`ayuda_fam`,`fam_comprobl`,`fam_percosnue`,`fam_feltrienf`,`fam_comptiemjun`,`sati_famayu`,`sati_famcompro`,`sati_famapoemp`,`sati_famemosion`,`sati_famcompar`,`puntaje`,`descripcion`,
         O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
 		FROM `hog_tam_apgar` O
-		LEFT JOIN personas P ON O.idpersona = P.idpersona and O.tipodoc=P.tipo_doc
-		WHERE O.idpersona ='{$id[0]}' AND O.tipodoc='{$id[1]}' AND momento = '{$id[2]}'  ";
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+			WHERE P.idpersona ='{$id[0]}' AND P.tipo_doc='{$id[1]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
@@ -129,11 +129,11 @@ function cmp_tamApgar(){
 	} 
 
 
-function get_person(){
-	// print_r($_POST);
+function get_person(){//CAMBIO TABLA PERSON DEL FROM LINEA 136
+	 print_r($_POST);
 	$id=divide($_POST['id']);
 $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
-from personas
+from person
 	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
@@ -163,45 +163,37 @@ function men_tamApgar(){
    
 function gra_tamApgar(){
 	$id=$_POST['id'];
-	//print_r($_POST);
+	print_r($_POST);
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-		$infodata_apgar=datos_mysql("SELECT momento,idpersona FROM hog_tam_apgar WHERE idpersona = {$_POST['idpersona']} AND momento = 2 ");
-	if (isset($infodata_apgar['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_apgar=datos_mysql("SELECT momento,idpersona FROM hog_tam_apgar
-		 WHERE idpersona = {$_POST['idpersona']} AND momento = 1 ");
-		if (isset($infodata2_apgar['responseResult'][0])){
-			$idmomento = 2;
-		}else{
-			$idmomento = 1;
+		$idp=datos_mysql("SELECT idpeople FROM person WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ={$_POST['tipodoc']}");
+		if (isset($idp['responseResult'][0])){
+			$idper = $idp['responseResult'][0];
 		}
-	}
 
-	if ($_POST['fam_comprobl']!='' || $_POST['sati_famcompro']!=''){
-		$pre1 = ($_POST['ayuda_fam']) ?  $_POST['ayuda_fam'] : 0;
-		$pre2 = ($_POST['fam_comprobl']) ?  $_POST['fam_comprobl'] : 0;
-    	$pre3 = ($_POST['fam_percosnue']) ?  $_POST['fam_percosnue']  : 0;
-    	$pre4 = ($_POST['fam_feltrienf']) ?  $_POST['fam_feltrienf']  : 0;
-    	$pre5 = ($_POST['fam_comptiemjun']) ?  $_POST['fam_comptiemjun']  : 0;
-		$pre6 = ($_POST['sati_famayu']) ?  $_POST['sati_famayu']  : 0;
-    	$pre7 = ($_POST['sati_famcompro']) ?  $_POST['sati_famcompro']  : 0;
-    	$pre8 = ($_POST['sati_famapoemp']) ?  $_POST['sati_famapoemp']  : 0;
-    	$pre9 = ($_POST['sati_famemosion']) ?  $_POST['sati_famemosion']  : 0;
-    	$pre10 = ($_POST['sati_famcompar']) ?  $_POST['sati_famcompar']  : 0;
+		if ($_POST['fam_comprobl']!='' || $_POST['sati_famcompro']!=''){
+			$pre1 = ($_POST['ayuda_fam']) ?  $_POST['ayuda_fam'] : 0;
+			$pre2 = ($_POST['fam_comprobl']) ?  $_POST['fam_comprobl'] : 0;
+    		$pre3 = ($_POST['fam_percosnue']) ?  $_POST['fam_percosnue']  : 0;
+    		$pre4 = ($_POST['fam_feltrienf']) ?  $_POST['fam_feltrienf']  : 0;
+    		$pre5 = ($_POST['fam_comptiemjun']) ?  $_POST['fam_comptiemjun']  : 0;
+			$pre6 = ($_POST['sati_famayu']) ?  $_POST['sati_famayu']  : 0;
+    		$pre7 = ($_POST['sati_famcompro']) ?  $_POST['sati_famcompro']  : 0;
+    		$pre8 = ($_POST['sati_famapoemp']) ?  $_POST['sati_famapoemp']  : 0;
+    		$pre9 = ($_POST['sati_famemosion']) ?  $_POST['sati_famemosion']  : 0;
+    		$pre10 = ($_POST['sati_famcompar']) ?  $_POST['sati_famcompar']  : 0;
 
-		$suma_apgar = ($pre1+$pre2+$pre3+$pre4+$pre5+$pre6+$pre7+$pre8+$pre9+$pre10);
+			$suma_apgar = ($pre1+$pre2+$pre3+$pre4+$pre5+$pre6+$pre7+$pre8+$pre9+$pre10);
 
 
-		$ed=$_POST['edad'];
-		if($ed>17){
-			switch ($suma_apgar) {
-				case ($suma_apgar >= 0 && $suma_apgar <=9 ):
-					$des='DISFUNCIÓN FAMILIAR SEVERA';
-					break;
-				case ($suma_apgar >= 10 && $suma_apgar <= 12):
+			$ed=$_POST['edad'];
+			if($ed>17){
+				switch ($suma_apgar) {
+					case ($suma_apgar >= 0 && $suma_apgar <=9 ):
+						$des='DISFUNCIÓN FAMILIAR SEVERA';
+						break;
+					case ($suma_apgar >= 10 && $suma_apgar <= 12):
 					$des='DISFUNCIÓN FAMILIAR MODERADA';
 					break;
 				case ($suma_apgar >= 13 && $suma_apgar <= 16):
@@ -214,50 +206,47 @@ function gra_tamApgar(){
 					$des='Error en el rango, por favor valide';
 					break;
 			}
-		}else{
-			switch ($suma_apgar) {
-				case ($suma_apgar >= 0 && $suma_apgar <=3 ):
-					$des='DISFUNCIÓN FAMILIAR SEVERA';
-					break;
-				case ($suma_apgar >= 4 && $suma_apgar <= 6):
-					$des='DISFUNCIÓN FAMILIAR MODERADA';
-					break;
-				case ($suma_apgar >= 7 && $suma_apgar <= 10):
-					$des='FUNCIÓN FAMILIAR NORMAL';
-					break;
-			
-				default:
-					$des='Error en el rango, por favor valide';
-					break;
+			}else{
+				switch ($suma_apgar) {
+					case ($suma_apgar >= 0 && $suma_apgar <=3 ):
+						$des='DISFUNCIÓN FAMILIAR SEVERA';
+						break;
+					case ($suma_apgar >= 4 && $suma_apgar <= 6):
+						$des='DISFUNCIÓN FAMILIAR MODERADA';
+						break;
+					case ($suma_apgar >= 7 && $suma_apgar <= 10):
+						$des='FUNCIÓN FAMILIAR NORMAL';
+						break;
+					
+					default:
+						$des='Error en el rango, por favor valide';
+						break;
+				}
+				// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 			}
-			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
-		}
 
-		$sql="INSERT INTO hog_tam_apgar VALUES (null,
-		{$idmomento},
-		trim(upper('{$_POST['tipodoc']}')),
-		trim(upper('{$_POST['idpersona']}')),
-		trim(upper('{$_POST['ayuda_fam']}')),
-		trim(upper('{$_POST['fam_comprobl']}')),
-		trim(upper('{$_POST['fam_percosnue']}')),
-		trim(upper('{$_POST['fam_feltrienf']}')),
-		trim(upper('{$_POST['fam_comptiemjun']}')),
-		trim(upper('{$_POST['sati_famayu']}')),
-		trim(upper('{$_POST['sati_famcompro']}')),
-		trim(upper('{$_POST['sati_famapoemp']}')),
-		trim(upper('{$_POST['sati_famemosion']}')),
-		trim(upper('{$_POST['sati_famcompar']}')),
-		'{$suma_apgar}',
-		trim(upper('{$des}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		//echo $sql;
-		$rta=dato_mysql($sql);
-	}else{
-		// print_r($_POST);
-		return 'TAMIZAJE NO APLICA PARA LA EDAD';
-	}
-		
+			$sql="INSERT INTO hog_tam_apgar VALUES (null,
+			{$idper},
+			trim(upper('{$_POST['ayuda_fam']}')),
+			trim(upper('{$_POST['fam_comprobl']}')),
+			trim(upper('{$_POST['fam_percosnue']}')),
+			trim(upper('{$_POST['fam_feltrienf']}')),
+			trim(upper('{$_POST['fam_comptiemjun']}')),
+			trim(upper('{$_POST['sati_famayu']}')),
+			trim(upper('{$_POST['sati_famcompro']}')),
+			trim(upper('{$_POST['sati_famapoemp']}')),
+			trim(upper('{$_POST['sati_famemosion']}')),
+			trim(upper('{$_POST['sati_famcompar']}')),
+			'{$suma_apgar}',
+			trim(upper('{$des}')),
+			TRIM(UPPER('{$_SESSION['us_sds']}')),
+			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
+			//echo $sql;
+			$rta=dato_mysql($sql);
+		}else{
+			// print_r($_POST);
+			return 'TAMIZAJE NO APLICA PARA LA EDAD';
+		}
 	}
   return $sql; 
 }

@@ -27,7 +27,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario 
-		where 1 ".whe_tamApgar());
+		where ".whe_tamApgar());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
 		$pag=(isset($_POST['pag-tamApgar']))? ($_POST['pag-tamApgar']-1)* $regxPag:0;
@@ -53,8 +53,12 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 }
 
 function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
+	$sql=' 1 ';
 	if ($_POST['fidentificacion']){
 		$sql = " AND P.idpersona = '".$_POST['fidentificacion']."'";
+	}
+	if ($_POST['ffam']){
+		$sql = " AND V.id_fam = '".$_POST['ffam']."'";
 	}
 	return $sql;
 }

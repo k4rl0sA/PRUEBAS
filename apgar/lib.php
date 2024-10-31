@@ -21,7 +21,7 @@ else {
 
 
 function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEFT JOIN), cambiar el id de acciones en el sql
-	if ($_POST['fidentificacion'] || $_POST['ffam']){
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_apgar O 
 		LEFT JOIN person P ON O.idpeople = P.idpeople 
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
@@ -30,7 +30,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		where ".whe_tamApgar());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
-		$pag=(isset($_POST['pag-tamApgar']))? ($_POST['pag-tamApgar']-1)* $regxPag:0;
+		$pag=(isset($_POST['pag-tamApgar']))? (intval($_POST['pag-tamApgar'])-1)* $regxPag:0;
 
 		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.perfil perfil  
 	FROM hog_tam_apgar O 
@@ -38,10 +38,10 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
-		WHERE 1 ";
+		WHERE ";
 	$sql.=whe_tamApgar();
 	$sql.=" ORDER BY O.fecha_create DESC";
-	echo $sql;
+	//echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
 	}else{
@@ -53,14 +53,16 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 }
 
 function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
-	$sql=' 1 ';
-	if ($_POST['fidentificacion']){
-		$sql. = " AND P.idpersona = '".$_POST['fidentificacion']."'";
-	}
-	if ($_POST['ffam']){
-		$sql. = " AND V.id_fam = '".$_POST['ffam']."'";
-	}
-	return $sql;
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $identificacion = $_POST['fidentificacion'];
+        $sql .= " AND P.idpersona = '$identificacion'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $fam = $_POST['ffam'];
+        $sql .= " AND V.id_fam = '$fam'";
+    }
+    return $sql;
 }
 
 function cmp_tamApgar(){

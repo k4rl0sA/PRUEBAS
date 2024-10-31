@@ -65,7 +65,7 @@ function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 
 function cmp_tamApgar(){
 	$rta="";
-	$t=['id_apgar'=>'','momento'=>'','tipodoc'=>'','idpersona'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>''];
+	$t=['id_apgar'=>'','momento'=>'','tipo_doc'=>'','idpersona'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>''];
 	$w='tamapgar';
 	$d=get_tamApgar();
 	if ($d=="") {$d=$t;}

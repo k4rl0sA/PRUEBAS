@@ -133,7 +133,7 @@ function cmp_tamApgar(){
 	return $rta;
    }
 
-function get_tamApgar(){
+function get_tamApgar(){//CAMBIO function modificada
 	if($_REQUEST['id']==''){
 		return "";
 	}else{

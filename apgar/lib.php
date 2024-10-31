@@ -51,7 +51,7 @@ function lis_tamApgar(){ //CAMBIO EN LIS TABLA PERSON RELACIONES  (TODOS LOS LEF
 
 function whe_tamApgar() { //CAMBIO FILTROS DEJAR ESTOS
 	if ($_POST['fidentificacion']){
-		$sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+		$sql = " AND P.idpersona = '".$_POST['fidentificacion']."'";
 	}
 	return $sql;
 }

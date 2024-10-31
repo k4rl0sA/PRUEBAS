@@ -71,8 +71,8 @@ function cmp_tamApgar(){
 	var_dump($d);
 	if (isset($d['id_apgar'])) {
 		echo 'id apgar=SI';
-		$d=$t;
 	}else{
+		$d=$t;
 		echo 'id apgar=NO';
 	}
 	$u = ($d['id_apgar']!='') ? false : true ;

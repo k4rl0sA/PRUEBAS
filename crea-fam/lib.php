@@ -808,7 +808,7 @@ function formato_dato($a,$b,$c,$d){
 		
 		$rta .= acceso('signos') ? "<li title='Signos' onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('alertas') ? "<li title='Alertas' onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='{$c['ACCIONES']}'></i></li>" : "";
-		$rta.=(acceso('tamApgar')) ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-roof' id='".$c['ACCIONES']."' ></i></li>":'';
+		$rta.=(acceso('tamApgar')) ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('atencion') ? "<li title='Crear Atención' onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');\"><i class='fa-solid fa-user-doctor ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";

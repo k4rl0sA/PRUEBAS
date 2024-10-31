@@ -144,7 +144,8 @@ function cmp_tamApgar(){
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS apgar_edad,
             A.fecha_toma, A.ayuda_fam, A.fam_comprobl, A.fam_percosnue, 
             A.fam_feltrienf, A.fam_comptiemjun, A.sati_famayu, A.sati_famcompro, 
-            A.sati_famapoemp, A.sati_famemosion, A.sati_famcompar
+            A.sati_famapoemp, A.sati_famemosion, A.sati_famcompar,
+			A.puntaje, A.descripcion
             FROM hog_tam_apgar A
             LEFT JOIN person P ON A.idpeople = P.idpeople
             WHERE A.id_apgar='{$id[0]}'";

@@ -138,9 +138,9 @@ function get_tamApgar(){
 		return "";
 	}else{
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT concat_ws('_',idfam,id_viv), fecha, motivoupd, eventoupd, fechanot, crit_epi, crit_geo, estr_inters, fam_peretn, fam_rurcer, tipo_vivienda, tenencia, dormitorios, actividad_economica, tipo_familia, personas, ingreso, seg_pre1, seg_pre2, seg_pre3, seg_pre4, seg_pre5, seg_pre6, seg_pre7, seg_pre8, subsidio_1, subsidio_2, subsidio_3, subsidio_4, subsidio_5, subsidio_6, subsidio_7, subsidio_8, subsidio_9, subsidio_10, subsidio_11, subsidio_12, subsidio_13, subsidio_14, subsidio_15, subsidio_16, subsidio_17, subsidio_18, subsidio_19, subsidio_20, energia, gas, acueducto, alcantarillado, basuras, pozo, aljibe, perros, numero_perros, perro_vacunas, perro_esterilizado, gatos, numero_gatos, gato_vacunas, gato_esterilizado, otros, facamb1, facamb2, facamb3, facamb4, facamb5, facamb6, facamb7, facamb8, facamb9, observacion
-		FROM hog_carac
-		WHERE id_viv='{$id[1]}'";
+		$sql="SELECT id_apgar, idpeople,fecha_toma,ayuda_fam,fam_comprobl,fam_percosnue,fam_feltrienf,fam_comptiemjun,sati_famayu,sati_famcompro,sati_famapoemp,sati_famemosion,sati_famcompar,puntaje,descripcion
+		FROM hog_tam_apgar
+		WHERE id_apgar='{$id[0]}'";
 		$info=datos_mysql($sql);
 		 return json_encode($info['responseResult'][0]);
 	    }

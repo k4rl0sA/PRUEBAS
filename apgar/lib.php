@@ -111,7 +111,7 @@ function cmp_tamApgar(){
 	return $rta;
    }
 
-   function get_tamApgar(){
+function get_tamApgar(){
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -129,6 +129,7 @@ function cmp_tamApgar(){
 		}
 		return $info['responseResult'][0];
 	}
+}
 
 
 function get_person(){//CAMBIO TABLA PERSON DEL FROM LINEA 136

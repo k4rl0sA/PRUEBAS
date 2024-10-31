@@ -79,7 +79,6 @@ function lis_apgar(){
 function cmp_tamApgar(){
 	$rta="<div class='encabezado apgar'>TABLA APGAR</div>
 	<div class='contenido' id='apgar-lis'>".lis_apgar()."</div></div>";
-
 	$a=['id_apgar'=>'','ayuda_fam'=>'','fam_comprobl'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
@@ -145,7 +144,7 @@ function get_tamApgar(){
 		P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
 		FROM hog_tam_apgar A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
-		WHERE id_apgar='{$id[0]}'";
+		WHERE A.id_apgar='{$id[0]}'";
 		$info=datos_mysql($sql);
 		 return json_encode($info['responseResult'][0]);
 	    }

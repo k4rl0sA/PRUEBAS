@@ -121,7 +121,7 @@ function cmp_tamApgar(){
         O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) apgar_nombre,P.fecha_nacimiento apgar_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) apgar_edad
 		FROM `hog_tam_apgar` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
-			WHERE P.idpersona ='{$id[0]}' AND P.tipo_doc='{$id[1]}'";
+			WHERE P.idpeople ='{$id[0]}'";
 		echo $sql;
 		$info=datos_mysql($sql);
 			return $info['responseResult'][0];

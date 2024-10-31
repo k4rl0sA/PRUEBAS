@@ -124,8 +124,10 @@ function cmp_tamApgar(){
 			WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
-			return $info['responseResult'][0];
+		if (!$info['responseResult']) {
+			return '';
 		}
+		return $info['responseResult'][0];
 	}
 
 

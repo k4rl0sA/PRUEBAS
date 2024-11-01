@@ -332,7 +332,7 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 			trim(upper('{$des}')),
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			echo $sql;
+			// echo $sql;
 			return $rta=dato_mysql($sql);
 		}else{
 			// print_r($_POST);

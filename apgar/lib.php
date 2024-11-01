@@ -249,17 +249,19 @@ function gra_tamApgar(){
 			$idper = $idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea
 
-		if ($_POST['fam_comprobl']!='' || $_POST['sati_famcompro']!=''){
-			$pre1 = ($_POST['ayuda_fam']) ?  $_POST['ayuda_fam'] : 0;
-			$pre2 = ($_POST['fam_comprobl']) ?  $_POST['fam_comprobl'] : 0;
-    		$pre3 = ($_POST['fam_percosnue']) ?  $_POST['fam_percosnue']  : 0;
-    		$pre4 = ($_POST['fam_feltrienf']) ?  $_POST['fam_feltrienf']  : 0;
-    		$pre5 = ($_POST['fam_comptiemjun']) ?  $_POST['fam_comptiemjun']  : 0;
-			$pre6 = ($_POST['sati_famayu']) ?  $_POST['sati_famayu']  : 0;
-    		$pre7 = ($_POST['sati_famcompro']) ?  $_POST['sati_famcompro']  : 0;
-    		$pre8 = ($_POST['sati_famapoemp']) ?  $_POST['sati_famapoemp']  : 0;
-    		$pre9 = ($_POST['sati_famemosion']) ?  $_POST['sati_famemosion']  : 0;
-    		$pre10 = ($_POST['sati_famcompar']) ?  $_POST['sati_famcompar']  : 0;
+		if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_POST['sati_famcompro']) && $_POST['sati_famcompro'] !== '') {
+			$pre1 = isset($_POST['ayuda_fam']) ? $_POST['ayuda_fam'] : 0;
+			$pre2 = isset($_POST['fam_comprobl']) ? $_POST['fam_comprobl'] : 0;
+			$pre3 = isset($_POST['fam_percosnue']) ? $_POST['fam_percosnue'] : 0;
+			$pre4 = isset($_POST['fam_feltrienf']) ? $_POST['fam_feltrienf'] : 0;
+			$pre5 = isset($_POST['fam_comptiemjun']) ? $_POST['fam_comptiemjun'] : 0;
+			$pre6 = isset($_POST['sati_famayu']) ? $_POST['sati_famayu'] : 0;
+			$pre7 = isset($_POST['sati_famcompro']) ? $_POST['sati_famcompro'] : 0;
+			$pre8 = isset($_POST['sati_famapoemp']) ? $_POST['sati_famapoemp'] : 0;
+			$pre9 = isset($_POST['sati_famemosion']) ? $_POST['sati_famemosion'] : 0;
+			$pre10 = isset($_POST['sati_famcompar']) ? $_POST['sati_famcompar'] : 0;
+		}
+		
 
 			$suma_apgar = ($pre1+$pre2+$pre3+$pre4+$pre5+$pre6+$pre7+$pre8+$pre9+$pre10);
 

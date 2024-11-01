@@ -302,7 +302,7 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 				// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 			}
 
-			$tas=$_POST['tas'] ?? null;
+			$tas=$_POST['ayuda_fam'] ?? null;
 			$cop=$_POST['fam_comprobl']??null;
 			$per=$_POST['fam_percosnue']??null;
 			$fel=$_POST['fam_feltrienf']??null;

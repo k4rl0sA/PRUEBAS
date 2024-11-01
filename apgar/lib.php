@@ -313,6 +313,7 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 			$emo=empty($_POST['sati_famemosion'])??null;
 			$cmr=empty($_POST['sati_famcompar'])??null;
 
+			var_dump($_POST);
 			 //cambio ipersona por idpeople en la variable $idper
 			$sql="INSERT INTO hog_tam_apgar VALUES (null,
 			{$idper},

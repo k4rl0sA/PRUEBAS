@@ -243,7 +243,8 @@ function gra_tamApgar(){
 		return "No es posible actualizar el tamizaje";
 	}else{
 		// echo $sql;
-		$idp=datos_mysql("SELECT idpeople FROM person WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'");//CAMBIO ADD linea
+		$idp=datos_mysql("SELECT idpeople FROM person 
+		WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'");//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
 			$idper = $idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea

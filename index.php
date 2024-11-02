@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'config.php';
-require_once 'gestion.php';
+//require_once 'gestion.php';
 ini_set('display_errors', '1');
 // Procesa el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,6 +31,6 @@ function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-//include_once('./login/frmlogin.php');
+include_once('./login/frmlogin.php');
 ?>
 

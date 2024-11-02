@@ -1,4 +1,8 @@
 <?php
+// Configuración de localización y zona horaria
+setlocale(LC_TIME, 'es_CO');
+ini_set('memory_limit', '1024M');
+date_default_timezone_set('America/Bogota');
 session_start();
 require_once 'config.php';
 if ($mostrar_errores) {
@@ -7,10 +11,7 @@ if ($mostrar_errores) {
 } else {
     ini_set('display_errors', '0');
 }
-// Configuración de localización y zona horaria
-setlocale(LC_TIME, 'es_CO');
-ini_set('memory_limit', '1024M');
-date_default_timezone_set('America/Bogota');
+
 // Verificar sesión
 if (!isset($_SESSION[$session_name])) {
     header("Location: /index.php"); 

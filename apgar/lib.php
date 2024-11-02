@@ -315,7 +315,7 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 
 			// var_dump($_POST);
 			 //cambio ipersona por idpeople en la variable $idper
-			$sql="INSERT INTO hog_tam_apgar VALUES (null,
+			/* $sql="INSERT INTO hog_tam_apgar VALUES (null,
 			{$idper},
 			trim(upper('{$_POST['fecha_toma']}')),
 			trim(upper('{$tas}')),
@@ -333,7 +333,30 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 			TRIM(UPPER('{$_SESSION['us_sds']}')),
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 			// echo $sql;
-			return $rta=dato_mysql($sql);
+			return $rta=dato_mysql($sql); */
+			$sql = "INSERT INTO hog_tam_apgar VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), ?, ?, ?)";
+			$params = [
+			    ['type' => 'i', 'value' => NULL],  // ID autoincremental
+			    ['type' => 'i', 'value' => $idper],
+			    ['type' => 's', 'value' => $_POST['fecha_toma']],
+			    ['type' => 's', 'value' => $tas],
+			    ['type' => 's', 'value' => $cop],
+			    ['type' => 's', 'value' => $per],
+			    ['type' => 's', 'value' => $fel],
+			    ['type' => 's', 'value' => $cti],
+			    ['type' => 's', 'value' => $ayu],
+			    ['type' => 's', 'value' => $com],
+			    ['type' => 's', 'value' => $apo],
+			    ['type' => 's', 'value' => $emo],
+			    ['type' => 's', 'value' => $cmr],
+			    ['type' => 'i', 'value' => $suma_apgar],
+			    ['type' => 's', 'value' => $des],
+			    ['type' => 's', 'value' => $_SESSION['us_sds']],
+			    ['type' => 's', 'value' => NULL],
+			    ['type' => 's', 'value' => NULL],
+				['type' => 's', 'value' => 'A']
+			];
+		$rta = mysql_prepd($sql, $params);
 		}else{
 			// print_r($_POST);
 			return 'TAMIZAJE NO APLICA PARA LA EDAD';

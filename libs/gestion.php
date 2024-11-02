@@ -72,6 +72,7 @@ if (!$pdo) {
 } */
 
 
+/*
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {
     case '':
@@ -115,7 +116,7 @@ switch ($req) {
         break;
 }
 
-/* function header_csv($filename) {
+ function header_csv($filename) {
     $now = gmdate("D, d M Y H:i:s");
     header("Expires: ".$now);
     header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");

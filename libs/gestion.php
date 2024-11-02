@@ -217,24 +217,27 @@ function mysql_prepd($sql, $params) {
           $types = '';
           $values = [];
           foreach ($params as $param) {
-            $type = $param['type'];// Validar el tipo de parámetro
-            if ($type === 's' && $param['value'] === NULL) {
-              $values[] = NULL; // No limpiar, solo agregar NULL
-            } else {
-              $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);// Limpiar el valor dependiendo del tipo
-              $types .= ($type === 'z') ? 's' : $type; // // Agregar el tipo correspondiente a $types
-              $values[] = $value; // Agregar el valor limpio al array $values
-            }
+              $type = $param['type']; // Validar el tipo de parámetro
+              if ($type === 's' && $param['value'] === NULL) {
+                  $types .= 's'; // Agregar tipo 's' para NULL
+                  $values[] = NULL; // No limpiar, solo agregar NULL
+              } else {
+                  $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
+                  $types .= ($type === 'z') ? 's' : $type; // Agregar el tipo correspondiente a $types
+                  $values[] = $value; // Agregar el valor limpio al array $values
+              }
           }
           $num_placeholders = substr_count($sql, '?');
           $num_params = count($values);
           if ($num_placeholders !== $num_params) {
               die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
           }
-          // var_dump($values);
+
+          // var_dump($values); // Para depurar valores y tipos
+
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {
-              $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $github;
+              $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $sql;
           } else {
               $sqlType = strtoupper($sql);
               if (strpos($sqlType, 'DELETE') !== false) {
@@ -254,13 +257,12 @@ function mysql_prepd($sql, $params) {
               }
           }
           $stmt->close();
-        } else {
+      } else {
           $rs = "Error preparando la consulta: " . $con->error . " | SQL: " . $sql;
       }
   } catch (mysqli_sql_exception $e) {
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
-
   return $rs;
 }
 

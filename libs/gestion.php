@@ -3,10 +3,9 @@
 setlocale(LC_TIME, 'es_CO');
 date_default_timezone_set('America/Bogota');
 ini_set('memory_limit', '1024M');
-session_start();
-
 // Configuración de errores
 require_once 'config.php';
+session_start();
 if ($mostrar_errores) {
     ini_set('display_errors', '1');
     error_reporting(E_ALL);

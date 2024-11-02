@@ -20,22 +20,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);
     $pwd = $_POST['passwd'];
     // Llama a la función de autenticación
-    if (login($name, $pwd)) {
-        $_SESSION["us_sds"] = strtolower($name);
-        // Verifica si la contraseña es la predeterminada para forzar cambio
-        if ($pwd === "riesgo2020+") {
-            header("Location: cambio-clave.php");
+    try{
+        if (login($name, $pwd)) {
+            $_SESSION["us_sds"] = strtolower($name);
+            // Verifica si la contraseña es la predeterminada para forzar cambio
+            if ($pwd === "riesgo2020+") {
+                header("Location: cambio-clave.php");
+            } else {
+                header("Location: main.php");
+            }
+            exit();
         } else {
-            header("Location: main.php");
+            echo "<div class='error'>
+                    <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+                    <strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.
+                  </div>";
+            die();
         }
-        exit();
-    } else {
-        echo "<div class='error'>
-                <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
-                <strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.
-              </div>";
-        die();
+    }catch(Exception $e){
+        echo "Error en index.php Raiz: " . $e->getMessage();
     }
+    
 }
 
 function login($username, $password) {

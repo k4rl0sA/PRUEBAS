@@ -13,7 +13,7 @@ if ($mostrar_errores) {
 }
 
 // Verificar sesión
-if (!isset($_SESSION[$session_name])) {
+if (!isset($_SESSION[$SESSION_NAME])) {
     header("Location: /index.php"); 
     exit;
 }
@@ -70,7 +70,7 @@ switch ($req) {
     case 'upload':
         $tb = $_POST['b'];
         $fe = strftime("%Y-%m-%d %H:%M");
-        $ru = $ruta_upload . '/' . $tb . '/' . $_SESSION[$session_name] . '/';
+        $ru = $ruta_upload . '/' . $tb . '/' . $_SESSION[$SESSION_NAME] . '/';
         $fi = $ru . $fe . '.csv';
         if (!is_dir($ru)) {
             mkdir($ru, 0755, true);
@@ -288,7 +288,7 @@ function rol($modulo) {
     $rta = array();
     global $pdo;
     try {
-        $usuario = $_SESSION['us_sds'] ?? '';
+        $usuario = $_SESSION[$SESSION_NAME] ?? '';
         $sql = "SELECT perfil, componente, crear, editar, consultar, exportar, importar 
                 FROM adm_roles 
                 WHERE modulo = :modulo 

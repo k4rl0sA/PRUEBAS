@@ -356,7 +356,7 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 			    ['type' => 's', 'value' => NULL],
 				['type' => 's', 'value' => 'A']
 			];
-		$rta = mysql_prepd($sql, $params);
+		return $rta = mysql_prepd($sql, $params);
 		}else{
 			// print_r($_POST);
 			return 'TAMIZAJE NO APLICA PARA LA EDAD';

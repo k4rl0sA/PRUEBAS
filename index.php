@@ -3,14 +3,11 @@ session_start();
 require_once 'config.php';
 require_once 'gestion.php';
 ini_set('display_errors', '1');
-include_once('./login/frmlogin.php');
-
 // Procesa el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);
     $pwd = $_POST['passwd'];
-
-    // Llama a la función de autenticación en `gestion.php`
+    // Llama a la función de autenticación
     if (login($name, $pwd)) {
         $_SESSION["us_sds"] = strtolower($name);
         // Verifica si la contraseña es la predeterminada para forzar cambio
@@ -19,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             header("Location: main.php");
         }
+        exit();
     } else {
         echo "<div class='error'>
                 <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
@@ -32,4 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
+
+include_once('./login/frmlogin.php');
 ?>
+

@@ -3,12 +3,12 @@ session_start();
 //require_once 'config.php';
 //require_once 'gestion.php';
 
-/* try {
+try {
     require_once '/libs/config.php';
 } catch (Exception $e) {
     echo "Error en config.php: " . $e->getMessage();
 }
- */
+ 
 try {
     require_once '/libs/gestion.php';
 } catch (Exception $e) {

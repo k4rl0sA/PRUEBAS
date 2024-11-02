@@ -1,7 +1,7 @@
 <?php
 session_start();
 //require_once 'config.php';
-require_once 'gestion.php';
+//require_once 'gestion.php';
 ini_set('display_errors', '1');
 // Procesa el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,6 +23,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.
               </div>";
         die();
+    }
+}
+
+function login($username, $password) {
+    global $pdo;
+    $sql = "SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = :username AND estado = 'A'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Verifica la contraseña usando password_verify
+    if ($user && password_verify($password, $user['clave'])) {
+        $_SESSION['us_sds'] = $user['id_usuario'];
+        $_SESSION['nomb'] = $user['nombre'];
+        return true;
+    } else {
+        return false;
     }
 }
 

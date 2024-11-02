@@ -50,7 +50,7 @@ if (!$pdo) {
     die('Error al establecer conexión a la base de datos.');
 }
 
-function login($username, $password) {
+/* function login($username, $password) {
     global $pdo;
     $sql = "SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = :username AND estado = 'A'";
     $stmt = $pdo->prepare($sql);
@@ -64,7 +64,7 @@ function login($username, $password) {
     } else {
         return false;
     }
-}
+} */
 
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';

@@ -148,6 +148,7 @@ function datos_mysql($sql, $params = [], $resulttype = PDO::FETCH_ASSOC) {
         $arr['responseResult'] = $stmt->fetchAll($resulttype);
         $arr['code'] = 0;
     } catch (PDOException $e) {
+        error_log($e->getMessage(), 3, $error_log_path);
         $arr = [
             'code' => 30,
             'message' => 'Error BD',
@@ -219,6 +220,7 @@ function mysql_prepd($sql, $params) {
             $arr['message'] = "Error al ejecutar la consulta.";
         }
     } catch (PDOException $e) {
+        error_log($e->getMessage(), 3, $error_log_path);
         $arr = [
             'code' => 30,
             'message' => 'Error',
@@ -229,6 +231,44 @@ function mysql_prepd($sql, $params) {
         ];
     }
     return $arr;
+}
+
+//crear desplegables con BD
+function opc_sql($sql, $val, $str = true) {
+    $rta = "<option value='' class='alerta'>SELECCIONE</option>";
+    global $pdo;
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_NUM);
+        foreach ($result as $r) {
+            $selected = ($r[0] == $val) ? " selected" : "";
+            $rta .= "<option value='" . htmlentities($r[0], ENT_QUOTES) . "'$selected>" . htmlentities($r[1], ENT_QUOTES) . "</option>";
+        }
+    } catch (PDOException $e) {
+        error_log($e->getMessage(), 3, $error_log_path);
+    }
+    return $rta;
+}
+
+//crear desplegables de un array
+function opc_arr($a = [], $b = "", $c = true) {
+    $rta = "<option value='' class='alerta'>SELECCIONE</option>";
+    if (!empty($a)) {
+        foreach ($a as $item) {
+            $on = "";
+            if (is_array($item) && isset($item['v']) && isset($item['l'])) {
+                $valor = strtoupper($item['v']);
+                $label = strtoupper($item['l']);
+                $on = ($valor == strtoupper($b) || $label == strtoupper($b)) ? " selected='selected'" : ($c === false ? " disabled='disabled'" : "");
+                $rta .= "<option $on value='" . htmlentities($item['v'], ENT_QUOTES) . "'>" . htmlentities($item['l'], ENT_QUOTES) . "</option>\n";
+            } elseif (!is_array($item)) {
+                $on = strtoupper($item) == strtoupper($b) ? " selected='selected'" : ($c === false ? " disabled='disabled'" : "");
+                $rta .= "<option $on value='" . htmlentities($item, ENT_QUOTES) . "'>" . htmlentities($item, ENT_QUOTES) . "</option>\n";
+            }
+        }
+    }
+    return $rta;
 }
 
 ?>

@@ -1,10 +1,12 @@
 <?php
 // Configuración de localización y zona horaria
 setlocale(LC_TIME, 'es_CO');
-ini_set('memory_limit', '1024M');
 date_default_timezone_set('America/Bogota');
-require_once 'config.php';
+ini_set('memory_limit', '1024M');
 session_start();
+
+// Configuración de errores
+require_once 'config.php';
 if ($mostrar_errores) {
     ini_set('display_errors', '1');
     error_reporting(E_ALL);
@@ -12,14 +14,17 @@ if ($mostrar_errores) {
     ini_set('display_errors', '0');
 }
 
-// Verificar sesión
+// Verificar sesión con auth.php
 require_once 'auth.php';
 if (!is_logged_in()) {
     header("Location: index.php");
     exit();
 }
+
+// Ruta de subida y dominio
 $ruta_upload = '/public_html/upload/';
 $dominio = $_SERVER['HTTP_HOST'];
+
 
 if (array_key_exists($dominio, $comy)) {
     $dbConfig = $comy[$dominio];

@@ -98,7 +98,7 @@ function csv($a,$b,$tot= null){
   return ob_get_clean();
 }
 
-function cleanTxt($val) {
+/* function cleanTxt($val) {
   $val = trim($val);
   $val = addslashes($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
@@ -108,7 +108,7 @@ function cleanTxt($val) {
   $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
   $val=strtoupper($val);
   return $val;
-}
+} */
 
 function cleanTx($val) {
   $val = trim($val);
@@ -117,6 +117,7 @@ function cleanTx($val) {
   $val = preg_replace('/\s+/', ' ', $val); // Remover múltiples espacios
   $val = preg_replace($pattern, '', $val); // Quitar caracteres no permitidos
   $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea y tabulaciones
+  $val=strtoupper($val);
   return $val;
 }
 
@@ -197,10 +198,10 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 function params($campos) {
   $params = [];
   foreach ($campos as $campo) {
-      if (isset($_POST[$campo])) {
+      if (isset($_POST[$campo]) && $_POST[$campo] !== '') {
           $params[] = array('type' => is_numeric($_POST[$campo]) ? 'i' : 's', 'value' => $_POST[$campo]);
       } else {
-          $params[] = array('type' => 's', 'value' => '');// Manejar el caso donde el campo no está presente
+          $params[] = array('type' => 's', 'value' => NULL);
       }
   }
   return $params;
@@ -216,10 +217,14 @@ function mysql_prepd($sql, $params) {
           $types = '';
           $values = [];
           foreach ($params as $param) {
-              $type = $param['type'];// Validar el tipo de parámetro
+            $type = $param['type'];// Validar el tipo de parámetro
+            if ($type === 's' && $param['value'] === NULL) {
+              $values[] = NULL; // No limpiar, solo agregar NULL
+            } else {
               $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);// Limpiar el valor dependiendo del tipo
               $types .= ($type === 'z') ? 's' : $type; // // Agregar el tipo correspondiente a $types
-              $values[] = $value;// Agregar el valor limpio al array $values
+              $values[] = $value; // Agregar el valor limpio al array $values
+            }
           }
           $num_placeholders = substr_count($sql, '?');
           $num_params = count($values);

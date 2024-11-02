@@ -271,28 +271,45 @@ function opc_arr($a = [], $b = "", $c = true) {
     return $rta;
 }
 
-function perfil($a){
-	$perf=rol($a);
-  //  var_dump($perf);
-	if (empty($perf['perfil']) || $perf['perfil'] === array()){
-		echo '<div class="lock">
-          <i class="fas fa-lock fa-5x lock-icon"></i>
-          <h2>Acceso No Autorizado</h2>
-          Lo siento, no tienes permiso para acceder a esta área.
-          </div>';
-          exit();
-		 }
+function perfil($modulo) {
+    $perf = rol($modulo);
+    //  var_dump($perf);  
+    if (empty($perf['perfil'])) {
+        echo '<div class="lock">
+            <i class="fas fa-lock fa-5x lock-icon"></i>
+            <h2>Acceso No Autorizado</h2>
+            Lo siento, no tienes permiso para acceder a esta área.
+            </div>';
+        exit();
+    }
 }
 
-function rol($a){ //a=modulo, b=perfil c=componente
-	$rta=array();
-	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION[$session_name]."') AND componente=FN_COMPONENTE('".$_SESSION[$session_name]."') AND estado = 'A'";
-	$data=datos_mysql($sql);
-  //print_r($data);
-	if ($data && isset($data['responseResult'][0])) {
-        $rta = $data['responseResult'][0];
+function rol($modulo) {
+    $rta = array();
+    global $pdo;
+    try {
+        $usuario = $_SESSION[$session_name] ?? '';
+        $sql = "SELECT perfil, componente, crear, editar, consultar, exportar, importar 
+                FROM adm_roles 
+                WHERE modulo = :modulo 
+                  AND perfil = FN_PERFIL(:perfil) 
+                  AND componente = FN_COMPONENTE(:componente) 
+                  AND estado = 'A'";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':modulo' => $modulo,
+            ':perfil' => $usuario,
+            ':componente' => $usuario
+        ]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($data) {
+            $rta = $data;
+        }
+    } catch (PDOException $e) {
+        error_log($e->getMessage(), 3, '../errors.log');
     }
-	return $rta;
+    return $rta;
 }
+
 
 ?>

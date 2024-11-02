@@ -49,6 +49,24 @@ conectarBD($dbConfig);
 if (!$pdo) {
     die('Error al establecer conexión a la base de datos.');
 }
+
+function login($username, $password) {
+    global $pdo;
+    $sql = "SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = :username AND estado = 'A'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Verifica la contraseña usando password_verify
+    if ($user && password_verify($password, $user['clave'])) {
+        $_SESSION['us_sds'] = $user['id_usuario'];
+        $_SESSION['nomb'] = $user['nombre'];
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {
     case '':

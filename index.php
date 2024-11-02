@@ -1,43 +1,35 @@
 <?php
-require_once 'auth.php';
+session_start();
+require_once 'config.php';
+require_once 'gestion.php';
+ini_set('display_errors', '1');
+include_once('./login/frmlogin.php');
+
+// Procesa el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['passwd'];
+    $name = test_input($_POST['username']);
+    $pwd = $_POST['passwd'];
 
-	/*
-			$token=$_POST['token'];
-			$url='https://www.google.com/recaptcha/api/siteverify';
-			$req="$url?secret=$claves[privada]&response=$token";
-			$rta=file_get_contents($req);
-			$json=json_decode($rta,true);
-			$ok=$json['success']; 
-			if ($ok===false) {
-				echo "<div class='error'>
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
-					<strong>Error!</strong> Error en el captcha, intentalo nuevamente.
-					</div>";
-				die();
-			}
-			if ($json['score']< 0.7) {
-				echo "<div class='error'>
-					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
-					<strong>Error!</strong> Error en el captcha, No eres humano o que?
-					</div>";
-				die();
-			}
-	*/
-
-    if (login($username, $password)) {
-        $redirect = ($password === "riesgo2020+") ? "cambio-clave/" : "main/";
-        header("Location: $redirect");
-        exit();
+    // Llama a la función de autenticación en `gestion.php`
+    if (login($name, $pwd)) {
+        $_SESSION["us_sds"] = strtolower($name);
+        // Verifica si la contraseña es la predeterminada para forzar cambio
+        if ($pwd === "riesgo2020+") {
+            header("Location: cambio-clave.php");
+        } else {
+            header("Location: main.php");
+        }
     } else {
         echo "<div class='error'>
                 <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
-                <strong>Error!</strong> Usuario o contraseña incorrectos.
+                <strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.
               </div>";
+        die();
     }
 }
-include_once('./login/frmlogin.php');
 
+// Función para sanitizar la entrada del usuario
+function test_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
 ?>

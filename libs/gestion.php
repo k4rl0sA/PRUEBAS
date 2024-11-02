@@ -288,7 +288,7 @@ function rol($modulo) {
     $rta = array();
     global $pdo;
     try {
-        $usuario = $_SESSION[$session_name] ?? '';
+        $usuario = $_SESSION['us_sds'] ?? '';
         $sql = "SELECT perfil, componente, crear, editar, consultar, exportar, importar 
                 FROM adm_roles 
                 WHERE modulo = :modulo 

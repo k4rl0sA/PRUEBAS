@@ -31,6 +31,6 @@ function test_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-include_once('./login/frmlogin.php');
+//include_once('./login/frmlogin.php');
 ?>
 

@@ -1,42 +1,37 @@
 <?php
 $comy = array(
-    'gitapps.site' => [
+    'siginf-sds.com' => [
         's' => 'localhost',
-        'u' => 'u470700275_08',
+        'u' => 'u470700275_06',
         'p' => 'z9#KqH!YK2VEyJpT',
-        'bd' => 'u470700275_08',
+        'bd' => 'u470700275_06',
         'port' => '3306',
         'charset' => 'utf8mb4'
     ],
     'pruebasiginf.site' => [
         's' => 'localhost',
         'u' => 'u470700275_17',
-        'p' => 'z9#KqH!YK2VEyJpT',
+        'p' => 'testPassword',
         'bd' => 'u470700275_17',
         'port' => '3306',
         'charset' => 'utf8mb4'
     ]
 );
 
-// Configuración de errores
-$mostrar_errores = true; // Cambiar a false en producción
-$error_log_path = '../errors.log';
-error_reporting(E_ALL);
-ini_set('display_errors', $mostrar_errores ? '1' : '0');
+// Variable para mostrar errores
+$mostrar_errores = true;
+$error_log_path = '/path/to/error.log';
 
 // Configuración de entorno
-$entorno = 'prod'; // Cambiar a 'dev' o 'test' según sea necesario
+$entorno = 'producción';
 
 // Configuración de la aplicación
-$app_name = 'GTAPS';
+$app_name = 'Mi Aplicación';
 $app_version = '1.0.0';
 
 // Configuración de sesión
-$session_timeout = 3600; // Tiempo en segundos
+$session_timeout = 3600; // Tiempo de espera de sesión en segundos
 $session_name = 'us_sds';
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1);
-ini_set('session.use_only_cookies', 1);
 
 // Configuración de seguridad
 $hash_algorithm = 'sha256';
@@ -45,18 +40,10 @@ $encryption_key = 'tu_clave_secreta';
 // Configuración de API
 $api_base_url = 'https://api.example.com/';
 $api_key = 'tu_api_key';
-$api_timeout = 30;
 
 // Configuración de correo electrónico
 $mail_host = 'smtp.example.com';
 $mail_username = 'tu_correo@example.com';
 $mail_password = 'tu_contraseña';
 $mail_port = 587;
-$mail_encryption = 'tls'; 
-
-// Configuración de archivos
-$ruta_upload = '/public_html/upload/';
-$temp_file_path = '/tmp/';
-
-// Configuración de registro
-$log_level = 'info';
+$mail_encryption = 'tls';

@@ -1,21 +1,19 @@
 <?php
-// Incluir la configuración
 require_once __DIR__ . '/config.php';
 
-// Iniciar la sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
-    session_name(SESSION_NAME); // Esto se debe mover aquí
+    session_name(SESSION_NAME);
     session_start();
 }
 
-var_dump(session_id(), $_SESSION); // Para depuración
+var_dump('en gestion.php='.session_id(), $_SESSION); // Para depuración
 
-// Incluir autenticación
 require_once __DIR__ . '/auth.php';
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    var_dump($_SESSION); // Verificar el contenido de la sesión
+    var_dump('en gestion.php='.$_SESSION); // Verificar el contenido de la sesión
+    error_log("Redireccionando a index.php debido a sesión inválida."); // Registro
     header("Location: index.php"); // Redirigir de inmediato
     exit();
 }
@@ -33,7 +31,6 @@ function conectarBD($dbConfig) {
     }
 }
 
-// Llama a la función de conexión
 conectarBD($dbConfig);
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';

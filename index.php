@@ -1,20 +1,17 @@
 <?php
-// Incluir la configuración antes de establecer la sesión
 require_once __DIR__ . '/libs/config.php';
 
 // Configuración de sesión y seguridad
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
-
-// Establecer el nombre de la sesión antes de iniciar
-session_name(SESSION_NAME);
+session_name(SESSION_NAME); // Establecer el nombre de la sesión
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump(session_id(), $_SESSION); // Para depuración
+var_dump('en index.php='.session_id(), $_SESSION); // Para depuración
 
 // Incluir archivos de funciones
 try {

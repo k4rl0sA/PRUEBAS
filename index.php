@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Llama a la función de autenticación
     try{
         if (login($name, $pwd)) {
-            $_SESSION["us_sds"] = strtolower($name);
+            $_SESSION[SESSION_NAME] = strtolower($name);
             // Verifica si la contraseña es la predeterminada para forzar cambio
             if ($pwd === "riesgo2020+") {
                 header("Location: cambio-clave/");
@@ -50,7 +50,7 @@ function login($username, $password) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     // Verifica la contraseña usando password_verify
     if ($user && password_verify($password, $user['clave'])) {
-        $_SESSION['us_sds'] = $user['id_usuario'];
+        $_SESSION[SESSION_NAME] = $user['id_usuario'];
         $_SESSION['nomb'] = $user['nombre'];
         return true;
     } else {

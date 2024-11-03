@@ -8,8 +8,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump('ID de sesión: ', session_id()); // Para depuración
-var_dump('Contenido de la sesión: ', $_SESSION); // Para depuración
+var_dump('valido desde index.php ID de sesión: ', session_id()); // Para depuración
+var_dump('valido desde index.php Contenido de la sesión: ', $_SESSION); // Para depuración
 
 // Incluir archivos de configuración y funciones
 try {

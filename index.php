@@ -1,14 +1,18 @@
 <?php
 // Configuración de sesión y seguridad
+define('SESSION_NAME', 'us_sds');
+session_name(SESSION_NAME);
+
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
 
-var_dump(session_id(), $_SESSION);
 // Iniciar la sesión si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+var_dump(session_id(), $_SESSION); // Para depuración
 
 // Incluir archivos de configuración y funciones
 try {
@@ -19,7 +23,7 @@ try {
     exit();
 }
 
-// Solo procesa el formulario de autenticación
+// Procesar el formulario de autenticación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);
     $pwd = $_POST['passwd'];
@@ -41,4 +45,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once('./login/frmlogin.php');
 }
 ?>
-

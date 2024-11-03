@@ -888,7 +888,7 @@ function getData(a, ev,i,blo,path=ruta_app) {
 				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
 					data =JSON.parse(xmlhttp.responseText);
 					if (loader != undefined) loader.style.display = 'none';
-						console.log(data)
+						console.error(data);
 					}
 				}
 				xmlhttp.open("POST",path,false);

@@ -12,8 +12,8 @@ var_dump('Contenido de la sesión en gestión: ', $_SESSION); // Para depuració
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    var_dump($_SESSION); // Verifica el contenido de la sesión
-    exit("Redireccionando a index.php debido a sesión inválida. desde el archivogestion.php");
+    var_dump('valida desde gestion.php'.$_SESSION); // Verifica el contenido de la sesión
+    exit("Redireccionando a index.php debido a sesión inválida. desde el archivo gestion.php");
     // header("Location: index.php"); // Esta línea nunca se ejecutará si estás usando exit() antes
 }
 

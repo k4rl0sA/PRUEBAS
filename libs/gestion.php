@@ -71,7 +71,7 @@ if (!$pdo) {
 } */
 
 
-/*
+
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {
     case '':
@@ -338,6 +338,6 @@ function rol($modulo) {
     }
     return $rta;
 }
- */
+ 
 
 ?>

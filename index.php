@@ -4,18 +4,18 @@ ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_name(SESSION_NAME); // Asegúrate de usar el nombre de la sesión
+session_start();
 
 var_dump('valido desde index.php ID de sesión: ', session_id()); // Para depuración
 var_dump('valido desde index.php Contenido de la sesión: ', $_SESSION); // Para depuración
 
 // Incluir archivos de configuración y funciones
 try {
+    // Incluir archivos de configuración y funciones
     require_once __DIR__ . '/libs/config.php';
-    require_once __DIR__ . '/libs/gestion.php'; // Asegúrate de que esto sea correcto
-    require_once __DIR__ . '/libs/auth.php'; // Incluye el archivo de autenticación aquí
+    require_once __DIR__ . '/libs/auth.php';
+    require_once __DIR__ . '/libs/gestion.php';
 } catch (Exception $e) {
     echo "Error cargando archivos: " . $e->getMessage();
     exit();

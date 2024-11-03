@@ -1,7 +1,5 @@
 <?php
 define('SESSION_NAME', 'us_sds');
-session_name(SESSION_NAME);
-
 // Configuración de la base de datos y otros parámetros.
 $comy = array(
     'gitapps.site' => [

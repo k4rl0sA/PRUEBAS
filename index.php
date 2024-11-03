@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION[SESSION_NAME] = strtolower($name);
             var_dump('revisando desde index.php despues de la rta de login a la sesion '.$_SESSION);
             // Comentar la redirección para diagnóstico
-            // header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
-            // exit();
+            header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
+            exit();
             echo "Inicio de sesión exitoso."; // Para verificación
         } else {
             echo "<div class='error'><strong>Error!</strong> Usuario o contraseña incorrectos.</div>";

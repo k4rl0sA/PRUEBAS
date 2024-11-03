@@ -16,8 +16,10 @@ function login($username, $password) {
     // Verifica si el usuario existe y si la contraseña es correcta
     if ($user && password_verify($password, $user['password'])) { // Asegúrate de que las contraseñas están hasheadas
         $_SESSION[SESSION_NAME] = strtolower($username); // Establecer la sesión
+        var_dump('valido desde auth function login devuelve true');
         return true; // Autenticación exitosa
     }
+    var_dump('valido desde auth function login devuelve false');
     return false; // Falló la autenticación
 }
 function logout() {

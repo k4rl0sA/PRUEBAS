@@ -2,11 +2,11 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/auth.php'; 
 
-if (session_status() === PHP_SESSION_NONE) {
+/* if (session_status() === PHP_SESSION_NONE) {
     session_name(SESSION_NAME);
     session_start();
 }
-
+ */
 var_dump('ID de sesión en gestión: ', session_id()); // Para depuración
 var_dump('Contenido de la sesión en gestión: ', $_SESSION); // Para depuración
 

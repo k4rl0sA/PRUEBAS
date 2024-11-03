@@ -47,9 +47,8 @@ function conectarBD($dbConfig) {
 
 try {
     conectarBD($dbConfig); // Asegúrate de pasar el array correcto $dbConfig
-    echo "Conexión exitosa a la base de datos.";
 } catch (PDOException $e) {
-    echo "Error al conectar a la base de datos: " . $e->getMessage();
+    error_log($e->getMessage(), 3, $error_log_path);
 }
 if (!$pdo) {
     die('Error al establecer conexión a la base de datos.');

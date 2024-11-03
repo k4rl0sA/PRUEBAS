@@ -1,11 +1,8 @@
 <?php
-require_once __DIR__ . '/libs/config.php';
-
 // Configuración de sesión y seguridad
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
-session_name(SESSION_NAME); // Establecer el nombre de la sesión
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -14,22 +11,14 @@ if (session_status() === PHP_SESSION_NONE) {
 var_dump('ID de sesión: ', session_id()); // Para depuración
 var_dump('Contenido de la sesión: ', $_SESSION); // Para depuración
 
-// Incluir archivos de funciones
+// Incluir archivos de configuración y funciones
 try {
-    require_once __DIR__ . '/libs/gestion.php';
+    require_once __DIR__ . '/libs/config.php';
+    require_once __DIR__ . '/libs/gestion.php'; // Asegúrate de que esto sea correcto
+    require_once __DIR__ . '/libs/auth.php'; // Incluye el archivo de autenticación aquí
 } catch (Exception $e) {
     echo "Error cargando archivos: " . $e->getMessage();
     exit();
-}
-
-// Verificar si el usuario ya está autenticado
-if (is_logged_in()) {
-    // Comentar la redirección para diagnóstico
-    // header("Location: main/");
-    // exit();
-    echo "Usuario autenticado, redirigiendo a main."; // Para verificación
-} else {
-    echo "Usuario no autenticado."; // Para verificación
 }
 
 // Procesar el formulario de autenticación

@@ -1,4 +1,6 @@
 <?php
+define('SESSION_NAME', 'us_sds');
+session_name(SESSION_NAME);
 $comy = array(
     'gitapps.site' => [
         's' => 'localhost',
@@ -26,7 +28,6 @@ ini_set('display_errors', $mostrar_errores ? '1' : '0');
 
 // Configuración de sesión
 $session_timeout = 3600; // Tiempo en segundos
-define('SESSION_NAME', 'us_sds');
 
 
 // Configuración de seguridad

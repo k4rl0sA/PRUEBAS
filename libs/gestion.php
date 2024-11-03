@@ -1,4 +1,5 @@
 <?php
+var_dump(session_id(), $_SESSION);
 // Iniciar la sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

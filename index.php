@@ -4,6 +4,12 @@ ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
 
+session_start();
+session_unset();
+session_destroy();
+session_start();
+
+var_dump(session_id(), $_SESSION);
 // Iniciar la sesión si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

@@ -24,16 +24,10 @@ $error_log_path = '../errors.log';
 error_reporting(E_ALL);
 ini_set('display_errors', $mostrar_errores ? '1' : '0');
 
-// Configuración de entorno
-$entorno = 'prod'; // Cambiar a 'dev' o 'test' según sea necesario
-
-// Configuración de la aplicación
-$app_name = 'GTAPS';
-$app_version = '1.0.0';
-
 // Configuración de sesión
 $session_timeout = 3600; // Tiempo en segundos
 define('SESSION_NAME', 'us_sds');
+
 
 // Configuración de seguridad
 $hash_algorithm = 'sha256';

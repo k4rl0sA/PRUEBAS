@@ -1,16 +1,20 @@
 <?php
+// Iniciar la sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once 'config.php';
-require_once 'auth.php';
+// Incluir configuraciones y autenticación
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/auth.php';
 
+// Verificación de inicio de sesión
 if (!is_logged_in()) {
     header("Location: index.php");
     exit();
 }
 
+// Función de conexión a la base de datos
 function conectarBD($dbConfig) {
     global $pdo, $error_log_path;
     $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";
@@ -22,6 +26,8 @@ function conectarBD($dbConfig) {
         die('No se pudo conectar a la base de datos.');
     }
 }
+
+// Llama a la función de conexión
 conectarBD($dbConfig);
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';

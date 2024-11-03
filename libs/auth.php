@@ -4,10 +4,10 @@ function is_logged_in() {
     return isset($_SESSION[SESSION_NAME]) && !empty($_SESSION[SESSION_NAME]);
 }
 
-// Logout de usuario: Destruye la sesión
+// Cerrar sesión
 function logout() {
-    session_unset();   // Eliminar variables de sesión
-    session_destroy(); // Destruir la sesión
+    session_unset();
+    session_destroy();
     header("Location: index.php");
     exit();
 }

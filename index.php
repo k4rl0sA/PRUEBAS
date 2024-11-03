@@ -1,11 +1,15 @@
 <?php
+// Configuración de sesión y seguridad
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
+
+// Iniciar la sesión si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Incluir archivos de configuración y funciones
 try {
     require_once __DIR__ . '/libs/config.php';
     require_once __DIR__ . '/libs/gestion.php';
@@ -14,6 +18,7 @@ try {
     exit();
 }
 
+// Procesamiento del formulario de autenticación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);
     $pwd = $_POST['passwd'];
@@ -21,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
+            // Redirecciona según la contraseña
             header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
             exit();
         } else {
@@ -32,5 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Incluye el formulario de inicio de sesión
 include_once('./login/frmlogin.php');
 ?>
+

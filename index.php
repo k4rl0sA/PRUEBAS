@@ -1,8 +1,8 @@
 <?php
-// Configuración de sesión y seguridad
 define('SESSION_NAME', 'us_sds');
 session_name(SESSION_NAME);
 
+// Configuración de sesión y seguridad
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
@@ -10,6 +10,8 @@ ini_set('session.use_only_cookies', 1);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+var_dump(session_id(), $_SESSION); // Para depuración
 
 // Incluir archivos de configuración y funciones
 try {

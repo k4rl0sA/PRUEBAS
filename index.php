@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
+            var_dump('revisando desde index.php despues de la rta de login'.$_SESSION);
             // Comentar la redirección para diagnóstico
             // header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
             // exit();

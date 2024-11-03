@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/auth.php'; 
 
 if (session_status() === PHP_SESSION_NONE) {
     session_name(SESSION_NAME);
@@ -9,15 +10,11 @@ if (session_status() === PHP_SESSION_NONE) {
 var_dump('ID de sesión en gestión: ', session_id()); // Para depuración
 var_dump('Contenido de la sesión en gestión: ', $_SESSION); // Para depuración
 
-require_once __DIR__ . '/auth.php';
-
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    var_dump('Redireccionando a index.php debido a sesión inválida.'); // Para verificación
-    // Comentar la redirección para diagnóstico
-    // header("Location: index.php"); 
-    // exit();
-    exit("Sesión inválida. Por favor, inicie sesión."); // Mensaje de diagnóstico
+    var_dump($_SESSION); // Verifica el contenido de la sesión
+    exit("Redireccionando a index.php debido a sesión inválida. desde el archivogestion.php");
+    // header("Location: index.php"); // Esta línea nunca se ejecutará si estás usando exit() antes
 }
 
 // Función de conexión a la base de datos

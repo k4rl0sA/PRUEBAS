@@ -1,25 +1,21 @@
 <?php
+// Primero, incluye el archivo de configuración
+require_once __DIR__ . '/libs/config.php';
+require_once __DIR__ . '/libs/auth.php';
+require_once __DIR__ . '/libs/gestion.php';
+
 // Configuración de sesión y seguridad
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
-ini_set('display_errors', 1);
+
+// Ahora puedes usar la constante
 session_name(SESSION_NAME); // Asegúrate de usar el nombre de la sesión
 session_start();
 
-var_dump('valido desde index.php ID de sesión: ', session_id()); // Para depuración
-var_dump('valido desde index.php Contenido de la sesión: ', $_SESSION); // Para depuración
-
-// Incluir archivos de configuración y funciones
-try {
-    // Incluir archivos de configuración y funciones
-    require_once __DIR__ . '/libs/config.php';
-    require_once __DIR__ . '/libs/auth.php';
-    require_once __DIR__ . '/libs/gestion.php';
-} catch (Exception $e) {
-    echo "Error cargando archivos: " . $e->getMessage();
-    exit();
-}
+// Depuración
+var_dump('valido desde index.php ID de sesión: ', session_id());
+var_dump('valido desde index.php Contenido de la sesión: ', $_SESSION);
 
 // Procesar el formulario de autenticación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

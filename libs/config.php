@@ -27,7 +27,7 @@ ini_set('display_errors', $mostrar_errores ? '1' : '0');
 // Configuración de entorno
 $entorno = 'prod'; // Cambiar a 'dev' o 'test' según sea necesario
 
-/* // Configuración de la aplicación
+// Configuración de la aplicación
 $app_name = 'GTAPS';
 $app_version = '1.0.0';
 
@@ -60,5 +60,5 @@ $temp_file_path = '/tmp/';
 
 // Configuración de registro
 $log_level = 'info';
- */
+
 ?>

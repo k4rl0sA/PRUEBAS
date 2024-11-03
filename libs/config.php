@@ -34,9 +34,6 @@ $app_version = '1.0.0';
 // Configuración de sesión
 $session_timeout = 3600; // Tiempo en segundos
 define('SESSION_NAME', 'us_sds');
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1);
-ini_set('session.use_only_cookies', 1);
 
 // Configuración de seguridad
 $hash_algorithm = 'sha256';

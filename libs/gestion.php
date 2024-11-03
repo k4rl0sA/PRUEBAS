@@ -1,37 +1,14 @@
 <?php
-// Configuración de localización y zona horaria
-setlocale(LC_TIME, 'es_CO');
-date_default_timezone_set('America/Bogota');
-ini_set('memory_limit', '1024M');
-// Configuración de errores
-require_once 'config.php';
-if ($mostrar_errores) {
-    ini_set('display_errors', '1');
-    error_reporting(E_ALL);
-} else {
-    ini_set('display_errors', '0');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-// Verificar sesión con auth.php
-require_once 'auth.php';
+require_once 'config.php';
 if (!is_logged_in()) {
     header("Location: index.php");
     exit();
 }
 
-// Ruta de subida y dominio
-$ruta_upload = '/public_html/upload/';
-$dominio = $_SERVER['HTTP_HOST'];
-
-
-if (array_key_exists($dominio, $comy)) {
-    $dbConfig = $comy[$dominio];
-} else {
-    die('Dominio no reconocido.');
-}
-
-// Conexión a la base de datos con PDO
-global $pdo;
 function conectarBD($dbConfig) {
     global $pdo, $error_log_path;
     $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";
@@ -39,37 +16,11 @@ function conectarBD($dbConfig) {
         $pdo = new PDO($dsn, $dbConfig['u'], $dbConfig['p']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-        error_log($e->getMessage(), 3, $error_log_path);
-        die('No se pudo conectar a la base de datos.'); // Mensaje genérico para el usuario
+        error_log("Conexión fallida: " . $e->getMessage());
+        die('No se pudo conectar a la base de datos.');
     }
 }
-
-try {
-    conectarBD($dbConfig); // Asegúrate de pasar el array correcto $dbConfig
-} catch (PDOException $e) {
-    error_log($e->getMessage(), 3, $error_log_path);
-}
-if (!$pdo) {
-    die('Error al establecer conexión a la base de datos.');
-}
-
-/* function login($username, $password) {
-    global $pdo;
-    $sql = "SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = :username AND estado = 'A'";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([':username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    // Verifica la contraseña usando password_verify
-    if ($user && password_verify($password, $user['clave'])) {
-        $_SESSION['us_sds'] = $user['id_usuario'];
-        $_SESSION['nomb'] = $user['nombre'];
-        return true;
-    } else {
-        return false;
-    }
-} */
-
-
+conectarBD($dbConfig);
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {
@@ -113,6 +64,23 @@ switch ($req) {
         echo "Solicitud no válida.";
         break;
 }
+
+/* function login($username, $password) {
+    global $pdo;
+    $sql = "SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = :username AND estado = 'A'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Verifica la contraseña usando password_verify
+    if ($user && password_verify($password, $user['clave'])) {
+        $_SESSION['us_sds'] = $user['id_usuario'];
+        $_SESSION['nomb'] = $user['nombre'];
+        return true;
+    } else {
+        return false;
+    }
+} */
+
 
  function header_csv($filename) {
     $now = gmdate("D, d M Y H:i:s");

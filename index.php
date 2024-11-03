@@ -18,7 +18,7 @@ try {
     exit();
 }
 
-// Procesamiento del formulario de autenticación
+// Solo procesa el formulario de autenticación
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);
     $pwd = $_POST['passwd'];
@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
-            // Redirecciona según la contraseña
             header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
             exit();
         } else {
@@ -36,9 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         error_log("Error en index.php: " . $e->getMessage());
         echo "Error en la autenticación.";
     }
+} else {
+    // Si no está autenticado, carga el formulario
+    include_once('./login/frmlogin.php');
 }
-
-// Incluye el formulario de inicio de sesión
-include_once('./login/frmlogin.php');
 ?>
 

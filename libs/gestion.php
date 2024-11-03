@@ -10,6 +10,8 @@ require_once __DIR__ . '/auth.php';
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
+    var_dump($_SESSION); // Verificar el contenido de la sesión
+    exit("Redireccionando a index.php debido a sesión inválida.");
     header("Location: index.php");
     exit();
 }

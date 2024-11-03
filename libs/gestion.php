@@ -2,10 +2,9 @@
 // Incluir la configuración
 require_once __DIR__ . '/config.php';
 
-// Establecer el nombre de la sesión antes de iniciar
-session_name(SESSION_NAME);
-
+// Iniciar la sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
+    session_name(SESSION_NAME); // Esto se debe mover aquí
     session_start();
 }
 
@@ -17,7 +16,8 @@ require_once __DIR__ . '/auth.php';
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
     var_dump($_SESSION); // Verificar el contenido de la sesión
-    exit("Redireccionando a index.php debido a sesión inválida.");
+    header("Location: index.php"); // Redirigir de inmediato
+    exit();
 }
 
 // Función de conexión a la base de datos

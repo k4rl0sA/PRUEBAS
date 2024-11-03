@@ -1,12 +1,7 @@
 <?php
-// Inicializar sesión si aún no se ha iniciado
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 // Verificar si un usuario está autenticado
 function is_logged_in() {
-    return isset($_SESSION['us_sds']) && !empty($_SESSION['us_sds']);
+    return isset($_SESSION[SESSION_NAME]) && !empty($_SESSION[SESSION_NAME]);
 }
 
 // Logout de usuario: Destruye la sesión

@@ -1,5 +1,8 @@
 <?php
-define('SESSION_NAME', 'us_sds');
+// Incluir la configuración
+require_once __DIR__ . '/config.php';
+
+// Establecer el nombre de la sesión antes de iniciar
 session_name(SESSION_NAME);
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -8,17 +11,13 @@ if (session_status() === PHP_SESSION_NONE) {
 
 var_dump(session_id(), $_SESSION); // Para depuración
 
-// Incluir configuraciones y autenticación
-require_once __DIR__ . '/config.php';
+// Incluir autenticación
 require_once __DIR__ . '/auth.php';
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    // Solo redirigir si el usuario no está autenticado
     var_dump($_SESSION); // Verificar el contenido de la sesión
     exit("Redireccionando a index.php debido a sesión inválida.");
-    //header("Location: index.php"); // Comentado para evitar redirección
-    //exit();
 }
 
 // Función de conexión a la base de datos

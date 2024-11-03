@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["us_sds"] = strtolower($name);
             // Verifica si la contraseña es la predeterminada para forzar cambio
             if ($pwd === "riesgo2020+") {
-                header("Location: cambio-clave.php");
+                header("Location: cambio-clave/index.php");
             } else {
-                header("Location: main.php");
+                header("Location: main/index.php");
             }
             exit();
         } else {

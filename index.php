@@ -30,10 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verifica si la contraseña es la predeterminada para forzar cambio
             if ($pwd === "riesgo2020+") {
                 header("Location: cambio-clave/");
+                exit();
             } else {
                 header("Location: main/");
+                exit();
             }
-            exit();
+            
         } else {
             echo "<div class='error'>
                     <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 

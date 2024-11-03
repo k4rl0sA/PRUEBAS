@@ -11,7 +11,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump('en index.php='.session_id(), $_SESSION); // Para depuración
+var_dump('ID de sesión: ', session_id()); // Para depuración
+var_dump('Contenido de la sesión: ', $_SESSION); // Para depuración
 
 // Incluir archivos de funciones
 try {
@@ -23,8 +24,12 @@ try {
 
 // Verificar si el usuario ya está autenticado
 if (is_logged_in()) {
-    header("Location: main/");
-    exit();
+    // Comentar la redirección para diagnóstico
+    // header("Location: main/");
+    // exit();
+    echo "Usuario autenticado, redirigiendo a main."; // Para verificación
+} else {
+    echo "Usuario no autenticado."; // Para verificación
 }
 
 // Procesar el formulario de autenticación
@@ -35,8 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
-            header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
-            exit();
+            // Comentar la redirección para diagnóstico
+            // header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
+            // exit();
+            echo "Inicio de sesión exitoso."; // Para verificación
         } else {
             echo "<div class='error'><strong>Error!</strong> Usuario o contraseña incorrectos.</div>";
         }

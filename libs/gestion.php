@@ -6,16 +6,18 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump('en gestion.php='.session_id(), $_SESSION); // Para depuración
+var_dump('ID de sesión en gestión: ', session_id()); // Para depuración
+var_dump('Contenido de la sesión en gestión: ', $_SESSION); // Para depuración
 
 require_once __DIR__ . '/auth.php';
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    var_dump('en gestion.php='.$_SESSION); // Verificar el contenido de la sesión
-    error_log("Redireccionando a index.php debido a sesión inválida."); // Registro
-    header("Location: index.php"); // Redirigir de inmediato
-    exit();
+    var_dump('Redireccionando a index.php debido a sesión inválida.'); // Para verificación
+    // Comentar la redirección para diagnóstico
+    // header("Location: index.php"); 
+    // exit();
+    exit("Sesión inválida. Por favor, inicie sesión."); // Mensaje de diagnóstico
 }
 
 // Función de conexión a la base de datos

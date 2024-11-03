@@ -2,12 +2,9 @@
 define('SESSION_NAME', 'us_sds');
 session_name(SESSION_NAME);
 
-// Iniciar la sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-var_dump(session_id(), $_SESSION); // Para depuración
 
 // Incluir configuraciones y autenticación
 require_once __DIR__ . '/config.php';
@@ -15,6 +12,7 @@ require_once __DIR__ . '/auth.php';
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
+    // Redirecciona solo si no está autenticado
     header("Location: index.php");
     exit();
 }
@@ -34,6 +32,7 @@ function conectarBD($dbConfig) {
 
 // Llama a la función de conexión
 conectarBD($dbConfig);
+
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {
     case '':

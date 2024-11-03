@@ -1,7 +1,8 @@
 <?php
 define('SESSION_NAME', 'us_sds');
 session_name(SESSION_NAME);
-// El resto de la configuración permanece igual.
+
+// Configuración de la base de datos y otros parámetros.
 $comy = array(
     'gitapps.site' => [
         's' => 'localhost',

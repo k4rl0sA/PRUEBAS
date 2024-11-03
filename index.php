@@ -7,12 +7,9 @@ ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
 
-// Iniciar la sesión si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-var_dump(session_id(), $_SESSION); // Para depuración
 
 // Incluir archivos de configuración y funciones
 try {
@@ -20,6 +17,12 @@ try {
     require_once __DIR__ . '/libs/gestion.php';
 } catch (Exception $e) {
     echo "Error cargando archivos: " . $e->getMessage();
+    exit();
+}
+
+// Verificar si el usuario ya está autenticado
+if (is_logged_in()) {
+    header("Location: main/");
     exit();
 }
 
@@ -41,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error en la autenticación.";
     }
 } else {
-    // Si no está autenticado, carga el formulario
     include_once('./login/frmlogin.php');
 }
 ?>

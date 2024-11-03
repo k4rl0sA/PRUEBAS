@@ -5,21 +5,21 @@ function is_logged_in() {
 }
 // Función para iniciar sesión
 function login($username, $password) {
-    global $pdo; // Asegúrate de que $pdo está definido en el ámbito
-
+    global $pdo;
+    echo 'valor de pdo';
+    var_dump($pdo);
     // Busca al usuario en la base de datos
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
     // Verifica si el usuario existe y si la contraseña es correcta
-    if ($user && password_verify($password, $user['password'])) { // Asegúrate de que las contraseñas están hasheadas
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION[SESSION_NAME] = strtolower($username); // Establecer la sesión
-        var_dump('valido desde auth function login devuelve true');
+        var_dump('Usuario autenticado: ', $user); // Muestra los detalles del usuario
         return true; // Autenticación exitosa
     }
-    var_dump('valido desde auth function login devuelve false');
+    var_dump('Autenticación fallida para usuario: ', $username);
     return false; // Falló la autenticación
 }
 function logout() {

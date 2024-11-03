@@ -1,7 +1,6 @@
 <?php
 /* require_once 'config.php';
 require_once 'gestion.php'; */
-
 if ($mostrar_errores) {
     ini_set('display_errors', '1');
     error_reporting(E_ALL);
@@ -20,7 +19,6 @@ try {
     echo "Error en gestion.php: " . $e->getMessage();
 }
 session_start();
-
 // Procesa el formulario cuando se envía por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST['username']);

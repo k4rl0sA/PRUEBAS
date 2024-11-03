@@ -1,6 +1,4 @@
 <?php
-session_unset();
-session_destroy();
 // Configuración de sesión y seguridad
 define('SESSION_NAME', 'us_sds');
 session_name(SESSION_NAME);

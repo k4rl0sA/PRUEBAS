@@ -4,10 +4,14 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once 'config.php';
+require_once 'auth.php';
+
 if (!is_logged_in()) {
     header("Location: index.php");
     exit();
 }
+
+
 
 function conectarBD($dbConfig) {
     global $pdo, $error_log_path;

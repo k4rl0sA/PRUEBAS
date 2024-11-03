@@ -11,8 +11,6 @@ if (!is_logged_in()) {
     exit();
 }
 
-
-
 function conectarBD($dbConfig) {
     global $pdo, $error_log_path;
     $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";

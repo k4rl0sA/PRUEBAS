@@ -1,6 +1,5 @@
 <?php
 function is_logged_in() {
-    var_dump('valido en auth.php='.session_id(), $_SESSION);
     return isset($_SESSION[SESSION_NAME]) && !empty($_SESSION[SESSION_NAME]);
 }
 
@@ -18,6 +17,19 @@ function login($username, $password) {
         return true;
     } else {
         return false;
+    }
+}
+
+// Función de conexión a la base de datos
+function conectarBD($dbConfig) {
+    global $pdo; // Asegúrate de que $pdo esté accesible globalmente
+    $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";
+    try {
+        $pdo = new PDO($dsn, $dbConfig['u'], $dbConfig['p']);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        error_log("Conexión fallida: " . $e->getMessage());
+        die('No se pudo conectar a la base de datos.');
     }
 }
 ?>

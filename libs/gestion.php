@@ -1,38 +1,21 @@
 <?php
 ini_set('display_errors', 1);
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/libs/config.php';
+require_once __DIR__ . '/libs/auth.php';
 
-// Comenzamos la sesión aquí, pero solo si no se ha iniciado en index.php
-if (session_status() === PHP_SESSION_NONE) {
-    session_name(SESSION_NAME);
-    session_start();
-}
+session_name(SESSION_NAME);
+session_start(); // Llama a session_start() solo si es necesario
 
 var_dump('ID de sesión en gestión: ', session_id());
 var_dump('Contenido de la sesión en gestión: ', $_SESSION);
 
 // Verificación de inicio de sesión
 if (!is_logged_in()) {
-    echo 'valido desde gestion.php la sesion=';
-    var_dump($_SESSION);
     exit("Redireccionando a index.php debido a sesión inválida.");
 }
 
-// Función de conexión a la base de datos
-function conectarBD($dbConfig) {
-    global $pdo; // Asegúrate de que $pdo esté accesible globalmente
-    $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";
-    try {
-        $pdo = new PDO($dsn, $dbConfig['u'], $dbConfig['p']);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        error_log("Conexión fallida: " . $e->getMessage());
-        die('No se pudo conectar a la base de datos.');
-    }
-}
-
-conectarBD($dbConfig);
+// Conectar a la base de datos
+conectarBD($dbConfig); // Llama a la conexión aquí también si es necesario
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';
 switch ($req) {

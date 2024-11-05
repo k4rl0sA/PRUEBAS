@@ -1,40 +1,31 @@
 <?php
 define('SESSION_NAME', 'us_sds');
 $session_path = __DIR__ . '/../sesiones/'; 
+
 if (!is_writable($session_path)) {
     echo "Error: La ruta de la sesión no tiene permisos de escritura.";
     chmod($session_path, 0777); // Asegura permisos de escritura para pruebas.
 }
+
 if (!is_dir($session_path)) {
     mkdir($session_path, 0777, true);
 }
+
 session_save_path($session_path);
 session_name(SESSION_NAME);
-echo SESSION_NAME; // Debería mostrar 'us_sds'
 
 // Configuración de la base de datos y otros parámetros.
-$comy = array(
-    'gitapps.site' => [
-        's' => 'localhost',
-        'u' => 'u470700275_08',
-        'p' => 'z9#KqH!YK2VEyJpT',
-        'bd' => 'u470700275_08',
-        'port' => '3306',
-        'charset' => 'utf8mb4'
-    ],
-    'pruebasiginf.site' => [
-        's' => 'localhost',
-        'u' => 'u470700275_17',
-        'p' => 'z9#KqH!YK2VEyJpT',
-        'bd' => 'u470700275_17',
-        'port' => '3306',
-        'charset' => 'utf8mb4'
-    ]
-);
+$dbConfig = [
+    's' => 'localhost',
+    'u' => 'u470700275_17',
+    'p' => 'z9#KqH!YK2VEyJpT',
+    'bd' => 'u470700275_17',
+    'port' => '3306',
+    'charset' => 'utf8mb4'
+];
 
 // Configuración de errores
 $mostrar_errores = true; // Cambiar a false en producción
-$error_log_path = '../errors.log';
 error_reporting(E_ALL);
 ini_set('display_errors', $mostrar_errores ? '1' : '0');
 

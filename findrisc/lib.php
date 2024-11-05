@@ -182,7 +182,7 @@ function cmp_tamfindrisc(){
 			// echo $sql;
 			$info=datos_mysql($sql);
 				if (!$info['responseResult']) {
-					$sql="SELECT P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
+					$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
 					P.fecha_nacimiento findrisc_fechanacimiento,
 					YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
 					FROM person P 

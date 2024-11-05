@@ -1,6 +1,7 @@
 <?php
 //define('SESSION_NAME', 'us_sds');
 define('SESSION_NAME', 'us_sds_test_unico');
+session_save_path('../sesiones/');
 
 echo SESSION_NAME; // Debería mostrar 'us_sds'
 

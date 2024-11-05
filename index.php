@@ -11,6 +11,14 @@ ini_set('session.use_only_cookies', 1);
 
 // Ahora puedes usar la constante
 session_name(SESSION_NAME); // Asegúrate de usar el nombre de la sesión
+session_set_cookie_params([
+    'lifetime' => 86400, // Vida de la cookie por un día
+    'path' => '/',
+    'domain' => 'pruebasiginf.site', // Asegúrate de usar el dominio correcto
+    'secure' => false, // Cambia a `true` si estás usando HTTPS
+    'httponly' => true,
+    'samesite' => 'Lax', // O 'None' si la sesión se comparte entre sitios
+]);
 session_start();
 
 var_dump(session_save_path());

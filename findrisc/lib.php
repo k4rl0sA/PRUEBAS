@@ -78,7 +78,7 @@ function cmp_tamfindrisc(){
 	$a=['id_findrisc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>'']; 
 	$p=['id_findrisc'=>'','idpersona'=>'','tipo_doc'=>'','findrisc_nombre'=>'','findrisc_fechanacimiento'=>'','findrisc_edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamfindrisc';
-	$d=get_tamfindrisc();
+	$d=get_tfindrisc();
 	// var_dump($d);
 	if (!isset($d['id_findrisc'])) {
 		//$d = array_merge($d,$a);

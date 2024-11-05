@@ -79,6 +79,7 @@ function cmp_tamfindrisc(){
 	$p=['id_findrisc'=>'','idpersona'=>'','tipo_doc'=>'','findrisc_nombre'=>'','findrisc_fechanacimiento'=>'','findrisc_edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamfindrisc';
 	$d=get_tamfindrisc();
+	// var_dump($d);
 	if (!isset($d['id_findrisc'])) {
 		$d = array_merge($d,$a);
 	}
@@ -86,6 +87,7 @@ function cmp_tamfindrisc(){
 	//CAMBIO HASTA AQUI
 	$o='datos';
     $key='find';
+	// var_dump($d);
 	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);//CAMBIO DE $d[''] POR '' EN LOS CAMPOS NO PERSONALES
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);

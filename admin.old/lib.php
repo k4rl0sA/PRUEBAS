@@ -168,7 +168,7 @@ function lis_planos() {
         case '1':
 			$tab = "Asignacion Predios";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_geolo($tab);
+			if($tab=decript($encr,$clave))lis_asignacion($tab);
 		break;
         case '2':
 			$tab = "Admision_Facturacion";

@@ -3,6 +3,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
+
+require_once __DIR__ . '/auth.php'; // Asegúrate de incluir el archivo auth.php
+
 if (isset($_SESSION['us_sds'])) {
     header("Location: gestion.php");
     exit();
@@ -12,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Aquí manejas el inicio de sesión
     $username = $_POST['username'];
     $password = $_POST['password'];
-    if (login($username, $password)) {
+    if (login($username, $password)) { // Ahora debería estar disponible
         header("Location: gestion.php");
         exit();
     } else {

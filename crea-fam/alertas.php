@@ -172,7 +172,7 @@ function men_alertas(){
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from person P left join hog_carac V ON vivipersona=idfam
-		WHERE idpeople='".$id[0]."'";
+		WHERE P.idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
@@ -335,7 +335,7 @@ function get_alertas(){
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		cursovida,D.fecha, tipo,D.crit_epi, men_dnt, men_sinctrl, gestante, etapgest, ges_sinctrl, cronico, cro_hiper, cro_diabe, cro_epoc, cro_sinctrl, esq_vacun, alert1, selmul1, alert2, selmul2, alert3, selmul3, alert4, selmul4, alert5, selmul5, alert6, selmul6, agen_intra, servicio, fecha_cita, hora_cita, lugar_cita, deriva_pf, evento_pf";
 		$sql.=" FROM hog_alert D
-				LEFT JOIN person P ON idpeople=idpeople
+				LEFT JOIN person P ON D.idpeople=P.idpeople
 				LEFT JOIN hog_carac V ON P.vivipersona=V.idfam
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);

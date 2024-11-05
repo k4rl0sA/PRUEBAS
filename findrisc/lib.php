@@ -90,7 +90,7 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);//CAMBIO DE $d[''] POR '' EN LOS CAMPOS NO PERSONALES
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-3');
-	$c[]=new cmp('tipodoc','s','3',$d['tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-3',"getDatForm('find','person','datos');setTimeout(hiddxedad,500,'edad','prufin');");//setTimeout(hiddxedad,1000,\'edad\',\'find\');
+	$c[]=new cmp('tipodoc','s','3',$d['tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-3',"");//setTimeout(hiddxedad,1000,\'edad\',\'find\');
 	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
@@ -120,7 +120,6 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp('descripcion','t','3','',$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
 	return $rta;
    }
 
@@ -372,8 +371,8 @@ function gra_tamfindrisc(){
 	   // var_dump($a);
 	   // var_dump($rta);
 		   if ($a=='tamfindrisc' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
-				$rta.="<li title='Ver'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'tamfindrisc',event,this,'../findrisc/lib.php',['puntaje','descripcion']);\"></i></li>";  //act_lista(f,this);setTimeout(hiddxedad,1000,'edad','prufin');
+			$rta="<nav class='menu right'>";																	//getDatForm('find','person','datos');setTimeout(hiddxedad,500,'edad','prufin');
+				$rta.="<li title='Ver'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'find',,'person','datos',event,this,'../findrisc/lib.php',['puntaje','descripcion']);\"></i></li>";  //act_lista(f,this);setTimeout(hiddxedad,1000,'edad','prufin');
 			}
 		return $rta;
 	   }

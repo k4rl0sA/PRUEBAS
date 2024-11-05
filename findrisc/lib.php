@@ -145,11 +145,9 @@ function cmp_tamfindrisc(){
 			'findrisc_nombre' => $data['findrisc_nombre'],
 			'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
 			'findrisc_edad' => $data['findrisc_edad'],
-			'fecha_toma' => $data['fecha_toma']
+			'fecha_toma' => isset($data['fecha_toma']) ? $data['fecha_toma'] : null,
 		];
-		$edadCampos = ($data['findrisc_edad'] > 12) 
-        ? ['diabetes','peso','talla','imc','perimcint','actifisica','verduras','hipertension','glicemia','diabfam','puntaje','descripcion']; //MENORES DE 18
-        : ['diabetes','peso','talla','imc','perimcint','actifisica','verduras','hipertension','glicemia','diabfam','puntaje','descripcion'];//MAYORES DE 18
+		$edadCampos = ['diabetes', 'peso', 'talla', 'imc', 'perimcint', 'actifisica', 'verduras', 'hipertension', 'glicemia', 'diabfam', 'puntaje', 'descripcion'];
 		foreach ($edadCampos as $campo) {
 			$baseData[$campo] = $data[$campo];
 		}

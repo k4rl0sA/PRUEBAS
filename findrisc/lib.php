@@ -75,7 +75,7 @@ function lis_findrisc(){//CAMBIO INGRESAR ESTA FUNCION ACORDE AL TAMIZAJE todos 
 function cmp_tamfindrisc(){
 	//CAMBIO INICIA ACA AJUSTAR ACORDE AL TAMIZAJE y los campos de la BD
 	$rta="<div class='encabezado findrisc'>TABLA FINDRISC</div><div class='contenido' id='findrisc-lis'>".lis_findrisc()."</div></div>";
-	$a=['id_findrisc'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>'']; 
+	$a=['id_findrisc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>'']; 
 	$p=['id_findrisc'=>'','idpersona'=>'','tipo_doc'=>'','findrisc_nombre'=>'','findrisc_fechanacimiento'=>'','findrisc_edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamfindrisc';
 	$d=get_tamfindrisc();

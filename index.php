@@ -13,6 +13,11 @@ ini_set('session.use_only_cookies', 1);
 session_name(SESSION_NAME); // Asegúrate de usar el nombre de la sesión
 session_start();
 
+var_dump(session_save_path());
+if (!is_writable(session_save_path())) {
+    echo "Error: La ruta de la sesión no tiene permisos de escritura.";
+}
+
 // Depuración
 var_dump('valido desde index.php ID de sesión: ', session_id());
 var_dump('valido desde index.php Contenido de la sesión: ', $_SESSION);

@@ -81,7 +81,7 @@ function cmp_tamfindrisc(){
 	$d=get_tfindrisc();
 	var_dump($d);
 	if (!isset($d['id_findrisc'])) {
-		//$d = array_merge($d,$a);
+		$d = array_merge($d,$a);
 	}
 	$u = ($d['id_findrisc']!='') ? false : true ;
 	//CAMBIO HASTA AQUI

@@ -9,15 +9,15 @@ ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_only_cookies', 1);
 
-// Ahora puedes usar la constante
-session_name(SESSION_NAME); // Asegúrate de usar el nombre de la sesión
+// Configura el nombre de la sesión
+session_name(SESSION_NAME);
 session_set_cookie_params([
     'lifetime' => 86400, // Vida de la cookie por un día
     'path' => '/',
     'domain' => 'pruebasiginf.site', // Asegúrate de usar el dominio correcto
     'secure' => false, // Cambia a `true` si estás usando HTTPS
     'httponly' => true,
-    'samesite' => 'Lax', // O 'None' si la sesión se comparte entre sitios
+    'samesite' => 'Lax',
 ]);
 
 $session_path = __DIR__ . '/../sesiones/';
@@ -46,12 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
             session_write_close(); // Guardar la sesión
-            var_dump('Verificación post-login en index.php:', $_SESSION); // Confirmación antes de redirigir
-            var_dump('revisando desde index.php despues de la rta de login a la sesion '.$_SESSION);
-            // Comentar la redirección para diagnóstico
+            var_dump('Verificación post-login en index.php:', $_SESSION);
+            // Redirección (comentar para pruebas)
             header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));
             exit();
-            echo "Inicio de sesión exitoso."; // Para verificación
         } else {
             echo "<div class='error'><strong>Error!</strong> Usuario o contraseña incorrectos.</div>";
         }
@@ -60,6 +58,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error en la autenticación.";
     }
 } else {
-    include_once('./login/frmlogin.php');
+    // Muestra el formulario de inicio de sesión
+    ?>
+    <form action="index.php" method="POST">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="passwd">Contraseña:</label>
+        <input type="password" id="passwd" name="passwd" required>
+
+        <button type="submit">Iniciar sesión</button>
+    </form>
+    <?php
 }
 ?>

@@ -27,12 +27,16 @@ function login($username, $password) {
     var_dump('Contraseña guardada en BD:', $user['password']);
 
     if (password_verify($password, $user['password'])) {
-        // Iniciar sesión y establecer variables de sesión
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         $_SESSION[SESSION_NAME] = strtolower($username);
-        session_write_close(); // Guardar la sesión inmediatamente
+        
+        // Verificación inmediata de la variable de sesión
+        var_dump('Estado de sesión justo después de asignación:', $_SESSION);
+        sleep(2); // Pausa de 2 segundos para permitir verificación
+        
+        session_write_close();
         return true;
     } else {
         echo "Error: Contraseña incorrecta.";

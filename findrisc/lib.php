@@ -135,7 +135,7 @@ function cmp_tamfindrisc(){
 		FROM `hog_tam_findrisc` A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
             WHERE A.id_findrisc='{$id[0]}'";
-		// echo $sql;
+		echo $sql;
 		$info = datos_mysql($sql);
 		$data = $info['responseResult'][0];
 		$baseData = [

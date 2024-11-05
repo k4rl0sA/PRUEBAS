@@ -33,9 +33,9 @@ $comy = array(
 );
 $dbConfig = [
     's' => 'localhost',      // Servidor de la base de datos
-    'bd' => 'nombre_base',   // Nombre de la base de datos
-    'u' => 'nombre_usuario',  // Usuario de la base de datos
-    'p' => 'contraseña',      // Contraseña del usuario
+    'bd' => 'u470700275_17',   // Nombre de la base de datos
+    'u' => 'u470700275_17',  // Usuario de la base de datos
+    'p' => 'z9#KqH!YK2VEyJpT',      // Contraseña del usuario
 ];
 // Configuración de errores
 $mostrar_errores = true; // Cambiar a false en producción

@@ -1,7 +1,7 @@
 <?php
 //define('SESSION_NAME', 'us_sds');
 define('SESSION_NAME', 'us_sds_test_unico');
-session_save_path('../sesiones/');
+session_save_path(__DIR__ . '/../sesiones/');
 
 echo SESSION_NAME; // Debería mostrar 'us_sds'
 

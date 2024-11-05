@@ -19,6 +19,13 @@ session_set_cookie_params([
     'httponly' => true,
     'samesite' => 'Lax', // O 'None' si la sesión se comparte entre sitios
 ]);
+
+$session_path = __DIR__ . '/../sesiones/';
+if (!is_dir($session_path)) {
+    mkdir($session_path, 0777, true); // 0777 asegura que PHP puede escribir
+}
+session_save_path($session_path);
+
 session_start();
 
 var_dump(session_save_path());

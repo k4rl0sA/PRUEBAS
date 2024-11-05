@@ -1,47 +1,94 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+session_start();
+// require_once '../libs/config.php';
+ini_set('display_errors', '1');
+include_once('./login/frmlogin.php');
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$name = test_input($_POST['username']);
+			$pwd =$_POST['passwd'];
+			/*
+			$token=$_POST['token'];
+			$url='https://www.google.com/recaptcha/api/siteverify';
+			$req="$url?secret=$claves[privada]&response=$token";
+			$rta=file_get_contents($req);
+			$json=json_decode($rta,true);
+			$ok=$json['success']; 
+			if ($ok===false) {
+				echo "<div class='error'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+					<strong>Error!</strong> Error en el captcha, intentalo nuevamente.
+					</div>";
+				die();
+			}
+			if ($json['score']< 0.7) {
+				echo "<div class='error'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+					<strong>Error!</strong> Error en el captcha, No eres humano o que?
+					</div>";
+				die();
+			}
+	*/
+			$valida=login($name,$pwd);
+			if ($valida === true){
+				$_SESSION["us_sds"] = strtolower($name);
+				if($_POST["passwd"] == "riesgo2020+"){
+					$link="cambio-clave/";
+					// echo "<script>alert('".$valida."  -  ".$link."');</script>";
+					echo "<script>window.location.replace('".$link."');</script>";
+				}else{
+					$link="main/";
+					echo "<script>window.location.replace('".$link."');</script>";
+				}
+			}else{
+				echo "<div class='error'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+					<strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.
+					</div>";
+					die();
+				}
+			}
 
-require_once __DIR__ . '/libs/config.php'; // Asegúrate de incluir la configuración primero
-require_once __DIR__ . '/libs/auth.php';    // Luego incluye auth.php para poder usar login()
-
-session_start(); // Inicia la sesión aquí
-
-// Conectar a la base de datos
-conectarBD($dbConfig); // Asegúrate de llamar a esta función para establecer la conexión
-
-if (isset($_SESSION['us_sds'])) {
-    header("Location: gestion.php");
-    exit();
+function db_connect(){
+		$con = new mysqli("localhost", "u470700275_17", "z9#KqH!YK2VEyJpT","u470700275_17");
+  if( !$con ){
+    throw new Exception('No se ha podido conectar a la base de datos');
+	die();
+  } else {
+    return $con;
+  }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    if (login($username, $password)) { // Ahora debería estar disponible
-        header("Location: main/");
-        exit();
-    } else {
-        $error = "Usuario o contraseña incorrectos.";
-    }
+function login($username,$password){
+	$con = db_connect();
+	$name = filter_var($username, FILTER_SANITIZE_STRING);
+    $pwd = filter_var($password, FILTER_SANITIZE_STRING);
+    if(!($rta = $con->prepare("SELECT id_usuario,nombre,clave FROM usuarios where id_usuario =? AND estado='A'"))){
+		echo "Prepare failed: (" . $con->errno . ")" . $con->error;
+        exit();}
+		if(!$rta->bind_param('s', $name)){
+			  echo "Bind failed: (" . $rta->errno . ")" . $rta->error;
+			  exit();}
+			if(!$rta->execute()){
+				echo "Execute failed: (" . $rta->errno .")" . $rta->error;
+				exit();}
+		$rta->bind_result($id_usuario,$nombre,$clave);
+		$rta->store_result();
+		$count = $rta->num_rows;
+        $rta->fetch();
+            if(password_verify($pwd, $clave)){
+				$_SESSION['us_sds']=$id_usuario;
+				$_SESSION['nomb']=$nombre;
+			return true;
+			}else{
+				return false;
+			}
+			// $rta->free();
+	$con->close();
+}	 
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-</head>
-<body>
-    <form method="POST" action="">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <?php if (isset($error)) echo "<p>$error</p>"; ?>
-</body>
-</html>

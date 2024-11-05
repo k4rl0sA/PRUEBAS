@@ -166,7 +166,7 @@ function lis_planos() {
 	$clave = random_bytes(32);
     switch ($_REQUEST['proceso']) {
         case '1':
-			$tab = "Geografico";
+			$tab = "Asignacion Predios";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_geolo($tab);
 		break;
@@ -408,25 +408,19 @@ function lis_planos() {
 
 
 
-function lis_geolo($txt){
-	$sql="SELECT G.idgeo AS Cod_Registro,CONCAT(G.estrategia, '_', G.sector_catastral, '_', G.nummanzana, '_', G.predio_num, '_', G.unidad_habit, '_', G.estado_v) AS ID_FAMILIAR,
-C1.descripcion AS Estrategia,G.subred AS Cod_Subred,C2.descripcion AS Subred,G.zona AS Cod_Zona,C3.descripcion AS Zona,G.localidad AS Cod_Localidad,C4.descripcion AS Localidad,G.upz AS Cod_Upz, C5.descripcion AS Upz,G.barrio AS Cod_Barrio,C6.descripcion AS Barrio,
-G.territorio AS Territorio,G.microterritorio AS Manzana_Cuidado,G.sector_catastral AS Sector_Catastral,G.nummanzana AS Numero_Manzana,G.predio_num AS Numero_Predio,G.unidad_habit AS Unidad_Habitacional,
-G.direccion AS Direccion,G.vereda AS Vereda,G.cordx AS Coordenada_X,G.cordy AS Coordenda_Y,G.direccion_nueva AS Direccion_Nueva,G.vereda_nueva AS Vereda_Nueva,G.cordxn AS Coordenada_X_Nueva,G.cordyn AS Coordenada_Y_Nueva,G.estrato AS Estrato,G.asignado AS Cod_Usuario_Asignado,U1.nombre AS Usuario_Asignado,G.equipo AS Equipo_Usuario,FN_CATALOGODESC(44,G.estado_v) AS Estado_Visita,FN_CATALOGODESC(5,G.motivo_estado) AS Motivo_Estado,
-G.usu_creo,U2.nombre,U2.perfil,G.fecha_create
-FROM `hog_geo` G
-LEFT JOIN catadeta C1 ON C1.idcatadeta = G.estrategia AND C1.idcatalogo = 42 AND C1.estado = 'A'
-LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A'
-LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A'
-LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A'
-LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A'
-LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A'
-LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario
-LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
+function lis_asignacion($txt){
+	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
+U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
+U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno  
+
+FROM `geo_asig` A
+LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
+LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario
+LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	
-	$tot="SELECT count(*) as total FROM `hog_geo` G LEFT JOIN catadeta C1 ON C1.idcatadeta = G.estrategia AND C1.idcatalogo = 42 AND C1.estado = 'A' LEFT JOIN catadeta C2 ON C2.idcatadeta = G.subred AND C2.idcatalogo = 72 AND C2.estado = 'A' LEFT JOIN catadeta C3 ON C3.idcatadeta = G.zona AND C3.idcatalogo = 3 AND C3.estado = 'A' LEFT JOIN catadeta C4 ON C4.idcatadeta = G.localidad AND C4.idcatalogo = 2 AND C4.estado = 'A' LEFT JOIN catadeta C5 ON C5.idcatadeta = G.upz AND C5.idcatalogo = 7 AND C5.estado = 'A' LEFT JOIN catadeta C6 ON C6.idcatadeta = G.barrio AND C6.idcatalogo = 20 AND C6.estado = 'A' LEFT JOIN usuarios U1 ON G.asignado = U1.id_usuario LEFT JOIN usuarios U2 ON G.usu_creo = U2.id_usuario WHERE 1 ";
+	$tot="SELECT count(*) as total FROM `geo_asig` A  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
 	$tot.=whe_date();
 	// echo $sql;
@@ -1908,7 +1902,7 @@ function whe_date(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(G.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

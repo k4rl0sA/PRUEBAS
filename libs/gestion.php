@@ -31,6 +31,7 @@ function conectarBD($dbConfig) {
         die('No se pudo conectar a la base de datos.');
     }
 }
+
 conectarBD($dbConfig);
 
 $req = isset($_REQUEST['a']) ? $_REQUEST['a'] : '';

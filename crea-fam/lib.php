@@ -826,7 +826,8 @@ function formato_dato($a,$b,$c,$d){
 		}else{
 			$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
 		}
-		
+		$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' Onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
+
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('atencion') ? "<li title='Crear Atención' onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');Color('datos-lis')\"><i class='fa-solid fa-user-doctor ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";

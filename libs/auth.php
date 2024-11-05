@@ -36,7 +36,7 @@ function login($username, $password) {
         var_dump('Estado de sesión justo después de asignación:', $_SESSION);
         sleep(2); // Pausa de 2 segundos para permitir verificación
         
-        session_write_close();
+        //session_write_close();
         return true;
     } else {
         echo "Error: Contraseña incorrecta.";

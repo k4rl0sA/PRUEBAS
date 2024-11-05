@@ -13,6 +13,24 @@ function login($username, $password) {
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$user) {
+        echo "Usuario no encontrado.";
+        return false;
+    }
+    if ($user) {
+        var_dump('Contraseña ingresada:', $password);
+        var_dump('Contraseña guardada en BD:', $user['password']);
+        if (password_verify($password, $user['password'])) {
+            $_SESSION[SESSION_NAME] = strtolower($username);
+            session_write_close();
+            return true;
+        } else {
+            echo "Error: Contraseña incorrecta.";
+        }
+    } else {
+        echo "Error: Usuario no encontrado.";
+    }
+    
     // Verifica si el usuario existe y si la contraseña es correcta
     var_dump('Ruta de guardado de sesión:', session_save_path());
     if (!is_writable(session_save_path())) {

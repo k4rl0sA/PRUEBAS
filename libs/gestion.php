@@ -113,11 +113,11 @@ function csv($a,$b,$tot= null){
 function cleanTx($val) {
   $val = trim($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');//maneja las inyecciones XSS
-  $pattern = '/[^\w\s\.\-@:]/'; //permitimos alfanuméricos, espacios, puntos, guiones y arroba, 2 puntos
+  $pattern = '/[^\w\s\.\-@:\x{00C0}-\x{00FF}]/u'; // UTF-8 para incluir caracteres especiales
   $val = preg_replace('/\s+/', ' ', $val); // Remover múltiples espacios
   $val = preg_replace($pattern, '', $val); // Quitar caracteres no permitidos
   $val = str_replace(array("\n", "\r", "\t"), '', $val); // Eliminar saltos de línea y tabulaciones
-  $val=strtoupper($val);
+  $val = mb_strtoupper($val, 'UTF-8'); // Convierte a mayúsculas conservando acentos
   return $val;
 }
 

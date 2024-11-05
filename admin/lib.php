@@ -96,7 +96,7 @@ function cmp_planos(){
 	$w='gestion';
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
-	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',true,true,'','col-2');
+	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',true,true,'','col-35');
 	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
 	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
 	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
@@ -181,14 +181,14 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_caract($tab);
 			break;
 		case '4':
-			$tab = "Plan_Cuidado_EAC";
+			$tab = "Plan_de_Cuidado_Familiar";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_plancueac($tab);
+			if($tab=decript($encr,$clave))lis_plancui($tab);
             break;	
         case '5':
-			$tab = "Psicologia_Sesion1";
+			$tab = "Compromisos_Plan_de_Cuidado_Familiar";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_psico1($tab);
+			if($tab=decript($encr,$clave))lis_plancomp($tab);
             break;
         case '6':
 			$tab = "Psicologia_Sesion2";
@@ -487,7 +487,53 @@ LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_plancui($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.id AS Cod_Registro,G.subred AS Subred,C.fecha AS Fecha_Caracterizacion,
+FN_CATALOGODESC(22,C.accion1) AS Accion_1,FN_CATALOGODESC(75,C.desc_accion1) AS Descipcion_Accion1,
+FN_CATALOGODESC(22,C.accion2) AS Accion_2,FN_CATALOGODESC(75,C.desc_accion2) AS Descipcion_Accion2,
+FN_CATALOGODESC(22,C.accion3) AS Accion_3,FN_CATALOGODESC(75,C.desc_accion3) AS Descipcion_Accion3,
+FN_CATALOGODESC(22,C.accion4) AS Accion_4,FN_CATALOGODESC(75,C.desc_accion4) AS Descipcion_Accion4,
+C.observacion AS Obervaciones, C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion
 
+FROM `hog_plancuid` C
+LEFT JOIN hog_fam F ON C.idviv = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred2();
+	$sql.=whe_date2();
+	
+	$tot="SELECT count(*) as total FROM `hog_plancuid` C  LEFT JOIN hog_fam F ON C.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred2();
+	$tot.=whe_date2();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_plancomp($txt){
+	$sql="SELECT
+G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.idcon AS Cod_Registro,G.subred AS Subred,C.compromiso AS Compromiso_Concertado, FN_CATALOGODESC(26,C.equipo) AS Equipo, C.cumple AS Cumple_Compromiso,
+C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion
+FROM `hog_planconc` C
+LEFT JOIN hog_plancuid P ON P.idviv = C.idviv
+LEFT JOIN hog_fam F ON C.idviv = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred3();
+	$sql.=whe_date3();
+	
+	$tot="SELECT count(*) as total FROM `hog_planconc` C  LEFT JOIN hog_plancuid P ON P.idviv = C.idviv LEFT JOIN hog_fam F ON C.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred3();
+	$tot.=whe_date3();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 
 
@@ -526,7 +572,7 @@ function whe_date2(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.atencion_fechaatencion) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(C.fecha) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 
@@ -539,7 +585,7 @@ function whe_date3(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.fecha_ses1) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(P.fecha) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

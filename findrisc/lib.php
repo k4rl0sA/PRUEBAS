@@ -135,7 +135,7 @@ function cmp_tamfindrisc(){
 		FROM `hog_tam_findrisc` A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
             WHERE A.id_findrisc='{$id[0]}'";
-		echo $sql;
+		//echo $sql;
 		$info = datos_mysql($sql);
 		$data = $info['responseResult'][0];
 		$baseData = [
@@ -147,6 +147,12 @@ function cmp_tamfindrisc(){
 			'findrisc_edad' => $data['findrisc_edad'],
 			'fecha_toma' => $data['fecha_toma']
 		];
+		$edadCampos = ($data['findrisc_edad'] > 12) 
+        ? ['diabetes','peso','talla','imc','perimcint','actifisica','verduras','hipertension','glicemia','diabfam','puntaje','descripcion']; //MENORES DE 18
+        : ['diabetes','peso','talla','imc','perimcint','actifisica','verduras','hipertension','glicemia','diabfam','puntaje','descripcion'];//MAYORES DE 18
+		foreach ($edadCampos as $campo) {
+			$baseData[$campo] = $data[$campo];
+		}
 		return json_encode($baseData);
 	} 
 

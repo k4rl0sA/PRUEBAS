@@ -21,7 +21,7 @@ if (!is_logged_in()) {
 
 // Función de conexión a la base de datos
 function conectarBD($dbConfig) {
-    global $pdo;
+    global $pdo; // Asegúrate de que $pdo esté accesible globalmente
     $dsn = "mysql:host={$dbConfig['s']};dbname={$dbConfig['bd']};port={$dbConfig['port']};charset={$dbConfig['charset']}";
     try {
         $pdo = new PDO($dsn, $dbConfig['u'], $dbConfig['p']);

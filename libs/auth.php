@@ -20,5 +20,4 @@ function login($username, $password) {
         return false;
     }
 }
-
-//
+?>

@@ -121,38 +121,48 @@ function cmp_tamfindrisc(){
 	return $rta;
    }
 
-   function get_tamfindrisc(){//CAMBIO FUNCION NUEVA ACORDE AL TAMIZAJE
-	if (empty($_REQUEST['id'])) {
+   function get_tamfindrisc() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
+    if (empty($_REQUEST['id'])) {
         return "";
     }
-	$id = divide($_REQUEST['id']);
-		// print_r($_POST);
-		$sql="SELECT `id_findrisc`, P.idpersona, P.tipo_doc,
-            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) findrisc_nombre,
-            P.fecha_nacimiento findrisc_fechanacimiento, 
+    
+    $id = divide($_REQUEST['id']);
+    $sql = "SELECT A.id_findrisc, P.idpersona, P.tipo_doc,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS findrisc_nombre,
+            P.fecha_nacimiento AS findrisc_fechanacimiento, 
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS findrisc_edad,
-		diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion
-		FROM `hog_tam_findrisc` A
-		LEFT JOIN person P ON A.idpeople = P.idpeople
-            WHERE A.id_findrisc='{$id[0]}'";
-		//echo $sql;
-		$info = datos_mysql($sql);
-		$data = $info['responseResult'][0];
-		$baseData = [
-			'id_findrisc' => $data['id_findrisc'],
-			'idpersona' => $data['idpersona'],
-			'tipo_doc' => $data['tipo_doc'],
-			'findrisc_nombre' => $data['findrisc_nombre'],
-			'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
-			'findrisc_edad' => $data['findrisc_edad'],
-			'fecha_toma' => isset($data['fecha_toma']) ? $data['fecha_toma'] : null,
-		];
-		$edadCampos = ['diabetes', 'peso', 'talla', 'imc', 'perimcint', 'actifisica', 'verduras', 'hipertension', 'glicemia', 'diabfam', 'puntaje', 'descripcion'];
-		foreach ($edadCampos as $campo) {
-			$baseData[$campo] = $data[$campo];
-		}
-		return json_encode($baseData);
-	} 
+            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint, 
+            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam, 
+            A.puntaje, A.descripcion
+            FROM hog_tam_findrisc A
+            LEFT JOIN person P ON A.idpeople = P.idpeople
+            WHERE A.id_findrisc = '{$id[0]}'";
+
+    $info = datos_mysql($sql);
+    $data = $info['responseResult'][0];
+
+    // Datos básicos
+    $baseData = [
+        'id_findrisc' => $data['id_findrisc'],
+        'idpersona' => $data['idpersona'],
+        'tipo_doc' => $data['tipo_doc'],
+        'findrisc_nombre' => $data['findrisc_nombre'],
+        'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
+        'findrisc_edad' => $data['findrisc_edad'],
+        'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
+    ];
+    // Campos adicionales específicos del tamizaje Findrisc
+    $edadCampos = [
+        'diabetes', 'peso', 'talla', 'imc', 'perimcint', 
+        'actifisica', 'verduras', 'hipertension', 
+        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+    ];
+    foreach ($edadCampos as $campo) {
+        $baseData[$campo] = $data[$campo];
+    }
+    return json_encode($baseData);
+}
+
 
 	function get_tfindrisc(){//CAMBIO function nueva
 		if($_POST['id']==0){

@@ -31,6 +31,12 @@ $comy = array(
         'charset' => 'utf8mb4'
     ]
 );
+$dbConfig = [
+    's' => 'localhost',      // Servidor de la base de datos
+    'bd' => 'nombre_base',   // Nombre de la base de datos
+    'u' => 'nombre_usuario',  // Usuario de la base de datos
+    'p' => 'contraseña',      // Contraseña del usuario
+];
 // Configuración de errores
 $mostrar_errores = true; // Cambiar a false en producción
 $error_log_path = '../errors.log';

@@ -1,8 +1,15 @@
 <?php
-//define('SESSION_NAME', 'us_sds');
-define('SESSION_NAME', 'us_sds_test_unico');
-session_save_path(__DIR__ . '/../sesiones/');
-
+define('SESSION_NAME', 'us_sds');
+$session_path = __DIR__ . '/../sesiones/'; 
+if (!is_writable($session_path)) {
+    echo "Error: La ruta de la sesión no tiene permisos de escritura.";
+    chmod($session_path, 0777); // Asegura permisos de escritura para pruebas.
+}
+if (!is_dir($session_path)) {
+    mkdir($session_path, 0777, true);
+}
+session_save_path($session_path);
+session_name(SESSION_NAME);
 echo SESSION_NAME; // Debería mostrar 'us_sds'
 
 // Configuración de la base de datos y otros parámetros.

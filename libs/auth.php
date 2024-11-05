@@ -20,6 +20,9 @@ function login($username, $password) {
     }
 
     if ($user && password_verify($password, $user['password'])) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION[SESSION_NAME] = strtolower($username); // Establecer la sesión
         var_dump('Usuario autenticado: ', $user); // Muestra los detalles del usuario
         var_dump('Estado de sesión después de login:', $_SESSION); // Verificar

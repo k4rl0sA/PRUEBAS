@@ -30,6 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         if (login($name, $pwd)) {
             $_SESSION[SESSION_NAME] = strtolower($name);
+            session_write_close(); // Guardar la sesión
+            var_dump('Verificación post-login en index.php:', $_SESSION); // Confirmación antes de redirigir
             var_dump('revisando desde index.php despues de la rta de login a la sesion '.$_SESSION);
             // Comentar la redirección para diagnóstico
             header("Location: " . ($pwd === "riesgo2020+" ? "cambio-clave/" : "main/"));

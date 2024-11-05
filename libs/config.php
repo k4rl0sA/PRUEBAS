@@ -1,5 +1,7 @@
 <?php
-define('SESSION_NAME', 'us_sds');
+//define('SESSION_NAME', 'us_sds');
+define('SESSION_NAME', 'us_sds_test_unico');
+
 echo SESSION_NAME; // Debería mostrar 'us_sds'
 
 // Configuración de la base de datos y otros parámetros.

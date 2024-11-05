@@ -4,8 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
 
-require_once __DIR__ . '/config.php'; // Asegúrate de incluir la configuración primero
-require_once __DIR__ . '/auth.php';    // Luego incluye auth.php para poder usar login()
+require_once __DIR__ . '/libs/config.php'; // Asegúrate de incluir la configuración primero
+require_once __DIR__ . '/libs/auth.php';    // Luego incluye auth.php para poder usar login()
 
 // Conectar a la base de datos
 conectarBD($dbConfig); // Asegúrate de llamar a esta función para establecer la conexión

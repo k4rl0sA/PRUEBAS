@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     if (login($username, $password)) { // Ahora debería estar disponible
-        header("Location: main.php");
+        header("Location: main/");
         exit();
     } else {
         $error = "Usuario o contraseña incorrectos.";

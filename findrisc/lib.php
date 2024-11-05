@@ -92,11 +92,11 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);//CAMBIO DE $d[''] POR '' EN LOS CAMPOS NO PERSONALES
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-3');
-	$c[]=new cmp('tipodoc','s','3',$d['tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-3',"");//setTimeout(hiddxedad,1000,\'edad\',\'find\');
-	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
+	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-3',"");//setTimeout(hiddxedad,1000,\'edad\',\'find\');
+	$c[]=new cmp('nombre','t','50',$d['findrisc_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
-	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
-    $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
+	$c[]=new cmp('fechanacimiento','d','10',$d['findrisc_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
+    $c[]=new cmp('edad','n','3',$d['findrisc_edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3',"setTimeout(hiddxdiab,500,'diabetes','prufin');");
 

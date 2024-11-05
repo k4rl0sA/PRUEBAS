@@ -132,7 +132,7 @@ function cmp_tamfindrisc(){
             P.fecha_nacimiento findrisc_fechanacimiento, 
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS findrisc_edad,
 		diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion
-		FROM `hog_tam_findrisc` O
+		FROM `hog_tam_findrisc` A
 		LEFT JOIN person P ON A.idpeople = P.idpeople
             WHERE A.id_findrisc='{$id[0]}'";
 		// echo $sql;

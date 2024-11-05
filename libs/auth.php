@@ -14,10 +14,16 @@ function login($username, $password) {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     // Verifica si el usuario existe y si la contraseña es correcta
+    var_dump('Ruta de guardado de sesión:', session_save_path());
+    if (!is_writable(session_save_path())) {
+        echo "Error: No hay permisos de escritura en la ruta de sesión.";
+    }
+
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION[SESSION_NAME] = strtolower($username); // Establecer la sesión
         var_dump('Usuario autenticado: ', $user); // Muestra los detalles del usuario
         var_dump('Estado de sesión después de login:', $_SESSION); // Verificar
+        session_write_close(); // Forzar el guardado de la sesión
         return true; // Autenticación exitosa
     }
     var_dump('Autenticación fallida para usuario: ', $username);

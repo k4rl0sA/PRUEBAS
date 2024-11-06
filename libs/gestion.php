@@ -12,7 +12,7 @@ if (!isset($_SESSION["us_sds"])) {
 }
 $ruta_upload='/public_html/upload/';
 
-$dominio = $_SERVER['HTTP_HOST']; // Obtener el dominio actual
+$dominio = $_SERVER['HTTP_HOST'];
 $comy = array(
   'pruebasiginf.site' => [
       's' => 'localhost',

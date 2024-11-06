@@ -26,7 +26,7 @@ function lis_tamfindrisc(){
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	 where ".whe_tamfindrisc());//CAMBIO LEFT JOIN Personas y hog_fam antes hog_viv lineas 25-26
+	 where ".whe_tamfindrisc());//CAMBIO LEFT JOIN Person Personas y hog_fam antes hog_viv lineas 25-26
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;

@@ -89,10 +89,11 @@ function lis_predios(){
                             u.equipo,
                             p.fecha_create AS 'Fecha Creo',
                             hf.id_fam AS 'Cod Familia',
-                            FN_CATALOGODESC(44, hg.estado_v) AS Estado
+                             FN_CATALOGODESC(44, gg.estado_v) AS Estado
                         FROM hog_fam hf
                         LEFT JOIN hog_geo hg ON hf.idpre = hg.idgeo
                         LEFT JOIN person p ON hf.id_fam = p.vivipersona
+			 LEFT JOIN geo_gest gg ON hg.idgeo = gg.idgeo
                         LEFT JOIN usuarios u ON p.usu_creo = u.id_usuario
                         WHERE p.idpersona = $docume";
                 $datos = datos_mysql($sql);

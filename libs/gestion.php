@@ -11,10 +11,30 @@ if (!isset($_SESSION["us_sds"])) {
   exit;
 }
 $ruta_upload='/public_html/upload/';
-$env='prod';
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
-//$comy=array('prod' => ['s'=>'mysql-aeu-sds-dev-mainmysqldev.mysql.database.azure.com','u' => 'u470700275_08','p' => 'z9#KqH!YK2VEyJpT','bd' => 'saludencasa_prd']);
-$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
+
+$dominio = $_SERVER['HTTP_HOST']; // Obtener el dominio actual
+$comy = array(
+  'pruebasiginf.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_17',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_17'
+  ],
+  'gitapps.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_08',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_08'
+  ]
+);
+
+if (array_key_exists($dominio, $comy)) {
+  $dbConfig = $comy[$dominio];
+} else {
+  die('Dominio no reconocido.'); // Manejo de error para dominios no configurados
+}
+$con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
+
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;

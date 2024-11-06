@@ -662,7 +662,7 @@ function Zsco(a,b='../vivienda/medidas.php'){
 	}
   }
 
-
+/*************************INICIO TAMIZAJES*************************************/
 function hiddxTamiz(a, b,e) {
 	const cmpAct = document.getElementById(a);
 	const cmps = document.querySelectorAll(`.${b}`);
@@ -698,6 +698,22 @@ function hiddxTamiz(a, b,e) {
 	  }
 	}
   }
+
+  function hiddxdiab(diab,cls) {
+	const dbts=document.getElementById(diab);
+	const cmpHid1 = document.querySelectorAll(`.${cls}`);
+	if(dbts.value== 1 ){
+		for(i=0;i<cmpHid1.length;i++){
+			hidFie(cmpHid1[i],true);
+		}
+	}else{
+		for(i=0;i<cmpHid1.length;i++){
+			hidFie(cmpHid1[i],false);
+		}
+	}
+}
+
+/*************************FIN TAMIZAJES*************************************/
   
 
 
@@ -1007,3 +1023,4 @@ function fieldsValue(a, b, value, flag = true) {
         }
     }
 }
+

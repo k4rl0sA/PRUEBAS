@@ -58,7 +58,7 @@ function grabar(tb='',ev){
 	}
 }
 
-function hiddxedad(xedad,cls) {
+/* function hiddxedad(xedad,cls) {
 	const edad=document.getElementById(xedad);
 	const cmpHid1 = document.querySelectorAll(`.${cls}`);
 
@@ -72,20 +72,8 @@ function hiddxedad(xedad,cls) {
 		}
 	}
 }
+ */
 
-function hiddxdiab(diab,cls) {
-	const dbts=document.getElementById(diab);
-	const cmpHid1 = document.querySelectorAll(`.${cls}`);
-	if(dbts.value== 1 ){
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],true);
-		}
-	}else{
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],false);
-		}
-	}
-}
 
 
 

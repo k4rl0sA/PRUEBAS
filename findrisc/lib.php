@@ -98,7 +98,7 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp('fechanacimiento','d','10',$d['findrisc_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
     $c[]=new cmp('edad','n','3',$d['findrisc_edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
-	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3',"setTimeout(hiddxdiab,500,'diabetes','prufin');");
+	$c[]=new cmp('diabetes','s',3,'NO',$w.''.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3',"hiddxdiab('diabetes','prufin');");
 
 	$ed=false;
 	if($d['findrisc_edad']>11){

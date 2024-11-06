@@ -601,29 +601,24 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_acompsic($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_acompsic AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_psicduel AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
 A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,
 
-FN_CATALOGODESC(170,A.autocono) AS Preg_1,FN_CATALOGODESC(170,A.cumuni_aser) AS Preg_2,FN_CATALOGODESC(170,A.toma_decis) AS Preg_3,FN_CATALOGODESC(170,A.pensa_crea) AS Preg_4,FN_CATALOGODESC(170,A.manejo_emo) AS Preg_5,FN_CATALOGODESC(170,A.rela_interp) AS Preg_6,FN_CATALOGODESC(170,A.solu_prob) AS Preg_7,FN_CATALOGODESC(170,A.pensa_critico) AS Preg_8,FN_CATALOGODESC(170,A.manejo_tension) AS Preg_9,FN_CATALOGODESC(170,A.empatia) AS Preg_10,
+FN_CATALOGODESC(80,A.causa_duelo) AS Causa_Duelo,A.fecha_defun AS Fecha_Defuncion,FN_CATALOGODESC(81,A.parent_fallec) AS Parentesco_Fallecido,FN_CATALOGODESC(82,A.lugar_defun) AS Lugar_defuncion,FN_CATALOGODESC(83,A.vincu_afect) AS Vinculo_Afectivo,FN_CATALOGODESC(84,A.senti_ident_1) AS Sentimientos_Emosiones_1,FN_CATALOGODESC(84,A.senti_ident_2) AS Sentimientos_Emosiones_2,FN_CATALOGODESC(84,A.senti_ident_3) AS Sentimientos_Emosiones_3,FN_CATALOGODESC(85,A.etapa_duelo) AS Etapa_Duelo,FN_CATALOGODESC(86,A.sintoma_duelo_1) AS Sintomas_Malestar_Duelo1,FN_CATALOGODESC(86,A.sintoma_duelo_2) AS Sintomas_Malestar_Duelo2,FN_CATALOGODESC(86,A.sintoma_duelo_3) AS Sintomas_Malestar_Duelo3,
 
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
-
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
 FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3,
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
-
-FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,
-A.liker_dificul AS Liker_Dificultad,A.liker_emocion AS Liker_Emocion,A.liker_decision AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.users_bina AS Usuarios_Equipo,
+FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultad,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emocion,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.users_bina AS Usuarios_Equipo,
 
 A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
-
-FROM `vsp_acompsic` A
- 
+FROM `vsp_apopsicduel` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo

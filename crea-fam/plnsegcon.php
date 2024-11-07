@@ -51,7 +51,7 @@ function cmp_segComp(){
 	$d=get_compromiso();
 	if ($d==""){$d=$t;}
       $c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-        $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
+        $c[]=new cmp('idcom','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
         $c[]=new cmp('compromiso','a',50,$d['compromiso'],$w.''.$o,'Compromisos concertados','observaciones',null,null,true,false,'','col-0');
         $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de Seguimiento','fecha',null,null,true,true,'','col-1');
         $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'Tipo de Seguimiento','tipo',null,null,false,true,'','col-1');
@@ -79,16 +79,20 @@ function cmp_segComp(){
 }
 
   function gra_segComp(){
-	$id=divide($_POST['idp']);
+	$id=divide($_POST['idcom']);
     // var_dump(COUNT($id));
-    if(COUNT($id)==1){
-      $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $info=datos_mysql("select equipo from usuarios where id_usuario='{$_SESSION['us_sds']}'");
+    if(isset($info['responseResult'][0])){ 
+      $equipo=$info['responseResult'][0];
+      $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
+        ['type' => 's', 'value' => $_POST['fecha']],
+        ['type' => 's', 'value' => $_POST['tipo']],
         ['type' => 's', 'value' => $_POST['cumplio']],
+        ['type' => 's', 'value' => $_POST['observacion']],
+        ['type' => 's', 'value' => $equipo],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => ''],
@@ -96,18 +100,12 @@ function cmp_segComp(){
         ['type' => 's', 'value' => 'A']
       ];
       $rta = mysql_prepd($sql, $params);
+      return $rta;
     }else{
-    /* $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
-    $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
-      ];
-      $rta = mysql_prepd($sql, $params); */
+      $rta="Error: msj['No existe un equipo actualmente para el usuario que realizo el seguimiento']";
     }
-return $rta;
 }
+
 
 function opc_cumplio($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);

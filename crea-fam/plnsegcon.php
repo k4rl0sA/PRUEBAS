@@ -47,6 +47,9 @@ function cmp_segComp(){
       $key='pln';
       $o='segComp';
       var_dump($_POST);
+      $t=['compromiso'=>''];
+	$d=get_compromiso();
+	if ($d==""){$d=$t;}
       $c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
         $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
         $c[]=new cmp('compromiso','a',50,$e,$w.$_POST['obs'].$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
@@ -56,6 +59,24 @@ function cmp_segComp(){
       for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
       return $rta;
   }
+
+  function get_personas(){
+    var_dump($_REQUEST);
+    /* if($_REQUEST['id']==''){
+        return "";
+    }else{
+        $id=divide($_REQUEST['id']);
+        //  `fechaatencion`, `codigocups`, `finalidadconsulta`, `peso`, `talla`, `sistolica`, `diastolica`, `abdominal`, `brazo`, `diagnosticoprincipal`, `diagnosticorelacion1`, `diagnosticorelacion2`, `diagnosticorelacion3`, `fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, `mestruacion`, `gestante`, `gestaciones`, `partos`, `abortos`, `cesarias`, `vivos`, `muertos`, `vacunaciongestante`, `edadgestacion`, `ultimagestacion`, `probableparto`, `prenatal`, `fechaparto`, `rpsicosocial`, `robstetrico`, `rtromboembo`, `rdepresion`, `sifilisgestacional`, `sifiliscongenita`, `morbilidad`, `hepatitisb`, `vih`, `cronico`, `asistenciacronica`, `tratamiento`, `vacunascronico`, `menos5anios`, `esquemavacuna`, `signoalarma`, `cualalarma`, `dxnutricional`, `eventointeres`, `evento`, `cualevento`, `sirc`, `rutasirc`, `remision`, `cualremision`, `ordenpsicologia`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenimagenes`, `imagenes`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `relevo`  ON a.idpersona = b.idpersona AND a.tipodoc = b.tipo_doc
+        $sql="SELECT  a.idpersona,tipo_doc,concat_ws(' ',a.nombre1,a.nombre2,a.apellido1,a.apellido2) nombres,a.fecha_nacimiento,a.sexo,a.genero,a.nacionalidad,
+        b.fecha_consulta,b.tipo_consulta,cod_cups,fecha_consulta,tipo_consulta,final_consul
+        FROM person a
+        LEFT JOIN adm_facturacion b ON a.idpeople = b.idpeople 
+        WHERE a.idpeople ='{$id[0]}'";
+        // echo $sql;
+        $info=datos_mysql($sql);
+        return $info['responseResult'][0];			
+    } */
+}
 
   function gra_segComp(){
 	$id=divide($_POST['idp']);

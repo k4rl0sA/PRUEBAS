@@ -81,10 +81,14 @@ function lis_cope(){
 function cmp_tamcope(){
 	$rta="<div class='encabezado cope'>TABLA COPE</div>
 	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
-	$t=['tam_cope'=>'','cope_tipodoc'=>'','cope_nombre'=>'','cope_idpersona'=>'','cope_fechanacimiento'=>'','cope_puntajea'=>'','cope_momento'=>'','cope_reporta'=>'','cope_edad'=>'','cope_lugarnacimiento'=>'','cope_condicionsalud'=>'','cope_estadocivil'=>'','cope_escolaridad'=>'','cope_pregunta1'=>'','cope_pregunta2'=>'','cope_pregunta3'=>'','cope_pregunta4'=>'','cope_pregunta5'=>'','cope_pregunta6'=>'','cope_pregunta7'=>'','cope_pregunta8'=>'','cope_pregunta9'=>'','cope_pregunta10'=>'','cope_pregunta11'=>'','cope_pregunta12'=>'','cope_pregunta13'=>'','cope_pregunta14'=>'','cope_pregunta15'=>'','cope_pregunta16'=>'','cope_pregunta17'=>'','cope_pregunta18'=>'','cope_pregunta19'=>'','cope_pregunta20'=>'','cope_pregunta21'=>'','cope_pregunta22'=>'','cope_pregunta23'=>'','cope_pregunta24'=>'','cope_pregunta25'=>'','cope_pregunta26'=>'','cope_pregunta27'=>'','cope_pregunta28'=>'','cope_evaluacion1'=>'','cope_evaluacion2'=>'','cope_evaluacion3'=>'','cope_evaluacion4'=>'','cope_evaluacion5'=>'','cope_evaluacion6'=>'','cope_evaluacion7'=>'','cope_evaluacion8'=>'','cope_evaluacion9'=>'','cope_evaluacion10'=>'','cope_evaluacion11'=>'','cope_evaluacion12'=>'','cope_evaluacion13'=>'','cope_evaluacion14'=>'','cope_evaluacion15'=>'','cope_evaluacion16'=>'','cope_evaluacion17'=>'','cope_evaluacion18'=>'','cope_evaluacion19'=>'','cope_evaluacion20'=>'','cope_evaluacion21'=>'','cope_evaluacion22'=>'','cope_evaluacion23'=>'','cope_evaluacion24'=>'','cope_evaluacion25'=>'','cope_evaluacion26'=>'','cope_evaluacion27'=>'','cope_evaluacion28'=>'','cope_puntajee'=>'','cope_descripciona'=>'','cope_descripcione'=>'','interpretacion'=>''	 ]; 
-	$w='tamcope';
-	$d=get_tamcope(); 
-	if ($d=="") {$d=$t;}
+	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','fam_percosnue'=>'','fam_feltrienf'=>'','fam_comptiemjun'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO con relacion a los campos de la bd
+	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
+	$w='tamapgar';
+	$d=get_tapgar();
+	// var_dump($d);
+	if (!isset($d['id_apgar'])) {
+		$d = array_merge($d,$a);
+	}
 	$u = ($d['tam_cope']!='') ? false : true ;
 	$o='datos';
     $key='srch';
@@ -98,6 +102,7 @@ function cmp_tamcope(){
     $c[]=new cmp('cope_edad','n','3',$d['cope_edad'],$w.' '.$o,'edad','cope_edad',null,'',true,false,'','col-1');
 	$c[]=new cmp('cope_reporta','s','3',$d['cope_reporta'],$w.' '.$o,'Caso reportado','cope_reporta',null,'',true,$u,'','col-3');
 	$c[]=new cmp('cope_momento','s','3',$d['cope_momento'],$w.' '.$o,'Tipo','tipo_activi',null,'',true,$u,'','col-3');
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 	
 	$o='info';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
@@ -133,10 +138,10 @@ function cmp_tamcope(){
 
 	$o='totales';
 	$c[]=new cmp($o,'e',null,'Resultado ',$w);
-	$c[]=new cmp('cope_puntajea','t',3,$d['cope_puntajea'],$w.' '.$o,'Puntaje Caracterización','cope_puntajea',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_descripciona','t',3,$d['cope_descripciona'],$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_puntajee','t',3,$d['cope_puntajee'],$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_descripcione','t',3,$d['cope_descripcione'],$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_puntajea','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajea',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_descripciona','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_puntajee','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	

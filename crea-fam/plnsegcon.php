@@ -49,11 +49,10 @@ function cmp_segComp(){
     //   var_dump($_POST);
       $t=['compromiso'=>''];
 	$d=get_compromiso();
-    var_dump($d);
 	if ($d==""){$d=$t;}
       $c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
         $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-        $c[]=new cmp('compromiso','a',50,$e,$w.$d['compromiso'].$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
+        $c[]=new cmp('compromiso','a',50,$d['compromiso'],$w.''.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
         $c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
         $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
       

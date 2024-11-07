@@ -108,7 +108,7 @@ return $rta;
 }
 
 function opc_cumplio($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=234ghg and estado='A' ORDER BY 1",$id);
+return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=234 and estado='A' ORDER BY 1",$id);
 }
 
 

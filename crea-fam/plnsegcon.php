@@ -54,8 +54,8 @@ function cmp_segComp(){
         $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
         $c[]=new cmp('compromiso','a',50,$d['compromiso'],$w.''.$o,'Compromisos concertados','observaciones',null,null,true,false,'','col-0');
         $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de Seguimiento','fecha',null,null,true,true,'','col-2');
+        $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'Tipo de Seguimiento','tipo',null,null,false,true,'','col-1');
         $c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
-        $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'Tipo de Seguimiento','cumplio',null,null,false,true,'','col-1');
         
     
       for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -110,9 +110,11 @@ return $rta;
 }
 
 function opc_cumplio($id=''){
-return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=234 and estado='A' ORDER BY 1",$id);
+return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_tipo($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=234 and estado='A' ORDER BY 1",$id);
+    }
 
 function formato_dato($a,$b,$c,$d){
     $b=strtolower($b);

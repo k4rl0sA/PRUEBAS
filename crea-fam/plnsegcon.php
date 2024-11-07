@@ -52,8 +52,6 @@ function cmp_segComp(){
         $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
       
       for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-        $rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-        <div class='contenido' id='segComp-lis' >".lis_segComp()."</div></div>";
       return $rta;
   }
 

@@ -47,8 +47,7 @@ $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-compConc']))? ($_POST['pag-compConc']-1)* $regxPag:0;
 
-    $sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,compromiso,
-        FN_CATALOGODESC(26,equipo) 'Equipo',cumple
+    $sql="SELECT concat(idviv,'_',idcon) ACCIONES, idcon AS Cod_Compromiso,fecha,FN_CATALOGODESC(26,equipo) 'Equipo'
         FROM `hog_planconc` 
             WHERE idviv='".$id[0];
         $sql.="' ORDER BY fecha_create";
@@ -85,9 +84,9 @@ function gra_compConc(){
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['obs']],
+        ['type' => 's', 'value' => $_POST['fecha']],
         ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['cumplio']],
+        ['type' => 's', 'value' => $_POST['obs']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => ''],
@@ -96,51 +95,20 @@ function gra_compConc(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-    $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
-      $rta = mysql_prepd($sql, $params);
+      $rta = mysql_prepd($sql, $params); */
     }
 return $rta;
 }
 
 
 	function get_compConc(){
-        // print_r($_POST);
-        /* if (!$_POST['id']) {
-            return '';
-        }
-        $id = divide($_POST['id']);
-        if(count($id)==2){
-          $sql = "SELECT concat(idviv,'_',idcon) 'id',compromiso,equipo,cumple
-                FROM `hog_planconc` 
-                WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'
-                LIMIT 1";
-        // echo $sql;		
-          $info = datos_mysql($sql);
-        }else{
-          $sql = "SELECT idviv 'id',compromiso,equipo,cumple
-                FROM `hog_planconc` 
-                WHERE idviv='{$id[0]}'
-                LIMIT 1";
-                echo $sql;
-                $info = datos_mysql($sql);
-        }
-        if (!$info['responseResult']) {
-          return '';
-
-        }else{
-          return $info['responseResult'][0];
-          
-        } */
-
-
-
-
         if($_REQUEST['id']==''){
           return "";
         }else{
@@ -150,12 +118,6 @@ return $rta;
           $sql="SELECT concat(idviv,'_',idcon) 'id',fecha,equipo,compromiso
                 FROM `hog_planconc` 
                 WHERE idviv='{$id[0]}' AND idcon='{$id[1]}'";
-          // echo $sql;
-          // LEFT JOIN personas P ON F.tipo_doc=P.tipo_doc AND F.documento=P.idpersona
-          // LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
-          // LEF JOIN ( SELECT CONCAT(estrategia, '_', sector_catastral, '_', nummanzana, '_', predio_num, '_', unidad_habit, '_', estado_v) AS geo, direccion, localidad, barrio
-                    // FROM hog_geo ) AS G ON H.idgeo = G.geo
-          // print_r($id);
           $info=datos_mysql($sql);
            return json_encode($info['responseResult'][0]);
             } 

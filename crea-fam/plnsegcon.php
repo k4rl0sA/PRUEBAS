@@ -56,8 +56,8 @@ function cmp_segComp(){
         $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de Seguimiento','fecha',null,null,true,true,'','col-2');
         $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'Tipo de Seguimiento','tipo',null,null,false,true,'','col-1');
         $c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
-        
-    
+        $c[]=new cmp('observacion','a',50,'',$w.''.$o,'Observación del Incumplimiento','observaciones',null,null,true,false,'','col-0');
+
       for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
       return $rta;
   }

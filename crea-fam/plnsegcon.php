@@ -46,7 +46,7 @@ function cmp_segComp(){
       $e="";
       $key='pln';
       $o='segComp';
-      var_dump($_POST);
+    //   var_dump($_POST);
       $t=['compromiso'=>''];
 	$d=get_compromiso();
 	if ($d==""){$d=$t;}

@@ -71,7 +71,10 @@ function cmp_compConc(){
   $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-2');
 	$c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
 	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-2');
+
+
 	$c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
+  $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
@@ -235,7 +238,8 @@ return $rta;
         // var_dump($a);
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-				$rta.="<li class='icono editar ' title='Editar Compromiso' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['obs','equipo']);\"></li>";  //   act_lista(f,this);
+				$rta.="<li title='Ver Apgar'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['obs','equipo']);\"></i></li>";  //   act_lista(f,this);
+        $rta.="<li class='icono editar' title='Seguimiento a Compromisos' id='".$c['ACCIONES']."' Onclick=\"mostrar('plnsegcon','pro',event,'','plnsegcon.php',7);\"></li>";
 			}
 		return $rta;
 	}

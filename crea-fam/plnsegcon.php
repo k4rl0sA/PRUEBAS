@@ -60,7 +60,7 @@ function cmp_segComp(){
       return $rta;
   }
 
-  function get_personas(){
+  function get_compromiso(){
     var_dump($_REQUEST);
     /* if($_REQUEST['id']==''){
         return "";

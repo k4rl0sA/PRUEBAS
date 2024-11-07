@@ -55,8 +55,8 @@ function cmp_segComp(){
         $c[]=new cmp('compromiso','a',50,$d['compromiso'],$w.''.$o,'Compromisos concertados','observaciones',null,null,true,false,'','col-0');
         $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de Seguimiento','fecha',null,null,true,true,'','col-1');
         $c[]=new cmp('tipo','s','2',$e,$w.' '.$o,'Tipo de Seguimiento','tipo',null,null,false,true,'','col-1');
-        $c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
-        $c[]=new cmp('observacion','a',50,'',$w.''.$o,'Observación del Incumplimiento','observaciones',null,null,true,false,'','col-7');
+        $c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1','enabRuta(this,\'rt\');');
+        $c[]=new cmp('observacion','a',50,'',$w.' rt '.$o,'Observación del Incumplimiento','observaciones',null,null,true,false,'','col-7');
 
       for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
       return $rta;

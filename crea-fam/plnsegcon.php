@@ -61,7 +61,7 @@ function cmp_segComp(){
   }
 
   function get_compromiso(){
-    var_dump($_REQUEST);
+    // var_dump($_REQUEST);
     if($_REQUEST['id']==''){
         return "";
     }else{

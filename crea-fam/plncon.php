@@ -193,7 +193,7 @@ return $rta;
         // var_dump($a);
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-				$rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['obs','equipo']);\"></i></li>";  //   act_lista(f,this);
+				$rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['fecha','obs','equipo']);\"></i></li>";  //   act_lista(f,this);
         $rta.="<li title='Seguimiento a Compromisos'><i class='fa-solid fa-house-medical-circle-check ico' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7);\"></i></li>";
 			}
 		return $rta;

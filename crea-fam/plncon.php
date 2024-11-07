@@ -68,9 +68,9 @@ function cmp_compConc(){
 	$o='compConc';
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-  $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-2');
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-2');
-  $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
+  $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-5');
+	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-5');
+  $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='compConc-lis' >".lis_compConc()."</div></div>";

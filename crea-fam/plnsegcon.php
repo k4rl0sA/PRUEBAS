@@ -82,7 +82,7 @@ function cmp_segComp(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO hog_planconc VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
@@ -97,14 +97,14 @@ function cmp_segComp(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-    $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+    /* $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
-      $rta = mysql_prepd($sql, $params);
+      $rta = mysql_prepd($sql, $params); */
     }
 return $rta;
 }

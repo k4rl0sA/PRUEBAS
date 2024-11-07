@@ -69,7 +69,7 @@ function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT tam_cope ACCIONES,tam_cope 'Cod Registro',fecha_toma,descripciona,descripcione,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_apgar A
+	FROM hog_tam_cope A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";

@@ -143,7 +143,7 @@ function selDep(){
 }
   
 function enbValue(a,clsCmp,v){
-	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);
+	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp+',textarea.'+clsCmp);
 	const act=document.getElementById(a);
 	if (act.value==v){
 		for (i = 0; i < ele.length; i++){ 

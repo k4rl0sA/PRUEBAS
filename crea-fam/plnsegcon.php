@@ -84,7 +84,7 @@ function cmp_segComp(){
     $info=datos_mysql("select equipo from usuarios where id_usuario='{$_SESSION['us_sds']}'");
     if(isset($info['responseResult'][0])){ 
       $equipo=$info['responseResult'][0];
-      $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],

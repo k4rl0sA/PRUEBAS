@@ -21,38 +21,48 @@ else {
 
 
 function lis_tamcope(){
-	// concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O LEFT JOIN personas P ON O.cope_idpersona = P.idpersona where 1 ".whe_tamcope() ." AND O.usu_creo ='".$_SESSION['us_sds']."'");
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
+	LEFT JOIN person P ON O.idpeople = P.idpeople
+	LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+	LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+	where ".whe_tamcope());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
+	$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
 	$sql="SELECT concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,tam_cope  'Cod. registro',cope_idpersona Documento,FN_CATALOGODESC(1,cope_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(135,cope_momento) Momento,`cope_puntajea` 'Pts. Afrontamiento',cope_descripciona Descripcion, `cope_puntajee` 'Pts. Evitación',cope_descripcione Descripción
 	FROM hog_tam_cope O
-	LEFT JOIN personas P ON O.cope_idpersona = P.idpersona
-		WHERE 1 ";
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		WHERE ";
 	$sql.=whe_tamcope();
 	$sql.=" AND O.usu_creo ='".$_SESSION['us_sds']."'";
 	$sql.=" ORDER BY 1";
 
 		$datos=datos_mysql($sql);
 		return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
+	}else{
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+                <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
+	}
 }
 
 function whe_tamcope() {
-	$sql = "";
-	if ($_POST['fidentificacion'])
-		$sql .= " AND cope_idpersona like '%".$_POST['fidentificacion']."%'";
-	if ($_POST['fsexo'])
-		$sql .= " AND P.sexo ='".$_POST['fsexo']."' ";
-	if ($_POST['fpersona']){
-		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";
-		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) > 18 ";
-		}
-	}
-	return $sql;
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
+    }
+    return $sql;
 }
 
 function cmp_tamcope(){
@@ -64,9 +74,10 @@ function cmp_tamcope(){
 	$u = ($d['tam_cope']!='') ? false : true ;
 	$o='datos';
     $key='srch';
+	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('cope_idpersona','t','20',$d['cope_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','cope_idpersona',null,'',false,$u,'','col-15');
+	$c[]=new cmp('cope_idpersona','n','20',$d['cope_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','cope_idpersona',null,'',false,$u,'','col-15');
 	$c[]=new cmp('cope_tipodoc','s','3',$d['cope_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','cope_tipodoc',null,'',false,$u,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('cope_nombre','t','50',$d['cope_nombre'],$w.' '.$o,'nombres','cope_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('cope_fechanacimiento','d','10',$d['cope_fechanacimiento'],$w.' '.$o,'fecha nacimiento','cope_fechanacimiento',null,'',false,false,'','col-15');

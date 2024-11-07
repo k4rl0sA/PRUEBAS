@@ -22,17 +22,19 @@ else {
 
 function lis_tamoms(){
 	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_oms O 
-	LEFT JOIN personas P ON O.idpersona = P.idpersona
-	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
-	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
-	LEFT JOIN usuarios U ON O.usu_creo=id_usuario where ".whe_tamoms());
+	LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
+	 where ".whe_tamoms());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamoms']))? ($_POST['pag-tamoms']-1)* $regxPag:0;
+	
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,idoms 'Cod Registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,descripcion  
 	FROM hog_tam_oms O 
-	LEFT JOIN personas P ON O.idpersona = P.idpersona
-		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+	LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
 	WHERE ";
@@ -45,19 +47,19 @@ function lis_tamoms(){
 }
 
 function whe_tamoms() {
-	$fefin=date('Y-m-d');
-	$feini=date('Y-m-d',strtotime($fefin.'- 4 days')); 
-	$sql = " G.subred=(SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	if ($_POST['fidentificacion']){
-		$sql .= " AND O.idpersona = '".$_POST['fidentificacion']."'";
-	}else{
-		$sql.=" AND DATE(O.fecha_create) BETWEEN '$feini' and '$fefin'"; 
-	}
-	return $sql;
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
+    }
+    return $sql;
 }
 
+
 function cmp_tamoms(){
-	$rta="";
+	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
 	$t=['idoms'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'']; 
 	$w='tamoms';
 	$d=get_tamoms(); 

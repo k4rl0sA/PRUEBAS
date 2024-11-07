@@ -68,9 +68,11 @@ function cmp_compConc(){
 	$o='compConc';
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
+  $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-2');
 	$c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-7');
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Equipo que concerta','equipo',null,null,true,true,'','col-2');
-	$c[]=new cmp('cumplio','o','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
+	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-2');
+	$c[]=new cmp('cumplio','s','2',$e,$w.' '.$o,'cumplio','cumplio',null,null,false,true,'','col-1');
+
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='compConc-lis' >".lis_compConc()."</div></div>";
@@ -221,6 +223,10 @@ return $rta;
         function opc_equipo($id=''){
             return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
         } 
+        function opc_cumplio($id=''){
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=0 and estado='A' ORDER BY 1",$id);
+      } 
+
 
 
 	function formato_dato($a,$b,$c,$d){

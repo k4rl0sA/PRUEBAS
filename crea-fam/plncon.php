@@ -186,7 +186,7 @@ return $rta;
       
       function segSi($id) {
           $id = divide($id);
-          $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE idpeople='" . $id[1] . "'";
+          $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE id_con='" . $id[1] . "'";
           $info = datos_mysql($sql);
           if(isset($info['responseResult'][0]['cumple'])==1){
             return ;  

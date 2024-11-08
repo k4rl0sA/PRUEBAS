@@ -57,7 +57,7 @@ function lis_seguim(){
 }
 
 function cmp_segComp(){
-  $rta .="<div class='encabezado seguiCom'>TABLA DE COMPROMISOS NO CUMPLIDOS</div>
+  $rta ="<div class='encabezado seguiCom'>TABLA DE COMPROMISOS NO CUMPLIDOS</div>
 	<div class='contenido' id='seguiCom-lis' >".lis_seguim()."</div></div>";
     $w="placuifam";
       $o='accide';

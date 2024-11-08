@@ -723,6 +723,9 @@ function plan($id){
 	}
 }
 
+
+
+
 function apg($id){
 	$id=divide($id);
 	$sql="select id_apgar FROM hog_tam_apgar where idpeople='".$id[0]."'";
@@ -733,6 +736,26 @@ function apg($id){
 	}else{
 		return false;
 	}
+}
+
+function get_Tamiz($fec) {
+	$info=datos_mysql("select TIMESTAMPDIFF(YEAR,$fec,CURDATE()) AS ano");
+	if(isset($info['responseResult'][0]['ano'])){
+		$edad=intval($info['responseResult'][0]['ano']);
+	}else{
+		$edad=0;
+	}
+	$tamiz = [];
+	if ($edad >= 7) {
+		$tamiz[] = 'tamApgar';
+	}
+	if ($edad >= 18) {
+		$tamiz[] = 'tamfindrisc';
+	}
+	if ($edad >= 40) {
+		$tamiz[] = 'tamoms';
+	}
+	return $tamiz;
 }
 
 
@@ -822,15 +845,24 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('signos') ? "<li title='Signos' onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('alertas') ? "<li title='Alertas' onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='{$c['ACCIONES']}'></i></li>" : "";
 
+		
 		/**********************TAMIZAJES*************************/
-		var_dump($c);
-		if(apg($c['ACCIONES'])===true){
-			$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico naranja' id='".$c['ACCIONES']."' ></i></li>":'';
-		}else{
-			$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
+		$tamiz= get_Tamiz($c['Fecha_Nacimiento']);
+		if (in_array('tamApgar',$tamiz)) {
+			if(apg($c['ACCIONES'])===true){
+				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico naranja' id='".$c['ACCIONES']."' ></i></li>":'';
+			}else{
+				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
+			}
 		}
-		$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' Onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-droplet ico' id='".$c['ACCIONES']."' ></i></li>":'';
+		if (in_array('tamfindrisc',$tamiz)) {
+			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' Onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-droplet ico' id='".$c['ACCIONES']."' ></i></li>":'';
+		}
+		if (in_array('tamoms',$tamiz)) {
+			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='".$c['ACCIONES']."'></i></li>":'';
+		}
 		/**********************TAMIZAJES*************************/
+
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('atencion') ? "<li title='Crear Atención' onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');Color('datos-lis')\"><i class='fa-solid fa-user-doctor ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";

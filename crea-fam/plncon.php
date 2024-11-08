@@ -189,7 +189,7 @@ return $rta;
           $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE id_con='" . $id[1] . "'";
           $info = datos_mysql($sql);
           if(isset($info['responseResult'][0]['cumple'])==1){
-            return ;  
+            return true;  
           }
       }
 

@@ -47,7 +47,7 @@ function lis_seguim(){
   $regxPag=5;
   $pag=(isset($_POST['pag-seguiCom']))? ($_POST['pag-seguiCom']-1)* $regxPag:0;
   
-      $sql="SELECT hs.fecha_seg,tipo_seg,estado_seg FROM hog_segcom hs
+      $sql="SELECT hs.fecha_seg,FN_CATALOGODESC(234,tipo_seg),estado_seg FROM hog_segcom hs
         WHERE id_con='".$id[1];
           $sql.="' ORDER BY fecha_create";
           $sql.=' LIMIT '.$pag.','.$regxPag;

@@ -188,7 +188,6 @@ return $rta;
           $id = divide($id); // Asumimos que divide() retorna un array
           $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE id_con='" . $id[1] . "'";
           $info = datos_mysql($sql);
-          var_dump($info);
           if (isset($info['responseResult'][0]['cumple']) && $info['responseResult'][0]['cumple'] == 1) {
               return false;  
           } else {
@@ -204,8 +203,6 @@ return $rta;
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				$rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['fecha','obs','equipo']);\"></i></li>";  //   act_lista(f,this);
-        var_dump(segSi($c['ACCIONES']));
-        var_dump($c['ACCIONES']);
         if (segSi($c['ACCIONES'])) {
           $rta.="<li title='Seguimiento a Compromisos'><i class='fa-solid fa-house-medical-circle-check ico' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7);\"></i></li>";
         }

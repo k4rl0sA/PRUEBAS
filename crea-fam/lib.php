@@ -849,8 +849,6 @@ function formato_dato($a,$b,$c,$d){
 		if (is_array($tamiz) && in_array('tamoms', $tamiz)) {
 			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
-		var_dump($c['Fecha Nacimiento']);
-		var_dump($tamiz);
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

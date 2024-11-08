@@ -188,7 +188,7 @@ return $rta;
           $id = divide($id); // Asumimos que divide() retorna un array
           $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE id_con='" . $id[1] . "'";
           $info = datos_mysql($sql);
-          var_dump($info['responseResult'][0]['cumple']);
+          var_dump($info);
           if (isset($info['responseResult'][0]['cumple']) && $info['responseResult'][0]['cumple'] == 1) {
               return true;  
           } else {

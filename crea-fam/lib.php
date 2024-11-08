@@ -723,39 +723,27 @@ function plan($id){
 	}
 }
 
-
-
-
-function apg($id){
-	$id=divide($id);
-	$sql="select id_apgar FROM hog_tam_apgar where idpeople='".$id[0]."'";
-	// echo $sql;
-	$info=datos_mysql($sql);
-	if(isset($info['responseResult'][0])){
-		return true;
-	}else{
-		return false;
-	}
+function apg($id) {
+    $id = divide($id);
+    $sql = "SELECT id_apgar FROM hog_tam_apgar WHERE idpeople='" . $id[0] . "'";
+    $info = datos_mysql($sql);
+    return isset($info['responseResult'][0]);
 }
 
 function get_Tamiz($fec) {
-	$info=datos_mysql("select TIMESTAMPDIFF(YEAR,$fec,CURDATE()) AS ano");
-	if(isset($info['responseResult'][0]['ano'])){
-		$edad=intval($info['responseResult'][0]['ano']);
-	}else{
-		$edad=0;
-	}
-	$tamiz = [];
-	if ($edad >= 7) {
-		$tamiz[] = 'tamApgar';
-	}
-	if ($edad >= 18) {
-		$tamiz[] = 'tamfindrisc';
-	}
-	if ($edad >= 40) {
-		$tamiz[] = 'tamoms';
-	}
-	return $tamiz;
+    $info = datos_mysql("select TIMESTAMPDIFF(YEAR,'$fec',CURDATE()) AS ano");
+    $edad = isset($info['responseResult'][0]['ano']) ? intval($info['responseResult'][0]['ano']) : 0;
+    $tamiz = [];
+    if ($edad >= 7) {
+        $tamiz[] = 'tamApgar';
+    }
+    if ($edad >= 18) {
+        $tamiz[] = 'tamfindrisc';
+    }
+    if ($edad >= 40) {
+        $tamiz[] = 'tamoms';
+    }
+    return $tamiz;
 }
 
 
@@ -847,21 +835,23 @@ function formato_dato($a,$b,$c,$d){
 
 
 		/**********************TAMIZAJES*************************/
-		var_dump($c);
 		$tamiz= get_Tamiz($c['Fecha Nacimiento']);
-		if (in_array('tamApgar',$tamiz)) {
-			if(apg($c['ACCIONES'])===true){
-				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico naranja' id='".$c['ACCIONES']."' ></i></li>":'';
-			}else{
-				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."' ></i></li>":'';
+		if (is_array($tamiz) && in_array('tamApgar', $tamiz)) {
+			if (apg($c['ACCIONES'])) {
+				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico naranja' id='".$c['ACCIONES']."'></i></li>": '';
+			} else {
+				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico' id='".$c['ACCIONES']."'></i></li>": '';
 			}
 		}
-		if (in_array('tamfindrisc',$tamiz)) {
-			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' Onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-droplet ico' id='".$c['ACCIONES']."' ></i></li>":'';
+		if (is_array($tamiz) && in_array('tamfindrisc', $tamiz)) {
+			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-droplet ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
-		if (in_array('tamoms',$tamiz)) {
-			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='".$c['ACCIONES']."'></i></li>":'';
+		if (is_array($tamiz) && in_array('tamoms', $tamiz)) {
+			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
+		var_dump($c['Fecha Nacimiento']);
+		var_dump($tamiz);
+		var_dump($info);
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

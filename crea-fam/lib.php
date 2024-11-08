@@ -845,8 +845,9 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('signos') ? "<li title='Signos' onclick=\"mostrar('signos','pro',event,'','signos.php',7,'signos');Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('alertas') ? "<li title='Alertas' onclick=\"mostrar('alertas','pro',event,'','alertas.php',7,'alertas');Color('datos-lis');\"><i class='fa-solid fa-person-circle-exclamation ico' id='{$c['ACCIONES']}'></i></li>" : "";
 
-		
+
 		/**********************TAMIZAJES*************************/
+		var_dump($c);
 		$tamiz= get_Tamiz($c['Fecha_Nacimiento']);
 		if (in_array('tamApgar',$tamiz)) {
 			if(apg($c['ACCIONES'])===true){

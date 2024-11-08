@@ -40,15 +40,15 @@ function focus_segComp(){
 }
 
 function lis_seguim(){
-  print_r($_POST);
-  //$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-  $info=datos_mysql("SELECT COUNT(*) total FROM hog_segcom WHERE idviv=".$id[0]."");
+  // print_r($_POST);
+  $id = divide($_POST['id']);
+  $info=datos_mysql("SELECT COUNT(*) total FROM hog_segcom WHERE id_con='".$id[1]."'");
   $total=$info['responseResult'][0]['total'];
   $regxPag=5;
   $pag=(isset($_POST['pag-seguiCom']))? ($_POST['pag-seguiCom']-1)* $regxPag:0;
   
       $sql="SELECT hs.fecha_seg,tipo_seg,estado_seg FROM hog_segcom hs
-        WHERE id_con='".$id[0];
+        WHERE id_con='".$id[1];
           $sql.="' ORDER BY fecha_create";
           $sql.=' LIMIT '.$pag.','.$regxPag;
           //  echo $sql;

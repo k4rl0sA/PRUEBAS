@@ -204,7 +204,7 @@ return $rta;
 			$rta="<nav class='menu right'>";
 				$rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['fecha','obs','equipo']);\"></i></li>";  //   act_lista(f,this);
         if (segSi($c['ACCIONES'])) {
-          $rta.="<li title='Seguimiento a Compromisos'><i class='fa-solid fa-house-medical-circle-check ico' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7,'Seguimiento a Compromisos');\"></i></li>";
+          $rta.="<li ><i class='fa-solid fa-house-medical-circle-check ico' title='Seguimiento a Compromisos' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7,'Seguimiento a Compromisos');\"></i></li>";
         }
 			}
 		return $rta;

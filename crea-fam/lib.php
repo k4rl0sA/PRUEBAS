@@ -848,7 +848,7 @@ function formato_dato($a,$b,$c,$d){
 
 		/**********************TAMIZAJES*************************/
 		var_dump($c);
-		$tamiz= get_Tamiz($c['Fecha_Nacimiento']);
+		$tamiz= get_Tamiz($c['Fecha Nacimiento']);
 		if (in_array('tamApgar',$tamiz)) {
 			if(apg($c['ACCIONES'])===true){
 				$rta .= acceso('tamApgar') ? "<li title='Tamizaje Apgar' Onclick=\"mostrar('tamApgar','pro',event,'','../apgar/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-people-roof ico naranja' id='".$c['ACCIONES']."' ></i></li>":'';

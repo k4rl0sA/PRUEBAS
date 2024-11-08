@@ -190,9 +190,9 @@ return $rta;
           $info = datos_mysql($sql);
           var_dump($info);
           if (isset($info['responseResult'][0]['cumple']) && $info['responseResult'][0]['cumple'] == 1) {
-              return true;  
+              return false;  
           } else {
-              return false;
+              return true;
           }
       }
 

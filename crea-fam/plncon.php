@@ -184,7 +184,14 @@ return $rta;
             return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=26 and estado='A' ORDER BY 1",$id);
         } 
       
-
+      function segSi($id) {
+          $id = divide($id);
+          $sql = "SELECT estado_seg cumple FROM hog_segcom WHERE idpeople='" . $id[1] . "'";
+          $info = datos_mysql($sql);
+          if(isset($info['responseResult'][0]['cumple'])==1){
+            return ;  
+          }
+      }
 
 
 	function formato_dato($a,$b,$c,$d){
@@ -194,7 +201,9 @@ return $rta;
 		if ($a=='compConc' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				$rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'plncon.php',['fecha','obs','equipo']);\"></i></li>";  //   act_lista(f,this);
-        $rta.="<li title='Seguimiento a Compromisos'><i class='fa-solid fa-house-medical-circle-check ico' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7);\"></i></li>";
+        if (segSi($c['ACCIONES'])) {
+          $rta.="<li title='Seguimiento a Compromisos'><i class='fa-solid fa-house-medical-circle-check ico' id='".$c['ACCIONES']."' Onclick=\"mostrar('segComp','pro',event,'','plnsegcon.php',7);\"></i></li>";
+        }
 			}
 		return $rta;
 	}

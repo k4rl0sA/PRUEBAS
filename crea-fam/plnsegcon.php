@@ -80,14 +80,14 @@ function cmp_segComp(){
 
   function gra_segComp(){
 	$id=divide($_POST['idcom']);
-    // var_dump(COUNT($id));
+    // var_dump($id);
     $info=datos_mysql("select equipo from usuarios where id_usuario='{$_SESSION['us_sds']}'");
     if(isset($info['responseResult'][0])){ 
       $equipo=$info['responseResult'][0]['equipo'];
       $sql = "INSERT INTO hog_segcom VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
-        ['type' => 's', 'value' => $id[0]],
+        ['type' => 's', 'value' => $id[1]],
         ['type' => 's', 'value' => $_POST['fecha']],
         ['type' => 's', 'value' => $_POST['tipo']],
         ['type' => 's', 'value' => $_POST['cumplio']],

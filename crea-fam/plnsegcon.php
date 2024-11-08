@@ -113,8 +113,8 @@ function cmp_segComp(){
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => $_POST['observacion']],
         ['type' => 's', 'value' => $equipo],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
+        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']

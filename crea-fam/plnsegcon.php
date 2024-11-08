@@ -47,7 +47,7 @@ function lis_seguim(){
   $regxPag=5;
   $pag=(isset($_POST['pag-seguiCom']))? ($_POST['pag-seguiCom']-1)* $regxPag:0;
   
-      $sql="SELECT hs.fecha_seg,FN_CATALOGODESC(234,tipo_seg) tipo,FN_CATALOGODESC(170,estado_seg) estado,u.nombre,equipo FROM 
+      $sql="SELECT hs.fecha_seg,FN_CATALOGODESC(234,tipo_seg) tipo,FN_CATALOGODESC(170,estado_seg) estado,u.nombre,hs.equipo FROM 
             hog_segcom hs
         LEFT JOIN usuarios u ON hs.usu_create=u.id_usuario
         WHERE id_con='".$id[1];

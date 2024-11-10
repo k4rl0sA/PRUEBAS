@@ -105,14 +105,14 @@ function cmp_tamfindrisc(){
 		$ed=true;
  		$c[]=new cmp($o,'e',null,'PRUEBA FINDRISC',$w);
  		$c[]=new cmp('peso','t',6,'',$w.' '.$o,'Peso (Kg) Mínimo=0.50 (Kg) - Máximo=150.00 (Kg)','peso','rgxpeso','###.##',true,$ed,'','col-25');
- 		$c[]=new cmp('talla','n',3,'',$w.' '.$o,'Talla (Cm) Mínimo=120 (Cm) - Máximo=210 (Cm)','talla','rgxtalla',null,false,$ed,'','col-25',"calImc('peso','talla','imc');");
+ 		$c[]=new cmp('talla','n',3,'',$w.' '.$o,'Talla (Cm) Mínimo=120 (Cm) - Máximo=210 (Cm)','talla','rgxtalla',null,true,$ed,'','col-25',"calImc('peso','talla','imc');");
 		$c[]=new cmp('imc','t',6,'',$w,'IMC','imc',null,null,false,false,'','col-2');
-		$c[]=new cmp('perimcint','n',3,'',$w.' '.$o,'Perimetro de cintura (Cm) Mínimo=50 (Cm) - Máximo=210 (Cm)','perimcint','rgxperabd',null,false,$ed,'','col-3');
+		$c[]=new cmp('perimcint','n',3,'',$w.' '.$o,'Perimetro de cintura (Cm) Mínimo=50 (Cm) - Máximo=210 (Cm)','perimcint','rgxperabd',null,true,$ed,'','col-3');
  		$c[]=new cmp('actifisica','s',3,'',$w.' '.$o,'Hace habitualmente (a diario) al menos 30 minutos de actividad física en el trabajo o durante su tiempo libre?','actifisica',null,null,false,$ed,'','col-5');
- 		$c[]=new cmp('verduras','s',3,'',$w.' '.$o,'Come verduras o frutas Todos los dias ?','verduras',null,null,false,$ed,'','col-2');
- 		$c[]=new cmp('hipertension','s',3,'',$w.' '.$o,'Toma regularmente medicación para la hipertensión ?','hipertension',null,null,false,$ed,'','col-3');
- 		$c[]=new cmp('glicemia','s',3,'',$w.' '.$o,'Le han encontrado alguna vez valores de glucosa altos ?','glicemia','rgxgluco',null,false,$ed,'','col-5');
- 		$c[]=new cmp('diabfam','s',3,'',$w.' '.$o,'Se le ha diagnosticado diabetes (tipo 1 o tipo 2) a alguno de sus familiares ?','diabfam',null,null,false,$ed,'','col-5');
+ 		$c[]=new cmp('verduras','s',3,'',$w.' '.$o,'Come verduras o frutas Todos los dias ?','verduras',null,null,true,$ed,'','col-2');
+ 		$c[]=new cmp('hipertension','s',3,'',$w.' '.$o,'Toma regularmente medicación para la hipertensión ?','hipertension',null,null,true,$ed,'','col-3');
+ 		$c[]=new cmp('glicemia','s',3,'',$w.' '.$o,'Le han encontrado alguna vez valores de glucosa altos ?','glicemia','rgxgluco',null,true,$ed,'','col-5');
+ 		$c[]=new cmp('diabfam','s',3,'',$w.' '.$o,'Se le ha diagnosticado diabetes (tipo 1 o tipo 2) a alguno de sus familiares ?','diabfam',null,null,true,$ed,'','col-5');
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);

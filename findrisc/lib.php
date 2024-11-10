@@ -101,7 +101,6 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp('diabetes','s',3,'2',$w.''.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3',"hiddxdiab('diabetes','prufin');");
 
 	$ed=false;
-	if($d['findrisc_edad']>17){
 		$o='prufin';
 		$ed=true;
  		$c[]=new cmp($o,'e',null,'PRUEBA FINDRISC',$w);
@@ -114,7 +113,6 @@ function cmp_tamfindrisc(){
  		$c[]=new cmp('hipertension','s',3,'',$w.' '.$o,'Toma regularmente medicación para la hipertensión ?','hipertension',null,null,false,$ed,'','col-3');
  		$c[]=new cmp('glicemia','s',3,'',$w.' '.$o,'Le han encontrado alguna vez valores de glucosa altos ?','glicemia','rgxgluco',null,false,$ed,'','col-5');
  		$c[]=new cmp('diabfam','s',3,'',$w.' '.$o,'Se le ha diagnosticado diabetes (tipo 1 o tipo 2) a alguno de sus familiares ?','diabfam',null,null,false,$ed,'','col-5');
-	}
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);

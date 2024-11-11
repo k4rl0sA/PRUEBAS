@@ -322,7 +322,7 @@ function gra_tamfindrisc(){
 			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 
 		$sql="INSERT INTO hog_tam_findrisc VALUES (null,
-		trim(upper('{$idp}')),trim(upper('{$_POST['fecha_toma'']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['perimcint']}')),trim(upper('{$_POST['actifisica']}')),trim(upper('{$_POST['verduras']}')),trim(upper('{$_POST['hipertension']}')),trim(upper('{$_POST['glicemia']}')),trim(upper('{$_POST['diabfam']}')),
+		trim(upper('{$idp}')),trim(upper('{$_POST['fecha_toma']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['perimcint']}')),trim(upper('{$_POST['actifisica']}')),trim(upper('{$_POST['verduras']}')),trim(upper('{$_POST['hipertension']}')),trim(upper('{$_POST['glicemia']}')),trim(upper('{$_POST['diabfam']}')),
 		'{$suma_findrisc}',
 		trim(upper('{$des}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),

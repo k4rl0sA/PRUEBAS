@@ -313,10 +313,11 @@ function gra_tamfindrisc(){
 				return "No es posible actualizar el tamizaje";
 	}else{
 		$id=$_POST['id'];
-		$idp=datos_mysql("SELECT idpeople FROM person 
-		WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'");//CAMBIO ADD linea
+		$sql="SELECT idpeople FROM person 
+		WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'";
+		$idp=datos_mysql($sql);//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
-			$idper =json_encode($idp['responseResult'][0]['idpeople']);//CAMBIO ADD linea
+			$idper =$idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea
 		
 			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);

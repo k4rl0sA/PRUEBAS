@@ -327,7 +327,7 @@ function gra_tamfindrisc(){
 		trim(upper('{$des}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		// echo $sql;
+		echo $sql;
 		$rta=dato_mysql($sql);
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';

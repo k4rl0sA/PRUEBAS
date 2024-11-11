@@ -81,7 +81,8 @@ function grabar(tb='',ev){
     'condsuic':'../vsp/condsuic.php',
     'violgest':'../vsp/violgest.php',
     'tamApgar':'../apgar/lib.php',
-    'segComp':'plnsegcon.php'
+    'segComp':'plnsegcon.php',
+    'tamfindrisc':'../findrisc/lib.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

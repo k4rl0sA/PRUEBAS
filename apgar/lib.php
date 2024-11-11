@@ -313,27 +313,6 @@ if (isset($_POST['fam_comprobl']) && $_POST['fam_comprobl'] !== '' || isset($_PO
 			$emo=$_POST['sati_famemosion']??null;
 			$cmr=$_POST['sati_famcompar']??null;
 
-			// var_dump($_POST);
-			 //cambio ipersona por idpeople en la variable $idper
-			/* $sql="INSERT INTO hog_tam_apgar VALUES (null,
-			{$idper},
-			trim(upper('{$_POST['fecha_toma']}')),
-			trim(upper('{$tas}')),
-			trim(upper('{$cop}')),
-			trim(upper('{$per}')),
-			trim(upper('{$fel}')),
-			trim(upper('{$cti}')),
-			trim(upper('{$ayu}')),
-			trim(upper('{$com}')),
-			trim(upper('{$apo}')),
-			trim(upper('{$emo}')),
-			trim(upper('{$cmr}')),
-			'{$suma_apgar}',
-			trim(upper('{$des}')),
-			TRIM(UPPER('{$_SESSION['us_sds']}')),
-			DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			// echo $sql;
-			return $rta=dato_mysql($sql); */
 			$sql = "INSERT INTO hog_tam_apgar VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), ?, ?, ?)";
 			$params = [
 			    ['type' => 'i', 'value' => NULL],  // ID autoincremental

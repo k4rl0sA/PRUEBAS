@@ -315,12 +315,11 @@ function gra_tamfindrisc(){
 		$id=$_POST['id'];
 		$sql="SELECT idpeople FROM person 
 		WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'";
-		var_dump($sql);
 		$idp=datos_mysql($sql);//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
 			$idper =$idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea
-		
+		var_dump($idper);
 			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 
 		$sql="INSERT INTO hog_tam_findrisc VALUES (null,

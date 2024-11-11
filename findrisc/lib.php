@@ -6,9 +6,9 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
+  case 'csv':
     header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
+    $rs=array('','');
     echo csv($rs,'');
     die;
     break;
@@ -16,26 +16,26 @@ else {
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }
 }
 
 
 function lis_tamfindrisc(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O 
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O
 	LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
 	 where ".whe_tamfindrisc());//CAMBIO LEFT JOIN Person Personas y hog_fam antes hog_viv lineas 25-26
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;
 
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil 
-	FROM hog_tam_findrisc O 
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil
+	FROM hog_tam_findrisc O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
 	WHERE ";//CAMBIO LEFT JOIN Personas y hog_fam antes hog_viv lineas 36-37
 	$sql.=whe_tamfindrisc();
@@ -43,7 +43,7 @@ function lis_tamfindrisc(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
-	
+
 }
 
 function whe_tamfindrisc() {//CAMBIO FILTROS DEJAR ESTOS cambiar todo lo que este dentro de la function
@@ -58,7 +58,7 @@ function whe_tamfindrisc() {//CAMBIO FILTROS DEJAR ESTOS cambiar todo lo que est
 }
 
 
-function lis_findrisc(){//CAMBIO INGRESAR ESTA FUNCION ACORDE AL TAMIZAJE todos los campos 
+function lis_findrisc(){//CAMBIO INGRESAR ESTA FUNCION ACORDE AL TAMIZAJE todos los campos
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT id_findrisc ACCIONES,
@@ -75,11 +75,11 @@ function lis_findrisc(){//CAMBIO INGRESAR ESTA FUNCION ACORDE AL TAMIZAJE todos 
 function cmp_tamfindrisc(){
 	//CAMBIO INICIA ACA AJUSTAR ACORDE AL TAMIZAJE y los campos de la BD
 	$rta="<div class='encabezado findrisc'>TABLA FINDRISC</div><div class='contenido' id='findrisc-lis'>".lis_findrisc()."</div></div>";
-	$a=['id_findrisc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>'']; 
+	$a=['id_findrisc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>''];
 	$p=['id_findrisc'=>'','idpersona'=>'','tipo_doc'=>'','findrisc_nombre'=>'','findrisc_fechanacimiento'=>'','findrisc_edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamfindrisc';
 	$d=get_tfindrisc();
-	var_dump($d);
+	// var_dump($d);
 	if (!isset($d['id_findrisc'])) {
 		$d = array_merge($d,$a);
 	}
@@ -127,14 +127,14 @@ function cmp_tamfindrisc(){
     if (empty($_REQUEST['id'])) {
         return "";
     }
-    
+
     $id = divide($_REQUEST['id']);
     $sql = "SELECT A.id_findrisc, P.idpersona, P.tipo_doc,
             concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS findrisc_nombre,
-            P.fecha_nacimiento AS findrisc_fechanacimiento, 
+            P.fecha_nacimiento AS findrisc_fechanacimiento,
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS findrisc_edad,
-            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint, 
-            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam, 
+            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint,
+            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam,
             A.puntaje, A.descripcion
             FROM hog_tam_findrisc A
             LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -155,8 +155,8 @@ function cmp_tamfindrisc(){
     ];
     // Campos adicionales específicos del tamizaje Findrisc
     $edadCampos = [
-        'diabetes', 'peso', 'talla', 'imc', 'perimcint', 
-        'actifisica', 'verduras', 'hipertension', 
+        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
+        'actifisica', 'verduras', 'hipertension',
         'glicemia', 'diabfam', 'puntaje', 'descripcion'
     ];
     foreach ($edadCampos as $campo) {
@@ -183,7 +183,7 @@ function cmp_tamfindrisc(){
 					$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
 					P.fecha_nacimiento findrisc_fechanacimiento,
 					YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
-					FROM person P 
+					FROM person P
 					WHERE P.idpeople ='{$id[0]}'";
 					// echo $sql;
 					$info=datos_mysql($sql);
@@ -200,7 +200,7 @@ function get_person(){
 	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
 from person
 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
-	
+
 	// return json_encode($sql);
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
@@ -212,21 +212,21 @@ return json_encode($info['responseResult'][0]);
 function focus_tamfindrisc(){
 	return 'tamfindrisc';
    }
-   
+
 function men_tamfindrisc(){
 	$rta=cap_menus('tamfindrisc','pro');
 	return $rta;
    }
 
    function cap_menus($a,$b='cap',$con='con') {
-	$rta = ""; 
+	$rta = "";
 	$acc=rol($a);
-	if ($a=='tamfindrisc') {  
+	if ($a=='tamfindrisc') {
 		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
 	}
 	return $rta;
   }
-   
+
 function gra_tamfindrisc(){
 	$a=$_POST['edad'];
 			switch (true) {
@@ -262,7 +262,7 @@ function gra_tamfindrisc(){
 				$edad='imc Errado';
 					break;
 			}
-		
+
 			$c=$_POST['sexo'];
 			$d=$_POST['perimcint'];
 			if($c=='H'){
@@ -273,7 +273,7 @@ function gra_tamfindrisc(){
 				case $d >93 :
 					$cint=4;
 					break;
-				
+
 				default:
 					break;
 			}
@@ -285,11 +285,11 @@ function gra_tamfindrisc(){
 				case $d >89 :
 					$cint=4;
 					break;
-				
+
 				default:
 					break;
 			}
-			} 
+			}
 
 			$suma_findrisc = ($edad+$imc+$cint+$_POST['actifisica']+$_POST['verduras']+$_POST['hipertension']+$_POST['glicemia']+$_POST['diabfam']);
 
@@ -303,7 +303,7 @@ function gra_tamfindrisc(){
 				case ($suma_findrisc >= 13 ):
 						$des='RIESGO ALTO';
 					break;
-					
+
 				default:
 					$des='Error en el rango, por favor valide';
 					break;
@@ -313,7 +313,7 @@ function gra_tamfindrisc(){
 				return "No es posible actualizar el tamizaje";
 	}else{
 		$id=$_POST['id'];
-		$sql="SELECT idpeople FROM person 
+		$sql="SELECT idpeople FROM person
 		WHERE idpersona = {$_POST['idpersona']} AND tipo_doc ='{$_POST['tipodoc']}'";
 		$idp=datos_mysql($sql);//CAMBIO ADD linea
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
@@ -323,7 +323,7 @@ function gra_tamfindrisc(){
 			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 
 		$sql="INSERT INTO hog_tam_findrisc VALUES (null,
-		trim(upper('{$idp}')),trim(upper('{$_POST['fecha_toma']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['perimcint']}')),trim(upper('{$_POST['actifisica']}')),trim(upper('{$_POST['verduras']}')),trim(upper('{$_POST['hipertension']}')),trim(upper('{$_POST['glicemia']}')),trim(upper('{$_POST['diabfam']}')),
+		trim(upper('{$idper}')),trim(upper('{$_POST['fecha_toma']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['perimcint']}')),trim(upper('{$_POST['actifisica']}')),trim(upper('{$_POST['verduras']}')),trim(upper('{$_POST['hipertension']}')),trim(upper('{$_POST['glicemia']}')),trim(upper('{$_POST['diabfam']}')),
 		'{$suma_findrisc}',
 		trim(upper('{$des}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
@@ -334,7 +334,7 @@ function gra_tamfindrisc(){
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
 	}
 
-  return $rta; 
+  return $rta;
 }
 
 
@@ -362,7 +362,7 @@ function gra_tamfindrisc(){
 	function opc_diabfam($id=''){
 		return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=41 and estado='A' ORDER BY 1",$id);
 	}
-	
+
 
 
 	function formato_dato($a,$b,$c,$d){
@@ -377,8 +377,7 @@ function gra_tamfindrisc(){
 			}
 		return $rta;
 	   }
-	   
+
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;
 	   }
-	

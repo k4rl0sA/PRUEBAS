@@ -51,8 +51,7 @@ function cmp_tamoms(){
 	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'',];
 	$p=['idoms'=>'','idpeople'=>'','Fecha_toma'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'']; 
 	$w='tamoms';
-	// $d=get_tamoms();
-	$d=''; 
+	$d=get_tamoms();
 	if ($d=="") {$d=$t;}
 	$u = ($d['idoms']!='') ? false : true ;
 	$o='datos';

@@ -730,21 +730,6 @@ function apg($id) {
     return isset($info['responseResult'][0]);
 }
 
-function get_Tamiz($fec) {
-    $info = datos_mysql("select TIMESTAMPDIFF(YEAR,'$fec',CURDATE()) AS ano");
-    $edad = isset($info['responseResult'][0]['ano']) ? intval($info['responseResult'][0]['ano']) : 0;
-    $tamiz = [];
-    if ($edad >= 7) {
-        $tamiz[] = 'tamApgar';
-    }
-    if ($edad >= 18) {
-        $tamiz[] = 'tamfindrisc';
-    }
-    if ($edad >= 40) {
-        $tamiz[] = 'tamoms';
-    }
-    return $tamiz;
-}
 
 
 function eventAsign($key) {
@@ -801,6 +786,24 @@ function eventAsign($key) {
     }
     return $eve;
 }
+
+function get_Tamiz($fec) {
+    $info = datos_mysql("select TIMESTAMPDIFF(YEAR,'$fec',CURDATE()) AS ano");
+    $edad = isset($info['responseResult'][0]['ano']) ? intval($info['responseResult'][0]['ano']) : 0;
+    $tamiz = [];
+    if ($edad >= 7) {
+        $tamiz[] = 'tamApgar';
+    }
+    if ($edad >= 18) {
+        $tamiz[] = 'tamfindrisc';
+		$tamiz[] = 'tamcope';
+    }
+    if ($edad >= 40) {
+        $tamiz[] = 'tamoms';
+    }
+    return $tamiz;
+}
+
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

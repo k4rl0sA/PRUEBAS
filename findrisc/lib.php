@@ -27,10 +27,10 @@ function lis_tamfindrisc(){
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
-		where ".whe_tamApgar());
+		where ".whe_tamfindrisc());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
-		$pag=(isset($_POST['pag-tamApgar']))? (intval($_POST['pag-tamApgar'])-1)* $regxPag:0;
+		$pag=(isset($_POST['pag-tamfindrisc']))? (intval($_POST['pag-tamfindrisc'])-1)* $regxPag:0;
 
 		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_apgar O
@@ -39,18 +39,17 @@ function lis_tamfindrisc(){
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		WHERE ";
-	$sql.=whe_tamApgar();
+	$sql.=whe_tamfindrisc();
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
+	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
 	}else{
 		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 	}
-
 }
 
 function whe_tamfindrisc() {//CAMBIO FILTROS DEJAR ESTOS cambiar todo lo que este dentro de la function

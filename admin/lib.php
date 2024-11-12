@@ -364,7 +364,7 @@ function lis_planos() {
 
 
 function lis_asigpre($txt){
-	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
+	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
 U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
 U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno  
 
@@ -386,7 +386,7 @@ LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 }
 
 function lis_gestpre($txt){
-	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva,A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, U.id_usuario AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
+	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, A.id_ges AS Cod_Registro, A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva,A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, U.id_usuario AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
 FROM `geo_gest` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
 LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";

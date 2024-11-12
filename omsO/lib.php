@@ -100,7 +100,7 @@ function cmp_tamoms(){
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
 
-	$o='pruoms oculto';
+	$o='pruoms';
  	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
  	$c[]=new cmp('fuma','s',2,$d['fuma'],$w.' '.$o,'Fuma','fuma',null,null,false,true,'','col-25');
 	$c[]=new cmp('diabetes','s',3,$d['diabetes'],$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3');

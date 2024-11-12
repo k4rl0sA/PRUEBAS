@@ -63,8 +63,8 @@ function whe_tamcope() {
     return $sql;
 }
 
-
-
+/*
+}
 function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
@@ -84,7 +84,7 @@ function cmp_tamcope(){
 	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>,'pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>,'pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
- 	$d=get_tapgar();
+/* 	$d=get_tapgar();
 	var_dump($d);
 	 if (!isset($d['id_apgar'])) {
 		$d = array_merge($d,$a);

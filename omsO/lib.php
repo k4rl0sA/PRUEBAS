@@ -19,25 +19,25 @@ else {
   }   
 }
 
-function lis_tamOms(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O
+function lis_tamoms(){
+	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_oms O
 	LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	 where ".whe_tamfindrisc());//CAMBIO LEFT JOIN Person Personas y hog_fam antes hog_viv lineas 25-26
+	 where ".whe_tamoms());//CAMBIO LEFT JOIN Person Personas y hog_fam antes hog_viv lineas 25-26
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=12;
-	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;
+	$pag=(isset($_POST['pag-tamoms']))? ($_POST['pag-tamoms']-1)* $regxPag:0;
 
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil
-	FROM hog_tam_findrisc O
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idperson,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idperson Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil
+	FROM hog_tam_oms O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
 	WHERE ";//CAMBIO LEFT JOIN Personas y hog_fam antes hog_viv lineas 36-37
-	$sql.=whe_tamfindrisc();
+	$sql.=whe_tamoms();
 	$sql.=" ORDER BY O.fecha_create DESC";
 	// echo $sql;
 	$datos=datos_mysql($sql);

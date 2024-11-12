@@ -121,35 +121,31 @@ function cmp_tamoms(){
         return "";
     }
     $id = divide($_REQUEST['id']);
-    $sql = "SELECT A.id_findrisc, P.idpersona, P.tipo_doc,
-            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS findrisc_nombre,
-            P.fecha_nacimiento AS findrisc_fechanacimiento,
-            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS findrisc_edad,
-            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint,
-            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam,
-            A.puntaje, A.descripcion
-            FROM hog_tam_findrisc A
+    $sql = "SELECT A.idoms, P.idperson, P.tipo_doc,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
+            P.fecha_nacimiento AS oms_fechanacimiento,
+            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
+            A.fecha_toma, A.diabetes, A.fuma, A.tas, A.puntaje, A.descripcion
+            FROM hog_tam_oms A
             LEFT JOIN person P ON A.idpeople = P.idpeople
-            WHERE A.id_findrisc = '{$id[0]}'";
+            WHERE A.idoms = '{$id[0]}'";
 
     $info = datos_mysql($sql);
     $data = $info['responseResult'][0];
 
     // Datos básicos
     $baseData = [
-        'id_findrisc' => $data['id_findrisc'],
-        'idpersona' => $data['idpersona'],
+        'idoms' => $data['idoms'],
+        'idperson' => $data['idperson'],
         'tipo_doc' => $data['tipo_doc'],
-        'findrisc_nombre' => $data['findrisc_nombre'],
-        'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
-        'findrisc_edad' => $data['findrisc_edad'],
+        'oms_nombre' => $data['oms_nombre'],
+        'oms_fechanacimiento' => $data['oms_fechanacimiento'],
+        'oms_edad' => $data['oms_edad'],
         'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
     ];
     // Campos adicionales específicos del tamizaje Findrisc
     $edadCampos = [
-        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
-        'actifisica', 'verduras', 'hipertension',
-        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+        'diabetes', 'fuma', 'tas','puntaje', 'descripcion'
     ];
     foreach ($edadCampos as $campo) {
         $baseData[$campo] = $data[$campo];
@@ -161,9 +157,9 @@ function cmp_tamoms(){
 function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
-from personas P
-WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
+	$sql="SELECT idperson,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
+from person P
+WHERE idperson='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
 	
 	// return json_encode($sql);
 	$info=datos_mysql($sql);

@@ -32,8 +32,8 @@ function lis_tamcope(){
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
-	$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
-	FROM hog_tam_apgar O
+	$sql="SELECT O.idpeople ACCIONES,id_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_cope O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
@@ -80,7 +80,7 @@ function lis_cope(){
 function cmp_tamcope(){
 	$rta="<div class='encabezado cope'>TABLA COPE</div>
 	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
-/*	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>,'pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>,'pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'']; //CAMBIO con relacion a los campos de la bd
+	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>,'pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>,'pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
 	$d=get_tapgar();
@@ -143,7 +143,7 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	*/
+	
 	return $rta;
    }
 

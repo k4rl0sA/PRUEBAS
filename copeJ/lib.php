@@ -63,7 +63,7 @@ function whe_tamcope() {
     return $sql;
 }
 
-
+/*
 }
 function lis_cope(){
 	// var_dump($_POST['id']);

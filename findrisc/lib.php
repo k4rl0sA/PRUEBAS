@@ -79,7 +79,7 @@ function cmp_tamfindrisc(){
 	$p=['id_findrisc'=>'','idpersona'=>'','tipo_doc'=>'','findrisc_nombre'=>'','findrisc_fechanacimiento'=>'','findrisc_edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamfindrisc';
 	$d=get_tfindrisc();
-	var_dump($d);
+	// var_dump($d);
 	if (!isset($d['id_findrisc'])) {
 		$d = array_merge($d,$a);
 	}

@@ -21,28 +21,35 @@ else {
 
 
 function lis_tamfindrisc(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O
-	LEFT JOIN person P ON O.idpeople = P.idpeople
-		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	 where ".whe_tamfindrisc());//CAMBIO LEFT JOIN Person Personas y hog_fam antes hog_viv lineas 25-26
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=12;
-	$pag=(isset($_POST['pag-tamfindrisc']))? ($_POST['pag-tamfindrisc']-1)* $regxPag:0;
-
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,id_findrisc 'Cod registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` descripcion, U.nombre Creo,U.perfil perfil
-	FROM hog_tam_findrisc O
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_apgar O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	WHERE ";//CAMBIO LEFT JOIN Personas y hog_fam antes hog_viv lineas 36-37
-	$sql.=whe_tamfindrisc();
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		where ".whe_tamApgar());
+		$total=$info['responseResult'][0]['total'];
+		$regxPag=12;
+		$pag=(isset($_POST['pag-tamApgar']))? (intval($_POST['pag-tamApgar'])-1)* $regxPag:0;
+
+		$sql="SELECT O.idpeople ACCIONES,id_apgar 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_apgar O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		WHERE ";
+	$sql.=whe_tamApgar();
 	$sql.=" ORDER BY O.fecha_create DESC";
-	// echo $sql;
+	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
+	return create_table($total,$datos["responseResult"],"tamApgar",$regxPag);
+	}else{
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+                <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
+	}
 
 }
 

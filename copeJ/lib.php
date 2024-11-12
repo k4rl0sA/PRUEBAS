@@ -50,7 +50,7 @@ return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 	}
-} */
+} 
 
 function whe_tamcope() {
 	$sql = '1';
@@ -62,6 +62,7 @@ function whe_tamcope() {
     }
     return $sql;
 }
+*/
 
 function lis_cope(){
 	// var_dump($_POST['id']);

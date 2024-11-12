@@ -852,6 +852,9 @@ function formato_dato($a,$b,$c,$d){
 		if (is_array($tamiz) && in_array('tamoms', $tamiz)) {
 			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-heart-circle-bolt ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
+		if (is_array($tamiz) && in_array('tamcope', $tamiz)) {
+			$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../copeJ/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-heart-circle-bolt ico' id='".$c['ACCIONES']."'></i></li>": '';
+		}
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

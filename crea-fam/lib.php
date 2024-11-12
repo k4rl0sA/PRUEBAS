@@ -739,7 +739,7 @@ function get_Tamiz($fec) {
     }
     if ($edad >= 18) {
         $tamiz[] = 'tamfindrisc';
-		$tamiz[] .= 'tamcope';
+		$tamiz[] = 'tamcope';
     }
     if ($edad >= 40) {
         $tamiz[] = 'tamoms';

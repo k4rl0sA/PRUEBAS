@@ -120,6 +120,7 @@ function cmp_tamoms(){
 	if (empty($_REQUEST['id'])) {
         return "";
     }
+	var_dump($_REQUEST);
     $id = divide($_REQUEST['id']);
     $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
             concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,

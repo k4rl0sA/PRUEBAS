@@ -27,7 +27,7 @@ $comy = array(
       'bd' => 'u470700275_08'
   ]
 );
-var_dump($dominio);
+// var_dump($dominio);
 if (array_key_exists($dominio, $comy)) {
   $dbConfig = $comy[$dominio];
 } else {

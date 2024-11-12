@@ -112,10 +112,9 @@ function men_alertas(){
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
-	if($p['ano']<5){
-		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,true,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
-		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,true,'','col-15');
-	}
+	$men5 = ($p['ano']<5) ? true : false ;
+		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
+		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,$men5,'','col-15');
 
 	if($gest){
 		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gest,'','col-2',"fieldsValue('gestante','eTp','1',true);");

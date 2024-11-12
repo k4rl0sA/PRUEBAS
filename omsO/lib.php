@@ -94,21 +94,43 @@ function cmp_tamoms(){
    }
 
    function get_tamoms(){
-	if($_POST['id']==0){
-		return "";
-	}else{
-		 $id=divide($_POST['id']);
-		// print_r($_POST);
-		$sql="SELECT idoms,O.`idpersona`,O.`tipodoc`,
-		diabetes,fuma,tas,puntaje,descripcion,
-		O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,sexo,P.fecha_nacimiento fechanacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
-		FROM `hog_tam_oms` O
-		LEFT JOIN person P ON O.idpersona = P.idpersona and O.tipodoc=P.tipo_doc
-		WHERE O.idpersona ='{$id[0]}' AND O.tipodoc='{$id[1]}'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
-		}
+	if (empty($_REQUEST['id'])) {
+        return "";
+    }
+
+    $id = divide($_REQUEST['id']);
+    $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
+            P.fecha_nacimiento AS oms_fechanacimiento,
+            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
+            A.fecha_toma, A.diabetes, A.fuma, A.tas, A.puntaje, A.descripcion
+            FROM hog_tam_oms A
+            LEFT JOIN person P ON A.idpeople = P.idpeople
+            WHERE A.idoms = '{$id[0]}'";
+
+    $info = datos_mysql($sql);
+    $data = $info['responseResult'][0];
+
+    // Datos básicos
+    $baseData = [
+        'id_findrisc' => $data['id_findrisc'],
+        'idpersona' => $data['idpersona'],
+        'tipo_doc' => $data['tipo_doc'],
+        'findrisc_nombre' => $data['findrisc_nombre'],
+        'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
+        'findrisc_edad' => $data['findrisc_edad'],
+        'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
+    ];
+    // Campos adicionales específicos del tamizaje Findrisc
+    $edadCampos = [
+        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
+        'actifisica', 'verduras', 'hipertension',
+        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+    ];
+    foreach ($edadCampos as $campo) {
+        $baseData[$campo] = $data[$campo];
+    }
+    return json_encode($baseData);
 	} 
 
 

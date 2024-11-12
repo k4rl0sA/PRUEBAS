@@ -68,15 +68,15 @@ function whe_tamcope() {
 function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT id_findrisc ACCIONES,
-	id_findrisc 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_findrisc A
+	$sql="SELECT tam_cope ACCIONES,
+	tam_cope 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_cope A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"findrisc-lis",5);
+	return panel_content($datos["responseResult"],"cope-lis",5);
 }
 
 function cmp_tamcope(){

@@ -25,9 +25,8 @@ var ruta_app='lib.php';
 	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
 }; */
 
-
 function actualizar(){
-	act_lista(mod);
+		act_lista(mod);
 }
 
 // //function grabar(tb='',ev){

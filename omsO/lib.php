@@ -130,7 +130,7 @@ function cmp_tamoms(){
 		// echo $sql;
 		$info=datos_mysql($sql);
 			if (!$info['responseResult']) {
-				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) oms_nombre,
+				$sql="SELECT P.idperson,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) oms_nombre,
 				P.fecha_nacimiento oms_fechanacimiento,
 				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) oms_edad
 				FROM person P

@@ -19,7 +19,6 @@ else {
   }
 }
 
-
 function lis_tamfindrisc(){
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_findrisc O

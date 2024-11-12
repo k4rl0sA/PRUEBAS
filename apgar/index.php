@@ -15,22 +15,13 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='tamApgar';	
 var ruta_app='lib.php';
-function csv(b){
-		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
-}
-
-document.onkeyup=function(ev) {
-	ev=ev||window.event;
-	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
-	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
-};
 
 
 function actualizar(){
 	act_lista(mod);
 }
 
-function grabar(tb='',ev){
+/* function grabar(tb='',ev){
 	if(document.getElementById('id').value=='0'){
 		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   			var f=document.getElementsByClassName('valido '+tb);
@@ -41,12 +32,12 @@ function grabar(tb='',ev){
 	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
 			if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
-    			/* if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
-				}else{
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-				}
-				openModal(); */
+    			//  if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
+					// document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
+				// }else{
+					// document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
+				// }
+				// openModal(); 
 				setTimeout(actualizar, 1000);
 			}
 	}else{
@@ -56,7 +47,7 @@ function grabar(tb='',ev){
         openModal();
 		
 	}
-}
+} */
 
 function hiddxedad(xedad,cuestionario1,cuestionario2) {
 	const edad=document.getElementById(xedad);

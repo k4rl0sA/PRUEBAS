@@ -69,23 +69,12 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<div>Identificación</div>
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
-	
-	<div class="campo"><div>Sexo</div>
-		<select class="captura" id="fsexo" name="fsexo" OnChange="actualizar();">
-			<?php echo $genero; ?>
-		</select>
-	</div>
-	<div class="campo"><div>persona</div>
-		<select class="captura" id="fpersona" name="fpersona" OnChange="actualizar();">
-			<?php echo $tiperson; ?>
-		</select>
-	</div>
-	<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
-			<?php echo $digitadores; ?>
-		</select>
-	</div>
-	
+
+<div class="campo">
+	<div>Cod. Familiar</div>
+	<input class="captura" type="number" id="ffam" name="ffam" OnChange="actualizar();">
+</div>	
+
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >TAMIZAJE cope

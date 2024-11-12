@@ -61,7 +61,7 @@ function lis_oms(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"findrisc-lis",5);
+	return panel_content($datos["responseResult"],"oms-lis",5);
 	
 }
 
@@ -122,7 +122,7 @@ function cmp_tamoms(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT id_findrisc,O.idpeople,diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
+		$sql="SELECT idoms,O.idpeople,diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
 		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,P.fecha_nacimiento findrisc_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
 		FROM `hog_tam_findrisc` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
@@ -130,9 +130,9 @@ function cmp_tamoms(){
 		// echo $sql;
 		$info=datos_mysql($sql);
 			if (!$info['responseResult']) {
-				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
-				P.fecha_nacimiento findrisc_fechanacimiento,
-				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
+				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) oms_nombre,
+				P.fecha_nacimiento oms_fechanacimiento,
+				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) oms_edad
 				FROM person P
 				WHERE P.idpeople ='{$id[0]}'";
 				// echo $sql;

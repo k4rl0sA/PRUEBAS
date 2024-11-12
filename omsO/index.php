@@ -99,12 +99,6 @@ $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=
 	<input class="captura" type="number" id="ffam" name="ffam" OnChange="actualizar();">
 </div>	
 	
-	<!-- <div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
-			<?php //echo $digitadores; ?>
-		</select>
-	</div> -->
-	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' >TAMIZAJE OMS

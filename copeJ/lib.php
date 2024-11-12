@@ -62,7 +62,7 @@ function whe_tamcope() {
     }
     return $sql;
 }
-*/
+
 
 function lis_cope(){
 	// var_dump($_POST['id']);
@@ -144,10 +144,10 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
- */	
+ 
 	return $rta;
    }
-
+   */
    function get_tamcope(){
 	if($_POST['id']==0){
 		return "";

@@ -83,7 +83,7 @@ function cmp_tamoms(){
 	$p=['idoms'=>'','idpersona'=>'','tipodoc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>'']; 
 	$w='tamoms';
 	$d=get_tamoms();
-		// var_dump($d);
+	var_dump($d);
 	if (!isset($d['idoms'])) {
 		$d = array_merge($d,$a);
 	}

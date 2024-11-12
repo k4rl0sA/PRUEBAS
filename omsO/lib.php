@@ -49,11 +49,14 @@ function whe_tamoms() {
 function cmp_tamoms(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
 	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'',];
-	$p=['idoms'=>'','idpersona'=>'','tipodoc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>'','descripcion'=>'']; 
+	$p=['idoms'=>'','idpersona'=>'','tipodoc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>'']; 
 	$w='tamoms';
 	$d=get_tamoms();
-	if ($d=="") {$d=$t;}
-	$u = ($d['tamoms']!='') ? false : true ;
+		// var_dump($d);
+	if (!isset($d['idoms'])) {
+		$d = array_merge($d,$a);
+	}
+	$u = ($d['idoms']!='') ? false : true ;
 	$o='datos';
     $key='oms';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

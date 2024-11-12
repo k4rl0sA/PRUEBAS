@@ -132,8 +132,8 @@ function cmp_rute(){
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
- $c[]=new cmp('caracteriza','t','3',$d['caracteriza'],$w.' '.$o,'Usuario Caracterizado','caracteriza',null,null,false,false,'','col-1');
- $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-2');
+ $c[]=new cmp('caracteriza','t','3',$d['caracteriza'],$w.' '.$o,'Usuario Caracterizado','caracteriza',null,null,false,false,'','col-15');
+ $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-15');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,false,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,false,'','col-2');
  $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,false,'','col-3');

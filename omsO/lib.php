@@ -22,8 +22,8 @@ else {
 
 function lis_tamoms(){
 	$id=divide($_POST['id']);
-	$sql="SELECT id_findrisc ACCIONES,
-	id_findrisc 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT idoms ACCIONES,
+	idoms 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_findrisc A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

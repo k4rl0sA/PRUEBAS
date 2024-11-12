@@ -76,7 +76,7 @@ function lis_cope(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"cope-lis",5);
+	return panel_content($datos["responseResult"],"cope-lis",5);*/
 
 function cmp_tamcope(){
 	//$rta="<div class='encabezado cope'>TABLA COPE</div>	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";

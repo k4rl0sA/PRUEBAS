@@ -20,7 +20,7 @@ else {
 }
 
 
-function lis_tamoms(){
+function lis_oms(){
 	$id=divide($_POST['id']);
 	$sql="SELECT idoms ACCIONES,
 	idoms 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'

@@ -468,7 +468,7 @@ function formato_dato($a,$b,$c,$d){
 	$rta=$c[$d];
 	if ($a=='alertas-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";	
-		$rta.="<li title='Ver Alertas'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'alertas',event,this,['fecha','tipo_activi','tipo','crit_epi','gestante','cronico','esq_vacun','alert1','alert2','alert3','alert4','alert5','alert6'],'../crea-fam/alertas.php');\"></i></li>";  //   act_lista(f,this);
+		$rta.="<li title='Ver Alertas'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'alertas',event,this,['fecha','tipo_activi','tipo','crit_epi','gestante','cronico','esq_vacun','alert1','alert2','alert3','alert4','alert5','alert6','agen_intra','deriva_pf'],'../crea-fam/alertas.php');\"></i></li>";  //   act_lista(f,this);
 	}
 return $rta;
 }

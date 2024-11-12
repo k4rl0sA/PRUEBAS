@@ -127,7 +127,7 @@ function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
 	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
-from personas
+from personas P
 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
 	
 	// return json_encode($sql);

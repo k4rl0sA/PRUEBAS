@@ -60,8 +60,8 @@ function whe_tamoms() {
 
 function cmp_tamoms(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
-	$a=['id_findrisc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>''];
-	$t=['idoms'=>'','idpeople'=>'','Fecha_toma'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'']; 
+	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'',];
+	$p=['idoms'=>'','idpeople'=>'','Fecha_toma'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'']; 
 	$w='tamoms';
 	$d=get_tamoms(); 
 	if ($d=="") {$d=$t;}

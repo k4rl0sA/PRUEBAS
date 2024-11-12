@@ -20,7 +20,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function grabar(tb='',ev){
+/* function grabar(tb='',ev){
 	if(document.getElementById('idcope').value=='0'){
 		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   			var f=document.getElementsByClassName('valido '+tb);
@@ -31,12 +31,12 @@ function grabar(tb='',ev){
 	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
 			if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
-    			/* if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
-				}else{
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-				}
-				openModal(); */
+    			// if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
+					// document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
+				// }else{
+					// document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
+				// }
+				openModal();
 				setTimeout(actualizar, 1000);
 			}
 	}else{
@@ -46,7 +46,7 @@ function grabar(tb='',ev){
         openModal();
 		
 	}
-} 
+}  */
 
 </script>
 </head>

@@ -122,7 +122,7 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_pregunta16','s','3','',$w.' '.$o,'16. Intento hallar consuelo en mi religión o creencias espirituales.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta17','s','3','',$w.' '.$o,'17. Consigo el consuelo y la comprensión de alguien.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta18','s','3','',$w.' '.$o,'18. Busco algo bueno en lo que esta sucediendo.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta19','s','3','',$w.' '.$o,'19. Me río de la situacion.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta19','s','3','',$w.' '.$o,'19. Me río de la situacion.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta20','s','3','',$w.' '.$o,'20. Rezo o medito.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta21','s','3','',$w.' '.$o,'21. Aprendo a vivir con ello.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta22','s','3','',$w.' '.$o,'22. Hago algo para pensar menos en ello, tal como ir al cine o ver la televisión.','caracterizacion',null,'',true,$u,'','col-5');

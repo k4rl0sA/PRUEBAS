@@ -86,8 +86,9 @@ function cmp_tamoms(){
 	var_dump($d);
 	/* if (!isset($d['idoms'])) {
 		$d = array_merge($d,$a);
-	} */
+	} 
 	$u = ($d['idoms']!='') ? false : true ;
+	*/
 	$o='datos';
     $key='oms';
 	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA

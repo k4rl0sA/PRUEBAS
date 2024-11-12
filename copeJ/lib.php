@@ -32,7 +32,7 @@ function lis_tamcope(){
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
-	$sql="SELECT O.idpeople ACCIONES,id_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	$sql="SELECT O.idpeople ACCIONES,tam_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_cope O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
@@ -43,7 +43,7 @@ function lis_tamcope(){
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
+return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
 	}else{
 		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar

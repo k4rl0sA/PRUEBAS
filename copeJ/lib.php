@@ -20,7 +20,7 @@ else {
 } 
 
 
-/* function lis_tamcope(){
+ function lis_tamcope(){
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
 	LEFT JOIN person P ON O.idpeople = P.idpeople
@@ -63,7 +63,7 @@ function whe_tamcope() {
     return $sql;
 }
 
-
+/*
 function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);

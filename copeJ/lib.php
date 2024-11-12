@@ -39,7 +39,7 @@ else {
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		WHERE ";
-	$sql.=whe_tamfindrisc();
+	$sql.=whe_tamcope();
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);

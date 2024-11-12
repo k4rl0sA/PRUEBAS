@@ -20,7 +20,7 @@ else {
 } 
 
 
- function lis_tamcope(){
+function lis_tamcope(){
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
 	LEFT JOIN person P ON O.idpeople = P.idpeople
@@ -32,14 +32,14 @@ else {
 	$regxPag=12;
 	$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
-	$sql="SELECT O.idpeople ACCIONES,tam_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	$sql="SELECT O.idpeople ACCIONES,tam_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntajea` Puntaje,`descripciona` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_cope O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		WHERE ";
-	$sql.=whe_tamcope();
+	$sql.=whe_tamfindrisc();
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
@@ -50,7 +50,7 @@ return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 	}
-} 
+}
 
 function whe_tamcope() {
 	$sql = '1';
@@ -63,8 +63,6 @@ function whe_tamcope() {
     return $sql;
 }
 
-/*
-}
 function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
@@ -77,14 +75,15 @@ function lis_cope(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"cope-lis",5);
+}
 
 function cmp_tamcope(){
-	//$rta="<div class='encabezado cope'>TABLA COPE</div>	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
-	$rta='';
+	$rta="<div class='encabezado cope'>TABLA COPE</div>
+	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
 	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>,'pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>,'pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'']; //CAMBIO con relacion a los campos de la bd
-	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
+	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
-/* 	$d=get_tapgar();
+	$d=get_tapgar();
 	var_dump($d);
 	 if (!isset($d['id_apgar'])) {
 		$d = array_merge($d,$a);
@@ -124,7 +123,7 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_pregunta16','s','3','',$w.' '.$o,'16. Intento hallar consuelo en mi religión o creencias espirituales.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta17','s','3','',$w.' '.$o,'17. Consigo el consuelo y la comprensión de alguien.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta18','s','3','',$w.' '.$o,'18. Busco algo bueno en lo que esta sucediendo.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta19','s','3','',$w.' '.$o,'19. Me río de la situacion.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta19','s','3','',$w.' '.$o,'19. Me río de la situacion.	','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta20','s','3','',$w.' '.$o,'20. Rezo o medito.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta21','s','3','',$w.' '.$o,'21. Aprendo a vivir con ello.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta22','s','3','',$w.' '.$o,'22. Hago algo para pensar menos en ello, tal como ir al cine o ver la televisión.','caracterizacion',null,'',true,$u,'','col-5');
@@ -144,10 +143,10 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
  
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
- 
+	
 	return $rta;
    }
-   */
+
    function get_tamcope(){
 	if($_POST['id']==0){
 		return "";

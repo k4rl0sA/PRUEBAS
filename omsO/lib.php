@@ -21,28 +21,16 @@ else {
 
 
 function lis_tamoms(){
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_oms O 
-	LEFT JOIN person P ON O.idpeople = P.idpeople
-		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
-		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	 where ".whe_tamoms());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=12;
-	$pag=(isset($_POST['pag-tamoms']))? ($_POST['pag-tamoms']-1)* $regxPag:0;
-	
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(O.idpersona,'_',O.tipodoc) ACCIONES,idoms 'Cod Registro',O.idpersona Documento,FN_CATALOGODESC(1,O.tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,descripcion  
-	FROM hog_tam_oms O 
-	LEFT JOIN person P ON O.idpeople = P.idpeople
-		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
-		LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
-		LEFT JOIN usuarios U ON O.usu_creo=id_usuario
-	WHERE ";
-	$sql.=whe_tamoms();
-	$sql.=" ORDER BY O.fecha_create DESC";
-	//echo $sql;
+	$id=divide($_POST['id']);
+	$sql="SELECT id_findrisc ACCIONES,
+	id_findrisc 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_findrisc A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamoms",$regxPag);
+	return panel_content($datos["responseResult"],"findrisc-lis",5);
 	
 }
 

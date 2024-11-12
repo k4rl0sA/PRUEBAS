@@ -319,21 +319,37 @@ function gra_tamfindrisc(){
 		if (isset($idp['responseResult'][0])){//CAMBIO ADD linea
 			$idper =$idp['responseResult'][0]['idpeople'];//CAMBIO ADD linea
 		}//CAMBIO ADD linea
-		var_dump($idper);
-			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
+		// var_dump($idper);
+		// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 
-		$sql="INSERT INTO hog_tam_findrisc VALUES (null,
-		trim(upper('{$idper}')),trim(upper('{$_POST['fecha_toma']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['peso']}')),trim(upper('{$_POST['talla']}')),trim(upper('{$_POST['imc']}')),trim(upper('{$_POST['perimcint']}')),trim(upper('{$_POST['actifisica']}')),trim(upper('{$_POST['verduras']}')),trim(upper('{$_POST['hipertension']}')),trim(upper('{$_POST['glicemia']}')),trim(upper('{$_POST['diabfam']}')),
-		'{$suma_findrisc}',
-		trim(upper('{$des}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		echo $sql;
+		$sql = "INSERT INTO hog_tam_findrisc VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR),?,?,?)";
+
+		$params = [
+			['type' => 'i', 'value' => NULL],
+			['type' => 'i', 'value' => $idper],
+			['type' => 's', 'value' => $_POST['fecha_toma']],
+			['type' => 's', 'value' => $_POST['diabetes']],
+			['type' => 's', 'value' => $_POST['peso']],
+			['type' => 's', 'value' => $_POST['talla']],
+			['type' => 's', 'value' => $_POST['imc']],
+			['type' => 's', 'value' => $_POST['perimcint']],
+			['type' => 's', 'value' => $_POST['actifisica']],
+			['type' => 's', 'value' => $_POST['verduras']],
+			['type' => 's', 'value' => $_POST['hipertension']],
+			['type' => 's', 'value' => $_POST['glicemia']],
+			['type' => 's', 'value' => $_POST['diabfam']],
+			['type' => 'i', 'value' => $suma_findrisc],
+			['type' => 's', 'value' => $des],
+			['type' => 's', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => 'A']
+		];
+
 		$rta=dato_mysql($sql);
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
 	}
-
   return $rta;
 }
 

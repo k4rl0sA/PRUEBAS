@@ -338,7 +338,7 @@ function get_alertas(){
 				LEFT JOIN hog_carac V ON P.vivipersona=V.idfam
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);
-		echo $sql; 
+		// echo $sql; 
 		// print_r($info['responseResult'][0]);
 		if (!$info['responseResult']) {
 			return '';

@@ -121,7 +121,7 @@ function cmp_tamoms(){
         return "";
     }
     $id = divide($_REQUEST['id']);
-    $sql = "SELECT A.idoms, P.idperson, P.tipo_doc,
+    $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
             concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
             P.fecha_nacimiento AS oms_fechanacimiento,
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
@@ -136,7 +136,7 @@ function cmp_tamoms(){
     // Datos básicos
     $baseData = [
         'idoms' => $data['idoms'],
-        'idperson' => $data['idperson'],
+        'idpersona' => $data['idpersona'],
         'tipo_doc' => $data['tipo_doc'],
         'oms_nombre' => $data['oms_nombre'],
         'oms_fechanacimiento' => $data['oms_fechanacimiento'],
@@ -157,9 +157,9 @@ function cmp_tamoms(){
 function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT idperson,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
+	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
 from person P
-WHERE idperson='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
+WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
 	
 	// return json_encode($sql);
 	$info=datos_mysql($sql);

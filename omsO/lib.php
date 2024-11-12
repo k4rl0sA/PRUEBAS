@@ -116,44 +116,32 @@ function cmp_tamoms(){
 	return $rta;
    }
 
-   function get_tamoms(){
-	if (empty($_REQUEST['id'])) {
-        return "";
-    }
-    $id = divide($_REQUEST['id']);
-    $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
-            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
-            P.fecha_nacimiento AS oms_fechanacimiento,
-            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
-            A.fecha_toma, A.diabetes, A.fuma, A.tas, A.puntaje, A.descripcion
-            FROM hog_tam_oms A
-            LEFT JOIN person P ON A.idpeople = P.idpeople
-            WHERE A.idoms = '{$id[0]}'";
-
-    $info = datos_mysql($sql);
-    $data = $info['responseResult'][0];
-
-    // Datos básicos
-    $baseData = [
-        'id_findrisc' => $data['id_findrisc'],
-        'idpersona' => $data['idpersona'],
-        'tipo_doc' => $data['tipo_doc'],
-        'findrisc_nombre' => $data['findrisc_nombre'],
-        'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
-        'findrisc_edad' => $data['findrisc_edad'],
-        'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
-    ];
-    // Campos adicionales específicos del tamizaje Findrisc
-    $edadCampos = [
-        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
-        'actifisica', 'verduras', 'hipertension',
-        'glicemia', 'diabfam', 'puntaje', 'descripcion'
-    ];
-    foreach ($edadCampos as $campo) {
-        $baseData[$campo] = $data[$campo];
-    }
-    return json_encode($baseData);
-	} 
+   function get_tamoms(){//CAMBIO function nueva
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		// print_r($_POST);
+		$sql="SELECT id_findrisc,O.idpeople,diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
+		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,P.fecha_nacimiento findrisc_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
+		FROM `hog_tam_findrisc` O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+			WHERE P.idpeople ='{$id[0]}'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+			if (!$info['responseResult']) {
+				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
+				P.fecha_nacimiento findrisc_fechanacimiento,
+				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
+				FROM person P
+				WHERE P.idpeople ='{$id[0]}'";
+				// echo $sql;
+				$info=datos_mysql($sql);
+			return $info['responseResult'][0];
+			}
+		return $info['responseResult'][0];
+	}
+}
 
 
 function get_person(){

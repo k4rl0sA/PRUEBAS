@@ -78,7 +78,7 @@ function cmp_rute(){
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
- 'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
+ 'cod_cups'=>'','per_consul'=>'','caracteriza'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
@@ -132,7 +132,8 @@ function cmp_rute(){
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
- $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-3');
+ $c[]=new cmp('caracteriza','s','3',$d['caracteriza'],$w.' '.$o,'Usuario Caracterizado','caracteriza',null,null,false,false,'','col-1');
+ $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-2');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,false,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,false,'','col-2');
  $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,false,'','col-3');

@@ -850,7 +850,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-hospital-user ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 		if (is_array($tamiz) && in_array('tamoms', $tamiz)) {
-			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-heart-circle-bolt ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../omsO/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-heart-circle-bolt ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 		if (is_array($tamiz) && in_array('tamcope', $tamiz)) {
 			$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../copeJ/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-cough ico' id='".$c['ACCIONES']."'></i></li>": '';

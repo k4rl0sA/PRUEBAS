@@ -88,6 +88,7 @@ $riesgos=opc_sql("select descripcion,descripcion from catadeta where idcatalogo=
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
 	
+<!-- CAMBIO AGREGAR  ESTOS FILTROS-->
 <div class="campo">
 	<div>Identificación</div>
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
@@ -97,6 +98,7 @@ $riesgos=opc_sql("select descripcion,descripcion from catadeta where idcatalogo=
 	<div>Cod. Familiar</div>
 	<input class="captura" type="number" id="ffam" name="ffam" OnChange="actualizar();">
 </div>	
+<!-- FIN CAMBIO AGREGAR  ESTOS FILTROS-->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

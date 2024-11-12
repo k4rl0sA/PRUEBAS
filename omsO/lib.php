@@ -103,7 +103,7 @@ function cmp_tamoms(){
 		diabetes,fuma,tas,puntaje,descripcion,
 		O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,sexo,P.fecha_nacimiento fechanacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
 		FROM `hog_tam_oms` O
-		LEFT JOIN personas P ON O.idpersona = P.idpersona and O.tipodoc=P.tipo_doc
+		LEFT JOIN person P ON O.idpersona = P.idpersona and O.tipodoc=P.tipo_doc
 		WHERE O.idpersona ='{$id[0]}' AND O.tipodoc='{$id[1]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);

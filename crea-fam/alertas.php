@@ -113,14 +113,15 @@ function men_alertas(){
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
 	$men5 = ($p['ano']<5) ? true : false ;
+
 		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,true,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
 		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,true,$men5,'','col-15');
 
-	if($gest){
+	$gest = ($p['sexo']=='M') ? true : false ;
+
 		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gest,'','col-2',"fieldsValue('gestante','eTp','1',true);");
 		$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,false,'','col-25');//true
 		$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,false,'','col-25');//true
-	}
 
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"fieldsValue('cronico','cRo','1',true);");
 	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,true,false,'','col-2');

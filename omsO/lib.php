@@ -53,7 +53,7 @@ function cmp_tamoms(){
 	$w='tamoms';
 	$d=get_tamoms();
 	if ($d=="") {$d=$t;}
-	$u = ($d['idoms']!='') ? false : true ;
+	$u = ($d['tamoms']!='') ? false : true ;
 	$o='datos';
     $key='oms';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

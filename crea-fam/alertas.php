@@ -120,7 +120,7 @@ function men_alertas(){
 
 	$gesta = ($p['sexo']=='M') ? true : false ;
 
-		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gesta,'','col-2',"fieldsValue('gestante','eTp','1',true);");
+		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,true,'','col-2',"fieldsValue('gestante','eTp','1',true);");
 		$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,false,'','col-25');//true
 		$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,false,'','col-25');//true
 

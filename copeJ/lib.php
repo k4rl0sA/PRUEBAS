@@ -43,7 +43,7 @@ function lis_tamcope(){
 	$sql.=whe_tamcope();
 	$sql.=" AND O.usu_creo ='".$_SESSION['us_sds']."'";
 	$sql.=" ORDER BY 1";
-
+var_dump($sql);
 		$datos=datos_mysql($sql);
 		return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
 	}else{

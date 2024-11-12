@@ -78,15 +78,15 @@ function lis_cope(){
 	return panel_content($datos["responseResult"],"cope-lis",5);
 }
 
-/*function cmp_tamcope(){
+function cmp_tamcope(){
 	$rta="<div class='encabezado cope'>TABLA COPE</div>
 	<div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
 	$a=['tam_cope'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>,'pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>,'pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'']; //CAMBIO con relacion a los campos de la bd
 	$p=['id_apgar'=>'','idpersona'=>'','tipo_doc'=>'','apgar_nombre'=>'','apgar_fechanacimiento'=>'','apgar_edad'=>'','sati_famayu'=>'','sati_famcompro'=>'','sati_famapoemp'=>'','sati_famemosion'=>'','sati_famcompar'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamapgar';
 	$d=get_tapgar();
-	// var_dump($d);
-	if (!isset($d['id_apgar'])) {
+	var_dump($d);
+	 if (!isset($d['id_apgar'])) {
 		$d = array_merge($d,$a);
 	}
 	$u = ($d['tam_cope']!='') ? false : true ;
@@ -94,7 +94,7 @@ function lis_cope(){
     $key='srch';
 	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
-	$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
+	/*$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('cope_idpersona','n','20',$d['cope_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','cope_idpersona',null,'',false,$u,'','col-15');
 	$c[]=new cmp('cope_tipodoc','s','3',$d['cope_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','cope_tipodoc',null,'',false,$u,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('cope_nombre','t','50',$d['cope_nombre'],$w.' '.$o,'nombres','cope_nombre',null,'',false,false,'','col-4');
@@ -142,11 +142,11 @@ function lis_cope(){
 	$c[]=new cmp('cope_descripciona','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
 	$c[]=new cmp('cope_puntajee','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
-
+ */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	
 	return $rta;
-   }*/
+   }
 
    function get_tamcope(){
 	if($_POST['id']==0){

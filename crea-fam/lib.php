@@ -844,7 +844,7 @@ function formato_dato($a,$b,$c,$d){
 			}
 		}
 		if (is_array($tamiz) && in_array('tamfindrisc', $tamiz)) {
-			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-droplet ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamfindrisc') ? "<li title='Tamizaje Findrisc' onclick=\"mostrar('tamfindrisc','pro',event,'','../findrisc/lib.php',7);Color('datos-lis');\"><i class='<i class=fa-solid fa-hospital-user ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 		if (is_array($tamiz) && in_array('tamoms', $tamiz)) {
 			$rta .= acceso('tamoms') ? "<li title='Tamizaje OMS' onclick=\"mostrar('tamoms','pro',event,'','../oms/lib.php',7);Color('datos-lis');\"><i class='fa-solid fa-stethoscope ico' id='".$c['ACCIONES']."'></i></li>": '';

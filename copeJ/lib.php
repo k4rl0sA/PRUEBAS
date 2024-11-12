@@ -86,7 +86,7 @@ function cmp_tamcope(){
 	$w='tamapgar';
 	$d=get_tapgar();
 	var_dump($d);
-	 if (!isset($d['id_apgar'])) {
+	/* if (!isset($d['id_apgar'])) {
 		$d = array_merge($d,$a);
 	}
 	$u = ($d['tam_cope']!='') ? false : true ;
@@ -94,7 +94,7 @@ function cmp_tamcope(){
     $key='srch';
 	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
-	/*$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
+	$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('cope_idpersona','n','20',$d['cope_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','cope_idpersona',null,'',false,$u,'','col-15');
 	$c[]=new cmp('cope_tipodoc','s','3',$d['cope_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','cope_tipodoc',null,'',false,$u,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('cope_nombre','t','50',$d['cope_nombre'],$w.' '.$o,'nombres','cope_nombre',null,'',false,false,'','col-4');
@@ -142,9 +142,9 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_descripciona','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
 	$c[]=new cmp('cope_puntajee','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
- */
+ 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
+	*/
 	return $rta;
    }
 

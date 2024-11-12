@@ -43,7 +43,7 @@ function lis_tamcope(){
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamfindrisc",$regxPag);
+	return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
 	}else{
 		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar

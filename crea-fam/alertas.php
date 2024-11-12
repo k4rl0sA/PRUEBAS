@@ -64,6 +64,7 @@ function men_alertas(){
 	$d='';
     $w="alertas";
 	$o='infbas';
+	var_dump($p);
 	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
 	$ocu= ($p['ano']>5) ? true : false ;
 	$meses = $p['ano'] * 12 + $p['mes'];

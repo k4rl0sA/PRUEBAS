@@ -20,7 +20,7 @@ else {
 } 
 
 
-/* function lis_tamcope(){
+ function lis_tamcope(){
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
 	LEFT JOIN person P ON O.idpeople = P.idpeople
@@ -52,7 +52,7 @@ else {
                 <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
             </div>";
 	}
-} */
+} 
 
 function whe_tamcope() {
 	$sql = '1';

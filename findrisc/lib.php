@@ -322,7 +322,7 @@ function gra_tamfindrisc(){
 		// var_dump($idper);
 		// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
 
-		$sql = "INSERT INTO hog_tam_findrisc VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR),?,?,?)";
+		$sql = "INSERT INTO hog_tam_findrisc VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 
 		$params = [
 			['type' => 'i', 'value' => NULL],
@@ -345,12 +345,10 @@ function gra_tamfindrisc(){
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => 'A']
 		];
-
-		$rta=dato_mysql($sql);
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
 	}
-  return $rta;
+	return $rta = mysql_prepd($sql, $params);
 }
 
 

@@ -59,6 +59,7 @@ function cmp_tamoms(){
 	$u = ($d['idoms']!='') ? false : true ;
 	$o='datos';
     $key='oms';
+	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-3');

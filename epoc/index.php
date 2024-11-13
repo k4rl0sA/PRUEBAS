@@ -1,19 +1,18 @@
 <?php
 ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
-?> 
+?>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>cope || SIGINF</title>
-<link href="../libs/css/s.css" rel="stylesheet">
+<title>EPOC || SIGINF</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='tamcope';	
+var mod='tamepoc';	
 var ruta_app='lib.php';
 function csv(b){
 		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
@@ -31,7 +30,7 @@ function actualizar(){
 }
 
 function grabar(tb='',ev){
-	if(document.getElementById('idcope').value=='0'){
+	if(document.getElementById('id').value=='0'){
 		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   			var f=document.getElementsByClassName('valido '+tb);
    			for (i=0;i<f.length;i++) {
@@ -56,7 +55,24 @@ function grabar(tb='',ev){
         openModal();
 		
 	}
-} 
+}
+
+function hiddxedad(xedad,cls) {
+	const edad=document.getElementById(xedad);
+	const cmpHid1 = document.querySelectorAll(`.${cls}`);
+	const ed=document.getElementById('mayor');
+	if(edad.value > 39 ){
+		for(i=0;i<cmpHid1.length;i++){
+			hidFie(cmpHid1[i],false);
+			ed.value=1;
+			ed.disabled=true;
+		}
+	}else{
+		for(i=0;i<cmpHid1.length;i++){
+			hidFie(cmpHid1[i],true);
+		}
+	}
+}
 
 </script>
 </head>
@@ -65,12 +81,12 @@ function grabar(tb='',ev){
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
-$mod='tamcope';
+$mod='tamepoc';
 $ya = new DateTime();
 // $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
 $genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
 $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='MED' ORDER BY 1",'');
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
@@ -80,25 +96,15 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
 	
-	<div class="campo"><div>Sexo</div>
-		<select class="captura" id="fsexo" name="fsexo" OnChange="actualizar();">
-			<?php echo $genero; ?>
+	<!-- <div class="campo"><div>Colaborador</div>
+		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
+			<?php //echo $digitadores; ?>
 		</select>
-	</div>
-	<div class="campo"><div>persona</div>
-		<select class="captura" id="fpersona" name="fpersona" OnChange="actualizar();">
-			<?php echo $tiperson; ?>
-		</select>
-	</div>
-	<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
-			<?php echo $digitadores; ?>
-		</select>
-	</div>
+	</div> -->
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' >TAMIZAJE cope
+      <div class='titulo' >TAMIZAJE EPOC
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">

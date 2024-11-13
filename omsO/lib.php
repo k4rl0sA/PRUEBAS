@@ -249,7 +249,7 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-var_dump($suma_oms);
+// var_dump($suma_oms);
 
 	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
@@ -261,7 +261,7 @@ var_dump($suma_oms);
 			['type' => 's', 'value' => $_POST['diabetes']],
 			['type' => 's', 'value' => $_POST['fuma']],
 			['type' => 's', 'value' => $_POST['tas']],
-			['type' => 'i', 'value' => $suma_oms],
+			['type' => 's', 'value' => $suma_oms],
 			['type' => 's', 'value' => $des],
 			['type' => 's', 'value' => $_SESSION['us_sds']],
 			['type' => 's', 'value' => NULL],

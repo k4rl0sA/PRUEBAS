@@ -220,7 +220,7 @@ function gra_tamoms(){
 if(count($id)!==2){
 	return "No es posible actualizar el tamizaje";
 }else{
-var_dump($_POST);
+// var_dump($_POST);
 
 $diab = ($_POST['diabetes']==1) ? 'SI' : 'NO';
 $fuma = ($_POST['fuma']==1) ? 'SI' : 'NO';
@@ -268,9 +268,7 @@ $des=$info['responseResult'][0]['clasificacion'];
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => 'A']
 		];
-		// print_r($_POST);
-		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
-		// return $rta = mysql_prepd($sql, $params);
+		 return $rta = mysql_prepd($sql, $params);
 	}
 
 }

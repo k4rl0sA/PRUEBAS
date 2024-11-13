@@ -132,9 +132,9 @@ function cmp_tamoms(){
 		// echo $sql;
 		$info=datos_mysql($sql);
 			if (!$info['responseResult']) {
-				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) findrisc_nombre,
-				P.fecha_nacimiento findrisc_fechanacimiento,
-				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) findrisc_edad
+				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) oms_nombre,
+				P.fecha_nacimiento oms_fechanacimiento,
+				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) oms_edad
 				FROM person P
 				WHERE P.idpeople ='{$id[0]}'";
 				// echo $sql;
@@ -146,22 +146,20 @@ function cmp_tamoms(){
 }
 
 
-function get_tamfindrisc() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
+function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
     if (empty($_REQUEST['id'])) {
         return "";
     }
 
     $id = divide($_REQUEST['id']);
-    $sql = "SELECT A.id_findrisc, P.idpersona, P.tipo_doc,
-            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS findrisc_nombre,
-            P.fecha_nacimiento AS findrisc_fechanacimiento,
-            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS findrisc_edad,
-            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint,
-            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam,
-            A.puntaje, A.descripcion
-            FROM hog_tam_findrisc A
+    $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
+            P.fecha_nacimiento AS oms_fechanacimiento,
+            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
+            A.fecha_toma, A.diabetes, A.fuma, A.tas, A.puntaje, A.descripcion
+            FROM hog_tam_oms A
             LEFT JOIN person P ON A.idpeople = P.idpeople
-            WHERE A.id_findrisc = '{$id[0]}'";
+            WHERE A.idoms = '{$id[0]}'";
 
     $info = datos_mysql($sql);
     $data = $info['responseResult'][0];

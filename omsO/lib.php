@@ -84,7 +84,7 @@ function cmp_tamoms(){
 	$w='tamoms';
 	$d=get_toms();
 	var_dump($d);
-	/* if (!isset($d['idoms'])) {
+	if (!isset($d['idoms'])) {
 		$d = array_merge($d,$a);
 	} 
 	$u = ($d['idoms']!='') ? false : true ;
@@ -115,7 +115,7 @@ function cmp_tamoms(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	 
 	return $rta;
-	*/
+	
    }
 
    function get_toms(){//CAMBIO function nueva

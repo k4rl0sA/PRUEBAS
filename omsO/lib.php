@@ -168,9 +168,9 @@ function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
         'idoms' => $data['idoms'],
         'idpersona' => $data['idpersona'],
         'tipo_doc' => $data['tipo_doc'],
-        'oms_nombre' => $data['oms_nombre'],
-        'oms_fechanacimiento' => $data['oms_fechanacimiento'],
-        'oms_edad' => $data['oms_edad'],
+        'nombre' => $data['nombre'],
+        'fechanacimiento' => $data['fechanacimiento'],
+        'edad' => $data['edad'],
         'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
     ];
     // Campos adicionales específicos del tamizaje Findrisc

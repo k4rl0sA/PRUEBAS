@@ -239,7 +239,7 @@ $sql1="SELECT puntaje,clasificacion from oms
 where diabetes='{$diab}' AND sexo='{$_POST['sexo']}' AND fuma='{$fuma}'
 AND edad=$año AND tas=$ten;";
 
-// echo $sql1;
+echo $sql1;
 $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];

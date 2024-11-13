@@ -166,19 +166,17 @@ function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
 
     // Datos básicos
     $baseData = [
-        'id_findrisc' => $data['id_findrisc'],
+        'idoms' => $data['idoms'],
         'idpersona' => $data['idpersona'],
         'tipo_doc' => $data['tipo_doc'],
-        'findrisc_nombre' => $data['findrisc_nombre'],
-        'findrisc_fechanacimiento' => $data['findrisc_fechanacimiento'],
-        'findrisc_edad' => $data['findrisc_edad'],
+        'oms_nombre' => $data['oms_nombre'],
+        'oms_fechanacimiento' => $data['oms_fechanacimiento'],
+        'oms_edad' => $data['oms_edad'],
         'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
     ];
     // Campos adicionales específicos del tamizaje Findrisc
     $edadCampos = [
-        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
-        'actifisica', 'verduras', 'hipertension',
-        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+        'diabetes', 'fuma', 'tas', 'puntaje', 'descripcion'
     ];
     foreach ($edadCampos as $campo) {
         $baseData[$campo] = $data[$campo];

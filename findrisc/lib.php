@@ -324,7 +324,6 @@ function gra_tamfindrisc(){
 		}//CAMBIO ADD linea
 		// var_dump($idper);
 		// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
-
 		$sql = "INSERT INTO hog_tam_findrisc VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 
 		$params = [

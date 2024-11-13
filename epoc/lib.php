@@ -91,6 +91,7 @@ function cmp_tamepoc(){
 	//CAMBIO HASTA AQUI
 	$o='datos';
     $key='epo';
+	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('documento','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','documento',null,'',false,false,'','col-2');
@@ -98,10 +99,11 @@ function cmp_tamepoc(){
 	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
-   
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
     //$c[]=new cmp('act','o','3','',$w.' '.$o,'Desea continuar','act',null,'',true,$u,'','col-3');//,'hiddxedad(\'edad\',\'cuestionario1\',\'cuestionario2\');'
 	$o=' cuestionario1';
 	$c[]=new cmp($o,'e',null,'TAMIZAJE DE EPOC',$w);
+	
 	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
 	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
 	$c[]=new cmp('aire_facil','s','3','',$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,true,true,'','col-10');
@@ -223,24 +225,11 @@ function men_tamepoc(){
   }
    
 function gra_tamepoc(){
-	$id=$_POST['id'];
+	$id=divide($_POST['id']);
 	//print_r($_POST);
-	if($id != "0"){
+	if(count($id)!==2){
 		return "No es posible actualizar el tamizaje";
 	}else{
-		$infodata_epoc=datos_mysql("SELECT documento FROM tam_epoc WHERE documento = {$_POST['documento']} ");
-	if (isset($infodata_epoc['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_apgar=datos_mysql("SELECT documento FROM tam_epoc
-		 WHERE documento = {$_POST['documento']} ");
-		if (isset($infodata2_apgar['responseResult'][0])){
-			$idmomento = 2;
-		}else{
-			$idmomento = 1;
-		}
-	}
-
 	$suma_epoc = (
 		    intval($_POST['tose_muvedias'])+
 			intval($_POST['tiene_flema'])+
@@ -263,40 +252,29 @@ function gra_tamepoc(){
 					$des='Error en el rango, por favor valide';
 					break;
 			}
-		{
-	if($_POST['id']==0){
-		$id=$_POST['id'];
 		
-		
-			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
-	/* $tose = ($_POST['tose_muvedias']==1) ? 'SI' : 'NO' ;
-	$flema = ($_POST['tiene_flema']==1) ? 'SI' : 'NO' ;
-	$aire = ($_POST['aire_facil']==1) ? 'SI' : 'NO' ;
-	$mayor = ($_POST['mayor']==1) ? 'SI' : 'NO' ;
-	$fuma = ($_POST['fuma']==1) ? 'SI' : 'NO' ; */
+			$sql = "INSERT INTO hog_tam_epoc VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 
-		$sql="INSERT INTO tam_epoc VALUES (null,
-		
-		trim(upper('{$_POST['tipo_doc']}')),
-		trim(upper('{$_POST['documento']}')),
-		trim(upper('{$_POST['tose_muvedias']}')),
-		trim(upper('{$_POST['tiene_flema']}')),
-		trim(upper('{$_POST['aire_facil']}')),
-		trim(upper('{$_POST['mayor']}')),
-		trim(upper('{$_POST['fuma']}')),
-		'{$suma_epoc}',
-		trim(upper('{$des}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		// echo $sql;
-		$rta=dato_mysql($sql);
-	}else{
+		$params = [
+			['type' => 'i', 'value' => NULL],
+			['type' => 'i', 'value' => $id[0]],
+			['type' => 's', 'value' => $_POST['fecha_toma']],
+			['type' => 's', 'value' => $_POST['tose_muvedias']],
+			['type' => 's', 'value' => $_POST['tiene_flema']],
+			['type' => 's', 'value' => $_POST['aire_facil']],
+			['type' => 's', 'value' => $_POST['mayor']],
+			['type' => 's', 'value' => $_POST['fuma']],
+			['type' => 'i', 'value' => $suma_epoc],
+			['type' => 's', 'value' => $des],
+			['type' => 's', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => 'A']
+		];
 		// print_r($_POST);
-		return 'TAMIZAJE NO APLICA PARA LA EDAD';
-	}
-		
-	}
-  return $rta; 
+		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
+	return $rta = mysql_prepd($sql, $params);
+ 
 }
 }
 

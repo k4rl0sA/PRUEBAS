@@ -189,7 +189,6 @@ function get_person(){
 	$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
 from person P
 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
-	
 	// return json_encode($sql);
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

@@ -152,7 +152,8 @@ function cmp_tamepoc(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT id_epoc,O.idpeople,diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
+		$sql="SELECT id_epoc,O.idpeople,
+		tose_muvedias,tiene_flema,aire_facil,mayor,fuma,puntaje,descripcion,
 		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,P.fecha_nacimiento fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
 		FROM `hog_tam_epoc` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople

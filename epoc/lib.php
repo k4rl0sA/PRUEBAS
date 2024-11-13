@@ -65,12 +65,17 @@ function whe_tamepoc() {
 }
 
 function cmp_tamepoc(){
-	$rta="";
-	$t=['id_epoc'=>'','tipo_doc'=>'','documento'=>'','epoc_nombre'=>'','epoc_fechanacimiento'=>'','epoc_edad'=>'','tose_muvedias'=>'','tiene_flema'=>'','aire_facil'=>'','mayor'=>'','fuma'=>'','puntaje'=>'','descripcion'=>'']; 
+	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='epoc-lis'>".lis_tamepoc()."</div></div>";
+	$a=['id_epoc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>''];
+	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';
-	$d=get_tamepoc(); 
-	if ($d=="") {$d=$t;}
+	$d=get_tepoc();
+	// var_dump($d);
+	if (!isset($d['id_epoc'])) {
+		$d = array_merge($d,$a);
+	}
 	$u = ($d['id_epoc']!='') ? false : true ;
+	//CAMBIO HASTA AQUI
 	$o='datos';
     $key='epo';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
@@ -100,7 +105,7 @@ function cmp_tamepoc(){
 	return $rta;
    }
 
-   function get_tamfindrisc() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
+   function get_tamepoc() {
     if (empty($_REQUEST['id'])) {
         return "";
     }

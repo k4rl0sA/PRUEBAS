@@ -859,7 +859,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('tamepoc') ? "<li title='Tamizaje EPOC' onclick=\"mostrar('tamepoc','pro',event,'','../epoc/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-cough ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 		if (is_array($tamiz) && in_array('tamcope', $tamiz)) {
-			$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../copeJ/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-cough ico' id='".$c['ACCIONES']."'></i></li>": '';
+			//$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../copeJ/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-cough ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 		/**********************TAMIZAJES*************************/
 

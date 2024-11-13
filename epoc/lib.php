@@ -64,8 +64,22 @@ function whe_tamepoc() {
     return $sql;
 }
 
+function lis_oms(){
+	// var_dump($_POST['id']);
+	$id=divide($_POST['id']);
+	$sql="SELECT id_epoc ACCIONES,
+	id_epoc 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_epoc A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"epoc-lis",5);
+}
+
 function cmp_tamepoc(){
-	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='taepoc-lis'>".lis_tamepoc()."</div></div>";
+	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='taepoc-lis'>".lis_epoc()."</div></div>";
 	$a=['id_epoc'=>'','tose_muvedias'=>'','tiene_flema'=>'','aire_facil'=>'','mayor'=>'','fuma'=>'','puntaje'=>'','descripcion'=>''];
 	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';

@@ -25,38 +25,37 @@ var ruta_app='lib.php';
 	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
 }; */
 
-
 function actualizar(){
-	act_lista(mod);
+		act_lista(mod);
 }
 
-function grabar(tb='',ev){
-	if(document.getElementById('id').value=='0'){
-		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  			var f=document.getElementsByClassName('valido '+tb);
-   			for (i=0;i<f.length;i++) {
-    			if (!valido(f[i])) {f[i].focus(); return};
-  			}
+// //function grabar(tb='',ev){
+// 	if(document.getElementById('id').value=='0'){
+// 		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
+//   			var f=document.getElementsByClassName('valido '+tb);
+//    			for (i=0;i<f.length;i++) {
+//     			if (!valido(f[i])) {f[i].focus(); return};
+//   			}
 	
-	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
-			if(res==true){
-				myFetch(ruta_app,"a=gra&tb="+tb,mod);
-    			/* if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
-				}else{
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-				}
-				openModal(); */
-				setTimeout(actualizar, 1000);
-			}
-	}else{
-		const message = `Esta funcion no esta habilitada en este momento,por favor consulta con el administrador del sistema`;
-        document.getElementById(mod+'-modal').innerHTML = message;
-        document.getElementById(mod+'-image').innerHTML = '<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-        openModal();
+// 	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
+// 			if(res==true){
+// 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
+//     			/* if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
+// 					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
+// 				}else{
+// 					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
+// 				}
+// 				openModal(); */
+// 				setTimeout(actualizar, 1000);
+// 			}
+// 	}else{
+// 		const message = `Esta funcion no esta habilitada en este momento,por favor consulta con el administrador del sistema`;
+//         document.getElementById(mod+'-modal').innerHTML = message;
+//         document.getElementById(mod+'-image').innerHTML = '<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
+//         openModal();
 		
-	}
-}
+// 	}
+// }
 
 function hiddxedad(xedad,cls) {
 	const edad=document.getElementById(xedad);
@@ -94,12 +93,11 @@ $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=
 	<div>Identificación</div>
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
-	
-	<!-- <div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();" disabled="true">
-			<?php //echo $digitadores; ?>
-		</select>
-	</div> -->
+
+<div class="campo">
+	<div>Cod. Familiar</div>
+	<input class="captura" type="number" id="ffam" name="ffam" OnChange="actualizar();">
+</div>	
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

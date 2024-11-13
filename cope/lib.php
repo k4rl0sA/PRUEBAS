@@ -51,6 +51,20 @@ function lis_tamcope(){
 	}
 }
 
+function lis_cope(){
+	$id=divide($_POST['id']);
+	$sql="SELECT tam_cope ACCIONES,
+	tam_cope 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_oms A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"oms-lis",5);
+
+}
+
 function whe_tamcope() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
@@ -69,12 +83,12 @@ function whe_tamcope() {
 
 function cmp_tamcope(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_cope()."</div></div>";
-	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
-	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
+	$a=['tam_cope'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
+	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
 	$d=get_toms();
 	// var_dump($d);
-	if (!isset($d['idoms'])) {
+	if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
 	}
 	$o='datos';

@@ -115,8 +115,8 @@ function cmp_tamepoc(){
             concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS nombre,
             P.fecha_nacimiento AS fechanacimiento,
             YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS edad,
-            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint,
-            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam,
+            A.fecha_toma, 
+			A.tose_muvedias,A.tiene_flema,A.aire_facil,A.mayor,A.fuma,
             A.puntaje, A.descripcion
             FROM hog_tam_epoc A
             LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -137,9 +137,7 @@ function cmp_tamepoc(){
     ];
     // Campos adicionales específicos del tamizaje Findrisc
     $edadCampos = [
-        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
-        'actifisica', 'verduras', 'hipertension',
-        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+		'tose_muvedias','tiene_flema','aire_facil','mayor','fuma','puntaje','descripcion'
     ];
     foreach ($edadCampos as $campo) {
         $baseData[$campo] = $data[$campo];

@@ -6,9 +6,9 @@ if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</scr
 else {
   $rta="";
   switch ($_POST['a']){
-  case 'csv': 
+  case 'csv':
     header_csv ($_REQUEST['tb'].'.csv');
-    $rs=array('','');    
+    $rs=array('','');
     echo csv($rs,'');
     die;
     break;
@@ -16,7 +16,7 @@ else {
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }
 }
 
 function lis_tamoms(){
@@ -62,7 +62,7 @@ function lis_oms(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"oms-lis",5);
-	
+
 }
 
 function whe_tamoms() {
@@ -80,21 +80,20 @@ function whe_tamoms() {
 function cmp_tamoms(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
 	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];
-	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>'']; 
+	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
 	$d=get_toms();
 	// var_dump($d);
 	if (!isset($d['idoms'])) {
 		$d = array_merge($d,$a);
-	} 
-	$u = ($d['idoms']!='') ? false : true ;
+	}
 	$o='datos';
     $key='oms';
 	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
-	 $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,$u,'','col-3');
-	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,$u,'','col-3',"getDatForm('oms','person','datos');setTimeout(function() {hiddxTamiz('edad', 'pruoms',17);}, 1000);");
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
+	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,false,'','col-3');
+	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,false,'','col-3',"getDatForm('oms','person','datos');setTimeout(function() {hiddxTamiz('edad', 'pruoms',17);}, 1000);");
 	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
@@ -102,19 +101,19 @@ function cmp_tamoms(){
 
 	$o='pruoms';
  	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
- 	$c[]=new cmp('fuma','s',2,$d['fuma'],$w.' '.$o,'Fuma','fuma',null,null,false,true,'','col-25');
-	$c[]=new cmp('diabetes','s',3,$d['diabetes'],$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3');
-	$c[]=new cmp('tas','n',3,$d['tas'],$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,false,true,'','col-2');
+ 	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,false,true,'','col-25');
+	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3');
+	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,false,true,'','col-2');
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);
 	$c[]=new cmp('puntaje','t','10',$d['puntaje'],$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
 	$c[]=new cmp('descripcion','t','50',$d['descripcion'],$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
- 
+
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	 
+
 	return $rta;
-	
+
    }
 
    function get_toms(){//CAMBIO function nueva
@@ -200,23 +199,23 @@ return json_encode($info['responseResult'][0]);
 function focus_tamoms(){
 	return 'tamoms';
    }
-   
+
 function men_tamoms(){
 	$rta=cap_menus('tamoms','pro');
 	return $rta;
    }
 
    function cap_menus($a,$b='cap',$con='con') {
-	$rta = ""; 
+	$rta = "";
 	$acc=rol($a);
-	if ($a=='tamoms') {  
+	if ($a=='tamoms') {
 		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
 	}
 	return $rta;
   }
-   
+
 function gra_tamoms(){
-	
+
 	$diab = ($_POST['diabetes']==1) ? 'SI' : 'NO';
 	$fuma = ($_POST['fuma']==1) ? 'SI' : 'NO';
 
@@ -231,14 +230,14 @@ $sql2="SELECT CASE
         WHEN  {$_POST['tas']}>= 140 AND {$_POST['tas']} < 160 THEN 140
         WHEN  {$_POST['tas']}>= 160 AND {$_POST['tas']} < 180 THEN 160
         ELSE 180
-    END ten;";	
+    END ten;";
 $info=datos_mysql($sql2);
 $año=$info['responseResult'][0]['anios'];
 $ten=$info['responseResult'][0]['ten'];
 
 
-$sql1="SELECT puntaje,clasificacion from oms 
-where diabetes='{$diab}' AND sexo='{$_POST['sexo']}' AND fuma='{$fuma}' 
+$sql1="SELECT puntaje,clasificacion from oms
+where diabetes='{$diab}' AND sexo='{$_POST['sexo']}' AND fuma='{$fuma}'
 AND edad=$año AND tas=$ten;";
 
 // echo $sql1;
@@ -246,9 +245,11 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-	if($_POST['id']==0){
-			// echo "ES MENOR DE EDAD ".$ed.' '.print_r($_POST);
-		$sql="INSERT INTO hog_tam_oms VALUES (null,
+$id=divide($_POST['id']);
+if(count($id)!==2){
+	return "No es posible actualizar el tamizaje";
+}else{
+	$sql="INSERT INTO hog_tam_oms VALUES (null,
 		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['tas']}')),
 		'{$suma_oms}',
 		trim(upper('{$des}')),
@@ -256,17 +257,35 @@ $des=$info['responseResult'][0]['clasificacion'];
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		// echo $sql;
 		$rta=dato_mysql($sql);
+
+		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+
+		$params = [
+			['type' => 'i', 'value' => NULL],
+			['type' => 'i', 'value' => $idper],
+			['type' => 's', 'value' => $_POST['fecha_toma']],
+			['type' => 's', 'value' => $_POST['diabetes']],
+			['type' => 's', 'value' => $_POST['peso']],
+			['type' => 's', 'value' => $_POST['talla']],
+			['type' => 's', 'value' => $_POST['imc']],
+			['type' => 's', 'value' => $_POST['perimcint']],
+			['type' => 's', 'value' => $_POST['actifisica']],
+			['type' => 's', 'value' => $_POST['verduras']],
+			['type' => 's', 'value' => $_POST['hipertension']],
+			['type' => 's', 'value' => $_POST['glicemia']],
+			['type' => 's', 'value' => $_POST['diabfam']],
+			['type' => 'i', 'value' => $suma_findrisc],
+			['type' => 's', 'value' => $des],
+			['type' => 's', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => 'A']
+		];
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
-	}else{
-		$id=divide($_POST['id']);
-		$sql="UPDATE hog_tam_oms SET  
-		diabetes=trim(upper('{$_POST['diabetes']}')),fuma=trim(upper('{$_POST['fuma']}')),tas=trim(upper('{$_POST['tas']}')),puntaje=trim(upper('{$_POST['puntaje']}')),descripcion=trim(upper('{$_POST['descripcion']}')),
-		usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR)
-		where tipodoc='{$id[0]}' AND idpersona='$id[1]'";
-		$rta=dato_mysql($sql);
+		return $rta = mysql_prepd($sql, $params);
 	}
-  return $rta; 
+
 }
 
 
@@ -282,7 +301,7 @@ $des=$info['responseResult'][0]['clasificacion'];
 	function opc_diabetes($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 	}
-	
+
 
 
 	function formato_dato($a,$b,$c,$d){
@@ -292,13 +311,12 @@ $des=$info['responseResult'][0]['clasificacion'];
 	   // var_dump($a);
 	   // var_dump($rta);
 		   if ($a=='tamoms' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
+			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamoms','pro',event,'','lib.php',7,'tamoms');setTimeout(hiddxedad,300,'edad','prufin');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
 	   }
-	   
+
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;
 	   }
-	

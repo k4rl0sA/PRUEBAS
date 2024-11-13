@@ -87,7 +87,7 @@ function cmp_tamcope(){
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
 	$d=get_tcope();
-	// var_dump($d);
+	var_dump($d);
 	if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
 	}
@@ -112,41 +112,41 @@ function cmp_tamcope(){
 
 	$o='info';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
-	$c[]=new cmp('cope_pregunta1','s','3',$d['cope_pregunta1'],$w.' '.$o,'1. Intento conseguir que alguien me ayude o aconseje sobre que hacer.	','caracterizacion',null,'',true,$u,'','col-5');
-  	$c[]=new cmp('cope_pregunta2','s','3',$d['cope_pregunta2'],$w.' '.$o,'2. Concentro mis esfuerzos en hacer algo sobre la situacion en la que estoy.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta3','s','3',$d['cope_pregunta3'],$w.' '.$o,'3. Acepto la realidad de lo que ha sucedido.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta4','s','3',$d['cope_pregunta4'],$w.' '.$o,'4. Recurro al trabajo o a otras actividades para apartar las cosas de mi mente.			','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta5','s','3',$d['cope_pregunta5'],$w.' '.$o,'5. Me digo a mi mismo "esto no es real".','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta6','s','3',$d['cope_pregunta6'],$w.' '.$o,'6. Intento proponer una estrategia sobre que hacer.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta7','s','3',$d['cope_pregunta7'],$w.' '.$o,'7. Hago bromas sobre ello.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta8','s','3',$d['cope_pregunta8'],$w.' '.$o,'8. Me critico a mi mismo.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta9','s','3',$d['cope_pregunta9'],$w.' '.$o,'9. Consigo apoyo emocional de otros.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta10','s','3',$d['cope_pregunta10'],$w.' '.$o,'10. Tomo medidas para intentar que la situacion mejore.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta11','s','3',$d['cope_pregunta11'],$w.' '.$o,'11. Renuncio a intentar ocuparme de ello.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta12','s','3',$d['cope_pregunta12'],$w.' '.$o,'12. Digo cosas para dar rienda suelta a mis sentimientos desagradables.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta13','s','3',$d['cope_pregunta13'],$w.' '.$o,'13. Me niego a creer que haya sucedido.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta14','s','3',$d['cope_pregunta14'],$w.' '.$o,'14. Intento verlo con otros ojos, para hacer que parezca mas positivo.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta15','s','3',$d['cope_pregunta15'],$w.' '.$o,'15. Utilizo alcohol u otras drogas para hacerme sentir mejor.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta16','s','3',$d['cope_pregunta16'],$w.' '.$o,'16. Intento hallar consuelo en mi religión o creencias espirituales.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta17','s','3',$d['cope_pregunta17'],$w.' '.$o,'17. Consigo el consuelo y la comprensión de alguien.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta18','s','3',$d['cope_pregunta18'],$w.' '.$o,'18. Busco algo bueno en lo que esta sucediendo.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta19','s','3',$d['cope_pregunta19'],$w.' '.$o,'19. Me río de la situacion.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta20','s','3',$d['cope_pregunta20'],$w.' '.$o,'20. Rezo o medito.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta21','s','3',$d['cope_pregunta21'],$w.' '.$o,'21. Aprendo a vivir con ello.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta22','s','3',$d['cope_pregunta22'],$w.' '.$o,'22. Hago algo para pensar menos en ello, tal como ir al cine o ver la televisión.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta23','s','3',$d['cope_pregunta23'],$w.' '.$o,'23. Expreso mis sentimientos negativos.	','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta24','s','3',$d['cope_pregunta24'],$w.' '.$o,'24. útilizo alcohol u otras drogas para ayudarme a superarlo.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta25','s','3',$d['cope_pregunta25'],$w.' '.$o,'25. Renuncio al intento de hacer frente al problema.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta26','s','3',$d['cope_pregunta26'],$w.' '.$o,'26. Pienso detenidamente sobre los pasos a seguir.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta27','s','3',$d['cope_pregunta27'],$w.' '.$o,'27. Me hecho la culpa de los que ha sucedido.','caracterizacion',null,'',true,$u,'','col-5');
-	$c[]=new cmp('cope_pregunta28','s','3',$d['cope_pregunta28'],$w.' '.$o,'28. Consigo que otras personas me ayuden o aconsejen.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta1','s','3','',$w.' '.$o,'1. Intento conseguir que alguien me ayude o aconseje sobre que hacer.	','caracterizacion',null,'',true,$u,'','col-5');
+  	$c[]=new cmp('cope_pregunta2','s','3','',$w.' '.$o,'2. Concentro mis esfuerzos en hacer algo sobre la situacion en la que estoy.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta3','s','3','',$w.' '.$o,'3. Acepto la realidad de lo que ha sucedido.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta4','s','3','',$w.' '.$o,'4. Recurro al trabajo o a otras actividades para apartar las cosas de mi mente.			','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta5','s','3','',$w.' '.$o,'5. Me digo a mi mismo "esto no es real".','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta6','s','3','',$w.' '.$o,'6. Intento proponer una estrategia sobre que hacer.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta7','s','3','',$w.' '.$o,'7. Hago bromas sobre ello.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta8','s','3','',$w.' '.$o,'8. Me critico a mi mismo.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta9','s','3','',$w.' '.$o,'9. Consigo apoyo emocional de otros.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta10','s','3','',$w.' '.$o,'10. Tomo medidas para intentar que la situacion mejore.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta11','s','3','',$w.' '.$o,'11. Renuncio a intentar ocuparme de ello.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta12','s','3','',$w.' '.$o,'12. Digo cosas para dar rienda suelta a mis sentimientos desagradables.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta13','s','3','',$w.' '.$o,'13. Me niego a creer que haya sucedido.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta14','s','3','',$w.' '.$o,'14. Intento verlo con otros ojos, para hacer que parezca mas positivo.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta15','s','3','',$w.' '.$o,'15. Utilizo alcohol u otras drogas para hacerme sentir mejor.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta16','s','3','',$w.' '.$o,'16. Intento hallar consuelo en mi religión o creencias espirituales.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta17','s','3','',$w.' '.$o,'17. Consigo el consuelo y la comprensión de alguien.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta18','s','3','',$w.' '.$o,'18. Busco algo bueno en lo que esta sucediendo.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta19','s','3','',$w.' '.$o,'19. Me río de la situacion.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta20','s','3','',$w.' '.$o,'20. Rezo o medito.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta21','s','3','',$w.' '.$o,'21. Aprendo a vivir con ello.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta22','s','3','',$w.' '.$o,'22. Hago algo para pensar menos en ello, tal como ir al cine o ver la televisión.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta23','s','3','',$w.' '.$o,'23. Expreso mis sentimientos negativos.	','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta24','s','3','',$w.' '.$o,'24. útilizo alcohol u otras drogas para ayudarme a superarlo.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta25','s','3','',$w.' '.$o,'25. Renuncio al intento de hacer frente al problema.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta26','s','3','',$w.' '.$o,'26. Pienso detenidamente sobre los pasos a seguir.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta27','s','3','',$w.' '.$o,'27. Me hecho la culpa de los que ha sucedido.','caracterizacion',null,'',true,$u,'','col-5');
+	$c[]=new cmp('cope_pregunta28','s','3','',$w.' '.$o,'28. Consigo que otras personas me ayuden o aconsejen.','caracterizacion',null,'',true,$u,'','col-5');
 
 	$o='totales';
 	$c[]=new cmp($o,'e',null,'Resultado ',$w);
-	$c[]=new cmp('cope_puntajea','t',3,$d['cope_puntajea'],$w.' '.$o,'Puntaje Caracterización','cope_puntajea',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_descripciona','t',3,$d['cope_descripciona'],$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_puntajee','t',3,$d['cope_puntajee'],$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
-	$c[]=new cmp('cope_descripcione','t',3,$d['cope_descripcione'],$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_puntajea','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajea',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_descripciona','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripciona',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_puntajee','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
+	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 

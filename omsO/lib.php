@@ -215,10 +215,8 @@ function men_tamoms(){
   }
 
 function gra_tamoms(){
-
 	$diab = ($_POST['diabetes']==1) ? 'SI' : 'NO';
 	$fuma = ($_POST['fuma']==1) ? 'SI' : 'NO';
-
 $sql2="SELECT CASE
         WHEN {$_POST['edad']} < 50 THEN 40
         WHEN {$_POST['edad']} >= 50 AND {$_POST['edad']} < 60 THEN 50
@@ -249,6 +247,7 @@ $id=divide($_POST['id']);
 if(count($id)!==2){
 	return "No es posible actualizar el tamizaje";
 }else{
+var_dump($_POST);
 	$sql="INSERT INTO hog_tam_oms VALUES (null,
 		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['tas']}')),
 		'{$suma_oms}',
@@ -283,7 +282,7 @@ if(count($id)!==2){
 		];
 		// print_r($_POST);
 		// return 'TAMIZAJE NO APLICA PARA LA EDAD';
-		return $rta = mysql_prepd($sql, $params);
+		// return $rta = mysql_prepd($sql, $params);
 	}
 
 }

@@ -68,24 +68,34 @@ function whe_tamcope() {
 }
 
 function cmp_tamcope(){
-	$rta="";
-	$t=['tam_cope'=>'','cope_tipodoc'=>'','cope_nombre'=>'','cope_idpersona'=>'','cope_fechanacimiento'=>'','cope_puntajea'=>'','cope_momento'=>'','cope_reporta'=>'','cope_edad'=>'','cope_lugarnacimiento'=>'','cope_condicionsalud'=>'','cope_estadocivil'=>'','cope_escolaridad'=>'','cope_pregunta1'=>'','cope_pregunta2'=>'','cope_pregunta3'=>'','cope_pregunta4'=>'','cope_pregunta5'=>'','cope_pregunta6'=>'','cope_pregunta7'=>'','cope_pregunta8'=>'','cope_pregunta9'=>'','cope_pregunta10'=>'','cope_pregunta11'=>'','cope_pregunta12'=>'','cope_pregunta13'=>'','cope_pregunta14'=>'','cope_pregunta15'=>'','cope_pregunta16'=>'','cope_pregunta17'=>'','cope_pregunta18'=>'','cope_pregunta19'=>'','cope_pregunta20'=>'','cope_pregunta21'=>'','cope_pregunta22'=>'','cope_pregunta23'=>'','cope_pregunta24'=>'','cope_pregunta25'=>'','cope_pregunta26'=>'','cope_pregunta27'=>'','cope_pregunta28'=>'','cope_evaluacion1'=>'','cope_evaluacion2'=>'','cope_evaluacion3'=>'','cope_evaluacion4'=>'','cope_evaluacion5'=>'','cope_evaluacion6'=>'','cope_evaluacion7'=>'','cope_evaluacion8'=>'','cope_evaluacion9'=>'','cope_evaluacion10'=>'','cope_evaluacion11'=>'','cope_evaluacion12'=>'','cope_evaluacion13'=>'','cope_evaluacion14'=>'','cope_evaluacion15'=>'','cope_evaluacion16'=>'','cope_evaluacion17'=>'','cope_evaluacion18'=>'','cope_evaluacion19'=>'','cope_evaluacion20'=>'','cope_evaluacion21'=>'','cope_evaluacion22'=>'','cope_evaluacion23'=>'','cope_evaluacion24'=>'','cope_evaluacion25'=>'','cope_evaluacion26'=>'','cope_evaluacion27'=>'','cope_evaluacion28'=>'','cope_puntajee'=>'','cope_descripciona'=>'','cope_descripcione'=>'','interpretacion'=>''	 ]; 
-	$w='tamcope';
-	$d=get_tamcope(); 
-	if ($d=="") {$d=$t;}
-	$u = ($d['tam_cope']!='') ? false : true ;
+	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
+	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
+	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
+	$w='tamoms';
+	$d=get_toms();
+	// var_dump($d);
+	if (!isset($d['idoms'])) {
+		$d = array_merge($d,$a);
+	}
 	$o='datos';
-    $key='srch';
+    $key='oms';
+	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
-	$c[]=new cmp('idcope','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('cope_idpersona','t','20',$d['cope_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','cope_idpersona',null,'',false,$u,'','col-15');
-	$c[]=new cmp('cope_tipodoc','s','3',$d['cope_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','cope_tipodoc',null,'',false,$u,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
-	$c[]=new cmp('cope_nombre','t','50',$d['cope_nombre'],$w.' '.$o,'nombres','cope_nombre',null,'',false,false,'','col-4');
-	$c[]=new cmp('cope_fechanacimiento','d','10',$d['cope_fechanacimiento'],$w.' '.$o,'fecha nacimiento','cope_fechanacimiento',null,'',false,false,'','col-15');
-    $c[]=new cmp('cope_edad','n','3',$d['cope_edad'],$w.' '.$o,'edad','cope_edad',null,'',true,false,'','col-1');
-	$c[]=new cmp('cope_reporta','s','3',$d['cope_reporta'],$w.' '.$o,'Caso reportado','cope_reporta',null,'',true,$u,'','col-3');
-	$c[]=new cmp('cope_momento','s','3',$d['cope_momento'],$w.' '.$o,'Tipo','tipo_activi',null,'',true,$u,'','col-3');
-	
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
+	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,false,'','col-3');
+	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,false,'','col-3',"getDatForm('oms','person','datos');setTimeout(function() {hiddxTamiz('edad', 'pruoms',17);}, 1000);");
+	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
+	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
+	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
+    $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
+
+	$o='pruoms';
+ 	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
+ 	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,true,true,'','col-25');
+	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,true,true,'','col-3');
+	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,true,true,'','col-2');
+
 	$o='info';
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
 	$c[]=new cmp('cope_pregunta1','s','3',$d['cope_pregunta1'],$w.' '.$o,'1. Intento conseguir que alguien me ayude o aconseje sobre que hacer.	','caracterizacion',null,'',true,$u,'','col-5');
@@ -116,7 +126,6 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_pregunta26','s','3',$d['cope_pregunta26'],$w.' '.$o,'26. Pienso detenidamente sobre los pasos a seguir.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta27','s','3',$d['cope_pregunta27'],$w.' '.$o,'27. Me hecho la culpa de los que ha sucedido.','caracterizacion',null,'',true,$u,'','col-5');
 	$c[]=new cmp('cope_pregunta28','s','3',$d['cope_pregunta28'],$w.' '.$o,'28. Consigo que otras personas me ayuden o aconsejen.','caracterizacion',null,'',true,$u,'','col-5');
-	
 
 	$o='totales';
 	$c[]=new cmp($o,'e',null,'Resultado ',$w);
@@ -126,9 +135,11 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_descripcione','t',3,$d['cope_descripcione'],$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
+
 	return $rta;
+
    }
+
 
    function get_tamcope(){
 	if($_POST['id']==0){

@@ -79,7 +79,7 @@ function whe_tamoms() {
 
 function cmp_tamoms(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
-	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>''];
+	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
 	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
 	$d=get_toms();
@@ -152,9 +152,9 @@ function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE
 
     $id = divide($_REQUEST['id']);
     $sql = "SELECT A.idoms, P.idpersona, P.tipo_doc,
-            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS oms_nombre,
-            P.fecha_nacimiento AS oms_fechanacimiento,
-            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS oms_edad,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS nombre,
+            P.fecha_nacimiento AS fechanacimiento,
+            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS edad,
             A.fecha_toma, A.diabetes, A.fuma, A.tas, A.puntaje, A.descripcion
             FROM hog_tam_oms A
             LEFT JOIN person P ON A.idpeople = P.idpeople

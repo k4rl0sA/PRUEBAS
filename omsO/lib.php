@@ -101,10 +101,10 @@ function cmp_tamoms(){
 
 	$o='pruoms';
  	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
-	 $c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
- 	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,false,true,'','col-25');
-	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3');
-	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,false,true,'','col-2');
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
+ 	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,true,true,'','col-25');
+	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,true,true,'','col-3');
+	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,true,true,'','col-2');
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);
@@ -297,6 +297,7 @@ var_dump($suma_oms);
 	   // var_dump($rta);
 		   if ($a=='tamoms' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
+			$rta.="<li title='Ver'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'find',,'person','datos',event,this,'../findrisc/lib.php',['puntaje','descripcion']);\"></i></li>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamoms','pro',event,'','lib.php',7,'tamoms');setTimeout(hiddxedad,300,'edad','prufin');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;

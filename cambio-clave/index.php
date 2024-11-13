@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 function db_connect(){
-	$con = new mysqli("localhost", "u470700275_06", "z9#KqH!YK2VEyJpT","u470700275_06");
+	$con = new mysqli("localhost", "u470700275_17", "z9#KqH!YK2VEyJpT","u470700275_17");
   if( !$con ){
     throw new Exception('No se ha podido conectar a la base de datos');
   } else {

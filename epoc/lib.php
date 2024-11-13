@@ -100,37 +100,91 @@ function cmp_tamepoc(){
 	return $rta;
    }
 
-   function get_tamepoc(){
+   function get_tamfindrisc() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
+    if (empty($_REQUEST['id'])) {
+        return "";
+    }
+
+    $id = divide($_REQUEST['id']);
+    $sql = "SELECT A.id_epoc, P.idpersona, P.tipo_doc,
+            concat_ws(' ', P.nombre1, P.nombre2, P.apellido1, P.apellido2) AS nombre,
+            P.fecha_nacimiento AS fechanacimiento,
+            YEAR(CURDATE()) - YEAR(P.fecha_nacimiento) AS edad,
+            A.fecha_toma, A.diabetes, A.peso, A.talla, A.imc, A.perimcint,
+            A.actifisica, A.verduras, A.hipertension, A.glicemia, A.diabfam,
+            A.puntaje, A.descripcion
+            FROM hog_tam_epoc A
+            LEFT JOIN person P ON A.idpeople = P.idpeople
+            WHERE A.id_epoc = '{$id[0]}'";
+
+    $info = datos_mysql($sql);
+    $data = $info['responseResult'][0];
+
+    // Datos básicos
+    $baseData = [
+        'id_epoc' => $data['id_epoc'],
+        'idpersona' => $data['idpersona'],
+        'tipo_doc' => $data['tipo_doc'],
+        'nombre' => $data['nombre'],
+        'fechanacimiento' => $data['fechanacimiento'],
+        'edad' => $data['edad'],
+        'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
+    ];
+    // Campos adicionales específicos del tamizaje Findrisc
+    $edadCampos = [
+        'diabetes', 'peso', 'talla', 'imc', 'perimcint',
+        'actifisica', 'verduras', 'hipertension',
+        'glicemia', 'diabfam', 'puntaje', 'descripcion'
+    ];
+    foreach ($edadCampos as $campo) {
+        $baseData[$campo] = $data[$campo];
+    }
+    return json_encode($baseData);
+}
+
+
+   function get_tepoc(){
 	if($_POST['id']==0){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT `id_epoc`,O.`documento`,O.`tipo_doc`,
-		`tose_muvedias`,`tiene_flema`,`aire_facil`,`mayor`,`fuma`,`puntaje`,`descripcion`,
-        O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) epoc_nombre,P.fecha_nacimiento epoc_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) epoc_edad
-		FROM `tam_epoc` O
-		LEFT JOIN personas P ON O.documento = P.idpersona and O.tipo_doc=P.tipo_doc
-		WHERE O.documento ='{$id[0]}' AND O.tipo_doc='{$id[1]}' ";
+		$sql="SELECT id_epoc,O.idpeople,diabetes,peso,talla,imc,perimcint,actifisica,verduras,hipertension,glicemia,diabfam,puntaje,descripcion,
+		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,P.fecha_nacimiento fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
+		FROM `hog_tam_epoc` O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+			WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
-		}
+			if (!$info['responseResult']) {
+				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,
+				P.fecha_nacimiento fechanacimiento,
+				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
+				FROM person P
+				WHERE P.idpeople ='{$id[0]}'";
+				// echo $sql;
+				$info=datos_mysql($sql);
+			return $info['responseResult'][0];
+			}
+		return $info['responseResult'][0];
+	}
 	} 
 
 
-function get_person(){
-	// print_r($_POST);
-	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
-from personas
-	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	$info=datos_mysql($sql);
-	if (!$info['responseResult']) {
-		return json_encode (new stdClass);
+	function get_person(){
+		// print_r($_POST);
+		$id=divide($_POST['id']);
+		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,sexo ,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE()) edad
+	from person
+	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."');";
+	
+		// return json_encode($sql);
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return json_encode (new stdClass);
+		}
+	return json_encode($info['responseResult'][0]);
 	}
-return json_encode($info['responseResult'][0]);
-}
 
 function focus_tamepoc(){
 	return 'tamepoc';

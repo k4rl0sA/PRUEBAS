@@ -161,7 +161,7 @@ function lis_famili(){
 		//  echo $sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"famili-lis",8);
-		}
+}
 	
 function cmp_homes1(){
 	$rta="";

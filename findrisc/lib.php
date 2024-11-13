@@ -105,7 +105,6 @@ function cmp_tamfindrisc(){
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);"); //CAMBIO SE ADD ESTA LINEA
 	$c[]=new cmp('diabetes','s',3,'2',$w.''.$o,'Tiene Diabetes','diabetes',null,null,false,false,'','col-3',"hiddxdiab('diabetes','prufin');");
 
-	$ed=false;
 		$o='prufin';
 		$ed=true;
  		$c[]=new cmp($o,'e',null,'PRUEBA FINDRISC',$w);

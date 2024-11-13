@@ -108,8 +108,8 @@ function cmp_tamoms(){
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);
-	$c[]=new cmp('puntaje','t','10',$d['puntaje'],$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
-	$c[]=new cmp('descripcion','t','50',$d['descripcion'],$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
+	$c[]=new cmp('puntaje','t','10','',$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
+	$c[]=new cmp('descripcion','t','50','',$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 

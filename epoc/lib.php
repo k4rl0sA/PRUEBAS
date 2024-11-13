@@ -84,7 +84,7 @@ function cmp_tamepoc(){
 	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';
 	$d=get_tepoc();
-	// var_dump($d);
+	var_dump($d);
 	if (!isset($d['id_epoc'])) {
 		$d = array_merge($d,$a);
 	}

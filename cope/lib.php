@@ -19,24 +19,36 @@ else {
   }   
 } 
 
-
 function lis_tamcope(){
-	// concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,
-	$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O LEFT JOIN personas P ON O.cope_idpersona = P.idpersona where 1 ".whe_tamcope() ." AND O.usu_creo ='".$_SESSION['us_sds']."'");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=12;
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		where ".whe_tamcope());
+		$total=$info['responseResult'][0]['total'];
+		$regxPag=12;
+		$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
-	$sql="SELECT concat(cope_idpersona,'_',cope_tipodoc,'_',cope_momento) ACCIONES,tam_cope  'Cod. registro',cope_idpersona Documento,FN_CATALOGODESC(1,cope_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
-	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(135,cope_momento) Momento,`cope_puntajea` 'Pts. Afrontamiento',cope_descripciona Descripcion, `cope_puntajee` 'Pts. Evitación',cope_descripcione Descripción
+		$sql="SELECT O.idpeople ACCIONES,idoms 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_cope O
-	LEFT JOIN personas P ON O.cope_idpersona = P.idpersona
-		WHERE 1 ";
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		WHERE ";
 	$sql.=whe_tamcope();
-	$sql.=" AND O.usu_creo ='".$_SESSION['us_sds']."'";
-	$sql.=" ORDER BY 1";
-
-		$datos=datos_mysql($sql);
-		return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
+	$sql.=" ORDER BY O.fecha_create DESC";
+	//echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
+	}else{
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+                <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
+	}
 }
 
 function whe_tamcope() {

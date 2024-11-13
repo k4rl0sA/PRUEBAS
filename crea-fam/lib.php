@@ -866,6 +866,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('atencion') ? "<li title='Crear Atención' onclick=\"mostrar('atencion','pro',event,'','atencion.php',7,'atencion');Color('datos-lis')\"><i class='fa-solid fa-user-doctor ico' id='{$c['ACCIONES']}'></i></li>" : "";
 		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";
 		$rta.=eventAsign($c['ACCIONES']);
+		$rta .= acceso('relevo') ? "<li title='Relevo' onclick=\"mostrar('relevo','pro',event,'','../relevo/lib.php',7,'relevo');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>":"";
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

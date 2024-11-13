@@ -124,7 +124,7 @@ function cmp_tamoms(){
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
 		$sql="SELECT idoms,O.idpeople,diabetes,fuma,tas,puntaje,descripcion,
-		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) oms_nombre,P.fecha_nacimiento oms_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) oms_edad
+		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,P.fecha_nacimiento fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
 		FROM `hog_tam_oms` O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 			WHERE P.idpeople ='{$id[0]}'";

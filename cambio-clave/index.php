@@ -43,9 +43,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 function db_connect(){
-	$con = new mysqli("localhost", "u470700275_17", "z9#KqH!YK2VEyJpT","u470700275_17");
+	$dominio = $_SERVER['HTTP_HOST'];
+$comy = array(
+  'pruebasiginf.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_17',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_17'
+  ],
+  'gitapps.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_08',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_08'
+  ]
+);
+	if (array_key_exists($dominio, $comy)) {
+	  $dbConfig = $comy[$dominio];
+	} else {
+	  die('Dominio no reconocido.');
+	}
+	$con = new mysqli($dbConfig['s'], $dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
   if( !$con ){
     throw new Exception('No se ha podido conectar a la base de datos');
+	die();
   } else {
     return $con;
   }

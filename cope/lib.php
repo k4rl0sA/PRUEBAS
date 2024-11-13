@@ -68,7 +68,7 @@ function whe_tamcope() {
 }
 
 function cmp_tamcope(){
-	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
+	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_cope()."</div></div>";
 	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
 	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';

@@ -50,25 +50,6 @@ function actualizar(){
 }
 */
 
-/* function hiddxedad(xedad,cls) {
-	const edad=document.getElementById(xedad);
-	const cmpHid1 = document.querySelectorAll(`.${cls}`);
-
-	if(edad.value > 17 ){
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],false);
-		}
-	}else{
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],true);
-		}
-	}
-}
- */
-
-
-
-
 
 </script>
 </head>
@@ -80,9 +61,9 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 $mod='tamfindrisc';
 $ya = new DateTime();
 // $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
-$tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-$riesgos=opc_sql("select descripcion,descripcion from catadeta where idcatalogo=232 and estado='A' order by 1",'');
+// $genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
+// $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
+// $riesgos=opc_sql("select descripcion,descripcion from catadeta where idcatalogo=232 and estado='A' order by 1",'');
 // $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >

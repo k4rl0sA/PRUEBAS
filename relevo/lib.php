@@ -19,7 +19,7 @@ else {
   }   
 }
 
-function lis_relevo(){
+/*function lis_relevo(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN personas_datocomp D ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
 	LEFT JOIN rel_relevo R ON idpersona=rel_documento AND tipo_doc=rel_tipo_doc
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
@@ -45,21 +45,22 @@ rel_validacion17 Relevo,`idpersona` AS 'N° Documento',concat_ws(' ',`nombre1`,`
 	$sql.=" ORDER BY P.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 // echo $sql;
-/* 	$sql1="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(tipo_doc,'_',idpersona) ACCIONES,
-	rel_validacion17 Relevo,`idpersona` AS 'N° Documento',concat_ws(' ',`nombre1`,`nombre2`,`apellido1`,`apellido2`) nombres,G.localidad,sector_catastral,nummanzana,direccion
-	 FROM `personas` P
-	  LEFT JOIN personas_datocomp D ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
-	  LEFT JOIN rel_relevo R ON idpersona=rel_documento AND tipo_doc=rel_tipo_doc
-	  LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
-	  left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)	
-	  WHERE cuidador='SI'";
-		$sql1.=whe_relevo();
-$_SESSION['sql_relevo']=$sql1; */
+ 	// $sql1="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(tipo_doc,'_',idpersona) ACCIONES,
+	// rel_validacion17 Relevo,`idpersona` AS 'N° Documento',concat_ws(' ',`nombre1`,`nombre2`,`apellido1`,`apellido2`) nombres,G.localidad,sector_catastral,nummanzana,direccion
+	//  FROM `personas` P
+	//   LEFT JOIN personas_datocomp D ON idpersona=dc_documento AND tipo_doc=dc_tipo_doc
+	//   LEFT JOIN rel_relevo R ON idpersona=rel_documento AND tipo_doc=rel_tipo_doc
+	//   LEFT JOIN hog_viv V ON P.vivipersona=V.idviv
+	//   left join hog_geo G ON V.idgeo=concat(estrategia,'_',sector_catastral,'_',nummanzana,'_',predio_num,'_',unidad_habit,'_',estado_v)	
+	//   WHERE cuidador='SI'";
+		// $sql1.=whe_relevo();
+// $_SESSION['sql_relevo']=$sql1;
  //echo $sql;
 	
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"relevo",$regxPag);
 }
+
 
 function whe_relevo() {
 	$sql = "";
@@ -71,7 +72,7 @@ function whe_relevo() {
 		$sql.="  and U.componente in ('EAC','ADM') AND U.subred IN(".$subred.") AND S.doc_asignado='".$_SESSION['us_sds']."'";
 	return $sql;
 }
-
+*/
 function focus_relevo(){
 	return 'relevo';
 }
@@ -80,20 +81,6 @@ function men_relevo(){
  $rta=cap_menus('relevo','pro');
  return $rta;
 }
-
-/* function lis_session(){
-	// print_r($_POST);
-	// print_r($_REQUEST);
-	$id=divide($_POST['id']);
-	$sql="SELECT idsesion ACCIONES,`rel_validacion1` Sesion, `rel_validacion2` Fecha,rel_validacion3 perfil,FN_CATALOGODESC(301,`rel_validacion4`) Actividad,`rel_validacion5`
-  	descripcion 
-	FROM `rel_sesion`
-	WHERE rel_tipo_doc='{$id[0]}' and rel_documento='{$id[1]}'";
-	$sql.=" ORDER BY fecha_create";
-		//  echo $sql;
-		$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"session",2);
-} */
 
 
 function cap_menus($a,$b='cap',$con='con') {

@@ -67,7 +67,7 @@ function whe_tamcope() {
 function lis_cope(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT tam_cope ACCIONES,
+	$sql="SELECT id_cope ACCIONES,
 	tam_cope 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_cope A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";

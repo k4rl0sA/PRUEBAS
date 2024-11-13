@@ -101,6 +101,7 @@ function cmp_tamoms(){
 
 	$o='pruoms';
  	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
+	 $c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
  	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,false,true,'','col-25');
 	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,false,true,'','col-3');
 	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,false,true,'','col-2');
@@ -248,32 +249,17 @@ if(count($id)!==2){
 	return "No es posible actualizar el tamizaje";
 }else{
 var_dump($_POST);
-	$sql="INSERT INTO hog_tam_oms VALUES (null,
-		trim(upper('{$_POST['tipodoc']}')),trim(upper('{$_POST['idpersona']}')),trim(upper('{$_POST['diabetes']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['tas']}')),
-		'{$suma_oms}',
-		trim(upper('{$des}')),
-		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		// echo $sql;
-		$rta=dato_mysql($sql);
-
+	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 
 		$params = [
 			['type' => 'i', 'value' => NULL],
-			['type' => 'i', 'value' => $idper],
+			['type' => 'i', 'value' => $id[0]],
 			['type' => 's', 'value' => $_POST['fecha_toma']],
 			['type' => 's', 'value' => $_POST['diabetes']],
-			['type' => 's', 'value' => $_POST['peso']],
-			['type' => 's', 'value' => $_POST['talla']],
-			['type' => 's', 'value' => $_POST['imc']],
-			['type' => 's', 'value' => $_POST['perimcint']],
-			['type' => 's', 'value' => $_POST['actifisica']],
-			['type' => 's', 'value' => $_POST['verduras']],
-			['type' => 's', 'value' => $_POST['hipertension']],
-			['type' => 's', 'value' => $_POST['glicemia']],
-			['type' => 's', 'value' => $_POST['diabfam']],
-			['type' => 'i', 'value' => $suma_findrisc],
+			['type' => 's', 'value' => $_POST['fuma']],
+			['type' => 's', 'value' => $_POST['tas']],
+			['type' => 'i', 'value' => $suma_oms],
 			['type' => 's', 'value' => $des],
 			['type' => 's', 'value' => $_SESSION['us_sds']],
 			['type' => 's', 'value' => NULL],

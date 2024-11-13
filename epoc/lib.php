@@ -66,7 +66,7 @@ function whe_tamepoc() {
 
 function cmp_tamepoc(){
 	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='epoc-lis'>".lis_tamepoc()."</div></div>";
-	$a=['id_epoc'=>'','diabetes'=>'','peso'=>'','talla'=>'','imc'=>'','perimcint'=>'','actifisica'=>'','verduras'=>'','hipertension'=>'','glicemia'=>'','diabfam'=>'','puntaje'=>'','descripcion'=>''];
+	$a=['id_epoc'=>'','tose_muvedias'=>'','tiene_flema'=>'','aire_facil'=>'','mayor'=>'','fuma'=>'','puntaje'=>'','descripcion'=>''];
 	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';
 	$d=get_tepoc();
@@ -82,23 +82,23 @@ function cmp_tamepoc(){
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('documento','t','20',$d['documento'],$w.' '.$o.' '.$key,'N° Identificación','documento',null,'',false,$u,'','col-2');
 	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipo_doc',null,'',false,$u,'','col-25','getDatForm(\'epo\',\'person\',[\'datos\']);setTimeout(hiddxedad,500,\'edad\',\'cuestionario1\',\'cuestionario2\');');
-	$c[]=new cmp('nombre','t','50',$d['epoc_nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
-	$c[]=new cmp('fechanacimiento','d','10',$d['epoc_fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
-    $c[]=new cmp('edad','n','3',$d['epoc_edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
+	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
+	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-15');
+    $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
    
     //$c[]=new cmp('act','o','3','',$w.' '.$o,'Desea continuar','act',null,'',true,$u,'','col-3');//,'hiddxedad(\'edad\',\'cuestionario1\',\'cuestionario2\');'
 	$o=' cuestionario1 oculto ';
 	$c[]=new cmp($o,'e',null,'TAMIZAJE DE EPOC',$w);
-	$c[]=new cmp('tose_muvedias','s','3',$d['tose_muvedias'],$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('tiene_flema','s','3',$d['tiene_flema'],$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('aire_facil','s','3',$d['aire_facil'],$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('mayor','s','3',$d['mayor'],$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('fuma','s','3',$d['fuma'],$w.' '.$o,'¿Actualmente fuma o es un exfumador?','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('aire_facil','s','3','',$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('mayor','s','3','',$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('fuma','s','3','',$w.' '.$o,'¿Actualmente fuma o es un exfumador?','respuesta',null,null,false,true,'','col-10');
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);
-	$c[]=new cmp('puntaje','t','2',$d['puntaje'],$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
-	$c[]=new cmp('descripcion','t','3',$d['descripcion'],$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
+	$c[]=new cmp('puntaje','t','2','',$w.' '.$o,'Puntaje','puntaje',null,null,false,false,'','col-5');
+	$c[]=new cmp('descripcion','t','3','',$w.' '.$o,'Descripcion','descripcion',null,null,false,false,'','col-5');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	

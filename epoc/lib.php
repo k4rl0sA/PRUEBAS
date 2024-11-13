@@ -105,7 +105,7 @@ function cmp_tamepoc(){
 	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
 	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
 	$c[]=new cmp('aire_facil','s','3','',$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,true,true,'','col-10');
-	$c[]=new cmp('mayor','s','3','',$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,true,true,'','col-10');
+	$c[]=new cmp('mayor','s','3','1',$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,false,false,'','col-10');
 	$c[]=new cmp('fuma','s','3','',$w.' '.$o,'¿Actualmente fuma o es un exfumador?','respuesta',null,null,true,true,'','col-10');
 
 	$o='totalresul';

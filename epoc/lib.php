@@ -100,7 +100,7 @@ function cmp_tamepoc(){
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad','edad',null,'',true,false,'','col-3');
    
     //$c[]=new cmp('act','o','3','',$w.' '.$o,'Desea continuar','act',null,'',true,$u,'','col-3');//,'hiddxedad(\'edad\',\'cuestionario1\',\'cuestionario2\');'
-	$o=' cuestionario1 oculto ';
+	$o=' cuestionario1';
 	$c[]=new cmp($o,'e',null,'TAMIZAJE DE EPOC',$w);
 	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
 	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,false,true,'','col-10');

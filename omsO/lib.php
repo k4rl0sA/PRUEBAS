@@ -216,6 +216,7 @@ function men_tamoms(){
   }
 
 function gra_tamoms(){
+	$id=divide($_POST['id']);
 if(count($id)!==2){
 	return "No es posible actualizar el tamizaje";
 }else{
@@ -248,7 +249,7 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-$id=divide($_POST['id']);
+
 
 	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";

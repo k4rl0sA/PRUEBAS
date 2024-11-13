@@ -30,7 +30,7 @@ function lis_tamepoc(){
 		where ".whe_tamepoc());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
-		$pag=(isset($_POST['pag-tamepoc']))? (intval($_POST['pag-tamepoc'])-1)* $regxPag:0;
+		$pag=(isset($_POST['pag-taepoc']))? (intval($_POST['pag-taepoc'])-1)* $regxPag:0;
 
 		$sql="SELECT O.idpeople ACCIONES,id_epoc 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_epoc O
@@ -43,7 +43,7 @@ function lis_tamepoc(){
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamepoc",$regxPag);
+	return create_table($total,$datos["responseResult"],"taepoc",$regxPag);
 	}else{
 		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
@@ -65,7 +65,7 @@ function whe_tamepoc() {
 }
 
 function cmp_tamepoc(){
-	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='epoc-lis'>".lis_tamepoc()."</div></div>";
+	$rta="<div class='encabezado epoc'>TABLA EPOC</div><div class='contenido' id='taepoc-lis'>".lis_tamepoc()."</div></div>";
 	$a=['id_epoc'=>'','tose_muvedias'=>'','tiene_flema'=>'','aire_facil'=>'','mayor'=>'','fuma'=>'','puntaje'=>'','descripcion'=>''];
 	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';

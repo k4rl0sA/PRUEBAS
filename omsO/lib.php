@@ -249,7 +249,7 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-var_dump($suma_oms);
+
 
 	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
@@ -268,7 +268,9 @@ var_dump($suma_oms);
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => 'A']
 		];
+		echo($suma_oms.' ');
 		 return $rta = mysql_prepd($sql, $params);
+
 	}
 
 }

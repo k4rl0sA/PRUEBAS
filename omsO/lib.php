@@ -145,7 +145,7 @@ function cmp_tamoms(){
 }
 
 
-function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
+function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE
     if (empty($_REQUEST['id'])) {
         return "";
     }
@@ -173,7 +173,7 @@ function get_tamoms() { // NUEVA FUNCIÓN ADAPTADA AL TAMIZAJE FINDRISC
         'edad' => $data['edad'],
         'fecha_toma' => $data['fecha_toma'] ?? null, // Valor por defecto null si no está definido
     ];
-    // Campos adicionales específicos del tamizaje Findrisc
+    // Campos adicionales específicos del tamizaje 
     $edadCampos = [
         'diabetes', 'fuma', 'tas', 'puntaje', 'descripcion'
     ];
@@ -249,7 +249,7 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-
+var_dump($suma_oms);
 
 	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";

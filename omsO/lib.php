@@ -79,7 +79,7 @@ function whe_tamoms() {
 
 function cmp_tamoms(){
 	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_oms()."</div></div>";
-	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];
+	$a=['idoms'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>''];
 	$p=['idoms'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
 	$d=get_toms();
@@ -249,7 +249,7 @@ $info=datos_mysql($sql1);
 $suma_oms=$info['responseResult'][0]['puntaje'];
 $des=$info['responseResult'][0]['clasificacion'];
 
-// var_dump($suma_oms);
+var_dump($suma_oms);
 
 	
 		$sql = "INSERT INTO hog_tam_oms VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";

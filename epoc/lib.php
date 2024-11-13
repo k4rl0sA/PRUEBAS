@@ -64,7 +64,7 @@ function whe_tamepoc() {
     return $sql;
 }
 
-function lis_oms(){
+function lis_epoc(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT id_epoc ACCIONES,

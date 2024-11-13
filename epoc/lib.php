@@ -84,7 +84,7 @@ function cmp_tamepoc(){
 	$p=['id_epoc'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','puntaje'=>'','descripcion'=>'']; //CAMBIO ADD LINEA
 	$w='tamepoc';
 	$d=get_tepoc();
-	var_dump($d);
+	// var_dump($d);
 	if (!isset($d['id_epoc'])) {
 		$d = array_merge($d,$a);
 	}
@@ -102,11 +102,11 @@ function cmp_tamepoc(){
     //$c[]=new cmp('act','o','3','',$w.' '.$o,'Desea continuar','act',null,'',true,$u,'','col-3');//,'hiddxedad(\'edad\',\'cuestionario1\',\'cuestionario2\');'
 	$o=' cuestionario1';
 	$c[]=new cmp($o,'e',null,'TAMIZAJE DE EPOC',$w);
-	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('aire_facil','s','3','',$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('mayor','s','3','',$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,false,true,'','col-10');
-	$c[]=new cmp('fuma','s','3','',$w.' '.$o,'¿Actualmente fuma o es un exfumador?','respuesta',null,null,false,true,'','col-10');
+	$c[]=new cmp('tose_muvedias','s','3','',$w.' '.$o,'¿Tose muchas veces la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
+	$c[]=new cmp('tiene_flema','s','3','',$w.' '.$o,'¿tiene flemas o mocos la mayoria de los días?','respuesta',null,null,true,true,'','col-10');
+	$c[]=new cmp('aire_facil','s','3','',$w.' '.$o,'¿Se queda sin aire mas facilmente que otras personas de su edad?','respuesta',null,null,true,true,'','col-10');
+	$c[]=new cmp('mayor','s','3','',$w.' '.$o,'¿Es mayor de 40 años?	','respuesta',null,null,true,true,'','col-10');
+	$c[]=new cmp('fuma','s','3','',$w.' '.$o,'¿Actualmente fuma o es un exfumador?','respuesta',null,null,true,true,'','col-10');
 
 	$o='totalresul';
 	$c[]=new cmp($o,'e',null,'TOTAL',$w);

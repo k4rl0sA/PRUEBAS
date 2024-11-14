@@ -88,9 +88,9 @@ function cmp_tamcope(){
 	$w='tamoms';
 	$d=get_tcope();
 	var_dump($d);
-	if (!isset($d['tam_cope'])) {
+	/* if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
-	}
+	} */
 	$o='datos';
     $key='oms';
 	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA

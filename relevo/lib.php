@@ -208,7 +208,7 @@ function get_personas(){
 		FROM person P 
 		WHERE idpeople='{$id[0]}'";
 		$info=datos_mysql($sql);
-		var_dump($sql);
+		// var_dump($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];
 		} else {

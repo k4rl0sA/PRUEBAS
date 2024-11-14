@@ -139,13 +139,12 @@ function cmp_relevo() {
 	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'','cert_disca2'=>'',
 	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','cert_disca3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
 	$w='relevo';
-	$j=get_relevo();$i=get_personas();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();
+	$j=get_relevo();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();
 	if ($j=="") {$j=$t;} if ($h=="") {$h=$t;}	if ($d=="") {$d=$t;}	if ($e=="") {$e=$t;}	if ($f=="") {$f=$t;}	if ($g=="") {$g=$t;}	if ($i=="") {$i=$t;}
 	$u=($j['Tipo_Doc']=='')?true:false;
 	$o='infgen';
-var_dump($i);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	
-	$c[]=new cmp('idrel','h','20',$i['Tipo_Doc'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
+	$c[]=new cmp('idrel','h','20',$_POST['id'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-25','validDate(this,-22)');
 	$c[]=new cmp('persona_cuidadora','t','50',$i['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');

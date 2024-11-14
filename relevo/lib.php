@@ -371,6 +371,7 @@ function gra_relevo(){
 		['type' => 's', 'value' => $_POST['fecha_acep']],
 		['type' => 's', 'value' => $_POST['ante_cuidador']],
 		['type' => 's', 'value' => $_POST['otros_antecuidador']],
+		['type' => 's', 'value' => $_POST['np_cuida']],
 		['type' => 's', 'value' => $_POST['zarit_cuid']],
 		['type' => 's', 'value' => $_POST['cuidado_1']],
 		['type' => 's', 'value' => $_POST['antecedentes_1']],

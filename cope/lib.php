@@ -143,9 +143,9 @@ function cmp_tamcope(){
 	$c[]=new cmp('cope_puntajee','t',3,'',$w.' '.$o,'Puntaje Caracterización','cope_puntajee',null,'',false,false,'','col-5');
 	$c[]=new cmp('cope_descripcione','t',3,'',$w.' '.$o,'Descripcion Caracterización','cope_descripcione',null,'',false,false,'','col-5');
 
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();*/
 
-	return $rta; */
+	return $rta; 
 
    }
 

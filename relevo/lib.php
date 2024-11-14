@@ -156,7 +156,7 @@ function cmp_relevo() {
 
 	$o='infgen_2';
 	$c[]=new cmp($o,'e',null,'INFORMACION DE LA PERSONA QUE REQUIERE EL CUIDADO',$w);
-	$c[]=new cmp('cuidado_1','s','18',$j['cuidado_1'],$w.' care '.$o,'Seleccione Usuario que requiere cuidado','cuidado_1',null,null,true,true,'','col-2',"validCare('care');");
+	$c[]=new cmp('cuidado_1','s','18',$j['cuidado_1'],$w.' care '.$o,'Seleccione Usuario que requiere cuidado','rel_validacion13',null,null,true,true,'','col-2',"validCare('care');");
 	$c[]=new cmp('antecedentes_1','s','3',$j['antecedentes_1'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,true,true,'','col-2',"othePath(this,'ot');");
 	$c[]=new cmp('otro_1','t','50',$j['otro_1'],$w.' ot '.$o,'Otro, Cual','otro_1',null,null,false,false,'','col-2');
 	$c[]=new cmp('whodas1','s','3',$j['whodas1'],$w.' '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas1',null,null,true,true,'','col-2');
@@ -164,7 +164,7 @@ function cmp_relevo() {
 	$c[]=new cmp('cuidado_2','s','18',$j['cuidado_2'],$w.' cr2 care '.$o,'Seleccione Usuario que requiere cuidado 2','rel_validacion13',null,null,false,false,'','col-3');
 	$c[]=new cmp('antecedentes_2','s','3',$j['antecedentes_2'],$w.' cr2 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-2',"othePath(this,'ot1');");
 	$c[]=new cmp('otro_2','t','50',$j['otro_2'],$w.' ot1 cr2 '.$o,'Otro, Cual','otro_2',null,null,false,false,'','col-2');
-	$c[]=new cmp('whodas2','s','3',$j['whodas2'],$w.' cr2 '.$o,'TIPO DE DISCAPACIDAD','whodas1',null,null,false,false,'','col-3');
+	$c[]=new cmp('whodas2','s','3',$j['whodas2'],$w.' cr2 '.$o,'TIPO DE DISCAPACIDAD','whodas2',null,null,false,false,'','col-3');
 	
 	$c[]=new cmp('cuidado_3','s','18',$j['cuidado_3'],$w.' cr3 care '.$o,'Seleccione Usuario que requiere cuidado 3','rel_validacion13',null,null,false,false,'','col-3');
 	$c[]=new cmp('antecedentes_3','s','3',$j['antecedentes_3'],$w.' cr3 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-2',"othePath(this,'ot2');");

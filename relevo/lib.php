@@ -254,7 +254,8 @@ function get_hamilton(){
 }
 
 function get_zarit(){
-	if($_POST['id']=='0'){
+	return "";
+	/*if($_POST['id']=='0'){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
@@ -276,7 +277,7 @@ function get_zarit(){
 		} else {
 			return "";
 		}
-	} 
+	} */
 }
  
 function get_apgar(){

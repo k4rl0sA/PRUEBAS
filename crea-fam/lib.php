@@ -808,7 +808,7 @@ function get_Tamiz($fec) {
 
 function sessions($id) {
     $id = divide($id);
-    $sql = "SELECT idrelevo FROM rel_relevo WHERE idpeople='" . $id[0] . "' AND acep_rbc ='SI'";
+    $sql = "SELECT idrelevo FROM rel_relevo WHERE id_people='" . $id[0] . "' AND acep_rbc ='SI'";
     $info = datos_mysql($sql);
 	if(isset($info['responseResult'][0])){
 		return true;

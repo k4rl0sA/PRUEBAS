@@ -86,7 +86,7 @@ function grabar(tb='',ev){
     'tamoms':'../oms/lib.php',
     'tamepoc':'../epoc/lib.php',
     'tamcope':'../cope/lib.php',
-    'relev':'../relevo/lib.php'
+    'relevo':'../relevo/lib.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

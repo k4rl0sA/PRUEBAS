@@ -806,6 +806,12 @@ function get_Tamiz($fec) {
     return $tamiz;
 }
 
+function sessions($id) {
+    $id = divide($id);
+    $sql = "SELECT campo FROM tabla WHERE idpeople='" . $id[0] . "'";
+    $info = datos_mysql($sql);
+    return isset($info['responseResult'][0]);
+}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
@@ -867,8 +873,10 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('vspeve') ? "<li class='icono admsi1' title='Validar Evento' id='{$c['ACCIONES']}' onclick=\"mostrar('vspeve','pro',event,'','vspeve.php',7,'vspeve');Color('datos-lis');\"></li>" : "";
 		$rta.=eventAsign($c['ACCIONES']);
 		$rta .= acceso('relevo') ? "<li title='Relevo' onclick=\"mostrar('relevo','pro',event,'','../relevo/lib.php',7,'relevo');Color('datos-lis');\"><i class=' fa-solid fa-person-cane ico' id='{$c['ACCIONES']}'></i></li>":"";
-		$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL'];
-		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class='fa-solid fa-person-cane ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";
+		if (sessions($c['ACCIONES'])) {
+			$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL'];
+		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class='fa-solid fa-person-cane ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
+		} 
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

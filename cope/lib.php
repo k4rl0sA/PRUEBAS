@@ -103,13 +103,6 @@ function cmp_tamcope(){
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
 
-	$o='prucope';
- 	$c[]=new cmp($o,'e',null,'PRUEBA cope Riesgo Cardiovascular',$w);
-	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
- 	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,true,true,'','col-25');
-	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,true,true,'','col-3');
-	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,true,true,'','col-2');
-
 	$o='info';
 	$u=true;
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
@@ -382,7 +375,7 @@ function gra_tamcope(){
 }
 
 
-	function opc_cope_reporta($id=''){
+	function opc_reporta($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=120 and estado='A' ORDER BY 1",$id);
 	}
 	function opc_tipo_activi($id=''){

@@ -134,13 +134,13 @@ function bgcolor($a,$c,$f='c'){
 function cmp_relevo() {
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['Tipo_Doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','Persona_Cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','zarit_cuid'=>'',
+	$t=['idpeople'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','Persona_Cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','zarit_cuid'=>'',
 	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'','cert_disca1'=>'',
 	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'','cert_disca2'=>'',
 	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','cert_disca3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
 	$w='relevo';
-	$j=get_relevo();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();
-	if ($j=="") {$j=$t;} if ($h=="") {$h=$t;}	if ($d=="") {$d=$t;}	if ($e=="") {$e=$t;}	if ($f=="") {$f=$t;}	if ($g=="") {$g=$t;}
+	$j=get_relevo();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();$p=get_personas();
+	if ($j==""){$j=$t;}if($h==""){$h=$t;}if($d==""){$d=$t;}if($e==""){$e=$t;}if($f==""){$f=$t;}if($g==""){$g=$t;}if($p==""){$p=$t;}
 	$u=($j['Tipo_Doc']=='')?true:false;
 	$o='infgen';
 	var_dump($_POST);
@@ -148,7 +148,7 @@ function cmp_relevo() {
 	$c[]=new cmp('idrel','h','20',$_POST['id'],$w.' '.$o,'','',null,null,false,$u,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-25','validDate(this,-22)');
-	$c[]=new cmp('persona_cuidadora','t','50',$i['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
+	$c[]=new cmp('persona_cuidadora','t','50',$p['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
 	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-25',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-25');
 	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-25',"enabCare(this,['cr2','cr3']);");
@@ -204,7 +204,7 @@ function get_personas(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
+		$sql="SELECT concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora
 		FROM person P 
 		WHERE idpeople='{$id[0]}'";
 		$info=datos_mysql($sql);

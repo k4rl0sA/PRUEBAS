@@ -296,15 +296,15 @@ function enabCare(a, b) {
   }
   if (a.value >= '1') {
     const cr1Elements = document.querySelectorAll('select.cr1, input.cr1');
-    cr1Elements.forEach(item => enaFie(item, true));
+    cr1Elements.forEach(item => enaFie(item, false));
   }
   if (a.value >= '2') {
     const cr2Elements = document.querySelectorAll('select.cr2, input.cr2');
-    cr2Elements.forEach(item => enaFie(item, true));
+    cr2Elements.forEach(item => enaFie(item, false));
   }
   if (a.value == '3') {
     const cr3Elements = document.querySelectorAll('select.cr3, input.cr3');
-    cr3Elements.forEach(item => enaFie(item, true));
+    cr3Elements.forEach(item => enaFie(item, false));
   }
 }
 

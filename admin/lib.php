@@ -1475,7 +1475,7 @@ function whe_date8(){
 }
 
 function whe_subred9() {
-	$sql= " AND (A.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql= " AND (P.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 

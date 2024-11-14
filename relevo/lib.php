@@ -136,7 +136,7 @@ function cmp_relevo() {
 	$hoy=date('Y-m-d');
 	$t=['tipo_doc'=>'','idpersona'=>'','nombre1'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>'','ante_cuidador'=>'',
 	'rel_validacion2'=>'','cert_disca'=>'','rel_validacion4'=>'','rel_validacion5'=>'','zarit_cuid'=>'','rel_validacion7'=>'','rel_validacion8'=>'','rel_validacion9'=>'',
-	'rel_validacion10'=>'','rel_validacion11'=>'','rel_validacion12'=>'','rel_validacion13'=>'','rel_validacion14'=>'','rel_validacion15'=>'','rel_validacion16'=>'','acep_rbc'=>'',
+	'otros_antecuidador'=>'','rel_validacion11'=>'','rel_validacion12'=>'','rel_validacion13'=>'','rel_validacion14'=>'','rel_validacion15'=>'','rel_validacion16'=>'','acep_rbc'=>'',
 	'fecha_acep'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','np_cuida'=>'','cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','discapacidad_2'=>'','cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','discapacidad_3'=>''];
 	$w='relevo';
 	$j=get_relevo();$i=get_personas();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();

@@ -134,7 +134,10 @@ function bgcolor($a,$c,$f='c'){
 function cmp_relevo() {
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['tipo_doc'=>'','idpersona'=>'','nombre1'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>'','rel_validacion1'=>'','rel_validacion2'=>'','rel_validacion3'=>'','rel_validacion4'=>'','rel_validacion5'=>'','rel_validacion6'=>'','rel_validacion7'=>'','rel_validacion8'=>'','rel_validacion9'=>'','rel_validacion10'=>'','rel_validacion11'=>'','rel_validacion12'=>'','rel_validacion13'=>'','rel_validacion14'=>'','rel_validacion15'=>'','rel_validacion16'=>'','rel_validacion17'=>'','rel_validacion18'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','np_cuida'=>'','cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','discapacidad_2'=>'','cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','discapacidad_3'=>''];
+	$t=['tipo_doc'=>'','idpersona'=>'','nombre1'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>'','rel_validacion1'=>'',
+	'rel_validacion2'=>'','rel_validacion3'=>'','rel_validacion4'=>'','rel_validacion5'=>'','rel_validacion6'=>'','rel_validacion7'=>'','rel_validacion8'=>'','rel_validacion9'=>'',
+	'rel_validacion10'=>'','rel_validacion11'=>'','rel_validacion12'=>'','rel_validacion13'=>'','rel_validacion14'=>'','rel_validacion15'=>'','rel_validacion16'=>'','acep_rbc'=>'',
+	'fecha_acep'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','np_cuida'=>'','cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','discapacidad_2'=>'','cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','discapacidad_3'=>''];
 	$w='relevo';
 	$j=get_relevo();$i=get_personas();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();
 	if ($j=="") {$j=$t;} if ($h=="") {$h=$t;}	if ($d=="") {$d=$t;}	if ($e=="") {$e=$t;}	if ($f=="") {$f=$t;}	if ($g=="") {$g=$t;}	if ($i=="") {$i=$t;}
@@ -143,6 +146,11 @@ function cmp_relevo() {
 
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	
 	$c[]=new cmp('idrel','h','20',$i['tipo_doc'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
+	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Aceptacion Releveos','aler',null,null,true,true,'','col-2',"enabDateRel(this,['fre']);");
+	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la identificación','fecha_acep',null,null,false,true,'','col-4','validDate(this,-22)');
+
+
+
 	$c[]=new cmp('rel_tipo_doc','s','3',$i['tipo_doc'],$w.' '.$o,'Tipo documento','rel_tipo_doc',null,null,true,false,'','col-5');
 	$c[]=new cmp('rel_documento','t','20',$i['idpersona'],$w.' '.$o,'N° de identificacion','rel_documento',null,null,true,false,'','col-5');
 	$c[]=new cmp('rel_nombre1','t','50',$i['nombre1'],$w.' '.$o,'Nombre Completo','rel_nombre1',null,'',false,false,'','col-4');
@@ -179,8 +187,7 @@ function cmp_relevo() {
 	$c[]=new cmp('antecedentes_3','s','3',$j['antecedentes_3'],$w.' cr3 '.$o,'ANTECEDENTES PATOLOGICOS','rel_validacion14',null,null,false,false,'','col-2',"othePath(this,'ot2');");
 	$c[]=new cmp('otro_3','t','50',$j['otro_3'],$w.' ot2 cr3 '.$o,'Otro, Cual','otro_3',null,null,false,false,'','col-2');
 	$c[]=new cmp('discapacidad_3','s','3',$j['discapacidad_3'],$w.' cr3 '.$o,'TIPO DE DISCAPACIDAD','rel_validacion16',null,null,false,false,'','col-3');
-	$c[]=new cmp('rel_validacion17','s','3',$j['rel_validacion17'],$w.' '.$o,'Aceptacion Releveos','aler',null,null,true,true,'','col-2',"enabDateRel(this,['fre']);");
-	$c[]=new cmp('rel_validacion18','d','10',$j['rel_validacion18'],$w.' fre '.$o,'Fecha de la identificación','rel_validacion18',null,null,false,true,'','col-4','validDate(this,-22)');
+	
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	//  $rta .="<div class='encabezado integrantes'>TABLA DE INTEGRANTES DE LA FAMILIA</div><div class='contenido' id='integrantes-lis' >".lis_integrantes1()."</div></div>";

@@ -87,7 +87,7 @@ function cmp_tamcope(){
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamcope';
 	$d=get_tcope();
-	var_dump($d);
+	// var_dump($d);
 	if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
 	}

@@ -143,7 +143,7 @@ function cmp_relevo() {
 	if ($j==""){$j=$t;}if($h==""){$h=$t;}if($d==""){$d=$t;}if($e==""){$e=$t;}if($f==""){$f=$t;}if($g==""){$g=$t;}if($p==""){$p=$t;}
 	// $u=($j['Tipo_Doc']=='')?true:false;
 	$o='infgen';
-	var_dump($_POST);
+	// var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	
 	$c[]=new cmp('idrel','h','20',$_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");

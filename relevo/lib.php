@@ -135,7 +135,7 @@ function cmp_relevo() {
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['tipo_doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','ante_cuidador'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','cert_disca'=>'','zarit_cuid'=>'',
-	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'',Persona_Cuidadora
+	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'',
 	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'',
 	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
 	$w='relevo';

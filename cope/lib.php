@@ -86,7 +86,7 @@ function cmp_tamcope(){
 	$a=['tam_cope'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamoms';
-	$d=get_tcope();
+	// $d=get_tcope();
 	var_dump($d);
 	/* if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);

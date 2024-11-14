@@ -1365,7 +1365,7 @@ function whe_date(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

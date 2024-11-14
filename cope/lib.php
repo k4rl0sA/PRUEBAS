@@ -308,9 +308,9 @@ function men_tamcope(){
 
 	$sql = "INSERT INTO hog_tam_cope VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params = [
-	['type' => 'i', 'value' => NULL],
-	['type' => 's', 'value' => $id[0]],
-	['type' => 's', 'value' => $_POST['fecha_toma']],
+	['type'=> 'i', 'value' => NULL],
+	['type'=> 's', 'value' => $id[0]],
+	['type'=> 's', 'value' => $_POST['fecha_toma']],
 	['type'=>'s','value'=>$_POST['cope_reporta']],
 	['type'=>'s','value'=>$_POST['cope_pregunta1']],
 	['type'=>'s','value'=>$_POST['cope_pregunta2']],
@@ -340,15 +340,15 @@ function men_tamcope(){
 	['type'=>'s','value'=>$_POST['cope_pregunta26']],
 	['type'=>'s','value'=>$_POST['cope_pregunta27']],
 	['type'=>'s','value'=>$_POST['cope_pregunta28']],
-	['type' => 's', 'value' => $suma_afronta],
-	['type' => 's', 'value' => $desafr],
-	['type' => 's', 'value' => $suma_evita],
-	['type' => 's', 'value' => $desevit],
-	['type' => 'i', 'value' => $_SESSION['us_sds']],
-	['type' => 's', 'value' => date("Y-m-d H:i:s")],
-	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => 'A']
+	['type'=> 's', 'value' => $suma_afronta],
+	['type'=> 's', 'value' => $desafr],
+	['type'=> 's', 'value' => $suma_evita],
+	['type'=> 's', 'value' => $desevit],
+	['type'=> 'i', 'value' => $_SESSION['us_sds']],
+	['type'=> 's', 'value' => date("Y-m-d H:i:s")],
+	['type'=> 's', 'value' => NULL],
+	['type'=> 's', 'value' => NULL],
+	['type'=> 's', 'value' => 'A']
 	];
 	$rta = mysql_prepd($sql, $params);
 	return $rta;

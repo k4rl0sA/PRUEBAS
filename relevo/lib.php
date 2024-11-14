@@ -192,11 +192,11 @@ function get_relevo(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT rel_tipo_doc tipo_doc,rel_documento idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2)  nombre1 ,fecha_nacimiento,sexo,genero,etnia,nacionalidad,regimen,eapb,
-		rel_validacion1,rel_validacion2,np_cuida,rel_validacion3,rel_validacion13,cuidado_2,antecedentes_2,otro_2,discapacidad_2,cuidado_3,antecedentes_3,otro_3,discapacidad_3,rel_validacion14,rel_validacion15,rel_validacion16,rel_validacion17,rel_validacion18
+		$sql="SELECT P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
+		
 		FROM rel_relevo R 
-		LEFT JOIN personas P ON rel_documento=idpersona AND rel_tipo_doc =tipo_doc
-		WHERE rel_tipo_doc='{$id[0]}' AND rel_documento='{$id[1]}'";
+		LEFT JOIN personas P ON R.id_people=P.idpeople
+		WHERE R.id_people='{$id[0]}'";
 
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){

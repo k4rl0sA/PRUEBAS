@@ -311,9 +311,9 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_violreite($tab);
             break;
         case '30':
-			$tab = "Cargue_Eventos_Vsp";
+			$tab = "Usuarios_Caracterizados";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_vspgeo($tab);
+			if($tab=decript($encr,$clave))lis_usercreate($tab);
             break;
         case '40':
 			$tab = "Adscripcion_Territorial";
@@ -1336,6 +1336,26 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_usercreate($txt){
+	$sql="SELECT 
+SELECT G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, 
+P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion
+FROM `person` P
+LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam
+LEFT JOIN hog_geo G ON F.idpre=G.idgeo
+LEFT JOIN usuarios U ON P.usu_creo=U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred9();
+	$sql.=whe_date9();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `person` P LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam LEFT JOIN hog_geo G ON F.idpre=G.idgeo LEFT JOIN usuarios U ON P.usu_creo=U.id_usuario WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred9();
+	$tot.=whe_date9();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
@@ -1454,16 +1474,16 @@ function whe_date8(){
 	return $sql;
 }
 
-function whe_subred12() {
+function whe_subred9() {
 	$sql= " AND (A.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 
-function whe_date12(){
+function whe_date9(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

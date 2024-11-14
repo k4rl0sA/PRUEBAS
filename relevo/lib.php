@@ -141,7 +141,7 @@ function cmp_relevo() {
 	$w='relevo';
 	$j=get_relevo();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();$p=get_personas();
 	if ($j==""){$j=$t;}if($h==""){$h=$t;}if($d==""){$d=$t;}if($e==""){$e=$t;}if($f==""){$f=$t;}if($g==""){$g=$t;}if($p==""){$p=$t;}
-	$u=($j['Tipo_Doc']=='')?true:false;
+	// $u=($j['Tipo_Doc']=='')?true:false;
 	$o='infgen';
 	var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	

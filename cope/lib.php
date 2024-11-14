@@ -54,7 +54,7 @@ function lis_tamcope(){
 function lis_cope(){
 	$id=divide($_POST['id']);
 	$sql="SELECT tam_cope ACCIONES,
-	tam_cope 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	tam_cope 'Cod Registro',fecha_toma,descripciona Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_cope A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

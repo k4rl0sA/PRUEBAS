@@ -14,53 +14,11 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script>
 var mod='tamWhodas';	
 var ruta_app='lib.php';
-function csv(b){
-		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
-}
-
-document.onkeyup=function(ev) {
-	ev=ev||window.event;
-	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
-	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
-};
-
 
 function actualizar(){
 	act_lista(mod);
 }
 
-function grabar(tb='',ev){
-	if(document.getElementById('idwhodas').value=='0'){
-		if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  			var f=document.getElementsByClassName('valido '+tb);
-   			for (i=0;i<f.length;i++) {
-    			if (!valido(f[i])) {f[i].focus(); return};
-  			}
-	
-	  		var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente?");
-			if(res==true){
-				myFetch(ruta_app,"a=gra&tb="+tb,mod);
-/*     			if (document.getElementById(mod+'-modal').innerHTML.includes('Correctamente')){
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#ok"/></svg>';
-				}else{
-					document.getElementById(mod+'-image').innerHTML='<svg class="icon-popup" ><use xlink:href="#bad"/></svg>';
-				}
-				openModal(); */
-				setTimeout(actualizar, 1000);
-			}
-	}else{
-		errors(`Esta funcion no esta habilitada en este momento,por favor consulta con el administrador del sistema`);
-	}
-} 
-
-function validardias(a) {
-      var numero = parseInt(a.value);
-      if (isNaN(numero) || numero < 1 || numero > 30) {
-		errors(`Por favor, ingresa un número válido de 1 a 30 dias`);
-      }
-    }
-
-	
 
 </script>
 </head>
@@ -83,22 +41,11 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 	<div>Identificación</div>
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
-	
-	<div class="campo"><div>Sexo</div>
-		<select class="captura" id="fsexo" name="fsexo" OnChange="actualizar();">
-			<?php echo $genero; ?>
-		</select>
-	</div>
-	<div class="campo"><div>persona</div>
-		<select class="captura" id="fpersona" name="fpersona" OnChange="actualizar();">
-			<?php echo $tiperson; ?>
-		</select>
-	</div>
-	<div class="campo"><div>Colaborador</div>
-		<select class="captura" id="fdigita" name="fdigita" OnChange="actualizar();">
-			<?php echo $digitadores; ?>
-		</select>
-	</div>
+
+<div class="campo">
+	<div>Cod. Familiar</div>
+	<input class="captura" type="number" id="ffam" name="ffam" OnChange="actualizar();">
+</div>
 	
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

@@ -255,6 +255,13 @@ function closeMenu(menuContainer) {
 }
 
 
+function validardias(a) {
+      var numero = parseInt(a.value);
+      if (isNaN(numero) || numero < 1 || numero > 30) {
+		errors(`Por favor, ingresa un número válido de 1 a 30 dias`);
+      }
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

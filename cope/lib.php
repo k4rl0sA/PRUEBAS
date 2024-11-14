@@ -55,13 +55,13 @@ function lis_cope(){
 	$id=divide($_POST['id']);
 	$sql="SELECT tam_cope ACCIONES,
 	tam_cope 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_oms A
+	FROM hog_tam_cope A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"oms-lis",5);
+	return panel_content($datos["responseResult"],"cope-lis",5);
 
 }
 
@@ -82,29 +82,29 @@ function whe_tamcope() {
 }
 
 function cmp_tamcope(){
-	$rta="<div class='encabezado oms'>TABLA oms</div><div class='contenido' id='oms-lis'>".lis_cope()."</div></div>";
+	$rta="<div class='encabezado cope'>TABLA cope</div><div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
 	$a=['tam_cope'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
-	$w='tamoms';
-	// $d=get_tcope();
+	$w='tamcope';
+	$d=get_tcope();
 	var_dump($d);
-	/* if (!isset($d['tam_cope'])) {
+	if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
-	} */
+	}
 	$o='datos';
-    $key='oms';
+    $key='cope';
 	$days=fechas_app('vivienda');//CAMBIO DE ADD ESTA LINEA
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,false,'','col-3');
-	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,false,'','col-3',"getDatForm('oms','person','datos');setTimeout(function() {hiddxTamiz('edad', 'pruoms',17);}, 1000);");
+	$c[]=new cmp('tipodoc','s','3',$d['tipo_doc'],$w.' '.$o.' '.$key,'Tipo Identificación','tipodoc',null,'',false,false,'','col-3',"getDatForm('cope','person','datos');setTimeout(function() {hiddxTamiz('edad', 'prucope',17);}, 1000);");
 	$c[]=new cmp('nombre','t','50',$d['nombre'],$w.' '.$o,'nombres','nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
 
-	$o='pruoms';
- 	$c[]=new cmp($o,'e',null,'PRUEBA OMS Riesgo Cardiovascular',$w);
+	$o='prucope';
+ 	$c[]=new cmp($o,'e',null,'PRUEBA cope Riesgo Cardiovascular',$w);
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
  	$c[]=new cmp('fuma','s',2,'',$w.' '.$o,'Fuma','fuma',null,null,true,true,'','col-25');
 	$c[]=new cmp('diabetes','s',3,'',$w.' '.$o,'Tiene Diabetes','diabetes',null,null,true,true,'','col-3');

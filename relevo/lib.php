@@ -355,7 +355,7 @@ function get_ophi(){
 
 function gra_relevo(){
 
-	$idrel=divide($_POST['idrel']);
+	$id=divide($_POST['idrel']);
 	
 		/* $val5 = $_POST['rel_validacion5'] ?? null;
 		$val7 = $_POST['rel_validacion7'] ?? null;

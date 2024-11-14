@@ -208,6 +208,7 @@ function get_personas(){
 		LEFT JOIN person P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}' ";
 		$info=datos_mysql($sql);
+		var_dump($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];
 		} else {

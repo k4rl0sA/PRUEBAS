@@ -146,7 +146,7 @@ function cmp_relevo() {
 	// var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	
 	$c[]=new cmp('idrel','h','20',$_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
-	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");
+	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enbValue('acep_rbc','fre','SI');");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-25','validDate(this,-22)');
 	$c[]=new cmp('persona_cuidadora','t','50',$p['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
 	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-25',"othePath(this,'oth');");

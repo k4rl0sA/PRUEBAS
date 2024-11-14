@@ -212,11 +212,11 @@ function get_personas(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT tipo_doc,idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2)  nombre1 ,fecha_nacimiento,sexo,genero,etnia,nacionalidad,regimen,eapb,
-		rel_validacion1,rel_validacion2,rel_validacion3,rel_validacion13,rel_validacion14,rel_validacion15,rel_validacion16,rel_validacion17,rel_validacion18
-		FROM personas P 
-		LEFT JOIN rel_relevo R ON idpersona=rel_documento AND tipo_doc=rel_tipo_doc
-		WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
+		$sql="SELECT P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
+		
+		FROM rel_relevo R 
+		LEFT JOIN personas P ON R.id_people=P.idpeople
+		WHERE R.id_people='{$id[0]}' ";
 
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){

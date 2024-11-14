@@ -149,9 +149,9 @@ function cmp_relevo() {
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enbValue('acep_rbc','fre','SI');");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-25','validDate(this,-22)');
 	$c[]=new cmp('persona_cuidadora','t','50',$p['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
-	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-25',"othePath(this,'oth');");
+	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' fre '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-25',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-25');
-	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-25',"enabCare(this,['cr2','cr3']);");
+	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.'  fre mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-25',"enabCare(this,['cr2','cr3']);");
 	$c[]=new cmp('zarit_cuid','t','2',$e['zarit_cuid'],$w.' '.$o,'ZARIT INTERPRETACIÓN - Inicial','zarit_cuid',null,null,false,false,'','col-25');
 
 	$o='infgen_2';

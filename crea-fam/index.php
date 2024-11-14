@@ -292,7 +292,7 @@ function validardias(a) {
 function enabCare(a, b) {
   for (let j = 0; j < b.length; j++) {
     const elements = document.querySelectorAll('select.' + b[j] + ', input.' + b[j]);
-    elements.forEach(item => enaFie(item, false)); // Desactivar todos inicialmente
+    elements.forEach(item => enaFie(item, true)); // Desactivar todos inicialmente
   }
   if (a.value >= '1') {
     const cr1Elements = document.querySelectorAll('select.cr1, input.cr1');

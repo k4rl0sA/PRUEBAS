@@ -148,15 +148,13 @@ function cmp_relevo() {
 	$c[]=new cmp('idrel','h','20',$i['tipo_doc'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-3',"enabDateRel(this,['fre']);");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-4','validDate(this,-22)');
-	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','ante_cuidador',null,null,true,true,'','col-3',"othePath(this,'oth');");
+	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-3',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-3');
 	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-2',"enabCare(this,['cr2','cr3']);");
 	$c[]=new cmp('cert_disca','s','3',$j['cert_disca'],$w.' '.$o,'Modalidad','cert_disca',null,null,true,true,'','col-10',"enabMod(this,'mod');");
 	$c[]=new cmp('zarit_cuid','t','2',$e['zarit_cuid'],$w.' '.$o,'ZARIT INTERPRETACIÓN - Inicial','zarit_cuid',null,null,false,false,'','col-25');
 
 	$o='infgen_2';
-	$c[]=new cmp($o,'e',null,'Resultado de tamizajes Iniciales',$w);
-	
 	$c[]=new cmp('rel_validacion4','t','50',$d['rel_validacion8'],$w.' '.$o,'ESCALA DE ANSIEDAD HAMILTON-Inicial','rel_validacion4',null,null,false,false,'','col-25');
 	
 	$c[]=new cmp('rel_validacion9','t','50',$g['rel_validacion5'],$w.' '.$o,'ESCALA DEPRESIÓN ZUNG PUNTAJE INICIAL','rel_validacion9',null,null,false,false,'','col-25');
@@ -164,10 +162,10 @@ function cmp_relevo() {
 
 	$o='infgen_3';
 	$c[]=new cmp($o,'e',null,'INFORMACION DE LA PERSONA QUE REQUIERE EL CUIDADO',$w);
-	$c[]=new cmp('rel_validacion13','s','18',$j['rel_validacion13'],$w.' care '.$o,'Seleccione Usuario que requiere cuidado','rel_validacion13',null,null,true,true,'','col-2',"validCare('care');");
-	$c[]=new cmp('rel_validacion14','s','3',$j['rel_validacion14'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS','rel_validacion14',null,null,true,true,'','col-2',"othePath(this,'ot');");
-	$c[]=new cmp('rel_validacion15','t','50',$j['rel_validacion15'],$w.' ot '.$o,'Otro, Cual','rel_validacion15',null,null,false,false,'','col-2');
-	$c[]=new cmp('rel_validacion16','s','3',$j['rel_validacion16'],$w.' '.$o,'TIPO DE DISCAPACIDAD','rel_validacion16',null,null,true,true,'','col-2');
+	$c[]=new cmp('cuidado_1','s','18',$j['cuidado_1'],$w.' care '.$o,'Seleccione Usuario que requiere cuidado','cuidado_1',null,null,true,true,'','col-2',"validCare('care');");
+	$c[]=new cmp('antecedentes_1','s','3',$j['antecedentes_1'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,true,true,'','col-2',"othePath(this,'ot');");
+	$c[]=new cmp('otro_1','t','50',$j['otro_1'],$w.' ot '.$o,'Otro, Cual','otro_1',null,null,false,false,'','col-2');
+	$c[]=new cmp('whodas1','s','3',$j['whodas1'],$w.' '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas1',null,null,true,true,'','col-2');
 	
 	$c[]=new cmp('cuidado_2','s','18',$j['cuidado_2'],$w.' cr2 care '.$o,'Seleccione Usuario que requiere cuidado 2','rel_validacion13',null,null,false,false,'','col-3');
 	$c[]=new cmp('antecedentes_2','s','3',$j['antecedentes_2'],$w.' cr2 '.$o,'ANTECEDENTES PATOLOGICOS','rel_validacion14',null,null,false,false,'','col-2',"othePath(this,'ot1');");
@@ -468,7 +466,7 @@ function opc_rel_tipo_doc($id=''){
 function opc_rel_validacion3($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 29 and estado='A' ORDER BY 1",$id);
 }
-function opc_rel_validacion14($id=''){
+function opc_antecedentes($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 28 and estado='A' ORDER BY 1",$id);
 }
 function opc_rel_sesion($id='') {

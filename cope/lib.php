@@ -154,6 +154,33 @@ function cmp_tamcope(){
 
    }
 
+   function get_tcope(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		// print_r($_POST);
+		$sql="SELECT 
+		tam_cope,O.idpeople,fecha_toma,reporta,pregunta1,pregunta2,pregunta3,pregunta4,pregunta5,pregunta6,pregunta7,pregunta8,pregunta9,pregunta10,pregunta11,pregunta12,pregunta13,pregunta14,pregunta15,pregunta16,pregunta17,pregunta18,pregunta19,pregunta20,pregunta21,pregunta22,pregunta23,pregunta24,pregunta25,pregunta26,pregunta27,pregunta28,puntajea,descripciona,puntajee,descripcione,
+		O.estado,P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,P.fecha_nacimiento fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
+		FROM `hog_tam_cope` O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+			WHERE P.idpeople ='{$id[0]}'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+			if (!$info['responseResult']) {
+				$sql="SELECT P.idpersona,P.tipo_doc,P.sexo,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) nombre,
+				P.fecha_nacimiento fechanacimiento,
+				YEAR(CURDATE())-YEAR(P.fecha_nacimiento) edad
+				FROM person P
+				WHERE P.idpeople ='{$id[0]}'";
+				// echo $sql;
+				$info=datos_mysql($sql);
+			return $info['responseResult'][0];
+			}
+		return $info['responseResult'][0];
+	}
+}
 
    function get_tamcope(){
 	if($_POST['id']==0){

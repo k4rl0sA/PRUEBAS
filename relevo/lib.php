@@ -143,7 +143,7 @@ function cmp_relevo() {
 	if ($j=="") {$j=$t;} if ($h=="") {$h=$t;}	if ($d=="") {$d=$t;}	if ($e=="") {$e=$t;}	if ($f=="") {$f=$t;}	if ($g=="") {$g=$t;}	if ($i=="") {$i=$t;}
 	$u=($j['tipo_doc']=='')?true:false;
 	$o='infgen';
-
+var_dump($i);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DE LA PERSONA CUIDADORA',$w);	
 	$c[]=new cmp('idrel','h','20',$i['tipo_doc'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");
@@ -204,11 +204,10 @@ function get_personas(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
-		
 		FROM rel_relevo R 
 		LEFT JOIN personas P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}' ";
-
+		var_dump($id);
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];

@@ -808,9 +808,13 @@ function get_Tamiz($fec) {
 
 function sessions($id) {
     $id = divide($id);
-    $sql = "SELECT campo FROM tabla WHERE idpeople='" . $id[0] . "'";
+    $sql = "SELECT idrelevo FROM rel_relevo WHERE idpeople='" . $id[0] . "' AND acep_rbc ='SI'";
     $info = datos_mysql($sql);
-    return isset($info['responseResult'][0]);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
 }
 
 function formato_dato($a,$b,$c,$d){

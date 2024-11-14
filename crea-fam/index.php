@@ -262,6 +262,13 @@ function validardias(a) {
       }
 }
 
+function enabDateRel(a,b){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	for (i=0; i<ele.length;i++) {
+			enaFie(ele[i],a.value!=='SI');
+	}
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

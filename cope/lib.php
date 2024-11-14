@@ -52,7 +52,7 @@ function lis_tamcope(){
 }
 
 function lis_cope(){
-	$id=divide($_POST['id']);
+	/* $id=divide($_POST['id']);
 	$sql="SELECT tam_cope ACCIONES,
 	tam_cope 'Cod Registro',fecha_toma,descripciona Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_cope A
@@ -61,7 +61,8 @@ function lis_cope(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"cope-lis",5);
+	return panel_content($datos["responseResult"],"cope-lis",5); */
+	return '';
 
 }
 

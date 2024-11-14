@@ -336,6 +336,8 @@ function get_zung(){
 }
 
 function get_ophi(){
+	return "";
+	/*
 	if($_POST['id']=='0'){
 		return "";
 	}else{
@@ -359,8 +361,9 @@ function get_ophi(){
 		} else {
 			return "";
 		}
-	} 
+	} */
 }
+
 function gra_relevo(){
 
 	$idrel=divide($_POST['idrel']);

@@ -88,7 +88,7 @@ function cmp_tamcope(){
 	$w='tamcope';
 	$d=get_tcope();
 	var_dump($d);
-	if (!isset($d['tam_cope'])) {
+	/* if (!isset($d['tam_cope'])) {
 		$d = array_merge($d,$a);
 	}
 	$o='datos';
@@ -145,7 +145,7 @@ function cmp_tamcope(){
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 
-	return $rta;
+	return $rta; */
 
    }
 

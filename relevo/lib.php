@@ -185,11 +185,9 @@ function get_relevo(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
-		
 		FROM rel_relevo R 
 		LEFT JOIN person P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}'";
-
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];

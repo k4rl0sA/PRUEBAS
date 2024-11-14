@@ -88,12 +88,7 @@ function chanActi(a,c,d) {
 	}
 }
 
-function enabDateRel(a,b){
-	const ele = document.querySelectorAll('select.'+b+',input.'+b);
-	for (i=0; i<ele.length;i++) {
-			enaFie(ele[i],a.value!=='SI');
-		}
-	}
+
 
 function auxSign(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);

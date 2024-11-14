@@ -223,7 +223,7 @@ function men_tamcope(){
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = ""; 
 	$acc=rol($a);
-	var_dump($acc);
+	// var_dump($acc);
 	if ($a=='tamcope') {  
 		$rta .= "<li class='icono $a  grabar' title='Grabar' Onclick=\"grabar('$a',this);\" ></li>";
 	}

@@ -307,6 +307,8 @@ function get_apgar(){
 }
 
 function get_zung(){
+	return "";
+	/*
 	if($_POST['id']=='0'){
 		return "";
 	}else{
@@ -330,7 +332,7 @@ function get_zung(){
 		} else {
 			return "";
 		}
-	} 
+	} */
 }
 
 function get_ophi(){

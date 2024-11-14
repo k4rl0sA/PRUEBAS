@@ -235,7 +235,7 @@ function men_tamcope(){
 	return $rta;
   }
    
-function gra_tamcope(){
+/* function gra_tamcope(){
 	$id=divide($_POST['id']);
 	if(count($id)!==2){
 		return "No es posible actualizar el tamizaje";
@@ -358,7 +358,7 @@ function gra_tamcope(){
 	return $rta;
 	}
 }
-
+ */
 
 	function opc_reporta($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=120 and estado='A' ORDER BY 1",$id);

@@ -357,98 +357,46 @@ function gra_relevo(){
 
 	$idrel=divide($_POST['idrel']);
 	
-	/*if($idrel[0] != ""){ 
-	
-	echo $sql="UPDATE rel_relevo SET 
-				'rel_tipo_doc' = TRIM(upper('{$_POST['rel_tipo_doc']}')),
-				'rel_documento' = TRIM(upper('{$_POST['rel_documento']}')),
-				'rel_validacion1' = TRIM(upper('{$_POST['rel_validacion1']}')),
-				'rel_validacion2' = TRIM(upper('{$_POST['rel_validacion2']}')),
-				'rel_validacion3' = TRIM(upper('{$_POST['rel_validacion3']}')),
-				'rel_validacion4' = TRIM(upper('{$_POST['rel_validacion4']}')),
-				'rel_validacion5' = TRIM(upper('{$_POST['rel_validacion5']}')),
-				'rel_validacion6' = TRIM(upper('{$_POST['rel_validacion6']}')),
-				'rel_validacion7' = TRIM(upper('{$_POST['rel_validacion7']}')),
-				'rel_validacion8' = TRIM(upper('{$_POST['rel_validacion8']}')),
-				'rel_validacion9' = TRIM(upper('{$_POST['rel_validacion9']}')),
-				'rel_validacion10' = TRIM(upper('{$_POST['rel_validacion10']}')),
-				'rel_validacion11' = TRIM(upper('{$_POST['rel_validacion11']}')),
-				'rel_validacion12' = TRIM(upper('{$_POST['rel_validacion12']}')),
-				'rel_validacion13' = TRIM(upper('{$_POST['rel_validacion13']}')),
-				'rel_validacion14' = TRIM(upper('{$_POST['rel_validacion14']}')),
-				'rel_validacion15' = TRIM(upper('{$_POST['rel_validacion15']}')),
-				'rel_validacion16' = TRIM(upper('{$_POST['rel_validacion16']}')),
-				'rel_validacion17' = TRIM(upper('{$_POST['rel_validacion17']}')),
-				'rel_validacion18' = TRIM(upper('{$_POST['rel_validacion18']}')),
-		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE rel_tipo_doc='$rel_tipo_doc' AND rel_documento='$rel_documento'"; 
-	  //echo $x;
-	  //echo $sql."    ".$rta;
-
-	} else {*/
-
-		$val5 = $_POST['rel_validacion5'] ?? null;
+		/* $val5 = $_POST['rel_validacion5'] ?? null;
 		$val7 = $_POST['rel_validacion7'] ?? null;
 		$val8 = $_POST['rel_validacion8'] ?? null;
 		$val10 = $_POST['rel_validacion10'] ?? null;
-		$val11 = $_POST['rel_validacion11'] ?? null;
+		$val11 = $_POST['rel_validacion11'] ?? null; */
 
-		$sql="INSERT INTO rel_relevo VALUES (
-					null,
-					trim(upper('{$_POST['rel_tipo_doc']}')),
-					trim(upper('{$_POST['rel_documento']}')),
-					trim(upper('{$_POST['rel_validacion1']}')),
-					trim(upper('{$_POST['rel_validacion2']}')),
-					trim(upper('{$_POST['rel_validacion3']}')),
-					trim(upper('{$_POST['rel_validacion4']}')),
-					trim(upper('{$val5}')),
-					trim(upper('{$_POST['rel_validacion6']}')),
-					trim(upper('{$val7}')),
-					trim(upper('{$val8}')),
-					trim(upper('{$_POST['rel_validacion9']}')),
-					trim(upper('{$val10}')),
-					trim(upper('{$val11}')),
-					trim(upper('{$_POST['rel_validacion12']}')),
-					trim(upper('{$_POST['rel_validacion13']}')),
-					trim(upper('{$_POST['rel_validacion14']}')),
-					trim(upper('{$_POST['rel_validacion15']}')),
-					trim(upper('{$_POST['rel_validacion16']}')),
-					trim(upper('{$_POST['np_cuida']}')),
-					trim(upper('{$_POST['cuidado_2']}')),
-					trim(upper('{$_POST['antecedentes_2']}')),
-					trim(upper('{$_POST['otro_2']}')),
-					trim(upper('{$_POST['discapacidad_2']}')),
-					trim(upper('{$_POST['cuidado_3']}')),
-					trim(upper('{$_POST['antecedentes_3']}')),
-					trim(upper('{$_POST['otro_3']}')),
-					trim(upper('{$_POST['discapacidad_3']}')),
-					trim(upper('{$_POST['rel_validacion17']}')),
-					trim(upper('{$_POST['rel_validacion18']}')),
-					DATE_SUB(NOW(), INTERVAL 5 HOUR),
-					{$_SESSION['us_sds']},
-					NULL,
-					NULL,
-					'A')";
-		//echo $sql;
-	//}
-
-	$rta=dato_mysql($sql);
-	//return "correctamente";
-	return $rta; 
+		$sql = "INSERT INTO rel_relevo VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 'i', 'value' => $id[0]],
+		['type' => 's', 'value' => $_POST['acep_rbc']],
+		['type' => 's', 'value' => $_POST['fecha_acep']],
+		['type' => 's', 'value' => $_POST['ante_cuidador']],
+		['type' => 's', 'value' => $_POST['otros_antecuidador']],
+		['type' => 's', 'value' => $_POST['zarit_cuid']],
+		['type' => 's', 'value' => $_POST['cuidado_1']],
+		['type' => 's', 'value' => $_POST['antecedentes_1']],
+		['type' => 's', 'value' => $_POST['otro_1']],
+		['type' => 's', 'value' => $_POST['whodas1']],
+		['type' => 's', 'value' => $_POST['cert_disca1']],
+		['type' => 's', 'value' => $_POST['cuidado_2']],
+		['type' => 's', 'value' => $_POST['antecedentes_2']],
+		['type' => 's', 'value' => $_POST['otro_2']],
+		['type' => 's', 'value' => $_POST['whodas2']],
+		['type' => 's', 'value' => $_POST['cert_disca2']],
+		['type' => 's', 'value' => $_POST['cuidado_3']],
+		['type' => 's', 'value' => $_POST['antecedentes_3']],
+		['type' => 's', 'value' => $_POST['otro_3']],
+		['type' => 's', 'value' => $_POST['whodas3']],
+		['type' => 's', 'value' => $_POST['cert_disca3']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => 'A']
+		];
+		
+		return $rta = mysql_prepd($sql, $params);
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function opc_np_cuida($id=''){

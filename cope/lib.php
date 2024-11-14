@@ -111,6 +111,7 @@ function cmp_tamcope(){
 	$c[]=new cmp('tas','n',3,'',$w.' '.$o,'Presión Sistólica (mmHg)','tas',null,null,true,true,'','col-2');
 
 	$o='info';
+	$u=true;
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN',$w);
 	$c[]=new cmp('cope_pregunta1','s','3','',$w.' '.$o,'1. Intento conseguir que alguien me ayude o aconseje sobre que hacer.	','caracterizacion',null,'',true,$u,'','col-5');
   	$c[]=new cmp('cope_pregunta2','s','3','',$w.' '.$o,'2. Concentro mis esfuerzos en hacer algo sobre la situacion en la que estoy.','caracterizacion',null,'',true,$u,'','col-5');

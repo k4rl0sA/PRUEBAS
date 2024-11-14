@@ -102,7 +102,7 @@ function cmp_tamcope(){
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,'',false,false,'','col-2');
 	$c[]=new cmp('fechanacimiento','d','10',$d['fechanacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',false,false,'','col-3');
     $c[]=new cmp('edad','n','3',$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
-	$c[]=new cmp('cope_reporta','s','3',$d['cope_reporta'],$w.' '.$o,'Caso reportado','cope_reporta',null,'',true,true,'','col-3');
+	$c[]=new cmp('cope_reporta','s','3',$d['reporta'],$w.' '.$o,'Caso reportado','cope_reporta',null,'',true,true,'','col-3');
 	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
 
 	$o='info';

@@ -33,20 +33,60 @@ LEFT JOIN personas P ON O.whodas_idpersona = P.idpersona
 	return panel_content($datos["responseResult"],"tamWhodas",20);
 }
 
-function whe_tamWhodas() {
-	$sql = "";
-	if ($_POST['fidentificacion'])
-		$sql .= " AND whodas_idpersona like '%".$_POST['fidentificacion']."%'";
-	if ($_POST['fsexo'])
-		$sql .= " AND P.sexo ='".$_POST['fsexo']."' ";
-	if ($_POST['fpersona']){
-		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";
-		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) > 18 ";
-		}
+function lis_tamWhodas(){
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_whodas O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		where ".whe_tamWhodas());
+		$total=$info['responseResult'][0]['total'];
+		$regxPag=12;
+		$pag=(isset($_POST['pag-tamWhodas']))? (intval($_POST['pag-tamWhodas'])-1)* $regxPag:0;
+
+		$sql="SELECT O.idpeople ACCIONES,idoms 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_oms O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		WHERE ";
+	$sql.=whe_tamWhodas();
+	$sql.=" ORDER BY O.fecha_create DESC";
+	//echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"tamWhodas",$regxPag);
+	}else{
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+                <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
 	}
-	return $sql;
+}
+
+function lis_oms(){
+	$id=divide($_POST['id']);
+	$sql="SELECT idoms ACCIONES,
+	idoms 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_oms A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"oms-lis",5);
+}
+
+function whe_tamWhodas() {
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
+    }
+    return $sql;
 }
 
 function cmp_tamWhodas(){

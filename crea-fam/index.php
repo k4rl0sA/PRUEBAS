@@ -309,7 +309,6 @@ function validCare(a){
 		warnin("EL CUIDADOR NO PUEDE SER LA MISMA PERSONA CUIDADA EN DIFERENTES CAMPOS");
 	}
 	}
-	
 }
 
 </script>

@@ -83,7 +83,7 @@ function whe_tamcope() {
 
 function cmp_tamcope(){
 	$rta="<div class='encabezado cope'>TABLA cope</div><div class='contenido' id='cope-lis'>".lis_cope()."</div></div>";
-	$a=['tam_cope'=>'','diabetes'=>'','fuma'=>'','tas'=>'','puntaje'=>'','descripcion'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
+	$a=['tam_cope'=>'','idpeople'=>'','fecha_toma'=>'','reporta'=>'','pregunta1'=>'','pregunta2'=>'','pregunta3'=>'','pregunta4'=>'','pregunta5'=>'','pregunta6'=>'','pregunta7'=>'','pregunta8'=>'','pregunta9'=>'','pregunta10'=>'','pregunta11'=>'','pregunta12'=>'','pregunta13'=>'','pregunta14'=>'','pregunta15'=>'','pregunta16'=>'','pregunta17'=>'','pregunta18'=>'','pregunta19'=>'','pregunta20'=>'','pregunta21'=>'','pregunta22'=>'','pregunta23'=>'','pregunta24'=>'','pregunta25'=>'','pregunta26'=>'','pregunta27'=>'','pregunta28'=>'','puntajea'=>'','descripciona'=>'','puntajee'=>'','descripcione'=>''];//,'nombre'=>'','fechanacimiento'=>'','edad'=>''
 	$p=['tam_cope'=>'','idpersona'=>'','tipo_doc'=>'','nombre'=>'','sexo'=>'','fechanacimiento'=>'','edad'=>''];
 	$w='tamcope';
 	$d=get_tcope();

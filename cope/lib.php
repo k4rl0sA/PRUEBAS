@@ -345,7 +345,6 @@ function men_tamcope(){
 	['type'=> 's', 'value' => $suma_evita],
 	['type'=> 's', 'value' => $desevit],
 	['type'=> 'i', 'value' => $_SESSION['us_sds']],
-	['type'=> 's', 'value' => date("Y-m-d H:i:s")],
 	['type'=> 's', 'value' => NULL],
 	['type'=> 's', 'value' => NULL],
 	['type'=> 's', 'value' => 'A']

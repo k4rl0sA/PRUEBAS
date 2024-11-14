@@ -151,7 +151,7 @@ function cmp_relevo() {
 	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-3',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-3');
 	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-2',"enabCare(this,['cr2','cr3']);");
-	$c[]=new cmp('cert_disca','s','3',$j['cert_disca'],$w.' '.$o,'Modalidad','cert_disca',null,null,true,true,'','col-10',"enabMod(this,'mod');");
+	$c[]=new cmp('cert_disca','s','3',$j['cert_disca'],$w.' '.$o,'Modalidad','alert',null,null,true,true,'','col-10',"enabMod(this,'mod');");
 	$c[]=new cmp('zarit_cuid','t','2',$e['zarit_cuid'],$w.' '.$o,'ZARIT INTERPRETACIÓN - Inicial','zarit_cuid',null,null,false,false,'','col-25');
 
 	$o='infgen_2';

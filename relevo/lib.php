@@ -134,10 +134,10 @@ function bgcolor($a,$c,$f='c'){
 function cmp_relevo() {
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['tipo_doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','Persona_Cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','cert_disca'=>'','zarit_cuid'=>'',
-	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'',
-	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'',
-	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
+	$t=['tipo_doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','Persona_Cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','zarit_cuid'=>'',
+	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'','cert_disca1'=>'',
+	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'','cert_disca2'=>'',
+	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','cert_disca3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
 	$w='relevo';
 	$j=get_relevo();$i=get_personas();$d=get_hamilton();$e=get_zarit();$f=get_apgar();$g=get_zung();$h=get_ophi();
 	if ($j=="") {$j=$t;} if ($h=="") {$h=$t;}	if ($d=="") {$d=$t;}	if ($e=="") {$e=$t;}	if ($f=="") {$f=$t;}	if ($g=="") {$g=$t;}	if ($i=="") {$i=$t;}
@@ -152,7 +152,7 @@ var_dump($i);
 	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-2',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-2');
 	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-2',"enabCare(this,['cr2','cr3']);");
-	$c[]=new cmp('cert_disca','s','3',$j['cert_disca'],$w.' '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,true,true,'','col-2',"enabMod(this,'mod');");
+	
 	$c[]=new cmp('zarit_cuid','t','2',$e['zarit_cuid'],$w.' '.$o,'ZARIT INTERPRETACIÓN - Inicial','zarit_cuid',null,null,false,false,'','col-2');
 
 	$o='infgen_2';
@@ -161,17 +161,19 @@ var_dump($i);
 	$c[]=new cmp('antecedentes_1','s','3',$j['antecedentes_1'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,true,true,'','col-25',"othePath(this,'ot');");
 	$c[]=new cmp('otro_1','t','50',$j['otro_1'],$w.' ot '.$o,'Otro, Cual','otro_1',null,null,false,false,'','col-25');
 	$c[]=new cmp('whodas1','t','3',$j['whodas1'],$w.' '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas1',null,null,true,true,'','col-25');
-	
+	$c[]=new cmp('cert_disca1','s','3',$j['cert_disca1'],$w.' '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,true,true,'','col-2',"enabMod(this,'mod');");
+
 	$c[]=new cmp('cuidado_2','s','18',$j['cuidado_2'],$w.' cr2 care '.$o,'Seleccione Segundo Usuario que requiere cuidado','rel_validacion13',null,null,false,false,'','col-25');
 	$c[]=new cmp('antecedentes_2','s','3',$j['antecedentes_2'],$w.' cr2 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-25',"othePath(this,'ot1');");
 	$c[]=new cmp('otro_2','t','50',$j['otro_2'],$w.' ot1 cr2 '.$o,'Otro, Cual','otro_2',null,null,false,false,'','col-25');
 	$c[]=new cmp('whodas2','t','3',$j['whodas2'],$w.' cr2 '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas2',null,null,false,false,'','col-25');
+	$c[]=new cmp('cert_disca2','s','3',$j['cert_disca2'],$w.' '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,true,true,'','col-2',"enabMod(this,'mod');");
 	
 	$c[]=new cmp('cuidado_3','s','18',$j['cuidado_3'],$w.' cr3 care '.$o,'Seleccione Tercer Usuario que requiere cuidado','rel_validacion13',null,null,false,false,'','col-25');
 	$c[]=new cmp('antecedentes_3','s','3',$j['antecedentes_3'],$w.' cr3 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-25',"othePath(this,'ot2');");
 	$c[]=new cmp('otro_3','t','50',$j['otro_3'],$w.' ot2 cr3 '.$o,'Otro, Cual','otro_3',null,null,false,false,'','col-25');
 	$c[]=new cmp('whodas3','t','3',$j['whodas3'],$w.' cr3 '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas3',null,null,false,false,'','col-25');
-	
+	$c[]=new cmp('cert_disca3','s','3',$j['cert_disca3'],$w.' '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,true,true,'','col-2',"enabMod(this,'mod');");
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	//  $rta .="<div class='encabezado integrantes'>TABLA DE INTEGRANTES DE LA FAMILIA</div><div class='contenido' id='integrantes-lis' >".lis_integrantes1()."</div></div>";

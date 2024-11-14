@@ -301,12 +301,19 @@ function othePath(a,b){
 
 function validCare(a) {
   const el = document.querySelectorAll('select.' + a + ', input.' + a);
-  const values = Array.from(el).map(item => item.value);
-  const uniqueValues = new Set(values);
-  if (uniqueValues.size !== values.length) {
+  if (el.length < 3) {
+    console.warn("Se necesitan al menos tres elementos para la validación");
+    return;
+  }
+  // Obtener los valores, ignorando espacios en blanco
+  const values = [el[0]?.value.trim(), el[1]?.value.trim(), el[2]?.value.trim()];
+  const nonEmptyValues = values.filter(val => val !== "");
+  const uniqueValues = new Set(nonEmptyValues);
+  if (uniqueValues.size !== nonEmptyValues.length) {
     warnin("EL CUIDADOR NO PUEDE SER LA MISMA PERSONA CUIDADA EN DIFERENTES CAMPOS");
   }
 }
+
 
 
 </script>

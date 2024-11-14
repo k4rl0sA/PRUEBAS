@@ -134,7 +134,7 @@ function bgcolor($a,$c,$f='c'){
 function cmp_relevo() {
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['tipo_doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','persona_cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','cert_disca'=>'','zarit_cuid'=>'',
+	$t=['tipo_doc'=>'','idpersona'=>'','acep_rbc'=>'','fecha_acep'=>'','Persona_Cuidadora'=>'','ante_cuidador'=>'','otros_antecuidador'=>'','np_cuida'=>'','cert_disca'=>'','zarit_cuid'=>'',
 	'cuidado_1'=>'','antecedentes_1'=>'','otro_1'=>'','whodas1'=>'',
 	'cuidado_2'=>'','antecedentes_2'=>'','otro_2'=>'','whodas2'=>'',
 	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
@@ -148,7 +148,7 @@ var_dump($i);
 	$c[]=new cmp('idrel','h','20',$i['tipo_doc'] . "_" . $i['idpersona'] ,$w.' '.$o,'','',null,null,false,$u,'','col-1');
 	$c[]=new cmp('acep_rbc','s','3',$j['acep_rbc'],$w.' '.$o,'Acepta Participar en la Estrategia RBC','aler',null,null,true,true,'','col-25',"enabDateRel(this,['fre']);");
 	$c[]=new cmp('fecha_acep','d','10',$j['fecha_acep'],$w.' fre '.$o,'Fecha de la Aceptacion','fecha_acep',null,null,false,true,'','col-25','validDate(this,-22)');
-	$c[]=new cmp('persona_cuidadora','t','50',$i['persona_cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
+	$c[]=new cmp('persona_cuidadora','t','50',$i['Persona_Cuidadora'],$w.' '.$o,'Nombre Cuidador','persona_cuidadora',null,'',false,false,'','col-5');
 	$c[]=new cmp('ante_cuidador','s','2',$j['ante_cuidador'],$w.' '.$o,'ANTECEDENTES PATOLOGICOS DEL CUIDADOR','antecedentes',null,null,true,true,'','col-2',"othePath(this,'oth');");
 	$c[]=new cmp('otros_antecuidador','t','50',$j['otros_antecuidador'],$w.' oth '.$o,'Otro, Cual','otros_antecuidador',null,null,false,false,'','col-2');
 	$c[]=new cmp('np_cuida','s','3',$j['np_cuida'],$w.' mod '.$o,'Número de personas al Cuidado','np_cuida',null,null,false,false,'','col-2',"enabCare(this,['cr2','cr3']);");
@@ -207,7 +207,6 @@ function get_personas(){
 		FROM rel_relevo R 
 		LEFT JOIN person P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}' ";
-		var_dump($id);
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];

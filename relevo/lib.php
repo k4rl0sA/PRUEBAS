@@ -497,7 +497,8 @@ function opc_rel_validacion13($id='') {
 	// var_dump($_REQUEST);
 	$id=divide($_REQUEST['id']);
 		return	opc_sql("SELECT idpersona,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
-			from personas where vivipersona=(select vivipersona from personas where idpersona='$id[1]' and  tipo_doc='$id[0]') and idpersona<>'$id[1]'",$id);
+			from person 
+			swhere vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id);
 			// var_dump($id);
 	
 	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);

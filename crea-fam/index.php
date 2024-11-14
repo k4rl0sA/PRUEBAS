@@ -299,6 +299,18 @@ function othePath(a,b){
 	}
 }
 
+function validCare(a){
+	const el = document.querySelectorAll('select.'+a+',input.'+a);
+	for (i=0; i<el.length;i++) {
+		const cui1=el[0].value;
+		const cui2=el[1].value;
+		const cui3=el[2].value;
+	}
+	if(cui1==cui2 || cui2==cui3 ||cui1==cui3 ){
+		warnin("EL CUIDADOR NO PUEDE SER LA MISMA PERSONA CUIDADA EN DIFERENTES CAMPOS");
+	}
+}
+
 </script>
 </head>
 <body Onload="actualizar();">

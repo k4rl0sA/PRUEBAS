@@ -227,7 +227,8 @@ function get_personas(){
 	} 
 }
 function get_hamilton(){
-	if($_POST['id']=='0'){
+	return "";
+	/* if($_POST['id']=='0'){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
@@ -249,7 +250,7 @@ function get_hamilton(){
 		} else {
 			return "";
 		}
-	} 
+	}  */
 }
 
 function get_zarit(){

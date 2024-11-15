@@ -252,7 +252,7 @@ function formato_dato($a,$b,$c,$d){
 	// var_dump($c);
 	if ($a=='session' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-			$rta.="<li class='icono editar ' title='Editar Sesión' id='".$c['ACCIONES']."' Onclick=\"Color('session-lis');setTimeout(getData,300,'sesiones',event,this,['rel_validacion1','rel_validacion2','rel_validacion3','rel_validacion4']','../relevo/sesiones.php');setTimeout(auxSign,500,'rel_validacion3','aux');\"></li>";  //getData('plancon',event,this,'id');   act_lista(f,this);
+			$rta.="<li class='icono editar ' title='Editar Sesión' id='".$c['ACCIONES']."' Onclick=\"Color('session-lis');setTimeout(getData,300,'sesiones',event,this,['rel_validacion1','rel_validacion2','rel_validacion3','rel_validacion4'],'../relevo/sesiones.php');setTimeout(auxSign,500,'rel_validacion3','aux');\"></li>";  //getData('plancon',event,this,'id');   act_lista(f,this);
 		}
 return $rta;
 }

@@ -348,6 +348,17 @@ function chanActi(a,c,d) {
 	}
 }
 
+function auxSign(a,b){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	const act = document.getElementById(a);
+	for (i=0; i<ele.length;i++) {
+		if(act.value!='AUXREL'){
+			enaFie(ele[i],true);
+  		}else{
+			enaFie(ele[i],false);
+		}
+	}
+}
 /*******************FIN RELEVO*************************/
 </script>
 </head>

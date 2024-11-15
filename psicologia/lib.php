@@ -200,9 +200,7 @@ function cmp_psicologia() {
 	$u=($d['psi_tipo_doc']=='')?true:false;
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
-
 	$key=' srch';
-
 	$c[]=new cmp('idpsi','h','20', $d['psi_tipo_doc'] . "_" . $d['psi_documento'] ,$w.' '.$o,'','',null,null,true,$u,'','col-1');
 	$c[]=new cmp('psi_documento','t','20',$j['idpersona'],$w.' '.$o.$key,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
 	$c[]=new cmp('psi_tipo_doc','s','3',$j['tipo_doc'],$w.' '.$o.$key,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5','getDatForm(\'srch\',\'DataPersonas\',[\'infgen\']);');

@@ -204,7 +204,6 @@ function gra_sesiones(){
 		$sql="INSERT INTO rel_sesion VALUES (
 			null,
 			'$idrel[0]',
-			'$idrel[1]',
 			trim(upper('{$_POST['rel_validacion1']}')),
 			trim(upper('{$_POST['rel_validacion2']}')),
 			trim(upper('{$_POST['rel_validacion3']}')),

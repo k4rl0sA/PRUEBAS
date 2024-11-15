@@ -810,6 +810,7 @@ function sessions($id) {
     $id = divide($id);
     $sql = "SELECT idrelevo FROM rel_relevo WHERE id_people='" . $id[0] . "' AND acep_rbc ='SI'";
     $info = datos_mysql($sql);
+	var_dump($sql);
 	if(isset($info['responseResult'][0])){
 		return true;
 	}else{

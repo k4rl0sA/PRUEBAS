@@ -81,17 +81,7 @@ function disaFielChec(a, b,c) {
 
 
 
-function auxSign(a,b){
-	const ele = document.querySelectorAll('select.'+b+',input.'+b);
-	const act = document.getElementById(a);
-	for (i=0; i<ele.length;i++) {
-		if(act.value!='AUXREL'){
-			enaFie(ele[i],true);
-  		}else{
-			enaFie(ele[i],false);
-		}
-	}
-}
+
 
 function enabMod(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);

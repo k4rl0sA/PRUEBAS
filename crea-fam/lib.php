@@ -880,7 +880,8 @@ function formato_dato($a,$b,$c,$d){
 		if (sessions($c['ACCIONES'])) {
 			$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL'];
 		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class='fa-solid fa-person-cane ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
-		} 
+		}
+		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1 ' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-cane ico' id='{$c['ACCIONES']}'></i></li>":"";
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

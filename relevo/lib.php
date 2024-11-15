@@ -102,7 +102,7 @@ function formato_dato($a,$b,$c,$d){
 	$rta=$c[$d];
 	// $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	// var_dump($a);
-	var_dump($c);
+	// var_dump($c);
 	if ($a=='relevo' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono mapa' title='Aceptación Relevos' id='".$c['ACCIONES']."' Onclick=\"mostrar('relevo','pro',event,'','lib.php',7);enabDateRel(this,['fre'])\"></li>";

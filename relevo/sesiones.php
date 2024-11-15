@@ -23,7 +23,7 @@ function lis_session(){
 	// print_r($_POST);
 	// print_r($_REQUEST);
 	$id=divide($_POST['id']);
-	$info=datos_mysql("SELECT COUNT(*) total FROM `rel_sesion` WHERE id_people='{$id[0]}');
+	$info=datos_mysql("SELECT COUNT(*) total FROM `rel_sesion` WHERE id_people='{$id[0]}'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=3;
 	$pag=(isset($_POST['pag-session']))? ($_POST['pag-session']-1)* $regxPag:0;
@@ -31,7 +31,7 @@ function lis_session(){
 	$sql="SELECT idsesion ACCIONES,`rel_validacion1` Sesion, `rel_validacion2` Fecha,rel_validacion3 perfil,FN_CATALOGODESC(301,`rel_validacion4`) Actividad,`rel_validacion5`
   	descripcion 
 	FROM `rel_sesion`
-	WHERE idpeople='{$id[0]}'";
+	WHERE id_people='{$id[0]}'";
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 		//  echo $sql;

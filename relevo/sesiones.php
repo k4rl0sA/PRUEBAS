@@ -77,18 +77,13 @@ function lis_medidaux(){
 
 function cmp_sesiones() {
 	$rta="";
-	// $rta .="<div class='encabezado'>TABLA DE SESIONES</div>	<div class='contenido' id='sesion-lis' >".lis_sesiones()."</div></div>";
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='session-lis' >".lis_session()."</div></div>";
 	$info=datos_mysql("SELECT FN_PERFIL('{$_SESSION['us_sds']}') perfil;");
 	$per=$info['responseResult'][0]['perfil'];
-	/*$id=divide($_POST['id']);
-	 $data=datos_mysql("SELECT count(*)+1 total FROM rel_sesion WHERE rel_tipo_doc='{$id[0]}' and rel_documento='{$id[1]}';");
-	$nse=$data['responseResult'][0]['total']; */
+	
 	$w='sesiones';
 	$d='';
-	// $perf=($d['rel_validacion3']=='')? $perfil:$d['rel_validacion3'];
-	// $u=($d['rel_tipo_doc']=='')?true:false;
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'Sesion de intervencion y/o Relevos',$w);	
 	$aux = ($per=='AUXREL' || $per=='ADM') ? true : false ;//|| $per=='ADM'
@@ -104,14 +99,6 @@ function cmp_sesiones() {
 	$c[]=new cmp('autocuidado','s','3',$d,$w.' aux '.$o,'Autocuidado','autocuidado',null,null,$aux,$aux,'','col-3');
 	$c[]=new cmp('activesparc','s','3',$d,$w.' aux '.$o,'Actividades de Esparcimiento','activesparc',null,null,$aux,$aux,'','col-3');
 	$c[]=new cmp('infeducom','s','3',$d,$w.' aux '.$o,'Información, educación y Comunicación en salud','infeducom',null,null,$aux,$aux,'','col-4');
-
-	/* $o='sigvit';
-	$c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
-	$c[]=new cmp('momento','s',3,$d,$w.' aux '.$o,'Momento','momento',null,null,$aux,$aux,'','col-2');
-	$c[]=new cmp('tas','n',3, $d,$w.' aux '.$o,'Tensión Sistolica Mín=40 - Máx=250','tas','rgxsisto','###',$aux,$aux,'','col-2');
-	$c[]=new cmp('tad','n',3, $d,$w.' aux '.$o,'Tensión Diastolica Mín=40 - Máx=150','tad','rgxdiast','###',$aux,$aux,'','col-2');
-	$c[]=new cmp('frecard','n',3, $d,$w.' aux '.$o,'Frecuencia Cardiaca Mín=60 - Máx=120','frecard',null,'##',$aux,$aux,'','col-2');
-	$c[]=new cmp('satoxi','n',3, $d,$w.' aux '.$o,'saturación de Oxigeno Mín=60 - Máx=100','satoxi',null,'##',$aux,$aux,'','col-2'); */
 
 	if($aux===true || $per=='ADM'){
 		$rta .="<div class='encabezado'>TABLA DE MEDIDAS AUXILIAR</div>

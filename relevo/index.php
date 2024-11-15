@@ -77,16 +77,7 @@ function disaFielChec(a, b,c) {
 	}
 }
 
-//HABILITAR ACTIVIDAD DE RESPIRO
-function chanActi(a,c,d) {
-	const ele = document.querySelectorAll('select.'+c+',input.'+c);
-	const act = document.getElementById(a);
-	for (i=0; i<ele.length;i++) {
-		if(!d.includes(act.value) ){
-			enaFie(ele[i],!d.includes(act.value));
-  		}
-	}
-}
+
 
 
 

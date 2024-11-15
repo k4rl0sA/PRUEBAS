@@ -201,6 +201,23 @@ function gra_sesiones(){
 	  //echo $x;
 	//   echo $sql;
 	} else {
+		$sql = "INSERT INTO rel_sesion VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 's', 'value' => $idrel[0]],
+		['type' => 's', 'value' => $_POST['rel_validacion1']],
+		['type' => 's', 'value' => $_POST['rel_validacion2']],
+		['type' => 's', 'value' => $_POST['rel_validacion3']],
+		['type' => 's', 'value' => $_POST['rel_validacion4']],
+		['type' => 's', 'value' => $_POST['rel_validacion5']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => 'A']
+		];
+		$rta = mysql_prepd($sql, $params);
+		return $rta;
+
 		$sql="INSERT INTO rel_sesion VALUES (
 			null,
 			'$idrel[0]',
@@ -219,7 +236,6 @@ function gra_sesiones(){
 			'2')";
 		// echo $sql;
 	}
-
 	$rta=dato_mysql($sql);
 	//return "correctamente";
 	return $rta; 

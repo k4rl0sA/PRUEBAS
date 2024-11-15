@@ -201,7 +201,7 @@ function gra_sesiones(){
 	  //echo $x;
 	//   echo $sql;
 	} else {
-		$sql = "INSERT INTO rel_sesion VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$sql = "INSERT INTO rel_sesion VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?,'2')";
 		$params = [
 		['type' => 'i', 'value' => NULL],
 		['type' => 's', 'value' => $idrel[0]],
@@ -210,35 +210,15 @@ function gra_sesiones(){
 		['type' => 's', 'value' => $_POST['rel_validacion3']],
 		['type' => 's', 'value' => $_POST['rel_validacion4']],
 		['type' => 's', 'value' => $_POST['rel_validacion5']],
+		['type' => 's', 'value' => $_POST['autocuidado']],
+		['type' => 's', 'value' => $_POST['activesparc']],
+		['type' => 's', 'value' => $_POST['infeducom']],
 		['type' => 'i', 'value' => $_SESSION['us_sds']],
 		['type' => 's', 'value' => NULL],
-		['type' => 's', 'value' => NULL],
-		['type' => 's', 'value' => 'A']
+		['type' => 's', 'value' => NULL]
 		];
-		$rta = mysql_prepd($sql, $params);
-		return $rta;
-
-		$sql="INSERT INTO rel_sesion VALUES (
-			null,
-			'$idrel[0]',
-			trim(upper('{$_POST['rel_validacion1']}')),
-			trim(upper('{$_POST['rel_validacion2']}')),
-			trim(upper('{$_POST['rel_validacion3']}')),
-			trim(upper('{$_POST['rel_validacion4']}')),
-			trim(upper('{$_POST['rel_validacion5']}')),
-			trim(upper('{$_POST['autocuidado']}')),
-			trim(upper('{$_POST['activesparc']}')),
-			trim(upper('{$_POST['infeducom']}')),
-			DATE_SUB(NOW(), INTERVAL 5 HOUR),
-			{$_SESSION['us_sds']},
-			NULL,
-			NULL,
-			'2')";
-		// echo $sql;
+		return $rta = mysql_prepd($sql, $params);
 	}
-	$rta=dato_mysql($sql);
-	//return "correctamente";
-	return $rta; 
 }
 
 function opc_momento($id=''){

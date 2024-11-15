@@ -264,32 +264,6 @@ function validardias(a) {
       }
 }
 
-/* function enabCare(a,b){
-	for (j=0; j<b.length;j++) {
-		const el = document.querySelectorAll('select.'+b[j]+',input.'+b[j]);
-		for (K=0; K<el.length;K++) {
-			enaFie(el[K],true);
-		}
-	}
-	for (i=0; i<b.length;i++) {
-		const el = document.querySelectorAll('select.'+b[i]+',input.'+b[i]);
-		enaFie(el[i],true);
-		if(a.value=='2' && b[i]=='cr2'){
-			for (i=0; i<el.length;i++) {
-				enaFie(el[i],false);
-			}
-		}else if(a.value=='3'){
-			for (l=0; l<b.length;l++) {
-			const el = document.querySelectorAll('select.'+b[l]+',input.'+b[l]);
-				for (m=0; m<el.length;m++) {
-					enaFie(el[m],false);
-				}
-			}
-		}		
-	}
-} */
-
-
 /*******************INICIO RELEVO*************************/
 function enabCare(a, b) {
   for (let j = 0; j < b.length; j++) {

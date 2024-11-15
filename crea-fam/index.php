@@ -289,6 +289,7 @@ function validardias(a) {
 } */
 
 
+/*******************INICIO RELEVO*************************/
 function enabCare(a, b) {
   for (let j = 0; j < b.length; j++) {
     const elements = document.querySelectorAll('select.' + b[j] + ', input.' + b[j]);
@@ -307,10 +308,6 @@ function enabCare(a, b) {
     cr3Elements.forEach(item => enaFie(item, false));
   }
 }
-
-
-
-
 
 function othePath(a,b){
 	const ele = document.querySelectorAll('select.'+b+',input.'+b);
@@ -339,8 +336,18 @@ function validCare(a) {
   }
 }
 
+//HABILITAR ACTIVIDAD DE RESPIRO
+function chanActi(a,c,d) {
+	const ele = document.querySelectorAll('select.'+c+',input.'+c);
+	const act = document.getElementById(a);
+	for (i=0; i<ele.length;i++) {
+		if(!d.includes(act.value) ){
+			enaFie(ele[i],!d.includes(act.value));
+  		}
+	}
+}
 
-
+/*******************FIN RELEVO*************************/
 </script>
 </head>
 <body Onload="actualizar();">

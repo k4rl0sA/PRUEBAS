@@ -148,7 +148,7 @@ function get_sesiones(){
 		$id=divide($_REQUEST['id']);
 		// print_r($_SESSION);
 		// print_r($perfil=$info['responseResult'][0]['perfil']);
-		$sql="SELECT concat(rel_tipo_doc,'_',rel_documento,'_',idsesion),`rel_validacion1`, `rel_validacion2`,`rel_validacion3`,
+		$sql="SELECT idsesion,`rel_validacion1`, `rel_validacion2`,`rel_validacion3`,
 		`rel_validacion4`,`rel_validacion5`,autocuidado,activesparc,infeducom,'' as momento,' ' as tas,' ',' ' as frecard,' ' as satoxi
 		FROM rel_sesion WHERE idsesion='{$id[0]}'";
 		// echo $sql;

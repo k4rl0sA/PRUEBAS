@@ -81,7 +81,7 @@ function cmp_sesiones() {
 	<div class='contenido' id='session-lis' >".lis_session()."</div></div>";
 	$info=datos_mysql("SELECT FN_PERFIL('{$_SESSION['us_sds']}') perfil;");
 	$per=$info['responseResult'][0]['perfil'];
-	
+	var_dump($_POST);
 	$w='sesiones';
 	$d='';
 	$o='infgen';

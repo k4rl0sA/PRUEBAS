@@ -320,25 +320,25 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_apgar($tab);
             break;
-        case '41':
-			$tab = "Casos_Relevo_Cuidador";
-			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_asigrelevo($tab);
-            break;
-         case '42':
+        case '32':
 			$tab = "Tamizaje_Cope";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_cope($tab);
-            break;    
-        case '43':
-			$tab = "Plano_Ajustes";
-			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_ajustes($tab);
             break;
-        case '44':
-			$tab = "Plano_Actualizacion_Caracterizacion";
+         case '33':
+			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_actucarac($tab);
+			if($tab=decript($encr,$clave))lis_epoc($tab);
+            break;    
+        case '34':
+			$tab = "Tamizaje_Findrisc";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_findrisc($tab);
+            break;
+        case '35':
+			$tab = "Tamizaje_OMS";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_oms($tab);
             break;    
         case '45':
 			$tab = "Casos_Psicologia";
@@ -353,7 +353,7 @@ function lis_planos() {
         case '47':
 			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_epoc($tab);
+			if($tab=decript($encr,$clave))lis_e($tab);
             break;
         default:
             break;    
@@ -1383,6 +1383,65 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 
+
+
+
+
+
+function lis_findrisc($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_findrisc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
+A.fecha_toma AS Fecha_Toma,
+
+A.peso AS Peso,A.talla AS Talla,A.imc AS Imc,A.perimcint AS Perimetro_Cintura,
+FN_CATALOGODESC(43,A.actifisica) AS Actividad_Fisica,FN_CATALOGODESC(46,A.verduras) AS Consumo_Verduras_Frutas,FN_CATALOGODESC(56,A.hipertension) AS Toma_Medicamento_Hiper,
+FN_CATALOGODESC(57,A.glicemia) AS Valores_Altos_Glucosa,FN_CATALOGODESC(41,A.diabfam) AS Diabetes_Familiares,
+A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
+
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_findrisc` A
+LEFT JOIN person P ON A.idpeople=P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
+	$sql.=whe_date10();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_findrisc` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_oms($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idoms AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
+A.fecha_toma AS Fecha_Toma,
+
+FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes, FN_CATALOGODESC(170,A.fuma) AS Fuma, A.tas AS Tension_Arterial_Sistolica, REPLACE(REPLACE(A.puntaje, 'LT', '<'), 'GT', '>') AS Puntaje, A.descripcion AS Clasificacion_Puntaje,
+
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_oms` A
+LEFT JOIN person P ON A.idpeople=P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
+	$sql.=whe_date10();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_oms` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 
 

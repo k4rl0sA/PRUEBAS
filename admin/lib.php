@@ -315,10 +315,10 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_usercreate($tab);
             break;
-        case '40':
-			$tab = "Adscripcion_Territorial";
+        case '31':
+			$tab = "Tamizaje_Apgar_Familiar";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_adscrip($tab);
+			if($tab=decript($encr,$clave))lis_apgar($tab);
             break;
         case '41':
 			$tab = "Casos_Relevo_Cuidador";
@@ -1356,6 +1356,40 @@ LEFT JOIN usuarios U ON P.usu_creo=U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_apgar($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_apgar AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
+A.fecha_toma AS Fecha_Toma,
+FN_CATALOGODESC(37,A.ayuda_fam) AS Apgar_7_A_17_Años_Preg_1, FN_CATALOGODESC(37,A.fam_comprobl) AS Apgar_7_A_17_Años_Preg_2, FN_CATALOGODESC(37,A.fam_percosnue) AS Apgar_7_A_17_Años_Preg_3, FN_CATALOGODESC(37,A.fam_feltrienf) AS Apgar_7_A_17_Años_Preg_4, FN_CATALOGODESC(37,A.fam_comptiemjun) AS Apgar_7_A_17_Años_Preg_5,
+FN_CATALOGODESC(137,A.sati_famayu) AS Apgar_Mayor_de_18_Años_Preg_1, FN_CATALOGODESC(137,A.sati_famcompro) AS Apgar_Mayor_de_18_Años_Preg_2, FN_CATALOGODESC(137,A.sati_famapoemp) AS Apgar_Mayor_de_18_Años_Preg_3, FN_CATALOGODESC(137,A.sati_famemosion) AS Apgar_Mayor_de_18_Años_Preg_4, FN_CATALOGODESC(137,A.sati_famcompar) AS Apgar_Mayor_de_18_Años_Preg_5, 
+A.puntaje, A.descripcion,
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_apgar` A
+LEFT JOIN person P ON A.idpeople=P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
+	$sql.=whe_date10();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_apgar` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+
+
+
+
+
+
+
+
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
@@ -1365,7 +1399,7 @@ function whe_date(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 
@@ -1483,20 +1517,20 @@ function whe_date9(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.fecha_seg) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 
-function whe_subred13() {
-	$sql= " AND (R.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+function whe_subred10() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 
-function whe_date13(){
+function whe_date10(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(R.fecha_gestion) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(A.fecha_toma) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

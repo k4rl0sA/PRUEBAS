@@ -37,9 +37,9 @@ function lis_rute(){
 
 function whe_rute() {
 	$sql = " AND estado='A' ";
-	/* if ($_POST['flocalidad'])
-		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
-	if ($_POST['fgrupo'])
+	 if ($_POST['fcod'])
+		$sql .= " AND id_ruteo = '".$_POST['fcod']."'";
+	/*if ($_POST['fgrupo'])
 		$sql .= " AND priorizacion = '".$_POST['fgrupo']."'";
 	if ($_POST['fseca'])
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";

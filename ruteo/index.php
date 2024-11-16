@@ -126,25 +126,26 @@ $localidad=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
-	<!-- <div class="campo"><div>Fuentes</div>
+<div class="campo"><div>Codigo Registro</div><input class="captura" size=6 id="fcod" name="fcod" OnChange="actualizar();"></div>	
+<!-- <div class="campo"><div>Fuentes</div>
 		<select class="captura" id="ffuente" name="ffuente" OnChange="actualizar();">
 			<?php /* echo $fuentes; */ ?>
 		</select>
 	</div> -->
-	<div class="campo"><div>Grupo Priorizado</div>
-		<select class="captura" id="fgrupo" name="fgrupo" OnChange="actualizar();">
-			<?php echo $grupos; ?>
-		</select>
+	<!--<div class="campo"><div>Grupo Priorizado</div>
+		<select class="captura" id="fcod" name="fcod" OnChange="actualizar();">
+			<?php /*echo $grupos; */?>
+		</select>-->
 	</div>
-		<div class="campo"><div>Localidad</div>
+	<!--	<div class="campo"><div>Localidad</div>
 		<select class="captura" id="flocalidad" name="flocalidad" OnChange="actualizar();">
-			<?php echo $localidad; ?>
+			<?php /*echo $localidad; */?>
 		</select>
 	</div>
 	<div class="campo"><div>Sector Catastral</div><input class="captura" size=6 id="fseca" name="fseca" OnChange="actualizar();"></div>
 	<div class="campo"><div>Manzana</div><input class="captura" size=3 id="fmanz" name="fmanz" OnChange="actualizar();"></div>
 	<div class="campo"><div>Predio</div><input class="captura" size=3 id="fpred" name="fpred" OnChange="actualizar();"></div>
-</div>
+</div>-->
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > RUTEO
 		<nav class='menu left' >

@@ -1385,7 +1385,32 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 
 
+function lis_epoc($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_epoc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
+A.fecha_toma AS Fecha_Toma,
 
+IF(A.tose_muvedias = 0, 'NO', 'SI') AS Tose_Muchas_Veces,IF(A.tiene_flema = 0, 'NO', 'SI') AS Tiene_Flemas_Mayoria_Dias,IF(A.aire_facil = 0, 'NO', 'SI') AS Se_Queda_Sin_Aire_Facilmente,IF(A.mayor = 0, 'NO', 'SI') AS Mayor_40_Años,IF(A.fuma = 0, 'NO', 'SI') AS Fuma_o_Exfumador,
+A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
+
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+FROM `hog_tam_epoc` A
+LEFT JOIN person P ON A.idpeople=P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred10();
+	$sql.=whe_date10();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `hog_tam_epoc` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred10();
+	$tot.=whe_date10();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 
 function lis_findrisc($txt){

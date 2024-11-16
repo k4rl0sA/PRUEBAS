@@ -78,7 +78,7 @@ function cmp_rute(){
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
- 'cod_cups'=>'','per_consul'=>'','caracteriza'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
+ 'cod_cups'=>'','per_consul'=>'','intervencion'=>'','caracteriza'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
@@ -128,15 +128,17 @@ function cmp_rute(){
  $c[]=new cmp('fecha_consulta','d','90',$d['direccion'],$w.' '.$o,'Fecha Ultima Consulta','fecha_asig',null,null,false,false,'','col-3');
  $c[]=new cmp('cod_cups','n','10',$d['cod_cups'],$w.' '.$o,'Cups Autorizado por EAPB','cod_cups',null,null,false,false,'','col-3');
  $c[]=new cmp('per_consul','n','10',$d['per_consul'],$w.' '.$o,'Perfil de la Consulta','per_consul',null,null,false,false,'','col-4');
+ $c[]=new cmp('intervencion','t','3',$d['intervencion'],$w.' '.$o,'Intervencion a Realizar','intervencion',null,null,false,false,'','col-15');
+ $c[]=new cmp('caracteriza','t','3',$d['caracteriza'],$w.' '.$o,'Usuario Caracterizado','caracteriza',null,null,false,false,'','col-15');
  
  
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
- $c[]=new cmp('caracteriza','t','3',$d['caracteriza'],$w.' '.$o,'Usuario Caracterizado','caracteriza',null,null,false,false,'','col-15');
- $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-15');
+ 
+ $c[]=new cmp('subred_report','s','3',$d['subred_report'],$w.' '.$o,'Subred','subred_report',null,null,false,false,'','col-2');
  $c[]=new cmp('localidad','s','3',$d['localidad'],$w.' '.$o,'Localidad','localidad',null,null,false,false,'','col-2');
  $c[]=new cmp('upz','s','3',$d['upz'],$w.' '.$o,'Upz','upz',null,null,false,false,'','col-2');
- $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,false,'','col-3');
+ $c[]=new cmp('barrio','s','5',$d['barrio'],$w.' '.$o,'Barrio','barrio',null,null,false,false,'','col-4');
  $c[]=new cmp('sector_catastral','n','6',$d['sector_catastral'],$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,null,false,false,'','col-25');
  $c[]=new cmp('nummanzana','n','3',$d['nummanzana'],$w.' '.$o,'Nummanzana (3)','nummanzana',null,null,false,false,'','col-25');
  $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,null,false,false,'','col-25');

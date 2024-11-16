@@ -880,7 +880,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('relevo') ? "<li title='Relevo' onclick=\"mostrar('relevo','pro',event,'','../relevo/lib.php',7,'relevo');Color('datos-lis');\"><i class=' fa-solid fa-person-cane ico' id='{$c['ACCIONES']}'></i></li>":"";
 		if (sessions($c['ACCIONES'])) {
 			$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL','PROFAM'];
-		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class='fa-solid fa-person-cane ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
+		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class=' fa-solid fa-address-book ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
 		}
 		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1 ' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-cane ico' id='{$c['ACCIONES']}'></i></li>":"";
 		}

@@ -19,7 +19,7 @@ else {
   }   
 }
 
-function lis_psicologia(){
+/* function lis_psicologia(){
 	$info=datos_mysql("SELECT COUNT(DISTINCT concat(P.tipo_doc,'_',idpersona)) total from personas P 
 	LEFT JOIN eac_atencion A ON P.idpersona = A.atencion_idpersona AND P.tipo_doc = A.atencion_tipodoc 
 	LEFT JOIN hog_viv V ON P.vivipersona=V.idviv 
@@ -51,7 +51,7 @@ function lis_psicologia(){
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"psicologia",$regxPag);
 }
-
+ 
 function botones(){
 	$btn="";
 	return $btn;
@@ -75,11 +75,9 @@ function whe_psicologia() {
 			}
 		}
 	}
-		
-		
-		/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-		$usu=divide($rta["responseResult"][0]['usu']);
-		$subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ; */
+		// $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
+		// $usu=divide($rta["responseResult"][0]['usu']);
+		// $subred = ($usu[1]=='ADM') ? '1,2,3,4,5' : $usu[2] ;
 		$rta=datos_mysql("select perfil,subred from usuarios where id_usuario='".$_SESSION['us_sds']."';");
 		$perfil=divide($rta["responseResult"][0]['perfil']);
 		$subred=divide($rta["responseResult"][0]['subred']);
@@ -87,7 +85,7 @@ function whe_psicologia() {
 		$sql.="  and U.componente IN('EAC','ADM') AND U.subred IN($sub) ";
 	return $sql;
 }
-
+ */
 function focus_psicologia(){
 	return 'psicologia';
 }
@@ -285,11 +283,10 @@ function get_psicologia(){
 		return "";
 	}else{	
 		$id=divide($_POST['id']);
-		$sql="SELECT psi_tipo_doc,psi_documento,eva_chips,fecha_ses1,tipo_caso,cod_admin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,letra1,rango1,psi_diag12,psi_validacion13,psi_validacion14,otro,psi_validacion15,numsesi,estado
-		FROM `psi_psicologia` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
-
+		$sql="SELECT id_people,eva_chips,fecha_ses1,tipo_caso,cod_admin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,letra1,rango1,psi_diag12,psi_validacion13,psi_validacion14,otro,psi_validacion15,numsesi,estado
+		FROM `psi_psicologia` WHERE id_people='{$id[0]}'";
 		$info=datos_mysql($sql);
-		if (isset($info['responseResult'][0])){
+		if (isset($info['responseResult'])){
 			return $info['responseResult'][0];
 		} else {
 			return "";

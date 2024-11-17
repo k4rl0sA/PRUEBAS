@@ -190,6 +190,7 @@ function get_relevo(){
 		FROM rel_relevo R 
 		LEFT JOIN person P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}'";
+		var_dump($sql);
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
 			return $info['responseResult'][0];

@@ -448,9 +448,10 @@ function opc_rel_validacion12($id='') {
 }
 function opc_rel_validacion13($id='') {
 	// var_dump($_REQUEST);
-	$requestId = trim($_REQUEST['id']);
-	$id=divide($requestId);
-	$id = trim((string)$id[0]);
+	$idp = trim($_REQUEST['id']);
+	$idp=divide($idp);
+	$idp = trim((string)$id[0]);
+	$id= trim((string)$id);
 	
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
 			from person 

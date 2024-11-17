@@ -163,13 +163,13 @@ function cmp_relevo() {
 	$c[]=new cmp('whodas1','t','3',$j['whodas1'],$w.'  '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas1',null,null,false,false,'','col-15');
 	$c[]=new cmp('cert_disca1','s','3',$j['cert_disca1'],$w.' cr1 '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,false,false,'','col-15');
 
-	$c[]=new cmp('cuidado_2','s','18',$j['cuidado_2'],$w.' cr2 care '.$o,'Seleccione Segundo Usuario que requiere cuidado','rel_validacion132',null,null,false,false,'','col-25',"validCare('care');");
+	$c[]=new cmp('cuidado_2','s','18',$j['cuidado_2'],$w.' cr2 care '.$o,'Seleccione Segundo Usuario que requiere cuidado','rel_validacion13',null,null,false,false,'','col-25',"validCare('care');");
 	$c[]=new cmp('antecedentes_2','s','3',$j['antecedentes_2'],$w.' cr2 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-25',"othePath(this,'ot1');");
 	$c[]=new cmp('otro_2','t','50',$j['otro_2'],$w.' ot1 '.$o,'Otro, Cual','otro_2',null,null,false,false,'','col-2');
 	$c[]=new cmp('whodas2','t','3',$j['whodas2'],$w.' '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas2',null,null,false,false,'','col-15');
 	$c[]=new cmp('cert_disca2','s','3',$j['cert_disca2'],$w.' cr2 '.$o,'Cuenta con Certificado de Discapacidad','aler',null,null,false,false,'','col-15');
 	
-	$c[]=new cmp('cuidado_3','s','18',$j['cuidado_3'],$w.' cr3 care '.$o,'Seleccione Tercer Usuario que requiere cuidado','rel_validacion133',null,null,false,false,'','col-25',"validCare('care');");
+	$c[]=new cmp('cuidado_3','s','18',$j['cuidado_3'],$w.' cr3 care '.$o,'Seleccione Tercer Usuario que requiere cuidado','rel_validacion13',null,null,false,false,'','col-25',"validCare('care');");
 	$c[]=new cmp('antecedentes_3','s','3',$j['antecedentes_3'],$w.' cr3 '.$o,'ANTECEDENTES PATOLOGICOS','antecedentes',null,null,false,false,'','col-25',"othePath(this,'ot2');");
 	$c[]=new cmp('otro_3','t','50',$j['otro_3'],$w.' ot2 '.$o,'Otro, Cual','otro_3',null,null,false,false,'','col-2');
 	$c[]=new cmp('whodas3','t','3',$j['whodas3'],$w.' '.$o,'WHODAS INTERPRETACIÓN - Inicial','whodas3',null,null,false,false,'','col-15');
@@ -447,28 +447,17 @@ function opc_rel_validacion12($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
 function opc_rel_validacion13($id = '') {
-    // Verificar si el parámetro $id está vacío
     if (empty($id)) {
-        // Si no se pasa un id explícito, intentar obtenerlo desde $_REQUEST
         if (isset($_REQUEST['id'])) {
             $id = divide($_REQUEST['id']);
         } else {
             return "<option value='' class='alerta'>SELECCIONE</option>";
         }
     }
-    
-    // Si $id es un array, tomamos el primer valor
     if (is_array($id)) {
         $id = $id[0] ?? '';
     }
-    
-    // Limpiamos el valor del id para evitar problemas de espacios o tipos de datos
     $id = trim((string)$id);
-
-    // Depuración para verificar el valor antes de pasarlo a opc_sql
-    var_dump($id); // Asegúrate de que sea "65" u otro id válido
-
-    // Llamar a opc_sql con el id normalizado
     return opc_sql("SELECT idpeople, concat_ws(' ', nombre1, nombre2, apellido1, apellido2) AS 'Nombres' FROM person", $id);
 }
 

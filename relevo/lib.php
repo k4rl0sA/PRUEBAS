@@ -447,6 +447,7 @@ function opc_rel_validacion12($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
 function opc_rel_validacion13($id = '') {
+    // Verificar si $_REQUEST['id'] tiene un valor
     if (empty($id)) {
         if (isset($_REQUEST['id'])) {
             $id = divide($_REQUEST['id']);
@@ -454,20 +455,31 @@ function opc_rel_validacion13($id = '') {
             return [];
         }
     }
-	var_dump($id);
-    if (!is_array($id) || empty($id[0])) {
-        return [];
+
+    // Asegurarnos de que $id sea un array y obtener solo el primer elemento
+    if (is_array($id) && !empty($id[0])) {
+        $idValue = $id[0];
+    } else {
+        $idValue = $id; // En caso de que no sea un array
     }
+
+    // Consulta SQL utilizando el primer valor de $id (si es un array)
     $query = "SELECT idpeople, 
                      CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2) AS 'Nombres' 
               FROM person 
-              WHERE vivipersona = (SELECT vivipersona FROM person WHERE idpeople = '$id[0]') 
-              AND idpeople <> '$id[0]'";
-    $resultado = opc_sql($query, $id);
-    // var_dump($id);
-    // var_dump($resultado);
+              WHERE vivipersona = (SELECT vivipersona FROM person WHERE idpeople = '$idValue') 
+              AND idpeople <> '$idValue'";
+
+    // Pasamos $idValue en lugar de $id a la función opc_sql()
+    $resultado = opc_sql($query, $idValue);
+
+    // Depuración para verificar el contenido
+    var_dump($id);
+    var_dump($resultado);
+
     return $resultado;
 }
+
 
 function opc_rel_validacion132($id='') {
 	var_dump($id);

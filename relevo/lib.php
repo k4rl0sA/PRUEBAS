@@ -195,7 +195,17 @@ function get_relevo(){
 		R.antecedentes_1,
 		R.otro_1,
 		R.whodas1,
-		R.cert_disca1,P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
+		R.cert_disca1, 
+		R.cuidado_2,
+		R.antecedentes_2,
+		R.otro_2,
+		R.whodas2,
+		R.cert_disca2,
+		R.cuidado_3,
+		R.antecedentes_3,
+		R.otro_3,
+		R.whodas3,
+		R.cert_disca3,P.tipo_doc AS Tipo_Doc,P.idpersona AS Documento,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) AS Persona_Cuidadora ,P.fecha_nacimiento,P.sexo,P.genero,P.etnia,P.nacionalidad,P.regimen,P.eapb
 		FROM rel_relevo R 
 		LEFT JOIN person P ON R.id_people=P.idpeople
 		WHERE R.id_people='{$id[0]}'";

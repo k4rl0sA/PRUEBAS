@@ -446,18 +446,17 @@ function opc_rel_validacion10($id='') {
 function opc_rel_validacion12($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
-function opc_rel_validacion13($id = '') {
-    if (empty($id) && isset($_REQUEST['id'])) {
-        $requestId = trim($_REQUEST['id']); // Limpiamos espacios
-        $id = !empty($requestId) ? divide($requestId) : '';
-    }
-    if (is_array($id)) {
-        $id = $id[0] ?? '';
-    }
-    $id = trim((string)$id);
-    return opc_sql("SELECT idpeople, concat_ws(' ', nombre1, nombre2, apellido1, apellido2) AS 'Nombres' FROM person", $id);
+function opc_rel_validacion13($id='') {
+	// var_dump($_REQUEST);
+	$requestId = trim($_REQUEST['id']);
+	$id=divide($requestId);
+	
+		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
+			from person 
+			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id);
+			// var_dump($id);
+	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
-
 
 function opc_rel_validacion1($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 28 and estado='A' ORDER BY 1",$id);

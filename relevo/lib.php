@@ -181,6 +181,7 @@ function cmp_relevo() {
 }
 
 function get_relevo(){
+	var_dump($_POST);
 	if($_POST['id']=='0'){
 		return "";
 	}else{

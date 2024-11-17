@@ -211,7 +211,6 @@ function get_relevo(){
 		WHERE R.id_people='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
-			var_dump($info);
 			return $info['responseResult'][0];
 		} else {
 			return "";

@@ -472,7 +472,6 @@ function opc_rel_validacion13($id = '') {
 
     // Pasamos $idValue en lugar de $id a la función opc_sql()
     $resultado = opc_sql($query, $idValue);
-
     // Depuración para verificar el contenido
     return $resultado;
 }

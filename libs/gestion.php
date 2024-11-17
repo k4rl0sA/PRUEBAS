@@ -350,6 +350,7 @@ function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 }
 
 function opc_sql($sql,$val,$str=true){
+  $val = is_array($val) ? $val[0] ?? '' : (string)$val;
 	$rta="<option value class='alerta' >SELECCIONE</option>";
 	$con=$GLOBALS['con'];
   // var_dump($con);

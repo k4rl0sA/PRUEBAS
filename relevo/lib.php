@@ -451,7 +451,7 @@ function opc_rel_validacion13($id='') {
 	$id=divide($_REQUEST['id']);
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
 			from person 
-			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id[0]);
+			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id);
 			// var_dump($id);
 	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
@@ -460,7 +460,7 @@ function opc_rel_validacion132($id='') {
 	$id=divide($_REQUEST['id']);
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
 			from person 
-			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id[0]);
+			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id);
 			// var_dump($id);
 	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
@@ -469,7 +469,7 @@ function opc_rel_validacion133($id='') {
 	$id=divide($_REQUEST['id']);
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
 			from person 
-			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id[0]);
+			where vivipersona=(select vivipersona from person where idpeople='$id[0]') and idpeople<>'$id[0]'",$id);
 			// var_dump($id);
 	// return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }

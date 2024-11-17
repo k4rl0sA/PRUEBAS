@@ -447,8 +447,31 @@ function opc_rel_validacion12($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);
 }
 function opc_rel_validacion13($id = '') {
-	return opc_sql("SELECT idpeople, concat_ws(' ', nombre1, nombre2, apellido1, apellido2) AS 'Nombres' FROM person", '65');
+    // Verificar si el parámetro $id está vacío
+    if (empty($id)) {
+        // Si no se pasa un id explícito, intentar obtenerlo desde $_REQUEST
+        if (isset($_REQUEST['id'])) {
+            $id = divide($_REQUEST['id']);
+        } else {
+            return "<option value='' class='alerta'>SELECCIONE</option>";
+        }
+    }
+    
+    // Si $id es un array, tomamos el primer valor
+    if (is_array($id)) {
+        $id = $id[0] ?? '';
+    }
+    
+    // Limpiamos el valor del id para evitar problemas de espacios o tipos de datos
+    $id = trim((string)$id);
+
+    // Depuración para verificar el valor antes de pasarlo a opc_sql
+    var_dump($id); // Asegúrate de que sea "65" u otro id válido
+
+    // Llamar a opc_sql con el id normalizado
+    return opc_sql("SELECT idpeople, concat_ws(' ', nombre1, nombre2, apellido1, apellido2) AS 'Nombres' FROM person", $id);
 }
+
 
 
 function opc_rel_validacion132($id='') {

@@ -463,8 +463,8 @@ function opc_rel_validacion13($id = '') {
               WHERE vivipersona = (SELECT vivipersona FROM person WHERE idpeople = '$id[0]') 
               AND idpeople <> '$id[0]'";
     $resultado = opc_sql($query, $id);
-    var_dump($id);
-    var_dump($resultado);
+    // var_dump($id);
+    // var_dump($resultado);
     return $resultado;
 }
 

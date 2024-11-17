@@ -286,8 +286,7 @@ function get_psicologia(){
 		$sql="SELECT id_people,eva_chips,fecha_ses1,tipo_caso,cod_admin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,letra1,rango1,psi_diag12,psi_validacion13,psi_validacion14,otro,psi_validacion15,numsesi,estado
 		FROM `psi_psicologia` WHERE id_people='{$id[0]}'";
 		$info=datos_mysql($sql);
-		var_dump($sql);
-		if (isset($info['responseResult'])){
+		if (isset($info['responseResult'][0])){
 			return $info['responseResult'][0];
 		} else {
 			return "";

@@ -454,6 +454,7 @@ function opc_rel_validacion13($id = '') {
             return [];
         }
     }
+	var_dump($id);
     if (!is_array($id) || empty($id[0])) {
         return [];
     }

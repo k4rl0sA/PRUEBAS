@@ -450,7 +450,7 @@ function opc_rel_validacion13($id='') {
 	// var_dump($_REQUEST);
 	$idp = trim($_REQUEST['id']);
 	$idp=divide($idp);
-	$idp = trim((string)$id[0]);
+	$idp = trim((string)$idp[0]);
 	$id= trim((string)$id);
 	
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 

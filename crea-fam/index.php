@@ -94,7 +94,7 @@ function grabar(tb='',ev){
  	};
    var ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){
-    var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente la Continuidad del Caso?");
+    var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente la CONTINUIDAD DEL CASO?");
     if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
 			}

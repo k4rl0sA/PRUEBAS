@@ -181,7 +181,7 @@ function cmp_psicologia() {
 	//error_reporting(0);
 	$rta="";
 	$hoy=date('Y-m-d');
-	$t=['psi_tipo_doc'=>'','psi_documento'=>'','tipo_caso'=>'','cod_admin'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','letra1'=>'','rango1'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'',
+	$t=['id_people'=>'','psi_tipo_doc'=>'','psi_documento'=>'','tipo_caso'=>'','cod_admin'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','letra1'=>'','rango1'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'',
 	'zung_puntaje'=>'','hamilton_total'=>'','psi_diag12'=>'','otro'=>'','numsesi'=>'','eva_chips'=>'','fecha_ses1'=>''];
 	$w='psicologia';
 	$d=get_psicologia();
@@ -314,7 +314,40 @@ function gra_psicologia(){
 	$idpsi=divide($_POST['idpsi']);
 	if(count($idpsi)==2){ 
 
-		$sql="INSERT INTO psi_psicologia VALUES (
+		$sql = "INSERT INTO psi_psicologia VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 'i', 'value' => $idpsi[0]],
+		['type' => 's', 'value' => $_POST['fecha_ses1']],
+		['type' => 's', 'value' => $_POST['tipo_caso']],
+		['type' => 's', 'value' => $_POST['cod_admin']],
+		['type' => 's', 'value' => $_POST['evachips']],
+		['type' => 's', 'value' => $_POST['psi_validacion1']],
+		['type' => 's', 'value' => $_POST['psi_validacion2']],
+		['type' => 's', 'value' => $_POST['psi_validacion3']],
+		['type' => 's', 'value' => $_POST['psi_validacion4']],
+		['type' => 's', 'value' => $_POST['psi_validacion5']],
+		['type' => 's', 'value' => $_POST['psi_validacion6']],
+		['type' => 's', 'value' => $_POST['psi_validacion7']],
+		['type' => 's', 'value' => $_POST['psi_validacion8']],
+		['type' => 's', 'value' => $_POST['psi_validacion9']],
+		['type' => 's', 'value' => $_POST['psi_validacion10']],
+		['type' => 's', 'value' => $_POST['psi_validacion11']],
+		['type' => 's', 'value' => $_POST['letra1']],
+		['type' => 's', 'value' => $_POST['rango1']],
+		['type' => 's', 'value' => $_POST['psi_diag12']],
+		['type' => 's', 'value' => $_POST['psi_validacion13']],
+		['type' => 's', 'value' => $_POST['psi_validacion14']],
+		['type' => 's', 'value' => $_POST['otro']],
+		['type' => 's', 'value' => $_POST['psi_validacion15']],
+		['type' => 'i', 'value' => $_POST['numsesi']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => 'A']
+		];
+		return $rta = mysql_prepd($sql, $params);
+		/* $sql="INSERT INTO psi_psicologia VALUES (
 			NULL,			
 			$idpsi[0],
 			trim(upper('{$_POST['fecha_ses1']}')),
@@ -344,7 +377,7 @@ function gra_psicologia(){
 			DATE_SUB(NOW(), INTERVAL 5 HOUR),
 			NULL,
 			NULL,
-			'A')";
+			'A')"; */
 		//die();
 	  //echo $x;
 	//   echo $sql;
@@ -374,11 +407,13 @@ function gra_psicologia(){
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 	
 			//  echo $sql;
+			$rta=dato_mysql($sql);
+			return $rta; 
 	}
 
-	$rta=dato_mysql($sql);
+	
 	//return "correctamente";
-	return $rta; 
+	
 }
 
 

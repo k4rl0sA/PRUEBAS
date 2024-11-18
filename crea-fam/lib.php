@@ -900,7 +900,6 @@ function formato_dato($a,$b,$c,$d){
 			if (psiSesi2($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 2' onclick=\"mostrar('sesion2','pro',event,'','../psicologia/lib.php',7,'sesion2');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
-		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 			$rta.="<li class='icono editar ' title='Editar Atención' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(getData,1300,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(getData,1500,'atencion',event,this,['idpersona','tipo_doc']);setTimeout(changeSelect,1100,'letra1','rango1');setTimeout(changeSelect,1150,'letra2','rango2');setTimeout(changeSelect,1280,'letra3','rango3');setTimeout(changeSelect,1385,'rango1','diagnostico1');setTimeout(changeSelect,1385,'rango2','diagnostico2');setTimeout(changeSelect,1385,'rango3','diagnostico3');Color('datos-lis');\"></li>";

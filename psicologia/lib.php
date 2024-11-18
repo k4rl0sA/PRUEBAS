@@ -187,6 +187,7 @@ function cmp_psicologia() {
 	$d=get_psicologia();
 	$j=get_persona();
 	$k=get_DataPersonas();
+	var_dump($_POST);
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;
@@ -194,9 +195,9 @@ function cmp_psicologia() {
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$key=' srch';
-	$c[]=new cmp('idpsi','h','20', $d['psi_tipo_doc'] . "_" . $d['psi_documento'] ,$w.' '.$o,'','',null,null,true,$u,'','col-1');
+	$c[]=new cmp('idpsi','h','20', $_POST['id'] ,$w.' '.$o,'','',null,null,true,$u,'','col-1');
 	$c[]=new cmp('psi_documento','t','20',$j['idpersona'],$w.' '.$o.$key,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
-	$c[]=new cmp('psi_tipo_doc','s','3',$j['tipo_doc'],$w.' '.$o.$key,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5','getDatForm(\'srch\',\'DataPersonas\',[\'infgen\']);');
+	$c[]=new cmp('psi_tipo_doc','s','3',$j['tipo_doc'],$w.' '.$o.$key,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');//,'getDatForm(\'srch\',\'DataPersonas\',[\'infgen\']);'
 	$c[]=new cmp('psi_nombre1','t','20',$j['nombre1'],$w.' '.$o,'Primer nombre','psi_nombre1',null,'',false,false,'','col-2');
 	$c[]=new cmp('psi_nombre2','t','20',$j['nombre2'],$w.' '.$o,'Segundo nombre','psi_nombre2',null,'',false,false,'','col-3');
 	$c[]=new cmp('psi_apellido1','t','20',$j['apellido1'],$w.' '.$o,'Primer apellido','psi_apellido1',null,'',false,false,'','col-2');

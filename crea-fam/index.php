@@ -87,7 +87,8 @@ function grabar(tb='',ev){
     'tamepoc':'../epoc/lib.php',
     'tamcope':'../cope/lib.php',
     'relevo':'../relevo/lib.php',
-    'sesiones':'../relevo/sesiones.php'
+    'sesiones':'../relevo/sesiones.php',
+    'psicologia':'../psicologia/lib.php'
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);

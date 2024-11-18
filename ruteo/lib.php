@@ -132,8 +132,6 @@ $d=get_rute();
  $c[]=new cmp('cod_cups','n','10',$d['cod_cups'],$w.' '.$o,'Cups Autorizado por EAPB','cod_cups',null,null,false,false,'','col-3');
  
  
- 
- 
  $o='datesp';
  $c[]=new cmp($o,'e',null,'DATOS DE UBUCACIÓN',$w);
  
@@ -162,14 +160,14 @@ $d=get_rute();
  }else{
 	$o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN ',$w);
- $c[]=new cmp('fecha_gest','d','10',$d['fecha_gest'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_g','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
- $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
- $c[]=new cmp('direccion_nueva','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$x,'','col-25');
- $c[]=new cmp('sector_catastral_n','n','6',$d['sect'],$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$x,'','col-25');
- $c[]=new cmp('nummanzana_n','n','3',$d['manz'],$w.' dir '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$x,'','col-25');
- $c[]=new cmp('predio_num_n','n','3',$d['pred'],$w.' dir '.$o,'Predio de Num (3)','predio_num_n',null,null,false,$x,'','col-25');
- $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+ $c[]=new cmp('fecha_gest','d','10','',$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('estado_g','s',2,'',$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
+ $c[]=new cmp('direccion_nueva','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$x,'','col-25');
+ $c[]=new cmp('sector_catastral_n','n','6','',$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$x,'','col-25');
+ $c[]=new cmp('nummanzana_n','n','3','',$w.' dir '.$o,'Nummanzana (3)','nummanzana_n',null,null,false,$x,'','col-25');
+ $c[]=new cmp('predio_num_n','n','3','',$w.' dir '.$o,'Predio de Num (3)','predio_num_n',null,null,false,$x,'','col-25');
+ $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
  }
  
  

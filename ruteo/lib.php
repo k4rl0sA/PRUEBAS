@@ -83,7 +83,8 @@ function cmp_rute(){
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
- $d=get_rute(); 
+//  $d=get_rute(); 
+ $d='';
  if ($d=="") {$d=$t;}
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);

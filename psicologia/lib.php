@@ -509,10 +509,10 @@ function men_sesion2(){
 }
  
 function gra_sesion2(){
-print_r($_POST);
+// print_r($_POST);
 	$idpsi=divide($_POST['idpsi']);
 	if(count($idpsi)==3){ 
-	$sql="UPDATE psi_sesion2 SET 
+	/* $sql="UPDATE psi_sesion2 SET 
 				psi_validacion1 = TRIM(upper('{$_POST['psi_validacion1']}')),
 				psi_validacion5 = TRIM(upper('{$_POST['psi_validacion5']}')),
 				psi_validacion8 = TRIM(upper('{$_POST['psi_validacion8']}')),
@@ -522,7 +522,7 @@ print_r($_POST);
 		fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE id_sesion2='$idpsi[2]'";
 	  //echo $x;
-	//   echo $sql;
+	//   echo $sql; */
 	} else {
 		$sql = "INSERT INTO psi_sesion2 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [

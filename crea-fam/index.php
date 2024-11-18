@@ -358,6 +358,56 @@ function hidOpt(act,clsCmp,clsCmp1,valid){
 	}
 }
 
+function hidFieOld(act,clsCmp,valid) {
+	const cmpAct=document.getElementById(act);
+	const cmps = document.querySelectorAll(`.${clsCmp}`);
+	if(cmpAct.value=='SI'){
+		for(i=0;i<cmps.length;i++){
+			hidFie(cmps[i],valid);
+		}
+	}else{
+		for(i=0;i<cmps.length;i++){
+			hidFie(cmps[i],!valid);
+		}
+	}
+}
+
+function hidFieselet(act,clsCmp,b,valid,valor) {
+	const cmpAct=document.getElementById(act);
+	const cmpHid = document.querySelectorAll(`.${clsCmp}`);
+
+	if(valid){
+		if(!cmpAct){
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.add('oculto');
+			}
+		}else if(cmpAct.value==valor){
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.remove('oculto');
+			}
+		}else{
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.add('oculto');
+				cmpHid[i].value='';
+			}
+		}
+	}else{
+		if(!cmpAct){
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.add('oculto');
+			}
+		}else if(cmpAct.value==valor){
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.add('oculto');
+				cmpHid[i].value='';
+			}
+		}else{
+			for(i=0;i<cmpHid.length;i++){
+				cmpHid[i].classList.remove('oculto');
+			}
+		}
+	}
+}
 /*******************FIN PSICOLOGIA*************************/
 </script>
 </head>

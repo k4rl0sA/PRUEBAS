@@ -45,7 +45,7 @@ function grabar(tb='',ev) {
 	setTimeout(actualizar,300);
 }
 
-
+/*
 function hidFieselet(act,clsCmp,b,valid,valor) {
 	const cmpAct=document.getElementById(act);
 	const cmpHid = document.querySelectorAll(`.${clsCmp}`);
@@ -112,7 +112,7 @@ function hidFieOpt(a,clsCmp){
 	}
 }
 
-/* function hidPlan(act,clsCmp,valid) {
+ function hidPlan(act,clsCmp,valid) {
 	const cmpAct=document.getElementById(act);
 	const cmps = document.querySelectorAll(`.${clsCmp}`);
 	if(cmpAct.value=='1'||cmpAct.value=='3' ){

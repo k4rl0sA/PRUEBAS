@@ -382,7 +382,7 @@ function gra_psicologia(){
 	  //echo $x;
 	//   echo $sql;
 	} else {
-		$sql="UPDATE `psi_psicologia` SET
+		/* $sql="UPDATE `psi_psicologia` SET
 				eva_chips=TRIM(upper('{$_POST['evachips']}')),
 				psi_validacion1= TRIM(upper('{$_POST['psi_validacion1']}')),
 				psi_validacion2= TRIM(upper('{$_POST['psi_validacion2']}')),
@@ -408,7 +408,7 @@ function gra_psicologia(){
 		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 	
 			//  echo $sql;
 			$rta=dato_mysql($sql);
-			return $rta; 
+			return $rta;  */
 	}
 
 	

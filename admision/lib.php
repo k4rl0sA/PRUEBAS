@@ -105,7 +105,7 @@ function cmp_admision(){
 	$e="";
 	$w='admision';
 	$o='infusu';
-	var_dump($_POST);
+	// var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	$c[]=new cmp('id_factura','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('tipo_doc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo Documento','atencion_tipo_doc',null,'',true,false,'','col-5');

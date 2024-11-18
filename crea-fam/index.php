@@ -88,7 +88,9 @@ function grabar(tb='',ev){
     'tamcope':'../cope/lib.php',
     'relevo':'../relevo/lib.php',
     'sesiones':'../relevo/sesiones.php',
-    'psicologia':'../psicologia/lib.php'
+    'psicologia':'../psicologia/lib.php',
+    'sesion2':'../psicologia/lib.php'
+
  	};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);
@@ -417,18 +419,10 @@ function hidFieselet(act,clsCmp,b,valid,valor) {
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='homes';
-/* $hoy = date("Y-m-d");
-$ayer = date("Y-m-d",strtotime($hoy."- 2 days")); */
-/* $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
-$usu=divide($rta["responseResult"][0]['usu']); */
-// var_dump($usu);
-/*$grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');*/
 
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('ADM','AUXHOG','PROFAM','SUPHOG','SUPEAC','ADMHOG','MEDATE','ENFATE','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 2",$_SESSION['us_sds']);
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
-// $territorios=opc_sql("SELECT descripcion,descripcion FROM catadeta WHERE idcatalogo=202 AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",'');
-// $territorio = ($perfil == 'ADMEAC' || $perfil == 'ADM' || $perfil == 'SUPEAC' ) ? '' : 'disabled';
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>

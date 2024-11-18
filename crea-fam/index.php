@@ -334,6 +334,30 @@ function auxSign(a,b){
 	}
 }
 /*******************FIN RELEVO*************************/
+
+/*******************INICIO PSICOLOGIA*************************/
+function hidOpt(act,clsCmp,clsCmp1,valid){
+	const cmpAct=document.getElementById(act);
+	const cmps = document.querySelectorAll(`.${clsCmp}`);
+	const x = document.querySelectorAll(`.${clsCmp1}`);
+	if(cmpAct.value=='SI'){
+		for(i=0;i<cmps.length;i++){
+			hidFie(cmps[i],valid);
+		}
+		for(i=0;i<x.length;i++){
+			hidFie(x[i],!valid);
+		}
+	}else{
+		for(i=0;i<cmps.length;i++){
+			hidFie(cmps[i],!valid);
+		}
+		for(i=0;i<x.length;i++){
+			hidFie(x[i],valid);
+		}
+	}
+}
+
+/*******************FIN PSICOLOGIA*************************/
 </script>
 </head>
 <body Onload="actualizar();">

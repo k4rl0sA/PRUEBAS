@@ -191,7 +191,7 @@ function cmp_psicologia() {
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;
-	var_dump($j);
+	// var_dump($j);
 	$u=($d['psi_tipo_doc']=='')?true:false;
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

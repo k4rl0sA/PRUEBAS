@@ -417,6 +417,19 @@ function hidFieselet(act,clsCmp,b,valid,valor) {
 		}
 	}
 }
+function hidPlan(a,clsCmp){
+	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp+',textarea.'+clsCmp);
+	const act=document.getElementById(a);
+	if (act.value=='1'||act.value=='3' ){
+		for (i = 0; i < ele.length; i++){ 
+				enaFie(ele[i],false);
+		}
+	}else{
+		for (i = 0; i < ele.length; i++){ 
+			enaFie(ele[i],true);
+		}	
+	}
+}
 /*******************FIN PSICOLOGIA*************************/
 </script>
 </head>

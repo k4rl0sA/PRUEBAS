@@ -124,7 +124,7 @@ function hidFieOpt(a,clsCmp){
 			hidFie(cmps[i],!valid);
 		}
 	}
-} */
+} 
 
 function hidPlan(a,clsCmp){
 	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp+',textarea.'+clsCmp);
@@ -139,6 +139,9 @@ function hidPlan(a,clsCmp){
 		}	
 	}
 }
+*/
+
+
 
 function hidOpt(act,clsCmp,clsCmp1,valid){
 	const cmpAct=document.getElementById(act);

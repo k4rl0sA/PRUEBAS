@@ -433,7 +433,7 @@ function cmp_sesion2() {
 	$c[]=new cmp($o,'e',null,'Sesion 2',$w);	
 	$id=divide($_POST['id']);
 	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  
-	FROM person  P  LEFT JOIN psi_sesion2 S2 ON P.idpeople=S2.idpeople WHERE P.idpeople='{$id[0]}'";
+	FROM person  P  LEFT JOIN psi_sesion2 S2 ON P.idpeople=S2.id_people WHERE P.idpeople='{$id[0]}'";
 	// echo $sql;
 	$info=datos_mysql($sql);
 	$edad=$info['responseResult'][0]['edad'];

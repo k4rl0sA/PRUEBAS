@@ -830,6 +830,17 @@ function psiSesi2($id) {
 	}
 }
 
+function psiSessi($id) {
+    $id = divide($id);
+    $sql = "SELECT id_sesion2 FROM psi_sesion2 WHERE id_people='".$id[0]."' AND contin_caso='4'";
+    $info = datos_mysql($sql);
+	// var_dump($sql);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
+}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
@@ -893,12 +904,15 @@ function formato_dato($a,$b,$c,$d){
 		$rta .= acceso('relevo') ? "<li title='Relevo' onclick=\"mostrar('relevo','pro',event,'','../relevo/lib.php',7,'relevo');Color('datos-lis');\"><i class=' fa-solid fa-person-cane ico' id='{$c['ACCIONES']}'></i></li>":"";
 		if (sessions($c['ACCIONES'])) {
 			$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL','PROFAM','TERAPEUTA'];
-		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class=' fa-solid fa-address-book ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
+			$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class=' fa-solid fa-address-book ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";
 		}
 		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 
 			if (psiSesi2($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 2' onclick=\"mostrar('sesion2','pro',event,'','../psicologia/lib.php',7,'sesion2');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}
+			if (psiSessi($c['ACCIONES'])) {
+				$rta .= acceso('psicologia') ? "<li title='Sesión 3, 4, 5, 6' onclick=\"mostrar('sesiones_psi','pro',event,'','../psicologia/sesiones.php',7,'sesiones_psi');setTimeout(hidPlan,700,'psi_validacion10','duda_com',false);setTimeout(hidFieOpt,700,'psi_validacion7','sem_hide',false);Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 	}
 		if($a=='atencion' && $b=='acciones'){

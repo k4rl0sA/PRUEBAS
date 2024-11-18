@@ -73,9 +73,8 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rute(){
  $rta="";
-/* 	$rta .="<div class='encabezado vivienda'>TABLA DE GESTIONES REALIZADAS</div>
-	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>"; */
-
+$rta .="<div class='encabezado vivienda'>TABLA DE GESTIONES REALIZADAS</div>
+	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
  'intervencion'=>'','caracteriza'=>'','per_consul'=>'','fecha_consulta'=>'','cod_cups'=>'',
@@ -182,7 +181,7 @@ $d=get_rute();
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT fecha_gestion Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
+		$sql="SELECT fecha_gest Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
 		FROM eac_ruteo_ges 
 			WHERE  usu_creo='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";

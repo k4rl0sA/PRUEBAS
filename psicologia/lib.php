@@ -826,17 +826,17 @@ function gra_sesion_fin(){
 
 function opc_cod_admisfin($id=''){
 	$cod=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=9 AND final_consul=25 ORDER BY 1", $id);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.idpeople='".$cod[0]."' AND cod_cups=9 AND final_consul=25 ORDER BY 1", $id);
 }
 
 function opc_cod_admin($id=''){
 	$cod=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.idpeople='".$cod[0]."' AND cod_cups=8 AND final_consul=15 ORDER BY 1", $id);
 }
 
 function opc_cod_admin2($id=''){
 	$cod=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.tipo_doc='".$cod[0]."' AND af.documento='".$cod[1]."' AND cod_cups=9 AND final_consul=16 ORDER BY 1", $id);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.idpeople='".$cod[0]."' AND cod_cups=9 AND final_consul=16 ORDER BY 1", $id);
 }
 function opc_genero($id=''){
 	    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY 1",$id);

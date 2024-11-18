@@ -305,7 +305,11 @@ function get_persona(){
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
 		$info=datos_mysql($sql);
     	// echo $sql."=>".$_POST['id'];
-		return $info['responseResult'][0];
+		if (isset($info['responseResult'][0])){
+			return $info['responseResult'][0];
+		} else {
+			return "";
+		}
 	} 
 }
  

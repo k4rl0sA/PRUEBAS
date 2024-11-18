@@ -474,7 +474,7 @@ function get_sesion2(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT CONCAT(id_people,'_',id_sesion2) id,`psi_tipo_doc`, `psi_documento`, `psi_fecha_sesion`,cod_admin2 ,`psi_validacion1`, `psi_validacion2`, `psi_validacion3`, `psi_validacion4`, `psi_validacion5`, `psi_validacion6`, `psi_validacion7`, `psi_validacion8`, `psi_validacion9`, `psi_validacion10`
+		$sql="SELECT CONCAT(id_people,'_',id_sesion2) id,`psi_fecha_sesion`,cod_admin2 ,`psi_validacion1`, `psi_validacion2`, `psi_validacion3`, `psi_validacion4`, `psi_validacion5`, `psi_validacion6`, `psi_validacion7`, `psi_validacion8`, `psi_validacion9`, `psi_validacion10`
 		,TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad, contin_caso 
 		FROM psi_sesion2 S2
 		LEFT JOIN person P ON  S2.id_people=P.idpeople
@@ -523,7 +523,6 @@ function gra_sesion2(){
 		usu_update =TRIM(UPPER('{$_SESSION['us_sds']}')),
 		fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE id_sesion2='$idpsi[2]'";
-		// psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 
 	  //echo $x;
 	//   echo $sql;
 	} else {

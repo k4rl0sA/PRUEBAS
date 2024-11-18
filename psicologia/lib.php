@@ -438,8 +438,6 @@ function cmp_sesion2() {
 	$info=datos_mysql($sql);
 	$edad=$info['responseResult'][0]['edad'];
 	$dis = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
-	$id= ($d['id']=='')? $_POST['id']:$d['id'];
-
 	$c[]=new cmp('idpsi','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
 	// $c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,true,'','col-5');
 	// $c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,true,'','col-5');

@@ -73,8 +73,8 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rute(){
  $rta="";
-	$rta .="<div class='encabezado vivienda'>TABLA DE GESTIONES REALIZADAS</div>
-	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
+/* 	$rta .="<div class='encabezado vivienda'>TABLA DE GESTIONES REALIZADAS</div>
+	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>"; */
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'',
@@ -83,8 +83,7 @@ function cmp_rute(){
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
-//  $d=get_rute(); 
- $d='';
+$d=get_rute(); 
  if ($d=="") {$d=$t;}
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);

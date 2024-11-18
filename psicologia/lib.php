@@ -180,18 +180,13 @@ function bgcolor($a,$c,$f='c'){
 function cmp_psicologia() {
 	//error_reporting(0);
 	$rta="";
-
 	$hoy=date('Y-m-d');
-
 	$t=['psi_tipo_doc'=>'','psi_documento'=>'','tipo_caso'=>'','cod_admin'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','letra1'=>'','rango1'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'',
 	'zung_puntaje'=>'','hamilton_total'=>'','psi_diag12'=>'','otro'=>'','numsesi'=>'','eva_chips'=>'','fecha_ses1'=>''];
-
 	$w='psicologia';
 	$d=get_psicologia();
 	$j=get_persona();
 	$k=get_DataPersonas();
-
-
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;
@@ -264,12 +259,13 @@ function cmp_psicologia() {
 
 
 function get_DataPersonas(){
+	var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT `idpersona`,`tipo_doc`,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,`zung_analisis`,`hamilton_analisis`,`whodas_analisis`
-				FROM personas
-				LEFT JOIN hog_tam_zung ON idpersona = zung_idpersona
-				LEFT JOIN hog_tam_hamilton ON idpersona = hamilton_idpersona
-				LEFT JOIN hog_tam_whodas ON idpersona = whodas_idpersona
+		$sql="SELECT P.idpeople,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,`zung_analisis`,`hamilton_analisis`,`whodas_analisis`
+				FROM person P
+				LEFT JOIN hog_tam_zung Z ON P.idpeople= Z.idpeople
+				LEFT JOIN hog_tam_hamilton H ON P.idpeople= H.idpeople
+				LEFT JOIN hog_tam_whodas W ON P.idpeople= W.idpeople
 				WHERE idpersona='".$id[1]."' AND tipo_doc=upper('".$id[0]."')";
 	   $datos=datos_mysql($sql);
 	   if (!$datos['responseResult']) {

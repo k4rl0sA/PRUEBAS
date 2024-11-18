@@ -509,7 +509,7 @@ function men_sesion2(){
 }
  
 function gra_sesion2(){
-// print_r($_POST);
+print_r($_POST);
 	$idpsi=divide($_POST['idpsi']);
 	if(count($idpsi)==3){ 
 	$sql="UPDATE psi_sesion2 SET 
@@ -524,7 +524,31 @@ function gra_sesion2(){
 	  //echo $x;
 	//   echo $sql;
 	} else {
-		$sql="INSERT INTO psi_sesion2 VALUES (
+		$sql = "INSERT INTO psi_sesion2 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 'i', 'value' => $idpsi[0]],
+		['type' => 's', 'value' => $_POST['psi_fecha_sesion']],
+		['type' => 'i', 'value' => $_POST['cod_admin2']],
+		['type' => 's', 'value' => $_POST['psi_validacion1']],
+		['type' => 's', 'value' => $_POST['psi_validacion2']],
+		['type' => 's', 'value' => $_POST['psi_validacion3']],
+		['type' => 's', 'value' => $_POST['psi_validacion4']],
+		['type' => 's', 'value' => $_POST['psi_validacion5']],
+		['type' => 's', 'value' => $_POST['psi_validacion6']],
+		['type' => 's', 'value' => $_POST['psi_validacion7']],
+		['type' => 's', 'value' => $_POST['psi_validacion8']],
+		['type' => 's', 'value' => $_POST['psi_validacion9']],
+		['type' => 's', 'value' => $_POST['psi_validacion10']],
+		['type' => 's', 'value' => $_POST['contin_caso']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 'i', 'value' => 2]
+		];
+		return $rta = mysql_prepd($sql, $params);
+		 
+		/* $sql="INSERT INTO psi_sesion2 VALUES (
 					NULL,
 					'$idpsi[0]',
 					'$idpsi[1]',
@@ -545,7 +569,7 @@ function gra_sesion2(){
 					{$_SESSION['us_sds']},
 					NULL,
 					NULL,
-					'2')";
+					'2')"; */
 		// echo $sql;
 	}
 	$rta=dato_mysql($sql);

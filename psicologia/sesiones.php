@@ -19,15 +19,13 @@ else {
   }   
 }
 
-// \[([^\[\]]+)\]
-
 function lis_sesiones(){
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['idpsi']) ? divide($_POST['idpsi']) : null);
 
 	$info=datos_mysql("SELECT COUNT(*) total 
 	FROM `psi_sesiones` P
 		left JOIN usuarios U ON P.usu_creo=U.id_usuario 
-	WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'");
+	WHERE id_people='{$id[0]}'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
 
@@ -37,21 +35,13 @@ function lis_sesiones(){
 	P.estado
 	FROM `psi_sesiones` P
 	left JOIN usuarios U ON P.usu_creo=U.id_usuario 
-	WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+	WHERE id_people='{$id[0]}'";
 		$sql.=" ORDER BY P.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		//echo $sql;
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"sesiones",$regxPag,'sesiones.php');
 
-	/* $id=divide($_POST['id']);
-		$sql="SELECT idsesipsi ACCIONES,psi_fecha_sesion Fecha,FN_CATALOGODESC(125,psi_sesion) Sesión,P.fecha_create Creado,U.nombre Creó,
-		P.estado
-		FROM `psi_sesiones` P
-		left JOIN usuarios U ON P.usu_creo=U.id_usuario 
-		WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
-			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"sessipsi-lis",5); */
 		if($_POST['id']=='0'){
 			return "";
 		}else{
@@ -129,20 +119,6 @@ function get_sesiones_psi(){
 	} 
 }
 
-/* function get_sesiones(){
-	if($_POST['id']=='0'){
-		return "";
-	}else{
-		$id=divide($_POST['id']);
-		$sql = "SELECT psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
-		FROM `psi_psicologia` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
-
-		$info=datos_mysql($sql);
-		return $info['responseResult'][0];
-	} 
-} */
-
-
 
 function focus_sesiones_psi(){
 	return 'sesiones_psi';
@@ -158,32 +134,9 @@ function cap_menus($a,$b='cap',$con='con') {
 	$acc=rol($a);
 	if ($a=='sesiones_psi'){  
 		$rta .= "<li class='icono $a grabar' title='Grabar' OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-		// $rta .= "<li class='icono $a actualizar' title='Actualizar' Onclick=\"act_lista('$a',this);\"></li>";
 	}
-	// $rta.= "<li class='icono $a actualizar' title='Actualizar' Onclick=\"mostrar('sesiones_psi','pro',event,'','sesiones.php',7);\"></li>";
 	return $rta;
   }
-
-
-
-
-
-
-
-/* function get_DataSesiones(){
-	$id=divide($_POST['id']);
-
-	$sql="SELECT `psi_fecha_sesion`,`psi_sesion `,`psi_validacion1`, `psi_validacion2`, `psi_validacion3`, `psi_validacion4`, `psi_validacion5`,`psi_validacion6`,`psi_validacion7`,`psi_validacion8`,`psi_validacion9`,`psi_validacion10`,`psi_validacion11`,`psi_validacion12`,`psi_validacion13`,`psi_validacion14`,`psi_validacion15`,`psi_validacion16`,`psi_validacion17`
-			FROM psi_sesiones
-			WHERE psi_tipo_doc ='".$id[0]."' AND psi_documento ='".$id[1]."'";
-	$datos=datos_mysql($sql);
-
-	if (!$datos['responseResult']) {
-		return '';
-	}
-return json_encode($datos['responseResult'][0]);
-}
- */
 
 function gra_sesiones_psi(){
 	$idpsi=divide($_POST['idpsi']);
@@ -244,16 +197,6 @@ function gra_sesiones_psi(){
 	return $rta; 
 }
 
-
-/* function opc_psi_sesioncod_admin4(){
-	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		var_dump($id);
-		$sql="SELECT idcatadeta 'id',CONCAT(idcatadeta,'-',descripcion) 'desc' FROM `catadeta` WHERE idcatalogo=7 and estado='A' and valor='".$id[0]."' ORDER BY 1";
-		$info=datos_mysql($sql);		
-		return json_encode($info['responseResult']);
-	} 
-} */
 
 function opc_cod_admin4($id='') {
 	// var_dump($_REQUEST['id']);

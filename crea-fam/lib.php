@@ -897,8 +897,9 @@ function formato_dato($a,$b,$c,$d){
 		}
 		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 
-		if (psiSesi2($c['ACCIONES'])) {
+			if (psiSesi2($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 2' onclick=\"mostrar('sesion2','pro',event,'','../psicologia/lib.php',7,'sesion2');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

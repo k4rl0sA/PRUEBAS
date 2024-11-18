@@ -344,7 +344,7 @@ function get_rute(){
 function gra_rute(){
 	var_dump($_POST);
 	$id=divide($_POST['id']);
-	$sql="SELECT id_ruteo FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+	$sql="SELECT idgeo FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if ($info['responseResult'][0]['idruteo']=='0') {
 			$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

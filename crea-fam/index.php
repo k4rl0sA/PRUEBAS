@@ -92,7 +92,13 @@ function grabar(tb='',ev){
     'sesion2':'../psicologia/lib.php'
 
  	};
-		var ruta_app = rutaMap[tb] || 'lib.php';
+  if(rutaMap[tb]=='sesion2'){
+    var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente la Continuidad del Caso?");
+    if(res==true){
+				myFetch(ruta_app,"a=gra&tb="+tb,mod);
+			}
+  }else{
+    var ruta_app = rutaMap[tb] || 'lib.php';
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);
 	if (tb == 'person') {
   		setTimeout(function() {
@@ -100,6 +106,7 @@ function grabar(tb='',ev){
   		}, 1000);
 		resetFrm();
 	}
+  }	
 }   
 
  let currentOpenMenu = null;

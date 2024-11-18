@@ -822,7 +822,7 @@ function psiSesi2($id) {
     $id = divide($id);
     $sql = "SELECT idpsi FROM psi_psicologia WHERE id_people='".$id[0]."' AND psi_validacion13 = 'SI'";
     $info = datos_mysql($sql);
-	// var_dump($sql);
+	var_dump($sql);
 	if(isset($info['responseResult'][0])){
 		return true;
 	}else{

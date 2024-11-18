@@ -192,7 +192,7 @@ function cmp_psicologia() {
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;
 	// var_dump($j);
-	$u=($d['idpeople']=='')?true:false;
+	$u=($d['id_people']=='')?true:false;
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$key=' srch';

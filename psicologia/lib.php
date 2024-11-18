@@ -310,6 +310,7 @@ function get_persona(){
 }
  
 function gra_psicologia(){
+	var_dump($_POST);
 	$idpsi=divide($_POST['idpsi']);
 	if($idpsi[0] != ""){ 
 	$sql="UPDATE `psi_psicologia` SET
@@ -336,15 +337,12 @@ function gra_psicologia(){
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 
-
 		//die();
 	  //echo $x;
 	//   echo $sql;
-
 	} else {
 		$sql="INSERT INTO psi_psicologia VALUES (
 					NULL,			
-					trim(upper('{$_POST['psi_tipo_doc']}')),
 					trim(upper('{$_POST['psi_documento']}')),
 					trim(upper('{$_POST['fecha_ses1']}')),
 					trim(upper('{$_POST['tipo_caso']}')),

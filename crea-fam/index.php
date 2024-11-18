@@ -92,7 +92,7 @@ function grabar(tb='',ev){
     'sesion2':'../psicologia/lib.php'
 
  	};
-  if(rutaMap[tb]=='sesion2'){
+  if(tb=='sesion2'){
     var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente la Continuidad del Caso?");
     if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);

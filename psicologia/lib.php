@@ -310,7 +310,7 @@ function get_persona(){
 }
  
 function gra_psicologia(){
-	var_dump($_POST);
+	// var_dump($_POST);
 	$idpsi=divide($_POST['idpsi']);
 	if(count($idpsi)==2){ 
 

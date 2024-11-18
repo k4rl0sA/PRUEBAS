@@ -421,20 +421,15 @@ function gra_psicologia(){
 
 function cmp_sesion2() {
 	$rta="";
-
 	$hoy=date('Y-m-d');
-
-	$t=['id'=>'','psi_tipo_doc'=>'','psi_documento'=>'','psi_fecha_sesion'=>'','psi_sesion'=>'','cod_admin2'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','contin_caso'=>''];
-
+	$t=['id_people'=>'','psi_tipo_doc'=>'','psi_documento'=>'','psi_fecha_sesion'=>'','psi_sesion'=>'','cod_admin2'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'','contin_caso'=>''];
 	$w='sesion2';
 	$d=get_sesion2();
 	// $j=get_sesion2_info();
 	if ($d=="") {$d=$t;}
 	// if ($j=="") {$j=$t;}
-
-	$u=($d['psi_tipo_doc']=='')?true:false;
+	$u=($d['id_people']=='')?true:false;
 	$o='infgen';
-
 	$c[]=new cmp($o,'e',null,'Sesion 2',$w);	
 	$id=divide($_POST['id']);
 	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  

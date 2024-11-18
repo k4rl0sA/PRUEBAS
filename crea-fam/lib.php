@@ -818,6 +818,19 @@ function sessions($id) {
 	}
 }
 
+function psiSesi2($id) {
+    $id = divide($id);
+    $sql = "SELECT idpsi FROM psi_psicologia WHERE id_people='".$id[0]."' AND psi_validacion13 = 'SI'";
+    $info = datos_mysql($sql);
+	// var_dump($sql);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -882,7 +895,11 @@ function formato_dato($a,$b,$c,$d){
 			$perfiles = ['ADM','LARREL', 'FISREL', 'LEFREL', 'TSOREL','PROFAM'];
 		$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class=' fa-solid fa-address-book ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";	
 		}
-		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1 ' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+
+			if (psiSesi2($c['ACCIONES'])) {
+				$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 2' onclick=\"mostrar('sesion2','pro',event,'','../psicologia/lib.php',7,'sesion2');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}
 		}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

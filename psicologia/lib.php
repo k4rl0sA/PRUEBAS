@@ -243,7 +243,7 @@ function cmp_psicologia() {
 	$c[]=new cmp('psi_validacion10','o','2',$d['psi_validacion10'],$w.' '.$o,'1. ¿Tiene la persona un plan para terminar con su vida dentro de las siguientes dos semanas?','psi_validacion10',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion11','o','2',$d['psi_validacion11'],$w.' '.$o,'2. ¿La persona posiblemente tiene un serio trastorno mental, neurológico o por uso de sustancias?','psi_validacion11',null,null,false,true,'','col-10');
 
-	$c[]=new cmp('letra1','s','3',$d['letra1'],$w.' '.$o,'Letra CIE(1)','letra1',null,null,true,true,'','col-2',false,['rango1']);
+	$c[]=new cmp('letra1','s','3',$d['letra1'],$w.' '.$o,'Letra CIE(1)','letra1',null,null,true,true,'','col-2',false,"['rango1'],'../psicologia/lib.php';");
  	$c[]=new cmp('rango1','s','3',$d['rango1'],$w.' '.$o,'Tipo1','rango1',null,null,true,true,'','col-4',false,['psi_diag12']);
  	$c[]=new cmp('psi_diag12','s','5',$d['psi_diag12'],$w.' '.$o,'3. Impresión diagnostica','psi_diag12',null,null,false,true,'','col-4');
 	$c[]=new cmp('psi_validacion13','o','2',$d['psi_validacion13'],$w.' '.$o,'4. Requiere plan de manejo terapeutico','psi_validacion13',null,null,false,true,'','col-10','hidOpt(\'psi_validacion13\',\'plan_hide\',\'plan_show\',false);');

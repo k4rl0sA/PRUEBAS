@@ -344,51 +344,52 @@ function get_rute(){
 function gra_rute(){
 	var_dump($_POST);
 	$id=divide($_POST['id']);
-	if($_POST['id']=='0'){
-	$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	$params = array(
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $id[0]),
-	array('type' => 's', 'value' => $_POST['fecha_gestion']),
-	array('type' => 's', 'value' => $_POST['direccion_nueva_v']),
-	array('type' => 's', 'value' => $_POST['sector_catastral_v']),
-	array('type' => 's', 'value' => $_POST['nummanzana_v']),
-	array('type' => 's', 'value' => $_POST['predio_num_v']),
-	array('type' => 's', 'value' => $_POST['telefono1_v']),
-	array('type' => 's', 'value' => $_POST['telefono2_v']),
-	array('type' => 's', 'value' => $_POST['telefono3_v']),
-	array('type' => 'i', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => 'A')
-	);
-	// var_dump($params);
-	$rta = mysql_prepd($sql, $params);
 
-	}else{
-		$sql = "INSERT INTO eac_ruteo_ges VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	$params = array(
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $id[0]),
-	array('type' => 's', 'value' => $_POST['fecha_gest']),
-	array('type' => 's', 'value' => $_POST['estado_g']),
-	array('type' => 's', 'value' => $_POST['motivo_estado']),
-	array('type' => 's', 'value' => $_POST['direccion_nueva']),
-	array('type' => 's', 'value' => $_POST['sector_catastral_n']),
-	array('type' => 's', 'value' => $_POST['nummanzana_n']),
-	array('type' => 's', 'value' => $_POST['predio_num_n']),
-	array('type' => 's', 'value' => $_POST['observacion']),
-	array('type' => 'i', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => 'A')
-	);
-	// var_dump($params);
-	$rta = mysql_prepd($sql, $params);
+	$sql="SELECT id_ruteo FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			$params = array(
+			array('type' => 'i', 'value' => NULL),
+			array('type' => 'i', 'value' => $id[0]),
+			array('type' => 's', 'value' => $_POST['fecha_gestion']),
+			array('type' => 's', 'value' => $_POST['direccion_nueva_v']),
+			array('type' => 's', 'value' => $_POST['sector_catastral_v']),
+			array('type' => 's', 'value' => $_POST['nummanzana_v']),
+			array('type' => 's', 'value' => $_POST['predio_num_v']),
+			array('type' => 's', 'value' => $_POST['telefono1_v']),
+			array('type' => 's', 'value' => $_POST['telefono2_v']),
+			array('type' => 's', 'value' => $_POST['telefono3_v']),
+			array('type' => 'i', 'value' => $_SESSION['us_sds']),
+			array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+			array('type' => 's', 'value' => NULL),
+			array('type' => 's', 'value' => NULL),
+			array('type' => 's', 'value' => 'A')
+			);
+			// var_dump($params);
+			return $rta = mysql_prepd($sql, $params);		
+		}else{
+			$sql = "INSERT INTO eac_ruteo_ges VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			$params = array(
+			array('type' => 'i', 'value' => NULL),
+			array('type' => 'i', 'value' => $id[0]),
+			array('type' => 's', 'value' => $_POST['fecha_gest']),
+			array('type' => 's', 'value' => $_POST['estado_g']),
+			array('type' => 's', 'value' => $_POST['motivo_estado']),
+			array('type' => 's', 'value' => $_POST['direccion_nueva']),
+			array('type' => 's', 'value' => $_POST['sector_catastral_n']),
+			array('type' => 's', 'value' => $_POST['nummanzana_n']),
+			array('type' => 's', 'value' => $_POST['predio_num_n']),
+			array('type' => 's', 'value' => $_POST['observacion']),
+			array('type' => 'i', 'value' => $_SESSION['us_sds']),
+			array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+			array('type' => 's', 'value' => NULL),
+			array('type' => 's', 'value' => NULL),
+			array('type' => 's', 'value' => 'A')
+			);
+			// var_dump($params);
+			return	$rta = mysql_prepd($sql, $params);
 	}
-	return $rta;
 }
 
 

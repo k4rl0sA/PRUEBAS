@@ -191,6 +191,7 @@ function cmp_psicologia() {
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;
+	var_dump($ad);
 	$u=($d['psi_tipo_doc']=='')?true:false;
 	$o='infgen';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
@@ -310,11 +311,8 @@ function get_persona(){
 }
  
 function gra_psicologia(){
-
 	$idpsi=divide($_POST['idpsi']);
-
 	if($idpsi[0] != ""){ 
-	
 	$sql="UPDATE `psi_psicologia` SET
 				eva_chips=TRIM(upper('{$_POST['evachips']}')),
 				psi_validacion1= TRIM(upper('{$_POST['psi_validacion1']}')),

@@ -260,7 +260,7 @@ function cmp_psicologia() {
 
 function get_DataPersonas(){
 	$id=divide($_POST['id']);
-		$sql="SELECT P.idpeople,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,Z.analisis`,`hamilton_analisis`,`whodas_analisis`
+		$sql="SELECT P.idpeople,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,Z.analisis,H.analisis,W.analisis
 				FROM person P
 				LEFT JOIN hog_tam_zung Z ON P.idpeople= Z.idpeople
 				LEFT JOIN hog_tam_hamilton H ON P.idpeople= H.idpeople

@@ -405,7 +405,8 @@ function cmp_sesion2() {
 
 	$c[]=new cmp($o,'e',null,'Sesion 2',$w);	
 	$id=divide($_POST['id']);
-	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  FROM personas P  LEFT JOIN psi_sesion2 S2 ON P.idpersona=S2.psi_documento AND P.tipo_doc=S2.psi_tipo_doc WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
+	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad  
+	FROM person  P  LEFT JOIN psi_sesion2 S2 ON P.idpeople=S2.idpeople WHERE P.idpeople='{$id[0]}'";
 	// echo $sql;
 	$info=datos_mysql($sql);
 	$edad=$info['responseResult'][0]['edad'];
@@ -446,11 +447,11 @@ function get_sesion2(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT CONCAT(psi_tipo_doc,'_',psi_documento,'_',id_sesion2) id,`psi_tipo_doc`, `psi_documento`, `psi_fecha_sesion`,cod_admin2 ,`psi_validacion1`, `psi_validacion2`, `psi_validacion3`, `psi_validacion4`, `psi_validacion5`, `psi_validacion6`, `psi_validacion7`, `psi_validacion8`, `psi_validacion9`, `psi_validacion10`
+		$sql="SELECT CONCAT(id_people,'_',id_sesion2) id,`psi_tipo_doc`, `psi_documento`, `psi_fecha_sesion`,cod_admin2 ,`psi_validacion1`, `psi_validacion2`, `psi_validacion3`, `psi_validacion4`, `psi_validacion5`, `psi_validacion6`, `psi_validacion7`, `psi_validacion8`, `psi_validacion9`, `psi_validacion10`
 		,TIMESTAMPDIFF(YEAR, fecha_nacimiento, IFNULL(psi_fecha_sesion, CURDATE())) AS edad, contin_caso 
 		FROM psi_sesion2 S2
-		LEFT JOIN personas P ON  psi_tipo_doc=tipo_doc AND S2.psi_documento=P.idpersona
-		WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+		LEFT JOIN person P ON  S2.id_people=P.idpeople
+		WHERE P.idpeople='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
@@ -465,8 +466,8 @@ function get_sesion2_info(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT psi_tipo_doc,psi_documento,psi_fecha_sesion,psi_sesion,cod_admin2,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
-		FROM `psi_sesion2` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+		$sql="SELECT id_people,psi_fecha_sesion,psi_sesion,cod_admin2,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
+		FROM `psi_sesion2` WHERE id_people='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// echo $sql."=>".$_POST['id'];
 		return $info['responseResult'][0];
@@ -613,11 +614,11 @@ function psyPrevia(){
 
 function get_Moment1(){
 	$id=divide($_POST['id']);
-		$sql="SELECT zung_analisis zung1,hamilton_analisis ham1,whodas_analisis who1
+		$sql="SELECT Z.analisis zung1,H.analisis ham1,W.analisis who1
 		FROM hog_tam_zung Z 
-		LEFT JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
-		LEFT JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
-				WHERE zung_tipodoc ='".$id[0]."' AND zung_idpersona='".$id[1]."' AND Z.zung_momento=1 AND H.hamilton_momento=1 AND W.whodas_momento=1";
+		LEFT JOIN hog_tam_hamilton H ON Z.idpeople=H.idpeople
+		LEFT JOIN hog_tam_whodas W ON Z.idpeople=W.idpeople
+				WHERE Z.idpeople ='".$id[0]."' AND Z.zung_momento=1 AND H.hamilton_momento=1 AND W.whodas_momento=1";
 
 	  $datos=datos_mysql($sql);
 	  if (isset($datos['responseResult'][0])) {
@@ -629,11 +630,11 @@ function get_Moment1(){
 
 function get_Moment2(){
 	$id=divide($_POST['id']);
-		$sql="SELECT zung_analisis zung2,hamilton_analisis ham2,whodas_analisis who2
+		$sql="SELECT Z.analisis zung2,H.analisis ham2,W.analisis who2
 		FROM hog_tam_zung Z 
-		LEFT JOIN hog_tam_hamilton H ON Z.zung_idpersona=H.hamilton_idpersona AND Z.zung_tipodoc=H.hamilton_tipodoc
-		LEFT JOIN hog_tam_whodas W ON Z.zung_idpersona=W.whodas_idpersona AND Z.zung_tipodoc=W.whodas_tipodoc
-				WHERE zung_tipodoc ='".$id[0]."' AND zung_idpersona='".$id[1]."' AND Z.zung_momento=2 AND H.hamilton_momento=2 AND W.whodas_momento=2";
+		LEFT JOIN hog_tam_hamilton H ON Z.idpeople=H.idpeople
+		LEFT JOIN hog_tam_whodas W ON Z.idpeople=W.idpeople
+				WHERE Z.idpeople ='".$id[0]."' AND Z.zung_momento=2 AND H.hamilton_momento=2 AND W.whodas_momento=2";
 
 	  $datos=datos_mysql($sql);
 	  if (isset($datos['responseResult'][0])) {
@@ -642,39 +643,12 @@ function get_Moment2(){
 			return "";
 		}
 }
-/* function get_DataZung() {
-	$id=divide($_POST['id']);
-		$sql="SELECT zung_analisis, zung_momento,zung_ini
-				FROM hog_tam_zung
-				WHERE zung_tipodoc ='".$id[0]."' AND zung_idpersona='".$id[1]."' ";
-
-	  $datos=datos_mysql($sql);
-	  if (isset($datos['responseResult'][0])) {
-			return $datos['responseResult'][0];
-		} else {
-			return "";
-		}
-} */
-
-/* function get_DataHamilton() {
-	$id=divide($_POST['id']);
-		$sql="SELECT hamilton_analisis, hamilton_momento
-				FROM hog_tam_hamilton
-				WHERE hamilton_tipodoc ='".$id[0]."' AND hamilton_idpersona='".$id[1]."'";
-
-	  $datos=datos_mysql($sql);
-	  if (isset($datos['responseResult'][0])) {
-			return $datos['responseResult'][0];
-		} else {
-			return "";
-		}
-} */
 
 function get_DataWhodas() {
 	$id=divide($_POST['id']);
 		$sql="SELECT porcentaje_total
 				FROM hog_tam_whodas
-				WHERE whodas_tipodoc ='".$id[0]."' AND whodas_idpersona ='".$id[1]."' ";
+				WHERE idpeople ='".$id[0]."'";
 
 	  $datos=datos_mysql($sql);
 	  if (isset($datos['responseResult'][0])) {
@@ -690,7 +664,7 @@ function get_sesion_fin(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
-		FROM `psi_psicologia` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+		FROM `psi_psicologia` WHERE id_people='{$id[0]}'";
 
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
 		$info=datos_mysql($sql);
@@ -705,7 +679,7 @@ function get_sesion_fin_info(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT psi_tipo_doc,psi_documento,psi_fecha_sesion,cod_admisfin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,psi_validacion12,psi_validacion13,psi_validacion14,psi_validacion15,psi_validacion17,psi_validacion18,psi_validacion19,estado
-		FROM `psi_sesion_fin` WHERE psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";
+		FROM `psi_sesion_fin` WHERE id_people='{$id[0]}'";
 
 		$info=datos_mysql($sql);
 		if (isset($info['responseResult'][0])) {

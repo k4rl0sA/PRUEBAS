@@ -295,7 +295,7 @@ function get_persona(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT tipo_doc,idpersona,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,sexo,genero,oriensexual,nacionalidad,regimen,eapb,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
-		FROM `personas` WHERE tipo_doc='{$id[0]}' AND idpersona='{$id[1]}'";
+		FROM `person` WHERE idpeople='{$id[0]}'";
 
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
 		$info=datos_mysql($sql);

@@ -259,14 +259,13 @@ function cmp_psicologia() {
 
 
 function get_DataPersonas(){
-	var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT P.idpeople,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,`zung_analisis`,`hamilton_analisis`,`whodas_analisis`
+		$sql="SELECT P.idpeople,`nombre1`, `nombre2`, `apellido1`, `apellido2`, `fecha_nacimiento`,`sexo`,`genero`,`oriensexual`,`nacionalidad`,`regimen`,`eapb`,Z.analisis`,`hamilton_analisis`,`whodas_analisis`
 				FROM person P
 				LEFT JOIN hog_tam_zung Z ON P.idpeople= Z.idpeople
 				LEFT JOIN hog_tam_hamilton H ON P.idpeople= H.idpeople
 				LEFT JOIN hog_tam_whodas W ON P.idpeople= W.idpeople
-				WHERE idpersona='".$id[1]."' AND tipo_doc=upper('".$id[0]."')";
+				WHERE P.idpeople='".$id[0]."'";
 	   $datos=datos_mysql($sql);
 	   if (!$datos['responseResult']) {
 		return '';

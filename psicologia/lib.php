@@ -312,8 +312,44 @@ function get_persona(){
 function gra_psicologia(){
 	var_dump($_POST);
 	$idpsi=divide($_POST['idpsi']);
-	if($idpsi[0] != ""){ 
-	$sql="UPDATE `psi_psicologia` SET
+	if(count($idpsi)==2){ 
+
+		$sql="INSERT INTO psi_psicologia VALUES (
+			NULL,			
+			$idpsi[0],
+			trim(upper('{$_POST['fecha_ses1']}')),
+			trim(upper('{$_POST['tipo_caso']}')),
+			trim(upper('{$_POST['cod_admin']}')),
+			trim(upper('{$_POST['evachips']}')),
+			trim(upper('{$_POST['psi_validacion1']}')),
+			trim(upper('{$_POST['psi_validacion2']}')),
+			trim(upper('{$_POST['psi_validacion3']}')),
+			trim(upper('{$_POST['psi_validacion4']}')),
+			trim(upper('{$_POST['psi_validacion5']}')),
+			trim(upper('{$_POST['psi_validacion6']}')),
+			trim(upper('{$_POST['psi_validacion7']}')),
+			trim(upper('{$_POST['psi_validacion8']}')),
+			trim(upper('{$_POST['psi_validacion9']}')),
+			trim(upper('{$_POST['psi_validacion10']}')),
+			trim(upper('{$_POST['psi_validacion11']}')),
+			TRIM(upper('{$_POST['letra1']}')),
+			TRIM(upper('{$_POST['rango1']}')),
+			trim(upper('{$_POST['psi_diag12']}')),
+			trim(upper('{$_POST['psi_validacion13']}')),
+			trim(upper('{$_POST['psi_validacion14']}')),
+			trim(upper('{$_POST['otro']}')),
+			trim(upper('{$_POST['psi_validacion15']}')),
+			trim(upper('{$_POST['numsesi']}')),
+			{$_SESSION['us_sds']},
+			DATE_SUB(NOW(), INTERVAL 5 HOUR),
+			NULL,
+			NULL,
+			'A')";
+		//die();
+	  //echo $x;
+	//   echo $sql;
+	} else {
+		$sql="UPDATE `psi_psicologia` SET
 				eva_chips=TRIM(upper('{$_POST['evachips']}')),
 				psi_validacion1= TRIM(upper('{$_POST['psi_validacion1']}')),
 				psi_validacion2= TRIM(upper('{$_POST['psi_validacion2']}')),
@@ -336,42 +372,7 @@ function gra_psicologia(){
 				numsesi = TRIM(upper('{$_POST['numsesi']}')),
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 
-		//die();
-	  //echo $x;
-	//   echo $sql;
-	} else {
-		$sql="INSERT INTO psi_psicologia VALUES (
-					NULL,			
-					trim(upper('{$_POST['psi_documento']}')),
-					trim(upper('{$_POST['fecha_ses1']}')),
-					trim(upper('{$_POST['tipo_caso']}')),
-					trim(upper('{$_POST['cod_admin']}')),
-					trim(upper('{$_POST['evachips']}')),
-					trim(upper('{$_POST['psi_validacion1']}')),
-					trim(upper('{$_POST['psi_validacion2']}')),
-					trim(upper('{$_POST['psi_validacion3']}')),
-					trim(upper('{$_POST['psi_validacion4']}')),
-					trim(upper('{$_POST['psi_validacion5']}')),
-					trim(upper('{$_POST['psi_validacion6']}')),
-					trim(upper('{$_POST['psi_validacion7']}')),
-					trim(upper('{$_POST['psi_validacion8']}')),
-					trim(upper('{$_POST['psi_validacion9']}')),
-					trim(upper('{$_POST['psi_validacion10']}')),
-					trim(upper('{$_POST['psi_validacion11']}')),
-					TRIM(upper('{$_POST['letra1']}')),
-					TRIM(upper('{$_POST['rango1']}')),
-					trim(upper('{$_POST['psi_diag12']}')),
-					trim(upper('{$_POST['psi_validacion13']}')),
-					trim(upper('{$_POST['psi_validacion14']}')),
-					trim(upper('{$_POST['otro']}')),
-					trim(upper('{$_POST['psi_validacion15']}')),
-					trim(upper('{$_POST['numsesi']}')),
-					{$_SESSION['us_sds']},
-					DATE_SUB(NOW(), INTERVAL 5 HOUR),
-					NULL,
-					NULL,
-					'A')";
+		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 	
 			//  echo $sql;
 	}
 

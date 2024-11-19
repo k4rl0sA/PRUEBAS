@@ -173,10 +173,12 @@ function gra_sesiones_psi(){
 	//   echo $sql;
 
 	} elseif(count($idpsi) ==2){
+		$nuse=numSess($idpsi[0]);
+
 		$sql="INSERT INTO psi_sesiones VALUES (NULL,
 					trim(upper('{$idpsi[0]}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
-					trim(upper('{$_POST['psi_sesion']}')),
+					$nuse,
 					trim(upper('{$_POST['cod_admin4']}')),
 					trim(upper('{$_POST['psi_validacion1']}')),
 					trim(upper('{$_POST['psi_validacion2']}')),

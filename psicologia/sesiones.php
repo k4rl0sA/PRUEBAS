@@ -144,8 +144,8 @@ function cap_menus($a,$b='cap',$con='con') {
 	$info=datos_mysql($sql);
 	var_dump($info);
 	if (isset($info['responseResult'][0])){
-		$nuSe = intval($info['responseResult'][0]['psi_sesion'])+1;
-		return 
+		return intval($info['responseResult'][0]['psi_sesion'])+1;
+		 
 	}else{
 		return 3;
 	}

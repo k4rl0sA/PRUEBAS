@@ -560,22 +560,22 @@ function acceso($a){
 
 /*COMPONENTES*/
 class cmp { //ntwplcsdxhvuf
-  public $n; //name
-  public $t; //type
-  public $s; //size
-  public $d; //default
-  public $w; //div
-  public $l; //label
-  public $c; //list
-  public $x; //regexp
-  public $h; //holder
-  public $v; //valid
-  public $u; //update 
-  public $tt; //tittle
-  public $ww; //width field
-  public $vc;//Validaciones personalizadas
-  public $sd;//Select dependientes
-  public $so;//Validaciones personalizadas otro evento
+  public $n; //1 name
+  public $t; //2 type
+  public $s; //3 size
+  public $d; //4 default
+  public $w; //5 div
+  public $l; //6 label
+  public $c; //7 list
+  public $x; //8 regexp
+  public $h; //9 holder
+  public $v; //10valid
+  public $u; //11update 
+  public $tt;//12tittle
+  public $ww;//13width field
+  public $vc;//14Validaciones personalizadas
+  public $sd;//15Select dependientes
+  public $so;//16Validaciones personalizadas otro evento
   function __construct($n='dato',$t='t',$s=10,$d='',$w='div',$l='',$c='',$x='rgxtxt',$h='..',$v=true,$u=true,$tt='',$ww='col-10',$vc=false,array $sd=array(''),$so=false,$path='lib.php') {
     $this->n=$n; 
     $this->t=$t; 

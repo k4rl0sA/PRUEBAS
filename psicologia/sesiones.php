@@ -138,19 +138,6 @@ function cap_menus($a,$b='cap',$con='con') {
 	return $rta;
   }
 
-  function numSess($a){
-	// var_dump($id);
-	$sql="select psi_sesion from psi_sesiones WHERE id_people='$a'";
-	$info=datos_mysql($sql);
-	var_dump($info);
-	if (isset($info['responseResult'][0])){
-		$nuSe = intval($info['responseResult'][0]['psi_sesion'])+1;
-		return 
-	}else{
-		return 3;
-	}
-}
-
 function gra_sesiones_psi(){
 	$idpsi=divide($_POST['idpsi']);
 	if(count($idpsi) ==0){ 
@@ -171,15 +158,13 @@ function gra_sesiones_psi(){
 		WHERE idsesipsi='$idpsi[0]'"; 
 	  //echo $x;
 	//   echo $sql;
-	} elseif(count($idpsi) ==2){
-		$nuse=numSess($idpsi[0]);
-			
-	
 
+	} elseif(count($idpsi) ==2){
 		$sql="INSERT INTO psi_sesiones VALUES (NULL,
 					trim(upper('{$idpsi[0]}')),
+					trim(upper('{$idpsi[1]}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
-					$nuse,
+					trim(upper('{$_POST['psi_sesion']}')),
 					trim(upper('{$_POST['cod_admin4']}')),
 					trim(upper('{$_POST['psi_validacion1']}')),
 					trim(upper('{$_POST['psi_validacion2']}')),

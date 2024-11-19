@@ -518,7 +518,7 @@ LEFT JOIN usuarios U ON S.usu_create = U.id_usuario WHERE 1 ";
 function lis_alertas($txt){
 	$sql="SELECT 
 G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_alert AS Cod_Registro,G.subred AS Subred,
-P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 FN_CATALOGODESC(176,A.cursovida) AS Curso_de_Vida, A.fecha AS Fecha, FN_CATALOGODESC(34,A.tipo) AS Tipo_Intervencion,FN_CATALOGODESC(166,A.crit_epi) AS Criterio_Epidemiologico, 
 
 FN_CATALOGODESC(170,A.men_dnt) AS Menor_Con_DNT, FN_CATALOGODESC(170,A.men_sinctrl) AS Menor_Sin_Control, FN_CATALOGODESC(170,A.gestante) AS Usuaria_Gestante, FN_CATALOGODESC(170,A.etapgest) AS Etapa_Gestacional, FN_CATALOGODESC(170,A.ges_sinctrl) AS Gestante_Sin_Control, FN_CATALOGODESC(170,A.cronico) AS Usuario_Cronico, FN_CATALOGODESC(170,A.cro_hiper) AS Dx_Hipertencion, FN_CATALOGODESC(170,A.cro_diabe) AS Dx_Diabetes, FN_CATALOGODESC(170,A.cro_epoc) AS Dx_Epoc, FN_CATALOGODESC(170,A.cro_sinctrl) AS Cronico_Sin_Control, FN_CATALOGODESC(170,A.esq_vacun) AS Esquema_de_vacunacion_Completo, 

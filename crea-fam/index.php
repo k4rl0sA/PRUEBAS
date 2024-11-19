@@ -89,8 +89,8 @@ function grabar(tb='',ev){
     'relevo':'../relevo/lib.php',
     'sesiones':'../relevo/sesiones.php',
     'psicologia':'../psicologia/lib.php',
-    'sesion2':'../psicologia/lib.php'
-
+    'sesion2':'../psicologia/lib.php',
+    'sesiones_psi':'../psicologia/sesiones.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

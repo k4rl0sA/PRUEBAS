@@ -45,7 +45,7 @@ function grabar(tb='',ev){
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
-  	var rutaMap = {
+  	const rutaMap = {
 		'prinfancia':'prinfancia.php',
 		'adolesce':'adolescencia.php',
 		'infancia':'infancia.php',
@@ -92,9 +92,10 @@ function grabar(tb='',ev){
     'sesion2':'../psicologia/lib.php'
 
  	};
-   var ruta_app = rutaMap[tb] || 'lib.php';
+   let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){
-    var res = confirm("Desea guardar la información, recuerda que no se podrá editar posteriormente la CONTINUIDAD DEL CASO?");
+    let mensaje = "Desea guardar la información. Recuerda que no se podrá editar posteriormente la CONTINUIDAD DEL CASO:\n" + document.getElementById('contin_caso').selectedOptions[0].text;
+    let res = confirm(mensaje);
     if(res==true){
 				myFetch(ruta_app,"a=gra&tb="+tb,mod);
 			}

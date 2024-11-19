@@ -142,7 +142,7 @@ function cap_menus($a,$b='cap',$con='con') {
 	// var_dump($id);
 	$sql="select psi_sesion from psi_sesiones WHERE id_people='$a'";
 	$info=datos_mysql($sql);
-	var_dump($info);
+	// var_dump($info);
 	if (isset($info['responseResult'][0])){
 		return intval($info['responseResult'][0]['psi_sesion'])+1;
 		 

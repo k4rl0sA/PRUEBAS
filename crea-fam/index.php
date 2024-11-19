@@ -431,6 +431,19 @@ function hidPlan(a,clsCmp){
 		}	
 	}
 }
+function hidFieOpt(a,clsCmp){
+	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp+',textarea.'+clsCmp);
+	const act=document.getElementById(a);
+	if (act.value=='SI'){
+		for (i = 0; i < ele.length; i++){ 
+				enaFie(ele[i],false);
+		}
+	}else{
+		for (i = 0; i < ele.length; i++){ 
+			enaFie(ele[i],true);
+		}	
+	}
+}
 /*******************FIN PSICOLOGIA*************************/
 </script>
 </head>

@@ -849,7 +849,7 @@ function psiSesFin($id) {
 				WHERE id_people=4 AND psi_validacion17=5) as cierre
 				FROM `psi_sesiones` p WHERE id_people=4";
     $info = datos_mysql($sql);
-	var_dump($info['responseResult'][0]));
+	var_dump($info['responseResult'][0]);
 	if(isset($info['responseResult'][0])){
 		return true;
 	}else{

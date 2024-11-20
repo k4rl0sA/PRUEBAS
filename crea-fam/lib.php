@@ -914,6 +914,9 @@ function formato_dato($a,$b,$c,$d){
 			if (psiSessi($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Sesión 3, 4, 5, 6' onclick=\"mostrar('sesiones_psi','pro',event,'','../psicologia/sesiones.php',7,'sesiones_psi');setTimeout(hidPlan,700,'psi_validacion10','duda_com',false);setTimeout(hidFieOpt,700,'psi_validacion7','sem_hide',false);Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
+			if (psiSessi($c['ACCIONES'])) {
+				$rta .= acceso('psicologia') ? "<li title='Sesión final' onclick=\"mostrar('sesion_fin','pro',event,'','../psicologia/lib.php',7,'sesion_fin');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}
 	}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

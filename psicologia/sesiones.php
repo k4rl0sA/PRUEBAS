@@ -119,7 +119,6 @@ function get_sesiones_psi(){
 	} 
 }
 
-
 function focus_sesiones_psi(){
 	return 'sesiones_psi';
 }
@@ -205,7 +204,6 @@ function gra_sesiones_psi(){
 					'A')";
 		// echo $sql;
 	}
-
 	$rta=dato_mysql($sql);
 	//return "correctamente";
 	return $rta; 
@@ -254,8 +252,7 @@ function formato_dato($a,$b,$c,$d){
 	// var_dump($a);
 	// var_dump($c);
 	if ($a=='sesiones' && $b=='acciones'){
-		$rta="<nav class='menu right'>";	
-
+		$rta="<nav class='menu right'>";
 			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sesiones-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','contin_caso'],'sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);
 		}
 return $rta;

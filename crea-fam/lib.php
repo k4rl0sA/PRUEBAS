@@ -842,6 +842,22 @@ function psiSessi($id) {
 	}
 }
 
+function psiSesFin($id) {
+    $id = divide($id);
+    $sql = "SELECT COUNT(*) AS totSes,
+			(SELECT COUNT(id_people) from `psi_sesiones`  
+				WHERE id_people=4 AND psi_validacion17=5) as cierre
+				FROM `psi_sesiones` p WHERE id_people=4";
+    $info = datos_mysql($sql);
+	// var_dump($sql);
+	if(isset($info['responseResult'][0])){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -914,7 +930,7 @@ function formato_dato($a,$b,$c,$d){
 			if (psiSessi($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Sesión 3, 4, 5, 6' onclick=\"mostrar('sesiones_psi','pro',event,'','../psicologia/sesiones.php',7,'sesiones_psi');setTimeout(hidPlan,700,'psi_validacion10','duda_com',false);setTimeout(hidFieOpt,700,'psi_validacion7','sem_hide',false);Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
-			if (psiSessi($c['ACCIONES'])) {
+			if (psiSesFin($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Sesión final' onclick=\"mostrar('sesion_fin','pro',event,'','../psicologia/lib.php',7,'sesion_fin');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 	}

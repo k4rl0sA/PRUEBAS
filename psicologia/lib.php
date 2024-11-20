@@ -834,7 +834,6 @@ function gra_sesion_fin(){
 					'A')";
 		// echo $sql;
 	//}
-
 	$rta=dato_mysql($sql);
 	//return "correctamente";
 	return $rta; 

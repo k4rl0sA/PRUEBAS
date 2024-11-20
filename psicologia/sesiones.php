@@ -152,8 +152,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function gra_sesiones_psi(){
 	$idpsi=divide($_POST['idpsi']);
-	if(count($idpsi) ==0){ 
-	
+	if(count($idpsi) ==0){
 	$sql="UPDATE psi_sesiones SET 
 		psi_validacion1  = TRIM(upper('{$_POST['psi_validacion1']}')),
 		psi_validacion3  = TRIM(upper('{$_POST['psi_validacion3']}')),

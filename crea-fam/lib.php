@@ -849,6 +849,7 @@ function psiSesFin($id) {
 				WHERE id_people=4 AND psi_validacion17=5) as cierre
 				FROM `psi_sesiones` p WHERE id_people=4";
     $info = datos_mysql($sql);
+	var_dump($info);
 	if(intval($info['responseResult'][0]["totSes"]>1) && 
 		intval($info['responseResult'][0]["cierre"]=1)){
 		return true;

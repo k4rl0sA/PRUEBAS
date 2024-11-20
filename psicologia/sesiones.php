@@ -100,7 +100,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp('psi_validacion14','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 1','psi_validacion14',null,null,true,true,'','col-10');
 	$c[]=new cmp('psi_validacion15','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 2','psi_validacion15',null,null,false,true,'','col-10');
 	$c[]=new cmp('psi_validacion16','a','1500',$j,$w.' '.$o,'Actividad A Desarrollar 3','psi_validacion16',null,null,false,true,'','col-10');
-	$c[]=new cmp('psi_validacion17','s','3',$j,$w.' '.$o,'Se mantiene el caso abierto','psi_validacion17',null,null,true,true,'','col-10',"enabDepeValu('psi_validacion17','cA4',['4','5'],false);");
+	$c[]=new cmp('contin_caso','s','3',$j,$w.' '.$o,'Se mantiene el caso abierto','psi_validacion17',null,null,true,true,'','col-10',"enabDepeValu('contin_caso','cA4',['4','5'],false);");
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -165,7 +165,7 @@ function gra_sesiones_psi(){
 		psi_validacion14 = TRIM(upper('{$_POST['psi_validacion14']}')),
 		psi_validacion15 = TRIM(upper('{$_POST['psi_validacion15']}')),
 		psi_validacion16 = TRIM(upper('{$_POST['psi_validacion16']}')),
-		psi_validacion17 = TRIM(upper('{$_POST['psi_validacion17']}')),
+		psi_validacion17 = TRIM(upper('{$_POST['contin_caso']}')),
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE idsesipsi='$idpsi[0]'"; 
@@ -197,7 +197,7 @@ function gra_sesiones_psi(){
 					trim(upper('{$_POST['psi_validacion14']}')),
 					trim(upper('{$_POST['psi_validacion15']}')),
 					trim(upper('{$_POST['psi_validacion16']}')),
-					trim(upper('{$_POST['psi_validacion17']}')),
+					trim(upper('{$_POST['contin_caso']}')),
 					DATE_SUB(NOW(), INTERVAL 5 HOUR),
 					{$_SESSION['us_sds']},
 					NULL,
@@ -256,7 +256,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='sesiones' && $b=='acciones'){
 		$rta="<nav class='menu right'>";	
 
-			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sesiones-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','psi_validacion17'],'sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);
+			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sesiones-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','contin_caso'],'sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);
 		}
 return $rta;
 }

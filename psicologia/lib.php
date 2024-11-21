@@ -730,9 +730,8 @@ function get_sesion_fin_info(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT psi_tipo_doc,psi_documento,psi_fecha_sesion,cod_admisfin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,psi_validacion12,psi_validacion13,psi_validacion14,psi_validacion15,psi_validacion17,psi_validacion18,psi_validacion19,estado
+		$sql="SELECT psi_fecha_sesion,cod_admisfin,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,psi_validacion11,psi_validacion12,psi_validacion13,psi_validacion14,psi_validacion15,psi_validacion17,psi_validacion18,psi_validacion19,estado
 		FROM `psi_sesion_fin` WHERE id_people='{$id[0]}'";
-
 		$info=datos_mysql($sql);
 		if (isset($info['responseResult'][0])) {
 			return $info['responseResult'][0];

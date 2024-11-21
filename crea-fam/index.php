@@ -444,6 +444,13 @@ function hidFieOpt(a,clsCmp){
 		}	
 	}
 }
+
+function sumPsy1(){
+	const   afec1=document.getElementById('psi_validacion5').value;
+	const  afec2=document.getElementById('psi_validacion7').value;
+	const  afec3=document.getElementById('psi_validacion9').value;
+	document.getElementById('psi_validacion14').value=parseInt(afec1)+parseInt(afec2)+parseInt(afec3);
+}
 /*******************FIN PSICOLOGIA*************************/
 </script>
 </head>

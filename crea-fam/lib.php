@@ -845,10 +845,10 @@ function psiSessi($id) {
 function psiSesFin($id) {
     $id = divide($id);
     $sql = "SELECT COUNT(*) AS totSes,
-			(SELECT COUNT(id_people) from `psi_sesiones`  
-				WHERE id_people=$id[0] AND psi_validacion17=5) as cierre
-				FROM `psi_sesiones` p WHERE id_people=$id[0]";
-				var_dump($sql);
+		(SELECT COUNT(id_people) from `psi_sesiones`  
+		WHERE id_people=$id[0] AND psi_validacion17=5) as cierre
+		FROM `psi_sesiones` p WHERE id_people=$id[0]";
+		// var_dump($sql);
     $info = datos_mysql($sql);
 	// var_dump($info);
 	if(intval($info['responseResult'][0]["totSes"]>1) && 

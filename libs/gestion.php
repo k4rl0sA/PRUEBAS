@@ -247,11 +247,15 @@ function mysql_prepd($sql, $params) {
                   $types .= 's'; // Agregar tipo 's' para NULL
                   $values[] = NULL; // No limpiar, solo agregar NULL
               } else {
-                  // Manejar tipo 'z' como 's' y procesar valores
-                  $value = ($type === 'z') ? cleanTx($param['value']) : 
-                  (($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']));
-                  $types .= ($type === 'z') ? 's' : $type;
-                  $values[] = $value;
+                  // Manejar tipo 'z' como 's' sin aplicar strtoupper
+                    if ($type === 'z') {
+                      $value = cleanTx($param['value']); // No aplicar mayúsculas
+                      $types .= 's'; // Tratar 'z' como 's'
+                    } else {
+                      $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
+                      $types .= $type;
+                    }
+                $values[] = $value; // Agregar el valor limpio
               }
           }
           $num_placeholders = substr_count($sql, '?');

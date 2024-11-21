@@ -439,7 +439,7 @@ function cmp_sesion2() {
 	$edad=$info['responseResult'][0]['edad'];
 	$dis = ($edad < 18) ? false : ($d['psi_fecha_sesion'] == '' ? true : false);
 	$c[]=new cmp('idpsi','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
-	// $c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,true,'','col-5');
+	// $c[]=new cmp('','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,true,'','col-5');
 	// $c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,true,'','col-5');
 
 	$c[]=new cmp('psi_fecha_sesion','d','10',$d['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$u,'','col-4','validDate(this,-140,0);');
@@ -601,17 +601,16 @@ function cmp_sesion_fin() {
 	if ($j=="") {$j=$t;}
 	if ($r=="") {$r=$t;}
 	if ($q=="") {$q=$t;}
-	$u=($d['psi_tipo_doc']=='')?true:false;
+	$u=($d['id_people']=='')?true:false;
 	$o='infgen';
 	$ob=($j['psi_validacion14']=='')?true:false;
 	$c[]=new cmp($o,'e',null,'Sesion Final',$w);	
-	$c[]=new cmp('idpsi','h','20', $d['psi_tipo_doc'] . "_" . $d['psi_documento'] ,$w.' '.$o,'','',null,null,true,$u,'','col-1');
+	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
 	$c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
 	$c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
 
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-140,0);');
 	//$c[]=new cmp('psi_sesion','t','50',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
-
 	$c[]=new cmp('zung_ini','a','1500',$r['zung1'],$w.' '.$o,'RESULTADO TAMIZAJE ZUNG INICIAL','zung_ini',null,null,false,false,'','col-3');
 	$c[]=new cmp('hamilton_ini','a','1500',$r['ham1'],$w.' '.$o,'RESULTADO TAMIZAJE HAMILTON INICIAL','hamilton_ini',null,null,false,false,'','col-3');
 	$c[]=new cmp('whodas_ini','a','1500',$r['who1'],$w.' '.$o,'RESULTADO TAMIZAJE (WHODAS 2.0) INICIAL','whodas_ini',null,null,false,false,'','col-4');
@@ -624,8 +623,8 @@ function cmp_sesion_fin() {
 	$c[]=new cmp($o,'e',null,'RESULTADO DE EVALUACION pre EP+',$w);
 	$c[]=new cmp('cod_admisfin','s',2,$j['cod_admisfin'],$w.' '.$o,'Codigo Admisión','cod_admisfin',null,null,true,true,'','col-4');
 	
-	$sql="SELECT DATEDIFF(CURDATE(),fecha_nacimiento)/365.25 edad
-		FROM personas WHERE tipo_doc='{$d['psi_tipo_doc']}' AND idpersona='{$d['psi_documento']}'";
+	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
+		FROM person WHERE id_people='{$_POST['id']}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
 		$ed = ($edad<18) ? false :true;

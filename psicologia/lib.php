@@ -608,9 +608,6 @@ function cmp_sesion_fin() {
 	$ob=($j['psi_validacion14']=='')?true:false;
 	$c[]=new cmp($o,'e',null,'Sesion Final',$w);	
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
-	$c[]=new cmp('psi_tipo_doc','h','3',$d['tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
-	$c[]=new cmp('psi_documento','h','20',$d['documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
-
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-140,0);');
 	//$c[]=new cmp('psi_sesion','t','50',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
 	$c[]=new cmp('zung_ini','a','1500',$r['zung1'],$w.' '.$o,'RESULTADO TAMIZAJE ZUNG INICIAL','zung_ini',null,null,false,false,'','col-3');

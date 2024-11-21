@@ -753,7 +753,7 @@ function men_sesion_fin(){
 function gra_sesion_fin(){
 
 	$idpsi=divide($_POST['idpsi']);
-	$sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?,?)";
+	/* $sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?,?)";
 	$params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 's', 'value' => $idpsi[0]],
@@ -786,11 +786,11 @@ function gra_sesion_fin(){
 	['type' => 's', 'value' => 'A']
 	];
 	$rta = mysql_prepd($sql, $params);
-	return $rta;
+	return $rta; */
 	
 	$sql="INSERT INTO psi_sesion_fin VALUES (
 		NULL,
-					trim(upper('{$_POST['psi_documento']}')),
+					$idpsi[0],
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
 					trim(upper('{$_POST['cod_admisfin']}')),
 					trim(upper('{$_POST['zung_ini']}')),

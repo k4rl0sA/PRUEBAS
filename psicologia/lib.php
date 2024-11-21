@@ -753,7 +753,7 @@ function men_sesion_fin(){
 function gra_sesion_fin(){
 
 	$idpsi=divide($_POST['idpsi']);
-	$sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 's', 'value' => $idpsi[0]],

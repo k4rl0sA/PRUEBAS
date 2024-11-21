@@ -182,7 +182,7 @@ function cmp_psicologia() {
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['id_people'=>'','psi_tipo_doc'=>'','psi_documento'=>'','tipo_caso'=>'','cod_admin'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','letra1'=>'','rango1'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>'',
-	'zung_puntaje'=>'','hamilton_total'=>'','psi_diag12'=>'','otro'=>'','numsesi'=>'','eva_chips'=>'','fecha_ses1'=>''];
+	'zung_puntaje'=>'','hamilton_total'=>'','psi_diag12'=>'','otro'=>'','numsesi'=>'','eva_chips'=>'','fecha_ses1'=>'','zung_analisis'=>'','hamilton_analisis'=>'','whodas_analisis'=>''];
 	$w='psicologia';
 	$d=get_psicologia();
 	$j=get_persona();

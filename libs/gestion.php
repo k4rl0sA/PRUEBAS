@@ -248,7 +248,7 @@ function mysql_prepd($sql, $params) {
                   $values[] = NULL; // No limpiar, solo agregar NULL
               } else {
                   $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
-                  //$types .= ($type === 'z') ? 's' : $type; // Agregar el tipo correspondiente a $types
+                  $types .= ($type === 'z') ? 's' : $type; // Agregar el tipo correspondiente a $types
                   $values[] = $value; // Agregar el valor limpio al array $values
               }
           }

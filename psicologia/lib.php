@@ -756,7 +756,7 @@ function gra_sesion_fin(){
 	$sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params = [
 	['type' => 'i', 'value' => NULL],
-	['type' => 's', 'value' => $id[0]],
+	['type' => 's', 'value' => $idpsi[0]],
 	['type' => 's', 'value' => $_POST['cod_admisfin']],
 	['type' => 's', 'value' => $_POST['zung_ini']],
 	['type' => 's', 'value' => $_POST['hamilton_ini']],

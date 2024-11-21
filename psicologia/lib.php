@@ -753,58 +753,43 @@ function men_sesion_fin(){
 function gra_sesion_fin(){
 
 	$idpsi=divide($_POST['idpsi']);
+	$sql = "INSERT INTO psi_sesion_fin VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$params = [
+	['type' => 'i', 'value' => NULL],
+	['type' => 's', 'value' => $id[0]],
+	['type' => 's', 'value' => $_POST['cod_admisfin']],
+	['type' => 's', 'value' => $_POST['zung_ini']],
+	['type' => 's', 'value' => $_POST['hamilton_ini']],
+	['type' => 's', 'value' => $_POST['whodas_ini']],
+	['type' => 's', 'value' => $_POST['psi_validacion1']],
+	['type' => 's', 'value' => $_POST['psi_validacion2']],
+	['type' => 's', 'value' => $_POST['psi_validacion3']],
+	['type' => 's', 'value' => $_POST['psi_validacion4']],
+	['type' => 's', 'value' => $_POST['psi_validacion5']],
+	['type' => 's', 'value' => $_POST['psi_validacion6']],
+	['type' => 's', 'value' => $_POST['psi_validacion7']],
+	['type' => 's', 'value' => $_POST['psi_validacion8']],
+	['type' => 's', 'value' => $_POST['psi_validacion9']],
+	['type' => 's', 'value' => $_POST['psi_validacion10']],
+	['type' => 's', 'value' => $_POST['psi_validacion11']],
+	['type' => 's', 'value' => $_POST['psi_validacion12']],
+	['type' => 's', 'value' => $_POST['psi_validacion13']],
+	['type' => 's', 'value' => $_POST['psi_validacion14']],
+	['type' => 's', 'value' => $_POST['psi_validacion15']],
+	['type' => 's', 'value' => $_POST['psi_validacion16']],
+	['type' => 's', 'value' => $_POST['psi_validacion17']],
+	['type' => 's', 'value' => $_POST['psi_validacion18']],
+	['type' => 's', 'value' => $_POST['psi_validacion19']],
+	['type' => 'i', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => 'A']
+	];
+	$rta = mysql_prepd($sql, $params);
+	return $rta;
 	
-	/*if($idpsi[0] != ""){ 
-	
-	$sql="UPDATE psi_sesion_fin SET 
-				'psi_tipo_doc' = TRIM(upper('{$_POST['psi_tipo_doc']}')),
-				'psi_documento' = TRIM(upper('{$_POST['psi_documento']}')),
-				'psi_fecha_sesion' = TRIM(upper('{$_POST['psi_fecha_sesion']}')),
-				'psi_sesion' = TRIM(upper('{$_POST['psi_sesion']}')),
-				'psi_validacion1' = TRIM(upper('{$_POST['psi_validacion1']}')),
-				'psi_validacion2' = TRIM(upper('{$_POST['psi_validacion2']}')),
-				'psi_validacion3' = TRIM(upper('{$_POST['psi_validacion3']}')),
-				'psi_validacion4' = TRIM(upper('{$_POST['psi_validacion4']}')),
-				'psi_validacion5' = TRIM(upper('{$_POST['psi_validacion5']}')),
-				'psi_validacion6' = TRIM(upper('{$_POST['psi_validacion6']}')),
-				'psi_validacion7' = TRIM(upper('{$_POST['psi_validacion7']}')),
-				'psi_validacion8' = TRIM(upper('{$_POST['psi_validacion8']}')),
-				'psi_validacion9' = TRIM(upper('{$_POST['psi_validacion9']}')),
-				'psi_validacion10' = TRIM(upper('{$_POST['psi_validacion10']}')),
-				'psi_validacion11' = TRIM(upper('{$_POST['psi_validacion11']}')),
-				'psi_validacion12' = TRIM(upper('{$_POST['psi_validacion12']}')),
-				'psi_validacion13' = TRIM(upper('{$_POST['psi_validacion13']}')),
-				'psi_validacion14' = TRIM(upper('{$_POST['psi_validacion14']}')),
-				'psi_validacion15' = TRIM(upper('{$_POST['psi_validacion15']}')),
-				'psi_validacion16' = TRIM(upper('{$_POST['psi_validacion16']}')),
-				'psi_validacion17' = TRIM(upper('{$_POST['psi_validacion17']}')),
-				'psi_validacion18' = TRIM(upper('{$_POST['psi_validacion18']}')),
-				'psi_validacion19' = TRIM(upper('{$_POST['psi_validacion19']}')),
-		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-		WHERE psi_tipo_doc='$idpsi[0]' AND psi_documento='$idpsi[1]'"; 
-	  //echo $x;
-	  //echo $sql."    ".$rta;
-
-	} else {*/
-
-
-		// echo $_POST['psi_validacion5'];
-
-		/* $Post = array('psi_validacion5', 'psi_validacion7', 'psi_validacion9', 'psi_validacion10');
-		$suma = 0;
-		
-		foreach ($Post as $var) {
-			if (isset($_POST[$var]) && is_numeric($_POST[$var])) {
-			$suma += $_POST[$var];
-				}
-			} */
-	
-	
-
-
-		$sql="INSERT INTO psi_sesion_fin VALUES (
-					NULL,
+	$sql="INSERT INTO psi_sesion_fin VALUES (
+		NULL,
 					trim(upper('{$_POST['psi_documento']}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
 					trim(upper('{$_POST['cod_admisfin']}')),
@@ -834,11 +819,7 @@ function gra_sesion_fin(){
 					NULL,
 					NULL,
 					'A')";
-		// echo $sql;
-	//}
-	$rta=dato_mysql($sql);
-	//return "correctamente";
-	return $rta; 
+
 }
 
 

@@ -850,7 +850,7 @@ function psiSesFin($id) {
 				FROM `psi_sesiones` p WHERE id_people=$id[0]";
 				var_dump($sql);
     $info = datos_mysql($sql);
-	var_dump($info);
+	// var_dump($info);
 	if(intval($info['responseResult'][0]["totSes"]>1) && 
 		intval($info['responseResult'][0]["cierre"]=1)){
 		return true;

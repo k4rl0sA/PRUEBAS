@@ -97,7 +97,10 @@ switch ($_POST['gestion']) {
 			$rta = mysql_prepd($sql, $params);
 		break;
 	case '2':
-		$sql = "update usuarios SET estado= (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$sql = "update usuarios SET estado=? WHERE id_usuario=?";
+		$params = [['type' => 's', 'value' => 'I'],
+			['type' => 'i', 'value' => $_POST['usuario']]];
+			$rta = mysql_prepd($sql, $params);
 		break;
 	default:
 		# code...

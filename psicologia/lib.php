@@ -819,6 +819,7 @@ function gra_sesion_fin(){
 					NULL,
 					NULL,
 					'A')";
+					return $rta=dato_mysql($sql);
 
 }
 

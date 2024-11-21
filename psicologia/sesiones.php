@@ -173,7 +173,39 @@ function gra_sesiones_psi(){
 	} elseif(count($idpsi) ==2){
 		$nuse=numSess($idpsi[0]);
 
-		$sql="INSERT INTO psi_sesiones VALUES (NULL,
+		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+		['type' => 'i', 'value' => NULL],
+		['type' => 's', 'value' => $idpsi[0]],
+		['type' => 's', 'value' => $_POST['psi_fecha_sesion']],
+		['type' => 'i', 'value' => $nuse],
+		['type' => 's', 'value' => $_POST['cod_admin4']],
+		['type' => 's', 'value' => $_POST['psi_validacion1']],
+		['type' => 's', 'value' => $_POST['psi_validacion2']],
+		['type' => 's', 'value' => $_POST['psi_validacion3']],
+		['type' => 's', 'value' => $_POST['psi_validacion4']],
+		['type' => 's', 'value' => $_POST['psi_validacion5']],
+		['type' => 's', 'value' => $_POST['difhacer']],
+		['type' => 's', 'value' => $_POST['psi_validacion6']],
+		['type' => 's', 'value' => $_POST['psi_validacion7']],
+		['type' => 's', 'value' => $_POST['psi_validacion8']],
+		['type' => 's', 'value' => $_POST['psi_validacion9']],
+		['type' => 's', 'value' => $_POST['psi_validacion10']],
+		['type' => 's', 'value' => $_POST['psi_validacion11']],
+		['type' => 's', 'value' => $_POST['psi_validacion12']],
+		['type' => 's', 'value' => $_POST['psi_validacion13']],
+		['type' => 's', 'value' => $_POST['psi_validacion14']],
+		['type' => 's', 'value' => $_POST['psi_validacion15']],
+		['type' => 's', 'value' => $_POST['psi_validacion16']],
+		['type' => 's', 'value' => $_POST['contin_caso']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => 'A']
+		];
+		return $rta = mysql_prepd($sql, $params);
+
+		/* $sql="INSERT INTO psi_sesiones VALUES (NULL,
 					trim(upper('{$idpsi[0]}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
 					$nuse,
@@ -200,7 +232,7 @@ function gra_sesiones_psi(){
 					{$_SESSION['us_sds']},
 					NULL,
 					NULL,
-					'A')";
+					'A')"; */
 		// echo $sql;
 	}
 	$rta=dato_mysql($sql);

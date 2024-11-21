@@ -713,7 +713,7 @@ function get_sesion_fin(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,P.id_people,P.tipo_doc tipo_doc,P.idpersona ocumento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,PF.estado
+		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,P.idpeople id_people,P.tipo_doc tipo_doc,P.idpersona ocumento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,PF.estado
 		FROM `psi_psicologia` PF
 		left join person P ON  PF.id_people=P.idpeople
 		WHERE id_people='{$id[0]}'";

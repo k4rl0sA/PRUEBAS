@@ -91,10 +91,8 @@ function get_gestuser(){
 function gra_gestuser(){
 switch ($_POST['gestion']) {
 	case '1':
-		$pwdini='$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma';
-		$sql = "update usuarios SET clave=$pwdini WHERE id_usuario=?";
-		$params = [
-			['type' => 'z', 'value' => ''],
+		$sql = "update usuarios SET clave=? WHERE id_usuario=?";
+		$params = [['type' => 'z', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
 			['type' => 'i', 'value' => $_POST['usuario']]];
 			$rta = mysql_prepd($sql, $params);
 		break;

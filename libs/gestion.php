@@ -247,14 +247,9 @@ function mysql_prepd($sql, $params) {
                   $types .= 's'; // Agregar tipo 's' para NULL
                   $values[] = NULL; // No limpiar, solo agregar NULL
               } else {
-                  if ($type === 'z') {
-                    $value = cleanTx($param['value']); // Solo limpiar, no convertir a mayúsculas
-                    $types .= 's'; // Tratar 'z' como 's' en el binding
-                  } else {
-                    $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
-                    $types .= $type; // Agregar el tipo correspondiente a $types
-                  }
-                  $values[] = $value; // Agregar el valor al array $values
+                  $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
+                  $types .= ($type === 'z') ? 's' : $type; // Agregar el tipo correspondiente a $types
+                  $values[] = $value; // Agregar el valor limpio al array $values
               }
           }
           $num_placeholders = substr_count($sql, '?');

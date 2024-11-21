@@ -589,7 +589,7 @@ function cmp_sesion_fin() {
 
 	$hoy=date('Y-m-d');
 
-	$t=['psi_tipo_doc'=>'','psi_documento'=>'','psi_fecha_sesion'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','cod_admisfin'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','psi_validacion17'=>'','psi_validacion18'=>'','psi_validacion19'=>'','zung1'=>'','ham1'=>'','who1'=>'','zung2'=>'','ham2'=>'','who2'=>''];
+	$t=['tipo_doc'=>'','documento'=>'','psi_fecha_sesion'=>'','psi_validacion1'=>'','psi_validacion2'=>'','psi_validacion3'=>'','cod_admisfin'=>'','psi_validacion4'=>'','psi_validacion5'=>'','psi_validacion6'=>'','psi_validacion7'=>'','psi_validacion8'=>'','psi_validacion9'=>'','psi_validacion10'=>'','psi_validacion11'=>'','psi_validacion12'=>'','psi_validacion13'=>'','psi_validacion14'=>'','psi_validacion15'=>'','psi_validacion17'=>'','psi_validacion18'=>'','psi_validacion19'=>'','zung1'=>'','ham1'=>'','who1'=>'','zung2'=>'','ham2'=>'','who2'=>''];
 
 	$w='sesion_fin';
 	$d=get_sesion_fin();
@@ -608,8 +608,8 @@ function cmp_sesion_fin() {
 	$ob=($j['psi_validacion14']=='')?true:false;
 	$c[]=new cmp($o,'e',null,'Sesion Final',$w);	
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
-	$c[]=new cmp('psi_tipo_doc','h','3',$d['psi_tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
-	$c[]=new cmp('psi_documento','h','20',$d['psi_documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
+	$c[]=new cmp('psi_tipo_doc','h','3',$d['tipo_doc'],$w.' '.$o,'Tipo documento','psi_tipo_doc',null,null,true,false,'','col-5');
+	$c[]=new cmp('psi_documento','h','20',$d['documento'],$w.' '.$o,'Numero Documento','psi_documento',null,null,true,false,'','col-5');
 
 	$c[]=new cmp('psi_fecha_sesion','d','10',$j['psi_fecha_sesion'],$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,$ob,'','col-10','validDate(this,-140,0);');
 	//$c[]=new cmp('psi_sesion','t','50',$j['psi_sesion'],$w.' '.$o,'Sesion','psi_sesion',null,null,true,true,'','col-5');
@@ -713,7 +713,7 @@ function get_sesion_fin(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
+		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,tipo_doc,documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
 		FROM `psi_psicologia` PF
 		left join person P ON  PF.id_people=P.idpeople
 		WHERE id_people='{$id[0]}'";

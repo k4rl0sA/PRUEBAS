@@ -757,7 +757,8 @@ function gra_sesion_fin(){
 	$params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 's', 'value' => $idpsi[0]],
-	['type' => 's', 'value' => $_POST['cod_admisfin']],
+	['type' => 's', 'value' => $_POST['psi_fecha_sesion']],
+	['type' => 'i', 'value' => $_POST['cod_admisfin']],
 	['type' => 's', 'value' => $_POST['zung_ini']],
 	['type' => 's', 'value' => $_POST['hamilton_ini']],
 	['type' => 's', 'value' => $_POST['whodas_ini']],

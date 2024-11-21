@@ -668,7 +668,7 @@ function get_Moment1(){
 		FROM hog_tam_zung Z 
 		LEFT JOIN hog_tam_hamilton H ON Z.idpeople=H.idpeople
 		LEFT JOIN hog_tam_whodas W ON Z.idpeople=W.idpeople
-				WHERE Z.idpeople ='".$id[0]."' AND Z.zung_momento=1 AND H.hamilton_momento=1 AND W.whodas_momento=1";
+				WHERE Z.idpeople ='".$id[0]."'";
 
 	  $datos=datos_mysql($sql);
 	  if (isset($datos['responseResult'][0])) {

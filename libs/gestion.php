@@ -247,14 +247,13 @@ function mysql_prepd($sql, $params) {
                   $types .= 's'; // Agregar tipo 's' para NULL
                   $values[] = NULL; // No limpiar, solo agregar NULL
               } else {
-                  // Manejar tipo 'z' como 's' sin aplicar strtoupper
-                    if ($type === 'z') {
-                      $value = cleanTx($param['value']); // No aplicar mayúsculas
-                      $types .= 's'; // Tratar 'z' como 's'
-                    } else {
-                      $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
-                      $types .= $type;
-                    }
+                if ($type === 'z') {
+                    $value = $param['value']; // Dejar el valor sin limpiar ni modificar
+                    $types .= 's'; // Tratar 'z' como 's'
+                } else {
+                    $value = ($type === 's') ? cleanTx(strtoupper($param['value'])) : cleanTx($param['value']);
+                    $types .= $type;
+                }
                 $values[] = $value; // Agregar el valor limpio
               }
           }

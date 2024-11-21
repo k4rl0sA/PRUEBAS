@@ -266,7 +266,7 @@ function get_DataPersonas(){
 				LEFT JOIN hog_tam_zung Z ON P.idpeople= Z.idpeople
 				LEFT JOIN hog_tam_hamilton H ON P.idpeople= H.idpeople
 				LEFT JOIN hog_tam_whodas W ON P.idpeople= W.idpeople
-				WHERE P.idpeople='".$id[0]."'";
+				WHERE P.idpeople='".$id[0]."' AND Z.momento=1 AND H.momento=1 AND W.momento=1";
 	   $datos=datos_mysql($sql);
 	   if (!$datos['responseResult']) {
 		return '';

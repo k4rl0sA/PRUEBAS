@@ -776,7 +776,6 @@ function gra_sesion_fin(){
 	['type' => 's', 'value' => $_POST['psi_validacion13']],
 	['type' => 's', 'value' => $_POST['psi_validacion14']],
 	['type' => 's', 'value' => $_POST['psi_validacion15']],
-	['type' => 's', 'value' => $_POST['psi_validacion16']],
 	['type' => 's', 'value' => $_POST['psi_validacion17']],
 	['type' => 's', 'value' => $_POST['psi_validacion18']],
 	['type' => 's', 'value' => $_POST['psi_validacion19']],

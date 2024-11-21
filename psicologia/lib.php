@@ -187,7 +187,7 @@ function cmp_psicologia() {
 	$d=get_psicologia();
 	$j=get_persona();
 	$k=get_DataPersonas();
-	// var_dump($_POST);
+	var_dump($k);
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	$ad=($j['edad']>17)?true:false;

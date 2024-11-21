@@ -714,7 +714,9 @@ function get_sesion_fin(){
 	}else{
 		$id=divide($_POST['id']);
 		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
-		FROM `psi_psicologia` WHERE id_people='{$id[0]}'";
+		FROM `psi_psicologia` PF
+		left join person P ON  PF.id_people=P.idpeople
+		WHERE id_people='{$id[0]}'";
 
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
 		$info=datos_mysql($sql);

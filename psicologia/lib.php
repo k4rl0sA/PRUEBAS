@@ -597,10 +597,12 @@ function cmp_sesion_fin() {
 	$r=get_Moment1();
 	$q=get_Moment2();
 	$total=psyPrevia();
+	
 	if ($d=="") {$d=$t;}
 	if ($j=="") {$j=$t;}
 	if ($r=="") {$r=$t;}
 	if ($q=="") {$q=$t;}
+	$ed = ($d['edad']<18) ? false :true;
 	$u=($d['id_people']=='')?true:false;
 	$o='infgen';
 	$ob=($j['psi_validacion14']=='')?true:false;
@@ -623,11 +625,12 @@ function cmp_sesion_fin() {
 	$c[]=new cmp($o,'e',null,'RESULTADO DE EVALUACION pre EP+',$w);
 	$c[]=new cmp('cod_admisfin','s',2,$j['cod_admisfin'],$w.' '.$o,'Codigo Admisión','cod_admisfin',null,null,true,true,'','col-4');
 	
-	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
+	/* $sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad
 		FROM person WHERE id_people='{$_POST['id']}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
-		$ed = ($edad<18) ? false :true;
+		$ed = ($edad<18) ? false :true; */
+
 
 	$c[]=new cmp('psi_validacion4','a','1500',$j['psi_validacion4'],$w.' '.$o,'1. Éste es el problema que le preocupaba más, según usted nos dijo cuando le preguntamos al principio.','psi_validacion4',null,null,$ed,$ed,'','col-10');
 	$c[]=new cmp('psi_validacion5','s','3',$j['psi_validacion5'],$w.' '.$o,'1,1. ¿Cuánto le afectó durante la última semana?','psi_validacion5',null,null,$ed,$ed,'','col-10');
@@ -653,7 +656,7 @@ function cmp_sesion_fin() {
 function psyPrevia(){
 	$id=divide($_POST['id']);
 	$sql1="SELECT (psi_validacion2+psi_validacion4+psi_validacion6+psi_validacion7)  suma1 
-	from psi_sesion2 where psi_tipo_doc='{$id[0]}' AND psi_documento='{$id[1]}'";	
+	from psi_sesion2 where id_people='{$id[0]}'";	
 	$sum=datos_mysql($sql1);
 	return $sum['responseResult'][0]['suma1'];
 	// return print_r($_POST);
@@ -710,7 +713,7 @@ function get_sesion_fin(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
+		$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,psi_tipo_doc,psi_documento,psi_validacion1,psi_validacion2,psi_validacion3,psi_validacion4,psi_validacion5,psi_validacion6,psi_validacion7,psi_validacion8,psi_validacion9,psi_validacion10,estado
 		FROM `psi_psicologia` WHERE id_people='{$id[0]}'";
 
 // sector_catastral,'_',nummanzana,'_',predio_num,'_',estrategia,'_',estado_v
@@ -801,7 +804,6 @@ function gra_sesion_fin(){
 
 		$sql="INSERT INTO psi_sesion_fin VALUES (
 					NULL,
-					trim(upper('{$_POST['psi_tipo_doc']}')),
 					trim(upper('{$_POST['psi_documento']}')),
 					trim(upper('{$_POST['psi_fecha_sesion']}')),
 					trim(upper('{$_POST['cod_admisfin']}')),

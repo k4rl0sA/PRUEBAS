@@ -181,14 +181,12 @@ function get_atencion(){
 			if ($total==1){		
 				$sql="SELECT concat(a.idpeople) id,b.tipo_doc,b.idpersona,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
-			atencion_cronico, `gestante`, 
-				`atencion_peso`, `atencion_talla`, `atencion_sistolica`, `atencion_diastolica`, `atencion_abdominal`, `atencion_brazo`,
-				dxnutricional,signoalarma,cualalarma,`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
+				`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
 				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
 				`mestruacion`,
 				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`atencion_cualevento`, 
-				`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
+				`evento`,`cualevento`, 
+				`sirc`, `rutasirc`, `remision`, `cualremision`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `ordenimagenes`, `ordenpsicologia`, `relevo`
 				,prioridad,estrategia
 			FROM adm_facturacion a
 			LEFT JOIN person b ON a.idpeople=b.idpeople
@@ -203,8 +201,8 @@ function get_atencion(){
 				`letra1`,`rango1`,`diagnostico1`,`letra2`,`rango2`,`diagnostico2`,`letra3`,`rango3`,
 				`diagnostico3`, `fertil`, `preconcepcional`,`metodo`,`anticonceptivo`,`planificacion`,
 				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`atencion_cualevento`,
-				`atencion_sirc`,`atencion_rutasirc`,`atencion_remision`,`atencion_cualremision`,`atencion_ordenvacunacion`,`atencion_vacunacion`,`atencion_ordenlaboratorio`,`atencion_laboratorios`,`atencion_ordenmedicamentos`,`atencion_medicamentos`,`atencion_rutacontinuidad`,`atencion_continuidad`,`atencion_ordenimagenes`,`atencion_ordenpsicologia`,`atencion_relevo`
+				`evento`,cualevento`,
+				`sirc`,`rutasirc`,`remision`,`cualremision`,`ordenvacunacion`,`vacunacion`,`ordenlaboratorio`,`laboratorios`,`ordenmedicamentos`,`medicamentos`,`rutacontinuidad`,`continuidad`,`ordenimagenes`,`ordenpsicologia`,`relevo`
 				,prioridad,estrategia 
 				FROM adm_facturacion a
 				LEFT JOIN person b ON a.idpeople=b.idpeople 

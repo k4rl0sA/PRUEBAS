@@ -183,16 +183,14 @@ function get_atencion(){
 			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
 				`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
 				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
-				`mestruacion`,
-				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`evento`,`cuale_vento`, 
-				`sirc`, `rutasirc`, `remision`, `cualremision`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `ordenimagenes`, `ordenpsicologia`, `relevo`
+				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+				`evento`,`cuale_vento`,`sirc`, `rutasirc`, `remision`, `cualremision`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `ordenimagenes`, `ordenpsicologia`, `relevo`
 				,prioridad,estrategia
 			FROM adm_facturacion a
 			LEFT JOIN person b ON a.idpeople=b.idpeople
 			LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
-			//  echo $sql;
+			  echo $sql;
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
@@ -201,14 +199,13 @@ function get_atencion(){
 				`letra1`,`rango1`,`diagnostico1`,`letra2`,`rango2`,`diagnostico2`,`letra3`,`rango3`,
 				`diagnostico3`, `fertil`, `preconcepcional`,`metodo`,`anticonceptivo`,`planificacion`,
 				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`evento`,cuale_vento`,
-				`sirc`,`rutasirc`,`remision`,`cualremision`,`ordenvacunacion`,`vacunacion`,`ordenlaboratorio`,`laboratorios`,`ordenmedicamentos`,`medicamentos`,`rutacontinuidad`,`continuidad`,`ordenimagenes`,`ordenpsicologia`,`relevo`
+				`evento`,cuale_vento`,`sirc`,`rutasirc`,`remision`,`cualremision`,`ordenvacunacion`,`vacunacion`,`ordenlaboratorio`,`laboratorios`,`ordenmedicamentos`,`medicamentos`,`rutacontinuidad`,`continuidad`,`ordenimagenes`,`ordenpsicologia`,`relevo`
 				,prioridad,estrategia 
 				FROM adm_facturacion a
 				LEFT JOIN person b ON a.idpeople=b.idpeople 
 				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.id_factura
 				WHERE a.id_factura='{$id}'";
-		//  echo $sql;
+		  echo $sql;
 			/*  */
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);

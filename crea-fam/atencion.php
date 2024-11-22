@@ -134,7 +134,7 @@ $o='prurap';
 	$sql="SELECT  F.id_factura ACCIONES,F.cod_admin,F.fecha_consulta fecha,FN_CATALOGODESC(182,F.tipo_consulta) Consulta,
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
 	FROM adm_facturacion F
-	WHERE F.idpeople ='{$id[0]}'";
+	WHERE F.idpeople ='{$id[0]}'"
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		// echo $sql;

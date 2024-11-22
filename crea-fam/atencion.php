@@ -21,12 +21,11 @@ else {
 
 function cmp_atencion(){
 	$rta="";
-	/* $rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
-	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>"; */
+	$rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
+	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>";
 	$hoy=date('Y-m-d');
 	$t=['idpersona'=>'','tipo_doc'=>'','nombres'=>'','fecha_atencion'=>'','tipo_consulta'=>'','cod_cups'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>''];
-	$d='';
-	// $d=get_personas();
+	$d=get_personas();
 	$x="";
 	if ($d==""){$d=$t;}
 	$u=($d['idpersona']=='')?true:false;
@@ -135,7 +134,7 @@ $o='prurap';
 	$sql="SELECT  F.id_factura ACCIONES,F.cod_admin,F.fecha_consulta fecha,FN_CATALOGODESC(182,F.tipo_consulta) Consulta,
 	FN_CATALOGODESC(126,F.cod_cups) 'Código CUPS',FN_CATALOGODESC(127,F.final_consul) Finalidad
 	FROM adm_facturacion F
-	WHERE F.idpeople ='{$id[0]}'"
+	WHERE F.idpeople ='{$id[0]}'";
 		$sql.=" ORDER BY F.fecha_create";
 		$sql.=' LIMIT '.$pag.','.$regxPag;
 		// echo $sql;

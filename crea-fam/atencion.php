@@ -193,7 +193,10 @@ function get_atencion(){
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
-			$sql="SELECT concat(c.idpeople) id,b.tipo_doc,b.idpersona,a.idpeople,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
+			$sql="SELECT concat(c.idpeople) id,
+			b.tipo_doc,
+			b.idpersona,
+			concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 				b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
 				letra1,rango1,diagnostico1,letra2,rango2,diagnostico2,letra3,rango3,
 				diagnostico3, fertil, preconcepcional,metodo,anticonceptivo,planificacion,

@@ -170,7 +170,7 @@ function get_atencion(){
 			// print_r($_REQUEST['id']);
 			$sql1="SELECT COUNT(*) rta
 			FROM adm_facturacion a
-			LEFT JOIN eac_atencion c ON a.tipo_doc = c.atencion_tipodoc AND a.documento = c.atencion_idpersona
+			LEFT JOIN eac_atencion c ON a.idpeople = c.idpeople
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
 			$info=datos_mysql($sql1);
 			$total=$info['responseResult'][0]['rta'];

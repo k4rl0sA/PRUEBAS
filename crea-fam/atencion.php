@@ -187,7 +187,7 @@ function get_atencion(){
 				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
 				`mestruacion`,
 				vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`atencion_eventointeres`, `atencion_evento`, `atencion_cualevento`, 
+				`atencion_evento`, `atencion_cualevento`, 
 				`atencion_sirc`, `atencion_rutasirc`, `atencion_remision`, `atencion_cualremision`, `atencion_ordenvacunacion`, `atencion_vacunacion`, `atencion_ordenlaboratorio`, `atencion_laboratorios`, `atencion_ordenmedicamentos`, `atencion_medicamentos`, `atencion_rutacontinuidad`, `atencion_continuidad`, `atencion_ordenimagenes`, `atencion_ordenpsicologia`, `atencion_relevo`
 				,prioridad,estrategia
 			FROM adm_facturacion a
@@ -203,7 +203,7 @@ function get_atencion(){
 				`letra1`,`rango1`,`diagnostico1`,`letra2`,`rango2`,`diagnostico2`,`letra3`,`rango3`,
 				`diagnostico3`, `fertil`, `preconcepcional`,`metodo`,`anticonceptivo`,`planificacion`,
 				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`atencion_eventointeres`, `atencion_evento`,`atencion_cualevento`,
+				`atencion_evento`,`atencion_cualevento`,
 				`atencion_sirc`,`atencion_rutasirc`,`atencion_remision`,`atencion_cualremision`,`atencion_ordenvacunacion`,`atencion_vacunacion`,`atencion_ordenlaboratorio`,`atencion_laboratorios`,`atencion_ordenmedicamentos`,`atencion_medicamentos`,`atencion_rutacontinuidad`,`atencion_continuidad`,`atencion_ordenimagenes`,`atencion_ordenpsicologia`,`atencion_relevo`
 				,prioridad,estrategia 
 				FROM adm_facturacion a

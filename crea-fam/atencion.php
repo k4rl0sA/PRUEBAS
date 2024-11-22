@@ -21,8 +21,8 @@ else {
 
 function cmp_atencion(){
 	$rta="";
-	$rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
-	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>";
+	/* $rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
+	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>"; */
 	$hoy=date('Y-m-d');
 	$t=['idpersona'=>'','tipo_doc'=>'','nombres'=>'','fecha_atencion'=>'','tipo_consulta'=>'','cod_cups'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>''];
 	$d=get_personas();
@@ -123,7 +123,7 @@ $o='prurap';
 	return $rta;
    }
 
-   /* function lis_atencion(){
+   function lis_atencion(){
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ida']) ? divide($_POST['ida']) : null);
 	// print_r($id);
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_facturacion F WHERE F.idpeople ='{$id[0]}'");
@@ -141,7 +141,7 @@ $o='prurap';
 			$datos=datos_mysql($sql);
 			return create_table($total,$datos["responseResult"],"atencion",$regxPag,'atencion.php');
 		// return panel_content($datos["responseResult"],"atencion-lis",5);
-	} */
+	}
 
 	function get_personas(){
 		//var_dump($_REQUEST);

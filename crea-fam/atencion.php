@@ -198,7 +198,7 @@ function get_atencion(){
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
-			$sql="SELECT concat(a.documento,'_',a.tipo_doc) id,a.tipo_doc,a.idpeople,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
+			$sql="SELECT concat(a.idpeople) id,a.tipo_doc,a.idpeople,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 				b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
 				`atencion_cronico`,`gestante`,
 				`atencion_peso`,`atencion_talla`,`atencion_sistolica`,`atencion_diastolica`,`atencion_abdominal`,`atencion_brazo`,

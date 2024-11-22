@@ -181,11 +181,10 @@ function get_atencion(){
 			if ($total==1){		
 				$sql="SELECT concat(a.idpeople) id,b.tipo_doc,b.idpersona,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
-				`letra1`, `rango1`, `diagnostico1`, `letra2`, `rango2`, `diagnostico2`, `letra3`, `rango3`, 
-				`diagnostico3`,`fertil`, `preconcepcional`, `metodo`, `anticonceptivo`, `planificacion`, 
-				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`evento`,`cuale_vento`,`sirc`, `rutasirc`, `remision`, `cualremision`, `ordenvacunacion`, `vacunacion`, `ordenlaboratorio`, `laboratorios`, `ordenmedicamentos`, `medicamentos`, `rutacontinuidad`, `continuidad`, `ordenimagenes`, `ordenpsicologia`, `relevo`
-				,prioridad,estrategia
+				letra1, rango1, diagnostico1, letra2, rango2, diagnostico2, letra3, rango3, 
+				diagnostico3,fertil, preconcepcional, metodo, anticonceptivo, planificacion, 
+				mestruacion,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+				evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision, orden_vacunacion, vacunacion, orden_laboratorio, laboratorios, orden_medicamentos, medicamentos, ruta_continuidad, continuidad, orden_imagenes, orden_psicologia, relevo
 			FROM adm_facturacion a
 			LEFT JOIN person b ON a.idpeople=b.idpeople
 			LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
@@ -196,16 +195,15 @@ function get_atencion(){
 			}else{
 			$sql="SELECT concat(a.idpeople) id,a.idpeople,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 				b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
-				`letra1`,`rango1`,`diagnostico1`,`letra2`,`rango2`,`diagnostico2`,`letra3`,`rango3`,
-				`diagnostico3`, `fertil`, `preconcepcional`,`metodo`,`anticonceptivo`,`planificacion`,
-				`mestruacion`,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-				`evento`,cuale_vento`,`sirc`,`rutasirc`,`remision`,`cualremision`,`ordenvacunacion`,`vacunacion`,`ordenlaboratorio`,`laboratorios`,`ordenmedicamentos`,`medicamentos`,`rutacontinuidad`,`continuidad`,`ordenimagenes`,`ordenpsicologia`,`relevo`
-				,prioridad,estrategia 
+				letra1,rango1,diagnostico1,letra2,rango2,diagnostico2,letra3,rango3,
+				diagnostico3, fertil, preconcepcional,metodo,anticonceptivo,planificacion,
+				mestruacion,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
+				evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision,orden_vacunacion,vacunacion,orden_laboratorio,laboratorios,orden_medicamentos,medicamentos,ruta_continuidad,continuidad,orden_imagenes,orden_psicologia,relevo
 				FROM adm_facturacion a
 				LEFT JOIN person b ON a.idpeople=b.idpeople 
 				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.id_factura
 				WHERE a.id_factura='{$id}'";
-		  echo $sql;
+		//   echo $sql;
 			/*  */
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);

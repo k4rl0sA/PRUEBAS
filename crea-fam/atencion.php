@@ -58,7 +58,7 @@ function cmp_atencion(){
 	$c[]=new cmp('codigocups','s',3,$x,$w.' '.$o,'Código CUPS','cups',null,'',true,false,'','col-3');
 	$c[]=new cmp('finalidadconsulta','s',3,$x,$w.' '.$o,'Finalidad de la Consulta','consultamedica',null,'',true,false,'','col-3');
 
-	$c[]=new cmp('letra1','s','3',$x,$w.' '.$o,'Letra CIE(1)','letra1',null,null,true,true,'','col-1',"valPyd(this,'tipo_consulta');valResol('tipo_consulta','letra1');selectDepend('letra1','rango1','atencionphp');");//,['rango1']
+	$c[]=new cmp('letra1','s','3',$x,$w.' '.$o,'Letra CIE(1)','letra1',null,null,true,true,'','col-1',"valPyd(this,'tipo_consulta');valResol('tipo_consulta','letra1');selectDepend('letra1','rango1','atencion.php');");//,['rango1']
  	$c[]=new cmp('rango1','s','3',$x,$w.' '.$o,'Tipo1','rango1',null,null,true,true,'','col-45',false,['diagnostico1']);
  	$c[]=new cmp('diagnostico1','s','8',$x,$w.' '.$o,'Diagnostico Principal','diagnostico1',null,null,true,true,'','col-45');
 	$c[]=new cmp('letra2','s','3',$x,$w.' '.$o,'Letra CIE(2)','letra2',null,null,false,true,'','col-1',false,['rango2']);

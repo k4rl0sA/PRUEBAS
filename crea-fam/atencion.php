@@ -22,7 +22,7 @@ else {
 function cmp_atencion(){
 	$rta="";
 	$rta .="<div class='encabezado atencion'>Consultas realizadas al paciente</div>
-	<div class='contenido' id='atencion-lis' >".lis_atencion()."</div></div>";
+	<div class='contenido' id='atencion-lis' >".lis_atencio()."</div></div>";
 	$hoy=date('Y-m-d');
 	$t=['idpersona'=>'','tipo_doc'=>'','nombres'=>'','fecha_atencion'=>'','tipo_consulta'=>'','cod_cups'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>''];
 	$d=get_personas();

@@ -28,7 +28,7 @@ function cmp_atencion(){
 	$d=get_personas();
 	$x="";
 	if ($d==""){$d=$t;}
-	$key=(!isset($d['id']?$_POST['id']:$d['id']));
+	$key=(!isset($d['id']))?$_POST['id']:$d['id'];
 	$u=($d['idpersona']=='')?true:false;
 	$w='atencion';		
 	$o='datos';

@@ -237,7 +237,7 @@ function opc_genero($id=''){
 }
 function opc_nacionalidad($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
-}gra_
+}
 function opc_tipo_consulta($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=182 and estado='A'  ORDER BY 1 ",$id);
 }

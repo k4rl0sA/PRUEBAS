@@ -196,7 +196,7 @@ function get_atencion(){
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
-			$sql="SELECT concat(c.idpeople) id,
+			$sql="SELECT concat(b.idpeople) id,
 			b.tipo_doc,
 			b.idpersona,
 			concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
@@ -404,7 +404,7 @@ if (($smu1 = $_POST['fatencion_continuidad'] ?? null) && is_array($smu1)){$conti
 if (($smu3 = $_POST['fatencion_cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
 
 $sql="INSERT INTO eac_atencion VALUES (null,
-	TRIM(UPPER('{$_POST['idpeople']}')),
+	$id[0],
 	TRIM(UPPER('{$_POST['idf']}')),
 	TRIM(UPPER('{$_POST['fechaatencion']}')),
 	TRIM(UPPER('{$_POST['tipo_consulta']}')),

@@ -514,6 +514,22 @@ function enabTest(a,b){
 		}
 	}
 }
+function enabEven(a,b,c){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	const elm = document.querySelectorAll('select.'+c+',input.'+c);
+		if(a.value=='NO'){
+			for (i=0; i<ele.length;i++) {
+				enaFie(ele[i],true);
+			}
+			for (i=0; i<elm.length;i++) {
+				enaFie(elm[i],true);
+			}
+  		}else{
+			for (i=0; i<ele.length;i++) {
+				enaFie(ele[i],false);
+			}
+		}
+}
 /*******************FIN ATENCION*************************/
 
 </script>

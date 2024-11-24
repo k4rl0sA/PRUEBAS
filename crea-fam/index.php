@@ -92,7 +92,7 @@ function grabar(tb='',ev){
     'sesion2':'../psicologia/lib.php',
     'sesiones_psi':'../psicologia/sesiones.php',
     'sesion_fin':'../psicologia/lib.php',
-    'atencion':'../atencion.php'
+    'atencion':'atencion.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

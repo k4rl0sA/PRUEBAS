@@ -453,6 +453,15 @@ function sumPsy1(){
 	document.getElementById('psi_validacion14').value=parseInt(afec1)+parseInt(afec2)+parseInt(afec3);
 }
 /*******************FIN PSICOLOGIA*************************/
+/*******************INICIO ATENCION*************************/
+function valPyd(act,el){
+	const ele = document.getElementById(el);
+	if (act.value=='25' && ele.value==2){
+		act.value='';
+	}
+}
+/*******************FIN ATENCION*************************/
+
 </script>
 </head>
 <body Onload="actualizar();">

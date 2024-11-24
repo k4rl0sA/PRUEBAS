@@ -26,6 +26,7 @@ function cmp_atencion(){
 	$hoy=date('Y-m-d');
 	$t=['id'=>'','idpersona'=>'','tipo_doc'=>'','nombres'=>'','fecha_atencion'=>'','tipo_consulta'=>'','cod_cups'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','nacionalidad'=>''];
 	$d=get_personas();
+	var_dump($d);
 	$x="";
 	if ($d==""){$d=$t;}
 	$key=(!isset($d['id']))?$_POST['id']:$d['id'];
@@ -193,7 +194,7 @@ function get_atencion(){
 			LEFT JOIN person b ON a.idpeople=b.idpeople
 			LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
-			//   echo $sql;
+			   echo $sl;
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
@@ -210,7 +211,7 @@ function get_atencion(){
 				LEFT JOIN person b ON a.idpeople=b.idpeople 
 				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.id_factura
 				WHERE a.id_factura='{$id}'";
-			// echo $sql;
+			echo $sql;
 			/*  */
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);

@@ -460,6 +460,31 @@ function valPyd(act,el){
 		act.value='';
 	}
 }
+function valResol(a,el){
+	const act = document.getElementById(a);
+	const ele = document.getElementById(el);
+	if (act.value=='1'){
+		ele.value=25;
+		ele.disabled = true;
+    	ele.required = true;
+    	ele.classList.toggle('valido', true);
+    	ele.classList.toggle('captura', true);
+    	ele.classList.toggle('bloqueo', true);
+    	ele.setAttribute('readonly', true);
+		changeSelect('letra1','rango1');
+	}else{
+		if(ele.value==25){// if(ele.value==25 || ele.value==18){
+			ele.value='';
+			ele.disabled = false;
+			ele.required = true;
+			ele.classList.toggle('valido', true);
+    		ele.classList.toggle('bloqueo', false);
+			ele.removeAttribute('readonly');
+			document.getElementById('rango1').value='';
+			document.getElementById('diagnostico1').value='';
+		}
+	}
+}
 /*******************FIN ATENCION*************************/
 
 </script>

@@ -391,10 +391,7 @@ function gra_atencion(){
 	$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
 	if(count($id)==1){
-		return "No es posible actualizar consulte con el administrador";
-	}elseif(count($id)==0){
-		
-$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
+		$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
 $preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';
 $metodo = isset($_POST['metodo']) ? trim($_POST['metodo']) : '';
 $anticonceptivo = isset($_POST['anticonceptivo']) ? trim($_POST['anticonceptivo']) : '';
@@ -407,24 +404,12 @@ if (($smu1 = $_POST['fatencion_continuidad'] ?? null) && is_array($smu1)){$conti
 if (($smu3 = $_POST['fatencion_cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
 
 $sql="INSERT INTO eac_atencion VALUES (null,
-	TRIM(UPPER('{$_POST['atencion_tipodoc']}')),
-	TRIM(UPPER('{$_POST['atencion_idpersona']}')),
+	TRIM(UPPER('{$_POST['idpeople']}')),
 	TRIM(UPPER('{$_POST['idf']}')),
-	TRIM(UPPER('{$_POST['atencion_fechaatencion']}')),
+	TRIM(UPPER('{$_POST['fechaatencion']}')),
 	TRIM(UPPER('{$_POST['tipo_consulta']}')),
-	TRIM(UPPER('{$_POST['atencion_codigocups']}')),
-	TRIM(UPPER('{$_POST['atencion_finalidadconsulta']}')),
-	TRIM(UPPER('{$_POST['atencion_cronico']}')),
-	TRIM(UPPER('{$gestante}')),
-	TRIM(UPPER('{$_POST['atencion_peso']}')),
-	TRIM(UPPER('{$_POST['atencion_talla']}')),
-	TRIM(UPPER('{$_POST['atencion_sistolica']}')),
-	TRIM(UPPER('{$_POST['atencion_diastolica']}')),
-	TRIM(UPPER('{$_POST['atencion_abdominal']}')),
-	TRIM(UPPER('{$_POST['perime_braq']}')),
-	TRIM(UPPER('{$_POST['dxnutricional']}')),
-	TRIM(UPPER('{$_POST['signoalarma']}')),
-	TRIM(UPPER('{$_POST['cualalarma']}')),
+	TRIM(UPPER('{$_POST['codigocups']}')),
+	TRIM(UPPER('{$_POST['finalidadconsulta']}')),
 	TRIM(UPPER('{$_POST['letra1']}')),
 	TRIM(UPPER('{$_POST['rango1']}')),
 	TRIM(UPPER('{$_POST['diagnostico1']}')),
@@ -448,32 +433,38 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 	TRIM(UPPER('{$_POST['resul_sifil']}')),
 	TRIM(UPPER('{$_POST['pru_embarazo']}')),
 	TRIM(UPPER('{$_POST['resul_emba']}')),
-	TRIM(UPPER('{$_POST['atencion_eventointeres']}')),
-	TRIM(UPPER('{$_POST['atencion_evento']}')),
-	TRIM(UPPER('{$_POST['atencion_cualevento']}')),
-	TRIM(UPPER('{$_POST['atencion_sirc']}')),
+	TRIM(UPPER('{$_POST['pru_apetito']}')),
+	TRIM(UPPER('{$_POST['resul_apetito']}')),
+	TRIM(UPPER('{$_POST['eventointeres']}')),
+	TRIM(UPPER('{$_POST['evento']}')),
+	TRIM(UPPER('{$_POST['cuale_vento']}')),
+	TRIM(UPPER('{$_POST['sirc']}')),
 	TRIM(UPPER('{$rutasirc}')),
-	TRIM(UPPER('{$_POST['atencion_remision']}')),
+	TRIM(UPPER('{$_POST['remision']}')),
 	TRIM(UPPER('{$remisi}')),
-	TRIM(UPPER('{$_POST['atencion_ordenvacunacion']}')),
-	TRIM(UPPER('{$_POST['atencion_vacunacion']}')),
-	TRIM(UPPER('{$_POST['atencion_ordenlaboratorio']}')),
-	TRIM(UPPER('{$_POST['atencion_laboratorios']}')),
-	TRIM(UPPER('{$_POST['atencion_ordenmedicamentos']}')),
-	TRIM(UPPER('{$_POST['atencion_medicamentos']}')),
-	TRIM(UPPER('{$_POST['atencion_rutacontinuidad']}')),
+	TRIM(UPPER('{$_POST['ordenvacunacion']}')),
+	TRIM(UPPER('{$_POST['vacunacion']}')),
+	TRIM(UPPER('{$_POST['ordenlaboratorio']}')),
+	TRIM(UPPER('{$_POST['laboratorios']}')),
+	TRIM(UPPER('{$_POST['ordenmedicamentos']}')),
+	TRIM(UPPER('{$_POST['medicamentos']}')),
+	TRIM(UPPER('{$_POST['rutacontinuidad']}')),
 	TRIM(UPPER('{$contin}')),
-	TRIM(UPPER('{$_POST['atencion_ordenimagenes']}')),
-	TRIM(UPPER('{$_POST['atencion_ordenpsicologia']}')),
-	TRIM(UPPER('{$_POST['atencion_relevo']}')),
-	TRIM(UPPER('{$_POST['prioridad']}')),
+	TRIM(UPPER('{$_POST['ordenimagenes']}')),
+	TRIM(UPPER('{$_POST['ordenpsicologia']}')),
+	TRIM(UPPER('{$_POST['relevo']}')),
 	TRIM(UPPER('{$_POST['estrategia']}')),
+	TRIM(UPPER('{$_POST['tipo_estrategia']}')),	
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		// echo $sql;
-	}
-	  $rta=dato_mysql($sql);
+	  return $rta=dato_mysql($sql);
 	  return $rta; 
+	}elseif(count($id)==0){
+		return "No es posible actualizar consulte con el administrador";
+
+	}
+	  
 }
 
 

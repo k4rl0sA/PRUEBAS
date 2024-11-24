@@ -30,6 +30,7 @@ function cmp_atencion(){
 	$x="";
 	if ($d==""){$d=$t;}
 	$key=(!isset($d['id']))?$_POST['id']:$d['id'];
+	var_dump($key);
 	$u=($d['idpersona']=='')?true:false;
 	$w='atencion';		
 	$o='datos';
@@ -43,7 +44,7 @@ function cmp_atencion(){
 	$gest = (($edad>=10 && $edad <= 54) && $d['sexo'] == 'M') ? true : false;
 	
 	$c[]=new cmp($o,'e',null,'Datos atención medica usuario',$w);
-	$c[]=new cmp('ida','h',15,$key,$w.' '.$o,'ida','ida',null,'####',false,false,'col-1');
+	$c[]=new cmp('ida','h',15,$d['id'],$w.' '.$o,'ida','ida',null,'####',false,false,'col-1');
 	$c[]=new cmp('tipodoc','t','20',$d['tipo_doc'],$w.' '.$o,'Tipo','tipodoc',null,'',false,false,'','col-1');
 	$c[]=new cmp('idpersona','t','20',$d['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',false,false,'','col-2');
 	$c[]=new cmp('nombre1','t','20',$d['nombres'],$w.' '.$o,'Nombres','nombre1',null,'',false,false,'','col-3');

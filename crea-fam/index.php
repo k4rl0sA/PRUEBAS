@@ -530,6 +530,16 @@ function enabEven(a,b,c){
 			}
 		}
 }
+function cualEven(a,b){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	for (i=0; i<ele.length;i++) {
+		if(a.value=='5'){
+			enaFie(ele[i],false);
+  		}else{
+			enaFie(ele[i],true);
+		}
+	}
+}
 /*******************FIN ATENCION*************************/
 
 </script>

@@ -212,6 +212,7 @@ function get_atencion(){
 			// echo $sql;
 			/*  */
 			$info=datos_mysql($sql);
+			var_dump($info);
 			return json_encode($info['responseResult'][0]);
 			}
 		 }

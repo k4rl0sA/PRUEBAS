@@ -238,7 +238,7 @@ function opc_genero($id=''){
 }
 function opc_nacionalidad($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
-}
+}gra_
 function opc_tipo_consulta($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=182 and estado='A'  ORDER BY 1 ",$id);
 }
@@ -390,9 +390,9 @@ function opc_estrategia($id=''){
 function gra_atencion(){
 	$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
-	if(count($id)==6){
+	if(count($id)==1){
 		return "No es posible actualizar consulte con el administrador";
-	}elseif(count($id)==2){
+	}elseif(count($id)==0){
 		
 $fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
 $preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';

@@ -454,8 +454,7 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 	TRIM(UPPER('{$_POST['ordenpsicologia']}')),
 	TRIM(UPPER('{$_POST['relevo']}')),
 	TRIM(UPPER('{$_POST['estrategia']}')),
-	TRIM(UPPER('{$_POST['tipo_estrategia']}')),
-	
+	TRIM(UPPER('{$_POST['tipo_estrategia']}')),	
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		// echo $sql;

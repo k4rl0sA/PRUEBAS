@@ -194,7 +194,7 @@ function get_atencion(){
 			LEFT JOIN person b ON a.idpeople=b.idpeople
 			LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
-			   echo $sl;
+			echo $sql;
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{

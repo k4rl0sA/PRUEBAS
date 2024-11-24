@@ -468,10 +468,10 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		// echo $sql;
-	}
 	  return $rta=dato_mysql($sql);
-	}elseif(count($id)==0){
+	}else{
 		return "No es posible actualizar consulte con el administrador";
+}
 }
 
 

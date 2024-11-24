@@ -29,7 +29,7 @@ function cmp_atencion(){
 	var_dump($d);
 	$x="";
 	if ($d==""){$d=$t;}
-	$key=(empty($d['id']))?$_POST['id']:$d['id'];
+	$key=(!isset($d['id']))?$_POST['id']:$d['id'];
 	$u=($d['idpersona']=='')?true:false;
 	$w='atencion';		
 	$o='datos';

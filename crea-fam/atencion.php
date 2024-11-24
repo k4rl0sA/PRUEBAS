@@ -391,10 +391,7 @@ function gra_atencion(){
 	$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
 	if(count($id)==1){
-		return "No es posible actualizar consulte con el administrador";
-	}elseif(count($id)==0){
-		
-$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
+		$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
 $preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';
 $metodo = isset($_POST['metodo']) ? trim($_POST['metodo']) : '';
 $anticonceptivo = isset($_POST['anticonceptivo']) ? trim($_POST['anticonceptivo']) : '';
@@ -472,8 +469,9 @@ $sql="INSERT INTO eac_atencion VALUES (null,
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		// echo $sql;
 	}
-	  $rta=dato_mysql($sql);
-	  return $rta; 
+	  return $rta=dato_mysql($sql);
+	}elseif(count($id)==0){
+		return "No es posible actualizar consulte con el administrador";
 }
 
 

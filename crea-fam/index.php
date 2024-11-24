@@ -504,6 +504,16 @@ function enabFert(a,b,c){
 			}
 		}
 }
+function enabTest(a,b){
+	const ele = document.querySelectorAll('select.'+b+',input.'+b);
+	for (i=0; i<ele.length;i++) {
+		if(a.value=='NO'){
+			enaFie(ele[i],true);
+  		}else{
+			enaFie(ele[i],false);
+		}
+	}
+}
 /*******************FIN ATENCION*************************/
 
 </script>

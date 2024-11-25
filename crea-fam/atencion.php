@@ -388,7 +388,7 @@ function opc_estrategia($id=''){
 }
 /****************FIN DESPLEGABLES*****************+*****/
 function gra_atencion(){
-	var_dump($_POST);
+	// var_dump($_POST);
 		$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
 	if(count($id)==1){

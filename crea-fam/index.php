@@ -472,7 +472,7 @@ function valResol(a,el){
     	ele.classList.toggle('captura', true);
     	ele.classList.toggle('bloqueo', true);
     	ele.setAttribute('readonly', true);
-		changeSelect('letra1','rango1');
+		selectDepend('letra1','rango1','atencion.php');
 	}else{
 		if(ele.value==25){// if(ele.value==25 || ele.value==18){
 			ele.value='';

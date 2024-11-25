@@ -187,7 +187,7 @@ function get_atencion(){
 					diagnostico3,fertil, preconcepcional, metodo, anticonceptivo, planificacion, 
 					mestruacion,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
 					evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision, orden_vacunacion, vacunacion, orden_laboratorio, laboratorios, orden_medicamentos, medicamentos, ruta_continuidad, continuidad, orden_imagenes, orden_psicologia, relevo,
-					pru_apetito,resul_apetito
+					pru_apetito,resul_apetito,estrategia,motivo_estrategia
 					FROM adm_facturacion a
 					LEFT JOIN person b ON a.idpeople=b.idpeople
 					LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 

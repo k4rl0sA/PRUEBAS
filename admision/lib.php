@@ -258,7 +258,7 @@ function gra_admision(){
 		}
 		// print_r($id);
 
-		$sql1="UPDATE `personas` SET
+		/*$sql1="UPDATE `personas` SET
 		regimen=trim(upper('{$_POST['regimen']}')), 
 		eapb=trim(upper('{$_POST['eapb']}')),
 		usu_update=TRIM(UPPER('{$_SESSION['us_sds']}')),
@@ -271,7 +271,7 @@ function gra_admision(){
 			$rtaF.= "";
 		} else {
 			$rtaF.= "Error: No se pudo actualizar el Regimen o la Eapb";
-		}	
+		}	*/
 
 		$sql="UPDATE `adm_facturacion` SET
 	fecha_consulta=trim(upper('{$_POST['fecha_consulta']}')), 

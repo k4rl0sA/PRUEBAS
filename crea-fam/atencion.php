@@ -409,6 +409,9 @@ function gra_atencion(){
 		var_dump($_POST['continuidad']);
 		var_dump(is_array($smu1));
 
+		var_dump($_POST['rutasirc']);
+		var_dump(is_array($smu2));
+
 	$sql="INSERT INTO eac_atencion VALUES (null,
 		$id[0],
 		TRIM(UPPER('{$_POST['idf']}')),

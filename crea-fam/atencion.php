@@ -265,36 +265,36 @@ function opc_rango1($id=''){
 		} 
 	}
 function opc_diagnostico1($id=''){
-	/* 	print_r($_POST);
+	/* 	print_r($_POST);*/
 		if (count(divide($_POST['id']))==2){
 			return opc_sql("SELECT `iddiagnostico`,descripcion FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
-		} */
+		} 
 }
 function opc_letra2($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
 function opc_rango2($id=''){
-	/* if (count(divide($_POST['id']))==2){
+	 if (count(divide($_POST['id']))==2){
 		return opc_sql("SELECT iddiagnostico,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
-	} */
+	} 
 }
 function opc_diagnostico2($id=''){
-	/* if (count(divide($_POST['id']))==2){
+	 if (count(divide($_POST['id']))==2){
 		return opc_sql("SELECT `iddiagnostico`,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
-	} */
+	}
 }
 function opc_letra3($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
 function opc_rango3($id=''){
-	/* if (count(divide($_POST['id']))==2){
+	 if (count(divide($_POST['id']))==2){
 		return opc_sql("SELECT iddiagnostico,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
-	} */
+	}
 }
 function opc_diagnostico3($id=''){
-	/* if (count(divide($_POST['id']))==2){
+	if (count(divide($_POST['id']))==2){
 		return opc_sql("SELECT `iddiagnostico`,concat(iddiagnostico,'-',descripcion) FROM `diagnosticos` WHERE `iddiag`='3' and estado='A'  ORDER BY descripcion ",$id);
-	} */
+	}
 }
 
 function opc_letra1rango1(){

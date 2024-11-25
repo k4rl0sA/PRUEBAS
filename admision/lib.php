@@ -163,8 +163,9 @@ function get_personas(){
 			FROM adm_facturacion F
 			LEFT JOIN person P ON F.idpeople = P.idpeople 
 			LEFT JOIN hog_fam H ON P.vivipersona = H.id_fam
-			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
-        			FROM hog_geo ) AS G ON H.idpre = G.idgeo
+			LEFT JOIN hog_geo G ON H.idpre = G.idgeo
+			/*LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
+        			FROM hog_geo ) AS G ON H.idpre = G.idgeo*/
 		WHERE  P.idpeople='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);

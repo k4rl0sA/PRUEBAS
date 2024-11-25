@@ -162,7 +162,7 @@ function get_personas(){
 		$sql="SELECT P.vivipersona,P.tipo_doc,P.idpersona,P.nombre1,P.nombre2,P.apellido1,P.apellido2,P.fecha_nacimiento,P.sexo,P.genero,P.nacionalidad,P.estado_civil,P.niveduca,P.ocupacion,P.regimen,P.eapb,FN_CATALOGODESC(2,G.localidad) localidad,FN_CATALOGODESC(20,G.barrio) barrio,G.direccion,H.telefono1,H.telefono2,H.telefono3
 			FROM adm_facturacion F
 			LEFT JOIN person P ON F.idpeople = P.idpeople 
-			LEFT JOIN hog_viv H ON P.vivipersona = H.idviv
+			LEFT JOIN hog_carac H ON P.vivipersona = H.id_viv
 			LEFT JOIN ( SELECT idgeo AS geo, direccion, localidad, barrio
         			FROM hog_geo ) AS G ON H.idgeo = G.geo
 		WHERE  P.idpeople='{$id[0]}'";

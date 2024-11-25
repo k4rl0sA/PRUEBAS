@@ -156,7 +156,7 @@ function gra_admision(){
 			$rta=dato_mysql($sql);
 		}
 	}else{
-		$id=$id[0];
+		// $id=$id[0];
 		if(get_admi($id)){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{

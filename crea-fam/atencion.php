@@ -462,9 +462,7 @@ function gra_atencion(){
 	  return $rta=dato_mysql($sql);
 	}elseif(count($id)==0){
 		return "No es posible actualizar consulte con el administrador";
-
 	}
-	  
 }
 
 

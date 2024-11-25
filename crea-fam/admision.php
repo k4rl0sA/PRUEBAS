@@ -144,7 +144,7 @@ function gra_admision(){
 	//    echo $sql;
 	}elseif(count($id)==3){
 		// $id=$id[0];
-		if(get_admi($id)){
+		if(get_admi($id[0])){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
 			  $sql="INSERT INTO adm_facturacion VALUES (NULL,$id[0],trim(upper('{$_POST['soli_admis']}')),
@@ -157,7 +157,7 @@ function gra_admision(){
 		}
 	}else{
 		// $id=$id[0];
-		if(get_admi($id)){
+		if(get_admi($id[0])){
 			$rta="Error: msj['No puedes realizar otra solicitud, ya fue enviada una al área encargada']";
 		}else{
 			$sql="INSERT INTO adm_facturacion VALUES (NULL,$id[0],trim(upper('{$_POST['soli_admis']}')),

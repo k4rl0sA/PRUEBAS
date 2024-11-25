@@ -388,79 +388,78 @@ function opc_estrategia($id=''){
 }
 /****************FIN DESPLEGABLES*****************+*****/
 function gra_atencion(){
-	// var_dump($_POST);
-	$id=divide($_POST['ida']);
+	var_dump($_POST);
+		$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
 	if(count($id)==1){
 		$fertil = isset($_POST['fertil']) ? trim($_POST['fertil']) : '';
-$preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';
-$metodo = isset($_POST['metodo']) ? trim($_POST['metodo']) : '';
-$anticonceptivo = isset($_POST['anticonceptivo']) ? trim($_POST['anticonceptivo']) : '';
-$planificacion = isset($_POST['planificacion']) ? trim($_POST['planificacion']) : '';
-$mestruacion = isset($_POST['mestruacion']) ? trim($_POST['mestruacion']) : '';
-$gestante = isset($_POST['gestante']) ? trim($_POST['gestante']) : '';
+		$preconcepcional = isset($_POST['preconcepcional']) ? trim($_POST['preconcepcional']) : '';
+		$metodo = isset($_POST['metodo']) ? trim($_POST['metodo']) : '';
+		$anticonceptivo = isset($_POST['anticonceptivo']) ? trim($_POST['anticonceptivo']) : '';
+		$planificacion = isset($_POST['planificacion']) ? trim($_POST['planificacion']) : '';
+		$mestruacion = isset($_POST['mestruacion']) ? trim($_POST['mestruacion']) : '';
+		$gestante = isset($_POST['gestante']) ? trim($_POST['gestante']) : '';
 
-if (($smu2 = $_POST['fatencion_rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
-if (($smu1 = $_POST['fatencion_continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}
-if (($smu3 = $_POST['fatencion_cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
+		if (($smu2 = $_POST['fatencion_rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
+		if (($smu1 = $_POST['fatencion_continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}
+		if (($smu3 = $_POST['fatencion_cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
 
-$sql="INSERT INTO eac_atencion VALUES (null,
-	$id[0],
-	TRIM(UPPER('{$_POST['idf']}')),
-	TRIM(UPPER('{$_POST['fechaatencion']}')),
-	TRIM(UPPER('{$_POST['tipo_consulta']}')),
-	TRIM(UPPER('{$_POST['codigocups']}')),
-	TRIM(UPPER('{$_POST['finalidadconsulta']}')),
-	TRIM(UPPER('{$_POST['letra1']}')),
-	TRIM(UPPER('{$_POST['rango1']}')),
-	TRIM(UPPER('{$_POST['diagnostico1']}')),
-	TRIM(UPPER('{$_POST['letra2']}')),
-	TRIM(UPPER('{$_POST['rango2']}')),
-	TRIM(UPPER('{$_POST['diagnostico2']}')),
-	TRIM(UPPER('{$_POST['letra3']}')),
-	TRIM(UPPER('{$_POST['rango3']}')),
-	TRIM(UPPER('{$_POST['diagnostico3']}')),
-	TRIM(UPPER('{$fertil}')),
-	TRIM(UPPER('{$preconcepcional}')),
-	TRIM(UPPER('{$metodo}')),
-	TRIM(UPPER('{$anticonceptivo}')),
-	TRIM(UPPER('{$planificacion}')),
-	TRIM(UPPER('{$mestruacion}')),
-	TRIM(UPPER('{$_POST['vih']}')),
-	TRIM(UPPER('{$_POST['resul_vih']}')),
-	TRIM(UPPER('{$_POST['hb']}')),
-	TRIM(UPPER('{$_POST['resul_hb']}')),
-	TRIM(UPPER('{$_POST['trepo_sifil']}')),
-	TRIM(UPPER('{$_POST['resul_sifil']}')),
-	TRIM(UPPER('{$_POST['pru_embarazo']}')),
-	TRIM(UPPER('{$_POST['resul_emba']}')),
-	TRIM(UPPER('{$_POST['pru_apetito']}')),
-	TRIM(UPPER('{$_POST['resul_apetito']}')),
-	TRIM(UPPER('{$_POST['eventointeres']}')),
-	TRIM(UPPER('{$_POST['evento']}')),
-	TRIM(UPPER('{$_POST['cuale_vento']}')),
-	TRIM(UPPER('{$_POST['sirc']}')),
-	TRIM(UPPER('{$rutasirc}')),
-	TRIM(UPPER('{$_POST['remision']}')),
-	TRIM(UPPER('{$remisi}')),
-	TRIM(UPPER('{$_POST['ordenvacunacion']}')),
-	TRIM(UPPER('{$_POST['vacunacion']}')),
-	TRIM(UPPER('{$_POST['ordenlaboratorio']}')),
-	TRIM(UPPER('{$_POST['laboratorios']}')),
-	TRIM(UPPER('{$_POST['ordenmedicamentos']}')),
-	TRIM(UPPER('{$_POST['medicamentos']}')),
-	TRIM(UPPER('{$_POST['rutacontinuidad']}')),
-	TRIM(UPPER('{$contin}')),
-	TRIM(UPPER('{$_POST['ordenimagenes']}')),
-	TRIM(UPPER('{$_POST['ordenpsicologia']}')),
-	TRIM(UPPER('{$_POST['relevo']}')),
-	TRIM(UPPER('{$_POST['estrategia']}')),
-	TRIM(UPPER('{$_POST['tipo_estrategia']}')),	
+	$sql="INSERT INTO eac_atencion VALUES (null,
+		$id[0],
+		TRIM(UPPER('{$_POST['idf']}')),
+		TRIM(UPPER('{$_POST['fechaatencion']}')),
+		TRIM(UPPER('{$_POST['tipo_consulta']}')),
+		TRIM(UPPER('{$_POST['codigocups']}')),
+		TRIM(UPPER('{$_POST['finalidadconsulta']}')),
+		TRIM(UPPER('{$_POST['letra1']}')),
+		TRIM(UPPER('{$_POST['rango1']}')),
+		TRIM(UPPER('{$_POST['diagnostico1']}')),
+		TRIM(UPPER('{$_POST['letra2']}')),
+		TRIM(UPPER('{$_POST['rango2']}')),
+		TRIM(UPPER('{$_POST['diagnostico2']}')),
+		TRIM(UPPER('{$_POST['letra3']}')),
+		TRIM(UPPER('{$_POST['rango3']}')),
+		TRIM(UPPER('{$_POST['diagnostico3']}')),
+		TRIM(UPPER('{$fertil}')),
+		TRIM(UPPER('{$preconcepcional}')),
+		TRIM(UPPER('{$metodo}')),
+		TRIM(UPPER('{$anticonceptivo}')),
+		TRIM(UPPER('{$planificacion}')),
+		TRIM(UPPER('{$mestruacion}')),
+		TRIM(UPPER('{$_POST['vih']}')),
+		TRIM(UPPER('{$_POST['resul_vih']}')),
+		TRIM(UPPER('{$_POST['hb']}')),
+		TRIM(UPPER('{$_POST['resul_hb']}')),
+		TRIM(UPPER('{$_POST['trepo_sifil']}')),
+		TRIM(UPPER('{$_POST['resul_sifil']}')),
+		TRIM(UPPER('{$_POST['pru_embarazo']}')),
+		TRIM(UPPER('{$_POST['resul_emba']}')),
+		TRIM(UPPER('{$_POST['pru_apetito']}')),
+		TRIM(UPPER('{$_POST['resul_apetito']}')),
+		TRIM(UPPER('{$_POST['eventointeres']}')),
+		TRIM(UPPER('{$_POST['evento']}')),
+		TRIM(UPPER('{$_POST['cuale_vento']}')),
+		TRIM(UPPER('{$_POST['sirc']}')),
+		TRIM(UPPER('{$rutasirc}')),
+		TRIM(UPPER('{$_POST['remision']}')),
+		TRIM(UPPER('{$remisi}')),
+		TRIM(UPPER('{$_POST['ordenvacunacion']}')),
+		TRIM(UPPER('{$_POST['vacunacion']}')),
+		TRIM(UPPER('{$_POST['ordenlaboratorio']}')),
+		TRIM(UPPER('{$_POST['laboratorios']}')),
+		TRIM(UPPER('{$_POST['ordenmedicamentos']}')),
+		TRIM(UPPER('{$_POST['medicamentos']}')),
+		TRIM(UPPER('{$_POST['rutacontinuidad']}')),
+		TRIM(UPPER('{$contin}')),
+		TRIM(UPPER('{$_POST['ordenimagenes']}')),
+		TRIM(UPPER('{$_POST['ordenpsicologia']}')),
+		TRIM(UPPER('{$_POST['relevo']}')),
+		TRIM(UPPER('{$_POST['estrategia']}')),
+		TRIM(UPPER('{$_POST['tipo_estrategia']}')),	
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
 		echo $sql;
 	  return $rta=dato_mysql($sql);
-	  return $rta; 
 	}elseif(count($id)==0){
 		return "No es posible actualizar consulte con el administrador";
 

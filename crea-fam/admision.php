@@ -138,7 +138,7 @@ function opc_estado_hist($id=''){
 function gra_admision(){
 	print_r($_POST);
 	$id=divide($_POST['id_factura']);
-	var_dump($id);
+	// var_dump($id);
 	if(count($id)==4){
 		$rta = "'NO ES POSIBLE ACTUALIZAR EL REGISTRO'";
 	//    echo $sql;

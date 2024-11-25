@@ -164,7 +164,7 @@ function gra_admision(){
 		  trim(upper('{$_POST['cod_factura']}')),
 		  TRIM(UPPER('{$_POST['estado_hist']}')),
 		  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		  echo $sql;
+		//   echo $sql;
 		  $rta=dato_mysql($sql);
 	  	}
 	}

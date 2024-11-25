@@ -388,7 +388,7 @@ function opc_estrategia($id=''){
 }
 /****************FIN DESPLEGABLES*****************+*****/
 function gra_atencion(){
-	var_dump($_POST);
+	// var_dump($_POST);
 		$id=divide($_POST['ida']);
 	// print_r($_POST['ida']);
 	if(count($id)==1){
@@ -399,6 +399,9 @@ function gra_atencion(){
 		$planificacion = isset($_POST['planificacion']) ? trim($_POST['planificacion']) : '';
 		$mestruacion = isset($_POST['mestruacion']) ? trim($_POST['mestruacion']) : '';
 		$gestante = isset($_POST['gestante']) ? trim($_POST['gestante']) : '';
+
+		var_dump($_POST['continuidad']);
+		var_dump(is_array($smu1));
 
 		if (($smu2 = $_POST['rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
 		if (($smu1 = $_POST['continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}

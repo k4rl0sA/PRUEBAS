@@ -165,7 +165,7 @@ $o='prurap';
 }
 
 function get_atencion(){
-	var_dump($_POST);
+	// var_dump($_POST);
 	if($_REQUEST['id']==''){
 		return "";
 	}else{

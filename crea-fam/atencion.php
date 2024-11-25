@@ -178,10 +178,9 @@ function get_atencion(){
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
 			$info=datos_mysql($sql1);
 			$total=$info['responseResult'][0]['rta'];
-			// echo $sql;
+			 echo $sql;
 			/* $info=datos_mysql($sql); */
 			// return json_encode($info['responseResult'][0]);
-
 			if ($total==1){		
 				$sql="SELECT concat(a.idpeople) id,b.tipo_doc,b.idpersona,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
 			b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
@@ -193,7 +192,7 @@ function get_atencion(){
 			LEFT JOIN person b ON a.idpeople=b.idpeople
 			LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
 			WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
-			// echo $sql;
+			 echo $sql;
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);
 			}else{
@@ -210,7 +209,7 @@ function get_atencion(){
 				LEFT JOIN person b ON a.idpeople=b.idpeople 
 				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.id_factura
 				WHERE a.id_factura='{$id}'";
-			// echo $sql;
+			 echo $sql;
 			/*  */
 			$info=datos_mysql($sql);
 			return json_encode($info['responseResult'][0]);

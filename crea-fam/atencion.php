@@ -182,12 +182,13 @@ function get_atencion(){
 			// return json_encode($info['responseResult'][0]);
 			if ($total==1){		
 				$sql="SELECT concat(a.idpeople) id,b.tipo_doc,b.idpersona,concat_ws(' ',b.nombre1,b.nombre2,b.apellido1,b.apellido2) nombres,
-					b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad, a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
+					b.fecha_nacimiento,b.sexo,b.genero,b.nacionalidad,a.id_factura,a.fecha_consulta,a.tipo_consulta,a.cod_cups,a.final_consul,
 					letra1, rango1, diagnostico1, letra2, rango2, diagnostico2, letra3, rango3, 
 					diagnostico3,fertil, preconcepcional, metodo, anticonceptivo, planificacion, 
 					mestruacion,vih,resul_vih,hb,resul_hb,trepo_sifil,resul_sifil,pru_embarazo,resul_emba,
-					evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision, orden_vacunacion, vacunacion, orden_laboratorio, laboratorios, orden_medicamentos, medicamentos, ruta_continuidad, continuidad, orden_imagenes, orden_psicologia, relevo,
-					pru_apetito,resul_apetito,estrategia,motivo_estrategia
+					pru_apetito,resul_apetito,estrategia,evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision, orden_vacunacion, vacunacion, 
+					orden_laboratorio, laboratorios, orden_medicamentos,medicamentos, ruta_continuidad, continuidad, orden_imagenes, orden_psicologia, relevo,
+					motivo_estrategia
 					FROM adm_facturacion a
 					LEFT JOIN person b ON a.idpeople=b.idpeople
 					LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 

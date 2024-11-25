@@ -400,9 +400,9 @@ function gra_atencion(){
 		$mestruacion = isset($_POST['mestruacion']) ? trim($_POST['mestruacion']) : '';
 		$gestante = isset($_POST['gestante']) ? trim($_POST['gestante']) : '';
 
-		if (($smu2 = $_POST['fatencion_rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
-		if (($smu1 = $_POST['fatencion_continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}
-		if (($smu3 = $_POST['fatencion_cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
+		if (($smu2 = $_POST['rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
+		if (($smu1 = $_POST['continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}
+		if (($smu3 = $_POST['cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
 
 	$sql="INSERT INTO eac_atencion VALUES (null,
 		$id[0],
@@ -438,7 +438,7 @@ function gra_atencion(){
 		TRIM(UPPER('{$_POST['resul_apetito']}')),
 		TRIM(UPPER('{$_POST['eventointeres']}')),
 		TRIM(UPPER('{$_POST['evento']}')),
-		TRIM(UPPER('{$_POST['cuale_vento']}')),
+		TRIM(UPPER('{$_POST['cualevento']}')),
 		TRIM(UPPER('{$_POST['sirc']}')),
 		TRIM(UPPER('{$rutasirc}')),
 		TRIM(UPPER('{$_POST['remision']}')),

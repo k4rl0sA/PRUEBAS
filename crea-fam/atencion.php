@@ -400,17 +400,9 @@ function gra_atencion(){
 		$mestruacion = isset($_POST['mestruacion']) ? trim($_POST['mestruacion']) : '';
 		$gestante = isset($_POST['gestante']) ? trim($_POST['gestante']) : '';
 
-		
-
 		if (($smu2 = $_POST['rutasirc'] ?? null) && is_array($smu2)){$rutasirc = implode(",",str_replace("'", "", $smu2));}
 		if (($smu1 = $_POST['continuidad'] ?? null) && is_array($smu1)){$contin = implode(",",str_replace("'", "", $smu1));}
 		if (($smu3 = $_POST['cualremision'] ?? null) && is_array($smu3)){$remisi = implode(",",str_replace("'", "", $smu3));}
-
-		var_dump($_POST['continuidad']);
-		var_dump(is_array($smu1));
-
-		var_dump($_POST['rutasirc']);
-		var_dump(is_array($smu2));
 
 	$sql="INSERT INTO eac_atencion VALUES (null,
 		$id[0],
@@ -466,7 +458,7 @@ function gra_atencion(){
 		TRIM(UPPER('{$_POST['tipo_estrategia']}')),	
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		echo $sql;
+		// echo $sql;
 	  return $rta=dato_mysql($sql);
 	}elseif(count($id)==0){
 		return "No es posible actualizar consulte con el administrador";

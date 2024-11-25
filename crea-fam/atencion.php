@@ -192,7 +192,7 @@ function get_atencion(){
 					FROM adm_facturacion a
 					LEFT JOIN person b ON a.idpeople=b.idpeople
 					LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople 
-					WHERE c.id_factura ='{$id}' and a.id_factura='{$id}'";
+					WHERE c.cod_admin ='{$id}' and a.id_factura='{$id}'";
 			 		// echo $sql;
 					$info=datos_mysql($sql);
 				return json_encode($info['responseResult'][0]);
@@ -208,7 +208,7 @@ function get_atencion(){
 				evento,cuale_vento,sirc,ruta_sirc,remision,cual_remision,orden_vacunacion,vacunacion,orden_laboratorio,laboratorios,orden_medicamentos,medicamentos,ruta_continuidad,continuidad,orden_imagenes,orden_psicologia,relevo
 				FROM adm_facturacion a
 				LEFT JOIN person b ON a.idpeople=b.idpeople 
-				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.id_factura
+				LEFT JOIN eac_atencion c ON a.idpeople=c.idpeople AND a.id_factura=c.cod_admin
 				WHERE a.id_factura='{$id}'";
 			//  echo $sql;
 			/*  */

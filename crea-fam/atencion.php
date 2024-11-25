@@ -258,11 +258,11 @@ function opc_letra1($id=''){
 	return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='1' and estado='A' ORDER BY 2 ",$id);
 }
 function opc_rango1($id=''){
-	/* 	print_r($_REQUEST);
-		print_r($_POST);
+	 	/*print_r($_REQUEST);
+		print_r($_POST);*/
 		if (count(divide($_POST['id']))==2){
 			return opc_sql("SELECT iddiagnostico,descripcion FROM `diagnosticos` WHERE `iddiag`='2' and estado='A' ORDER BY 1 ",$id);
-		} */
+		} 
 	}
 function opc_diagnostico1($id=''){
 	/* 	print_r($_POST);

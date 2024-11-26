@@ -177,11 +177,12 @@ $d=get_rute();
  return $rta;
 }
 function lista_gestion(){ //revisar
-	// var_dump($_POST);
+	//var_dump($_POST);
 	$id=divide($_POST['id']);
+	var_dump($id);
 		$sql="SELECT fecha_gest Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
 		FROM eac_ruteo_ges 
-			WHERE  usu_creo='".$_SESSION['us_sds']."'";
+			WHERE  usu_creo='".$_SESSION['us_sds']."' ";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		//$_SESSION['sql_person']=$sql;

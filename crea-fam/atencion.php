@@ -118,8 +118,8 @@ $o='prurap';
 	$c[]=new cmp('ordenimagenes','o',3,$x,$w.' '.$o,'Ordena Imágenes Diagnósticas','ordenimagenes	',null,'',true,true,'','col-3');//,'hidFieOpt(\'ordenimagenes\',\'img_hid\',this,true)'
 	$c[]=new cmp('ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
 	$c[]=new cmp('relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
-	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4',"enbValue('estrategia','eST','3');");
-	$c[]=new cmp('tipo_estrategia','s',3,$x,$w.' eST '.$o,'Prioridad','prioridad',null,'',true,false,'','col-4');
+	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4',"enbValue('estrategia','eSt','3');");
+	$c[]=new cmp('tipo_estrategia','s',3,$x,$w.' eSt '.$o,'Prioridad','prioridad',null,'',true,false,'','col-4');
 	
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

@@ -179,7 +179,7 @@ $d=get_rute();
 function lista_gestion(){ //revisar
 	//var_dump($_POST);
 	$id=divide($_POST['id']);
-	var_dump($id);
+	// var_dump($id);
 		$sql="SELECT fecha_gest Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
 		FROM eac_ruteo_ges 
 			WHERE  usu_creo='".$_SESSION['us_sds']."' AND idruteo='$id[0]'";

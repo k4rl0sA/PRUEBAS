@@ -118,8 +118,8 @@ $o='prurap';
 	$c[]=new cmp('ordenimagenes','o',3,$x,$w.' '.$o,'Ordena Imágenes Diagnósticas','ordenimagenes	',null,'',true,true,'','col-3');//,'hidFieOpt(\'ordenimagenes\',\'img_hid\',this,true)'
 	$c[]=new cmp('ordenpsicologia','s',3,$x,$w.' '.$o,'Ordena Psicología','aler',null,'',true,true,'','col-3');
 	$c[]=new cmp('relevo','s',3,$x,$w.' '.$o,'Cumple criterios Para relevo domiciliario a cuidadores','aler',null,'',true,true,'','col-4');
-	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4');
-	$c[]=new cmp('tipo_estrategia','s',3,$x,$w.' '.$o,'Estrategia Conglomerado','tipo_estrategia',null,'',true,true,'','col-4');
+	$c[]=new cmp('estrategia','s',3,$x,$w.' '.$o,'Estrategia','estrategia',null,'',true,true,'','col-4',"enbValue('estrategia','eST','3');");
+	$c[]=new cmp('tipo_estrategia','s',3,$x,$w.' eST '.$o,'Prioridad','prioridad',null,'',true,true,'','col-4');
 	
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -380,8 +380,8 @@ function opc_solicitud($id=''){
 function opc_medicamentos($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=186 and estado='A'  ORDER BY 1 ",$id);
 }
-function opc_tipo_estrategia($id=''){
-	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=236 and estado='A'  ORDER BY 1 ",$id);
+function opc_prioridad($id=''){
+	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=201 and estado='A'  ORDER BY 1 ",$id);
 }
 function opc_estrategia($id=''){
 	return opc_sql("SELECT idcatadeta,descripcion,valor FROM `catadeta` WHERE idcatalogo=203 and estado='A'  ORDER BY 1 ",$id);
@@ -464,8 +464,6 @@ function gra_atencion(){
 		return "No es posible actualizar consulte con el administrador";
 	}
 }
-
-
 
 function cap_menus($a,$b='cap',$con='con') {
 	$rta = "";

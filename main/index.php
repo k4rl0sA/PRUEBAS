@@ -185,17 +185,17 @@ $drv="https://drive.google.com/thumbnail?id=";
   
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?>>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?>>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> >
   </div>
     
   <div class="mySlides fade">
@@ -210,12 +210,12 @@ $drv="https://drive.google.com/thumbnail?id=";
 </div>
   <div class="mySlides fade">
     <div class="numbertext">5 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> >
   </div>
     
   <div class="mySlides fade">
     <div class="numbertext">6 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> >
   </div>
 
   <div class="mySlides fade">
@@ -238,7 +238,7 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> onclick="currentSlide(2)" alt="Imagen 1">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> onclick="currentSlide(1)" alt="Imagen 1">
     </div>
     <div class="column">
       <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> onclick="currentSlide(2)" alt="Imagen 2">

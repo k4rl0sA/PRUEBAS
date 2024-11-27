@@ -22,6 +22,8 @@ img {
 /* Position the image container (needed to position the left and right arrows) */
 .container {
   position: relative;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 /* Hide the images by default */

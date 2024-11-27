@@ -19,8 +19,6 @@ else {
   }   
 }
 
-
-
 function lis_tamzung(){
 	// concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,tam_zung 'Cod. Registro',zung_idpersona Documento,FN_CATALOGODESC(1,zung_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
@@ -292,4 +290,3 @@ function gra_tamzung(){
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;
 	   }
-	

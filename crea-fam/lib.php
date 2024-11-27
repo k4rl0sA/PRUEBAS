@@ -507,13 +507,10 @@ function gra_person(){
 	if(count($id)!=1){
 		$sql="UPDATE `person` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),
-		`tipo_doc`=TRIM(UPPER('{$_POST['tipo_doc']}')),
 		`nombre1`=TRIM(UPPER('{$_POST['nombre1']}')),
 		`nombre2`=TRIM(UPPER('{$_POST['nombre2']}')),
 		`apellido1`=TRIM(UPPER('{$_POST['apellido1']}')),
 		`apellido2`=TRIM(UPPER('{$_POST['apellido2']}')),
-		`fecha_nacimiento`=TRIM(UPPER('{$_POST['fecha_nacimiento']}')),
-		`sexo`=TRIM(UPPER('{$_POST['sexo']}')),
 		`genero`=TRIM(UPPER('{$_POST['genero']}')),
 		`oriensexual`=TRIM(UPPER('{$_POST['oriensexual']}')),
 		`nacionalidad`=TRIM(UPPER('{$_POST['nacionalidad']}')),

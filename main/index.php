@@ -158,26 +158,24 @@ $drv="https://drive.google.com/thumbnail?id=";
 <h2 style="text-align:center">Galeria</h2>
 -->
 <div class="container">
+  
   <div class="mySlides fade">
-    <div class="numbertext" id='video1'>1 / 6<div id='duration'></div></div>
-    <iframe src=<?php echo "'".$vid.$img['responseResult'][0]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
-		<!-- <video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
-			<source src=<?php /* echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; */ ?> type="video/mp4">		
-		</video> -->
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 6</div>
+    <div class="numbertext">1 / 7</div>
     <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">
-    <div class="numbertext">3 / 6</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%">
+    <div class="numbertext">2 / 7</div>
+    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" height="95px">
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext">3 / 7</div>
+    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
-    <div class="numbertext">4 / 6</div>
+    <div class="numbertext">4 / 7</div>
     <iframe id="inlineFrameExample"
 			title="Inline Frame Example"
 			width="100%"
@@ -187,13 +185,21 @@ $drv="https://drive.google.com/thumbnail?id=";
 
 </div>
   <div class="mySlides fade">
-    <div class="numbertext">5 / 6</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
+    <div class="numbertext">5 / 7</div>
+    <img src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
-    <div class="numbertext">6 / 6</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%">
+    <div class="numbertext">6 / 7</div>
+    <img src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <div class="numbertext" id='video1'>7 / 7<div id='duration'></div></div>
+    <iframe src=<?php echo "'".$vid.$img['responseResult'][7]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
+		<!-- <video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
+			<source src=<?php /* echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; */ ?> type="video/mp4">		
+		</video> -->
   </div>
     
   <a class="prev" onclick="plusSlides(-1)">❮</a>

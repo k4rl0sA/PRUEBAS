@@ -32,7 +32,17 @@ img {
 }
 
 .mySlides img {
-    height: 650px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 100vh; 
+}
+
+.column img {
+  width: 100%; 
+  height: auto; 
+  object-fit: cover;
+  cursor: pointer;
 }
 
 /* Add a pointer when hovering over the thumbnail images */
@@ -141,6 +151,18 @@ img {
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+
+@media (max-width: 768px) {
+  .column {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .column {
+    width: 100%;
+  }
+}
 </style>
 <body>
 <?php
@@ -216,25 +238,25 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(3)" alt="Imagen 3" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(3)" alt="Imagen 3">
     </div>
     <div class="column">
-		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(4)" alt="Imagen 4" height="95px" width="233px">
+		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(4)" alt="Imagen 4">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(5)" alt="Imagen 5" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(5)" alt="Imagen 5">
     </div>    
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(6)" alt="Imagen 6" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(6)" alt="Imagen 6">
     </div>
     <div class="column">
-      <video class="demo cursor" autoplay muted loop onclick="currentSlide(7)" title="Video 7" height="95px" width="233px">
+      <video class="demo cursor" autoplay muted loop onclick="currentSlide(7)" title="Video 7">
 			  <source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
 		  </video>
       </div>

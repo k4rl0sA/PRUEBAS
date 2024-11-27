@@ -28,11 +28,6 @@ require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='tamcope';
-/* $ya = new DateTime();
-// $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-$genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
-$tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='MED' ORDER BY 1",''); */
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
@@ -53,7 +48,6 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
-			<li class='icono crear'       title='Crear'     Onclick="mostrar(mod,'pro');"></li> <!--setTimeout(load,500);-->
 		</nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://sites.google.com/', '_blank');"></li>

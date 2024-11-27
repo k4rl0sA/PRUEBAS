@@ -19,23 +19,6 @@ function actualizar(){
 	act_lista(mod);
 }
 
-/* function hiddxedad(xedad,cls) {
-	const edad=document.getElementById(xedad);
-	const cmpHid1 = document.querySelectorAll(`.${cls}`);
-	const ed=document.getElementById('mayor');
-	if(edad.value > 39 ){
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],false);
-			ed.value=1;
-			ed.disabled=true;
-		}
-	}else{
-		for(i=0;i<cmpHid1.length;i++){
-			hidFie(cmpHid1[i],true);
-		}
-	}
-} */
-
 </script>
 </head>
 <body Onload="actualizar();">
@@ -44,11 +27,6 @@ require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='tamepoc';
-$ya = new DateTime();
-// $localidades=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' order by 1",'');
-// $genero=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=21 and estado='A' order by 1",'');
-// $tiperson=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=102 and estado='A' order by 1",'');
-// $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION["us_sds"]);
 ?>
 <form method='post' id='fapp' >
 <div class="col-2 menu-filtro" id='<?php echo$mod; ?>-fil'>
@@ -69,7 +47,6 @@ $ya = new DateTime();
 		<nav class='menu left' >
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
-			<li class='icono crear'       title='Crear'     Onclick="mostrar(mod,'pro');"></li> <!--setTimeout(load,500);-->
 		</nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://sites.google.com/', '_blank');"></li>

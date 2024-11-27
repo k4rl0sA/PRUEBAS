@@ -185,17 +185,17 @@ $drv="https://drive.google.com/thumbnail?id=";
   
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."&sz=w1920-h1080'"; ?>>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."&sz=w1920-h1080'"; ?>>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."&sz=w1920-h1080'"; ?>>
   </div>
     
   <div class="mySlides fade">
@@ -210,12 +210,12 @@ $drv="https://drive.google.com/thumbnail?id=";
 </div>
   <div class="mySlides fade">
     <div class="numbertext">5 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."&sz=w1920-h1080'"; ?>>
   </div>
     
   <div class="mySlides fade">
     <div class="numbertext">6 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."&sz=w1920-h1080'"; ?>>
   </div>
 
   <div class="mySlides fade">

@@ -154,7 +154,7 @@ img {
 
 @media (max-width: 768px) {
   .column {
-    width: 50%;
+    width: 50%; 
   }
 }
 
@@ -185,17 +185,17 @@ $drv="https://drive.google.com/thumbnail?id=";
   
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?>>
+    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> >
+    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
@@ -210,17 +210,17 @@ $drv="https://drive.google.com/thumbnail?id=";
 </div>
   <div class="mySlides fade">
     <div class="numbertext">5 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> >
+    <img src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
     <div class="numbertext">6 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> >
+    <img src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext" id='video1'>7 / 7<div id='duration'></div></div>
-    <iframe src=<?php echo "'".$vid.$img['responseResult'][6]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
+    <iframe src=<?php echo "'".$vid.$img['responseResult'][7]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
 		<!-- <video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
 			<source src=<?php /* echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; */ ?> type="video/mp4">		
 		</video> -->
@@ -238,26 +238,26 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> onclick="currentSlide(1)" alt="Imagen 1">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> onclick="currentSlide(2)" alt="Imagen 2">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> onclick="currentSlide(3)" alt="Imagen 3">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(3)" alt="Imagen 3" height="95px" width="233px">
     </div>
     <div class="column">
-		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> onclick="currentSlide(4)" alt="Imagen 4">
+		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(4)" alt="Imagen 4" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> onclick="currentSlide(5)" alt="Imagen 5">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(5)" alt="Imagen 5" height="95px" width="233px">
     </div>    
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> onclick="currentSlide(6)" alt="Imagen 6">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(6)" alt="Imagen 6" height="95px" width="233px">
     </div>
     <div class="column">
-      <video class="demo cursor" autoplay muted loop onclick="currentSlide(7)" title="Video 7">
-			  <source src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."/view'"; ?> type="video/mp4">		
+      <video class="demo cursor" autoplay muted loop onclick="currentSlide(7)" title="Video 7" height="95px" width="233px">
+			  <source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
 		  </video>
       </div>
   </div>

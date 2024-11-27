@@ -185,9 +185,6 @@ $drv="https://drive.google.com/thumbnail?id=";
 			src="../puntos/">
 		</iframe>
 
-
-
-
 </div>
   <div class="mySlides fade">
     <div class="numbertext">5 / 6</div>
@@ -211,25 +208,28 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="row">
     <div class="column">
-		<video class="demo cursor" autoplay muted loop onclick="currentSlide(1)" title="Video 1" height="95px" width="233px">
-			<source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
-		</video>
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(3)" alt="Imagen 3" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(3)" alt="Imagen 3" height="95px" width="233px">
     </div>
     <div class="column">
-		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(4)" alt="Imagen 4" height="95px" width="233px">
+		<img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(4)" alt="Imagen 4" height="95px" width="233px">
     </div>
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(5)" alt="Imagen 5" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(5)" alt="Imagen 5" height="95px" width="233px">
     </div>    
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(6)" alt="Imagen 6" height="95px" width="233px">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(6)" alt="Imagen 6" height="95px" width="233px">
     </div>
+    <div class="column">
+      <video class="demo cursor" autoplay muted loop onclick="currentSlide(7)" title="Video 7" height="95px" width="233px">
+			  <source src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; ?> type="video/mp4">		
+		  </video>
+      </div>
   </div>
 </div>
 

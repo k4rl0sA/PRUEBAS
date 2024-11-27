@@ -185,17 +185,17 @@ $drv="https://drive.google.com/thumbnail?id=";
   
   <div class="mySlides fade">
     <div class="numbertext">1 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" height="95px">
+    <img src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" height="95px">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
@@ -210,17 +210,17 @@ $drv="https://drive.google.com/thumbnail?id=";
 </div>
   <div class="mySlides fade">
     <div class="numbertext">5 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][5]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][3]['id_key']."'"; ?> style="width:100%">
   </div>
     
   <div class="mySlides fade">
     <div class="numbertext">6 / 7</div>
-    <img src=<?php echo "'".$drv.$img['responseResult'][6]['id_key']."'"; ?> style="width:100%">
+    <img src=<?php echo "'".$drv.$img['responseResult'][4]['id_key']."'"; ?> style="width:100%">
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext" id='video1'>7 / 7<div id='duration'></div></div>
-    <iframe src=<?php echo "'".$vid.$img['responseResult'][7]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
+    <iframe src=<?php echo "'".$vid.$img['responseResult'][6]['id_key']."/preview'"; ?> width="100%" allow="autoplay"></iframe>
 		<!-- <video class="demo cursor" autoplay muted loop controls preload onclick="currentSlide(4)" alt="Video 4" width="100%">
 			<source src=<?php /* echo "'".$drv.$img['responseResult'][0]['id_key']."/view'"; */ ?> type="video/mp4">		
 		</video> -->
@@ -238,7 +238,7 @@ $drv="https://drive.google.com/thumbnail?id=";
 
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][1]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1">
+      <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][0]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 1">
     </div>
     <div class="column">
       <img class="demo cursor" src=<?php echo "'".$drv.$img['responseResult'][2]['id_key']."'"; ?> style="width:100%" onclick="currentSlide(2)" alt="Imagen 2">

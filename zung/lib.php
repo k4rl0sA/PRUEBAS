@@ -186,7 +186,6 @@ function gra_tamzung(){
 	if($id != "0"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-
 	$infodata_zung=datos_mysql("SELECT zung_momento,zung_idpersona FROM hog_tam_zung
 		 WHERE zung_idpersona = '{$_POST['zung_idpersona']}' AND zung_momento = 2 ");
 	if (isset($infodata_zung['responseResult'][0])){

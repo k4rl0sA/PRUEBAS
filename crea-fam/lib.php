@@ -439,7 +439,7 @@ function lista_persons(){ //revisar
 		// echo $sql;
 		// $_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"datos-lis",10);
+		return panel_content($datos["responseResult"],"datos-lis",15);
 }
 
 function focus_person(){

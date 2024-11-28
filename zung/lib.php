@@ -20,22 +20,35 @@ else {
 }
 
 function lis_tamzung(){
-	// concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(zung_idpersona,'_',zung_tipodoc,'_',zung_momento) ACCIONES,tam_zung 'Cod. Registro',zung_idpersona Documento,FN_CATALOGODESC(1,zung_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
-	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,zung_momento) Momento,`zung_puntaje` Puntaje ,`zung_analisis` Analisis 
-FROM hog_tam_zung O
-LEFT JOIN personas P ON O.zung_idpersona = P.idpersona
-		WHERE '1'='1'";
-	$sql.=whe_tamzung();
-	$sql.=" ORDER BY 1";
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_cope O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		where ".whe_tamcope());
+		$total=$info['responseResult'][0]['total'];
+		$regxPag=12;
+		$pag=(isset($_POST['pag-tamcope']))? (intval($_POST['pag-tamcope'])-1)* $regxPag:0;
 
-	 $sql1="SELECT * 
-	  FROM `hog_tam_zung` WHERE 1";
-	$sql1.=whe_tamzung();	
+		$sql="SELECT O.idpeople ACCIONES,tam_cope 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_zung O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
+		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
+		WHERE ";
+	$sql.=whe_tamcope();
+	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
-		$_SESSION['sql_tamzung']=$sql1;
-		$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"tamzung",20);
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"tamcope",$regxPag);
+	}else{
+		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+                <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar
+                <span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+            </div>";
+	}
 }
 
 function whe_tamzung() {

@@ -136,7 +136,7 @@ function cmp_tamzung(){
 	}else{
 		 $id=divide($_POST['id']);
 		print_r($_POST);
-		$sql="SELECT `id_zung`,`idpeople`,FN_CATALOGODESC(116,zung_momento) zung_momento,`zung_anuncio1`,`zung_anuncio2`,`zung_anuncio3`,`zung_anuncio4`,
+		$sql="SELECT `id_zung`,O.idpeople,FN_CATALOGODESC(116,zung_momento) zung_momento,`zung_anuncio1`,`zung_anuncio2`,`zung_anuncio3`,`zung_anuncio4`,
         `zung_anuncio5`,`zung_anuncio6`,`zung_anuncio7`,`zung_anuncio8`,`zung_anuncio9`,`zung_anuncio10`,`zung_anuncio11`,`zung_anuncio12`,`zung_anuncio13`,
         `zung_anuncio14`,`zung_anuncio15`,`zung_anuncio16`,`zung_anuncio17`,`zung_anuncio18`,`zung_anuncio19`,`zung_anuncio20`,`zung_analisis`,
         `zung_puntaje`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,

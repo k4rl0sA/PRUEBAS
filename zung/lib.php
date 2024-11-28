@@ -93,6 +93,7 @@ function cmp_tamzung(){
 	$c[]=new cmp('zung_nombre','t','50',$d['zung_nombre'],$w.' '.$o,'nombres','zung_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('zung_fechanacimiento','d','10',$d['zung_fechanacimiento'],$w.' '.$o,'fecha nacimiento','zung_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('zung_edad','n','3',$d['zung_edad'],$w.' '.$o,'edad','zung_edad',null,'',true,false,'','col-1');
+    $c[]=new cmp('zung_momento','t','20','',$w.' '.$o,'Momento','zung_momento',null,'',true,true,'','col-3');
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'Escala',$w);
@@ -120,7 +121,6 @@ function cmp_tamzung(){
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);
     $c[]=new cmp('zung_puntaje','n','3','',$w.' '.$o,'Total','zung_puntaje',null,'',false,false,'','col-1');
-    $c[]=new cmp('zung_momento','t','20','',$w.' '.$o,'Momento','zung_momento',null,'',false,false,'','col-3');
     $c[]=new cmp('zung_analisis','t','100','',$w.' '.$o,'Analisis','zung_analisis',null,'',false,false,'','col-6');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	

@@ -136,7 +136,7 @@ function cmp_tamzung(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT `id_zung`,P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
+		$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
         concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
         TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS edzung_edad
 		FROM person P

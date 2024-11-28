@@ -143,7 +143,7 @@ function cmp_tamzung(){
         P.fecha_nacimiento zung_fechanacimiento,
         TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) AS zung_edad
 		FROM `hog_tam_zung` O
-		LEFT JOIN personas P ON O.zung_idpersona = P.idpersona and O.zung_tipodoc=P.tipo_doc
+		LEFT JOIN person P ON O.idpeople = P.idpersona 
 		WHERE zung_idpersona ='{$id[0]}' AND zung_tipodoc='{$id[1]}' AND zung_momento = '{$id[2]}'  ";
 		// echo $sql;
 		$info=datos_mysql($sql);

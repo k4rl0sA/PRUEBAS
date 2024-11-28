@@ -155,7 +155,8 @@ function cmp_tamzung(){
 function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
+$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,
+TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) Edad
 FROM personas 
 	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
 	// echo $sql;

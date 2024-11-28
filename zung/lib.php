@@ -136,9 +136,9 @@ function cmp_tamzung(){
 	}else{
 		 $id=divide($_POST['id']);
 		print_r($_POST);
-		$sql="SELECT `id_zung`,O.idpeople,FN_CATALOGODESC(116,momento) zung_momento,`zung_anuncio1`,`zung_anuncio2`,`zung_anuncio3`,`zung_anuncio4`,
-        `zung_anuncio5`,`zung_anuncio6`,`zung_anuncio7`,`zung_anuncio8`,`zung_anuncio9`,`zung_anuncio10`,`zung_anuncio11`,`zung_anuncio12`,`zung_anuncio13`,
-        `zung_anuncio14`,`zung_anuncio15`,`zung_anuncio16`,`zung_anuncio17`,`zung_anuncio18`,`zung_anuncio19`,`zung_anuncio20`,`zung_analisis`,
+		$sql="SELECT `id_zung`,O.idpeople,FN_CATALOGODESC(116,momento) zung_momento,`anuncio1`,`anuncio2`,`anuncio3`,`anuncio4`,
+        `anuncio5`,`anuncio6`,`anuncio7`,`anuncio8`,`anuncio9`,`anuncio10`,`anuncio11`,`anuncio12`,`anuncio13`,
+        `anuncio14`,`anuncio15`,`anuncio16`,`anuncio17`,`anuncio18`,`anuncio19`,`anuncio20`,`zung_analisis`,
         `zung_puntaje`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,
         P.fecha_nacimiento zung_fechanacimiento,
         TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) AS zung_edad

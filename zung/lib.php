@@ -136,19 +136,19 @@ function cmp_tamzung(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT `id_zung`,O.idpeople,momento,anuncio1,anuncio2,anuncio3,anuncio4,anuncio5,anuncio6,anuncio7,anuncio8,anuncio9,anuncio10,anuncio11,anuncio12,anuncio13,anuncio14,anuncio15,anuncio16,anuncio17,anuncio18,anuncio19,anuncio20,
-        analisis,puntaje,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) cope_nombre,P.fecha_nacimiento cope_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) cope_edad
-		FROM `hog_tam_zung` O
-		LEFT JOIN person P ON O.idpeople = P.idpeople
-		WHERE O.idpeople ='{$id[0]}'";
-		// echo $sql;
+		$sql="SELECT `id_zung`,P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
+        concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
+        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS edzung_edad
+		FROM person P
+		WHERE P.idpeople ='{$id[0]}'";
+		echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}
 	} 
 
 
-    function get_person(){
+    /* function get_person(){
         // print_r($_POST);
         $id=divide($_POST['id']);
     $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,
@@ -162,7 +162,7 @@ function cmp_tamzung(){
             return json_encode (new stdClass);
         }
     return json_encode($info['responseResult'][0]);
-    }
+    } */
 
 function focus_tamzung(){
 	return 'tamzung';

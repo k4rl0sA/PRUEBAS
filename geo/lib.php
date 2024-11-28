@@ -62,11 +62,11 @@ function cmp_geoloc(){
 	//$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',true,false);
 	$c[]=new cmp('zona','s','3','',$w.' '.$o,'Zona','zona',null,'',true,false,'','col-25');
-    $c[]=new cmp('localidad','s',3,'',$w.' '.$o,'Localidad','localidad',null,'',false,false,'','col-25');
-	$c[]=new cmp('upz','s','3','',$w.' '.$o,'Upz','upz',null,'',false,false,'','col-25',false,['bar']);
-    $c[]=new cmp('barrio','s','8','',$w.' '.$o,'Barrio','barrio',null,'',false,false,'','col-25');
+    $c[]=new cmp('localidad','s',3,'',$w.' '.$o,'Localidad','localidad',null,'',true,false,'','col-25');
+	$c[]=new cmp('upz','s','3','',$w.' '.$o,'Upz','upz',null,'',true,false,'','col-25',false,['bar']);
+    $c[]=new cmp('barrio','s','8','',$w.' '.$o,'Barrio','barrio',null,'',true,false,'','col-25');
     
-    $c[]=new cmp('sector_catastral','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,'',false,false,'','col-25');
+    $c[]=new cmp('sector_catastral','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral',null,'',true,false,'','col-25');
     $c[]=new cmp('nummanzana','n','3','',$w.' '.$o,'Nummanzana (3)','nummanzana',null,'',false,false,'','col-25');
     $c[]=new cmp('predio_num','n','3','',$w.' '.$o,'Predio de Num (3)','predio_num',null,'',false,false,'','col-25');
     $c[]=new cmp('unidad_habit','n','4','',$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,'',false,false,'','col-25');

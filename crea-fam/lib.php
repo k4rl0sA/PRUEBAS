@@ -160,7 +160,7 @@ function lis_famili(){
 		$sql.="' ORDER BY V.fecha_create";
 		//  echo $sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"famili-lis",8);
+		return panel_content($datos["responseResult"],"famili-lis",15);
 }
 	
 function cmp_homes1(){
@@ -795,9 +795,7 @@ function get_Tamiz($fec) {
     }
     if ($edad >= 18) {
         $tamiz[] = 'tamfindrisc';
-    }
-    if ($edad >= 40) {
-        $tamiz[] = 'tamoms';
+		$tamiz[] = 'tamoms';
     }
 	if ($edad >40) {
 		$tamiz[] = 'tamepoc';

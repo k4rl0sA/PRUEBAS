@@ -136,13 +136,11 @@ function cmp_tamzung(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT `id_zung`,`cope_idpersona`,`cope_tipodoc`,
-		cope_momento,cope_reporta,cope_pregunta1,cope_pregunta2,cope_pregunta3,cope_pregunta4,cope_pregunta5,cope_pregunta6,cope_pregunta7,cope_pregunta8,cope_pregunta9,cope_pregunta10,cope_pregunta11,cope_pregunta12,cope_pregunta13,cope_pregunta14,cope_pregunta15,cope_pregunta16,cope_pregunta17,cope_pregunta18,cope_pregunta19,cope_pregunta20,cope_pregunta21,cope_pregunta22,cope_pregunta23,cope_pregunta24,cope_pregunta25,cope_pregunta26,cope_pregunta27,cope_pregunta28,cope_puntajea,cope_descripciona,cope_puntajee,cope_descripcione,
-		P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) cope_nombre,P.fecha_nacimiento cope_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) cope_edad
-		FROM `hog_tam_cope` O
-		LEFT JOIN personas P ON O.cope_idpersona = P.idpersona and O.cope_tipodoc=P.tipo_doc
-		LEFT JOIN personas_datocomp C ON O.cope_idpersona = C.dc_documento AND O.cope_tipodoc=C.dc_documento
-		WHERE cope_idpersona ='{$id[0]}' AND cope_tipodoc='{$id[1]}' AND cope_momento = '{$id[2]}' ";
+		$sql="SELECT `id_zung`,O.idpeople,momento,anuncio1,anuncio2,anuncio3,anuncio4,anuncio5,anuncio6,anuncio7,anuncio8,anuncio9,anuncio10,anuncio11,anuncio12,anuncio13,anuncio14,anuncio15,anuncio16,anuncio17,anuncio18,anuncio19,anuncio20,
+        analisis,puntaje,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) cope_nombre,P.fecha_nacimiento cope_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) cope_edad
+		FROM `hog_tam_zung` O
+		LEFT JOIN person P ON O.idpeople = P.idpeople
+		WHERE O.idpeople ='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
@@ -150,20 +148,21 @@ function cmp_tamzung(){
 	} 
 
 
-function get_person(){
-	// print_r($_POST);
-	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,
-TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) Edad
-FROM personas 
-	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	// echo $sql;
-	$info=datos_mysql($sql);
-	if (!$info['responseResult']) {
-		return '';
-	}
-return json_encode($info['responseResult'][0]);
-}
+    function get_person(){
+        // print_r($_POST);
+        $id=divide($_POST['id']);
+    $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,
+    TIMESTAMPDIFF(YEAR, fecha_nacimiento,CURDATE()) AS edad;
+    FROM personas 
+    left JOIN personas_datocomp ON idpersona=dc_documento and tipo_doc=dc_tipo_doc
+        WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
+        // return print_r(json_encode($sql));
+        $info=datos_mysql($sql);
+        if (!$info['responseResult']) {
+            return json_encode (new stdClass);
+        }
+    return json_encode($info['responseResult'][0]);
+    }
 
 function focus_tamzung(){
 	return 'tamzung';

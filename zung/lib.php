@@ -82,7 +82,7 @@ function cmp_tamzung(){
 	$rta="";
 	$t=['tam_zung'=>'','zung_tipodoc'=>'','zung_nombre'=>'','zung_idpersona'=>'','zung_fechanacimiento'=>'','zung_puntaje'=>'','zung_momento'=>'','zung_analisis'=>'','zung_edad'=>'','zung_anuncio1'=>'','zung_anuncio2'=>'','zung_anuncio3'=>'','zung_anuncio4'=>'','zung_anuncio5'=>'','zung_anuncio6'=>'','zung_anuncio7'=>'','zung_anuncio8'=>'','zung_anuncio9'=>'','zung_anuncio10'=>'','zung_anuncio11'=>'','zung_anuncio12'=>'','zung_anuncio13'=>'','zung_anuncio14'=>'','zung_anuncio15'=>'','zung_anuncio16'=>'','zung_anuncio17'=>'','zung_anuncio18'=>'','zung_anuncio19'=>'','zung_anuncio20'=>'']; 
 	$w='tamzung';
-	$d=get_tamzung(); 
+	$d=get_tamzung();
 	if ($d=="") {$d=$t;}
 	$u = ($d['tam_zung']!='') ? false : true ;
 	$o='datos';
@@ -97,32 +97,32 @@ function cmp_tamzung(){
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'Escala',$w);
-	$c[]=new cmp('zung_anuncio1','s',3,$d['zung_anuncio1'],$w.' '.$o,'1. Me siento triste y deprimido.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio2','s',3,$d['zung_anuncio2'],$w.' '.$o,'2. Por las mañanas me siento mejor que por las tardes.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio3','s',3,$d['zung_anuncio3'],$w.' '.$o,'3. Frecuentemente tengo ganas de llorar y a veces lloro.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio4','s',3,$d['zung_anuncio4'],$w.' '.$o,'4. Me cuesta mucho dormir o duermo mal por las noches.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio5','s',3,$d['zung_anuncio5'],$w.' '.$o,'5. Ahora tengo tanto apetito como antes.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio6','s',3,$d['zung_anuncio6'],$w.' '.$o,'6. Todavía me siento atraído por el sexo opuesto.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio7','s',3,$d['zung_anuncio7'],$w.' '.$o,'7. Creo que estoy adelgazando.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio8','s',3,$d['zung_anuncio8'],$w.' '.$o,'8. Estoy estreñido.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio9','s',3,$d['zung_anuncio9'],$w.' '.$o,'9. Tengo palpitaciones.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio10','s',3,$d['zung_anuncio10'],$w.' '.$o,'10. Me canso por cualquier cosa.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio11','s',3,$d['zung_anuncio11'],$w.' '.$o,'11. Mi cabeza está tan despejada como antes.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio12','s',3,$d['zung_anuncio12'],$w.' '.$o,'12. Hago las cosas con la misma facilidad que antes.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio13','s',3,$d['zung_anuncio13'],$w.' '.$o,'13. Me siento agitado e intranquilo y no puedo estar quieto.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio14','s',3,$d['zung_anuncio14'],$w.' '.$o,'14. Tengo esperanza y confío en el futuro.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio15','s',3,$d['zung_anuncio15'],$w.' '.$o,'15. Me siento más irritable que habitualmente.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio16','s',3,$d['zung_anuncio16'],$w.' '.$o,'16. Encuentro fácil tomar decisiones.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio17','s',3,$d['zung_anuncio17'],$w.' '.$o,'17. Me creo útil y necesario para la gente.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio18','s',3,$d['zung_anuncio18'],$w.' '.$o,'18. Encuentro agradable vivir, mi vida es plena.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio19','s',3,$d['zung_anuncio19'],$w.' '.$o,'19. Creo que sería mejor para los demás si me muriera.','escala',null,null,true,$u,'','col-10');
-	$c[]=new cmp('zung_anuncio20','s',3,$d['zung_anuncio20'],$w.' '.$o,'20. Me gustan las mismas cosas que solían agradarme.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio1','s',3,'',$w.' '.$o,'1. Me siento triste y deprimido.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio2','s',3,'',$w.' '.$o,'2. Por las mañanas me siento mejor que por las tardes.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio3','s',3,'',$w.' '.$o,'3. Frecuentemente tengo ganas de llorar y a veces lloro.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio4','s',3,'',$w.' '.$o,'4. Me cuesta mucho dormir o duermo mal por las noches.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio5','s',3,'',$w.' '.$o,'5. Ahora tengo tanto apetito como antes.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio6','s',3,'',$w.' '.$o,'6. Todavía me siento atraído por el sexo opuesto.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio7','s',3,'',$w.' '.$o,'7. Creo que estoy adelgazando.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio8','s',3,'',$w.' '.$o,'8. Estoy estreñido.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio9','s',3,'',$w.' '.$o,'9. Tengo palpitaciones.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio10','s',3,'',$w.' '.$o,'10. Me canso por cualquier cosa.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio11','s',3,'',$w.' '.$o,'11. Mi cabeza está tan despejada como antes.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio12','s',3,'',$w.' '.$o,'12. Hago las cosas con la misma facilidad que antes.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio13','s',3,'',$w.' '.$o,'13. Me siento agitado e intranquilo y no puedo estar quieto.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio14','s',3,'',$w.' '.$o,'14. Tengo esperanza y confío en el futuro.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio15','s',3,'',$w.' '.$o,'15. Me siento más irritable que habitualmente.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio16','s',3,'',$w.' '.$o,'16. Encuentro fácil tomar decisiones.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio17','s',3,'',$w.' '.$o,'17. Me creo útil y necesario para la gente.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio18','s',3,'',$w.' '.$o,'18. Encuentro agradable vivir, mi vida es plena.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio19','s',3,'',$w.' '.$o,'19. Creo que sería mejor para los demás si me muriera.','escala',null,null,true,$u,'','col-10');
+	$c[]=new cmp('zung_anuncio20','s',3,'',$w.' '.$o,'20. Me gustan las mismas cosas que solían agradarme.','escala',null,null,true,$u,'','col-10');
 
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);
-    $c[]=new cmp('zung_puntaje','n','3',$d['zung_puntaje'],$w.' '.$o,'Total','zung_puntaje',null,'',false,false,'','col-1');
-    $c[]=new cmp('zung_momento','t','20',$d['zung_momento'],$w.' '.$o,'Momento','zung_momento',null,'',false,false,'','col-3');
-    $c[]=new cmp('zung_analisis','t','100',$d['zung_analisis'],$w.' '.$o,'Analisis','zung_analisis',null,'',false,false,'','col-6');
+    $c[]=new cmp('zung_puntaje','n','3','',$w.' '.$o,'Total','zung_puntaje',null,'',false,false,'','col-1');
+    $c[]=new cmp('zung_momento','t','20','',$w.' '.$o,'Momento','zung_momento',null,'',false,false,'','col-3');
+    $c[]=new cmp('zung_analisis','t','100','',$w.' '.$o,'Analisis','zung_analisis',null,'',false,false,'','col-6');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	
@@ -135,16 +135,14 @@ function cmp_tamzung(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		print_r($_POST);
-		$sql="SELECT `id_zung`,O.idpeople,FN_CATALOGODESC(116,momento) zung_momento,`anuncio1`,`anuncio2`,`anuncio3`,`anuncio4`,
-        `anuncio5`,`anuncio6`,`anuncio7`,`anuncio8`,`anuncio9`,`anuncio10`,`anuncio11`,`anuncio12`,`anuncio13`,
-        `anuncio14`,`anuncio15`,`anuncio16`,`anuncio17`,`anuncio18`,`anuncio19`,`anuncio20`,`analisis`,
-        `puntaje`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,
-        P.fecha_nacimiento zung_fechanacimiento,
-        TIMESTAMPDIFF(YEAR,P.fecha_nacimiento, CURDATE()) AS zung_edad
-		FROM `hog_tam_zung` O
-		LEFT JOIN person P ON O.idpeople = P.idpeople
-		WHERE O.idpeople ='{$id[0]}' AND momento = '{$id[2]}'  ";
+		// print_r($_POST);
+		$sql="SELECT `id_zung`,`cope_idpersona`,`cope_tipodoc`,
+		cope_momento,cope_reporta,cope_pregunta1,cope_pregunta2,cope_pregunta3,cope_pregunta4,cope_pregunta5,cope_pregunta6,cope_pregunta7,cope_pregunta8,cope_pregunta9,cope_pregunta10,cope_pregunta11,cope_pregunta12,cope_pregunta13,cope_pregunta14,cope_pregunta15,cope_pregunta16,cope_pregunta17,cope_pregunta18,cope_pregunta19,cope_pregunta20,cope_pregunta21,cope_pregunta22,cope_pregunta23,cope_pregunta24,cope_pregunta25,cope_pregunta26,cope_pregunta27,cope_pregunta28,cope_puntajea,cope_descripciona,cope_puntajee,cope_descripcione,
+		P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) cope_nombre,P.fecha_nacimiento cope_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) cope_edad
+		FROM `hog_tam_cope` O
+		LEFT JOIN personas P ON O.cope_idpersona = P.idpersona and O.cope_tipodoc=P.tipo_doc
+		LEFT JOIN personas_datocomp C ON O.cope_idpersona = C.dc_documento AND O.cope_tipodoc=C.dc_documento
+		WHERE cope_idpersona ='{$id[0]}' AND cope_tipodoc='{$id[1]}' AND cope_momento = '{$id[2]}' ";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];

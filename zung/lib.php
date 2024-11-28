@@ -139,7 +139,7 @@ function cmp_tamzung(){
         TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
 		FROM person P
 		WHERE P.idpeople ='{$id[0]}'";
-		echo $sql;
+		// echo $sql; 
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}

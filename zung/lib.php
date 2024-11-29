@@ -194,7 +194,7 @@ function gra_tamzung(){
 		}else{
 			return "Ya se realizo los dos momentos";
 		}
-
+		
 	$suma_zung = (
 		$_POST['zung_anuncio1']+
 		$_POST['zung_anuncio2']+

@@ -119,8 +119,8 @@ function cmp_tamzung(){
 
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);
-	$c[]=new cmp('zung_momento','t','20','',$w.' '.$o,'Momento','momento',null,'',true,true,'','col-3');
     $c[]=new cmp('zung_puntaje','n','3','',$w.' '.$o,'Total','zung_puntaje',null,'',false,false,'','col-1');
+	$c[]=new cmp('zung_momento','t','20',$d['zung_momento'],$w.' '.$o,'Momento','zung_momento',null,'',false,false,'','col-3');
     $c[]=new cmp('zung_analisis','t','100','',$w.' '.$o,'Analisis','zung_analisis',null,'',false,false,'','col-6');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

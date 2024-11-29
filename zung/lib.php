@@ -180,7 +180,7 @@ function men_tamzung(){
   }
    
 function gra_tamzung(){
-	$id=$_POST['idzung'];
+	$id=divide($_POST['idzung']);
 	print_r($_POST);
 	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";

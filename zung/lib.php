@@ -31,7 +31,7 @@ function lis_tamzung(){
 		$regxPag=12;
 		$pag=(isset($_POST['pag-tamzung']))? (intval($_POST['pag-tamzung'])-1)* $regxPag:0;
 
-		$sql="SELECT O.idpeople ACCIONES,id_zung 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+		$sql="SELECT O.idpeople ACCIONES,id_zung 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`analisis` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
 	FROM hog_tam_zung O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
@@ -54,19 +54,6 @@ function lis_tamzung(){
 function lis_zung(){
 	$id=divide($_POST['id']);//id_zung ACCIONES,
 	$sql="SELECT id_zung 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_zung A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idpeople='".$id[0];
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"zung-lis",5);
-}
-
-function whe_tamzung1() {
-    $id=divide($_POST['id']);
-	$sql="SELECT id_zung ACCIONES,
-	id_zung 'Cod Registro',momento,analisis Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_zung A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

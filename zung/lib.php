@@ -40,6 +40,7 @@ function lis_tamzung(){
 		WHERE ";
 	$sql.=whe_tamzung();
 	$sql.=" ORDER BY O.fecha_create DESC";
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamzung",$regxPag);
 	}else{
@@ -50,22 +51,22 @@ function lis_tamzung(){
 	}
 }
 
-function whe_tamzung() {
-	$sql = '1';
-   /*  if (!empty($_POST['fidentificacion'])) {
-        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
-    }
-    if (!empty($_POST['ffam'])) {
-        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
-    } */
-    return $sql;
+function lis_zung(){
+	$id=divide($_POST['id']);//id_zung ACCIONES,
+	$sql="SELECT id_zung 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_zung A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"zung-lis",5);
 }
-
 
 function whe_tamzung() {
     $id=divide($_POST['id']);
 	$sql="SELECT id_zung ACCIONES,
-	id_zung 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	id_zung 'Cod Registro',momento,analisis,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_zung A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

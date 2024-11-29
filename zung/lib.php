@@ -84,9 +84,9 @@ function cmp_tamzung(){
 	$d=get_tamzung();
 	if ($d=="") {$d=$t;}
 	// $momen = ($d['momento']==0 && $d['momento']!=2 ) ? 1 : 2 ;
-	if($d['momento']==0){
+	if($d['momento']=='0'){
 		$momen=1;
-	}elseif($d['momento']==1){
+	}elseif($d['momento']=='1'){
 		$momen=2;
 	}else{
 		$momen='';

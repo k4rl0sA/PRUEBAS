@@ -292,18 +292,18 @@ function gra_tamzung(){
 		return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=119 and estado='A'  ORDER BY 1 ",$id);
 	}
 
-	function formato_dato($a,$b,$c,$d){
-		$b=strtolower($b);
-		$rta=$c[$d];
+function formato_dato($a,$b,$c,$d){
+	$b=strtolower($b);
+	$rta=$c[$d];
 	   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	   // var_dump($a);
 	   // var_dump($rta);
-		   if ($a=='tamzung' && $b=='acciones'){
-			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamzung','pro',event,'','lib.php',7,'tamzung');\"></li>";  //act_lista(f,this);
-			}
-		return $rta;
+	if ($a=='tamzung' && $b=='acciones'){
+		$rta="<nav class='menu right'>";		
+		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamzung','pro',event,'','lib.php',7,'tamzung');\"></li>";  //act_lista(f,this);
 	}
+	return $rta;
+}
 	   
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;

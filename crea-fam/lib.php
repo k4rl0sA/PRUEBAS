@@ -910,6 +910,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../cope/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
 			$rta .= acceso('tamzung') ? "<li title='Tamizaje ZUNG' onclick=\"mostrar('tamzung','pro',event,'','../zung/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamhamilton') ? "<li title='Tamizaje HAMILTON' onclick=\"mostrar('tamhamilton','pro',event,'','../hamilton/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

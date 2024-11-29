@@ -186,7 +186,12 @@ function gra_tamzung(){
 		return "No es posible actualizar el tamizaje";
 	}else{
 		$data=datos_mysql("select count(Z.momento) from hog_tam_zung Z  where Z.idpeople='{$id[0]}' as moment");
-	if (isset($infodata_zung['responseResult'][0])){
+		$momen=$data['responseResult'][0]['moment'];
+		if($momen=='0'){
+
+		}elseif()
+
+	if (isset($infodata_zung['responseResult'][0]['moment'])){
 		return "Ya se realizo los dos momentos";
 	}else{
 		$infodata2_zung=datos_mysql("SELECT zung_momento,zung_idpersona FROM hog_tam_zung

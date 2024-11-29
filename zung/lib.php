@@ -96,26 +96,26 @@ function cmp_tamzung(){
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'Escala',$w);
-	$c[]=new cmp('zung_anuncio1','s',3,'',$w.' '.$o,'1. Me siento triste y deprimido.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio2','s',3,'',$w.' '.$o,'2. Por las mañanas me siento mejor que por las tardes.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio3','s',3,'',$w.' '.$o,'3. Frecuentemente tengo ganas de llorar y a veces lloro.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio4','s',3,'',$w.' '.$o,'4. Me cuesta mucho dormir o duermo mal por las noches.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio5','s',3,'',$w.' '.$o,'5. Ahora tengo tanto apetito como antes.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio6','s',3,'',$w.' '.$o,'6. Todavía me siento atraído por el sexo opuesto.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio7','s',3,'',$w.' '.$o,'7. Creo que estoy adelgazando.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio8','s',3,'',$w.' '.$o,'8. Estoy estreñido.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio9','s',3,'',$w.' '.$o,'9. Tengo palpitaciones.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio10','s',3,'',$w.' '.$o,'10. Me canso por cualquier cosa.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio11','s',3,'',$w.' '.$o,'11. Mi cabeza está tan despejada como antes.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio12','s',3,'',$w.' '.$o,'12. Hago las cosas con la misma facilidad que antes.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio13','s',3,'',$w.' '.$o,'13. Me siento agitado e intranquilo y no puedo estar quieto.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio14','s',3,'',$w.' '.$o,'14. Tengo esperanza y confío en el futuro.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio15','s',3,'',$w.' '.$o,'15. Me siento más irritable que habitualmente.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio16','s',3,'',$w.' '.$o,'16. Encuentro fácil tomar decisiones.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio17','s',3,'',$w.' '.$o,'17. Me creo útil y necesario para la gente.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio18','s',3,'',$w.' '.$o,'18. Encuentro agradable vivir, mi vida es plena.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio19','s',3,'',$w.' '.$o,'19. Creo que sería mejor para los demás si me muriera.','escala',null,null,true,true,'','col-10');
-	$c[]=new cmp('zung_anuncio20','s',3,'',$w.' '.$o,'20. Me gustan las mismas cosas que solían agradarme.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio1','s',3,'',$w.' '.$o,'1. Me siento triste y deprimido.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio2','s',3,'',$w.' '.$o,'2. Por las mañanas me siento mejor que por las tardes.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio3','s',3,'',$w.' '.$o,'3. Frecuentemente tengo ganas de llorar y a veces lloro.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio4','s',3,'',$w.' '.$o,'4. Me cuesta mucho dormir o duermo mal por las noches.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio5','s',3,'',$w.' '.$o,'5. Ahora tengo tanto apetito como antes.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio6','s',3,'',$w.' '.$o,'6. Todavía me siento atraído por el sexo opuesto.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio7','s',3,'',$w.' '.$o,'7. Creo que estoy adelgazando.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio8','s',3,'',$w.' '.$o,'8. Estoy estreñido.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio9','s',3,'',$w.' '.$o,'9. Tengo palpitaciones.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio10','s',3,'',$w.' '.$o,'10. Me canso por cualquier cosa.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio11','s',3,'',$w.' '.$o,'11. Mi cabeza está tan despejada como antes.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio12','s',3,'',$w.' '.$o,'12. Hago las cosas con la misma facilidad que antes.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio13','s',3,'',$w.' '.$o,'13. Me siento agitado e intranquilo y no puedo estar quieto.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio14','s',3,'',$w.' '.$o,'14. Tengo esperanza y confío en el futuro.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio15','s',3,'',$w.' '.$o,'15. Me siento más irritable que habitualmente.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio16','s',3,'',$w.' '.$o,'16. Encuentro fácil tomar decisiones.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio17','s',3,'',$w.' '.$o,'17. Me creo útil y necesario para la gente.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio18','s',3,'',$w.' '.$o,'18. Encuentro agradable vivir, mi vida es plena.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio19','s',3,'',$w.' '.$o,'19. Creo que sería mejor para los demás si me muriera.','escala',null,null,true,true,'','col-10');
+	$c[]=new cmp('anuncio20','s',3,'',$w.' '.$o,'20. Me gustan las mismas cosas que solían agradarme.','escala',null,null,true,true,'','col-10');
 
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);
@@ -196,26 +196,26 @@ function gra_tamzung(){
 		}
 
 	$suma_zung = (
-		$_POST['zung_anuncio1']+
-		$_POST['zung_anuncio2']+
-		$_POST['zung_anuncio3']+
-		$_POST['zung_anuncio4']+
-		$_POST['zung_anuncio5']+
-		$_POST['zung_anuncio6']+
-		$_POST['zung_anuncio7']+
-		$_POST['zung_anuncio8']+
-		$_POST['zung_anuncio9']+
-		$_POST['zung_anuncio10']+
-		$_POST['zung_anuncio11']+
-		$_POST['zung_anuncio12']+
-		$_POST['zung_anuncio13']+
-		$_POST['zung_anuncio14']+
-		$_POST['zung_anuncio15']+
-		$_POST['zung_anuncio16']+
-		$_POST['zung_anuncio17']+
-		$_POST['zung_anuncio18']+
-		$_POST['zung_anuncio19']+
-		$_POST['zung_anuncio20']
+		$_POST['anuncio1']+
+		$_POST['anuncio2']+
+		$_POST['anuncio3']+
+		$_POST['anuncio4']+
+		$_POST['anuncio5']+
+		$_POST['anuncio6']+
+		$_POST['anuncio7']+
+		$_POST['anuncio8']+
+		$_POST['anuncio9']+
+		$_POST['anuncio10']+
+		$_POST['anuncio11']+
+		$_POST['anuncio12']+
+		$_POST['anuncio13']+
+		$_POST['anuncio14']+
+		$_POST['anuncio15']+
+		$_POST['anuncio16']+
+		$_POST['anuncio17']+
+		$_POST['anuncio18']+
+		$_POST['anuncio19']+
+		$_POST['anuncio20']
 	);
 
 	if($suma_zung <= 28){
@@ -232,26 +232,26 @@ function gra_tamzung(){
 		$sql="INSERT INTO hog_tam_zung VALUES (null,
 		$id[0],
 		TRIM(UPPER('{$idmomento}')),
-		TRIM(UPPER('{$_POST['zung_anuncio1']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio2']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio3']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio4']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio5']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio6']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio7']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio8']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio9']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio10']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio11']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio12']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio13']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio14']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio15']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio16']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio17']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio18']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio19']}')),
-		TRIM(UPPER('{$_POST['zung_anuncio20']}')),
+		TRIM(UPPER('{$_POST['anuncio1']}')),
+		TRIM(UPPER('{$_POST['anuncio2']}')),
+		TRIM(UPPER('{$_POST['anuncio3']}')),
+		TRIM(UPPER('{$_POST['anuncio4']}')),
+		TRIM(UPPER('{$_POST['anuncio5']}')),
+		TRIM(UPPER('{$_POST['anuncio6']}')),
+		TRIM(UPPER('{$_POST['anuncio7']}')),
+		TRIM(UPPER('{$_POST['anuncio8']}')),
+		TRIM(UPPER('{$_POST['anuncio9']}')),
+		TRIM(UPPER('{$_POST['anuncio10']}')),
+		TRIM(UPPER('{$_POST['anuncio11']}')),
+		TRIM(UPPER('{$_POST['anuncio12']}')),
+		TRIM(UPPER('{$_POST['anuncio13']}')),
+		TRIM(UPPER('{$_POST['anuncio14']}')),
+		TRIM(UPPER('{$_POST['anuncio15']}')),
+		TRIM(UPPER('{$_POST['anuncio16']}')),
+		TRIM(UPPER('{$_POST['anuncio17']}')),
+		TRIM(UPPER('{$_POST['anuncio18']}')),
+		TRIM(UPPER('{$_POST['anuncio19']}')),
+		TRIM(UPPER('{$_POST['anuncio20']}')),
 		TRIM(UPPER('{$escala_zung}')),
 		TRIM(UPPER('{$suma_zung}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),

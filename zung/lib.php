@@ -91,7 +91,6 @@ function cmp_tamzung(){
 	}else{
 		$momen='';
 	}
-	var_dump($d['momento']);
 	$o='datos';
     $key='srch';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
@@ -147,7 +146,7 @@ function cmp_tamzung(){
 		(select count(Z.momento) from hog_tam_zung Z  where Z.idpeople='{$id[0]}') as momento 
 		FROM person P
 		WHERE P.idpeople ='{$id[0]}'";
-		echo $sql; 
+		// echo $sql; 
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}

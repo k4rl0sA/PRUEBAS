@@ -35,11 +35,6 @@ $mod='tamhamilton';
 	<div>Identificación</div>
 	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
 </div>
-	
-<div class="campo">
-	<div>Identificación</div>
-	<input class="captura" type="number" id="fidentificacion" name="fidentificacion" OnChange="actualizar();">
-</div>
 
 <div class="campo">
 	<div>Cod. Familiar</div>

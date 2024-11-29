@@ -194,7 +194,7 @@ function gra_tamzung(){
 		}else{
 			return "Ya se realizo los dos momentos";
 		}
-		
+
 	$suma_zung = (
 		$_POST['zung_anuncio1']+
 		$_POST['zung_anuncio2']+
@@ -230,9 +230,8 @@ function gra_tamzung(){
 
 
 		$sql="INSERT INTO hog_tam_zung VALUES (null,
-		TRIM(UPPER('{$_POST['zung_idpersona']}')),
+		$id[0],
 		TRIM(UPPER('{$idmomento}')),
-		TRIM(UPPER('{$_POST['zung_tipodoc']}')),
 		TRIM(UPPER('{$_POST['zung_anuncio1']}')),
 		TRIM(UPPER('{$_POST['zung_anuncio2']}')),
 		TRIM(UPPER('{$_POST['zung_anuncio3']}')),

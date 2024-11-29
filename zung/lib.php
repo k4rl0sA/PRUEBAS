@@ -79,7 +79,7 @@ function whe_tamzung() {
 
 function cmp_tamzung(){
 	$rta="";
-	$t=['tam_zung'=>'','zung_tipodoc'=>'','zung_nombre'=>'','zung_idpersona'=>'','zung_fechanacimiento'=>'','zung_puntaje'=>'','zung_momento'=>'','zung_analisis'=>'','zung_edad'=>'','zung_anuncio1'=>'','zung_anuncio2'=>'','zung_anuncio3'=>'','zung_anuncio4'=>'','zung_anuncio5'=>'','zung_anuncio6'=>'','zung_anuncio7'=>'','zung_anuncio8'=>'','zung_anuncio9'=>'','zung_anuncio10'=>'','zung_anuncio11'=>'','zung_anuncio12'=>'','zung_anuncio13'=>'','zung_anuncio14'=>'','zung_anuncio15'=>'','zung_anuncio16'=>'','zung_anuncio17'=>'','zung_anuncio18'=>'','zung_anuncio19'=>'','zung_anuncio20'=>'']; 
+	$t=['zung_tipodoc'=>'','zung_nombre'=>'','zung_idpersona'=>'','zung_fechanacimiento'=>'','zung_puntaje'=>'','momento'=>'','zung_analisis'=>'']; 
 	$w='tamzung';
 	$d=get_tamzung();
 	if ($d=="") {$d=$t;}

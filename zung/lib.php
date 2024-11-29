@@ -53,12 +53,12 @@ function lis_tamzung(){
 
 function whe_tamzung() {
 	$sql = '1';
-    if (!empty($_POST['fidentificacion'])) {
+   /*  if (!empty($_POST['fidentificacion'])) {
         $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
     }
     if (!empty($_POST['ffam'])) {
         $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
-    }
+    } */
     return $sql;
 }
 

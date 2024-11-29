@@ -21,28 +21,28 @@ else {
 
 function lis_tamhamilton(){
 	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
-		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_zung O
+		$info=datos_mysql("SELECT COUNT(*) total from hog_tam_hamilton O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
-		where ".whe_tamzung());
+		where ".whe_tamhamilton());
 		$total=$info['responseResult'][0]['total'];
 		$regxPag=12;
-		$pag=(isset($_POST['pag-tamzung']))? (intval($_POST['pag-tamzung'])-1)* $regxPag:0;
+		$pag=(isset($_POST['pag-tamhamilton']))? (intval($_POST['pag-tamhamilton'])-1)* $regxPag:0;
 
-		$sql="SELECT O.idpeople ACCIONES,tam_zung 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
-	FROM hog_tam_zung O
+		$sql="SELECT O.idpeople ACCIONES,id_hamilton 'Cod Registro',V.id_fam 'Cod Familia',P.idpersona Documento,FN_CATALOGODESC(1,P.tipo_doc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,`puntaje` Puntaje,`descripcion` Descripcion, U.nombre Creo,U.subred,U.perfil perfil
+	FROM hog_tam_hamilton O
 		LEFT JOIN person P ON O.idpeople = P.idpeople
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN usuarios U ON O.usu_creo=U.id_usuario
 		WHERE ";
-	$sql.=whe_tamzung();
+	$sql.=whe_tamhamilton();
 	$sql.=" ORDER BY O.fecha_create DESC";
 	//echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"tamzung",$regxPag);
+	return create_table($total,$datos["responseResult"],"tamhamilton",$regxPag);
 	}else{
 		return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
                 <strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el numero de documento ó familia a Consultar

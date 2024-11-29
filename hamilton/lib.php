@@ -64,16 +64,14 @@ function lis_hamilton(){
 }
 
 function whe_tamhamilton() {
-    $id=divide($_POST['id']);
-	$sql="SELECT id_hamilton ACCIONES,
-	id_hamilton 'Cod Registro',fecha_toma,descripciona Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_hamilton A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idpeople='".$id[0];
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"hamilton-lis",5);
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
+    }
+    return $sql;
 }
 
 

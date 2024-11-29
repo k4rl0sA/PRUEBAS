@@ -51,21 +51,31 @@ function lis_tamhamilton(){
 	}
 }
 
-function whe_tamhamilton() {
-	$sql = "";
-	if ($_POST['fidentificacion'])
-		$sql .= " AND hamilton_idpersona like '%".$_POST['fidentificacion']."%'";
-	if ($_POST['fsexo'])
-		$sql .= " AND P.sexo ='".$_POST['fsexo']."' ";
-	if ($_POST['fpersona']){
-		if($_POST['fpersona'] == '2'){ //mayor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) <= 18 ";
-		}else{ //menor de edad
-			$sql .= " AND TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) > 18 ";
-		}
-	}
-	return $sql;
+function lis_hamilton(){
+	$id=divide($_POST['id']);//id_hamilton ACCIONES,
+	$sql="SELECT id_hamilton 'Cod Registro',momento,analisis,psiquica,somatica,total,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_hamilton A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"hamilton-lis",5);
 }
+
+function whe_tamhamilton() {
+    $id=divide($_POST['id']);
+	$sql="SELECT id_hamilton ACCIONES,
+	id_hamilton 'Cod Registro',fecha_toma,descripciona Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_hamilton A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"hamilton-lis",5);
+}
+
 
 function cmp_tamhamilton(){
 	$rta="";

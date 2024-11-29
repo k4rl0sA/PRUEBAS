@@ -79,28 +79,20 @@ function whe_tamzung() {
 
 function cmp_tamzung(){
 	$rta="";
-	$t=['zung_tipodoc'=>'','zung_nombre'=>'','zung_idpersona'=>'','zung_fechanacimiento'=>'','zung_puntaje'=>'','momento'=>'','zung_analisis'=>'']; 
+	$t=['tam_zung'=>'','zung_tipodoc'=>'','zung_nombre'=>'','zung_idpersona'=>'','zung_fechanacimiento'=>'','zung_puntaje'=>'','zung_momento'=>'','zung_analisis'=>'','zung_edad'=>'','zung_anuncio1'=>'','zung_anuncio2'=>'','zung_anuncio3'=>'','zung_anuncio4'=>'','zung_anuncio5'=>'','zung_anuncio6'=>'','zung_anuncio7'=>'','zung_anuncio8'=>'','zung_anuncio9'=>'','zung_anuncio10'=>'','zung_anuncio11'=>'','zung_anuncio12'=>'','zung_anuncio13'=>'','zung_anuncio14'=>'','zung_anuncio15'=>'','zung_anuncio16'=>'','zung_anuncio17'=>'','zung_anuncio18'=>'','zung_anuncio19'=>'','zung_anuncio20'=>'']; 
 	$w='tamzung';
 	$d=get_tamzung();
 	if ($d=="") {$d=$t;}
-	// $momen = ($d['momento']==0 && $d['momento']!=2 ) ? 1 : 2 ;
-	if($d['momento']=='0'){
-		$momen=1;
-	}elseif($d['momento']=='1'){
-		$momen=2;
-	}else{
-		$momen='';
-	}
 	$o='datos';
     $key='srch';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idzung','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('zung_idpersona','n','20',$d['zung_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','zung_idpersona',null,'',false,false,'','col-2');
-	$c[]=new cmp('zung_tipodoc','s','3',$d['zung_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','zung_tipodoc',null,'',false,false,'','col-25');//,'getDatForm(\'srch\',\'person\',[\'datos\']);'
+	$c[]=new cmp('zung_tipodoc','s','3',$d['zung_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','zung_tipodoc',null,'',false,false,'','col-25','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('zung_nombre','t','50',$d['zung_nombre'],$w.' '.$o,'nombres','zung_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('zung_fechanacimiento','d','10',$d['zung_fechanacimiento'],$w.' '.$o,'fecha nacimiento','zung_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('zung_edad','n','3',$d['zung_edad'],$w.' '.$o,'edad','zung_edad',null,'',true,false,'','col-1');
-    $c[]=new cmp('zung_momento','s','20',$momen,$w.' '.$o,'Momento','momento',null,'',true,false,'','col-3');
+    $c[]=new cmp('zung_momento','s','20','',$w.' '.$o,'Momento','momento',null,'',true,true,'','col-3');
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'Escala',$w);
@@ -138,12 +130,11 @@ function cmp_tamzung(){
 	if($_POST['id']==0){
 		return "";
 	}else{
-		$id=divide($_POST['id']);
+		 $id=divide($_POST['id']);
 		// print_r($_POST);
 		$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
         concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
-        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad,
-		(select count(Z.momento) from hog_tam_zung Z  where Z.idpeople='{$id[0]}') as momento 
+        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
 		FROM person P
 		WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql; 
@@ -302,15 +293,15 @@ function gra_tamzung(){
 	}
 
 function formato_dato($a,$b,$c,$d){
-	$b=strtolower($b);
-	$rta=$c[$d];
+		$b=strtolower($b);
+		$rta=$c[$d];
 	   // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 	   // var_dump($a);
 	   // var_dump($rta);
 	if ($a=='tamzung' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamzung','pro',event,'','lib.php',7,'tamzung');\"></li>";  //act_lista(f,this);
-	}
+		}
 	return $rta;
 }
 	   

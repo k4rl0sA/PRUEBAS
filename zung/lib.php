@@ -130,12 +130,14 @@ function cmp_tamzung(){
 	if($_POST['id']==0){
 		return "";
 	}else{
-		 $id=divide($_POST['id']);
+		$id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
+		$sql="SELECT Z.,P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
         concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
-        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
+        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad,
+		select count(Z.momento) from hog_tam_zung Z  where Z.idpeople='{$id[0]}' as moment 
 		FROM person P
+		left join hog_tam_zung Z P.idpeople=Z.idpeople
 		WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql; 
 		$info=datos_mysql($sql);

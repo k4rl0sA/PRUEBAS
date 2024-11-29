@@ -62,7 +62,6 @@ function lis_zung(){
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"zung-lis",5);
-
 }
 
 function whe_tamzung() {
@@ -123,7 +122,6 @@ function cmp_tamzung(){
     $c[]=new cmp('zung_puntaje','n','3','',$w.' '.$o,'Total','zung_puntaje',null,'',false,false,'','col-1');
     $c[]=new cmp('zung_analisis','t','100','',$w.' '.$o,'Analisis','zung_analisis',null,'',false,false,'','col-6');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	
 	return $rta;
    }
 
@@ -200,7 +198,6 @@ function gra_tamzung(){
 		}
 	}
 
-	
 	$suma_zung = (
 		$_POST['zung_anuncio1']+
 		$_POST['zung_anuncio2']+
@@ -306,7 +303,7 @@ function gra_tamzung(){
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"mostrar('tamzung','pro',event,'','lib.php',7,'tamzung');\"></li>";  //act_lista(f,this);
 			}
 		return $rta;
-	   }
+	}
 	   
 	   function bgcolor($a,$c,$f='c'){
 		// return $rta;

@@ -40,7 +40,6 @@ function lis_tamzung(){
 		WHERE ";
 	$sql.=whe_tamzung();
 	$sql.=" ORDER BY O.fecha_create DESC";
-	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"tamzung",$regxPag);
 	}else{

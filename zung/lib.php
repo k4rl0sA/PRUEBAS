@@ -139,7 +139,7 @@ function cmp_tamzung(){
 		FROM person P
 		left join hog_tam_zung Z P.idpeople=Z.idpeople
 		WHERE P.idpeople ='{$id[0]}'";
-		// echo $sql; 
+		echo $sql; 
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}

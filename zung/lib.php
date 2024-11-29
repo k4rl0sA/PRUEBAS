@@ -63,10 +63,10 @@ function lis_zung(){
 	return panel_content($datos["responseResult"],"zung-lis",5);
 }
 
-function whe_tamzung() {
+function whe_tamzung1() {
     $id=divide($_POST['id']);
 	$sql="SELECT id_zung ACCIONES,
-	id_zung 'Cod Registro',momento,analisis,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
+	id_zung 'Cod Registro',momento,analisis Afrontamiento,descripcione Evitación,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_zung A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];
@@ -74,6 +74,17 @@ function whe_tamzung() {
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"zung-lis",5);
+}
+
+function whe_tamzung() {
+	$sql = '1';
+    if (!empty($_POST['fidentificacion'])) {
+        $sql .= " AND P.idpersona = '".$_POST['fidentificacion']."'";
+    }
+    if (!empty($_POST['ffam'])) {
+        $sql .= " AND V.id_fam = '".$_POST['ffam']."'";
+    }
+    return $sql;
 }
 
 function cmp_tamzung(){

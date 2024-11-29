@@ -188,20 +188,12 @@ function gra_tamzung(){
 		$data=datos_mysql("select count(Z.momento) from hog_tam_zung Z  where Z.idpeople='{$id[0]}' as moment");
 		$momen=$data['responseResult'][0]['moment'];
 		if($momen=='0'){
-
-		}elseif()
-
-	if (isset($infodata_zung['responseResult'][0]['moment'])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_zung=datos_mysql("SELECT zung_momento,zung_idpersona FROM hog_tam_zung
-		 WHERE zung_idpersona = '{$_POST['zung_idpersona']}' AND zung_momento = 1 ");
-		if (isset($infodata2_zung['responseResult'][0])){
+			$idmomento = 1;
+		}elseif($momen=='1'){
 			$idmomento = 2;
 		}else{
-			$idmomento = 1;
+			return "Ya se realizo los dos momentos";
 		}
-	}
 
 	$suma_zung = (
 		$_POST['zung_anuncio1']+

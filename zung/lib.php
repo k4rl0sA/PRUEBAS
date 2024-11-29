@@ -91,6 +91,7 @@ function cmp_tamzung(){
 	}else{
 		$momen='';
 	}
+	var_dump($d['momento']);
 	$o='datos';
     $key='srch';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

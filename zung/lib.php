@@ -52,9 +52,8 @@ function lis_tamzung(){
 }
 
 function lis_zung(){
-	$id=divide($_POST['id']);
-	$sql="SELECT id_zung ACCIONES,
-	id_zung 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$id=divide($_POST['id']);//id_zung ACCIONES,
+	$sql="SELECT id_zung 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_zung A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

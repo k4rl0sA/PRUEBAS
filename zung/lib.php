@@ -255,8 +255,8 @@ function gra_tamzung(){
 		TRIM(UPPER('{$escala_zung}')),
 		TRIM(UPPER('{$suma_zung}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
-		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-		echo $sql;
+		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+		// echo $sql;
 	}
 	  $rta=dato_mysql($sql);
 	//   return "correctamente";

@@ -207,28 +207,28 @@ function gra_tamzarit(){
 
 	
 		$suma_zarit = (
-			$_POST['zarit_valor1']+
-			$_POST['zarit_valor2']+
-			$_POST['zarit_valor3']+
-			$_POST['zarit_valor4']+
-			$_POST['zarit_valor5']+
-			$_POST['zarit_valor6']+
-			$_POST['zarit_valor7']+
-			$_POST['zarit_valor8']+
-			$_POST['zarit_valor9']+
-			$_POST['zarit_valor10']+
-			$_POST['zarit_valor11']+
-			$_POST['zarit_valor12']+
-			$_POST['zarit_valor13']+
-			$_POST['zarit_valor14']+
-			$_POST['zarit_valor15']+
-			$_POST['zarit_valor16']+
-			$_POST['zarit_valor17']+
-			$_POST['zarit_valor18']+
-			$_POST['zarit_valor19']+
-			$_POST['zarit_valor20']+
-			$_POST['zarit_valor21']+
-			$_POST['zarit_valor22']
+			$_POST['valor1']+
+			$_POST['valor2']+
+			$_POST['valor3']+
+			$_POST['valor4']+
+			$_POST['valor5']+
+			$_POST['valor6']+
+			$_POST['valor7']+
+			$_POST['valor8']+
+			$_POST['valor9']+
+			$_POST['valor10']+
+			$_POST['valor11']+
+			$_POST['valor12']+
+			$_POST['valor13']+
+			$_POST['valor14']+
+			$_POST['valor15']+
+			$_POST['valor16']+
+			$_POST['valor17']+
+			$_POST['valor18']+
+			$_POST['valor19']+
+			$_POST['valor20']+
+			$_POST['valor21']+
+			$_POST['valor22']
 		);
 
 		if($suma_zarit <= 47){
@@ -240,31 +240,31 @@ function gra_tamzarit(){
 		}
 
 		$sql="INSERT INTO hog_tam_zarit VALUES (null,
-		TRIM(UPPER('{$_POST['zarit_idpersona']}')),
+		TRIM(UPPER('{$_POST['idpersona']}')),
 		{$idmomento},
-		TRIM(UPPER('{$_POST['zarit_tipodoc']}')),
-		TRIM(UPPER('{$_POST['zarit_valor1']}')),
-		TRIM(UPPER('{$_POST['zarit_valor2']}')),
-		TRIM(UPPER('{$_POST['zarit_valor3']}')),
-		TRIM(UPPER('{$_POST['zarit_valor4']}')),
-		TRIM(UPPER('{$_POST['zarit_valor5']}')),
-		TRIM(UPPER('{$_POST['zarit_valor6']}')),
-		TRIM(UPPER('{$_POST['zarit_valor7']}')),
-		TRIM(UPPER('{$_POST['zarit_valor8']}')),
-		TRIM(UPPER('{$_POST['zarit_valor9']}')),
-		TRIM(UPPER('{$_POST['zarit_valor10']}')),
-		TRIM(UPPER('{$_POST['zarit_valor11']}')),
-		TRIM(UPPER('{$_POST['zarit_valor12']}')),
-		TRIM(UPPER('{$_POST['zarit_valor13']}')),
-		TRIM(UPPER('{$_POST['zarit_valor14']}')),
-		TRIM(UPPER('{$_POST['zarit_valor15']}')),
-		TRIM(UPPER('{$_POST['zarit_valor16']}')),
-		TRIM(UPPER('{$_POST['zarit_valor17']}')),
-		TRIM(UPPER('{$_POST['zarit_valor18']}')),
-		TRIM(UPPER('{$_POST['zarit_valor19']}')),
-		TRIM(UPPER('{$_POST['zarit_valor20']}')),
-		TRIM(UPPER('{$_POST['zarit_valor21']}')),
-		TRIM(UPPER('{$_POST['zarit_valor22']}')),
+		TRIM(UPPER('{$_POST['tipodoc']}')),
+		TRIM(UPPER('{$_POST['valor1']}')),
+		TRIM(UPPER('{$_POST['valor2']}')),
+		TRIM(UPPER('{$_POST['valor3']}')),
+		TRIM(UPPER('{$_POST['valor4']}')),
+		TRIM(UPPER('{$_POST['valor5']}')),
+		TRIM(UPPER('{$_POST['valor6']}')),
+		TRIM(UPPER('{$_POST['valor7']}')),
+		TRIM(UPPER('{$_POST['valor8']}')),
+		TRIM(UPPER('{$_POST['valor9']}')),
+		TRIM(UPPER('{$_POST['valor10']}')),
+		TRIM(UPPER('{$_POST['valor11']}')),
+		TRIM(UPPER('{$_POST['valor12']}')),
+		TRIM(UPPER('{$_POST['valor13']}')),
+		TRIM(UPPER('{$_POST['valor14']}')),
+		TRIM(UPPER('{$_POST['valor15']}')),
+		TRIM(UPPER('{$_POST['valor16']}')),
+		TRIM(UPPER('{$_POST['valor17']}')),
+		TRIM(UPPER('{$_POST['valor18']}')),
+		TRIM(UPPER('{$_POST['valor19']}')),
+		TRIM(UPPER('{$_POST['valor20']}')),
+		TRIM(UPPER('{$_POST['valor21']}')),
+		TRIM(UPPER('{$_POST['valor22']}')),
 		'{$escala_zarit}',
 		'{$suma_zarit}',
 		TRIM(UPPER('{$_SESSION['us_sds']}')),

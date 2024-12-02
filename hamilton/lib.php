@@ -83,6 +83,7 @@ function cmp_tamhamilton(){
 	if ($d=="") {$d=$t;}
 	$o='datos';
     $key='srch';
+	$days=fechas_app('PSICOLOGIA');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idhamilton','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('hamilton_idpersona','t','20',$d['hamilton_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','hamilton_idpersona',null,'',false,false,'','col-2');
@@ -90,6 +91,7 @@ function cmp_tamhamilton(){
 	$c[]=new cmp('hamilton_nombre','t','50',$d['hamilton_nombre'],$w.' '.$o,'nombres','hamilton_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('hamilton_fechanacimiento','d','10',$d['hamilton_fechanacimiento'],$w.' '.$o,'fecha nacimiento','hamilton_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('hamilton_edad','n','3',$d['hamilton_edad'],$w.' '.$o,'edad','hamilton_edad',null,'',true,false,'','col-1');
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'SÍNTOMAS DE LOS ESTADOS DE ANSIEDAD',$w);

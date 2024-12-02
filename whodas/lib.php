@@ -93,7 +93,7 @@ function cmp_tamWhodas(){
 	if ($d=="") {$d=$t;}
 	$o='datos';
     $key='srch';
-
+	$days=fechas_app('PSICOLOGIA');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idwhodas','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('whodas_idpersona','t','20',$d['whodas_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','whodas_idpersona',null,'',false,false,'','col-2');
@@ -101,6 +101,8 @@ function cmp_tamWhodas(){
 	$c[]=new cmp('whodas_nombre','t','50',$d['whodas_nombre'],$w.' '.$o,'nombres','whodas_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('whodas_fechanacimiento','d','10',$d['whodas_fechanacimiento'],$w.' '.$o,'fecha nacimiento','whodas_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('whodas_edad','n','3',$d['whodas_edad'],$w.' '.$o,'edad','whodas_edad',null,'',true,false,'','col-1');
+	$c[]=new cmp('fecha_toma','d','10','',$w.' '.$o,'fecha de la Toma','fecha_toma',null,'',true,true,'','col-2',"validDate(this,$days,0);");
+	
     
 	$o='comprencion';
 	$c[]=new cmp($o,'e',null,'1. Comprensión y comunicación ',$w);

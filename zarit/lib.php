@@ -150,7 +150,7 @@ function cmp_tamzarit(){
 			$info=datos_mysql($sql);
 					return $info['responseResult'][0];
 			}
-		} 
+	} 
 
 /* function get_person(){
 	// print_r($_POST);

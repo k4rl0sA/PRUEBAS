@@ -69,8 +69,8 @@ function cmp_tamBarthel(){
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$days=fechas_app('PSICOLOGIA');
 	$c[]=new cmp('idbarthel','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('barthel_idpersona','n','20',$d['barthel_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','barthel_idpersona',null,'',false,$u,'','col-2');
-	$c[]=new cmp('barthel_tipodoc','s','3',$d['barthel_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','barthel_tipodoc',null,'',false,$u,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
+	$c[]=new cmp('barthel_idpersona','n','20',$d['barthel_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','barthel_idpersona',null,'',false,false,'','col-2');
+	$c[]=new cmp('barthel_tipodoc','s','3',$d['barthel_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','barthel_tipodoc',null,'',false,false,'','col-2','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('barthel_nombre','t','50',$d['barthel_nombre'],$w.' '.$o,'nombres','barthel_nombre',null,'',false,false,'','col-3');
 	$c[]=new cmp('barthel_fechanacimiento','d','10',$d['barthel_fechanacimiento'],$w.' '.$o,'fecha nacimiento','barthel_fechanacimiento',null,'',false,false,'','col-2');
     $c[]=new cmp('barthel_edad','n','3',$d['barthel_edad'],$w.' '.$o,'edad','barthel_edad',null,'',true,false,'','col-1');

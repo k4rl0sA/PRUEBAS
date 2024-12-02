@@ -143,7 +143,7 @@ FROM personas
 return json_encode($info['responseResult'][0]);
 } */
 
-function get_tamzung(){
+function get_tamBarthel(){
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -159,7 +159,7 @@ function get_tamzung(){
 				return $info['responseResult'][0];
 		}
 	} 
-	
+
 function focus_tamBarthel(){
 	return 'tamBarthel';
    }

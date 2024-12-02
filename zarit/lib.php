@@ -135,7 +135,7 @@ function cmp_tamzarit(){
 		}
 	}  */
 
-	function get_tamzung(){
+	function get_tamzarit(){
 		if($_POST['id']==0){
 			return "";
 		}else{

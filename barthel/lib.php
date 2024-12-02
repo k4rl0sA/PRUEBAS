@@ -63,7 +63,6 @@ function cmp_tamBarthel(){
 	$w='tamBarthel';
 	$d=get_tamBarthel(); 
 	if ($d=="") {$d=$t;}
-	$u = ($d['tam_barthel']!='') ? false : true ;
 	$o='datos';
     $key='srch';
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

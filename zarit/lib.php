@@ -61,7 +61,6 @@ function cmp_tamzarit(){
 	$w='tamzarit';
 	$d=get_tamzarit(); 
 	if ($d=="") {$d=$t;}
-	$u = ($d['tam_zarit']!='') ? false : true ;
 	$o='datos';
     $key='srch';
 	$days=fechas_app('PSICOLOGIA');

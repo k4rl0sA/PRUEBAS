@@ -173,34 +173,19 @@ function men_tamBarthel(){
    
 function gra_tamBarthel(){
 	$id=$_POST['idbarthel'];
-	//print_r($_POST);
-	if($id != "0"){
+	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-
-	$infodata_barthel=datos_mysql("SELECT barthel_momento,barthel_idpersona FROM hog_tam_barthel
-		 WHERE barthel_idpersona = '{$_POST['barthel_idpersona']}' AND barthel_momento = 2 ");
-	if (isset($infodata_barthel['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_barthel=datos_mysql("SELECT barthel_momento,barthel_idpersona FROM hog_tam_barthel
-		 WHERE barthel_idpersona = '{$_POST['barthel_idpersona']}' AND barthel_momento = 1 ");
-		if (isset($infodata2_barthel['responseResult'][0])){
+		$data=datos_mysql("select count(Z.momento) as moment from hog_tam_zung Z  where Z.idpeople='{$id[0]}'");
+		$momen=$data['responseResult'][0]['moment'];
+		if($momen=='0'){
+			$idmomento = 1;
+		}elseif($momen=='1'){
 			$idmomento = 2;
 		}else{
-			$idmomento = 1;
+			return "Ya se realizo los dos momentos";
 		}
-	}
-
-	/*$sql3="UPDATE personas_datocomp SET 
-	estadocivil=TRIM(UPPER('{$_POST['barthel_estadocivil']}')),
-	nivel_educativo=TRIM(UPPER('{$_POST['barthel_escolaridad']}')),
-	ocupacion=TRIM(UPPER('{$_POST['barthel_ocupacion']}')),
-	`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-	`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-	WHERE idpersona ={$_POST['barthel_idpersona']} AND tipo_doc={$_POST['barthel_tipodoc']}";
-	 $rta3=dato_mysql($sql3);*/
-
+	
 	$suma_iden = (
 		$_POST['comer']+
 		$_POST['lavarse']+

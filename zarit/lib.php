@@ -186,24 +186,19 @@ function men_tamzarit(){
    
 function gra_tamzarit(){
 	$id=$_POST['idzarit'];
-	//print_r($_POST);
-	if($id != "0"){
+	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-
-	$infodata_zarit=datos_mysql("SELECT zarit_momento,zarit_idpersona FROM hog_tam_zarit
-		 WHERE zarit_idpersona = '{$_POST['zarit_idpersona']}' AND zarit_momento = 2 ");
-	if (isset($infodata_zarit['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_zarit=datos_mysql("SELECT zarit_momento,zarit_idpersona FROM hog_tam_zarit
-		 WHERE zarit_idpersona = '{$_POST['zarit_idpersona']}' AND zarit_momento = 1 ");
-		if (isset($infodata2_zarit['responseResult'][0])){
+		$data=datos_mysql("select count(Z.momento) as moment from hog_tam_zung Z  where Z.idpeople='{$id[0]}'");
+		$momen=$data['responseResult'][0]['moment'];
+		if($momen=='0'){
+			$idmomento = 1;
+		}elseif($momen=='1'){
 			$idmomento = 2;
 		}else{
-			$idmomento = 1;
+			return "Ya se realizo los dos momentos";
 		}
-	}
+	
 
 	
 		$suma_zarit = (
@@ -240,9 +235,9 @@ function gra_tamzarit(){
 		}
 
 		$sql="INSERT INTO hog_tam_zarit VALUES (null,
-		TRIM(UPPER('{$_POST['idpersona']}')),
-		{$idmomento},
-		TRIM(UPPER('{$_POST['tipodoc']}')),
+		$id[0],
+		TRIM(UPPER('{$_POST['fecha_toma']}')),
+		TRIM(UPPER('{$idmomento}')),
 		TRIM(UPPER('{$_POST['valor1']}')),
 		TRIM(UPPER('{$_POST['valor2']}')),
 		TRIM(UPPER('{$_POST['valor3']}')),

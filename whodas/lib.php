@@ -274,57 +274,57 @@ function gra_tamWhodas(){
 	
 
 	$suma_com = (
-			$_POST['whodas_comprension1']+
-			$_POST['whodas_comprension2']+
-			$_POST['whodas_comprension3']+
-			$_POST['whodas_comprension4']+
-			$_POST['whodas_comprension5']+
-			$_POST['whodas_comprension6']
+			$_POST['comprension1']+
+			$_POST['comprension2']+
+			$_POST['comprension3']+
+			$_POST['comprension4']+
+			$_POST['comprension5']+
+			$_POST['comprension6']
 		);
 
 	$suma_mov = (
-			$_POST['whodas_moverse1']+
-			$_POST['whodas_moverse2']+
-			$_POST['whodas_moverse3']+
-			$_POST['whodas_moverse4']+
-			$_POST['whodas_moverse5']
+			$_POST['moverse1']+
+			$_POST['moverse2']+
+			$_POST['moverse3']+
+			$_POST['moverse4']+
+			$_POST['moverse5']
 		);
 
 	$suma_cui = (
-			$_POST['whodas_cuidado1']+
-			$_POST['whodas_cuidado2']+
-			$_POST['whodas_cuidado3']+
-			$_POST['whodas_cuidado4']
+			$_POST['cuidado1']+
+			$_POST['cuidado2']+
+			$_POST['cuidado3']+
+			$_POST['cuidado4']
 		);
 
 	$suma_rel = (
-			$_POST['whodas_relacionarce1']+
-			$_POST['whodas_relacionarce2']+
-			$_POST['whodas_relacionarce3']+
-			$_POST['whodas_relacionarce4']+
-			$_POST['whodas_relacionarce5']
+			$_POST['relacionarce1']+
+			$_POST['relacionarce2']+
+			$_POST['relacionarce3']+
+			$_POST['relacionarce4']+
+			$_POST['relacionarce5']
 		);
 
 	$suma_act = (
-			$_POST['whodas_actividades1']+
-			$_POST['whodas_actividades2']+
-			$_POST['whodas_actividades3']+
-			$_POST['whodas_actividades4']+
-			$_POST['whodas_actividades5']+
-			$_POST['whodas_actividades6']+
-			$_POST['whodas_actividades7']+
-			$_POST['whodas_actividades8']
+			$_POST['actividades1']+
+			$_POST['actividades2']+
+			$_POST['actividades3']+
+			$_POST['actividades4']+
+			$_POST['actividades5']+
+			$_POST['actividades6']+
+			$_POST['actividades7']+
+			$_POST['actividades8']
 		);
 
 	$suma_par = (
-			$_POST['whodas_participacion1']+
-			$_POST['whodas_participacion2']+
-			$_POST['whodas_participacion3']+
-			$_POST['whodas_participacion4']+
-			$_POST['whodas_participacion5']+
-			$_POST['whodas_participacion6']+
-			$_POST['whodas_participacion7']+
-			$_POST['whodas_participacion8']
+			$_POST['participacion1']+
+			$_POST['participacion2']+
+			$_POST['participacion3']+
+			$_POST['participacion4']+
+			$_POST['participacion5']+
+			$_POST['participacion6']+
+			$_POST['participacion7']+
+			$_POST['participacion8']
 		);
 
 		$suma_whodas = ($suma_com+$suma_mov+$suma_cui+$suma_rel+$suma_act+$suma_par);

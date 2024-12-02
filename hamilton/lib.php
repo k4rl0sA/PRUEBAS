@@ -95,66 +95,49 @@ function cmp_tamhamilton(){
     
 	$o='actv';
 	$c[]=new cmp($o,'e',null,'SÍNTOMAS DE LOS ESTADOS DE ANSIEDAD',$w);
-	$c[]=new cmp('hamilton_sintoma1','s',3,$d['hamilton_sintoma1'],$w.''.$o,'1.  Estado de ánimo ansioso.
+	$c[]=new cmp('hamilton_sintoma1','s',3,'',$w.''.$o,'1.  Estado de ánimo ansioso.
 	Preocupaciones,   anticipación   de   lo   peor,   aprensión (anticipación temerosa), irritabilidad ','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma2','s',3,$d['hamilton_sintoma2'],$w.' '.$o,'2.  Tensión.
+	$c[]=new cmp('hamilton_sintoma2','s',3,'',$w.' '.$o,'2.  Tensión.
 	Sensación   de   tensión,       imposibilidad   de   relajarse, reacciones    con    sobresalto,    llanto    fácil,    temblores, sensación de inquietud.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma3','s',3,$d['hamilton_sintoma3'],$w.' '.$o,'3.  Temores.
+	$c[]=new cmp('hamilton_sintoma3','s',3,'',$w.' '.$o,'3.  Temores.
 	A la oscuridad, a los desconocidos, a quedarse solo, a los animales grandes, al tráfico, a las multitudes.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma4','s',3,$d['hamilton_sintoma4'],$w.' '.$o,'4.  Insomnio.
+	$c[]=new cmp('hamilton_sintoma4','s',3,'',$w.' '.$o,'4.  Insomnio.
 	Dificultad   para   dormirse,   sueño   interrumpido,   sueño insatisfactorio y cansancio al despertar.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma5','s',3,$d['hamilton_sintoma5'],$w.' '.$o,'5.  Intelectual (cognitivo)
+	$c[]=new cmp('hamilton_sintoma5','s',3,'',$w.' '.$o,'5.  Intelectual (cognitivo)
 	Dificultad para concentrarse, mala memoria.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma6','s',3,$d['hamilton_sintoma6'],$w.' '.$o,'6.  Estado de ánimo deprimido.
+	$c[]=new cmp('hamilton_sintoma6','s',3,'',$w.' '.$o,'6.  Estado de ánimo deprimido.
 	Pérdida   de   interés,   insatisfacción   en   las   diversiones, depresión,   despertar   prematuro,   cambios   de   humor durante el día.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma7','s',3,$d['hamilton_sintoma7'],$w.' '.$o,'7.  Síntomas somáticos generales (musculares) Dolores      y   molestias   musculares,   rigidez   muscular, contracciones  musculares,  sacudidas  clónicas,  crujir  de
+	$c[]=new cmp('hamilton_sintoma7','s',3,'',$w.' '.$o,'7.  Síntomas somáticos generales (musculares) Dolores      y   molestias   musculares,   rigidez   muscular, contracciones  musculares,  sacudidas  clónicas,  crujir  de
 	dientes, voz temblorosa.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma8','s',3,$d['hamilton_sintoma8'],$w.' '.$o,'8.  Síntomas somáticos generales (sensoriales) 
+	$c[]=new cmp('hamilton_sintoma8','s',3,'',$w.' '.$o,'8.  Síntomas somáticos generales (sensoriales) 
 	Zumbidos de oídos, visión borrosa, sofocos y escalofríos, sensación de debilidad, sensación de hormigueo.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma9','s',3,$d['hamilton_sintoma9'],$w.' '.$o,'9.  Síntomas cardiovasculares.
+	$c[]=new cmp('hamilton_sintoma9','s',3,'',$w.' '.$o,'9.  Síntomas cardiovasculares.
 	Taquicardia,  palpitaciones,  dolor  en  el  pecho,  latidos vasculares, sensación de desmayo, extrasístole.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma10','s',3,$d['hamilton_sintoma10'],$w.' '.$o,'10. Síntomas respiratorios.
+	$c[]=new cmp('hamilton_sintoma10','s',3,'',$w.' '.$o,'10. Síntomas respiratorios.
 	Opresión o constricción en el pecho, sensación de ahogo, suspiros, disnea.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma11','s',3,$d['hamilton_sintoma11'],$w.' '.$o,'11. Síntomas gastrointestinales.
+	$c[]=new cmp('hamilton_sintoma11','s',3,'',$w.' '.$o,'11. Síntomas gastrointestinales.
 	Dificultad  para  tragar,  gases,  dispepsia:  dolor  antes  y después  de  comer,  sensación  de  ardor,  sensación  de estómago lleno, vómitos acuosos, vómitos, sensación de estómago   vacío,   digestión   lenta,   borborigmos   (ruido
 	intestinal), diarrea, pérdida de peso, estreñimiento.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma12','s',3,$d['hamilton_sintoma12'],$w.' '.$o,'12. Síntomas genitourinarios.
+	$c[]=new cmp('hamilton_sintoma12','s',3,'',$w.' '.$o,'12. Síntomas genitourinarios.
 	Micción     frecuente,     micción     urgente,     amenorrea, menorragia, aparición de la frigidez, eyaculación precoz, ausencia de erección, impotencia.','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma13','s',3,$d['hamilton_sintoma13'],$w.' '.$o,'13. Síntomas autónomos.
+	$c[]=new cmp('hamilton_sintoma13','s',3,'',$w.' '.$o,'13. Síntomas autónomos.
 	Boca  seca,  rubor,  palidez,  tendencia  a  sudar,  vértigos, cefaleas de tensión, piloerección (pelos de punta)','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('hamilton_sintoma14','s',3,$d['hamilton_sintoma14'],$w.' '.$o,'14. Comportamiento en la entrevista (general y fisiológico)
+	$c[]=new cmp('hamilton_sintoma14','s',3,'',$w.' '.$o,'14. Comportamiento en la entrevista (general y fisiológico)
 	Tenso,  no  relajado,  agitación  nerviosa:  manos,  dedos cogidos,  apretados,  tics,  enrollar  un  pañuelo;  inquietud; pasearse  de  un  lado  a  otro,  temblor  de  manos,  ceño fruncido,   cara   tirante,   aumento   del   tono   muscular, suspiros, palidez facial.
 	Tragar  saliva,  eructar,  taquicardia  de  reposo,  frecuencia respiratoria   por   encima   de   20   res/min,   sacudidas enérgicas    de   tendones,   temblor,   pupilas   dilatadas, exoftalmos (proyección anormal del globo del ojo), sudor, tics en los párpados.','nivel',null,null,true,$u,'','col-10');
 
 
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);
-    $c[]=new cmp('hamilton_psiquica','t','3',$d['hamilton_psiquica'],$w.' '.$o,'Ansiedad psíquica','hamilton_psiquica',null,'',false,false,'','col-3');
-    $c[]=new cmp('hamilton_somatica','t','3',$d['hamilton_somatica'],$w.' '.$o,'Ansiedad somática','hamilton_somatica',null,'',false,false,'','col-3');
-    $c[]=new cmp('hamilton_total','t','3',$d['hamilton_total'],$w.' '.$o,'PUNTUACIÓN TOTAL','hamilton_total',null,'',false,false,'','col-4');
-    $c[]=new cmp('hamilton_analisis','t','100',$d['hamilton_analisis'],$w.' '.$o,'Analisis','hamilton_analisis',null,'',false,false,'','col-6');
-    $c[]=new cmp('hamilton_momento','t','20',$d['hamilton_momento'],$w.' '.$o,'Momento','hamilton_momento',null,'',false,false,'','col-4');
+    $c[]=new cmp('hamilton_psiquica','t','3','',$w.' '.$o,'Ansiedad psíquica','hamilton_psiquica',null,'',false,false,'','col-3');
+    $c[]=new cmp('hamilton_somatica','t','3','',$w.' '.$o,'Ansiedad somática','hamilton_somatica',null,'',false,false,'','col-3');
+    $c[]=new cmp('hamilton_total','t','3','',$w.' '.$o,'PUNTUACIÓN TOTAL','hamilton_total',null,'',false,false,'','col-4');
+    $c[]=new cmp('hamilton_analisis','t','100','',$w.' '.$o,'Analisis','hamilton_analisis',null,'',false,false,'','col-6');
+    $c[]=new cmp('hamilton_momento','t','20','',$w.' '.$o,'Momento','hamilton_momento',null,'',false,false,'','col-4');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	
 	return $rta;
    }
-
-  /*  function get_tamhamilton(){
-	if($_POST['id']==0){
-		return "";
-	}else{
-		 $id=divide($_POST['id']);
-		// print_r($_POST);
-		$sql="SELECT `tam_hamilton`,`hamilton_idpersona`,`hamilton_tipodoc`,
-		FN_CATALOGODESC(116,hamilton_momento) hamilton_momento,`hamilton_sintoma1`, `hamilton_sintoma2`, `hamilton_sintoma3`, `hamilton_sintoma4`, `hamilton_sintoma5`, `hamilton_sintoma6`, `hamilton_sintoma7`, `hamilton_sintoma8`, `hamilton_sintoma9`, `hamilton_sintoma10`, `hamilton_sintoma11`, `hamilton_sintoma12`, `hamilton_sintoma13`, `hamilton_sintoma14`, `hamilton_psiquica`, `hamilton_somatica`, `hamilton_total`, `hamilton_analisis`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) hamilton_nombre,P.fecha_nacimiento hamilton_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) hamilton_edad
-		FROM `hog_tam_hamilton` O
-		LEFT JOIN personas P ON O.hamilton_idpersona = P.idpersona and O.hamilton_tipodoc=P.tipo_doc
-		WHERE hamilton_idpersona ='{$id[0]}' AND hamilton_tipodoc='{$id[1]}' AND hamilton_momento = '{$id[2]}'  ";
-		// echo $sql;
-		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
-		}
-	}  */
 
 	function get_tamhamilton(){
 		if($_POST['id']==0){

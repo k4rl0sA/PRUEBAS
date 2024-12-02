@@ -143,9 +143,9 @@ function get_tamBarthel(){
 	}else{
 		 $id=divide($_POST['id']);
 		// print_r($_POST);
-		$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
-        concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
-        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
+		$sql="SELECT P.idpeople,P.idpersona barthel_idpersona,P.tipo_doc barthel_tipodoc,
+        concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) barthel_nombre,P.fecha_nacimiento barthel_fechanacimiento,
+        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS barthel_edad
 		FROM person P
 		WHERE P.idpeople ='{$id[0]}'";
 		// echo $sql; 

@@ -180,7 +180,7 @@ function cmp_tamWhodas(){
 	return $rta;
    }
 
-   function get_tamWhodas(){
+  /*  function get_tamWhodas(){
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -210,7 +210,7 @@ function cmp_tamWhodas(){
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}
-	} 
+	} */ 
 
 	function get_tamWhodas(){
 		if($_POST['id']==0){

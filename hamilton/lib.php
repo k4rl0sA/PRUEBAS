@@ -139,7 +139,7 @@ function cmp_tamhamilton(){
 	return $rta;
    }
 
-   function get_tamhamilton(){
+  /*  function get_tamhamilton(){
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -154,10 +154,27 @@ function cmp_tamhamilton(){
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];
 		}
-	} 
+	}  */
+
+	function get_tamhamilton(){
+		if($_POST['id']==0){
+			return "";
+		}else{
+			 $id=divide($_POST['id']);
+			// print_r($_POST);
+			$sql="SELECT P.idpeople,P.idpersona hamilton_idpersona,P.tipo_doc hamilton_tipodoc,
+			concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) hamilton_nombre,P.fecha_nacimiento hamilton_fechanacimiento,
+			TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS hamilton_edad
+			FROM person P
+			WHERE P.idpeople ='{$id[0]}'";
+			// echo $sql; 
+			$info=datos_mysql($sql);
+					return $info['responseResult'][0];
+			}
+		}
 
 
-function get_person(){
+/* function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
 $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
@@ -169,7 +186,7 @@ FROM personas
 		return '';
 	}
 return json_encode($info['responseResult'][0]);
-}
+} */
 
 function focus_tamhamilton(){
 	return 'tamhamilton';

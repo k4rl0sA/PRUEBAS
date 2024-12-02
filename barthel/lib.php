@@ -202,9 +202,9 @@ function gra_tamBarthel(){
 	$suma_barthel = ($suma_iden);
 
 		$sql="INSERT INTO hog_tam_barthel VALUES (null,
-		TRIM(UPPER('{$_POST['idpersona']}')),
-		{$idmomento},
-		TRIM(UPPER('{$_POST['tipodoc']}')),
+		$id[0],
+		TRIM(UPPER('{$_POST['fecha_toma']}')),
+		TRIM(UPPER('{$idmomento}')),
 		TRIM(UPPER('{$_POST['comer']}')),
 		TRIM(UPPER('{$_POST['lavarse']}')),
 		TRIM(UPPER('{$_POST['vestirse']}')),

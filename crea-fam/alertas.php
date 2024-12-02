@@ -36,8 +36,11 @@ function men_alertas(){
 	 $acc=rol($a);
 	 if ($a=='alertas'  && isset($acc['crear']) && $acc['crear']=='SI'){
 	 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	 return $rta;
 	 }
+	 if ($a=='alertas'  && isset($acc['ajustar']) && $acc['ajustar']=='SI'){
+		$rta .= "<li class='icono $a inactiva'      title='Ajustar'          OnClick=\"fix('$a',this);\"></li>"; //~ openModal();
+	}
+	 return $rta;
    }
 
    function lis_alertas(){

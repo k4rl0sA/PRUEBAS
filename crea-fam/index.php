@@ -38,6 +38,9 @@ function actualizar(){
 	act_lista(mod);
 }
 
+function resetFrm() {
+	document.getElementById('fapp').reset();
+}
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

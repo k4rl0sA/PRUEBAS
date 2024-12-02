@@ -80,16 +80,16 @@ function cmp_tamBarthel(){
 	$o='identidad';
 	$c[]=new cmp($o,'e',null,'ACTIVIDAD ',$w);
 
-	$c[]=new cmp('comer','s',3,'',$w.' '.$o,'Comer ','comer',null,null,true,$u,'','col-10');
-	$c[]=new cmp('lavarse','s',3,'',$w.' '.$o,'Lavarse ','lavarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('vestirse','s',3,'',$w.' '.$o,'Vestirse ','vestirse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('arreglarse','s',3,'',$w.' '.$o,'Arreglarse ','arreglarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('deposicion','s',3,'',$w.' '.$o,'Deposiciones (Según Semana Anterior) ','deposicion',null,null,true,$u,'','col-10');
-	$c[]=new cmp('miccion','s',3,'',$w.' '.$o,'Micción (Según Semana Anterior) ','miccion',null,null,true,$u,'','col-10');
-	$c[]=new cmp('sanitario','s',3,'',$w.' '.$o,'Usar El Sanitario ','sanitario',null,null,true,$u,'','col-10');
-	$c[]=new cmp('trasladarse','s',3,'',$w.' '.$o,'Trasladarse','trasladarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('deambular','s',3,'',$w.' '.$o,'Deambular','deambular',null,null,true,$u,'','col-10');
-	$c[]=new cmp('escalones','s',3,'',$w.' '.$o,'Escalones ','escalones',null,null,true,$u,'','col-10');
+	$c[]=new cmp('comer','s',3,'',$w.' '.$o,'Comer ','comer',null,null,true,true,'','col-10');
+	$c[]=new cmp('lavarse','s',3,'',$w.' '.$o,'Lavarse ','lavarse',null,null,true,true,'','col-10');
+	$c[]=new cmp('vestirse','s',3,'',$w.' '.$o,'Vestirse ','vestirse',null,null,true,true,'','col-10');
+	$c[]=new cmp('arreglarse','s',3,'',$w.' '.$o,'Arreglarse ','arreglarse',null,null,true,true,'','col-10');
+	$c[]=new cmp('deposicion','s',3,'',$w.' '.$o,'Deposiciones (Según Semana Anterior) ','deposicion',null,null,true,true,'','col-10');
+	$c[]=new cmp('miccion','s',3,'',$w.' '.$o,'Micción (Según Semana Anterior) ','miccion',null,null,true,true,'','col-10');
+	$c[]=new cmp('sanitario','s',3,'',$w.' '.$o,'Usar El Sanitario ','sanitario',null,null,true,true,'','col-10');
+	$c[]=new cmp('trasladarse','s',3,'',$w.' '.$o,'Trasladarse','trasladarse',null,null,true,true,'','col-10');
+	$c[]=new cmp('deambular','s',3,'',$w.' '.$o,'Deambular','deambular',null,null,true,true,'','col-10');
+	$c[]=new cmp('escalones','s',3,'',$w.' '.$o,'Escalones ','escalones',null,null,true,true,'','col-10');
 
 	$o='totales';
 	$c[]=new cmp($o,'e',null,'Resultado ',$w);

@@ -86,21 +86,21 @@ function cmp_tamBarthel(){
 	$o='identidad';
 	$c[]=new cmp($o,'e',null,'ACTIVIDAD ',$w);
 
-	$c[]=new cmp('barthel_comer','s',3,$d['barthel_comer'],$w.' '.$o,'Comer ','comer',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_lavarse','s',3,$d['barthel_lavarse'],$w.' '.$o,'Lavarse ','lavarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_vestirse','s',3,$d['barthel_vestirse'],$w.' '.$o,'Vestirse ','vestirse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_arreglarse','s',3,$d['barthel_arreglarse'],$w.' '.$o,'Arreglarse ','arreglarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_deposicion','s',3,$d['barthel_deposicion'],$w.' '.$o,'Deposiciones (Según Semana Anterior) ','deposicion',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_miccion','s',3,$d['barthel_miccion'],$w.' '.$o,'Micción (Según Semana Anterior) ','miccion',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_sanitario','s',3,$d['barthel_sanitario'],$w.' '.$o,'Usar El Sanitario ','sanitario',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_trasladarse','s',3,$d['barthel_trasladarse'],$w.' '.$o,'Trasladarse','trasladarse',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_deambular','s',3,$d['barthel_deambular'],$w.' '.$o,'Deambular','deambular',null,null,true,$u,'','col-10');
-	$c[]=new cmp('barthel_escalones','s',3,$d['barthel_escalones'],$w.' '.$o,'Escalones ','escalones',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_comer','s',3,'',$w.' '.$o,'Comer ','comer',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_lavarse','s',3,'',$w.' '.$o,'Lavarse ','lavarse',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_vestirse','s',3,'',$w.' '.$o,'Vestirse ','vestirse',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_arreglarse','s',3,'',$w.' '.$o,'Arreglarse ','arreglarse',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_deposicion','s',3,'',$w.' '.$o,'Deposiciones (Según Semana Anterior) ','deposicion',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_miccion','s',3,'',$w.' '.$o,'Micción (Según Semana Anterior) ','miccion',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_sanitario','s',3,'',$w.' '.$o,'Usar El Sanitario ','sanitario',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_trasladarse','s',3,'',$w.' '.$o,'Trasladarse','trasladarse',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_deambular','s',3,'',$w.' '.$o,'Deambular','deambular',null,null,true,$u,'','col-10');
+	$c[]=new cmp('barthel_escalones','s',3,'',$w.' '.$o,'Escalones ','escalones',null,null,true,$u,'','col-10');
 
 	$o='totales';
 	$c[]=new cmp($o,'e',null,'Resultado ',$w);
-	$c[]=new cmp('barthel_momento','t',20,$d['barthel_momento'],$w.' '.$o,'Momento','barthel_momento',null,'',false,false,'','col-6');
-	$c[]=new cmp('barthel_total','t',3,$d['barthel_total'],$w.' '.$o,'Puntaje','barthel_total',null,'',false,false,'','col-4');
+	$c[]=new cmp('barthel_momento','t',20,'',$w.' '.$o,'Momento','barthel_momento',null,'',false,false,'','col-6');
+	$c[]=new cmp('barthel_total','t',3,'',$w.' '.$o,'Puntaje','barthel_total',null,'',false,false,'','col-4');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	

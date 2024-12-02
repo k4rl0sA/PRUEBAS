@@ -78,7 +78,6 @@ function whe_tamhamilton() {
 function cmp_tamhamilton(){
 	$rta="";
 	$t=['tam_hamilton'=>'','hamilton_tipodoc'=>'','hamilton_nombre'=>'','hamilton_idpersona'=>'','hamilton_fechanacimiento'=>'','hamilton_total'=>'','hamilton_momento'=>'','hamilton_edad'=>'','hamilton_sintoma1'=>'','hamilton_sintoma2'=>'','hamilton_sintoma3'=>'','hamilton_sintoma4'=>'','hamilton_sintoma5'=>'','hamilton_sintoma6'=>'','hamilton_sintoma7'=>'','hamilton_sintoma8'=>'','hamilton_sintoma9'=>'','hamilton_sintoma10'=>'','hamilton_sintoma11'=>'','hamilton_sintoma12'=>'','hamilton_sintoma13'=>'','hamilton_sintoma14'=>'','hamilton_psiquica'=>'','hamilton_somatica'=>'','hamilton_analisis'=>'']; 
-
 	$w='tamhamilton';
 	$d=get_tamhamilton(); 
 	if ($d=="") {$d=$t;}
@@ -88,7 +87,7 @@ function cmp_tamhamilton(){
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idhamilton','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('hamilton_idpersona','t','20',$d['hamilton_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','hamilton_idpersona',null,'',false,$u,'','col-2');
-	$c[]=new cmp('hamilton_tipodoc','s','3',$d['hamilton_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','hamilton_tipodoc',null,'',false,$u,'','col-25','getDatForm(\'srch\',\'person\',[\'datos\']);');
+	$c[]=new cmp('hamilton_tipodoc','s','3',$d['hamilton_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','hamilton_tipodoc',null,'',false,$u,'','col-25');//,'getDatForm(\'srch\',\'person\',[\'datos\']);'
 	$c[]=new cmp('hamilton_nombre','t','50',$d['hamilton_nombre'],$w.' '.$o,'nombres','hamilton_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('hamilton_fechanacimiento','d','10',$d['hamilton_fechanacimiento'],$w.' '.$o,'fecha nacimiento','hamilton_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('hamilton_edad','n','3',$d['hamilton_edad'],$w.' '.$o,'edad','hamilton_edad',null,'',true,false,'','col-1');
@@ -125,7 +124,6 @@ function cmp_tamhamilton(){
 	$c[]=new cmp('hamilton_sintoma14','s',3,'',$w.' '.$o,'14. Comportamiento en la entrevista (general y fisiológico)
 	Tenso,  no  relajado,  agitación  nerviosa:  manos,  dedos cogidos,  apretados,  tics,  enrollar  un  pañuelo;  inquietud; pasearse  de  un  lado  a  otro,  temblor  de  manos,  ceño fruncido,   cara   tirante,   aumento   del   tono   muscular, suspiros, palidez facial.
 	Tragar  saliva,  eructar,  taquicardia  de  reposo,  frecuencia respiratoria   por   encima   de   20   res/min,   sacudidas enérgicas    de   tendones,   temblor,   pupilas   dilatadas, exoftalmos (proyección anormal del globo del ojo), sudor, tics en los párpados.','nivel',null,null,true,$u,'','col-10');
-
 
 	$o='inter';
 	$c[]=new cmp($o,'e',null,'INTERPRETACIÓN ',$w);

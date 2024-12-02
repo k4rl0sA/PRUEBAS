@@ -57,14 +57,8 @@ function whe_tamBarthel() {
 
 function cmp_tamBarthel(){
 	$rta="";
-	$t=['tam_barthel'=>'','barthel_tipodoc'=>'','barthel_idpersona'=>'','barthel_total'=>'','barthel_momento'=>'','barthel_edad'=>'','barthel_nombre'=>'','barthel_lugarnacimiento'=>'','barthel_condicionsalud'=>'','barthel_estadocivil'=>'','barthel_escolaridad'=>'','barthel_escolaridad'=>'',
-	 'barthel_ocupacion'=>'','barthel_rutina'=>'','barthel_rol'=>'',	 'barthel_actividad'=>'','barthel_evento'=>'','barthel_fechanacimiento'=>'', 
-	 'barthel_comer'=>'','barthel_lavarse'=>'','barthel_vestirse'=>'','barthel_arreglarse'=>'',
-	 'barthel_deposicion'=>'','barthel_miccion'=>'','barthel_sanitario'=>'', 'barthel_trasladarse'=>'','barthel_deambular'=>'','barthel_escalones'=>'',
-	 'barthel_interpretacion'=>'','barthel_copetencia2'=>'','barthel_copetencia3'=>'','barthel_copetencia4'=>'','barthel_copetencia5'=>'',
-	 'barthel_copetencia6'=>'', 'barthel_copetencia7'=>'','barthel_copetencia8'=>'','barthel_copetencia9'=>'',	'barthel_ambiente1'=>'',
-	 'barthel_ambiente2'=>'','barthel_ambiente3'=>'','barthel_ambiente4'=>'','barthel_ambiente5'=>'','barthel_ambiente6'=>'',
-	 'barthel_ambiente7'=>'','barthel_ambiente8'=>'','barthel_ambiente9'=>'','barthel_psicologico'=>'','barthel_social'=>'','barthel_manejo'=>'']; 
+	$t=['tam_barthel'=>'','barthel_tipodoc'=>'','barthel_idpersona'=>'','barthel_total'=>'','barthel_momento'=>'','barthel_edad'=>'','barthel_nombre'=>'','barthel_lugarnacimiento'=>'',
+	'barthel_psicologico'=>'','barthel_social'=>'','barthel_manejo'=>'']; 
 	
 	$w='tamBarthel';
 	$d=get_tamBarthel(); 

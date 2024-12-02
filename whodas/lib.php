@@ -79,13 +79,7 @@ function whe_tamWhodas() {
 function cmp_tamWhodas(){
 	$rta="";
 	$t=['tam_whodas'=>'','whodas_tipodoc'=>'','whodas_nombre'=>'','whodas_idpersona'=>'','whodas_fechanacimiento'=>'','whodas_puntaje'=>'','whodas_momento'=>'','whodas_edad'=>'','whodas_lugarnacimiento'=>'','whodas_condicionsalud'=>'','whodas_estadocivil'=>'','whodas_escolaridad'=>'',
-	 'whodas_ocupacion'=>'','whodas_rutina'=>'','whodas_rol'=>'',	 'whodas_actividad'=>'','whodas_evento'=>'','whodas_comportamiento'=>'',
-	 'whodas_comprension1'=>'','whodas_comprension2'=>'','whodas_comprension3'=>'','whodas_comprension4'=>'',
-	 'whodas_comprension5'=>'','whodas_comprension6'=>'','whodas_moverse1'=>'', 'whodas_moverse2'=>'','whodas_moverse3'=>'','whodas_moverse4'=>'',
-	 'whodas_moverse5'=>'','whodas_cuidado1'=>'','whodas_cuidado2'=>'','whodas_cuidado3'=>'','whodas_cuidado4'=>'',
-	 'whodas_relacionarce1'=>'', 'whodas_relacionarce2'=>'','whodas_relacionarce3'=>'','whodas_relacionarce4'=>'',	'whodas_relacionarce5'=>'',
-	 'whodas_actividades1'=>'','whodas_actividades2'=>'','whodas_actividades3'=>'','whodas_actividades4'=>'','whodas_actividades5'=>'',
-	 'whodas_actividades6'=>'','whodas_actividades7'=>'','whodas_actividades8'=>'','whodas_participacion1'=>'','whodas_participacion2'=>'','whodas_participacion3'=>'','whodas_participacion4'=>'','whodas_participacion5'=>'','whodas_participacion6'=>'','whodas_participacion7'=>'','whodas_participacion8'=>'','whodas_dias1'=>'','whodas_dias2'=>'','whodas_dias3'=>'','porcentaje_comprension'=>'','porcentaje_moverse'=>'','porcentaje_cuidado'=>'','porcentaje_relacionarce'=>'','porcentaje_actividades'=>'','porcentaje_participacion'=>'','porcentaje_total'=>'','whodas_analisis'=>''];
+	 'whodas_ocupacion'=>'','whodas_rutina'=>'','whodas_rol'=>'',	 'whodas_actividad'=>'','whodas_evento'=>'','whodas_comportamiento'=>'','porcentaje_comprension'=>'','porcentaje_moverse'=>'','porcentaje_cuidado'=>'','porcentaje_relacionarce'=>'','porcentaje_actividades'=>'','porcentaje_participacion'=>'','porcentaje_total'=>'','whodas_analisis'=>''];
 
 	$w='tamwhodas';
 	$d=get_tamWhodas(); 

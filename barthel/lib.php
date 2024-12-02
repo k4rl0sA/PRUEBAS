@@ -107,7 +107,7 @@ function cmp_tamBarthel(){
 	return $rta;
    }
 
-   function get_tamBarthel(){
+   /* function get_tamBarthel(){
 	if($_POST['id']==0){
 		return "";
 	}else{
@@ -141,8 +141,25 @@ FROM personas
 		return '';
 	}
 return json_encode($info['responseResult'][0]);
-}
+} */
 
+function get_tamzung(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		// print_r($_POST);
+		$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
+        concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
+        TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
+		FROM person P
+		WHERE P.idpeople ='{$id[0]}'";
+		// echo $sql; 
+		$info=datos_mysql($sql);
+				return $info['responseResult'][0];
+		}
+	} 
+	
 function focus_tamBarthel(){
 	return 'tamBarthel';
    }

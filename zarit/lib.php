@@ -141,9 +141,9 @@ function cmp_tamzarit(){
 		}else{
 			 $id=divide($_POST['id']);
 			// print_r($_POST);
-			$sql="SELECT P.idpeople,P.idpersona zung_idpersona,P.tipo_doc zung_tipodoc,
-			concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zung_nombre,P.fecha_nacimiento zung_fechanacimiento,
-			TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zung_edad
+			$sql="SELECT P.idpeople,P.idpersona zarit_idpersona,P.tipo_doc zarit_tipodoc,
+			concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zarit_nombre,P.fecha_nacimiento zarit_fechanacimiento,
+			TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS zarit_edad
 			FROM person P
 			WHERE P.idpeople ='{$id[0]}'";
 			// echo $sql; 

@@ -212,7 +212,24 @@ function cmp_tamWhodas(){
 		}
 	} 
 
-function get_person(){
+	function get_tamWhodas(){
+		if($_POST['id']==0){
+			return "";
+		}else{
+			 $id=divide($_POST['id']);
+			// print_r($_POST);
+			$sql="SELECT P.idpeople,P.idpersona whodas_idpersona,P.tipo_doc whodas_tipodoc,
+			concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) whodas_nombre,P.fecha_nacimiento whodas_fechanacimiento,
+			TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS whodas_edad
+			FROM person P
+			WHERE P.idpeople ='{$id[0]}'";
+			// echo $sql; 
+			$info=datos_mysql($sql);
+					return $info['responseResult'][0];
+			}
+		} 
+
+/* function get_person(){
 	// print_r($_POST);
 	$id=divide($_POST['id']);
 $sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
@@ -225,7 +242,7 @@ FROM personas
 	}
 return json_encode($info['responseResult'][0]);
 }
-
+ */
 function focus_tamWhodas(){
 	return 'tamWhodas';
    }

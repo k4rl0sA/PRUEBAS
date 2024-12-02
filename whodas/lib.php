@@ -91,77 +91,76 @@ function cmp_tamWhodas(){
 	$w='tamwhodas';
 	$d=get_tamWhodas(); 
 	if ($d=="") {$d=$t;}
-	$u = ($d['tam_whodas']!='') ? false : true ;
 	$o='datos';
     $key='srch';
 
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idwhodas','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-	$c[]=new cmp('whodas_idpersona','t','20',$d['whodas_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','whodas_idpersona',null,'',false,$u,'','col-2');
-	$c[]=new cmp('whodas_tipodoc','s','3',$d['whodas_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','whodas_tipodoc',null,'',false,$u,'','col-25','getDatForm(\'srch\',\'person\',[\'datos\']);');
+	$c[]=new cmp('whodas_idpersona','t','20',$d['whodas_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','whodas_idpersona',null,'',false,false,'','col-2');
+	$c[]=new cmp('whodas_tipodoc','s','3',$d['whodas_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','whodas_tipodoc',null,'',false,false,'','col-25','getDatForm(\'srch\',\'person\',[\'datos\']);');
 	$c[]=new cmp('whodas_nombre','t','50',$d['whodas_nombre'],$w.' '.$o,'nombres','whodas_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('whodas_fechanacimiento','d','10',$d['whodas_fechanacimiento'],$w.' '.$o,'fecha nacimiento','whodas_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('whodas_edad','n','3',$d['whodas_edad'],$w.' '.$o,'edad','whodas_edad',null,'',true,false,'','col-1');
     
 	$o='comprencion';
 	$c[]=new cmp($o,'e',null,'1. Comprensión y comunicación ',$w);
-	$c[]=new cmp('whodas_comprension1','s',3,'',$w.' '.$o,'Concentrarse en algo durante 10 minutos','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_comprension2','s',3,'',$w.' '.$o,'Recordar las cosas importantes que tiene que hacer','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_comprension3','s',3,'',$w.' '.$o,'Analizar y encontrar soluciones a los problemas de la vida diaria','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_comprension4','s',3,'',$w.' '.$o,'Aprender una nueva tarea, como por ejemplo, llegar a un lugar nuevo','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_comprension5','s',3,'',$w.' '.$o,'Entender en general lo que dice la gente','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_comprension6','s',3,'',$w.' '.$o,'Iniciar o mantener una conversación','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_comprension1','s',3,'',$w.' '.$o,'Concentrarse en algo durante 10 minutos','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_comprension2','s',3,'',$w.' '.$o,'Recordar las cosas importantes que tiene que hacer','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_comprension3','s',3,'',$w.' '.$o,'Analizar y encontrar soluciones a los problemas de la vida diaria','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_comprension4','s',3,'',$w.' '.$o,'Aprender una nueva tarea, como por ejemplo, llegar a un lugar nuevo','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_comprension5','s',3,'',$w.' '.$o,'Entender en general lo que dice la gente','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_comprension6','s',3,'',$w.' '.$o,'Iniciar o mantener una conversación','nivel',null,null,true,true,'','col-10');
 
 	$o='capacidad';
 	$c[]=new cmp($o,'e',null,'2. Capacidad para moverse en su alrededor (entorno)',$w);
-	$c[]=new cmp('whodas_moverse1','s',3,'',$w.' '.$o,'Estar de pie durante largos períodos de tiempo, como por ejemplo, 30 minutos','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_moverse2','s',3,'',$w.' '.$o,'Ponerse de pie cuando estaba sentado','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_moverse3','s',3,'',$w.' '.$o,'Moverse dentro de su casa','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_moverse4','s',3,'',$w.' '.$o,'Salir de su casa','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_moverse5','s',3,'',$w.' '.$o,'Andar largas distancias como un kilómetro (o algo equivalente)','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_moverse1','s',3,'',$w.' '.$o,'Estar de pie durante largos períodos de tiempo, como por ejemplo, 30 minutos','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_moverse2','s',3,'',$w.' '.$o,'Ponerse de pie cuando estaba sentado','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_moverse3','s',3,'',$w.' '.$o,'Moverse dentro de su casa','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_moverse4','s',3,'',$w.' '.$o,'Salir de su casa','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_moverse5','s',3,'',$w.' '.$o,'Andar largas distancias como un kilómetro (o algo equivalente)','nivel',null,null,true,true,'','col-10');
 
 	$o='cuidado';
 	$c[]=new cmp($o,'e',null,'3. Cuidado personal ',$w);
-	$c[]=new cmp('whodas_cuidado1','s',3,'',$w.' '.$o,'Lavarse todo el cuerpo (bañarse)','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_cuidado2','s',3,'',$w.' '.$o,'Vestirse','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_cuidado3','s',3,'',$w.' '.$o,'Comer','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_cuidado4','s',3,'',$w.' '.$o,'Estar solo/a durante unos día','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_cuidado1','s',3,'',$w.' '.$o,'Lavarse todo el cuerpo (bañarse)','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_cuidado2','s',3,'',$w.' '.$o,'Vestirse','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_cuidado3','s',3,'',$w.' '.$o,'Comer','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_cuidado4','s',3,'',$w.' '.$o,'Estar solo/a durante unos día','nivel',null,null,true,true,'','col-10');
 
 	$o='relacion';
 	$c[]=new cmp($o,'e',null,'4. Relacionarse con otras personas ',$w);
-	$c[]=new cmp('whodas_relacionarce1','s',3,'',$w.' '.$o,'Relacionarse con personas que no conoce','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_relacionarce2','s',3,'',$w.' '.$o,'Mantener una amistad','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_relacionarce3','s',3,'',$w.' '.$o,'Llevar bien con personas cercanas a usted','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_relacionarce4','s',3,'',$w.' '.$o,'Hacer nuevos amigos','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_relacionarce5','s',3,'',$w.' '.$o,'Tener relaciones sexuales','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_relacionarce1','s',3,'',$w.' '.$o,'Relacionarse con personas que no conoce','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_relacionarce2','s',3,'',$w.' '.$o,'Mantener una amistad','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_relacionarce3','s',3,'',$w.' '.$o,'Llevar bien con personas cercanas a usted','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_relacionarce4','s',3,'',$w.' '.$o,'Hacer nuevos amigos','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_relacionarce5','s',3,'',$w.' '.$o,'Tener relaciones sexuales','nivel',null,null,true,true,'','col-10');
 
 	$o='actividad';
 	$c[]=new cmp($o,'e',null,'5. Actividades de la vida diaria',$w);
-	$c[]=new cmp('whodas_actividades1','s',3,'',$w.' '.$o,'Cumplir con sus quehaceres de la casa','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades2','s',3,'',$w.' '.$o,'Realizar bien los quehaceres más importantes de la casa','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades3','s',3,'',$w.' '.$o,'Acabar todos los quehaceres que tenía que hacer en la casa','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades4','s',3,'',$w.' '.$o,'Acabar sus quehaceres de la casa tan rápido como era necesario','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades5','s',3,'',$w.' '.$o,'Llevar a cabo su trabajo diario o las actividades escolares','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades6','s',3,'',$w.' '.$o,'Realizar bien las tareas más importantes de su trabajo o de la escuela','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades7','s',3,'',$w.' '.$o,'Acabar todo el trabajo que necesitaba hacer','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_actividades8','s',3,'',$w.' '.$o,'Acabar su trabajo tan rápido como era necesario','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_actividades1','s',3,'',$w.' '.$o,'Cumplir con sus quehaceres de la casa','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades2','s',3,'',$w.' '.$o,'Realizar bien los quehaceres más importantes de la casa','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades3','s',3,'',$w.' '.$o,'Acabar todos los quehaceres que tenía que hacer en la casa','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades4','s',3,'',$w.' '.$o,'Acabar sus quehaceres de la casa tan rápido como era necesario','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades5','s',3,'',$w.' '.$o,'Llevar a cabo su trabajo diario o las actividades escolares','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades6','s',3,'',$w.' '.$o,'Realizar bien las tareas más importantes de su trabajo o de la escuela','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades7','s',3,'',$w.' '.$o,'Acabar todo el trabajo que necesitaba hacer','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_actividades8','s',3,'',$w.' '.$o,'Acabar su trabajo tan rápido como era necesario','nivel',null,null,true,true,'','col-10');
 
 	$o='participacion';
 	$c[]=new cmp($o,'e',null,'6. Participación en sociedad',$w);
-	$c[]=new cmp('whodas_participacion1','s',3,'',$w.' '.$o,'Dificultad para participar, al mismo nivel que el resto de las personas, en actividades de la comunidad (p.e. fiestas, actividades religiosas u otras)','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion2','s',3,'',$w.' '.$o,'Dificultades debido a barreras u obstáculos existentes en su alrededor (entorno)','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion3','s',3,'',$w.' '.$o,'Dificultad para vivir con dignidad o respeto debido a las actitudes y acciones de otras personas','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion4','s',3,'',$w.' '.$o,'Cantidad de tiempo que ha dedicado a su "condición de salud" o a las consecuencias de la misma','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion5','s',3,'',$w.' '.$o,'Qué impacto emocional (qué tanto le ha afectado) su "condición de salud"','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion6','s',3,'',$w.' '.$o,'Qué impacto económico ha tenido usted o su familia debido a su "condición de salud"','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion7','s',3,'',$w.' '.$o,'Dificultad que ha tenido usted y/o su familia debido a su "condición de salud"','nivel',null,null,true,$u,'','col-10');
-	$c[]=new cmp('whodas_participacion8','s',3,'',$w.' '.$o,'Dificultad que ha tenido para realizar cosas que le ayuden a relajarse o disfrutar','nivel',null,null,true,$u,'','col-10');
+	$c[]=new cmp('whodas_participacion1','s',3,'',$w.' '.$o,'Dificultad para participar, al mismo nivel que el resto de las personas, en actividades de la comunidad (p.e. fiestas, actividades religiosas u otras)','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion2','s',3,'',$w.' '.$o,'Dificultades debido a barreras u obstáculos existentes en su alrededor (entorno)','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion3','s',3,'',$w.' '.$o,'Dificultad para vivir con dignidad o respeto debido a las actitudes y acciones de otras personas','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion4','s',3,'',$w.' '.$o,'Cantidad de tiempo que ha dedicado a su "condición de salud" o a las consecuencias de la misma','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion5','s',3,'',$w.' '.$o,'Qué impacto emocional (qué tanto le ha afectado) su "condición de salud"','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion6','s',3,'',$w.' '.$o,'Qué impacto económico ha tenido usted o su familia debido a su "condición de salud"','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion7','s',3,'',$w.' '.$o,'Dificultad que ha tenido usted y/o su familia debido a su "condición de salud"','nivel',null,null,true,true,'','col-10');
+	$c[]=new cmp('whodas_participacion8','s',3,'',$w.' '.$o,'Dificultad que ha tenido para realizar cosas que le ayuden a relajarse o disfrutar','nivel',null,null,true,true,'','col-10');
 
 	$o='dias';
 	$c[]=new cmp($o,'e',null,'Días',$w);
-	$c[]=new cmp('whodas_dias1','n',2,'',$w.' '.$o,'En los últimos 30 días, cuántos días ha tenido estas dificultades','nivel',null,null,true,$u,'','col-10','validardias');
-	$c[]=new cmp('whodas_dias2','n',2,'',$w.' '.$o,'En los últimos 30 días, cuántos días no pudo realizar ninguna de sus actividades habituales (nada) o del trabajo debido a su "condición de salud"','nivel',null,null,true,$u,'','col-10','validardias');
-	$c[]=new cmp('whodas_dias3','n',2,'',$w.' '.$o,'En los últimos 30 días, sin contar los días en que no pudo realizar "ninguna de sus actividades", cuántos días tuvo que recortar o reducir sus actividades habituales o del trabajo debido a su "condición de salud"','nivel',null,null,true,$u,'','col-10','validardias');
+	$c[]=new cmp('whodas_dias1','n',2,'',$w.' '.$o,'En los últimos 30 días, cuántos días ha tenido estas dificultades','nivel',null,null,true,true,'','col-10','validardias');
+	$c[]=new cmp('whodas_dias2','n',2,'',$w.' '.$o,'En los últimos 30 días, cuántos días no pudo realizar ninguna de sus actividades habituales (nada) o del trabajo debido a su "condición de salud"','nivel',null,null,true,true,'','col-10','validardias');
+	$c[]=new cmp('whodas_dias3','n',2,'',$w.' '.$o,'En los últimos 30 días, sin contar los días en que no pudo realizar "ninguna de sus actividades", cuántos días tuvo que recortar o reducir sus actividades habituales o del trabajo debido a su "condición de salud"','nivel',null,null,true,true,'','col-10','validardias');
 	
 	$o='analisis';
 	$c[]=new cmp($o,'e',null,'Analisis ',$w);

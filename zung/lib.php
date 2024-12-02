@@ -230,6 +230,7 @@ function gra_tamzung(){
 
 		$sql="INSERT INTO hog_tam_zung VALUES (null,
 		$id[0],
+		TRIM(UPPER('{$_POST['fecha_toma']}')),
 		TRIM(UPPER('{$idmomento}')),
 		TRIM(UPPER('{$_POST['anuncio1']}')),
 		TRIM(UPPER('{$_POST['anuncio2']}')),

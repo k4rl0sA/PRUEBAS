@@ -265,25 +265,19 @@ function men_tamWhodas(){
    
 function gra_tamWhodas(){
 	$id=$_POST['idwhodas'];
-	//print_r($_POST);
-	if($id != "0"){
+	// print_r($_POST);
+	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";
 	}else{
-
-	$infodata_whodas=datos_mysql("SELECT whodas_momento,whodas_idpersona FROM hog_tam_whodas
-		 WHERE whodas_idpersona = '{$_POST['whodas_idpersona']}' AND whodas_momento = 2 ");
-	if (isset($infodata_whodas['responseResult'][0])){
-		return "Ya se realizo los dos momentos";
-	}else{
-		$infodata2_whodas=datos_mysql("SELECT whodas_momento,whodas_idpersona FROM hog_tam_whodas
-		 WHERE whodas_idpersona = '{$_POST['whodas_idpersona']}' AND whodas_momento = 1 ");
-		if (isset($infodata2_whodas['responseResult'][0])){
+		$data=datos_mysql("select count(Z.momento) as moment from hog_tam_zung Z  where Z.idpeople='{$id[0]}'");
+		$momen=$data['responseResult'][0]['moment'];
+		if($momen=='0'){
+			$idmomento = 1;
+		}elseif($momen=='1'){
 			$idmomento = 2;
 		}else{
-			$idmomento = 1;
+			return "Ya se realizo los dos momentos";
 		}
-	}
-
 	
 
 	$suma_com = (
@@ -366,8 +360,9 @@ function gra_tamWhodas(){
 
 	
 		$sql="INSERT INTO hog_tam_whodas VALUES (null,
-		TRIM(UPPER('{$_POST['whodas_idpersona']}')),
-		{$idmomento},
+		$id[0],
+		TRIM(UPPER('{$_POST['fecha_toma']}')),
+		TRIM(UPPER('{$idmomento}')),
 		TRIM(UPPER('{$_POST['whodas_tipodoc']}')),
 		TRIM(UPPER('{$_POST['whodas_comprension1']}')),
 		TRIM(UPPER('{$_POST['whodas_comprension2']}')),

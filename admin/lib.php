@@ -87,9 +87,9 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	//$until_day_open=17;//dia del mes fecha abierta
-	//$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-30 ;//fechas abiertas hasta un determinado dia
-	$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
+	$until_day_open=2;//dia del mes fecha abierta
+	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-41 ;//fechas abiertas hasta un determinado dia
+	//$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -340,15 +340,15 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_oms($tab);
             break;    
-        case '45':
-			$tab = "Casos_Psicologia";
+        case '36':
+			$tab = "Admision";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_asigpsico($tab);
+			if($tab=decript($encr,$clave))lis_admisi($tab);
             break;
-        case '46':
-			$tab = "Casos_Derivados_Eac";
+        case '37':
+			$tab = "Atenciones";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_derivaeac($tab);
+			if($tab=decript($encr,$clave))lis_atencion($tab);
             break;
         case '47':
 			$tab = "Tamizaje_Epoc";
@@ -386,14 +386,16 @@ LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 }
 
 function lis_gestpre($txt){
-	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, A.id_ges AS Cod_Registro, A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva,A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, U.id_usuario AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
+	$sql="SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,
+A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva, A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
 FROM `geo_gest` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
+LEFT JOIN catadeta C ON G.barrio = C.idcatadeta
 LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
 	
-	$tot="SELECT count(*) as total FROM `geo_gest` A  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
+	$tot="SELECT count(*) as total FROM `geo_gest` A  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo LEFT JOIN catadeta C ON G.barrio = C.idcatadeta LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
 	$tot.=whe_date();
 	// echo $sql;
@@ -1470,9 +1472,56 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_admisi($txt){
+	$sql="SELECT 
+G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
+A.id_factura Cod_Registro, A.soli_admis AS Solicitud_Admision, A.fecha_consulta AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, A.cod_admin AS Cod_Admision, FN_CATALOGODESC(126,A.cod_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.final_consul) AS Finalidad_Consulta, A.cod_factura AS Cod_Factura, FN_CATALOGODESC(184,A.estado) AS Estado_Admision,
+A.fecha_create AS Fecha_Creacion, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, 
+A.fecha_update AS Fecha_Edicion, A.usu_update AS Cod_Usuario, U1.nombre AS Nombre_Usuario, U1.perfil AS Perfil_Usuario
+FROM `adm_facturacion` A
+LEFT JOIN person P ON A.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN usuarios U1 ON A.usu_update = U1.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred11();
+	$sql.=whe_date11();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `adm_facturacion` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario LEFT JOIN usuarios U1 ON A.usu_update = U1.id_usuario WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred11();
+	$tot.=whe_date11();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
+function lis_atencion($txt){
+	$sql="SELECT 
+G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
+A.id_aten AS Cod_Registro, A.id_factura AS Cod_Admision, A.fecha_atencion AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, FN_CATALOGODESC(126,A.codigo_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.finalidad_consulta) AS Finalidad_Consulta, FN_DESC(3,A.diagnostico1) AS DX1,FN_DESC(3,A.diagnostico2) AS DX2, FN_DESC(3,A.diagnostico3) AS DX3, A.fertil AS '¿Mujer_Edad_Fertil?', A.preconcepcional AS '¿Consulta_Preconsecional?', A.metodo AS '¿Metodo_Planificacion?', FN_CATALOGODESC(129,A.anticonceptivo) AS '¿Cua_Metodo?', A.planificacion AS Planificacion,A.mestruacion AS Fur,
+A.vih AS Prueba_VIH, FN_CATALOGODESC(187,A.resul_vih) AS Resultado_VIH, A.hb AS Prueba_HB, FN_CATALOGODESC(188,A.resul_hb) AS Resultado_HB, A.trepo_sifil AS Trepomina_Sifilis, FN_CATALOGODESC(188,A.resul_sifil) AS Resultado_Trepo_Sifilis, A.pru_embarazo AS Prueba_Embarazo, FN_CATALOGODESC(88,A.resul_emba) AS Resultado_Embarazo, A.pru_apetito AS Prueba_Apetito, A.resul_apetito AS Resultado_Apetito,
+A.orden_psicologia AS Orden_Psicologia, A.relevo AS Aplica_Relevo, FN_CATALOGODESC(203,A.estrategia) AS Estrategia, FN_CATALOGODESC(236,A.motivo_estrategia) AS Motivo_Estrategia,
+A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
 
-
+FROM `eac_atencion` A
+LEFT JOIN person P ON A.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred12();
+	$sql.=whe_date12();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `eac_atencion` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred12();
+	$tot.=whe_date12();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 
 
@@ -1620,21 +1669,30 @@ function whe_date10(){
 	return $sql;
 }
 
-function whe_subred14() {
-	$sql= " AND (U.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	return $sql;
-}
-
-function whe_subred15() {
+function whe_subred11() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 
-function whe_date15(){
+function whe_date11(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(P.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+
+function whe_subred12() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date12(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(A.fecha_atencion) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 function whe_subred16() {

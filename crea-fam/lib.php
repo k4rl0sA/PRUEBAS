@@ -797,7 +797,7 @@ function get_Tamiz($fec) {
         $tamiz[] = 'tamfindrisc';
 		$tamiz[] = 'tamoms';
     }
-	if ($edad >40) {
+	if ($edad>=40) {
 		$tamiz[] = 'tamepoc';
 	}
     return $tamiz;
@@ -912,6 +912,9 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('tamzung') ? "<li title='Tamizaje ZUNG' onclick=\"mostrar('tamzung','pro',event,'','../zung/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 			$rta .= acceso('tamhamilton') ? "<li title='Tamizaje HAMILTON' onclick=\"mostrar('tamhamilton','pro',event,'','../hamilton/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 			$rta .= acceso('tamWhodas') ? "<li title='Tamizaje 	WHODAS' onclick=\"mostrar('tamWhodas','pro',event,'','../whodas/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
+
+			$rta .= acceso('tamzarit') ? "<li title='Tamizaje ZARIT ' onclick=\"mostrar('tamzarit','pro',event,'','../zarit/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamBarthel') ? "<li title='Tamizaje BARTHEL' onclick=\"mostrar('tamBarthel','pro',event,'','../barthel/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

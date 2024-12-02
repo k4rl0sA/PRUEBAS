@@ -358,12 +358,10 @@ function gra_tamWhodas(){
 			break;
 	}
 
-	
 		$sql="INSERT INTO hog_tam_whodas VALUES (null,
 		$id[0],
 		TRIM(UPPER('{$_POST['fecha_toma']}')),
 		TRIM(UPPER('{$idmomento}')),
-		TRIM(UPPER('{$_POST['whodas_tipodoc']}')),
 		TRIM(UPPER('{$_POST['whodas_comprension1']}')),
 		TRIM(UPPER('{$_POST['whodas_comprension2']}')),
 		TRIM(UPPER('{$_POST['whodas_comprension3']}')),

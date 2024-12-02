@@ -202,34 +202,34 @@ function gra_tamBarthel(){
 	 $rta3=dato_mysql($sql3);*/
 
 	$suma_iden = (
-		$_POST['barthel_comer']+
-		$_POST['barthel_lavarse']+
-		$_POST['barthel_vestirse']+
-		$_POST['barthel_arreglarse']+
-		$_POST['barthel_deposicion']+
-		$_POST['barthel_miccion']+
-		$_POST['barthel_sanitario']+
-		$_POST['barthel_trasladarse']+
-		$_POST['barthel_deambular']+
-		$_POST['barthel_escalones']
+		$_POST['comer']+
+		$_POST['lavarse']+
+		$_POST['vestirse']+
+		$_POST['arreglarse']+
+		$_POST['deposicion']+
+		$_POST['miccion']+
+		$_POST['sanitario']+
+		$_POST['trasladarse']+
+		$_POST['deambular']+
+		$_POST['escalones']
 	);
 
 	$suma_barthel = ($suma_iden);
 
 		$sql="INSERT INTO hog_tam_barthel VALUES (null,
-		TRIM(UPPER('{$_POST['barthel_idpersona']}')),
+		TRIM(UPPER('{$_POST['idpersona']}')),
 		{$idmomento},
-		TRIM(UPPER('{$_POST['barthel_tipodoc']}')),
-		TRIM(UPPER('{$_POST['barthel_comer']}')),
-		TRIM(UPPER('{$_POST['barthel_lavarse']}')),
-		TRIM(UPPER('{$_POST['barthel_vestirse']}')),
-		TRIM(UPPER('{$_POST['barthel_arreglarse']}')),
-		TRIM(UPPER('{$_POST['barthel_deposicion']}')),
-		TRIM(UPPER('{$_POST['barthel_miccion']}')),
-		TRIM(UPPER('{$_POST['barthel_sanitario']}')),
-		TRIM(UPPER('{$_POST['barthel_trasladarse']}')),
-		TRIM(UPPER('{$_POST['barthel_deambular']}')),
-		TRIM(UPPER('{$_POST['barthel_escalones']}')),
+		TRIM(UPPER('{$_POST['tipodoc']}')),
+		TRIM(UPPER('{$_POST['comer']}')),
+		TRIM(UPPER('{$_POST['lavarse']}')),
+		TRIM(UPPER('{$_POST['vestirse']}')),
+		TRIM(UPPER('{$_POST['arreglarse']}')),
+		TRIM(UPPER('{$_POST['deposicion']}')),
+		TRIM(UPPER('{$_POST['miccion']}')),
+		TRIM(UPPER('{$_POST['sanitario']}')),
+		TRIM(UPPER('{$_POST['trasladarse']}')),
+		TRIM(UPPER('{$_POST['deambular']}')),
+		TRIM(UPPER('{$_POST['escalones']}')),
 		'{$suma_barthel}',
 		TRIM(UPPER('')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),

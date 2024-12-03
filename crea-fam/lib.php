@@ -914,7 +914,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('tamWhodas') ? "<li title='Tamizaje WHODAS' onclick=\"mostrar('tamWhodas','pro',event,'','../whodas/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-bed-pulse ico' id='".$c['ACCIONES']."'></i></li>": '';
 
 			$rta .= acceso('tamzarit') ? "<li title='Tamizaje ZARIT ' onclick=\"mostrar('tamzarit','pro',event,'','../zarit/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-face-rolling-eyes ico' id='".$c['ACCIONES']."'></i></li>": '';
-			$rta .= acceso('tamBarthel') ? "<li title='Tamizaje BARTHEL' onclick=\"mostrar('tamBarthel','pro',event,'','../barthel/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamBarthel') ? "<li title='Tamizaje BARTHEL' onclick=\"mostrar('tamBarthel','pro',event,'','../barthel/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-people-carry-box ico' id='".$c['ACCIONES']."'></i></li>": '';
 		/**********************TAMIZAJES*************************/
 
 		$rta .= acceso('admision') ? "<li title='Solicitar Admisión' onclick=\"mostrar('admision','pro',event,'','admision.php',7,'admision');Color('datos-lis');\"><i class='fa-solid fa-tty ico' id='{$c['ACCIONES']}'></i></li>" : "";

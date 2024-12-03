@@ -53,6 +53,11 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
   <input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();">
 </div>
 
+<div class="campo">
+  <div>Mi prueba carechimbas</div>
+  <input class="captura" type="number" size=20 id="fprue" name="fprue" OnChange="actualizar();">
+</div>
+
   <?php
     $filtro = in_array($perfil, ['ADM', 'SUPHOG', 'SUPEAC']);
     $enab = $filtro ? '' : 'disabled';

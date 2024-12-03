@@ -39,6 +39,18 @@ LEFT JOIN personas P ON O.barthel_idpersona = P.idpersona
 	return panel_content($datos["responseResult"],"tamBarthel",20);
 }
 
+function lis_barthel(){
+	$id=divide($_POST['id']);//id_barthel ACCIONES,
+	$sql="SELECT id_barthel 'Cod Registro',momento,interpretacion,total,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_barthel A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"barthel-lis",5);
+}
+
 function whe_tamBarthel() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
@@ -56,7 +68,7 @@ function whe_tamBarthel() {
 }
 
 function cmp_tamBarthel(){
-	$rta="";
+	$rta="<div class='encabezado barthel'>TABLA BARTHEL</div><div class='contenido' id='barthel-lis'>".lis_barthel()."</div></div>";
 	$t=['tam_barthel'=>'','barthel_tipodoc'=>'','barthel_idpersona'=>'','barthel_total'=>'','barthel_momento'=>'','barthel_edad'=>'','barthel_nombre'=>'','barthel_lugarnacimiento'=>'',
 	'barthel_psicologico'=>'','barthel_social'=>'','barthel_manejo'=>'']; 
 	

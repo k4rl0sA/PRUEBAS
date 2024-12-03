@@ -38,7 +38,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function resetFrm() {
+function +() {
 	document.getElementById('fapp').reset();
 	var c = document.getElementById(a+'-pro-con');
 	var cmp=c.querySelectorAll('.captura,.bloqueo');

@@ -360,17 +360,17 @@ function lis_planos() {
 				$encr = encript($tab, $clave);
 				if($tab=decript($encr,$clave))lis_signos($tab);
 				break;
-		case '47':
+		case '40':
 			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_e($tab);
 			break;
-		case '47':
+		case '41':
 			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_e($tab);
 			break;
-		case '47':
+		case '42':
 			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_e($tab);

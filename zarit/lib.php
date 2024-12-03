@@ -185,7 +185,7 @@ function men_tamzarit(){
   }
    
 function gra_tamzarit(){
-	$id=$_POST['idzarit'];
+	$id=divide($_POST['idzarit']);
 	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";
 	}else{

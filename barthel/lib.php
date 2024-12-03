@@ -172,7 +172,7 @@ function men_tamBarthel(){
   }
    
 function gra_tamBarthel(){
-	$id=$_POST['idbarthel'];
+	$id=divide($_POST['idbarthel']);
 	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";
 	}else{

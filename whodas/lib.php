@@ -257,7 +257,7 @@ function men_tamWhodas(){
   }
    
 function gra_tamWhodas(){
-	$id=$_POST['idwhodas'];
+	$id=divide($_POST['idwhodas']);
 	// print_r($_POST);
 	if(count($id)!= "2"){
 		return "No es posible actualizar el tamizaje";

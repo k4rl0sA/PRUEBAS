@@ -22,7 +22,7 @@ else {
 
 function lis_sesigcole(){
 	$total="SELECT COUNT(*) AS total FROM (
-		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad',U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
+		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA ,U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
 		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 			WHERE G.estado_v IN ('7') ".whe_sesigcole()." AND U.id_usuario = '{$_SESSION['us_sds']}') AS Subquery";
 	$info=datos_mysql($total);
@@ -38,7 +38,7 @@ $sql="SELECT G.idgeo AS ACCIONES,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad',
-	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
+	FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA
 	U1.nombre,
 	G.fecha_create,
 	FN_CATALOGODESC(44,G.estado_v) AS estado

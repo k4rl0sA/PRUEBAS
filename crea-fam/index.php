@@ -114,6 +114,7 @@ function grabar(tb='',ev){
 	'tamhamilton':'../hamilton/lib.php',
 	'tamWhodas':'../whodas/lib.php',
 	'tamBarthel':'../barthel/lib.php',
+	'tamzarit':'../zarit/lib.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

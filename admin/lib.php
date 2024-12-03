@@ -1566,28 +1566,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
-function lis_signos($txt){
-	$sql="SELECT 
-G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
-P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
-A.id_signos AS Cod_Registro, A.fecha_toma AS Fecha_Toma, A.peso AS Peso, A.talla AS Talla, A.imc AS IMC, A.tas AS Tension_Arterial_Sistolica, A.tad AS Tension_Arterial_Diastolica, A.frecard AS Frecuencia_Cardiaca, A.satoxi AS Saturacion_Oxigeno, A.peri_abdomi AS Perimetro_Abdominal, A.peri_braq AS Perimetro_Braquial, A.zscore AS Zscore, A.glucom AS Glucometria,
-A.usu_create AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
-FROM `hog_signos` A
-LEFT JOIN person P ON A.idpeople = P.idpeople
-LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
-LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN usuarios U ON A.usu_create = U.id_usuario WHERE 1 ";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred13();
-	$sql.=whe_date13();
-	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM `hog_signos` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
-	if (perfilUsu()!=='ADM')	$tot.=whe_subred13();
-	$tot.=whe_date13();
-	$_SESSION['sql_'.$txt]=$sql;
-	$_SESSION['tot_'.$txt]=$tot;
-	$rta = array('type' => 'OK','file'=>$txt);
-	echo json_encode($rta);
-}
+
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

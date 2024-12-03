@@ -56,7 +56,15 @@ WHERE G.estado_v in('7') ".whe_sesigcole()."
 }	
 
 function whe_sesigcole() {
-
+	$fefin=date('Y-m-d');
+	$feini = date("Y-m-d",strtotime($fefin."- 2 days"));
+	$sql = "";
+	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
+		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "' AND G.usu_creo ='" . $_POST['fdigita'] . "'";
+	}else{
+		$sql .="AND G.idgeo ='0'";
+	} 
+	return $sql;
 }
 
 

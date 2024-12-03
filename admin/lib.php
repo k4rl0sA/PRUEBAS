@@ -1761,6 +1761,8 @@ function whe_date12(){
 	$sql= " AND date(A.fecha_atencion) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
+
+
 function whe_subred13() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
@@ -1773,6 +1775,8 @@ function whe_date13(){
 	$sql= " AND date(A.fecha_toma) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
+
+
 function whe_subred17() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;

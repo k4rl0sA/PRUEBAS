@@ -65,6 +65,9 @@ function whe_sesigcole() {
 			$sql .="AND H.upz ='$_POST['fprue']'";
 		} */
 	} 
+	if (!empty($_POST['fprue'])) {
+		$sql.='';
+	}
 	
 	return $sql;
 	

@@ -350,11 +350,31 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_atencion($tab);
             break;
-        case '47':
+        case '38':
+			$tab = "Plan_de_cuidado_Individual";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_pcindi($tab);
+            break;
+		case '47':
+				$tab = "Tamizaje_Epoc";
+				$encr = encript($tab, $clave);
+				if($tab=decript($encr,$clave))lis_e($tab);
+				break;
+		case '47':
 			$tab = "Tamizaje_Epoc";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_e($tab);
-            break;
+			break;
+		case '47':
+			$tab = "Tamizaje_Epoc";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_e($tab);
+			break;
+		case '47':
+			$tab = "Tamizaje_Epoc";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_e($tab);
+			break;				
         default:
             break;    
     }
@@ -1523,7 +1543,28 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
-
+function lis_pcindi($txt){
+	$sql="SELECT 
+G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
+A.id_aten AS Cod_Registro, A.evento_interes AS Notificacion_Evento_Interes_SP, FN_CATALOGODESC(134,A.evento) AS Cual_Evento_SP, A.cuale_vento AS Otro_Evento_SP, A.sirc AS SIRC_usuarios_otras_EAPB, A.ruta_sirc AS Ruta_Sirc, A.remision AS Usuario_requiere_control, A.cual_remision AS Cuales, A.orden_vacunacion AS Orden_Vacunacion, FN_CATALOGODESC(185,A.vacunacion) AS Vacunacion, A.orden_laboratorio AS Orden_Laboratorio, FN_CATALOGODESC(133,A.laboratorios) AS Laboratorios, A.orden_medicamentos AS Orden_Medicamentos, FN_CATALOGODESC(186,A.medicamentos) AS Medicamentos, A.ruta_continuidad AS Activacion_Ruta, A.continuidad AS Cual_Ruta, A.orden_imagenes AS Ordena_Imágenes_Diagnósticas, A.orden_psicologia AS Orden_Psicologia, A.relevo AS Aplica_RBC, A.estrategia AS Estrategia, A.motivo_estrategia AS Motivo_Estrategia,
+A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
+FROM `eac_atencion` A
+LEFT JOIN person P ON A.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred12();
+	$sql.=whe_date12();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM `eac_atencion` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred12();
+	$tot.=whe_date12();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

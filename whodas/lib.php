@@ -54,7 +54,7 @@ function lis_tamWhodas(){
 
 function lis_whodas(){
 	$id=divide($_POST['id']);//id_whodas ACCIONES,
-	$sql="SELECT id_whodas 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	$sql="SELECT id_whodas 'Cod Registro',momento,porcentaje_total,analisis,`nombre` Creó,`fecha_create` 'fecha Creó'
 	FROM hog_tam_whodas A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];

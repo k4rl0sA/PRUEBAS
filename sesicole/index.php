@@ -43,7 +43,7 @@ $mod='gestuser';
 
 <form method='post' id='fapp'>
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
-	
+  
 
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>

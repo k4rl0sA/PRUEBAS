@@ -39,7 +39,9 @@ function actualizar(){
 }
 
 function fixRecord(a='') {
-	document.getElementById('fapp').reset();
+	const fields= document.getElementById('fapp').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
+
+	fields.reset();
 	var c = document.getElementById(a+'-pro-con');
 	var cmp=c.querySelectorAll('.captura,.bloqueo');
 	for (i=0;i<cmp.length;i++) {

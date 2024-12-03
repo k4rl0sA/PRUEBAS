@@ -55,7 +55,7 @@ WHERE G.estado_v in('7') ".whe_sesigcole()."
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag);
 }	
 
-function whe_gestuser() {
+function whe_sesigcole() {
 
 }
 

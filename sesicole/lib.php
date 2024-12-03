@@ -38,7 +38,7 @@ $sql="SELECT G.idgeo AS ACCIONES,
 	H.nummanzana AS Manzana,
 	H.predio_num AS predio,
 	H.unidad_habit AS 'Unidad',
-	FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA
+	FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA ,
 	U1.nombre,
 	G.fecha_create,
 	FN_CATALOGODESC(44,G.estado_v) AS estado

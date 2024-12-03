@@ -451,10 +451,11 @@ function opc_rel_validacion13($id='') {
 	$idp = trim($_REQUEST['id']);
 	$idp=divide($idp);
 	$idp = trim((string)$idp[0]);
-	$id= trim((string)$id);	
+	var_dump($idp);
+	// $id= trim((string)$idp);	
 		return	opc_sql("SELECT idpeople,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) 'Nombres' 
 			from person 
-			where vivipersona=(select vivipersona from person where idpeople='$idp[0]') and idpeople<>'$idp[0]'",$id);
+			where vivipersona=(select vivipersona from person where idpeople='$idp') and idpeople<>'$idp'",$id);
 }
 
 function opc_rel_validacion1($id='') {

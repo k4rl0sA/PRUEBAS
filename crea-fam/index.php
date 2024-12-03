@@ -39,7 +39,7 @@ function actualizar(){
 }
 
 function fixRecord(a='') {
-	const fields= document.getElementById('fapp').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
+	const fields= document.getElementById(a+'pro-con').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
 
 	fields.reset();
 	var c = document.getElementById(a+'-pro-con');

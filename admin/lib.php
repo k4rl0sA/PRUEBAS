@@ -358,7 +358,7 @@ function lis_planos() {
 		case '39':
 				$tab = "Toma_de_Signos";
 				$encr = encript($tab, $clave);
-				if($tab=decript($encr,$clave))lis_signos($tab);
+				if($tab=decript($encr,$clave))lis_sign($tab);
 				break;
 		case '40':
 			$tab = "Tamizaje_Epoc";
@@ -1566,7 +1566,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
-function lis_signos($txt){
+function lis_sig($txt){
 	$sql="SELECT 
 G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,

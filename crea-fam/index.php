@@ -40,6 +40,20 @@ function actualizar(){
 
 function resetFrm() {
 	document.getElementById('fapp').reset();
+	var c = document.getElementById(a+'-pro-con');
+	var cmp=c.querySelectorAll('.captura,.bloqueo');
+	for (i=0;i<cmp.length;i++) {
+		cmp[i].value=data[i];
+		if(cmp[i].type==='checkbox')cmp[i].checked=false;
+		if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
+			cmp[i].checked=true;
+		}else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
+			cmp[i].value='NO';
+		}
+		for (x=0;x<blo.length;x++) {
+			if(cmp[i].name==blo[x]) cmp[i].disabled = true;
+		}
+	}
 }
 
 function grabar(tb='',ev){

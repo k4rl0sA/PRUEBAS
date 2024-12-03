@@ -1580,7 +1580,7 @@ LEFT JOIN usuarios U ON A.usu_create = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred13();
 	$sql.=whe_date13();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM `hog_signos` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+	$tot="SELECT COUNT(*) total FROM `hog_signos` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_create = U.id_usuario WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred13();
 	$tot.=whe_date13();
 	$_SESSION['sql_'.$txt]=$sql;

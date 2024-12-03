@@ -20,7 +20,7 @@ else {
 
 
 
-function lis_gestuser(){
+function lis_sesigcole(){
 	
 }
 

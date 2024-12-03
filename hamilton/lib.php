@@ -76,7 +76,7 @@ function whe_tamhamilton() {
 
 
 function cmp_tamhamilton(){
-	$rta="";
+	$rta="<div class='encabezado hamilton'>TABLA HAMILTON</div><div class='contenido' id='hamilton-lis'>".lis_hamilton()."</div></div>";
 	$t=['tam_hamilton'=>'','hamilton_tipodoc'=>'','hamilton_nombre'=>'','hamilton_idpersona'=>'','hamilton_fechanacimiento'=>'','hamilton_total'=>'','hamilton_momento'=>'','hamilton_edad'=>'','hamilton_sintoma1'=>'','hamilton_sintoma2'=>'','hamilton_sintoma3'=>'','hamilton_sintoma4'=>'','hamilton_sintoma5'=>'','hamilton_sintoma6'=>'','hamilton_sintoma7'=>'','hamilton_sintoma8'=>'','hamilton_sintoma9'=>'','hamilton_sintoma10'=>'','hamilton_sintoma11'=>'','hamilton_sintoma12'=>'','hamilton_sintoma13'=>'','hamilton_sintoma14'=>'','hamilton_psiquica'=>'','hamilton_somatica'=>'','hamilton_analisis'=>'']; 
 	$w='tamhamilton';
 	$d=get_tamhamilton(); 

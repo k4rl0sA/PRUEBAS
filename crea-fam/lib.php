@@ -909,7 +909,7 @@ function formato_dato($a,$b,$c,$d){
 		if (is_array($tamiz) && in_array('tamcope', $tamiz)) {
 			$rta .= acceso('tamcope') ? "<li title='Tamizaje COPE' onclick=\"mostrar('tamcope','pro',event,'','../cope/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 		}
-			$rta .= acceso('tamzung') ? "<li title='Tamizaje ZUNG' onclick=\"mostrar('tamzung','pro',event,'','../zung/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
+			$rta .= acceso('tamzung') ? "<li title='Tamizaje ZUNG' onclick=\"mostrar('tamzung','pro',event,'','../zung/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-face-sad-tear ico' id='".$c['ACCIONES']."'></i></li>": '';
 			$rta .= acceso('tamhamilton') ? "<li title='Tamizaje HAMILTON' onclick=\"mostrar('tamhamilton','pro',event,'','../hamilton/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 			$rta .= acceso('tamWhodas') ? "<li title='Tamizaje WHODAS' onclick=\"mostrar('tamWhodas','pro',event,'','../whodas/lib.php',7);Color('datos-lis');\"><i class=' fa-solid fa-head-side-virus ico' id='".$c['ACCIONES']."'></i></li>": '';
 

@@ -48,8 +48,11 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 <div class="col-2 menu-filtro" id='<?php echo $mod; ?>-fil'>
   
   
-<!-- <div class="campo"><div>Documento Usuario</div><input class="captura"  size=20 id="fusu" name="fusu" OnChange="searPers(this);"></div> -->
-<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();"></div>
+<div class="campo">
+  <div>Codigo del Predio</div>
+  <input class="captura" type="number" size=20 id="fpred" name="fpred" OnChange="actualizar();">
+</div>
+
   <?php
     $filtro = in_array($perfil, ['ADM', 'SUPHOG', 'SUPEAC']);
     $enab = $filtro ? '' : 'disabled';

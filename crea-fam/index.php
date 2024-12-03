@@ -111,7 +111,8 @@ function grabar(tb='',ev){
     'sesion_fin':'../psicologia/lib.php',
     'atencion':'atencion.php',
 	'tamzung':'../zung/lib.php',
-'tamhamilton':'../hamilton/lib.php'
+	'tamhamilton':'../hamilton/lib.php',
+	'tamWhodas':'../whodas/lib.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

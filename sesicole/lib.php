@@ -59,16 +59,12 @@ function whe_sesigcole() {
 	$sql = "";
 	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
 		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "' AND G.usu_creo ='" . $_POST['fdigita'] . "'";
+		if (!empty($_POST['fprue'])) {
+			$sql.=" AND H.upz ='".$_POST['fprue']."'";
+		}
 	}else{
 		$sql .="AND G.idgeo ='0'";
-		/* if ($_POST['fprue']) {
-			$sql .=" AND H.upz ='$_POST['fprue']'";
-		} */
 	} 
-	if (!empty($_POST['fprue'])) {
-		$sql.=" AND H.upz ='".$_POST['fprue']."'";
-	}
-	
 	return $sql;
 	
 }

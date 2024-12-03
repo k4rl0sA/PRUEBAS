@@ -107,9 +107,6 @@ function whe_homes() {
 	}else{
 		$sql .="AND G.idgeo ='0'";
 	} 
-	if ($_POST['fprue']) {
-		$sql .="AND H.upz ='$_POST['fprue']'";
-	}
 	return $sql;
 }
 

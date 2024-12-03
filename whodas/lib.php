@@ -52,17 +52,16 @@ function lis_tamWhodas(){
 	}
 }
 
-function lis_oms(){
-	$id=divide($_POST['id']);
-	$sql="SELECT idoms ACCIONES,
-	idoms 'Cod Registro',fecha_toma,descripcion,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_oms A
+function lis_whodas(){
+	$id=divide($_POST['id']);//id_whodas ACCIONES,
+	$sql="SELECT id_whodas 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_whodas A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"oms-lis",5);
+	return panel_content($datos["responseResult"],"whodas-lis",5);
 }
 
 function whe_tamWhodas() {
@@ -77,7 +76,7 @@ function whe_tamWhodas() {
 }
 
 function cmp_tamWhodas(){
-	$rta="";
+	$rta="<div class='encabezado whodas'>TABLA WHODAS</div><div class='contenido' id='whodas-lis'>".lis_whodas()."</div></div>";
 	$t=['tam_whodas'=>'','whodas_tipodoc'=>'','whodas_nombre'=>'','whodas_idpersona'=>'','whodas_fechanacimiento'=>'','whodas_puntaje'=>'','whodas_momento'=>'','whodas_edad'=>'','whodas_lugarnacimiento'=>'','whodas_condicionsalud'=>'','whodas_estadocivil'=>'','whodas_escolaridad'=>'',
 	 'whodas_ocupacion'=>'','whodas_rutina'=>'','whodas_rol'=>'',	 'whodas_actividad'=>'','whodas_evento'=>'','whodas_comportamiento'=>'','porcentaje_comprension'=>'','porcentaje_moverse'=>'','porcentaje_cuidado'=>'','porcentaje_relacionarce'=>'','porcentaje_actividades'=>'','porcentaje_participacion'=>'','porcentaje_total'=>'','whodas_analisis'=>''];
 

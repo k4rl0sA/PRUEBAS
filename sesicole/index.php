@@ -5,7 +5,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gestión de Usuarios || SIGINF</title>
+<title>Sesiones || GTAPS</title>
 <link href="../libs/css/stylePop.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <script src="../libs/js/a.js"></script>
@@ -13,7 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
-var mod='gestuser';	
+var mod='sesigcole';	
 var ruta_app='lib.php';
 
 
@@ -37,7 +37,7 @@ function grabar(tb='',ev){
 
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
-$mod='gestuser';
+$mod='sesigcole';
 ?>
 
 
@@ -47,10 +47,10 @@ $mod='gestuser';
 
 </div>
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
-      <div class='titulo' > ZONA DE ADMINISTRACIÓN DE USUARIOS
+      <div class='titulo' > SESIONES GRUPALES Y COLECTIVAS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <li class='icono crear'      title='Administración de Usuarios' onclick="mostrar('gestuser','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
+    <li class='icono crear'      title='Administración de Usuarios' onclick="mostrar('sesigcole','pro',event,'','lib.php','7','Creación de Usuarios');"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

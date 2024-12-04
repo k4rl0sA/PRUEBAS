@@ -200,7 +200,7 @@ function men_alertas(){
 			["icon" => 'fas fa-vial', "text" => 'Caracterización', "color" => 'white', "short" => 'Ctrl R'],
 			["icon" => 'fas fa-medkit', "text" => 'Atención Médica', "color" => 'white', "short" => 'Ctrl A'],
 		];
-		return json_encode($_REQUEST);
+		return json_encode($_POST);
 	}
 
 function gra_alertas(){

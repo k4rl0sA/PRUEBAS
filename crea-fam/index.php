@@ -43,7 +43,7 @@ async function fixRecord(a = '',id='') {
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
 
   try {
-    const response = await getJSON('fix', a, '', 'alertas.php');
+    const response = await getJSON('fix', a,id, 'alertas.php');
     console.log('Datos obtenidos:', response);
     fields.forEach(field => {
       if (field.tagName === 'SELECT') {

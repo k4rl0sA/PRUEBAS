@@ -111,7 +111,7 @@ function men_alertas(){
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
     $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
 	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
-	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$f.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
 	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-35');
 	

@@ -99,17 +99,18 @@ function men_alertas(){
 
 	$des='des';
 	$z='zS';
+	$f='nFx';
 	$days=fechas_app('vivienda');
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
-	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
-	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
-	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
-    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
-	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
-	$c[]=new cmp('fecha','d','10',$d,$w.' nFx '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
+	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$f.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
+	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
+    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
+	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
+	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
 	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-35');
 	

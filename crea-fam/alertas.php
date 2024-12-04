@@ -101,6 +101,7 @@ function men_alertas(){
 	$z='zS';
 	$f='nFx';
 	$days=fechas_app('vivienda');
+	$old="Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia']";
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
@@ -108,7 +109,7 @@ function men_alertas(){
 	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
 	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
-    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
+    $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
 	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
 	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');

@@ -38,7 +38,7 @@ function men_alertas(){
 	 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 }
 	 if ($a=='alertas'  && isset($acc['ajustar']) && $acc['ajustar']=='SI'){
-		$rta .= "<li class='icono $a basura'      title='Ajustar'          OnClick=\"resetFrm('$a','idp');\"></li>"; //~ openModal();
+		$rta .= "<li class='icono $a basura'      title='Ajustar'          OnClick=\"fixRecord('$a','idp');\"></li>"; //~ openModal();
 	}
 	 return $rta;
    }

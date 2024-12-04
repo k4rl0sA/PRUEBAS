@@ -38,8 +38,14 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function fixRecord(a='') {
+
+function fixRecord(a='',id='id') {
+	const id=document.getElementById(id).value;
 	const fields = document.getElementById(a+'-pro-con').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
+	myFetch('alertas.php', 'a=fix&tb=' + id, 'alert')
+        .then(response => {
+          console.log('Datos obtenidos:', response);
+        });
 	fields.forEach(field => {
 	  if (field.tagName === 'SELECT') {
 	    field.selectedIndex = 0;

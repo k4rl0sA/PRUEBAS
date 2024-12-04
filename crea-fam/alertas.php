@@ -38,14 +38,14 @@ function men_alertas(){
 	 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 }
 	 if ($a=='alertas'  && isset($acc['ajustar']) && $acc['ajustar']=='SI'){
-		$id = $_POST['id'];
+		$id = $_POST;
 		$rta .= "<li class='icono $a basura'      title='Ajustar'          OnClick=\"fixRecord('$a',$id);\"></li>"; //~ openModal();
 	}
 	 return $rta;
    }
 
    function lis_alertas(){
-		var_dump($_POST['id']);
+		// var_dump($_POST['id']);
 		$id=divide($_POST['id']);
 		$sql="SELECT id_alert ACCIONES,id_alert AS Cod_Registro,`fecha`,FN_CATALOGODESC(34,tipo) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
 		FROM hog_alert P

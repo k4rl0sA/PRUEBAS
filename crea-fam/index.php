@@ -39,10 +39,9 @@ function actualizar(){
 }
 
 
-function fixRecord(a='',el='id') {
-	const id=document.getElementById(el).value;
+function fixRecord(a='') {
 	const fields = document.getElementById(a+'-pro-con').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
-	myFetch('alertas.php', 'a=fix&tb='+a+'&id='+id)
+	myFetch('alertas.php', 'a=fix&tb='+a)
         .then(response => {
           console.log('Datos obtenidos:', response);
 		  fields.forEach(field => {

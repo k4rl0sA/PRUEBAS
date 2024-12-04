@@ -41,7 +41,6 @@ function actualizar(){
 async function fixRecord(a = '',id='') {
   const fields = document.getElementById(`${a}-pro-con`)
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
-
   try {
     const response = await getJSON('fix', a,id, 'alertas.php');
     console.log('Datos obtenidos:', response);
@@ -60,7 +59,6 @@ async function fixRecord(a = '',id='') {
       }
       field.disabled = false;
     });
-
   } catch (error) {
     console.error('Error al obtener los datos:', error);
   }

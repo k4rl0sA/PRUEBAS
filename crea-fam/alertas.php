@@ -101,7 +101,7 @@ function men_alertas(){
 	$z='zS';
 	$f='nFx';
 	$days=fechas_app('vivienda');
-	$old="Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia']";
+	$old='Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'];
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');

@@ -68,7 +68,7 @@ function men_alertas(){
     $w="alertas";
 	$o='infbas';
 	// var_dump($p);
-	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
+	
 	$ocu= ($p['ano']>5) ? true : false ;
 	$meses = $p['ano'] * 12 + $p['mes'];
 	// $esc=($p['ano']>=5 && $p['ano']<18 ) ? true : false ;
@@ -118,14 +118,17 @@ function men_alertas(){
 	$o='infcom';
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
+	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
 	$men5 = ($p['ano']<5) ? true : false ;
-		$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,$men5,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
-		$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,$men5,$men5,'','col-15');
-
 	$gesta = ($p['sexo']=='MUJER') ? true : false ;
-		$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gesta,'','col-2',"fieldsValue('gestante','eTp','1',true);");
-		$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,false,'','col-25');//true
-		$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,false,'','col-25');//true
+
+	$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,$men5,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
+	$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,$men5,$men5,'','col-15');
+
+	
+	$c[]=new cmp('gestante','s','2',$d,$w.' '.$o,'El usuario es gestante','rta',null,null,$gest,$gesta,'','col-2',"fieldsValue('gestante','eTp','1',true);");
+	$c[]=new cmp('etapgest','s','3',$d,$w.' eTp '.$o,'Etapa Gestacional','etapgest',null,'',$gest,false,'','col-25');//true
+	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,false,'','col-25');//true
 
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"fieldsValue('cronico','cRo','1',true);");
 	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,true,false,'','col-2');
@@ -190,17 +193,24 @@ function men_alertas(){
 
 	function fix_alertas(){
 		// var_dump($_POST);
-		$rta = [
-			["icon" => 'fas fa-plus', "text" => 'Nuevo', "color" => 'white', "short" => 'Ctrl N'],
-			["icon" => 'fas fa-trash', "text" => 'Eliminar', "color" => 'white', "short" => 'Ctrl Supr'],
-			["icon" => 'fas fa-file-pdf', "text" => 'PDF', "color" => 'white', "short" => 'Ctrl P'],
-			["icon" => 'fas fa-eye', "text" => 'Ver', "color" => 'white', "short" => 'Ctrl E'],
-			["icon" => 'fas fa-pregnant', "text" => 'Gestantes', "color" => 'white', "short" => 'Ctrl G'],
-			["icon" => 'fas fa-vial', "text" => 'Caracterización', "color" => 'white', "short" => 'Ctrl R'],
-			["icon" => 'fas fa-medkit', "text" => 'Atención Médica', "color" => 'white', "short" => 'Ctrl A'],
-		];
-		return json_encode($_POST);
+			if (empty($_POST['id'])) {
+				return "";
+			}
+			$id = divide($_REQUEST['id']);
+
+		$sql = "SELECT FN_CATALOGODESC(21,sexo) sexo,
+		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano
+		from person P left join hog_carac V ON vivipersona=idfam
+		WHERE P.idpeople='".$id[0]."'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			$data = $info['responseResult'][0];
+		return json_encode($info['responseResult'][0]);
 	}
+}
 
 function gra_alertas(){
 	// print_r($_POST);

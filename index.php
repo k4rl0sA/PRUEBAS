@@ -67,6 +67,7 @@ $comy = array(
 	if (array_key_exists($dominio, $comy)) {
 	  $dbConfig = $comy[$dominio];
 	} else {
+		echo($dominio);
 	  die('Dominio no reconocido.');
 	}
 	$con = new mysqli($dbConfig['s'], $dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);

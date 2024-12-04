@@ -38,7 +38,7 @@ function men_alertas(){
 	 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 }
 	 if ($a=='alertas'  && isset($acc['ajustar']) && $acc['ajustar']=='SI'){
-		$rta .= "<li class='icono $a basura'      title='Ajustar'          OnClick=\"fixRecord('$a',this);\"></li>"; //~ openModal();
+		$rta .= "<li class='icono $a basura'      title='Ajustar'          OnClick=\"resetFrm('$a',this);\"></li>"; //~ openModal();
 	}
 	 return $rta;
    }
@@ -99,19 +99,17 @@ function men_alertas(){
 
 	$des='des';
 	$z='zS';
-	$f='nFx';
 	$days=fechas_app('vivienda');
-	$old='Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'];
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
+	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
-	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
-	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$f.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
-	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
-    $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
-	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
-	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$f.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
+	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
+	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
+	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
+    $c[]=new cmp('edad','n','3',' Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'],$w.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
+	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
+	$c[]=new cmp('fecha','d','10',$d,$w.' nEDt  '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
 	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-35');
 	
@@ -189,8 +187,65 @@ function men_alertas(){
 
 
 function gra_alertas(){
-	// print_r($_POST);
+	/* print_r($_POST);
+	$id=divide($_POST['idp']);
+
+	$sm1 = isset($_POST['fselmul1']) ? (is_array($_POST['fselmul1']) ? implode(",", str_replace("'", "", $_POST['fselmul1'])) : $_POST['fselmul1']) : '';
+    $sm2 = isset($_POST['fselmul2']) ? (is_array($_POST['fselmul2']) ? implode(",", str_replace("'", "", $_POST['fselmul2'])) : $_POST['fselmul2']) : '';
+    $sm3 = isset($_POST['fselmul3']) ? (is_array($_POST['fselmul3']) ? implode(",", str_replace("'", "", $_POST['fselmul3'])) : $_POST['fselmul3']) : '';
+    $sm4 = isset($_POST['fselmul4']) ? (is_array($_POST['fselmul4']) ? implode(",", str_replace("'", "", $_POST['fselmul4'])) : $_POST['fselmul4']) : '';
+    $sm5 = isset($_POST['fselmul5']) ? (is_array($_POST['fselmul5']) ? implode(",", str_replace("'", "", $_POST['fselmul5'])) : $_POST['fselmul5']) : '';
+    $sm6 = isset($_POST['fselmul6']) ? (is_array($_POST['fselmul6']) ? implode(",", str_replace("'", "", $_POST['fselmul6'])) : $_POST['fselmul6']) : '';
+
+		
 	
+	$campos = array('cursovida', 'fecha', 'tipo', 'crit_epi', 'men_dnt', 'men_sinctrl', 'gestante', 'etapgest', 'ges_sinctrl', 'cronico', 'cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'esq_vacun');
+	$field1 = array('agen_intra', 'servicio', 'fecha_cita', 'hora_cita', 'lugar_cita', 'deriva_pf', 'evento_pf');
+
+	$holders = array_fill(0, count($campos), '?');
+	$holder1 = array_fill(0, count($field1), '?');
+
+		$sql = "INSERT INTO hog_fam VALUES (?,?,".implode(", ", $holders).",?,?,?,?,?,?,?,?,?,?,?,?,".implode(", ", $holder1).",?,?,?,?,?)";
+		$params = array(
+			array('type' => 'i', 'value' => NULL),
+			array('type' => 'i', 'value' => $id[0]),
+		);
+		$params = array_merge($params, params($campos));
+		$params[] = array('type' => 's', 'value' => $_POST['alert1']);
+		$params[] = array('type' => 's', 'value' => $sm1);
+		$params[] = array('type' => 's', 'value' => $_POST['alert2']);
+		$params[] = array('type' => 's', 'value' => $sm1);
+		$params[] = array('type' => 's', 'value' => $_POST['alert3']);
+		$params[] = array('type' => 's', 'value' => $sm3);
+		$params[] = array('type' => 's', 'value' => $_POST['alert4']);
+		$params[] = array('type' => 's', 'value' => $sm4);
+		$params[] = array('type' => 's', 'value' => $_POST['alert5']);
+		$params[] = array('type' => 's', 'value' => $sm5);
+		$params[] = array('type' => 's', 'value' => $_POST['alert6']);
+		$params[] = array('type' => 's', 'value' => $sm6);
+		$params = array_merge($params, params($field1));
+		$params[] = array('type' => 'i', 'value' => $_SESSION['us_sds']);
+ 		$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
+ 		$params[] = array('type' => 's', 'value' => NULL);
+ 		$params[] = array('type' => 's', 'value' => NULL);
+ 		$params[] = array('type' => 's', 'value' => 'A');
+		var_dump($params);
+
+$num_placeholders = substr_count($sql, '?');
+$num_params = count($params);
+if ($num_placeholders !== $num_params) {
+    die("Error: El número de placeholders (?) no coincide con el número de parámetros. Placeholders: $num_placeholders, Parámetros: $num_params.");
+}
+		 $rta = mysql_prepd($sql, $params);
+		 return $rta;
+}  */
+	 
+	/*  if (($smu1 = $_POST['fselmul1'] ?? null) && is_array($smu1)) {$sm1 = implode(",",str_replace("'", "", $smu1));}
+	if (($smu2 = $_POST['fselmul2'] ?? null) && is_array($smu2)) {$sm2 = implode(",",str_replace("'", "", $smu2));}
+	if (($smu3 = $_POST['fselmul3'] ?? null) && is_array($smu3)) {$sm3 = implode(",",str_replace("'", "", $smu3));}
+	if (($smu4 = $_POST['fselmul4'] ?? null) && is_array($smu4)) {$sm4 = implode(",",str_replace("'", "", $smu4));}
+	if (($smu5 = $_POST['fselmul5'] ?? null) && is_array($smu5)) {$sm5 = implode(",",str_replace("'", "", $smu5));}
+	if (($smu6 = $_POST['fselmul6'] ?? null) && is_array($smu6)) {$sm6 = implode(",",str_replace("'", "", $smu6));} */
 	
 	$sm1 = isset($_POST['fselmul1']) ? str_replace(["'", '"'], '', $_POST['fselmul1']) : '';
     $sm2 = isset($_POST['fselmul2']) ? str_replace(["'", '"'], '', $_POST['fselmul2']) : '';
@@ -269,9 +324,7 @@ function get_alertas(){
 	}else{
 		$id=divide($_POST['id']);
 		// print_r($id);
-		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
-  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
+		$sql1="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, fecha ) AS ano,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,fecha ) % 12 AS mes 
 		from person P 
 		left join hog_alert D ON P.idpeople=D.idpeople WHERE id_alert='{$id[0]}'";
 		$data=datos_mysql($sql1);
@@ -279,18 +332,13 @@ function get_alertas(){
 
 
 
-		$sql="SELECT concat_ws('_', D.idpeople, D.tipo) as id,
-	P.idpersona,
-	P.tipo_doc,
-	concat_ws(' ', nombre1, nombre2, apellido1, apellido2) nombres,
-	FN_CATALOGODESC(21,
-	sexo) sexo,
-	fecha_nacimiento,
-	CONCAT('Años: ', TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE() ), ' Meses: ', TIMESTAMPDIFF(MONTH, fecha_nacimiento , CURDATE() ) % 12 , ' Dias: ', DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH))),
-	cursovida, D.fecha, tipo, D.crit_epi, men_dnt, men_sinctrl, gestante, etapgest, ges_sinctrl, cronico, cro_hiper, cro_diabe, cro_epoc, cro_sinctrl, esq_vacun, alert1, selmul1, alert2, selmul2, alert3, selmul3, alert4, selmul4, alert5, selmul5, alert6, selmul6, agen_intra, servicio, fecha_cita, hora_cita, lugar_cita, deriva_pf, evento_pf 
-	FROM hog_alert D
-				LEFT JOIN person P ON D.idpeople = P.idpeople
-				LEFT JOIN hog_carac V ON P.vivipersona = V.idfam
+		$sql="SELECT  concat_ws('_',D.idpeople,D.tipo) as id,P.idpersona,P.tipo_doc,
+		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
+		FN_EDAD(fecha_nacimiento,V.fecha),
+		cursovida,D.fecha, tipo,D.crit_epi, men_dnt, men_sinctrl, gestante, etapgest, ges_sinctrl, cronico, cro_hiper, cro_diabe, cro_epoc, cro_sinctrl, esq_vacun, alert1, selmul1, alert2, selmul2, alert3, selmul3, alert4, selmul4, alert5, selmul5, alert6, selmul6, agen_intra, servicio, fecha_cita, hora_cita, lugar_cita, deriva_pf, evento_pf";
+		$sql.=" FROM hog_alert D
+				LEFT JOIN person P ON D.idpeople=P.idpeople
+				LEFT JOIN hog_carac V ON P.vivipersona=V.idfam
 				WHERE id_alert ='{$id[0]}'" ;
 	 	$info = datos_mysql($sql);
 		// echo $sql; 

@@ -189,6 +189,7 @@ function men_alertas(){
 
 
 	function fix_alertas(){
+		// var_dump($_POST);
 		$rta = [
 			["icon" => 'fas fa-plus', "text" => 'Nuevo', "color" => 'white', "short" => 'Ctrl N'],
 			["icon" => 'fas fa-trash', "text" => 'Eliminar', "color" => 'white', "short" => 'Ctrl Supr'],
@@ -198,7 +199,7 @@ function men_alertas(){
 			["icon" => 'fas fa-vial', "text" => 'Caracterización', "color" => 'white', "short" => 'Ctrl R'],
 			["icon" => 'fas fa-medkit', "text" => 'Atención Médica', "color" => 'white', "short" => 'Ctrl A'],
 		];
-		return json_encode($rta);
+		return json_encode($_POST);
 	}
 
 function gra_alertas(){

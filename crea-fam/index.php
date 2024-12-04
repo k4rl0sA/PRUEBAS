@@ -38,7 +38,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-async function fixRecord(a = '',id) {
+async function fixRecord(a = '',id='') {
   const fields = document.getElementById(`${a}-pro-con`)
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
 

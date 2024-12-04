@@ -39,8 +39,8 @@ function actualizar(){
 }
 
 
-function fixRecord(a='',id='id') {
-	const id=document.getElementById(id).value;
+function fixRecord(a='',el='id') {
+	const id=document.getElementById(el).value;
 	const fields = document.getElementById(a+'-pro-con').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
 	myFetch('alertas.php', 'a=fix&tb=' + id, 'alert')
         .then(response => {

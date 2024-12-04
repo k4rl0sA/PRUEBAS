@@ -55,8 +55,7 @@ function fixRecord(a='') {
 	  } else if (field.tagName === 'TEXTAREA') {
 	    field.value = '';
 	  }
-	  field.disabled = false;
-	  field.setAttribute('disabled', 'false');
+	  field.disabled = true;
 	});
 }
 

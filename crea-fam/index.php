@@ -39,23 +39,24 @@ function actualizar(){
 }
 
 function fixRecord(a='') {
-	const fields= document.getElementById('fapp').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
-
-	fields.reset();
-	var c = document.getElementById(a+'-pro-con');
-	var cmp=c.querySelectorAll('.captura,.bloqueo');
-	for (i=0;i<cmp.length;i++) {
-		cmp[i].value=data[i];
-		if(cmp[i].type==='checkbox')cmp[i].checked=false;
-		if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
-			cmp[i].checked=true;
-		}else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
-			cmp[i].value='NO';
-		}
-		for (x=0;x<blo.length;x++) {
-			if(cmp[i].name==blo[x]) cmp[i].disabled = true;
-		}
-	}
+	const fields = document.getElementById('fapp').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
+	fields.forEach(field => {
+	  if (field.tagName === 'SELECT') {
+	    field.selectedIndex = 0;
+	  } else if (field.tagName === 'INPUT') {
+	    if (field.type === 'checkbox') {
+	      if (field.checked) {
+	        field.value = 'NO';
+	      }
+	      field.checked = false;
+	    } else {
+	      field.value = '';
+	    }
+	  } else if (field.tagName === 'TEXTAREA') {
+	    field.value = '';
+	  }
+	  field.disabled = true;
+	});
 }
 
 function grabar(tb='',ev){

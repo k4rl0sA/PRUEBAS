@@ -38,31 +38,34 @@ function actualizar(){
 	act_lista(mod);
 }
 
+async function fixRecord(a = '') {
+  const fields = document.getElementById(`${a}-pro-con`)
+    .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
 
-function fixRecord(a='') {
-	const fields = document.getElementById(a+'-pro-con').querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
-	fetch('alertas.php', 'a=fix&tb='+a)
-        .then(response => {
-          console.log('Datos obtenidos:', response);
-		  fields.forEach(field => {
-	  if (field.tagName === 'SELECT') {
-	    field.selectedIndex = 0;
-	  } else if (field.tagName === 'INPUT') {
-	    if (field.type === 'checkbox') {
-	      if (field.checked) {
-	        field.value = 'NO';
-	      }
-	      field.checked = false;
-	    } else {
-	      field.value = '';
-	    }
-	  } else if (field.tagName === 'TEXTAREA') {
-	    field.value = '';
-	  }
-	  field.disabled = false;
-	});
- });	
+  try {
+    const response = await getJSON('fix', a, '', 'alertas.php');
+    console.log('Datos obtenidos:', response);
+    fields.forEach(field => {
+      if (field.tagName === 'SELECT') {
+        field.selectedIndex = 0;
+      } else if (field.tagName === 'INPUT') {
+        if (field.type === 'checkbox') {
+          field.checked = false;
+          field.value = 'NO';
+        } else {
+          field.value = '';
+        }
+      } else if (field.tagName === 'TEXTAREA') {
+        field.value = '';
+      }
+      field.disabled = false;
+    });
+
+  } catch (error) {
+    console.error('Error al obtener los datos:', error);
+  }
 }
+
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

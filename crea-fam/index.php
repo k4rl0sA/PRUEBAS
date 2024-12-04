@@ -56,6 +56,7 @@ function fixRecord(a='') {
 	    field.value = '';
 	  }
 	  field.disabled = true;
+	  field.setAttribute('disabled', 'true');
 	});
 }
 

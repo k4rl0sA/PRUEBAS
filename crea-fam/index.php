@@ -45,8 +45,7 @@ function fixRecord(a='',el='id') {
 	myFetch('alertas.php', 'a=fix&tb=' + id, 'alert')
         .then(response => {
           console.log('Datos obtenidos:', response);
-        });
-	fields.forEach(field => {
+		  fields.forEach(field => {
 	  if (field.tagName === 'SELECT') {
 	    field.selectedIndex = 0;
 	  } else if (field.tagName === 'INPUT') {
@@ -63,6 +62,7 @@ function fixRecord(a='',el='id') {
 	  }
 	  field.disabled = false;
 	});
+ });	
 }
 
 function grabar(tb='',ev){

@@ -38,12 +38,13 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function fixRecord(a = '',id='') {
+function fixRecord(a = '', id = '') {
   const fields = document.getElementById(`${a}-pro-con`)
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
+
   try {
-	const cod=document.getElementById(id).value;   
-    //console.log('Datos obtenidos:', response);
+    const cod = id ? document.getElementById(id).value : null;
+
     fields.forEach(field => {
       if (field.tagName === 'SELECT') {
         field.selectedIndex = 0;
@@ -57,10 +58,10 @@ function fixRecord(a = '',id='') {
       } else if (field.tagName === 'TEXTAREA') {
         field.value = '';
       }
-	  if(id!='') fix_Alertas(a,cod,'alertas.php',field);
+      if (id) fix_Alertas(a, cod, 'alertas.php', field);
     });
   } catch (error) {
-    console.error('Error al obtener los datos:', error);
+    console.error('Error al procesar los campos:', error);
   }
 }
 

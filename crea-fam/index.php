@@ -38,53 +38,53 @@ function actualizar(){
 	act_lista(mod);
 }
 
-async function fixRecord(a = '', id = '') {
-  const fields = document.querySelectorAll(`#${a}-pro-con select:not(.nFx), 
-                                           #${a}-pro-con input:not(.nFx), 
-                                           #${a}-pro-con textarea:not(.nFx)`);
+function fixRecord(a = '',id='') {
+  const fields = document.getElementById(`${a}-pro-con`)
+    .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
   try {
-    const cod = id ? document.getElementById(id).value : null;
-
+	const cod=document.getElementById(id).value;   
+    //console.log('Datos obtenidos:', response);
     fields.forEach(field => {
-      switch (field.tagName) {
-        case 'SELECT':
-          field.selectedIndex = 0;
-          break;
-        case 'INPUT':
-          if (field.type === 'checkbox') {
-            field.checked = false;
-            field.value = 'NO';
-          } else {
-            field.value = '';
-          }
-          break;
-        case 'TEXTAREA':
+      if (field.tagName === 'SELECT') {
+        field.selectedIndex = 0;
+      } else if (field.tagName === 'INPUT') {
+        if (field.type === 'checkbox') {
+          field.checked = false;
+          field.value = 'NO';
+        } else {
           field.value = '';
-          break;
+        }
+      } else if (field.tagName === 'TEXTAREA') {
+        field.value = '';
       }
-
-      // Llamar a fix_Alertas solo si hay un ID y un código válido
-      if (cod) fix_Alertas(a, cod, 'alertas.php', field);
+	  if(id!='') fix_Alertas(a,cod,'alertas.php',field);
     });
   } catch (error) {
-    console.error('Error al procesar los campos:', error);
+    console.error('Error al obtener los datos:', error);
   }
 }
 
-async function fix_Alertas(frm, id, path = 'lib.php', field) {
-  try {
-    const rta = await getJSON('fix', frm, id, path);
+async function fix_Alertas(frm,id,path='lib.php',cmp){
+	const rta = await getJSON('fix', frm,id,path);
 
-    if (rta) {
-      const isRelevantCondition = (rta.sexo === 'MUJER' && (rta.ano < 9 || rta.ano > 56)) || (rta.ano > 5);
 
-      if (field.id === 'men_dnt') {
-        field.disabled = isRelevantCondition;
-      }
-    }
-  } catch (error) {
-    console.error('Error en fix_Alertas:', error);
-  }
+	/* $gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
+	$men5 = ($p['ano']<5) ? true : false ;
+	$gesta = ($p['sexo']=='MUJER') ? true : false ;
+ */
+	if(rta['sexo']='MUJER' && rta['ano']<9 || rta['ano']>56){
+		if(field.id='gestante'){
+			field.disabled = true;
+		}
+	 }else if(rta['ano']>5){
+		if(field.id='men_dnt'){
+			field.disabled = true;
+		}
+	}else{
+		field.disabled = false;
+	}
+	console.log(rta['sexo']);
+	//field.disabled = false;
 }
 
 

@@ -1362,7 +1362,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_usercreate($txt){
 	$sql="SELECT 
-G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, 
+G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad,
 P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion
 FROM `person` P
 LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam

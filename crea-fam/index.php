@@ -67,7 +67,7 @@ async function fixRecord(a = '',id='') {
 function fix_Alertas(frm,id,path='lib.php'){
 	const response = await getJSON('fix', frm,id,path);
 	console.log(response['sexo']);
-	field.disabled = false;
+	//field.disabled = false;
 }
 
 

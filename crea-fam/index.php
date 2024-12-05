@@ -38,7 +38,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-/* async function fixRecord(a = '', id = '') {
+ async function fixRecord(a = '', id = '') {
   const fields = document.querySelectorAll(`#${a}-pro-con select:not(.nFx), 
                                            #${a}-pro-con input:not(.nFx), 
                                            #${a}-pro-con textarea:not(.nFx)`);
@@ -86,8 +86,7 @@ async function fix_Alertas(frm, id, path = 'lib.php', field) {
     console.error('Error en fix_Alertas:', error);
   }
 }
- */
-
+ 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);

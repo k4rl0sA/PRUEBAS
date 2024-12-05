@@ -42,9 +42,8 @@ async function fixRecord(a = '',id='') {
   const fields = document.getElementById(`${a}-pro-con`)
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
   try {
-	const cod=document.getElementById(id).value;
-    const response = await getJSON('fix', a,cod, 'alertas.php');
-    console.log('Datos obtenidos:', response);
+	const cod=document.getElementById(id).value;   
+    //console.log('Datos obtenidos:', response);
     fields.forEach(field => {
       if (field.tagName === 'SELECT') {
         field.selectedIndex = 0;
@@ -58,11 +57,17 @@ async function fixRecord(a = '',id='') {
       } else if (field.tagName === 'TEXTAREA') {
         field.value = '';
       }
-      field.disabled = false;
+	  if(id!='') fix_Alertas(a,cod,'alertas.php');
     });
   } catch (error) {
     console.error('Error al obtener los datos:', error);
   }
+}
+
+function fix_Alertas(frm,id,path='lib.php'){
+	const response = await getJSON('fix', frm,id,path);
+	console.log(response['sexo']);
+	field.disabled = false;
 }
 
 

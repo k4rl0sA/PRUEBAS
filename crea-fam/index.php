@@ -57,15 +57,31 @@ function fixRecord(a = '',id='') {
       } else if (field.tagName === 'TEXTAREA') {
         field.value = '';
       }
-	  if(id!='') fix_Alertas(a,cod,'alertas.php');
+	  if(id!='') fix_Alertas(a,cod,'alertas.php',field);
     });
   } catch (error) {
     console.error('Error al obtener los datos:', error);
   }
 }
 
-async function fix_Alertas(frm,id,path='lib.php'){
+async function fix_Alertas(frm,id,path='lib.php',cmp){
 	const rta = await getJSON('fix', frm,id,path);
+
+
+	/* $gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
+	$men5 = ($p['ano']<5) ? true : false ;
+	$gesta = ($p['sexo']=='MUJER') ? true : false ;
+ */
+
+	if(rta['sexo']='MUJER' && rta['ano']>9 && rta['ano']>56){
+		if(field.id='men_dnt'){
+			field.disabled = true;
+		}
+	 }else if(rta['ano']>5){
+		field.disabled = true;
+	}else{
+		field.disabled = false;
+	}
 	console.log(rta['sexo']);
 	//field.disabled = false;
 }

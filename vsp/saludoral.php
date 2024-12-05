@@ -45,7 +45,7 @@ function focus_saludoral(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_saludoral']) ? divide($_POST['id_saludoral']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM vsp_saludoral A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE idpeople='".$id[0]."'");
+  WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-saludoral']))? ($_POST['pag-saludoral']-1)* $regxPag:0;
@@ -57,7 +57,7 @@ fecha_cierre 'Fecha de Cierre',nombre Creó
 FROM vsp_saludoral A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   LEFT JOIN   person P ON A.idpeople=P.idpeople";
-	$sql.=" WHERE A.idpeople='".$id[0]; 
+	$sql.=" WHERE A.estado = 'A' AND A.idpeople='".$id[0]; 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

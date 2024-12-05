@@ -72,13 +72,14 @@ async function fix_Alertas(frm,id,path='lib.php',cmp){
 	$men5 = ($p['ano']<5) ? true : false ;
 	$gesta = ($p['sexo']=='MUJER') ? true : false ;
  */
-
-	if(rta['sexo']='MUJER' && rta['ano']>9 && rta['ano']>56){
+	if(rta['sexo']='MUJER' && rta['ano']<9 || rta['ano']>56){
 		if(field.id='men_dnt'){
 			field.disabled = true;
 		}
 	 }else if(rta['ano']>5){
-		field.disabled = true;
+		if(field.id='men_dnt'){
+			field.disabled = true;
+		}
 	}else{
 		field.disabled = false;
 	}

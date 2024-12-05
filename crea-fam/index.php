@@ -38,7 +38,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-async function fixRecord(a = '',id='') {
+function fixRecord(a = '',id='') {
   const fields = document.getElementById(`${a}-pro-con`)
     .querySelectorAll('select:not(.nFx), input:not(.nFx), textarea:not(.nFx)');
   try {
@@ -64,7 +64,7 @@ async function fixRecord(a = '',id='') {
   }
 }
 
-function fix_Alertas(frm,id,path='lib.php'){
+async function fix_Alertas(frm,id,path='lib.php'){
 	const response = await getJSON('fix', frm,id,path);
 	console.log(response['sexo']);
 	//field.disabled = false;

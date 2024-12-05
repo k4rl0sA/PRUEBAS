@@ -119,7 +119,7 @@ function men_alertas(){
 	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
 	
 	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
-	$men5 = ($p['ano']=<5) ? true : false ;
+	$men5 = ($p['ano']<5) ? true : false ;
 	$gesta = ($p['sexo']=='MUJER') ? true : false ;
 
 	$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,$men5,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");

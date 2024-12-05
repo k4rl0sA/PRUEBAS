@@ -58,7 +58,7 @@ fecha_cierre 'Fecha de Cierre',nombre Creó
 FROM vsp_apopsicduel A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   LEFT JOIN   person P ON A.idpeople=P.idpeople";// CAMBIO
-	$sql.=" WHERE A.idpeople='".$id[0]; // CAMBIO 
+	$sql.=" WHERE A.estado = 'A' AND A.idpeople='".$id[0]; // CAMBIO 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

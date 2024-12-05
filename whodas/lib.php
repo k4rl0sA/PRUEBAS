@@ -85,7 +85,7 @@ function cmp_tamWhodas(){
 	if ($d=="") {$d=$t;}
 	$o='datos';
     $key='srch';
-	$days=fechas_app('PSICOLOGIA');
+	$days=fechas_app('psicologia');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idwhodas','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('whodas_idpersona','t','20',$d['whodas_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','whodas_idpersona',null,'',false,false,'','col-2');

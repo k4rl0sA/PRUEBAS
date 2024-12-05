@@ -75,7 +75,7 @@ function cmp_tamzarit(){
 	if ($d=="") {$d=$t;}
 	$o='datos';
     $key='srch';
-	$days=fechas_app('PSICOLOGIA');
+	$days=fechas_app('psicologia');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idzarit','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('zarit_idpersona','n','20',$d['zarit_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','zarit_idpersona',null,'',false,false,'','col-2');

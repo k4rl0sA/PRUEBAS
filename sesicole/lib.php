@@ -89,10 +89,11 @@ function cmp_sesigcole(){
 	$t=['gestion'=>'','perfil'=>'','usuario'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
-	$w='adm_usuarios';
-	$o='creusu';
+	$w='sesions_colect';
+	$o='activ';
 	$c[]=new cmp($o,'e',null,'ACTIVIDAD',$w);
-	$c[]=new cmp($o,'e',null,'ACTIVIDAD',$w);
+	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
+	$c[]=new cmp('tipose','s','3',$d,$w.' '.$o,'Tipo de Actividad','tipose',null,'',true,true,'','col-15');
 
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

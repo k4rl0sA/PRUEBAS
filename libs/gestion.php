@@ -573,7 +573,7 @@ class cmp { //ntwplcsdxhvuf
   public $n; //1 name
   public $t; //2 type
   public $s; //3 size
-  public $d; //4 default
+  public $d; //4 valor
   public $w; //5 div
   public $l; //6 label
   public $c; //7 list

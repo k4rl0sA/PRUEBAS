@@ -85,8 +85,8 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_sesigcole(){
 	$rta="";
-	// $t=['nombres'=>'','fechanacimiento'=>'','edad'=>'','peso'=>'','talla'=>'','imc'=>'','tas'=>'','tad'=>'','glucometria'=>'','perime_braq'=>'','perime_abdom'=>'','percentil'=>'','zscore'=>'','findrisc'=>'','oms'=>'','alert1'=>'','alert2'=>'','alert3'=>'','alert4'=>'','alert5'=>'','alert6'=>'','alert7'=>'','alert8'=>'','alert9'=>'','alert10'=>'','select1'=>'','selmul1'=>'[]','selmul2'=>'[]','selmul3'=>'[]','selmul4'=>'[]','selmul5'=>'[]','selmul6'=>'[]','selmul7'=>'[]','selmul8'=>'[]','selmul9'=>'[]','selmul10'=>'[]','fecha'=>'','tipo'=>''];
-		// if ($d==""){$d=$t;}
+	$t=['nombres'=>'','fechanacimiento'=>'','edad'=>'','peso'=>'','talla'=>'','imc'=>'','tas'=>'','tad'=>'','glucometria'=>'','perime_braq'=>'','perime_abdom'=>'','percentil'=>'','zscore'=>'','findrisc'=>'','oms'=>'','alert1'=>'','alert2'=>'','alert3'=>'','alert4'=>'','alert5'=>'','alert6'=>'','alert7'=>'','alert8'=>'','alert9'=>'','alert10'=>'','select1'=>'','selmul1'=>'[]','selmul2'=>'[]','selmul3'=>'[]','selmul4'=>'[]','selmul5'=>'[]','selmul6'=>'[]','selmul7'=>'[]','selmul8'=>'[]','selmul9'=>'[]','selmul10'=>'[]','fecha'=>'','tipo'=>''];
+	if ($d==""){$d=$t;}
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
 	$d='';
@@ -97,7 +97,7 @@ function cmp_sesigcole(){
 		
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
-	$c[]=new cmp('fecha_int','d','10','',$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$u,'','col-15',"validDate(this,$days,0);"); 
+	$c[]=new cmp('fecha_int','d','10',,$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$u,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activ','s',15,$d,$w.' '.$o,'Tipo de actividad','rta',null,null,true,true,'','col-25');
 	$c[]=new cmp('luga','t',15,$d,$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");

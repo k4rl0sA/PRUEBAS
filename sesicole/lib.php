@@ -100,11 +100,19 @@ function cmp_sesigcole(){
 	$c[]=new cmp('fecha_int','d','10','',$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$u,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activ','s',15,$d,$w.' '.$o,'Tipo de actividad','rta',null,null,true,true,'','col-25');
 	$c[]=new cmp('luga','t',15,$d,$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
-	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false,'','col-15');
-	$c[]=new cmp('fecha_cita','d','10',$d,$w.' aIM '.$o,'Fecha de la Cita','fecha_cita',null,'',false,false,'','col-15',"validDate(this,0,60);");
-	$c[]=new cmp('hora_cita','c','10',$d,$w.' aIM '.$o,'Hora de la Cita','hora_cita',null,'',false,false,'','col-15');
-	$c[]=new cmp('lugar_cita','t',15,$d,$w.' aIM '.$o,'Lugar de la Cita','lugar_cita',null,null,false,false,'','col-15');
+	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
+	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
+    $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion2','s','3',$d['desc_accion2'],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
+    $c[]=new cmp('accion3','s','3',$d['accion3'],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5',"selectDepend('accion3','desc_accion3','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
+    $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
 	
+
+
+
+
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

@@ -97,7 +97,7 @@ function cmp_sesigcole(){
 		
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
-	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$u,'','col-15',"validDate(this,$days,0);"); 
+	$c[]=new cmp('fecha_int','d','10','',$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$u,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activ','s',15,$d,$w.' '.$o,'Tipo de actividad','rta',null,null,true,true,'','col-35');
 	$c[]=new cmp('luga','a',15,$d,$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-5',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false,'','col-15');

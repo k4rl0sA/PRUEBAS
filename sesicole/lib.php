@@ -98,7 +98,7 @@ function cmp_sesigcole(){
 		
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
-	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert',null,null,true,true,'','col-1');
+	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','rta',null,null,true,true,'','col-1');
 	
 	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false,'','col-15');

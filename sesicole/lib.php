@@ -111,7 +111,7 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-var_dump($rta);
+var_dump($a);
 	if ($a=='gestuser' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono asigna1' title='Asignar Usuario' id='".$c['ACCIONES']."' Onclick=\"mostrar('gestuser','pro',event,'','lib.php',7);\"></li>";

@@ -145,12 +145,35 @@ function cmp_admision(){
 }
 
 function new_Admision(){
-    $id=divide($_REQUEST['id']);
-    $sql="INSERT INTO adm_facturacion VALUES (NULL,trim(upper('{$id[0]}')),trim(upper('{$id[1]}')),
-	trim(upper('SI')),'','','','','','','','','',TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-	$rta=dato_mysql($sql);
+    
+  /*   $sql="INSERT INTO adm_facturacion VALUES (NULL,
+	trim(upper('{$id[0]}')),
+	trim(upper('{$id[1]}')),
+	trim(upper('SI')),'','','','','','','','','',
+	TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')"; */
+
+	$id=divide($_REQUEST['id']);
+	$sql = "INSERT INTO adm_facturacion VALUES(?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$params = [
+	['type' => 'i', 'value' => NULL],
+	['type' => 's', 'value' => $id[0]],
+	['type' => 's', 'value' => 'SI'],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
+	['type' => 'i', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => 'A']
+	];
+	return mysql_prepd($sql, $params);
+	/* $rta=dato_mysql($sql);
 	//echo $sql;
-	return $rta;
+	return $rta; */
 }
 
 function get_personas(){

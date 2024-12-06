@@ -79,7 +79,6 @@ async function fix_Alertas(frm, id, path = 'lib.php', cmp) {
     } else {
       cmp.disabled = false;
     }
-    console.log('Sexo:', rta['sexo']);
   } catch (error) {
     console.error('Error en fix_Alertas:', error);
   }

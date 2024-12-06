@@ -85,7 +85,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_sesigcole(){
 	$rta="";
-	$t=['fecha_int'=>'','activ'=>'','luga'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>''];
+	$t=['fecha_int'=>'','activi'=>'','luga'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>''];
 	$d=get_sesigcole();
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
@@ -98,8 +98,8 @@ function cmp_sesigcole(){
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
-	$c[]=new cmp('Activi','s','15',$d,$w.' '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-25');
-	$c[]=new cmp('luga','t','15',$d['luga']$w.' '.$o,'Lugar','rta',null,nl,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('activi','s','15',$d['activi'],$w.' '.$o,'A menos de 100 metros o a una cuadra de la vivienda hay circulación de tráfico pesado','fm1',null,null,false,true,'','col-25');
+	$c[]=new cmp('luga','t','15',$d['luga'],$w.' '.$o,'Lugar','rta',null,nl,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('accion1','s','3',$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
 	$c[]=new cmp('desc_accion1','s','3',$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");

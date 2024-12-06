@@ -110,7 +110,7 @@ function gra_gestuser(){
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
-// $rta=iconv('UTF-8','ISO-8859-1',$rta);
+// $rta=iconv('U	TF-8','ISO-8859-1',$rta);
 // var_dump($a);
 	if ($a=='sesigcole' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		

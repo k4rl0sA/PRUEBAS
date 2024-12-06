@@ -58,31 +58,41 @@ function fixRecord(a = '', id = '') {
       } else if (field.tagName === 'TEXTAREA') {
         field.value = '';
       }
-      if (id) fix_Alertas(a, cod, 'alertas.php', field);
     });
+
+    // Ejecutar `getJSON` una sola vez y procesar resultados
+    if (id) {
+      fix_Alertas(a, cod, 'alertas.php', fields);
+    }
   } catch (error) {
     console.error('Error al procesar los campos:', error);
   }
 }
 
-async function fix_Alertas(frm, id, path = 'lib.php', cmp) {
+async function fix_Alertas(frm, id, path = 'lib.php', fields) {
   try {
     const rta = await getJSON('fix', frm, id, path);
-    if (rta['sexo'] === 'MUJER' && (rta['ano'] < 9 || rta['ano'] > 56)) {
-      if (cmp.id === 'gestante') {
-        cmp.disabled = true;
+
+    fields.forEach(cmp => {
+      if (rta['sexo'] === 'MUJER' && (rta['ano'] < 9 || rta['ano'] > 56)) {
+        if (cmp.id === 'gestante') {
+          cmp.disabled = true;
+        }
+      } else if (rta['ano'] <= 5) {
+        if (cmp.id === 'men_dnt') {
+          cmp.disabled = true;
+        }
+      } else {
+        cmp.disabled = false;
       }
-    } else if (rta['ano'] <= 5) {
-      if (cmp.id === 'men_dnt') {
-        cmp.disabled = true;
-      }
-    } else {
-      cmp.disabled = false;
-    }
+    });
+
+    console.log('Sexo:', rta['sexo']);
   } catch (error) {
     console.error('Error en fix_Alertas:', error);
   }
 }
+
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

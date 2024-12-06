@@ -94,7 +94,7 @@ function cmp_sesigcole(){
     $w="alertas";
 	$o='infbas';
 	// var_dump($p);
-	
+	$days=fechas_app('vivienda');
 		
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);

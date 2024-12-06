@@ -120,7 +120,7 @@ function cmp_sesigcole(){
 }
 
 function get_sesigcole(){
-	
+	return '';
 }
 
 function gra_sesigcole(){

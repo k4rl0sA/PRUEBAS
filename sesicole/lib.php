@@ -99,7 +99,7 @@ function cmp_sesigcole(){
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activ','s',15,$d,$w.$d['activ'].$o,'Tipo de activiuldad','rta',null,null,true,true,'','col-25');
-	$c[]=new cmp('luga','t',15,$d,$w.$d['luga'].$o,'Lugar','rta',null,nl,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('luga','t',15,$d['luga'].$o,'Lugar','rta',null,nl,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
 	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");

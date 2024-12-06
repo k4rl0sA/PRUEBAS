@@ -95,32 +95,7 @@ function cmp_sesigcole(){
 	$o='infbas';
 	// var_dump($p);
 	
-	
-	$des='des';
-	$z='zS';
-	$f='nFx';
-	$days=fechas_app('vivienda');
-	$old='Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'];
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
-	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
-	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');
-	$c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$f.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
-	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
-    $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
-	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
-	$c[]=new cmp('fecha','d','10',$d,$w.'  '.$f.' '.$o,'fecha de la Toma','fecha',null,'',true,true,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('tipo','s','3',$d,$w.' '.$o,'Tipo','complemento',null,'',true,true,'','col-15');
-	$c[]=new cmp('crit_epi','s','3',$d,$w.' '.$o,'Criterio Epidemiológico','crit_epi',null,true,true,true,'','col-35');
-	
-	$o='infcom';
-	$c[]=new cmp($o,'e',null,'DATOS COMPLEMENTARIOS',$w);
-	
-	$gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
-	$men5 = ($p['ano']<5) ? true : false ;
-	$gesta = ($p['sexo']=='MUJER') ? true : false ;
-
+		
 	$c[]=new cmp('men_dnt','s','2',$d,$w.' '.$o,'Menor de 5 años con DNT Aguda','rta',null,null,$men5,$men5,'','col-15', "fieldsValue('men_dnt','dNt','1',true);");
 	$c[]=new cmp('men_sinctrl','s','2',$d,$w.' dNt '.$o,'Sin Atencion Ruta Alteracion Nutricional','rta',null,null,$men5,$men5,'','col-15');
 

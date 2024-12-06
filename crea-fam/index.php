@@ -65,29 +65,25 @@ function fixRecord(a = '', id = '') {
   }
 }
 
-async function fix_Alertas(frm,id,path='lib.php',cmp){
-	const rta = await getJSON('fix', frm,id,path);
-
-
-	/* $gest = ($p['sexo']=='MUJER' && ($p['ano']>9 && $p['ano']<56 )) ? true : false ;
-	$men5 = ($p['ano']<5) ? true : false ;
-	$gesta = ($p['sexo']=='MUJER') ? true : false ;
- */
-	if(rta['sexo']='MUJER' && rta['ano']<9 || rta['ano']>56){
-		if(field.id='gestante'){
-			field.disabled = true;
-		}
-	 }else if(rta['ano']>5){
-		if(field.id='men_dnt'){
-			field.disabled = true;
-		}
-	}else{
-		field.disabled = false;
-	}
-	console.log(rta['sexo']);
-	//field.disabled = false;
+async function fix_Alertas(frm, id, path = 'lib.php', cmp) {
+  try {
+    const rta = await getJSON('fix', frm, id, path);
+    if (rta['sexo'] === 'MUJER' && (rta['ano'] < 9 || rta['ano'] > 56)) {
+      if (cmp.id === 'gestante') {
+        cmp.disabled = true;
+      }
+    } else if (rta['ano'] <= 5) {
+      if (cmp.id === 'men_dnt') {
+        cmp.disabled = true;
+      }
+    } else {
+      cmp.disabled = false;
+    }
+    console.log('Sexo:', rta['sexo']);
+  } catch (error) {
+    console.error('Error en fix_Alertas:', error);
+  }
 }
-
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

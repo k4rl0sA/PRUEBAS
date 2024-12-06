@@ -65,25 +65,25 @@ function whe_sesigcole() {
 	return $sql;
 }
 
-function focus_gestuser(){
- return 'gestuser';
+function focus_sesigcole(){
+ return 'sesigcole';
 }
 
-function men_gestuser(){
- $rta=cap_menus('gestuser','pro');
+function men_sesigcole(){
+ $rta=cap_menus('sesigcole','pro');
  return $rta;
 } 
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  if ($a=='gestuser'){  
+  if ($a=='sesigcole'){  
 	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
   	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
   }
   return $rta;
 }
 
-function cmp_gestuser(){
+function cmp_sesigcole(){
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['gestion'=>'','perfil'=>'','usuario'=>''];
@@ -92,16 +92,17 @@ function cmp_gestuser(){
 	$w='adm_usuarios';
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
+
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
 
-function get_gestuser(){
+function get_sesigcole(){
 	
 }
 
-function gra_gestuser(){
+function gra_sesigcole(){
 
 	return $rta;
 }
@@ -114,7 +115,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 	if ($a=='sesigcole' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('gestuser','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesigcole','pro',event,'','lib.php',7);\"></li>";
 	}
 	
  return $rta;

@@ -92,6 +92,7 @@ function cmp_sesigcole(){
 	$w='adm_usuarios';
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'ACTIVIDAD',$w);
+	$c[]=new cmp($o,'e',null,'ACTIVIDAD',$w);
 
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

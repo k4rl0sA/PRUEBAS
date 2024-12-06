@@ -94,11 +94,11 @@ function cmp_sesigcole(){
 	$c[]=new cmp($o,'e',null,'ACTIVIDAD',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp('tipose','s','3',$d,$w.' '.$o,'Tipo de Actividad','tipose',null,null,true,true,'','col-2');
-	$c[]=new cmp('Tem_Abor1','o',2,$d,$w.' '.$o,'Tematica Abordada 1','sp1',null,null,false,true,'','col-10');
+	$c[]=new cmp('Tem_Abor1','o',2,$d,$w.' '.$o,'Tematica Abordada 1','sp1',null,null,false,true,'','col-1');
 	$c[]=new cmp('Tem_Abor1','s','3',$d,$w.' '.$o,'¿Cual tematica 1?','tipose',null,null,true,true,'','col-2');
-	$c[]=new cmp('Tem_Abor2','o',2,$d,$w.' '.$o,'Tematica Abordada 2','sp1',null,null,false,true,'','col-10');
+	$c[]=new cmp('Tem_Abor2','o',2,$d,$w.' '.$o,'Tematica Abordada 2','sp1',null,null,false,true,'','col-1');
 	$c[]=new cmp('Tem_Abor2','s','3',$d,$w.' '.$o,'¿Cual tematica 2?','tipose',null,null,true,true,'','col-2');
-	$c[]=new cmp('Tem_Abor3','o',2,$d,$w.' '.$o,'Tematica Abordada 3','sp1',null,null,false,true,'','col-10');
+	$c[]=new cmp('Tem_Abor3','o',2,$d,$w.' '.$o,'Tematica Abordada 3','sp1',null,null,false,true,'','col-1');
 	$c[]=new cmp('Tem_Abor3','s','3',$d,$w.' '.$o,'¿Cual tematica 3?','tipose',null,null,true,true,'','col-2');
 
 

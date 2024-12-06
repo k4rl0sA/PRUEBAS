@@ -98,17 +98,17 @@ function cmp_sesigcole(){
 		
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
-	$c[]=new cmp('fecha_int','d','10',$d,$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
-	$c[]=new cmp('activ','s',15,$d,$w.' '.$o,'Tipo de actividad','rta',null,null,true,true,'','col-25');
-	$c[]=new cmp('luga','t',15,$d,$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
-	$c[]=new cmp('accion1','s',3,$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
-	$c[]=new cmp('desc_accion1','s',3,$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
-    $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");
-    $c[]=new cmp('desc_accion2','s','3',$d['desc_accion2'],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion3','s','3',$d['accion3'],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5',"selectDepend('accion3','desc_accion3','../crea-fam/plancui.php');");
-    $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
-    $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
-    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
+	$c[]=new cmp('fecha_int','d','10',$d[],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
+	$c[]=new cmp('activ','s',15,$d,$w.$d[].$o,'Tipo de actividad','rta',null,null,true,true,'','col-25');
+	$c[]=new cmp('luga','t',15,$d,$w.$d[].$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('accion1','s',3,$d[''],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
+	$c[]=new cmp('desc_accion1','s',3,$d[''],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
+    $c[]=new cmp('accion2','s','3',$d[''],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion2','s','3',$d[''],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
+    $c[]=new cmp('accion3','s','3',$d[''],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5',"selectDepend('accion3','desc_accion3','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion3','s','3',$d[''],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
+    $c[]=new cmp('accion4','s','3',$d[''],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion4','s','3',$d[''],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
 	
 
 

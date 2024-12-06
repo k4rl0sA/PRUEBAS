@@ -115,7 +115,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 	if ($a=='sesigcole' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesigcole','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesigcole','pro',event,'','lib.php',7,'SESIONES GRUPALES Y COLECTIVAS');\"></li>";
 	}
 	
  return $rta;

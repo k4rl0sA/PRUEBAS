@@ -91,7 +91,7 @@ function cmp_sesigcole(){
 	if ($d==""){$d=$t;}
 	$w='adm_usuarios';
 	$o='creusu';
-	$c[]=new cmp($o,'e',null,'TIPO DE SESION',$w);
+	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

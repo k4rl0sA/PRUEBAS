@@ -98,18 +98,7 @@ function cmp_sesigcole(){
 		
 	$o='alert';
 	$c[]=new cmp($o,'e',null,'ALERTAS',$w); 
-	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert',null,null,true,true,'','col-1',"enabAlert(this,'cRoN');",['fselmul1'],false,'alertas.php');
-	$c[]=new cmp('selmul1','m',3,$d,$w.' cRoN '.$o,'Descripcion Alerta N° 1','selmul1',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert2','s',15,$d,$w.' '.$o,'Alerta N° 2','alert',null,null,false,true,'','col-1',"enabAlert(this,'etv');",['fselmul2'],false,'alertas.php');
-	$c[]=new cmp('selmul2','m',3,$d,$w.' etv '.$o,'Descripcion Alerta N° 2','selmul2',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert3','s',15,$d,$w.' '.$o,'Alerta N° 3','alert',null,null,false,true,'','col-1',"enabAlert(this,'nut');",['fselmul3'],false,'alertas.php');
-	$c[]=new cmp('selmul3','m',3,$d,$w.' nut '.$o,'Descripcion Alerta N° 3','selmul3',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert4','s',15,$d,$w.' '.$o,'Alerta N° 4','alert',null,null,false,true,'','col-1',"enabAlert(this,'psi');",['fselmul4'],false,'alertas.php');
-	$c[]=new cmp('selmul4','m',3,$d,$w.' psi '.$o,'Descripcion Alerta N° 4','selmul4',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert5','s',15,$d,$w.' '.$o,'Alerta N° 5','alert',null,null,false,true,'','col-1',"enabAlert(this,'inf');",['fselmul5'],false,'alertas.php');
-	$c[]=new cmp('selmul5','m',3,$d,$w.' inf '.$o,'Descripcigon Alerta N° 5','selmul5',null,'',false,false,'','col-4');
-	$c[]=new cmp('alert6','s',15,$d,$w.' '.$o,'Alerta N° 6','alert',null,null,false,true,'','col-1',"enabAlert(this,'muj');",['fselmul6'],false,'alertas.php');
-	$c[]=new cmp('selmul6','m',3,$d,$w.' muj '.$o,'Descripcion Alerta N° 6','selmul6',null,'',false,false,'','col-4');
+	$c[]=new cmp('alert1','s',15,$d,$w.' '.$o,'Alerta N° 1','alert',null,null,true,true,'','col-1');
 	
 	$c[]=new cmp('agen_intra','s',15,$d,$w.' '.$o,'Agendamiento Intramural','rta',null,null,true,true,'','col-1',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('servicio','t',15,$d,$w.' aIM '.$o,'Servicio Agendado','servicio',null,null,false,false,'','col-15');

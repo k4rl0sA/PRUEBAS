@@ -78,7 +78,7 @@ function cmp_gestuser(){
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-3');
-	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-2',"changeSelect('perfil','usuario');");//  ,"enabDepeValu('perfil','uSR');
+	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-2',"selectDepend('perfil','usuario');");//  ,"enabDepeValu('perfil','uSR');
 	$c[]=new cmp('usuario','s',20,$d['usuario'],$w.' uSR '.$o,'Usuario','usuario',null,'',false,true,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -166,6 +166,7 @@ function opc_perfilusuario($id=''){
             perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
             and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
             and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY nombre";
+			echo $sql;
             $info = datos_mysql($sql);		
             return json_encode($info['responseResult']);	
         }

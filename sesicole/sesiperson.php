@@ -39,7 +39,7 @@ function focus_sespers(){
 
 function cmp_sespers(){
 	$rta="";
-	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','sexo'=>'','genero'=>'','desc_temati3'=>'','temati4'=>'','desc_temati4'=>'','temati5'=>'','desc_temati5'=>'','temati6'=>'','desc_temati6'=>'','temati7'=>'','desc_temati7'=>'','temati8'=>'','desc_temati8'=>''];
+	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','pueblo'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>''];
 	$d=get_sespers();
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
@@ -61,7 +61,11 @@ function cmp_sespers(){
 	$c[]=new cmp('fecha_nacimiento','d','',$d['fecha_nacimiento'],$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,$edit,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
 	$c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'Sexo','sexo',null,null,true,$edit,'','col-2');
 	$c[]=new cmp('genero','s','3',$d['genero'],$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
-
+	$c[]=new cmp('etnia','s','3',$d['etnia'],$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ETn','idi');");
+	$c[]=new cmp('pueblo','s','50',$d['pueblo'],$w.' ETn cmhi '.$o,'pueblo','pueblo',null,null,false,true,'','col-2');
+	$c[]=new cmp('nacionalidad','s','3',$d['nacionalidad'],$w.' '.$o,'nacionalidad','nacionalidad',null,null,true,true,'','col-2');
+	$c[]=new cmp('regimen','s','3',$d['regimen'],$w.' '.$o,'regimen','regimen',null,null,true,true,'','col-2',"enabAfil('regimen','eaf');enabEapb('regimen','rgm');");
+	$c[]=new cmp('eapb','s','3',$d['eapb'],$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -100,4 +104,16 @@ function opc_tipo_doc($id=''){
 }
 function opc_sexo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}
+function opc_nacionalidad($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}
+function opc_etnia($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=16 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}
+function opc_regimen($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=17 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}
+function opc_eapb($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }

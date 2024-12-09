@@ -192,7 +192,7 @@ function get_persona(){
     $id=divide($_REQUEST['id']);
     $sql="SELECT P.idpeople,P.idpersona idpersona,P.tipo_doc tipodoc,CONCAT_WS(' ',nombre1,nombre2,apellido1,apellido2) nombre,P.fecha_nacimiento fechanacimiento,
 		P.sexo sexo,
-        TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS años,
+    TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
     TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
     DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P

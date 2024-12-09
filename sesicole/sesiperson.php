@@ -95,3 +95,9 @@ function get_person(){
 	return $info['responseResult'][0];
 	} 
 }
+function opc_tipo_doc($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 2",$id);
+}
+function opc_sexo($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}

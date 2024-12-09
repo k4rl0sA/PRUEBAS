@@ -128,7 +128,7 @@ switch ($_POST['gestion']) {
 	['type' => 's', 'value' => date("Y-m-d H:i:s")],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => NULL]];
+	['type' => 's', 'value' => 'A']];
 	return $rta1 = mysql_prepd($sql, $params);
 /*
 	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";

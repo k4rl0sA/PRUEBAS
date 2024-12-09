@@ -84,7 +84,7 @@ async function fix_Alertas(frm, id, path = 'lib.php', fields) {
         cmp.disabled = !(rta['ano'] <= 5);
       } else {
         // Bloqueo por defecto si no cumple ninguna regla
-        cmp.disabled = true;
+        cmp.disabled = false;
       }
     });
   } catch (error) {

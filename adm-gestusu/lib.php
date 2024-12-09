@@ -107,7 +107,7 @@ switch ($_POST['gestion']) {
 		break;
 }
 
-  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,FN_CATALOGODESC(218,?),?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 

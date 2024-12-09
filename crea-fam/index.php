@@ -78,9 +78,9 @@ async function fix_Alertas(frm, id, path = 'lib.php', fields) {
       return;
     }
     fields.forEach(cmp => {
-      if (cmp.id === 'gestante') {
+      if (cmp.id === 'gestante'|| cmp.id==='etapgest'|| cmp.id==='ges_sinctrl') {
         cmp.disabled = !(rta['sexo'] === 'MUJER' && (rta['ano'] >= 9 && rta['ano'] <= 56));
-      } else if (cmp.id === 'men_dnt') {
+      } else if (cmp.id === 'men_dnt' || cmp.id === 'men_sinctrl') {
         cmp.disabled = !(rta['ano'] <= 5);
       } else {
         // Bloqueo por defecto si no cumple ninguna regla
@@ -91,8 +91,6 @@ async function fix_Alertas(frm, id, path = 'lib.php', fields) {
     console.error('Error en fix_Alertas:', error);
   }
 }
-
-
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;

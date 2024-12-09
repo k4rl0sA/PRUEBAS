@@ -100,16 +100,22 @@ function cmp_sesigcole(){
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activi','s','15',$d['activi'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,false,true,'','col-25');
 	$c[]=new cmp('luga','t','15',$d['luga'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
-	$c[]=new cmp('accion1','s','3',$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
+	$c[]=new cmp('accion1','s','3',$d['accion1'],$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-5',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
 	$c[]=new cmp('desc_accion1','s','3',$d['desc_accion1'],$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3',$d['accion2'],$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");
     $c[]=new cmp('desc_accion2','s','3',$d['desc_accion2'],$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,true,'','col-5');
     $c[]=new cmp('accion3','s','3',$d['accion3'],$w.' '.$o,'Accion 3','accion3',null,null,false,true,'','col-5',"selectDepend('accion3','desc_accion3','../crea-fam/plancui.php');");
     $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
     $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
-    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
-	
-
+    $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion4',null,null,false,true,'','col-5');
+	$c[]=new cmp('accion5','s','3',$d['accion5'],$w.' '.$o,'Accion 5','accion5',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion5','s','3',$d['desc_accion5'],$w.' '.$o,'Descripcion Accion 5','desc_accion5',null,null,false,true,'','col-5');
+	$c[]=new cmp('accion6','s','3',$d['accion6'],$w.' '.$o,'Accion 6','accion6',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion6','s','3',$d['desc_accion6'],$w.' '.$o,'Descripcion Accion 6','desc_accion6',null,null,false,true,'','col-5');
+	$c[]=new cmp('accion7','s','3',$d['accion7'],$w.' '.$o,'Accion 7','accion7',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion7','s','3',$d['desc_accion7'],$w.' '.$o,'Descripcion Accion 7','desc_accion7',null,null,false,true,'','col-5');
+	$c[]=new cmp('accion8','s','3',$d['accion8'],$w.' '.$o,'Accion 8','accion8',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
+    $c[]=new cmp('desc_accion8','s','3',$d['desc_accion8'],$w.' '.$o,'Descripcion Accion 8','desc_accion8',null,null,false,true,'','col-5');
 
 
 
@@ -164,6 +170,38 @@ function opc_accion4($id=''){
 }
 
 function opc_desc_accion4($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_accion5($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_desc_accion5($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_accion6($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_desc_accion6($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_accion7($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_desc_accion7($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_accion8($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
+
+function opc_desc_accion8($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 }
 

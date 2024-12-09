@@ -87,7 +87,7 @@ function cmp_sesiones() {
 	$o='infgen';
 	$days=fechas_app('relevo');
 	$c[]=new cmp($o,'e',null,'Sesion de intervencion y/o Relevos',$w);	
-	$aux = ($per=='AUXREL' || $per=='ADM') ? true : false ;//|| $per=='ADM'
+	$aux = ($per=='AUXRELEVO' || $per=='ADM') ? true : false ;//|| $per=='ADM'
 	$c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
 	$c[]=new cmp('rel_validacion1','s','3',$d,$w.' '.$o,'Sesión','rel_sesiones',null,null,true,true,'','col-2');
 	$c[]=new cmp('rel_validacion2','d','10',$d,$w.' '.$o,'Fecha de la sesion','rel_validacion2',null,null,true,true,'','col-3',"validDate(this,$days,0);");

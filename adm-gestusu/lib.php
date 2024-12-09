@@ -107,7 +107,7 @@ switch ($_POST['gestion']) {
 		break;
 }
 
-  /* $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  $sql = "INSERT INTO adm_usunew VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
@@ -130,7 +130,7 @@ switch ($_POST['gestion']) {
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
 	$rta1 = mysql_prepd($sql, $params);
-
+/*
 	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
 	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
 	$params1 = [
@@ -144,7 +144,7 @@ switch ($_POST['gestion']) {
 		['type' => 's', 'value' => $usu[4]],
 		['type' => 's', 'value' => 'P']];
 		$rta2 = mysql_prepd($sql1, $params1); */
-	return $rta;
+	// return $rta;
 }
 
 function adm(){

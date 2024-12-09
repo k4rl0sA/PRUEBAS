@@ -80,7 +80,7 @@ async function fix_Alertas(frm, id, path = 'lib.php', fields) {
       return;
     }
     fields.forEach(cmp => {
-		if (camposBloqueados.includes(cmp.id)) {
+		if (cmpDbl.includes(cmp.id)) {
         // Bloquear campos que siempre deben estar deshabilitados
         cmp.disabled = true;
       } else if (cmp.id === 'gestante'|| cmp.id==='etapgest'|| cmp.id==='ges_sinctrl') {

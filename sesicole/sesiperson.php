@@ -140,3 +140,6 @@ function opc_regimen($id=''){
 function opc_eapb($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
+function opc_genero($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=19 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
+}

@@ -72,30 +72,26 @@ function fixRecord(a = '', id = '') {
 async function fix_Alertas(frm, id, path = 'lib.php', fields) {
   try {
     const rta = await getJSON('fix', frm, id, path);
-
+    // Validar si los datos requeridos están disponibles
+    if (!rta || !rta['sexo'] || rta['ano'] === undefined) {
+      console.warn('Datos incompletos en la respuesta:', rta);
+      return;
+    }
     fields.forEach(cmp => {
-      if (rta['sexo'] === 'MUJER' && (rta['ano'] < 9 || rta['ano'] > 56)) {
-        if (cmp.id === 'gestante') {
-          cmp.disabled = false;
-        }else{
-			cmp.disabled = true;
-		}
-      } else if (rta['ano'] <= 5) {
-        if (cmp.id === 'men_dnt') {
-          cmp.disabled = false;
-        }else{
-			cmp.disabled = true;
-		}
+      if (cmp.id === 'gestante') {
+        cmp.disabled = !(rta['sexo'] === 'MUJER' && (rta['ano'] >= 9 && rta['ano'] <= 56));
+      } else if (cmp.id === 'men_dnt') {
+        cmp.disabled = !(rta['ano'] <= 5);
       } else {
-        cmp.disabled = false;
+        // Bloqueo por defecto si no cumple ninguna regla
+        cmp.disabled = true;
       }
     });
-
-    console.log('Sexo:', rta['sexo']);
   } catch (error) {
     console.error('Error en fix_Alertas:', error);
   }
 }
+
 
 
 function grabar(tb='',ev){

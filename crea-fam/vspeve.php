@@ -192,9 +192,9 @@ function get_persona(){
     $id=divide($_REQUEST['id']);
     $sql="SELECT P.idpeople,P.idpersona idpersona,P.tipo_doc tipodoc,CONCAT_WS(' ',nombre1,nombre2,apellido1,apellido2) nombre,P.fecha_nacimiento fechanacimiento,
 		P.sexo sexo,
-    FLOOR(DATEDIFF(CURDATE(), fecha_nacimiento) / 365) AS anos,
-    FLOOR((DATEDIFF(CURDATE(), fecha_nacimiento) % 365) / 30) AS meses,
-    DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dias
+        TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS años,
+    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P
 		left join vspeve E ON P.idpeople = E.idpeople
     WHERE P.idpeople='{$id[0]}'"; 

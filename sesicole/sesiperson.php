@@ -77,3 +77,7 @@ function cmp_sespers(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+
+function get_sespers(){
+	return '';
+}

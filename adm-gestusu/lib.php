@@ -129,7 +129,7 @@ switch ($_POST['gestion']) {
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]];
-	$rta1 = mysql_prepd($sql, $params);
+	return $rta1 = mysql_prepd($sql, $params);
 /*
 	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
 	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;

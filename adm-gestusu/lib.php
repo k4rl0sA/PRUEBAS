@@ -111,17 +111,17 @@ switch ($_POST['gestion']) {
    $rta=datos_mysql("select FN_USUARIO('".$_SESSION['us_sds']."') as usu;");
    $usu=divide($rta["responseResult"][0]['usu']);
 
-   $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
-   $data=$rta["responseResult"][0];
+//    $rta=datos_mysql("select FN_CATALOGODESC(218,'".$_POST['perfil']."') AS perfil ,FN_CATALOGODESC(202,'".$_POST['territorio']."') AS terr,FN_CATALOGODESC(217,'".$_POST['bina']."') AS bina;");
+//    $data=$rta["responseResult"][0];
 
    $params = [
 	['type' => 'i', 'value' => NULL],
-	['type' => 'i', 'value' => $_POST['documento']],
-	['type' => 's', 'value' => $_POST['nombre']],
-	['type' => 's', 'value' => $_POST['correo']],
+	['type' => 'i', 'value' => $_POST['usuario']],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
 	['type' => 's', 'value' => $data['perfil']],
-	['type' => 's', 'value' => $data['terr']],
-	['type' => 's', 'value' => $data['bina']],
+	['type' => 's', 'value' => ''],
+	['type' => 's', 'value' => ''],
 	['type' => 'i', 'value' => $usu[2]],
 	['type' => 's', 'value' => $usu[4]],
 	['type' => 'i', 'value' => $_SESSION['us_sds']],

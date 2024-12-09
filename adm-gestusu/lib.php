@@ -119,7 +119,7 @@ switch ($_POST['gestion']) {
 	['type' => 'i', 'value' => $_POST['usuario']],
 	['type' => 's', 'value' => ''],
 	['type' => 's', 'value' => ''],
-	['type' => 's', 'value' => $data['perfil']],
+	['type' => 's', 'value' => $_POST['perfil']],
 	['type' => 's', 'value' => ''],
 	['type' => 's', 'value' => ''],
 	['type' => 'i', 'value' => $usu[2]],

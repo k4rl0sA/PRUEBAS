@@ -76,12 +76,16 @@ async function fix_Alertas(frm, id, path = 'lib.php', fields) {
     fields.forEach(cmp => {
       if (rta['sexo'] === 'MUJER' && (rta['ano'] < 9 || rta['ano'] > 56)) {
         if (cmp.id === 'gestante') {
-          cmp.disabled = true;
-        }
+          cmp.disabled = false;
+        }else{
+			cmp.disabled = true;
+		}
       } else if (rta['ano'] <= 5) {
         if (cmp.id === 'men_dnt') {
-          cmp.disabled = true;
-        }
+          cmp.disabled = false;
+        }else{
+			cmp.disabled = true;
+		}
       } else {
         cmp.disabled = false;
       }

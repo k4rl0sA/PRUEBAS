@@ -72,13 +72,18 @@ function fixRecord(a = '', id = '') {
 async function fix_Alertas(frm, id, path = 'lib.php', fields) {
   try {
     const rta = await getJSON('fix', frm, id, path);
+
+	const cmpDbl = ['cro_hiper', 'cro_diabe', 'cro_epoc', 'cro_sinctrl', 'evento_pf'];
     // Validar si los datos requeridos están disponibles
     if (!rta || !rta['sexo'] || rta['ano'] === undefined) {
       console.warn('Datos incompletos en la respuesta:', rta);
       return;
     }
     fields.forEach(cmp => {
-      if (cmp.id === 'gestante'|| cmp.id==='etapgest'|| cmp.id==='ges_sinctrl') {
+		if (camposBloqueados.includes(cmp.id)) {
+        // Bloquear campos que siempre deben estar deshabilitados
+        cmp.disabled = true;
+      } else if (cmp.id === 'gestante'|| cmp.id==='etapgest'|| cmp.id==='ges_sinctrl') {
         cmp.disabled = !(rta['sexo'] === 'MUJER' && (rta['ano'] >= 9 && rta['ano'] <= 56));
       } else if (cmp.id === 'men_dnt' || cmp.id === 'men_sinctrl') {
         cmp.disabled = !(rta['ano'] <= 5);

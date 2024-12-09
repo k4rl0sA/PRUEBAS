@@ -18,7 +18,24 @@ else {
   }   
 }
 
-
+function focus_sespers(){
+	return 'sespers';
+   }
+   
+   function men_sespers(){
+	$rta=cap_menus('sespers','pro');
+	return $rta;
+   } 
+   
+   function cap_menus($a,$b='cap',$con='con') {
+	 $rta = ""; 
+	 if ($a=='sespers'){  
+	   $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
+		 $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+	 }
+	 return $rta;
+   }
+   
 
 function cmp_sespers(){
 	$rta="";

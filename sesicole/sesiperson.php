@@ -46,6 +46,7 @@ function cmp_sespers(){
 	$id=divide($_POST['id']);
     $w="alertas";
 	$o='infbas';
+	$key='pEr';
 	// var_dump($p);
 	$days=fechas_app('vivienda');
 		

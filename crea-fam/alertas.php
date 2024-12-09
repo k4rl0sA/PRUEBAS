@@ -131,10 +131,10 @@ function men_alertas(){
 	$c[]=new cmp('ges_sinctrl','s','3',$d,$w.' eTp '.$o,'Gestante Sin Control','rta',null,'',$gest,false,'','col-25');//true
 
 	$c[]=new cmp('cronico','s','2',$d,$w.' '.$o,'El usuario es cronico','rta',null,null,true,true,'','col-2',"fieldsValue('cronico','cRo','1',true);");
-	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,true,false,'','col-2');
-	$c[]=new cmp('cro_diabe','s','2',$d,$w.' cRo '.$o,'Diabetes','rta',null,null,true,false,'','col-2');
-	$c[]=new cmp('cro_epoc','s','2',$d,$w.' cRo '.$o,'Epoc','rta',null,null,true,false,'','col-2');
-	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' cRo '.$o,'Cronico Sin Control','rta',null,null,true,false,'','col-2');
+	$c[]=new cmp('cro_hiper','s','2',$d,$w.' cRo '.$o,'Hipertension','rta',null,null,false,false,'','col-2');
+	$c[]=new cmp('cro_diabe','s','2',$d,$w.' cRo '.$o,'Diabetes','rta',null,null,false,false,'','col-2');
+	$c[]=new cmp('cro_epoc','s','2',$d,$w.' cRo '.$o,'Epoc','rta',null,null,false,false,'','col-2');
+	$c[]=new cmp('cro_sinctrl','s','2',$d,$w.' cRo '.$o,'Cronico Sin Control','rta',null,null,false,false,'','col-2');
 	$c[]=new cmp('esq_vacun','s','2',$d,$w.' '.$o,'Esquema de Vacunacion Completo','rta',null,null,true,true,'','col-2');
 	
 	$o='alert';

@@ -40,7 +40,7 @@ function focus_sespers(){
 function cmp_sespers(){
 	$rta="";
 	$t=['fecha_int'=>'','activi'=>'','luga'=>'','temati1'=>'','desc_temati1'=>'','temati2'=>'','desc_temati2'=>'','temati3'=>'','desc_temati3'=>'','temati4'=>'','desc_temati4'=>'','temati5'=>'','desc_temati5'=>'','temati6'=>'','desc_temati6'=>'','temati7'=>'','desc_temati7'=>'','temati8'=>'','desc_temati8'=>''];
-	$d=get_sesigcole();
+	$d=get_sespers();
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
 	$id=divide($_POST['id']);

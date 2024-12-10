@@ -240,7 +240,7 @@ function params($campos) {
 }
 
 function mysql_prepd($sql, $params) {
-  // validCsrfTok();
+  validCsrfTok();
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');

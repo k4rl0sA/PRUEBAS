@@ -357,7 +357,7 @@ function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 		$nc = count($data_arr[0]);
 		if ($numeroRegistros != 1) {
 			// $rta.= "<tr><td class='resumen' colspan=$nc >".menu_reg($obj_name,$pg,$np,$numeroRegistros)."</td></tr>";
-      $rta.= "<tr><td class='resumen' colspan=$nc >".pags_table($obj_name,$pg,$np,$numeroRegistros)."</td></tr>";
+      $rta.= "<tr><td class='resumen' colspan=$nc >".pags_table($obj_name,$pg,$np,$numeroRegistros,'')."</td></tr>";
 		}
 	}
 	$rta.= "</tbody>";

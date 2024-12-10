@@ -247,22 +247,22 @@ function get_hamilton(){
 }
 
 function get_zarit(){
-	return "";
-	/*if($_POST['id']=='0'){
+	if($_POST['id']=='0'){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT zarit_puntaje rel_validacion6,zarit_analisis rel_validacion10 
+		$sql="SELECT puntaje rel_validacion6,analisis rel_validacion10 
 		FROM hog_tam_zarit H
-		LEFT JOIN rel_relevo R ON H.zarit_idpersona=R.rel_documento  AND  H.zarit_tipodoc=R.rel_tipo_doc
+		LEFT JOIN rel_relevo R ON H.idpeople=R.id_people
 		WHERE
-			(H.zarit_momento = 2 OR 
+		H.momento=1 AND H.idpeople='{$id[0]}'";
+			/* (H.zarit_momento = 2 OR 
 			(H.zarit_idpersona IS NULL AND H.zarit_tipodoc IS NULL AND NOT EXISTS (
 				SELECT 1 FROM hog_tam_zarit WHERE zarit_idpersona = R.rel_documento AND zarit_tipodoc = R.rel_tipo_doc
 			)) OR 
 			(H.zarit_idpersona IS NOT NULL AND H.zarit_tipodoc IS NOT NULL AND NOT EXISTS (
 				SELECT 1 FROM hog_tam_zarit WHERE zarit_idpersona = R.rel_documento AND zarit_tipodoc = R.rel_tipo_doc AND zarit_momento = 2
-			))) AND zarit_tipodoc='{$id[0]}' AND zarit_idpersona='{$id[1]}'";
+			))) AND zarit_tipodoc='{$id[0]}' AND zarit_idpersona='{$id[1]}'"; */
 
 		$info=datos_mysql($sql);
 		if ($info['responseResult']){
@@ -270,7 +270,7 @@ function get_zarit(){
 		} else {
 			return "";
 		}
-	} */
+	}
 }
  
 function get_apgar(){

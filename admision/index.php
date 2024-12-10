@@ -46,7 +46,7 @@ function newAdmin(a){
 			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xmlhttp.send('a=new&tb=Admision&id='+a);
 				console.log(data);
-			if (data.includes('Correctamente')){
+			if (data.includes('correctamente')){
 				ok('Se ha creado Correctamente la admisión');
 			}else{
 			    errors('NO se ha creado la admisión, por favor valide con el administrador del sistema.');

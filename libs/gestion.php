@@ -117,7 +117,8 @@ function csv($a,$b,$tot= null){
 
 function validCsrfTok() {
   if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-   return die(log_error($_SESSION["us_sds"].' = Invalid CSRF token'));
+    log_error($_SESSION["us_sds"].' = Invalid CSRF token');
+  return 'Error: Invalid CSRF token';
   }
 }
 

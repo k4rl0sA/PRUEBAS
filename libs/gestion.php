@@ -123,6 +123,9 @@ function validCsrfTok() {
 }
 
 function log_error($message) {
+  if (!is_dir('../logs')) {
+    mkdir('../logs', 0777, true);
+}
   file_put_contents('../logs/file.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
 }
 
@@ -224,7 +227,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
 
 function params($campos) {
-  // validCsrfTok();
+  validCsrfTok();
   $params = [];
   foreach ($campos as $campo) {
       if (isset($_POST[$campo]) && $_POST[$campo] !== '') {

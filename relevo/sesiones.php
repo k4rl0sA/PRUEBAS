@@ -92,7 +92,7 @@ function cmp_sesiones() {
 	$c[]=new cmp('rel_validacion1','s','3',$d,$w.' '.$o,'Sesión','rel_sesiones',null,null,true,true,'','col-2');
 	$c[]=new cmp('rel_validacion2','d','10',$d,$w.' '.$o,'Fecha de la sesion','rel_validacion2',null,null,true,true,'','col-3',"validDate(this,$days,0);");
 	$c[]=new cmp('rel_validacion3','t','5',$per,$w.' '.$o,'Perfil','rel_validacion3',null,null,true,false,'','col-2');
-	$c[]=new cmp('rel_validacion4','s','3',$d,$w.' act '.$o,'ACTIVIDAD DE RESPIRO','rel_validacion4',null,null,true,!$aux,'','col-3');
+	$c[]=new cmp('rel_validacion4','s','3',$d,$w.' act '.$o,'ACTIVIDAD DE RESPIRO','rel_validacion4',null,null,!$aux,!$aux,'','col-3');
 	$c[]=new cmp('rel_validacion5','a','1500',$d,$w.' '.$o,'DESCRIPCION DE LA INTERVENCION','rel_validacion5',null,null,true,true,'','col-10');
 
 	$o='infbit';

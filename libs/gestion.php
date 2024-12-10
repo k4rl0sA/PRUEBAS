@@ -224,7 +224,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
 
 function params($campos) {
-  validCsrfTok();
+  // validCsrfTok();
   $params = [];
   foreach ($campos as $campo) {
       if (isset($_POST[$campo]) && $_POST[$campo] !== '') {
@@ -237,7 +237,7 @@ function params($campos) {
 }
 
 function mysql_prepd($sql, $params) {
-  validCsrfTok();
+  // validCsrfTok();
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
@@ -295,11 +295,11 @@ function mysql_prepd($sql, $params) {
           }
           $stmt->close();
       } else {
-        // log_error($_SESSION["us_sds"].'=>'."Error al ejecutar la consulta: ". $con->error . " | SQL: " . $sql);
+        log_error($_SESSION["us_sds"].'=>'."Error al ejecutar la consulta: ". $con->error . " | SQL: " . $sql);
           $rs = "Error preparando la consulta: " . $con->error . " | SQL: " . $sql;
       }
   } catch (mysqli_sql_exception $e) {
-    // log_error($_SESSION["us_sds"].'=> '.$e->getCode() . " = " . $e->getMessage());
+    log_error($_SESSION["us_sds"].'=> '.$e->getCode() . " = " . $e->getMessage());
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;

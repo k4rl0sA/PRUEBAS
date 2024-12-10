@@ -140,7 +140,7 @@ function cmp_relevo() {
 	'cuidado_3'=>'','antecedentes_3'=>'','otro_3'=>'','whodas3'=>'','cert_disca3'=>'','fecha_create'=>'','usu_creo'=>'','fecha_update'=>'','usu_update'=>'','estado'=>''];
 	$w='relevo';
 	$j=get_relevo();$e=get_zarit();$p=get_personas();
-	if ($j==""){$j=$t;}if($h==""){$h=$t;}if($d==""){$d=$t;}if($e==""){$e=$t;}if($f==""){$f=$t;}if($g==""){$g=$t;}if($p==""){$p=$t;}
+	if ($j==""){$j=$t;}if($e==""){$e=$t;}if($p==""){$p=$t;}
 	// $u=($j['Tipo_Doc']=='')?true:false;
 	$o='infgen';
 	// var_dump($_POST);

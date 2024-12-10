@@ -251,7 +251,7 @@ function get_zarit(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT puntaje rel_validacion6,analisis rel_validacion10 
+		$sql="SELECT analisis zarit_cuid 
 		FROM hog_tam_zarit H
 		LEFT JOIN rel_relevo R ON H.idpeople=R.id_people
 		WHERE

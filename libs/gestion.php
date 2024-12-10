@@ -230,7 +230,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
 }
 
 function params($campos) {
-  validCsrfTok();
+  // validCsrfTok();
   $params = [];
   foreach ($campos as $campo) {
       if (isset($_POST[$campo]) && $_POST[$campo] !== '') {
@@ -243,7 +243,7 @@ function params($campos) {
 }
 
 function mysql_prepd($sql, $params) {
-  validCsrfTok();
+  // validCsrfTok();
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');

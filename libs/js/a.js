@@ -314,6 +314,7 @@ function errors(msj){
 function ok(msj){
 	document.getElementById(mod+'-modal').innerHTML=msj;
 	document.getElementById(mod+'-image').innerHTML = '<div class="icon-popup rtaok"></div>';
+	openModal();
 }
 
 function inform(msj){

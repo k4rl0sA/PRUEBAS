@@ -80,7 +80,7 @@ function cmp_gestuser(){
 	$w='adm_usuarios';
 	$o='creusu';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DE USUARIOS',$w);
-	$c[]=new cmp('csrf','h',150,$_SESSION['csrf_token'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
+	$c[]=new cmp('csrf','h',150,$_SESSION['csrf_token'],$w.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp('gestion','s','3',$d['gestion'],$w.' '.$o,'Acción','gestion',null,'',true,true,'','col-3');
 	$c[]=new cmp('perfil','s',3,$d['perfil'],$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-2',"selectDepend('perfil','usuario');");//  ,"enabDepeValu('perfil','uSR');
 	$c[]=new cmp('usuario','s',20,$d['usuario'],$w.' uSR '.$o,'Usuario','usuario',null,'',false,true,'','col-5');

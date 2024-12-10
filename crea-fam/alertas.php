@@ -57,6 +57,9 @@ function men_alertas(){
    }
  
    function cmp_alertas(){
+	if (empty($_SESSION['csrf_token'])) {
+		$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+	}
 	$rta="<div class='encabezado medid'>TABLA DE ALERTAS</div>
 	<div class='contenido' id='alertas-lis'>".lis_alertas()."</div></div>";
 	// $t=['nombres'=>'','fechanacimiento'=>'','edad'=>'','peso'=>'','talla'=>'','imc'=>'','tas'=>'','tad'=>'','glucometria'=>'','perime_braq'=>'','perime_abdom'=>'','percentil'=>'','zscore'=>'','findrisc'=>'','oms'=>'','alert1'=>'','alert2'=>'','alert3'=>'','alert4'=>'','alert5'=>'','alert6'=>'','alert7'=>'','alert8'=>'','alert9'=>'','alert10'=>'','select1'=>'','selmul1'=>'[]','selmul2'=>'[]','selmul3'=>'[]','selmul4'=>'[]','selmul5'=>'[]','selmul6'=>'[]','selmul7'=>'[]','selmul8'=>'[]','selmul9'=>'[]','selmul10'=>'[]','fecha'=>'','tipo'=>''];
@@ -102,6 +105,7 @@ function men_alertas(){
 	$f='nFx';
 	$days=fechas_app('vivienda');
 	$old='Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'];
+	$c[]=new cmp('csrf','h',150,$_SESSION['csrf_token'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$f.' '.$o,'id','id',null,'',false,false);
 	$c[]=new cmp($o,'e',null,'INFORMACION DE alertas',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$f.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-1');

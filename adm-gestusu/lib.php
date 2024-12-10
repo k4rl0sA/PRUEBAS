@@ -130,21 +130,6 @@ switch ($_POST['gestion']) {
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => 'A']];
 	return $rta1 = mysql_prepd($sql, $params);
-/*
-	$sql1 = "INSERT INTO usuarios VALUES (?,?,?,?,?,?,?,?,?)";
-	$equ = ($data['bina']=='') ? $data['terr'] : $data['bina'] ;
-	$params1 = [
-		['type' => 'i', 'value' => $_POST['documento']],
-		['type' => 's', 'value' => $_POST['nombre']],
-		['type' => 's', 'value' => $_POST['correo']],
-		['type' => 's', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
-		['type' => 's', 'value' => $data['perfil']],
-		['type' => 'i', 'value' => $usu[2]],
-		['type' => 's', 'value' => $equ],
-		['type' => 's', 'value' => $usu[4]],
-		['type' => 's', 'value' => 'P']];
-		$rta2 = mysql_prepd($sql1, $params1); */
-	// return $rta;
 }
 
 function adm(){

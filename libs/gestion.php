@@ -1,5 +1,9 @@
 <?php
 session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.use_strict_mode', 1);
+session_regenerate_id(true);
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
 // $GLOBALS['app']='sds';
@@ -28,22 +32,18 @@ $comy = array(
   ]
 );
 // var_dump($dominio);
-if (array_key_exists($dominio, $comy)) {
+$allowed_domains = ['pruebasiginf.site', 'gitapps.site'];
+if (in_array($dominio, $allowed_domains)) {
   $dbConfig = $comy[$dominio];
-} else {
-  die('Dominio no reconocido.'); // Manejo de error para dominios no configurados
+}else{
+  die('Dominio no permitido.');
 }
 $con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
 
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;
-// $cv=array(isset($_SESSION["us_{$GLOBALS['app']}"])?$_SESSION["us_{$GLOBALS['app']}"]:"","NOW()");
-// $SESSION['perfil']=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_{$GLOBALS['app']}"]."'");
-//$cabecera = "<html><head><link rel='stylesheet' href='s.css' type='text/css' media='screen'><script src='js/c.js'></script></head>";
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
-//~ var_dump($req);
-// var_dump($con);
 switch ($req) {
 	case '';
 	break;
@@ -56,7 +56,8 @@ switch ($req) {
 			$ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 			echo csv($ts, $rs,$total);
 		} else {
-			echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
+      die(log_error($_SESSION["us_sds"].'=>'.$GLOBALS['con']->errno.'='.$GLOBALS['con']->error));
+			// echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
       $GLOBALS['con']->close();
 		}
 		die;
@@ -100,10 +101,6 @@ function header_csv($a) {
   header("Content-Type: text/csv; charset=UTF-8");
 }
 
-
-
-
-
 function csv($a,$b,$tot= null){
   $df=fopen("php://output", 'w');
   ob_start();
@@ -118,17 +115,16 @@ function csv($a,$b,$tot= null){
   return ob_get_clean();
 }
 
-/* function cleanTxt($val) {
-  $val = trim($val);
-  $val = addslashes($val);
-  $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
-  $pattern = '/[\'";\x00-\x1F\x7F]/';
-  $replacement = '';
-  $val = preg_replace($pattern, $replacement, $val);
-  $val = str_replace(array("\n", "\r", "\t"), ' ', $val);
-  $val=strtoupper($val);
-  return $val;
-} */
+function validCsrfTok() {
+  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die(log_error($_SESSION["us_sds"].' = Invalid CSRF token'));
+      // die('Invalid CSRF token');
+  }
+}
+
+function log_error($message) {
+  file_put_contents('../logs/file.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
+}
 
 function cleanTx($val) {
   $val = trim($val);
@@ -140,7 +136,6 @@ function cleanTx($val) {
   $val = mb_strtoupper($val, 'UTF-8'); // Convierte a mayúsculas conservando acentos
   return $val;
 }
-
 
 function fechas_app($modu){
     switch ($modu) {
@@ -176,14 +171,16 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
   if (!$con) {
-      die(json_encode(['code' => 30, 'message' => 'Connection error']));
+    die(log_error($_SESSION["us_sds"].' = Connection error'));
+      // die(json_encode(['code' => 30, 'message' => 'Connection error']));
   }
 	try {
 		$con->set_charset('utf8');
 		$rs = $con->query($sql);
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
-		die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
+		// die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
 	}finally {
     // $GLOBALS['con']->close();
   }
@@ -220,12 +217,14 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
           }
       }
   } catch (mysqli_sql_exception $e) {
+    log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;
 }
 
 function params($campos) {
+  validCsrfTok();
   $params = [];
   foreach ($campos as $campo) {
       if (isset($_POST[$campo]) && $_POST[$campo] !== '') {
@@ -238,6 +237,7 @@ function params($campos) {
 }
 
 function mysql_prepd($sql, $params) {
+  validCsrfTok();
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   $con = $GLOBALS['con'];
   $con->set_charset('utf8');
@@ -265,7 +265,8 @@ function mysql_prepd($sql, $params) {
           $num_placeholders = substr_count($sql, '?');
           $num_params = count($values);
           if ($num_placeholders !== $num_params) {
-              die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
+            die(log_error($_SESSION["us_sds"].'=>'."Error: El número de placeholders (?) no coincide con el número de parámetros."));
+              // die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
           }
 
           // var_dump($values); // Para depurar valores y tipos
@@ -273,6 +274,7 @@ function mysql_prepd($sql, $params) {
           $stmt->bind_param($types, ...$values);
           if (!$stmt->execute()) {
               $rs = "Error al ejecutar la consulta: " . $stmt->error . " | SQL: " . $sql;
+              log_error($_SESSION["us_sds"].'=>'."Error al ejecutar la consulta: ". $stmt->error . " | SQL: " . $sql);
           } else {
               $sqlType = strtoupper($sql);
               if (strpos($sqlType, 'DELETE') !== false) {
@@ -293,9 +295,11 @@ function mysql_prepd($sql, $params) {
           }
           $stmt->close();
       } else {
+        log_error($_SESSION["us_sds"].'=>'."Error al ejecutar la consulta: ". $con->error . " | SQL: " . $sql);
           $rs = "Error preparando la consulta: " . $con->error . " | SQL: " . $sql;
       }
   } catch (mysqli_sql_exception $e) {
+    log_error($_SESSION["us_sds"].'=> '.$e->getCode() . " = " . $e->getMessage());
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;
@@ -308,7 +312,8 @@ function fetch(&$con, &$rs, $resulttype, &$arr) {
 		$arr['responseResult'][] = ['affected_rows' => $con->affected_rows];
 	}else {
 		if ($rs === FALSE) {
-			die(json_encode(['code' => $con->errno, 'message' => $con->error]));
+      die(log_error($_SESSION["us_sds"].'=>'.$con->errno.'='.$con->error));
+			// die(json_encode(['code' => $con->errno, 'message' => $con->error]));
 		}
 		while ($r = $rs->fetch_array($resulttype)) {
 			$arr['responseResult'][] = $r;
@@ -329,7 +334,7 @@ function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 		$rta.= "<thead>";
 		foreach ($data_arr[0] as $key => $cmp) {
 			if (!in_array($key,$no)) {
-				$rta.= "<th>".$key."</th>";
+				$rta.= "<th>".htmlspecialchars($key, ENT_QUOTES, 'UTF-8') ."</th>";
 			}
 		}	
 		$rta.= "</thead id='".$obj_name."_cab'>";
@@ -342,7 +347,7 @@ function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 			$rta.= "<tr ".bgcolor($obj_name,$r,"r")." >";
 			foreach ($data_arr[0] as $key => $cmp) {
 				if (!in_array($key,$no)) {
-					$rta.= "<td data-tit='".$key."' class='".alinea($r[$key])."' ".bgcolor($obj_name,$r,"c").">";
+					$rta.= "<td data-tit='".htmlspecialchars($key, ENT_QUOTES, 'UTF-8')."' class='".alinea($r[$key])."' ".bgcolor($obj_name,$r,"c").">";
 					$rta.= formato_dato($obj_name,$key,$r,$key );
 					$rta.= "</td>";
 				}
@@ -391,9 +396,6 @@ function opc_sql($sql,$val,$str=true){
 }
 
 
-
-
-/*i*/
 function si_noexiste($a,$b){
   if (isset($_REQUEST[$a]))
 	 return $_REQUEST[$a];
@@ -407,7 +409,8 @@ function alinea($a){
   elseif (strlen($a)<=2) return 'txt-center';
   else return 'txt-left';
 }
-function menu_reg($tb,$pg,$np,$nr){
+
+/* function menu_reg($tb,$pg,$np,$nr){
   $rta="<nav class='menu left'>";
   $rta.="<li class='icono regini' OnClick=\"ir_pagina('".$tb."',1,".$np.");\" ></li>";
   $rta.="<li class='icono pgatra' OnClick=\"ir_pagina('".$tb."',$pg-1,".$np.");\"></li>";
@@ -426,7 +429,7 @@ function menu_reg($tb,$pg,$np,$nr){
   $rta.="</nav>";
   return $rta;
 }
-
+ */
 function create_table($totalReg, $data_arr, $obj_name, $rp = 20,$mod='lib.php', $no = array('R')) {
   $rta = "";
   $pg = si_noexiste('pag-'.$obj_name, 1);

@@ -170,7 +170,7 @@ function new_Admision(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => 'A']
 	];
-	return mysql_prepd($sql, $params);
+	return $rta=mysql_prepd($sql, $params);
 	/* $rta=dato_mysql($sql);
 	//echo $sql;
 	return $rta; */

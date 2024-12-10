@@ -120,6 +120,8 @@ function validCsrfTok() {
     log_error($_SESSION["us_sds"].' = Invalid CSRF token');
   return die("Error: msj['Invalid CSRF token']");
   // exit;
+  }else{
+    return die("Error: msj['OK']");
   }
 }
 

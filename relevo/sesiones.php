@@ -36,7 +36,7 @@ function lis_session(){
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 		//  echo $sql;
 		$datos=datos_mysql($sql);
-		return create_table($total,$datos["responseResult"],"session",$regxPag,'sesiones.php');
+		return create_table($total,$datos["responseResult"],"session",$regxPag,'../relevo/sesiones.php');
 }
 
 function lis_medidaux(){

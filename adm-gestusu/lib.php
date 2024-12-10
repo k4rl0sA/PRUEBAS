@@ -69,9 +69,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 
 function cmp_gestuser(){
-	if (empty($_SESSION['csrf_token'])) {
-		$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-	}
+	$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['gestion'=>'','perfil'=>'','usuario'=>''];

@@ -217,7 +217,7 @@ function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
           }
       }
   } catch (mysqli_sql_exception $e) {
-    log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
+    // log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
       $rs = "Error = " . $e->getCode() . " " . $e->getMessage();
   }
   return $rs;

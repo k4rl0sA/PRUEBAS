@@ -2,7 +2,7 @@
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 1);
 ini_set('session.use_strict_mode', 1);
-session_regenerate_id(true);
+// session_regenerate_id(true);
 session_start();
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');

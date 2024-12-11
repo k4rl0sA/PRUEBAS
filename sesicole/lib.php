@@ -149,6 +149,29 @@ return $rta; */
 
 }
 
+function get_personOld(){
+	// print_r($_REQUEST);
+	$id=divide($_POST['id']);
+	$info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
+	if (!$info['responseResult']) {
+		$sql="SELECT encuentra,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		sexo,genero,oriensexual,nacionalidad,estado_civil,niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
+		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,cuidador_unidad,vinculo,tiempo_descanso,
+		descanso_unidad,reside_localidad,localidad_vive,transporta
+		FROM `personas` 
+   	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
+	$info=datos_mysql($sql);
+	if (!$info['responseResult']) {
+		return json_encode (new stdClass);
+	}
+	return json_encode($info['responseResult'][0]);
+	}else{
+		// return json_encode (new stdClass);
+		return $rta="Error: El usuario con este número de documento ya se encuentra registrado.";
+
+	}
+} 
+
 
 function opc_temati1desc_temati1($id=''){
 	if($_REQUEST['id']!=''){

@@ -90,14 +90,13 @@ function cmp_sesigcole(){
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-    $w="alertas";
+    $w="sesigcole";
 	$o='infbas';
 	// var_dump($p);
 	$days=fechas_app('vivienda');
-		
-
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
+	$c[]=new cmp('id','h','20', $_POST['id'] ,$w.' '.$o,'','',null,null,true,false,'','col-1');
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
 	$c[]=new cmp('activi','s','15',$d['activi'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,false,true,'','col-25');
 	$c[]=new cmp('luga','t','15',$d['luga'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");

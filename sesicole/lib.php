@@ -130,8 +130,24 @@ function get_sesigcole(){
 }
 
 function gra_sesigcole(){
+	var_dump($_POST);
+/* $id=divide($_POST['variable']);
+$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+$params = [
+['type' => 'i', 'value' => NULL],
+['type' => 's', 'value' => $id[0]],
+['type' => 's', 'value' => $_POST['variable']],
+['type' => 's', 'value' => $_POST['variable']],
+['type' => 's', 'value' => $_POST['variable']],
+['type' => 'i', 'value' => $_SESSION['us_sds']],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => 'A']
+];
+$rta = mysql_prepd($sql, $params);
+return $rta; */
+	// return $rta;
 
-	return $rta;
 }
 
 

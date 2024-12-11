@@ -52,7 +52,7 @@ function cmp_sespers(){
 		
 	$o='Sesper';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIÓN DE PERSONAS',$w);
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
+	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',true,false);
 	$c[]=new cmp('idpersona','n','18','',$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,true,'','col-4');
 	$c[]=new cmp('tipo_doc','s','3','',$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatForm('pEr','personOld',['infgen'],this);");
 	$c[]=new cmp('nombre1','t','30','',$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');

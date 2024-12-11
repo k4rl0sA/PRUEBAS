@@ -134,7 +134,7 @@ function gra_sesigcole(){
 }
 
 
-function accion1desc_accion1($id=''){
+function temati1desc_temati1($id=''){
 	if($_REQUEST['id']!=''){
 				$id=divide($_REQUEST['id']);
 				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

@@ -329,7 +329,7 @@ function get_alertas(){
 
 
 
-		$sql="SELECT  concat(D.idpeople,D.tipo) as id,P.idpersona,P.tipo_doc,
+		$sql="SELECT  id_alert as id,P.idpersona,P.tipo_doc,
 		concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,
 		FN_EDAD(fecha_nacimiento,V.fecha),
 		cursovida,D.fecha, tipo,D.crit_epi, men_dnt, men_sinctrl, gestante, etapgest, ges_sinctrl, cronico, cro_hiper, cro_diabe, cro_epoc, cro_sinctrl, esq_vacun, alert1, selmul1, alert2, selmul2, alert3, selmul3, alert4, selmul4, alert5, selmul5, alert6, selmul6, agen_intra, servicio, fecha_cita, hora_cita, lugar_cita, deriva_pf, evento_pf";

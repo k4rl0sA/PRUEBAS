@@ -95,7 +95,7 @@ function cmp_sesigcole(){
 	// var_dump($p);
 	$days=fechas_app('vivienda');
 		
-	
+
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
@@ -135,7 +135,7 @@ function gra_sesigcole(){
 }
 
 
-function temati1desc_temati1($id=''){
+function opc_temati1desc_temati1($id=''){
 	if($_REQUEST['id']!=''){
 				$id=divide($_REQUEST['id']);
 				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

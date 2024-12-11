@@ -95,6 +95,7 @@ function cmp_sesigcole(){
 	// var_dump($p);
 	$days=fechas_app('vivienda');
 		
+	
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 

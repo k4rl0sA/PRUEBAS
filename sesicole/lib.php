@@ -143,6 +143,56 @@ function opc_temati1desc_temati1($id=''){
 				return json_encode($info['responseResult']);
 		}
 }
+function opc_temati2desc_temati2($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati3desc_temati3($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati4desc_temati4($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati5desc_temati5($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati6desc_temati6($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati7desc_temati7($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}function opc_temati8desc_temati8($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}
 
 function opc_tipose($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);

@@ -137,7 +137,7 @@ function gra_sesigcole(){
 	['type' => 's', 'value' => $id[0]],
 	['type' => 's', 'value' => $_POST['fecha_int']],
 	['type' => 'i', 'value' => $_POST['activi']],
-	['type' => 's', 'value' => $_POST['lugar']],
+	['type' => 's', 'value' => $_POST['luga']],
 	['type' => 'i', 'value' => $_POST['temati1']],
 	['type' => 'i', 'value' => $_POST['desc_temati1']],
 	['type' => 'i', 'value' => $_POST['temati2']],

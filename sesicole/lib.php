@@ -85,7 +85,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_sesigcole(){
 	$rta="";
-	$t=['fecha_int'=>'','activi'=>'','luga'=>'','temati1'=>'','desc_temati1'=>'','temati2'=>'','desc_temati2'=>'','temati3'=>'','desc_temati3'=>'','temati4'=>'','desc_temati4'=>'','temati5'=>'','desc_temati5'=>'','temati6'=>'','desc_temati6'=>'','temati7'=>'','desc_temati7'=>'','temati8'=>'','desc_temati8'=>''];
+	$t=['fecha'=>'','tipo_activ'=>'','lugar'=>'','tematica1'=>'','desc_temati1'=>'','tematica2'=>'','desc_temati2'=>'','tematica3'=>'','desc_temati3'=>'','tematica4'=>'','desc_temati4'=>'','tematica5'=>'','desc_temati5'=>'','tematica6'=>'','desc_temati6'=>'','tematica7'=>'','desc_temati7'=>'','tematica8'=>'','desc_temati8'=>''];
 	$d=get_sesigcole();
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
@@ -97,24 +97,24 @@ function cmp_sesigcole(){
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
 	$c[]=new cmp('id','h','20', $_POST['id'] ,$w.' '.$o,'','',null,null,true,false,'','col-1');
-	$c[]=new cmp('fecha_int','d','10',$d['fecha_int'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
-	$c[]=new cmp('activi','s','15',$d['activi'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,true,true,'','col-25');
-	$c[]=new cmp('luga','t','15',$d['luga'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
-	$c[]=new cmp('temati1','s','3',$d['temati1'],$w.' '.$o,'tematica 1','temati1',null,null,true,true,'','col-15',"selectDepend('temati1','desc_temati1');");
+	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
+	$c[]=new cmp('activi','s','15',$d['tipo_activ'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,true,true,'','col-25');
+	$c[]=new cmp('luga','t','15',$d['lugar'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('temati1','s','3',$d['tematica1'],$w.' '.$o,'tematica 1','temati1',null,null,true,true,'','col-15',"selectDepend('temati1','desc_temati1');");
 	$c[]=new cmp('desc_temati1','s','3',$d['desc_temati1'],$w.' '.$o,'Descripcion tematica 1','desc_temati1',null,null,true,true,'','col-35');
-    $c[]=new cmp('temati2','s','3',$d['temati2'],$w.' '.$o,'tematica 2','temati2',null,null,false,true,'','col-15',"selectDepend('temati2','desc_temati2');");
+    $c[]=new cmp('temati2','s','3',$d['tematica2'],$w.' '.$o,'tematica 2','temati2',null,null,false,true,'','col-15',"selectDepend('temati2','desc_temati2');");
     $c[]=new cmp('desc_temati2','s','3',$d['desc_temati2'],$w.' '.$o,'Descripcion tematica 2','desc_temati2',null,null,false,true,'','col-35');
-    $c[]=new cmp('temati3','s','3',$d['temati3'],$w.' '.$o,'tematica 3','temati3',null,null,false,true,'','col-15',"selectDepend('temati3','desc_temati3');");
+    $c[]=new cmp('temati3','s','3',$d['tematica3'],$w.' '.$o,'tematica 3','temati3',null,null,false,true,'','col-15',"selectDepend('temati3','desc_temati3');");
     $c[]=new cmp('desc_temati3','s','3',$d['desc_temati3'],$w.' '.$o,'Descripcion tematica 3','desc_temati3',null,null,false,true,'','col-35');
-    $c[]=new cmp('temati4','s','3',$d['temati4'],$w.' '.$o,'tematica 4','temati4',null,null,false,true,'','col-15',"selectDepend('temati4','desc_temati4');");
+    $c[]=new cmp('temati4','s','3',$d['tematica4'],$w.' '.$o,'tematica 4','temati4',null,null,false,true,'','col-15',"selectDepend('temati4','desc_temati4');");
     $c[]=new cmp('desc_temati4','s','3',$d['desc_temati4'],$w.' '.$o,'Descripcion tematica 4','desc_temati4',null,null,false,true,'','col-35');
-	$c[]=new cmp('temati5','s','3',$d['temati5'],$w.' '.$o,'tematica 5','temati5',null,null,false,true,'','col-15',"selectDepend('temati5','desc_temati5');");
+	$c[]=new cmp('temati5','s','3',$d['tematica5'],$w.' '.$o,'tematica 5','temati5',null,null,false,true,'','col-15',"selectDepend('temati5','desc_temati5');");
     $c[]=new cmp('desc_temati5','s','3',$d['desc_temati5'],$w.' '.$o,'Descripcion tematica 5','desc_temati5',null,null,false,true,'','col-35');
-	$c[]=new cmp('temati6','s','3',$d['temati6'],$w.' '.$o,'tematica 6','temati6',null,null,false,true,'','col-15',"selectDepend('temati6','desc_temati6');");
+	$c[]=new cmp('temati6','s','3',$d['tematica6'],$w.' '.$o,'tematica 6','temati6',null,null,false,true,'','col-15',"selectDepend('temati6','desc_temati6');");
     $c[]=new cmp('desc_temati6','s','3',$d['desc_temati6'],$w.' '.$o,'Descripcion tematica 6','desc_temati6',null,null,false,true,'','col-35');
-	$c[]=new cmp('temati7','s','3',$d['temati7'],$w.' '.$o,'tematica 7','temati7',null,null,false,true,'','col-15',"selectDepend('temati7','desc_temati7');");
+	$c[]=new cmp('temati7','s','3',$d['tematica7'],$w.' '.$o,'tematica 7','temati7',null,null,false,true,'','col-15',"selectDepend('temati7','desc_temati7');");
     $c[]=new cmp('desc_temati7','s','3',$d['desc_temati7'],$w.' '.$o,'Descripcion tematica 7','desc_temati7',null,null,false,true,'','col-35');
-	$c[]=new cmp('temati8','s','3',$d['temati8'],$w.' '.$o,'tematica 8','temati8',null,null,false,true,'','col-15',"selectDepend('temati8','desc_temati8');");
+	$c[]=new cmp('temati8','s','3',$d['tematica8'],$w.' '.$o,'tematica 8','temati8',null,null,false,true,'','col-15',"selectDepend('temati8','desc_temati8');");
     $c[]=new cmp('desc_temati8','s','3',$d['desc_temati8'],$w.' '.$o,'Descripcion tematica 8','desc_temati8',null,null,false,true,'','col-35');
 
 
@@ -125,6 +125,9 @@ function cmp_sesigcole(){
 }
 
 function get_sesigcole(){
+	$sql = "select id_cole,idpre,fecha,tipo_activ,lugar,tematica1,des_temati1,tematica2,des_temati2,tematica3,des_temati3,tematica4,des_temati4,tematica5,des_temati5,tematica6,des_temati6,tematica7,des_temati7,tematica8,des_temati8,usu_create,fecha_create,usu_update,fecha_update,estado 
+	from hog_sesicole";
+
 	return '';
 }
 

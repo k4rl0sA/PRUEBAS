@@ -66,6 +66,7 @@ function grabar(tb='',ev){
       <div class='titulo' > SESIONES GRUPALES Y COLECTIVAS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
+    <li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>
     <!-- <li class='icono crear'      title='Administración de Usuarios' onclick="mostrar('sesigcole','pro',event,'','lib.php','7','Creación de Usuarios');"></li> -->
     </nav>
 		<nav class='menu right' >

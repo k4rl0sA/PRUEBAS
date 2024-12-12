@@ -185,8 +185,7 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$rs = $con->query($sql);
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
-    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
-		// die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
 	}finally {
     // $GLOBALS['con']->close();
   }
@@ -271,7 +270,7 @@ function mysql_prepd($sql, $params) {
           $num_placeholders = substr_count($sql, '?');
           $num_params = count($values);
           if ($num_placeholders !== $num_params) {
-            die(log_error($_SESSION["us_sds"].'=>'."Error: El número de placeholders (?) no coincide con el número de parámetros."));
+            die(log_error($_SESSION["us_sds"].'=>'."Error: El número de placeholders (?) no coincide con el número de parámetros."););
               // die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
           }
 
@@ -548,7 +547,7 @@ function rol($a){ //a=modulo, b=perfil c=componente
   //print_r($data);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
-    }
+  }
 	return $rta;
 }
 

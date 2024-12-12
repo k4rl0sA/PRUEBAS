@@ -21,6 +21,7 @@ else {
 
 
 function lis_sesigcole(){
+	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
 	$total="SELECT COUNT(*) AS total FROM (
 		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA ,U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
 		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
@@ -53,6 +54,12 @@ WHERE G.estado_v in('7') ".whe_sesigcole()."
 //  echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag);
+}else{
+	return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
+			<strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el número del Predio a Consultar
+			<span style='margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;' onclick=\"this.parentElement.style.display='none';\">&times;</span>
+		</div>";
+}
 }	
 
 function whe_sesigcole() {
@@ -341,7 +348,6 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 	if ($a=='sesigcole' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesigcole','pro',event,'','lib.php',7);\"></li>";
 		$rta.="<li title='Crear Integrantes de la Actividad' Onclick=\"mostrar('sespers','pro',event,'','sesiperson.php',7,'sespers');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";
 	}
 	

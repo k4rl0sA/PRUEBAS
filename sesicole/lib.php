@@ -64,9 +64,9 @@ WHERE gg.estado_v IN ('7')
 function whe_sesigcole() {
 	$sql = "";
 	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
-		$sql .= " AND gg.idgeo = '" . $_POST['fpred'] . "' AND sc.usu_creo ='" . $_POST['fdigita'] . "'";
+		$sql .= " AND sc.idpre = '" . $_POST['fpred'] . "' AND sc.usu_creo ='" . $_POST['fdigita'] . "'";
 	}else{
-		$sql .="AND gg.idgeo ='0'";
+		$sql .="AND sc.idpre ='0'";
 	} 
 	return $sql;
 }

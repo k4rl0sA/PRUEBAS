@@ -178,15 +178,16 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     $con = $GLOBALS['con'];
   if (!$con) {
     die(log_error($_SESSION["us_sds"].' = Connection error'));
-      // die(json_encode(['code' => 30, 'message' => 'Connection error']));
+    die(json_encode(['code' => 30, 'message' => 'Connection error']));
   }
 	try {
 		$con->set_charset('utf8');
 		$rs = $con->query($sql);
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
-    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
     die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
+
 	}finally {
     // $GLOBALS['con']->close();
   }

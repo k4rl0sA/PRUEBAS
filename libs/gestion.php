@@ -271,7 +271,7 @@ function mysql_prepd($sql, $params) {
           $num_placeholders = substr_count($sql, '?');
           $num_params = count($values);
           if ($num_placeholders !== $num_params) {
-            die(log_error($_SESSION["us_sds"].'=>'."Error: El número de placeholders (?) no coincide con el número de parámetros."););
+            die(log_error($_SESSION["us_sds"].'=>'."Error: El número de placeholders (?) no coincide con el número de parámetros."));
               // die("Error: El número de placeholders (?) no coincide con el número de parámetros.");
           }
 

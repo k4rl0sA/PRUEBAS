@@ -125,19 +125,20 @@ function cmp_sesigcole(){
 }
 
 function get_sesigcole(){
-	/* $id=divide($_REQUEST['id']);
+	$id=divide($_REQUEST['id']);
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
 		$sql = "select id_cole,idpre,fecha,tipo_activ,lugar,tematica1,des_temati1,tematica2,des_temati2,tematica3,des_temati3,tematica4,des_temati4,tematica5,des_temati5,tematica6,des_temati6,tematica7,des_temati7,tematica8,des_temati8,usu_create,fecha_create,usu_update,fecha_update,estado 
 		from hog_sesicole
 		WHERE idpre ='{$id[0]}'";
+		var_dump($sql);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';
 		}
 		return $info['responseResult'][0];
-	} */
+	}
 }
 
 function gra_sesigcole(){

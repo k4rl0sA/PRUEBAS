@@ -130,8 +130,8 @@ function get_sesigcole(){
 
 function gra_sesigcole(){
 	var_dump($_POST);
-	$id=divide($_POST['variable']);
-	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$id=divide($_POST['id']);
+	$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params = [
 	['type' => 'i', 'value' => NULL],
 	['type' => 's', 'value' => $id[0]],

@@ -32,7 +32,7 @@ function lis_sesigcole(){
 	$regxPag=5;
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
  $sql="SELECT 
-    sc.id_cole AS 'ACCIONES',
+   sc.id_cole AS 'ACCIONES',
     sc.fecha,
     FN_CATALOGODESC(239, sc.tipo_activ),
     sc.lugar,

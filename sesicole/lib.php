@@ -28,11 +28,9 @@ function lis_sesigcole(){
 			WHERE G.estado_v IN ('7') ".whe_sesigcole()." AND U.id_usuario = '{$_SESSION['us_sds']}') AS Subquery";
 			echo $total;
 	$info=datos_mysql($total);
-	$total=$info['responseResult'][0]['total']; 
+	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
-
-	
 /* $sql="SELECT 
     sc.id_cole AS 'ACCIONES',
     sc.fecha,

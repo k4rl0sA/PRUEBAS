@@ -103,8 +103,8 @@ function cmp_sesigcole(){
 	$days=fechas_app('vivienda');
 	$o='Secgi';
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
-	$c[]=new cmp('id','h','20',$_POST['fpred'],$w.' '.$o,'','',null,null,true,false,'','col-1');
-	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);"); 
+	$c[]=new cmp('id','h','20',$_POST['fpred'].'_'.$d['id'],$w.' '.$o,'','',null,null,true,false,'','col-1');
+	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('activi','s','15',$d['tipo_activ'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,true,true,'','col-25');
 	$c[]=new cmp('luga','t','15',$d['lugar'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('temati1','s','3',$d['tematica1'],$w.' '.$o,'tematica 1','temati1',null,null,true,true,'','col-15',"selectDepend('temati1','des_temati1');");
@@ -136,7 +136,7 @@ function get_sesigcole(){
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
-		$sql = "select id_cole,idpre,fecha,tipo_activ,lugar,tematica1,des_temati1,tematica2,des_temati2,tematica3,des_temati3,tematica4,des_temati4,tematica5,des_temati5,tematica6,des_temati6,tematica7,des_temati7,tematica8,des_temati8,usu_create,fecha_create,usu_update,fecha_update,estado 
+		$sql = "select id_cole id,idpre,fecha,tipo_activ,lugar,tematica1,des_temati1,tematica2,des_temati2,tematica3,des_temati3,tematica4,des_temati4,tematica5,des_temati5,tematica6,des_temati6,tematica7,des_temati7,tematica8,des_temati8,usu_create,fecha_create,usu_update,fecha_update,estado 
 		from hog_sescole
 		WHERE idpre ='{$id[0]}'";
 		$info=datos_mysql($sql);

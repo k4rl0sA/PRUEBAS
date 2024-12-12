@@ -125,7 +125,7 @@ function cmp_sesigcole(){
 }
 
 function get_sesigcole(){
-	$id=divide($_REQUEST['id']);
+	/* $id=divide($_REQUEST['id']);
 	if($_REQUEST['id']==''){
 		return "";
 	}else{
@@ -137,7 +137,7 @@ function get_sesigcole(){
 			return '';
 		}
 		return $info['responseResult'][0];
-	}
+	} */
 }
 
 function gra_sesigcole(){

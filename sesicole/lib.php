@@ -92,7 +92,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_sesigcole(){
 	$rta="";
-	$t=['fecha'=>'','tipo_activ'=>'','lugar'=>'','tematica1'=>'','des_temati1'=>'','tematica2'=>'','des_temati2'=>'','tematica3'=>'','des_temati3'=>'','tematica4'=>'','des_temati4'=>'','tematica5'=>'','des_temati5'=>'','tematica6'=>'','des_temati6'=>'','tematica7'=>'','des_temati7'=>'','tematica8'=>'','des_temati8'=>''];
+	$t=['id'=>'','fecha'=>'','tipo_activ'=>'','lugar'=>'','tematica1'=>'','des_temati1'=>'','tematica2'=>'','des_temati2'=>'','tematica3'=>'','des_temati3'=>'','tematica4'=>'','des_temati4'=>'','tematica5'=>'','des_temati5'=>'','tematica6'=>'','des_temati6'=>'','tematica7'=>'','des_temati7'=>'','tematica8'=>'','des_temati8'=>''];
 	$d=get_sesigcole();
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);

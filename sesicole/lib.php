@@ -32,7 +32,7 @@ function lis_sesigcole(){
 	$regxPag=5;
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
 
- /* $sql="SELECT 
+  $sql="SELECT 
    sc.id_cole AS 'ACCIONES',
     sc.fecha,
     FN_CATALOGODESC(239, sc.tipo_activ),
@@ -50,7 +50,7 @@ WHERE gg.estado_v IN ('7')
   AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}')
    ".whe_sesigcole()." 
 	GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar,sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
-	LIMIT $pag, $regxPag"; */
+	LIMIT $pag, $regxPag"; 
   echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 

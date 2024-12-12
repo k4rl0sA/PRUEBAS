@@ -264,7 +264,7 @@ function opc_tipose($id=''){
 }
 
 function opc_fm1($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=239 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati1($id=''){
@@ -272,7 +272,7 @@ function opc_temati1($id=''){
 }
 
 function opc_desc_temati1($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati2($id=''){
@@ -280,7 +280,7 @@ function opc_temati2($id=''){
 }
 
 function opc_desc_temati2($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati3($id=''){
@@ -288,7 +288,7 @@ function opc_temati3($id=''){
 }
 
 function opc_desc_temati3($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati4($id=''){
@@ -296,7 +296,7 @@ function opc_temati4($id=''){
 }
 
 function opc_desc_temati4($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati5($id=''){
@@ -304,7 +304,7 @@ function opc_temati5($id=''){
 }
 
 function opc_desc_temati5($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati6($id=''){
@@ -312,7 +312,7 @@ function opc_temati6($id=''){
 }
 
 function opc_desc_temati6($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati7($id=''){
@@ -320,7 +320,7 @@ function opc_temati7($id=''){
 }
 
 function opc_desc_temati7($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_temati8($id=''){
@@ -328,7 +328,7 @@ function opc_temati8($id=''){
 }
 
 function opc_desc_temati8($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=238 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_rta($id=''){

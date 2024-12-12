@@ -69,7 +69,7 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
       <div class='titulo' > SESIONES GRUPALES Y COLECTIVAS
 		<nav class='menu left' >
     <li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
-    <!-- <li class='icono crear'      title='Administración de Usuarios' onclick="mostrar('sesigcole','pro',event,'','lib.php','7','Creación de Usuarios');"></li> -->
+    <li class='icono crear' title='Crear' onclick="mostrar(mod,'pro');"></li>
     </nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

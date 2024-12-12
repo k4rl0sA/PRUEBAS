@@ -33,7 +33,7 @@ function lis_sesigcole(){
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
 
 	
-$sql="SELECT 
+/* $sql="SELECT 
     sc.id_cole AS 'ACCIONES',
     sc.fecha,
     FN_CATALOGODESC(239, sc.tipo_activ),
@@ -54,7 +54,7 @@ WHERE gg.estado_v IN ('7')
 	LIMIT $pag, $regxPag";
   echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag);
+	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); */
 }else{
 	return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
 			<strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el número del Predio a Consultar

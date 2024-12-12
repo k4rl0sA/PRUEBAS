@@ -21,7 +21,7 @@ else {
 
 
 function lis_sesigcole(){
-	if (!empty($_POST['fidentificacion']) || !empty($_POST['ffam'])) {
+	if (!empty($_POST['fpred'])) {
 	$total="SELECT COUNT(*) AS total FROM (
 		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA ,U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
 		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
@@ -32,24 +32,24 @@ function lis_sesigcole(){
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
 
 	
-$sql="SELECT G.idgeo AS ACCIONES,
-	G.idgeo AS Cod_Predio,
-	H.direccion,
-	H.sector_catastral Sector,
-	H.nummanzana AS Manzana,
-	H.predio_num AS predio,
-	H.unidad_habit AS 'Unidad',
-	FN_CATALOGODESC(2,H.localidad) AS 'Localidad',
-	U1.nombre,
-	G.fecha_create,
-	FN_CATALOGODESC(44,G.estado_v) AS estado
-	FROM geo_gest G
-	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo
-	LEFT JOIN usuarios U ON H.subred = U.subred
-	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario 
-WHERE G.estado_v in('7') ".whe_sesigcole()." 
-	AND U.id_usuario = '{$_SESSION['us_sds']}'
-	ORDER BY nummanzana, predio_num
+$sql="SELECT 
+    sc.id_cole AS 'ACCIONES',
+    sc.fecha,
+    FN_CATALOGODESC(239, sc.tipo_activ),
+    sc.lugar,
+    FN_CATALOGODESC(237, sc.tematica1),
+    FN_CATALOGODESC(238, sc.des_temati1),
+    u.nombre AS Creo,
+    sc.fecha_create AS Creado,
+    sc.estado
+FROM hog_sescole sc
+LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario
+LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo
+LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo
+WHERE gg.estado_v IN ('7')
+  AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}')
+   ".whe_sesigcole()." 
+	GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar,sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
 	LIMIT $pag, $regxPag";
 //  echo $sql;
 		$datos=datos_mysql($sql);
@@ -65,9 +65,9 @@ WHERE G.estado_v in('7') ".whe_sesigcole()."
 function whe_sesigcole() {
 	$sql = "";
 	if (!empty($_POST['fpred']) && $_POST['fdigita']) {
-		$sql .= " AND G.idgeo = '" . $_POST['fpred'] . "' AND G.usu_creo ='" . $_POST['fdigita'] . "'";
+		$sql .= " AND gg.idgeo = '" . $_POST['fpred'] . "' AND sc.usu_creo ='" . $_POST['fdigita'] . "'";
 	}else{
-		$sql .="AND G.idgeo ='0'";
+		$sql .="AND gg.idgeo ='0'";
 	} 
 	return $sql;
 }

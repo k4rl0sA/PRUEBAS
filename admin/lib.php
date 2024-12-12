@@ -356,9 +356,9 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_pcindi($tab);
             break;
 		case '39':
-				$tab = "Toma_de_Signos";
+				$tab = "Familias_Creadas";
 				$encr = encript($tab, $clave);
-				if($tab=decript($encr,$clave))lis_sign($tab);
+				if($tab=decript($encr,$clave))lis_famcrea($tab);
 				break;
 		case '40':
 			$tab = "Tamizaje_Epoc";
@@ -1566,21 +1566,18 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
-function lis_sig($txt){
+function lis_famcrea($txt){
 	$sql="SELECT 
-G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
-P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
-A.id_signos AS Cod_Registro, A.fecha_toma AS Fecha_Toma, A.peso AS Peso, A.talla AS Talla, A.imc AS IMC, A.tas AS Tension_Arterial_Sistolica, A.tad AS Tension_Arterial_Diastolica, A.frecard AS Frecuencia_Cardiaca, A.satoxi AS Saturacion_Oxigeno, A.peri_abdomi AS Perimetro_Abdominal, A.peri_braq AS Perimetro_Braquial, A.zscore AS Zscore, A.glucom AS Glucometria,
-A.usu_create AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
-FROM `hog_signos` A
-LEFT JOIN person P ON A.idpeople = P.idpeople
-LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
+G.subred AS Subred, F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia, 
+F.usu_create, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, F.fecha_create AS Fecha_Creacion
+FROM `hog_fam` F
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN usuarios U ON A.usu_create = U.id_usuario WHERE 1 ";
+LEFT JOIN usuarios U ON F.usu_create = U.id_usuario
+WHERE F.usu_create NOT IN (1022358140) ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred13();
 	$sql.=whe_date13();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM `hog_signos` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_create = U.id_usuario WHERE 1 ";	
+	$tot="SELECT COUNT(*) total FROM `hog_fam` F  LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON F.usu_create = U.id_usuario WHERE F.usu_create NOT IN (1022358140) ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred13();
 	$tot.=whe_date13();
 	$_SESSION['sql_'.$txt]=$sql;
@@ -1772,21 +1769,7 @@ function whe_date13(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(A.fecha_toma) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
-	return $sql;
-}
-
-
-function whe_subred17() {
-	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
-	return $sql;
-}
-
-function whe_date17(){
-	$dia=date('d');
-	$mes=date('m');
-	$ano=date('Y');
-	$sql= " AND date(A.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND date(F.fecha_create) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

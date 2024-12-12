@@ -130,23 +130,37 @@ function get_sesigcole(){
 
 function gra_sesigcole(){
 	var_dump($_POST);
-/* $id=divide($_POST['variable']);
-$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
-$params = [
-['type' => 'i', 'value' => NULL],
-['type' => 's', 'value' => $id[0]],
-['type' => 's', 'value' => $_POST['variable']],
-['type' => 's', 'value' => $_POST['variable']],
-['type' => 's', 'value' => $_POST['variable']],
-['type' => 'i', 'value' => $_SESSION['us_sds']],
-['type' => 's', 'value' => NULL],
-['type' => 's', 'value' => NULL],
-['type' => 's', 'value' => 'A']
-];
-$rta = mysql_prepd($sql, $params);
-return $rta; */
+	$id=divide($_POST['variable']);
+	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$params = [
+	['type' => 'i', 'value' => NULL],
+	['type' => 's', 'value' => $id[0]],
+	['type' => 's', 'value' => $_POST['fecha']],
+	['type' => 'i', 'value' => $_POST['tipo_activ']],
+	['type' => 's', 'value' => $_POST['lugar']],
+	['type' => 'i', 'value' => $_POST['tematica1']],
+	['type' => 'i', 'value' => $_POST['des_temati1']],
+	['type' => 'i', 'value' => $_POST['tematica2']],
+	['type' => 'i', 'value' => $_POST['des_temati2']],
+	['type' => 'i', 'value' => $_POST['tematica3']],
+	['type' => 'i', 'value' => $_POST['des_temati3']],
+	['type' => 'i', 'value' => $_POST['tematica4']],
+	['type' => 'i', 'value' => $_POST['des_temati4']],
+	['type' => 'i', 'value' => $_POST['tematica5']],
+	['type' => 'i', 'value' => $_POST['des_temati5']],
+	['type' => 'i', 'value' => $_POST['tematica6']],
+	['type' => 'i', 'value' => $_POST['des_temati6']],
+	['type' => 'i', 'value' => $_POST['tematica7']],
+	['type' => 'i', 'value' => $_POST['des_temati7']],
+	['type' => 'i', 'value' => $_POST['tematica8']],
+	['type' => 'i', 'value' => $_POST['des_temati8']],
+	['type' => 'i', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => 'A']
+	];
+	return mysql_prepd($sql, $params);
 	// return $rta;
-
 }
 
 function get_personOld(){

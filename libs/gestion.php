@@ -185,7 +185,8 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$rs = $con->query($sql);
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
-    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
+    die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
 	}finally {
     // $GLOBALS['con']->close();
   }

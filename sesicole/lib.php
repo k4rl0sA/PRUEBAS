@@ -26,12 +26,12 @@ function lis_sesigcole(){
 		SELECT G.idgeo AS ACCIONES,G.idgeo AS Cod_Predio,H.direccion,H.sector_catastral Sector,H.nummanzana AS Manzana,H.predio_num AS predio,H.unidad_habit AS 'Unidad',FN_CATALOGODESC(2,H.localidad) AS 'Localidad', H.upz AS PRUEBA ,U1.nombre,G.fecha_create,FN_CATALOGODESC(44,G.estado_v) AS estado 
 		FROM geo_gest G	LEFT JOIN hog_geo H ON G.idgeo = H.idgeo LEFT JOIN usuarios U ON H.subred = U.subred	LEFT JOIN usuarios U1 ON H.usu_creo = U1.id_usuario
 			WHERE G.estado_v IN ('7') ".whe_sesigcole()." AND U.id_usuario = '{$_SESSION['us_sds']}') AS Subquery";
-			echo $total;
+			// echo $total;
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
-/* $sql="SELECT 
+ $sql="SELECT 
     sc.id_cole AS 'ACCIONES',
     sc.fecha,
     FN_CATALOGODESC(239, sc.tipo_activ),
@@ -52,7 +52,7 @@ WHERE gg.estado_v IN ('7')
 	LIMIT $pag, $regxPag";
   echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); */
+	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 
 }else{
 	return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
 			<strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el número del Predio a Consultar

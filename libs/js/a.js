@@ -1124,7 +1124,7 @@ function myFetch(b, c, d) {
 						inform('No se encontraron registros asociados');
 						return;
 					  }
-					  let data=Object.values(data);
+					  let dat=Object.values(data);
 					  let cmp=document.querySelectorAll(`.${clsCmp} input ,.${clsCmp} select`);
 					  for (i=1;i<cmp.length;i++) {
 						  if(cmp[i].type==='checkbox')cmp[i].checked=false;
@@ -1134,7 +1134,7 @@ function myFetch(b, c, d) {
 								  cmp[i].value='NO';
 							  }
 							  // key += value !== '' ? value + '_' : '';
-							  cmp[i].value=i==0?data[i-1]:data[i];
+							  cmp[i].value=i==0?dat[i-1]:dat[i];
 							  for (x=0;x<c.length;x++) {
 								  if(cmp[i].name==c[x]) cmp[i].disabled = true;
 							  }

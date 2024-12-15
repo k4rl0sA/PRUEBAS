@@ -1144,6 +1144,48 @@ function myFetch(b, c, d) {
 	  }	
   }
 
+  function getDatKey(clsKey, fun, clsCmp, cab, path = ruta_app) {
+	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
+	let id = '';
+	for (let i = 0; i < c.length; i++) {
+	  const { value } = c[i];
+	  if (value === '') {
+		return false; // Si falta un valor, detener ejecución.
+	  }
+	  id += `${value}_`;
+	}
+  
+	id = id.slice(0, -1); // Eliminar el último guion bajo.
+  
+	getJSON('get', fun, id, path)
+	  .then((data) => {
+		if (!data || Object.keys(data).length === 0) {
+		  inform('No se encontraron registros asociados');
+		  return;
+		}
+  
+		const cmp = document.querySelectorAll(`.${clsCmp} input, .${clsCmp} select`);
+		cmp.forEach((element) => {
+		  const key = element.name;
+		  if (data[key] !== undefined) {
+			element.value = data[key];
+  
+			if (element.type === 'checkbox') {
+			  element.checked = data[key] === 'SI';
+			  element.value = element.checked ? 'SI' : 'NO';
+			}
+		  }
+  
+		  // Deshabilitar campos especificados en el arreglo `cab`.
+		  if (cab.includes(key)) {
+			element.disabled = true;
+		  }
+		});
+	  })
+	  .catch(handleRequestError);
+  }
+  
+
   async function getDataFetch(a, ev, i,url, blo) {
 	if (ev.type === 'click') {
 	  const c = document.getElementById(`${a}-pro-con`);

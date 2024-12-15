@@ -1172,47 +1172,6 @@ function myFetch(b, c, d) {
 	}
   }
   
-
-/*   function getDaTab(clsKey, fun,clsCmp) {
-	const c = document.querySelectorAll(`.${clsKey} input, .${clsKey} select`);
-	let id = '';
-		for (let i = 0; i < c.length; i++) {
-		  const {value} = c[i];
-		  if (value === '') {
-				break;
-		  }
-		  id += `${value}_`;
-		}
-		if (id===''){
-		  return false;
-		}else{
-			id = id.slice(0, -1);
-				getJSON('get', fun, id)
-				  .then(data => {
-					if (Object.keys(data).length === 0) {
-						inform('No se encontraron registros asociados');
-						return;
-					  }
-					  var data=Object.values(data);
-					  var cmp=document.querySelectorAll(`.${clsCmp} input ,.${clsCmp} select`);
-					  for (i=1;i<cmp.length;i++) {
-						  if(cmp[i].type==='checkbox')cmp[i].checked=false;
-							  if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
-								  cmp[i].checked=true;
-							  }else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
-								  cmp[i].value='NO';
-							  }
-							  // key += value !== '' ? value + '_' : '';
-							  cmp[i].value=i==0?data[i-1]:data[i];
-							  for (x=0;x<c.length;x++) {
-								  if(cmp[i].name==c[x]) cmp[i].disabled = true;
-							  }
-					  }
-				  })
-			  .catch(handleRequestError);
-	  }	
-  } */
-
   function validDate(a,b,c){
 	let Ini=dateAdd(b);
 	let Fin=dateAdd(c);

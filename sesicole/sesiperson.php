@@ -51,7 +51,7 @@ function cmp_sespers(){
 		
 	$o='Sesper';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIÓN DE PERSONAS',$w);
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',true,false);
+	$c[]=new cmp('ids','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',true,false);
 	$c[]=new cmp('idpersona','n',18,'',$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,true,'','col-4');
 	$c[]=new cmp('tipo_doc','s',3,'',$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,true,'','col-4',"getDatKey('pEr','personOld','sescol',['tipo_doc'],'sesiperson.php');");
 	$c[]=new cmp('nombre1','t',30,'',$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
@@ -99,22 +99,29 @@ function get_sespers(){
 function gra_sespers(){
 
 	var_dump($_POST);
-	/* $id=divide($_POST['variable']);
-	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$id=divide($_POST['ids']);
+	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params =[
 	['type' => 'i', 'value' => NULL],
-	['type' => 'i', 'value' => $_POST['variable']],
-	['type' => 's', 'value' => $_POST['variable']],
-	['type' => 's', 'value' => $_POST['variable']],
-	['type' => 's', 'value' => $_POST['variable']],
-	['type' => 's', 'value' => $_POST['variable']],
-	['type' => 's', 'value' => $_POST['variable']],
+	['type' => 'i', 'value' => $id[0]],
+	['type' => 'i', 'value' => $_POST['nombre1']],
+	['type' => 's', 'value' => $_POST['nombre2']],
+	['type' => 's', 'value' => $_POST['apellido1']],
+	['type' => 's', 'value' => $_POST['apellido2']],
+	['type' => 's', 'value' => $_POST['fecha_nacimiento']],
+	['type' => 's', 'value' => $_POST['sexo']],
+	['type' => 's', 'value' => $_POST['genero']],
+	['type' => 's', 'value' => $_POST['etnia']],
+	['type' => 's', 'value' => $_POST['pueblo']],
+	['type' => 's', 'value' => $_POST['nacionalidad']],
+	['type' => 's', 'value' => $_POST['regimen']],
+	['type' => 's', 'value' => $_POST['eapb']],
 	['type' => 'i', 'value' => $_SESSION['us_sds']],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => 'A']
 	];
-	return  $rta= mysql_prepd($sql, $params); */
+	return  $rta= mysql_prepd($sql, $params);
 }
 
 function get_person(){

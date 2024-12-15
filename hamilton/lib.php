@@ -87,7 +87,7 @@ function cmp_tamhamilton(){
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('idhamilton','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('hamilton_idpersona','t','20',$d['hamilton_idpersona'],$w.' '.$o.' '.$key,'N° Identificación','hamilton_idpersona',null,'',false,false,'','col-2');
-	$c[]=new cmp('hamilton_tipodoc','s','3',$d['hamilton_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','hamilton_tipodoc',null,'',false,false,'','col-25');//,'getDatForm(\'srch\',\'person\',[\'datos\']);'
+	$c[]=new cmp('hamilton_tipodoc','s','3',$d['hamilton_tipodoc'],$w.' '.$o.' '.$key,'Tipo Identificación','hamilton_tipodoc',null,'',false,false,'','col-25');
 	$c[]=new cmp('hamilton_nombre','t','50',$d['hamilton_nombre'],$w.' '.$o,'nombres','hamilton_nombre',null,'',false,false,'','col-4');
 	$c[]=new cmp('hamilton_fechanacimiento','d','10',$d['hamilton_fechanacimiento'],$w.' '.$o,'fecha nacimiento','hamilton_fechanacimiento',null,'',false,false,'','col-15');
     $c[]=new cmp('hamilton_edad','n','3',$d['hamilton_edad'],$w.' '.$o,'edad','hamilton_edad',null,'',true,false,'','col-1');

@@ -98,7 +98,7 @@ function get_sespers(){
 
 function gra_sespers(){
 
-	var_dump($_POST);
+	// var_dump($_POST);
 	$id=divide($_POST['ids']);
 	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params =[

@@ -24,7 +24,6 @@ $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil
 var mod='sesigcole';	
 var ruta_app='lib.php';
 
-
 function actualizar(){
 	act_lista(mod);
 }

@@ -342,7 +342,7 @@ function opc_rta($id=''){
 }
 
 function formato_dato($a,$b,$c,$d){
- $b=strtolower($b);
+ $b=strtolower($b);			
  $rta=$c[$d];
 // $rta=iconv('U	TF-8','ISO-8859-1',$rta);
 // var_dump($c);

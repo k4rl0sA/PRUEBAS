@@ -347,7 +347,8 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('U	TF-8','ISO-8859-1',$rta);
 // var_dump($c);
 	if ($a=='sesigcole' && $b=='acciones'){//a mnombre del modulo
-		$rta="<nav class='menu right'>";		
+		$rta="<nav class='menu right'>";	
+		$rta.="<li class='icono asigna1' title='Crear Sesion' id='".$c['ACCIONES']."' Onclick=\"mostrar('sesigcole','pro',event,'','lib.php',7);\"></li>";	
 		$rta.="<li title='Crear Integrantes de la Actividad' Onclick=\"mostrar('sespers','pro',event,'','sesiperson.php',7,'sespers');\"><i class='fa-solid fa-person-circle-plus ico' id='".$c['ACCIONES']."'></i></li>";
 	}
 	

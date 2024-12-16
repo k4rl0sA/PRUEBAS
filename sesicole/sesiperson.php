@@ -195,6 +195,21 @@ function opc_pueblo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=15 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
 
+function formato_dato($a,$b,$c,$d){
+	$b=strtolower($b);			
+	$rta=$c[$d];
+   // $rta=iconv('U	TF-8','ISO-8859-1',$rta);
+   // var_dump($c);
+	   if ($a=='persescol' && $b=='acciones'){//a mnombre del modulo
+		$rta="<nav class='menu right'>";	
+    //$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'apopsicduel',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'apopsicduel.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'apopsicduel',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','cierre_caso'],'../vsp/apopsicduel.php');\"></li>"; //CAMBIO tener en cuenta el evento
+  }
+
+	   
+	return $rta;
+}
+
 function bgcolor($a,$c,$f='c'){
 	$rta="";
 	return $rta;

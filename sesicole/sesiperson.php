@@ -40,7 +40,7 @@ function focus_sespers(){
 	// var_dump($_POST['id']);
   $id = divide($_POST['id']);
   $info=datos_mysql("SELECT COUNT(*) total FROM persescol A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
+  WHERE A.estado = 'A' AND sesion='".$id[1]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
   $pag=(isset($_POST['pag-persescol']))? ($_POST['pag-persescol']-1)* $regxPag:0;
@@ -50,7 +50,7 @@ function focus_sespers(){
 A.tipo_doc,A.idpersona,A.estado,fecha_create 'Fecha de Creación',nombre Creó 
 FROM persescol A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";
-	$sql.=" WHERE A.estado = 'A' AND A.id_person='".$id[0]; // CAMBIO 
+	$sql.=" WHERE A.estado = 'A' AND A.sesion='".$id[0]; // CAMBIO 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

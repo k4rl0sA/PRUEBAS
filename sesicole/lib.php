@@ -204,7 +204,7 @@ function gra_sesigcole(){
 			['type' => 'i', 'value' => $_POST['temati8']],
 			['type' => 'i', 'value' => $_POST['desc_temati8']],
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
-			['type' => 'i', 'value' => $id[0]]
+			['type' => 'i', 'value' => $id[1]]
 		];
 		var_dump($sql);
 		return mysql_prepd($sql, $params);

@@ -194,3 +194,8 @@ function opc_genero($id=''){
 function opc_pueblo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=15 and estado='A' ORDER BY CAST(idcatadeta AS UNSIGNED)",$id);
 }
+
+function bgcolor($a,$c,$f='c'){
+	$rta="";
+	return $rta;
+   }

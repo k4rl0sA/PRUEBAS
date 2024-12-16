@@ -150,6 +150,7 @@ function get_sesigcole(){
 function gra_sesigcole(){
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
+	var_dump($_POST);
 	if (count($id)==2) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [

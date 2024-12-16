@@ -52,7 +52,7 @@ FUNCTION lis_ambient(){
    }
 
 
-function cmp_ambient(){
+function cmp_etnias(){
 	$rta="<div class='encabezado ambient'>TABLA AMBIENTAL</div>
 	<div class='contenido' id='ambient-lis'>".lis_ambient()."</div></div>";
 	$hoy=date('Y-m-d');

@@ -181,6 +181,8 @@ function gra_sesigcole(){
 			['type' => 's', 'value' => 'A']
 		];
 		return mysql_prepd($sql, $params);
+	}else{
+		var_dump($_POST);
 	}
 	
 	// return $rta;

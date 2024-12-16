@@ -106,7 +106,7 @@ function cmp_sesigcole(){
 	$c[]=new cmp('id','t','20',$_POST['id'],$w.' '.$o,'','',null,null,true,false,'','col-1');
 	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,false,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('activi','s','15',$d['tipo_activ'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,true,true,'','col-25');
-	$c[]=new cmp('luga','t','15',$d['lugar'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('luga','t','100',$d['lugar'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
 	$c[]=new cmp('temati1','s','3',$d['tematica1'],$w.' '.$o,'tematica 1','temati1',null,null,true,true,'','col-15',"selectDepend('temati1','des_temati1');");
 	$c[]=new cmp('desc_temati1','s','3',$d['des_temati1'],$w.' '.$o,'Descripcion tematica 1','desc_temati1',null,null,true,true,'','col-35');
     $c[]=new cmp('temati2','s','3',$d['tematica2'],$w.' '.$o,'tematica 2','temati2',null,null,false,true,'','col-15',"selectDepend('temati2','desc_temati2');");

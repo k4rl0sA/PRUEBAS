@@ -37,6 +37,7 @@ function focus_etnias(){
 	   }
   return $rta;
 }
+
 FUNCTION lis_etnias(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);

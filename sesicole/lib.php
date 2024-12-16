@@ -155,7 +155,7 @@ function gra_sesigcole(){
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [
 			['type' => 'i', 'value' => NULL],
-			['type' => 's', 'value' => $id[0]],
+			['type' => 'i', 'value' => $id[0]],
 			['type' => 's', 'value' => $_POST['fecha_int']],
 			['type' => 'i', 'value' => $_POST['activi']],
 			['type' => 's', 'value' => $_POST['luga']],
@@ -182,9 +182,32 @@ function gra_sesigcole(){
 		];
 		return mysql_prepd($sql, $params);
 	}else{
-		var_dump($_POST);
+		$sql = "UPDATE hog_sescole SET tipo_activ=?,lugar=?,tematica1=?,des_temati1=?,tematica2=?,des_temati2=?,tematica3=?,des_temati3=?,tematica4=?,des_temati4=?,tematica5=?,des_temati5=?,tematica6=?,
+		des_temati6=?,tematica7=?,des_temati7=?,tematica8=?,des_temati8=?,usu_update=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR) WHERE id_cole=?";
+		$params = [
+			['type' => 'i', 'value' => $_POST['activi']],
+			['type' => 's', 'value' => $_POST['luga']],
+			['type' => 'i', 'value' => $_POST['temati1']],
+			['type' => 'i', 'value' => $_POST['desc_temati1']],
+			['type' => 'i', 'value' => $_POST['temati2']],
+			['type' => 'i', 'value' => $_POST['desc_temati2']],
+			['type' => 'i', 'value' => $_POST['temati3']],
+			['type' => 'i', 'value' => $_POST['desc_temati3']],
+			['type' => 'i', 'value' => $_POST['temati4']],
+			['type' => 'i', 'value' => $_POST['desc_temati4']],
+			['type' => 'i', 'value' => $_POST['temati5']],
+			['type' => 'i', 'value' => $_POST['desc_temati5']],
+			['type' => 'i', 'value' => $_POST['temati6']],
+			['type' => 'i', 'value' => $_POST['desc_temati6']],
+			['type' => 'i', 'value' => $_POST['temati7']],
+			['type' => 'i', 'value' => $_POST['desc_temati7']],
+			['type' => 'i', 'value' => $_POST['temati8']],
+			['type' => 'i', 'value' => $_POST['desc_temati8']],
+			['type' => 'i', 'value' => $_SESSION['us_sds']],
+			['type' => 'i', 'value' => $id[0]]
+		];
+		return mysql_prepd($sql, $params);
 	}
-	
 	// return $rta;
 }
 

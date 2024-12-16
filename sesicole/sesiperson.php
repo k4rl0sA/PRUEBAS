@@ -81,7 +81,7 @@ function cmp_sespers(){
 	$c[]=new cmp('nombre2','t',30,'',$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
 	$c[]=new cmp('apellido1','t',30,'',$w.' '.$o,'Primer Apellido','apellido1',null,null,true,true,'','col-2');
 	$c[]=new cmp('apellido2','t',30,'',$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,true,'','col-2');
-	$c[]=new cmp('fecha_nacimiento','d',10,'',$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);",[],"child14('fecha_nacimiento','osx');Ocup5('fecha_nacimiento','OcU');");
+	$c[]=new cmp('fecha_nacimiento','d',10,'',$w.' '.$o,'Fecha de nacimiento','fecha_nacimiento',null,null,true,true,'','col-2',"validDate(this,-43800,0);");
 	$c[]=new cmp('sexo','s',3,'',$w.' '.$o,'Sexo','sexo',null,null,true,true,'','col-2');
 	$c[]=new cmp('genero','s',3,'',$w.' '.$o,'Genero','genero',null,null,true,true,'','col-2');
 	$c[]=new cmp('etnia','s',3,'',$w.' '.$o,'Pertenencia Etnica','etnia',null,null,true,true,'','col-2',"enabEtni('etnia','ETn','idi');");

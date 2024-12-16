@@ -35,9 +35,32 @@ function focus_sespers(){
 	 }
 	 return $rta;
    }
+
+   FUNCTION lis_perses(){
+	// var_dump($_POST['id']);
+  $id = divide($_POST['id']);
+  $info=datos_mysql("SELECT COUNT(*) total FROM personsesion A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=4;
+  $pag=(isset($_POST['pag-personsesion']))? ($_POST['pag-personsesion']-1)* $regxPag:0;
+
+  
+	$sql="SELECT `id_person` ACCIONES, sesion 'Cod Registro',
+A.tipo_doc,A.idpersona,estado,fecha_create 'Fecha de Cierre',nombre Creó 
+FROM personsesion A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";
+	$sql.=" WHERE A.estado = 'A' AND A.id_person='".$id[0]; // CAMBIO 
+	$sql.="' ORDER BY A.fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"personsesion",$regxPag,'sesiperson.php');
+   }
+
    
 function cmp_sespers(){
-	$rta="";
+	$rta="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
 	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','pueblo'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>''];
 	$d=get_sespers();
 	if ($d==""){$d=$t;}
@@ -100,10 +123,12 @@ function gra_sespers(){
 
 	// var_dump($_POST);
 	$id=divide($_POST['ids']);
-	$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$sql = "INSERT INTO personsesion VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params =[
-	['type' => 'i', 'value' => NULL],
-	['type' => 'i', 'value' => $id[0]],
+	['type' => 'i', 'value' => NULL],//id_person
+	['type' => 'i', 'value' => $id[0]],//sesion
+	['type' => 'i', 'value' => $_POST['idpersona']],
+	['type' => 's', 'value' => $_POST['tipo_doc']],
 	['type' => 'i', 'value' => $_POST['nombre1']],
 	['type' => 's', 'value' => $_POST['nombre2']],
 	['type' => 's', 'value' => $_POST['apellido1']],

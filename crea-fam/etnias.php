@@ -19,24 +19,35 @@ else {
   }   
 }
 
-function focus_ambient(){
-	return 'ambient';
-}
-      
-function men_ambient(){
-	$rta=cap_menus('ambient','pro');
+function focus_etnias(){
+	return 'etnias';
+   }
+   
+   
+   function men_etnia(){
+	$rta=cap_menus('etnias','pro');
 	return $rta;
 }
    
+<<<<<<< HEAD
+   function cap_menus($a,$b='cap',$con='con') {
+	 $rta = ""; 
+	 $acc=rol($a);
+	   if ($a=='etnias'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+	 
+	   }
+=======
 function cap_menus($a,$b='cap',$con='con') {
 	$rta = ""; 
 	$acc=rol($a);
 	if ($a=='ambient'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 		$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	}
+>>>>>>> d25ff3259e558354522ea701d0cbd037767973f7
   return $rta;
 }
-FUNCTION lis_ambient(){
+FUNCTION lis_etnias(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
 	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
@@ -46,18 +57,18 @@ FUNCTION lis_ambient(){
 	$sql.="' ORDER BY fecha_create";
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"ambient-lis",5);
+	return panel_content($datos["responseResult"],"etnias-lis",5);
    }
 
 function cmp_etnias(){
-	$rta="<div class='encabezado ambient'>TABLA AMBIENTAL</div>
-	<div class='contenido' id='ambient-lis'>".lis_ambient()."</div></div>";
+	$rta="<div class='encabezado etnias'>TABLA etniasAL</div>
+	<div class='contenido' id='etnias-lis'>".lis_etnias()."</div></div>";
 	$hoy=date('Y-m-d');
-	$w='ambient';
+	$w='etnias';
 	$d='';
 	$o='rieamb';
 	$days=fechas_app('vivienda');
-	$c[]=new cmp($o,'e',null,'RIESGOS AMBIENTALES DE LA VIVIENDA',$w);
+	$c[]=new cmp($o,'e',null,'RIESGOS etniasALES DE LA VIVIENDA',$w);
 	$c[]=new cmp('idvivamb','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-5',"validDate(this,$days,0);");
 	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'Tipo de Activi','tipo_activi',null,null,true,true,'','col-5');
@@ -86,7 +97,7 @@ function cmp_etnias(){
 
 
 
-	function gra_ambient(){
+	function gra_etnias(){
 		// print_r($_POST);
 		$id=divide($_POST['idvivamb']);
 		if(count($id)==2){
@@ -120,7 +131,7 @@ function cmp_etnias(){
 	  return $rta;
 	}
 
-	function get_ambient(){
+	function get_etnias(){
 		// var_dump($_POST);
 		if($_REQUEST['id']==''){
 			return "";
@@ -138,9 +149,9 @@ function cmp_etnias(){
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];
-		if ($a=='ambient-lis' && $b=='acciones'){
+		if ($a=='etnias-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'ambient',event,this,['fecha','tipo_activi'],'amb.php');\"></li>";  //   act_lista(f,this);
+				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'etnias',event,this,['fecha','tipo_activi'],'amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

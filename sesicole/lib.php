@@ -206,7 +206,7 @@ function gra_sesigcole(){
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
 			['type' => 'i', 'value' => $id[1]]
 		];
-		var_dump($sql);
+		// var_dump($sql);
 		return mysql_prepd($sql, $params);
 	}
 	// return $rta;

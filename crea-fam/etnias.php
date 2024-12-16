@@ -88,7 +88,6 @@ function cmp_etnias(){
 	$c[]=new cmp('adecagua','s','3',$d,$w.' '.$o,'Manipulación adecuada del agua para consumo (desinfección adecuada, uso seguro de utensilios)','adecagua',null,null,true,true,'','col-10');
 	$c[]=new cmp('raciagua','s','3',$d,$w.' '.$o,'Uso racional y reutilización adecuada del agua','raciagua',null,null,true,true,'','col-10');
 	
-
 	$o='agures';
 	$c[]=new cmp($o,'e',null,'MANEJO DE AGUAS RESIDUALES',$w);
 	$c[]=new cmp('sanitari','s','3',$d,$w.' '.$o,'La familia cuenta con unidad sanitaria sin riesgo higiénico sanitario','sanitari',null,null,true,true,'','col-10');
@@ -136,7 +135,6 @@ function cmp_etnias(){
 	$c[]=new cmp('residelectri','s','3',$d,$w.' '.$o,'Adecuado disposición de residuos eléctricos (pilas, bombillas computadores, celulares y cargadores)','residelectri',null,null,true,true,'','col-10');
 	$c[]=new cmp('duermeelectri','s','3',$d,$w.' '.$o,'Se duerme en cercanía de equipos eléctricos','duermeelectri',null,null,true,true,'','col-10');
 	
-
 	$o='mascot';
 	$c[]=new cmp($o,'e',null,'NUESTRAS MASCOTAS',$w);
 	$c[]=new cmp('vacunasmascot','s','3',$d,$w.' '.$o,'Las mascotas (Gato, Perro) cuenta con el esquema vacunal propio de la especie, se encuentran esterilizadas y son desparasitadas periódicamente','vacunasmascot',null,null,true,true,'','col-10');

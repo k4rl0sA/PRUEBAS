@@ -39,23 +39,23 @@ function focus_sespers(){
    FUNCTION lis_perses(){
 	// var_dump($_POST['id']);
   $id = divide($_POST['id']);
-  $info=datos_mysql("SELECT COUNT(*) total FROM personsesion A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  $info=datos_mysql("SELECT COUNT(*) total FROM persescol A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-personsesion']))? ($_POST['pag-personsesion']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-persescol']))? ($_POST['pag-persescol']-1)* $regxPag:0;
 
   
 	$sql="SELECT `id_person` ACCIONES, sesion 'Cod Registro',
 A.tipo_doc,A.idpersona,estado,fecha_create 'Fecha de Cierre',nombre Creó 
-FROM personsesion A
+FROM persescol A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";
 	$sql.=" WHERE A.estado = 'A' AND A.id_person='".$id[0]; // CAMBIO 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"personsesion",$regxPag,'sesiperson.php');
+	return create_table($total,$datos["responseResult"],"persescol",$regxPag,'sesiperson.php');
    }
 
    
@@ -123,7 +123,7 @@ function gra_sespers(){
 
 	// var_dump($_POST);
 	$id=divide($_POST['ids']);
-	$sql = "INSERT INTO personsesion VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+	$sql = "INSERT INTO persescol VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 	$params =[
 	['type' => 'i', 'value' => NULL],//id_person
 	['type' => 'i', 'value' => $id[0]],//sesion

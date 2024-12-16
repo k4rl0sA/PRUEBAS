@@ -67,19 +67,6 @@ function cmp_etnias(){
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);
 	$c[]=new cmp('seguro','s','3',$d,$w.' '.$o,'Vivienda en un lugar seguro (sin: remoción en masa, inundaciones - ronda hídrica, avalanchas)','seguro',null,null,true,true,'','col-10');
-	$c[]=new cmp('grietas','s','3',$d,$w.' '.$o,'Paredes y techos sin grietas, huecos, humedades','grietas',null,null,true,true,'','col-10');
-	$c[]=new cmp('combustible','s','3',$d,$w.' '.$o,'Adecuado manejo de combustibles (sólidos, líquidos, gaseosos)','combustible',null,null,true,true,'','col-10');
-	$c[]=new cmp('separadas','s','3',$d,$w.' '.$o,'Las áreas habitacionales de la vivienda están separadas entre sí (baño, cocinas y habitaciones)','separadas',null,null,true,true,'','col-10');
-	$c[]=new cmp('lena','s','3',$d,$w.' '.$o,'Preparación de alimentos con leña','lena',null,null,true,true,'','col-10');
-	$c[]=new cmp('ilumina','s','3',$d,$w.' '.$o,'La vivienda tiene iluminación y ventilación adecuada','ilumina',null,null,true,true,'','col-10');
-	$c[]=new cmp('fuma','s','3',$d,$w.' '.$o,'Se fuma en la vivienda','fuma',null,null,true,true,'','col-10');
-	$c[]=new cmp('bano','s','3',$d,$w.' '.$o,'Las condiciones físicas y locativas del baño son adecuadas','bano',null,null,true,true,'','col-10');
-	$c[]=new cmp('cocina','s','3',$d,$w.' '.$o,'Las condiciones físicas y locativas de la cocina son adecuadas (evitan la concentración de humo, chimeneas en buen estado (tubo extractor sin obstrucción, sin fisuras, con salida fuera de la vivienda y lavaplatos interno)','cocina',null,null,true,true,'','col-10');
-	$c[]=new cmp('elevado','s','3',$d,$w.' '.$o,'Los sitios elevados están protegidos (Escaleras, ventanas, terrazas)','elevado',null,null,true,true,'','col-10');
-	$c[]=new cmp('electrica','s','3',$d,$w.' '.$o,'Adecuadas instalaciones eléctricas y de gas (instalaciones seguras, sin recargar, fijas a paredes y techos)','electrica',null,null,true,true,'','col-10');
-	$c[]=new cmp('elementos','s','3',$d,$w.' '.$o,'Los elementos del hogar están en lugares seguros (materas, cuchillos, tijeras, cuadros, utensilios, herramientas, agujas y muebles)','elementos',null,null,true,true,'','col-10');
-	$c[]=new cmp('barreras','s','3',$d,$w.' '.$o,'Presencia de barreras físicas en la vivienda para el desplazamiento','barreras',null,null,true,true,'','col-10');
-	$c[]=new cmp('zontrabajo','s','3',$d,$w.' '.$o,'Las zonas de trabajo se mantienen aisladas de las habitaciones','zontrabajo',null,null,true,true,'','col-10');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -153,6 +140,15 @@ function cmp_etnias(){
 	   }
 	   
 	   function opc_tipo_activi($id=''){
+		if($_REQUEST['id']!=''){
+					$id=divide($_REQUEST['id']);
+					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+					$info=datos_mysql($sql);
+					return json_encode($info['responseResult']);
+			}
+	}
+
+	function opc_seguro($id=''){
 		if($_REQUEST['id']!=''){
 					$id=divide($_REQUEST['id']);
 					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

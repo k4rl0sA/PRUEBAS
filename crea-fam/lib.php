@@ -877,7 +877,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= "<li title='Compromisos Concertados' onclick=\"mostrar('compConc','pro',event,'','plncon.php',7);Color('famili-lis');\"><i class='fa-solid fa-handshake-angle ico' id='{$c['Cod_Familiar']}'></i></li>";
 		}
 		$rta.=(acceso('ambient')) ? "<li title='Riesgo Ambiental' Onclick=\"mostrar('ambient','pro',event,'','amb.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
-	} 
+	}
 	if ($a=='datos-lis' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
 		$rta.="<li class='icono menubtn' id='menuToggle_".$c['ACCIONES']."'></li><div id='menuContainer_".$c['ACCIONES']."'></div>";
@@ -946,6 +946,7 @@ function formato_dato($a,$b,$c,$d){
 			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'planDcui',event,this,['id','fecha_caracteriza']);\"></li>";  //   act_lista(f,this);
 		} 
+		$rta.=(acceso('etnias')) ? "<li title='Etnias' Onclick=\"mostrar('etnias','pro',event,'','etnias.php',7);Color('famili-lis');\"><i class='fa-solid fa-tree-city ico' id='".$c['Cod_Familiar']."' ></i></li>":'';
 return $rta;
 }
 

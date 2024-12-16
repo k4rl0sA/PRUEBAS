@@ -21,21 +21,19 @@ else {
 
 function focus_ambient(){
 	return 'ambient';
-   }
-   
-   
-   function men_ambient(){
+}
+      
+function men_ambient(){
 	$rta=cap_menus('ambient','pro');
 	return $rta;
-   }
+}
    
-   function cap_menus($a,$b='cap',$con='con') {
-	 $rta = ""; 
-	 $acc=rol($a);
-	   if ($a=='ambient'  && isset($acc['crear']) && $acc['crear']=='SI'){  
-	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	 
-	   }
+function cap_menus($a,$b='cap',$con='con') {
+	$rta = ""; 
+	$acc=rol($a);
+	if ($a=='ambient'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+		$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+	}
   return $rta;
 }
 FUNCTION lis_ambient(){

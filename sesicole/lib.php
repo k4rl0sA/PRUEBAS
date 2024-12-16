@@ -151,35 +151,38 @@ function get_sesigcole(){
 function gra_sesigcole(){
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-	$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
-	$params = [
-	['type' => 'i', 'value' => NULL],
-	['type' => 's', 'value' => $id[0]],
-	['type' => 's', 'value' => $_POST['fecha_int']],
-	['type' => 'i', 'value' => $_POST['activi']],
-	['type' => 's', 'value' => $_POST['luga']],
-	['type' => 'i', 'value' => $_POST['temati1']],
-	['type' => 'i', 'value' => $_POST['desc_temati1']],
-	['type' => 'i', 'value' => $_POST['temati2']],
-	['type' => 'i', 'value' => $_POST['desc_temati2']],
-	['type' => 'i', 'value' => $_POST['temati3']],
-	['type' => 'i', 'value' => $_POST['desc_temati3']],
-	['type' => 'i', 'value' => $_POST['temati4']],
-	['type' => 'i', 'value' => $_POST['desc_temati4']],
-	['type' => 'i', 'value' => $_POST['temati5']],
-	['type' => 'i', 'value' => $_POST['desc_temati5']],
-	['type' => 'i', 'value' => $_POST['temati6']],
-	['type' => 'i', 'value' => $_POST['desc_temati6']],
-	['type' => 'i', 'value' => $_POST['temati7']],
-	['type' => 'i', 'value' => $_POST['desc_temati7']],
-	['type' => 'i', 'value' => $_POST['temati8']],
-	['type' => 'i', 'value' => $_POST['desc_temati8']],
-	['type' => 'i', 'value' => $_SESSION['us_sds']],
-	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => NULL],
-	['type' => 's', 'value' => 'A']
-	];
-	return mysql_prepd($sql, $params);
+	if ($id[0]=='0') {
+		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params = [
+			['type' => 'i', 'value' => NULL],
+			['type' => 's', 'value' => $id[0]],
+			['type' => 's', 'value' => $_POST['fecha_int']],
+			['type' => 'i', 'value' => $_POST['activi']],
+			['type' => 's', 'value' => $_POST['luga']],
+			['type' => 'i', 'value' => $_POST['temati1']],
+			['type' => 'i', 'value' => $_POST['desc_temati1']],
+			['type' => 'i', 'value' => $_POST['temati2']],
+			['type' => 'i', 'value' => $_POST['desc_temati2']],
+			['type' => 'i', 'value' => $_POST['temati3']],
+			['type' => 'i', 'value' => $_POST['desc_temati3']],
+			['type' => 'i', 'value' => $_POST['temati4']],
+			['type' => 'i', 'value' => $_POST['desc_temati4']],
+			['type' => 'i', 'value' => $_POST['temati5']],
+			['type' => 'i', 'value' => $_POST['desc_temati5']],
+			['type' => 'i', 'value' => $_POST['temati6']],
+			['type' => 'i', 'value' => $_POST['desc_temati6']],
+			['type' => 'i', 'value' => $_POST['temati7']],
+			['type' => 'i', 'value' => $_POST['desc_temati7']],
+			['type' => 'i', 'value' => $_POST['temati8']],
+			['type' => 'i', 'value' => $_POST['desc_temati8']],
+			['type' => 'i', 'value' => $_SESSION['us_sds']],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => NULL],
+			['type' => 's', 'value' => 'A']
+		];
+		return mysql_prepd($sql, $params);
+	}
+	
 	// return $rta;
 }
 

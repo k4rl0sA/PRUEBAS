@@ -47,7 +47,7 @@ function focus_sespers(){
 
 //   `id_person` ACCIONES,
 	$sql="SELECT  sesion 'Cod Registro',
-A.tipo_doc,A.idpersona,concat_ws(' ',A.nombre1,A.apellido1) Nombre,A.estado,fecha_create 'Fecha de Creación',nombre Creó 
+A.tipo_doc,A.idpersona,concat_ws(' ',A.nombre1,A.apellido1) Nombre,A.estado,fecha_create 'Fecha de Creación',nombre Creó,perfil  
 FROM persescol A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";
 	$sql.=" WHERE A.estado = 'A' AND A.sesion='".$id[0]; // CAMBIO 

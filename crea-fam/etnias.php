@@ -29,7 +29,6 @@ function focus_etnias(){
 	return $rta;
 }
    
-<<<<<<< HEAD
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
@@ -37,14 +36,6 @@ function focus_etnias(){
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 
 	   }
-=======
-function cap_menus($a,$b='cap',$con='con') {
-	$rta = ""; 
-	$acc=rol($a);
-	if ($a=='ambient'  && isset($acc['crear']) && $acc['crear']=='SI'){  
-		$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	}
->>>>>>> d25ff3259e558354522ea701d0cbd037767973f7
   return $rta;
 }
 FUNCTION lis_etnias(){

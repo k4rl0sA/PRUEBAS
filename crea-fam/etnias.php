@@ -23,7 +23,6 @@ function focus_etnias(){
 	return 'etnias';
    }
    
-   
    function men_etnia(){
 	$rta=cap_menus('etnias','pro');
 	return $rta;

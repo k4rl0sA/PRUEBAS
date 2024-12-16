@@ -91,7 +91,7 @@ function cmp_sespers(){
 	$c[]=new cmp('eapb','s',3,'',$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
-	$rta="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
+	$rta.="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

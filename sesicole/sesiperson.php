@@ -60,7 +60,7 @@ FROM persescol A
 
    
 function cmp_sespers(){
-	$rta="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
+	$rta="";
 	$t=['idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','etnia'=>'','pueblo'=>'','nacionalidad'=>'','regimen'=>'','eapb'=>''];
 	$d=get_sespers();
 	if ($d==""){$d=$t;}
@@ -91,6 +91,7 @@ function cmp_sespers(){
 	$c[]=new cmp('eapb','s',3,'',$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
+	$rta="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

@@ -66,7 +66,7 @@ function cmp_sespers(){
 	if ($d==""){$d=$t;}
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-    $w="sescol";
+    $w="sespers";
 	$o='infbas';
 	$key='pEr';
 	// var_dump($p);

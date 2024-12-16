@@ -47,7 +47,7 @@ function focus_sespers(){
 
   
 	$sql="SELECT `id_person` ACCIONES, sesion 'Cod Registro',
-A.tipo_doc,A.idpersona,estado,fecha_create 'Fecha de Cierre',nombre Creó 
+A.tipo_doc,A.idpersona,A.estado,fecha_create 'Fecha de Cierre',nombre Creó 
 FROM persescol A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";
 	$sql.=" WHERE A.estado = 'A' AND A.id_person='".$id[0]; // CAMBIO 

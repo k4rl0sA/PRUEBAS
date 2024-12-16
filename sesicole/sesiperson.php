@@ -46,7 +46,7 @@ function focus_sespers(){
   $pag=(isset($_POST['pag-persescol']))? ($_POST['pag-persescol']-1)* $regxPag:0;
 
 //   `id_person` ACCIONES,
-	$sql="SELECT  sesion 'Sesion',
+	$sql="SELECT  id_person 'Cod Registro',sesion 'Sesion',
 A.tipo_doc,A.idpersona,concat_ws(' ',A.nombre1,A.apellido1) Nombre,A.estado,fecha_create 'Fecha de Creación',nombre Creó,perfil  
 FROM persescol A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario";

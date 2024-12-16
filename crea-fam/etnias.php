@@ -51,7 +51,6 @@ FUNCTION lis_ambient(){
 	return panel_content($datos["responseResult"],"ambient-lis",5);
    }
 
-
 function cmp_etnias(){
 	$rta="<div class='encabezado ambient'>TABLA AMBIENTAL</div>
 	<div class='contenido' id='ambient-lis'>".lis_ambient()."</div></div>";

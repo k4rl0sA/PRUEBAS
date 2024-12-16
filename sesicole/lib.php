@@ -125,8 +125,6 @@ function cmp_sesigcole(){
 	$c[]=new cmp('temati8','s','3',$d['tematica8'],$w.' '.$o,'tematica 8','temati8',null,null,false,true,'','col-15',"selectDepend('temati8','desc_temati8');");
     $c[]=new cmp('desc_temati8','s','3',$d['des_temati8'],$w.' '.$o,'Descripcion tematica 8','desc_temati8',null,null,false,true,'','col-35');
 
-
-
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

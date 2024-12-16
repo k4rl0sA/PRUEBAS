@@ -130,7 +130,7 @@ function gra_sespers(){
 	['type' => 'i', 'value' => $id[0]],//sesion
 	['type' => 'i', 'value' => $_POST['idpersona']],
 	['type' => 's', 'value' => $_POST['tipo_doc']],
-	['type' => 'i', 'value' => $_POST['nombre1']],
+	['type' => 's', 'value' => $_POST['nombre1']],
 	['type' => 's', 'value' => $_POST['nombre2']],
 	['type' => 's', 'value' => $_POST['apellido1']],
 	['type' => 's', 'value' => $_POST['apellido2']],

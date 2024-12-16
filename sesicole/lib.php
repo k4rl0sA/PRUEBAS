@@ -148,10 +148,9 @@ function get_sesigcole(){
 }
 
 function gra_sesigcole(){
-	// var_dump($_POST);
 	$id=divide($_POST['id']);
-	var_dump(count($id));
-	if (count($id)==2) {
+	// var_dump(count($id));
+	if ($id[1]==0) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [
 			['type' => 'i', 'value' => NULL],
@@ -180,7 +179,6 @@ function gra_sesigcole(){
 			['type' => 's', 'value' => NULL],
 			['type' => 's', 'value' => 'A']
 		];
-		var_dump($sql);
 		return mysql_prepd($sql, $params);
 	}else{
 		$sql = "UPDATE hog_sescole SET tipo_activ=?,lugar=?,tematica1=?,des_temati1=?,tematica2=?,des_temati2=?,tematica3=?,des_temati3=?,tematica4=?,des_temati4=?,tematica5=?,des_temati5=?,tematica6=?,
@@ -207,7 +205,6 @@ function gra_sesigcole(){
 			['type' => 'i', 'value' => $_SESSION['us_sds']],
 			['type' => 'i', 'value' => $id[0]]
 		];
-		var_dump($sql);
 		return mysql_prepd($sql, $params);
 	}
 	// return $rta;

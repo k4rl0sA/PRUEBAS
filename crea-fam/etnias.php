@@ -81,81 +81,6 @@ function cmp_etnias(){
 	$c[]=new cmp('barreras','s','3',$d,$w.' '.$o,'Presencia de barreras físicas en la vivienda para el desplazamiento','barreras',null,null,true,true,'','col-10');
 	$c[]=new cmp('zontrabajo','s','3',$d,$w.' '.$o,'Las zonas de trabajo se mantienen aisladas de las habitaciones','zontrabajo',null,null,true,true,'','col-10');
 
-	$o='sorvid';
-	$c[]=new cmp($o,'e',null,'SORBOS DE VIDA',$w);
-	$c[]=new cmp('agua','s','3',$d,$w.' '.$o,'La vivienda cuenta con adecuado sistema de suministro de agua (acueducto, continuo, sin fugas, acometidas en buen estado, fuentes sin semovientes o libres de elementos extraños)','agua',null,null,true,true,'','col-10');
-	$c[]=new cmp('tanques','s','3',$d,$w.' '.$o,'Los tanques o recipientes para el almacenamiento de agua están limpios, tapados y elevados del piso','tanques',null,null,true,true,'','col-10');
-	$c[]=new cmp('adecagua','s','3',$d,$w.' '.$o,'Manipulación adecuada del agua para consumo (desinfección adecuada, uso seguro de utensilios)','adecagua',null,null,true,true,'','col-10');
-	$c[]=new cmp('raciagua','s','3',$d,$w.' '.$o,'Uso racional y reutilización adecuada del agua','raciagua',null,null,true,true,'','col-10');
-	
-	$o='agures';
-	$c[]=new cmp($o,'e',null,'MANEJO DE AGUAS RESIDUALES',$w);
-	$c[]=new cmp('sanitari','s','3',$d,$w.' '.$o,'La familia cuenta con unidad sanitaria sin riesgo higiénico sanitario','sanitari',null,null,true,true,'','col-10');
-	$c[]=new cmp('aguaresid','s','3',$d,$w.' '.$o,'Existe adecuada disposición de aguas residuales y grises (baño, cocina, lavadero, terraza, campo abierto, pozo séptico)','aguaresid',null,null,true,true,'','col-10');
-	$c[]=new cmp('terraza','s','3',$d,$w.' '.$o,'El baño, terraza y lavadero se encuentran limpios y sin olores','terraza',null,null,true,true,'','col-10');
-
-	$o='ressol';
-	$c[]=new cmp($o,'e',null,'RESIDUOS SÓLIDOS',$w);
-	$c[]=new cmp('recipientes','s','3',$d,$w.' '.$o,'Recipientes aseados, con tapa y bien ubicados','recipientes',null,null,true,true,'','col-10');
-	$c[]=new cmp('vivaseada','s','3',$d,$w.' '.$o,'Vivienda aseada y ordenada','vivaseada',null,null,true,true,'','col-10');
-	$c[]=new cmp('separesiduos','s','3',$d,$w.' '.$o,'Separación de residuos (basuras) en la fuente','separesiduos',null,null,true,true,'','col-10');
-	$c[]=new cmp('reutresiduos','s','3',$d,$w.' '.$o,'Reutilización y prácticas de reducción de residuos sólidos','reutresiduos',null,null,true,true,'','col-10');
-	$c[]=new cmp('noresiduos','s','3',$d,$w.' '.$o,'No hay presencia de residuos alrededor de la vivienda (focos o residuos dispersos)','noresiduos',null,null,true,true,'','col-10');
-	$c[]=new cmp('adecresiduos','s','3',$d,$w.' '.$o,'La familia dispone los residuos sólidos adecuadamente (empresa de aseo, recolección de envases de agroquímicos vacíos y lavados, relleno sanitario casero, residuos sin quemar)','adecresiduos',null,null,true,true,'','col-10');
-	$c[]=new cmp('horaresiduos','s','3',$d,$w.' '.$o,'La familia conoce y cumple el horario de recolección de residuos sólidos','horaresiduos',null,null,true,true,'','col-10');
-      
-	$o='manpla';
-	$c[]=new cmp($o,'e',null,'MANEJO DE PLAGAS',$w);
-	$c[]=new cmp('plagas','s','3',$d,$w.' '.$o,'No hay presencia de plagas en la vivienda (roedores, insectos, piojos, pulgas, palomas)','plagas',null,null,true,true,'','col-5');
-	$c[]=new cmp('contplagas','s','3',$d,$w.' '.$o,'Se realiza adecuado control preventivo de plagas (químico o alternativo)','contplagas',null,null,true,true,'','col-5');
-	$c[]=new cmp('pracsanitar','s','3',$d,$w.' '.$o,'Las prácticas higiénicos-sanitarias no fomentan la proliferación de vectores en la vivienda','pracsanitar',null,null,true,true,'','col-5');
-	$c[]=new cmp('envaplaguicid','s','3',$d,$w.' '.$o,'Adecuada disposición de envases de plaguicidas y productos de uso veterinario','envaplaguicid',null,null,true,true,'','col-5');
-
-	$o='alihig';
-	$c[]=new cmp($o,'e',null,'ALIMENTOS E HIGIENE',$w);
-	$c[]=new cmp('consealiment','s','3',$d,$w.' '.$o,'Almacenamiento y conservación adecuada de alimentos (lugar adecuado, alimentos tapados, recipientes limpios, refrigerados, ahumados, salados)','consealiment',null,null,true,true,'','col-10');
-	$c[]=new cmp('limpcocina','s','3',$d,$w.' '.$o,'Adecuada limpieza de la cocina (orden, limpieza y desinfección)','limpcocina',null,null,true,true,'','col-10');
-	$c[]=new cmp('cuidcuerpo','s','3',$d,$w.' '.$o,'Adecuado cuidado del cuerpo (uñas, manos, calzado, ropa limpia) a diario y para la manipulación de alimentos','cuidcuerpo',null,null,true,true,'','col-10');
-	$c[]=new cmp('fechvencim','s','3',$d,$w.' '.$o,'Verificar etiquetas y fechas de vencimiento de alimentos','fechvencim',null,null,true,true,'','col-10');
-	$c[]=new cmp('limputensilios','s','3',$d,$w.' '.$o,'Adecuado estado y limpieza de los utensilios utilizados','limputensilios',null,null,true,true,'','col-10');
-	$c[]=new cmp('adqualime','s','3',$d,$w.' '.$o,'El sitio donde adquiere los alimentos es confiable (buenas condiciones de limpieza, mantiene refrigerada las carnes y lácteos, sus manipuladores están uniformados y en buenas condiciones de aseo y limpieza, tiene afecciones de la piel) y vende alimentos que cumplan con rotulado y fecha de vencimiento','adqualime',null,null,true,true,'','col-10');
-
-	$o='riequi';
-	$c[]=new cmp($o,'e',null,'RIESGOS QUÍMICOS-FÍSICOS Y DE CONSUMO EN LA VIVIENDA',$w);
-	$c[]=new cmp('almaquimicos','s','3',$d,$w.' '.$o,'Los productos químicos están almacenados de forma segura (lugar ventilado, rotulados, separados de las áreas habitacionales)','almaquimicos',null,null,true,true,'','col-10');
-	$c[]=new cmp('etiqprodu','s','3',$d,$w.' '.$o,'Se siguen las recomendaciones de uso de la etiqueta de los productos químicos','etiqprodu',null,null,true,true,'','col-10');
-	$c[]=new cmp('juguetes','s','3',$d,$w.' '.$o,'Los juguetes de los niños en la vivienda son seguros, están en buen estado y limpios','juguetes',null,null,true,true,'','col-10');
-	$c[]=new cmp('medicamalma','s','3',$d,$w.' '.$o,'Los medicamentos y dispositivos médicos están almacenados adecuadamente (rotulados, separados)','medicamalma',null,null,true,true,'','col-10');
-	$c[]=new cmp('medicvenc','s','3',$d,$w.' '.$o,'Adecuada disposición de medicamentos vencidos (productos farmacéuticos)','medicvenc',null,null,true,true,'','col-10');
-	$c[]=new cmp('adqumedicam','s','3',$d,$w.' '.$o,'Adquisición de medicamentos con fórmula médica','adqumedicam',null,null,true,true,'','col-10');
-	$c[]=new cmp('medidaspp','s','3',$d,$w.' '.$o,'Se implementan medidas de protección personal para el manejo de químicos, incluido el estado y limpieza de equipo (guantes, peto, gafas, botas, careta )','medidaspp',null,null,true,true,'','col-10');
-	$c[]=new cmp('radiacion','s','3',$d,$w.' '.$o,'Medidas de prevención frente a la exposición al aire libre a la radiación solar','radiacion',null,null,true,true,'','col-10');
-	$c[]=new cmp('contamaire','s','3',$d,$w.' '.$o,'Medidas de prevención frente a la exposición a contaminación del aire','contamaire',null,null,true,true,'','col-10');
-	$c[]=new cmp('monoxido','s','3',$d,$w.' '.$o,'Conocimiento sobre los signos de alarma para identificar la presencia de monóxido de carbono (llama amarilla, hollín) y gases de agroquímicos (olor a químicos, derrames, elementos impregnados con químicos)','monoxido',null,null,true,true,'','col-10');
-	$c[]=new cmp('residelectri','s','3',$d,$w.' '.$o,'Adecuado disposición de residuos eléctricos (pilas, bombillas computadores, celulares y cargadores)','residelectri',null,null,true,true,'','col-10');
-	$c[]=new cmp('duermeelectri','s','3',$d,$w.' '.$o,'Se duerme en cercanía de equipos eléctricos','duermeelectri',null,null,true,true,'','col-10');
-	
-	$o='mascot';
-	$c[]=new cmp($o,'e',null,'NUESTRAS MASCOTAS',$w);
-	$c[]=new cmp('vacunasmascot','s','3',$d,$w.' '.$o,'Las mascotas (Gato, Perro) cuenta con el esquema vacunal propio de la especie, se encuentran esterilizadas y son desparasitadas periódicamente','vacunasmascot',null,null,true,true,'','col-10');
-	$c[]=new cmp('aseamascot','s','3',$d,$w.' '.$o,'Las mascotas son aseadas periódicamente','aseamascot',null,null,true,true,'','col-10');
-	$c[]=new cmp('alojmascot','s','3',$d,$w.' '.$o,'Las mascotas u otras especies cuentan con alojamiento adecuado (aseado y separado)','alojmascot',null,null,true,true,'','col-10');
-	$c[]=new cmp('excrmascot','s','3',$d,$w.' '.$o,'Las excretas se recogen y manejan adecuadamente','excrmascot',null,null,true,true,'','col-10');
-	$c[]=new cmp('permmascot','s','3',$d,$w.' '.$o,'Permanencia de las mascotas u otras especies en un lugar adecuado','permmascot',null,null,true,true,'','col-10');
-	$c[]=new cmp('salumascot','s','3',$d,$w.' '.$o,'Las mascotas se encuentran en buenas condiciones de salud y de calidad de vida','salumascot',null,null,true,true,'','col-10');
-
-	$o='disres';
-	$c[]=new cmp($o,'e',null,'DISPOSICIÓN DE RESIDUOS',$w);
-	$c[]=new cmp('pilas','n','5',$d,$w.' '.$o,'Disposición De Pilas (Gramos)','pilas',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispmedicamentos','n','5',$d,$w.' '.$o,'Disposicion De Medicamentos (Gramos)','dispmedicamentos',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispcompu','n','5',$d,$w.' '.$o,'Disposicion De Computadores (Gramos), Perifericos Y Celulares','dispcompu',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispplamo','n','5',$d,$w.' '.$o,'Disposicion De Plomo Acido (Gramos)','dispplamo',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispbombill','n','5',$d,$w.' '.$o,'Disposicion De Bombillas (Gramos)','dispbombill',null,null,true,true,'','col-5');
-	$c[]=new cmp('displlanta','n','5',$d,$w.' '.$o,'Disposicion De Llantas (Gramos)','displlanta',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispplaguic','n','5',$d,$w.' '.$o,'Disposicion De Envases De Plaguicida (Gramos)','dispplaguic',null,null,true,true,'','col-5');
-	$c[]=new cmp('dispaceite','n','5',$d,$w.' '.$o,'Disposicion De Aceite Vegetal Usado (Gramos)','dispaceite',null,null,true,true,'','col-5');
-
-
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -182,56 +107,6 @@ function cmp_etnias(){
             elementos = TRIM(UPPER('{$_POST['elementos']}')),
             barreras = TRIM(UPPER('{$_POST['barreras']}')),
             zontrabajo = TRIM(UPPER('{$_POST['zontrabajo']}')),
-            agua = TRIM(UPPER('{$_POST['agua']}')),
-            tanques = TRIM(UPPER('{$_POST['tanques']}')),
-            adecagua = TRIM(UPPER('{$_POST['adecagua']}')),
-            raciagua = TRIM(UPPER('{$_POST['raciagua']}')),
-            sanitari = TRIM(UPPER('{$_POST['sanitari']}')),
-            aguaresid = TRIM(UPPER('{$_POST['aguaresid']}')),
-            terraza = TRIM(UPPER('{$_POST['terraza']}')),
-            recipientes = TRIM(UPPER('{$_POST['recipientes']}')),
-            vivaseada = TRIM(UPPER('{$_POST['vivaseada']}')),
-            separesiduos = TRIM(UPPER('{$_POST['separesiduos']}')),
-            reutresiduos = TRIM(UPPER('{$_POST['reutresiduos']}')),
-            noresiduos = TRIM(UPPER('{$_POST['noresiduos']}')),
-            adecresiduos = TRIM(UPPER('{$_POST['adecresiduos']}')),
-            horaresiduos = TRIM(UPPER('{$_POST['horaresiduos']}')),
-            plagas = TRIM(UPPER('{$_POST['plagas']}')),
-            contplagas = TRIM(UPPER('{$_POST['contplagas']}')),
-            pracsanitar = TRIM(UPPER('{$_POST['pracsanitar']}')),
-            envaplaguicid = TRIM(UPPER('{$_POST['envaplaguicid']}')),
-            consealiment = TRIM(UPPER('{$_POST['consealiment']}')),
-            limpcocina = TRIM(UPPER('{$_POST['limpcocina']}')),
-            cuidcuerpo = TRIM(UPPER('{$_POST['cuidcuerpo']}')),
-            fechvencim = TRIM(UPPER('{$_POST['fechvencim']}')),
-            limputensilios = TRIM(UPPER('{$_POST['limputensilios']}')),
-            adqualime = TRIM(UPPER('{$_POST['adqualime']}')),
-            almaquimicos = TRIM(UPPER('{$_POST['almaquimicos']}')),
-            etiqprodu = TRIM(UPPER('{$_POST['etiqprodu']}')),
-            juguetes = TRIM(UPPER('{$_POST['juguetes']}')),
-            medicamalma = TRIM(UPPER('{$_POST['medicamalma']}')),
-            medicvenc = TRIM(UPPER('{$_POST['medicvenc']}')),
-            adqumedicam = TRIM(UPPER('{$_POST['adqumedicam']}')),
-            medidaspp = TRIM(UPPER('{$_POST['medidaspp']}')),
-            radiacion = TRIM(UPPER('{$_POST['radiacion']}')),
-            contamaire = TRIM(UPPER('{$_POST['contamaire']}')),
-            monoxido = TRIM(UPPER('{$_POST['monoxido']}')),
-            residelectri = TRIM(UPPER('{$_POST['residelectri']}')),
-            duermeelectri = TRIM(UPPER('{$_POST['duermeelectri']}')),
-            vacunasmascot = TRIM(UPPER('{$_POST['vacunasmascot']}')),
-            aseamascot = TRIM(UPPER('{$_POST['aseamascot']}')),
-            alojmascot = TRIM(UPPER('{$_POST['alojmascot']}')),
-            excrmascot = TRIM(UPPER('{$_POST['excrmascot']}')),
-            permmascot = TRIM(UPPER('{$_POST['permmascot']}')),
-            salumascot = TRIM(UPPER('{$_POST['salumascot']}')),
-            pilas = TRIM(UPPER('{$_POST['pilas']}')),
-            dispmedicamentos = TRIM(UPPER('{$_POST['dispmedicamentos']}')),
-            dispcompu = TRIM(UPPER('{$_POST['dispcompu']}')),
-            dispplamo = TRIM(UPPER('{$_POST['dispplamo']}')),
-            dispbombill = TRIM(UPPER('{$_POST['dispbombill']}')),
-            displlanta = TRIM(UPPER('{$_POST['displlanta']}')),
-            dispplaguic = TRIM(UPPER('{$_POST['dispplaguic']}')),
-            dispaceite = TRIM(UPPER('{$_POST['dispaceite']}')),
             usu_update = TRIM(UPPER('{$_SESSION['us_sds']}')),
             fecha_update = DATE_SUB(NOW(), INTERVAL 5 HOUR)
         WHERE idamb = TRIM(UPPER('{$_POST['idvivamb']}'))";

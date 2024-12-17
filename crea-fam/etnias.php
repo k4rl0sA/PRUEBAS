@@ -188,7 +188,8 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 		['type' => 's', 'value' => NULL],
 		['type' => 's', 'value' => 'A']
 		];
-		return  mysql_prepd($sql, $params);
+		$rta = mysql_prepd($sql, $params);
+      return $rta;
 	}
 
 	function get_etnias(){

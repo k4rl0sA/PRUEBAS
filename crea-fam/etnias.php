@@ -66,10 +66,10 @@ function cmp_etnias(){
 	$days=fechas_app('etnias');
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
-	$c[]=new cmp('nombre','t','80',$p['nombre'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-	$c[]=new cmp('edad','t','50',$p['edad'],$w.' '.$o,'edad','edad',null,'',false,false,'','col-1');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
+	$c[]=new cmp('nombre','t','80',$p['nombre'],$w.' '.$o,'Nombre','idpersona',null,'',true,false,'','col-3');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('edad','t','50',$p['edad'],$w.' '.$z.' '.$o,'edad','edad',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
     
 
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);

@@ -91,16 +91,23 @@ function cmp_etnias(){
 	function gra_etnias(){
 		// print_r($_POST);
 		$id=divide($_POST['idsesetn']);
-		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		$params =[
 		['type' => 'i', 'value' => NULL],
 		['type' => 'i', 'value' => $id[0]],
 		['type' => 'i', 'value' => $_POST['fecha']],
-		['type' => 's', 'value' => $_POST['variable']],
-		['type' => 's', 'value' => $_POST['variable']],
-		['type' => 's', 'value' => $_POST['variable']],
-		['type' => 's', 'value' => $_POST['variable']],
-		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['sesi_nu']],
+		['type' => 's', 'value' => $_POST['moti_con']],
+		['type' => 's', 'value' => $_POST['des_sin']],
+		['type' => 's', 'value' => $_POST['peso']],
+		['type' => 's', 'value' => $_POST['talla']],
+		['type' => 's', 'value' => $_POST['zscore']],
+		['type' => 's', 'value' => $_POST['clasi_nutri']],
+		['type' => 's', 'value' => $_POST['peri_cef']],
+		['type' => 's', 'value' => $_POST['peri_bra']],
+		['type' => 's', 'value' => $_POST['frec_res']],
+		['type' => 's', 'value' => $_POST['frec_car']],
+		['type' => 's', 'value' => $_POST['oxige']],
 		['type' => 'i', 'value' => $_SESSION['us_sds']],
 		['type' => 's', 'value' => NULL],
 		['type' => 's', 'value' => NULL],

@@ -144,33 +144,18 @@ function cmp_etnias(){
 	function bgcolor($a,$c,$f='c'){
 		$rta="";
 		return $rta;
-	   }
-	   
-	function opc_sesi_nu($id=''){
-		if($_REQUEST['id']!=''){
-					$id=divide($_REQUEST['id']);
-					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-					$info=datos_mysql($sql);
-					return json_encode($info['responseResult']);
-			}
-	}
+	 }
+	 
+	 function opc_sesi_nu($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
+		}
 
 	function opc_moti_con($id=''){
-		if($_REQUEST['id']!=''){
-					$id=divide($_REQUEST['id']);
-					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-					$info=datos_mysql($sql);
-					return json_encode($info['responseResult']);
-			}
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}
 
 	function opc_des_sin($id=''){
-		if($_REQUEST['id']!=''){
-					$id=divide($_REQUEST['id']);
-					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-					$info=datos_mysql($sql);
-					return json_encode($info['responseResult']);
-			}
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}
 
 

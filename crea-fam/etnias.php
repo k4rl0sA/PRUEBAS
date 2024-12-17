@@ -1,4 +1,4 @@
-0<?php
+<?php
 ini_set('display_errors','1');
 require_once "../libs/gestion.php";
 $perf=perfil($_POST['tb']);

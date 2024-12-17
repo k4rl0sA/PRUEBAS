@@ -65,7 +65,6 @@ function cmp_etnias(){
 	$bl='true';
 	$ob='true';
 	$days=fechas_app('etnias');
-
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
 	$c[]=new cmp('nombre','t','80',$p['nombre'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');

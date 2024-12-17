@@ -79,7 +79,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_agendamiento(){
 	$rta="";
   $t=['id_persona'=>'','tipodoc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','tipo_doc'=>'',
- 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','nombre_atendio'=>'','observac_cita'=>''];
+ 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','tipo_consulta'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','nombre_atendio'=>'','observac_cita'=>''];
  $w='agendamiento';
  $d=get_agendamiento(); 
   //~ echo(json_encode($d));

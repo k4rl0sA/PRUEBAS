@@ -146,7 +146,7 @@ function cmp_etnias(){
 		return $rta;
 	   }
 	   
-	   function opc_sesi_nu($id=''){
+	function opc_sesi_nu($id=''){
 		if($_REQUEST['id']!=''){
 					$id=divide($_REQUEST['id']);
 					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
@@ -175,6 +175,15 @@ function cmp_etnias(){
 
 
 	function opc_seguro($id=''){
+		if($_REQUEST['id']!=''){
+					$id=divide($_REQUEST['id']);
+					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+					$info=datos_mysql($sql);
+					return json_encode($info['responseResult']);
+			}
+	}
+
+	function opc_clasi_nutri($id=''){
 		if($_REQUEST['id']!=''){
 					$id=divide($_REQUEST['id']);
 					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

@@ -110,7 +110,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('obc','a',1000,$d['observac_cita'],$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<br>";
- $rta.="</div>";
+$rta.="</div>";   
 	return $rta;
 }
 

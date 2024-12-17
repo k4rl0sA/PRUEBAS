@@ -161,6 +161,9 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	function gra_etnias(){
 		print_r($_POST);
 		$id=divide($_POST['idsesetn']);
+		$zsco=explode("=",$_POST['zscore']?? null);
+		$z1=$zsco[0]??null;
+		$z2=$zsco[1]??null;
 		$sql = "INSERT INTO hog_etnia VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params =[
 		['type' => 'i', 'value' => NULL],
@@ -172,7 +175,8 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 		['type' => 's', 'value' => $_POST['peso']],
 		['type' => 's', 'value' => $_POST['talla']],
 		['type' => 's', 'value' => $_POST['imc']],
-		['type' => 's', 'value' => $_POST['imc']],
+		['type' => 's', 'value' => $z1],
+		['type' => 's', 'value' => $z1],
 		['type' => 's', 'value' => $_POST['clasi_nutri']],
 		['type' => 's', 'value' => $_POST['peri_cef']],
 		['type' => 's', 'value' => $_POST['peri_bra']],

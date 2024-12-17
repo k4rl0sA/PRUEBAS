@@ -19,7 +19,6 @@ else {
 }
 
 
-
 function lis_agendamiento(){
   $sql = "";
 	if ($_POST['fidpersona'])

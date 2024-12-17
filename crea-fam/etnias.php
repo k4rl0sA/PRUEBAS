@@ -56,7 +56,7 @@ function cmp_etnias(){
 	<div class='contenido' id='etnias-lis'>".lis_etnias()."</div></div>";
 	$hoy=date('Y-m-d');
 	$w='etnias';
-	$t=['nombre'=>'',];
+	$t=['nombre'=>'','sexo'=>'','edad'=>''];
 	$p=get_person();
 	if ($p=="") {$p=$t;}
 	$d='';

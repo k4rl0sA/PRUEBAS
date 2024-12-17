@@ -144,12 +144,12 @@ function cmp_etnias(){
 	function bgcolor($a,$c,$f='c'){
 		$rta="";
 		return $rta;
-	 }
+	 }	
 	 
-	 function opc_sesi_nu($id=''){
+	function opc_sesi_nu($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
-		}
-
+	}
+	
 	function opc_moti_con($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}

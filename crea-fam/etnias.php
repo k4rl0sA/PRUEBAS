@@ -64,7 +64,7 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('sesi_nu','s','3',$d,$w.' '.$o,'Sesion N°','sesi_nu',null,null,true,true,'','col-5');
 	$c[]=new cmp('moti_con','s','3',$d,$w.' '.$o,'Motivo Consulta','moti_con',null,null,true,true,'','col-5');
-	$c[]=new cmp('des_sin','t','100',$d['des_sin'],$w.' '.$o,'Descripcion Sintomas','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
+	$c[]=new cmp('des_sin','s','3',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-5');
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

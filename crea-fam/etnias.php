@@ -70,6 +70,12 @@ function cmp_etnias(){
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';
+	$c[]=new cmp($o,'e',null,'INFORMACION DE signos',$w); 
+	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+
+
+	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);
 	$c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso (Kg) (0.82 = 820 Gramos)','peso','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla (Cm) (75.2 =Cm,mm)','talla','rgxtalla','###.#',false,$x,'','col-2');

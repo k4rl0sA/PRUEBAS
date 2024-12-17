@@ -84,7 +84,7 @@ function cmp_agendamiento(){
  $d=get_agendamiento(); 
   //~ echo(json_encode($d));
  if ($d=="") {$d=$t;}
- $u=($d['id_persona']=='')?true:false;
+ $u=($d['id_person']=='')?true:false;
  $o='percit';
  $c[]=new cmp($o,'e',null,'AGENDAMIENTO DE USUARIOS',$w);
  $c[]=new cmp('ipe','h',50,$_POST['id'],$w,'','idp',null,'','','');  

@@ -103,12 +103,12 @@ function cmp_etnias(){
 function get_person(){
 	var_dump($_POST);
   $id=divide($_POST['id']);
-    $sql="SELECT T1.id_persona,T1.tipodoc,IFNULL(T2.nombre1,T4.nombre1) nombre1,IFNULL(T2.nombre2,T4.nombre2) nombre2,IFNULL(T2.apellido1,T4.apellido1) apellido1,IFNULL(T2.apellido2,T4.apellido2) apellido2,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento) fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento),curdate()), ' Meses= ',MONTH(CURDATE()) - MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)) + 12 * IF( MONTH(CURDATE()) < MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1, IF(MONTH(CURDATE())=MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)), (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))), IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))+30*(DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)))) edad,IFNULL(T2.genero,T4.genero) genero, IFNULL(T2.eapb,T4.eapb) eapb,T3.telefono1 telefono1,T3.telefono2 telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
-        FROM agendamiento T1 
-        left join personas T2 ON T1.id_persona=T2.idpersona 
-        left join person T4 ON T1.id_persona=T4.idpeople
-        left join hog_fam T3 ON T4.vivipersona = T3.id_fam
-    WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
+    $sql="SELECT CONCAT_WS(' ',p.nombre1, p.apellido1),p.sexo ,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS años,
+    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) 
+    - (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) *12) AS meses,
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) %30 AS dias,p.fecha_nacimiento 
+FROM person p 
+    WHERE p.id_people='".$id[0]."'";
       $info=datos_mysql($sql);
       return $info['responseResult'][0];
   }

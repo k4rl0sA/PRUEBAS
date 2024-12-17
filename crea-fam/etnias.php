@@ -63,6 +63,7 @@ function cmp_etnias(){
 	$x='true';
 	$bl='true';
 	$ob='true';
+	$z='zS';
 	$days=fechas_app('etnias');
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
@@ -84,10 +85,10 @@ function cmp_etnias(){
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);
-	$c[]=new cmp('peso','sd','4',$d,$w.' '.$o,'Peso (Kg) (0.82 = 820 Gramos)','peso','rgxpeso','##.#',false,$x,'','col-2');
-    $c[]=new cmp('talla','sd','5',$d,$w.' '.$o,'Talla (Cm) (75.2 =Cm,mm)','talla','rgxtalla','###.#',false,$x,'','col-2');
-    $c[]=new cmp('zscore','t','20',$d,$w.' '.$bl.' '.$o,'Zscore','zscore',null,null,false,false,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$ob.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
+	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','signos.php');calImc('peso','talla','imc');");
+	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','signos.php');valTalla('talla');valGluc('glucometria');");
+	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
+	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$ob.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
 	$c[]=new cmp('peri_cef','sd','4',$d,$w.' '.$o,'Perimetro Cefalico','peri_cef','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('peri_bra','sd','5',$d,$w.' '.$o,'Perimetro Braquial','peri_bra','rgxtalla','###.#',false,$x,'','col-2');
 	$c[]=new cmp('frec_res','sd','4',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxpeso','##.#',false,$x,'','col-2');
@@ -111,6 +112,56 @@ FROM person p
       return $info['responseResult'][0];
   }
 
+
+  function get_zscore(){
+	$id=divide($_POST['val']);
+	 $fechaNacimiento = new DateTime($id[1]);
+	 $fechaActual = new DateTime();
+	 $diferencia = $fechaNacimiento->diff($fechaActual);
+	 $edadEnDias = $diferencia->days;
+	$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+	$sex=$id[2];
+
+$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+	(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+	((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+ (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+//   echo $sql;
+ $info=datos_mysql($sql);
+	 if (!$info['responseResult']) {
+		return '';
+	}else{
+		$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+		switch ($z) {
+			case ($z <=-3):
+				$des='DESNUTRICIÓN AGUDA SEVERA';
+				break;
+			case ($z >-3 && $z <=-2):
+				$des='DESNUTRICIÓN AGUDA MODERADA';
+				break;
+			case ($z >-2 && $z <=-1):
+				$des='RIESGO DESNUTRICIÓN AGUDA';
+				break;
+			case ($z>-1 && $z <=1):
+					$des='PESO ADECUADO PARA LA TALLA';
+				break;
+			case ($z >1 && $z <=2):
+					$des='RIESGO DE SOBREPESO';
+				break;
+			case ($z >2 && $z <=3):
+					$des='SOBREPESO';
+				break;
+				case ($z >3):
+					$des='OBESIDAD';
+				break;
+			default:
+				$des='Error en el rango, por favor valide';
+				break;
+		}
+
+		return json_encode($z." = ".$des);
+	}
+}
 
 
 	function gra_etnias(){

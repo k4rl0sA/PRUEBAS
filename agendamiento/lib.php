@@ -140,6 +140,9 @@ function get_agendamiento(){
   function opc_tconsulta($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=37 and estado='A' ORDER BY 1",$id);
   }
+  function opc_punto_atenc($id=''){
+    return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=38 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
+  }
 
 function gra_gestuser(){
     $id=divide($_POST['variable']);

@@ -133,7 +133,6 @@ function get_agendamiento(){
       $info=datos_mysql($sql);
       return $info['responseResult'][0];
   }
-}
 
 function gra_gestuser(){
     $id=divide($_POST['variable']);

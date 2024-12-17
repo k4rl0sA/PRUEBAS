@@ -70,10 +70,10 @@ function cmp_etnias(){
 	$c[]=new cmp('moti_con','s','3',$d,$w.' '.$o,'Motivo Consulta','moti_con',null,null,true,true,'','col-5');
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
-	$o='espvit';
+	$o='infusu';
 	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
-	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('idpersona','t','80',$d,$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
+	$c[]=new cmp('sexo','t','50',$d,$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 
 
 	$o='espvit';
@@ -156,7 +156,7 @@ function cmp_etnias(){
 	function opc_sesi_nu($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
 	}
-	
+
 	function opc_moti_con($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}

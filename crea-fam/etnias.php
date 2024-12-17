@@ -158,7 +158,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 }
 
 	function gra_etnias(){
-		print_r($_POST);
+		// print_r($_POST);
 		$id=divide($_POST['idsesetn']);
 		$zsco=explode("=",$_POST['zscore']?? null);
 		$z1=$zsco[0]??null;

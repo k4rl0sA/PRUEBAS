@@ -56,12 +56,22 @@ function cmp_etnias(){
 	<div class='contenido' id='etnias-lis'>".lis_etnias()."</div></div>";
 	$hoy=date('Y-m-d');
 	$w='etnias';
+	$t=['nombre'=>'',];
+	$p=get_person();
+	if ($p=="") {$p=$t;}
 	$d='';
 	$o='sesetn';
 	$x='true';
 	$bl='true';
 	$ob='true';
 	$days=fechas_app('etnias');
+
+	$o='infusu';
+	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
+	$c[]=new cmp('nombre','t','80',$p['nombre'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('edad','t','50',$p['edad'],$w.' '.$z.' '.$o,'edad','edad',null,'',false,false,'','col-1');
+
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
@@ -69,10 +79,7 @@ function cmp_etnias(){
 	$c[]=new cmp('moti_con','s','3',$d,$w.' '.$o,'Motivo Consulta','moti_con',null,null,true,true,'','col-5');
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
-	$o='infusu';
-	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
-	$c[]=new cmp('idpersona','t','80',$d,$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
-	$c[]=new cmp('sexo','t','50',$d,$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	
 
 
 	$o='espvit';
@@ -91,6 +98,18 @@ function cmp_etnias(){
 	return $rta;
 }
 
+function get_person(){
+	var_dump($_POST);
+  $id=divide($_POST['id']);
+    $sql="SELECT T1.id_persona,T1.tipodoc,IFNULL(T2.nombre1,T4.nombre1) nombre1,IFNULL(T2.nombre2,T4.nombre2) nombre2,IFNULL(T2.apellido1,T4.apellido1) apellido1,IFNULL(T2.apellido2,T4.apellido2) apellido2,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento) fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento),curdate()), ' Meses= ',MONTH(CURDATE()) - MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)) + 12 * IF( MONTH(CURDATE()) < MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1, IF(MONTH(CURDATE())=MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)), (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))), IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))+30*(DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)))) edad,IFNULL(T2.genero,T4.genero) genero, IFNULL(T2.eapb,T4.eapb) eapb,T3.telefono1 telefono1,T3.telefono2 telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
+        FROM agendamiento T1 
+        left join personas T2 ON T1.id_persona=T2.idpersona 
+        left join person T4 ON T1.id_persona=T4.idpeople
+        left join hog_fam T3 ON T4.vivipersona = T3.id_fam
+    WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
+      $info=datos_mysql($sql);
+      return $info['responseResult'][0];
+  }
 
 
 

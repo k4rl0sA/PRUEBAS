@@ -37,7 +37,7 @@ function lis_agendamiento(){
 	return '';
 }
 
-function whe_AGENDAMIENTO() {
+function whe_agendamiento() {
 	$sql = "";
   if ($_POST['fidpersona'])
 		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
@@ -51,17 +51,17 @@ function whe_AGENDAMIENTO() {
 		} else {
 			$sql .= " AND fecha_cita >='".$_POST['fdes']."' AND fecha_cita <='". $_POST['fdes']."'";
 		}
-	}
+}   
     return $sql;
 }
 
 
-function focus_gestuser(){
- return 'gestuser';
+function focus_agendamiento(){
+ return 'agendamiento';
 }
 
-function men_gestuser(){
- $rta=cap_menus('gestuser','pro');
+function men_agendamiento(){
+ $rta=cap_menus('agendamiento','pro');
  return $rta;
 } 
 

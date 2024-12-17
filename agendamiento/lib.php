@@ -105,7 +105,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('pun','t',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
  $c[]=new cmp('cit','t',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
  $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha Cita','fecha',null,null,true,true,'','col-3'); 
- $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora','hora',null,null,true,true,'','col-2','validTime');
+ $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora Cita','hora',null,null,true,true,'','col-2','validTime');
  $c[]=new cmp('nom','t',100,$d['nombre_atendio'],$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
  $c[]=new cmp('obc','a',1000,$d['observac_cita'],$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

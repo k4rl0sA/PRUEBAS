@@ -58,6 +58,7 @@ function cmp_etnias(){
 	$w='etnias';
 	$d='';
 	$o='sesetn';
+	$x='true';
 	$days=fechas_app('etnias');
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);

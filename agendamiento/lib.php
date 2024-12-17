@@ -21,6 +21,20 @@ else {
 
 
 function lis_agendamiento(){
+  $sql = "";
+	if ($_POST['fidpersona'])
+		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
+	if ($_POST['fdigita'])
+		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
+	if ($_POST['festado'])
+		$sql .= " AND estado = '".$_POST['festado']."' ";
+	if ($_POST['fdes']) {
+		if ($_POST['fhas']) {
+			$sql .= " AND fecha_cita >='".$_POST['fdes']."' AND fecha_cita <='".$_POST['fhas']."'";
+		} else {
+			$sql .= " AND fecha_cita >='".$_POST['fdes']."' AND fecha_cita <='". $_POST['fdes']."'";
+		}
+	}
 	return '';
 }
 

@@ -124,12 +124,12 @@ function get_agendamiento(){
   //~ }else{
     //~ return "";
   //~ }
-    $sql="SELECT T1.id_persona,T1.tipodoc,IFNULL(T2.nombre1,T4.nombre1) nombre1,IFNULL(T2.nombre2,T4.nombre2) nombre2,IFNULL(T2.apellido1,T4.apellido1) apellido1,IFNULL(T2.apellido2,T4.apellido2) apellido2,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento) fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento),curdate()), ' Meses= ',MONTH(CURDATE()) - MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)) + 12 * IF( MONTH(CURDATE()) < MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1, IF(MONTH(CURDATE())=MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)), (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))), IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))+30*(DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)))) edad,IFNULL(T2.genero,T4.genero) genero, IFNULL(T2.eapb,T4.eapb) eapb,IFNULL(T3.telefono1,T4.telefono1) telefono1,IFNULL(T3.telefono2,T4.telefono2) telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
+    $sql="SELECT T1.idpersona,T1.tipodoc,IFNULL(T2.nombre1,T4.nombre1) nombre1,IFNULL(T2.nombre2,T4.nombre2) nombre2,IFNULL(T2.apellido1,T4.apellido1) apellido1,IFNULL(T2.apellido2,T4.apellido2) apellido2,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento) fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento),curdate()), ' Meses= ',MONTH(CURDATE()) - MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)) + 12 * IF( MONTH(CURDATE()) < MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1, IF(MONTH(CURDATE())=MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)), (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))), IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))+30*(DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)))) edad,IFNULL(T2.genero,T4.genero) genero, IFNULL(T2.eapb,T4.eapb) eapb,IFNULL(T3.telefono1,T4.telefono1) telefono1,IFNULL(T3.telefono2,T4.telefono2) telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
         FROM agendamiento T1 
-        left join personas T2 ON T1.id_persona=T2.idpersona 
-        left join personas1 T4 ON T1.id_persona=T4.idpersona 
-        left join caracterizacion T3 ON T1.id_persona=T3.id_persona 
-    WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
+        left join personas T2 ON T1.idpersona=T2.idpersona 
+        left join personas1 T4 ON T1.idpersona=T4.idpersona 
+        left join caracterizacion T3 ON T1.idpersona=T3.idpersona 
+    WHERE T1.idpersona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
       $info=datos_mysql($sql);
       return $info['responseResult'][0];
   }

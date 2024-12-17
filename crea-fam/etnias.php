@@ -175,7 +175,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 		['type' => 's', 'value' => $_POST['peso']],
 		['type' => 's', 'value' => $_POST['talla']],
 		['type' => 's', 'value' => $_POST['imc']],
-		['type' => 's', 'value' => $z1],
+		['type' => 's', 'value' => $z2],
 		['type' => 's', 'value' => $z1],
 		['type' => 's', 'value' => $_POST['clasi_nutri']],
 		['type' => 's', 'value' => $_POST['peri_cef']],

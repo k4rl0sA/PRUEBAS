@@ -40,10 +40,10 @@ function focus_etnias(){
 FUNCTION lis_etnias(){
 	// var_dump($_POST['id']);
 	$id=divide($_POST['id']);
-	$sql="SELECT `idamb` ACCIONES,idamb 'Cod Registro',`fecha`,FN_CATALOGODESC(34,tipo_activi) Tipo,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_amb A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idvivamb='".$id[0];
+	$sql="SELECT he.id_etnia AS 'Codigo Registro', he.fecha AS 'Fecha', u.nombre AS 'Creo', he.fecha_create AS 'Fecha de Creación'
+    FROM hog_etnia he
+    LEFT JOIN usuarios u ON he.usu_create = u.id_usuario";
+	$sql.="WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
 	echo $sql;
 	$datos=datos_mysql($sql);

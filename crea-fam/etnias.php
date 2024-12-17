@@ -94,7 +94,7 @@ function cmp_etnias(){
 }
 
 function get_person(){
-	var_dump($_POST);
+	// var_dump($_POST);
   $id=divide($_POST['id']);
     $sql="SELECT CONCAT_WS(' ',p.nombre1, p.apellido1) nombre,p.sexo,
 	CONCAT('AÑOS: ',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' MESES: ',
@@ -108,7 +108,7 @@ FROM person p
 
 
   function get_zscore(){
-	var_dump($_POST);
+	// var_dump($_POST);
 	$id=divide($_POST['val']);
 	 $fechaNacimiento = new DateTime($id[1]);
 	 $fechaActual = new DateTime();

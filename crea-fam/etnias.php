@@ -159,7 +159,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 
 
 	function gra_etnias(){
-		// print_r($_POST);
+		print_r($_POST);
 		$id=divide($_POST['idsesetn']);
 		$sql = "INSERT INTO hog_etnia VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params =[

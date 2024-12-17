@@ -62,7 +62,7 @@ function cmp_etnias(){
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
-	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'H','tipo_activi',null,null,true,true,'','col-5');
+	$c[]=new cmp('sesi_nu','s','3',$d,$w.' '.$o,'Sesion N°','sesi_nu',null,null,true,true,'','col-5');
 	$c[]=new cmp('tipo_activi','s','3',$d,$w.' '.$o,'','tipo_activi',null,null,true,true,'','col-5');
 
 	$o='espvit';
@@ -140,7 +140,7 @@ function cmp_etnias(){
 		return $rta;
 	   }
 	   
-	   function opc_tipo_activi($id=''){
+	   function opc_sesi_nu($id=''){
 		if($_REQUEST['id']!=''){
 					$id=divide($_REQUEST['id']);
 					$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='238' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

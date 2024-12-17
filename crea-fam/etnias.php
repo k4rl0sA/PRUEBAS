@@ -43,8 +43,8 @@ FUNCTION lis_etnias(){
 	$sql="SELECT he.id_etnia AS 'Codigo Registro', he.fecha AS 'Fecha', u.nombre AS 'Creo', he.fecha_create AS 'Fecha de Creación'
     FROM hog_etnia he
     LEFT JOIN usuarios u ON he.usu_create = u.id_usuario";
-	$sql.=" WHERE idpeople='".$id[0];
 	$sql.="' ORDER BY fecha_create";
+	$sql.=" WHERE idpeople='".$id[0];
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"etnias-lis",5);

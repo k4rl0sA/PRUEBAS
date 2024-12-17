@@ -60,9 +60,6 @@ function cmp_etnias(){
 	if ($p=="") {$p=$t;}
 	$d='';
 	$o='sesetn';
-	$x='true';
-	$bl='true';
-	$ob='true';
 	$z='zS';
 	$days=fechas_app('etnias');
 	$o='infusu';
@@ -84,12 +81,12 @@ function cmp_etnias(){
 	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','signos.php');calImc('peso','talla','imc');");
 	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','signos.php');valTalla('talla');valGluc('glucometria');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
-	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-2');
-	$c[]=new cmp('peri_cef','sd','4',$d,$w.' '.$o,'Perimetro Cefalico','peri_cef','rgxpeso','##.#',false,$x,'','col-2');
-    $c[]=new cmp('peri_bra','sd','5',$d,$w.' '.$o,'Perimetro Braquial','peri_bra','rgxtalla','###.#',false,$x,'','col-2');
-	$c[]=new cmp('frec_res','sd','4',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxpeso','##.#',false,$x,'','col-2');
-    $c[]=new cmp('frec_car','sd','5',$d,$w.' '.$o,'Frecuencia Cardiaca','frec_car','rgxtalla','###.#',false,$x,'','col-2');
-	$c[]=new cmp('oxige','sd','5',$d,$w.' '.$o,'Oxigeno','oxige','rgxtalla','###.#',false,$x,'','col-2');
+	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-2');
+	$c[]=new cmp('peri_cef','sd','4',$d,$w.' '.$o,'Perimetro Cefalico','peri_cef','rgxpeso','##.#',false,true,'','col-2');
+    $c[]=new cmp('peri_bra','sd','5',$d,$w.' '.$o,'Perimetro Braquial','peri_bra','rgxtalla','###.#',false,true,'','col-2');
+	$c[]=new cmp('frec_res','sd','4',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxpeso','##.#',false,true,'','col-2');
+    $c[]=new cmp('frec_car','sd','5',$d,$w.' '.$o,'Frecuencia Cardiaca','frec_car','rgxtalla','###.#',false,true,'','col-2');
+	$c[]=new cmp('oxige','sd','5',$d,$w.' '.$o,'Oxigeno','oxige','rgxtalla','###.#',false,true,'','col-2');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

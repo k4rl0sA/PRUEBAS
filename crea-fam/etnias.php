@@ -72,7 +72,6 @@ function cmp_etnias(){
 	$c[]=new cmp('edad','t','50',$p['edad'],$w.' '.$o,'edad','edad',null,'',false,false,'','col-25');
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
     
-
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
@@ -80,15 +79,12 @@ function cmp_etnias(){
 	$c[]=new cmp('moti_con','s','3',$d,$w.' '.$o,'Motivo Consulta','moti_con',null,null,true,true,'','col-5');
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
-	
-
-
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);
 	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','signos.php');calImc('peso','talla','imc');");
 	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','signos.php');valTalla('talla');valGluc('glucometria');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');
-	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' '.$ge.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
+	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
 	$c[]=new cmp('peri_cef','sd','4',$d,$w.' '.$o,'Perimetro Cefalico','peri_cef','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('peri_bra','sd','5',$d,$w.' '.$o,'Perimetro Braquial','peri_bra','rgxtalla','###.#',false,$x,'','col-2');
 	$c[]=new cmp('frec_res','sd','4',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxpeso','##.#',false,$x,'','col-2');

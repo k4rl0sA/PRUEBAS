@@ -114,9 +114,9 @@ $rta.="</div>";
 	return $rta;
 }
 
-function get_gestuser(){
+//function get_gestuser(){
 	
-}
+//}
 
 function gra_gestuser(){
     $id=divide($_POST['variable']);

@@ -108,7 +108,7 @@ function get_person(){
     - (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) *12) AS meses,
     DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) %30 AS dias,p.fecha_nacimiento 
 FROM person p 
-    WHERE p.id_people='".$id[0]."'";
+    WHERE p.idpeople='".$id[0]."'";
       $info=datos_mysql($sql);
       return $info['responseResult'][0];
   }

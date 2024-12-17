@@ -94,7 +94,8 @@ function cmp_etnias(){
 		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params =[
 		['type' => 'i', 'value' => NULL],
-		['type' => 'i', 'value' => $_POST['variable']],
+		['type' => 'i', 'value' => $id[0]],
+		['type' => 'i', 'value' => $_POST['fecha']],
 		['type' => 's', 'value' => $_POST['variable']],
 		['type' => 's', 'value' => $_POST['variable']],
 		['type' => 's', 'value' => $_POST['variable']],

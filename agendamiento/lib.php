@@ -137,6 +137,9 @@ function get_agendamiento(){
   function opc_eapb($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
   }
+  function opc_tconsulta($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=37 and estado='A' ORDER BY 1",$id);
+  }
 
 function gra_gestuser(){
     $id=divide($_POST['variable']);

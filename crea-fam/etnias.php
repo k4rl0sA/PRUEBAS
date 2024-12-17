@@ -45,7 +45,7 @@ FUNCTION lis_etnias(){
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
 	$sql.="WHERE idvivamb='".$id[0];
 	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return panel_content($datos["responseResult"],"etnias-lis",5);
    }

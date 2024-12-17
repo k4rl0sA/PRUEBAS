@@ -91,7 +91,7 @@ function cmp_etnias(){
 	function gra_etnias(){
 		// print_r($_POST);
 		$id=divide($_POST['idsesetn']);
-		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params =[
 		['type' => 'i', 'value' => NULL],
 		['type' => 'i', 'value' => $id[0]],

@@ -76,7 +76,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 
-function cmp_gestuser(){
+function cmp_agendamiento(){
 	$rta="";
 	return $rta;
 }

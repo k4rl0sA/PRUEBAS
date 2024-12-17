@@ -90,9 +90,9 @@ function cmp_etnias(){
 
 	function gra_etnias(){
 		// print_r($_POST);
-		$id=divide($_POST['idvivamb']);
+		$id=divide($_POST['idsesetn']);
 		if(count($id)==2){
-			$sql = "UPDATE hog_amb SET 
+			$sql = "UPDATE etnias SET 
             seguro = TRIM(UPPER('{$_POST['seguro']}')),
             grietas = TRIM(UPPER('{$_POST['grietas']}')),
             combustible = TRIM(UPPER('{$_POST['combustible']}')),

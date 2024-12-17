@@ -144,7 +144,7 @@ function get_agendamiento(){
     return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=241 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
   }
   function opc_tipo_cita($id=''){
-    return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=240 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
+    return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=240 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
   }
 
 function gra_gestuser(){

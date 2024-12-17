@@ -146,7 +146,26 @@ function get_agendamiento(){
   function opc_tipo_cita($id=''){
     return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=240 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
   }
+  function cmp_confirma_asistencia(){
+    $rta="";
+    $w='confirma_asistencia';
+    $d="";
+    $rta=" <span class='mensaje' id='".$w."-msj' ></span>";
+    $rta.="<div id='tblConsulta'>".lis_consulta()."</div>";
+    $rta.="<div id='tblConsulta1'>".lis_consulta1()."</div>";
+     $c[]=new cmp('ipe','h',10,$_POST['id'],$w,'','idp',null,'','','');  
+    //~ $c[]=new cmp('idp','h',10,$_POST['id'],$w,'','idp',null,'','','');  
+    $c[]=new cmp(null,'e',null,'CONFIRMACIÓN DE ASISTENCIA',$w);
+    $c[]=new cmp('nom','t',100,$d,$w,'Persona que Atendio','nombre',null,null,true,true,'','col-5');
+    $c[]=new cmp('con','o',2,$d,$w,'Confirma Asistencia','con',null,null,true,true,'','col-2');
+    $c[]=new cmp('msj','o',2,$d,$w,'Desea envio de Mensaje de Texto','msj',null,null,true,true,'','col-3');
+    $c[]=new cmp('obl','a',1000,$d,$w,'Observaciones','observacion',null,null,false,true,'','col-10s'); 
+    for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
+    $rta.="</div>";
+    return $rta;
+   }
 
+  
 function gra_gestuser(){
     $id=divide($_POST['variable']);
     $sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";

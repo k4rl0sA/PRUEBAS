@@ -61,6 +61,7 @@ function cmp_etnias(){
 	$x='true';
 	$bl='true';
 	$ob='true';
+	$p='true';
 	$days=fechas_app('etnias');
 	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
@@ -70,7 +71,7 @@ function cmp_etnias(){
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';
-	$c[]=new cmp($o,'e',null,'INFORMACION DE signos',$w); 
+	$c[]=new cmp($o,'e',null,'INFORMACION USUARIO',$w); 
 	$c[]=new cmp('idpersona','t','20',$p['idpersona'],$w.' '.$o,'N° Identificación','idpersona',null,'',true,false,'','col-2');
 	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 

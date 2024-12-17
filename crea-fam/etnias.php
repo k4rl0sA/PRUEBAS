@@ -91,35 +91,21 @@ function cmp_etnias(){
 	function gra_etnias(){
 		// print_r($_POST);
 		$id=divide($_POST['idsesetn']);
-		if(count($id)==2){
-			$sql = "UPDATE etnias SET 
-            seguro = TRIM(UPPER('{$_POST['seguro']}')),
-            grietas = TRIM(UPPER('{$_POST['grietas']}')),
-            combustible = TRIM(UPPER('{$_POST['combustible']}')),
-            separadas = TRIM(UPPER('{$_POST['separadas']}')),
-            lena = TRIM(UPPER('{$_POST['lena']}')),
-            ilumina = TRIM(UPPER('{$_POST['ilumina']}')),
-            fuma = TRIM(UPPER('{$_POST['fuma']}')),
-            bano = TRIM(UPPER('{$_POST['bano']}')),
-            cocina = TRIM(UPPER('{$_POST['cocina']}')),
-            elevado = TRIM(UPPER('{$_POST['elevado']}')),
-            electrica = TRIM(UPPER('{$_POST['electrica']}')),
-            elementos = TRIM(UPPER('{$_POST['elementos']}')),
-            barreras = TRIM(UPPER('{$_POST['barreras']}')),
-            zontrabajo = TRIM(UPPER('{$_POST['zontrabajo']}')),
-            usu_update = TRIM(UPPER('{$_SESSION['us_sds']}')),
-            fecha_update = DATE_SUB(NOW(), INTERVAL 5 HOUR)
-        WHERE idamb = TRIM(UPPER('{$_POST['idvivamb']}'))";
-			// echo $sql;
-		}else if(count($id)==1){
-		  $sql="INSERT INTO hog_amb VALUES (NULL,trim(upper('{$id[0]}')),trim(upper('{$_POST['fecha']}')),trim(upper('{$_POST['tipo_activi']}')),trim(upper('{$_POST['seguro']}')),trim(upper('{$_POST['grietas']}')),trim(upper('{$_POST['combustible']}')),trim(upper('{$_POST['separadas']}')),trim(upper('{$_POST['lena']}')),trim(upper('{$_POST['ilumina']}')),trim(upper('{$_POST['fuma']}')),trim(upper('{$_POST['bano']}')),trim(upper('{$_POST['cocina']}')),trim(upper('{$_POST['elevado']}')),trim(upper('{$_POST['electrica']}')),trim(upper('{$_POST['elementos']}')),trim(upper('{$_POST['barreras']}')),trim(upper('{$_POST['zontrabajo']}')),trim(upper('{$_POST['agua']}')),trim(upper('{$_POST['tanques']}')),trim(upper('{$_POST['adecagua']}')),trim(upper('{$_POST['raciagua']}')),trim(upper('{$_POST['sanitari']}')),trim(upper('{$_POST['aguaresid']}')),trim(upper('{$_POST['terraza']}')),trim(upper('{$_POST['recipientes']}')),trim(upper('{$_POST['vivaseada']}')),trim(upper('{$_POST['separesiduos']}')),trim(upper('{$_POST['reutresiduos']}')),trim(upper('{$_POST['noresiduos']}')),trim(upper('{$_POST['adecresiduos']}')),trim(upper('{$_POST['horaresiduos']}')),trim(upper('{$_POST['plagas']}')),trim(upper('{$_POST['contplagas']}')),trim(upper('{$_POST['pracsanitar']}')),trim(upper('{$_POST['envaplaguicid']}')),trim(upper('{$_POST['consealiment']}')),trim(upper('{$_POST['limpcocina']}')),trim(upper('{$_POST['cuidcuerpo']}')),trim(upper('{$_POST['fechvencim']}')),trim(upper('{$_POST['limputensilios']}')),trim(upper('{$_POST['adqualime']}')),trim(upper('{$_POST['almaquimicos']}')),trim(upper('{$_POST['etiqprodu']}')),trim(upper('{$_POST['juguetes']}')),trim(upper('{$_POST['medicamalma']}')),trim(upper('{$_POST['medicvenc']}')),trim(upper('{$_POST['adqumedicam']}')),trim(upper('{$_POST['medidaspp']}')),trim(upper('{$_POST['radiacion']}')),trim(upper('{$_POST['contamaire']}')),trim(upper('{$_POST['monoxido']}')),trim(upper('{$_POST['residelectri']}')),trim(upper('{$_POST['duermeelectri']}')),trim(upper('{$_POST['vacunasmascot']}')),trim(upper('{$_POST['aseamascot']}')),trim(upper('{$_POST['alojmascot']}')),trim(upper('{$_POST['excrmascot']}')),trim(upper('{$_POST['permmascot']}')),trim(upper('{$_POST['salumascot']}')),trim(upper('{$_POST['pilas']}')),trim(upper('{$_POST['dispmedicamentos']}')),trim(upper('{$_POST['dispcompu']}')),trim(upper('{$_POST['dispplamo']}')),trim(upper('{$_POST['dispbombill']}')),trim(upper('{$_POST['displlanta']}')),trim(upper('{$_POST['dispplaguic']}')),trim(upper('{$_POST['dispaceite']}')),
-		  TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-			// echo $sql;
-		}else{
-			
-		}
-		$rta=dato_mysql($sql);
-	  return $rta;
+		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$params =[
+		['type' => 'i', 'value' => NULL],
+		['type' => 'i', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 's', 'value' => $_POST['variable']],
+		['type' => 'i', 'value' => $_SESSION['us_sds']],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => NULL],
+		['type' => 's', 'value' => 'A']
+		];
+		return  $rta= mysql_prepd($sql, $params);
 	}
 
 	function get_etnias(){

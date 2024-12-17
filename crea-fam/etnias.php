@@ -32,8 +32,7 @@ function focus_etnias(){
 	 $rta = ""; 
 	 $acc=rol($a);
 	   if ($a=='etnias'  && isset($acc['crear']) && $acc['crear']=='SI'){  
-	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	 
+	 $rta .= "<li class='icono $a grabar' title='Grabar' OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	   }
   return $rta;
 }

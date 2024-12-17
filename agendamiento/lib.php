@@ -101,9 +101,9 @@ function cmp_agendamiento(){
  $c[]=new cmp('eap','s',3,$d['eapb'],$w.' '.$o,'Eapb','eapb',null,null,false,false,'','col-3');
  $c[]=new cmp('te1','t',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
  $c[]=new cmp('te2','t',10,$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,false,'','col-2'); 
- //$c[]=new cmp('con','s',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
- $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
- $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
+ $c[]=new cmp('con','t',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
+ $c[]=new cmp('pun','t',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
+ $c[]=new cmp('cit','t',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
  $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3'); 
  $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora','hora',null,null,true,true,'','col-2','validTime');
  $c[]=new cmp('nom','t',100,$d['nombre_atendio'],$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
@@ -137,7 +137,7 @@ function get_agendamiento(){
   function opc_eapb($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=18 and estado='A' ORDER BY 1",$id);
   }
- /* function opc_tconsulta($id=''){
+  function opc_tconsulta($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=2 and estado='A' ORDER BY 1",$id);
   }
   function opc_punto_atenc($id=''){
@@ -145,7 +145,7 @@ function get_agendamiento(){
   }
   function opc_tipo_cita($id=''){
     return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=240 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
-  }*/
+  }
 
 function gra_gestuser(){
     $id=divide($_POST['variable']);

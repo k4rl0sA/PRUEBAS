@@ -87,20 +87,13 @@ $mod='agendamiento';
       <div class='titulo' > AGENDAMIENTO DE CITAS
 		<nav class='menu left' >
         <li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
-			<?php if ($info['responseResult'][0]['perfil']=='ADM' || $info['responseResult'][0]['perfil']=='TEC' ){
-			 echo "<li class='icono exportar'      title='Exportar CSV'    Onclick=\"csv(mod);\"></li>";	
-			}?>
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono crear'       title='Crear Cita'     Onclick="mostrar(mod,'pro');"></li>	
 			<li class='icono comentarios'       title='Crear Observaciones'     Onclick="mostrar('observaciones','pro');"></li>
-			<?php $info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
-	if ($info['responseResult'][0]['perfil']=='ADM' || $info['responseResult'][0]['perfil']=='TEC' ){	
-			echo "<li class='icono exportar'      title='Exportar CSV Observaciones'    Onclick=\"ajax(ruta_app, 'a=lis&tb=observaciones', false);csv('observaciones');\"></li>";
-		}?>
     </nav>
 		<nav class='menu right' >
-			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>
+        <li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>
             <li class='icono cancelar'      title='Salir'            Onclick="location.href='../main/'"></li>
         </nav>               
       </div>

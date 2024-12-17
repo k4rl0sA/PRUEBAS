@@ -151,7 +151,6 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 				$des='Error en el rango, por favor valide';
 				break;
 		}
-
 		return json_encode($z." = ".$des);
 	}
 }

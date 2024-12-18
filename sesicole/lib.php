@@ -240,6 +240,7 @@ function get_personOld(){
 /* function opc_equi($id=''){
 	return opc_sql("SELECT id_usuario,nombre FROM usuarios u where equipo=(select equipo where id_usuario=$_SESSION['us_sds']) AND estado='A'", $id);
 }
+	
 	$_SESSION['us_sds']
  */
  function opc_equi($id=''){

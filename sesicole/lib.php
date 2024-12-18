@@ -236,6 +236,14 @@ function get_personOld(){
 	}
 } 
 
+function opc_equi($id=''){
+	if($_REQUEST['id']!=''){
+				$id=divide($_REQUEST['id']);
+				$sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='242' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+				$info=datos_mysql($sql);
+				return json_encode($info['responseResult']);
+		}
+}
 
 function opc_temati1desc_temati1($id=''){
 	if($_REQUEST['id']!=''){

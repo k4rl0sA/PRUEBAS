@@ -99,7 +99,7 @@ function cmp_sesigcole(){
 	$id=divide($_POST['id']);
     $w="sesigcole";
 	$o='infbas';
-	// var_dump($p);
+	var_dump($d['equi']);
 	$days=fechas_app('vivienda');
 	$o='Secgi';
 	$enb = ($_POST['id']=='0') ? true : false ;
@@ -152,15 +152,9 @@ function get_sesigcole(){
 function gra_sesigcole(){
 	$id=divide($_POST['id']);
 	// var_dump($_POST['fequi']);
-	$equi = isset($_POST['fequi']) 
-    ? (is_array($_POST['fequi']) 
-        ? implode("-", $_POST['fequi']) 
-        : implode("-", array_map('trim', explode(",", str_replace("'", "", $_POST['fequi']))))) 
-    : '';
+	$equi = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
 
-	// $equi = isset($_POST['fequi'])?(is_array($_POST['fequi']) ? implode("-", str_replace("'", "", $_POST['fequi'])) : $_POST['fequi']) : '';
-	var_dump($equi);
-
+	
 
 	if ($id[1]==0) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";

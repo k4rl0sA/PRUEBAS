@@ -122,7 +122,7 @@ function get_agendamiento(){
         left join personas T2 ON T1.idpersona=T2.idpersona 
         left join person T4 ON T1.idpersona =T4.idpeople
         left join hog_fam T3 ON T4.vivipersona = T3.id_fam
-    WHERE T1.idpersona='".$id[1]."' AND T1.tipo_doc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
+    WHERE T1.idpersona='".$id[1]."' AND T1.tipo_doc=upper('".$id[2]."');
       $info=datos_mysql($sql);
       return $info['responseResult'][0];
   }

@@ -263,7 +263,7 @@ function gra_alertas(){
 
 function opc_evento($id=''){
 	$d=get_persona();
-	if($d['sexo']=='M'){
+	if($d['sexo']=='MUJER'){
 	  if($d['ano']<6){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5,1,2,3) and estado='A' ORDER BY 2",$id);
 	  }elseif($d['ano']>5 && $d['ano']<10){

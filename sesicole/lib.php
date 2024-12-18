@@ -152,6 +152,9 @@ function get_sesigcole(){
 function gra_sesigcole(){
 	$id=divide($_POST['id']);
 	// var_dump(count($id));
+	$equi = isset($_POST['fequi']) ? (is_array($_POST['fequi']) ? implode(",", str_replace("'", "", $_POST['fequi'])) : $_POST['fequi']) : '';
+
+
 	if ($id[1]==0) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [
@@ -161,7 +164,7 @@ function gra_sesigcole(){
 			['type' => 'i', 'value' => $_POST['activi']],
 			['type' => 's', 'value' => $_POST['luga']],
 			['type' => 's', 'value' => $_POST['jorna']],
-			['type' => 's', 'value' => $_POST['equi']],
+			['type' => 's', 'value' => $equi],
 			['type' => 'i', 'value' => $_POST['temati1']],
 			['type' => 'i', 'value' => $_POST['desc_temati1']],
 			['type' => 'i', 'value' => $_POST['temati2']],

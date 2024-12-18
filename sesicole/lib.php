@@ -238,7 +238,7 @@ function get_personOld(){
 } 
 
 function opc_equi($id=''){
-	return opc_sql("SELECT nombre FROM usuarios u where equipo=(select equipo where id_usuario='$_SESSION['us_sds']') AND estado='A'", $id);
+	return opc_sql("SELECT nombre FROM usuarios u where equipo=(select equipo where id_usuario=$_SESSION['us_sds']) AND estado='A'", $id);
 }
 
 function opc_jorna($id=''){

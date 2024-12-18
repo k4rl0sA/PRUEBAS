@@ -102,6 +102,7 @@ function cmp_sesigcole(){
 	var_dump($d['equi']);
 	$equi = $d['equi'];
 	$eq = str_replace("-", ",", $equi);
+	var_dump($eq);
 	$days=fechas_app('vivienda');
 	$o='Secgi';
 	$enb = ($_POST['id']=='0') ? true : false ;

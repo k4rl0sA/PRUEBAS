@@ -151,8 +151,8 @@ function get_sesigcole(){
 
 function gra_sesigcole(){
 	$id=divide($_POST['id']);
-	var_dump($_POST['fequi']);
-	$equi = isset($_POST['fequi']) ? (is_array($_POST['fequi']) ? implode("-", str_replace("'", "", $_POST['fequi'])) : $_POST['fequi']) : '';
+	// var_dump($_POST['fequi']);
+	$equi = isset($_POST['fequi'])?(is_array($_POST['fequi']) ? implode("-", str_replace("'", "", $_POST['fequi'])) : $_POST['fequi']) : '';
 	var_dump($equi);
 
 

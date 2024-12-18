@@ -240,11 +240,11 @@ function get_personOld(){
 /* function opc_equi($id=''){
 	return opc_sql("SELECT id_usuario,nombre FROM usuarios u where equipo=(select equipo where id_usuario=$_SESSION['us_sds']) AND estado='A'", $id);
 }
+
 	
-	$_SESSION['us_sds']
  */
  function opc_equi($id=''){
-	return opc_sql("SELECT id_usuario, nombre FROM usuarios WHERE equipo=(select equipo from usuarios where id_usuario=80811594) AND estado='A' ORDER BY LPAD(idcatadeta, 2, '0')", $id);
+	return opc_sql("SELECT id_usuario, nombre FROM usuarios WHERE equipo=(select equipo from usuarios where id_usuario=".$_SESSION['us_sds'].") AND estado='A' ORDER BY LPAD(idcatadeta, 2, '0')", $id);
 }
 
 function opc_jorna($id=''){

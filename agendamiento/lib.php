@@ -103,12 +103,12 @@ function cmp_agendamiento(){
  $c[]=new cmp('te1','t',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
  $c[]=new cmp('te2','t',10,$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,false,'','col-2'); 
  //$c[]=new cmp('con','t',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
- $c[]=new cmp('pun','t',100,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
- $c[]=new cmp('cit','t',100,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
- $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha Cita','fecha',null,null,true,true,'','col-3'); 
- $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora Cita','hora',null,null,true,true,'','col-2','validTime');
- $c[]=new cmp('nom','t',100,$d['nombre_atendio'],$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
- $c[]=new cmp('obc','a',1000,$d['observac_cita'],$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 
+ $c[]=new cmp('pun','t',100,'',$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
+ $c[]=new cmp('cit','t',100,'',$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
+ $c[]=new cmp('fci','d',10,'',$w.' '.$o,'Fecha Cita','fecha',null,null,true,true,'','col-3'); 
+ $c[]=new cmp('hci','c',10,'',$w.' '.$o,'Hora Cita','hora',null,null,true,true,'','col-2','validTime');
+ $c[]=new cmp('nom','t',100,'',$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
+ $c[]=new cmp('obc','a',1000,'',$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<br>";
  $rta.="</div>";
@@ -119,9 +119,11 @@ function get_personOld(){
 	// print_r($_REQUEST);
   // var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT idpeople,idpersona id_persona,tipo_doc tipodoc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
-		sexo,genero,etnia,pueblo,nacionalidad,regimen,eapb
-		FROM `person` 
+		$sql="SELECT idpeople,idpersona id_persona,tipo_doc tipodoc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,CONCAT('AÑOS: ',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' MESES: ',
+    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())- (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) *12),' DIAS: ',
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) %30) edad,sexo genero,eapb,f.telefono1,f.telefono2
+		FROM `person` p
+    LEFT JOIN hog_fam f ON p.vivipersona=f.id_fam
    	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

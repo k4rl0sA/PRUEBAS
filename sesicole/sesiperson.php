@@ -108,6 +108,8 @@ function get_personOld(){
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);
+	}else{
+		return json_encode($info['responseResult'][0]);
 	}
 	}else{
 		return json_encode (new stdClass);

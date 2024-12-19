@@ -115,6 +115,26 @@ $rta.="</div>";
 	return $rta;
 }
 
+function get_personOld(){
+	// print_r($_REQUEST);
+	$id=divide($_POST['id']);
+	$info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
+	if (!$info['responseResult']) {
+		$sql="SELECT idpeople,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		sexo,genero,etnia,pueblo,nacionalidad,regimen,eapb
+		FROM `personas` 
+   	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
+	$info=datos_mysql($sql);
+	if (!$info['responseResult']) {
+		return json_encode (new stdClass);
+	}
+	return json_encode($info['responseResult'][0]);
+	}else{
+		// return json_encode (new stdClass);
+		return $rta="Error: El usuario con este número de documento ya se encuentra registrado.";
+	}
+} 
+
 function get_agendamiento(){
 	// var_dump($_POST);
   $id=divide($_POST['id']);

@@ -99,8 +99,8 @@ function cmp_sespers(){
 function get_personOld(){
 	// print_r($_REQUEST);
 	$id=divide($_POST['id']);
-	$info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
-	if (!$info['responseResult']) {
+	/* $info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
+	if (!$info['responseResult']) { */
 		$sql="SELECT idpeople,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,etnia,pueblo,nacionalidad,regimen,eapb
 		FROM `personas` 
@@ -111,10 +111,10 @@ function get_personOld(){
 	}else{
 		return json_encode($info['responseResult'][0]);
 	}
-	}else{
+	/* }else{
 		return json_encode (new stdClass);
 		// return json_encode($info['responseResult'][0]);
-	}
+	} */
 } 
 
 function get_sespers(){

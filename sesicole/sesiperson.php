@@ -109,10 +109,9 @@ function get_personOld(){
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);
 	}
-	return json_encode($info['responseResult'][0]);
 	}else{
 		// return json_encode (new stdClass);
-		return $rta="Error: El usuario con este número de documento ya se encuentra registrado.";
+		return json_encode($info['responseResult'][0]);
 	}
 } 
 

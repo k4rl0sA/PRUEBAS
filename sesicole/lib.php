@@ -99,10 +99,10 @@ function cmp_sesigcole(){
 	$id=divide($_POST['id']);
     $w="sesigcole";
 	$o='infbas';
-	var_dump($d['equi']);
+	// var_dump($d['equi']);
 	$equi = $d['equi'];
 	$eq = str_replace("-", ",", $equi);
-	var_dump($eq);
+	// var_dump($eq);
 	$days=fechas_app('vivienda');
 	$o='Secgi';
 	$enb = ($_POST['id']=='0') ? true : false ;

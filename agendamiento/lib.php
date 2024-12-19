@@ -86,11 +86,12 @@ function cmp_agendamiento(){
  if ($d=="") {$d=$t;}
  $u=($d['id_persona']=='')?true:false;
  $o='percit';
+ $key='pEr';
  $c[]=new cmp($o,'e',null,'AGENDAMIENTO DE USUARIOS',$w);
  $c[]=new cmp('ipe','h',50,$_POST['id'],$w,'','idp',null,'','','');  
  //~ $c[]=new cmp('fcr','h',18,$d['fecha_create'],$w.' '.$o,'',0,'','','',false,'','col-4');
- $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-3');
- $c[]=new cmp('tdo','s',3,$d['tipodoc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-4','getPerson');
+$c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona','rgxdfnum',null,true,$u,'','col-3');
+$c[]=new cmp('tipo_doc','s',3,$d['tipodoc'],$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,$u,'','col-4',"getDatKey('pEr','personOld','agendamiento',['tipo_doc'],'lib.php');");
  $c[]=new cmp('no1','t',50,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',50,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-3');
  $c[]=new cmp('ap1','t',50,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-4');

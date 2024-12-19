@@ -1,5 +1,5 @@
 <?php
- require_once '../libs/gestion.php';
+require_once '../libs/gestion.php';
 ini_set('display_errors','1');
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
@@ -20,21 +20,21 @@ else {
 
 function focus_sespers(){
 	return 'sespers';
-   }
+}
    
-   function men_sespers(){
+function men_sespers(){
 	$rta=cap_menus('sespers','pro');
 	return $rta;
-   } 
+}
    
-   function cap_menus($a,$b='cap',$con='con') {
-	 $rta = ""; 
-	 if ($a=='sespers'){  
-	   $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-		 $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-	 }
-	 return $rta;
-   }
+function cap_menus($a,$b='cap',$con='con') {
+	$rta = ""; 
+	if ($a=='sespers'){  
+		$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
+		$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+	}
+	return $rta;
+}
 
    FUNCTION lis_perses(){
 	// var_dump($_POST['id']);

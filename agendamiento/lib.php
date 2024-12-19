@@ -115,7 +115,7 @@ $rta.="</div>";
 }
 
 function get_agendamiento(){
-	//var_dump($_POST);
+	var_dump($_POST);
   $id=divide($_POST['id']);
     $sql="SELECT T1.id_persona,T1.tipodoc,IFNULL(T2.nombre1,T4.nombre1) nombre1,IFNULL(T2.nombre2,T4.nombre2) nombre2,IFNULL(T2.apellido1,T4.apellido1) apellido1,IFNULL(T2.apellido2,T4.apellido2) apellido2,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento) fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento),curdate()), ' Meses= ',MONTH(CURDATE()) - MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)) + 12 * IF( MONTH(CURDATE()) < MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1, IF(MONTH(CURDATE())=MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)), (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))), IF (DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento))+30*(DAY(CURDATE()) < DAY(IFNULL(T2.fecha_nacimiento,T4.fecha_nacimiento)))) edad,IFNULL(T2.genero,T4.genero) genero, IFNULL(T2.eapb,T4.eapb) eapb,T3.telefono1 telefono1,T3.telefono2 telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
         FROM agendamiento T1 

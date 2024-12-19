@@ -110,8 +110,8 @@ function get_personOld(){
 		return json_encode (new stdClass);
 	}
 	}else{
-		// return json_encode (new stdClass);
-		return json_encode($info['responseResult'][0]);
+		return json_encode (new stdClass);
+		// return json_encode($info['responseResult'][0]);
 	}
 } 
 

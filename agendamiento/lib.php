@@ -116,22 +116,19 @@ function cmp_agendamiento(){
 }
 
 function get_personOld(){
-	// print_r($_REQUEST);
-  // var_dump($_POST);
+	// print_r($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT idpeople,idpersona id_persona,tipo_doc tipodoc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,CONCAT('AÑOS: ',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' MESES: ',
-    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())- (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) *12),' DIAS: ',
-    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) %30) edad,sexo genero,eapb,f.telefono1,f.telefono2
-		FROM `person` p
-    LEFT JOIN hog_fam f ON p.vivipersona=f.id_fam
+
+		$sql="SELECT idpeople,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
+		sexo,genero,etnia,pueblo,nacionalidad,regimen,eapb
+		FROM `personas` 
    	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
-    // var_dump($sql);
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);
 	}else{
-    return json_encode($info['responseResult'][0]);
-  }
+		return json_encode($info['responseResult'][0]);
+	}
 } 
 
 function get_agendamiento(){

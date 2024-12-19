@@ -115,7 +115,7 @@ $rta.="</div>";
 }
 
 function get_agendamiento(){
-	var_dump($_POST);
+	// var_dump($_POST);
   $id=divide($_POST['id']);
   if ($id[0]=='0') {
     return '';

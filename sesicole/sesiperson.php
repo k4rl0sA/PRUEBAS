@@ -97,7 +97,7 @@ function cmp_sespers(){
 }
 
 function get_personOld(){
-	print_r($_POST);
+	// print_r($_POST);
 	$id=divide($_POST['id']);
 	/* $info=datos_mysql("select idpersona from person where idpersona ='".$id[0]."'");
 	if (!$info['responseResult']) { */

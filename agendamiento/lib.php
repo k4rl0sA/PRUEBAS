@@ -116,7 +116,8 @@ $rta.="</div>";
 }
 
 function get_personOld(){
-	// print_r($_REQUEST);
+	print_r($_REQUEST);
+  var_dump($_POST);
 	$id=divide($_POST['id']);
 		$sql="SELECT idpeople,idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,
 		sexo,genero,etnia,pueblo,nacionalidad,regimen,eapb

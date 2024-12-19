@@ -125,7 +125,7 @@ function get_personOld(){
 		FROM `person` p
     LEFT JOIN hog_fam f ON p.vivipersona=f.id_fam
    	WHERE idpersona ='".$id[0]."' AND tipo_doc='".$id[1]."'";
-    var_dump($sql);
+    // var_dump($sql);
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

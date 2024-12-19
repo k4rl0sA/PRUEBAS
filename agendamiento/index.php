@@ -86,7 +86,7 @@ $mod='agendamiento';
 <div class='col-8 panel' id='<?php echo $mod; ?>'>
       <div class='titulo' > AGENDAMIENTO DE CITAS
 		<nav class='menu left' >
-        <li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
+        <!-- <li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li> -->
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono crear'       title='Crear Cita'     Onclick="mostrar(mod,'pro');"></li>	

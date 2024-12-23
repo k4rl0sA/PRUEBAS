@@ -64,7 +64,7 @@ FROM vsp_condsuic A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"condsuic",$regxPag,'condsuic.php');
+	return create_table($total,$datos["responseResult"],"condsuic",$regxPag,'../vsp/condsuic.php');
    }
 
 

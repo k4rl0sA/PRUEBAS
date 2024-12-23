@@ -59,7 +59,7 @@ fecha_cierre 'Fecha de Cierre',nombre Creó
 FROM vsp_condsuic A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   LEFT JOIN   person P ON A.idpeople=P.idpeople";
-	$sql.=" WHERE A.estado = 'A' AND A.estado = 'A' ANDA.idpeople='".$id[0]; 
+	$sql.=" WHERE A.estado = 'A' AND A.estado = 'A' AND A.idpeople='".$id[0]; 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;

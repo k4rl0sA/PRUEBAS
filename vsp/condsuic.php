@@ -62,7 +62,7 @@ FROM vsp_condsuic A
 	$sql.=" WHERE A.estado = 'A' AND A.estado = 'A' AND A.idpeople='".$id[0]; 
 	$sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"condsuic",$regxPag,'condsuic.php');
    }

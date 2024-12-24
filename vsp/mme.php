@@ -106,7 +106,7 @@ function cmp_mme(){
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
     $c[]=new cmp('fecha_egre','d','10',$d,$w.' '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,true,'','col-2',"validDate(this,30,0);");
-    $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe','rgxpeso','##.#',false,$x,'','col-2');
+    $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe',false,$x,'','col-2');
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');

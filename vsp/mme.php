@@ -110,13 +110,14 @@ function cmp_mme(){
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' pRe '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI
     $c[]=new cmp('cpn','s','2',$d,$w.' pRe '.$o,'¿Cuantos CPN?','rta',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI
-    $c[]=new cmp('porque_no','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_no',null,null,false,$x,'','col-4');// se habilita cuando es un no en la pregunta de asiste a controles prenatales
+    $c[]=new cmp('porque_no','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_no',null,null,false,$x,'','col-4');// se habilita cuando es un NO en la pregunta de asiste a controles prenatales
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' pRe '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
-
     $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Trata de Farma','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe FaR '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('tipo_tratafarma','s','3',$d,$w.' pRe FaR '.$o,'Tipo de Tratamiento','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('cual','t','100',$d,$w.' pRe SiA '.$o,'Cuál','cual',null,null,false,$x,'','col-4');
     $c[]=new cmp('peso','sd',6,$d,$w.' pRe '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('talla','sd',5,$d,$w.' pRe '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso','talla','imc');");
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');

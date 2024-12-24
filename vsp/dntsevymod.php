@@ -63,7 +63,7 @@ FROM vsp_dntsevymod A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"dntsevymod",$regxPag,'dntsevymod.php');
+	return create_table($total,$datos["responseResult"],"dntsevymod",$regxPag,'../vsp/dntsevymod.php');
    }
 
 

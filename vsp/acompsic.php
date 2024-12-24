@@ -62,7 +62,7 @@ FROM vsp_acompsic A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"acompsic",$regxPag,'acompsic.php');
+	return create_table($total,$datos["responseResult"],"acompsic",$regxPag,'../vsp/acompsic.php');
    }
 
 

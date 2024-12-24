@@ -64,7 +64,7 @@ FROM vsp_sifigest A
 	// echo $sql;
 	$datos=datos_mysql($sql);
 	// return panel_content($datos["responseResult"],"cronicos-lis",5);
-  return create_table($total,$datos["responseResult"],"sifigest",$regxPag,'sifigest.php');
+  return create_table($total,$datos["responseResult"],"sifigest",$regxPag,'../vsp/sifigest.php');
    }
 
 

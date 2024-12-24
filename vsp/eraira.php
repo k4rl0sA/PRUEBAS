@@ -63,7 +63,7 @@ FROM vsp_eraira A
   $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-  return create_table($total,$datos["responseResult"],"eraira",$regxPag,'eraira.php');
+  return create_table($total,$datos["responseResult"],"eraira",$regxPag,'../vsp/eraira.php');
    }
 
 

@@ -63,7 +63,7 @@ P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,e
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"vihgest",$regxPag,'vihgest.php');
+	return create_table($total,$datos["responseResult"],"vihgest",$regxPag,'../vsp/vihgest.php');
    }
 
 

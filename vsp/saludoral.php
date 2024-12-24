@@ -62,7 +62,7 @@ FROM vsp_saludoral A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"saludoral",$regxPag,'saludoral.php');
+	return create_table($total,$datos["responseResult"],"saludoral",$regxPag,'../vsp/saludoral.php');
    }
 
 

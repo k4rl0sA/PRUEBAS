@@ -64,7 +64,7 @@ FROM vsp_mme A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-  return create_table($total,$datos["responseResult"],"mme",$regxPag,'mme.php');
+  return create_table($total,$datos["responseResult"],"mme",$regxPag,'../vsp/mme.php');
    }
 
 

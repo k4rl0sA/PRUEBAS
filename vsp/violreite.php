@@ -63,7 +63,7 @@ $sql.="' ORDER BY A.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"violreite",$regxPag,'violreite.php');
+	return create_table($total,$datos["responseResult"],"violreite",$regxPag,'../vsp/violreite.php');
    }
 
 

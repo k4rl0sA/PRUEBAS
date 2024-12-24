@@ -62,7 +62,7 @@ FROM vsp_otroprio A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"otroprio",$regxPag,'otroprio.php');
+	return create_table($total,$datos["responseResult"],"otroprio",$regxPag,'../vsp/otroprio.php');
    }
 
 

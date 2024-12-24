@@ -61,7 +61,7 @@ FROM vsp_mnehosp A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"mnehosp",$regxPag,'mnehosp.php');
+	return create_table($total,$datos["responseResult"],"mnehosp",$regxPag,'../vsp/mnehosp.php');
    }
 
 

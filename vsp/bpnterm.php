@@ -64,7 +64,7 @@ FROM vsp_bpnterm A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"bpnterm",$regxPag,'bpnterm.php');
+	return create_table($total,$datos["responseResult"],"bpnterm",$regxPag,'../vsp/bpnterm.php');
    }
 
 

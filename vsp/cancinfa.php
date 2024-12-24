@@ -64,7 +64,7 @@ FROM vsp_cancinfa A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"cancinfa",$regxPag,'cancinfa.php');
+	return create_table($total,$datos["responseResult"],"cancinfa",$regxPag,'../vsp/cancinfa.php');
    }
 
 

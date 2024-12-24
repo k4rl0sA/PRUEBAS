@@ -63,7 +63,7 @@ FROM vsp_sificong A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"sificong",$regxPag,'sificong.php');
+	return create_table($total,$datos["responseResult"],"sificong",$regxPag,'../vsp/sificong.php');
    }
 
 

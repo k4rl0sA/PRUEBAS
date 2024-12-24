@@ -58,7 +58,7 @@ FROM vsp_violges A
   $sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"violgest",$regxPag,'violgest.php');
+	return create_table($total,$datos["responseResult"],"violgest",$regxPag,'../vsp/violgest.php');
    }
 
 function cmp_violgest(){

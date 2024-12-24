@@ -99,7 +99,8 @@ function cmp_mme(){
   $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','gestaciones',null,null,false,true,'','col-1');  
   $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','partos',null,null,false,true,'','col-1');  
-  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','abortos',null,null,false,true,'','col-1');  
+  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','abortos',null,null,false,true,'','col-1');
+  $c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','cesareas',null,null,false,true,'','col-1');  
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
@@ -192,6 +193,10 @@ function opc_partos($id=''){
 function opc_abortos($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_cesareas($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A'  ORDER BY 1 ",$id);
+}
+
 function opc_motivo_cierre($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
 }

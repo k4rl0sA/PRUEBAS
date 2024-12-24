@@ -96,7 +96,7 @@ function cmp_mme(){
 	//$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');  
 
   $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
-  $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
+  $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','gestaciones',null,null,false,true,'','col-1');  
   $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','partos',null,null,false,true,'','col-1');  
     $o='gest';

@@ -17,7 +17,8 @@ if (!isset($_SESSION["us_sds"])) {
 }
 $ruta_upload='/public_html/upload/';
 
-$dominio = $_SERVER['HTTP_HOST'];
+$dom = $_SERVER['HTTP_HOST'];
+$dominio = preg_replace('/^www\./i', '', $dom);
 $comy = array(
   'pruebasiginf.site' => [
       's' => 'localhost',

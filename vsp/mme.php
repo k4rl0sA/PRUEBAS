@@ -109,7 +109,7 @@ function cmp_mme(){
     $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');//aplica solo para primer seguimiento
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' pRe '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI
-    $c[]=new cmp('cpn','s','3',$d,$w.' PeT hab '.$o,'¿Cuantos CPN?','cpn',null,null,false,true,'','col-2');//habilita cuando es gestante y cuando la pregunta asiste a controles prenatales es un SI
+    $c[]=new cmp('cpn','s','2',$d,$w.' pRe '.$o,'¿Cuantos CPN?','rta',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' pRe '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
@@ -206,9 +206,6 @@ function opc_vivos($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A'  ORDER BY 1 ",$id);
 }
 function opc_muertos($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_cpn($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=196 and estado='A'  ORDER BY 1 ",$id);
 }
 function opc_motivo_cierre($id=''){

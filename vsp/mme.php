@@ -105,8 +105,8 @@ function cmp_mme(){
   $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','muertos',null,null,false,true,'','col-2');  
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
-    $c[]=new cmp('fecha_egre','d','10',$d,$w.' '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,$x,'','col-2',"validDate(this,30,0);");//aplica solo para primer seguimiento
-    $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe','rgxpeso','##',true,$x,'','col-2');//aplica solo para primer seguimiento
+    $c[]=new cmp('fecha_egre','d','10',$d,$w.' '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,30,0);");//aplica solo para primer seguimiento
+    $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');//aplica solo para primer seguimiento
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');

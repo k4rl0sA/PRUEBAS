@@ -117,6 +117,7 @@ function cmp_mme(){
     $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Trata de Farma','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe FaR '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('tipo_tratafarma','s','3',$d,$w.' pRe FaR '.$o,'Tipo de Tratamiento','rta',null,null,false,$x,'','col-2');
+    
     $c[]=new cmp('cual','t','100',$d,$w.' pRe SiA '.$o,'Cuál','cual',null,null,false,$x,'','col-4');
     $c[]=new cmp('peso','sd',6,$d,$w.' pRe '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('talla','sd',5,$d,$w.' pRe '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso','talla','imc');");

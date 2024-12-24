@@ -181,6 +181,9 @@ function opc_bina($id=''){
 function opc_tiposeg($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A'  ORDER BY 1 ",$id);
 }
+function opc_gestaciones($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A'  ORDER BY 1 ",$id);
+}
 function opc_motivo_cierre($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion,valor FROM `catadeta` WHERE idcatalogo=198 and estado='A'  ORDER BY 1 ",$id);
 }

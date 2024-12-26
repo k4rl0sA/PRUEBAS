@@ -141,6 +141,7 @@ function cmp_mme(){
     $c[]=new cmp('fecha_control_mac','d','10',$d,$w.' PuE MAc '.$o,'Fecha de control MAC','fecha_control_mac',null,null,false,$x,'','col-2');
     $c[]=new cmp('ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Tiene control post parto con especialista?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
     $c[]=new cmp('fecha_postpar_espe','d','10',$d,$w.' PuE Esp '.$o,'Fecha de control post parto con especialista','fecha_postpar_espe',null,null,false,$x,'','col-2');
+    $c[]=new cmp('asis_ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Asistió a control post parto?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
     $c[]=new cmp('consul_apoy_lacmater','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_apoy_lacmater','aLM');");
     $c[]=new cmp('fecha_apoy_lacmater','d','10',$d,$w.' PuE aLM '.$o,'Fecha de consulta apoyo lactancia materna','fecha_apoy_lacmater',null,null,false,$x,'','col-2');
     

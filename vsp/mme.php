@@ -153,6 +153,7 @@ function cmp_mme(){
     $o='ncvmor';
     $c[]=new cmp($o,'e',null,'NACIDO VIVO',$w);
     $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo','peso','rgxpeso','##.#',false,$x,'','col-2');
+    $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','lME');");
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','lME');");
     $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE lME '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,true,'','col-2');
     $c[]=new cmp('asiste_ctrl_cyd','s','3',$d,$w.' PuE '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-4');

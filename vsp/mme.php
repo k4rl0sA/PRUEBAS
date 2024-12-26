@@ -159,6 +159,7 @@ function cmp_mme(){
     $c[]=new cmp('porque_norec','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_norec',null,null,false,$x,'','col-3');
     $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado','ult_peso','rgxpeso','##.#',false,false,'','col-2');
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','lME');");
+    $c[]=new cmp('porque_nolact','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_nolact',null,null,false,$x,'','col-3');
     $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE lME '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,true,'','col-2');
     $c[]=new cmp('asiste_ctrl_cyd','s','3',$d,$w.' PuE '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta',null,null,false,$x,'','col-4');
     $c[]=new cmp('vacuna_comple','s','3',$d,$w.' PuE '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-2');

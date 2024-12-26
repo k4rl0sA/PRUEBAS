@@ -168,6 +168,11 @@ function cmp_mme(){
 
     $o='info';
     $c[]=new cmp($o,'e',null,'INFORMACION GENERAL',$w);
+    $c[]=new cmp('cam_sign','s','3',$d,$w.' PuE '.$o,'Considera que ha tenido cambios significativos recientes a nivel emocional, psicológico o comportamental (por ejemplo cambios de estado de ánimo o dificultades en el sueño)','rta',null,null,false,$x,'','col-2',"enabOthSi('cam_sign','lME');");
+    $c[]=new cmp('qui_vida','s','3',$d,$w.' PuE '.$o,'Por su condición ha recientemente en quitarse la vida o lo ha intentado','rta',null,null,false,$x,'','col-2',"enabOthSi('qui_vida','lME');");
+    $c[]=new cmp('viv_malt','s','3',$d,$w.' PuE '.$o,'Ha vivenciado de manera reciente algún tipo de violencia o maltrato en su familia','rta',null,null,false,$x,'','col-2',"enabOthSi('viv_malt','lME');");
+    $c[]=new cmp('adec_red','s','3',$d,$w.' PuE '.$o,'Considera que cuenta con una adecuada red de apoyo social para cuidad, mantener y mejorar su estado de salud física y mental','rta',null,null,false,$x,'','col-2',"enabOthSi('adec_red','lME');");
+    $c[]=new cmp('fecha_egreopost','d','10',$d,$w.' PuE lME '.$o,'¿Finalización de caso 42 dìas post EGRESO HOSPITALARIO ?','fecha_egreopost',null,null,false,true,'','col-2');
     
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);

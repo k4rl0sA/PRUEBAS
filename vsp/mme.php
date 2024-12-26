@@ -166,6 +166,8 @@ function cmp_mme(){
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' PuE '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('signos_alarma','s','3',$d,$w.' PuE '.$o,'¿La madre identifica signos de alarma?','rta',null,null,false,$x,'','col-2');
 
+    $o='info';
+    $c[]=new cmp($o,'e',null,'INFORMACION GENERAL',$w);
     
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);

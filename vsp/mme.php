@@ -144,6 +144,7 @@ function cmp_mme(){
     $c[]=new cmp('asis_ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Asistió a control post parto?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
     $c[]=new cmp('porque_no_postpar','t','500',$d,$w.' PuE MFe '.$o,'¿Por que?','porque_no_postpar',null,null,false,$x,'','col-2');
     $c[]=new cmp('consul_apoy_lacmater','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_apoy_lacmater','aLM');");
+    $c[]=new cmp('signos_alarma','s','3',$d,$w.' PuE '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma','MAc');");
     $c[]=new cmp('fecha_apoy_lacmater','d','10',$d,$w.' PuE aLM '.$o,'Fecha de consulta apoyo lactancia materna','fecha_apoy_lacmater',null,null,false,$x,'','col-2');
     
     $o='ncvmor';

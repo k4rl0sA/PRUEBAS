@@ -287,10 +287,11 @@ function divide($a){
 	return ($id);
 }
 
-function rol($a){ 
+function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
-	$sql="SELECT perfil,contrato,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil =(select perfil from usuarios where id_usuario='".$_SESSION['us_sds']."') AND contrato=(select contrato from usuarios where id_usuario='".$_SESSION['us_sds']."') AND estado = 'A'";
+	$sql="SELECT perfil,componente,crear,editar,consultar,exportar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
+  // print_r($sql);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];
     }

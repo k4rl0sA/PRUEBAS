@@ -94,7 +94,7 @@ function cmp_mme(){
   //$c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 	//$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');  
 
-  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
+  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');mmeFechaHosp('HOs','1','1');");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
   $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,false,'','col-2');  
   $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,false,'','col-2');  
@@ -104,8 +104,8 @@ function cmp_mme(){
   $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','fobs',null,null,false,false,'','col-2');  
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
-    $c[]=new cmp('fecha_egre','d','10',$d,$w.' pRe HOs '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,$days,0);mmeFechaHosp('HOs','1','1');");
-    $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe HOs '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');//aplica solo para primer seguimiento
+    $c[]=new cmp('fecha_egre','d','10',$d,$w.' HOs '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,$days,0);");
+    $c[]=new cmp('edad_padre','t',2,$d,$w.' HOs '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');//aplica solo para primer seguimiento
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' pRe '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI
     $c[]=new cmp('cpn','s','2',$d,$w.' pRe '.$o,'¿Cuantos CPN?','cpn',null,null,false,$x,'','col-2');//se habilita cuando la pregunta anterior es SI

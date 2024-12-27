@@ -304,8 +304,7 @@ function perfil($a){
 		echo '<div class="lock">
           <i class="fas fa-lock fa-5x lock-icon"></i>
           <h2>Acceso No Autorizado</h2>
-          Lo siento, no tienes permiso para acceder a esta área.
-          </div>';
+          Lo siento, no tienes permiso para acceder ('.$a.') a esta área.  </div>';
           exit();
 		 }
 }

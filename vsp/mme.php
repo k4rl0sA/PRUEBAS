@@ -212,7 +212,7 @@ function opc_tiposeg($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=243 and estado='A'  ORDER BY 1 ",$id);
 }
 function opc_fobs($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY cast(idcatadeta AS UNSIGNED",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
 }
 function opc_cpn($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=245 and estado='A'  ORDER BY 1 ",$id);

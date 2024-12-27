@@ -96,12 +96,12 @@ function cmp_mme(){
 
   $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
-  $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,true,'','col-2');  
-  $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,true,'','col-2');  
-  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','fobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','fobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('vivos','s','3',$d,$w.' PeT hab '.$o,'Vivos','fobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','fobs',null,null,false,true,'','col-2');  
+  $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,false,'','col-2');  
+  $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,false,'','col-2');  
+  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','fobs',null,null,false,false,'','col-2');
+  $c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','fobs',null,null,false,false,'','col-2');
+  $c[]=new cmp('vivos','s','3',$d,$w.' PeT hab '.$o,'Vivos','fobs',null,null,false,false,'','col-2');
+  $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','fobs',null,null,false,false,'','col-2');  
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
     $c[]=new cmp('fecha_egre','d','10',$d,$w.' '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,30,0);");//aplica solo para primer seguimiento

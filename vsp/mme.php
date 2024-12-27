@@ -74,7 +74,6 @@ function cmp_mme(){
 	$w='mme';
   $d='';
 	$o='inf';
-  // $nb='disa oculto';
   $ob='Ob';
   $no='nO';
   $bl='bL';
@@ -84,6 +83,7 @@ function cmp_mme(){
   $ev=$event[2];
   $days=fechas_app('vsp');
   $p=get_persona();
+
 	$c[]=new cmp('id_mme','h','50',$_POST['id'],$w.' '.$o,'Id de mme','id_mme',null,null,false,false,'','col-0');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,30,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");

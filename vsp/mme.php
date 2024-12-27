@@ -269,7 +269,6 @@ return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo
 function opc_estrategia_2($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=90 and estado='A' ORDER BY 1",$id);
 }
-
 function opc_acciones_1desc_accion1($id=''){
 if($_REQUEST['id']!=''){
 			$id=divide($_REQUEST['id']);
@@ -285,15 +284,15 @@ function opc_acciones_2desc_accion2($id=''){
         $info=datos_mysql($sql);		
         return json_encode($info['responseResult']);
       }
-  }
-  function opc_acciones_3desc_accion3($id=''){
+}
+function opc_acciones_3desc_accion3($id=''){
     if($_REQUEST['id']!=''){
           $id=divide($_REQUEST['id']);
           $sql="SELECT idcatadeta 'id',descripcion 'asc' FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
           $info=datos_mysql($sql);		
           return json_encode($info['responseResult']);
         }
-    }
+}
 function opc_acciones_2($id=''){
 return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
 }

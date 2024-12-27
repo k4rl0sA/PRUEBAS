@@ -84,7 +84,6 @@ function cmp_mme(){
   $ev=$event[2];
   $days=fechas_app('vsp');
   $p=get_persona();
-  
 	$c[]=new cmp('id_mme','h','50',$_POST['id'],$w.' '.$o,'Id de mme','id_mme',null,null,false,false,'','col-0');
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,30,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
@@ -97,15 +96,14 @@ function cmp_mme(){
 
   $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,true,'','col-3');
-  $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','gestaciones',null,null,false,true,'','col-2');  
-  $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','partos',null,null,false,true,'','col-2');  
-  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','abortos',null,null,false,true,'','col-2');
-  $c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','cesareas',null,null,false,true,'','col-2');
-  $c[]=new cmp('vivos','s','3',$d,$w.' PeT hab '.$o,'Vivos','vivos',null,null,false,true,'','col-2');
-  $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','muertos',null,null,false,true,'','col-2');  
+  $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,true,'','col-2');  
+  $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,true,'','col-2');  
+  $c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','fobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','fobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('vivos','s','3',$d,$w.' PeT hab '.$o,'Vivos','fobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','fobs',null,null,false,true,'','col-2');  
     $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
-    $fe = ($x==true) ? a : b ;
     $c[]=new cmp('fecha_egre','d','10',$d,$w.' '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,30,0);");//aplica solo para primer seguimiento
     $c[]=new cmp('edad_padre','t',2,$d,$w.' pRe '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');//aplica solo para primer seguimiento
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2');
@@ -213,23 +211,8 @@ function opc_bina($id=''){
 function opc_tiposeg($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=243 and estado='A'  ORDER BY 1 ",$id);
 }
-function opc_gestaciones($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_partos($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_abortos($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_cesareas($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_vivos($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
-}
-function opc_muertos($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY 1 ",$id);
+function opc_fobs($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A'  ORDER BY cast(idcatadeta AS UNSIGNED",$id);
 }
 function opc_cpn($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=245 and estado='A'  ORDER BY 1 ",$id);

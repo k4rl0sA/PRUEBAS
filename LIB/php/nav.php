@@ -90,4 +90,4 @@ require_once 'gestion.php';
 
     </div>
     <!-- </nav>   -->
-    <script src="../libs/js/nav.js"></script>
+    <script src="../LIB/js/nav.js"></script>

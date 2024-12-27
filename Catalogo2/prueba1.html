@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+     
+        /* Estilos para la tabla */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1em;
+  background-color: #fff;
+  color: #666;
+  text-align: left;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+th,
+td {
+  padding: 1em;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Estilos para los iconos de acción */
+
+.actions a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.actions a:hover {
+  color: #333;
+}
+
+
+.actions a.edit:hover i:before {
+  content: "\f304";
+}
+
+.actions a.delete:hover i:before {
+  content: "\f2ed";
+}
+
+.actions.active a {
+  opacity: 1;
+}
+
+.actions a i {
+  font-size: 1.2em;
+  vertical-align: middle;
+  opacity: 0.5;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.actions a:hover i {
+  opacity: 1;
+}
+
+.action-icons {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+tr.clicked .action-icons {
+  display: block;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <table id="myTable">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="action-icons">
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+              <a href="#" class="utensils"><i class="fas fa-utensils"></i></a>
+              <a href="#" class="users"><i class="fas fa-users"></i></a>
+              <a href="#" class="tasks"><i class="fas fa-tasks"></i></a>
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash"></i></a>
+            </div>John</td>
+            <td>Doe</td>
+            <td>john.doe@example.com</td>
+          </tr>
+          <tr>
+            <td><div class="action-icons">
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+              <a href="#" class="utensils"><i class="fas fa-utensils"></i></a>
+              <a href="#" class="users"><i class="fas fa-users"></i></a>
+              <a href="#" class="tasks"><i class="fas fa-tasks"></i></a>
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash"></i></a>
+            </div>Jane</td>
+            <td>Doe</td>
+            <td>jane.doe@example.com</td>
+          </tr>
+          <tr>
+            <td><div class="action-icons">
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+              <a href="#" class="utensils"><i class="fas fa-utensils"></i></a>
+              <a href="#" class="users"><i class="fas fa-users"></i></a>
+              <a href="#" class="tasks"><i class="fas fa-tasks"></i></a>
+              <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+              <a href="#" class="delete"><i class="fas fa-trash"></i></a>
+            </div>Nombre 1</td>
+            <td>Nombre 2</td>
+            <td>Nombre 3</td>
+          </tr>
+          
+        </tbody>
+      </table>
+      
+      
+      
+<script>
+const table = document.getElementById('myTable');
+const rows = table.querySelectorAll('tbody tr');
+rows.forEach(row => {  row.addEventListener('mouseenter',event => {
+  rows.forEach(otherRow => {otherRow.classList.remove('clicked');});
+    row.classList.add('clicked');
+    event.stopPropagation();});});
+table.addEventListener('mouseleave', () => { rows.forEach(row => {row.classList.remove('clicked'); });});
+</script>         
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../libs/css/a.css" rel="stylesheet">
+    <link href="../libs/css/nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        /* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Responsive Tab-Type Table */
+
+.datatable-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.datatable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.datatable th,
+.datatable td {
+  padding: 10px;
+  text-align: left;
+}
+
+.datatable th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.datatable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Header Tools */
+
+.header-tools {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.tools ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.tools ul li {
+  margin-right: 10px;
+}
+
+/* Footer Tools */
+
+.footer-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Menu Filtro */
+
+.content {
+  display: none;
+  padding: 10px;
+}
+
+.campo {
+  margin-bottom: 10px;
+}
+
+.captura {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.menu-filtro {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.inline {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.chk {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Collapsible Button */
+
+.collapsible {
+  background-color: #f5f5f5;
+  color: #000;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.collapsible:hover {
+  background-color: #ddd;
+}
+
+.collapsible::after {
+  content: '\002B';
+  color: #000;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.collapsible.collapsible-active::after {
+  content: '\2212';
+}
+
+/* Hide Menu on Load */
+
+.menu-filtro.hide-menu {
+  display: none;
+}
+
+
+    </style>
+</head>
+<body>
+    <button id="btnfiltro" class="collapsible titulo" onclick='collapse(this);'>Zona de Filtros</button>
+    <div class="content">
+        <form class="menu-filtro inline" method='post' id='fapp'>
+            <div class="campo"><div>N° Documento</div>
+                <input class="captura" size="20" id="fidpersona" name="fidpersona" onchange="actualizar();">
+	        </div>
+		    <div class="campo"><div>Estado Cita</div>
+	            <input type="search" id="estado" class="mult" placeholder="-- SELECCIONE --" onClick="showMult(this,true);" onSearch="searchMult(this);">
+		        <select multiple class="captura check mult close" id="festado" name="festado" onchange="actualizar();" onBlur="showMult(this,false);">
+			        <option value="" class="alerta">Todos</option><option value="1">ASISTIO</option><option value="2">NO ASISTIO</option><option value="3">CANCELO</option><option value="4">PENDIENTE</option><option value="5">INATENCION</option><option value="6">RECORDADA</option>		</select>
+	        </div>
+	        <div class="campo"><div>Fecha Cita Desde</div>
+		        <input type="date" class="captura" size="10" id="fdes" name="fdes" onchange="actualizar();">
+	        </div>
+		    <div class="campo"><div>c</div>
+				<div class="chk">
+					<input type="checkbox" id="c1" name="c1" class="pinfancia captura " title="" value="NO" onclick="checkon(this);">
+					<label for="c1"></label>
+				</div>
+			</div>
+        </form>
+    </div>
+    <!-- TABLA RESPONSIVE  -->
+    <div class="datatable-container">
+    	<div class="header-tools">
+    		<div class="tools">
+    			<ul>
+    				<li><span><div class="chk"><input type="checkbox" id="all" name="all" class="pinfancia captura " title="" value="NO" onclick="checkon(this);"><label for="all"></label></div></li>
+    				<li><button><i class="material-icons .s18">add_circle</i></button></li>
+    				<li><button><i class="material-icons .s18">edit</i></button></li>
+    				<li><button><i class="material-icons .s18">delete</i></button></li>
+    				<li><button><i class="material-icons .s18">share</i></button></li>
+    			</ul>
+    		</div>		 
+    	</div>
+    	<table class="datatable">
+    		<thead class="eff-text-menu titulo">
+    			<tr>
+    				<th></th>
+    				<th>Status</th>
+    				<th>Name</th>
+    				<th>Position</th>
+    				<th>Office</th>
+    				<th>Age</th>
+    				<th>Date</th>
+    				<th>Next</th>
+    				<th>End</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr>
+    				<td data-tit='' class="table-checkbox"><input type="checkbox" name="" id=""></td>
+    				<td data-tit='Estado'><span class="A"></span></td>
+    				<td data-tit='Nombre'>Marcos Rivas</td>
+    				<td data-tit='Posición'>CEO</td>
+    				<td data-tit='Oficina'>San Francisco</td>
+    				<td data-tit='Edad'>28</td>
+    				<td data-tit='Fecha'>2020-05-01</td>
+    			</tr>
+    			<tr>
+    				<td data-tit='' class="table-checkbox"><input type="checkbox" name="" id=""></td>
+    				<td data-tit='Estado'><span class="P"></span></td>
+    				<td data-tit='Nombre'>Lorem, ipsum.</td>
+    				<td data-tit='Posición'>Ipsam, iusto.</td>
+    				<td data-tit='Oficina'>Doloribus, ratione.</td>
+    				<td data-tit='Edad'>Sint, amet.</td>
+    				<td data-tit='Fecha'>Mollitia, tempore.</td>
+    				<td data-tit='Siguiente'>Commodi, harum!</td>
+    				<td data-tit='Final'>Ipsa, ex.</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    	<div class="footer-tools">
+    		<div class="list-items">
+    			Mostrar
+    			<select name="n-entries" id="n-entries" class="n-entries">
+    				<option value="5">5</option>
+    				<option value="10">10</option>
+    				<option value="15">15</option>
+    				<option value="20" selected>20</option>
+    				<option value="25">25</option>
+    				<option value="30">30</option>
+    			</select>
+    			Filas
+    		</div>	 
+    		<div class="pages"></div> 
+    	</div>
+    </div>
+</body>
+</html>

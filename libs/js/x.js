@@ -1024,3 +1024,17 @@ function fieldsValue(a, b, value, flag = true) {
     }
 }
 
+function mmeFechaHosp(cls, a, b) {
+    // Obtener los elementos de los selects
+    const numS = document.getElementById('numsegui');
+    const etp = document.getElementById('etapa');
+    // Verificar que los valores cumplen con las condiciones
+    const isNSegVal = numS.value === a;
+    const isEtpVal = etp.value === b;
+    // Obtener todos los elementos de la clase
+    const elements = document.querySelectorAll('select.'+ cls+',input.' + cls + ',textarea.' + cls);
+    // Activar o desactivar los elementos según las condiciones
+    elements.forEach(element => {
+        enaFie(element, !(isNSegVal && isEtpVal));
+    });
+}

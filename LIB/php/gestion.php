@@ -5,7 +5,7 @@ setlocale(LC_TIME, 'es_CO');
 ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
-if (!isset($_SESSION["us_proteger"])) {
+if (!isset($_SESSION["us_sds"])) {
   header("Location: /"); 
   exit;
 }

@@ -6,7 +6,7 @@ require_once 'gestion.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../libs/css/nav.css">
+    <link rel="stylesheet" href="../LIB/css/nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
 
@@ -16,7 +16,7 @@ require_once 'gestion.php';
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="/libs/img/LOGOx64.png" alt="logo">
+                    <img src="/LIB/img/LOGOx64.png" alt="logo">
                 </span>
                 <div class="text header-text">
                     <span class="name">Logo</span>

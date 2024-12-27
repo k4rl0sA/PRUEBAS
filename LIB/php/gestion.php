@@ -10,7 +10,8 @@ if (!isset($_SESSION["us_sds"])) {
   exit;
 }
 $env='prod';
-$comy=array('prod' => ['s'=>'localhost','u' => 'root','p' => '','bd' => 'vacunation']);
+//$comy=array('prod' => ['s'=>'localhost','u' => 'root','p' => '','bd' => 'vacunation']);
+$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
 $con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");

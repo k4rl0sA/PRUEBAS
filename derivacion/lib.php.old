@@ -1,9 +1,12 @@
 <?php
-require_once "../libS/php/gestion.php";
+require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
+// var_dump($_POST['a'].'-'.$_POST['tb']);
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {
-	die("<script>window.top.location.href='/';</script>");
+    http_response_code(401);
+    echo json_encode(['redirect' => '/']);
+    exit();
 } else {
 	$rta = "";
 	switch ($_POST['a']) {
@@ -11,17 +14,33 @@ if (!isset($_SESSION['us_sds'])) {
 			header_csv($_REQUEST['tb'] . '.csv');
 			$rs = array('', '');
 			echo csv($rs, '');
-			die;
+			exit();
 			break;
 		default:
-			eval('$rta=' . $_POST['a'] . '_' . $_POST['tb'] . '();');
-			if (is_array($rta)) json_encode($rta);
-			else echo $rta;
+			if (isset($_REQUEST['t']) && $_REQUEST['t'] == 'json') {
+				header('Content-Type: application/json');
+			} else {
+				header('Content-Type: text/html; charset=UTF-8');
+			}
+			$func = $_POST['a'] . '_' . $_POST['tb'];
+			if (function_exists($func)) {
+				$rta = $func();
+			} else {
+				http_response_code(400);
+				echo json_encode(['error' => 'Función no encontrada']);
+				exit();
+			}
+			// Si $rta es un arreglo, devolverlo como JSON
+			if (is_array($rta)) {
+				echo json_encode($rta);
+			} else {
+				echo $rta; // Si no es un arreglo, devolver la respuesta directamente
+			}
 	}
 }
 
 function whe_deriva() {
-		$sql = "";
+	$sql = "";
 	if ($_POST['fidp'])
 		$sql .= " AND documento='".$_POST['fidp']."' ";
 	if ($_POST['fest'])
@@ -53,7 +72,7 @@ function lis_deriva(){
 	return create_table($total,$datos["responseResult"],"deriva",$regxPag,"lib.php");
 }
 
-function focus_catalogo(){
+function focus_deriva(){
 	return 'deriva';
    }
    
@@ -68,7 +87,6 @@ function focus_catalogo(){
 	$rta .= "<button class='frm-btn $a grabar' onclick=\"grabar('$a', this);\"><span class='frm-txt'>Grabar</span><i class='fa-solid fa-floppy-disk icon'></i></button>";
 	/* $rta .="<button class='frm-btn $a actualizar' onclick=\"act_lista('".$a."',this);\"'>Actualizar</button>";
 	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('".$a."',this);\"></li>"; */
-	$rta .= "<li class='icono $a cancelar'    title='Cerrar'          Onclick=\"ocultar('".$a."','".$b."');\" >";
 	return $rta;
   }
 

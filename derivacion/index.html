@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="../lib/js/main.js?v=24.0"></script>
+    <title>Carga de Registros CSV</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            text-align: center;
+            letter-spacing: -0.025em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .modal-content p {
+            color: #666;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 8px;
+            background-color: #007bff;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+
+        #progressText {
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 570;
+            letter-spacing: .1rem;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .modal-close {
+            font-size: 2.5rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+
+        p#statusMessage {
+            max-height: 160px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        p#statusMessage.has-cont {
+            color: red;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9; /* Aplica el color de fondo */
+        }
+        .file-upload {
+            border: .2rem dashed #ccc;
+            border-radius: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            height: 5rem;
+            text-align: center;
+            position: relative;
+            background-color:#f4f4f4;
+        }
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        i.fa-solid.fa-cloud-arrow-up.cloud-icon {
+            font-size: 3rem;
+        }
+        .file-upload p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .file-upload span {
+            font-size: 14px;
+            color: #999;
+        }
+        .file-upload .browse-btn {
+            background-color: #00bfa5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .file-upload .browse-btn:hover {
+            background-color: #008f7a;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="openModal">Cargar Registros CSV</button>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModal">&times;</span>
+            <h2>Cargar Registros</h2>
+            <p>Por favor, seleccione un archivo CSV para cargar a la base de datos.</p>
+
+            <div class="file-upload">
+                <input type="file" id="fileInput" accept=".csv" />
+                <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                <p id="file-name">Selecciona un archivo aquí</p>
+                <!-- <span>ó</span> -->
+                <button type="button" class="browse-btn" onclick="document.getElementById('fileInput').click();">
+                    Examinar
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <p id="progressText">0% completado</p>
+            <p id="statusMessage"></p>
+            <div class="button-container">
+                <button id="startLoading">Iniciar Carga</button>
+                <button id="cancelLoading" style="display: none;">Cancelar</button>
+                <button id="closeModal" style="display: none;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        
+        const fileInput = document.getElementById('fileInput'),
+        startLoadingBtn = document.getElementById('startLoading');
+
+  /*   startLoadingBtn.onclick = () => {
+    	const file = fileInput.files[0];
+	    if (file) {
+            const userData = getJSON('get','imp',0,'lib.php');
+            let b=9,c='usuarios',d='process.php';
+    	    startImport(file,b,c,d);
+        } else {
+    	    statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
+        }
+    };   */ 
+
+    startLoadingBtn.onclick = async () => {
+    const file = fileInput.files[0];
+    if (file) {
+        try {
+            const userData = await getJSON('get', 'imp', 0, 'lib.php');
+            console.log(userData);
+            // Luego llamas a startImport con los parámetros adecuados
+            startImport(file, b, c, d);
+        } catch (error) {
+            console.error('Error al obtener los datos: ', error);
+            statusMessage.textContent = 'Error al procesar la solicitud.';
+        }
+    } else {
+        statusMessage.textContent = 'Por favor seleccione un archivo CSV.';
+    }
+};
+
+});
+</script>
+</body>
+</html>

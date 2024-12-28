@@ -304,7 +304,7 @@ function perfil($a){
           Lo siento, no tienes permiso para acceder a esta área.
           </div>';
           exit();
-		 }
+		 }else{echo 'ok';}
 }
 
 

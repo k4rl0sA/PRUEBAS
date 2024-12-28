@@ -1,24 +1,51 @@
 <?php
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.use_strict_mode', 1);
+// session_regenerate_id(true);
 session_start();
 ini_set('display_errors','1');
 setlocale(LC_TIME, 'es_CO');
+// $GLOBALS['app']='sds';
 ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
+$APP='GTAPS';
 if (!isset($_SESSION["us_sds"])) {
   header("Location: /index.php"); 
   exit;
 }
 $ruta_upload='/public_html/upload/';
-$env='prod';
-$comy=array('prod' => ['s'=>'localhost','u' => 'u470700275_17','p' => 'z9#KqH!YK2VEyJpT','bd' => 'u470700275_17']);
-$con=mysqli_connect($comy[$env]['s'],$comy[$env]['u'],$comy[$env]['p'],$comy[$env]['bd']);//."<script>window.top.location.href='/';</script>");
+
+$dom = $_SERVER['HTTP_HOST'];
+$dominio = preg_replace('/^www\./i', '', $dom);
+$comy = array(
+  'pruebasiginf.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_17',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_17'
+  ],
+  'gitapps.site' => [
+      's' => 'localhost',
+      'u' => 'u470700275_08',
+      'p' => 'z9#KqH!YK2VEyJpT',
+      'bd' => 'u470700275_08'
+  ]
+);
+// var_dump($dominio);
+$allowed_domains = ['pruebasiginf.site', 'gitapps.site'];
+if (in_array($dominio, $allowed_domains)) {
+  $dbConfig = $comy[$dominio];
+}else{
+  die('Dominio no permitido.');
+}
+$con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
+
 if (!$con) { $error = mysqli_connect_error();  exit; }
 mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
-//~ var_dump($req);
-// var_dump($con);
 switch ($req) {
 	case '';
 	break;

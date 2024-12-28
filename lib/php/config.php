@@ -1,4 +1,8 @@
 <?php
+define('SESSION_NAME', 'us_sds');
+session_save_path($session_path);
+session_name(SESSION_NAME);
+
 $comy = array(
     'siginf-sds.com' => [
         's' => 'localhost',
@@ -19,11 +23,14 @@ $comy = array(
 );
 
 // Variable para mostrar errores
-$mostrar_errores = true;
 $error_log_path = '/path/to/error.log';
+// Configuración de errores
+$mostrar_errores = true; // Cambiar a false en producción
+error_reporting(E_ALL);
+ini_set('display_errors', $mostrar_errores ? '1' : '0');
 
 // Configuración de entorno
-$entorno = 'producción';
+$entorno = 'produccion';
 
 // Configuración de la aplicación
 $app_name = 'Mi Aplicación';

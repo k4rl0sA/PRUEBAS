@@ -5,9 +5,6 @@ $mod='deriva';
 $ya = new DateTime();
 $estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');
 
-//	[['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO'], ['v' => 'SI']]);
-// [v='SI','NO']
-/* $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=145 and estado='A' order by 1",''); */
 $colaborador=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('PROFAM','AUXHOG') and estado='A' ORDER BY 2",'');
 $tipdoc=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=1 and estado='A' order by 1",'');
 $hoy = date("Y-m-d");
@@ -209,7 +206,7 @@ button:hover {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Crear Cita || SIGREV</title>
+	<title> Crear Cita || SIGREV</title>
 	<link rel="stylesheet" href="../lib/css/app.css?v=5.0">
 	<link rel="stylesheet" href="../lib/css/stylePop.css">
 	<script src="../lib/js/main.js?v=3.0"></script>

@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '1');
-include $_SERVER['DOCUMENT_ROOT'] . '/libs/php/nav.php';
-require_once "../libs/php/gestion.php";
+include $_SERVER['DOCUMENT_ROOT'] . '/lib/php/nav.php';
+require_once "../lib/php/gestion.php";
 if (!isset($_SESSION["us_sds"])) {
 	die("<script>window.top.location.href = '/';</script>");
 }
@@ -14,16 +14,16 @@ $catalogos = opc_sql("SELECT `idcatalogo`,concat(idcatalogo,' - ',nombre) FROM `
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Catalogo || Proteger</title>
-	<link rel="stylesheet" href="../libs/css/main.css">
-	<script src="../libs/js/a.js"></script>
-	<script src="../libs/js/d.js"></script>
-	<script src="../libs/js/popup.js"></script>
+	<link rel="stylesheet" href="../lib/css/main.css">
+	<script src="../lib/js/a.js"></script>
+	<script src="../lib/js/d.js"></script>
+	<script src="../lib/js/popup.js"></script>
 	<script>
 		var mod = 'catalogo';
 		var ruta_app = 'lib.php';
 
 		function csv(b) {
-			var myWindow = window.open("../libs/gestion.php?a=exportar&b=" + b, "Descargar archivo");
+			var myWindow = window.open("../lib/gestion.php?a=exportar&b=" + b, "Descargar archivo");
 		}
 
 		function actualizar() {

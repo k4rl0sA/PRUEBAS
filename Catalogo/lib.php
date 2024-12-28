@@ -1,8 +1,8 @@
 <?php
-require_once "../libs/php/gestion.php";
+require_once "../lib/php/gestion.php";
 ini_set('display_errors', '1');
 $perf = perfil($_POST['tb']);
-if (!isset($_SESSION['us_proteger'])) {
+if (!isset($_SESSION['us_sds'])) {
 	die("<script>window.top.location.href='/';</script>");
 } else {
 	$rta = "";

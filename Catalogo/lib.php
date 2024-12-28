@@ -1,5 +1,5 @@
 <?php
-require_once "../libs/php/gestion.php";
+require_once "../libS/php/gestion.php";
 ini_set('display_errors', '1');
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) {

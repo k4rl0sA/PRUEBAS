@@ -61,7 +61,6 @@ switch ($req) {
 			echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
       $GLOBALS['con']->close();
 		}
-		die;
 		break;
 	/* case 'upload':
 		$cr = $_REQUEST['c'];

@@ -14,7 +14,6 @@ if (!isset($_SESSION['us_sds'])) {
 			header_csv($_REQUEST['tb'] . '.csv');
 			$rs = array('', '');
 			echo csv($rs, '');
-			exit();
 			break;
 		default:
 			if (isset($_REQUEST['t']) && $_REQUEST['t'] == 'json') {

@@ -1025,7 +1025,6 @@ function fieldsValue(a, b, value, flag = true) {
 }
 
 function mmeFechaHosp(cls, a, b) {
-    // Obtener los elementos de los selects
     const numS = document.getElementById('numsegui');
     const etp = document.getElementById('etapa');
     // Verificar que los valores cumplen con las condiciones

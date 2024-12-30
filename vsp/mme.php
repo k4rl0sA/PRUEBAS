@@ -171,7 +171,7 @@ function cmp_mme(){
     $c[]=new cmp('qui_vida','s','3',$d,$w.' PuE '.$o,'Por su condición ha recientemente en quitarse la vida o lo ha intentado','rta',null,null,false,$x,'','col-3',"enabOthSi('qui_vida','lME');");
     $c[]=new cmp('viv_malt','s','3',$d,$w.' PuE '.$o,'Ha vivenciado de manera reciente algún tipo de violencia o maltrato en su familia','rta',null,null,false,$x,'','col-3',"enabOthSi('viv_malt','lME');");
     $c[]=new cmp('adec_red','s','3',$d,$w.' PuE '.$o,'Considera que cuenta con una adecuada red de apoyo social para cuidad, mantener y mejorar su estado de salud física y mental','rta',null,null,false,$x,'','col-3',"enabOthSi('adec_red','lME');");
-    $c[]=new cmp('fecha_egreopost','d','10',$d,$w.' PuE lME '.$o,'¿Finalización de caso 42 dìas post EGRESO HOSPITALARIO ?','fecha_egreopost',null,null,false,true,'','col-2');
+    $c[]=new cmp('fecha_egreopost','d','10',$d,$w.' PuE lME '.$o,'¿Finalización de caso 42 dìas post EGRESO HOSPITALARIO ?','fecha_egreopost',null,null,false,true,'','col-3');
     
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);

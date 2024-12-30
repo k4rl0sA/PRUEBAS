@@ -134,14 +134,14 @@ function cmp_mme(){
     $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');");
     $c[]=new cmp('cual','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
     $c[]=new cmp('otro_cual','t','500',$d,$w.' PuE MFe '.$o,'Otro de Cual','otro_cual',null,null,false,$x,'','col-35');
-    $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' PuE MFe '.$o,'Motivo de Nofecund','motivo_nofecund',null,null,false,$x,'','col-2');
+    $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' PuE MFe '.$o,'Motivo de Nofecund','motivo_nofecund',null,null,false,$x,'','col-4');
 
     $c[]=new cmp('control_mac','s','3',$d,$w.' PuE '.$o,'¿Tiene control MAC?','rta',null,null,false,$x,'','col-2',"enabOthSi('control_mac','MAc');");
     $c[]=new cmp('fecha_control_mac','d','10',$d,$w.' PuE MAc '.$o,'Fecha de control MAC','fecha_control_mac',null,null,false,$x,'','col-2');
     $c[]=new cmp('ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Tiene control post parto con especialista?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
     $c[]=new cmp('fecha_postpar_espe','d','10',$d,$w.' PuE Esp '.$o,'Fecha de control post parto con especialista','fecha_postpar_espe',null,null,false,$x,'','col-2');
     $c[]=new cmp('asis_ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Asistió a control post parto?','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
-    $c[]=new cmp('porque_no_postpar','t','500',$d,$w.' PuE MFe '.$o,'¿Por que?','porque_no_postpar',null,null,false,$x,'','col-2');
+    $c[]=new cmp('porque_no_postpar','t','500',$d,$w.' PuE MFe '.$o,'¿Por que?','porque_no_postpar',null,null,false,$x,'','col-4');
     $c[]=new cmp('consul_apoy_lacmater','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_apoy_lacmater','aLM');");
     $c[]=new cmp('signos_alarma','s','3',$d,$w.' PuE '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma','MAc');");
     $c[]=new cmp('desc_sigala','t','500',$d,$w.' PuE MFe '.$o,'Descripcion del signo de alarma','desc_sigala',null,null,false,$x,'','col-2');

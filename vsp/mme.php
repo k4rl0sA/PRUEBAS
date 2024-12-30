@@ -123,8 +123,8 @@ function cmp_mme(){
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');
     $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$bl.' pRe  '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,false,'','col-2');
     $c[]=new cmp('signos_alarma_seg','s','2',$d,$w.' pRe '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma_seg','SiA');");
-    $c[]=new cmp('descr_sigalarma','t','500',$d,$w.' pRe SiA '.$o,'Descripcion del signo de alarma','descr_sigalarma',null,null,false,$x,'','col-3');
-    $c[]=new cmp('entrega_medic_labo','t','500',$d,$w.' pRe '.$o,'Entrega de medicamentos y realización de laboratorios en casa','entrega_medic_labo',null,null,false,$x,'','col-3');
+    $c[]=new cmp('descr_sigalarma','t','500',$d,$w.' pRe SiA '.$o,'Descripcion del signo de alarma','descr_sigalarma',null,null,false,$x,'','col-4');
+    $c[]=new cmp('entrega_medic_labo','t','500',$d,$w.' pRe '.$o,'Entrega de medicamentos y realización de laboratorios en casa','entrega_medic_labo',null,null,false,$x,'','col-4');
 
     $o='infpue';
     $c[]=new cmp($o,'e',null,'DESPUES DE LA GESTACION (PUERPERIO Y/O POSTERIOR AL PUERPERIO) ',$w);

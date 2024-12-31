@@ -49,12 +49,11 @@ function focus_etnia(){
 	$regxPag=4;
   $pag=(isset($_POST['pag-etnia']))? ($_POST['pag-etnia']-1)* $regxPag:0;
 
-
   
 	$sql="SELECT `id_mme` ACCIONES,id_mme  'Cod Registro',
 P.tipo_doc,P.idpersona,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
-    fecha_cierre 'Fecha de Cierre',nombre Creó 
-FROM vsp_mme A
+    fecha_cierre 'Fecha de Cierre',nombre Creó
+FROM vsp_etnia A
 	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario
   LEFT JOIN   person P ON A.idpeople=P.idpeople";
 	$sql.=" WHERE A.estado = 'A' AND A.idpeople='".$id[0]; 

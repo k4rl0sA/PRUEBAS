@@ -1037,3 +1037,17 @@ function mmeFechaHosp(cls, a, b) {
         enaFie(element, !(isNSegVal && isEtpVal));
     });
 }
+
+function mmeMedidas(cls, a, b) {
+    const tiS = document.getElementById('tiposeg');
+    const etp = document.getElementById('etapa');
+    // Verificar que los valores cumplen con las condiciones
+    const istiSVal = tiS.value !== a;
+    const isEtpVal = etp.value === b;
+    // Obtener todos los elementos de la clase
+    const elements = document.querySelectorAll('select.'+ cls+',input.' + cls + ',textarea.' + cls);
+    // Activar o desactivar los elementos según las condiciones
+    elements.forEach(element => {
+        enaFie(element, !(istiSVal && isEtpVal));
+    });
+}

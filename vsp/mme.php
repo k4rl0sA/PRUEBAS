@@ -115,7 +115,7 @@ function cmp_mme(){
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' pRe '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Trata de Farma','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
-    $c[]=new cmp('tipo_tratafarma','s','3',$d,$w.' pRe '.$o,'Tipo de Tratamiento','tipo_tratafarma',null,null,false,$x,'','col-2');
+    $c[]=new cmp('tipo_tratafarma','sm','3',$d,$w.' pRe '.$o,'Tipo de Tratamiento','tipo_tratafarma',null,null,false,$x,'','col-2',"fieldsValue('tipo_tratafarma','');");
     $c[]=new cmp('cual','t','100',$d,$w.' pRe SiA '.$o,'Cuál','cual',null,null,false,$x,'','col-4');
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2');
     $c[]=new cmp('porque_noadh','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_noadh',null,null,false,$x,'','col-4');

@@ -20,7 +20,7 @@ else {
 }
 
 function focus_etnia(){
-  return 'mme';
+  return 'etnia';
  }
  
  

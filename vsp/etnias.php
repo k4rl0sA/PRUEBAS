@@ -43,7 +43,7 @@ function focus_etnia(){
  FUNCTION lis_etnia(){
 	// var_dump($_POST['id']);
 	$id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['id_etnia']) ? divide($_POST['id_etnia']) : null);
-  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  $info=datos_mysql("SELECT COUNT(*) total FROM vsp_etnia A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;

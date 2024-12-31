@@ -19,12 +19,9 @@ else {
   }   
 }
 
-
-
 function focus_alertas(){
 	return 'alertas';
 }
-   
    
 function men_alertas(){
 	$rta=cap_menus('alertas','pro');
@@ -191,7 +188,6 @@ function men_alertas(){
 		}
 		}
 	} 
-
 
 	function fix_alertas(){
 		// var_dump($_POST);

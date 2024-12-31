@@ -108,9 +108,9 @@ function cmp_mme(){
     $c[]=new cmp('fecha_egre','d','10',$d,$w.' HOs '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('edad_padre','t',2,$d,$w.' HOs '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2',"enabOthNo('asis_ctrpre','CtP');");
-    $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' pRe CtP '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,$x,'','col-2',"enabOthNo('ing_ctrpre','S10');");//se habilita cuando la pregunta anterior es SI
-    $c[]=new cmp('cpn','s','2',$d,$w.' pRe S10 '.$o,'¿Cuantos CPN?','cpn',null,null,false,$x,'','col-2',"disaOthNo('cpn','CPn');") ;//se habilita cuando la pregunta anterior es SI
-    $c[]=new cmp('porque_no','t','500',$d,$w.' pRe CPn '.$o,'¿Por Qué?','porque_no',null,null,false,$x,'','col-4');// se habilita cuando es un NO en la pregunta de asiste a controles prenatales
+    $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' pRe CtP '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,false,'','col-2',"enabOthNo('ing_ctrpre','S10');");//se habilita cuando la pregunta anterior es SI
+    $c[]=new cmp('cpn','s','2',$d,$w.' pRe S10 '.$o,'¿Cuantos CPN?','cpn',null,null,false,false,'','col-2',"disaOthNo('cpn','CPn');") ;//se habilita cuando la pregunta anterior es SI
+    $c[]=new cmp('porque_no','t','500',$d,$w.' pRe CPn '.$o,'¿Por Qué?','porque_no',null,null,false,false,'','col-4');// se habilita cuando es un NO en la pregunta de asiste a controles prenatales
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' pRe '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');

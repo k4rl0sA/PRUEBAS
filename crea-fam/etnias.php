@@ -94,6 +94,7 @@ function cmp_etnias(){
 	$c[]=new cmp('vivos','s','3',$d,$w.'  '.$o,'Vivos','fobs',null,null,true,true,'','col-2');
 	$c[]=new cmp('muertos','s','3',$d,$w.'  '.$o,'Muertos','fobs',null,null,true,true,'','col-2');
 	$c[]=new cmp('fecha_fum','d','10',$d,$w.' '.$o,'Fecha Fum','fecha_fum',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+	$c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,true,true,'','col-3');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';
@@ -271,7 +272,9 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	function opc_des_sin($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}
-
+	function opc_edad_gesta($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+	}
 
 	function opc_clasi_nutri($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=210 and estado='A' ORDER BY 1",$id);

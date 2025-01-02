@@ -1024,7 +1024,7 @@ function fieldsValue(a, b, value, flag = true) {
     }
 }
 
-function EnabDepe2fielFlex(cls, a, b, fa, fb, cmpA = true, cmpB = true) {
+function EnabDepe2fiel(cls, a, b, fa, fb, cmpA = true, cmpB = true) {
     const eleA = document.getElementById(fa);
     const eleB = document.getElementById(fb);
     

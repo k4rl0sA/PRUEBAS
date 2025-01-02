@@ -54,7 +54,7 @@ function grabar(tb='',ev){
 
 
   <?php
-    $filtro = in_array($perfil, ['ADM', 'SUPHOG', 'SUPEAC']);
+    $filtro = in_array($perfil, ['ADM','AUXHOG','PROFAM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO','PSICLINICOS']);
     $enab = $filtro ? '' : 'disabled';
     $rta = '<div class="campo"><div>Colaborador</div>
             <select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" ' . $enab . '>' . $digitadores . '</select>

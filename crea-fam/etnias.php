@@ -244,6 +244,9 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	  function opc_enf_dif($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=250 and estado='A' ORDER BY 1",$id);
 	  } 
+	  function opc_tip_inv($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=251 and estado='A' ORDER BY 1",$id);
+	  } 
 	  function opc_saberpro($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=249 and estado='A' ORDER BY 1",$id);
 	  }

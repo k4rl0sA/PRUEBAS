@@ -86,7 +86,7 @@ function cmp_etnias(){
 	$c[]=new cmp('enf_dif','s','3',$d,$w.' '.$o,'Enfoque Diferencial','enf_dif',null,null,true,true,'','col-2');
 	$c[]=new cmp('tip_inv','s','3',$d,$w.' '.$o,'Tipo De Intervención','tip_inv',null,null,true,true,'','col-2');
 
-
+	// Gesatntes
 	$c[]=new cmp('gestaciones','s','3',$d,$w.' '.$o,'Gestaciones','fobs',null,null,true,true,'','col-2');  
 	$c[]=new cmp('partos','s','3',$d,$w.' '.$o,'Partos','fobs',null,null,true,true,'','col-2');  
 	$c[]=new cmp('abortos','s','3',$d,$w.'  '.$o,'Abortos','fobs',null,null,true,true,'','col-2');
@@ -107,6 +107,10 @@ function cmp_etnias(){
 	$c[]=new cmp('sifilis_cong','s','3',$d,$w.'  '.$o,'¿Sifilis Congenita?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('seg_partera','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento Partera? ','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('seg_medanc','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-3');
+
+	// Cronicos
+	$c[]=new cmp('dx_cronico','s','3',$d,$w.'  '.$o,'Diagnostico De Condicion Cronica ','dx_cronico',null,null,true,true,'','col-3');
+
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 
@@ -294,4 +298,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 
 	function opc_clasi_nutri($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=210 and estado='A' ORDER BY 1",$id);
+	}
+	function opc_dx_cronico($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=252 and estado='A' ORDER BY 1",$id);
 	}

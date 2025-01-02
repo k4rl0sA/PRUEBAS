@@ -240,6 +240,9 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	  function opc_rta2($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=88 and estado='A' ORDER BY 1",$id);
 	  }
+	  function opc_enf_dif($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=250 and estado='A' ORDER BY 1",$id);
+	  } 
 	  function opc_saberpro($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=249 and estado='A' ORDER BY 1",$id);
 	  }

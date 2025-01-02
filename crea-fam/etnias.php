@@ -116,6 +116,9 @@ function cmp_etnias(){
 	$c[]=new cmp('signos_alarma','s','3',$d,$w.'  '.$o,'Presenta Signos De Alarma','rta',null,null,true,true,'','col-15');
 	$c[]=new cmp('seg_med','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-25');
 
+	//menor de 5 años
+	
+
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

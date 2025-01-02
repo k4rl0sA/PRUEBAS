@@ -83,6 +83,7 @@ function cmp_etnias(){
 	$c[]=new cmp('ser_edu','s','3',$d,$w.' '.$o,'Esta Vinculado (a) A Servicios De Educación','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('ent_esp','s','3',$d,$w.' '.$o,'¿Entiende Castellano - Español?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('saberpro','s','3',$d,$w.' '.$o,'Saberes Propios','saberpro',null,null,true,true,'','col-25');
+	$c[]=new cmp('enf_dif','s','3',$d,$w.' '.$o,'Enfoque Diferencial','enf_dif',null,null,true,true,'','col-2');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';

@@ -1024,13 +1024,13 @@ function fieldsValue(a, b, value, flag = true) {
     }
 }
 
-function EnabDepe2fielFlex(cls, a, b, fa, fb, compareA = true, compareB = true) {
+function EnabDepe2fielFlex(cls, a, b, fa, fb, cmpA = true, cmpB = true) {
     const numS = document.getElementById(fa);
     const etp = document.getElementById(fb);
     
     // Verificar las condiciones con base en los parámetros compareA y compareB
-    const isNSegVal = compareA ? numS.value === a : numS.value !== a;
-    const isEtpVal = compareB ? etp.value === b : etp.value !== b;
+    const isNSegVal = cmpA ? numS.value === a : numS.value !== a;
+    const isEtpVal = cmpB ? etp.value === b : etp.value !== b;
     
     // Obtener todos los elementos de la clase
     const elements = document.querySelectorAll('select.' + cls + ',input.' + cls + ',textarea.' + cls);

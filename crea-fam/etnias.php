@@ -274,9 +274,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	}
 	function opc_edad_gesta($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
-	  }
-
-
+	}
 	function opc_clasi_nutri($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=210 and estado='A' ORDER BY 1",$id);
 	}

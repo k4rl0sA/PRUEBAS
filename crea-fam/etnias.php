@@ -101,7 +101,8 @@ function cmp_etnias(){
 	$c[]=new cmp('exam_lab','s','2',$d,$w.'  '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional','rta',null,null,true,true,'','col-4');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.'  '.$o,'¿Consume Micronutrientes?','rta',null,null,true,true,'','col-3');
 	$c[]=new cmp('esqu_vacuna','s','3',$d,$w.'  '.$o,'¿Tiene Esquema De Vacunacion Completo Para La Eg?','rta',null,null,true,true,'','col-3');
-	$c[]=new cmp('signos_alarma','s','3',$d,$w.'  '.$o,'¿Presenta Signos De Alarma?','rta',null,null,true,true,'','col-3');
+	$c[]=new cmp('signos_alarma','s','3',$d,$w.'  '.$o,'¿Presenta Signos De Alarma?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('diag_sifilis','s','3',$d,$w.'  '.$o,'¿Diagnosticada Con Sifilis Gestacional ?','rta',null,null,true,true,'','col-2');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 

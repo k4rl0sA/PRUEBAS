@@ -85,6 +85,14 @@ function cmp_etnias(){
 	$c[]=new cmp('saberpro','s','3',$d,$w.' '.$o,'Saberes Propios','saberpro',null,null,true,true,'','col-3');
 	$c[]=new cmp('enf_dif','s','3',$d,$w.' '.$o,'Enfoque Diferencial','enf_dif',null,null,true,true,'','col-2');
 	$c[]=new cmp('tip_inv','s','3',$d,$w.' '.$o,'Tipo De Intervención','tip_inv',null,null,true,true,'','col-2');
+
+
+	$c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,false,'','col-2');  
+	$c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,false,'','col-2');  
+	$c[]=new cmp('abortos','s','3',$d,$w.' PeT hab '.$o,'Abortos','fobs',null,null,false,false,'','col-2');
+	$c[]=new cmp('cesareas','s','3',$d,$w.' PeT hab '.$o,'Cesareas','fobs',null,null,false,false,'','col-2');
+	$c[]=new cmp('vivos','s','3',$d,$w.' PeT hab '.$o,'Vivos','fobs',null,null,false,false,'','col-2');
+	$c[]=new cmp('muertos','s','3',$d,$w.' PeT hab '.$o,'Muertos','fobs',null,null,false,false,'','col-2');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';
@@ -253,6 +261,9 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	function opc_moti_con($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=247 and estado='A' ORDER BY 1",$id);
 	}
+	function opc_fobs($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
+	  }
 	function opc_prio($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=248 and estado='A' ORDER BY 1",$id);
 	}

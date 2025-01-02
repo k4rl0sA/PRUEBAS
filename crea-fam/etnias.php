@@ -111,6 +111,8 @@ function cmp_etnias(){
 	// Cronicos
 	$c[]=new cmp('dx_cronico','s','3',$d,$w.'  '.$o,'Diagnostico De Condicion Cronica ','dx_cronico',null,null,true,true,'','col-3');
 	$c[]=new cmp('cual_dx','t','100',$d,$w.' '.$o,'¿Cual?','cual_dx',null,null,true,true,'','col-2');
+	$c[]=new cmp('seg_medanc','s','3',$d,$w.'  '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,true,true,'','col-3');
+
 
 
 	$o='espvit';

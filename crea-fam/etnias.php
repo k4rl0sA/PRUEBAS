@@ -113,8 +113,8 @@ function cmp_etnias(){
 	$c[]=new cmp('cual_dx','t','100',$d,$w.' '.$o,'¿Cual?','cual_dx',null,null,true,true,'','col-2');
 	$c[]=new cmp('tto_cronico','s','3',$d,$w.'  '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('ctrol_cronico','s','3',$d,$w.'  '.$o,'Asiste A Control De Cronicos ','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('signos_alarma','s','3',$d,$w.'  '.$o,'Presenta Signos De Alarma','rta',null,null,true,true,'','col-2');
-	$c[]=new cmp('seg_med','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('signos_alarma','s','3',$d,$w.'  '.$o,'Presenta Signos De Alarma','rta',null,null,true,true,'','col-15');
+	$c[]=new cmp('seg_med','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-25');
 
 
 	$o='espvit';

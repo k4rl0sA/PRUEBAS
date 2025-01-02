@@ -69,7 +69,7 @@ function cmp_etnias(){
 	$c[]=new cmp('edad','t','50',$p['edad'],$w.' '.$o,'edad','edad',null,'',false,false,'','col-25');
 	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
     
-	$c[]=new cmp($o,'e',null,'SESIONES ETNIAS',$w);
+	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('sesi_nu','s','3',$d,$w.' '.$o,'Sesion N°','sesi_nu',null,null,true,true,'','col-3');

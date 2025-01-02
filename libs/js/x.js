@@ -1024,9 +1024,9 @@ function fieldsValue(a, b, value, flag = true) {
     }
 }
 
-function mmeFechaHosp(cls, a, b) {
-    const numS = document.getElementById('numsegui');
-    const etp = document.getElementById('etapa');
+function EnabDepe2fiel(cls, a, b,fa,fb) {
+    const numS = document.getElementById(fa);
+    const etp = document.getElementById(fb);
     // Verificar que los valores cumplen con las condiciones
     const isNSegVal = numS.value === a;
     const isEtpVal = etp.value === b;

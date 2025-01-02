@@ -93,6 +93,7 @@ function cmp_etnias(){
 	$c[]=new cmp('cesareas','s','3',$d,$w.'  '.$o,'Cesareas','fobs',null,null,true,true,'','col-2');
 	$c[]=new cmp('vivos','s','3',$d,$w.'  '.$o,'Vivos','fobs',null,null,true,true,'','col-2');
 	$c[]=new cmp('muertos','s','3',$d,$w.'  '.$o,'Muertos','fobs',null,null,true,true,'','col-2');
+	$c[]=new cmp('fecha_fum','d','10',$d,$w.' '.$o,'Fecha Fum','fecha_fum',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='espvit';

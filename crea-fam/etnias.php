@@ -96,7 +96,7 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha_fum','d','10',$d,$w.' '.$o,'Fecha Fum','fecha_fum',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('edad_gesta','s','3',$d,$w.'  '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gesta',null,null,true,true,'','col-3');
 	$c[]=new cmp('resul_gest','s','3',$d,$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,true,true,'','col-3',"enabClasValu('resul_gest',['ncvmor','mOr','NOm']);");
-	$c[]=new cmp('peso_nacer','sd','4',$d,$w.' '.$o,'Peso Al Nacer (Gr)','peso_nacer','rgxpeso','##.#',false,false,'','col-2');
+	$c[]=new cmp('peso_nacer','sd','4',$d,$w.' '.$o,'Peso Al Nacer (Gr)','peso_nacer','rgxpeso','##.#',true,true,'','col-2');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 

@@ -159,6 +159,8 @@ function cmp_etnias(){
 	$c[]=new cmp('adhe_tto','s','3',$d,$w.'  '.$o,'Adherente Al Tratamiento','rta',null,null,true,true,'','col-25');
 
 	
+	$o='segpos';
+	$c[]=new cmp($o,'e',null,'UAIC - MOTIVO DE CONSULTA',$w);
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

@@ -119,7 +119,7 @@ function cmp_etnias(){
 	$c[]=new cmp('seg_med','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-25');
 
 	//menor de 5 años
-
+	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - MENOR DE 5 AÑOS',$w);
 
 
 	$o='espvit';

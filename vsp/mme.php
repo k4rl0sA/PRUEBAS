@@ -347,8 +347,27 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['fecha_seg']],
     ['type' => 's', 'value' => $_POST['numsegui']],
     ['type' => 's', 'value' => $_POST['evento']],
+    ['type' => 's', 'value' => $_POST['tiposeg']],
+    ['type' => 's', 'value' => $_POST['estado_s']],
+    ['type' => 's', 'value' => $_POST['motivo_estado']],
+    ['type' => 's', 'value' => $_POST['etapa']],
+    ['type' => 's', 'value' => $_POST['sema_gest']],
+    ['type' => 's', 'value' => $_POST['gestaciones']],
+    ['type' => 's', 'value' => $_POST['partos']],
+    ['type' => 's', 'value' => $_POST['abortos']],
+    ['type' => 's', 'value' => $_POST['cesareas']],
+    ['type' => 's', 'value' => $_POST['vivos']],
+    ['type' => 's', 'value' => $_POST['muertos']],
+    ['type' => 's', 'value' => $_POST['fecha_egre']],
+    ['type' => 's', 'value' => $_POST['edad_padre']],
     ['type' => 's', 'value' => $_POST['variable']],
     ['type' => 's', 'value' => $_POST['variable']],
+    ['type' => 's', 'value' => $_POST['variable']],
+    ['type' => 's', 'value' => $_POST['variable']],
+    ['type' => 's', 'value' => $_POST['variable']],
+    ['type' => 's', 'value' => $_POST['variable']],
+    ['type' => 's', 'value' => $_POST['variable']],
+
 
 
 

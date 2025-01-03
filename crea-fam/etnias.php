@@ -184,6 +184,7 @@ function cmp_etnias(){
 	$c[]=new cmp('frec_car','sd','5',$d,$w.' '.$o,'Frecuencia Cardiaca','frec_car','rgxtalla','###.#',false,true,'','col-2');
 	$c[]=new cmp('frec_res','sd','5',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxpeso','##.#',false,true,'','col-2');
 	$c[]=new cmp('oxige','sd','5',$d,$w.' '.$o,'Saturacion','oxige','rgxtalla','###.#',false,true,'','col-2');
+	$c[]=new cmp('gluco','sd','5',$d,$w.' '.$o,'Glucometria','gluco','rgxtalla','###.#',false,true,'','col-2');
 	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','etnias.php');calImc('peso','talla','imc');");
 	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','etnias.php');valTalla('talla');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');

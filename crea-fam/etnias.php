@@ -150,6 +150,14 @@ function cmp_etnias(){
 	$c[]=new cmp('impdiag','t','100',$d,$w.' '.$o,'Impresión Diagnostica','impdiag',null,null,true,true,'','col-25');
 	$c[]=new cmp('apoyo_inter','s','3',$d,$w.'  '.$o,'Necesidad De Apoyo Intersectorial','rta',null,null,true,true,'','col-25');
 
+
+	$o='segpos';
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO POSEGRESO',$w);
+	$c[]=new cmp('fecha_ingpos','d','10',$d,$w.' '.$o,'Fecha De Ingreso','fecha_ingpos',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+	$c[]=new cmp('especi1','t','100',$d,$w.' '.$o,'Especialidad De Control 1','especi1',null,null,true,true,'','col-25');
+	$c[]=new cmp('especi2','t','100',$d,$w.' '.$o,'Especialidad De Control 2','especi2',null,null,true,true,'','col-25');
+	$c[]=new cmp('adhe_tto','s','3',$d,$w.'  '.$o,'Adherente Al Tratamiento','adhe_tto',null,null,true,true,'','col-25');
+
 	
 
 	$o='espvit';

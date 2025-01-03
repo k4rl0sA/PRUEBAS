@@ -159,8 +159,15 @@ function cmp_etnias(){
 	$c[]=new cmp('adhe_tto','s','3',$d,$w.'  '.$o,'Adherente Al Tratamiento','rta',null,null,true,true,'','col-25');
 
 	
-	$o='segpos';
+	$o='uaic';
 	$c[]=new cmp($o,'e',null,'UAIC - MOTIVO DE CONSULTA',$w);
+	$c[]=new cmp('era','s','3',$d,$w.'  '.$o,'Era','rta',null,null,true,true,'','col-20');
+	$c[]=new cmp('eda','s','3',$d,$w.'  '.$o,'Eda','rta',null,null,true,true,'','col-20');
+	$c[]=new cmp('dnt','s','3',$d,$w.'  '.$o,'DNT','rta',null,null,true,true,'','col-20');
+	$c[]=new cmp('desc_sint','t','100',$d,$w.' '.$o,'Descripcion De  Sintomas','desc_sint',null,null,true,true,'','col-4');
+
+
+
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

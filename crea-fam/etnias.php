@@ -175,10 +175,12 @@ function cmp_etnias(){
 	$c[]=new cmp('hosp_menor','s','3',$d,$w.'  '.$o,'Menor Hospitalizado','rta',null,null,true,true,'','col-2');
 
 
+	
 
 
-	$o='valantro';
-	$c[]=new cmp($o,'e',null,'VALORACION ANTROPOMETRICA',$w);
+
+	$o='sigvit';
+	$c[]=new cmp($o,'e',null,'SIGNOS VITALES Y VALORACION ANTROPOMETRICA',$w);
 	$c[]=new cmp('peso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','etnias.php');calImc('peso','talla','imc');");
 	$c[]=new cmp('talla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','etnias.php');valTalla('talla');");
 	$c[]=new cmp('imc','t',6, $d,$w.' '.$o,'IMC','imc','','',false,false,'','col-1');

@@ -190,7 +190,7 @@ function gra_sesigcole(){
 		];
 		// var_dump($sql);
 		return mysql_prepd($sql, $params);
-	}else{
+	}else if(count($id)==2&& $id[1]!=0){
 		$sql = "UPDATE hog_sescole SET tipo_activ=?,lugar=?,jornada=?,equipo=?,tematica1=?,des_temati1=?,tematica2=?,des_temati2=?,tematica3=?,des_temati3=?,tematica4=?,des_temati4=?,tematica5=?,des_temati5=?,tematica6=?,
 		des_temati6=?,tematica7=?,des_temati7=?,tematica8=?,des_temati8=?,usu_update=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR) WHERE id_cole=?";
 		$params = [

@@ -5,7 +5,8 @@ require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 $mod='sesigcole';
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` 
-WHERE`perfil` IN('ADM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO') and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 2",$_SESSION['us_sds']);
+WHERE`perfil` IN('ADM','AUXHOG','PROFAM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO','PSICLINICOS') 
+and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 2",$_SESSION['us_sds']);
 $perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
 $perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 ?>
@@ -54,7 +55,7 @@ function grabar(tb='',ev){
 
 
   <?php
-    $filtro = in_array($perfil, ['ADM','AUXHOG','PROFAM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO','PSICLINICOS']);
+    $filtro = in_array($perfil, ['ADM','SUPHOG']);
     $enab = $filtro ? '' : 'disabled';
     $rta = '<div class="campo"><div>Colaborador</div>
             <select class="captura" id="fdigita" name="fdigita" onChange="actualizar();" ' . $enab . '>' . $digitadores . '</select>

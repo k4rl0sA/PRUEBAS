@@ -139,7 +139,7 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha_ing','d','10',$d,$w.' '.$o,'Fecha De Ingreso','fecha_ing',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('Serv_salud','t','100',$d,$w.' '.$o,'Unidad De Servicio De Salud A La Que Ingresa','Serv_salud',null,null,true,true,'','col-25');
 	$c[]=new cmp('Moti_cons','t','100',$d,$w.' '.$o,'Motivo De Consulta/Ingresó','Moti_cons',null,null,true,true,'','col-25');
-
+	$c[]=new cmp('uss_tras','t','100',$d,$w.' '.$o,'Unidad De Servicio De Salud De Traslado','uss_tras',null,null,true,true,'','col-25');
 
 
 	$o='espvit';

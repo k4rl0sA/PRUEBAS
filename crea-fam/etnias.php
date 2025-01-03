@@ -121,6 +121,10 @@ function cmp_etnias(){
 	//menor de 5 años
 	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - MENOR DE 5 AÑOS',$w);
 	$c[]=new cmp('crec_desa','s','3',$d,$w.'  '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('lact_mate','s','3',$d,$w.'  '.$o,'¿Recibe Lactancia Materna?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('esqvac_comple','s','3',$d,$w.'  '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('sig_alar','s','3',$d,$w.'  '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('seg_medance','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-2');
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

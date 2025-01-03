@@ -385,9 +385,9 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['resul_gest']],//40
     ['type' => 's', 'value' => $_POST['meto_fecunda']],//41
     ['type' => 's', 'value' => $_POST['cual']],//42
-    ['type' => 's', 'value' => $_POST['resul_gest']],//43
-    ['type' => 's', 'value' => $_POST['meto_fecunda']],//44
-    ['type' => 's', 'value' => $_POST['cual1']],//45
+    //['type' => 's', 'value' => $_POST['resul_gest']],//43
+    //['type' => 's', 'value' => $_POST['meto_fecunda']],//44
+    ['type' => 's', 'value' => $_POST['cualmet']],//45
     ['type' => 's', 'value' => $_POST['otro_cual']],//46
     ['type' => 's', 'value' => $_POST['motivo_nofecund']],//47
     ['type' => 's', 'value' => $_POST['control_mac']],//48
@@ -430,6 +430,7 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['desc_accion3']],//85
     ['type' => 's', 'value' => $_POST['activa_ruta']],//86
     ['type' => 's', 'value' => $_POST['ruta']],//87
+    ['type' => 's', 'value' => $_POST['novedades']],//88
     ['type' => 's', 'value' => $_POST['otras_condiciones']],//88
     ['type' => 's', 'value' => $_POST['observaciones']],//89
     ['type' => 's', 'value' => $_POST['cierre_caso']],//90

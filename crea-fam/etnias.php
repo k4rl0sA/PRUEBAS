@@ -161,10 +161,10 @@ function cmp_etnias(){
 	
 	$o='uaic';
 	$c[]=new cmp($o,'e',null,'UAIC - MOTIVO DE CONSULTA',$w);
-	$c[]=new cmp('era','s','3',$d,$w.'  '.$o,'Era','rta',null,null,true,true,'','col-20');
-	$c[]=new cmp('eda','s','3',$d,$w.'  '.$o,'Eda','rta',null,null,true,true,'','col-20');
-	$c[]=new cmp('dnt','s','3',$d,$w.'  '.$o,'DNT','rta',null,null,true,true,'','col-20');
-	$c[]=new cmp('desc_sint','t','100',$d,$w.' '.$o,'Descripcion De  Sintomas','desc_sint',null,null,true,true,'','col-40');
+	$c[]=new cmp('era','s','3',$d,$w.'  '.$o,'Era','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('eda','s','3',$d,$w.'  '.$o,'Eda','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('dnt','s','3',$d,$w.'  '.$o,'DNT','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('desc_sint','t','100',$d,$w.' '.$o,'Descripcion De  Sintomas','desc_sint',null,null,true,true,'','col-4');
 
 
 

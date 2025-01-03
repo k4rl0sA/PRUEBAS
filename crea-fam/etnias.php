@@ -87,7 +87,6 @@ function cmp_etnias(){
 	$c[]=new cmp('tip_inv','s','3',$d,$w.' '.$o,'Tipo De Intervención','tip_inv',null,null,true,true,'','col-2');
 
 	// Gesatntes
-	//$o='infusu';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - GESTANTES',$w); 
 	$c[]=new cmp('gestaciones','s','3',$d,$w.' '.$o,'Gestaciones','fobs',null,null,true,true,'','col-2');  
 	$c[]=new cmp('partos','s','3',$d,$w.' '.$o,'Partos','fobs',null,null,true,true,'','col-2');  
@@ -111,6 +110,7 @@ function cmp_etnias(){
 	$c[]=new cmp('seg_medanc','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-3');
 
 	// Cronicos
+	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - CONDICIONES CRONICAS',$w); 
 	$c[]=new cmp('dx_cronico','s','3',$d,$w.'  '.$o,'Diagnostico De Condicion Cronica ','dx_cronico',null,null,true,true,'','col-2');
 	$c[]=new cmp('cual_dx','t','100',$d,$w.' '.$o,'¿Cual?','cual_dx',null,null,true,true,'','col-2');
 	$c[]=new cmp('tto_cronico','s','3',$d,$w.'  '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,true,true,'','col-2');

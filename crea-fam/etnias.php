@@ -205,7 +205,7 @@ function cmp_etnias(){
 
 	$c[]=new cmp($o,'e',null,'',$w);
 	$c[]=new cmp('res_gest','s','3',$d,$w.'  '.$o,'Servicio De Remision Y/O Gestion','res_gest',null,null,true,true,'','col-2');
-	$c[]=new cmp('obser','t','100',$d,$w.' '.$o,'Observaciones','obser',null,null,true,true,'','col-4');
+	$c[]=new cmp('obser','t','100',$d,$w.' '.$o,'Observaciones','obser',null,null,true,true,'','col-8');
 	$c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-4');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

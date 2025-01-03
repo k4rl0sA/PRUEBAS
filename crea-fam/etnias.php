@@ -131,6 +131,7 @@ function cmp_etnias(){
 	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS',$w);
 	$c[]=new cmp('gestante','s','3',$d,$w.'  '.$o,'¿Gestante?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('edad_gesta','s','3',$d,$w.'  '.$o,'Edad Gestacional (semanas)','edad_gesta',null,null,true,true,'','col-2');
+	$c[]=new cmp('ubi_acom','s','3',$d,$w.'  '.$o,'Ubicación Del Acompañante O Acudiente','ubi_acom',null,null,true,true,'','col-2');
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);
@@ -317,6 +318,10 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	function opc_clasi_nutri($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=210 and estado='A' ORDER BY 1",$id);
 	}
+	
 	function opc_dx_cronico($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=252 and estado='A' ORDER BY 1",$id);
+	}
+	function opc_ubi_acom($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=253 and estado='A' ORDER BY 1",$id);
 	}

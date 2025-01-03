@@ -167,6 +167,14 @@ function cmp_etnias(){
 	$c[]=new cmp('desc_sint','t','100',$d,$w.' '.$o,'Descripcion De  Sintomas','desc_sint',null,null,true,true,'','col-4');
 
 
+	$c[]=new cmp($o,'e',null,'UAIC - MANEJO',$w);
+	$c[]=new cmp('sales','s','3',$d,$w.'  '.$o,'Sales De Rehidratación','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('acetaminofen','s','3',$d,$w.'  '.$o,'Acetaminofen','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('tras_uss','s','3',$d,$w.'  '.$o,'Traslado Uss','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('educacion','s','3',$d,$w.'  '.$o,'Educación','rta',null,null,true,true,'','col-2');
+	$c[]=new cmp('hosp_menor','s','3',$d,$w.'  '.$o,'Menor Hospitalizado','rta',null,null,true,true,'','col-2');
+
+
 
 
 	$o='espvit';

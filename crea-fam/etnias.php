@@ -87,7 +87,7 @@ function cmp_etnias(){
 	$c[]=new cmp('tip_inv','s','3',$d,$w.' '.$o,'Tipo De Intervención','tip_inv',null,null,true,true,'','col-2');
 
 	// Gesatntes
-	$o='infusu';
+	//$o='infusu';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - GESTANTES',$w); 
 	$c[]=new cmp('gestaciones','s','3',$d,$w.' '.$o,'Gestaciones','fobs',null,null,true,true,'','col-2');  
 	$c[]=new cmp('partos','s','3',$d,$w.' '.$o,'Partos','fobs',null,null,true,true,'','col-2');  

@@ -193,7 +193,16 @@ function cmp_etnias(){
 	$c[]=new cmp('zscore','t',15,'',$w.' '.$o,'Z-score','des',null,null,false,false,'','col-35');
 	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-2');
 	
-	
+
+	$o='sigvitpos';
+	$c[]=new cmp($o,'e',null,'SIGNOS VITALES POSTERIOR AL PLAN DE MANEJO EN LA UAIC',$w);
+	$c[]=new cmp('tempeseg','sd','5',$d,$w.' '.$o,'Temperatura','tempeseg','rgxtalla','###.#',false,true,'','col-25');
+	$c[]=new cmp('frec_carseg','sd','5',$d,$w.' '.$o,'Frecuencia Cardiaca','frec_carseg','rgxtalla','###.#',false,true,'','col-25');
+	$c[]=new cmp('frec_resseg','sd','5',$d,$w.' '.$o,'Frecuencia Respiratoria','frec_resseg','rgxpeso','##.#',false,true,'','col-25');
+	$c[]=new cmp('oxigeseg','sd','5',$d,$w.' '.$o,'Saturacion','oxigeseg','rgxtalla','###.#',false,true,'','col-25');
+	$c[]=new cmp('entrega_med','t','100',$d,$w.' '.$o,'Seguimiento A A Entrega De Medicamentos','entrega_med',null,null,true,true,'','col-5');
+
+
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

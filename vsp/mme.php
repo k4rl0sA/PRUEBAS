@@ -380,10 +380,10 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['signos_alarma_seg']],//1
     ['type' => 's', 'value' => $_POST['descr_sigalarma']],//1
     ['type' => 's', 'value' => $_POST['entrega_medic_labo']],//1
-    ['type' => 's', 'value' => $_POST['fecha_obstetrica']],//1
-    ['type' => 's', 'value' => $_POST['edad_gesta']],//1
-    ['type' => 's', 'value' => $_POST['resul_gest']],//1
-    ['type' => 's', 'value' => $_POST['meto_fecunda']],//1
+    ['type' => 's', 'value' => $_POST['fecha_obstetrica']],//41
+    ['type' => 's', 'value' => $_POST['edad_gesta']],//42
+    ['type' => 's', 'value' => $_POST['resul_gest']],//43
+    ['type' => 's', 'value' => $_POST['meto_fecunda']],//44
     ['type' => 's', 'value' => $_POST['cual1']],//45
     ['type' => 's', 'value' => $_POST['otro_cual']],//46
     ['type' => 's', 'value' => $_POST['motivo_nofecund']],//47

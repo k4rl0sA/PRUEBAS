@@ -120,7 +120,7 @@ function cmp_etnias(){
 
 	//menor de 5 años
 	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO - MENOR DE 5 AÑOS',$w);
-
+	$c[]=new cmp('crec_desa','s','3',$d,$w.'  '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,true,true,'','col-2');
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

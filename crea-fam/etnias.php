@@ -203,6 +203,9 @@ function cmp_etnias(){
 	$c[]=new cmp('entrega_med','t','100',$d,$w.' '.$o,'Seguimiento A A Entrega De Medicamentos','entrega_med',null,null,true,true,'','col-5');
 
 
+	$c[]=new cmp($o,'e',null,'',$w);
+	$c[]=new cmp('res_gest','s','3',$d,$w.'  '.$o,'Servicio De Remision Y/O Gestion','res_gest',null,null,true,true,'','col-2');
+
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -382,4 +385,7 @@ $sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$in
 	}
 	function opc_ubi_acom($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=253 and estado='A' ORDER BY 1",$id);
+	}
+	function opc_res_get($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=254 and estado='A' ORDER BY 1",$id);
 	}

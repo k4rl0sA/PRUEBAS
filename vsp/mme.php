@@ -133,7 +133,7 @@ function cmp_mme(){
     $c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-4');
     $c[]=new cmp('resul_gest','s','3',$d,$w.' PuE '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-3',"enabClasValu('resul_gest',['ncvmor','mOr','NOm']);");
     $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');");
-    $c[]=new cmp('cual','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
+    $c[]=new cmp('cual1','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
     $c[]=new cmp('otro_cual','t','500',$d,$w.' PuE MFe '.$o,'Otro de Cual','otro_cual',null,null,false,$x,'','col-35');
     $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' PuE MFe '.$o,'Motivo de Nofecund','motivo_nofecund',null,null,false,$x,'','col-4');
 
@@ -384,7 +384,7 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['edad_gesta']],//1
     ['type' => 's', 'value' => $_POST['resul_gest']],//1
     ['type' => 's', 'value' => $_POST['meto_fecunda']],//1
-    ['type' => 's', 'value' => $_POST['cual']],//1
+    ['type' => 's', 'value' => $_POST['cual1']],//1
     ['type' => 's', 'value' => $_POST['otro_cual']],//1
     ['type' => 's', 'value' => $_POST['motivo_nofecund']],//1
     ['type' => 's', 'value' => $_POST['control_mac']],//1

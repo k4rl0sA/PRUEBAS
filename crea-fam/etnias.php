@@ -190,8 +190,7 @@ function cmp_etnias(){
 	$c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-2');
 	$c[]=new cmp('peri_cef','sd','4',$d,$w.' '.$o,'Perimetro Cefalico','peri_cef','rgxpeso','##.#',false,true,'','col-2');
     $c[]=new cmp('peri_bra','sd','5',$d,$w.' '.$o,'Perimetro Braquial','peri_bra','rgxtalla','###.#',false,true,'','col-2');
-	
-    $c[]=new cmp('oxige','sd','5',$d,$w.' '.$o,'Oxigeno','oxige','rgxtalla','###.#',false,true,'','col-2');
+	$c[]=new cmp('oxige','sd','5',$d,$w.' '.$o,'Oxigeno','oxige','rgxtalla','###.#',false,true,'','col-2');
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

@@ -77,6 +77,7 @@ function cmp_etnias(){
 	$c[]=new cmp('prio','s','3',$d,$w.' '.$o,'Prioridad','prio',null,null,true,true,'','col-25');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
+	$o='iderie';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIÓN DEL RIESGO',$w);
 	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Lider Con El Que Se Identifica La Familia','des_sin',null,null,true,true,'','col-35');
@@ -125,6 +126,10 @@ function cmp_etnias(){
 	$c[]=new cmp('esqvac_comple','s','3',$d,$w.'  '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('sig_alar','s','3',$d,$w.'  '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('seg_medance','s','3',$d,$w.'  '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-2');
+
+	$o='seghos';
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS',$w);
+
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

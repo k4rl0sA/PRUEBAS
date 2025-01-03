@@ -408,27 +408,27 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['consul_lacmate']],//1
     ['type' => 's', 'value' => $_POST['porque_nolact']],//1
     ['type' => 's', 'value' => $_POST['fecha_consul_lacmate']],//1
-    ['type' => 's', 'value' => $_POST['asiste_ctrl_cyd']],//1
-    ['type' => 's', 'value' => $_POST['vacuna_comple']],//1
-    ['type' => 's', 'value' => $_POST['lacmate_exclu']],//1
-    ['type' => 's', 'value' => $_POST['signos_alarma']],//1
-    ['type' => 's', 'value' => $_POST['cam_sign']],//1
-    ['type' => 's', 'value' => $_POST['qui_vida']],//1
-    ['type' => 's', 'value' => $_POST['viv_malt']],//1
-    ['type' => 's', 'value' => $_POST['adec_red']],//1
-    ['type' => 's', 'value' => $_POST['fecha_egreopost']],//1
-    ['type' => 's', 'value' => $_POST['estrategia_1']],//1
-    ['type' => 's', 'value' => $_POST['estrategia_2']],//1
-    ['type' => 's', 'value' => $_POST['acciones_1']],//1
-    ['type' => 's', 'value' => $_POST['desc_accion1']],//1
-    ['type' => 's', 'value' => $_POST['acciones_2']],//1
-    ['type' => 's', 'value' => $_POST['desc_accion2']],//1
-    ['type' => 's', 'value' => $_POST['acciones_3']],//1
-    ['type' => 's', 'value' => $_POST['desc_accion3']],//1
-    ['type' => 's', 'value' => $_POST['activa_ruta']],//1
-    ['type' => 's', 'value' => $_POST['ruta']],//1
-    ['type' => 's', 'value' => $_POST['otras_condiciones']],//1
-    ['type' => 's', 'value' => $_POST['observaciones']],//1
+    ['type' => 's', 'value' => $_POST['asiste_ctrl_cyd']],//69
+    ['type' => 's', 'value' => $_POST['vacuna_comple']],//70
+    ['type' => 's', 'value' => $_POST['lacmate_exclu']],//71
+    ['type' => 's', 'value' => $_POST['signos_alarma']],//72
+    ['type' => 's', 'value' => $_POST['cam_sign']],//73
+    ['type' => 's', 'value' => $_POST['qui_vida']],//74
+    ['type' => 's', 'value' => $_POST['viv_malt']],//75
+    ['type' => 's', 'value' => $_POST['adec_red']],//76
+    ['type' => 's', 'value' => $_POST['fecha_egreopost']],//77
+    ['type' => 's', 'value' => $_POST['estrategia_1']],//78
+    ['type' => 's', 'value' => $_POST['estrategia_2']],//79
+    ['type' => 's', 'value' => $_POST['acciones_1']],//80
+    ['type' => 's', 'value' => $_POST['desc_accion1']],//81
+    ['type' => 's', 'value' => $_POST['acciones_2']],//82
+    ['type' => 's', 'value' => $_POST['desc_accion2']],//83
+    ['type' => 's', 'value' => $_POST['acciones_3']],//84
+    ['type' => 's', 'value' => $_POST['desc_accion3']],//85
+    ['type' => 's', 'value' => $_POST['activa_ruta']],//86
+    ['type' => 's', 'value' => $_POST['ruta']],//87
+    ['type' => 's', 'value' => $_POST['otras_condiciones']],//88
+    ['type' => 's', 'value' => $_POST['observaciones']],//89
     ['type' => 's', 'value' => $_POST['cierre_caso']],//90
     ['type' => 's', 'value' => $_POST['motivo_cierre']],//91
     ['type' => 's', 'value' => $_POST['fecha_cierre']],//92

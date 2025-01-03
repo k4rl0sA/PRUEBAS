@@ -144,6 +144,13 @@ function cmp_etnias(){
 	$c[]=new cmp('ant_salud','t','100',$d,$w.' '.$o,'Antecedentes En Salud','ant_salud',null,null,true,true,'','col-25');
 	$c[]=new cmp('impdiag','t','100',$d,$w.' '.$o,'Impresión Diagnostica','impdiag',null,null,true,true,'','col-25');
 
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS - DETALLE DEL SEGUIMIENTO INTRA-HOSPITALARIO',$w);
+	$c[]=new cmp('uss_encu','t','100',$d,$w.' '.$o,'Unidad De  Salud A La Que Se Encuentra','uss_encu',null,null,true,true,'','col-25');
+	$c[]=new cmp('serv_encu','t','100',$d,$w.' '.$o,'Servicio De En El Que Se Encuentra','serv_encu',null,null,true,true,'','col-25');
+	$c[]=new cmp('impdiag','t','100',$d,$w.' '.$o,'Impresión Diagnostica','impdiag',null,null,true,true,'','col-25');
+	$c[]=new cmp('apoyo_inter','s','3',$d,$w.'  '.$o,'Necesidad De Apoyo Intersectorial','rta',null,null,true,true,'','col-2');
+
+	
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

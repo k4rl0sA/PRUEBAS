@@ -157,7 +157,7 @@ function gra_sesigcole(){
 	$id=divide($_POST['id']);
 	// var_dump($_POST['fequi']);
 	$equi = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-	if (count($id)==2 && $id[1]==0) {
+	if ($id[0]!='' && $id[1]==0) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [
 			['type' => 'i', 'value' => NULL],
@@ -219,6 +219,8 @@ function gra_sesigcole(){
 		];
 		// var_dump($sql);
 		return mysql_prepd($sql, $params);
+	}else{
+		return "Error : Debe ingresar el codigo del predio en la zona de filtros para poder generara la Sesión";
 	}
 	// return $rta;
 }

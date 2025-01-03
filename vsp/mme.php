@@ -429,18 +429,18 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['ruta']],//1
     ['type' => 's', 'value' => $_POST['otras_condiciones']],//1
     ['type' => 's', 'value' => $_POST['observaciones']],//1
-    ['type' => 's', 'value' => $_POST['cierre_caso']],//1
-    ['type' => 's', 'value' => $_POST['motivo_cierre']],//1
-    ['type' => 's', 'value' => $_POST['fecha_cierre']],//1
-    ['type' => 's', 'value' => $_POST['conti_segespecial']],//1
-    ['type' => 's', 'value' => $_POST['cual_segespecial']],//1
-    ['type' => 's', 'value' => $_POST['recomen_cierre']],//1
-    ['type' => 's', 'value' => $_POST['redu_riesgo_cierre']],//1
-    ['type' => 's', 'value' => $smbin],//1
-    ['type' => 'i', 'value' => $_SESSION['us_sds']],//1
-    ['type' => 's', 'value' => NULL],//1
-    ['type' => 's', 'value' => NULL],//1
-    ['type' => 's', 'value' => 'A']//1
+    ['type' => 's', 'value' => $_POST['cierre_caso']],//90
+    ['type' => 's', 'value' => $_POST['motivo_cierre']],//91
+    ['type' => 's', 'value' => $_POST['fecha_cierre']],//92
+    ['type' => 's', 'value' => $_POST['conti_segespecial']],//93
+    ['type' => 's', 'value' => $_POST['cual_segespecial']],//94
+    ['type' => 's', 'value' => $_POST['recomen_cierre']],//95
+    ['type' => 's', 'value' => $_POST['redu_riesgo_cierre']],//96
+    ['type' => 's', 'value' => $smbin],//97
+    ['type' => 'i', 'value' => $_SESSION['us_sds']],//98
+    ['type' => 's', 'value' => NULL],//100
+    ['type' => 's', 'value' => NULL],//101
+    ['type' => 's', 'value' => 'A']//102
     ];
     return  $rta= mysql_prepd($sql, $params);
    /*  $sql="INSERT INTO vsp_mme VALUES (NULL,trim(upper('{$id[0]}')),

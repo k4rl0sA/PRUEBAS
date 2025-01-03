@@ -136,6 +136,7 @@ function cmp_etnias(){
 
 	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS - INFORMACIÓN DE SERVICIO',$w);
 	$c[]=new cmp('Serv_req','t','100',$d,$w.' '.$o,'Servicio Requerido','Serv_req',null,null,true,true,'','col-3');
+	$c[]=new cmp('fecha_ing','d','10',$d,$w.' '.$o,'Fecha De Ingreso','fecha_ing',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

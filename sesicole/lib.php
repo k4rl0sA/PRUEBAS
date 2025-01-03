@@ -220,7 +220,7 @@ function gra_sesigcole(){
 		// var_dump($sql);
 		return mysql_prepd($sql, $params);
 	}else{
-		return "Error : Debe ingresar el codigo del predio en la zona de filtros para poder generara la Sesión";
+		return json_encode(msj["Error : Debe ingresar el codigo del predio en la zona de filtros para poder generara la Sesión"]);
 	}
 	// return $rta;
 }

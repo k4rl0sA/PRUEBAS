@@ -384,30 +384,30 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['edad_gesta']],//1
     ['type' => 's', 'value' => $_POST['resul_gest']],//1
     ['type' => 's', 'value' => $_POST['meto_fecunda']],//1
-    ['type' => 's', 'value' => $_POST['cual1']],//1
-    ['type' => 's', 'value' => $_POST['otro_cual']],//1
-    ['type' => 's', 'value' => $_POST['motivo_nofecund']],//1
-    ['type' => 's', 'value' => $_POST['control_mac']],//1
-    ['type' => 's', 'value' => $_POST['fecha_control_mac']],//1
-    ['type' => 's', 'value' => $_POST['ctrl_postpar_espe']],//1
-    ['type' => 's', 'value' => $_POST['fecha_postpar_espe']],//1
-    ['type' => 's', 'value' => $_POST['asis_ctrl_postpar_espe']],//1
-    ['type' => 's', 'value' => $_POST['porque_no_postpar']],//1
-    ['type' => 's', 'value' => $_POST['consul_apoy_lacmater']],//1
-    ['type' => 's', 'value' => $_POST['signos_alarma']],//1
-    ['type' => 's', 'value' => $_POST['desc_sigala']],//1
-    ['type' => 's', 'value' => $_POST['disc_ges']],//1
-    ['type' => 's', 'value' => $_POST['cual_disc_ges']],//1
-    ['type' => 's', 'value' => $_POST['fecha_apoy_lacmater']],//1
-    ['type' => 's', 'value' => $_POST['peso_rcnv']],//1
-    ['type' => 's', 'value' => $_POST['ctrl_recinac']],//1
-    ['type' => 's', 'value' => $_POST['fecha_ctrl_nac']],//1
-    ['type' => 's', 'value' => $_POST['asis_ctrl_recinac']],//1
-    ['type' => 's', 'value' => $_POST['porque_norec']],//1
-    ['type' => 's', 'value' => $_POST['ult_peso']],//1
-    ['type' => 's', 'value' => $_POST['consul_lacmate']],//1
-    ['type' => 's', 'value' => $_POST['porque_nolact']],//1
-    ['type' => 's', 'value' => $_POST['fecha_consul_lacmate']],//1
+    ['type' => 's', 'value' => $_POST['cual1']],//45
+    ['type' => 's', 'value' => $_POST['otro_cual']],//46
+    ['type' => 's', 'value' => $_POST['motivo_nofecund']],//47
+    ['type' => 's', 'value' => $_POST['control_mac']],//48
+    ['type' => 's', 'value' => $_POST['fecha_control_mac']],//49
+    ['type' => 's', 'value' => $_POST['ctrl_postpar_espe']],//50
+    ['type' => 's', 'value' => $_POST['fecha_postpar_espe']],//51
+    ['type' => 's', 'value' => $_POST['asis_ctrl_postpar_espe']],//52
+    ['type' => 's', 'value' => $_POST['porque_no_postpar']],//53
+    ['type' => 's', 'value' => $_POST['consul_apoy_lacmater']],//54
+    ['type' => 's', 'value' => $_POST['signos_alarma']],//55
+    ['type' => 's', 'value' => $_POST['desc_sigala']],//56
+    ['type' => 's', 'value' => $_POST['disc_ges']],//57
+    ['type' => 's', 'value' => $_POST['cual_disc_ges']],//58
+    ['type' => 's', 'value' => $_POST['fecha_apoy_lacmater']],//59
+    ['type' => 's', 'value' => $_POST['peso_rcnv']],//60
+    ['type' => 's', 'value' => $_POST['ctrl_recinac']],//61
+    ['type' => 's', 'value' => $_POST['fecha_ctrl_nac']],//62
+    ['type' => 's', 'value' => $_POST['asis_ctrl_recinac']],//63
+    ['type' => 's', 'value' => $_POST['porque_norec']],//64
+    ['type' => 's', 'value' => $_POST['ult_peso']],//65
+    ['type' => 's', 'value' => $_POST['consul_lacmate']],//66
+    ['type' => 's', 'value' => $_POST['porque_nolact']],//67
+    ['type' => 's', 'value' => $_POST['fecha_consul_lacmate']],//68
     ['type' => 's', 'value' => $_POST['asiste_ctrl_cyd']],//69
     ['type' => 's', 'value' => $_POST['vacuna_comple']],//70
     ['type' => 's', 'value' => $_POST['lacmate_exclu']],//71

@@ -132,6 +132,9 @@ function cmp_etnias(){
 	$c[]=new cmp('gestante','s','3',$d,$w.'  '.$o,'¿Gestante?','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('edad_gesta','s','3',$d,$w.'  '.$o,'Edad Gestacional (semanas)','edad_gesta',null,null,true,true,'','col-2');
 	$c[]=new cmp('ubi_acom','s','3',$d,$w.'  '.$o,'Ubicación Del Acompañante O Acudiente','ubi_acom',null,null,true,true,'','col-2');
+	
+
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS - INFORMACIÓN DE SERVICIO',$w);
 
 	$o='espvit';
 	$c[]=new cmp($o,'e',null,'ESPACIO VITAL',$w);

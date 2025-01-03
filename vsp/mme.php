@@ -340,6 +340,7 @@ function gra_mme(){
   }else if(count($id)==3){
     $eq=opc_equ();
     $id=divide($_POST['id_mme']);
+    if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
     $sql = "INSERT INTO vsp_mme VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
     $params =[
     ['type' => 'i', 'value' => NULL],
@@ -435,7 +436,7 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['cual_segespecial']],
     ['type' => 's', 'value' => $_POST['recomen_cierre']],
     ['type' => 's', 'value' => $_POST['redu_riesgo_cierre']],
-    ['type' => 's', 'value' => $_POST['users_bina']],
+    ['type' => 's', 'value' => $smbin],
     ['type' => 'i', 'value' => $_SESSION['us_sds']],
     ['type' => 's', 'value' => NULL],
     ['type' => 's', 'value' => NULL],

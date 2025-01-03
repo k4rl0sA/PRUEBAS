@@ -129,6 +129,7 @@ function cmp_etnias(){
 
 	$o='seghos';
 	$c[]=new cmp($o,'e',null,'SEGUIMIENTO HOSPITALIZADOS',$w);
+	$c[]=new cmp('gestante','s','3',$d,$w.'  '.$o,'¿Gestante?','rta',null,null,true,true,'','col-2');
 
 
 	$o='espvit';

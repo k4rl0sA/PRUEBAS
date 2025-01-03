@@ -96,7 +96,7 @@ function cmp_sesigcole(){
 	$t=['id'=>'','fecha'=>'','tipo_activ'=>'','lugar'=>'','jorna'=>'','equi'=>'','tematica1'=>'','des_temati1'=>'','tematica2'=>'','des_temati2'=>'','tematica3'=>'','des_temati3'=>'','tematica4'=>'','des_temati4'=>'','tematica5'=>'','des_temati5'=>'','tematica6'=>'','des_temati6'=>'','tematica7'=>'','des_temati7'=>'','tematica8'=>'','des_temati8'=>''];
 	$d=get_sesigcole();
 	if ($d==""){$d=$t;}
-	// var_dump($_POST);
+	//var_dump($_POST);
 	$id=divide($_POST['id']);
     $w="sesigcole";
 	$o='infbas';
@@ -108,7 +108,7 @@ function cmp_sesigcole(){
 	$o='Secgi';
 	$enb = ($_POST['id']=='0') ? true : false ;
 	$c[]=new cmp($o,'e',null,'SESIONES GRUPALES Y COLECTIVAS',$w);
-	$c[]=new cmp('id','h','20',$_POST['fpred'].'_'.$_POST['id'],$w.' '.$o,'','',null,null,true,false,'','col-1');
+	$c[]=new cmp('id','t','20',$_POST['fpred'].'_'.$_POST['id'],$w.' '.$o,'','',null,null,true,false,'','col-1');
 	$c[]=new cmp('fecha_int','d','10',$d['fecha'],$w.' '.$o,'fecha_Intervencion','fecha_int',null,null,true,$enb,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('activi','s','15',$d['tipo_activ'],$w.' '.$o,'Tipo de Actividad','fm1',null,null,true,true,'','col-25');
 	$c[]=new cmp('luga','t','100',$d['lugar'],$w.' '.$o,'Lugar','rta',null,null,true,true,'','col-6',"fieldsValue('agen_intra','aIM','1',true);");
@@ -157,9 +157,6 @@ function gra_sesigcole(){
 	$id=divide($_POST['id']);
 	// var_dump($_POST['fequi']);
 	$equi = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-
-	
-
 	if ($id[1]==0) {
 		$sql = "INSERT INTO hog_sescole VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [

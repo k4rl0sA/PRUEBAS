@@ -878,8 +878,8 @@ function selectDepend(a,b,c=ruta_app){
 
 function getData(a, ev,i,blo,path=ruta_app) {
 	if (ev.type == 'click') {
-		let c = document.getElementById(a+'-pro-con');
-		let cmp=c.querySelectorAll('.captura,.bloqueo')
+		var c = document.getElementById(a+'-pro-con');
+		var cmp=c.querySelectorAll('.captura,.bloqueo')
 		if (loader != undefined) loader.style.display = 'block';
 			if (window.XMLHttpRequest)
 				xmlhttp = new XMLHttpRequest();
@@ -895,8 +895,8 @@ function getData(a, ev,i,blo,path=ruta_app) {
 				xmlhttp.open("POST",path,false);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xmlhttp.send('a=get&tb='+a+'&id=' + i.id);
-				let rta =data;
-				let data=Object.values(rta);
+				var rta =data;
+				var data=Object.values(rta);
 				for (i=0;i<cmp.length;i++) {
 					//~ if cmp[i]==27{
 						cmp[i].value=data[i];

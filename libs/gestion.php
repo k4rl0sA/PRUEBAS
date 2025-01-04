@@ -175,7 +175,7 @@ function fechas_app($modu){
 }
 
 
-function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+/* function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
   if (!$con) {
@@ -193,7 +193,38 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     // $GLOBALS['con']->close();
   }
 	return $arr;
+} */
+
+function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  // Validar conexión
+  if (!$con) {
+      $arr['code'] = 30;
+      $arr['message'] = 'No hay conexión activa a la base de datos.';
+      log_error($_SESSION["us_sds"] . ' = Connection error');
+      return $arr;
+  }
+
+  try {
+      $con->set_charset('utf8');
+      $rs = $con->query($sql);
+      if (!$rs) {
+          throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
+      }
+      // Procesar resultados
+      $arr['responseResult'] = $rs->fetch_all($resulttype);
+      $arr['message'] = 'Consulta exitosa.';
+  } catch (mysqli_sql_exception $e) {
+      $arr['code'] = 30;
+      $arr['message'] = 'Error en la base de datos.';
+      $arr['errors'] = ['code' => $e->getCode(),'message' => $e->getMessage()];
+      log_error($_SESSION["us_sds"] . ' => ' . $e->getCode() . ' = ' . $e->getMessage());
+  } finally {
+      // Se puede cerrar la conexión si es necesario, pero en este caso se deja abierta
+  }
+  return $arr;
 }
+
 
 function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];

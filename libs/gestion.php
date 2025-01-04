@@ -194,8 +194,7 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
     echo json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]);
-    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
-
+    log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
 	}finally {
     // $GLOBALS['con']->close();
   }

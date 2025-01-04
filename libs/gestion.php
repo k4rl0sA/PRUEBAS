@@ -175,48 +175,25 @@ function fechas_app($modu){
 }
 
 
-/* function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
   if (!$con) {
-    $arr['code'] = 30;
-    $arr['message'] = 'No hay conexión activa a la base de datos.';
-    log_error($_SESSION["us_sds"] . ' = Connection error');
-    return $arr;
+    die(log_error($_SESSION["us_sds"].' = Connection error'));
+    die(json_encode(['code' => 30, 'message' => 'Connection error']));
   }
 	try {
 		$con->set_charset('utf8');
 		$rs = $con->query($sql);
-    if (!$rs) {
-      log_error($_SESSION["us_sds"] . ' Error en la consulta: ' . $con->error, $con->errno);
-      throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
-    }
 		fetch($con, $rs, $resulttype, $arr);
 	} catch (mysqli_sql_exception $e) {
     echo json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]);
-    log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
+    die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage()));
+
 	}finally {
     // $GLOBALS['con']->close();
   }
 	return $arr;
-} */
-
-function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
-  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-  $con = $GLOBALS['con'];
-if (!$con) {
-    die(json_encode(['code' => 30, 'message' => 'Connection error']));
-}
-try {
-  $con->set_charset('utf8');
-  $rs = $con->query($sql);
-  fetch($con, $rs, $resulttype, $arr);
-} catch (mysqli_sql_exception $e) {
-  die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
-}finally {
-  // $GLOBALS['con']->close();
-}
-return $arr;
 }
 
 function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {

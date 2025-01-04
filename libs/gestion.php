@@ -175,7 +175,7 @@ function fechas_app($modu){
 }
 
 
-/* function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
   if (!$con) {
@@ -193,9 +193,9 @@ function fechas_app($modu){
     // $GLOBALS['con']->close();
   }
 	return $arr;
-} */
+} 
 
-function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
+/* function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
   // Validar conexión
   if (!$con) {
@@ -222,7 +222,7 @@ function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
   }
   return $arr;
 }
-
+ */
 
 function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {
   $arr = ['code' => 0, 'message' => '', 'responseResult' => []];

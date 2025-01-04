@@ -204,7 +204,6 @@ function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
       log_error($_SESSION["us_sds"] . ' = Connection error');
       return $arr;
   }
-
   try {
       $con->set_charset('utf8');
       $rs = $con->query($sql);
@@ -212,8 +211,7 @@ function datos_mysql($sql, $resulttype = MYSQLI_ASSOC, $con = null) {
           throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
       }
       // Procesar resultados
-      $arr['responseResult'] = $rs->fetch_all($resulttype);
-      $arr['message'] = 'Consulta exitosa.';
+      fetch($con, $rs, $resulttype, $arr);
   } catch (mysqli_sql_exception $e) {
       $arr['code'] = 30;
       $arr['message'] = 'Error en la base de datos.';

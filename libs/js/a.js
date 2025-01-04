@@ -876,10 +876,10 @@ function selectDepend(a,b,c=ruta_app){
 	changeSelect(a,b,c);
 }
 
-function getData(a, ev,i,blo,path=ruta_app) {
+/* function getData(a, ev,i,blo,path=ruta_app) {
 	if (ev.type == 'click') {
-		let c = document.getElementById(a+'-pro-con');
-		let cmp=c.querySelectorAll('.captura,.bloqueo')
+		var c = document.getElementById(a+'-pro-con');
+		var cmp=c.querySelectorAll('.captura,.bloqueo')
 		if (loader != undefined) loader.style.display = 'block';
 			if (window.XMLHttpRequest)
 				xmlhttp = new XMLHttpRequest();
@@ -887,15 +887,16 @@ function getData(a, ev,i,blo,path=ruta_app) {
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 				xmlhttp.onreadystatechange = function () {
 				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-					let rta =JSON.parse(xmlhttp.responseText);
+					data =JSON.parse(xmlhttp.responseText);
 					if (loader != undefined) loader.style.display = 'none';
-						console.error(rta);
+						console.error(data);
 					}
 				}
 				xmlhttp.open("POST",path,false);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xmlhttp.send('a=get&tb='+a+'&id=' + i.id);
-				let data=Object.values(rta);
+				var rta =data;
+				var data=Object.values(rta);
 				for (i=0;i<cmp.length;i++) {
 					//~ if cmp[i]==27{
 						cmp[i].value=data[i];
@@ -910,7 +911,59 @@ function getData(a, ev,i,blo,path=ruta_app) {
 							}
 				} 
 	}
-}
+}*/
+
+function getData(a, ev, i, blo, path = ruta_app) {
+	if (ev.type !== 'click') return;
+  
+	const c = document.getElementById(`${a}-pro-con`);
+	const cmp = c.querySelectorAll('.captura, .bloqueo');
+	let loader = document.getElementById('loader'); // Ejemplo para manejar el loader
+	if (loader) loader.style.display = 'block';
+  
+	fetch(path, {
+	  method: 'POST',
+	  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+	  body: `a=get&tb=${a}&id=${i.id}`,
+	})
+	  .then((response) => {
+		if (!response.ok) {
+		  throw new Error(`Error en la solicitud: ${response.statusText}`);
+		}
+		return response.json();
+	  })
+	  .then((rta) => {
+		if (loader) loader.style.display = 'none';
+  
+		if (!rta || Object.keys(rta).length === 0) {
+		  console.warn('No se encontraron datos.');
+		  return;
+		}
+  
+		const data = Object.values(rta);
+  
+		cmp.forEach((element, index) => {
+		  if (data[index] !== undefined) {
+			if (element.type === 'checkbox') {
+			  element.checked = data[index] === 'SI';
+			  element.value = element.checked ? 'SI' : 'NO';
+			} else {
+			  element.value = data[index];
+			}
+  
+			// Deshabilitar campos especificados en el arreglo `blo`.
+			if (blo.includes(element.name)) {
+			  element.disabled = true;
+			}
+		  }
+		});
+	  })
+	  .catch((error) => {
+		if (loader) loader.style.display = 'none';
+		console.error('Error:', error);
+	  });
+  }
+  
 
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++FECTH++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */

@@ -88,13 +88,13 @@ function cmp_mme(){
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,true,'','col-2');
+  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,false,'','col-2');
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-3');
   //$c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 	//$c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');  
 
-  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,true,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');EnabDepe2fiel('HOs','1','1','numsegui','etapa',true,true);EnabDepe2fiel('IMc','3','1','tiposeg','etapa',false,true);");
+  $c[]=new cmp('etapa','s','3',$d,$w.' hab '.$o,'Etapa','etapa',null,null,false,false,'','col-2',"enabEtap('etapa',['pRe','PuE','PYg']);weksEtap('etapa','PeT');EnabDepe2fiel('HOs','1','1','numsegui','etapa',true,true);EnabDepe2fiel('IMc','3','1','tiposeg','etapa',false,true);");
   $c[]=new cmp('sema_gest','s','3',$d,$w.' PeT hab '.$o,'Semanas De Gestación/ Días Pos-Evento','sema_gest',null,null,false,false,'','col-3');
   $c[]=new cmp('gestaciones','s','3',$d,$w.' PeT hab '.$o,'Gestaciones','fobs',null,null,false,false,'','col-2');  
   $c[]=new cmp('partos','s','3',$d,$w.' PeT hab '.$o,'Partos','fobs',null,null,false,false,'','col-2');  
@@ -154,13 +154,13 @@ function cmp_mme(){
     $c[]=new cmp($o,'e',null,'NACIDO VIVO',$w);
     $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo','peso','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','lME');");
-    $c[]=new cmp('fecha_ctrl_nac','d','10',$d,$w.' PuE lME '.$o,'Fecha de control de recién nacido','fecha_ctrl_nac',null,null,false,true,'','col-2');
+    $c[]=new cmp('fecha_ctrl_nac','d','10',$d,$w.' PuE lME '.$o,'Fecha de control de recién nacido','fecha_ctrl_nac',null,null,false,$x,'','col-2');
     $c[]=new cmp('asis_ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asistió a control de recién nacido','rta',null,null,false,$x,'','col-2',"enabOthSi('asis_ctrl_recinac','lME');");
     $c[]=new cmp('porque_norec','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_norec',null,null,false,$x,'','col-3');
     $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado','ult_peso','rgxpeso','##.#',false,false,'','col-2');
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','lME');");
     $c[]=new cmp('porque_nolact','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_nolact',null,null,false,$x,'','col-3');
-    $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE lME '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,true,'','col-2');
+    $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE lME '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,$x,'','col-2');
     $c[]=new cmp('asiste_ctrl_cyd','s','3',$d,$w.' PuE '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta2',null,null,false,$x,'','col-4');
     $c[]=new cmp('vacuna_comple','s','3',$d,$w.' PuE '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' PuE '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
@@ -172,7 +172,7 @@ function cmp_mme(){
     $c[]=new cmp('qui_vida','s','3',$d,$w.' PuE '.$o,'Por su condición ha recientemente en quitarse la vida o lo ha intentado','rta',null,null,false,$x,'','col-3',"enabOthSi('qui_vida','lME');");
     $c[]=new cmp('viv_malt','s','3',$d,$w.' PuE '.$o,'Ha vivenciado de manera reciente algún tipo de violencia o maltrato en su familia','rta',null,null,false,$x,'','col-3',"enabOthSi('viv_malt','lME');");
     $c[]=new cmp('adec_red','s','3',$d,$w.' PuE '.$o,'Considera que cuenta con una adecuada red de apoyo social para cuidad, mantener y mejorar su estado de salud física y mental','rta',null,null,false,$x,'','col-3',"enabOthSi('adec_red','lME');");
-    $c[]=new cmp('fecha_egreopost','d','10',$d,$w.' PuE lME '.$o,'¿Finalización de caso 42 dìas post EGRESO HOSPITALARIO ?','fecha_egreopost',null,null,false,true,'','col-3');
+    $c[]=new cmp('fecha_egreopost','d','10',$d,$w.' PuE lME '.$o,'¿Finalización de caso 42 dìas post EGRESO HOSPITALARIO ?','fecha_egreopost',null,null,false,$x,'','col-3');
     
     $o='acc';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN ACCIONES',$w);
@@ -196,9 +196,9 @@ function cmp_mme(){
     $c[]=new cmp('motivo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Motivo Cierre','motivo_cierre',null,null,false,$x,'','col-55');    
     $c[]=new cmp('fecha_cierre','d','10',$d,$w.' cc '.$bl.' '.$no.' '.$o,'Fecha de Cierre','fecha_cierre',null,null,false,$x,'','col-15',"validDate(this,$days,0);");
 
-    $c[]=new cmp('conti_segespecial','s','3',$d,$w.' cc '.$o,'Continua en seguimiento por especialista','rta',null,null,false,true,'','col-2',"enabOthSi('conti_segespecial','seP');");
-    $c[]=new cmp('cual_segespecial','t','500',$d,$w.' cc seP '.$o,'Cual de Segespecial','cual_segespecial',null,null,false,true,'','col-2');
-    $c[]=new cmp('recomen_cierre','a','50',$d,$w.' cc '.$o,'Recomen de Cierre','recomen_cierre',null,null,false,true,'','col-4');
+    $c[]=new cmp('conti_segespecial','s','3',$d,$w.' cc '.$o,'Continua en seguimiento por especialista','rta',null,null,false,$x,'','col-2',"enabOthSi('conti_segespecial','seP');");
+    $c[]=new cmp('cual_segespecial','t','500',$d,$w.' cc seP '.$o,'Cual de Segespecial','cual_segespecial',null,null,false,$x,'','col-2');
+    $c[]=new cmp('recomen_cierre','a','50',$d,$w.' cc '.$o,'Recomen de Cierre','recomen_cierre',null,null,false,$x,'','col-4');
 
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
     $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');

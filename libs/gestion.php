@@ -175,7 +175,7 @@ function fechas_app($modu){
 }
 
 
-function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+/* function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = $GLOBALS['con'];
   if (!$con) {
@@ -199,6 +199,24 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     // $GLOBALS['con']->close();
   }
 	return $arr;
+} */
+
+function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+  $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
+  $con = $GLOBALS['con'];
+if (!$con) {
+    die(json_encode(['code' => 30, 'message' => 'Connection error']));
+}
+try {
+  $con->set_charset('utf8');
+  $rs = $con->query($sql);
+  fetch($con, $rs, $resulttype, $arr);
+} catch (mysqli_sql_exception $e) {
+  die(json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]));
+}finally {
+  // $GLOBALS['con']->close();
+}
+return $arr;
 }
 
 function dato_mysql($sql, $resulttype = MYSQLI_ASSOC, $pdbs = false) {

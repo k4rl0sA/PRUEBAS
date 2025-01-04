@@ -197,6 +197,7 @@ function fechas_app($modu){
       $arr['message'] = 'Error en la base de datos.';
       $arr['errors'] = ['code' => $e->getCode(),'message' => $e->getMessage()];
       log_error($_SESSION["us_sds"] . ' => ' . $e->getCode() . ' = ' . $e->getMessage());
+      return $arr;
     /* echo json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]);
     die(log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage())); */
 	}finally {

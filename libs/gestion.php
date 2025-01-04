@@ -314,15 +314,12 @@ function mysql_prepd($sql, $params) {
   return $rs;
 }
 
-
-
 function fetch(&$con, &$rs, $resulttype, &$arr) {
 	if ($rs === TRUE) {
 		$arr['responseResult'][] = ['affected_rows' => $con->affected_rows];
 	}else {
 		if ($rs === FALSE) {
-      die(log_error($_SESSION["us_sds"].'=>'.$con->errno.'='.$con->error));
-			// die(json_encode(['code' => $con->errno, 'message' => $con->error]));
+			die(json_encode(['code' => $con->errno, 'message' => $con->error]));
 		}
 		while ($r = $rs->fetch_array($resulttype)) {
 			$arr['responseResult'][] = $r;
@@ -331,6 +328,7 @@ function fetch(&$con, &$rs, $resulttype, &$arr) {
 	}
 	return $arr;
 }
+
 
 function panel_content($data_arr,$obj_name,$rp = 20,$no = array('R')) {
 	$rta = "";

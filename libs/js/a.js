@@ -937,6 +937,7 @@ function getData(a, ev, i, blo, path = ruta_app) {
   
 		if (!rta || Object.keys(rta).length === 0) {
 		  console.warn('No se encontraron datos.');
+		  console.error(rta);
 		  return;
 		}
   

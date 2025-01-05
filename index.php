@@ -31,10 +31,10 @@ include_once('./login/frmlogin.php');
 			$valida=login($name,$pwd);
 			if ($valida === true){
 				$_SESSION["us_sds"] = strtolower($name);
+				var_dump($_POST);
 				if($_POST["passwd"] == "riesgo2020+"){
 					$link="cambio-clave/";
 					//  echo "<script>alert('".$valida."  -  ".$link."');</script>";
-					var_dump($_POST);
 					echo "<script>window.location.replace('".$link."');</script>";
 				}else{
 					$link="main/";

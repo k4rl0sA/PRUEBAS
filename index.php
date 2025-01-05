@@ -29,6 +29,7 @@ include_once('./login/frmlogin.php');
 			}
 	*/
 			$valida=login($name,$pwd);
+			var_dump($valida);
 			if ($valida === true){
 				$_SESSION["us_sds"] = strtolower($name);
 				if($_POST["passwd"] == "riesgo2020+"){

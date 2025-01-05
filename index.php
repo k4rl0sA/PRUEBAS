@@ -31,7 +31,6 @@ include_once('./login/frmlogin.php');
 			$valida=login($name,$pwd);
 			if ($valida === true){
 				$_SESSION["us_sds"] = strtolower($name);
-				var_dump($_POST);
 				if($_POST["passwd"] == "riesgo2020+"){
 					$link="cambio-clave/";
 					//  echo "<script>alert('".$valida."  -  ".$link."');</script>";
@@ -41,6 +40,7 @@ include_once('./login/frmlogin.php');
 					echo "<script>window.location.replace('".$link."');</script>";
 				}
 			}else{
+				var_dump($_POST);
 				echo "<div class='error'>
 					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
 					<strong>Error!</strong> Vaya, no hemos encontrado nada que coincida con este nombre de usuario y contraseña en nuestra base de datos.

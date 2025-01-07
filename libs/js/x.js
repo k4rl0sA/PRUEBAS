@@ -157,7 +157,7 @@ function enbValue(a,clsCmp,v){
 }
 
 
-function valSelDep(a,val,clsCmp,v){
+/* function valSelDep(a,val,clsCmp,v){
 	const ele = document.querySelectorAll('select.'+clsCmp+',input.'+clsCmp);
 	const act=document.getElementById(a);
 	if (act.value==val){
@@ -170,7 +170,7 @@ function valSelDep(a,val,clsCmp,v){
 			enaFie(ele[i],false);
 		}	
 	}
-}
+} */
  function enbValsCls(a, ClsCmp) {
 	const act = document.getElementById(a);
 	const numValue = parseInt(act.value, 10);

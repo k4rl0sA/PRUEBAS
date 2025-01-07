@@ -149,7 +149,7 @@ function cmp_mme(){
     $c[]=new cmp('cual_disc_ges','t','500',$d,$w.' PuE MFe '.$o,'¿Cúal?','cual_disc_ges',null,null,false,$x,'','col-4');
     $c[]=new cmp('fecha_apoy_lacmater','d','10',$d,$w.' PuE aLM '.$o,'Fecha de consulta apoyo lactancia materna','fecha_apoy_lacmater',null,null,false,$x,'','col-2');
     
-    $o='ncvmor';
+    $o='mOr';
     $c[]=new cmp($o,'e',null,'NACIDO VIVO',$w);
     $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo','peso','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','lME');");

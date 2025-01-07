@@ -87,7 +87,7 @@ function cmp_mme(){
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,true,'','col-2',"enabEtap('tiposeg',['aST']);");
+  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,true,'','col-2',"enabEtap('tiposeg',['aST']);enabEtap('tiposeg',['cRN']);");
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-3');
   //$c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
@@ -154,7 +154,7 @@ function cmp_mme(){
     $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo','peso','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','lME');");
     $c[]=new cmp('fecha_ctrl_nac','d','10',$d,$w.' PuE lME '.$o,'Fecha de control de recién nacido','fecha_ctrl_nac',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asis_ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asistió a control de recién nacido','rta',null,null,false,$x,'','col-2',"enabOthSi('asis_ctrl_recinac','lME');");
+    $c[]=new cmp('asis_ctrl_recinac','s','3',$d,$w.' PuE cRN '.$o,'Asistió a control de recién nacido','rta',null,null,false,$x,'','col-2',"enabOthSi('asis_ctrl_recinac','lME');");
     $c[]=new cmp('porque_norec','t','500',$d,$w.' pRe SiA '.$o,'¿Por Qué?','porque_norec',null,null,false,$x,'','col-3');
     $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado','ult_peso','rgxpeso','##.#',false,false,'','col-2');
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','lME');");

@@ -134,7 +134,7 @@ function cmp_mme(){
     $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');");
     $c[]=new cmp('cualmet','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3',"enabFielSele(this,true,['otro_cual'],['7']);");
     $c[]=new cmp('otro_cual','t','500',$d,$w.' MFe mEt '.$o,'Otro de Cual','otro_cual',null,null,false,false,'','col-35');
-    $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' PuE MFe '.$o,'Motivo de no acceso a Método','motivo_nofecund',null,null,false,$x,'','col-4');
+    $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' MFe '.$o,'Motivo de no acceso a Método','motivo_nofecund',null,null,false,false,'','col-4');
 
     $c[]=new cmp('control_mac','s','3',$d,$w.' PuE '.$o,'¿Tiene control MAC?','rta',null,null,false,$x,'','col-2',"enabOthSi('control_mac','MAc');");
     $c[]=new cmp('fecha_control_mac','d','10',$d,$w.' PuE MAc '.$o,'Fecha de control MAC','fecha_control_mac',null,null,false,$x,'','col-2');

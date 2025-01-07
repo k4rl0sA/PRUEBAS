@@ -131,7 +131,7 @@ function cmp_mme(){
     $c[]=new cmp('fecha_obstetrica','d','10',$d,$w.' PuE '.$o,'Fecha Evento Obstetrico','fecha_obstetrica',null,null,false,$x,'','col-3',"validDate(this,-400,0);");
     $c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-4');
     $c[]=new cmp('resul_gest','s','3',$d,$w.' PuE '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-3',"enabClasValu('resul_gest',['ncvmor','mOr','NOm']);");
-    $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');enabOthNo('meto_fecunda','Nme')");
+    $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');disaOthNo('meto_fecunda','Nme')");
     $c[]=new cmp('cualmet','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3',"enabFielSele(this,true,['otro_cual'],['7']);");
     $c[]=new cmp('otro_cual','t','500',$d,$w.' MFe mEt '.$o,'Otro de Cual','otro_cual',null,null,false,false,'','col-35');
     $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' Nme '.$o,'Motivo de no acceso a Método','motivo_nofecund',null,null,false,false,'','col-4');

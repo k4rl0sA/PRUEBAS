@@ -329,7 +329,7 @@ function gra_mme(){
     $sql = "update vsp_mme SET observaciones=?WHERE id_mme=?";
 		$params = [
       ['type' => 'z', 'value' => $_POST['observaciones']],
-			['type' => 's', 'value' => ]
+			['type' => 's', 'value' =>$id[0] ]
     ];
 			$rta = mysql_prepd($sql, $params);
 

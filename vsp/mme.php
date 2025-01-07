@@ -321,7 +321,7 @@ function opc_equ(){
 
 
 function gra_mme(){
-  print_r($_POST);
+  // print_r($_POST);
   $id=divide($_POST['id_mme']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==4){

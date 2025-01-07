@@ -321,14 +321,16 @@ function opc_equ(){
 
 
 function gra_mme(){
-  // print_r($_POST);
+  print_r($_POST);
   $id=divide($_POST['id_mme']);
   if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
   if(count($id)==4){
 
-    $sql = "update vsp_mme SET etapa=?,sema_gest=? WHERE id_mme=?";
-		$params = [['type' => 'z', 'value' => '$2y$10$U1.jyIhJweaZQlJK6jFauOAeLxEOTJX8hlWzJ6wF5YVbYiNk1xfma'],
-			['type' => 'i', 'value' => $_POST['usuario']]];
+    $sql = "update vsp_mme SET observaciones=?WHERE id_mme=?";
+		$params = [
+      ['type' => 'z', 'value' => $_POST['observaciones']],
+			['type' => 's', 'value' => ]
+    ];
 			$rta = mysql_prepd($sql, $params);
 
     /* $sql="UPDATE vsp_mme SET 

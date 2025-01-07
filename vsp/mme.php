@@ -87,7 +87,7 @@ function cmp_mme(){
   $c[]=new cmp('fecha_seg','d','10',$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('numsegui','s','3',$d,$w.' '.$o,'Seguimiento N°','numsegui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('evento','s','3',$ev,$w.' '.$o,'Evento','evento',null,null,false,false,'','col-2');
-  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,true,'','col-2');
+  $c[]=new cmp('tiposeg','s','3',$ev,$w.' '.$o,'Tipo de Seguimiento','tiposeg',null,null,false,true,'','col-2',"enabFielSele(this,false,['asis_ctrl_postpar_espe'],['1']);");
   $c[]=new cmp('estado_s','s','3',$d,$w.' sTa '.$o,'Estado','estado_s',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-3');
   //$c[]=new cmp('sexo','h','50',$p['sexo'],$w.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
@@ -137,10 +137,10 @@ function cmp_mme(){
     $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' Nme '.$o,'Motivo de no acceso a Método','motivo_nofecund',null,null,false,false,'','col-4');
 
     $c[]=new cmp('control_mac','s','3',$d,$w.' PuE '.$o,'¿Tiene control MAC?','rta',null,null,false,$x,'','col-2',"enabOthSi('control_mac','MAc');");
-    $c[]=new cmp('fecha_control_mac','d','10',$d,$w.' PuE MAc '.$o,'Fecha de control MAC','fecha_control_mac',null,null,false,$x,'','col-2');
+    $c[]=new cmp('fecha_control_mac','d','10',$d,$w.' PuE MAc '.$o,'Fecha de control MAC','fecha_control_mac',null,null,false,$x,'','col-2',"validDate(this,-400,0);");
     $c[]=new cmp('ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Tiene control post parto con especialista?','rta',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
     $c[]=new cmp('fecha_postpar_espe','d','10',$d,$w.' PuE Esp '.$o,'Fecha de control post parto con especialista','fecha_postpar_espe',null,null,false,$x,'','col-2');
-    $c[]=new cmp('asis_ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Asistió a control post parto?','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');");
+    $c[]=new cmp('asis_ctrl_postpar_espe','s','3',$d,$w.' PuE '.$o,'¿Asistió a control post parto?','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_postpar_espe','Esp');validDate(this,-400,0);");
     $c[]=new cmp('porque_no_postpar','t','500',$d,$w.' PuE MFe '.$o,'¿Por que?','porque_no_postpar',null,null,false,$x,'','col-4');
     $c[]=new cmp('consul_apoy_lacmater','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_apoy_lacmater','aLM');");
     $c[]=new cmp('signos_alarma','s','3',$d,$w.' PuE '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma','MAc');");

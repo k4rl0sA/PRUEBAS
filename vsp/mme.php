@@ -132,8 +132,8 @@ function cmp_mme(){
     $c[]=new cmp('edad_gesta','s','3',$d,$w.' PuE '.$o,'Edad gestacional en el momento del evento obstetrico','edad_gesta',null,null,false,$x,'','col-4');
     $c[]=new cmp('resul_gest','s','3',$d,$w.' PuE '.$o,'Resultado de la gestación','resul_gest',null,null,false,$x,'','col-3',"enabClasValu('resul_gest',['ncvmor','mOr','NOm']);");
     $c[]=new cmp('meto_fecunda','s','3',$d,$w.' PuE '.$o,'¿Cuenta Con Método de Regulación de la fecundidad?','rta',null,null,false,$x,'','col-35',"enabOthSi('meto_fecunda','MFe');");
-    $c[]=new cmp('cualmet','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3');
-    $c[]=new cmp('otro_cual','t','500',$d,$w.' MFe '.$o,'Otro de Cual','otro_cual',null,null,false,false,'','col-35');
+    $c[]=new cmp('cualmet','s','3',$d,$w.' PuE MFe '.$o,'¿Cuál?','cual',null,null,false,$x,'','col-3',"valSelDep('cualmet','7','mEt',false);");
+    $c[]=new cmp('otro_cual','t','500',$d,$w.' MFe mEt '.$o,'Otro de Cual','otro_cual',null,null,false,false,'','col-35');
     $c[]=new cmp('motivo_nofecund','t','500',$d,$w.' PuE MFe '.$o,'Motivo de Nofecund','motivo_nofecund',null,null,false,$x,'','col-4');
 
     $c[]=new cmp('control_mac','s','3',$d,$w.' PuE '.$o,'¿Tiene control MAC?','rta',null,null,false,$x,'','col-2',"enabOthSi('control_mac','MAc');");

@@ -104,8 +104,8 @@ function cmp_mme(){
     
   $o='gest';
     $c[]=new cmp($o,'e',null,'GESTANTES ',$w);
-    $c[]=new cmp('fecha_egre','d','10',$d,$w.' HOs '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,true,false,'','col-2',"validDate(this,$days,0);");
-    $c[]=new cmp('edad_padre','t',2,$d,$w.' HOs '.$o,'Edad del Padre','fpe','rgxpeso','##',true,false,'','col-2');
+    $c[]=new cmp('fecha_egre','d','10',$d,$w.' HOs '.$o,'Fecha de Egreso Hospitalario','fecha_egre',null,null,false,false,'','col-2',"validDate(this,$days,0);");
+    $c[]=new cmp('edad_padre','t',2,$d,$w.' HOs '.$o,'Edad del Padre','fpe','rgxpeso','##',false,false,'','col-2');
     $c[]=new cmp('asis_ctrpre','s','2',$d,$w.' pRe '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,$x,'','col-2',"enabOthNo('asis_ctrpre','CtP');disaOthNo('asis_ctrpre','CPn');");
     $c[]=new cmp('ing_ctrpre','s','2',$d,$w.' CtP '.$o,'Ingreso a Control Prenatal Antes de la Semana 10','rta',null,null,false,false,'','col-2',"enabOthNo('ing_ctrpre','S10');");//se habilita cuando la pregunta anterior es SI
     $c[]=new cmp('cpn','s','2',$d,$w.' S10 '.$o,'¿Cuantos CPN?','cpn',null,null,false,false,'','col-2') ;//se habilita cuando la pregunta anterior es SI

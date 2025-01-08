@@ -325,7 +325,7 @@ function gra_mme(){
   $id=divide($_POST['id_mme']);
   $smbina = isset($_POST['fequipo'])?(is_array($_POST['fequipo'])?implode("-", $_POST['fequipo']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequipo']))))):'';
   if(count($id)==4){
-    $sql = "update vsp_mme SET observaciones=? WHERE id_mme=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=?";
+    $sql = "update vsp_mme SET observaciones=? WHERE id_mme=?,usu_update=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR)";
 		$params = [
       ['type' => 'z', 'value' => $_POST['observaciones']],
 			['type' => 's', 'value' =>$id[0] ],

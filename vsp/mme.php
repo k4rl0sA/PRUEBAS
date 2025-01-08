@@ -200,7 +200,7 @@ function cmp_mme(){
     $c[]=new cmp('recomen_cierre','a','50',$d,$w.' cc '.$o,'Recomen de Cierre','recomen_cierre',null,null,false,$x,'','col-4');
 
     $c[]=new cmp('redu_riesgo_cierre','s','2',$d,$w.' cc '.$bl.' '.$no.' '.$o,'¿Reduccion del riesgo?','rta',null,null,false,$x,'','col-15');
-    $c[]=new cmp('users_bina[]','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
+    $c[]=new cmp('equipo','m','60',$d,$w.' '.$ob.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -323,7 +323,7 @@ function opc_equ(){
 function gra_mme(){
   // print_r($_POST);
   $id=divide($_POST['id_mme']);
-  if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
+  $smbina = isset($_POST['fequipo'])?(is_array($_POST['fequipo'])?implode("-", $_POST['fequipo']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequipo']))))):'';
   if(count($id)==4){
     $sql = "update vsp_mme SET observaciones=? WHERE id_mme=?";
 		$params = [
@@ -341,7 +341,6 @@ function gra_mme(){
   }else if(count($id)==3){
     $eq=opc_equ();
     $id=divide($_POST['id_mme']);
-    if (($smbina = $_POST['fusers_bina'] ?? null) && is_array($smbina)) {$smbin = implode(",",str_replace("'", "", $smbina));}
     $sql = "INSERT INTO vsp_mme VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
     $params =[
     ['type' => 'i', 'value' => NULL],//1
@@ -441,7 +440,7 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['cual_segespecial']],//92
     ['type' => 's', 'value' => $_POST['recomen_cierre']],//93
     ['type' => 's', 'value' => $_POST['redu_riesgo_cierre']],//94
-    ['type' => 's', 'value' => $smbin],//95
+    ['type' => 's', 'value' => $smbina],//95
     ['type' => 'i', 'value' => $_SESSION['us_sds']],//96
     ['type' => 's', 'value' => NULL],//98
     ['type' => 's', 'value' => NULL],//99

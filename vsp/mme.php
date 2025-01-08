@@ -328,7 +328,7 @@ function gra_mme(){
     $sql = "update vsp_mme SET observaciones=? WHERE id_mme=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=?";
 		$params = [
       ['type' => 'z', 'value' => $_POST['observaciones']],
-			['type' => 's', 'value' =>$id[0] ]
+			['type' => 's', 'value' =>$id[0] ],
       ['type' => 'i', 'value' => $_SESSION['us_sds']]
     ];
     return  $rta= mysql_prepd($sql, $params);

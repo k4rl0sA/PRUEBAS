@@ -155,10 +155,10 @@ function cmp_mme(){
     $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','CrT');");
     $c[]=new cmp('fecha_ctrl_nac','d','10',$d,$w.' PuE CrT '.$o,'Fecha de control de recién nacido','fecha_ctrl_nac',null,null,false,$x,'','col-2');
     $c[]=new cmp('asis_ctrl_recinac','s','3',$d,$w.' PuE AcR '.$o,'Asistió a control de recién nacido','rta',null,null,false,$x,'','col-2',"disaOthNo('asis_ctrl_recinac','CrT1');");
-    $c[]=new cmp('porque_norec','t','500',$d,$w.' pRe CrT1 '.$o,'¿Por Qué?','porque_norec',null,null,false,false,'','col-3');
+    $c[]=new cmp('porque_norec','t','500',$d,$w.'  CrT1 '.$o,'¿Por Qué?','porque_norec',null,null,false,false,'','col-3');
     $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado','ult_peso','rgxpeso','##.#',false,false,'','col-2');
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','FlM');disaOthNo('consul_lacmate','nLM');");
-    $c[]=new cmp('porque_nolact','t','500',$d,$w.' pRe nLM '.$o,'¿Por Qué?','porque_nolact',null,null,false,$x,'','col-3');
+    $c[]=new cmp('porque_nolact','t','500',$d,$w.'  nLM '.$o,'¿Por Qué?','porque_nolact',null,null,false,$x,'','col-3');
     $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE FlM '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,$x,'','col-2');
     $c[]=new cmp('asiste_ctrl_cyd','s','3',$d,$w.' PuE '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta2',null,null,false,$x,'','col-4');
     $c[]=new cmp('vacuna_comple','s','3',$d,$w.' PuE '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');

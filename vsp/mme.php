@@ -327,7 +327,7 @@ function gra_mme(){
   if(count($id)==4){
     $sql = "update vsp_mme SET observaciones=?,usu_update=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR) WHERE id_mme=?";
 		$params = [
-      ['type' => 'z', 'value' => $_POST['observaciones']],
+      ['type' => 's', 'value' => $_POST['observaciones']],
 			['type' => 's', 'value' =>$id[0] ],
       ['type' => 'i', 'value' => $_SESSION['us_sds']]
     ];

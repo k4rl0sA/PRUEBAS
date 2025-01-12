@@ -8,8 +8,8 @@
 // require_once 'config.php';
 ini_set('display_errors','1');
 $vers='1.03.29.1';
-if (!isset($_SESSION["us_subred"])){ die("<script>window.top.location.href = '/1/03public/';</script>");}
  require_once __DIR__ . '../../02src/gestion.php';
+ if (!isset($_SESSION["us_subred"])){ die("<script>window.top.location.href = '/1/03public/';</script>");}
 //require_once $_SERVER['DOCUMENT_ROOT'].'/1/02src/gestion.php';
   $sql="SELECT *
   FROM adm_menu

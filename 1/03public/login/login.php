@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 include ('../01config/claves.php');
-require_once __DIR__ . '/../../02src/gestion.php'; 
+// require_once __DIR__ . '/../../02src/gestion.php'; 
 
 function login($username, $password) {
     $con = db_connect();

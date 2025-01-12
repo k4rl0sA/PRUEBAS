@@ -43,7 +43,7 @@ function login($username, $password) {
 <body>
 <div class="login">
     <div class="login-top">
-        <img src="../libs/img/p.png">
+        <img src="../03public/libs/img/p.png">
     </div>
     <h1>Inicio</h1>
     <form action="#" method="post" class="frm">

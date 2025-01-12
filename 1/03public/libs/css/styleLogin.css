@@ -31,7 +31,7 @@
 }
     body {
         font-family: "Merienda", cursive;
-	     background: url(/libs/img/banner1.jpg) no-repeat;
+	     background: url(1/03public/libs/img/banner1.jpg) no-repeat;
          background-size: cover;
          -webkit-background-size: cover;
          -moz-background-size: cover;

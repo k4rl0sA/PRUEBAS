@@ -18,16 +18,6 @@ if (isset($acc['crear']) && $acc['crear'] == 'SI') {
 if (isset($acc['importar']) && $acc['importar'] == 'SI') {
     $btns .= '<button id="openModal" class="upload-btn" data-mod='.$mod.' title="Importar"><i class="fas fa-upload"></i></button>';
 }
-
-// Para depurar: imprimir el contenido de $acc
-
-//print_r($acc);
- 	/*<button class="filter-btn" title="Filtrar"><i class="fas fa-filter"></i></button>
-	<button class="settings-btn" title="Configurar"><i class="fas fa-cog"></i></button> */
-
-	/* <button class="upload-btn" title="Importar"><i class="fas fa-upload"></i></button> */
-
-// $info=datos_mysql("SELECT nombre,perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_riesgo"]."'");
 ?>
 <Style>
 	.toast {

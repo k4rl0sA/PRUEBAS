@@ -7,7 +7,7 @@ include_once('./login/login.php');
 			$pwd =$_POST['pwd'];
 
 			//RECAPTCHA
-			$token=$_POST['tkn'];
+			/* $token=$_POST['tkn'];
 			$url='https://www.google.com/recaptcha/api/siteverify';
 			$req="$url?secret=$claves[privada]&response=$token";
 			$rta=file_get_contents($req);
@@ -26,7 +26,7 @@ include_once('./login/login.php');
 					<strong>Error!</strong> Error en el captcha, No eres humano o que?
 					</div>";
 				die();
-			}
+			} */
 			//RECAPTCHA
 			$valida=login($name,$pwd);
 			if ($valida === true){
@@ -50,12 +50,12 @@ include_once('./login/login.php');
 			function db_connect(){
 				$dominio = $_SERVER['HTTP_HOST'];
 			$comy = array(
-			  'controlebeh.site' => [
-				  's' => 'localhost',
-				  'u' => 'u470700275_17',
-				  'p' => 'z9#KqH!YK2VEyJpT',
-				  'bd' => 'u470700275_17'
-			  ],
+				'controlebeh.site' => [
+					's' => 'localhost',
+					'u' => 'u470700275_09',
+					'p' => 'K4r3n1905*',
+					'bd' => 'u470700275_09'
+				],
 			  'produccion.site' => [
 				  's' => 'localhost',
 				  'u' => 'u470700275_08',

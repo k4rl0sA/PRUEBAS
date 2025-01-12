@@ -136,7 +136,7 @@ function opc_arr($a = [], $b = "", $c = true) {
   function opc_sql($sql,$val,$str=true){
     $val = is_array($val) ? $val[0] ?? '' : (string)$val;
       $rta="<option value class='alerta' >SELECCIONE</option>";
-      $con=$GLOBALS['con'];
+      $con=db_connect();
     // var_dump($con);
       if($con->multi_query($sql)){
       do {

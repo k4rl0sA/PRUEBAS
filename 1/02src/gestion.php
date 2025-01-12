@@ -163,3 +163,14 @@ function opc_arr($a = [], $b = "", $c = true) {
     //$con->close();//16-06-2023
       return $rta;
   }
+
+  function acceBtns($a){
+    $rta=array();
+      $sql="SELECT perfil,componente,crear,editar,consultar,ajustar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_subred']."') AND componente=FN_COMPONENTE('".$_SESSION['us_subred']."') AND estado = 'A'";
+      $data=datos_mysql($sql);
+    // print_r($sql);
+      if ($data && isset($data['responseResult'][0])) {
+          $rta = $data['responseResult'][0];
+    }
+      return $rta;
+  }

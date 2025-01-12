@@ -66,3 +66,18 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
   }
     file_put_contents('../logs/file.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
   }
+
+  function fetch(&$con, &$rs, $resulttype, &$arr) {
+	if ($rs === TRUE) {
+		$arr['responseResult'][] = ['affected_rows' => $con->affected_rows];
+	}else {
+		if ($rs === FALSE) {
+			die(json_encode(['code' => $con->errno, 'message' => $con->error]));
+		}
+		while ($r = $rs->fetch_array($resulttype)) {
+			$arr['responseResult'][] = $r;
+		}
+		$rs->free();
+	}
+	return $arr;
+}

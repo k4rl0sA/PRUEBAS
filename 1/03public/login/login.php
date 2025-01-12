@@ -1,5 +1,30 @@
 <?php
 include ('../01config/claves.php');
+
+function login($username, $password) {
+    $con = db_connect();
+    $stmt = $con->prepare("SELECT id_usuario, nombre, clave FROM usuarios WHERE id_usuario = ? AND estado = 'A'");
+    if (!$stmt) {
+        throw new Exception('Error al preparar la consulta: ' . $con->error);
+    }
+
+    $username = filter_var($username, FILTER_SANITIZE_STRING);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->bind_result($id_usuario, $nombre, $clave);
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 1) {
+        $stmt->fetch();
+        if (password_verify($password, $clave)) {
+            $_SESSION['us_subred'] = $id_usuario;
+            $_SESSION['nomb'] = $nombre;
+            return true;
+        }
+    }
+
+    return false;
+}
 ?>
 <!DOCTYPE HTML>
 <html>

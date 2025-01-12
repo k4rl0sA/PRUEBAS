@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $isValid = login($username, $password);
         if ($isValid) {
             $_SESSION[SESSION_NAME] = strtolower($username);
-
             // Redirigir según contraseña
             $redirect = ($password === "Subred2025+") ? "cambio-clave/" : "Inicio/";
             header("Location: $redirect");

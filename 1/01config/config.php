@@ -50,6 +50,8 @@ if ($mostrar_errores) {
 ini_set('log_errors', '1');
 ini_set('error_log', $error_log_path);
 
+setlocale(LC_TIME, 'es_CO');
+
 // Configuración de sesión
 $session_save_path = getenv('SESSION_SAVE_PATH'); // Obtener la ruta de la variable de entorno
 if (!is_dir($session_save_path)) {

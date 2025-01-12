@@ -1,4 +1,9 @@
 <?php
+
+// claves.php o config.php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Incluir el archivo de configuración
 require_once __DIR__ . '/../01config/config.php';
 require_once __DIR__ . '/login/login.php';

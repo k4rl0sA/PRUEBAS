@@ -33,54 +33,88 @@ switch ($req) {
         break;
 }
 
+// Función para exportar datos en formato CSV
 function exportarDatos() {
+    if (!isset($_REQUEST['b'])) {
+        echo "Error: Falta el parámetro de exportación.";
+        return;
+    }
     $now = date("ymd");
-    header_csv($_REQUEST['b'] . '_' . $now . '.csv');
+    $filename = $_REQUEST['b'] . '_' . $now . '.csv';
+    header_csv($filename);
     $info = datos_mysql($_SESSION['tot_' . $_REQUEST['b']]);
-    $total = $info['responseResult'][0]['total'] ?? 0; // Manejar caso si no hay resultados
-
+    $total = $info['responseResult'][0]['total'] ?? 0;
     if ($rs = mysqli_query($GLOBALS['con'], $_SESSION['sql_' . $_REQUEST['b']])) {
         $ts = mysqli_fetch_array($rs, MYSQLI_ASSOC);
         echo csv($ts, $rs, $total);
     } else {
         echo "Error " . $GLOBALS['con']->errno . ": " . $GLOBALS['con']->error;
-        $GLOBALS['con']->close();
     }
 }
 
+// Encabezados para exportar CSV
+function header_csv($a) {
+    $now = gmdate("D, d M Y H:i:s");
+    header("Expires:".$now);
+    header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+    header("Last-Modified: {$now} GMT");
+    header("Content-Type: application/force-download");
+    header("Content-Type: application/octet-stream");
+    header("Content-Type: application/download");
+    header("Content-Disposition: attachment;filename={$a}");
+    header("Content-Transfer-Encoding: binary");
+    header("Content-Type: text/csv; charset=UTF-8");
+  }
 
-function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
+
+// Función para ejecutar consultas y manejar resultados
+function datos_mysql($sql, $resulttype = MYSQLI_ASSOC) {
     $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
     $con = db_connect();
-  if (!$con) {
-    $arr['code'] = 30;
-    $arr['message'] = 'No hay conexión activa a la base de datos.';
-    log_error($sesion . ' = Connection error');
-    return $arr;
-  }
-  try {
-    $con->set_charset('utf8');
-    $rs = $con->query($sql);
-    if (!$rs) {
-      log_error($sesion . ' Error en la consulta: ' . $con->error, $con->errno);
-      throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
+    try {
+        $con->set_charset('utf8');
+        $rs = $con->query($sql);
+        if (!$rs) {
+            log_error('Error en la consulta: ' . $con->error, $con->errno);
+            throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
+        }
+        fetch($rs, $resulttype, $arr);
+    } catch (mysqli_sql_exception $e) {
+        log_error('Error BD: ' . $e->getMessage(), $e->getCode());
+        $arr['code'] = 30;
+        $arr['message'] = 'Error en la base de datos';
+    } finally {
+        $con->close();
     }
-    fetch($con, $rs, $resulttype, $arr);
-  } catch (mysqli_sql_exception $e) {
-    echo json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]);
-    log_error($sesion.'=>'.$e->getCode().'='.$e->getMessage());
-  }finally {
-    $con->close();
-  }
-  return $arr;
-  }
 
+    return $arr;
+}
+
+// Función para registrar errores en un archivo
 function log_error($message) {
-    $logDir = '../logs';
+    $logDir = __DIR__ . '/../02src/logs';
     if (!is_dir($logDir)) {
         mkdir($logDir, 0777, true);
     }
-    file_put_contents($logDir . '/file.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
+    file_put_contents($logDir . '/errors.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
+}
+
+// Función para procesar resultados de una consulta
+function fetch($rs, $resulttype, &$arr) {
+    while ($row = $rs->fetch_array($resulttype)) {
+        $arr['responseResult'][] = $row;
+    }
+    $rs->free();
+}
+
+// Generar un CSV desde los datos obtenidos
+function csv($header, $data, $total) {
+    $output = fopen('php://output', 'w');
+    fputcsv($output, array_keys($header));
+    while ($row = mysqli_fetch_assoc($data)) {
+        fputcsv($output, $row);
+    }
+    fclose($output);
 }
 
   function fetch(&$con, &$rs, $resulttype, &$arr) {

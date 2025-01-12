@@ -51,10 +51,14 @@ ini_set('log_errors', '1');
 ini_set('error_log', $error_log_path);
 
 // Configuración de sesión
-session_save_path(getenv('SESSION_SAVE_PATH')); // Cambiar a una ruta segura
+$session_save_path = getenv('SESSION_SAVE_PATH'); // Obtener la ruta de la variable de entorno
 if (!is_dir($session_save_path)) {
-    mkdir($session_save_path, 0755, true);
+    // Intenta crear la carpeta si no existe
+    if (!mkdir($session_save_path, 0755, true) && !is_dir($session_save_path)) {
+        throw new Exception("No se pudo crear la carpeta de sesiones: $session_save_path");
+    }
 }
+session_save_path($session_save_path); // Cambiar a una ruta segura
 session_name(SESSION_NAME); // Establecer el nombre de la sesión
 session_set_cookie_params([
     'lifetime' => 3600,
@@ -65,6 +69,7 @@ session_set_cookie_params([
     'samesite' => 'Strict' // Previene CSRF
 ]);
 session_start(); // Iniciar la sesión después de establecer los parámetros
+
 
 // Configuración de seguridad
 $hash_algorithm = getenv('HASH_ALGORITHM') ?: 'sha256'; // Valor por defecto

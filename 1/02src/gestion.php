@@ -7,6 +7,8 @@ if (!isset(session_name)) {
     exit;
   }
 
+  echo "Archivo gestion.php cargado correctamente.";
+
 function db_connect() {
     $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
     if ($con->connect_error) {

@@ -100,12 +100,12 @@ function log_error($message) {
 }
 
 // Función para procesar resultados de una consulta
-function fetch($rs, $resulttype, &$arr) {
+/* function fetch($rs, $resulttype, &$arr) {
     while ($row = $rs->fetch_array($resulttype)) {
         $arr['responseResult'][] = $row;
     }
     $rs->free();
-}
+} */
 
 // Generar un CSV desde los datos obtenidos
 function csv($header, $data, $total) {
@@ -117,7 +117,7 @@ function csv($header, $data, $total) {
     fclose($output);
 }
 
-/*   function fetch(&$con, &$rs, $resulttype, &$arr) {
+  function fetch(&$con, &$rs, $resulttype, &$arr) {
 	if ($rs === TRUE) {
 		$arr['responseResult'][] = ['affected_rows' => $con->affected_rows];
 	}else {
@@ -130,7 +130,7 @@ function csv($header, $data, $total) {
 		$rs->free();
 	}
 	return $arr;
-} */
+}
 
 function opc_arr($a = [], $b = "", $c = true) { 
     // $a = arreglo de datos, $b = dato previamente seleccionado

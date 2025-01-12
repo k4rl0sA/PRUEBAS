@@ -5,9 +5,6 @@ session_start();
 require_once __DIR__ . '/../01config/config.php';
 require_once __DIR__ . '/login/login.php';
 
-// Mostrar errores (solo en desarrollo)
-ini_set('display_errors',ERRORS);
-
 // Procesar formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = test_input($_POST['user']);

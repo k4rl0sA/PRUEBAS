@@ -61,8 +61,8 @@ session_set_cookie_params([
     'httponly' => true,    // No accesible por JavaScript
     'samesite' => 'Strict' // Previene CSRF
 ]);
-
 session_start(); // Iniciar la sesión después de establecer los parámetros
+
 // Configuración de seguridad
 $hash_algorithm = getenv('HASH_ALGORITHM') ?: 'sha256'; // Valor por defecto
 $encryption_key = getenv('ENCRYPTION_KEY');

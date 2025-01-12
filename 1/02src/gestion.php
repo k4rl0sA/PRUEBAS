@@ -7,11 +7,13 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Verificar si la sesión está activa
-var_dump($_SESSION); // Para depuración
+/* var_dump($_SESSION); // Para depuración
 if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");
     exit;
-}
+} */
+session_start();
+var_dump($_SESSION); /
 
 $sesion = $_SESSION["us_subred"];
 

@@ -12,7 +12,6 @@ if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");
     exit;
 } */
-session_start();
 var_dump($_SESSION);
 
 $sesion = $_SESSION["us_subred"];

@@ -6,14 +6,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+var_dump($_SESSION);
 // Verificar si la sesión está activa
-/* var_dump($_SESSION); // Para depuración
 if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");
     exit;
-} */
-var_dump($_SESSION);
+}
 
+// Ahora es seguro acceder a la variable de sesión
 $sesion = $_SESSION["us_subred"];
 
 function db_connect() {

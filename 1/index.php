@@ -56,11 +56,11 @@ include_once('./login/login.php');
 					'p' => 'K4r3n1905*',
 					'bd' => 'u470700275_09'
 				],
-			  'produccion.site' => [
+			  'pruebasiginf.site' => [
 				  's' => 'localhost',
-				  'u' => 'u470700275_08',
-				  'p' => 'z9#KqH!YK2VEyJpT',
-				  'bd' => 'u470700275_08'
+				  'u' => 'u470700275_09',
+				  'p' => 'K4r3n1905*',
+				  'bd' => 'u470700275_09'
 			  ]
 			);
 				if (array_key_exists($dominio, $comy)) {

@@ -66,8 +66,11 @@ include_once('./login/login.php');
 				if (array_key_exists($dominio, $comy)) {
 				  $dbConfig = $comy[$dominio];
 				} else {
-					echo($dominio);
-				  die('Dominio no reconocido.');
+					echo "<div class='error'>
+					<span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span> 
+					<strong>Error!</strong> Dominio no reconocido.
+					</div>";
+					die();
 				}
 				$con = new mysqli($dbConfig['s'], $dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
 			  if( !$con ){

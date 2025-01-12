@@ -1,5 +1,5 @@
 <?php
-include ('claves.php');
+include ('../01config/claves.php');
 ?>
 <!DOCTYPE HTML>
 <html>

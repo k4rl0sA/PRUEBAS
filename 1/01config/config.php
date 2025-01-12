@@ -85,3 +85,7 @@ $mail_encryption = getenv('MAIL_ENCRYPTION') ?: 'tls'; // Valor por defecto
 if (!$mail_host || !$mail_username || !$mail_password) {
     throw new Exception("Las configuraciones de correo electrónico no están completas.");
 }
+
+// Configuración de la aplicación
+$app_name = 'Mi Aplicación';
+$app_version = '1.0.0';

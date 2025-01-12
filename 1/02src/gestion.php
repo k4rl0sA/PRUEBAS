@@ -35,7 +35,7 @@ switch ($req) {
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
     $arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-    $con = $GLOBALS['con'];
+    $con = db_connect();
   if (!$con) {
     $arr['code'] = 30;
     $arr['message'] = 'No hay conexión activa a la base de datos.';

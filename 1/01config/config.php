@@ -63,6 +63,19 @@ session_set_cookie_params([
     'samesite' => 'Strict' // Previene CSRF
 ]);
 
+
+// Configuración de sesión
+session_name(SESSION_NAME); // Establecer el nombre de la sesión
+session_set_cookie_params([
+    'lifetime' => 3600,
+    'path' => '/',
+    'domain' => $_SERVER['HTTP_HOST'] ?? '',
+    'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on', // Solo HTTPS
+    'httponly' => true,    // No accesible por JavaScript
+    'samesite' => 'Strict' // Previene CSRF
+]);
+
+session_start(); // Iniciar la sesión después de establecer los parámetros
 // Configuración de seguridad
 $hash_algorithm = getenv('HASH_ALGORITHM') ?: 'sha256'; // Valor por defecto
 $encryption_key = getenv('ENCRYPTION_KEY');

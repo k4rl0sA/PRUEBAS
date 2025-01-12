@@ -41,11 +41,12 @@ define('DB_PORT', getenv('DB_PORT') ?: 3306); // Valor por defecto
 define('DB_CHARSET', 'utf8mb4');
 
 // Configuración de errores
-$error_log_path = getenv('ERROR_LOG_PATH'); // Ruta al archivo de log
 $mostrar_errores = filter_var(getenv('MOSTRAR_ERRORES'), FILTER_VALIDATE_BOOLEAN); // Asegurar true/false
 if ($mostrar_errores) {
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
+} else {
+    ini_set('display_errors', '0');
 }
 ini_set('log_errors', '1');
 ini_set('error_log', $error_log_path);

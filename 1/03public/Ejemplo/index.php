@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors','1');
-include $_SERVER['DOCUMENT_ROOT'].'/libs/php/nav.php';
+include __DIR__ . '/../../02src/nav.php';
+require_once __DIR__ . '/../01config/config.php';
 $mod='prorep';
 $ya = new DateTime();
 $estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');

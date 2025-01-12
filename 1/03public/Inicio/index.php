@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors','1');
 include __DIR__ . '/../../02src/nav.php';
+require_once __DIR__ . '/../01config/config.php';
 ?>
 <head>
 <meta charset="UTF-8">

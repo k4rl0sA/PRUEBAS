@@ -132,3 +132,34 @@ function opc_arr($a = [], $b = "", $c = true) {
     
     return $rta;
   }
+
+  function opc_sql($sql,$val,$str=true){
+    $val = is_array($val) ? $val[0] ?? '' : (string)$val;
+      $rta="<option value class='alerta' >SELECCIONE</option>";
+      $con=$GLOBALS['con'];
+    // var_dump($con);
+      if($con->multi_query($sql)){
+      do {
+          if ($con->errno == 0) {
+              $rs = $con->store_result();
+              if ($con->errno == 0) {
+                  if ($rs != FALSE) {
+                      while ($r = $rs->fetch_array(MYSQLI_NUM))
+                          if($r[0]==$val){
+                              $rta.="<option value='".$r[0]."' selected>".htmlentities($r[1],ENT_QUOTES)."</option>";
+                          }else{
+                              $rta.="<option value='".$r[0]."'>".htmlentities($r[1],ENT_QUOTES)."</option>";
+                          }						
+                  }
+                  //~ $con->close();
+              }
+              //~ $rs->free();
+          }
+          //~ $con->next_result();//11-01-2020
+          } while ($con->more_results() && $con->next_result());
+          $rs->free();
+      }
+      //~ $con->close();
+    //$con->close();//16-06-2023
+      return $rta;
+  }

@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Verificar si la sesión está activa
 if (!isset($_SESSION["us_subred"])) {
-    header("Location: /03public/index.php"); // Redirigir si no hay sesión activa
+    header("Location: /1/03public/index.php"); // Redirigir si no hay sesión activa
     exit;
 }
 

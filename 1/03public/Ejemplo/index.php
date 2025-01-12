@@ -1,6 +1,6 @@
 <?php
+require_once __DIR__ . '/../../01config/config.php';
 include __DIR__ . '/../../02src/nav.php';
-require_once __DIR__ . '/../01config/config.php';
 $mod='prorep';
 $ya = new DateTime();
 $estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');
@@ -203,6 +203,8 @@ button:hover {
 }
   /*********FIN TOAST*****/
 </Style>
+<!DOCTYPE html>
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -39,6 +39,7 @@ define('DB_PASS', getenv('DB_PASS'));
 define('DB_NAME', getenv('DB_NAME'));
 define('DB_PORT', getenv('DB_PORT') ?: 3306); // Valor por defecto
 define('DB_CHARSET', 'utf8mb4');
+define('ERROR_LOG_PATH', getenv('ERROR_LOG_PATH'));
 
 // Configuración de errores
 $mostrar_errores = filter_var(getenv('MOSTRAR_ERRORES'), FILTER_VALIDATE_BOOLEAN); // Asegurar true/false
@@ -49,7 +50,7 @@ if ($mostrar_errores) {
     ini_set('display_errors', '0');
 }
 ini_set('log_errors', '1');
-ini_set('error_log', $error_log_path);
+ini_set('error_log',ERROR_LOG_PATH);
 
 setlocale(LC_TIME, 'es_CO');
 

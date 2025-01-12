@@ -1,4 +1,8 @@
 <?php
+// claves.php o config.php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 function loadEnv($filePath) {
     if (!file_exists($filePath)) {
         throw new Exception("El archivo .env no existe en la ruta especificada: $filePath");

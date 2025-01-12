@@ -1,18 +1,11 @@
 <?php
 require_once __DIR__ . '/../01config/config.php';
 ini_set('memory_limit','1024M');
-// Verificar si la sesión ya ha sido iniciada
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 // Verificar si la sesión está activa
 if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");
     exit;
 }
-
-// Ahora es seguro acceder a la variable de sesión
 $sesion = $_SESSION["us_subred"];
 
 function db_connect() {

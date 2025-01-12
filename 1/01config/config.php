@@ -52,19 +52,6 @@ ini_set('error_log', $error_log_path);
 
 // Configuración de sesión
 session_save_path(getenv('SESSION_SAVE_PATH')); // Cambiar a una ruta segura
-session_name(SESSION_NAME);
-session_start();
-session_set_cookie_params([
-    'lifetime' => 3600,
-    'path' => '/',
-    'domain' => $_SERVER['HTTP_HOST'] ?? '',
-    'secure' => isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on', // Solo HTTPS
-    'httponly' => true,    // No accesible por JavaScript
-    'samesite' => 'Strict' // Previene CSRF
-]);
-
-
-// Configuración de sesión
 session_name(SESSION_NAME); // Establecer el nombre de la sesión
 session_set_cookie_params([
     'lifetime' => 3600,

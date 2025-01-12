@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Document</title>
+  <style>
+    /* Estilos generales del formulario */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos de las etiquetas de los campos del formulario */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos de los campos del formulario */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"%3E%3C/path%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Estilos de los campos de tipo checkbox */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Estilos del botón de enviar */
+button[type="submit"] {
+  background-color: #1e90ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #007acc;
+}
+
+/* Media queries para adaptar el formulario a dispositivos móviles */
+@media (max-width: 768px) {
+  form {
+    padding: 10px;
+  }
+  
+  label {
+    font-size: 14px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 14px;
+  }
+  
+  button[type="submit"] {
+    font-size: 14px;
+  }
+}
+
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+  /* Ocultar todas las columnas excepto la primera */
+  td:nth-of-type(n+2),
+  th:nth-of-type(n+2) {
+    display: none;
+  }
+}
+
+
+
+#myTable {
+  border-collapse: collapse;
+}
+
+#myTable th, #myTable td {
+  border: 1px solid black;
+  padding: 5px;
+  position: relative; /* Para que las celdas sean el contexto de posicionamiento */
+}
+
+.action-icons {
+  display: none; /* Ocultar los iconos por defecto */
+  position: absolute; /* Posicionamiento absoluto */
+  top: 50%; /* Centrar verticalmente */
+  transform: translateY(-50%); /* Ajustar la posición vertical */
+  left: 5px; /* Ajustar la posición horizontal */
+}
+
+/* Mostrar los iconos al pasar el mouse por la fila */
+tr:hover .action-icons {
+  display: inline-block;
+}
+
+
+  </style>
+</head>
+<body>
+  <form>
+  
+ 
+    <table id="myTable">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john.doe@example.com</td>
+            <td>555-1234</td>
+          </tr>
+          <tr>
+            <td>Jane</td>
+            <td>Doe</td>
+            <td>jane.doe@example.com</td>
+            <td>555-5678</td>
+          </tr>
+          <tr>
+            <td>Bob</td>
+            <td>Smith</td>
+            <td>bob.smith@example.com</td>
+            <td>555-4321</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+  
+  
+  
+
+  <button type="submit">Enviar</button>
+  </form>    
+  <script>
+
+// Obtener todas las filas de la tabla
+const rows = document.querySelectorAll("tbody tr");
+
+// Iterar a través de cada fila y agregar eventos de mouseover y mouseout
+rows.forEach(row => {
+  row.addEventListener("mouseover", () => {
+    // Obtener la primera celda de la fila y agregar el icono de editar
+    const firstCell = row.querySelector("td:first-child");
+    firstCell.innerHTML += "<i class='fas fa-edit'></i>";
+
+    // Obtener la segunda celda de la fila y agregar el icono de agregar
+    const secondCell = row.querySelector("td:nth-child(2)");
+    secondCell.innerHTML += "<i class='fas fa-plus'></i>";
+
+    // Obtener la tercera celda de la fila y agregar el icono de eliminar
+    const thirdCell = row.querySelector("td:nth-child(3)");
+    thirdCell.innerHTML += "<i class='fas fa-trash'></i>";
+  });
+
+  row.addEventListener("mouseout", () => {
+    // Obtener la primera celda de la fila y quitar el icono de editar
+    const firstCell = row.querySelector("td:first-child");
+    firstCell.removeChild(firstCell.lastChild);
+
+    // Obtener la segunda celda de la fila y quitar el icono de agregar
+    const secondCell = row.querySelector("td:nth-child(2)");
+    secondCell.removeChild(secondCell.lastChild);
+
+    // Obtener la tercera celda de la fila y quitar el icono de eliminar
+    const thirdCell = row.querySelector("td:nth-child(3)");
+    thirdCell.removeChild(thirdCell.lastChild);
+  });
+});
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+
+td:nth-child(1) .hidden-column {
+  display: none;
+}
+
+td:nth-child(2) {
+  display: none;
+}
+
+td:nth-child(3) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+</style>
+</head>
+<body>
+
+   
+    <table>
+        <thead>
+          <tr>
+            <th>Columna 1</th>
+            <th>Columna 2</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Registro 1</td>
+            <td>Contenido 1</td>
+            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+          </tr>
+          <tr>
+            <td>Registro 2</td>
+            <td>Contenido 2</td>
+            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+          </tr>
+          <!-- Agrega más filas de la tabla aquí -->
+        </tbody>
+      </table>
+           
+      
+      
+<script>
+const rows = document.querySelectorAll('tbody tr');
+
+rows.forEach(row => {
+  row.addEventListener('mouseover', () => {
+    const column1 = row.querySelector('td:nth-child(1)');
+    const column2 = row.querySelector('td:nth-child(2)');
+
+    column1.classList.add('hidden-column');
+    column2.style.display = 'table-cell';
+  });
+
+  row.addEventListener('mouseout', () => {
+    const column1 = row.querySelector('td:nth-child(1)');
+    const column2 = row.querySelector('td:nth-child(2)');
+
+    column1.classList.remove('hidden-column');
+    column2.style.display = 'none';
+  });
+});
+
+
+</script>         
+</body>
+</html>

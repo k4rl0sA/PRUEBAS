@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors','1');
-include $_SERVER['DOCUMENT_ROOT'].'/../02src/nav.php';
+include __DIR__ . '/../../02src/nav.php';
 ?>
 <head>
 <meta charset="UTF-8">

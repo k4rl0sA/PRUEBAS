@@ -2,10 +2,10 @@
 require_once __DIR__ . '/../01config/config.php';
 ini_set('memory_limit','1024M');
 // Verificar si la sesión está activa
-if (!isset($_SESSION["us_subred"])) {
+/* if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");
     exit;
-}
+} */
 $sesion = $_SESSION["us_subred"];
 
 function db_connect() {

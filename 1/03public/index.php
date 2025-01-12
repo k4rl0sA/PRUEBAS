@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../01config/config.php';
 require_once __DIR__ . '/login/login.php';
 
+var_dump($_SESSION);
 // Procesar formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = test_input($_POST['user']);

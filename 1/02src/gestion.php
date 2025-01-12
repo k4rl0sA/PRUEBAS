@@ -6,7 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-var_dump($_SESSION);
 // Verificar si la sesión está activa
 if (!isset($_SESSION["us_subred"])) {
     header("Location: /1/03public/index.php");

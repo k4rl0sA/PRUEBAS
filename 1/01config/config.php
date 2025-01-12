@@ -52,6 +52,9 @@ ini_set('error_log', $error_log_path);
 
 // Configuración de sesión
 session_save_path(getenv('SESSION_SAVE_PATH')); // Cambiar a una ruta segura
+if (!is_dir($session_save_path)) {
+    mkdir($session_save_path, 0755, true);
+}
 session_name(SESSION_NAME); // Establecer el nombre de la sesión
 session_set_cookie_params([
     'lifetime' => 3600,

@@ -5,6 +5,7 @@ ini_set('memory_limit','1024M');
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+$sesion=$_SESSION["us_subred"];
 
 function db_connect() {
     $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);

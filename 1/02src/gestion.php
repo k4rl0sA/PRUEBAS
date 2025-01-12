@@ -40,20 +40,20 @@ function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
   if (!$con) {
     $arr['code'] = 30;
     $arr['message'] = 'No hay conexión activa a la base de datos.';
-    log_error($_SESSION["us_sds"] . ' = Connection error');
+    log_error($sesion . ' = Connection error');
     return $arr;
   }
   try {
     $con->set_charset('utf8');
     $rs = $con->query($sql);
     if (!$rs) {
-      log_error($_SESSION["us_sds"] . ' Error en la consulta: ' . $con->error, $con->errno);
+      log_error($sesion . ' Error en la consulta: ' . $con->error, $con->errno);
       throw new mysqli_sql_exception("Error en la consulta: " . $con->error, $con->errno);
     }
     fetch($con, $rs, $resulttype, $arr);
   } catch (mysqli_sql_exception $e) {
     echo json_encode(['code' => 30, 'message' => 'Error BD', 'errors' => ['code' => $e->getCode(), 'message' => $e->getMessage()]]);
-    log_error($_SESSION["us_sds"].'=>'.$e->getCode().'='.$e->getMessage());
+    log_error($sesion.'=>'.$e->getCode().'='.$e->getMessage());
   }finally {
     // $GLOBALS['con']->close();
   }

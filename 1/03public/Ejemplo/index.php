@@ -1,24 +1,6 @@
 <?php
 require_once __DIR__ . '/../../01config/config.php';
 include __DIR__ . '/../../02src/nav.php';
-session_start();
-
-if (!isset($_SESSION[SESSION_NAME])) {
-    // header("Location: /1/03public/index.php");
-	var_dump($_SESSION);
-    exit();
-}
-// Verificar tiempo de inactividad
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
-    session_unset();
-    session_destroy();
-    // header("Location: /1/03public/index.php");
-	var_dump($_SESSION);
-    exit();
-}
-$_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad
-
-
 $mod='prorep';
 $ya = new DateTime();
 $estados=opc_arr([['v' => 'SI', 'l' => 'SI'], ['v' => 'NO', 'l' => 'NO']],'NO');

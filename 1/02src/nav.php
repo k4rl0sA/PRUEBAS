@@ -9,7 +9,22 @@
 ini_set('display_errors','1');
 $vers='1.03.29.1';
  require_once __DIR__ . '../../02src/gestion.php';
- if (!isset($_SESSION["us_subred"])){ die("<script>window.top.location.href = '/1/03public/';</script>");}
+ session_start();
+
+if (!isset($_SESSION[SESSION_NAME])) {
+    // header("Location: /1/03public/index.php");
+	var_dump($_SESSION);
+    exit();
+}
+// Verificar tiempo de inactividad
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
+    session_unset();
+    session_destroy();
+    // header("Location: /1/03public/index.php");
+	$_SESSION
+    exit();
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad
 //require_once $_SERVER['DOCUMENT_ROOT'].'/1/02src/gestion.php';
   $sql="SELECT *
   FROM adm_menu

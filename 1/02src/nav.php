@@ -11,7 +11,7 @@ $vers='1.03.29.1';
  require_once __DIR__ . '../../02src/gestion.php';
  session_start();
 
-/* if (!isset($_SESSION[SESSION_NAME])) {
+if (!isset($_SESSION[SESSION_NAME])) {
     // header("Location: /1/03public/index.php");
 	var_dump($_SESSION);
     exit();
@@ -23,7 +23,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     // header("Location: /1/03public/index.php");
 	$_SESSION
     exit();
-}*/
+}
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad
 //require_once $_SERVER['DOCUMENT_ROOT'].'/1/02src/gestion.php';
   $sql="SELECT *

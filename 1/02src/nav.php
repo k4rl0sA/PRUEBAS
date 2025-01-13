@@ -5,11 +5,11 @@
     <script src="../libs/js/menu.js"></script>
 	</head>
 <?php
+ session_start();
 // require_once 'config.php';
 ini_set('display_errors','1');
 $vers='1.03.29.1';
  require_once __DIR__ . '../../02src/gestion.php';
- session_start();
  
 if (!isset($_SESSION['us_subred'])) {
     header("Location: /1/03public/loco.php");

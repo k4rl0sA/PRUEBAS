@@ -21,7 +21,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     session_unset();
     session_destroy();
     // header("Location: /1/03public/index.php");
-	$_SESSION
+	// $_SESSION
     exit();
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad

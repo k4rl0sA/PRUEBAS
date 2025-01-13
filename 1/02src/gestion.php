@@ -12,7 +12,7 @@ date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
 $APP='GTAPS';
 if (!isset($_SESSION["us_subred"])) {
-  header("Location: /index.php"); 
+  header("Location: /1/03public/"); 
   exit;
 }
 $ruta_upload='/public_html/upload/';

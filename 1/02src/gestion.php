@@ -162,7 +162,7 @@ function fechas_app($modu){
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
-    $con = $GLOBALS['con'];
+    $con = db_connect();
   if (!$con) {
       die(json_encode(['code' => 30, 'message' => 'Connection error']));
   }

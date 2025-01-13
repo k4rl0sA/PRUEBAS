@@ -10,11 +10,11 @@ ini_set('display_errors','1');
 $vers='1.03.29.1';
  require_once __DIR__ . '../../02src/gestion.php';
  session_start();
-
+/* 
 if (!isset($_SESSION['us_subred'])) {
     header("Location: /1/03public/index.php");
     exit();
-} 
+}  */
 // Verificar tiempo de inactividad
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     session_unset();

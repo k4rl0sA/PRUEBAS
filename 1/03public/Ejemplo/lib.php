@@ -5,7 +5,7 @@ $_POST['a'].'-'.$_POST['tb'];
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION[SESSION_NAME])) {
     http_response_code(401);
-    echo json_encode(['redirect' => '/']);
+    echo json_encode(['redirect' => '/01/03public/']);
     exit();
 } else {
 	$rta = "";

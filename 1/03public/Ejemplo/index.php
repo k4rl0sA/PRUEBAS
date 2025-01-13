@@ -4,14 +4,14 @@ include __DIR__ . '/../../02src/nav.php';
 session_start();
 
 if (!isset($_SESSION[SESSION_NAME])) {
-    header("Location: /login.php");
+    header("Location: /1/03public/index.php");
     exit();
 }
 // Verificar tiempo de inactividad
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     session_unset();
     session_destroy();
-    header("Location: /login.php");
+    header("Location: /1/03public/index.php");
     exit();
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad

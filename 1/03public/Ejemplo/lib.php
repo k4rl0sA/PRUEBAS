@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../02src/gestion.php';
 ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 $_POST['a'].'-'.$_POST['tb'];
 $perf = perfil($_POST['tb']);
 if (!isset($_SESSION[SESSION_NAME])) {

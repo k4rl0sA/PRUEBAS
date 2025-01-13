@@ -1,7 +1,7 @@
 <?php
-session_start();
 // Incluir el archivo de configuración
 require_once __DIR__ . '/../01config/config.php';
+session_start();
 require_once __DIR__ . '/login/login.php';
 
 /* // claves.php o config.php

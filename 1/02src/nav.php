@@ -20,7 +20,7 @@ if (!isset($_SESSION[SESSION_NAME])) {
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     session_unset();
     session_destroy();
-    // header("Location: /1/03public/index.php");
+    header("Location: /1/03public/index.php");
 	$_SESSION
     exit();
 }

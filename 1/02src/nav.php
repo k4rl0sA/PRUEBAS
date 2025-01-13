@@ -14,14 +14,14 @@ $vers='1.03.29.1';
 /* if (!isset($_SESSION['us_subred'])) {
     header("Location: /1/03public/loco.php");
     exit();
-}  */
+} 
 // Verificar tiempo de inactividad
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     session_unset();
     session_destroy();
     header("Location: /1/03public/index.php");
     exit();
-}
+} */
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad
 //require_once $_SERVER['DOCUMENT_ROOT'].'/1/02src/gestion.php';
   $sql="SELECT *

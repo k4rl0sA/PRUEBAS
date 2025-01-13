@@ -4,7 +4,7 @@ require_once "../../../lib/php/gestion.php";
 ini_set('display_errors', '1');
 $_POST['a'].'-'.$_POST['tb'];
 $perf = perfil($_POST['tb']);
-if (!isset($_SESSION['us_subred'])) {
+if (!isset($_SESSION['us_sds'])) {
     http_response_code(401);
     echo json_encode(['redirect' => '/01/03public/']);
     exit();

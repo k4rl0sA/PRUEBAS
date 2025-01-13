@@ -77,6 +77,14 @@ switch ($req) {
 		break; */
 }
 
+function db_connect() {
+  $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+  if ($con->connect_error) {
+      throw new Exception('Error en la conexión a la base de datos: ' . $con->connect_error);
+  }
+  return $con;
+} 
+
 function header_csv($a) {
   $now = gmdate("D, d M Y H:i:s");
   header("Expires:".$now);

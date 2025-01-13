@@ -211,7 +211,7 @@ button:hover {
 	<link rel="stylesheet" href="../../../lib/css/stylePop.css">
 	<script src="../lib/js/main.js?v=3.0"></script>
 	<script src="../lib/js/d.js"></script>
-	<script src="../lib/js/popup.js"></script>
+	<script src="../../../lib/js/popup.js"></script>
 	<link rel="stylesheet" href="../../../lib/css/choices.min.css">
     <script src="../../../lib/js/choices.min.js"></script>
 	<script>

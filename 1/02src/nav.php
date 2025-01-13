@@ -15,7 +15,7 @@ $vers='1.03.29.1';
     // header("Location: /1/03public/index.php");
 	var_dump($_SESSION);
     exit();
-} */
+} 
 // Verificar tiempo de inactividad
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 3600)) {
     session_unset();
@@ -23,7 +23,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     // header("Location: /1/03public/index.php");
 	$_SESSION
     exit();
-}
+}*/
 $_SESSION['LAST_ACTIVITY'] = time(); // Actualizar tiempo de actividad
 //require_once $_SERVER['DOCUMENT_ROOT'].'/1/02src/gestion.php';
   $sql="SELECT *

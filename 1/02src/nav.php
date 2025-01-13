@@ -9,7 +9,7 @@
 ini_set('display_errors','1');
 $vers='1.03.29.1';
  require_once __DIR__ . '../../02src/gestion.php';
- session_start();
+ 
 
 if (!isset($_SESSION[SESSION_NAME])) {
     // header("Location: /1/03public/index.php");

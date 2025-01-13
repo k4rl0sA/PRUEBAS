@@ -17,7 +17,12 @@ if (!isset($_SESSION["us_subred"])) {
 }
 $ruta_upload='/public_html/upload/';
 
-$dom = $_SERVER['HTTP_HOST'];
+
+// var_dump($dominio);
+
+
+function db_connect() {
+  $dom = $_SERVER['HTTP_HOST'];
 $dominio = preg_replace('/^www\./i', '', $dom);
 $comy = array(
   'pruebasiginf.site' => [
@@ -33,15 +38,12 @@ $comy = array(
       'bd' => 'u470700275_08'
   ]
 );
-// var_dump($dominio);
 $allowed_domains = ['pruebasiginf.site', 'gitapps.site'];
 if (in_array($dominio, $allowed_domains)) {
   $dbConfig = $comy[$dominio];
 }else{
   die('Dominio no permitido.');
 }
-
-function db_connect() {
   $con = new mysqli($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd'],3306);
   if ($con->connect_error) {
       throw new Exception('Error en la conexión a la base de datos: ' . $con->connect_error);

@@ -11,16 +11,12 @@ ini_set('memory_limit','1024M');
 date_default_timezone_set('America/Bogota');
 setlocale(LC_ALL,'es_CO');
 $APP='GTAPS';
-if (!isset($_SESSION["us_subred"])) {
+/* if (!isset($_SESSION["us_subred"])) {
   header("Location: /1/03public/"); 
   exit;
-}
+} */
 $ruta_upload='/public_html/upload/';
-
-
 // var_dump($dominio);
-
-
 function db_connect() {
   $dom = $_SERVER['HTTP_HOST'];
 $dominio = preg_replace('/^www\./i', '', $dom);

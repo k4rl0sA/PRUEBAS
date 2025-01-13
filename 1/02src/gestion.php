@@ -2,13 +2,13 @@
 require_once __DIR__ . '/../01config/config.php';
 ini_set('memory_limit','1024M');
 // Verificar si la sesión está activa
-if (!isset($_SESSION[SESSION_NAME])) {
+/* if (!isset($_SESSION[SESSION_NAME])) {
     // header("Location: /1/03public/index.php");
     var_dump($_SESSION);
     exit;
 }
 $sesion = $_SESSION[SESSION_NAME];
-
+ */
 function db_connect() {
     $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
     if ($con->connect_error) {

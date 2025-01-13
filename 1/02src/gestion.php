@@ -40,10 +40,18 @@ if (in_array($dominio, $allowed_domains)) {
 }else{
   die('Dominio no permitido.');
 }
-$con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
+
+function db_connect() {
+  $con = new mysqli($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd'],3306);
+  if ($con->connect_error) {
+      throw new Exception('Error en la conexión a la base de datos: ' . $con->connect_error);
+  }
+  return $con;
+} 
+/* $con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
 
 if (!$con) { $error = mysqli_connect_error();  exit; }
-mysqli_set_charset($con,"utf8");
+ */mysqli_set_charset($con,"utf8");
 $GLOBALS['con']=$con;
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
 switch ($req) {
@@ -77,13 +85,7 @@ switch ($req) {
 		break; */
 }
 
-function db_connect() {
-  $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
-  if ($con->connect_error) {
-      throw new Exception('Error en la conexión a la base de datos: ' . $con->connect_error);
-  }
-  return $con;
-} 
+
 
 function header_csv($a) {
   $now = gmdate("D, d M Y H:i:s");

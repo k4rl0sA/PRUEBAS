@@ -3,7 +3,7 @@ require_once "../libs/php/gestion.php";
 ini_set('display_errors', '1');
 $_POST['a'].'-'.$_POST['tb'];
 $perf = perfil($_POST['tb']);
-if (!isset($_SESSION['us_subred'])) {
+if (!isset($_SESSION[SESSION_NAME])) {
     http_response_code(401);
     echo json_encode(['redirect' => '/']);
     exit();
@@ -56,7 +56,6 @@ function whe_prorep() {
 	} */
 	return $sql;
 }
-
 
 function lis_prorep(){	
 	$info=datos_mysql("SELECT COUNT(*) total FROM repor_promo WHERE 1 ".whe_prorep());

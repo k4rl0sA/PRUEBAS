@@ -51,7 +51,8 @@ function db_connect() {
 /* $con=mysqli_connect($dbConfig['s'],$dbConfig['u'],$dbConfig['p'],$dbConfig['bd']);
 
 if (!$con) { $error = mysqli_connect_error();  exit; }
- */mysqli_set_charset($con,"utf8");
+ mysqli_set_charset($con,"utf8");
+ */
 $GLOBALS['con']=$con;
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
 switch ($req) {

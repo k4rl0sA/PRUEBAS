@@ -1,5 +1,5 @@
 <?php
-require_once "../libs/php/gestion.php";
+require_once __DIR__ . '/../02src/gestion.php';
 ini_set('display_errors', '1');
 $_POST['a'].'-'.$_POST['tb'];
 $perf = perfil($_POST['tb']);

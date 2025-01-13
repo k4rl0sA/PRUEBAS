@@ -22,9 +22,9 @@ $dominio = preg_replace('/^www\./i', '', $dom);
 $comy = array(
   'pruebasiginf.site' => [
       's' => 'localhost',
-      'u' => 'u470700275_17',
-      'p' => 'z9#KqH!YK2VEyJpT',
-      'bd' => 'u470700275_17'
+      'u' => 'u470700275_09',
+      'p' => 'K4r3n1905*',
+      'bd' => 'u470700275_09'
   ],
   'gitapps.site' => [
       's' => 'localhost',

@@ -134,7 +134,7 @@ foreach ($menu as &$mainMenuItem) {
 
         <div class="bottom-content">
             <li>
-                <a href="../../logout.php">
+                <a href="../../03public/logout.php">
                     <i class="fa-solid fa-arrow-right-from-bracket icon"></i>
                     <span class="text nav-text">Cerrar Sesión</span>
                 </a>

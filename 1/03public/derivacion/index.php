@@ -212,8 +212,8 @@ button:hover {
 	<script src="../lib/js/main.js?v=3.0"></script>
 	<script src="../lib/js/d.js"></script>
 	<script src="../lib/js/popup.js"></script>
-	<link rel="stylesheet" href="../lib/css/choices.min.css">
-    <script src="../lib/js/choices.min.js"></script>
+	<link rel="stylesheet" href="../../../lib/css/choices.min.css">
+    <script src="../../../lib/js/choices.min.js"></script>
 	<script>
 		var mod = 'deriva';
 		var ruta_app = 'lib.php';

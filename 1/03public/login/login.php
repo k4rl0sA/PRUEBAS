@@ -19,7 +19,7 @@ function login($username, $password) {
     if ($stmt->num_rows === 1) {
         $stmt->fetch();
         if (password_verify($password, $clave)) {
-            $_SESSION[SESSION_NAME] = $id_usuario;
+            $_SESSION['us_subred'] = $id_usuario;
             $_SESSION['nomb'] = $nombre;
             echo 'GUARDO LA SESION';
             return true;

@@ -12,7 +12,7 @@ $vers='1.03.29.1';
  session_start();
  
 if (!isset($_SESSION['us_subred'])) {
-    header("Location: /1/03public/index.php");
+    header("Location: /1/03public/loco.php");
     exit();
 } 
 // Verificar tiempo de inactividad

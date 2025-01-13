@@ -21,7 +21,6 @@ function login($username, $password) {
         if (password_verify($password, $clave)) {
             $_SESSION['us_subred'] = $id_usuario;
             $_SESSION['nomb'] = $nombre;
-            echo 'GUARDO LA SESION';
             return true;
         }
     }

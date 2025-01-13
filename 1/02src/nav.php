@@ -13,7 +13,7 @@ $vers='1.03.29.1';
 
 if (!isset($_SESSION[SESSION_NAME])) {
     // header("Location: /1/03public/index.php");
-	var_dump($_SESSION);
+	var_dump($_SESSION['us_subred']);
     exit();
 } 
 // Verificar tiempo de inactividad

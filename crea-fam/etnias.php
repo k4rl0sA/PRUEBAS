@@ -204,6 +204,10 @@ function cmp_etnias(){
 	$c[]=new cmp('entrega_med','t','100',$d,$w.' '.$o,'Seguimiento A A Entrega De Medicamentos','entrega_med',null,null,true,true,'','col-5');
 
 
+	$o='seguaic';
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES DNT - POS HOSPITALIZACIÓN',$w);
+
+
 	$c[]=new cmp($o,'e',null,'Aspectos Finales',$w);
 	$c[]=new cmp('res_gest','s','3',$d,$w.'  '.$o,'Servicio De Remision Y/O Gestion','res_gest',null,null,true,true,'','col-2');
 	$c[]=new cmp('obser','t','7000',$d,$w.' '.$o,'Observaciones','obser',null,null,true,true,'','col-8');

@@ -74,7 +74,8 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha','d','10',$d,$w.' '.$o,'Fecha Sesion','fecha',null,null,true,true,'','col-15',"validDate(this,$days,0);");
 	$c[]=new cmp('sesi_nu','s','3',$d,$w.' '.$o,'Sesion N°','sesi_nu',null,null,true,true,'','col-3');
 	$c[]=new cmp('moti_con','s','3',$d,$w.' '.$o,'Motivo Consulta','moti_con',null,null,true,true,'','col-3');
-	$c[]=new cmp('prio','s','3',$d,$w.' '.$o,'Prioridad','prio',null,null,true,true,'','col-25');
+	$c[]=new cmp('prio1','s','3',$d,$w.' '.$o,'Prioridad 1','prio',null,null,true,true,'','col-25');
+	$c[]=new cmp('prio2','s','3',$d,$w.' '.$o,'Prioridad 2','prio',null,null,true,true,'','col-25');
 	//$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Descripcion Sintoma','des_sin',null,null,true,true,'','col-10');
 
 	$o='iderie';

@@ -205,7 +205,7 @@ function cmp_etnias(){
 
 
 	$o='seguaic';
-	$c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES DNT - POS HOSPITALIZACIÓN',$w);
+	$c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES DNT - POS HOSPITALIZACIÓN UAIC',$w);
 
 
 	$c[]=new cmp($o,'e',null,'Aspectos Finales',$w);

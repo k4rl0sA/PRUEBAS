@@ -66,7 +66,7 @@ function lis_deriva(){
 	 WHERE 1 ".whe_deriva()." 
 	 ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo $sql;
+	echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"deriva",$regxPag,"lib.php");
 }

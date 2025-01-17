@@ -215,6 +215,8 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha_Nutri7','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 7 Días','fecha_Nutri7',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('fecha_Nutri15','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 15 Días','fecha_Nutri15',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('fecha_Nutri30','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 30 Días','fecha_Nutri30',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+	$c[]=new cmp('est_pr','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_sg','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg',null,null,true,true,'','col-2');
 
 
 	

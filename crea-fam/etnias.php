@@ -222,7 +222,10 @@ function cmp_etnias(){
 	$c[]=new cmp('ctrl','d','10',$d,$w.' '.$o,'Control','ctrl',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('est_pr','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr',null,null,true,true,'','col-2');
 	$c[]=new cmp('est_sg','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_sg','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_sg',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_tr','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_tr',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_pr2','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr2',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_sg2','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg2',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_tr2','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_tr2',null,null,true,true,'','col-2');
 
 
 	

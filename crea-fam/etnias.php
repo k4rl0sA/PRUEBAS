@@ -213,8 +213,8 @@ function cmp_etnias(){
 	$c[]=new cmp('segclasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-2');
 	$c[]=new cmp('ftlc','t','100',$d,$w.' '.$o,'Tiene FTLC u otro APME (Cual)','ftlc',null,null,true,true,'','col-3');
 	$c[]=new cmp('fecha_Nutri7','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 7 Días','fecha_Nutri7',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('fecha_Nutri15','d','10',$d,$w.' '.$o,'Cita con nutricion o pediatria a los 15 dias','fecha_Nutri15',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('fecha_Nutri30','d','10',$d,$w.' '.$o,'Cita con nutricion o pediatria a los 30 dias','fecha_Nutri30',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+	$c[]=new cmp('fecha_Nutri15','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 15 Días','fecha_Nutri15',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+	$c[]=new cmp('fecha_Nutri30','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 30 Días','fecha_Nutri30',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 
 
 	

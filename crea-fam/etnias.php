@@ -209,7 +209,7 @@ function cmp_etnias(){
 	$c[]=new cmp('Segdnt','s','3',$d,$w.'  '.$o,'Seguimiento Menores con  DNT','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('segpeso','sd',6, $d,$w.' '.$z.' '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','###.##',true,true,'','col-2',"valPeso('peso');Zsco('zscore','etnias.php');calImc('peso','talla','imc');");
 	$c[]=new cmp('segtalla','sd',5, $d,$w.' '.$z.' '.$o,'Talla (Cm) Mín=20 - Máx=210','fta','rgxtalla','###.#',true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','etnias.php');valTalla('talla');");
-	$c[]=new cmp('segzscore','t',15,'',$w.' '.$o,'Z-score Peso/Talla','des',null,null,false,false,'','col-35');
+	$c[]=new cmp('segzscore','t',15,'',$w.' '.$o,'Z-score Peso/Talla','des',null,null,false,false,'','col-4');
 	$c[]=new cmp('segclasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-2');
 	$c[]=new cmp('ftlc','t','100',$d,$w.' '.$o,'Tiene FTLC u otro APME (Cual)','ftlc',null,null,true,true,'','col-3');
 	$c[]=new cmp('fecha_Nutri','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 7 Días','fecha_Nutri',null,null,true,true,'','col-2',"validDate(this,$days,0);");

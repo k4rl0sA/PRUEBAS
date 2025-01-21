@@ -172,7 +172,7 @@ function men_tamzung(){
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = ""; 
 	$acc=rol($a);
-	/*if ($a=='homes' && isset($acc['crear']) && $acc['crear']=='SI') {  
+	if ($a=='homes' && isset($acc['crear']) && $acc['crear']=='SI') {  
 		$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	  //   $rta .= "<li class='icono $a exportar'       title='Exportar'    Onclick=\"csv('$a');\"></li>"; 
 		$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
@@ -203,7 +203,7 @@ function men_tamzung(){
 			  $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
 			  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
 	  
-		  }*/
+		  }
 	return $rta;
   }
    

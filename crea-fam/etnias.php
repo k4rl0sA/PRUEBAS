@@ -80,7 +80,6 @@ function cmp_etnias(){
 
 	$o='iderie';
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIÓN DEL RIESGO',$w);
-	$c[]=new cmp('idsesetn','h',15,$_POST['id'],$w.' '.$o,'id','idg',null,'####',false,false);
 	$c[]=new cmp('des_sin','t','100',$d,$w.' '.$o,'Lider Con El Que Se Identifica La Familia','des_sin',null,null,true,true,'','col-35');
 	$c[]=new cmp('ser_edu','s','3',$d,$w.' '.$o,'Esta Vinculado (a) A Servicios De Educación','rta',null,null,true,true,'','col-3');
 	$c[]=new cmp('ent_esp','s','3',$d,$w.' '.$o,'¿Entiende Castellano - Español?','rta',null,null,true,true,'','col-3');

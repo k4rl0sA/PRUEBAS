@@ -214,16 +214,16 @@ function cmp_etnias(){
 	$c[]=new cmp('fecha_Nutri7','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 7 Días','fecha_Nutri7',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('fecha_Nutri15','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 15 Días','fecha_Nutri15',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('fecha_Nutri30','d','10',$d,$w.' '.$o,'Cita con Nutrición o Pediatria a los 30 Días','fecha_Nutri30',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('est_pr1','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_sg1','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_pr1','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr1',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_sg1','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg1',null,null,true,true,'','col-2');
 
 	$c[]=new cmp('ctrlpos','s','3',$d,$w.'  '.$o,'Tiene ControlPost-Hospitalizacion','rta',null,null,true,true,'','col-2');
 	$c[]=new cmp('ctrl','d','10',$d,$w.' '.$o,'Control','ctrl',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('est_pr2','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_sg2','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_tr1','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_tr',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_pr3','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr2',null,null,true,true,'','col-2');
-	$c[]=new cmp('est_sg3','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg2',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_pr2','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr2',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_sg2','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg2',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_tr1','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_tr1',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_pr3','t','100',$d,$w.' '.$o,'Estado Primer seguimiento','est_pr3',null,null,true,true,'','col-2');
+	$c[]=new cmp('est_sg3','t','100',$d,$w.' '.$o,'Estado Segundo seguimiento','est_sg3',null,null,true,true,'','col-2');
 	$c[]=new cmp('est_tr2','t','100',$d,$w.' '.$o,'Estado Tercer seguimiento','est_tr2',null,null,true,true,'','col-2');
 
 

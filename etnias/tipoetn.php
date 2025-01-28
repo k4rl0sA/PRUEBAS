@@ -61,12 +61,11 @@ $pag=(isset($_POST['pag-ethnicity']))? ($_POST['pag-ethnicity']-1)* $regxPag:0;
 function cmp_ethnicity(){
   $rta="";
   $w="placuifam";
-	$o='accide';
   $t=['id_acc'=>'','idpeople'=>'','accion'=>'','fecha_acc'=>'']; 
-	$e="";
 	$key='pln';
 	$o='ethnicity';
 	$days=fechas_app('vivienda');
+  $d=get_ethnicity();
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('id_acc','n',11,$d['id_acc'],$w.' '.$o,'Id de Acc','id_acc',null,null,true,true,'','col-2');

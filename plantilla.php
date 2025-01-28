@@ -65,6 +65,8 @@ function cmp_groupEtnico(){
 	$e="";
 	$key='pln';
 	$o='groupEtnico';
+  $t=['id'=>'']; 
+	$d=get_groupEtnico();
 	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);

@@ -109,7 +109,7 @@ function lis_eventos(){
 function cmp_vspeve(){
 	$rta="<div class='encabezado medid'>TABLA DE EVENTOS POR USUARIO</div>
 	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>";
-	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>'']; 
+	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
 	$d=get_persona();
 	if ($d==""){$d=$t;}
 	$e="";

@@ -937,7 +937,7 @@ function formato_dato($a,$b,$c,$d){
 			if (psiSesFin($c['ACCIONES'])) {
 				$rta .= acceso('psicologia') ? "<li title='Sesión final' onclick=\"mostrar('sesion_fin','pro',event,'','../psicologia/lib.php',7,'sesion_fin');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
-			$rta.=(acceso('etnias')) ? "<li title='Etnias' Onclick=\"mostrar('etnias','pro',event,'','etnias.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-arrows ico' id='".$c['ACCIONES']."' ></i></li>":'';
+			$rta.=(acceso('etnias')) ? "<li title='Etnias' Onclick=\"mostrar('etnias','pro',event,'','../etnias/tipoetn.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-arrows ico' id='".$c['ACCIONES']."' ></i></li>":'';
 	}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

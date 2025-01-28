@@ -120,7 +120,7 @@ return $rta;
           // print_r($id);
           $sql="SELECT id_acc,idpeople,accion,fecha_acc
                 FROM acc_indigenas 
-                WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+                WHERE id_acc='{$id[0]}'";
           $info=datos_mysql($sql);
            return json_encode($info['responseResult'][0]);
             } 

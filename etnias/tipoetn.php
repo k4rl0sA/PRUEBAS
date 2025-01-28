@@ -62,6 +62,7 @@ function cmp_ethnicity(){
   $rta="";
   $w="placuifam";
 	$o='accide';
+  $t=['id_acc'=>'','idpeople'=>'','accion'=>'','fecha_acc'=>'']; 
 	$e="";
 	$key='pln';
 	$o='ethnicity';

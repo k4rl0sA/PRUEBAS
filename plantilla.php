@@ -69,7 +69,7 @@ function cmp_groupEtnico(){
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-5',"validDate(this,$days,0);");
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-5');
+	$c[]=new cmp('ejemplo','s','3',$e,$w.' '.$o,'Perfil que concerta','ejemplo',null,null,true,true,'','col-5');
   $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
@@ -125,6 +125,9 @@ return $rta;
         
 	}
 
+  function opc_ejemplo  ($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+	}
  
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

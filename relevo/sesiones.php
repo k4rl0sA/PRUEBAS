@@ -28,7 +28,7 @@ function lis_session(){
 	$regxPag=3;
 	$pag=(isset($_POST['pag-session']))? ($_POST['pag-session']-1)* $regxPag:0;
 
-	$sql="SELECT idsesion ACCIONES,`rel_validacion1` Sesion, `rel_validacion2` Fecha,rel_validacion3 perfil,FN_CATALOGODESC(301,`rel_validacion4`) Actividad,`rel_validacion5`
+	$sql="SELECT idsesion ACCIONES,idsesion Cod Registro,`rel_validacion1` Sesion, `rel_validacion2` Fecha,rel_validacion3 perfil,FN_CATALOGODESC(301,`rel_validacion4`) Actividad,`rel_validacion5`
   	descripcion 
 	FROM `rel_sesion`
 	WHERE id_people='{$id[0]}'";

@@ -66,11 +66,13 @@ function cmp_ethnicity(){
 	$key='pln';
 	$o='ethnicity';
 	$days=fechas_app('vivienda');
+  var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-  $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-  $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-5',"validDate(this,$days,0);");
-	$c[]=new cmp('equipo','s','3',$e,$w.' '.$o,'Perfil que concerta','equipo',null,null,true,true,'','col-5');
-  $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
+  $c[]=new cmp('id_acc','n',11,$d['id_acc'],$w.' '.$o,'Id de Acc','id_acc',null,null,true,true,'','col-2');
+  $c[]=new cmp('idpeople','t',18,$_POST['id'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
+  $c[]=new cmp('accion','s',3,$d['accion'],$w.' '.$o,'Accion','accion',null,null,true,true,'','col-2');
+  $c[]=new cmp('fecha_acc','d',10,$d['fecha_acc'],$w.' '.$o,'Fecha de Acc','fecha_acc',null,null,true,true,'','col-2');
+  // $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='ethnicity-lis' >".lis_ethnicity()."</div></div>";

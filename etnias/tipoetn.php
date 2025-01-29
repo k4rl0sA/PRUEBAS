@@ -47,7 +47,7 @@ $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-ethnicity']))? ($_POST['pag-ethnicity']-1)* $regxPag:0;
 
-    $sql="SELECT concat(id_acc,'_',idpeople) ACCIONES,id_acc 'Cod Registro', accion Grupo,fecha_acc Fecha
+    $sql="SELECT id_acc 'Cod Registro', FN_CATALOGODESC(255,accion) Grupo,fecha_acc Fecha
         FROM `acc_indigenas` 
             WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";

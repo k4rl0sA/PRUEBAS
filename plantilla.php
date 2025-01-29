@@ -112,22 +112,20 @@ function gra_groupEtnico(){
 return $rta;
 }
 
-
-	function get_groupEtnico(){
-        if($_REQUEST['id']==''){
-          return "";
-        }else{
-          // print_r($_POST);
-          $id=divide($_REQUEST['id']);
-          // print_r($id);
-          $sql="SELECT concat(key1,'_',key2) 'id'
-                FROM `tabla` 
-                WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
-          $info=datos_mysql($sql);
-           return json_encode($info['responseResult'][0]);
-            } 
-        
-	}
+function get_groupEtnico(){
+  if($_REQUEST['id']==''){
+    return "";
+  }else{
+    // print_r($_POST);
+    $id=divide($_REQUEST['id']);
+    // print_r($id);
+    $sql="SELECT concat(key1,'_',key2) 'id'
+          FROM `tabla` 
+          WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+    $info=datos_mysql($sql);
+     return json_encode($info['responseResult'][0]);
+      } 
+}
 
   function opc_ejemplo($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);

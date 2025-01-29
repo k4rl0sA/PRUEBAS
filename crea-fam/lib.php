@@ -858,7 +858,7 @@ function psiSesFin($id) {
 
 function ember($id) {
     $id = divide($id);
-    $sql = "SELECT COUNT(*) AS Embera from acc_indigenas WHERE idpeople=$id[0]";
+    $sql = "SELECT COUNT(*) AS Embera from acc_indigenas WHERE idpeople=$id[0] and accion=1";
     $info = datos_mysql($sql);
 	// var_dump($info);
 	if(intval($info['responseResult'][0]["Embera"])==1){
@@ -869,16 +869,11 @@ function ember($id) {
 }
 
 function uaic($id) {
-    $id = divide($id);
-    $sql = "SELECT COUNT(*) AS totSes,
-		(SELECT COUNT(id_people) from `psi_sesiones`  
-		WHERE id_people=$id[0] AND psi_validacion17=5) as cierre
-		FROM `psi_sesiones` p WHERE id_people=$id[0]";
-		// var_dump($sql);
+	$id = divide($id);
+    $sql = "SELECT COUNT(*) AS uaic from acc_indigenas WHERE idpeople=$id[0] and accion=2";
     $info = datos_mysql($sql);
 	// var_dump($info);
-	if(intval($info['responseResult'][0]["totSes"]>1) && 
-		intval($info['responseResult'][0]["cierre"]=1)){
+	if(intval($info['responseResult'][0]["uaic"])==1){
 		return true;
 	}else{
 		return false;

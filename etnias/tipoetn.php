@@ -83,31 +83,18 @@ function cmp_ethnicity(){
 function gra_ethnicity(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
-    if(COUNT($id)==1){
-      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO acc_indigenas VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fecha']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
+        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
       $rta = mysql_prepd($sql, $params);
-    }else{
-   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
-    $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
-      ];
-      $rta = mysql_prepd($sql, $params); */
-    }
 return $rta;
 }
 

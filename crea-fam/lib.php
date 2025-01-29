@@ -856,6 +856,36 @@ function psiSesFin($id) {
 	}
 }
 
+function ember($id) {
+    $id = divide($id);
+    $sql = "SELECT COUNT(*) AS Embera from acc_indigenas WHERE idpeople=$id[0]";
+    $info = datos_mysql($sql);
+	// var_dump($info);
+	if(intval($info['responseResult'][0]["Embera"])==1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function uaic($id) {
+    $id = divide($id);
+    $sql = "SELECT COUNT(*) AS totSes,
+		(SELECT COUNT(id_people) from `psi_sesiones`  
+		WHERE id_people=$id[0] AND psi_validacion17=5) as cierre
+		FROM `psi_sesiones` p WHERE id_people=$id[0]";
+		// var_dump($sql);
+    $info = datos_mysql($sql);
+	// var_dump($info);
+	if(intval($info['responseResult'][0]["totSes"]>1) && 
+		intval($info['responseResult'][0]["cierre"]=1)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
@@ -938,6 +968,11 @@ function formato_dato($a,$b,$c,$d){
 				$rta .= acceso('psicologia') ? "<li title='Sesión final' onclick=\"mostrar('sesion_fin','pro',event,'','../psicologia/lib.php',7,'sesion_fin');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 			$rta.=(acceso('etnias')) ? "<li title='Etnias' Onclick=\"mostrar('ethnicity','pro',event,'','../etnias/tipoetn.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-arrows ico' id='".$c['ACCIONES']."' ></i></li>":'';
+			if (ember($c['ACCIONES'])) {
+				$rta .= acceso('ember') ? "<li title='Grupo Embera' onclick=\"mostrar('sesion_fin','pro',event,'','../etnias/ember.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}if (uaic($c['ACCIONES'])) {
+				$rta .= acceso('uaic') ? "<li title='Grupo UAIC' onclick=\"mostrar('sesion_fin','pro',event,'','../etnias/uaic.php',7,'guaic');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+			}
 	}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
@@ -947,8 +982,6 @@ function formato_dato($a,$b,$c,$d){
 			$rta="<nav class='menu right'>";
 				$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,1000,'planDcui',event,this,['id','fecha_caracteriza']);\"></li>";  //   act_lista(f,this);
 		} 
-		
-		
 return $rta;
 }
 

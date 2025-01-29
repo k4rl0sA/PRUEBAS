@@ -130,17 +130,14 @@ function opc_accion($id=''){
           $info=datos_mysql($sql);
            return json_encode($info['responseResult'][0]);
             } 
-        
 	}
 
- 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];
         // var_dump($a);
 		if ($a=='ethnicity' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-				
 			}
 		return $rta;
 	}

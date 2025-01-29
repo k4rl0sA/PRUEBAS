@@ -65,11 +65,10 @@ function cmp_groupEtnico(){
 	$e="";
 	$key='pln';
 	$o='groupEtnico';
-  $t=['id'=>''];
   $d='';
-  // $d=get_ethnicity();
+  $d=($d=="")?$d=$t:$d;
+  $days=fechas_app('VSP');
   var_dump($_POST);
-	$days=fechas_app('vivienda');
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha','d','3',$e,$w.' '.$o,'Fecha de concertación','fecha',null,null,true,true,'','col-5',"validDate(this,$days,0);");
@@ -130,7 +129,7 @@ function get_groupEtnico(){
   function opc_ejemplo($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 	}
- 
+
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];

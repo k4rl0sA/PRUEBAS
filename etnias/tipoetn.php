@@ -114,7 +114,7 @@ return $rta;
 
 
 function opc_accion($id=''){
-  return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=255 and estado='A' ORDER BY 1',$id);
+  return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=255 and estado="A" ORDER BY 1',$id);
 }
 
 	function get_ethnicity(){

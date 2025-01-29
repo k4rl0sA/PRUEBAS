@@ -49,7 +49,7 @@ $pag=(isset($_POST['pag-ethnicity']))? ($_POST['pag-ethnicity']-1)* $regxPag:0;
 
     $sql="SELECT concat(id_acc,'_',idpeople) ACCIONES,id_acc 'Cod Registro', accion Grupo,fecha_acc Fecha
         FROM `acc_indigenas` 
-            WHERE id_acc='".$id[0];
+            WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;

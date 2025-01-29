@@ -83,12 +83,12 @@ function cmp_ethnicity(){
 function gra_ethnicity(){
 	$id=divide($_POST['id_acc']);
     // var_dump(COUNT($id));
-      $sql = "INSERT INTO acc_indigenas VALUES (?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(), INTERVAL 5 HOUR),'','','A')";
+      $sql = "INSERT INTO acc_indigenas VALUES (?,?,?,,DATE_SUB(NOW(), INTERVAL 5 HOUR),'','','A')";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['fecha']]
-      ];
+        ['type' => 's', 'value' => $_POST['fecha']],
+        ['type' => 's', 'value' => $_SESSION['us_sds']]];
       $rta = mysql_prepd($sql, $params);
 return $rta;
 }

@@ -66,6 +66,7 @@ function cmp_ethnicity(){
 	$days=fechas_app('vivienda');
   $d='';
   $d=($d=="")?$d=$t:$d;
+  $days=fechas_app('ETNIAS');
   // $d=get_ethnicity();
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);

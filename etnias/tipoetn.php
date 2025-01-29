@@ -68,7 +68,7 @@ function cmp_ethnicity(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   // $d=get_ethnicity();
-  var_dump($_POST);
+  // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('id_acc','h',11,$_POST['id'],$w.' '.$o,'Id de Acc','id_acc',null,null,true,true,'','col-2');
   $c[]=new cmp('idpeople','t',18,$d['idpeople'],$w.' '.$o,'Numero de Documento','idpeople',null,null,true,true,'','col-2');

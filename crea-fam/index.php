@@ -153,7 +153,8 @@ function grabar(tb='',ev){
 	'tamWhodas':'../whodas/lib.php',
 	'tamBarthel':'../barthel/lib.php',
 	'tamzarit':'../zarit/lib.php',
-  'etnias':'etnias.php'
+  'etnias':'etnias.php',
+  'ethnicity':'../etnias/tipoetn.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

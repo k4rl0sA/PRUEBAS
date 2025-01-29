@@ -87,7 +87,7 @@ function gra_ethnicity(){
       $params = [
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['accion']],
-        ['type' => 's', 'value' => $_POST['fecha']],
+        ['type' => 's', 'value' => $_POST['fecha_acc']],
         ['type' => 's', 'value' => $_SESSION['us_sds']]];
       $rta = mysql_prepd($sql, $params);
 return $rta;

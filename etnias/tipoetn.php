@@ -73,7 +73,7 @@ function cmp_ethnicity(){
   $c[]=new cmp('id_acc','h',11,$_POST['id'],$w.' '.$o,'Id de Acc','id_acc',null,null,true,true,'','col-2');
   $c[]=new cmp('idpeople','t',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
   $c[]=new cmp('accion','s',3,$d['accion'],$w.' '.$o,'Grupo','accion',null,null,true,true,'','col-2');
-  $c[]=new cmp('fecha_acc','d',10,$d['fecha_acc'],$w.' '.$o,'Fecha de Acc','fecha_acc',null,null,true,true,'','col-2');
+  $c[]=new cmp('fecha_acc','d',10,$d['fecha_acc'],$w.' '.$o,'Fecha de Acc','fecha_acc',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   // $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>

@@ -199,7 +199,7 @@ function men_signos(){
 		$fre=$_POST['frecard']?? null;
 		$sat=$_POST['satoxi']?? null;
 		$abd=$_POST['peri_abdomi']?? null;
-		$bra=$_POST['peri_braq']?? null;
+		$bra=$_POST['perime_braq']?? null;
 		$zsco=explode("=",$_POST['zscore']?? null);
 		$z1=$zsco[0]??null;
 		$z2=$zsco[1]??null;

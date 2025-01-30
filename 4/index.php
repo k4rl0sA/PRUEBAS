@@ -7,16 +7,12 @@
 </head>
 <body>
     <h1>Gestión de Eventos y Exportación de Datos</h1>
-
     <button id="exportarBtn">Exportar Datos</button>
-
     <!-- Script para manejar la exportación de datos -->
     <script>
         let Exec = false;
-
         // Definir un Map que mapea tipos de eventos a otro Map que mapea selectores a funciones específicas
         const eventHandlers = new Map();
-
         // Añadir manejadores para diferentes elementos y eventos
         function addEventHandler(selector, eventType, handler, options = {}) {
             if (!eventHandlers.has(eventType)) {
@@ -28,7 +24,6 @@
             }
             eventMap.get(selector).push({ handler, options });
         }
-
         // Manejador para el botón de exportar datos
         addEventHandler('#exportarBtn', 'click', function(event) {
             Exec=true;
@@ -36,13 +31,11 @@
             exportarDatos('exp_datos');
             Exec=false;
         });
-
         // Función para exportar datos utilizando fetch
         function exportarDatos(funcion) {
             if(Exec){
             // Construir la URL para la petición a lib.php
             const url = `lib.php?funcion=${funcion}`;
-
             // Opciones para la petición fetch
             const fetchOptions = {
                 method: 'GET', // Método GET para este ejemplo
@@ -50,7 +43,6 @@
                     'Content-Type': 'application/vnd.ms-excel' // Tipo de contenido Excel
                 }
             };
-
             fetch(url, fetchOptions)
                 .then(response => {
                     if (!response.ok) {
@@ -71,8 +63,6 @@
                 .catch(error => console.error('Error:', error));
             }
         }
-
-
         // Agregar un único listener para una lista ampliada de eventos de interés
         const eventTypes = ['click', 'mouseover', 'input', 'focus', 'blur', 'change', 'keydown', 'keyup', 'submit'];
         eventTypes.forEach(eventType => {
@@ -80,7 +70,6 @@
                 handleEvent(event, eventType);
             });
         });
-
         // Función para manejar el evento
         function handleEvent(event, eventType) {
             const target = event.target;

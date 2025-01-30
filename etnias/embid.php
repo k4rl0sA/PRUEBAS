@@ -19,31 +19,31 @@ else {
   }   
 }
 
-function focus_groupEtnico(){
-	return 'groupEtnico';
+function focus_emb_Id(){
+	return 'emb_Id';
    }
    
-   function men_groupEtnico(){
-	$rta=cap_menus('groupEtnico','pro');
+   function men_emb_Id(){
+	$rta=cap_menus('emb_Id','pro');
 	return $rta;
    }
    
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
-	   if ($a=='groupEtnico'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+	   if ($a=='emb_Id'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 
 	   }
   return $rta;
 }
-function lis_groupEtnico(){
+function lis_emb_Id(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-emb_Id']))? ($_POST['pag-emb_Id']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
         FROM `tabla` 
@@ -52,17 +52,17 @@ $pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"groupEtnico",$regxPag,'plncon.php');
+        return create_table($total,$datos["responseResult"],"emb_Id",$regxPag,'plncon.php');
 }
 
 
-function cmp_groupEtnico(){
+function cmp_emb_Id(){
   $rta="";
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";
 	$key='pln';
-	$o='groupEtnico';
+	$o='emb_Id';
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
@@ -78,11 +78,11 @@ function cmp_groupEtnico(){
     $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque','enfoque',null,null,true,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='groupEtnico-lis' >".lis_groupEtnico()."</div></div>";
+	<div class='contenido' id='emb_Id-lis' >".lis_emb_Id()."</div></div>";
 	return $rta;
 }
 
-function gra_groupEtnico(){
+function gra_emb_Id(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
@@ -113,7 +113,7 @@ function gra_groupEtnico(){
 return $rta;
 }
 
-function get_groupEtnico(){
+function get_emb_Id(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -136,7 +136,7 @@ function get_groupEtnico(){
 		$b=strtolower($b);
 		$rta=$c[$d];
         // var_dump($a);
-		if ($a=='groupEtnico' && $b=='acciones'){
+		if ($a=='emb_Id' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				
 			}

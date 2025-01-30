@@ -59,7 +59,7 @@ $pag=(isset($_POST['pag-emb_Id']))? ($_POST['pag-emb_Id']-1)* $regxPag:0;
 function cmp_emb_Id(){
   $rta="";
   $w="placuifam";
-	$t=['id'=>'']; 
+	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>'']; 
 	$e="";
 	$key='pln';
 	$o='emb_Id';
@@ -69,7 +69,6 @@ function cmp_emb_Id(){
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'IDENTIFICACION DEL RIESGO',$w);
     $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-    $c[]=new cmp('idpeople','n',10,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2');
     $c[]=new cmp('lider','t',50,$d['lider'],$w.' '.$o,'Lider','lider',null,null,true,true,'','col-2');
     $c[]=new cmp('educacion','o',2,$d['educacion'],$w.' '.$o,'Educacion','educacion',null,null,true,true,'','col-2');

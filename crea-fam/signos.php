@@ -192,7 +192,7 @@ function men_signos(){
    }
 
 	function gra_signos(){
-		// var_dump($_POST);
+		var_dump($_POST);
 		$id=divide($_POST['idp']);
 		$tas=$_POST['tas'] ?? null;
 		$tad=$_POST['tad'] ?? null;

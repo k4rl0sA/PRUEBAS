@@ -40,14 +40,14 @@ function focus_emb_Id(){
 function lis_emb_Id(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
+$info=datos_mysql("SELECT COUNT(*) total FROM etn_riesgo WHERE idriesgo=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-emb_Id']))? ($_POST['pag-emb_Id']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
-        FROM `tabla` 
-            WHERE key1='".$id[0];
+        FROM `etn_riesgo` 
+            WHERE idriesgo='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;

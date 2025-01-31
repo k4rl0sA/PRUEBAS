@@ -49,7 +49,7 @@ function cmp_emb_Id(){
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
-//   var_dump($_POST);
+  var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
@@ -64,9 +64,9 @@ function cmp_emb_Id(){
 
 function gra_emb_Id(){
 	$id=divide($_POST['idp']);
-    // var_dump(COUNT($id));
+    var_dump($_POST);
     if(COUNT($id)==1){
-      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
@@ -79,17 +79,16 @@ function gra_emb_Id(){
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
-      $rta = mysql_prepd($sql, $params);
     }else{
-   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   $sql="UPDATE etn_identi SET  idpeople=?,fechavisi=?,lider=?,educacion=?,espanol=?,saberes=?,enfoque=?,usu_creo=?,fecha_create=?,usu_update=?,fecha_update=?,WHERE idriesgo=?";
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
-      $rta = mysql_prepd($sql, $params); */
     }
+    $rta = mysql_prepd($sql, $params); */
 return $rta;
 }
 
@@ -100,9 +99,9 @@ function get_emb_Id(){
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT concat(key1,'_',key2) 'id'
-          FROM `tabla` 
-          WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+    $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
+          FROM `etn_identi` 
+          WHERE idriesgo='{$id[0]}'";
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

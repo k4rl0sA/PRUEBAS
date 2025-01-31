@@ -37,22 +37,6 @@ function focus_emb_Id(){
 	   }
   return $rta;
 }
-function lis_emb_Id(){
-    // print_r($_POST);
-    $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM etn_riesgo WHERE idriesgo=".$id[0]."");
-$total=$info['responseResult'][0]['total'];
-$regxPag=5;
-$pag=(isset($_POST['pag-emb_Id']))? ($_POST['pag-emb_Id']-1)* $regxPag:0;
-    $sql="SELECT idriesgo ACCIONES
-        FROM `etn_riesgo` 
-            WHERE idriesgo='".$id[0];
-        $sql.="' ORDER BY fecha_create";
-        $sql.=' LIMIT '.$pag.','.$regxPag;
-        //  echo $sql;
-        $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"emb_Id",$regxPag,'plncon.php');
-}
 
 
 function cmp_emb_Id(){
@@ -75,8 +59,6 @@ function cmp_emb_Id(){
     $c[]=new cmp('saberes','s',3,$d['saberes'],$w.' '.$o,'Saberes','saberes',null,null,true,true,'','col-15');
     $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque','enfoque',null,null,true,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='emb_Id-lis' >".lis_emb_Id()."</div></div>";
 	return $rta;
 }
 

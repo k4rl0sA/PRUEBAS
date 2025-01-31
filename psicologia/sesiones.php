@@ -173,7 +173,7 @@ function gra_sesiones_psi(){
 	} elseif(count($idpsi) ==2){
 		$nuse=numSess($idpsi[0]);
 
-		$sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+		$sql = "INSERT INTO psi_sesiones VALUES(?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
 		$params = [
 		['type' => 'i', 'value' => NULL],
 		['type' => 's', 'value' => $idpsi[0]],

@@ -66,7 +66,7 @@ function cmp_emb_Id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
 //   var_dump($_POST);
-	$c[]=new cmp($o,'e',null,'IDENTIFICACION',$w);
+	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2');
     $c[]=new cmp('lider','t',50,$d['lider'],$w.' '.$o,'Lider','lider',null,null,true,true,'','col-2');

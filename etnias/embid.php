@@ -52,12 +52,12 @@ function cmp_emb_Id(){
   var_dump($d);
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-  /*   $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
+    $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('lider','t',100,$d['lider'],$w.' '.$o,'Lider','lider',null,null,true,true,'','col-3');
     $c[]=new cmp('educacion','o',2,$d['educacion'],$w.' '.$o,'Educacion','educacion',null,null,true,true,'','col-1');
     $c[]=new cmp('espanol','o',2,$d['espanol'],$w.' '.$o,'Espanol','espanol',null,null,true,true,'','col-1');
     $c[]=new cmp('saberes','s',3,$d['saberes'],$w.' '.$o,'Saberes','saberes',null,null,true,true,'','col-15');
-    $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque','enfoque',null,null,true,true,'','col-15'); */
+    $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque','enfoque',null,null,true,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -65,7 +65,7 @@ function cmp_emb_Id(){
 function gra_emb_Id(){
 	$id=divide($_POST['id']);
     var_dump($_POST);
-    if(COUNT($id)==1){
+    if(COUNT($id)==2){
       $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
@@ -93,10 +93,10 @@ return $rta;
 }
 
 function get_emb_Id(){
-  if($_POST['id']==0){
+	if($_REQUEST['id']==''){
 		return "";
 	}else{
-    $id=divide($_POST['id']);
+		$id=divide($_REQUEST['id']);
     print_r($id);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 

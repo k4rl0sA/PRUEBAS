@@ -37,9 +37,8 @@ function focus_cronicos(){
    $acc=rol($a);
    if ($a=='cronicos' && isset($acc['crear']) && $acc['crear']=='SI') {  
     $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-  //   $rta .= "<li class='icono $a exportar'       title='Exportar'    Onclick=\"csv('$a');\"></li>"; 
-    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
      }
+   $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
    return $rta;
  }
 

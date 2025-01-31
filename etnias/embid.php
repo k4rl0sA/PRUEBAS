@@ -98,7 +98,7 @@ function get_emb_Id(){
   if($_REQUEST['id']==''){
     return "";
   }else{
-    // print_r($_POST);
+    print_r($_REQUEST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque

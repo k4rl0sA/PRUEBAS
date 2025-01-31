@@ -44,8 +44,7 @@ $info=datos_mysql("SELECT COUNT(*) total FROM etn_riesgo WHERE idriesgo=".$id[0]
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-emb_Id']))? ($_POST['pag-emb_Id']-1)* $regxPag:0;
-
-    $sql="SELECT concat(key1,'_',key2) ACCIONES
+    $sql="SELECT idriesgo ACCIONES
         FROM `etn_riesgo` 
             WHERE idriesgo='".$id[0];
         $sql.="' ORDER BY fecha_create";

@@ -127,7 +127,7 @@ function get_emb_Id(){
       } 
 }
 
-function opc_cambiar($id=''){
+function opc_saberes($id=''){
     return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=256 and estado="A" ORDER BY 1',$id);
 }
   

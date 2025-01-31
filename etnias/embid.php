@@ -46,12 +46,14 @@ function cmp_emb_Id(){
 	$e="";
 	$key='pln';
 	$o='emb_Id';
-  $d='';
+  $d=get_emb_Id();
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
+
+  $keys=$_POST['id'];
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
-    $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
+    $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('lider','t',100,$d['lider'],$w.' '.$o,'Lider','lider',null,null,true,true,'','col-3');
     $c[]=new cmp('educacion','o',2,$d['educacion'],$w.' '.$o,'Educacion','educacion',null,null,true,true,'','col-1');
@@ -63,7 +65,7 @@ function cmp_emb_Id(){
 }
 
 function gra_emb_Id(){
-	$id=divide($_POST['idp']);
+	$id=divide($_POST['id']);
     var_dump($_POST);
     if(COUNT($id)==1){
       $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?)";

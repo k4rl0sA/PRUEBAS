@@ -50,7 +50,6 @@ function cmp_emb_Id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
-
   $keys=$_POST['id'];
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
@@ -103,7 +102,7 @@ function get_emb_Id(){
     // print_r($id);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 
-          WHERE idriesgo='{$id[0]}'";
+          WHERE idpeople='{$id[0]}'";
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

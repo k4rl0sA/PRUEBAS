@@ -50,7 +50,6 @@ function cmp_emb_Id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
-  $keys=$_POST['id'];
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
@@ -97,7 +96,6 @@ function get_emb_Id(){
   if($_REQUEST['id']==''){
     return "";
   }else{
-    print_r($_REQUEST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque

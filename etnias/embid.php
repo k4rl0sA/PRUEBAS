@@ -97,7 +97,7 @@ function get_emb_Id(){
 		return "";
 	}else{
     $id=divide($_POST['id']);
-    // print_r($id);
+    print_r($id);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 
           WHERE idpeople='{$id[0]}'";

@@ -88,7 +88,7 @@ function gra_emb_Id(){
         ['type' => 'i', 'value' => $id[1]]
       ];
     }
-    $rta = mysql_prepd($sql, $params); */
+    $rta = mysql_prepd($sql, $params);
 return $rta;
 }
 

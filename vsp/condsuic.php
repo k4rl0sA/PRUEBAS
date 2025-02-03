@@ -32,10 +32,14 @@ function focus_condsuic(){
  
  
  function cap_menus($a,$b='cap',$con='con') {
-   $rta = ""; 
-   $acc=rol($a);
-   return $rta;
- }
+  $rta = "";
+  $acc=rol($a);
+  if ($a=='condsuic' && isset($acc['crear']) && $acc['crear']=='SI') {  
+   $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+    }
+  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
+  return $rta;
+}
 
 
  function lis_condsuic(){

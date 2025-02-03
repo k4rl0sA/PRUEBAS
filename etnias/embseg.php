@@ -20,32 +20,32 @@ else {
 }
 
 
-function focus_groupEtnico(){
-	return 'groupEtnico';
+function focus_segnoreg(){
+	return 'segnoreg';
    }
    
    
-   function men_groupEtnico(){
-	$rta=cap_menus('groupEtnico','pro');
+   function men_segnoreg(){
+	$rta=cap_menus('segnoreg','pro');
 	return $rta;
    }
    
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
-	   if ($a=='groupEtnico'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+	   if ($a=='segnoreg'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 
 	   }
   return $rta;
 }
-function lis_groupEtnico(){
+function lis_segnoreg(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
         FROM `tabla` 
@@ -54,17 +54,17 @@ $pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"groupEtnico",$regxPag,'plncon.php');
+        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'plncon.php');
 }
 
 
-function cmp_groupEtnico(){
+function cmp_segnoreg(){
   $rta="";
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";
 	$key='pln';
-	$o='groupEtnico';
+	$o='segnoreg';
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('VSP');
@@ -76,11 +76,11 @@ function cmp_groupEtnico(){
   $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='groupEtnico-lis' >".lis_groupEtnico()."</div></div>";
+	<div class='contenido' id='segnoreg-lis' >".lis_segnoreg()."</div></div>";
 	return $rta;
 }
 
-function gra_groupEtnico(){
+function gra_segnoreg(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
@@ -111,7 +111,7 @@ function gra_groupEtnico(){
 return $rta;
 }
 
-function get_groupEtnico(){
+function get_segnoreg(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -134,7 +134,7 @@ function get_groupEtnico(){
 		$b=strtolower($b);
 		$rta=$c[$d];
         // var_dump($a);
-		if ($a=='groupEtnico' && $b=='acciones'){
+		if ($a=='segnoreg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				
 			}

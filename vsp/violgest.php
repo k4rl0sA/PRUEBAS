@@ -29,42 +29,14 @@ function focus_violgest(){
  }
  
  function cap_menus($a,$b='cap',$con='con') {
-   $rta = ""; 
-   $acc=rol($a);
-   if ($a=='homes' && isset($acc['crear']) && $acc['crear']=='SI') {  
-    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-  //   $rta .= "<li class='icono $a exportar'       title='Exportar'    Onclick=\"csv('$a');\"></li>"; 
-    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
-     }
-     if ($a=='person' && isset($acc['crear']) && $acc['crear']=='SI') {  
-  
-    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-    // $rta .= "<li class='icono $a exportar'       title='Exportar'    Onclick=\"csv('$a');\"></li>"; 
-    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
+  $rta = "";
+  $acc=rol($a);
+  if ($a=='violgest' && isset($acc['crear']) && $acc['crear']=='SI') {  
+   $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     }
-    if($a=='atencion' && isset($acc['crear']) && $acc['crear']=='SI'){
-      $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-      $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
-    }
-      if($a=='eac_juventud' && isset($acc['crear']) && $acc['crear']=='SI'){
-      $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-      $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
-    }
-    if($a=='eac_adultez' && isset($acc['crear']) && $acc['crear']=='SI'){
-      $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-      $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
-    }
-    if($a=='eac_vejez' && isset($acc['crear']) && $acc['crear']=='SI'){
-      $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-      $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  
-    }
-   return $rta;
- }
+  $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
+  return $rta;
+}
 
  FUNCTION lis_violgest(){
 	// var_dump($_POST['id']);

@@ -137,7 +137,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-25');
   $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25');
   $c[]=new cmp('imc','sd',5,$d['imc'],$w.' '.$o,'Imc','imc',null,null,false,true,'','col-3');
-  $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-3');
+  $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-35');
   $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
   $o='';

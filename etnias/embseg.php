@@ -91,7 +91,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('peso_nacer','',5,$d['peso_nacer'],$w.' '.$o,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,true,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d['asist_controles'],$w.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('exa_labo','s',3,$d['exa_labo'],$w.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional?','rta',null,null,false,true,'','col-35');
+  $c[]=new cmp('exa_labo','s',3,$d['exa_labo'],$w.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional?','rta',null,null,false,true,'','col-4');
   $c[]=new cmp('cons_micronutri','s',3,$d['cons_micronutri'],$w.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,true,'','col-35');
   $c[]=new cmp('esq_vacu','s',3,$d['esq_vacu'],$w.' '.$o,'¿Tiene Esquema De Vacunacion Completo Para La Eg?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('signos_alarma1','s',3,$d['signos_alarma1'],$w.' '.$o,'¿Presenta Signos De Alarma?','rta',null,null,false,true,'','col-2');

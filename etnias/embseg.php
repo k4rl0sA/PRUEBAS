@@ -95,7 +95,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('cons_micronutri','s',3,$d['cons_micronutri'],$w.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,true,'','col-4');
   $c[]=new cmp('esq_vacu','s',3,$d['esq_vacu'],$w.' '.$o,'¿Tiene Esquema De Vacunacion Completo Para La Eg?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('signos_alarma1','s',3,$d['signos_alarma1'],$w.' '.$o,'¿Presenta Signos De Alarma?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('diag_sifigest','s',3,$d['diag_sifigest'],$w.' '.$o,'¿Diagnosticada Con Sifilis Gestacional?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('diag_sifigest','s',3,$d['diag_sifigest'],$w.' '.$o,'¿Diagnosticada Con Sifilis Gestacional?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('adhe_tto','s',3,$d['adhe_tto'],$w.' '.$o,'¿Adherencia A Tratamiento?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('diag_sificong','s',3,$d['diag_sificong'],$w.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_partera','s',3,$d['seg_partera'],$w.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,false,true,'','col-2');

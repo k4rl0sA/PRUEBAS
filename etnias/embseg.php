@@ -102,11 +102,11 @@ function cmp_segnoreg(){
   $c[]=new cmp('signos_alarma2','s',3,$d['signos_alarma2'],$w.' '.$o,'Signos de Alarma2','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_med_ancestral2','s',3,$d['seg_med_ancestral2'],$w.' '.$o,'Seg de Med_Ancestral2','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('doc_madre','n',18,$d['doc_madre'],$w.' '.$o,'Doc de Madre','doc_madre',null,null,false,true,'','col-2');
-  $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'Ctrl de Cyd','ctrl_cyd',null,null,false,true,'','col-2');
-  $c[]=new cmp('lactancia_mat','s',3,$d['lactancia_mat'],$w.' '.$o,'Lactancia de Mat','lactancia_mat',null,null,false,true,'','col-2');
-  $c[]=new cmp('esq_vacunacion','s',3,$d['esq_vacunacion'],$w.' '.$o,'Esq de Vacunacion','esq_vacunacion',null,null,false,true,'','col-2');
-  $c[]=new cmp('sig_alarma_seg','s',3,$d['sig_alarma_seg'],$w.' '.$o,'Sig de Alarma_Seg','sig_alarma_seg',null,null,false,true,'','col-2');
-  $c[]=new cmp('seg_med_ancestral3','s',3,$d['seg_med_ancestral3'],$w.' '.$o,'Seg de Med_Ancestral3','seg_med_ancestral3',null,null,false,true,'','col-2');
+  $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'Ctrl de Cyd','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('lactancia_mat','s',3,$d['lactancia_mat'],$w.' '.$o,'Lactancia de Mat','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('esq_vacunacion','s',3,$d['esq_vacunacion'],$w.' '.$o,'Esq de Vacunacion','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('sig_alarma_seg','s',3,$d['sig_alarma_seg'],$w.' '.$o,'Sig de Alarma_Seg','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('seg_med_ancestral3','s',3,$d['seg_med_ancestral3'],$w.' '.$o,'Seg de Med_Ancestral3','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('sistolica','',3,$d['sistolica'],$w.' '.$o,'Sistolica','sistolica',null,null,false,true,'','col-2');
   $c[]=new cmp('diastolica','',3,$d['diastolica'],$w.' '.$o,'Diastolica','diastolica',null,null,false,true,'','col-2');
   $c[]=new cmp('frec_cardiaca','',3,$d['frec_cardiaca'],$w.' '.$o,'Frec de Cardiaca','frec_cardiaca',null,null,false,true,'','col-2');

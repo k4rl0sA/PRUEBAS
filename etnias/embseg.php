@@ -114,7 +114,7 @@ function cmp_segnoreg(){
   $o='menor5';
   $c[]=new cmp($o,'e',null,'MENOR DE 5 AÑOS',$w);
   $c[]=new cmp('doc_madre','n',18,$d['doc_madre'],$w.' '.$o,'Número De Documento Madre','doc_madre',null,null,false,true,'','col-3');
-  $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('lactancia_mat','s',3,$d['lactancia_mat'],$w.' '.$o,'¿Recibe Lactancia Materna?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('esq_vacunacion','s',3,$d['esq_vacunacion'],$w.' '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('sig_alarma_seg','s',3,$d['sig_alarma_seg'],$w.' '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,false,true,'','col-2');

@@ -185,7 +185,7 @@ function opc_segui($id=''){
     }
 
   function opc_prioridad($id=''){
-       return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=258 and estado=""A"" ORDER BY 1',$id);
+       return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=258 and estado="A" ORDER BY 1',$id);
  }
 
 	function formato_dato($a,$b,$c,$d){

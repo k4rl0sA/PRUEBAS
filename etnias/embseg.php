@@ -119,6 +119,10 @@ function cmp_segnoreg(){
   $c[]=new cmp('esq_vacunacion','s',3,$d['esq_vacunacion'],$w.' '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('sig_alarma_seg','s',3,$d['sig_alarma_seg'],$w.' '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_med_ancestral3','s',3,$d['seg_med_ancestral3'],$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-2');
+  
+  
+  $o='';
+  $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
   $c[]=new cmp('sistolica','sd',3,$d['sistolica'],$w.' '.$o,'Valor Sistolica','sistolica',null,null,false,true,'','col-2');
   $c[]=new cmp('diastolica','sd',3,$d['diastolica'],$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-2');
   $c[]=new cmp('frec_cardiaca','sd',3,$d['frec_cardiaca'],$w.' '.$o,'Frecuencia Cardiaca','frec_cardiaca',null,null,false,true,'','col-2');

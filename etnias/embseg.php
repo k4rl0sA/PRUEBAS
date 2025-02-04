@@ -129,6 +129,9 @@ function cmp_segnoreg(){
   $c[]=new cmp('frec_respiratoria','sd',3,$d['frec_respiratoria'],$w.' '.$o,'Frecuencia Respiratoria','frec_respiratoria',null,null,false,true,'','col-2');
   $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-2');
   $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-2');
+  
+  $o='';
+  $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);  
   $c[]=new cmp('peri_cefalico','sd',2,$d['peri_cefalico'],$w.' '.$o,'Peri de Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-2');
   $c[]=new cmp('peri_braqueal','sd',2,$d['peri_braqueal'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-2');
   $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');

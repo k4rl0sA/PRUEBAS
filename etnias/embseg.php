@@ -145,7 +145,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('ser_remigesti','s',3,$d['ser_remigesti'],$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-2');
   $c[]=new cmp('observaciones','t',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
   $c[]=new cmp('users_bina','t',60,$d['users_bina'],$w.' '.$o,'Users de Bina','users_bina',null,null,false,true,'','col-2');
-  $c[]=new cmp('equipo_bina','t',7,$d['equipo_bina'],$w.' '.$o,'Equipo de Bina','equipo_bina',null,null,false,true,'','col-2');
+  $c[]=new cmp('equipo_bina','S',7,$d['equipo_bina'],$w.' '.$o,'Equipo de Bina','equipo_bina',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='segnoreg-lis' >".lis_segnoreg()."</div></div>";

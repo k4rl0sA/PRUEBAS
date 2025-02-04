@@ -87,7 +87,7 @@ function cmp_segnoreg(){
   $o='gestan';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
   $c[]=new cmp('fum','d',10,$d['fum'],$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
-  $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-2');
+  $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-3');
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('peso_nacer','',5,$d['peso_nacer'],$w.' '.$o,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,true,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d['asist_controles'],$w.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,true,'','col-2');

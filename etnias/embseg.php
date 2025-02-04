@@ -75,12 +75,12 @@ function cmp_segnoreg(){
   $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
   $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d['prioridad'],$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
-  $c[]=new cmp('gestaciones','s',3,$d['gestaciones'],$w.' '.$o,'Gestaciones','gestaciones',null,null,false,true,'','col-2');
-  $c[]=new cmp('partos','s',3,$d['partos'],$w.' '.$o,'Partos','partos',null,null,false,true,'','col-2');
-  $c[]=new cmp('abortos','s',3,$d['abortos'],$w.' '.$o,'Abortos','abortos',null,null,false,true,'','col-2');
-  $c[]=new cmp('cesareas','s',3,$d['cesareas'],$w.' '.$o,'Cesareas','cesareas',null,null,false,true,'','col-2');
-  $c[]=new cmp('vivos','s',3,$d['vivos'],$w.' '.$o,'Vivos','vivos',null,null,false,true,'','col-2');
-  $c[]=new cmp('muertos','s',3,$d['muertos'],$w.' '.$o,'Muertos','muertos',null,null,false,true,'','col-2');
+  $c[]=new cmp('gestaciones','s',3,$d['gestaciones'],$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('partos','s',3,$d['partos'],$w.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('abortos','s',3,$d['abortos'],$w.' '.$o,'Abortos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('cesareas','s',3,$d['cesareas'],$w.' '.$o,'Cesareas','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('vivos','s',3,$d['vivos'],$w.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('muertos','s',3,$d['muertos'],$w.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('fum','d',10,$d['fum'],$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resul de Gest','resul_gest',null,null,false,true,'','col-2');
@@ -187,6 +187,11 @@ function opc_segui($id=''){
   function opc_prioridad($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=258 and estado="A" ORDER BY 1',$id);
  }
+
+ function opc_fxobs($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
+}
+
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

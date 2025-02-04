@@ -180,6 +180,9 @@ function opc_segui($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
   }
 
+  function opc_estado_seg($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=73 and estado='A' ORDER BY 1",$id);
+    }
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

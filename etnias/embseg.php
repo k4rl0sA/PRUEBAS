@@ -85,7 +85,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('fum','d',10,$d['fum'],$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resul de Gest','resul_gest',null,null,false,true,'','col-2');
-  $c[]=new cmp('peso_nacer','',5,2,$d['peso_nacer'],$w.' '.$o,'Peso de Nacer','peso_nacer',null,null,false,true,'','col-2');
+  $c[]=new cmp('peso_nacer','',5,$d['peso_nacer'],$w.' '.$o,'Peso de Nacer','peso_nacer',null,null,false,true,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d['asist_controles'],$w.' '.$o,'Asist de Controles','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('exa_labo','s',3,$d['exa_labo'],$w.' '.$o,'Exa de Labo','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('cons_micronutri','s',3,$d['cons_micronutri'],$w.' '.$o,'Cons de Micronutri','rta',null,null,false,true,'','col-2');

@@ -154,7 +154,7 @@ function gra_segnoreg(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,DATE_SUB(NOW(), INTERVAL 5 HOUR),?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],

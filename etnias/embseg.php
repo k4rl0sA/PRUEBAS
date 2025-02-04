@@ -213,7 +213,7 @@ function opc_clasi_nutri($id=''){
  }
 
  function opc_ser_remigesti($id=''){
-       return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=261 and estado=""A"" ORDER BY 1',$id);
+       return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=261 and estado="A" ORDER BY 1',$id);
  }
 
 	function formato_dato($a,$b,$c,$d){

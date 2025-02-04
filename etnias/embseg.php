@@ -97,10 +97,10 @@ function cmp_segnoreg(){
   $c[]=new cmp('seg_med_ancestral1','s',3,$d['seg_med_ancestral1'],$w.' '.$o,'Seg de Med_Ancestral1','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('diag_cronico','s',3,$d['diag_cronico'],$w.' '.$o,'Diag de Cronico','diag_cronico',null,null,false,true,'','col-2');
   $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$o,'Cual','cual',null,null,false,true,'','col-2');
-  $c[]=new cmp('tto_enf','s',3,$d['tto_enf'],$w.' '.$o,'Tto de Enf','tto_enf',null,null,false,true,'','col-2');
-  $c[]=new cmp('ctrl_cronico','s',3,$d['ctrl_cronico'],$w.' '.$o,'Ctrl de Cronico','ctrl_cronico',null,null,false,true,'','col-2');
-  $c[]=new cmp('signos_alarma2','s',3,$d['signos_alarma2'],$w.' '.$o,'Signos de Alarma2','signos_alarma2',null,null,false,true,'','col-2');
-  $c[]=new cmp('seg_med_ancestral2','s',3,$d['seg_med_ancestral2'],$w.' '.$o,'Seg de Med_Ancestral2','seg_med_ancestral2',null,null,false,true,'','col-2');
+  $c[]=new cmp('tto_enf','s',3,$d['tto_enf'],$w.' '.$o,'Tto de Enf','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('ctrl_cronico','s',3,$d['ctrl_cronico'],$w.' '.$o,'Ctrl de Cronico','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('signos_alarma2','s',3,$d['signos_alarma2'],$w.' '.$o,'Signos de Alarma2','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('seg_med_ancestral2','s',3,$d['seg_med_ancestral2'],$w.' '.$o,'Seg de Med_Ancestral2','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('doc_madre','n',18,$d['doc_madre'],$w.' '.$o,'Doc de Madre','doc_madre',null,null,false,true,'','col-2');
   $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'Ctrl de Cyd','ctrl_cyd',null,null,false,true,'','col-2');
   $c[]=new cmp('lactancia_mat','s',3,$d['lactancia_mat'],$w.' '.$o,'Lactancia de Mat','lactancia_mat',null,null,false,true,'','col-2');

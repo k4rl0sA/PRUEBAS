@@ -123,10 +123,10 @@ function cmp_segnoreg(){
   
   $o='';
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
-  $c[]=new cmp('sistolica','sd',3,$d['sistolica'],$w.' '.$o,'Valor Sistolica','sistolica',null,null,false,true,'','col-2');
-  $c[]=new cmp('diastolica','sd',3,$d['diastolica'],$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-2');
-  $c[]=new cmp('frec_cardiaca','sd',3,$d['frec_cardiaca'],$w.' '.$o,'Frecuencia Cardiaca','frec_cardiaca',null,null,false,true,'','col-2');
-  $c[]=new cmp('frec_respiratoria','sd',3,$d['frec_respiratoria'],$w.' '.$o,'Frecuencia Respiratoria','frec_respiratoria',null,null,false,true,'','col-2');
+  $c[]=new cmp('sistolica','sd',3,$d['sistolica'],$w.' '.$o,'Valor Sistolica','sistolica',null,null,false,true,'','col-25');
+  $c[]=new cmp('diastolica','sd',3,$d['diastolica'],$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-25');
+  $c[]=new cmp('frec_cardiaca','sd',3,$d['frec_cardiaca'],$w.' '.$o,'Frecuencia Cardiaca','frec_cardiaca',null,null,false,true,'','col-25');
+  $c[]=new cmp('frec_respiratoria','sd',3,$d['frec_respiratoria'],$w.' '.$o,'Frecuencia Respiratoria','frec_respiratoria',null,null,false,true,'','col-25');
   $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-2');
   $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-2');
   

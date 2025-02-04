@@ -42,14 +42,14 @@ function focus_segnoreg(){
 function lis_segnoreg(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
+$info=datos_mysql("SELECT COUNT(*) total FROM emb_segreg WHERE idpeople=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
 
-    $sql="SELECT concat(key1,'_',key2) ACCIONES
-        FROM `tabla` 
-            WHERE key1='".$id[0];
+    $sql="SELECT concat(idpeople,'_',segui) ACCIONES
+        FROM `emb_segreg` 
+            WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;

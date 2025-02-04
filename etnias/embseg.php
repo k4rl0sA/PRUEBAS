@@ -144,7 +144,7 @@ function cmp_segnoreg(){
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
   $c[]=new cmp('ser_remigesti','s',3,$d['ser_remigesti'],$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-2');
   $c[]=new cmp('observaciones','t',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
-  $c[]=new cmp('users_bina','t',60,$d['users_bina'],$w.' '.$o,'Users de Bina','users_bina',null,null,false,true,'','col-2');
+  $c[]=new cmp('users_bina[]','m',60,$d['users_bina'],$w.' '.$o,'Users de Bina','users_bina',null,null,false,true,'','col-2');
   $c[]=new cmp('equipo','m','60',$d,$w.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
@@ -183,7 +183,7 @@ function gra_segnoreg(){
 return $rta;
 }
 
-function get_segnoreg(){
+/* function get_segnoreg(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -196,7 +196,7 @@ function get_segnoreg(){
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 
-}
+} */
 
 function opc_segui($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);

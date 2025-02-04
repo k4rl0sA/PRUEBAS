@@ -109,6 +109,10 @@ function cmp_segnoreg(){
   $c[]=new cmp('ctrl_cronico','s',3,$d['ctrl_cronico'],$w.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('signos_alarma2','s',3,$d['signos_alarma2'],$w.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_med_ancestral2','s',3,$d['seg_med_ancestral2'],$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-2');
+  
+  
+  $o='menor5';
+  $c[]=new cmp($o,'e',null,'MENOR DE 5 AÑOS',$w);
   $c[]=new cmp('doc_madre','n',18,$d['doc_madre'],$w.' '.$o,'Número De Documento Madre','doc_madre',null,null,false,true,'','col-2');
   $c[]=new cmp('ctrl_cyd','s',3,$d['ctrl_cyd'],$w.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('lactancia_mat','s',3,$d['lactancia_mat'],$w.' '.$o,'¿Recibe Lactancia Materna?','rta',null,null,false,true,'','col-2');

@@ -100,6 +100,9 @@ function cmp_segnoreg(){
   $c[]=new cmp('diag_sificong','s',3,$d['diag_sificong'],$w.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_partera','s',3,$d['seg_partera'],$w.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_med_ancestral1','s',3,$d['seg_med_ancestral1'],$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-2');
+  
+  $o='cronicos';
+  $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);
   $c[]=new cmp('diag_cronico','s',3,$d['diag_cronico'],$w.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-2');
   $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-2');
   $c[]=new cmp('tto_enf','s',3,$d['tto_enf'],$w.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-2');

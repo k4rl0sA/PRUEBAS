@@ -127,18 +127,18 @@ function cmp_segnoreg(){
   $c[]=new cmp('diastolica','sd',3,$d['diastolica'],$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_cardiaca','sd',3,$d['frec_cardiaca'],$w.' '.$o,'Frecuencia Cardiaca','frec_cardiaca',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_respiratoria','sd',3,$d['frec_respiratoria'],$w.' '.$o,'Frecuencia Respiratoria','frec_respiratoria',null,null,false,true,'','col-25');
-  $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-2');
-  $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-2');
+  $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-25');
+  $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-25');
   
   $o='';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);  
-  $c[]=new cmp('peri_cefalico','sd',2,$d['peri_cefalico'],$w.' '.$o,'Peri de Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-2');
-  $c[]=new cmp('peri_braqueal','sd',2,$d['peri_braqueal'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-2');
-  $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');
-  $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-2');
-  $c[]=new cmp('imc','sd',5,$d['imc'],$w.' '.$o,'Imc','imc',null,null,false,true,'','col-2');
-  $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
-  $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-2');
+  $c[]=new cmp('peri_cefalico','sd',2,$d['peri_cefalico'],$w.' '.$o,'Peri de Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
+  $c[]=new cmp('peri_braqueal','sd',2,$d['peri_braqueal'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
+  $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-25');
+  $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25');
+  $c[]=new cmp('imc','sd',5,$d['imc'],$w.' '.$o,'Imc','imc',null,null,false,true,'','col-3');
+  $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-3');
+  $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
   $o='';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

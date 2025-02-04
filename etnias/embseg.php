@@ -114,11 +114,11 @@ function cmp_segnoreg(){
   $c[]=new cmp('frec_respiratoria','sd',3,$d['frec_respiratoria'],$w.' '.$o,'Frec de Respiratoria','frec_respiratoria',null,null,false,true,'','col-2');
   $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturacion','saturacion',null,null,false,true,'','col-2');
   $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Gluco','gluco',null,null,false,true,'','col-2');
-  $c[]=new cmp('peri_cefalico','sd',2,1,$d['peri_cefalico'],$w.' '.$o,'Peri de Cefalico','peri_cefalico',null,null,false,true,'','col-2');
-  $c[]=new cmp('peri_braqueal','sd',2,1,$d['peri_braqueal'],$w.' '.$o,'Peri de Braqueal','peri_braqueal',null,null,false,true,'','col-2');
-  $c[]=new cmp('peso','sd',5,2,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
-  $c[]=new cmp('talla','sd',4,1,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
-  $c[]=new cmp('imc','sd',5,2,$d['imc'],$w.' '.$o,'Imc','imc',null,null,false,true,'','col-2');
+  $c[]=new cmp('peri_cefalico','sd',2,$d['peri_cefalico'],$w.' '.$o,'Peri de Cefalico','peri_cefalico',null,null,false,true,'','col-2');
+  $c[]=new cmp('peri_braqueal','sd',2,$d['peri_braqueal'],$w.' '.$o,'Peri de Braqueal','peri_braqueal',null,null,false,true,'','col-2');
+  $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
+  $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
+  $c[]=new cmp('imc','sd',5,$d['imc'],$w.' '.$o,'Imc','imc',null,null,false,true,'','col-2');
   $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
   $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasi de Nutri','clasi_nutri',null,null,false,true,'','col-2');
   $c[]=new cmp('ser_remigesti','s',3,$d['ser_remigesti'],$w.' '.$o,'Ser de Remigesti','ser_remigesti',null,null,false,true,'','col-2');

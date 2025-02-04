@@ -73,8 +73,8 @@ function cmp_segnoreg(){
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2');
-  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
-  $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
+  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
+  $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d['prioridad'],$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d['gestaciones'],$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d['partos'],$w.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
@@ -83,7 +83,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('vivos','s',3,$d['vivos'],$w.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('muertos','s',3,$d['muertos'],$w.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('fum','d',10,$d['fum'],$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
-  $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');
+  $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resul de Gest','resul_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('peso_nacer','',5,$d['peso_nacer'],$w.' '.$o,'Peso de Nacer','peso_nacer',null,null,false,true,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d['asist_controles'],$w.' '.$o,'Asist de Controles','rta',null,null,false,true,'','col-2');

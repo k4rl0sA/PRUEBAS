@@ -83,6 +83,8 @@ function cmp_segnoreg(){
   $c[]=new cmp('cesareas','s',3,$d['cesareas'],$w.' '.$o,'Cesareas','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('vivos','s',3,$d['vivos'],$w.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('muertos','s',3,$d['muertos'],$w.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
+  
+  $o='gestan';
   $c[]=new cmp('fum','d',10,$d['fum'],$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d['edad_gest'],$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d['resul_gest'],$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');

@@ -53,8 +53,9 @@ $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
-        $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'plncon.php');
+        $datos=datos_mysql($sql); 
+
+        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php');
 }
 
 

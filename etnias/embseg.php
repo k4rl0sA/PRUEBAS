@@ -61,7 +61,7 @@ $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
 function cmp_segnoreg(){
   $rta="";
   $w="placuifam";
-	$t=['id'=>'']; 
+	$t=['id'=>'','idsegnoreg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','prioridad'=>'','gestaciones'=>'','partos'=>'','abortos'=>'','cesareas'=>'','vivos'=>'','muertos'=>'']; 
 	$e="";
 	$key='pln';
 	$o='segnoreg';
@@ -70,9 +70,7 @@ function cmp_segnoreg(){
   $days=fechas_app('VSP');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-  $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-  $c[]=new cmp('idsegnoreg','n',11,$d['idsegnoreg'],$w.' '.$o,'Idsegnoreg','idsegnoreg',null,null,true,true,'','col-2');
-  $c[]=new cmp('idpeople','n',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
+  $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
   $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');

@@ -97,7 +97,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('signos_alarma1','s',3,$d['signos_alarma1'],$w.' '.$o,'¿Presenta Signos De Alarma?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('diag_sifigest','s',3,$d['diag_sifigest'],$w.' '.$o,'¿Diagnosticada Con Sifilis Gestacional?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('adhe_tto','s',3,$d['adhe_tto'],$w.' '.$o,'¿Adherencia A Tratamiento?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('diag_sificong','s',3,$d['diag_sificong'],$w.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('diag_sificong','s',3,$d['diag_sificong'],$w.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('seg_partera','s',3,$d['seg_partera'],$w.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('seg_med_ancestral1','s',3,$d['seg_med_ancestral1'],$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-35');
   

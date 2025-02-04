@@ -104,7 +104,7 @@ function cmp_segnoreg(){
   $o='cronicos';
   $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);
   $c[]=new cmp('diag_cronico','s',3,$d['diag_cronico'],$w.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-2');
-  $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-2');
+  $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-3');
   $c[]=new cmp('tto_enf','s',3,$d['tto_enf'],$w.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('ctrl_cronico','s',3,$d['ctrl_cronico'],$w.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('signos_alarma2','s',3,$d['signos_alarma2'],$w.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');

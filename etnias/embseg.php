@@ -144,8 +144,6 @@ function cmp_segnoreg(){
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
   $c[]=new cmp('ser_remigesti','s',3,$d['ser_remigesti'],$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-2');
   $c[]=new cmp('observaciones','t',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
-  $c[]=new cmp('users_bina[]','s',60,$d['users_bina'],$w.' '.$o,'Users de Bina','users_bina',null,null,false,true,'','col-2');
-  $c[]=new cmp('equipo','m','60',$d,$w.' '.$o,'Usuarios Equipo','bina',null,null,false,true,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='segnoreg-lis' >".lis_segnoreg()."</div></div>";
@@ -237,15 +235,6 @@ function opc_clasi_nutri($id=''){
  function opc_ser_remigesti($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=261 and estado="A" ORDER BY 1',$id);
  }
-
-
- function opc_bina($id=''){
-  return opc_sql("SELECT id_usuario, nombre  from usuarios u WHERE equipo=(select equipo from usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A'  ORDER BY 2;",$id);
-}
-
-function opc_users_bina($id=''){
-return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=codigo and estado="A" ORDER BY 1',$id);
-}
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];

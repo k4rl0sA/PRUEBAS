@@ -46,9 +46,10 @@ function cmp_emb_Id(){
 	$key='pln';
 	$o='emb_Id';
   $d=get_emb_Id();
+  var_dump($d,'=GET');
   $d=($d=="")?$d=$t:$d;
+  var_dump($d,'=T');
   $days=fechas_app('ETNIAS');
-  var_dump($d,'=CMP');
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fechavisi','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");

@@ -153,6 +153,7 @@ function cmp_segnoreg(){
 
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
+  $tas=$_POST['doc_madre'] ?? null;
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
@@ -189,7 +190,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['tto_enf']],
 ['type' => 's', 'value' => $_POST['ctrl_cronico']],
 ['type' => 's', 'value' => $_POST['signos_alarma2']],
-['type' => 's', 'value' => $_POST['seg_med_ancestral2']],
+['type' => 's', 'value' => $_POST[' ']],
 ['type' => 'i', 'value' => $_POST['doc_madre']],
 ['type' => 's', 'value' => $_POST['ctrl_cyd']],
 ['type' => 's', 'value' => $_POST['lactancia_mat']],
@@ -218,6 +219,10 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => 'A']
       ];
+
+
+INSERT INTO etn_identi VALUES (null,3,'2025-02-05','1','1','1','','','','','','','','','','','','','','','','','','','','','','','','','','',,'','','','','','','','','','','','','','','','','','','','','','ADMSDS','80811594',DATE_SUB(NOW(),INTERVAL 5 HOUR),'','','A')
+
       $rta = show_sql($sql, $params);
       // $rta = mysql_prepd($sql, $params);
     }else{

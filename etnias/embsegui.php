@@ -102,46 +102,9 @@ function cmp_seguim(){
     $c[]=new cmp('observaciones','t',60,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
     $c[]=new cmp('usu_equipo','t',7,$d['usu_equipo'],$w.' '.$o,'Usu de Equipo','usu_equipo',null,null,true,true,'','col-2');
     $c[]=new cmp('usu_creo','t',10,$d['usu_creo'],$w.' '.$o,'Usu de Creo','usu_creo',null,null,true,true,'','col-2');
-   #VALUE!
     $c[]=new cmp('usu_update','t',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
-   #VALUE!
     $c[]=new cmp('estado','o',2,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','sd',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    $c[]=new cmp('','',,$d[''],$w.' '.$o,'','',null,null,false,true,'','col-2');
-    
+ 
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='seguim-lis' >".lis_seguim()."</div></div>";

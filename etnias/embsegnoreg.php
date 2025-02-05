@@ -239,8 +239,8 @@ function gra_segnoreg(){
   
 //INSERT INTO etn_identi VALUES (null,3,'2025-02-05','1','1','1','','','','','','','','','','','','','','','','','','','','','','','','','','',,'','','','','','','','','','','','','','','','','','','','','','ADMSDS','80811594',DATE_SUB(NOW(),INTERVAL 5 HOUR),'','','A')
 
-      $rta = show_sql($sql, $params);
-      // $rta = mysql_prepd($sql, $params);
+      // $rta = show_sql($sql, $params);
+       $rta = mysql_prepd($sql, $params);
     }else{
    /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [

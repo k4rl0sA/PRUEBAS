@@ -101,7 +101,7 @@ function get_emb_Id(){
           WHERE idpeople='{$id[0]}'";
           var_dump($sql);
     $info=datos_mysql($sql);
-    var_dump(json_encode($info['responseResult']));
+    var_dump('rta',json_encode($info['responseResult']));
      return json_encode($info['responseResult'][0]);
       } 
 }

@@ -154,10 +154,9 @@ function gra_segnoreg(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+      $sql = "INSERT INTO etn_identi VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
     $params = [
-['type' => 'i', 'value' => $_POST['idsegnoreg']],
-['type' => 'i', 'value' => $_POST['idpeople']],
+['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
 ['type' => 's', 'value' => $_POST['estado_seg']],
@@ -212,11 +211,9 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['users_bina']],
 ['type' => 's', 'value' => $_POST['equipo_bina']],
 ['type' => 's', 'value' => $_POST['usu_creo']],
-['type' => 's', 'value' => $_POST['fecha_create']],
 ['type' => 's', 'value' => $_POST['usu_update']],
 ['type' => 's', 'value' => $_POST['fecha_update']],
-['type' => 's', 'value' => $_POST['estado']],
-
+['type' => 's', 'value' => $_POST['estado']]
       ];
       $rta = mysql_prepd($sql, $params);
     }else{

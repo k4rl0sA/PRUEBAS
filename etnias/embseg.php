@@ -154,18 +154,69 @@ function gra_segnoreg(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,DATE_SUB(NOW(), INTERVAL 5 HOUR),?,?,?)";
-      $params = [
-        ['type' => 'i', 'value' => NULL ],
-        ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['fecha']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => 'A']
+      $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
+    $params = [
+['type' => 'i', 'value' => $_POST['idsegnoreg']],
+['type' => 'i', 'value' => $_POST['idpeople']],
+['type' => 's', 'value' => $_POST['fecha_seg']],
+['type' => 's', 'value' => $_POST['segui']],
+['type' => 's', 'value' => $_POST['estado_seg']],
+['type' => 's', 'value' => $_POST['prioridad']],
+['type' => 's', 'value' => $_POST['gestaciones']],
+['type' => 's', 'value' => $_POST['partos']],
+['type' => 's', 'value' => $_POST['abortos']],
+['type' => 's', 'value' => $_POST['cesareas']],
+['type' => 's', 'value' => $_POST['vivos']],
+['type' => 's', 'value' => $_POST['muertos']],
+['type' => 's', 'value' => $_POST['fum']],
+['type' => 's', 'value' => $_POST['edad_gest']],
+['type' => 's', 'value' => $_POST['resul_gest']],
+['type' => 's', 'value' => $_POST['peso_nacer']],
+['type' => 's', 'value' => $_POST['asist_controles']],
+['type' => 's', 'value' => $_POST['exa_labo']],
+['type' => 's', 'value' => $_POST['cons_micronutri']],
+['type' => 's', 'value' => $_POST['esq_vacu']],
+['type' => 's', 'value' => $_POST['signos_alarma1']],
+['type' => 's', 'value' => $_POST['diag_sifigest']],
+['type' => 's', 'value' => $_POST['adhe_tto']],
+['type' => 's', 'value' => $_POST['diag_sificong']],
+['type' => 's', 'value' => $_POST['seg_partera']],
+['type' => 's', 'value' => $_POST['seg_med_ancestral1']],
+['type' => 's', 'value' => $_POST['diag_cronico']],
+['type' => 's', 'value' => $_POST['cual']],
+['type' => 's', 'value' => $_POST['tto_enf']],
+['type' => 's', 'value' => $_POST['ctrl_cronico']],
+['type' => 's', 'value' => $_POST['signos_alarma2']],
+['type' => 's', 'value' => $_POST['seg_med_ancestral2']],
+['type' => 'i', 'value' => $_POST['doc_madre']],
+['type' => 's', 'value' => $_POST['ctrl_cyd']],
+['type' => 's', 'value' => $_POST['lactancia_mat']],
+['type' => 's', 'value' => $_POST['esq_vacunacion']],
+['type' => 's', 'value' => $_POST['sig_alarma_seg']],
+['type' => 's', 'value' => $_POST['seg_med_ancestral3']],
+['type' => 's', 'value' => $_POST['sistolica']],
+['type' => 's', 'value' => $_POST['diastolica']],
+['type' => 's', 'value' => $_POST['frec_cardiaca']],
+['type' => 's', 'value' => $_POST['frec_respiratoria']],
+['type' => 's', 'value' => $_POST['saturacion']],
+['type' => 's', 'value' => $_POST['gluco']],
+['type' => 's', 'value' => $_POST['peri_cefalico']],
+['type' => 's', 'value' => $_POST['peri_braqueal']],
+['type' => 's', 'value' => $_POST['peso']],
+['type' => 's', 'value' => $_POST['talla']],
+['type' => 's', 'value' => $_POST['imc']],
+['type' => 's', 'value' => $_POST['zcore']],
+['type' => 's', 'value' => $_POST['clasi_nutri']],
+['type' => 's', 'value' => $_POST['ser_remigesti']],
+['type' => 's', 'value' => $_POST['observaciones']],
+['type' => 's', 'value' => $_POST['users_bina']],
+['type' => 's', 'value' => $_POST['equipo_bina']],
+['type' => 's', 'value' => $_POST['usu_creo']],
+['type' => 's', 'value' => $_POST['fecha_create']],
+['type' => 's', 'value' => $_POST['usu_update']],
+['type' => 's', 'value' => $_POST['fecha_update']],
+['type' => 's', 'value' => $_POST['estado']],
+
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
@@ -198,34 +249,43 @@ return $rta;
 
 function opc_segui($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
-}
-function opc_estado_seg($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=73 and estado='A' ORDER BY 1",$id);
-}
-function opc_prioridad($id=''){
+  }
+
+  function opc_estado_seg($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=73 and estado='A' ORDER BY 1",$id);
+    }
+
+  function opc_prioridad($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=258 and estado="A" ORDER BY 1',$id);
-}
-function opc_fxobs($id=''){
+ }
+
+ function opc_fxobs($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
 }
+
 function opc_edad_gest($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
 }
+
 function opc_resul_gest($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=259 and estado="A" ORDER BY 1',$id);
-}
-function opc_rta($id=''){
+ }
+
+ function opc_rta($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
 }
+
 function opc_diag_cronico($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=252 and estado='A' ORDER BY 1",$id);
 }
+
 function opc_clasi_nutri($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=260 and estado="A" ORDER BY 1',$id);
-}
-function opc_ser_remigesti($id=''){
+ }
+
+ function opc_ser_remigesti($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=261 and estado="A" ORDER BY 1',$id);
-}
+ }
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);
 		$rta=$c[$d];

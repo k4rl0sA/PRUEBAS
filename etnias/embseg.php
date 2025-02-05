@@ -153,13 +153,11 @@ function cmp_segnoreg(){
 
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
-  if($_POST['doc_madre']=== ''){
-echo 'Vacio';
-  }else{
-    echo 'NO Vacio';
-  }
+  
   $pn=($_POST['peso_nacer']=== '')? null: $_POST['peso_nacer'];
-  $docma=($_POST['doc_madre']=== '')? 0: $_POST['doc_madre'];
+  $docma=($_POST['doc_madre']=== '')? null: $_POST['doc_madre'];
+
+
   $sis=$_POST['sistolica'] ?? 0;
   $diast=$_POST['diastolica'] ?? 0;
   $fcar=$_POST['frec_cardiaca'] ?? 0;

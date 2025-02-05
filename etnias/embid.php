@@ -60,7 +60,7 @@ function cmp_emb_Id(){
 	return $rta;
 }
 
-function gra_emb_Id(){
+/* function gra_emb_Id(){
 	$id=divide($_POST['id']);
     var_dump($_POST);
     if(COUNT($id)==2){
@@ -87,7 +87,7 @@ function gra_emb_Id(){
     // $rta = show_sql($sql, $params);
     // $rta = mysql_prepd($sql, $params);
 return $rta;
-}
+} */
 
 function get_emb_Id(){
 	if($_POST['id']==''){

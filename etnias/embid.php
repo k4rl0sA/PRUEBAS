@@ -60,11 +60,12 @@ function cmp_emb_Id(){
 	return $rta;
 }
 
-/* function gra_emb_Id(){
+function gra_emb_Id(){
 	$id=divide($_POST['id']);
     var_dump($_POST);
     if(COUNT($id)==2){
-      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL'A')";
+      $usu=$_SESSION['us_sds'];
+      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL'A')";
       $params = [
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fechavisi']],
@@ -87,7 +88,7 @@ function cmp_emb_Id(){
     // $rta = show_sql($sql, $params);
     // $rta = mysql_prepd($sql, $params);
 return $rta;
-} */
+}
 
 function get_emb_Id(){
 	if($_POST['id']==''){

@@ -73,7 +73,7 @@ function cmp_segnoreg(){
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-  $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2');
+  $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
   $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d['prioridad'],$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');

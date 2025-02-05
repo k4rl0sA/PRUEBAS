@@ -65,7 +65,7 @@ function gra_emb_Id(){
     var_dump($_POST);
     if(COUNT($id)==2){
       $usu=$_SESSION['us_sds'];
-      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL'A')";
+      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
       $params = [
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fechavisi']],

@@ -38,7 +38,6 @@ function focus_emb_Id(){
   return $rta;
 }
 
-
 function cmp_emb_Id(){
   $rta="";
   $w="placuifam";
@@ -101,6 +100,7 @@ function get_emb_Id(){
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 
           WHERE idpeople='{$id[0]}'";
+          print_r($id[0]);
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

@@ -159,6 +159,7 @@ echo 'Vacio';
   }else{
     echo 'NO Vacio';
   }
+  $pn=($_POST['peso_nacer']=== '')? null: $_POST['peso_nacer'];
   $docma=($_POST['doc_madre']=== '')? null: $_POST['doc_madre'];
   $sis=$_POST['sistolica'] ?? 0;
   $diast=$_POST['diastolica'] ?? 0;

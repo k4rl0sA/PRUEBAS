@@ -233,6 +233,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => 'A']
       ];
+      var_dump('dOCMA=',$docma);
 
   
 //INSERT INTO etn_identi VALUES (null,3,'2025-02-05','1','1','1','','','','','','','','','','','','','','','','','','','','','','','','','','',,'','','','','','','','','','','','','','','','','','','','','','ADMSDS','80811594',DATE_SUB(NOW(),INTERVAL 5 HOUR),'','','A')

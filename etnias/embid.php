@@ -92,15 +92,13 @@ return $rta;
 }
 
 function get_emb_Id(){
-	if($_REQUEST['id']==''){
+	if($_POST['id']==''){
 		return "";
 	}else{
-		$id=divide($_REQUEST['id']);
-    var_dump($_POST,'=GET1');
+		$id=divide($_POST['id']);
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 
           WHERE idpeople='{$id[0]}'";
-          var_dump($id,'=GET2');
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

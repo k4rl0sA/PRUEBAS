@@ -154,6 +154,7 @@ function cmp_segnoreg(){
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
   $tas=$_POST['doc_madre'] ?? null;
+  $tas=$_POST['cual'] ?? null;
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
@@ -220,7 +221,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => 'A']
       ];
 
-
+  
 //INSERT INTO etn_identi VALUES (null,3,'2025-02-05','1','1','1','','','','','','','','','','','','','','','','','','','','','','','','','','',,'','','','','','','','','','','','','','','','','','','','','','ADMSDS','80811594',DATE_SUB(NOW(),INTERVAL 5 HOUR),'','','A')
 
       $rta = show_sql($sql, $params);

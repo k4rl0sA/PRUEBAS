@@ -584,6 +584,25 @@ function acceso($a){
   }
 }
 
+function show_sql($sql, $params) {
+  // Dividir la consulta SQL en partes basadas en los placeholders
+  $parts = explode('?', $sql);
+  $final_sql = '';
+  foreach ($parts as $index => $part) {
+      $final_sql .= $part;
+      if (isset($params[$index])) {
+          $param = $params[$index];
+          $value = $param['value'];
+          if ($param['type'] === 's') {
+              $final_sql .= "'" . addslashes($value) . "'";
+          } else {
+              $final_sql .= $value;
+          }
+      }
+  }
+  return $final_sql;
+}
+
 /*COMPONENTES*/
 class cmp { //ntwplcsdxhvuf
   public $n; //1 name

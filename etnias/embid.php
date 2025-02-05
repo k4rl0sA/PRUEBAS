@@ -101,11 +101,13 @@ function get_emb_Id(){
           WHERE idpeople='{$id[0]}'";
           var_dump($sql);
     $info=datos_mysql($sql);
-    var_dump('rta',json_encode($info['responseResult']));
-     return json_encode($info['responseResult'][0]);
-      } 
-}
-
+    if (!$info['responseResult']) {
+      return json_encode (new stdClass);
+    }else{
+      return json_encode($info['responseResult'][0]);
+    }
+  }
+} 
 function opc_saberes($id=''){
     return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=256 and estado="A" ORDER BY 1',$id);
 }

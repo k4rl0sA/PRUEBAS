@@ -154,18 +154,18 @@ function cmp_segnoreg(){
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
   $pn=$_POST['peso_nacer'] ?? null;
-  $tas=$_POST['doc_madre'] ?? null;
-  $tas=$_POST['sistolica'] ?? null;
-  $tas=$_POST['diastolica'] ?? null;
-  $tas=$_POST['frec_cardiaca'] ?? null;
-  $tas=$_POST['frec_respiratoria'] ?? null;
-  $tas=$_POST['saturacion'] ?? null;
-  $tas=$_POST['gluco'] ?? null;
-  $tas=$_POST['peri_cefalico'] ?? null;
-  $tas=$_POST['peri_braqueal'] ?? null;
-  $tas=$_POST['peso'] ?? null;
-  $tas=$_POST['talla'] ?? null;
-  $tas=$_POST['imc'] ?? null;
+  $docma=$_POST['doc_madre'] ?? null;
+  $sis=$_POST['sistolica'] ?? null;
+  $diast=$_POST['diastolica'] ?? null;
+  $fcar=$_POST['frec_cardiaca'] ?? null;
+  $fres=$_POST['frec_respiratoria'] ?? null;
+  $satu=$_POST['saturacion'] ?? null;
+  $gluco=$_POST['gluco'] ?? null;
+  $pcef=$_POST['peri_cefalico'] ?? null;
+  $pbra=$_POST['peri_braqueal'] ?? null;
+  $pes=$_POST['peso'] ?? null;
+  $tal=$_POST['talla'] ?? null;
+  $imc=$_POST['imc'] ?? null;
   
 
     if(COUNT($id)==2){
@@ -188,7 +188,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['fum']],
 ['type' => 's', 'value' => $_POST['edad_gest']],
 ['type' => 's', 'value' => $_POST['resul_gest']],
-['type' => 's', 'value' => $_POST['peso_nacer']],
+['type' => 's', 'value' => $pn],
 ['type' => 's', 'value' => $_POST['asist_controles']],
 ['type' => 's', 'value' => $_POST['exa_labo']],
 ['type' => 's', 'value' => $_POST['cons_micronutri']],
@@ -205,23 +205,23 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['ctrl_cronico']],
 ['type' => 's', 'value' => $_POST['signos_alarma2']],
 ['type' => 's', 'value' => $_POST['seg_med_ancestral2']],
-['type' => 'i', 'value' => $_POST['doc_madre']],
+['type' => 'i', 'value' => $docma],
 ['type' => 's', 'value' => $_POST['ctrl_cyd']],
 ['type' => 's', 'value' => $_POST['lactancia_mat']],
 ['type' => 's', 'value' => $_POST['esq_vacunacion']],
 ['type' => 's', 'value' => $_POST['sig_alarma_seg']],
 ['type' => 's', 'value' => $_POST['seg_med_ancestral3']],
-['type' => 's', 'value' => $_POST['sistolica']],
-['type' => 's', 'value' => $_POST['diastolica']],
-['type' => 's', 'value' => $_POST['frec_cardiaca']],
-['type' => 's', 'value' => $_POST['frec_respiratoria']],
-['type' => 's', 'value' => $_POST['saturacion']],
-['type' => 's', 'value' => $_POST['gluco']],
-['type' => 's', 'value' => $_POST['peri_cefalico']],
-['type' => 's', 'value' => $_POST['peri_braqueal']],
-['type' => 's', 'value' => $_POST['peso']],
-['type' => 's', 'value' => $_POST['talla']],
-['type' => 's', 'value' => $_POST['imc']],
+['type' => 's', 'value' => $sis],
+['type' => 's', 'value' => $diast],
+['type' => 's', 'value' => $fcar],
+['type' => 's', 'value' => $fres],
+['type' => 's', 'value' => $satu],
+['type' => 's', 'value' => $gluco],
+['type' => 's', 'value' => $pcef],
+['type' => 's', 'value' => $pbra],
+['type' => 's', 'value' => $pes],
+['type' => 's', 'value' => $tal],
+['type' => 's', 'value' => $imc],
 ['type' => 's', 'value' => $_POST['zcore']],
 ['type' => 's', 'value' => $_POST['clasi_nutri']],
 ['type' => 's', 'value' => $_POST['ser_remigesti']],

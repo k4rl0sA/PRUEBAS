@@ -155,6 +155,9 @@ function gra_segnoreg(){
 	$id=divide($_POST['id']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
+      $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
+      $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
+      $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO etn_identi VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
     $params = [
 ['type' => 'i', 'value' => $id[0]],
@@ -209,12 +212,12 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['clasi_nutri']],
 ['type' => 's', 'value' => $_POST['ser_remigesti']],
 ['type' => 's', 'value' => $_POST['observaciones']],
-['type' => 's', 'value' => $_POST['users_bina']],
-['type' => 's', 'value' => $_POST['equipo_bina']],
-['type' => 's', 'value' => $_POST['usu_creo']],
-['type' => 's', 'value' => $_POST['usu_update']],
-['type' => 's', 'value' => $_POST['fecha_update']],
-['type' => 's', 'value' => $_POST['estado']]
+['type' => 's', 'value' => $bina],
+['type' => 's', 'value' => $equi],
+['type' => 's', 'value' => $_SESSION['us_sds']],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => 'A']
       ];
       $rta = mysql_prepd($sql, $params);
     }else{

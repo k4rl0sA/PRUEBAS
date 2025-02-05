@@ -74,19 +74,9 @@ function gra_emb_Id(){
         ['type' => 's', 'value' => $_POST['saberes']],
         ['type' => 's', 'value' => $_POST['enfoque']]
       ];
-       $rta = show_sql($sql, $params);
-    }else{
-   /* $sql="UPDATE etn_identi SET  idpeople=?,fechavisi=?,lider=?,educacion=?,espanol=?,saberes=?,enfoque=?,usu_creo=?,fecha_create=?,usu_update=?,fecha_update=?,WHERE idriesgo=?";
-    $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
-      ]; */
+      //  $rta = show_sql($sql, $params);
+      $rta = mysql_prepd($sql, $params);
     }
-    $rta = mysql_prepd($sql, $params);
-    // $rta = show_sql($sql, $params);
-    // $rta = mysql_prepd($sql, $params);
 return $rta;
 }
 
@@ -98,7 +88,6 @@ function get_emb_Id(){
     $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
           FROM `etn_identi` 
           WHERE idpeople='{$id[0]}'";
-          var_dump($sql);
     $info=datos_mysql($sql);
     if (!$info['responseResult']) {
       return '';

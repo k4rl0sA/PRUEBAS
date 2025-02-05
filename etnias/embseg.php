@@ -153,7 +153,7 @@ function cmp_segnoreg(){
 
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
-  $tas=$_POST['peso_nacer'] ?? null;
+  $pn=$_POST['peso_nacer'] ?? null;
   $tas=$_POST['doc_madre'] ?? null;
   $tas=$_POST['sistolica'] ?? null;
   $tas=$_POST['diastolica'] ?? null;
@@ -204,7 +204,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['tto_enf']],
 ['type' => 's', 'value' => $_POST['ctrl_cronico']],
 ['type' => 's', 'value' => $_POST['signos_alarma2']],
-['type' => 's', 'value' => $_POST[' ']],
+['type' => 's', 'value' => $_POST['seg_med_ancestral2']],
 ['type' => 'i', 'value' => $_POST['doc_madre']],
 ['type' => 's', 'value' => $_POST['ctrl_cyd']],
 ['type' => 's', 'value' => $_POST['lactancia_mat']],

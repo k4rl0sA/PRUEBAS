@@ -236,7 +236,7 @@ function gra_segnoreg(){
       ];
       var_dump('dOCMA=',$docma);
 
-  
+      show_sql($sql, $params);
 //INSERT INTO etn_identi VALUES (null,3,'2025-02-05','1','1','1','','','','','','','','','','','','','','','','','','','','','','','','','','',,'','','','','','','','','','','','','','','','','','','','','','ADMSDS','80811594',DATE_SUB(NOW(),INTERVAL 5 HOUR),'','','A')
 
       // $rta = show_sql($sql, $params);

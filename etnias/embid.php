@@ -64,21 +64,17 @@ function gra_emb_Id(){
 	$id=divide($_POST['id']);
     var_dump($_POST);
     if(COUNT($id)==2){
-      $sql = "INSERT INTO etn_identi VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL'A')";
       $params = [
-        ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fechavisi']],
         ['type' => 'i', 'value' => $_POST['lider']],
         ['type' => 's', 'value' => $_POST['educacion']],
         ['type' => 's', 'value' => $_POST['espanol']],
         ['type' => 's', 'value' => $_POST['saberes']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => 'A']
+        ['type' => 's', 'value' => $_POST['enfoque']]
       ];
+      $rta = show_sql($sql, $params);
     }else{
    $sql="UPDATE etn_identi SET  idpeople=?,fechavisi=?,lider=?,educacion=?,espanol=?,saberes=?,enfoque=?,usu_creo=?,fecha_create=?,usu_update=?,fecha_update=?,WHERE idriesgo=?";
     $params = [
@@ -88,6 +84,7 @@ function gra_emb_Id(){
         ['type' => 'i', 'value' => $id[1]]
       ];
     }
+    $rta = show_sql($sql, $params);
     $rta = mysql_prepd($sql, $params);
 return $rta;
 }

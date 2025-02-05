@@ -46,7 +46,7 @@ function cmp_emb_Id(){
 	$key='pln';
 	$o='emb_Id';
   $d=get_emb_Id();
-  $d=($d=="")?$t:$d;
+  $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($d,'=CMP');
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);

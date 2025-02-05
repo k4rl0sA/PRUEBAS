@@ -85,7 +85,7 @@ function gra_emb_Id(){
       ];
     }
     $rta = show_sql($sql, $params);
-    $rta = mysql_prepd($sql, $params);
+    // $rta = mysql_prepd($sql, $params);
 return $rta;
 }
 

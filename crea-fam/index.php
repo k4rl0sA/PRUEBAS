@@ -155,6 +155,7 @@ function grabar(tb='',ev){
 	'tamzarit':'../zarit/lib.php',
   'etnias':'etnias.php',
   'ethnicity':'../etnias/tipoetn.php',
+  'emb_Id':'../etnias/embid.php',
   'segnoreg':'../etnias/embseg.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';

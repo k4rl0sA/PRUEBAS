@@ -154,18 +154,18 @@ function cmp_segnoreg(){
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
   $pn=$_POST['peso_nacer'] ?? 0;
-  $docma=$_POST['doc_madre'] ?? null;
-  $sis=$_POST['sistolica'] ?? null;
-  $diast=$_POST['diastolica'] ?? null;
-  $fcar=$_POST['frec_cardiaca'] ?? null;
-  $fres=$_POST['frec_respiratoria'] ?? null;
-  $satu=$_POST['saturacion'] ?? null;
-  $gluco=$_POST['gluco'] ?? null;
-  $pcef=$_POST['peri_cefalico'] ?? null;
-  $pbra=$_POST['peri_braqueal'] ?? null;
-  $pes=$_POST['peso'] ?? null;
-  $tal=$_POST['talla'] ?? null;
-  $imc=$_POST['imc'] ?? null;
+  $docma=$_POST['doc_madre'] ?? 0;
+  $sis=$_POST['sistolica'] ?? 0;
+  $diast=$_POST['diastolica'] ?? 0;
+  $fcar=$_POST['frec_cardiaca'] ?? 0;
+  $fres=$_POST['frec_respiratoria'] ?? 0;
+  $satu=$_POST['saturacion'] ?? 0;
+  $gluco=$_POST['gluco'] ?? 0;
+  $pcef=$_POST['peri_cefalico'] ?? 0;
+  $pbra=$_POST['peri_braqueal'] ?? 0;
+  $pes=$_POST['peso'] ?? 0;
+  $tal=$_POST['talla'] ?? 0;
+  $imc=$_POST['imc'] ?? 0;
   
 
     if(COUNT($id)==2){

@@ -154,8 +154,8 @@ function cmp_segnoreg(){
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
   
-  $pn=($_POST['peso_nacer']=== '')? null: $_POST['peso_nacer'];
-  $docma=($_POST['doc_madre']=== '')? null: $_POST['doc_madre'];
+  $pn=($_POST['peso_nacer']=== '')? 0: $_POST['peso_nacer'];
+  $docma=($_POST['doc_madre']=== '')? 0: $_POST['doc_madre'];
 
 
   $sis=$_POST['sistolica'] ?? 0;

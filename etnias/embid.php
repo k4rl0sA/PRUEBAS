@@ -74,7 +74,7 @@ function gra_emb_Id(){
         ['type' => 's', 'value' => $_POST['saberes']],
         ['type' => 's', 'value' => $_POST['enfoque']]
       ];
-      $rta = show_sql($sql, $params);
+      // $rta = show_sql($sql, $params);
     }else{
    $sql="UPDATE etn_identi SET  idpeople=?,fechavisi=?,lider=?,educacion=?,espanol=?,saberes=?,enfoque=?,usu_creo=?,fecha_create=?,usu_update=?,fecha_update=?,WHERE idriesgo=?";
     $params = [
@@ -84,7 +84,7 @@ function gra_emb_Id(){
         ['type' => 'i', 'value' => $id[1]]
       ];
     }
-    $rta = show_sql($sql, $params);
+    // $rta = show_sql($sql, $params);
     // $rta = mysql_prepd($sql, $params);
 return $rta;
 }

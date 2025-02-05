@@ -154,7 +154,8 @@ function grabar(tb='',ev){
 	'tamBarthel':'../barthel/lib.php',
 	'tamzarit':'../zarit/lib.php',
   'etnias':'etnias.php',
-  'ethnicity':'../etnias/tipoetn.php'
+  'ethnicity':'../etnias/tipoetn.php',
+  'segnoreg':'../etnias/embseg.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

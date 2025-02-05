@@ -25,15 +25,15 @@ function lis_rute(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,id_ruteo AS Cod_Registro,idgeo AS Cod_Predio,nombres,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado
-  FROM `eac_ruteo` 
-  WHERE subred_report in(select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute();
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES, id_ruteo AS Cod_Registro ,idgeo AS Cod_Predio, nombres, `fecha_asig` AS Asignado, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, intervencion AS Intervencion_A_realizar, caracteriza AS Usuario_Caracterizado, estado
+	  FROM `eac_ruteo` 
+	WHERE subred_report in(select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	//echo($sql);
+	      //echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-	}
+}
 
 function whe_rute() {
 	$sql = " AND estado='A' ";

@@ -62,7 +62,6 @@ function cmp_emb_Id(){
 
 function gra_emb_Id(){
 	$id=divide($_POST['id']);
-    var_dump($_POST);
     if(COUNT($id)==2){
       $usu=$_SESSION['us_sds'];
       $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";

@@ -156,19 +156,17 @@ function gra_segnoreg(){
   
   $pn=($_POST['peso_nacer']=== '')? 0: $_POST['peso_nacer'];
   $docma=($_POST['doc_madre']=== '')? 0: $_POST['doc_madre'];
-
-
-  $sis=$_POST['sistolica'] ?? 0;
-  $diast=$_POST['diastolica'] ?? 0;
-  $fcar=$_POST['frec_cardiaca'] ?? 0;
-  $fres=$_POST['frec_respiratoria'] ?? 0;
-  $satu=$_POST['saturacion'] ?? 0;
-  $gluco=$_POST['gluco'] ?? 0;
-  $pcef=$_POST['peri_cefalico'] ?? 0;
-  $pbra=$_POST['peri_braqueal'] ?? 0;
-  $pes=$_POST['peso'] ?? 0;
-  $tal=$_POST['talla'] ?? 0;
-  $imc=$_POST['imc'] ?? 0;
+  $sis=($_POST['sistolica']=== '')? 0: $_POST['sistolica'];
+  $diast=($_POST['diastolica']=== '')? 0: $_POST['diastolica'];
+  $fcar=($_POST['frec_cardiaca']=== '')? 0: $_POST['frec_cardiaca'];
+  $fres= ($_POST['frec_respitatoria']=== '')? 0: $_POST['frec_respitatoria'];
+  $satu=($_POST['saturacion']=== '')? 0: $_POST['saturacion'];
+  $gluco=($_POST['gluco']=== '')? 0: $_POST['gluco'];
+  $pcef=($_POST['peri_cefalico']=== '')? 0: $_POST['peri_cefalico'];
+  $pbra=($_POST['peri_braqueal']=== '')? 0: $_POST['peri_braqueal'];
+  $pes=($_POST['peso']=== '')? 0: $_POST['peso'];
+  $tal=($_POST['talla']=== '')? 0: $_POST['talla'];
+  $imc=($_POST['imc']=== '')? 0: $_POST['imc'];
   
 
     if(COUNT($id)==2){

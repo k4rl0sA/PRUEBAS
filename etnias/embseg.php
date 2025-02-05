@@ -153,8 +153,21 @@ function cmp_segnoreg(){
 
 function gra_segnoreg(){
 	$id=divide($_POST['id']);
+  $tas=$_POST['peso_nacer'] ?? null;
   $tas=$_POST['doc_madre'] ?? null;
-  $tas=$_POST['cual'] ?? null;
+  $tas=$_POST['sistolica'] ?? null;
+  $tas=$_POST['diastolica'] ?? null;
+  $tas=$_POST['frec_cardiaca'] ?? null;
+  $tas=$_POST['frec_respiratoria'] ?? null;
+  $tas=$_POST['saturacion'] ?? null;
+  $tas=$_POST['gluco'] ?? null;
+  $tas=$_POST['peri_cefalico'] ?? null;
+  $tas=$_POST['peri_braqueal'] ?? null;
+  $tas=$_POST['peso'] ?? null;
+  $tas=$_POST['talla'] ?? null;
+  $tas=$_POST['imc'] ?? null;
+  
+
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';

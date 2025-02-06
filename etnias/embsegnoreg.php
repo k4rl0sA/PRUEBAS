@@ -67,6 +67,11 @@ function cmp_segnoreg(){
 	$e="";
 	$key='pln';
 	$o='segnoreg';
+  $ob='Ob';
+  $no='nO';
+  $bl='bL';
+  $x=false;
+  $block=['hab','acc'];
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('VSP');
@@ -74,7 +79,7 @@ function cmp_segnoreg(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
+  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('numsegui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d['prioridad'],$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d['gestaciones'],$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');

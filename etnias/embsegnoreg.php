@@ -79,7 +79,7 @@ function cmp_segnoreg(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-  $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
@@ -146,7 +146,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('zcore','t',50,$d,$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-35');
   $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
-  $o='';
+  $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
   $c[]=new cmp('ser_remigesti','s',3,$d,$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-25');
   $c[]=new cmp('observaciones','t',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-75');

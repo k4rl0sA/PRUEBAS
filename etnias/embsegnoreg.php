@@ -79,8 +79,9 @@ function cmp_segnoreg(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL'])");
+  $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
+  $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d['prioridad'],$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d['gestaciones'],$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d['partos'],$w.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
@@ -126,7 +127,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('seg_med_ancestral3','s',3,$d['seg_med_ancestral3'],$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-35');
   
   
-  $o='';
+  $o='signosV';
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
   $c[]=new cmp('sistolica','sd',3,$d['sistolica'],$w.' '.$o,'Valor Sistolica','sistolica',null,null,false,true,'','col-25');
   $c[]=new cmp('diastolica','sd',3,$d['diastolica'],$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-25');
@@ -135,7 +136,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('saturacion','sd',3,$d['saturacion'],$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-25');
   $c[]=new cmp('gluco','sd',3,$d['gluco'],$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-25');
   
-  $o='';
+  $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);  
   $c[]=new cmp('peri_cefalico','sd',2,$d['peri_cefalico'],$w.' '.$o,'Peri de Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
   $c[]=new cmp('peri_braqueal','sd',2,$d['peri_braqueal'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');

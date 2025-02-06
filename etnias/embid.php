@@ -41,13 +41,13 @@ function focus_emb_Id(){
 function cmp_emb_Id(){
   $rta="";
   $w="placuifam";
-	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>'']; 
+	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>''];
 	$e="";
 	$key='pln';
 	$o='emb_Id';
   $d=get_emb_Id();
-  var_dump($d);
   if ($d==""){$d=$t;}
+  var_dump($d);
   $days=fechas_app('ETNIAS');
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);

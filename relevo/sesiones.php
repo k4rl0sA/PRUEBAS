@@ -31,7 +31,7 @@ function lis_session(){
 	$sql="SELECT idsesion ACCIONES,idsesion 'Cod Registro',`rel_validacion1` Sesion, `rel_validacion2` Fecha,rel_validacion3 perfil,FN_CATALOGODESC(301,`rel_validacion4`) Actividad,`rel_validacion5`
   	descripcion 
 	FROM `rel_sesion`
-	WHERE id_people='{$id[0]}'";
+	WHERE id_people='{$id[0]}' AND estado!=0";
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 		//  echo $sql;

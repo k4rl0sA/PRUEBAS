@@ -46,11 +46,7 @@ function cmp_emb_Id(){
 	$key='pln';
 	$o='emb_Id';
   $d=get_emb_Id();
-  // if ($d==""){$d=$t;}
-  if (!is_array($d)) {
-    $d = $t;
-}
-  var_dump($d);
+  if ($d==""){$d=$t;}
   $days=fechas_app('ETNIAS');
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);

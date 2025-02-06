@@ -70,7 +70,7 @@ function cmp_segnoreg(){
   $x=false;
   $block=['gestan','cronicos'];
   $d='';
-  $d=($d=="")?$d=$t:$d;
+  // $d=($d=="")?$d=$t:$d;
   $days=fechas_app('VSP');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);

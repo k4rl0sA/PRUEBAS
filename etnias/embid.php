@@ -46,7 +46,7 @@ function cmp_emb_Id(){
 	$key='pln';
 	$o='emb_Id';
   $d=get_emb_Id();
-  if ($d==""){$d=$t;}
+  // if ($d==""){$d=$t;}
   if (!is_array($d)) {
     $d = $t;
 }

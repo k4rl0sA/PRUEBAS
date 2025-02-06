@@ -47,6 +47,9 @@ function cmp_emb_Id(){
 	$o='emb_Id';
   $d=get_emb_Id();
   if ($d==""){$d=$t;}
+  if (!is_array($d)) {
+    $d = $t;
+}
   var_dump($d);
   $days=fechas_app('ETNIAS');
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);

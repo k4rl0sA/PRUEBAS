@@ -80,15 +80,16 @@ function cmp_segnoreg(){
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2');
+  
+  
+  $o='gestan';
+  $c[]=new cmp($o,'e',null,'GESTANTES',$w);
   $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d,$w.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('abortos','s',3,$d,$w.' '.$o,'Abortos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('cesareas','s',3,$d,$w.' '.$o,'Cesareas','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('vivos','s',3,$d,$w.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('muertos','s',3,$d,$w.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
-  
-  $o='gestan';
-  $c[]=new cmp($o,'e',null,'GESTANTES',$w);
   $c[]=new cmp('fum','d',10,$d,$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-4');
   $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');

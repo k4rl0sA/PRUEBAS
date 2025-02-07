@@ -82,6 +82,7 @@ function cmp_segnoreg(){
     4 => ['ClaseNueva']
 ];
 $title = json_encode($class, JSON_HEX_APOS | JSON_HEX_QUOT);
+$title = str_replace('"', "'", $title);
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);

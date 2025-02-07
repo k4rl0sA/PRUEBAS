@@ -173,6 +173,11 @@ function opc_interven($id=''){
   function opc_paren($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=263 and estado='A' ORDER BY 1",$id);
 	}
+  
+  function opc_ubi($id=''){
+		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=264 and estado='A' ORDER BY 1",$id);
+	}
+
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

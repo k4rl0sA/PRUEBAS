@@ -69,7 +69,7 @@ function cmp_seguim(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('idseg','n',11,$d,$w.' '.$o,'Idseg','idseg',null,null,true,true,'','col-2');
     $c[]=new cmp('idpeople','n',18,$d,$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
-    $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
+    $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');

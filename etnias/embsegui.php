@@ -63,6 +63,7 @@ function cmp_seguim(){
   $w="placuifam";
 	$t=['id'=>'']; 
 	$o='seguim';
+  $x='';
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('VSP');

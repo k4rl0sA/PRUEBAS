@@ -166,6 +166,7 @@ function gra_seguim(){
 ['type' => 's', 'value' => $_POST['estado']],
 ];
       show_sql($sql, $params);
+      $rta = show_sql($sql, $params);
       $rta = mysql_prepd($sql, $params);
     }else{
 

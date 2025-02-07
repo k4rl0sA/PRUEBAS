@@ -193,7 +193,9 @@ function opc_interven($id=''){
   function opc_ubi($id=''){
 		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=264 and estado='A' ORDER BY 1",$id);
 	}
-
+  function opc_equi($id=''){
+    return opc_sql("SELECT id_usuario, nombre FROM usuarios WHERE subred=(select subred from usuarios where id_usuario=".$_SESSION['us_sds'].") AND estado='A' AND equipo=(select equipo from usuarios where id_usuario=".$_SESSION['us_sds'].") ORDER BY LPAD(nombre, 2, '0')",$id);
+  }
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

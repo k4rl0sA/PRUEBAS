@@ -124,18 +124,44 @@ function gra_seguim(){
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
       $sql = "INSERT INTO emb_segui VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')
-      $params = [
-        ['type' => 'i', 'value' => NULL ],
-        ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['fecha']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => 'A']
-      ];
+      "$params = [
+['type' => 'i', 'value' => $id[0]],
+['type' => 's', 'value' => $_POST['fecha_seg']],
+['type' => 's', 'value' => $_POST['segui']],
+['type' => 's', 'value' => $_POST['estado_seg']],
+['type' => 's', 'value' => $_POST['motivo_estado']],
+['type' => 's', 'value' => $_POST['interven']],
+['type' => 's', 'value' => $_POST['gestante']],
+['type' => 's', 'value' => $_POST['edad_gest']],
+['type' => 's', 'value' => $_POST['Nom_fami']],
+['type' => 's', 'value' => $_POST['tipo_doc']],
+['type' => 's', 'value' => $_POST['num_doc']],
+['type' => 's', 'value' => $_POST['paren']],
+['type' => 's', 'value' => $_POST['tel_conta']],
+['type' => 's', 'value' => $_POST['ubi']],
+['type' => 's', 'value' => $_POST['ser_req']],
+['type' => 's', 'value' => $_POST['fecha_ing']],
+['type' => 's', 'value' => $_POST['uss_ing']],
+['type' => 's', 'value' => $_POST['motivo_cons']],
+['type' => 's', 'value' => $_POST['uss_tras']],
+['type' => 's', 'value' => $_POST['ing_unidad']],
+['type' => 's', 'value' => $_POST['ante_salud']],
+['type' => 's', 'value' => $_POST['imp_diag']],
+['type' => 's', 'value' => $_POST['uss_encu']],
+['type' => 's', 'value' => $_POST['servicio_encu']],
+['type' => 's', 'value' => $_POST['imp_diag2']],
+['type' => 's', 'value' => $_POST['nece_apoy']],
+['type' => 's', 'value' => $_POST['espe1']],
+['type' => 's', 'value' => $_POST['espe2']],
+['type' => 's', 'value' => $_POST['adh_tto']],
+['type' => 's', 'value' => $_POST['observaciones']],
+['type' => 's', 'value' => $_POST['usu_equipo']],
+['type' => 's', 'value' => $_POST['usu_creo']],
+['type' => 's', 'value' => $_POST['fecha_create']],
+['type' => 's', 'value' => $_POST['usu_update']],
+['type' => 's', 'value' => $_POST['fecha_update']],
+['type' => 's', 'value' => $_POST['estado']],
+"];
       $rta = mysql_prepd($sql, $params);
     }else{
 

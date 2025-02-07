@@ -45,7 +45,7 @@ function lis_groupEtnico(){
 $info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
         FROM `tabla` 
@@ -54,7 +54,7 @@ $pag=(isset($_POST['pag-groupEtnico']))? ($_POST['pag-groupEtnico']-1)* $regxPag
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"groupEtnico",$regxPag,'plncon.php');
+        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
 }
 
 

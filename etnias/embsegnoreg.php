@@ -41,26 +41,26 @@ function focus_segnoreg(){
 }
 function lis_segnoreg(){
     // print_r($_POST);
-  /*   $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM emb_segreg WHERE idpeople=".$id[0]."");
+   $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
+$info=datos_mysql("SELECT COUNT(*) total FROM emb_segui WHERE idpeople=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
     $sql="SELECT concat(idpeople,'_',segui) ACCIONES
-        FROM `emb_segreg` 
+        FROM `emb_segui` 
             WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql); 
 
-        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php'); */
+        return create_table($total,$datos["responseResult"],"seguim",$regxPag,'embseg.php'); */
 }
 
 
 function cmp_segnoreg(){
-  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";
+  $rtasegui class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";
   $w="placuifam";
 	// $t=['id'=>'','idsegnoreg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','prioridad'=>'','gestaciones'=>'','partos'=>'','abortos'=>'','cesareas'=>'','vivos'=>'','muertos'=>'','fum'=>'','edad_gest'=>'','resul_gest'=>'','peso_nacer'=>'','asist_controles'=>'','exa_labo'=>'','cons_micronutri'=>'','esq_vacu'=>'','signos_alarma1'=>'','diag_sifigest'=>'','adhe_tto'=>'','diag_sificong'=>'','seg_partera'=>'','seg_med_ancestral1'=>'','diag_cronico'=>'','cual'=>'','tto_enf'=>'','ctrl_cronico'=>'','signos_alarma2'=>'','seg_med_ancestral2'=>'','doc_madre'=>'','ctrl_cyd'=>'','lactancia_mat'=>'','esq_vacunacion'=>'','sig_alarma_seg'=>'','seg_med_ancestral3'=>'','sistolica'=>'','diastolica'=>'','frec_cardiaca'=>'','frec_respiratoria'=>'','saturacion'=>'','gluco'=>'','peri_cefalico'=>'','peri_braqueal'=>'','peso'=>'','talla'=>'','imc'=>'','zcore'=>'','clasi_nutri'=>'','ser_remigesti'=>'','observaciones'=>'','users_bina'=>'','equipo_bina'=>'']; 
 	$o='segnoreg';

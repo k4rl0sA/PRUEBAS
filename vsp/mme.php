@@ -114,9 +114,9 @@ function cmp_mme(){
     $c[]=new cmp('exam_lab','s','2',$d,$w.' pRe '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('esqu_vacuna','s','3',$d,$w.' pRe '.$o,'¿Tiene Esquema De Vacunación Completo?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('cons_micronutr','s','2',$d,$w.' pRe '.$o,'¿Consume Micronutrientes?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Trata de Farma','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
+    $c[]=new cmp('trata_farma','s','3',$d,$w.' pRe '.$o,'Tratamiento Farmacologico','rta',null,null,false,$x,'','col-2',"enabOthSi('trata_farma','FaR');");
     $c[]=new cmp('tipo_tratafarma','m','3',$d,$w.' pRe FaR '.$o,'Tipo de Tratamiento','tipo_tratafarma',null,null,false,$x,'','col-2');
-    $c[]=new cmp('cualtra','t','100',$d,$w.' FaR '.$o,'Ingrese CÚAL si, anteriormente selecciono OTRO','cual',null,null,false,false,'','col-4');
+    $c[]=new cmp('cualtra','t','100',$d,$w.' '.$o,'Ingrese CÚAL si, anteriormente selecciono OTRO','cual',null,null,false,false,'','col-4');
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2',"disaOthNo('adhe_tratafarma','nAd');");
     $c[]=new cmp('porque_noadh','t','500',$d,$w.' nAd '.$o,'¿Por Qué?','porque_noadh',null,null,false,false,'','col-4');
     $c[]=new cmp('peso','sd',6,$d,$w.' pRe IMc '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');

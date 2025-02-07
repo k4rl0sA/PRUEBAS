@@ -113,7 +113,7 @@ function cmp_seguim(){
 
     $o='aspfin';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-    $c[]=new cmp('observaciones','t',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-65');
+    $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-65');
     $c[]=new cmp('equi','m',3,'',$w.' '.$o,'Equipo','equi',null,null,true,true,'','col-35',"fieldsValue('agen_intra','aIM','1',true);");
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

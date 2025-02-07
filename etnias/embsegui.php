@@ -119,7 +119,7 @@ function cmp_seguim(){
 	return $rta;
 }
 
-/*function gra_seguim(){
+function gra_seguim(){
 	$id=divide($_POST['idseg']);
     // var_dump(COUNT($id));
     if(COUNT($id)==2){
@@ -172,7 +172,7 @@ function cmp_seguim(){
 
     }
 return $rta;
-}*/
+}
 
 /*function get_seguim(){
   if($_REQUEST['id']==''){

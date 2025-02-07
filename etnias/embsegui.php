@@ -81,10 +81,10 @@ function cmp_seguim(){
     $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,true,'','col-2');
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' '.$o,'Nombre Completo del familiar','Nom_fami',null,null,false,true,'','col-4');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$o,'Tipo De Documento','tipo_doc',null,null,false,true,'','col-2');
-    $c[]=new cmp('num_doc','n',18,$d,$w.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-2');
-    $c[]=new cmp('paren','s',3,$d,$w.' '.$o,'Parentesco','paren',null,null,false,true,'','col-2');
-    $c[]=new cmp('tel_conta','n',3,$d,$w.' '.$o,'Teléfono De Contacto','tel_conta',null,null,false,true,'','col-2');
-    $c[]=new cmp('ubi','s',3,$d,$w.' '.$o,'Ubicacion','ubi',null,null,false,true,'','col-2');
+    $c[]=new cmp('num_doc','n',18,$d,$w.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-25');
+    $c[]=new cmp('paren','s',3,$d,$w.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
+    $c[]=new cmp('tel_conta','n',3,$d,$w.' '.$o,'Teléfono De Contacto','tel_conta',null,null,false,true,'','col-25');
+    $c[]=new cmp('ubi','s',3,$d,$w.' '.$o,'Ubicacion','ubi',null,null,false,true,'','col-25');
 
     $o='infoserv';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE SERVICIO - HOSPITALARIO',$w);

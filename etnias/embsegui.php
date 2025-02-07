@@ -59,7 +59,7 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
 
 function cmp_seguim(){
-  $rta="";
+  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>"<div class="lis_segui"></div>m()."</div></div>";
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";

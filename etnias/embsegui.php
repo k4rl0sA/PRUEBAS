@@ -94,10 +94,10 @@ function cmp_seguim(){
     $c[]=new cmp('servicio_encu','t',3,$d,$w.' '.$o,'Servicio de Encu','servicio_encu',null,null,false,true,'','col-2');
     $c[]=new cmp('imp_diag2','t',3,$d,$w.' '.$o,'Imp de Diag2','imp_diag2',null,null,false,true,'','col-2');
     $c[]=new cmp('nece_apoy','s',3,$d,$w.' '.$o,'Nece de Apoy','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('espe1','s',3,$d,$w.' '.$o,'Espe1','espe1',null,null,false,true,'','col-2');
+    $c[]=new cmp('espe1','t',3,$d,$w.' '.$o,'Espe1','espe1',null,null,false,true,'','col-2');
     $c[]=new cmp('espe2','t',50,$d,$w.' '.$o,'Espe2','espe2',null,null,false,true,'','col-2');
     $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adh de Tto','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('observaciones','t',60,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
+    $c[]=new cmp('observaciones','t',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
     $c[]=new cmp('usu_equipo','t',7,$d,$w.' '.$o,'Usu de Equipo','usu_equipo',null,null,true,true,'','col-2');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

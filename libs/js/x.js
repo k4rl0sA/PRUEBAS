@@ -1061,3 +1061,28 @@ function valiEgreHosp() {
 	];
 	EnabDepeDynamic('HOs', conditions);
 }
+function enabCronicEtn() {
+	const conditions = [
+		{ id: 'prioridad', value: '1', compare: true },
+		{ id: 'tiposeg', value: '2', compare: true },
+		{ id: 'etapa', value: '1', compare: true }
+	];
+	EnabDepeDynamic('HOs', conditions);
+}
+function enabMenorEtn() {
+	const conditions = [
+		{ id: 'prioridad', value: '1', compare: true },
+		{ id: 'tiposeg', value: '2', compare: true },
+		{ id: 'etapa', value: '1', compare: true }
+	];
+	EnabDepeDynamic('HOs', conditions);
+}
+function enabGestEtn() {
+	const conditions = [
+		{ id: 'prioridad', value: '1', compare: true },
+		{ id: 'tiposeg', value: '2', compare: true },
+		{ id: 'etapa', value: '1', compare: true }
+	];
+	EnabDepeDynamic('HOs', conditions);
+}
+

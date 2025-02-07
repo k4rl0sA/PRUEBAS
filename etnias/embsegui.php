@@ -75,7 +75,7 @@ function cmp_seguim(){
     $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
     $c[]=new cmp('interven','s',3,$d,$w.' '.$o,'Interven','interven',null,null,true,true,'','col-2');
 
-    $o='menor5';
+    $o='datiden';
     $c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN - HOSPITALARIO',$w);
     $c[]=new cmp('gestante','s',3,$d,$w.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad de Gest','edad_gesta',null,null,false,true,'','col-2');
@@ -85,6 +85,9 @@ function cmp_seguim(){
     $c[]=new cmp('paren','s',3,$d,$w.' '.$o,'Paren','paren',null,null,false,true,'','col-2');
     $c[]=new cmp('tel_conta','n',3,$d,$w.' '.$o,'Tel de Conta','tel_conta',null,null,false,true,'','col-2');
     $c[]=new cmp('ubi','s',3,$d,$w.' '.$o,'Ubi','ubi',null,null,false,true,'','col-2');
+
+    $o='infoserv';
+    $c[]=new cmp($o,'e',null,'INFORMACIÓN DE SERVICIO - HOSPITALARIO',$w);
     $c[]=new cmp('ser_req','t',3,$d,$w.' '.$o,'Ser de Req','ser_req',null,null,false,true,'','col-2');
     $c[]=new cmp('fecha_ing','d',10,$d,$w.' '.$o,'Fecha de Ing','fecha_ing',null,null,false,true,'','col-2');
     $c[]=new cmp('uss_ing','t',3,$d,$w.' '.$o,'Uss de Ing','uss_ing',null,null,false,true,'','col-2');

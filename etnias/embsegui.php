@@ -42,12 +42,12 @@ function focus_seguim(){
 function lis_seguim(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM emb_segui WHERE idviv=".$id[0]."");
+$info=datos_mysql("SELECT COUNT(*) total FROM emb_segui WHERE idseg=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
-    $sql="SELECT concat(key1,'_',key2) ACCIONES
+    $sql="SELECT idseg ACCIONES,idseg 'Cod Registro', fecha_seg 'fecha seguimiento', estado_seg 'Estado', interven 'intervención', usu_creo 'creo'
         FROM `emb_segui` 
             WHERE key1='".$id[0];
         $sql.="' ORDER BY fecha_create";

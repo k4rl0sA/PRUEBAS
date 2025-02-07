@@ -160,7 +160,6 @@ function gra_seguim(){
 ['type' => 's', 'value' => $_POST['observaciones']],
 ['type' => 's', 'value' => $bina],
 ['type' => 's', 'value' => $_POST['usu_creo']],
-['type' => 's', 'value' => $_POST['fecha_create']],
 ['type' => 's', 'value' => $_POST['usu_update']],
 ['type' => 's', 'value' => $_POST['fecha_update']],
 ['type' => 's', 'value' => $_POST['estado']]

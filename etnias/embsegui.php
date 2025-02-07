@@ -40,7 +40,7 @@ function focus_seguim(){
   return $rta;
 }
 function lis_seguim(){
-    // print_r($_POST);
+    print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM emb_segui WHERE idseg=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
@@ -49,7 +49,7 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
     $sql="SELECT idseg ACCIONES,idseg 'Cod Registro', fecha_seg 'fecha seguimiento', estado_seg 'Estado', interven 'intervención', usu_creo 'creo'
         FROM `emb_segui` 
-            WHERE key1='".$id[0];
+            WHERE idseg='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
@@ -101,8 +101,6 @@ function cmp_seguim(){
     $c[]=new cmp('observaciones','t',60,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
     $c[]=new cmp('usu_equipo','t',7,$d,$w.' '.$o,'Usu de Equipo','usu_equipo',null,null,true,true,'','col-2');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='seguim-lis' >".lis_seguim()."</div></div>";
 	return $rta;
 }
 

@@ -75,12 +75,13 @@ function cmp_segnoreg(){
   $ge='GEs';
   $cro='CrO';
   $me5='mE5';
-  $title=json_encode($title = [
+  $class=[
     1 => ['PuE'],
     2 => ['pRe'],
     3 => ['pRe', 'OtraClase'],
     4 => ['ClaseNueva']
-]);
+];
+$title=json_encode($class);
 
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);

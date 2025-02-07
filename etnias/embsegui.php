@@ -62,11 +62,9 @@ function cmp_seguim(){
   // $rta="<div class='encabezado placuifam'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
   $rta='';
   $w="placuifam";
-	$t=['id'=>'']; 
 	$o='seguim';
   $d='';
-  $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('VSP');
+  $days=fechas_app('ETNIAS');
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
     $c[]=new cmp('idseg','n',11,$d,$w.' '.$o,'Idseg','idseg',null,null,true,true,'','col-2');

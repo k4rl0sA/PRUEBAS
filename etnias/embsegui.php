@@ -75,7 +75,7 @@ function cmp_seguim(){
     $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
     $c[]=new cmp('interven','s',3,$d,$w.' '.$o,'Interven','interven',null,null,true,true,'','col-2');
     $c[]=new cmp('gestante','s',3,$d,$w.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');
+    $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad de Gest','edad_gesta',null,null,false,true,'','col-2');
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' '.$o,'Nom de Fami','Nom_fami',null,null,false,true,'','col-2');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('num_doc','s',3,$d,$w.' '.$o,'Num de Doc','num_doc',null,null,false,true,'','col-2');
@@ -160,6 +160,10 @@ function opc_interven($id=''){
 
   function opc_rta($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
+  }
+
+  function opc_edad_gesta($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
   }
 
   function opc_ejemplo($id=''){

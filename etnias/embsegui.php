@@ -88,14 +88,14 @@ function cmp_seguim(){
 
     $o='infoserv';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE SERVICIO - HOSPITALARIO',$w);
-    $c[]=new cmp('ser_req','t',3,$d,$w.' '.$o,'Ser de Req','ser_req',null,null,false,true,'','col-2');
-    $c[]=new cmp('fecha_ing','d',10,$d,$w.' '.$o,'Fecha de Ing','fecha_ing',null,null,false,true,'','col-2');
-    $c[]=new cmp('uss_ing','t',3,$d,$w.' '.$o,'Uss de Ing','uss_ing',null,null,false,true,'','col-2');
-    $c[]=new cmp('motivo_cons','t',3,$d,$w.' '.$o,'Motivo de Cons','motivo_cons',null,null,false,true,'','col-2');
-    $c[]=new cmp('uss_tras','t',3,$d,$w.' '.$o,'Uss de Tras','uss_tras',null,null,false,true,'','col-2');
-    $c[]=new cmp('ing_unidad','t',3,$d,$w.' '.$o,'Ing de Unidad','ing_unidad',null,null,false,true,'','col-2');
-    $c[]=new cmp('ante_salud','t',3,$d,$w.' '.$o,'Ante de Salud','ante_salud',null,null,false,true,'','col-2');
-    $c[]=new cmp('imp_diag','t',3,$d,$w.' '.$o,'Imp de Diag','imp_diag',null,null,false,true,'','col-2');
+    $c[]=new cmp('ser_req','t',3,$d,$w.' '.$o,'Servicio Requerido','ser_req',null,null,false,true,'','col-2');
+    $c[]=new cmp('fecha_ing','d',10,$d,$w.' '.$o,'Fecha De Ingreso','fecha_ing',null,null,false,true,'','col-2');
+    $c[]=new cmp('uss_ing','t',3,$d,$w.' '.$o,'Unidad De Servicio De Salud A La Que Ingresa','uss_ing',null,null,false,true,'','col-2');
+    $c[]=new cmp('motivo_cons','t',3,$d,$w.' '.$o,'Motivo De Consulta/Ingresó','motivo_cons',null,null,false,true,'','col-2');
+    $c[]=new cmp('uss_tras','t',3,$d,$w.' '.$o,'Unidad De Servicio De Salud De Traslado','uss_tras',null,null,false,true,'','col-2');
+    $c[]=new cmp('ing_unidad','t',3,$d,$w.' '.$o,'Tipo De Ingreso A La Unidad','ing_unidad',null,null,false,true,'','col-2');
+    $c[]=new cmp('ante_salud','t',3,$d,$w.' '.$o,'Antecedentes En Salud','ante_salud',null,null,false,true,'','col-2');
+    $c[]=new cmp('imp_diag','t',3,$d,$w.' '.$o,'Impresión Diagnostica','imp_diag',null,null,false,true,'','col-2');
 
     $o='detsegh';
     $c[]=new cmp($o,'e',null,'DETALLE DEL SEGUIMIENTO INTRA-HOSPITALARIO',$w);

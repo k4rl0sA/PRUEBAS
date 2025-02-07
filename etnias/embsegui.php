@@ -73,7 +73,7 @@ function cmp_seguim(){
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
-    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
     $c[]=new cmp('interven','s',3,$d,$w.' '.$o,'Interven','interven',null,null,true,true,'','col-2');
     $c[]=new cmp('gestante','s',3,$d,$w.' '.$o,'Gestante','gestante',null,null,false,true,'','col-2');
     $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');

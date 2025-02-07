@@ -106,7 +106,7 @@ function cmp_seguim(){
 	return $rta;
 }
 
-function gra_seguim(){
+/*function gra_seguim(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
@@ -125,17 +125,10 @@ function gra_seguim(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
-    $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
-      ];
-      $rta = mysql_prepd($sql, $params); */
+
     }
 return $rta;
-}
+}*/
 
 function get_seguim(){
   if($_REQUEST['id']==''){

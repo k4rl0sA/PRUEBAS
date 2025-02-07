@@ -55,7 +55,7 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
         //  echo $sql;
         $datos=datos_mysql($sql); 
 
-        return create_table($total,$datos["responseResult"],"seguim",$regxPag,'embseg.php'); */
+        return create_table($total,$datos["responseResult"],"seguim",$regxPag,'embsegui.php'); */
 }
 
 

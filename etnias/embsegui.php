@@ -128,7 +128,7 @@ function gra_seguim(){
       $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO emb_segui VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
-['type' => 'i', 'value' => $id[0]],
+['type' => 'i', 'value' => $idseg[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
 ['type' => 's', 'value' => $_POST['estado_seg']],

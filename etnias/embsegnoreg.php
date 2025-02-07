@@ -188,6 +188,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
 ['type' => 's', 'value' => $_POST['estado_seg']],
+['type' => 's', 'value' => $_POST['motivo_estado']],
 ['type' => 's', 'value' => $_POST['prioridad']],
 ['type' => 's', 'value' => $_POST['gestaciones']],
 ['type' => 's', 'value' => $_POST['partos']],

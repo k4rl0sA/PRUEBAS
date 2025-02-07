@@ -1079,6 +1079,6 @@ function valiEgreHosp() {
 		{ id: 'tiposeg', value: '2', compare: true },
 		{ id: 'etapa', value: '1', compare: true }
 	];
-	EnabDepeDynamic('dependiente', conditions);
+	EnabDepeDynamic('HOs', conditions);
 }
 

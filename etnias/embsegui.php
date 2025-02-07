@@ -99,16 +99,16 @@ function cmp_seguim(){
 
     $o='detsegh';
     $c[]=new cmp($o,'e',null,'DETALLE DEL SEGUIMIENTO INTRA-HOSPITALARIO',$w);
-    $c[]=new cmp('uss_encu','t',3,$d,$w.' '.$o,'Uss de Encu','uss_encu',null,null,false,true,'','col-2');
-    $c[]=new cmp('servicio_encu','t',3,$d,$w.' '.$o,'Servicio de Encu','servicio_encu',null,null,false,true,'','col-2');
-    $c[]=new cmp('imp_diag2','t',3,$d,$w.' '.$o,'Imp de Diag2','imp_diag2',null,null,false,true,'','col-2');
-    $c[]=new cmp('nece_apoy','s',3,$d,$w.' '.$o,'Nece de Apoy','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('uss_encu','t',3,$d,$w.' '.$o,'Unidad De  Salud A La Que Se Encuentra','uss_encu',null,null,false,true,'','col-2');
+    $c[]=new cmp('servicio_encu','t',3,$d,$w.' '.$o,'Servicio De En El Que Se Encuentra','servicio_encu',null,null,false,true,'','col-2');
+    $c[]=new cmp('imp_diag2','t',3,$d,$w.' '.$o,'Impresión Diagnostica','imp_diag2',null,null,false,true,'','col-2');
+    $c[]=new cmp('nece_apoy','s',3,$d,$w.' '.$o,'Necesidad De Apoyo Intersectorial','rta',null,null,false,true,'','col-2');
 
     $o='detsegp';
     $c[]=new cmp($o,'e',null,'DETALLE DEL SEGUIMIENTO POS EGRESO',$w);
-    $c[]=new cmp('espe1','t',3,$d,$w.' '.$o,'Espe1','espe1',null,null,false,true,'','col-2');
-    $c[]=new cmp('espe2','t',50,$d,$w.' '.$o,'Espe2','espe2',null,null,false,true,'','col-2');
-    $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adh de Tto','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('espe1','t',3,$d,$w.' '.$o,'Especialidad 1','espe1',null,null,false,true,'','col-2');
+    $c[]=new cmp('espe2','t',50,$d,$w.' '.$o,'Especialidad 2','espe2',null,null,false,true,'','col-2');
+    $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adherente Al Tratamiento','rta',null,null,false,true,'','col-2');
     
 
     $o='aspfin';

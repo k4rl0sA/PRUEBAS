@@ -530,20 +530,19 @@ function enabEtap(a, b) {
     const elementos = [...document.querySelectorAll(selector)];
     const valorA = parseInt(act.value);
     elementos.forEach(elemento => {
-        let habilitar = false;
+        let habilitar = true;
         // Verifica si el valor de `a` está en la configuración
         if (config[valorA]) {
             // Itera sobre las clases asociadas al valor de `a`
             config[valorA].forEach(clase => {
                 if (elemento.classList.contains(clase)) {
-                    habilitar = true;
+                    habilitar = false;
                 }
             });
         }
         enaFie(elemento, habilitar);
     });
 }
-
 
   function enabClasValu(a, b) {
     const act = document.getElementById(a);

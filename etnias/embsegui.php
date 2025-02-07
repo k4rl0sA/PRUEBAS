@@ -83,7 +83,7 @@ function cmp_seguim(){
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$o,'Tipo De Documento','tipo_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d,$w.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-25');
     $c[]=new cmp('paren','s',3,$d,$w.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
-    $c[]=new cmp('tel_conta','n',3,$d,$w.' '.$o,'Teléfono De Contacto','tel_conta',null,null,false,true,'','col-25');
+    $c[]=new cmp('tel_conta','n',21,$d,$w.' '.$o,'Teléfono De Contacto','tel_conta',null,null,false,true,'','col-25');
     $c[]=new cmp('ubi','s',3,$d,$w.' '.$o,'Ubicacion','ubi',null,null,false,true,'','col-25');
 
     $o='infoserv';

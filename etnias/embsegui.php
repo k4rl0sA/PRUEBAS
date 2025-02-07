@@ -74,7 +74,7 @@ function cmp_seguim(){
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
     $c[]=new cmp('interven','s',3,$d,$w.' '.$o,'Interven','interven',null,null,true,true,'','col-2');
-    $c[]=new cmp('gestante','s',3,$d,$w.' '.$o,'Gestante','gestante',null,null,false,true,'','col-2');
+    $c[]=new cmp('gestante','s',3,$d,$w.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad de Gest','edad_gest',null,null,false,true,'','col-2');
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' '.$o,'Nom de Fami','Nom_fami',null,null,false,true,'','col-2');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,false,true,'','col-2');
@@ -93,10 +93,10 @@ function cmp_seguim(){
     $c[]=new cmp('uss_encu','s',3,$d,$w.' '.$o,'Uss de Encu','uss_encu',null,null,false,true,'','col-2');
     $c[]=new cmp('servicio_encu','s',3,$d,$w.' '.$o,'Servicio de Encu','servicio_encu',null,null,false,true,'','col-2');
     $c[]=new cmp('imp_diag2','s',3,$d,$w.' '.$o,'Imp de Diag2','imp_diag2',null,null,false,true,'','col-2');
-    $c[]=new cmp('nece_apoy','s',3,$d,$w.' '.$o,'Nece de Apoy','nece_apoy',null,null,false,true,'','col-2');
+    $c[]=new cmp('nece_apoy','s',3,$d,$w.' '.$o,'Nece de Apoy','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('espe1','s',3,$d,$w.' '.$o,'Espe1','espe1',null,null,false,true,'','col-2');
     $c[]=new cmp('espe2','t',50,$d,$w.' '.$o,'Espe2','espe2',null,null,false,true,'','col-2');
-    $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adh de Tto','adh_tto',null,null,false,true,'','col-2');
+    $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adh de Tto','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('observaciones','t',60,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
     $c[]=new cmp('usu_equipo','t',7,$d,$w.' '.$o,'Usu de Equipo','usu_equipo',null,null,true,true,'','col-2');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -156,6 +156,10 @@ function opc_motivo_estado($id=''){
 
 function opc_interven($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=262 and estado='A' ORDER BY 1",$id);
+  }
+
+  function opc_rta($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
   }
 
   function opc_ejemplo($id=''){

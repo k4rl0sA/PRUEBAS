@@ -80,7 +80,7 @@ function cmp_seguim(){
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d,$w.' '.$o,'Num de Doc','num_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('paren','s',3,$d,$w.' '.$o,'Paren','paren',null,null,false,true,'','col-2');
-    $c[]=new cmp('tel_conta','s',3,$d,$w.' '.$o,'Tel de Conta','tel_conta',null,null,false,true,'','col-2');
+    $c[]=new cmp('tel_conta','n',3,$d,$w.' '.$o,'Tel de Conta','tel_conta',null,null,false,true,'','col-2');
     $c[]=new cmp('ubi','s',3,$d,$w.' '.$o,'Ubi','ubi',null,null,false,true,'','col-2');
     $c[]=new cmp('ser_req','s',3,$d,$w.' '.$o,'Ser de Req','ser_req',null,null,false,true,'','col-2');
     $c[]=new cmp('fecha_ing','sd',10,$d,$w.' '.$o,'Fecha de Ing','fecha_ing',null,null,false,true,'','col-2');

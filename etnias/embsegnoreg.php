@@ -71,7 +71,11 @@ function cmp_segnoreg(){
   $block=['gestan','cronicos'];
   $d='';
   // $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('VSP');
+  $days=fechas_app('ETNIAS');
+  $ge='GEs';
+  $cro='CrO';
+  $me5='mE5';
+
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
@@ -84,45 +88,45 @@ function cmp_segnoreg(){
   
   $o='gestan';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
-  $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('partos','s',3,$d,$w.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('abortos','s',3,$d,$w.' '.$o,'Abortos','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('cesareas','s',3,$d,$w.' '.$o,'Cesareas','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('vivos','s',3,$d,$w.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('muertos','s',3,$d,$w.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
-  $c[]=new cmp('fum','d',10,$d,$w.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
-  $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-4');
-  $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');
-  $c[]=new cmp('peso_nacer','',5,$d,$w.' '.$o,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,true,'','col-2');
-  $c[]=new cmp('asist_controles','s',3,$d,$w.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('exa_labo','s',3,$d,$w.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional?','rta',null,null,false,true,'','col-4');
-  $c[]=new cmp('cons_micronutri','s',3,$d,$w.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,true,'','col-4');
-  $c[]=new cmp('esq_vacu','s',3,$d,$w.' '.$o,'¿Tiene Esquema De Vacunacion Completo Para La Eg?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('signos_alarma1','s',3,$d,$w.' '.$o,'¿Presenta Signos De Alarma?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('diag_sifigest','s',3,$d,$w.' '.$o,'¿Diagnosticada Con Sifilis Gestacional?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('adhe_tto','s',3,$d,$w.' '.$o,'¿Adherencia A Tratamiento?','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('diag_sificong','s',3,$d,$w.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('seg_partera','s',3,$d,$w.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('seg_med_ancestral1','s',3,$d,$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-4');
+  $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Gestaciones','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('partos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Partos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('abortos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Abortos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('cesareas','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Cesareas','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('vivos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Vivos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('muertos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
+  $c[]=new cmp('fum','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
+  $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-4');
+  $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');
+  $c[]=new cmp('peso_nacer','',5,$d,$w.' '.$bl.' '.$ge.' '.$o,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,true,'','col-2');
+  $c[]=new cmp('asist_controles','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('exa_labo','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional?','rta',null,null,false,true,'','col-4');
+  $c[]=new cmp('cons_micronutri','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Consume Micronutrientes?','rta',null,null,false,true,'','col-4');
+  $c[]=new cmp('esq_vacu','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Tiene Esquema De Vacunacion Completo Para La Eg?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('signos_alarma1','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Presenta Signos De Alarma?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('diag_sifigest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Diagnosticada Con Sifilis Gestacional?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('adhe_tto','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Adherencia A Tratamiento?','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('diag_sificong','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Sifilis Congenita?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('seg_partera','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('seg_med_ancestral1','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-4');
   
   $o='cronicos';
   $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);
-  $c[]=new cmp('diag_cronico','s',3,$d,$w.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-3');
-  $c[]=new cmp('cual','t',50,$d,$w.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-4');
-  $c[]=new cmp('tto_enf','s',3,$d,$w.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('ctrl_cronico','s',3,$d,$w.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('signos_alarma2','s',3,$d,$w.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');
-  $c[]=new cmp('seg_med_ancestral2','s',3,$d,$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('diag_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-3');
+  $c[]=new cmp('cual','t',50,$d,$w.' '.$bl.' '.$cro.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-4');
+  $c[]=new cmp('tto_enf','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('ctrl_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('signos_alarma2','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');
+  $c[]=new cmp('seg_med_ancestral2','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-3');
   
   
   $o='menor5';
   $c[]=new cmp($o,'e',null,'MENOR DE 5 AÑOS',$w);
-  $c[]=new cmp('doc_madre','n',18,$d,$w.' '.$o,'Número De Documento Madre','doc_madre',null,null,false,true,'','col-35');
-  $c[]=new cmp('ctrl_cyd','s',3,$d,$w.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-35');
-  $c[]=new cmp('lactancia_mat','s',3,$d,$w.' '.$o,'¿Recibe Lactancia Materna?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('esq_vacunacion','s',3,$d,$w.' '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,false,true,'','col-3');
-  $c[]=new cmp('sig_alarma_seg','s',3,$d,$w.' '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,false,true,'','col-35');
-  $c[]=new cmp('seg_med_ancestral3','s',3,$d,$w.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-35');
+  $c[]=new cmp('doc_madre','n',18,$d,$w.' '.$bl.' '.$me5.' '.$o,'Número De Documento Madre','doc_madre',null,null,false,true,'','col-35');
+  $c[]=new cmp('ctrl_cyd','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-35');
+  $c[]=new cmp('lactancia_mat','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Recibe Lactancia Materna?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('esq_vacunacion','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,false,true,'','col-3');
+  $c[]=new cmp('sig_alarma_seg','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,false,true,'','col-35');
+  $c[]=new cmp('seg_med_ancestral3','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,false,true,'','col-35');
   
   
   $o='signosV';
@@ -150,8 +154,6 @@ function cmp_segnoreg(){
   $c[]=new cmp('observaciones','t',7000,$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-75');
 	$c[]=new cmp('equi','m',3,'',$w.' '.$o,'Equipo','equi',null,null,true,true,'','col-5',"fieldsValue('agen_intra','aIM','1',true);");
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='segnoreg-lis' >".lis_segnoreg()."</div></div>";
 	return $rta;
 }
 

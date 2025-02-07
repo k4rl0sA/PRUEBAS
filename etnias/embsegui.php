@@ -126,8 +126,8 @@ function gra_seguim(){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
-      $sql = "INSERT INTO emb_segui VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
-      "$params = [
+      $sql = "INSERT INTO emb_segui VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+      $params = [
 ['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
@@ -163,7 +163,7 @@ function gra_seguim(){
 ['type' => 's', 'value' => $_POST['fecha_create']],
 ['type' => 's', 'value' => $_POST['usu_update']],
 ['type' => 's', 'value' => $_POST['fecha_update']],
-['type' => 's', 'value' => $_POST['estado']],
+['type' => 's', 'value' => $_POST['estado']]
 ];
       show_sql($sql, $params);
       $rta = show_sql($sql, $params);

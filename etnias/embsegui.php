@@ -59,7 +59,7 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
 
 function cmp_seguim(){
-  // $rta="<div class='encabezado placuifam'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
+  $rta="<div class='encabezado placuifam'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
   $rta='';
   $w="placuifam";
 	$o='seguim';
@@ -110,7 +110,7 @@ function cmp_seguim(){
     $c[]=new cmp('espe2','t',50,$d,$w.' '.$o,'Espe2','espe2',null,null,false,true,'','col-2');
     $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$o,'Adh de Tto','rta',null,null,false,true,'','col-2');
     
-    
+
     $o='aspfin';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
     $c[]=new cmp('observaciones','t',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');

@@ -76,10 +76,7 @@ function cmp_segnoreg(){
   $cro='CrO';
   $me5='mE5';
   $class=[
-    1 => ['mE5'],
-    2 => ['pRe'],
-    3 => ['pRe', 'OtraClase'],
-    4 => ['ClaseNueva']
+    1 => ['mE5']
 ];
 $title = json_encode($class, JSON_HEX_APOS | JSON_HEX_QUOT);
 $title = str_replace('"', "'", $title);

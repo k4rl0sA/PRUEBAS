@@ -130,7 +130,7 @@ function cmp_seguim(){
 return $rta;
 }*/
 
-function get_seguim(){
+/*function get_seguim(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -143,7 +143,7 @@ function get_seguim(){
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 
-}
+}*/
 
 
 function opc_motivo_estado($id=''){

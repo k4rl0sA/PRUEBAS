@@ -41,7 +41,7 @@ function focus_seguim(){
 }
 function lis_seguim(){
   // print_r($_POST);
-   /*  $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
+   $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM emb_segui WHERE idseg=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
@@ -54,12 +54,11 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"seguim",$regxPag,'embsegui.php'); */
-        return '';
+        return create_table($total,$datos["responseResult"],"seguim",$regxPag,'embsegui.php');
 }
 
 function cmp_seguim(){
-  /* $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
+   $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
 // $rta='';
   $w="seguim";
 	$o='modini';
@@ -116,12 +115,11 @@ function cmp_seguim(){
     $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-65');
     $c[]=new cmp('equi','m',3,'',$w.' '.$o,'Equipo','equi',null,null,true,true,'','col-35',"fieldsValue('agen_intra','aIM','1',true);");
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta; */
-  return '';
+	return $rta;
 }
 
 function gra_seguim(){
-	/* $id=divide($_POST['idseg']);
+	$id=divide($_POST['idseg']);
     // var_dump(COUNT($id));
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
@@ -172,7 +170,7 @@ function gra_seguim(){
 
     } 
 return $rta;
-*/
+
 }
 
 /*function get_seguim(){

@@ -41,7 +41,7 @@ function focus_segnoreg(){
 }
 function lis_segnoreg(){
     // print_r($_POST);
-  /*   $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
+  $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM emb_segreg WHERE idpeople=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
@@ -54,7 +54,6 @@ $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql); 
-
         return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php'); */
 }
 

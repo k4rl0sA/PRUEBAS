@@ -59,46 +59,6 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 }
 
 function cmp_seguim(){
-  $rta="";
-  $w="placuifam";
-	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>''];
-	$e="";
-	$key='pln';
-	$o='emb_Id';
-  $d=get_emb_Id();
-  if ($d==""){$d=$t;}
-  $days=fechas_app('ETNIAS');
-	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
-    $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
-    $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fecha','fechavisi',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-    $c[]=new cmp('lider','t',100,$d['lider'],$w.' '.$o,'Lider con el cual se Identifica la Familia','lider',null,null,true,true,'','col-3');
-    $c[]=new cmp('educacion','o',2,$d['educacion'],$w.' '.$o,'Esta Vinculado(a) a servcios de Educacion','educacion',null,null,true,true,'','col-1');
-    $c[]=new cmp('espanol','o',2,$d['espanol'],$w.' '.$o,'Entiende Español','espanol',null,null,true,true,'','col-1');
-    $c[]=new cmp('saberes','s',3,$d['saberes'],$w.' '.$o,'Saberes Propios','saberes',null,null,true,true,'','col-15');
-    $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque Diferencial','enfoque',null,null,true,true,'','col-15');
-	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta;
-}
-
-function get_emb_Id(){
-	if($_POST['id']==''){
-		return "";
-	}else{
-		$id=divide($_POST['id']);
-    $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
-          FROM `etn_identi` 
-          WHERE idpeople='{$id[0]}'";
-          // var_dump($sql);
-    $info=datos_mysql($sql);
-    if (!$info['responseResult']) {
-      return '';
-    }else{
-      return $info['responseResult'][0];
-    }
-  }
-} 
-
-function cmp_seguim(){
   /* $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
 // $rta='';
   $w="seguim";
@@ -232,11 +192,11 @@ return $rta;
 
 function opc_segui($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);
-  }
+}
 
 function opc_estado_seg($id=''){
    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=73 and estado='A' ORDER BY 1",$id);
-   }
+}
 
 function opc_motivo_estado($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=74 and estado='A' ORDER BY 1",$id);
@@ -244,42 +204,41 @@ function opc_motivo_estado($id=''){
 
 function opc_interven($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=262 and estado='A' ORDER BY 1",$id);
-  }
+}
 
-  function opc_rta($id=''){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
-  }
+function opc_rta($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
+}
 
-  function opc_edad_gesta($id=''){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
-  }
+function opc_edad_gesta($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+}
 
-  function opc_tipo_doc($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-	}
+function opc_tipo_doc($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+}
 
-  function opc_paren($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=263 and estado='A' ORDER BY 1",$id);
-	}
+function opc_paren($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=263 and estado='A' ORDER BY 1",$id);
+}
   
-  function opc_ubi($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=264 and estado='A' ORDER BY 1",$id);
-	}
-  function opc_equi($id=''){
-    return opc_sql("SELECT id_usuario, nombre FROM usuarios WHERE subred=(select subred from usuarios where id_usuario=".$_SESSION['us_sds'].") AND estado='A' AND equipo=(select equipo from usuarios where id_usuario=".$_SESSION['us_sds'].") ORDER BY LPAD(nombre, 2, '0')",$id);
-  }
+function opc_ubi($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=264 and estado='A' ORDER BY 1",$id);
+}
+  
+function opc_equi($id=''){
+  return opc_sql("SELECT id_usuario, nombre FROM usuarios WHERE subred=(select subred from usuarios where id_usuario=".$_SESSION['us_sds'].") AND estado='A' AND equipo=(select equipo from usuarios where id_usuario=".$_SESSION['us_sds'].") ORDER BY LPAD(nombre, 2, '0')",$id);
+}
 
-	function formato_dato($a,$b,$c,$d){
-		$b=strtolower($b);
-		$rta=$c[$d];
-        // var_dump($a);
-		if ($a=='seguim' && $b=='acciones'){
-			$rta="<nav class='menu right'>";
-				
-			}
+function formato_dato($a,$b,$c,$d){
+  $b=strtolower($b);
+	$rta=$c[$d];
+  // var_dump($a);
+	if ($a=='seguim' && $b=='acciones'){
+	  $rta="<nav class='menu right'>";
+	}
 		return $rta;
-	}
-
+}
 	function bgcolor($a,$c,$f='c'){
 		$rta="";
 		return $rta;

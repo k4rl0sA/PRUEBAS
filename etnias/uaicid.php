@@ -103,10 +103,6 @@ function cmp_uaic_id(){
     $c[]=new cmp('satu2','t',7,$d['satu2'],$w.' '.$o,'Satu2','satu2',null,null,false,true,'','col-2');
     $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seg de Entmed','seg_entmed',null,null,false,true,'','col-2');
     $c[]=new cmp('observacion','t',7,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-2');
-    $c[]=new cmp('usu_creo','t',10,$d['usu_creo'],$w.' '.$o,'Usu de Creo','usu_creo',null,null,true,true,'','col-2');
-    /*$c[]=new cmp('usu_update','t',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
-    $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
-    $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2'); */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

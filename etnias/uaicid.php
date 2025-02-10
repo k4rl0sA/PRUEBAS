@@ -59,7 +59,7 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
 function cmp_uaic_id(){
   // $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_id-lis'>".lis_uaic_id()."</div></div>";
-  $rta='';
+  /* $rta='';
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";
@@ -108,7 +108,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
     $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta;
+	return $rta; */
 }
 
 function gra_uaic_id(){

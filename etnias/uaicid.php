@@ -80,7 +80,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' '.$o,'Telefono','telefono',null,null,false,true,'','col-2');
     $c[]=new cmp('era','s',3,$d['era'],$w.' '.$o,'Era','era',null,null,false,true,'','col-2');
     $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','eda',null,null,false,true,'','col-2');
-    /*$c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','dnt',null,null,false,true,'','col-2');
+    $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','dnt',null,null,false,true,'','col-2');
     $c[]=new cmp('des_sinto','s',3,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_cef','s',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','s',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
@@ -104,7 +104,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seg de Entmed','seg_entmed',null,null,false,true,'','col-2');
     $c[]=new cmp('observacion','t',7,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-2');
     $c[]=new cmp('usu_creo','t',10,$d['usu_creo'],$w.' '.$o,'Usu de Creo','usu_creo',null,null,true,true,'','col-2');
-    $c[]=new cmp('usu_update','t',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
+    /*$c[]=new cmp('usu_update','t',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
     $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
     $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2'); */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

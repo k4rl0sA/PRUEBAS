@@ -82,9 +82,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('des_sinto','t',80,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');
-    $c[]=new cmp('peri_cef','s',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
-    $c[]=new cmp('peri_bra','s',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
-    $c[]=new cmp('peso','sD',5,2,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
+    $c[]=new cmp('peri_cef','sd',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
+    $c[]=new cmp('peri_bra','sd',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
+    $c[]=new cmp('peso','sd',5,2,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','sd',4,1,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
     $c[]=new cmp('clasi_nut','s',3,$d['clasi_nut'],$w.' '.$o,'Clasi de Nut','clasi_nut',null,null,false,true,'','col-2');

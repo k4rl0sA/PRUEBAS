@@ -967,10 +967,11 @@ function formato_dato($a,$b,$c,$d){
 				$rta .= acceso('ember') ? "<li title='Identificación Embera' onclick=\"mostrar('emb_Id','pro',event,'','../etnias/embid.php',7,'Identificación Embera');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 				$rta .= acceso('ember') ? "<li title='Embera Seguimiento No Regular' onclick=\"mostrar('segnoreg','pro',event,'','../etnias/embsegnoreg.php',7,'Seguimiento No Regular');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 				$rta .= acceso('ember') ? "<li title='Embera Seguimientos' onclick=\"mostrar('seguim','pro',event,'','../etnias/embsegui.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-			}if (uaic($c['ACCIONES'])) {
+			}
+			/* if (uaic($c['ACCIONES'])) {
 				$rta .= acceso('uaic') ? "<li title='Identificación UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'Identificación');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 				$rta .= acceso('uaic') ? "<li title='Seguimientos UAIC' onclick=\"mostrar('seguim','pro',event,'','../etnias/uaicseg.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-			}
+			} */
 	}
 		if($a=='atencion' && $b=='acciones'){
 			$rta="<nav class='menu right'>";

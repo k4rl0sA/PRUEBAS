@@ -159,7 +159,7 @@ function grabar(tb='',ev){
   'segnoreg':'../etnias/embseg.php',
   'seguim':'../etnias/embsegui.php',
   'uaiciden':'../etnias/uaicid.php',
-  'seguim':'../etnias/uaicseg.php'
+  'uaicseguim':'../etnias/uaicseg.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

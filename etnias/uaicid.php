@@ -78,9 +78,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,true,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' '.$o,'Num de Doc','num_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' '.$o,'Telefono','telefono',null,null,false,true,'','col-2');
-    $c[]=new cmp('era','s',3,$d['era'],$w.' '.$o,'Era','era',null,null,false,true,'','col-2');
-    $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','eda',null,null,false,true,'','col-2');
-    $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','dnt',null,null,false,true,'','col-2');
+    $c[]=new cmp('era','s',3,$d['era'],$w.' '.$o,'Era','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('des_sinto','s',3,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_cef','s',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','s',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
@@ -92,11 +92,11 @@ function cmp_uaic_id(){
     $c[]=new cmp('frec_res','s',3,$d['frec_res'],$w.' '.$o,'Frec de Res','frec_res',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_car','s',3,$d['frec_car'],$w.' '.$o,'Frec de Car','frec_car',null,null,false,true,'','col-2');
     $c[]=new cmp('satu','s',3,$d['satu'],$w.' '.$o,'Satu','satu',null,null,false,true,'','col-2');
-    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales de Reh','sales_reh',null,null,false,true,'','col-2');
-    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Aceta','aceta',null,null,false,true,'','col-2');
-    $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','traslados_uss',null,null,false,true,'','col-2');
-    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educa','educa',null,null,false,true,'','col-2');
-    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor de Hos','menor_hos',null,null,false,true,'','col-2');
+    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales de Reh','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Aceta','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educa','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor de Hos','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('tempe2','t',50,$d['tempe2'],$w.' '.$o,'Tempe2','tempe2',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_res2','s',3,$d['frec_res2'],$w.' '.$o,'Frec de Res2','frec_res2',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_car2','t',60,$d['frec_car2'],$w.' '.$o,'Frec de Car2','frec_car2',null,null,false,true,'','col-2');
@@ -159,6 +159,10 @@ function opc_paren($id=''){
 
   function opc_tipo_doc($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
+  }
+
+  function opc_rta($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
   }
 
 	function formato_dato($a,$b,$c,$d){

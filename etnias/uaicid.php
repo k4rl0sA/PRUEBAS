@@ -69,8 +69,8 @@ function cmp_uaiciden(){
   $days=fechas_app('VSP');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-    $c[]=new cmp('iduaic','n',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
-    $c[]=new cmp('idpeople','n',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
+    $c[]=new cmp('iduaic','h',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
+    $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','parentesco',null,null,true,true,'','col-2');
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre de Cui','nombre_cui',null,null,true,true,'','col-2');

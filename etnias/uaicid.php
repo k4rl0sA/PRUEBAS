@@ -59,18 +59,18 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
 function cmp_uaic_id(){
   // $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_id-lis'>".lis_uaic_id()."</div></div>";
-  /* $rta='';
-  $w="placuifam";
+  $rta='';
+  $w="iden";
 	$t=['id'=>'']; 
 	$e="";
 	$key='pln';
 	$o='uaic_id';
   $d='';
   $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('VSP');
+  $days=fechas_app('ETNIAS');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
-    $c[]=new cmp('iduaic','h',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
+    /* $c[]=new cmp('iduaic','h',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
     $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','parentesco',null,null,true,true,'','col-2');
@@ -106,9 +106,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('usu_creo','t',10,$d['usu_creo'],$w.' '.$o,'Usu de Creo','usu_creo',null,null,true,true,'','col-2');
     $c[]=new cmp('usu_update','t',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
     $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
-    $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2');
+    $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2'); */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta; */
+	return $rta;
 }
 
 function gra_uaic_id(){

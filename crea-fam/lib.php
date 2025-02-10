@@ -964,14 +964,12 @@ function formato_dato($a,$b,$c,$d){
 			}
 			$rta.=(acceso('etnias')) ? "<li title='Etnias' Onclick=\"mostrar('ethnicity','pro',event,'','../etnias/tipoetn.php',7);Color('famili-lis');\"><i class='fa-solid fa-people-arrows ico' id='".$c['ACCIONES']."' ></i></li>":'';
 			if (ember($c['ACCIONES'])) {
-				$rta .= acceso('ember') ? "<li title='Grupo Embera' onclick=\"mostrar('emb_Id','pro',event,'','../etnias/embid.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-				$rta .= acceso('ember') ? "<li title='Grupo Embera' onclick=\"mostrar('segnoreg','pro',event,'','../etnias/embsegnoreg.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-				$rta .= acceso('ember') ? "<li title='Grupo Embera' onclick=\"mostrar('seguim','pro',event,'','../etnias/embsegui.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-
-				$rta .= acceso('uaic') ? "<li title='Grupo UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-				$rta .= acceso('uaic') ? "<li title='Grupo UAIC' onclick=\"mostrar('seguim','pro',event,'','../etnias/uaicseg.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('ember') ? "<li title='Identificación Embera' onclick=\"mostrar('emb_Id','pro',event,'','../etnias/embid.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('ember') ? "<li title='Embera Seguimiemnto No Regular' onclick=\"mostrar('segnoreg','pro',event,'','../etnias/embsegnoreg.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('ember') ? "<li title='Embera Seguimientos' onclick=\"mostrar('seguim','pro',event,'','../etnias/embsegui.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}if (uaic($c['ACCIONES'])) {
-				$rta .= acceso('uaic') ? "<li title='Grupo UAIC' onclick=\"mostrar('sesion_fin','pro',event,'','../etnias/uaicid.php',7,'guaic');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('uaic') ? "<li title='Identificación UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('uaic') ? "<li title='Grupo UAIC' onclick=\"mostrar('seguim','pro',event,'','../etnias/uaicseg.php',7,'gember');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 	}
 		if($a=='atencion' && $b=='acciones'){

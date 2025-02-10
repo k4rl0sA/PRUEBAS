@@ -75,10 +75,10 @@ function cmp_uaic_id(){
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','parentesco',null,null,true,true,'','col-2');
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre de Cui','nombre_cui',null,null,true,true,'','col-2');
-    /*$c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,true,true,'','col-2');
+    $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,true,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' '.$o,'Num de Doc','num_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' '.$o,'Telefono','telefono',null,null,false,true,'','col-2');
-    $c[]=new cmp('era','s',3,$d['era'],$w.' '.$o,'Era','era',null,null,false,true,'','col-2');
+    /*$c[]=new cmp('era','s',3,$d['era'],$w.' '.$o,'Era','era',null,null,false,true,'','col-2');
     $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','eda',null,null,false,true,'','col-2');
     $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','dnt',null,null,false,true,'','col-2');
     $c[]=new cmp('des_sinto','s',3,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');

@@ -1081,13 +1081,13 @@ function enabGestEtn() {
 }
 function enabMyCEtn() {
 	const conditions = [
-		{ id: 'prioridad', value: '2', compare: true },
+		{ id: 'prioridad', value: '17', compare: true },
 	];
-	EnabDepeDynamic('GEs', conditions);
+	EnabDepeDynamic('CY5', conditions);
 }
 function enabGyCEtn() {
 	const conditions = [
-		{ id: 'prioridad', value: '2', compare: true },
+		{ id: 'prioridad', value: '16', compare: true },
 	];
-	EnabDepeDynamic('GEs', conditions);
+	EnabDepeDynamic('GyC', conditions);
 }

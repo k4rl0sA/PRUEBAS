@@ -1079,4 +1079,15 @@ function enabGestEtn() {
 	];
 	EnabDepeDynamic('GEs', conditions);
 }
-
+function enabMyCEtn() {
+	const conditions = [
+		{ id: 'prioridad', value: '2', compare: true },
+	];
+	EnabDepeDynamic('GEs', conditions);
+}
+function enabGyCEtn() {
+	const conditions = [
+		{ id: 'prioridad', value: '2', compare: true },
+	];
+	EnabDepeDynamic('GEs', conditions);
+}

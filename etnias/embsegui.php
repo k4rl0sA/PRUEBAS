@@ -169,8 +169,9 @@ function gra_seguim(){
       $rta = mysql_prepd($sql, $params);
     }else{
 
-    } */
+    } 
 return $rta;
+*/
 }
 
 /*function get_seguim(){

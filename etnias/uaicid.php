@@ -20,25 +20,25 @@ else {
 }
 
 
-function focus_uaiciden(){
-	return 'uaiciden';
+function focus_uaic_id(){
+	return 'uaic_id';
    }
       
-   function men_uaiciden(){
-	$rta=cap_menus('uaiciden','pro');
+   function men_uaic_id(){
+	$rta=cap_menus('uaic_id','pro');
 	return $rta;
    }
    
    function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
-	   if ($a=='uaiciden'  && isset($acc['crear']) && $acc['crear']=='SI'){  
+	   if ($a=='uaic_id'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	 
 	   }
   return $rta;
 }
-function lis_uaiciden(){
+function lis_uaic_id(){
     // print_r($_POST);
     /*$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
 $info=datos_mysql("SELECT COUNT(*) total FROM uaic_ide WHERE idviv=".$id[0]."");
@@ -57,13 +57,14 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 }
 
 
-function cmp_uaiciden(){
-  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaiciden-lis'>".lis_uaiciden()."</div></div>";
+function cmp_uaic_id(){
+  // $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_id-lis'>".lis_uaic_id()."</div></div>";
+  $rta='';
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";
 	$key='pln';
-	$o='uaiciden';
+	$o='uaic_id';
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('VSP');
@@ -107,11 +108,10 @@ function cmp_uaiciden(){
     $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
     $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	//$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div><div class='contenido' id='uaiciden-lis' >".lis_uaiciden()."</div></div>";
 	return $rta;
 }
 
-function gra_uaiciden(){
+function gra_uaic_id(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
@@ -142,7 +142,7 @@ function gra_uaiciden(){
 return $rta;
 }
 
-function get_uaiciden(){
+function get_uaic_id(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -165,7 +165,7 @@ function get_uaiciden(){
 		$b=strtolower($b);
 		$rta=$c[$d];
         // var_dump($a);
-		if ($a=='uaiciden' && $b=='acciones'){
+		if ($a=='uaic_id' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
 				
 			}

@@ -58,7 +58,8 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
 
 function cmp_groupEtnico(){
-  $rta="";
+  $rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
+	<div class='contenido' id='groupEtnico-lis' >".lis_groupEtnico()."</div></div>";
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";
@@ -74,8 +75,6 @@ function cmp_groupEtnico(){
 	$c[]=new cmp('ejemplo','s','3',$e,$w.' '.$o,'Perfil que concerta','ejemplo',null,null,true,true,'','col-5');
   $c[]=new cmp('obs','a',50,$e,$w.' '.$o,'Compromisos concertados','observaciones',null,null,true,true,'','col-0');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='groupEtnico-lis' >".lis_groupEtnico()."</div></div>";
 	return $rta;
 }
 

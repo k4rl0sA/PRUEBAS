@@ -107,8 +107,7 @@ function cmp_uaiciden(){
     $c[]=new cmp('fecha_update','',,$d['fecha_update'],$w.' '.$o,'Fecha de Update','fecha_update',null,null,false,true,'','col-2');
     $c[]=new cmp('estado','',,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
-	<div class='contenido' id='uaiciden-lis' >".lis_uaiciden()."</div></div>";
+	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div><div class='contenido' id='uaiciden-lis' >".lis_uaiciden()."</div></div>";
 	return $rta;
 }
 

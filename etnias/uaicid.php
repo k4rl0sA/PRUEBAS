@@ -58,7 +58,7 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
 
 function cmp_uaic_id(){
-  $rta="";
+    $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";
   $w="placuifam";
 	$t=['id'=>'']; 
 	$e="";

@@ -59,8 +59,8 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
 
 
 function cmp_seguim(){
-  // $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
-$rta='';
+  /* $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
+// $rta='';
   $w="seguim";
 	$o='modini';
   $d='';
@@ -116,7 +116,7 @@ $rta='';
     $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-65');
     $c[]=new cmp('equi','m',3,'',$w.' '.$o,'Equipo','equi',null,null,true,true,'','col-35',"fieldsValue('agen_intra','aIM','1',true);");
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-	return $rta;
+	return $rta; */
 }
 
 function gra_seguim(){

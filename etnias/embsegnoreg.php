@@ -162,7 +162,7 @@ $title = str_replace('"', "'", $title);
 }
 
 function gra_segnoreg(){
-	$id=divide($_POST['id']);
+/* 	$id=divide($_POST['id']);
   $pn=($_POST['peso_nacer']=== '')? 0: $_POST['peso_nacer'];
   $docma=($_POST['doc_madre']=== '')? 0: $_POST['doc_madre'];
   $sis=($_POST['sistolica']=== '')? 0: $_POST['sistolica'];
@@ -251,16 +251,16 @@ function gra_segnoreg(){
       // $rta = show_sql($sql, $params);
        $rta = mysql_prepd($sql, $params);
     }else{
-   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
-    $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
-      ];
-      $rta = mysql_prepd($sql, $params); */
+    // $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+    // $params = [
+    //     ['type' => 's', 'value' => $_POST['cumplio']],
+    //     ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+    //     ['type' => 'i', 'value' => $_SESSION['us_sds']],
+    //     ['type' => 'i', 'value' => $id[1]]
+    //   ];
+    //   $rta = mysql_prepd($sql, $params);
     }
-return $rta;
+return $rta; */
 }
 
 /* function get_segnoreg(){

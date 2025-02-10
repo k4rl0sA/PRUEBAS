@@ -58,7 +58,7 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
 
 function cmp_uaic_id(){
-  // $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_id-lis'>".lis_uaic_id()."</div></div>";
+  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_id-lis'>".lis_uaic_id()."</div></div>";
   $rta='';
   $w="iden";
 	$t=['id'=>'']; 

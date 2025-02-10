@@ -60,7 +60,7 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 function cmp_uaic_id(){
     $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";
   $w="placuifam";
-	$t=['id'=>'']; 
+	$t=['iduaic'=>'','idpeople'=>'','fecha_seg'=>'','parentesco'=>'','nombre_cui'=>'','tipo_doc'=>'','num_doc'=>'','telefono'=>'','era'=>'','eda'=>'','dnt'=>'','des_sinto'=>'','peri_cef'=>'','peri_bra'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nut'=>'','tempe'=>'','frec_res'=>'','frec_car'=>'','satu'=>'','sales_reh'=>'','aceta'=>'','traslados_uss'=>'','educa'=>'','menor_hos'=>'','tempe2'=>'','frec_res2'=>'','frec_car2'=>'','satu2'=>'','seg_entmed'=>'','observacion'=>'','usu_creo'=>'','fecha_create'=>'','usu_update'=>'','fecha_update'=>'','estado']; 
 	$e="";
 	$key='pln';
 	$o='uaic_id';

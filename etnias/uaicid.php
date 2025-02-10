@@ -73,7 +73,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('iduaic','h',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
     $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
-    $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','parentesco',null,null,true,true,'','col-2');
+    $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-2');
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre de Cui','nombre_cui',null,null,true,true,'','col-2');
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo de Doc','tipo_doc',null,null,true,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' '.$o,'Num de Doc','num_doc',null,null,false,true,'','col-2');
@@ -153,9 +153,9 @@ function get_uaic_id(){
       } 
 }
 
-  function opc_ejemplo($id=''){
-		return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
-	}
+function opc_paren($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=263 and estado='A' ORDER BY 1",$id);
+  }
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

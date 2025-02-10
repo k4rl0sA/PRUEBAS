@@ -41,13 +41,13 @@ function focus_uaiciden(){
 function lis_uaiciden(){
     // print_r($_POST);
     $id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
-$info=datos_mysql("SELECT COUNT(*) total FROM tabla WHERE idviv=".$id[0]."");
+$info=datos_mysql("SELECT COUNT(*) total FROM uaic_ide WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
-        FROM `tabla` 
+        FROM `uaic_ide` 
             WHERE key1='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
@@ -83,7 +83,7 @@ function gra_uaiciden(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO tabla VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO uaic_ide VALUES (?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
@@ -118,7 +118,7 @@ function get_uaiciden(){
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT concat(key1,'_',key2) 'id'
-          FROM `tabla` 
+          FROM `uaic_ide` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);

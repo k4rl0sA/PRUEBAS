@@ -54,7 +54,7 @@ $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql); 
-        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php'); */
+        return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php');
 }
 
 

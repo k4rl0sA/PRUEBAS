@@ -23,8 +23,7 @@ else {
 function focus_groupEtnico(){
 	return 'groupEtnico';
    }
-   
-   
+      
    function men_groupEtnico(){
 	$rta=cap_menus('groupEtnico','pro');
 	return $rta;

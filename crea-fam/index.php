@@ -157,7 +157,9 @@ function grabar(tb='',ev){
   'ethnicity':'../etnias/tipoetn.php',
   'emb_Id':'../etnias/embid.php',
   'segnoreg':'../etnias/embseg.php',
-  'seguim':'../etnias/embsegui.php'
+  'seguim':'../etnias/embsegui.php',
+  'uaiciden':'../etnias/uaicid.php',
+  'seguim':'../etnias/uaicseg.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

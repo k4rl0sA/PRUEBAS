@@ -1106,12 +1106,4 @@ function enabGyCEtn() {
 	];
 	EnabDepeDynamic('GyC', conditions);
 }
-function valiEgreHosp() {
-	const conditions = [
-		{ id: 'numsegui', value: '1', compare: true },
-		{ id: 'tiposeg', value: '2', compare: true },
-		{ id: 'etapa', value: '1', compare: true }
-	];
-	EnabDepeDynamic('HOs', conditions);
-}
 

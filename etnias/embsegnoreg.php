@@ -115,8 +115,8 @@ $title = str_replace('"', "'", $title);
   
   $o='cronicos';
   $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);
-  $c[]=new cmp('diag_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-3');
-  $c[]=new cmp('cual','t',50,$d,$w.' '.$bl.' '.$o,'¿Cual?','cual',null,null,false,true,'','col-4');
+  $c[]=new cmp('diag_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-3','diagCroEtn();');
+  $c[]=new cmp('cual','t',50,$d,$w.' '.$bl.' dAG '.$o,'¿Cual?','cual',null,null,false,true,'','col-4');
   $c[]=new cmp('tto_enf','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('ctrl_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('signos_alarma2','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');

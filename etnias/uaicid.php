@@ -88,6 +88,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('eda','s',3,$d['eda'],$w.' '.$o,'Eda','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('dnt','s',3,$d['dnt'],$w.' '.$o,'Dnt','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('des_sinto','t',80,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');
+
+    $o='sigymed';
+    $c[]=new cmp($o,'e',null,'SIGNOS VITALES Y MEDIDAS ANTROPOMETRICAS AL INGRESO DE LA ATENCIÓN',$w);
     $c[]=new cmp('peri_cef','sd',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','sd',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
@@ -98,6 +101,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frec de Res','frec_res',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frec de Car','frec_car',null,null,false,true,'','col-2');
     $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Satu','satu',null,null,false,true,'','col-2');
+
+    $o='mane';
+    $c[]=new cmp($o,'e',null,'MANEJO',$w);
     $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales de Reh','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Aceta','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','rta',null,null,false,true,'','col-2');

@@ -62,10 +62,10 @@ function cmp_emb_Id(){
 	return $rta;
 }
 
-function gra_emb_Id(){
+/* function gra_emb_Id(){
 	$id=divide($_POST['id']);
+  $usu=$_SESSION['us_sds'];
     if(COUNT($id)==2){
-      $usu=$_SESSION['us_sds'];
       $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
       $params = [
         ['type' => 's', 'value' => $id[0]],
@@ -79,10 +79,61 @@ function gra_emb_Id(){
       ];
       //  $rta = show_sql($sql, $params);
       $rta = mysql_prepd($sql, $params);
+    }else{
+      $sql = "UPDATE etn_identi SET fechavisi=?,lider=?,educacion=?,espanol=?,saberes=?,enfoque=?,pueblo=?,usu_update=$usu,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR) WHERE idriesgo=?";
+      $params = [
+        ['type' => 's', 'value' => $_POST['fechavisi']],
+        ['type' => 'i', 'value' => $_POST['lider']],
+        ['type' => 's', 'value' => $_POST['educacion']],
+        ['type' => 's', 'value' => $_POST['espanol']],
+        ['type' => 's', 'value' => $_POST['saberes']],
+        ['type' => 's', 'value' => $_POST['enfoque']],
+        ['type' => 's', 'value' => $_POST['pueblo']],
+        ['type' => 'i', 'value' => $id]
+      ];
+      //  $rta = show_sql($sql, $params);
+      $rta = mysql_prepd($sql, $params);
     }
 return $rta;
-}
+} */
 
+function gra_emb_Id() {
+  $id = divide($_POST['id'] ?? '');
+  $usu = $_SESSION['us_sds'];
+  // Parámetros comunes para INSERT y UPDATE
+  $commonParams = [
+      ['type' => 's', 'value' => $_POST['fechavisi'] ?? ''],
+      ['type' => 's', 'value' => $_POST['lider'] ?? ''],
+      ['type' => 's', 'value' => $_POST['educacion'] ?? ''],
+      ['type' => 's', 'value' => $_POST['espanol'] ?? ''],
+      ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
+      ['type' => 'i', 'value' => $_POST['enfoque'] ?? 0],
+      ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
+  ];
+  if (count($id) == 2) {
+      $sql = "INSERT INTO etn_identi VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), NULL, NULL, 'A')";
+      $params = array_merge(
+          [
+              ['type' => 's', 'value' => $id[0]],
+              ['type' => 's', 'value' => $id[1]],
+          ],
+          $commonParams,
+          [
+              ['type' => 's', 'value' => $usu],
+          ]
+      );
+  } else {
+      $sql = "UPDATE etn_identi SET fechavisi=?, lider=?, educacion=?, espanol=?, saberes=?, enfoque=?, pueblo=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE idriesgo=?";
+      $params = array_merge(
+          $commonParams,
+          [
+              ['type' => 's', 'value' => $usu],
+              ['type' => 'i', 'value' => $id],
+          ]
+      );
+  }
+  return mysql_prepd($sql, $params);
+}
 function get_emb_Id(){
 	if($_POST['id']==''){
 		return "";

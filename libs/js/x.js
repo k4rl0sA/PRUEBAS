@@ -1039,7 +1039,7 @@ function EnabDepe2fiel(cls, a, b, fa, fb, cmpA = true, cmpB = true) {
         enaFie(element, !(isNSegVal && isEtpVal));
     });
 }
-function EnabDepeDynamic(cls, conditions) {
+/* function EnabDepeDynamic(cls, conditions) {
 	const allConditionsMet = conditions.every(condition => {
 		const element = document.getElementById(condition.id);
 		if (!element) {
@@ -1049,6 +1049,21 @@ function EnabDepeDynamic(cls, conditions) {
 		return condition.compare ? element.value === condition.value : element.value !== condition.value;
 	});
 	const elements = document.querySelectorAll(`select.${cls}, input.${cls}, textarea.${cls}`);
+	elements.forEach(element => {
+		enaFie(element, !allConditionsMet);
+	});
+} */
+function EnabDepeDynamic(classes, conditions) {
+	const allConditionsMet = conditions.every(condition => {
+		const element = document.getElementById(condition.id);
+		if (!element) {
+			console.error(`Elemento con ID ${condition.id} no encontrado.`);
+			return false;
+		}
+		return condition.compare ? element.value === condition.value : element.value !== condition.value;
+	});
+	const selector = classes.map(cls => `select.${cls}, input.${cls}, textarea.${cls}`).join(', ');
+	const elements = document.querySelectorAll(selector);
 	elements.forEach(element => {
 		enaFie(element, !allConditionsMet);
 	});
@@ -1091,3 +1106,12 @@ function enabGyCEtn() {
 	];
 	EnabDepeDynamic('GyC', conditions);
 }
+function valiEgreHosp() {
+	const conditions = [
+		{ id: 'numsegui', value: '1', compare: true },
+		{ id: 'tiposeg', value: '2', compare: true },
+		{ id: 'etapa', value: '1', compare: true }
+	];
+	EnabDepeDynamic('HOs', conditions);
+}
+

@@ -1074,36 +1074,36 @@ function valiEgreHosp() {
 		{ id: 'tiposeg', value: '2', compare: true },
 		{ id: 'etapa', value: '1', compare: true }
 	];
-	EnabDepeDynamic('HOs', conditions);
+	EnabDepeDynamic(['HOs'], conditions);
 }
 function enabCronicEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '3', compare: true },
 	];
-	EnabDepeDynamic('CrO', conditions);
+	EnabDepeDynamic(['CrO'], conditions);
 }
 function enabMenorEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '1', compare: true },
 	];
-	EnabDepeDynamic('mE5', conditions);
+	EnabDepeDynamic(['mE5'], conditions);
 }
 function enabGestEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '2', compare: true },
 	];
-	EnabDepeDynamic('GEs', conditions);
+	EnabDepeDynamic(['GEs'], conditions);
 }
 function enabMyCEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '17', compare: true },
 	];
-	EnabDepeDynamic('CY5', conditions);
+	EnabDepeDynamic(['CY5'], conditions);
 }
 function enabGyCEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '16', compare: true },
 	];
-	EnabDepeDynamic('GyC', conditions);
+	EnabDepeDynamic(['GyC'], conditions);
 }
 

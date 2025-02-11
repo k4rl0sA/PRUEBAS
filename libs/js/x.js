@@ -1078,6 +1078,7 @@ function valiEgreHosp() {
 }
 function enabPrioEtn() {
 	const prioridad = document.getElementById('prioridad').value;
+	const enabledClasses = {};
 	const conditions = [
 		{ value: '1', classes: ['mE5'] },
 		{ value: '2', classes: ['GEs'] },
@@ -1087,10 +1088,19 @@ function enabPrioEtn() {
 	];
 	conditions.forEach(condition => {
 		const isConditionMet = prioridad === condition.value;
-		const selector = condition.classes.map(cls => `select.${cls}, input.${cls}, textarea.${cls}`).join(', ');
-		const elements = document.querySelectorAll(selector);
-		elements.forEach(element => {
-			enaFie(element, !isConditionMet);
+		if (isConditionMet) {
+			condition.classes.forEach(cls => {
+				enabledClasses[cls] = true;
+			});
+		}
+	});
+	conditions.forEach(condition => {
+		condition.classes.forEach(cls => {
+			const selector = `select.${cls}, input.${cls}, textarea.${cls}`;
+			const elements = document.querySelectorAll(selector);
+			elements.forEach(element => {
+				enaFie(element, !enabledClasses[cls]);
+			});
 		});
 	});
 }

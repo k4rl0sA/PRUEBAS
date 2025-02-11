@@ -42,7 +42,7 @@ function focus_uaic_id(){
 }
 function lis_uaic_id(){
     // print_r($_POST);
-    /*$id = (isset($_POST['id'])) ? divide($_POST['id']) : divide($_POST['idp']) ;
+$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['idp']) ? divide($_POST['idp']) : null);
 $info=datos_mysql("SELECT COUNT(*) total FROM uaic_ide WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
@@ -55,7 +55,7 @@ $pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');*/
+        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
 }
 
 

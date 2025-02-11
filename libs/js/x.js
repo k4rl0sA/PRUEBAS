@@ -1104,4 +1104,9 @@ function enabPrioEtn() {
 		});
 	});
 }
-
+function diagCroEtn() {
+	const conditions = [
+		{ id: 'diag_cronico', value: '4', compare: true }
+	];
+	EnabDepeDynamic(['dAG'], conditions);
+}

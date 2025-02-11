@@ -87,8 +87,8 @@ function cmp_uaic_id(){
     $c[]=new cmp('des_sinto','t',80,$d['des_sinto'],$w.' '.$o,'Des de Sinto','des_sinto',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_cef','sd',3,$d['peri_cef'],$w.' '.$o,'Peri de Cef','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','sd',3,$d['peri_bra'],$w.' '.$o,'Peri de Bra','peri_bra',null,null,false,true,'','col-2');
-    $c[]=new cmp('peso','sd',5,2,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
-    $c[]=new cmp('talla','sd',4,1,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
+    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
+    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
     $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
     $c[]=new cmp('tempe','sd',3,$d['tempe'],$w.' '.$o,'Tempe','tempe',null,null,false,true,'','col-2');

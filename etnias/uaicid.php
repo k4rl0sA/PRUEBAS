@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors','1');
 require_once "../libs/gestion.php";
+ini_set('display_errors','1');
 if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
@@ -24,18 +24,20 @@ function focus_uaic_id(){
 	return 'uaic_id';
    }
       
-   function men_uaic_id(){
+   
+  function men_uaic_id(){
 	$rta=cap_menus('uaic_id','pro');
 	return $rta;
    }
    
-   function cap_menus($a,$b='cap',$con='con') {
+  
+  function cap_menus($a,$b='cap',$con='con') {
 	 $rta = ""; 
 	 $acc=rol($a);
 	   if ($a=='uaic_id'  && isset($acc['crear']) && $acc['crear']=='SI'){  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
-	 
-	   }
+	  }
+    $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
   return $rta;
 }
 function lis_uaic_id(){

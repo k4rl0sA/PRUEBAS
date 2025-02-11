@@ -46,7 +46,7 @@ $id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['idp']) ? div
 $info=datos_mysql("SELECT COUNT(*) total FROM uaic_ide WHERE idviv=".$id[0]."");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
-$pag=(isset($_POST['pag-cambiar']))? ($_POST['pag-cambiar']-1)* $regxPag:0;
+$pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
 
     $sql="SELECT concat(key1,'_',key2) ACCIONES
         FROM `uaic_ide` 

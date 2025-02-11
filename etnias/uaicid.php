@@ -120,7 +120,7 @@ function cmp_uaic_id(){
 
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-    $c[]=new cmp('observacion','t',7,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-2');
+    $c[]=new cmp('observacion','t',7,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

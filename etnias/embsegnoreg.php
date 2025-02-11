@@ -75,12 +75,7 @@ function cmp_segnoreg(){
   $ge='GEs';
   $cro='CrO';
   $me5='mE5';
-  $class=[
-    1 => ['mE5']
-];
-$title = json_encode($class, JSON_HEX_APOS | JSON_HEX_QUOT);
-$title = str_replace('"', "'", $title);
-  var_dump($_POST);
+  // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");

@@ -41,7 +41,7 @@ function focus_emb_Id(){
 function cmp_emb_Id(){
   $rta="";
   $w="placuifam";
-	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>''];
+	$t=['id'=>'','fechavisi'=>'','lider'=>'','educacion'=>'','espanol'=>'','saberes'=>'','enfoque'=>'','pueblo'=>''];
 	$e="";
 	$key='pln';
 	$o='emb_Id';
@@ -56,6 +56,7 @@ function cmp_emb_Id(){
     $c[]=new cmp('espanol','o',2,$d['espanol'],$w.' '.$o,'Entiende Español','espanol',null,null,true,true,'','col-1');
     $c[]=new cmp('saberes','s',3,$d['saberes'],$w.' '.$o,'Saberes Propios','saberes',null,null,true,true,'','col-15');
     $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque Diferencial','enfoque',null,null,true,true,'','col-15');
+    $c[]=new cmp('pueblo','s',3,$d['pueblo'],$w.' '.$o,'Pueblo','pueblo',null,null,true,true,'','col-15');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -64,7 +65,7 @@ function gra_emb_Id(){
 	$id=divide($_POST['id']);
     if(COUNT($id)==2){
       $usu=$_SESSION['us_sds'];
-      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
+      $sql = "INSERT INTO etn_identi VALUES (NULL,?,?,?,?,?,?,?,?,$usu,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
       $params = [
         ['type' => 's', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fechavisi']],
@@ -72,7 +73,8 @@ function gra_emb_Id(){
         ['type' => 's', 'value' => $_POST['educacion']],
         ['type' => 's', 'value' => $_POST['espanol']],
         ['type' => 's', 'value' => $_POST['saberes']],
-        ['type' => 's', 'value' => $_POST['enfoque']]
+        ['type' => 's', 'value' => $_POST['enfoque']],
+        ['type' => 's', 'value' => $_POST['pueblo']]
       ];
       //  $rta = show_sql($sql, $params);
       $rta = mysql_prepd($sql, $params);
@@ -85,7 +87,7 @@ function get_emb_Id(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-    $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque
+    $sql="SELECT idriesgo,idpeople,fechavisi,lider,educacion,espanol,saberes,enfoque,pueblo
           FROM `etn_identi` 
           WHERE idpeople='{$id[0]}'";
           // var_dump($sql);
@@ -100,7 +102,9 @@ function get_emb_Id(){
 function opc_saberes($id=''){
     return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=256 and estado="A" ORDER BY 1',$id);
 }
-  
+function opc_pueblo($id=''){
+  return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=0 and estado="A" ORDER BY 1',$id);
+}  
 function opc_enfoque($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=257 and estado="A" ORDER BY 1',$id);
  }

@@ -1076,34 +1076,22 @@ function valiEgreHosp() {
 	];
 	EnabDepeDynamic(['HOs'], conditions);
 }
-function enabCronicEtn() {
+function enabPrioEtn() {
+	const prioridad = document.getElementById('prioridad').value;
 	const conditions = [
-		{ id: 'prioridad', value: '3', compare: true },
+		{ value: '1', classes: ['mE5'] },
+		{ value: '2', classes: ['GEs'] },
+		{ value: '3', classes: ['CrO'] },
+		{ value: '16', classes: ['CrO', 'GEs'] },
+		{ value: '17', classes: ['CrO', 'mE5'] }
 	];
-	EnabDepeDynamic(['CrO'], conditions);
-}
-function enabMenorEtn() {
-	const conditions = [
-		{ id: 'prioridad', value: '1', compare: true },
-	];
-	EnabDepeDynamic(['mE5'], conditions);
-}
-function enabGestEtn() {
-	const conditions = [
-		{ id: 'prioridad', value: '2', compare: true },
-	];
-	EnabDepeDynamic(['GEs'], conditions);
-}
-function enabMyCEtn() {
-	const conditions = [
-		{ id: 'prioridad', value: '17', compare: true },
-	];
-	EnabDepeDynamic(['CrO','mE5'], conditions);
-}
-function enabGyCEtn() {
-	const conditions = [
-		{ id: 'prioridad', value: '16', compare: true },
-	];
-	EnabDepeDynamic(['CrO','GEs'], conditions);
+	conditions.forEach(condition => {
+		const isConditionMet = prioridad === condition.value;
+		const selector = condition.classes.map(cls => `select.${cls}, input.${cls}, textarea.${cls}`).join(', ');
+		const elements = document.querySelectorAll(selector);
+		elements.forEach(element => {
+			enaFie(element, !isConditionMet);
+		});
+	});
 }
 

@@ -87,7 +87,7 @@ $title = str_replace('"', "'", $title);
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabCronicEtn();enabMenorEtn();enabGestEtn();enabMyCEtn();enabGyCEtn();");
+  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();");
   
   
   $o='gestan';

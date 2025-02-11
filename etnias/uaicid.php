@@ -87,7 +87,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('peso','sd',5,2,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','sd',4,1,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
-    $c[]=new cmp('clasi_nut','s',3,$d['clasi_nut'],$w.' '.$o,'Clasi de Nut','clasi_nut',null,null,false,true,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' '.$ob.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
     $c[]=new cmp('tempe','s',3,$d['tempe'],$w.' '.$o,'Tempe','tempe',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_res','s',3,$d['frec_res'],$w.' '.$o,'Frec de Res','frec_res',null,null,false,true,'','col-2');
     $c[]=new cmp('frec_car','s',3,$d['frec_car'],$w.' '.$o,'Frec de Car','frec_car',null,null,false,true,'','col-2');
@@ -164,6 +164,10 @@ function opc_paren($id=''){
   function opc_rta($id=''){
     return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=170 and estado='A' ORDER BY 1",$id);
   }
+
+  function opc_clasi_nutri($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=98 and estado='A' ORDER BY 1",$id);
+    }
 
 	function formato_dato($a,$b,$c,$d){
 		$b=strtolower($b);

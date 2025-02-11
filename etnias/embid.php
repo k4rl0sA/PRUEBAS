@@ -48,8 +48,9 @@ function cmp_emb_Id(){
   $d=get_emb_Id();
   if ($d==""){$d=$t;}
   $days=fechas_app('ETNIAS');
+  $id=($d['id']=='')?$_POST['id']:$d['id'];
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
-    $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
+    $c[]=new cmp('id','h',15,$id,$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fecha','fechavisi',null,null,true,true,'','col-15',"validDate(this,$days,0);");
     $c[]=new cmp('lider','t',100,$d['lider'],$w.' '.$o,'Lider con el cual se Identifica la Familia','lider',null,null,true,true,'','col-3');
     $c[]=new cmp('educacion','o',2,$d['educacion'],$w.' '.$o,'Esta Vinculado(a) a servcios de Educacion','educacion',null,null,true,true,'','col-2');

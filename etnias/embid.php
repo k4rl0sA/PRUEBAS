@@ -56,7 +56,7 @@ function cmp_emb_Id(){
     $c[]=new cmp('espanol','o',2,$d['espanol'],$w.' '.$o,'Entiende Español','espanol',null,null,true,true,'','col-15');
     $c[]=new cmp('saberes','s',3,$d['saberes'],$w.' '.$o,'Saberes Propios','saberes',null,null,true,true,'','col-2');
     $c[]=new cmp('enfoque','s',3,$d['enfoque'],$w.' '.$o,'Enfoque Diferencial','enfoque',null,null,true,true,'','col-2');
-    $c[]=new cmp('pueblo','s',3,$d['pueblo'],$w.' '.$o,'Pueblo','pueblo',null,null,true,true,'','col-2');
+    $c[]=new cmp('pueblo','s',3,$d['pueblo'],$w.' '.$o,'Pueblo','pueblo',null,null,true,true,'','col-25');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

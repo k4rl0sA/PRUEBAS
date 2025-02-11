@@ -75,9 +75,9 @@ function cmp_uaic_id(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaic','h',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
     $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
-    $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-2');
-    $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-2');
-    $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-2');
+    $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-25');
+    $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-25');
+    $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-5');
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' '.$o,'Tipo De Documento ','tipo_doc',null,null,true,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' '.$o,'Teléfono De Contacto','telefono',null,null,false,true,'','col-2');

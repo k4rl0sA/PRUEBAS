@@ -1098,12 +1098,12 @@ function enabMyCEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '17', compare: true },
 	];
-	EnabDepeDynamic(['CY5'], conditions);
+	EnabDepeDynamic(['CrO','mE5'], conditions);
 }
 function enabGyCEtn() {
 	const conditions = [
 		{ id: 'prioridad', value: '16', compare: true },
 	];
-	EnabDepeDynamic(['GyC'], conditions);
+	EnabDepeDynamic(['CrO','GEs'], conditions);
 }
 

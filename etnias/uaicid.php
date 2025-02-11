@@ -104,19 +104,19 @@ function cmp_uaic_id(){
 
     $o='mane';
     $c[]=new cmp($o,'e',null,'MANEJO',$w);
-    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales de Reh','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Aceta','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales De Rehidratación','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Acetaminofen','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educa','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor de Hos','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educación','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor Hospitalizado','rta',null,null,false,true,'','col-2');
 
     $o='sigyman2';
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES POSTERIOR AL PLAN DE MANEJO EN LA UAIC',$w);
-    $c[]=new cmp('tempe2','sd',50,$d['tempe2'],$w.' '.$o,'Tempe2','tempe2',null,null,false,true,'','col-2');
-    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frec de Res2','frec_res2',null,null,false,true,'','col-2');
-    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frec de Car2','frec_car2',null,null,false,true,'','col-2');
-    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Satu2','satu2',null,null,false,true,'','col-2');
-    $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seg de Entmed','seg_entmed',null,null,false,true,'','col-2');
+    $c[]=new cmp('tempe2','sd',50,$d['tempe2'],$w.' '.$o,'Temperatura','tempe2',null,null,false,true,'','col-2');
+    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,false,true,'','col-2');
+    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,false,true,'','col-2');
+    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,false,true,'','col-2');
+    $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,false,true,'','col-2');
 
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

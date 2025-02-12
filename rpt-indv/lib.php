@@ -340,7 +340,7 @@ return $rta;
 		LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpersona
 		LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpersona
 		LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpeople = C.cope_idpersona
-		LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpeople = E.documento
+		LEFT JOIN hog_tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpeople = E.documento
 		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpeople = Z.zarit_idpersona
 		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpeople = ZU.zung_idpersona
 		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpeople = H.hamilton_idpersona

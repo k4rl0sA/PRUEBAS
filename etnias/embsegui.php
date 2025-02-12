@@ -111,7 +111,7 @@ function cmp_seguim(){
 
     $o='aspfin';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-    $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-65');
+    $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-10');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

@@ -264,10 +264,14 @@ return $rta;
     // print_r($id);
     $sql="SELECT fecha_seg, parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
           FROM `emb_segreg` 
-          WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+          WHERE id='{$id[0]}'";
     $info=datos_mysql($sql);
-     return json_encode($info['responseResult'][0]);
-      } 
+    if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+      }
 }
 
 function opc_motivo_estado($id=''){

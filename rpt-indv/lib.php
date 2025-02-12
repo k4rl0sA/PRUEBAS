@@ -324,7 +324,7 @@ return $rta;
 		A.puntaje AS Puntaje_Apgar, LOWER(A.descripcion) AS Riesgo_Apgar,
 		F.puntaje AS Puntaje_Findrisc, LOWER(F.descripcion) AS Riesgo_Findrisc,
 		O.puntaje AS Puntaje_Oms, LOWER(O.descripcion) AS Riesgo_Oms,
-		C.cope_puntajea AS Puntaje_Cope, LOWER(C.cope_descripciona) AS Riesgo_Cope,
+		C.puntajea AS Puntaje_Cope, LOWER(C.cope_descripciona) AS Riesgo_Cope,
 		E.puntaje AS Puntaje_Epoc, LOWER(E.descripcion) AS Riesgo_Epoc,
 		Z.zarit_puntaje AS Puntaje_Zarit, LOWER(Z.zarit_analisis) AS Riesgo_Zarit,
 		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.zung_analisis) AS Riesgo_Zung,

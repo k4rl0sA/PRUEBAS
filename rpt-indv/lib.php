@@ -326,10 +326,10 @@ return $rta;
 		O.puntaje AS Puntaje_Oms, LOWER(O.descripcion) AS Riesgo_Oms,
 		C.puntajea AS Puntaje_Cope, LOWER(C.cope_descripciona) AS Riesgo_Cope,
 		E.puntaje AS Puntaje_Epoc, LOWER(E.descripcion) AS Riesgo_Epoc,
-		Z.zarit_puntaje AS Puntaje_Zarit, LOWER(Z.zarit_analisis) AS Riesgo_Zarit,
+		Z.puntaje AS Puntaje_Zarit, LOWER(Z.analisis) AS Riesgo_Zarit,
 		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.zung_analisis) AS Riesgo_Zung,
 		H.hamilton_total AS Puntaje_Hamilton, LOWER(H.hamilton_analisis) AS Riesgo_Hamilton,
-		OP.ophi_puntaje AS Puntaje_Ophi,
+		OP.puntaje AS Puntaje_Ophi,
 		S.srq_totalsi AS Puntaje_Srq
 		FROM personas P 
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
@@ -341,10 +341,10 @@ return $rta;
 		LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpersona
 		LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpeople = C.cope_idpersona
 		LEFT JOIN hog_tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpeople = E.documento
-		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpeople = Z.zarit_idpersona
+		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.tipodoc AND P.idpeople = Z.idpersona
 		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpeople = ZU.zung_idpersona
 		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpeople = H.hamilton_idpersona
-		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.ophi_tipodoc AND P.idpeople = OP.ophi_idpersona
+		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.tipodoc AND P.idpeople = OP.idpersona
 		WHERE P.idpeople ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);

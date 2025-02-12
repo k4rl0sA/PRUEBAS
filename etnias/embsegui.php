@@ -63,7 +63,6 @@ function cmp_seguim(){
   $w='seguim';
 	$o='modini';
   $d=get_seguim();
-  $x=false;
   $days=fechas_app('ETNIAS');
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
@@ -72,7 +71,7 @@ function cmp_seguim(){
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
-    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
+    $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
     $c[]=new cmp('interven','s',3,$d,$w.' '.$o,'Intervención','interven',null,null,true,true,'','col-2');
 
     $o='datiden';

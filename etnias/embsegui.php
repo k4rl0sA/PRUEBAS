@@ -62,7 +62,7 @@ function cmp_seguim(){
 // $rta='';
   $w='modini';
 	$o='seguim';
-  $d='';
+  $d=get_seguim();
   $days=fechas_app('ETNIAS');
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);

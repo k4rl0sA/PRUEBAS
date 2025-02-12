@@ -181,7 +181,7 @@ function get_seguim(){
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT concat(key1,'_',key2) 'id'
-          FROM `tabla` 
+          FROM `emb_segui` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
      return $info['responseResult'][0];

@@ -21,7 +21,7 @@ else {
 
 function lis_rptindv(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM person P 
-	LEFT JOIN hog_fam V ON ON P.vivipersona = V.id_fam  
+	LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam  
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
 	LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople AND P.vivipersona = V.id_fam 
 	LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpeople 

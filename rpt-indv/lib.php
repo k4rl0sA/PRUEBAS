@@ -38,7 +38,7 @@ function lis_rptindv(){
 
 	$sql="SELECT  DISTINCT(concat_ws('_',P.tipo_doc,P.idpeople )) as ACCIONES,
 		P.tipo_doc AS Tipo_Documento, P.idpeople AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario,
-	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, 
+	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.direccion AS Direccion, 
 	CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono,
 	P.vivipersona AS Cod_Familia
 	FROM person P 
@@ -298,7 +298,7 @@ return $rta;
 		$sql="SELECT  concat_ws('_',P.tipo_doc,P.idpersona ) as ACCIONES,
 		FN_CATALOGODESC(2,G.localidad) AS Localidad, 
 		CONCAT(G.upz,' - ', FN_CATALOGODESC(7,G.upz)) AS Upz,
-		G.territorio AS Territorio,G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
+		G.direccion AS Direccion, CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono_Contacto,
 		P.vivipersona AS Cod_Familia,
 		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,
 		P.fecha_nacimiento AS Fecha_Nacimiento,

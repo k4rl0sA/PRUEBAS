@@ -255,7 +255,7 @@ function gra_segnoreg(){
 return $rta;
 }
 
-/* function get_segnoreg(){
+ function get_segnoreg(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -263,12 +263,12 @@ return $rta;
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT concat(key1,'_',key2) 'id'
-          FROM `tabla` 
+          FROM `emb_segreg` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 
-} */
+}
 
 function opc_motivo_estado($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=74 and estado='A' ORDER BY 1",$id);

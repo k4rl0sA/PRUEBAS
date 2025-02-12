@@ -158,10 +158,10 @@ function gra_seguim(){
 ['type' => 's', 'value' => $_POST['adh_tto']],
 ['type' => 's', 'value' => $_POST['observaciones']],
 ['type' => 's', 'value' => $bina],
-['type' => 's', 'value' => $_POST['usu_creo']],
-['type' => 's', 'value' => $_POST['usu_update']],
-['type' => 's', 'value' => $_POST['fecha_update']],
-['type' => 's', 'value' => $_POST['estado']]
+['type' => 's', 'value' => $_SESSION['us_sds']],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => $_POST['A']]
 ];
       show_sql($sql, $params);
       //$rta = show_sql($sql, $params);

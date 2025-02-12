@@ -69,7 +69,7 @@ function cmp_segnoreg(){
   $bl='bL';
   $x=false;
   $block=['gestan','cronicos'];
-  $d='';
+  $d=get_segnoreg();
   // $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   $ge='GEs';

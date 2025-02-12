@@ -28,7 +28,7 @@ function lis_rptindv(){
 	LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpeople 
 	LEFT JOIN hog_tam_cope C ON P.idpeople = C.idpeople 
 	LEFT JOIN tam_epoc E ON  P.idpeople = E.idpeople 
-	LEFT JOIN hog_tam_zarit Z ON  AND P.idpeople = Z.idpeople 
+	LEFT JOIN hog_tam_zarit Z ON  P.idpeople = Z.idpeople 
 	LEFT JOIN hog_tam_zung ZU ON  P.idpeople = ZU.idpeople	
 	LEFT JOIN hog_tam_hamilton H ON  P.idpeople = H.idpeople 
 	WHERE '1' ".whe_rptindv());

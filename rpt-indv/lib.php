@@ -327,24 +327,24 @@ return $rta;
 		C.puntajea AS Puntaje_Cope, LOWER(C.cope_descripciona) AS Riesgo_Cope,
 		E.puntaje AS Puntaje_Epoc, LOWER(E.descripcion) AS Riesgo_Epoc,
 		Z.puntaje AS Puntaje_Zarit, LOWER(Z.analisis) AS Riesgo_Zarit,
-		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.zung_analisis) AS Riesgo_Zung,
+		ZU.zung_puntaje AS Puntaje_Zung, LOWER(ZU.analisis) AS Riesgo_Zung,
 		H.hamilton_total AS Puntaje_Hamilton, LOWER(H.hamilton_analisis) AS Riesgo_Hamilton,
 		OP.puntaje AS Puntaje_Ophi,
 		S.srq_totalsi AS Puntaje_Srq
 		FROM personas P 
 		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpeople = D.dc_documento
-		LEFT JOIN hog_tam_srq S ON P.tipo_doc = S.srq_tipodoc AND P.idpeople = S.srq_idpersona
-		LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpersona  AND P.vivipersona = V.id_fam
-		LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpersona
-		LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpersona
-		LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpeople = C.cope_idpersona
-		LEFT JOIN hog_tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpeople = E.documento
-		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.tipodoc AND P.idpeople = Z.idpersona
-		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpeople = ZU.zung_idpersona
-		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpeople = H.hamilton_idpersona
-		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.tipodoc AND P.idpeople = OP.idpersona
+		LEFT JOIN personas_datocomp D ON  P.idpeople = D.idpeople
+		LEFT JOIN hog_tam_srq S ON  P.idpeople = S.idpeople
+		LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople  AND P.vivipersona = V.id_fam
+		LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpeople
+		LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpeople
+		LEFT JOIN hog_tam_cope C ON P.idpeople = C.idpeople
+		LEFT JOIN hog_tam_epoc E ON  P.idpeople = E.idpeople
+		LEFT JOIN hog_tam_zarit Z ON  P.idpeople = Z.idpeople
+		LEFT JOIN hog_tam_zung ZU ON  P.idpeople = ZU.idpeople
+		LEFT JOIN hog_tam_hamilton H ON  P.idpeople = H.idpeople
+		LEFT JOIN hog_tam_ophi OP ON  P.idpeople = OP.idpeople
 		WHERE P.idpeople ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);

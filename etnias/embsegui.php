@@ -118,6 +118,7 @@ function cmp_seguim(){
 
 function gra_seguim() {
   $id = divide($_POST['idseg']);
+  $num_doc=($_POST['num_doc']=== '')? 0: $_POST['num_doc'];
       $equ = datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi']) ? (is_array($_POST['fequi']) ? implode("-", $_POST['fequi']) : str_replace("'", "", $_POST['fequi'])) : '';
       $equi = $equ['responseResult'][0]['equipo'];
@@ -134,7 +135,7 @@ function gra_seguim() {
 ['type' => 's', 'value' => $_POST['edad_gest']],
 ['type' => 's', 'value' => $_POST['Nom_fami']],
 ['type' => 's', 'value' => $_POST['tipo_doc']],
-['type' => 'i', 'value' => $_POST['num_doc']],
+['type' => 'i', 'value' => $num_doc],
 ['type' => 's', 'value' => $_POST['paren']],
 ['type' => 's', 'value' => $_POST['tel_conta']],
 ['type' => 's', 'value' => $_POST['ubi']],

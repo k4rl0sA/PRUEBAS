@@ -119,7 +119,7 @@ function cmp_seguim(){
 }
 
 function gra_seguim(){
-	$id=divide($_POST['idseg']);
+	$id=divide($_POST['id']);
     // var_dump(COUNT($id));
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
@@ -163,9 +163,9 @@ function gra_seguim(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => $_POST['A']]
 ];
-$rta = mysql_prepd($sql, $params);
+show_sql($sql, $params);
 } else {
-    $rta = 'Error: ID no válido';
+    
 }
 
 return $rta;

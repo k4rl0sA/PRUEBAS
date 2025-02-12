@@ -177,7 +177,11 @@ function get_seguim(){
           WHERE idseg='{$id[0]}'";
           var_dump($sql);
     $info=datos_mysql($sql);
-     return json_encode($info['responseResult'][0]);
+    if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
       } 
 }
 

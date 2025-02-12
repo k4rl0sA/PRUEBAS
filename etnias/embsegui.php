@@ -159,8 +159,8 @@ function gra_seguim() {
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],
 ];
-show_sql($sql, $params);
-$rta = mysql_prepd($sql, $params);
+$rta=show_sql($sql, $params);
+// $rta = mysql_prepd($sql, $params);
 return $rta;
 }
 

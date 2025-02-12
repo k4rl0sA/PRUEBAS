@@ -67,7 +67,6 @@ function cmp_seguim(){
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('idseg','h',11,$d,$w.' '.$o,'Idseg','idseg',null,null,true,true,'','col-2');
-    $c[]=new cmp('idpeople','h',18,$d,$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');
@@ -174,9 +173,9 @@ function get_seguim(){
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT concat(key1,'_',key2) 'id'
+    $sql="SELECT idseg 'id',fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones, usu_equipo
           FROM `emb_segui` 
-          WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+          WHERE idseg='{$id[0]}'";
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

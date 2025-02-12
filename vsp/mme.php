@@ -121,7 +121,7 @@ function cmp_mme(){
     $c[]=new cmp('peso','sd',6,$d,$w.' pRe IMc pYT '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('talla','sd',5,$d,$w.' pRe IMc pYT  '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso','talla','imc');");
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' pRe '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,$x,'','col-2');
+    $c[]=new cmp('clasi_nutri','s','3',$d,$w.' pRe IMc '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,$x,'','col-2');
     $c[]=new cmp('signos_alarma_seg','s','2',$d,$w.' pRe '.$o,'Identifica signos de alarma al momento del seguimiento','rta',null,null,false,$x,'','col-2',"enabOthSi('signos_alarma_seg','SiA');");
     $c[]=new cmp('descr_sigalarma','t','500',$d,$w.' SiA '.$o,'Descripcion del signo de alarma','descr_sigalarma',null,null,false,false,'','col-4');
     $c[]=new cmp('entrega_medic_labo','t','500',$d,$w.' pRe '.$o,'Entrega de medicamentos y realización de laboratorios en casa','entrega_medic_labo',null,null,false,$x,'','col-4');

@@ -120,7 +120,6 @@ function cmp_seguim(){
 
 function gra_seguim() {
   $id = divide($_POST['idseg']);
-  if (count($id) == 2) {
       $equ = datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi']) ? (is_array($_POST['fequi']) ? implode("-", $_POST['fequi']) : str_replace("'", "", $_POST['fequi'])) : '';
       $equi = $equ['responseResult'][0]['equipo'];
@@ -163,11 +162,8 @@ function gra_seguim() {
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => $_POST['A']]
 ];
-show_sql($sql, $params);
-} else {
-    
-}
-
+// show_sql($sql, $params);
+$rta = mysql_prepd($sql, $params);
 return $rta;
 }
 

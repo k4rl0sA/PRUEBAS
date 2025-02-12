@@ -67,7 +67,7 @@ function cmp_uaic_id(){
 	$e="";
 	$key='pln';
 	$o='uaic_id';
-  $d='';
+  $d=get_uaic_id();
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($_POST);

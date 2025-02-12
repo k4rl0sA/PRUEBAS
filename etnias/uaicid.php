@@ -167,7 +167,7 @@ function get_uaic_id(){
           FROM `uaic_ide` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
-     return json_encode($info['responseResult'][0]);
+     return $info['responseResult'][0];
       } 
 }
 

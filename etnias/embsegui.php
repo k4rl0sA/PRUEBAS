@@ -184,7 +184,7 @@ function get_seguim(){
           FROM `tabla` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
-     return ($info['responseResult'][0]);
+     return $info['responseResult'][0];
       } 
 }
 

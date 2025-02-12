@@ -174,7 +174,7 @@ return $rta;
 }
 
 function get_seguim(){
-  if($_REQUEST['id']==''){
+  /*if($_REQUEST['id']==''){
     return "";
   }else{
     // print_r($_POST);
@@ -185,7 +185,7 @@ function get_seguim(){
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
      return $info['responseResult'][0];
-      } 
+      } */
 }
 
 function opc_segui($id=''){

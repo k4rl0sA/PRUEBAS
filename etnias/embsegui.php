@@ -158,7 +158,7 @@ function gra_seguim() {
 ['type' => 's', 'value' => $_SESSION['us_sds']],
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],
-['type' => 's', 'value' => $_POST['A']]
+['type' => 's', 'value' => 'A']
 ];
 // show_sql($sql, $params);
 $rta = mysql_prepd($sql, $params);

@@ -20,27 +20,38 @@ else {
 }
 
 function lis_rptindv(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM personas P LEFT JOIN hog_viv V ON P.vivipersona = V.idviv LEFT JOIN hog_geo G ON V.idpre = G.idgeo LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona	LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona WHERE '1' ".whe_rptindv());
+	$info=datos_mysql("SELECT COUNT(*) total FROM person P 
+	LEFT JOIN hog_fam V ON ON P.vivipersona = V.id_fam  
+	LEFT JOIN hog_geo G ON V.idpre = G.idgeo 
+	LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople AND P.vivipersona = V.id_fam 
+	LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpeople 
+	LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpeople 
+	LEFT JOIN hog_tam_cope C ON P.idpeople = C.idpeople 
+	LEFT JOIN tam_epoc E ON  P.idpeople = E.idpeople 
+	LEFT JOIN hog_tam_zarit Z ON  AND P.idpeople = Z.idpeople 
+	LEFT JOIN hog_tam_zung ZU ON  P.idpeople = ZU.idpeople	
+	LEFT JOIN hog_tam_hamilton H ON  P.idpeople = H.idpeople 
+	WHERE '1' ".whe_rptindv());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;
 	$pag=(isset($_POST['pag-rptindv']))? ($_POST['pag-rptindv']-1)* $regxPag:0;
 
-	$sql="SELECT  DISTINCT(concat_ws('_',P.tipo_doc,P.idpersona )) as ACCIONES,
-		P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario,
+	$sql="SELECT  DISTINCT(concat_ws('_',P.tipo_doc,P.idpeople )) as ACCIONES,
+		P.tipo_doc AS Tipo_Documento, P.idpeople AS N°_Documento, CONCAT(P.nombre1, ' ', P.nombre2, ' ', P.apellido1, ' ', P.apellido2) AS Usuario,
 	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, 
 	CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono,
 	P.vivipersona AS Cod_Familia
 	FROM personas P 
-	LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+	LEFT JOIN hog_viv V ON P.vivipersona = V.id_fam
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-	LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
-	LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
-	LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
-	LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona
-	LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento
-	LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona
-	LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona
-	LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona
+	LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople  AND P.vivipersona = V.id_fam
+	LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpeople
+	LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpeople
+	LEFT JOIN hog_tam_cope C ON  P.idpeople = C.idpeople
+	LEFT JOIN tam_epoc E ON  P.idpeople = E.idpeople
+	LEFT JOIN hog_tam_zarit Z ON  P.idpeople = Z.idpeople
+	LEFT JOIN hog_tam_zung ZU ON  P.idpeople = ZU.idpeople
+	LEFT JOIN hog_tam_hamilton H ON  P.idpeople = H.idpeople
 	WHERE '1' ";
 	$sql.=whe_rptindv();
 	$sql.="ORDER BY P.fecha_create";
@@ -52,7 +63,7 @@ function lis_rptindv(){
 function whe_rptindv() {
 	$sql = "";
 	if ($_POST['fidentificacion'])
-		$sql .= " AND P.idpersona like '%".$_POST['fidentificacion']."%'";
+		$sql .= " AND P.idpeople like '%".$_POST['fidentificacion']."%'";
 	if ($_POST['floc'])
 			$sql .= " AND G.localidad='".$_POST['floc']."'";
 	if ($_POST['fter'])
@@ -321,20 +332,20 @@ return $rta;
 		OP.ophi_puntaje AS Puntaje_Ophi,
 		S.srq_totalsi AS Puntaje_Srq
 		FROM personas P 
-		LEFT JOIN hog_viv V ON P.vivipersona = V.idviv
+		LEFT JOIN hog_viv V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
-		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpersona = D.dc_documento
-		LEFT JOIN hog_tam_srq S ON P.tipo_doc = S.srq_tipodoc AND P.idpersona = S.srq_idpersona
-		LEFT JOIN hog_tam_apgar A ON P.idpersona = A.idpersona AND P.tipo_doc = A.tipodoc AND P.vivipersona = V.idviv
-		LEFT JOIN hog_tam_findrisc F ON P.tipo_doc = F.tipodoc AND P.idpersona = F.idpersona
-		LEFT JOIN hog_tam_oms O ON P.tipo_doc = O.tipodoc AND P.idpersona = O.idpersona
-		LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpersona = C.cope_idpersona
-		LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpersona = E.documento
-		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpersona = Z.zarit_idpersona
-		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpersona = ZU.zung_idpersona
-		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpersona = H.hamilton_idpersona
-		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.ophi_tipodoc AND P.idpersona = OP.ophi_idpersona
-		WHERE P.idpersona ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
+		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpeople = D.dc_documento
+		LEFT JOIN hog_tam_srq S ON P.tipo_doc = S.srq_tipodoc AND P.idpeople = S.srq_idpersona
+		LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpersona  AND P.vivipersona = V.id_fam
+		LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpersona
+		LEFT JOIN hog_tam_oms O ON  P.idpeople = O.idpersona
+		LEFT JOIN hog_tam_cope C ON P.tipo_doc = C.cope_tipodoc AND P.idpeople = C.cope_idpersona
+		LEFT JOIN tam_epoc E ON P.tipo_doc = E.tipo_doc AND P.idpeople = E.documento
+		LEFT JOIN hog_tam_zarit Z ON P.tipo_doc = Z.zarit_tipodoc AND P.idpeople = Z.zarit_idpersona
+		LEFT JOIN hog_tam_zung ZU ON P.tipo_doc = ZU.zung_tipodoc AND P.idpeople = ZU.zung_idpersona
+		LEFT JOIN hog_tam_hamilton H ON P.tipo_doc = H.hamilton_tipodoc AND P.idpeople = H.hamilton_idpersona
+		LEFT JOIN hog_tam_ophi OP ON P.tipo_doc = OP.ophi_tipodoc AND P.idpeople = OP.ophi_idpersona
+		WHERE P.idpeople ='{$id[1]}' AND P.tipo_doc='{$id[0]}'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 				return $info['responseResult'][0];

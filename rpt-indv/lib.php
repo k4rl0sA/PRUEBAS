@@ -42,7 +42,7 @@ function lis_rptindv(){
 	CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono,
 	P.vivipersona AS Cod_Familia
 	FROM person P 
-	LEFT JOIN hog_viv V ON P.vivipersona = V.id_fam
+	LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 	LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople  AND P.vivipersona = V.id_fam
 	LEFT JOIN hog_tam_findrisc F ON  P.idpeople = F.idpeople
@@ -332,7 +332,7 @@ return $rta;
 		OP.ophi_puntaje AS Puntaje_Ophi,
 		S.srq_totalsi AS Puntaje_Srq
 		FROM personas P 
-		LEFT JOIN hog_viv V ON P.vivipersona = V.id_fam
+		LEFT JOIN hog_fam V ON P.vivipersona = V.id_fam
 		LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 		LEFT JOIN personas_datocomp D ON P.tipo_doc = D.dc_tipo_doc AND P.idpeople = D.dc_documento
 		LEFT JOIN hog_tam_srq S ON P.tipo_doc = S.srq_tipodoc AND P.idpeople = S.srq_idpersona

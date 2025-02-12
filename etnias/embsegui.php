@@ -164,7 +164,6 @@ function gra_seguim() {
 ['type' => 's', 'value' => $_POST['A']]
 ];
 show_sql($sql, $params);
-$rta = mysql_prepd($sql, $params);
 } else {
     
 }
@@ -173,18 +172,18 @@ return $rta;
 }
 
 function get_seguim(){
-  /*if($_REQUEST['id']==''){
+  if($_REQUEST['id']==''){
     return "";
   }else{
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
     $sql="SELECT concat(key1,'_',key2) 'id'
-          FROM `emb_segui` 
+          FROM `tabla` 
           WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
     $info=datos_mysql($sql);
-     return $info['responseResult'][0];
-      } */
+     return json_encode($info['responseResult'][0]);
+      } 
 }
 
 function opc_segui($id=''){

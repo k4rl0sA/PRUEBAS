@@ -351,7 +351,7 @@ return $rta;
 				return $info['responseResult'][0];
 		}
 	} 
-
+	
 	function gra_rptindv() {
 		// Aquí obtén los datos necesarios, por ejemplo:
 		$datos = array(

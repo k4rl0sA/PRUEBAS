@@ -163,14 +163,12 @@ function gra_seguim(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => $_POST['A']]
 ];
-      show_sql($sql, $params);
-      //$rta = show_sql($sql, $params);
-      $rta = mysql_prepd($sql, $params);
-    }else{
+$rta = mysql_prepd($sql, $params);
+} else {
+    $rta = 'Error: ID no válido';
+}
 
-    } 
 return $rta;
-
 }
 
 /*function get_seguim(){

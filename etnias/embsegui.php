@@ -171,7 +171,7 @@ show_sql($sql, $params);
 return $rta;
 }
 
-/*function get_seguim(){
+function get_seguim(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -184,7 +184,7 @@ return $rta;
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 
-}*/
+}
 
 function opc_segui($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=76 and estado='A' ORDER BY 1",$id);

@@ -175,6 +175,7 @@ function get_seguim(){
     $sql="SELECT idseg 'id',fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones, usu_equipo
           FROM `emb_segui` 
           WHERE idseg='{$id[0]}'";
+          var_dump($sql);
     $info=datos_mysql($sql);
      return json_encode($info['responseResult'][0]);
       } 

@@ -41,7 +41,7 @@ function lis_rptindv(){
 	FN_CATALOGODESC(2,G.localidad) AS Localidad, G.territorio AS Territorio,G.direccion AS Direccion, 
 	CONCAT(V.complemento1, ' ', V.nuc1, ' ', V.complemento2, ' ', V.nuc2, ' ', V.complemento3, ' ', V.nuc3) AS Complementos, V.telefono1 AS Telefono,
 	P.vivipersona AS Cod_Familia
-	FROM personas P 
+	FROM person P 
 	LEFT JOIN hog_viv V ON P.vivipersona = V.id_fam
 	LEFT JOIN hog_geo G ON V.idpre = G.idgeo
 	LEFT JOIN hog_tam_apgar A ON P.idpeople = A.idpeople  AND P.vivipersona = V.id_fam

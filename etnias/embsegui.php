@@ -165,6 +165,7 @@ function gra_seguim() {
 ['type' => 's', 'value' => $_POST['A']]
 ];
 show_sql($sql, $params);
+$rta = mysql_prepd($sql, $params);
 } else {
     
 }

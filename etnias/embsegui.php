@@ -66,7 +66,7 @@ function cmp_seguim(){
   $days=fechas_app('ETNIAS');
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-    $c[]=new cmp('idseg','h',11,$_POST['idseg'],$w.' '.$o,'idseg','idseg',null,'####',false,false);
+    $c[]=new cmp('idseg','h',11,$_POST['id'],$w.' '.$o,'idseg','idseg',null,'####',false,false);
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','s',3,$d,$w.' '.$o,'Estado','estado_seg',null,null,true,true,'','col-2');

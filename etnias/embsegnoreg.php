@@ -231,6 +231,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['clasi_nutri']],
 ['type' => 's', 'value' => $_POST['ser_remigesti']],
 ['type' => 's', 'value' => $_POST['observaciones']],
+['type' => 's', 'value' => $bina],
 ['type' => 's', 'value' => $_SESSION['us_sds']],
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],

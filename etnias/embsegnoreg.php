@@ -272,11 +272,11 @@ return $rta;
     $info=datos_mysql($sql);
     if (!$info['responseResult']) {
 			return '';
-		}else{
+		else{
 			return $info['responseResult'][0];
 		}
       }
-}
+
 
 function opc_motivo_estado($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=265 and estado='A' ORDER BY 1",$id);

@@ -264,7 +264,7 @@ return $rta;
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT fecha_seg, parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
+    $sql="SELECT fecha_seg, segui, estado_seg, motivo, prioridad, gestaciones, partos, abortos, cesareas, vivos, muertos, fum, edad_gest, resul_gest, peso_nacer, asist_controles, exa_labo, cons_micronutri, esq_vacu, signos_alarma1, diag_sifigest, adhe_tto, diag_sificong, seg_partera, seg_med_ancestral1, diag_cronico, cual, tto_enf, ctrl_cronico, signos_alarma2, seg_med_ancestral2, doc_madre, ctrl_cyd, lactancia_mat, esq_vacunacion, sig_alarma_seg, seg_med_ancestral3, sistolica, diastolica, frec_cardiaca, frec_respiratoria, saturacion, gluco, peri_cefalico, peri_braqueal, peso, talla, imc, zcore, clasi_nutri, ser_remigesti, observaciones
           FROM `emb_segreg` 
           WHERE id='{$id[0]}'";
     $info=datos_mysql($sql);

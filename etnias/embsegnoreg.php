@@ -173,6 +173,8 @@ function gra_segnoreg(){
   
 
     if(COUNT($id)==2){
+      $id = divide($_POST['idseg']);
+ // $numdoc=($_POST['num_doc']=== '')? 0: $_POST['num_doc'];
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];

@@ -193,7 +193,7 @@ function opc_estado_seg($id=''){
 }
 
 function opc_motivo_estado($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=74 and estado='A' ORDER BY 1",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=265 and estado='A' ORDER BY 1",$id);
 }
 
 function opc_interven($id=''){

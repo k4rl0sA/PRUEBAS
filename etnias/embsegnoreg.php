@@ -245,6 +245,8 @@ function gra_segnoreg(){
       $rta = show_sql($sql, $params);
       // $rta = mysql_prepd($sql, $params);
    }else{
+
+    $rta= 'ok';
     // $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     // $params = [
     //     ['type' => 's', 'value' => $_POST['cumplio']],

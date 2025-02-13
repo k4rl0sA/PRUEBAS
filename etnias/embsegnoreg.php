@@ -172,7 +172,7 @@ function gra_segnoreg(){
   $imc=($_POST['imc']=== '')? 0: $_POST['imc'];
   
 
-    if(COUNT($id)==4){
+   // if(COUNT($id)==4){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
@@ -239,7 +239,7 @@ function gra_segnoreg(){
 
       $rta = show_sql($sql, $params);
       // $rta = mysql_prepd($sql, $params);
-    }else{
+   // }else{
     // $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     // $params = [
     //     ['type' => 's', 'value' => $_POST['cumplio']],
@@ -248,7 +248,7 @@ function gra_segnoreg(){
     //     ['type' => 'i', 'value' => $id[1]]
     //   ];
     //   $rta = mysql_prepd($sql, $params);
-    }
+    //}
 return $rta;
 }
 

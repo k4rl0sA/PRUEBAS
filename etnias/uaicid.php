@@ -129,18 +129,46 @@ function gra_uaic_id(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
-        ['type' => 'i', 'value' => NULL ],
-        ['type' => 's', 'value' => $id[0]],
-        ['type' => 's', 'value' => $_POST['fecha']],
-        ['type' => 'i', 'value' => $_POST['equipo']],
-        ['type' => 's', 'value' => $_POST['obs']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-        ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => ''],
-        ['type' => 's', 'value' => 'A']
+['type' => 'i', 'value' => $_POST['iduaic']],
+['type' => 'i', 'value' => $_POST['idpeople']],
+['type' => 's', 'value' => $_POST['fecha_seg']],
+['type' => 's', 'value' => $_POST['parentesco']],
+['type' => 's', 'value' => $_POST['nombre_cui']],
+['type' => 's', 'value' => $_POST['tipo_doc']],
+['type' => 'i', 'value' => $_POST['num_doc']],
+['type' => 'i', 'value' => $_POST['telefono']],
+['type' => 's', 'value' => $_POST['era']],
+['type' => 's', 'value' => $_POST['eda']],
+['type' => 's', 'value' => $_POST['dnt']],
+['type' => 's', 'value' => $_POST['des_sinto']],
+['type' => 's', 'value' => $_POST['peri_cef']],
+['type' => 's', 'value' => $_POST['peri_bra']],
+['type' => 's', 'value' => $_POST['peso']],
+['type' => 's', 'value' => $_POST['talla']],
+['type' => 's', 'value' => $_POST['zcore']],
+['type' => 's', 'value' => $_POST['clasi_nut']],
+['type' => 's', 'value' => $_POST['tempe']],
+['type' => 's', 'value' => $_POST['frec_res']],
+['type' => 's', 'value' => $_POST['frec_car']],
+['type' => 's', 'value' => $_POST['satu']],
+['type' => 's', 'value' => $_POST['sales_reh']],
+['type' => 's', 'value' => $_POST['aceta']],
+['type' => 's', 'value' => $_POST['traslados_uss']],
+['type' => 's', 'value' => $_POST['educa']],
+['type' => 's', 'value' => $_POST['menor_hos']],
+['type' => 's', 'value' => $_POST['tempe2']],
+['type' => 's', 'value' => $_POST['frec_res2']],
+['type' => 's', 'value' => $_POST['frec_car2']],
+['type' => 's', 'value' => $_POST['satu2']],
+['type' => 's', 'value' => $_POST['seg_entmed']],
+['type' => 's', 'value' => $_POST['observacion']],
+['type' => 's', 'value' => $bina],
+['type' => 's', 'value' => $equi],
+['type' => 's', 'value' => $_SESSION['us_sds']],
+['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => NULL],
       ];
 
       $rta = show_sql($sql, $params);

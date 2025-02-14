@@ -156,7 +156,7 @@ function grabar(tb='',ev){
   'etnias':'etnias.php',
   'ethnicity':'../etnias/tipoetn.php',
   'emb_Id':'../etnias/embid.php',
-  'segnoreg':'../etnias/embseg.php',
+  'segnoreg':'../etnias/embsegnoreg.php',
   'seguim':'../etnias/embsegui.php',
   'uaic_id':'../etnias/uaicid.php',
   'uaicseguim':'../etnias/uaicseg.php'

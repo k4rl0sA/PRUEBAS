@@ -91,8 +91,8 @@ function cmp_uaic_id(){
 
     $o='sigymed';
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES Y MEDIDAS ANTROPOMETRICAS AL INGRESO DE LA ATENCIÓN',$w);
-    $c[]=new cmp('aten_med','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
-    $c[]=new cmp('aten_par','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('aten_medi','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('aten_part','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
     $c[]=new cmp('peri_cef','sd',3,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','sd',3,$d['peri_bra'],$w.' '.$o,'Perimetro Braquial (Cm)','peri_bra',null,null,false,true,'','col-2');
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');

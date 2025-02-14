@@ -63,11 +63,11 @@ $pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
 function cmp_uaic_id(){
   $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";
   //$rta='';
-  $w='uaic_id';
+  $w='modini';
 	//$t=['iduaic'=>'','idpeople'=>'','fecha_seg'=>'','parentesco'=>'','nombre_cui'=>'','tipo_doc'=>'','num_doc'=>'','telefono'=>'','era'=>'','eda'=>'','dnt'=>'','des_sinto'=>'','peri_cef'=>'','peri_bra'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nut'=>'','tempe'=>'','frec_res'=>'','frec_car'=>'','satu'=>'','sales_reh'=>'','aceta'=>'','traslados_uss'=>'','educa'=>'','menor_hos'=>'','tempe2'=>'','frec_res2'=>'','frec_car2'=>'','satu2'=>'','seg_entmed'=>'','observacion'=>'','usu_creo'=>'','fecha_create'=>'','usu_update'=>'','fecha_update'=>'','estado']; 
 	$e="";
 	$key='pln';
-	$o='modini';
+	$o='uaic_id';
   $d=get_uaic_id();
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');

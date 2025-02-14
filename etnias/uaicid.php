@@ -177,14 +177,14 @@ function gra_uaic_id(){
       $rta = show_sql($sql, $params);
       //$rta = mysql_prepd($sql, $params);
     }else{
-   $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   /*$sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
-      $rta = mysql_prepd($sql, $params);
+      $rta = mysql_prepd($sql, $params);*/
     }
 return $rta;
 }

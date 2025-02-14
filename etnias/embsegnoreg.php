@@ -111,7 +111,7 @@ function cmp_segnoreg(){
   $o='cronicos';
   $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);
   $c[]=new cmp('diag_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Diagnostico De Condicion Cronica','diag_cronico',null,null,false,true,'','col-3','diagCroEtn();');
-  $c[]=new cmp('cual','t',50,$d,$w.' '.$bl.' dAG '.$o,'¿Cual?','cual',null,null,false,true,'','col-4');
+  $c[]=new cmp('cual','t',50,$d,$w.' '.$bl.' dAG '.$o,'¿Cual?','cual',null,null,false,false,'','col-4');
   $c[]=new cmp('tto_enf','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Cuenta Con Tratamiento Para Su Enfermedad','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('ctrl_cronico','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Asiste A Control De Cronicos','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('signos_alarma2','s',3,$d,$w.' '.$bl.' '.$cro.' '.$o,'Presenta Signos De Alarma','rta',null,null,false,true,'','col-2');
@@ -121,7 +121,7 @@ function cmp_segnoreg(){
   $o='menor5';
   $c[]=new cmp($o,'e',null,'MENOR DE 5 AÑOS',$w);
   $c[]=new cmp('doc_madre','n',18,$d,$w.' '.$bl.' '.$me5.' '.$o,'Número De Documento Madre','doc_madre',null,null,false,true,'','col-35');
-  $c[]=new cmp('ctrl_cyd','s',3,$d,$w.' '.$bl.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-35');
+  $c[]=new cmp('ctrl_cyd','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Asiste A Controles De Crecimiento Y Desarrollo?','rta',null,null,false,true,'','col-35');
   $c[]=new cmp('lactancia_mat','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Recibe Lactancia Materna?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('esq_vacunacion','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'¿Tiene Esquema De Vacunación Completo Para La Edad?','rta',null,null,false,true,'','col-3');
   $c[]=new cmp('sig_alarma_seg','s',3,$d,$w.' '.$bl.' '.$me5.' '.$o,'Presenta Signos De Alarma En El Momento Del Seguimiento?','rta',null,null,false,true,'','col-35');

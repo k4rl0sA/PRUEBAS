@@ -189,7 +189,7 @@ return $rta;
 }
 
 function get_uaic_id(){
-  if($_REQUEST['id']==''){
+  /*if($_REQUEST['id']==''){
     return "";
   }else{
     // print_r($_POST);
@@ -204,7 +204,7 @@ function get_uaic_id(){
 		}else{
 			return $info['responseResult'][0];
 		}
-      }
+      }*/
 }
 
 function opc_paren($id=''){

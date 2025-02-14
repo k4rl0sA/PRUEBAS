@@ -128,7 +128,7 @@ function cmp_uaic_id(){
 function gra_uaic_id(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
-    if(COUNT($id)==1){
+    if(COUNT($id)==2){
       $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
 ['type' => 'i', 'value' => $_POST['iduaic']],

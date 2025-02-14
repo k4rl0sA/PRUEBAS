@@ -164,7 +164,7 @@ function gra_segnoreg(){
   $sis=($_POST['sistolica']=== '')? 0: $_POST['sistolica'];
   $diast=($_POST['diastolica']=== '')? 0: $_POST['diastolica'];
   $fcar=($_POST['frec_cardiaca']=== '')? 0: $_POST['frec_cardiaca'];
-  $fres= ($_POST['frec_respitatoria']=== '')? 0: $_POST['frec_respitatoria'];
+  $fres= ($_POST['frec_respiratoria']=== '')? 0: $_POST['frec_respiratoria'];
   $satu=($_POST['saturacion']=== '')? 0: $_POST['saturacion'];
   $gluco=($_POST['gluco']=== '')? 0: $_POST['gluco'];
   $pcef=($_POST['peri_cefalico']=== '')? 0: $_POST['peri_cefalico'];

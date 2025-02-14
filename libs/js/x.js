@@ -1084,7 +1084,14 @@ function enabPrioEtn() {
 		{ value: '2', classes: ['GEs'] },
 		{ value: '3', classes: ['CrO'] },
 		{ value: '16', classes: ['CrO', 'GEs'] },
-		{ value: '17', classes: ['CrO', 'mE5'] }
+		{ value: '17', classes: ['CrO', 'mE5'] },
+		{ value: '19', classes: ['GEs'] },
+		{ value: '13', classes: ['mE5'] },
+		{ value: '14', classes: ['mE5'] },
+		{ value: '7', classes: ['mE5'] },
+		{ value: '8', classes: ['mE5'] },
+		{ value: '9', classes: ['mE5'] },
+		{ value: '27', classes: ['mE5'] },
 	];
 	conditions.forEach(condition => {
 		const isConditionMet = prioridad === condition.value;

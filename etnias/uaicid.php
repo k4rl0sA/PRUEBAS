@@ -42,8 +42,9 @@ function focus_uaic_id(){
 }
 function lis_uaic_id(){
     // print_r($_POST);
-/*$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['idp']) ? divide($_POST['idp']) : null);
-$info=datos_mysql("SELECT COUNT(*) total FROM uaic_ide WHERE idviv=".$id[0]."");
+$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaic']) ? divide($_POST['iduaic']) : null);
+$info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
+  WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
 $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
@@ -55,7 +56,7 @@ $pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');*/
+        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
 }
 
 
@@ -128,7 +129,7 @@ function gra_uaic_id(){
 	$id=divide($_POST['idp']);
     // var_dump(COUNT($id));
     if(COUNT($id)==1){
-      $sql = "INSERT INTO uaic_ide VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL ],
         ['type' => 's', 'value' => $id[0]],
@@ -141,7 +142,9 @@ function gra_uaic_id(){
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
-      $rta = mysql_prepd($sql, $params);
+
+      $rta = show_sql($sql, $params);
+      //$rta = mysql_prepd($sql, $params);
     }else{
    /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [

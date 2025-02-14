@@ -241,8 +241,8 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],
 ];
-      $rta = show_sql($sql, $params);
-    // return $rta = mysql_prepd($sql, $params);
+      // $rta = show_sql($sql, $params);
+    return $rta = mysql_prepd($sql, $params);
    }else{
    $sql="UPDATE emb_segreg SET observaciones=?,fecha_update=?,usu_update=? WHERE idsegnoreg=?"; //  compromiso=?, equipo=?, 
     $params = [

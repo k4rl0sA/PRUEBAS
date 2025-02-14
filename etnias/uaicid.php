@@ -131,8 +131,7 @@ function gra_uaic_id(){
     if(COUNT($id)==2){
       $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
-['type' => 'i', 'value' => $_POST['iduaic']],
-['type' => 'i', 'value' => $_POST['idpeople']],
+['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['parentesco']],
 ['type' => 's', 'value' => $_POST['nombre_cui']],

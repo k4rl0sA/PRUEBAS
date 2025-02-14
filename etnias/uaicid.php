@@ -41,7 +41,7 @@ function focus_uaic_id(){
   return $rta;
 }
 function lis_uaic_id(){
-    // print_r($_POST);
+/*     // print_r($_POST);
 $id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaic']) ? divide($_POST['iduaic']) : null);
 $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
@@ -56,7 +56,8 @@ $pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
+        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php'); */
+        return '';
 }
 
 
@@ -192,7 +193,7 @@ return $rta;
 }
 
 function get_uaic_id(){
- /*  if($_REQUEST['id']==''){
+  if($_REQUEST['id']==''){
     return "";
   }else{
     // print_r($_POST);
@@ -207,8 +208,7 @@ function get_uaic_id(){
 		}else{
 			return $info['responseResult'][0];
 		}
-      } */
-     return '';
+      }
 }
 
 function opc_paren($id=''){

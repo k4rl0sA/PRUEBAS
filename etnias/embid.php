@@ -155,7 +155,7 @@ function opc_saberes($id=''){
     return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=256 and estado="A" ORDER BY 1',$id);
 }
 function opc_pueblo($id=''){
-  return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=0 and estado="A" ORDER BY 1',$id);
+  return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=266 and estado="A" ORDER BY 1',$id);
 }  
 function opc_enfoque($id=''){
        return opc_sql('SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=257 and estado="A" ORDER BY 1',$id);

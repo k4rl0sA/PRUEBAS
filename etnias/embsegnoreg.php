@@ -241,8 +241,8 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],
 ];
-      // $rta = show_sql($sql, $params);
-    return $rta = mysql_prepd($sql, $params);
+      $rta = show_sql($sql, $params);
+    // return $rta = mysql_prepd($sql, $params);
    }else{
     // $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     // $params = [
@@ -253,6 +253,7 @@ function gra_segnoreg(){
     //   ];
     //   $rta = mysql_prepd($sql, $params);
     }
+    return $rta;
 }
 
  function get_segnoreg(){

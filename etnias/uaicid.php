@@ -57,7 +57,6 @@ $pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
         //  echo $sql;
         $datos=datos_mysql($sql);
         return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php'); */
-        return '';
 }
 
 
@@ -91,8 +90,8 @@ function cmp_uaic_id(){
 
     $o='sigymed';
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES Y MEDIDAS ANTROPOMETRICAS AL INGRESO DE LA ATENCIÓN',$w);
-    $c[]=new cmp('aten_medi','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
-    $c[]=new cmp('aten_part','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('aten_medi','s',3,$d['aten_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('aten_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
     $c[]=new cmp('peri_cef','sd',3,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cef',null,null,false,true,'','col-2');
     $c[]=new cmp('peri_bra','sd',3,$d['peri_bra'],$w.' '.$o,'Perimetro Braquial (Cm)','peri_bra',null,null,false,true,'','col-2');
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');
@@ -180,14 +179,14 @@ function gra_uaic_id(){
       $rta = show_sql($sql, $params);
       //$rta = mysql_prepd($sql, $params);
     }else{
-   /*  $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [
         ['type' => 's', 'value' => $_POST['cumplio']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]
       ];
-      $rta = mysql_prepd($sql, $params); */
+      $rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

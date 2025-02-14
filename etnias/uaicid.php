@@ -197,9 +197,12 @@ function get_uaic_id(){
           FROM `uaic_ide` 
           WHERE iduiac='{$id[0]}'";
     $info=datos_mysql($sql);
-
-    return $info['responseResult'][0];
-      } 
+    if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+      }
 }
 
 function opc_paren($id=''){

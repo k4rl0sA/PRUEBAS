@@ -193,11 +193,12 @@ function get_uaic_id(){
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT concat(key1,'_',key2) 'id'
+    $sql="SELECT fecha_seg,parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
           FROM `uaic_ide` 
-          WHERE key1='{$id[0]}' AND key2='{$id[1]}'";
+          WHERE iduiac='{$id[0]}'";
     $info=datos_mysql($sql);
-     return $info['responseResult'][0];
+
+    return $info['responseResult'][0];
       } 
 }
 

@@ -141,7 +141,7 @@ function cmp_segnoreg(){
   
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);  
-  $c[]=new cmp('peri_cefalico','sd',2,$d,$w.' '.$o,'Peri de Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
+  $c[]=new cmp('peri_cefalico','sd',2,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
   $c[]=new cmp('peri_braqueal','sd',2,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
   $c[]=new cmp('peso','sd',5,$d,$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-25');
   $c[]=new cmp('talla','sd',4,$d,$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25');

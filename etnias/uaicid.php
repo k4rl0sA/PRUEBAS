@@ -125,7 +125,7 @@ function cmp_uaic_id(){
 }
 
 function gra_uaic_id(){
-	$id=divide($_POST['idp']);
+	$id=divide($_POST['id']);
     
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);

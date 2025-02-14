@@ -252,6 +252,7 @@ function gra_segnoreg(){
     //     ['type' => 'i', 'value' => $id[1]]
     //   ];
     //   $rta = mysql_prepd($sql, $params);
+    $rta="OK";
     }
     return $rta;
 }

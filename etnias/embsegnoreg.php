@@ -177,7 +177,7 @@ function gra_segnoreg(){
   
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-      if(COUNT($id)==7){
+      if(COUNT($id)==2){
       $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO emb_segreg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
     $params = [
@@ -244,15 +244,14 @@ function gra_segnoreg(){
       $rta = show_sql($sql, $params);
     // return $rta = mysql_prepd($sql, $params);
    }else{
-    // $sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
-    // $params = [
-    //     ['type' => 's', 'value' => $_POST['cumplio']],
-    //     ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-    //     ['type' => 'i', 'value' => $_SESSION['us_sds']],
-    //     ['type' => 'i', 'value' => $id[1]]
-    //   ];
-    //   $rta = mysql_prepd($sql, $params);
-    $rta="OK";
+   $sql="UPDATE emb_segreg SET observaciones=?,fecha_update=?,usu_update=? WHERE idsegnoreg=?"; //  compromiso=?, equipo=?, 
+    $params = [
+         ['type' => 's', 'value' => $_POST['observaciones']],
+        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 'i', 'value' => $_SESSION['us_sds']],
+        ['type' => 'i', 'value' => $id[0]]
+      ];
+      $rta = mysql_prepd($sql, $params);
     }
     return $rta;
 }

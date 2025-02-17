@@ -118,7 +118,7 @@ function cmp_mme(){
     $c[]=new cmp('cualtra','t','100',$d,$w.' '.$o,'Ingrese CÚAL si, anteriormente selecciono OTRO','cual',null,null,false,true,'','col-4');
     $c[]=new cmp('adhe_tratafarma','s','3',$d,$w.' pRe '.$o,'Adhe de Tratafarma','rta',null,null,false,$x,'','col-2',"disaOthNo('adhe_tratafarma','nAd');");
     $c[]=new cmp('porque_noadh','t','500',$d,$w.' nAd '.$o,'¿Por Qué?','porque_noadh',null,null,false,false,'','col-4');
-    $c[]=new cmp('peso','sd',6,$d,$w.' pRe IMc pYT '.$o,'Peso (Kg) Mín=0.50 - Máx=150.00','fpe','rgxpeso','##.#',false,$x,'','col-2');
+    $c[]=new cmp('peso','sd',6,$d,$w.' pRe IMc pYT '.$o,'Peso (Kg) Mín=30 - Máx=150','fpe','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('talla','sd',5,$d,$w.' pRe IMc pYT  '.$o,'Talla (Cm) Mín=40 - Máx=210','fta','rgxtalla','###.#',false,$x,'','col-2',"calImc('peso','talla','imc');");
     $c[]=new cmp('imc','t','20',$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-2');
     $c[]=new cmp('clasi_nutri','s','3',$d,$w.' pRe IMc '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,$x,'','col-2');
@@ -151,12 +151,12 @@ function cmp_mme(){
     
     $o='NOm';
     $c[]=new cmp($o,'e',null,'NACIDO VIVO',$w);
-    $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo','peso','rgxpeso','##.#',false,$x,'','col-2');
+    $c[]=new cmp('peso_rcnv','sd','4',$d,$w.' PuE '.$o,'Peso del Recien Nacido Vivo (en Gramos)','peso','rgxpeso','##.#',false,$x,'','col-2');
     $c[]=new cmp('ctrl_recinac','s','3',$d,$w.' PuE '.$o,'Asiste a control de recién nacido','rta2',null,null,false,$x,'','col-2',"enabOthSi('ctrl_recinac','CrT');");
     $c[]=new cmp('fecha_ctrl_nac','d','10',$d,$w.' PuE CrT '.$o,'Fecha de control de recién nacido','fecha_ctrl_nac',null,null,false,$x,'','col-2');
     $c[]=new cmp('asis_ctrl_recinac','s','3',$d,$w.' PuE AcR '.$o,'Asistió a control de recién nacido','rta2',null,null,false,$x,'','col-2',"disaOthNo('asis_ctrl_recinac','CrT1');");
     $c[]=new cmp('porque_norec','t','500',$d,$w.' CrT1 '.$o,'¿Por Qué?','porque_norec',null,null,false,false,'','col-3');
-    $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado','ult_peso','rgxpeso','##.#',false,false,'','col-2');
+    $c[]=new cmp('ult_peso','sd','4',$d,$w.' PuE '.$o,'Último peso registrado (en Gramos)','ult_peso','rgxpeso','##.#',false,false,'','col-2');
     $c[]=new cmp('consul_lacmate','s','3',$d,$w.' PuE '.$o,'¿Tiene consulta apoyo lactancia materna?','rta',null,null,false,$x,'','col-2',"enabOthSi('consul_lacmate','FlM');disaOthNo('consul_lacmate','nLM');");
     $c[]=new cmp('porque_nolact','t','500',$d,$w.' nLM '.$o,'¿Por Qué?','porque_nolact',null,null,false,$x,'','col-3');
     $c[]=new cmp('fecha_consul_lacmate','d','10',$d,$w.' PuE FlM '.$o,'Fecha de Consul_Lacmate','fecha_consul_lacmate',null,null,false,$x,'','col-2');

@@ -72,7 +72,6 @@ function cmp_uaic_seg(){
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaicseg','n',11,$d['iduaicseg'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
-    $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
@@ -87,15 +86,6 @@ function cmp_uaic_seg(){
     $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita de Nutri15','cita_nutri15',null,null,false,true,'','col-2');
     $c[]=new cmp('cita_nutri30','s',5,2,$d['cita_nutri30'],$w.' '.$o,'Cita de Nutri30','cita_nutri30',null,null,false,true,'','col-2');
     $c[]=new cmp('observaciones','sd',4,1,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
-    $c[]=new cmp('user_bina','t',60,$d['user_bina'],$w.' '.$o,'User de Bina','user_bina',null,null,true,true,'','col-2');
-    $c[]=new cmp('equipo_bina','t',7,$d['equipo_bina'],$w.' '.$o,'Equipo de Bina','equipo_bina',null,null,true,true,'','col-2');
-    $c[]=new cmp('usu_creo','s',10,$d['usu_creo'],$w.' '.$o,'Usu de Creo','usu_creo',null,null,true,true,'','col-2');
-    $c[]=new cmp('usu_update','s',10,$d['usu_update'],$w.' '.$o,'Usu de Update','usu_update',null,null,false,true,'','col-2');
-    $c[]=new cmp('estado','o',2,$d['estado'],$w.' '.$o,'Estado','estado',null,null,false,true,'','col-2'); 
-
-
-
-
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -110,40 +100,28 @@ function gra_uaic_seg(){
       $sql = "INSERT INTO uaic_seg
        VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
-['type' => 'i', 'value' => $id[0]],
+['type' => 'i', 'value' => $_POST['iduaic']],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
-['type' => 's', 'value' => $_POST['parentesco']],
-['type' => 's', 'value' => $_POST['nombre_cui']],
-['type' => 's', 'value' => $_POST['tipo_doc']],
-['type' => 'i', 'value' => $_POST['num_doc']],
-['type' => 'i', 'value' => $_POST['telefono']],
-['type' => 's', 'value' => $_POST['era']],
-['type' => 's', 'value' => $_POST['eda']],
-['type' => 's', 'value' => $_POST['dnt']],
-['type' => 's', 'value' => $_POST['des_sinto']],
-['type' => 's', 'value' => $_POST['aten_medi']],
-['type' => 's', 'value' => $_POST['aten_part']],
-['type' => 's', 'value' => $_POST['peri_cef']],
-['type' => 's', 'value' => $_POST['peri_bra']],
-['type' => 's', 'value' => $_POST['peso']],
-['type' => 's', 'value' => $_POST['talla']],
+['type' => 's', 'value' => $_POST['segui']],
+['type' => 's', 'value' => $_POST['estado_seg']],
+['type' => 's', 'value' => $_POST['motivo_seg']],
+['type' => 'i', 'value' => $_POST['peso']],
+['type' => 'i', 'value' => $_POST['talla']],
 ['type' => 's', 'value' => $_POST['zcore']],
 ['type' => 's', 'value' => $_POST['clasi_nutri']],
-['type' => 's', 'value' => $_POST['tempe']],
-['type' => 's', 'value' => $_POST['frec_res']],
-['type' => 's', 'value' => $_POST['frec_car']],
-['type' => 's', 'value' => $_POST['satu']],
-['type' => 's', 'value' => $_POST['sales_reh']],
-['type' => 's', 'value' => $_POST['aceta']],
-['type' => 's', 'value' => $_POST['traslados_uss']],
-['type' => 's', 'value' => $_POST['educa']],
-['type' => 's', 'value' => $_POST['menor_hos']],
-['type' => 's', 'value' => $_POST['tempe2']],
-['type' => 's', 'value' => $_POST['frec_res2']],
-['type' => 's', 'value' => $_POST['frec_car2']],
-['type' => 's', 'value' => $_POST['satu2']],
-['type' => 's', 'value' => $_POST['seg_entmed']],
-['type' => 's', 'value' => $_POST['observacion']],
+['type' => 's', 'value' => $_POST['ftlc_apme']],
+['type' => 's', 'value' => $_POST['cual']],
+['type' => 's', 'value' => $_POST['cita_nutri7']],
+['type' => 's', 'value' => $_POST['cita_nutri15']],
+['type' => 's', 'value' => $_POST['cita_nutri30']],
+['type' => 's', 'value' => $_POST['observaciones']],
+['type' => 's', 'value' => $_POST['user_bina']],
+['type' => 's', 'value' => $_POST['equipo_bina']],
+['type' => 's', 'value' => $_POST['usu_creo']],
+['type' => 's', 'value' => $_POST['fecha_create']],
+['type' => 's', 'value' => $_POST['usu_update']],
+['type' => 's', 'value' => $_POST['fecha_update']],
+['type' => 's', 'value' => $_POST['estado']],
 ['type' => 's', 'value' => $bina],
 ['type' => 's', 'value' => $equi],
 ['type' => 's', 'value' => $_SESSION['us_sds']],

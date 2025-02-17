@@ -72,7 +72,7 @@ function cmp_uaic_seg(){
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaicseg','n',11,$d['iduaicseg'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
-    $c[]=new cmp('idpeople','n',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
+    $c[]=new cmp('idpeople','h',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');

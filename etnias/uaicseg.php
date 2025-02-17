@@ -98,7 +98,7 @@ function gra_uaic_seg(){
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO uaic_seg
-       VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+       VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
 ['type' => 'i', 'value' => $_POST['iduaic']],
 ['type' => 's', 'value' => $_POST['fecha_seg']],

@@ -42,7 +42,7 @@ function focus_uaic_seg(){
 }
 function lis_uaic_seg(){
 /*     // print_r($_POST);
-$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaic']) ? divide($_POST['iduaic']) : null);
+$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaicseg']) ? divide($_POST['iduaicseg']) : null);
 $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
 $total=$info['responseResult'][0]['total'];
@@ -64,14 +64,14 @@ function cmp_uaic_seg(){
   $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
   //$rta='';
   $w='modini';
-	$t=['iduaic'=>'','idpeople'=>'','fecha_seg'=>'','parentesco'=>'','nombre_cui'=>'','tipo_doc'=>'','num_doc'=>'','telefono'=>'','era'=>'','eda'=>'','dnt'=>'','des_sinto'=>'','aten_medi'=>'','aten_part'=>'','peri_cef'=>'','peri_bra'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nut'=>'','tempe'=>'','frec_res'=>'','frec_car'=>'','satu'=>'','sales_reh'=>'','aceta'=>'','traslados_uss'=>'','educa'=>'','menor_hos'=>'','tempe2'=>'','frec_res2'=>'','frec_car2'=>'','satu2'=>'','seg_entmed'=>'','observacion'=>'','clasi_nutri'=>'']; 
+	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','parentesco'=>'','nombre_cui'=>'','tipo_doc'=>'','num_doc'=>'','telefono'=>'','era'=>'','eda'=>'','dnt'=>'','des_sinto'=>'','aten_medi'=>'','aten_part'=>'','peri_cef'=>'','peri_bra'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nut'=>'','tempe'=>'','frec_res'=>'','frec_car'=>'','satu'=>'','sales_reh'=>'','aceta'=>'','traslados_uss'=>'','educa'=>'','menor_hos'=>'','tempe2'=>'','frec_res2'=>'','frec_car2'=>'','satu2'=>'','seg_entmed'=>'','observacion'=>'','clasi_nutri'=>'']; 
 	$o='uaic_seg';
   $d=get_uaic_seg();
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-    $c[]=new cmp('iduaic','n',11,$d['iduaic'],$w.' '.$o,'Iduaic','iduaic',null,null,true,true,'','col-2');
+    $c[]=new cmp('iduaicseg','n',11,$d['iduaicseg'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
     $c[]=new cmp('idpeople','n',18,$d['idpeople'],$w.' '.$o,'Idpeople','idpeople',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
@@ -101,7 +101,7 @@ function cmp_uaic_seg(){
 }
 
 function gra_uaic_seg(){
-	$id=divide($_POST['iduaic']);
+	$id=divide($_POST['iduaicseg']);
     
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
@@ -175,7 +175,7 @@ function get_uaic_seg(){
     // print_r($id);
     $sql="SELECT fecha_seg,parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
           FROM `uaic_seg` 
-          WHERE iduaic='{$id[0]}'";
+          WHERE iduaicseg='{$id[0]}'";
     $info=datos_mysql($sql);
     if (!$info['responseResult']) {
 			return '';

@@ -80,11 +80,11 @@ function cmp_uaic_seg(){
     $c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','s',3,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
     $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasi de Nutri','clasi_nutri',null,null,false,true,'','col-2');
-    $c[]=new cmp('ftlc_apme','s',3,$d['ftlc_apme'],$w.' '.$o,'Ftlc de Apme','ftlc_apme',null,null,false,true,'','col-2');
+    $c[]=new cmp('ftlc_apme','s',3,$d['ftlc_apme'],$w.' '.$o,'Ftlc de Apme','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('cual','s',3,$d['cual'],$w.' '.$o,'Cual','cual',null,null,false,true,'','col-2');
-    $c[]=new cmp('cita_nutri7','s',3,$d['cita_nutri7'],$w.' '.$o,'Cita de Nutri7','cita_nutri7',null,null,false,true,'','col-2');
-    $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita de Nutri15','cita_nutri15',null,null,false,true,'','col-2');
-    $c[]=new cmp('cita_nutri30','s',5,2,$d['cita_nutri30'],$w.' '.$o,'Cita de Nutri30','cita_nutri30',null,null,false,true,'','col-2');
+    $c[]=new cmp('cita_nutri7','s',3,$d['cita_nutri7'],$w.' '.$o,'Cita de Nutri7','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita de Nutri15','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('cita_nutri30','s',5,2,$d['cita_nutri30'],$w.' '.$o,'Cita de Nutri30','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('observaciones','sd',4,1,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

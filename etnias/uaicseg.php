@@ -71,7 +71,7 @@ function cmp_uaic_seg(){
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-    $c[]=new cmp('iduaicseg','n',11,$d['iduaicseg'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
+    $c[]=new cmp('iduaicseg','h',11,$d['iduaicseg'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
@@ -97,8 +97,7 @@ function gra_uaic_seg(){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
-      $sql = "INSERT INTO uaic_seg
-       VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+      $sql = "INSERT INTO uaic_seg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
       $params = [
 ['type' => 'i', 'value' => $_POST['iduaicseg']],
 ['type' => 's', 'value' => $_POST['fecha_seg']],

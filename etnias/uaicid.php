@@ -186,7 +186,7 @@ function gra_uaic_id(){
       ];
       $rta = mysql_prepd($sql, $params);*/
     }
-return $rta;
+return
 }
 
 function get_uaic_id(){

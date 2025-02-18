@@ -179,7 +179,7 @@ function get_uaic_id(){
     // print_r($_POST);
     $id=divide($_POST['id']);
     // print_r($id);
-    $sql="SELECT iduaic, fecha_seg,parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
+    $sql="SELECT iduaic, fecha_seg,parentesco,nombre_cui,tipo_doc,num_doc,telefono,era,eda,dnt,des_sinto,aten_medi,aten_part,peri_cef,peri_bra,peso,talla,zcore,clasi_nut,tempe,frec_res,frec_car,satu,sales_reh,aceta,traslados_uss,educa,menor_hos,tempe2,frec_res2,frec_car2,satu2,seg_entmed,observacion
           FROM `uaic_ide` 
           WHERE idpeople='{$id[0]}'";
     $info=datos_mysql($sql);

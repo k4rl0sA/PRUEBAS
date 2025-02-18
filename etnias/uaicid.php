@@ -161,14 +161,14 @@ function gra_uaic_id(){
       // $rta = show_sql($sql, $params);
      $rta = mysql_prepd($sql, $params);
     }else{
-   /*$sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   $sql="UPDATE TABLA SET campo1=?,campo2=?,fecha_update=?,usu_update=? WHERE IDDELATABLA=?"; //  compromiso=?, equipo=?, 
     $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
+        ['type' => 's', 'value' => $_POST['CAMPO1']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
+        ['type' => 'i', 'value' => $id[1]]//IDACORDE AL NUMERO DEL INDICE
       ];
-      $rta = mysql_prepd($sql, $params);*/
+      $rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

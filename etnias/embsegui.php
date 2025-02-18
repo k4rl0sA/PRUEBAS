@@ -228,7 +228,7 @@ function formato_dato($a,$b,$c,$d){
   // var_dump($a);
   if ($a=='seguim' && $b=='acciones'){
     $rta="<nav class='menu right'>";
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,['fecha_seg','numsegui','prioridad','estado_seg','motivo_estado'],'../etnias/embsegui.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,['fecha_seg','segui','estado_seg','motivo'],'../etnias/embsegui.php');\"></li>";
     }
 		return $rta;
 }

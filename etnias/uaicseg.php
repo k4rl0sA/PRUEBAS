@@ -104,7 +104,7 @@ function gra_uaic_seg(){
       $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO uaic_seg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
       $params = [
-['type' => 'i', 'value' => $id[0]]],
+['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
 ['type' => 's', 'value' => $_POST['estado_seg']],

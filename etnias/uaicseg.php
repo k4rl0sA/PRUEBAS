@@ -41,7 +41,7 @@ function focus_uaic_seg(){
   return $rta;
 }
 function lis_uaic_seg(){
-/*     // print_r($_POST);
+    // print_r($_POST);
 $id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaicseg']) ? divide($_POST['iduaicseg']) : null);
 $info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
@@ -56,13 +56,12 @@ $pag=(isset($_POST['pag-uaic_seg']))? ($_POST['pag-uaic_seg']-1)* $regxPag:0;
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php'); */
+        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
 }
 
 
 function cmp_uaic_seg(){
-  //$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
-  $rta='';
+  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
   $w='modini';
 	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','motivo_seg'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nutri'=>'','ftlc_apme'=>'','cual'=>'','cita_nutri7'=>'','cita_nutri15'=>'','cita_nutri30'=>'','observaciones'=>''];
 	$o='uaic_seg';

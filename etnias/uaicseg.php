@@ -126,8 +126,8 @@ function gra_uaic_seg(){
 ['type' => 's', 'value' => NULL]
       ];
 // var_dump($sql);
-      //$rta = show_sql($sql, $params);
-    $rta = mysql_prepd($sql, $params);
+      $rta = show_sql($sql, $params);
+    // $rta = mysql_prepd($sql, $params);
     }else{
    /*$sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
     $params = [

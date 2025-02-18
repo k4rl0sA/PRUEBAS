@@ -65,7 +65,6 @@ function cmp_segnoreg(){
   $w='segnoreg';
   //$t=['id'=>'','idsegnoreg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','prioridad'=>'','gestaciones'=>'','partos'=>'','abortos'=>'','cesareas'=>'','vivos'=>'','muertos'=>'','fum'=>'','edad_gest'=>'','resul_gest'=>'','peso_nacer'=>'','asist_controles'=>'','exa_labo'=>'','cons_micronutri'=>'','esq_vacu'=>'','signos_alarma1'=>'','diag_sifigest'=>'','adhe_tto'=>'','diag_sificong'=>'','seg_partera'=>'','seg_med_ancestral1'=>'','diag_cronico'=>'','cual'=>'','tto_enf'=>'','ctrl_cronico'=>'','signos_alarma2'=>'','seg_med_ancestral2'=>'','doc_madre'=>'','ctrl_cyd'=>'','lactancia_mat'=>'','esq_vacunacion'=>'','sig_alarma_seg'=>'','seg_med_ancestral3'=>'','sistolica'=>'','diastolica'=>'','frec_cardiaca'=>'','frec_respiratoria'=>'','saturacion'=>'','gluco'=>'','peri_cefalico'=>'','peri_braqueal'=>'','peso'=>'','talla'=>'','imc'=>'','zcore'=>'','clasi_nutri'=>'','ser_remigesti'=>'','observaciones'=>'','users_bina'=>'','equipo_bina'=>'']; 
   $d='';
-  $d=get_segnoreg();
 	$o='modini';
   $ob='Ob';
   $no='nO';
@@ -265,7 +264,7 @@ function get_segnoreg(){
   var_dump($_POST,$_GET);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT concat_ws(',$id[0]),fecha_seg, segui, estado_seg, motivo, prioridad, gestaciones, partos, abortos, cesareas, vivos, muertos, fum, edad_gest, resul_gest, peso_nacer, asist_controles, exa_labo, cons_micronutri, esq_vacu, signos_alarma1, diag_sifigest, adhe_tto, diag_sificong, seg_partera, seg_med_ancestral1, diag_cronico, cual, tto_enf, ctrl_cronico, signos_alarma2, seg_med_ancestral2, doc_madre, ctrl_cyd, lactancia_mat, esq_vacunacion, sig_alarma_seg, seg_med_ancestral3, at_med, at_partera, sistolica, diastolica, frec_cardiaca, frec_respiratoria, saturacion, gluco, peri_cefalico, peri_braqueal, peso, talla, imc, zcore, clasi_nutri, ser_remigesti, observaciones
+    $sql="SELECT idsegnoreg,fecha_seg, segui, estado_seg, motivo, prioridad, gestaciones, partos, abortos, cesareas, vivos, muertos, fum, edad_gest, resul_gest, peso_nacer, asist_controles, exa_labo, cons_micronutri, esq_vacu, signos_alarma1, diag_sifigest, adhe_tto, diag_sificong, seg_partera, seg_med_ancestral1, diag_cronico, cual, tto_enf, ctrl_cronico, signos_alarma2, seg_med_ancestral2, doc_madre, ctrl_cyd, lactancia_mat, esq_vacunacion, sig_alarma_seg, seg_med_ancestral3, at_med, at_partera, sistolica, diastolica, frec_cardiaca, frec_respiratoria, saturacion, gluco, peri_cefalico, peri_braqueal, peso, talla, imc, zcore, clasi_nutri, ser_remigesti, observaciones
           FROM `emb_segreg` 
           WHERE idsegnoreg='{$id[0]}'";
           // var_dump($sql);

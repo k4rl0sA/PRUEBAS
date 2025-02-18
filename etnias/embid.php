@@ -128,7 +128,7 @@ function gra_emb_Id() {
           $commonParams,
           [
               ['type' => 's', 'value' => $usu],
-              ['type' => 'i', 'value' => $id],
+              ['type' => 'i', 'value' => $id[0]],
           ]
       );
   }

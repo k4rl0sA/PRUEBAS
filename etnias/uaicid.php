@@ -51,7 +51,8 @@ function cmp_uaic_id(){
   $d=get_uaic_id();
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
-  var_dump($_POST);
+  $id = isset($d['iduaic']) ? $d['iduaic']:$_POST['id'];
+  // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaic','h',11,$_POST['id'],$w.' '.$o,'iduaic',null,null,false,false,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");

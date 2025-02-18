@@ -72,7 +72,7 @@ function cmp_uaic_seg(){
   $days=fechas_app('ETNIAS');
   var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-    $c[]=new cmp('iduaicseg','h',11,$_POST['id'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
+   /*  $c[]=new cmp('iduaicseg','h',11,$_POST['id'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seg','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
@@ -86,7 +86,7 @@ function cmp_uaic_seg(){
     $c[]=new cmp('cita_nutri7','s',3,$d['cita_nutri7'],$w.' '.$o,'Cita de Nutri7','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita de Nutri15','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('cita_nutri30','s',5,2,$d['cita_nutri30'],$w.' '.$o,'Cita de Nutri30','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('observaciones','sd',4,1,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
+    $c[]=new cmp('observaciones','sd',4,1,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2'); */
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

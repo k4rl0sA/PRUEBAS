@@ -50,7 +50,7 @@ $pag=(isset($_POST['pag-seguim']))? ($_POST['pag-seguim']-1)* $regxPag:0;
     $sql="SELECT es.idseg AS ACCIONES, es.idseg 'Cod_Registro', es.fecha_seg 'Fecha', es.segui 'N Seguimiento', FN_CATALOGODESC(73,es.estado_seg)'Estado', u.nombre 
 FROM emb_segui es
 left join usuarios u ON es.usu_creo = u.id_usuario
-            WHERE idseg='".$id[0];
+            WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;

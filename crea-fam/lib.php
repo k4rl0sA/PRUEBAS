@@ -970,7 +970,7 @@ function formato_dato($a,$b,$c,$d){
 			}
 			if (uaic($c['ACCIONES'])) {
 				$rta .= acceso('uaic') ? "<li title='Identificación UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'Identificación');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
-				$rta .= acceso('uaic') ? "<li title='Seguimientos UAIC' onclick=\"mostrar('seguim','pro',event,'','../etnias/uaicseg.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('uaic') ? "<li title='Seguimientos UAIC' onclick=\"mostrar('uaic_seg','pro',event,'','../etnias/uaicseg.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 	}
 		if($a=='atencion' && $b=='acciones'){

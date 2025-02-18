@@ -49,14 +49,15 @@ $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-uaic_seg']))? ($_POST['pag-uaic_seg']-1)* $regxPag:0;
 
-    $sql="SELECT concat(key1,'_',key2) ACCIONES
-        FROM `uaic_seg` 
-            WHERE key1='".$id[0];
+    $sql="SELECT us.iduaicseg AS ACCIONES, us.iduaicseg 'Cod_Registro', us.fecha_seg 'Fecha', us.segui 'N Seguimiento', FN_CATALOGODESC(73,us.estado_seg)'Estado', u.nombre 
+FROM uaic_seg us 
+left join usuarios u ON us.usu_creo = u.id_usuario 
+            WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;
         //  echo $sql;
         $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php');
+        return create_table($total,$datos["responseResult"],"uaic_seg",$regxPag,'uaicseg.php');
 }
 
 

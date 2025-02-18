@@ -40,24 +40,6 @@ function focus_uaic_id(){
     $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
   return $rta;
 }
-function lis_uaic_id(){
-/*     // print_r($_POST);
-$id = (isset($_POST['id'])) ? divide($_POST['id']) : (isset($_POST['iduaic']) ? divide($_POST['iduaic']) : null);
-$info=datos_mysql("SELECT COUNT(*) total FROM vsp_mme A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
-  WHERE A.estado = 'A' AND A.idpeople='".$id[0]."'");
-$total=$info['responseResult'][0]['total'];
-$regxPag=5;
-$pag=(isset($_POST['pag-uaic_id']))? ($_POST['pag-uaic_id']-1)* $regxPag:0;
-
-    $sql="SELECT concat(key1,'_',key2) ACCIONES
-        FROM `uaic_ide` 
-            WHERE key1='".$id[0];
-        $sql.="' ORDER BY fecha_create";
-        $sql.=' LIMIT '.$pag.','.$regxPag;
-        //  echo $sql;
-        $datos=datos_mysql($sql);
-        return create_table($total,$datos["responseResult"],"cambiar",$regxPag,'cambiar.php'); */
-}
 
 
 function cmp_uaic_id(){

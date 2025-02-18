@@ -61,8 +61,8 @@ $pag=(isset($_POST['pag-uaic_seg']))? ($_POST['pag-uaic_seg']-1)* $regxPag:0;
 
 
 function cmp_uaic_seg(){
-  $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
-  //$rta='';
+  //$rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
+  $rta='';
   $w='modini';
 	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','motivo_seg'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nutri'=>'','ftlc_apme'=>'','cual'=>'','cita_nutri7'=>'','cita_nutri15'=>'','cita_nutri30'=>'','observaciones'=>''];
 	$o='uaic_seg';

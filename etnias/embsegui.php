@@ -229,9 +229,10 @@ function formato_dato($a,$b,$c,$d){
   $b=strtolower($b);
 	$rta=$c[$d];
   // var_dump($a);
-	if ($a=='seguim' && $b=='acciones'){
-	  $rta="<nav class='menu right'>";
-	}
+  if ($a=='segnoreg' && $b=='acciones'){
+    $rta="<nav class='menu right'>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,['fecha_seg','numsegui','prioridad','estado_seg','motivo_estado'],'../etnias/embsegui.php');\"></li>";
+    }
 		return $rta;
 }
 	function bgcolor($a,$c,$f='c'){

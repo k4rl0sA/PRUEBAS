@@ -77,6 +77,9 @@ function cmp_uaic_seg(){
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seguimiento','estado_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('motivo_seg','s',3,$d['motivo_seg'],$w.' '.$o,'Motivo de Seguimiento','motivo_seg',null,null,true,true,'','col-2');
+    
+    $o='segdnt';
+    $c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES CON  DNT',$w);
     $c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
@@ -86,6 +89,9 @@ function cmp_uaic_seg(){
     $c[]=new cmp('cita_nutri7','s',3,$d['cita_nutri7'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 7 Dias','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 15 Dias','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('cita_nutri30','s',5,$d['cita_nutri30'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 30 Dias','rta',null,null,false,true,'','col-2');
+    
+    $o='aspe';
+    $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
     $c[]=new cmp('observaciones','a',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

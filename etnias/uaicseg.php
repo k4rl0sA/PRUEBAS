@@ -92,7 +92,7 @@ function cmp_uaic_seg(){
     
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-    $c[]=new cmp('observaciones','a',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-2');
+    $c[]=new cmp('observaciones','a',7000,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-1');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

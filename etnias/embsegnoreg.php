@@ -47,8 +47,9 @@ $total=$info['responseResult'][0]['total'];
 $regxPag=5;
 $pag=(isset($_POST['pag-segnoreg']))? ($_POST['pag-segnoreg']-1)* $regxPag:0;
 
-    $sql="SELECT concat(idpeople,'_',segui) ACCIONES
-        FROM `emb_segreg` 
+    $sql="SELECT sr.idsegnoreg AS ACCIONES,sr.idsegnoreg 'cod Registro',sr.fecha_seg 'Fecha',segui 'N Seguimiento',FN_CATALOGODESC(73	,estado_seg) 'Estado', u.nombre 'creo' 
+FROM emb_segreg sr
+left join usuarios u ON sr.usu_creo=u.id_usuario
             WHERE idpeople='".$id[0];
         $sql.="' ORDER BY fecha_create";
         $sql.=' LIMIT '.$pag.','.$regxPag;

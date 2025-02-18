@@ -77,7 +77,7 @@ function cmp_uaic_seg(){
     $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Segui','segui',null,null,true,true,'','col-2');
     $c[]=new cmp('estado_seg','t',50,$d['estado_seg'],$w.' '.$o,'Estado de Seg','estado_seg',null,null,true,true,'','col-2');
     $c[]=new cmp('motivo_seg','s',3,$d['motivo_seg'],$w.' '.$o,'Motivo de Seg','motivo_seg',null,null,true,true,'','col-2');
-    //$c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
+    $c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     //$c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     //$c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
     //$c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasi de Nutri','clasi_nutri',null,null,false,true,'','col-2');

@@ -132,8 +132,8 @@ function gra_emb_Id() {
           ]
       );
   }
-  var_dump($sql);
-  return mysql_prepd($sql, $params);
+  return show_sql($sql, $params);
+  // return mysql_prepd($sql, $params);
 }
 function get_emb_Id(){
 	if($_POST['id']==''){

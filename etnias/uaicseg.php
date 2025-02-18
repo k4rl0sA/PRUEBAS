@@ -153,12 +153,8 @@ function get_uaic_seg(){
           FROM `uaic_seg` 
           WHERE iduaicseg='{$id[0]}'";
     $info=datos_mysql($sql);
-    if (!$info['responseResult']) {
-			return '';
-		}else{
-			return $info['responseResult'][0];
-		}
-      }
+  return json_encode($info['responseResult'][0]);
+} 
 }
 
   function opc_rta($id=''){

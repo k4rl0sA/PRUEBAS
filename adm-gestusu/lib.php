@@ -18,8 +18,6 @@ else {
   }   
 }
 
-
-
 function lis_gestuser(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM adm_usunew WHERE 1 ".whe_gestuser());
 	$total=$info['responseResult'][0]['total'];

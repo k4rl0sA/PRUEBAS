@@ -130,14 +130,13 @@ function gra_uaic_seg(){
       // $rta = show_sql($sql, $params);
     $rta = mysql_prepd($sql, $params);
     }else{
-   /*$sql="UPDATE hog_planconc SET cumple=?,fecha_update=?,usu_update=? WHERE idcon=?"; //  compromiso=?, equipo=?, 
+   $sql="UPDATE uaic_seg SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE iduaicseg=?"; //  compromiso=?, equipo=?, 
     $params = [
-        ['type' => 's', 'value' => $_POST['cumplio']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        ['type' => 's', 'value' => $_POST['observaciones']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[1]]
+        ['type' => 'i', 'value' => $id[0]]
       ];
-      $rta = mysql_prepd($sql, $params);*/
+      $rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

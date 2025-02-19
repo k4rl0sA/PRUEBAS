@@ -173,7 +173,6 @@ $rta = mysql_prepd($sql, $params);
      ];
      $rta = mysql_prepd($sql, $params);
    }
-
 return $rta;
 }
 

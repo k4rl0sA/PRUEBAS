@@ -188,7 +188,7 @@ function get_seguim(){
           FROM `emb_segui` 
           WHERE idseg='{$id[0]}'";
   $info=datos_mysql($sql);
-  return json_encode($info['responseResult'][0]);
+  if (!empty($info['responseResult'])) return json_encode($info['responseResult'][0]);
 } 
 }
 

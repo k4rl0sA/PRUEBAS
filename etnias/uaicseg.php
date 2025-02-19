@@ -183,7 +183,7 @@ function get_uaic_seg(){
         // var_dump($a);
 		if ($a=='uaic_seg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'uaic_seg',event,this,['fecha_seg','segui','estado_seg','motivo_seg'],'../etnias/uaicseg.php');enbValue('iduaicseg','modini','".$c['ACCIONES']."');\"></li>";	
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'uaic_seg',event,this,['fecha_seg','segui','estado_seg','motivo_seg'],'../etnias/uaicseg.php');enbValue('iduaicseg','modini','".$c['ACCIONES']."');enaFie('observaciones',false);\"></li>";	
 			}
 		return $rta;
 	}

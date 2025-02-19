@@ -70,7 +70,6 @@ function cmp_uaic_seg(){
   $d='';
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
-  var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaicseg','h',11,$_POST['id'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");

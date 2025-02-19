@@ -164,6 +164,16 @@ function gra_seguim() {
 ];
 //$rta=show_sql($sql, $params);
 $rta = mysql_prepd($sql, $params);
+}else{
+  $sql="UPDATE emb_segui SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE idseg=?"; //  compromiso=?, equipo=?, 
+   $params = [
+       ['type' => 's', 'value' => $_POST['observaciones']],
+       ['type' => 'i', 'value' => $_SESSION['us_sds']],
+       ['type' => 'i', 'value' => $id[0]]
+     ];
+     $rta = mysql_prepd($sql, $params);
+   }
+
 return $rta;
 }
 
@@ -228,7 +238,7 @@ function formato_dato($a,$b,$c,$d){
   // var_dump($a);
   if ($a=='seguim' && $b=='acciones'){
     $rta="<nav class='menu right'>";
-    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,['fecha_seg','segui','estado_seg','motivo','interven'],'../etnias/embsegui.php');\"></li>";
+    $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,[],'../etnias/embsegui.php');enbValue('idseg','modini','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);\"></li>";
     }
 		return $rta;
 }

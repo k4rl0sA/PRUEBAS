@@ -120,6 +120,7 @@ function cmp_seguim(){
 
 function gra_seguim() {
   $id = divide($_POST['idseg']);
+  if(COUNT($id)==2){
   $numdoc=($_POST['num_doc']=== '')? 0: $_POST['num_doc'];
       $equ = datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi']) ? (is_array($_POST['fequi']) ? implode("-", $_POST['fequi']) : str_replace("'", "", $_POST['fequi'])) : '';

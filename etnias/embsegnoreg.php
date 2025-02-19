@@ -19,7 +19,6 @@ else {
   }   
 }
 
-
 function focus_segnoreg(){
 	return 'segnoreg';
    }

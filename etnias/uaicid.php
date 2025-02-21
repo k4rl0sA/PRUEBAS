@@ -111,6 +111,43 @@ function cmp_uaic_id(){
 function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
+$commonParams=[
+  ['type' => 's', 'value' => $_POST['fecha_seg']??''],
+  ['type' => 's', 'value' => $_POST['parentesco']??''],
+  ['type' => 's', 'value' => $_POST['nombre_cui']??''],
+  ['type' => 's', 'value' => $_POST['tipo_doc']??''],
+  ['type' => 'i', 'value' => $_POST['num_doc']],
+  ['type' => 'i', 'value' => $_POST['telefono']],
+  ['type' => 's', 'value' => $_POST['era']??''],
+  ['type' => 's', 'value' => $_POST['eda']??''],
+  ['type' => 's', 'value' => $_POST['dnt']??''],
+  ['type' => 's', 'value' => $_POST['des_sinto']??''],
+  ['type' => 's', 'value' => $_POST['aten_medi']??''],
+  ['type' => 's', 'value' => $_POST['aten_part']??''],
+  ['type' => 's', 'value' => $_POST['peri_cef']??''],
+  ['type' => 's', 'value' => $_POST['peri_bra']??''],
+  ['type' => 's', 'value' => $_POST['peso']??''],
+  ['type' => 's', 'value' => $_POST['talla']??''],
+  ['type' => 's', 'value' => $_POST['zcore']??''],
+  ['type' => 's', 'value' => $_POST['clasi_nutri']??''],
+  ['type' => 's', 'value' => $_POST['tempe']??''],
+  ['type' => 's', 'value' => $_POST['frec_res']??''],
+  ['type' => 's', 'value' => $_POST['frec_car']??''],
+  ['type' => 's', 'value' => $_POST['satu']??''],
+  ['type' => 's', 'value' => $_POST['sales_reh']??''],
+  ['type' => 's', 'value' => $_POST['aceta']??''],
+  ['type' => 's', 'value' => $_POST['traslados_uss']??''],
+  ['type' => 's', 'value' => $_POST['educa']??''],
+  ['type' => 's', 'value' => $_POST['menor_hos']??''],
+  ['type' => 's', 'value' => $_POST['tempe2']??''],
+  ['type' => 's', 'value' => $_POST['frec_res2']??''],
+  ['type' => 's', 'value' => $_POST['frec_car2']??''],
+  ['type' => 's', 'value' => $_POST['satu2']??''],
+  ['type' => 's', 'value' => $_POST['seg_entmed']??''],
+  ['type' => 's', 'value' => $_POST['observacion']??'']  
+
+];
+
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';

@@ -79,8 +79,8 @@ function cmp_uaic_seg(){
     
     $o='segdnt';
     $c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES CON  DNT',$w);
-    $c[]=new cmp('at_medi','s',3,$d['aten_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
-    $c[]=new cmp('at_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('at_medi','s',3,$d['at_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('at_part','s',3,$d['at_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
     $c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');

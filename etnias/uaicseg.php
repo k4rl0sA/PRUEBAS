@@ -79,6 +79,8 @@ function cmp_uaic_seg(){
     
     $o='segdnt';
     $c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES CON  DNT',$w);
+    $c[]=new cmp('at_medi','s',3,$d['aten_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
+    $c[]=new cmp('at_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
     $c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,false,true,'','col-2');
     $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
@@ -102,13 +104,15 @@ function gra_uaic_seg(){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
-      $sql = "INSERT INTO uaic_seg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
+      $sql = "INSERT INTO uaic_seg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
       $params = [
 ['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
 ['type' => 's', 'value' => $_POST['segui']],
 ['type' => 's', 'value' => $_POST['estado_seg']],
 ['type' => 's', 'value' => $_POST['motivo_seg']],
+['type' => 's', 'value' => $_POST['at_medi']??''],
+['type' => 's', 'value' => $_POST['at_part']??''],
 ['type' => 'i', 'value' => $_POST['peso']],
 ['type' => 'i', 'value' => $_POST['talla']],
 ['type' => 's', 'value' => $_POST['zcore']],

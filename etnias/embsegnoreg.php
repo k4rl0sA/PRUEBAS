@@ -131,8 +131,8 @@ function cmp_segnoreg(){
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
   $c[]=new cmp('aten_med','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
   $c[]=new cmp('aten_par','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
-  $c[]=new cmp('sistolica','sd',3,$d,$w.' '.$o,'Valor Sistolica entre 50 mmhg y 200 mmhg','sistolica',null,null,false,true,'','col-25');
-  $c[]=new cmp('diastolica','sd',3,$d,$w.' '.$o,'Valor Diastolica','diastolica',null,null,false,true,'','col-25');
+  $c[]=new cmp('sistolica','sd',3,$d,$w.' '.$o,'Valor Sistolica (50 mmhg y 200 mmhg)','sistolica',null,null,false,true,'','col-25');
+  $c[]=new cmp('diastolica','sd',3,$d,$w.' '.$o,'Valor Diastolica (30 mmhg y 150 mmhg)','diastolica',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_cardiaca','sd',3,$d,$w.' '.$o,'Frecuencia Cardiaca','frec_cardiaca',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_respiratoria','sd',3,$d,$w.' '.$o,'Frecuencia Respiratoria','frec_respiratoria',null,null,false,true,'','col-25');
   $c[]=new cmp('saturacion','sd',3,$d,$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-25');

@@ -135,7 +135,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('diastolica','sd',3,$d,$w.' '.$o,'Valor Diastolica (30 mmhg y 150 mmhg)','diastolica',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_cardiaca','sd',3,$d,$w.' '.$o,'Frecuencia Cardiaca (50 a 150 lt)','frec_cardiaca',null,null,false,true,'','col-25');
   $c[]=new cmp('frec_respiratoria','sd',3,$d,$w.' '.$o,'Frecuencia Respiratoria (15 a 60 x min)','frec_respiratoria',null,null,false,true,'','col-25');
-  $c[]=new cmp('saturacion','sd',3,$d,$w.' '.$o,'Saturación','saturacion',null,null,false,true,'','col-25');
+  $c[]=new cmp('saturacion','sd',3,$d,$w.' '.$o,'Saturación (40 a 99 %)','saturacion',null,null,false,true,'','col-25');
   $c[]=new cmp('gluco','sd',3,$d,$w.' '.$o,'Glucometria','gluco',null,null,false,true,'','col-25');
   
   $o='antrop';

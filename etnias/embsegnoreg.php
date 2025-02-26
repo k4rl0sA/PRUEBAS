@@ -94,7 +94,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('muertos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Muertos','fxobs',null,null,false,true,'','col-2');
   $c[]=new cmp('fum','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fum','fum',null,null,false,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,false,true,'','col-4');
-  $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2');
+  $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Resultado De La Gestación','resul_gest',null,null,false,true,'','col-2',"enabPrioEtn();");
   $c[]=new cmp('peso_nacer','',5,$d,$w.' '.$bl.' '.$ge.' '.$o,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,true,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Asiste A Controles Prenatales?','rta',null,null,false,true,'','col-2');
   $c[]=new cmp('exa_labo','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Cuenta Con Exámenes De Laboratorio Al Día? Con Relación Al Trimestre Gestacional?','rta',null,null,false,true,'','col-4');

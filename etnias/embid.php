@@ -114,7 +114,7 @@ function gra_emb_Id() {
               ['type' => 'i', 'value' => $_POST['enfoque'] ?? 0],
               ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
               ['type' => 's', 'value' => $usu]
-          ]
+      ];
   } else {
       $sql = "UPDATE etn_identi SET lider=?,saberes=?,pueblo=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE idriesgo=?";
       $params =[
@@ -123,7 +123,7 @@ function gra_emb_Id() {
             ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
             ['type' => 's', 'value' => $usu],
             ['type' => 'i', 'value' => $id[0]]
-          ]
+      ];
   }
   //return show_sql($sql, $params);
    return mysql_prepd($sql, $params);

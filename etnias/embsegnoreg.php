@@ -77,6 +77,12 @@ function cmp_segnoreg(){
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
+  $c[]=new cmp('tipodoc','t','3',$p['tipo_doc'],$w.' '.$f.' '.$o,'Tipo Identificación','tipodoc',null,'',true,false,'','col-1');
+	$c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
+	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-15');
+  $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
+	$c[]=new cmp('cursovida','s','3',$curso,$w.' '.$f.' '.$o,'Curso de Vida','cursovida',null,'',false,false,'','col-25');
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['gestan','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");
@@ -155,6 +161,29 @@ function cmp_segnoreg(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put(); 
 	return $rta;
 }
+
+function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
+		FN_EDAD(fecha_nacimiento,CURDATE()),
+		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
+		from person P left join hog_carac V ON vivipersona=idfam
+		WHERE P.idpeople='".$id[0]."'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+		}
+	}
+
 
 function gra_segnoreg(){
  	$id=divide($_POST['id']);

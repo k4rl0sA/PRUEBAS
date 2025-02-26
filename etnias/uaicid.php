@@ -53,48 +53,9 @@ function cmp_uaic_id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   $id = isset($d['iduaic']) ? $d['iduaic']:$_POST['id'];
-  $p=get_persona();
-  $ocu= ($p['ano']>5) ? true : false ;
-	$meses = $p['ano'] * 12 + $p['mes'];
-	// $esc=($p['ano']>=5 && $p['ano']<18 ) ? true : false ;
-	$ed=$p['ano'];
-	switch (true) {
-			case $ed>=0 && $ed<=5 :
-				$curso=1;
-				break;
-			case $ed>=6 && $ed<=11 :
-				$curso=2;
-				break;
-			case $ed>=12 && $ed <=17 :
-				$curso=3;
-				break;
-			case $ed>=18 && $ed <=28 :
-				$curso=4;
-				break;
-			case $ed>=29 && $ed <=59 :
-				$curso=5;
-				break;
-			case $ed>=60 :
-				$curso=6;
-				break;
-		default:
-			$curso='';
-			break;
-	}
-
-	$des='des';
-	$z='zS';
-	$f='nFx';
-	$days=fechas_app('vivienda');
-	$old='Años: '.$p['ano'].' Meses: '.$p['mes'].' Dias:'.$p['dia'];
-
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaic','h',11,$_POST['id'],$w.' '.$o,'iduaic',null,null,false,false,'','col-2');
-    $c[]=new cmp('nombre','t','50',$p['nombres'],$w.' '.$f.' '.$o,'nombres','nombre',null,'',true,false,'','col-3');
-	$c[]=new cmp('sexo','t','50',$p['sexo'],$w.' '.$f.' '.$z.' '.$o,'sexo','sexo',null,'',false,false,'','col-2');
-	$c[]=new cmp('fechanacimiento','d','10',$p['fecha_nacimiento'],$w.' '.$f.' '.$z.' '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-25');
-    $c[]=new cmp('edad','n','3',$old,$w.' '.$f.' '.$o,'Edad (Abordaje)','edad',null,'',false,false,'','col-25');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-25');
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-5');
@@ -147,28 +108,6 @@ function cmp_uaic_id(){
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
-
-function get_persona(){
-	if($_POST['id']==0){
-		return "";
-	}else{
-		 $id=divide($_POST['id']);
-		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
-		FN_EDAD(fecha_nacimiento,CURDATE()),
-		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
-  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from person P left join hog_carac V ON vivipersona=idfam
-		WHERE P.idpeople='".$id[0]."'";
-		// echo $sql;
-		$info=datos_mysql($sql);
-		if (!$info['responseResult']) {
-			return '';
-		}else{
-			return $info['responseResult'][0];
-		}
-		}
-	}
 
 function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');

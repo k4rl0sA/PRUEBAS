@@ -72,6 +72,33 @@ function cmp_segnoreg(){
   $x=false;
   $block=['gestan','cronicos'];
   $days=fechas_app('ETNIAS');
+  $ocu= ($p['ano']>5) ? true : false ;
+	$meses = $p['ano'] * 12 + $p['mes'];
+	// $esc=($p['ano']>=5 && $p['ano']<18 ) ? true : false ;
+	$ed=$p['ano'];
+	switch (true) {
+			case $ed>=0 && $ed<=5 :
+				$curso=1;
+				break;
+			case $ed>=6 && $ed<=11 :
+				$curso=2;
+				break;
+			case $ed>=12 && $ed <=17 :
+				$curso=3;
+				break;
+			case $ed>=18 && $ed <=28 :
+				$curso=4;
+				break;
+			case $ed>=29 && $ed <=59 :
+				$curso=5;
+				break;
+			case $ed>=60 :
+				$curso=6;
+				break;
+		default:
+			$curso='';
+			break;
+	}
   $ge='GEs';
   $cro='CrO';
   $me5='mE5';

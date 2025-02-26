@@ -85,6 +85,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car','rgxfcard',null,false,true,'','col-2');
     $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Saturacion','satu','rgxsatu',null,false,true,'','col-2');
 
+    
     $o='mane';
     $c[]=new cmp($o,'e',null,'MANEJO',$w);
     $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales De Rehidratación','rta',null,null,false,true,'','col-2');

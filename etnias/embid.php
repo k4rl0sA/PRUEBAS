@@ -101,34 +101,30 @@ function gra_emb_Id() {
   $id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
   // Parámetros comunes para INSERT y UPDATE
-  $commonParams = [
-      ['type' => 's', 'value' => $_POST['fechavisi'] ?? ''],
-      ['type' => 's', 'value' => $_POST['lider'] ?? ''],
-      ['type' => 's', 'value' => $_POST['educacion'] ?? ''],
-      ['type' => 's', 'value' => $_POST['espanol'] ?? ''],
-      ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
-      ['type' => 'i', 'value' => $_POST['enfoque'] ?? 0],
-      ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
-  ];
   if (count($id) == 2) {
       $sql = "INSERT INTO etn_identi VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), NULL, NULL, 'A')";
-      $params = array_merge(
-          [
+      $params =[
               ['type' => 's', 'value' => $id[0]],
-              ['type' => 's', 'value' => $id[1]],
-          ],
-          $commonParams,
-          [
-              ['type' => 's', 'value' => $usu],
+              // ['type' => 's', 'value' => $id[1]],
+              ['type' => 's', 'value' => $_POST['fechavisi'] ?? ''],
+              ['type' => 's', 'value' => $_POST['lider'] ?? ''],
+              ['type' => 's', 'value' => $_POST['educacion'] ?? ''],
+              ['type' => 's', 'value' => $_POST['espanol'] ?? ''],
+              ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
+              ['type' => 'i', 'value' => $_POST['enfoque'] ?? 0],
+              ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
+              ['type' => 's', 'value' => $usu]
           ]
-      );
   } else {
-      $sql = "UPDATE etn_identi SET fechavisi=?, lider=?, educacion=?, espanol=?, saberes=?, enfoque=?, pueblo=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE idriesgo=?";
+      $sql = "UPDATE etn_identi SET lider=?,saberes=?,pueblo=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE idriesgo=?";
       $params = array_merge(
           $commonParams,
           [
-              ['type' => 's', 'value' => $usu],
-              ['type' => 'i', 'value' => $id[0]],
+            ['type' => 's', 'value' => $_POST['lider'] ?? ''],
+            ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
+            ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
+            ['type' => 's', 'value' => $usu],
+            ['type' => 'i', 'value' => $id[0]],
           ]
       );
   }

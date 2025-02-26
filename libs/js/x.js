@@ -1117,7 +1117,7 @@ function diagCroEtn() {
 	];
 	EnabDepeDynamic(['dAG'], conditions);
 }
-function diagCroEtn() {
+function enabNV() {
 	const conditions = [
 		{ id: 'resul_gest', value: '1', compare: true }
 	];

@@ -109,6 +109,27 @@ function cmp_uaic_id(){
 	return $rta;
 }
 
+
+function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
+		from person P WHERE P.idpeople='".$id[0]."'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+		}
+	}
+
+
 function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];

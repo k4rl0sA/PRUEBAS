@@ -86,8 +86,8 @@ function cmp_uaic_id(){
     if($p['mes']>= 6 && $p['ano']< 5){
       $c[]=new cmp('peri_bra','sd',4,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
     }
-    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');
-    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-2');
+    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,false,true,'','col-2');
+    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,false,true,'','col-2');
     if($p['ano']<5){
       $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
     }

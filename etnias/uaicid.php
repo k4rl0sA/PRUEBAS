@@ -55,6 +55,9 @@ function cmp_uaic_id(){
   $id = isset($d['iduaic']) ? $d['iduaic']:$_POST['id'];
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
+  $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],'zsc','fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
+  $c[]=new cmp('sexo','h',1,$p['sexo'],'zsc','sexo','sexo',null,'',false,false,'','col-1');
+
     $c[]=new cmp('iduaic','h',11,$_POST['id'],$w.' '.$o,'iduaic',null,null,false,false,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-25');
@@ -127,6 +130,59 @@ function get_persona(){
 		}
 		}
 	}
+
+
+  function get_zscore(){
+		// var_dump($_POST);
+		$id=divide($_POST['val']);
+		 $fechaNacimiento = new DateTime($id[1]);
+		 $fechaActual = new DateTime();
+		 $diferencia = $fechaNacimiento->diff($fechaActual);
+		 $edadEnDias = $diferencia->days;
+		$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+		$sex=$id[2];
+	
+	$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+		(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+		((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+	 (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+	//   echo $sql;
+	 $info=datos_mysql($sql);
+		 if (!$info['responseResult']) {
+			return '';
+		}else{
+			$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+			switch ($z) {
+				case ($z <=-3):
+					$des='DESNUTRICIÓN AGUDA SEVERA';
+					break;
+				case ($z >-3 && $z <=-2):
+					$des='DESNUTRICIÓN AGUDA MODERADA';
+					break;
+				case ($z >-2 && $z <=-1):
+					$des='RIESGO DESNUTRICIÓN AGUDA';
+					break;
+				case ($z>-1 && $z <=1):
+						$des='PESO ADECUADO PARA LA TALLA';
+					break;
+				case ($z >1 && $z <=2):
+						$des='RIESGO DE SOBREPESO';
+					break;
+				case ($z >2 && $z <=3):
+						$des='SOBREPESO';
+					break;
+					case ($z >3):
+						$des='OBESIDAD';
+					break;
+				default:
+					$des='Error en el rango, por favor valide';
+					break;
+			}
+	
+			return json_encode($z." = ".$des);
+		}
+	}
+
 
 
 function gra_uaic_id(){

@@ -144,16 +144,16 @@ function cmp_segnoreg(){
   
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);  
-  if($person['ano']<5){
+  if($p['ano']<5){
     $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
   }
-  if($person['mes']>= 6 && $person['ano']< 5){
+  if($p['mes']>= 6 && $p['ano']< 5){
     $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
   }
   $c[]=new cmp('peso','sd',6,$d,$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-25',"calImc('peso','talla','imc');Zsco('zcore','embsegnoreg.php');");
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25',"calImc('peso','talla','imc');Zsco('zcore','embsegnoreg.php');");
   $c[]=new cmp('imc','sd',6,$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-3');
-  if($person['ano']<5){
+  if($p['ano']<5){
     $c[]=new cmp('zcore','t',50,$d,$w.' '.$o,'Zcore','zcore',null,null,false,false,'','col-35');
   }
   $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');

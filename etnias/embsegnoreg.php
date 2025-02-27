@@ -154,7 +154,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25',"calImc('peso','talla','imc');Zsco('zcore','embsegnoreg.php');");
   $c[]=new cmp('imc','sd',6,$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-3');
   if($p['ano']<5){
-    $c[]=new cmp('zcore','t',50,$d,$w.' '.$o,'Zcore','zcore',null,null,false,false,'','col-35');
+    $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
   }
   $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
@@ -182,6 +182,57 @@ function get_persona(){
 		}else{
 			return $info['responseResult'][0];
 		}
+		}
+	}
+
+  function get_zscore(){
+		// var_dump($_POST);
+		$id=divide($_POST['val']);
+		 $fechaNacimiento = new DateTime($id[1]);
+		 $fechaActual = new DateTime();
+		 $diferencia = $fechaNacimiento->diff($fechaActual);
+		 $edadEnDias = $diferencia->days;
+		$ind = ($edadEnDias<=730) ? 'PL' : 'PT' ;
+		$sex=$id[2];
+	
+	$sql="SELECT (POWER(($id[0] / (SELECT M FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])),
+		(SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) - 1) / 
+		((SELECT L FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3]) *
+	 (SELECT S FROM tabla_zscore WHERE indicador = '$ind' AND sexo = '$sex[0]' AND edad_dias = $id[3])) as rta ";
+	//   echo $sql;
+	 $info=datos_mysql($sql);
+		 if (!$info['responseResult']) {
+			return '';
+		}else{
+			$z=number_format((float)$info['responseResult'][0]['rta'], 6, '.', '');
+			switch ($z) {
+				case ($z <=-3):
+					$des='DESNUTRICIÓN AGUDA SEVERA';
+					break;
+				case ($z >-3 && $z <=-2):
+					$des='DESNUTRICIÓN AGUDA MODERADA';
+					break;
+				case ($z >-2 && $z <=-1):
+					$des='RIESGO DESNUTRICIÓN AGUDA';
+					break;
+				case ($z>-1 && $z <=1):
+						$des='PESO ADECUADO PARA LA TALLA';
+					break;
+				case ($z >1 && $z <=2):
+						$des='RIESGO DE SOBREPESO';
+					break;
+				case ($z >2 && $z <=3):
+						$des='SOBREPESO';
+					break;
+					case ($z >3):
+						$des='OBESIDAD';
+					break;
+				default:
+					$des='Error en el rango, por favor valide';
+					break;
+			}
+	
+			return json_encode($z." = ".$des);
 		}
 	}
 

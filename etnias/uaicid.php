@@ -78,12 +78,13 @@ function cmp_uaic_id(){
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES Y MEDIDAS ANTROPOMETRICAS AL INGRESO DE LA ATENCIÓN',$w);
     $c[]=new cmp('aten_medi','s',3,$d['aten_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
     $c[]=new cmp('aten_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
-        
+    
+    
     if($p['ano']<5){
-      $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
+      $c[]=new cmp('peri_cef','sd',4,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
     }
     if($p['mes']>= 6 && $p['ano']< 5){
-      $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
+      $c[]=new cmp('peri_bra','sd',4,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
     }
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-2');

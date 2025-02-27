@@ -1149,3 +1149,9 @@ function enabSegEmb() {
 		});
 	});
 }
+function enabEmbInt(){
+	const conditions = [
+		{ id: 'estado_seg', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['iNt'], conditions);
+}

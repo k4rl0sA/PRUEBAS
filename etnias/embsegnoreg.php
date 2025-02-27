@@ -151,7 +151,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-25',"calImc('peso','talla','imc');");
   $c[]=new cmp('imc','sd',6,$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-3');
   if($person['ano']<5){
-    $c[]=new cmp('zcore','t',50,$d,$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-35');
+    $c[]=new cmp('zcore','t',50,$d,$w.' '.$o,'Zcore','zcore',null,null,false,false,'','col-35');
   }
   $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   

@@ -180,8 +180,9 @@ function lista_gestion(){ //revisar
 	//var_dump($_POST);
 	$id=divide($_POST['id']);
 	// var_dump($id);
-		$sql="SELECT fecha_gest Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
-		FROM eac_ruteo_ges 
+		$sql="SELECT RG.fecha_gest Fecha,FN_CATALOGODESC(35,RG.estado_g) Estado,RG.fecha_create 'Fecha de Creación',U.nombre Creo,U.perfil perfil
+		FROM eac_ruteo_ges RG
+		LEFT JOIN usuarios U ON RG.usu_creo=U.id_usuario 
 			WHERE  usu_creo='".$_SESSION['us_sds']."' AND idruteo='$id[0]'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;

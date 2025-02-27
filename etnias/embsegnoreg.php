@@ -144,7 +144,7 @@ function cmp_segnoreg(){
   if($person['ano']<5){
     $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
   }
-  if($person['mes']>= 6 && $person['mes']< 60){
+  if($person['mes']>= 6 && $person['ano']< 5){
     $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
   }
   $c[]=new cmp('peso','sd',6,$d,$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-25',"calImc('peso','talla','imc');");

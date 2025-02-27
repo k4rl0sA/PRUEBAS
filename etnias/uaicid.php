@@ -53,6 +53,7 @@ function cmp_uaic_id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   $id = isset($d['iduaic']) ? $d['iduaic']:$_POST['id'];
+  $p=get_persona();
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],'zsc','fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');

@@ -1162,3 +1162,10 @@ function enabEmbGes(){
 	];
 	EnabDepeDynamic(['GeS'], conditions);
 }
+function enabEmbPare(){
+	const conditions = [
+		{ id: 'paren', value: '8', compare: true },
+	];
+	EnabDepeDynamic(['prT'], conditions);
+}
+

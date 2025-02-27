@@ -1155,3 +1155,10 @@ function enabEmbInt(){
 	];
 	EnabDepeDynamic(['iNt'], conditions);
 }
+function enabEmbGes(){
+	const conditions = [
+		{ id: 'sexo', value: 'M', compare: true },
+		{ id: 'interven', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['GeS'], conditions);
+}

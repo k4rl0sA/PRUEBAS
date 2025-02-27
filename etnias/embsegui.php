@@ -67,8 +67,10 @@ function cmp_seguim(){
   $d='';
   $d=get_seguim();
   $days=fechas_app('ETNIAS');
+  $p=get_persona();
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
+  $c[]=new cmp('sexo','h',1,$p['sexo'],' GeST ','sexo','sexo',null,'',false,false,'','col-1');
     $c[]=new cmp('idseg','h',11,$_POST['id'],$w.' '.$o,'idseg','idseg',null,'####',false,false);
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['datiden','infoserv','detsegh','detsegp'],['Ob'],['nO'],['bL']);");
@@ -78,12 +80,12 @@ function cmp_seguim(){
 
     $o='datiden';
     $c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN - HOSPITALARIO',$w);
-    $c[]=new cmp('gestante','s',3,$d,$w.' '.$bl.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$bl.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,true,'','col-2');
+    $c[]=new cmp('gestante','s',3,$d,$w.' GeS '.$bl.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('edad_gest','s',3,$d,$w.' GeS '.$bl.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,true,'','col-2');
+    $c[]=new cmp('paren','s',3,$d,$w.' GeS '.$bl.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' '.$bl.' '.$o,'Nombre Completo del familiar','Nom_fami',null,null,false,true,'','col-4');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$bl.' '.$o,'Tipo De Documento','tipo_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d,$w.' '.$bl.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-25');
-    $c[]=new cmp('paren','s',3,$d,$w.' '.$bl.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
     $c[]=new cmp('tel_conta','n',21,$d,$w.' '.$bl.' '.$o,'Teléfono De Contacto','tel_conta',null,null,false,true,'','col-25');
     $c[]=new cmp('ubi','s',3,$d,$w.' '.$bl.' '.$o,'Ubicacion','ubi',null,null,false,true,'','col-25');
 
@@ -118,6 +120,22 @@ function cmp_seguim(){
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
+
+function get_persona(){
+	if($_POST['id']==0){
+		return "";
+	}else{
+		 $id=divide($_POST['id']);
+		$sql="SELECT sexo	from person P WHERE P.idpeople='".$id[0]."'";
+		// echo $sql;
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+		}
+	}
 
 function gra_seguim() {
   $id = divide($_POST['idseg']);

@@ -109,7 +109,6 @@ function cmp_uaic_id(){
 	return $rta;
 }
 
-
 function get_persona(){
 	if($_POST['id']==0){
 		return "";

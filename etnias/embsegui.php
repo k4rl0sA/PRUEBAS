@@ -65,6 +65,7 @@ function cmp_seguim(){
 	$o='modini';
   $bl='bL';
   $no='nO';
+  $ob='Ob';
   $d='';
   $d=get_seguim();
   $days=fechas_app('ETNIAS');
@@ -117,7 +118,7 @@ function cmp_seguim(){
 
     $o='aspfin';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-    $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-10');
+    $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,false,true,'','col-10');
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

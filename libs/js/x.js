@@ -1123,3 +1123,29 @@ function enabNV() {
 	];
 	EnabDepeDynamic(['Nav'], conditions);
 }
+function enabSegEmb() {
+	const prioridad = document.getElementById('interven').value;
+	const enabledClasses = {};
+	const conditions = [
+		{ value: '1', classes: ['datiden','infoserv','detsegh']},
+		{ value: '2', classes: ['detsegp']},
+		
+	];
+	conditions.forEach(condition => {
+		const isConditionMet = prioridad === condition.value;
+		if (isConditionMet) {
+			condition.classes.forEach(cls => {
+				enabledClasses[cls] = true;
+			});
+		}
+	});
+	conditions.forEach(condition => {
+		condition.classes.forEach(cls => {
+			const selector = `select.${cls}, input.${cls}, textarea.${cls}`;
+			const elements = document.querySelectorAll(selector);
+			elements.forEach(element => {
+				enaFie(element, !enabledClasses[cls]);
+			});
+		});
+	});
+}

@@ -162,7 +162,7 @@ function get_persona(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		$sql="SELECT sexo,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+		$sql="SELECT TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from person P WHERE P.idpeople='".$id[0]."'";

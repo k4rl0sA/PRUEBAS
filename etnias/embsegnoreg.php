@@ -161,13 +161,10 @@ function get_persona(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,fecha, 
-		FN_EDAD(fecha_nacimiento,CURDATE()),
-		TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
+		$sql="SELECT sexo,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
   		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
-		from person P left join hog_carac V ON vivipersona=idfam
-		WHERE P.idpeople='".$id[0]."'";
+		from person P WHERE P.idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

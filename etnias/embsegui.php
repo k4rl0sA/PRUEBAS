@@ -64,6 +64,7 @@ function cmp_seguim(){
   $w="seguim";
 	$o='modini';
   $bl='bL';
+  $no='nO';
   $d='';
   $d=get_seguim();
   $days=fechas_app('ETNIAS');
@@ -110,7 +111,7 @@ function cmp_seguim(){
     $o='detsegp';
     $c[]=new cmp($o,'e',null,'DETALLE DEL SEGUIMIENTO POS EGRESO',$w);
     $c[]=new cmp('espe1','t',3,$d,$w.' '.$bl.' '.$o,'Especialidad 1','espe1',null,null,false,true,'','col-35');
-    $c[]=new cmp('espe2','t',50,$d,$w.' '.$bl.' '.$o,'Especialidad 2','espe2',null,null,false,true,'','col-35');
+    $c[]=new cmp('espe2','t',50,$d,$w.' '.$bl.' '.$no.' '.$o,'Especialidad 2','espe2',null,null,false,true,'','col-35');
     $c[]=new cmp('adh_tto','s',3,$d,$w.' '.$bl.' '.$o,'Adherente Al Tratamiento','rta',null,null,false,true,'','col-3');
     
 

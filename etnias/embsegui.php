@@ -76,13 +76,13 @@ function cmp_seguim(){
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['datiden','infoserv','detsegh','detsegp'],['Ob'],['nO'],['bL']);");
     $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabEmbInt();");
     $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,'','','col-2');
-    $c[]=new cmp('interven','s',3,$d,$w.' iNt '.$o,'Intervención','interven',null,null,true,true,'','col-2',"enabSegEmb();");
+    $c[]=new cmp('interven','s',3,$d,$w.' iNt '.$o,'Intervención','interven',null,null,true,true,'','col-2',"enabSegEmb();enabEmbGes();");
 
     $o='datiden';
     $c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN - HOSPITALARIO',$w);
     $c[]=new cmp('gestante','s',3,$d,$w.' GeS '.$bl.' '.$o,'Gestante','rta',null,null,false,true,'','col-2');
     $c[]=new cmp('edad_gest','s',3,$d,$w.' GeS '.$bl.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,true,'','col-2');
-    $c[]=new cmp('paren','s',3,$d,$w.' GeS '.$bl.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
+    $c[]=new cmp('paren','s',3,$d,$w.' '.$bl.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25');
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' '.$bl.' '.$o,'Nombre Completo del familiar','Nom_fami',null,null,false,true,'','col-4');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' '.$bl.' '.$o,'Tipo De Documento','tipo_doc',null,null,false,true,'','col-2');
     $c[]=new cmp('num_doc','n',18,$d,$w.' '.$bl.' '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-25');

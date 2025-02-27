@@ -88,8 +88,11 @@ function cmp_uaic_id(){
     }
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso',null,null,false,true,'','col-2');
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla',null,null,false,true,'','col-2');
-    $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,false,true,'','col-2');
-    $c[]=new cmp('clasi_nutri','s','3',$d['clasi_nut'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,false,'','col-2');
+    if($p['ano']<5){
+      $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
+    }
+    $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
+  
     $c[]=new cmp('tempe','sd',3,$d['tempe'],$w.' '.$o,'Temperatura','tempe','rgxtemp',null,false,true,'','col-2');
     $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxfresp',null,false,true,'','col-2');
     $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car','rgxfcard',null,false,true,'','col-2');

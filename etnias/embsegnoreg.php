@@ -155,7 +155,7 @@ function cmp_segnoreg(){
   if($p['ano']<5){
     $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
   }
-  $c[]=new cmp('clasi_nutri','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
+  $c[]=new cmp('clasi_nut','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
   $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

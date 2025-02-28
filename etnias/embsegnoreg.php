@@ -235,7 +235,7 @@ function get_persona(){
 		}
 	}
 
-
+  
 function gra_segnoreg(){
  	$id=divide($_POST['idsegnoreg']);
   $pn=($_POST['peso_nacer']=== '')? 0: $_POST['peso_nacer'];

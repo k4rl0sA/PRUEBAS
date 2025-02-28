@@ -139,7 +139,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
   function numSess($a){
 	// var_dump($id);
-	$sql="select psi_sesion from psi_sesiones WHERE id_people='$a'";
+	$sql="select MAX(psi_sesion) from psi_sesiones WHERE id_people='$a'";
 	$info=datos_mysql($sql);
 	// var_dump($info);
 	if (isset($info['responseResult'][0])){

@@ -81,10 +81,10 @@ function cmp_uaic_id(){
     
     
     if($p['ano']<5){
-      $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,false,true,'','col-25');
+      $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,true,'','col-25');
     }
     if($p['mes']>= 6 && $p['ano']< 5){
-      $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
+      $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,true,'','col-25');
     }
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");

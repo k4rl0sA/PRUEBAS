@@ -113,7 +113,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,true,true,'','col-2');
     $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,true,true,'','col-2');
     $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,true,true,'','col-2');
-    $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,true,true,'','col-2');
+    $c[]=new cmp('seg_entmed','t',150,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,true,true,'','col-2');
 
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

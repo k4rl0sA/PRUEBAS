@@ -64,8 +64,8 @@ function cmp_uaic_id(){
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-25',"enabEmbPare('parentesco');");
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' prT '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-5');
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' prT '.$o,'Tipo De Documento ','tipo_doc',null,null,true,true,'','col-3');
-    $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' prT '.$o,'Número De Documento','num_doc',null,null,false,true,'','col-3');
-    $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' prT '.$o,'Teléfono De Contacto','telefono',null,null,false,true,'','col-4');
+    $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' prT '.$o,'Número De Documento','num_doc',null,null,true,true,'','col-3');
+    $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' prT '.$o,'Teléfono De Contacto','telefono',null,null,true,true,'','col-4');
 
     $o='moticons';
     $c[]=new cmp($o,'e',null,'MOTIVO DE LA CONSULTA',$w);
@@ -86,34 +86,34 @@ function cmp_uaic_id(){
     if($p['mes']>= 6 && $p['ano']< 5){
       $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,false,true,'','col-25');
     }
-    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,false,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");
-    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,false,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");
+    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");
+    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-2',"calImc('peso','talla','imc');Zsco('zscore','../etnias/uaicid.php');");
     if($p['ano']<5){
       $c[]=new cmp('zscore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
     }
     $c[]=new cmp('clasi_nut','s',3,$d['clasi_nut'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
-    $c[]=new cmp('tempe','sd',3,$d['tempe'],$w.' '.$o,'Temperatura','tempe','rgxtemp',null,false,true,'','col-2');
-    $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxfresp',null,false,true,'','col-2');
-    $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car','rgxfcard',null,false,true,'','col-2');
-    $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Saturacion','satu','rgxsatu',null,false,true,'','col-2');
+    $c[]=new cmp('tempe','sd',3,$d['tempe'],$w.' '.$o,'Temperatura','tempe','rgxtemp',null,true,true,'','col-2');
+    $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxfresp',null,true,true,'','col-2');
+    $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car','rgxfcard',null,true,true,'','col-2');
+    $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Saturacion','satu','rgxsatu',null,true,true,'','col-2');
 
     
     $o='mane';
     $c[]=new cmp($o,'e',null,'MANEJO',$w);
-    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales De Rehidratación','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Acetaminofen','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educación','rta',null,null,false,true,'','col-2');
-    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor Hospitalizado','rta',null,null,false,true,'','col-2');
+    $c[]=new cmp('sales_reh','s',3,$d['sales_reh'],$w.' '.$o,'Sales De Rehidratación','rta',null,null,true,true,'','col-2');
+    $c[]=new cmp('aceta','s',3,$d['aceta'],$w.' '.$o,'Acetaminofen','rta',null,null,true,true,'','col-2');
+    $c[]=new cmp('traslados_uss','s',3,$d['traslados_uss'],$w.' '.$o,'Traslados de Uss','rta',null,null,true,true,'','col-2');
+    $c[]=new cmp('educa','s',3,$d['educa'],$w.' '.$o,'Educación','rta',null,null,true,true,'','col-2');
+    $c[]=new cmp('menor_hos','s',3,$d['menor_hos'],$w.' '.$o,'Menor Hospitalizado','rta',null,null,true,true,'','col-2');
 
     $o='sigyman2';
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES POSTERIOR AL PLAN DE MANEJO EN LA UAIC',$w);
-    $c[]=new cmp('tempe2','sd',50,$d['tempe2'],$w.' '.$o,'Temperatura','tempe2',null,null,false,true,'','col-2');
-    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,false,true,'','col-2');
-    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,false,true,'','col-2');
-    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,false,true,'','col-2');
-    $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,false,true,'','col-2');
+    $c[]=new cmp('tempe2','sd',50,$d['tempe2'],$w.' '.$o,'Temperatura','tempe2',null,null,true,true,'','col-2');
+    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,true,true,'','col-2');
+    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,true,true,'','col-2');
+    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,true,true,'','col-2');
+    $c[]=new cmp('seg_entmed','t',7,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,true,true,'','col-2');
 
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

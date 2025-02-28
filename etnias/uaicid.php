@@ -193,8 +193,6 @@ function get_persona(){
 		}
 	}
 
-
-
 function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];

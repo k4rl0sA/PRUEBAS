@@ -23,7 +23,6 @@ function focus_segnoreg(){
 	return 'segnoreg';
    }
    
-   
    function men_segnoreg(){
 	$rta=cap_menus('segnoreg','pro');
 	return $rta;
@@ -56,7 +55,6 @@ left join usuarios u ON sr.usu_creo=u.id_usuario
         $datos=datos_mysql($sql); 
         return create_table($total,$datos["responseResult"],"segnoreg",$regxPag,'embseg.php');
 }
-
 
 function cmp_segnoreg(){
    $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='segnoreg-lis'>".lis_segnoreg()."</div></div>";

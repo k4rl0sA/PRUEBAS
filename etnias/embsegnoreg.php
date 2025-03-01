@@ -155,6 +155,7 @@ function cmp_segnoreg(){
   }
   $c[]=new cmp('clasi_nut','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-35');
   
+  
   $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
   $c[]=new cmp('ser_remigesti','s',3,$d,$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,true,true,'','col-25');

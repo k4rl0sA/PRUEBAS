@@ -233,7 +233,7 @@ function get_uaic_seg(){
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT null,iduaicseg, fecha_seg,segui,estado_seg,motivo_seg,peso,talla,zcore,clasi_nutri,ftlc_apme,cual,cita_nutri7,cita_nutri15,cita_nutri30,observaciones
+    $sql="SELECT iduaicseg, fecha_seg,segui,estado_seg,motivo_seg,peso,talla,zcore,clasi_nutri,ftlc_apme,cual,cita_nutri7,cita_nutri15,cita_nutri30,observaciones
           FROM `uaic_seg` 
           WHERE iduaicseg='{$id[0]}'";
     $info=datos_mysql($sql);

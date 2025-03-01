@@ -197,6 +197,7 @@ function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
 $commonParams=[
+  ['type' => 'i', 'value' => $id[0]],
   ['type' => 's', 'value' => $_POST['fecha_seg']??''],
   ['type' => 's', 'value' => $_POST['parentesco']??''],
   ['type' => 's', 'value' => $_POST['nombre_cui']??''],

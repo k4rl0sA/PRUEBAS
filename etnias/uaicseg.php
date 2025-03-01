@@ -64,7 +64,7 @@ left join usuarios u ON us.usu_creo = u.id_usuario
 function cmp_uaic_seg(){
   $rta="<div class='encabezado'>TABLA SEGUIMIENTOS</div><div class='contenido' id='uaic_seg-lis'>".lis_uaic_seg()."</div></div>";
   $w='uaic_seg';
-	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','motivo_seg'=>'','at_medi'=>'','at_part'=>'','peso'=>'','talla'=>'','zscore'=>'','clasi_nutri'=>'','ftlc_apme'=>'','cual'=>'','cita_nutri7'=>'','cita_nutri15'=>'','cita_nutri30'=>'','observaciones'=>''];
+	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','motivo_seg'=>'','at_medi'=>'','at_part'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nutri'=>'','ftlc_apme'=>'','cual'=>'','cita_nutri7'=>'','cita_nutri15'=>'','cita_nutri30'=>'','observaciones'=>''];
 	$o='modini';
   $ob='Ob';
   $no='nO';
@@ -92,7 +92,7 @@ function cmp_uaic_seg(){
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-2',"Zsco('zscore','../etnias/uaicseg.php');");
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-2',"Zsco('zscore','../etnias/uaicseg.php');");
     if($p['ano']<5){
-      $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
+      $c[]=new cmp('zscore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
     }
     $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificacion Nutricional','clasi_nutri',null,null,true,true,'','col-2');
     $c[]=new cmp('ftlc_apme','s',3,$d['ftlc_apme'],$w.' '.$o,'Tiene Ftlc U Otro Apme (Cual)','rta',null,null,true,true,'','col-2','ftlc();');

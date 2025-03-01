@@ -247,7 +247,8 @@ function gra_segnoreg(){
   $gluco=$_POST['gluco']?? 0;
   $pcef=$_POST['peri_cefalico']?? 0;
   
-  $zsc=$_POST['zcore']?? 0;
+  $zsc=$_POST['zcore']?? null;
+  $cn=$_POST['clasi_nutri']?? null;
   
   $pbra=$_POST['peri_braqueal']?? 0;
   $pes= $_POST['peso']?? 0;

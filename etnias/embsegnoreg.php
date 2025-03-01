@@ -245,7 +245,7 @@ function gra_segnoreg(){
   $fres= ($_POST['frec_respiratoria']=== '')? 0: $_POST['frec_respiratoria'];
   $satu=($_POST['saturacion']=== '')? 0: $_POST['saturacion'];
   $gluco=($_POST['gluco']=== '')? 0: $_POST['gluco'];
-  $pcef=($_POST['peri_cefalico']=== '')? 0: $_POST['peri_cefalico'];
+  $pcef=$_POST['peri_cefalico']?? 0;
   $pbra=($_POST['peri_braqueal']=== '')? 0: $_POST['peri_braqueal'];
   $pes=($_POST['peso']=== '')? 0: $_POST['peso'];
   $tal=($_POST['talla']=== '')? 0: $_POST['talla'];

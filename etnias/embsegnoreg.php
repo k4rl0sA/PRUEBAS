@@ -74,8 +74,8 @@ function cmp_segnoreg(){
   $me5='mE5';
   $p=get_persona();
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-  $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],'zsc','fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
-  $c[]=new cmp('sexo','h',1,$p['sexo'],'zsc','sexo','sexo',null,'',false,false,'','col-1');
+  $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' zsc '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
+  $c[]=new cmp('sexo','h',1,$p['sexo'],$w.' zsc '.$o,'sexo','sexo',null,'',false,false,'','col-1');
 
   $c[]=new cmp('idsegnoreg','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");

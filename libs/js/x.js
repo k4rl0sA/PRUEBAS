@@ -1120,7 +1120,7 @@ function diagCroEtn() {
 
 function ftlc_apme() {
 	const conditions = [
-		{ id: 'ftlc_apme', value: '1', compare: true }
+		{ id: 'ftlc_apme', value: '2', compare: true }
 	];
 	EnabDepeDynamic(['Ftl'], conditions);
 }

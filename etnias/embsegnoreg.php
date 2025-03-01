@@ -245,17 +245,14 @@ function gra_segnoreg(){
   $fres= $_POST['frec_respiratoria']?? 0;
   $satu=$_POST['saturacion']?? 0;
   $gluco=$_POST['gluco']?? 0;
-
   $pcef=$_POST['peri_cefalico']?? 0;
   
   $zsc=$_POST['zcore']?? 0;
-
+  
   $pbra=($_POST['peri_braqueal']=== '')? 0: $_POST['peri_braqueal'];
   $pes= ($_POST['peso']=== '')? 0: $_POST['peso'];
   $tal= ($_POST['talla']=== '')? 0: $_POST['talla'];
   $imc= ($_POST['imc']=== '')? 0: $_POST['imc'];
-  
-
   
       if(COUNT($id)==2){
         $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);

@@ -113,7 +113,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,true,true,'','col-2');
     $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,true,true,'','col-2');
     $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,true,true,'','col-2');
-    $c[]=new cmp('seg_entmed','a',1,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,false,true,'','col-8');
+    $c[]=new cmp('seg_entmed','a',1,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,true,true,'','col-8');
 
     $o='aspe';
     $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
@@ -197,7 +197,6 @@ function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
 $commonParams=[
-  ['type' => 'i', 'value' => $id[0]],
   ['type' => 's', 'value' => $_POST['fecha_seg']??''],
   ['type' => 's', 'value' => $_POST['parentesco']??''],
   ['type' => 's', 'value' => $_POST['nombre_cui']??''],
@@ -238,7 +237,7 @@ $commonParams=[
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
-      $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
+      $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
       $params = [
 ['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
@@ -286,7 +285,7 @@ $commonParams=[
     }else{
    $sql="UPDATE uaic_ide SET fecha_seg=?,parentesco=?,nombre_cui=?,tipo_doc=?,num_doc=?,telefono=?,era=?,eda=?,dnt=?,des_sinto=?,aten_medi=?,aten_part=?,peri_cef=?,peri_bra=?,peso=?,talla=?,zcore=?,clasi_nut=?,tempe=?,frec_res=?,frec_car=?,satu=?,sales_reh=?,aceta=?,traslados_uss=?,educa=?,menor_hos=?,tempe2=?,frec_res2=?,frec_car2=?,satu2=?,seg_entmed=?,observacion=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE iduaic=?";
     $params = [
-        ['type' => 's', 'value' => $_POST[id]],
+        ['type' => 's', 'value' => $_POST['CAMPO1']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[1]]//IDACORDE AL NUMERO DEL INDICE

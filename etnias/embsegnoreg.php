@@ -320,6 +320,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => NULL],
 ];
       // $rta = show_sql($sql, $params);
+      var_dump($_POST[a]);
     return $rta = mysql_prepd($sql, $params);
    }else{
    $sql="UPDATE emb_segreg SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE idsegnoreg=?"; //  compromiso=?, equipo=?, 

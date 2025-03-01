@@ -76,7 +76,7 @@ function cmp_uaic_seg(){
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('iduaicseg','h',11,$_POST['id'],$w.' '.$o,'Iduaicseg','iduaicseg',null,null,true,true,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");
-    $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-25');
+    $c[]=new cmp('segui','s',3,$d['segui'],$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-25',"staEfe('segui','sta');EnabEfec(this,['segdnt','aspe'],['Ob'],['nO'],['bL'])");
     $c[]=new cmp('estado_seg','s',3,$d['estado_seg'],$w.' sTa '.$o,'Estado de Seguimiento','estado_seg',null,null,true,true,'','col-25',"enabFielSele(this,true,['motivo_seg'],['3']);EnabEfec(this,['segdnt','aspe'],['Ob'],['nO'],['bL']);");
     $c[]=new cmp('motivo_seg','s',3,$d['motivo_seg'],$w.' '.$o,'Motivo de Seguimiento','motivo_seg',null,null,true,true,'','col-25');
     

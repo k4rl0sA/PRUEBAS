@@ -66,6 +66,7 @@ function cmp_uaic_seg(){
   $w='uaic_seg';
 	$t=['iduaicseg'=>'','idpeople'=>'','fecha_seg'=>'','segui'=>'','estado_seg'=>'','motivo_seg'=>'','at_medi'=>'','at_part'=>'','peso'=>'','talla'=>'','zcore'=>'','clasi_nutri'=>'','ftlc_apme'=>'','cual'=>'','cita_nutri7'=>'','cita_nutri15'=>'','cita_nutri30'=>'','observaciones'=>''];
 	$o='modini';
+  $ob='Ob';
   $no='nO';
   $bl='bL';
   $d=get_uaic_seg();

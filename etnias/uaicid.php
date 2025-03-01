@@ -288,7 +288,7 @@ $commonParams=[
         ['type' => 's', 'value' => $_POST['observacion']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
-        ['type' => 'i', 'value' => $id[3]]//IDACORDE AL NUMERO DEL INDICE
+        ['type' => 'i', 'value' => $id[0]]//IDACORDE AL NUMERO DEL INDICE
       ];
       $rta = mysql_prepd($sql, $params);
     }

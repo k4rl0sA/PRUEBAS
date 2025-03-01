@@ -149,9 +149,9 @@ function cmp_segnoreg(){
   }
   $c[]=new cmp('peso','sd',6,$d,$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
-  $c[]=new cmp('imc','sd',6,$d,$w.' '.$o,'Imc','imc',null,null,true,false,'','col-3');
+  $c[]=new cmp('imc','sd',6,$d,$w.' '.$o,'Imc','imc',null,null,false,false,'','col-3');
   if($p['ano']<5){
-    $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,true,false,'','col-35');
+    $c[]=new cmp('zscore','t',50,$d,$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
   }
   $c[]=new cmp('clasi_nut','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-35');
   

@@ -85,9 +85,17 @@ function cmp_uaic_seg(){
     $c[]=new cmp($o,'e',null,'SEGUIMIENTO MENORES CON  DNT',$w);
     $c[]=new cmp('at_medi','s',3,$d['at_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,true,true,'','col-25');
     $c[]=new cmp('at_part','s',3,$d['at_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,true,true,'','col-25');
-    $c[]=new cmp('peso','n',18,$d['peso'],$w.' '.$o,'Peso','peso',null,null,true,true,'','col-2');
-    $c[]=new cmp('talla','n',21,$d['talla'],$w.' '.$o,'Talla','talla',null,null,true,true,'','col-2');
-    $c[]=new cmp('zcore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zcore',null,null,true,true,'','col-2');
+    if($p['ano']<5){
+      $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,true,'','col-25');
+    }
+    if($p['mes']>= 6 && $p['ano']< 5){
+      $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,true,'','col-25');
+    }
+    $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
+    $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
+    if($p['ano']<5){
+      $c[]=new cmp('zscore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
+    }
     $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificacion Nutricional','clasi_nutri',null,null,true,true,'','col-2');
     $c[]=new cmp('ftlc_apme','s',3,$d['ftlc_apme'],$w.' '.$o,'Tiene Ftlc U Otro Apme (Cual)','rta',null,null,true,true,'','col-2');
     $c[]=new cmp('cual','T',50,$d['cual'],$w.' '.$o,'Cual','cual',null,null,true,true,'','col-3');

@@ -249,10 +249,10 @@ function gra_segnoreg(){
   
   $zsc=$_POST['zcore']?? 0;
   
-  $pbra=($_POST['peri_braqueal']=== '')? 0: $_POST['peri_braqueal'];
-  $pes= ($_POST['peso']=== '')? 0: $_POST['peso'];
-  $tal= ($_POST['talla']=== '')? 0: $_POST['talla'];
-  $imc= ($_POST['imc']=== '')? 0: $_POST['imc'];
+  $pbra=$_POST['peri_braqueal']?? 0;
+  $pes= $_POST['peso']?? 0;
+  $tal=$_POST['talla']?? 0;
+  $imc= $_POST['imc']?? 0;
   
       if(COUNT($id)==2){
         $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);

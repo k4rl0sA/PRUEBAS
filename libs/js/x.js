@@ -1117,6 +1117,14 @@ function diagCroEtn() {
 	];
 	EnabDepeDynamic(['dAG'], conditions);
 }
+
+function ftlc_apme() {
+	const conditions = [
+		{ id: 'ftlc_apme', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['Ftl'], conditions);
+}
+
 function enabNV() {
 	const conditions = [
 		{ id: 'resul_gest', value: '1', compare: true }

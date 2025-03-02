@@ -400,7 +400,7 @@ function opc_clasi_nutri($id=''){
         // var_dump($a);
 		if ($a=='segnoreg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,[],'../etnias/embsegnoreg.php');enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);enabPrioEtn();\"></li>";
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,[],'../etnias/embsegnoreg.php');enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);setTimeout(enabPrioEtn,700);\"></li>";
 			}
 		return $rta;
 	}

@@ -74,10 +74,9 @@ function cmp_segnoreg(){
   $me5='mE5';
   $p=get_persona();
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-  $c[]=new cmp('fechanacimiento','t','10',$p['fecha_nacimiento'],$w.' zsc '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
-  $c[]=new cmp('sexo','t',1,$p['sexo'],$w.' zsc '.$o,'sexo','sexo',null,'',false,false,'','col-1');
-
-  $c[]=new cmp('idsegnoreg','t',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
+  $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' zsc '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
+  $c[]=new cmp('sexo','h',1,$p['sexo'],$w.' zsc '.$o,'sexo','sexo',null,'',false,false,'','col-1');
+  $c[]=new cmp('idsegnoreg','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");//
@@ -401,7 +400,7 @@ function opc_clasi_nutri($id=''){
         // var_dump($a);
 		if ($a=='segnoreg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,[],'../etnias/embsegnoreg.php');enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);\"></li>";
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,[],'../etnias/embsegnoreg.php');enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);enabPrioEtn();\"></li>";
 			}
 		return $rta;
 	}

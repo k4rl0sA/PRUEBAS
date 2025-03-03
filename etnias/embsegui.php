@@ -66,7 +66,7 @@ function cmp_seguim(){
   $bl='bL';
   $no='nO';
   $d='';
-  $d=get_seguim();
+  //$d=get_seguim();
   $days=fechas_app('ETNIAS');
   $p=get_persona();
   // var_dump($_POST);
@@ -209,7 +209,8 @@ function get_seguim(){
           left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";
   $info=datos_mysql($sql);
-  if (!empty($info['responseResult'])) return json_encode($info['responseResult'][0]);
+  if (!empty($info['responseResult'])) 
+  return json_encode($info['responseResult'][0]);
 } 
 }
 

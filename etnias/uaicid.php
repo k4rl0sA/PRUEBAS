@@ -240,7 +240,7 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => $equi],
 ['type' => 's', 'value' => $_SESSION['us_sds']],
 ['type' => 's', 'value' => NULL],
-['type' => 's', 'value' => NULL],
+['type' => 's', 'value' => NULL]
       ];
 
       $rta = show_sql($sql, $params);

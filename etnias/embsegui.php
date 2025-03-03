@@ -204,7 +204,7 @@ function get_seguim(){
     // var_dump($_POST,$_GET);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT null,idseg, fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones
+    $sql="SELECT null,null,idseg, fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones
           FROM `emb_segui` 
           WHERE idseg='{$id[0]}'";
   $info=datos_mysql($sql);

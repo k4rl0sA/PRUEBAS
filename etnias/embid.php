@@ -50,13 +50,13 @@ function cmp_emb_Id(){
   $days=fechas_app('ETNIAS');
   $id=$_POST['id']??$d['idriesgo'];
   $ke=divide($id);
-  $up=count($ke)==2  ? true:false; 
+  $up=count($ke)==2? false:true;
   /* if(count($id)==2){
     $up=true;
   }else{
     $up=false;
   } */
- var_dump($_POST);
+ var_dump($up);
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$id,$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fecha','fechavisi',null,null,true,$up,'','col-15',"validDate(this,$days,0);");

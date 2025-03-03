@@ -196,7 +196,7 @@ function get_persona(){
 	}
 
 function gra_uaic_id(){
-	$id = divide($_POST['id'] ?? '');
+	$id = divide($_POST['id']);
   $usu = $_SESSION['us_sds'];
   var_dump(COUNT($id));
     if(COUNT($id)==2){

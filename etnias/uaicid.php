@@ -53,6 +53,8 @@ function cmp_uaic_id(){
   $d=($d=="")?$d=$t:$d;
   $days=fechas_app('ETNIAS');
   $id=$d['iduaic']===''?$_POST['id']:$d['iduaic'];
+  $ke=divide($id);
+  $up=count($ke)==2? true:false;
   $p=get_persona();
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
@@ -60,7 +62,7 @@ function cmp_uaic_id(){
   $c[]=new cmp('sexo','h',1,$p['sexo'],'zsc','sexo','sexo',null,'',false,false,'','col-1');
 
     $c[]=new cmp('iduaic','h',11,$id,$w.' '.$o,'iduaic',null,null,false,false,'','col-2');
-    $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,true,'','col-25',"validDate(this,$days,0);");
+    $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,$up,'','col-25',"validDate(this,$days,0);");
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,true,'','col-25',"enabEmbPare('parentesco');");
     $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' prT '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-5');
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' prT '.$o,'Tipo De Documento ','tipo_doc',null,null,true,true,'','col-3');
@@ -243,8 +245,8 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => NULL]
       ];
 
-      $rta = show_sql($sql, $params);
-    //  $rta = mysql_prepd($sql, $params);
+      // $rta = show_sql($sql, $params);
+    $rta = mysql_prepd($sql, $params);
     }else{
    $sql="UPDATE uaic_ide SET fecha_seg=?,parentesco=?,nombre_cui=?,tipo_doc=?,num_doc=?,telefono=?,era=?,eda=?,dnt=?,des_sinto=?,aten_medi=?,aten_part=?,peri_cef=?,peri_bra=?,peso=?,talla=?,zcore=?,clasi_nut=?,tempe=?,frec_res=?,frec_car=?,satu=?,sales_reh=?,aceta=?,traslados_uss=?,educa=?,menor_hos=?,tempe2=?,frec_res2=?,frec_car2=?,satu2=?,seg_entmed=?,observacion=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE iduaic=?";
     $params = [
@@ -253,8 +255,8 @@ function gra_uaic_id(){
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[0]]//IDACORDE AL NUMERO DEL INDICE
       ];
-      $rta = show_sql($sql, $params);
-      //$rta = mysql_prepd($sql, $params);
+      // $rta = show_sql($sql, $params);
+    $rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

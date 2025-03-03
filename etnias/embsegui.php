@@ -70,8 +70,8 @@ function cmp_seguim(){
   $days=fechas_app('ETNIAS');
   $p=get_persona();
   // var_dump($_POST);
-	  $c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
-    $c[]=new cmp('sexo','h',1,$p['sexo'],' GeST ','sexo','sexo',null,'',false,false,'','col-1');
+	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
+  $c[]=new cmp('sexo','h',1,$p['sexo'],' GeST ','sexo','sexo',null,'',false,false,'','col-1');
     $c[]=new cmp('idseg','h',11,$_POST['id'],$w.' '.$o,'idseg','idseg',null,'####',false,false);
     $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
     $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['datiden','infoserv','detsegh','detsegp'],['Ob'],['nO'],['bL']);");
@@ -204,12 +204,11 @@ function get_seguim(){
     // var_dump($_POST,$_GET);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT P.sexo,idseg, fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones
+    $sql="SELECT idseg, fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest, Nom_fami, tipo_doc, num_doc, paren, tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones
           FROM `emb_segui` 
-          left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";
   $info=datos_mysql($sql);
-  return json_encode($info['responseResult'][0]);
+  if (!empty($info['responseResult'])) return json_encode($info['responseResult'][0]);
 } 
 }
 

@@ -194,10 +194,10 @@ function get_persona(){
 	}
 
 function gra_uaic_id(){
-/* 	$id = divide($_POST['id'] ?? '');
+	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
     if(COUNT($id)==2){
-      $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
+      $equ=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."'");
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
       $sql = "INSERT INTO uaic_ide VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A');";
@@ -207,8 +207,8 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => $_POST['parentesco']??null],
 ['type' => 's', 'value' => $_POST['nombre_cui']??null],
 ['type' => 's', 'value' => $_POST['tipo_doc']??null],
-['type' => 'i', 'value' => $_POST['num_doc']],
-['type' => 'i', 'value' => $_POST['telefono']],
+['type' => 'i', 'value' => $_POST['num_doc']??null],
+['type' => 'i', 'value' => $_POST['telefono']??null],
 ['type' => 's', 'value' => $_POST['era']??null],
 ['type' => 's', 'value' => $_POST['eda']??null],
 ['type' => 's', 'value' => $_POST['dnt']??null],
@@ -235,7 +235,7 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => $_POST['frec_car2']??null],
 ['type' => 's', 'value' => $_POST['satu2']??null],
 ['type' => 's', 'value' => $_POST['seg_entmed']??null],
-['type' => 's', 'value' => $_POST['observacion']??null]
+['type' => 's', 'value' => $_POST['observacion']??null],
 ['type' => 's', 'value' => $bina],
 ['type' => 's', 'value' => $equi],
 ['type' => 's', 'value' => $_SESSION['us_sds']],
@@ -256,7 +256,7 @@ function gra_uaic_id(){
       $rta = show_sql($sql, $params);
       //$rta = mysql_prepd($sql, $params);
     }
-return $rta; */
+return $rta;
 }
 
 function get_uaic_id(){

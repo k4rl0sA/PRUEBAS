@@ -48,8 +48,8 @@ function cmp_emb_Id(){
   $d=get_emb_Id();
   if ($d==""){$d=$t;}
   $days=fechas_app('ETNIAS');
-  $id = isset($d['idriesgo']) ? $d['idriesgo']:$_POST['id'];
-  $id=$_POST['id']??$d['idriesgo'];
+  $id = isset($d['idriesgo']) ? $d['idriesgo']:$_POST['emb_Id'];
+  // $id=$_POST['id']??$d['idriesgo'];
   $ke=divide($id);
   $up=count($ke)==2  ? true:false; 
   /* if(count($id)==2){

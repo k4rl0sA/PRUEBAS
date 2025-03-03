@@ -96,9 +96,9 @@ function cmp_uaic_id(){
     $c[]=new cmp('clasi_nut','s',3,$d['clasi_nut'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,$up,'','col-35');
   
     $c[]=new cmp('tempe','sd',3,$d['tempe'],$w.' '.$o,'Temperatura','tempe','rgxtemp',null,true,$up,'','col-2');
-    $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frecuencia Respiratoria','frec_res','rgxfresp',null,true,$up,'','col-2');
-    $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car','rgxfcard',null,true,$up,'','col-2');
-    $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Saturacion','satu','rgxsatu',null,true,$up,'','col-2');
+    $c[]=new cmp('frec_res','sd',3,$d['frec_res'],$w.' '.$o,'Frecuencia Respiratoria (15 a 60 x min)','frec_res','rgxfresp',null,true,$up,'','col-2');
+    $c[]=new cmp('frec_car','sd',3,$d['frec_car'],$w.' '.$o,'Frecuencia Cardiaca (50 a 150 lt)','frec_car','rgxfcard',null,true,$up,'','col-2');
+    $c[]=new cmp('satu','sd',3,$d['satu'],$w.' '.$o,'Saturación (40 a 99 %)','satu','rgxsatu',null,true,$up,'','col-2');
 
     
     $o='mane';
@@ -112,9 +112,9 @@ function cmp_uaic_id(){
     $o='sigyman2';
     $c[]=new cmp($o,'e',null,'SIGNOS VITALES POSTERIOR AL PLAN DE MANEJO EN LA UAIC',$w);
     $c[]=new cmp('tempe2','sd',50,$d['tempe2'],$w.' '.$o,'Temperatura','tempe2',null,null,true,$up,'','col-2');
-    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria','frec_res2',null,null,true,$up,'','col-2');
-    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca ','frec_car2',null,null,true,$up,'','col-2');
-    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación De Oxigeno','satu2',null,null,true,$up,'','col-2');
+    $c[]=new cmp('frec_res2','sd',3,$d['frec_res2'],$w.' '.$o,'Frecuencia Respiratoria (15 a 60 x min)','frec_res2',null,null,true,$up,'','col-2');
+    $c[]=new cmp('frec_car2','sd',60,$d['frec_car2'],$w.' '.$o,'Frecuencia Cardiaca (50 a 150 lt)','frec_car2',null,null,true,$up,'','col-2');
+    $c[]=new cmp('satu2','sd',7,$d['satu2'],$w.' '.$o,'Saturación (40 a 99 %)','satu2',null,null,true,$up,'','col-2');
     $c[]=new cmp('seg_entmed','a',1,$d['seg_entmed'],$w.' '.$o,'Seguimiento A Entrega De Medicamentos','seg_entmed',null,null,false,$up,'','col-8');
 
     $o='aspe';

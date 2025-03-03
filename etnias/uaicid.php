@@ -194,7 +194,7 @@ function get_persona(){
 	}
 
 function gra_uaic_id(){
-	$id = divide($_POST['id'] ?? '');
+/* 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
@@ -256,7 +256,7 @@ function gra_uaic_id(){
       $rta = show_sql($sql, $params);
       //$rta = mysql_prepd($sql, $params);
     }
-return $rta;
+return $rta; */
 }
 
 function get_uaic_id(){

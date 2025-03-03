@@ -268,7 +268,7 @@ function get_uaic_seg(){
         // var_dump($a);
 		if ($a=='uaic_seg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'uaic_seg',event,this,[],'../etnias/uaicseg.php');enbValue('iduaicseg','modini','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);\"></li>";	
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'uaic_seg',event,this,['fecha_seg','at_medi','at_part','peso','talla','clasi_nutri','ftlc_apme','cual','cita_nutri7','cita_nutri15','cita_nutri30'],'../etnias/uaicseg.php');enbValue('iduaicseg','modini','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);\"></li>";	
 			}
 		return $rta;
 	}

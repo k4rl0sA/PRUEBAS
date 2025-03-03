@@ -56,7 +56,7 @@ function cmp_emb_Id(){
   }else{
     $up=false;
   } */
- var_dump($up);
+//  var_dump($up);
 	$c[]=new cmp($o,'e',null,'IDENTIFICACIóN',$w);
     $c[]=new cmp('id','h',15,$id,$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fechavisi','d',10,$d['fechavisi'],$w.' '.$o,'Fecha','fechavisi',null,null,true,$up,'','col-15',"validDate(this,$days,0);");

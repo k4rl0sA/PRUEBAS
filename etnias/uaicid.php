@@ -198,6 +198,7 @@ function get_persona(){
 function gra_uaic_id(){
 	$id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
+  var_dump(COUNT($id));
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."'");
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';

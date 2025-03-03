@@ -233,8 +233,9 @@ function get_uaic_seg(){
     // print_r($_POST);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT iduaicseg, fecha_seg,segui,estado_seg,motivo_seg,peso,talla,zcore,clasi_nutri,ftlc_apme,cual,cita_nutri7,cita_nutri15,cita_nutri30,observaciones
-          FROM `uaic_seg` 
+    $sql="SELECT P.sexo,iduaicseg, fecha_seg,segui,estado_seg,motivo_seg,peso,talla,zcore,clasi_nutri,ftlc_apme,cual,cita_nutri7,cita_nutri15,cita_nutri30,observaciones
+          FROM `uaic_seg` S
+           left join person P ON S.idpeople=P.idpeople
           WHERE iduaicseg='{$id[0]}'";
     $info=datos_mysql($sql);
     if (!empty($info['responseResult'])) return json_encode($info['responseResult'][0]);

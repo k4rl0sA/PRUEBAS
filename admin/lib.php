@@ -87,9 +87,10 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$until_day_open=26;//dia del mes fecha abierta
-	//$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-41 ;//fechas abiertas hasta un determinado dia -41
-	$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
+	$until_day_open=1;//dia del mes fecha abierta
+	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-52 ;//fechas abiertas hasta un determinado dia -41
+	//$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
+	//$ini=-53;
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -1080,13 +1081,24 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 function lis_mme($txt){
-	$sql=" WHERE 1 ";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
-	$sql.=whe_date();
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_mme AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento, FN_CATALOGODESC(87,A.evento) AS Evento, FN_CATALOGODESC(243,A.tiposeg) AS Tipo_Seguimiento, FN_CATALOGODESC(73,A.estado_s) AS Estado, FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado, FN_CATALOGODESC(136,A.etapa) AS Etapa, FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento, FN_CATALOGODESC(244,A.gestaciones) AS Gestaciones, FN_CATALOGODESC(244,A.partos) AS Partos, FN_CATALOGODESC(244,A.abortos) AS Abortos, FN_CATALOGODESC(244,A.cesareas) AS Cesareas, FN_CATALOGODESC(244,A.vivos) AS Vivos, FN_CATALOGODESC(244,A.muertos) AS Muertos, A.fecha_egre AS Fecha_Egreso_Hospitalario, A.edad_padre AS Edad_del_Padre, FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal, FN_CATALOGODESC(170,A.ing_ctrpre) AS 'Ingreso_Control_<Sem10', FN_CATALOGODESC(245,A.cpn) AS Cuantos_CPN, A.porque_no AS Porque, FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio_al_Dia, FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes, FN_CATALOGODESC(170,A.trata_farma) AS Tratamiento_Farmacologico, A.tipo_tratafarma AS Tipo_Tratamiento, A.cualtra AS Otro_Cual, FN_CATALOGODESC(170,A.adhe_tratafarma) AS Adherente_al_Tratamiento, A.porque_noadh AS Porque, A.peso AS 'Peso_(Kg)', A.talla AS 'Talla_(Cm)', A.imc AS Imc, FN_CATALOGODESC(210,A.clasi_nutri) AS Clasificacion_Nutricional, FN_CATALOGODESC(170,A.signos_alarma_seg) AS Signos_de_Alarma, A.descr_sigalarma AS Descripcion_Signo_Alarma, A.entrega_medic_labo AS Entrega_Medicamen_Laborator_Casa, A.fecha_obstetrica AS Fecha_Evento_Obstetrico, FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento, FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion, FN_CATALOGODESC(170,A.meto_fecunda) AS Metodo_Regulacion, FN_CATALOGODESC(138,A.cualmet) AS Cual_Metodo, A.otro_cual AS Otro_Metodo_Cual, A.motivo_nofecund AS Motivo_No_Acceso, FN_CATALOGODESC(170,A.control_mac) AS Control_MAC,
+A.fecha_control_mac AS Fecha_Control_MAC, FN_CATALOGODESC(170,A.ctrl_postpar_espe) AS Control_Post_Parto_Especialista, A.fecha_postpar_espe AS Fecha_Control_Post_Parto_Espec, FN_CATALOGODESC(88,A.asis_ctrl_postpar_espe) AS Asistio_Control_Post_Parto, A.porque_no_postpar AS Porque_No_Asist, FN_CATALOGODESC(170,A.consul_apoy_lacmater) AS Consulta_Apoyo_Lactancia, FN_CATALOGODESC(170,A.signos_alarma) AS Signos_Alarma_Seguimiento, A.desc_sigala AS Descripcion_Signos_Alarma, FN_CATALOGODESC(170,A.disc_ges) AS Getante_Discapacidad_O_Secuela, A.cual_disc_ges AS Cual, A.fecha_apoy_lacmater AS Fecha_Consulta_Apoyo_Lactancia, A.peso_rcnv AS Peso_RN, FN_CATALOGODESC(88,A.ctrl_recinac) AS Asiste_Control_RN, A.fecha_ctrl_nac AS Fecha_Control_RN, FN_CATALOGODESC(88,A.asis_ctrl_recinac) AS Asistio_Control_RN, A.porque_norec AS Porque, A.ult_peso AS Ultimo_Peso_Regis, FN_CATALOGODESC(170,A.consul_lacmate) AS Consulta_Apoyo_Lactancia_Mater, A.porque_nolact AS Porque_No, A.fecha_consul_lacmate AS Fecha_Consulta_LM, FN_CATALOGODESC(88,A.asiste_ctrl_cyd) AS Asiste_CYD, FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo_Edad, FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva, FN_CATALOGODESC(170,A.signos_alarma_lac) AS Madre_Identifica_Signos_Alarma, FN_CATALOGODESC(170,A.cam_sign) AS Considera_Cambios_Significativos, FN_CATALOGODESC(170,A.qui_vida) AS Quitarse_la_Vida, FN_CATALOGODESC(170,A.viv_malt) AS Violencia_o_Maltrato, FN_CATALOGODESC(170,A.adec_red) AS Red_Apoyo, A.fecha_egreopost AS Fecha_Post_Egreso_Hospitalario, 
+
+FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1, FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2, FN_CATALOGODESC(22,A.acciones_1) AS Accion_1, FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1, FN_CATALOGODESC(22,A.acciones_2) AS Accion_2, FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2, FN_CATALOGODESC(22,A.acciones_3) AS Accion_3, FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3, FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta, FN_CATALOGODESC(79,A.ruta) AS Ruta, FN_CATALOGODESC(77,A.novedades) AS Novedades, A.otras_condiciones AS Otras_Condiciones, A.observaciones AS Observaciones, FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso, FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.conti_segespecial) AS Continua_Seg_Especialista, A.cual_segespecial AS Cual_Seguimiento, A.recomen_cierre AS Recomendación_Cierre, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_Riesgo,
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+FROM `vsp_mme` A
+LEFT JOIN person P ON A.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred8();
+	$sql.=whe_date8();
 	// echo $sql;
-	$tot=" WHERE 1 ";
-	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
-	$tot.=whe_date();
+	$tot="SELECT COUNT(*) total FROM `vsp_mme` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
+	$tot.=whe_date8();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
@@ -1252,10 +1264,10 @@ function lis_sifigest($txt){
 	
 	FN_CATALOGODESC(170,A.initratasif) AS Inicio_Tratamiento_Sifilis_Ges,A.fec_1dos_trages1 AS 1Dosis,A.fec_2dos_trages1 AS 2Dosis,A.fec_3dos_trages1 AS 3Dosis,
 	
-	FN_CATALOGODESC(200,A.pri_con_sex) AS Primer_Contacto_Sexual,
-FN_CATALOGODESC(207,A.initratasif1) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_apl_tra_1dos1 AS Fecha_Primera_Dosis,A.fec_apl_tra_2dos1 AS Fecha_Segunda_Dosis,A.fec_apl_tra_3dos1 AS Fecha_Tercera_Dosis,
-FN_CATALOGODESC(200,A.seg_con_sex) AS Segundo_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif2) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_apl_tra_1dos2 AS Fecha_Primera_Dosis,A.fec_apl_tra_2dos2 AS Fecha_Segunda_Dosis,A.fec_apl_tra_3dos2 AS Fecha_Tercera_Dosis,FN_CATALOGODESC(170,A.prese_reinfe) AS Presenta_Reinfeccion,FN_CATALOGODESC(207,A.initratasif3) AS Tratamiento_Reinfeccion,A.fec_1dos_trages2 AS Fecha_Primera_Dosis,A.fec_2dos_trages2 AS Fecha_Segunda_Dosis,A.fec_3dos_trages2 AS Fecha_Tercera_Dosis,
-FN_CATALOGODESC(200,A.reinf_1con) AS Primer_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif4) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_1dos_trapar AS Fecha_Primera_Dosis,A.fec_2dos_trapar AS Fecha_Segunda_Dosis,A.fec_3dos_trapar AS Fecha_Tercera_Dosis,
+	FN_CATALOGODESC(200,A.pri_con_sex) AS Primer_Contact_Sexual,
+FN_CATALOGODESC(207,A.initratasif1) AS Contacto_Sexual_Inicial_Tratamiento,A.fec_apl_tra_1dos1 AS Fecha1_Primera_Dosis,A.fec_apl_tra_2dos1 AS Fecha1_Segunda_Dosis,A.fec_apl_tra_3dos1 AS Fecha1_Tercera_Dosis,
+FN_CATALOGODESC(200,A.seg_con_sex) AS Segundo_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif2) AS Contacto2_Sexual_Inicia_Tratamiento,A.fec_apl_tra_1dos2 AS Fecha2_Primera_Dosis,A.fec_apl_tra_2dos2 AS Fecha2_Segunda_Dosis,A.fec_apl_tra_3dos2 AS Fecha2_Tercera_Dosis,FN_CATALOGODESC(170,A.prese_reinfe) AS Presenta_Reinfeccion,FN_CATALOGODESC(207,A.initratasif3) AS Tratamiento_Reinfeccion,A.fec_1dos_trages2 AS Fecha3_Primera_Dosis,A.fec_2dos_trages2 AS Fecha3_Segunda_Dosis,A.fec_3dos_trages2 AS Fecha3_Tercera_Dosis,
+FN_CATALOGODESC(200,A.reinf_1con) AS Primer_Contacto_Sexual,FN_CATALOGODESC(207,A.initratasif4) AS Contacto_Sexual_Inicia_Tratamiento,A.fec_1dos_trapar AS Fecha4_Primera_Dosis,A.fec_2dos_trapar AS Fecha4_Segunda_Dosis,A.fec_3dos_trapar AS Fecha4_Tercera_Dosis,
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1,FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2,
 FN_CATALOGODESC(22,A.acciones_1) AS Accion_1,FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1,
 FN_CATALOGODESC(22,A.acciones_2) AS Accion_2,FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2,
@@ -1401,7 +1413,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_usercreate($txt){
 	$sql="SELECT 
-G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad,
+G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion, FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion
 FROM `person` P
 LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam

@@ -291,7 +291,7 @@ $commonParams=[
         ['type' => 'i', 'value' => $id[0]]//IDACORDE AL NUMERO DEL INDICE
       ];
       $rta = show_sql($sql, $params);
-      $rta = mysql_prepd($sql, $params);
+      //$rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

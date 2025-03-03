@@ -96,7 +96,7 @@ function cmp_uaic_seg(){
     }
     $c[]=new cmp('clasi_nutri','s',3,$d['clasi_nutri'],$w.' '.$o,'Clasificacion Nutricional','clasi_nutri',null,null,true,true,'','col-2');
     $c[]=new cmp('ftlc_apme','s',3,$d['ftlc_apme'],$w.' '.$o,'Tiene Ftlc U Otro Apme (Cual)','rta',null,null,true,true,'','col-2','ftlc();');
-    $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$bl.' Ftl ','Cual','cual',null,null,true,true,'','col-3');
+    $c[]=new cmp('cual','t',50,$d['cual'],$w.' '.$bl.' Ftl ','Cual','cual',null,null,false,true,'','col-3');
     $c[]=new cmp('cita_nutri7','s',3,$d['cita_nutri7'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 7 Dias','rta',null,null,true,true,'','col-2');
     $c[]=new cmp('cita_nutri15','s',3,$d['cita_nutri15'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 15 Dias','rta',null,null,true,true,'','col-25');
     $c[]=new cmp('cita_nutri30','s',5,$d['cita_nutri30'],$w.' '.$o,'Cita Con Nutricion O Pediatria A Los 30 Dias','rta',null,null,true,true,'','col-25');

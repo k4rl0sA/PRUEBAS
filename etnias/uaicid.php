@@ -198,7 +198,6 @@ function get_persona(){
 function gra_uaic_id(){
 	$id = divide($_POST['iduaic']);
   $usu = $_SESSION['us_sds'];
-  var_dump(COUNT($id));
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario='".$_SESSION['us_sds']."'");
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
@@ -246,8 +245,8 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => NULL]
       ];
 
-     $rta = show_sql($sql, $params);
-    // $rta = mysql_prepd($sql, $params);
+    //  $rta = show_sql($sql, $params);
+    $rta = mysql_prepd($sql, $params);
     }else{
    $sql="UPDATE uaic_ide SET fecha_seg=?,parentesco=?,nombre_cui=?,tipo_doc=?,num_doc=?,telefono=?,era=?,eda=?,dnt=?,des_sinto=?,aten_medi=?,aten_part=?,peri_cef=?,peri_bra=?,peso=?,talla=?,zcore=?,clasi_nut=?,tempe=?,frec_res=?,frec_car=?,satu=?,sales_reh=?,aceta=?,traslados_uss=?,educa=?,menor_hos=?,tempe2=?,frec_res2=?,frec_car2=?,satu2=?,seg_entmed=?,observacion=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE iduaic=?";
     $params = [

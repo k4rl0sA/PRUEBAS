@@ -1176,4 +1176,9 @@ function enabEmbPare(a){
 	];
 	EnabDepeDynamic(['prT'], conditions);
 }
-
+function enabEmbEdGes(){
+	const conditions = [
+		{ id: 'gestante', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['EGe'], conditions);
+}

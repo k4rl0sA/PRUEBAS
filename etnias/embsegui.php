@@ -82,7 +82,7 @@ function cmp_seguim(){
     $o='datiden';
     $c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN - HOSPITALARIO',$w);
     $c[]=new cmp('gestante','s',3,$d,$w.' GeS '.$bl.' '.$o,'Gestante','rta',null,null,false,true,'','col-2','enabEmbEdGes();');
-    $c[]=new cmp('edad_gest','s',3,$d,$w.' EGe GeS '.$bl.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,false,'','col-2');
+    $c[]=new cmp('edad_gest','s',3,$d,$w.' EGe '.$bl.' '.$o,'Edad Gestacional (Semanas)','edad_gesta',null,null,false,false,'','col-2');
     $c[]=new cmp('paren','s',3,$d,$w.' '.$bl.' '.$o,'Parentesco','paren',null,null,false,true,'','col-25',"enabEmbPare('paren');");
     $c[]=new cmp('Nom_fami','t',50,$d,$w.' prT '.$bl.' '.$o,'Nombre Completo del familiar','Nom_fami',null,null,false,true,'','col-4');
     $c[]=new cmp('tipo_doc','s',3,$d,$w.' prT '.$bl.' '.$o,'Tipo De Documento','tipo_doc',null,null,false,true,'','col-2');

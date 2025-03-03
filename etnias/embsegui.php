@@ -59,7 +59,7 @@ left join usuarios u ON es.usu_creo = u.id_usuario
 }
 
 function cmp_seguim(){
-   $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div></div>";
+   $rta="<div class='encabezado seguiEmbera'>TABLA SEGUIMIENTOS</div><div class='contenido' id='seguim-lis'>".lis_seguim()."</div>";
 // $rta='';
   $w="seguim";
 	$o='modini';

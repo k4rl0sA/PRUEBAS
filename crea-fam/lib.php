@@ -422,6 +422,9 @@ function cmp_person(){
 	$c[]=new cmp('localidad_vive','s','3',$d['localidad_vive'],$w.' lochi cUi '.$o,'¿En qué localidad vive?','localidad_vive',null,null,false,false,'','col-3');
 	$c[]=new cmp('transporta','s','3',$d['transporta'],$w.' lochi cUi  '.$o,'¿En que se transporta?','transporta',null,null,false,false,'','col-4');
 	
+	$o='hab';
+    $c[]=new cmp($o,'e',null,'INFORMACIÓN DE CONTACTO',$w);
+
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
    }

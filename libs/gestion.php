@@ -139,7 +139,7 @@ function usuSess(){
 }
 function log_error($message) {
   $timestamp = date('Y-m-d H:i:s');
-  $marca = date('Y-m-d H:i:s', strtotime('-5 hours')); 
+  $marca = date('Y-m-d H:i:s'); 
   $logMessage = "[$marca] - ".usuSess()." = $message" . PHP_EOL;
   try {
       file_put_contents(__DIR__ . '/../logs/file.log', $logMessage, FILE_APPEND);
@@ -150,7 +150,7 @@ function log_error($message) {
 
 function validFecha($mod,$fecha){
   $days = fechas_app($mod);
-  $fechaMin = date('Y-m-d', strtotime("$days days + 5 hours"));
+  $fechaMin = date('Y-m-d', strtotime("$days days"));
   $fech = $fecha ?? '';
   if (!empty($fech)) {
       if ($fech < $fechaMin) {

@@ -211,7 +211,7 @@ function get_seguim(){
           FROM `emb_segui` S
           left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";
-          echo json_encode($sql);
+          // echo json_encode($sql);
   $info=datos_mysql($sql);
   if (!empty($info['responseResult'])) 
   return json_encode($info['responseResult'][0]);

@@ -201,7 +201,6 @@ return $rta;
 }
 
 function get_seguim(){
-  var_dump($sql);
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -212,6 +211,7 @@ function get_seguim(){
           FROM `emb_segui` S
           left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";
+          var_dump($sql);
   $info=datos_mysql($sql);
   if (!empty($info['responseResult'])) 
   return json_encode($info['responseResult'][0]);

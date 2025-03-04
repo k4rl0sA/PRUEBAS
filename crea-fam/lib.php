@@ -554,7 +554,6 @@ function gra_person(){
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE idpeople =TRIM(UPPER('{$id[0]}'))";
-		   $rta= $sql;
 		//    echo $sql."    ".$rta;
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
@@ -607,10 +606,10 @@ function gra_person(){
 		TRIM(UPPER('{$_POST['correo']}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	
-		$rta= $sql; 
+		
 	}
 		//echo $sql;
-		//$rta=dato_mysql($sql);
+		$rta=dato_mysql($sql);
 		return $rta;
 	}
 	

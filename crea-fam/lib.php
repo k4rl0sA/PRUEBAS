@@ -381,7 +381,7 @@ function cmp_person(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d['encuentra'],$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
-	$c[]=new cmp('idpersona','nu','18',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,$edit,'','col-4');
+	$c[]=new cmp('idpersona','nu','9999999999999999',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,$edit,'','col-4');
 	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,$edit,'','col-4',"getDatForm('pEr','personOld',['infgen'],this);");
 	$c[]=new cmp('nombre1','t','30',$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
@@ -424,9 +424,9 @@ function cmp_person(){
 	
 	$o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE CONTACTO',$w);
-	$c[]=new cmp('telefono1','nu','10',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
-	$c[]=new cmp('telefono2','nu','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
-	$c[]=new cmp('correo','em','10',$d['correo'],$w.' '.$o,'Correo','correo','rgxmail',null,false,true,'','col-4');
+	$c[]=new cmp('telefono1','nu','9999999999',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
+	$c[]=new cmp('telefono2','nu','9999999999',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
+	$c[]=new cmp('correo','em','80',$d['correo'],$w.' '.$o,'Correo','correo','rgxmail',null,false,true,'','col-4');
 
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

@@ -381,7 +381,7 @@ function cmp_person(){
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN GENERAL',$w);
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('encuentra','s','2',$d['encuentra'],$w.' '.$o,'El usuario se encuentra','encuentra',null,null,true,true,'','col-2');
-	$c[]=new cmp('idpersona','n','18',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,$edit,'','col-4');
+	$c[]=new cmp('idpersona','nu','18',$d['idpersona'],$w.' '.$key.' '.$o,'Identificación <a href="https://www.adres.gov.co/consulte-su-eps" target="_blank">     Abrir ADRES</a>','idpersona',null,null,true,$edit,'','col-4');
 	$c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo documento','tipo_doc',null,null,true,$edit,'','col-4',"getDatForm('pEr','personOld',['infgen'],this);");
 	$c[]=new cmp('nombre1','t','30',$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,true,true,'','col-2');
 	$c[]=new cmp('nombre2','t','30',$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,true,'','col-2');
@@ -424,6 +424,10 @@ function cmp_person(){
 	
 	$o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE CONTACTO',$w);
+	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
+	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
+	$c[]=new cmp('correo','n','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxmail',null,false,true,'','col-4');
+
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -467,7 +471,7 @@ function get_person(){
 		niveduca,abanesc,ocupacion,tiemdesem,vinculo_jefe,etnia,pueblo,idioma,discapacidad,regimen,eapb,
 		afiliaoficio,sisben,catgosisb,pobladifer,incluofici,cuidador,perscuidada,tiempo_cuidador,
 		cuidador_unidad,vinculo,tiempo_descanso,descanso_unidad,reside_localidad,localidad_vive,
-		transporta
+		transporta,telefono1,telefono2,correo
 		FROM `person`
 		WHERE idpeople ='{$id[0]}'" ;
 		// echo $sql;
@@ -544,6 +548,9 @@ function gra_person(){
 		`reside_localidad`=TRIM(UPPER('{$_POST['reside_localidad']}')),
 		`localidad_vive`=TRIM(UPPER('{$_POST['localidad_vive']}')),
 		`transporta`=TRIM(UPPER('{$_POST['transporta']}')),
+		`telefono1`=TRIM(UPPER('{$_POST['telefono1']}')),
+		`telefono2`=TRIM(UPPER('{$_POST['telefono2']}')),
+		`correo`=TRIM(UPPER('{$_POST['correo']}')),
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE idpeople =TRIM(UPPER('{$id[0]}'))";
@@ -595,6 +602,9 @@ function gra_person(){
 		TRIM(UPPER('{$_POST['reside_localidad']}')),
 		TRIM(UPPER('{$_POST['localidad_vive']}')),
 		TRIM(UPPER('{$_POST['transporta']}')),
+		TRIM(UPPER('{$_POST['telefono1']}')),
+		TRIM(UPPER('{$_POST['telefono2']}')),
+		TRIM(UPPER('{$_POST['correo']}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	 
 	}

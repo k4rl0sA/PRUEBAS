@@ -1,5 +1,5 @@
 const rgxtxt="[a-zA-Z0-9]{0,99}";
-const rgxmail = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+const rgxmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 const rgxdfnum = "[0-9]{0,18}";
 const rgxphone = /^(3\d{9}|[0-9]{7})$/;
 const rgxphone1 = /^(3\d{9}|[0-9]{7}|0)$/;

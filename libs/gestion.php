@@ -694,6 +694,12 @@ class cmp { //ntwplcsdxhvuf
   case 'm':
       $b=select_mult($this);
 		break;
+  case 'nu':
+      $b => input_num($this);
+      break;
+  case 'em'
+      $b => input_num($this);
+      break;
     default:
         $b=input_txt($this);
     }    
@@ -872,6 +878,74 @@ function encabezado($a){
 function subtitulo($a){
  $rta="<div class='subtitulo {$a->n}'>{$a->d}</div>";
   return $rta;	
+}
+
+function saniti($value) {
+  return htmlspecialchars($value === null ? '' : $value, ENT_QUOTES, 'UTF-8'); // Manejando valor nulo
+}
+
+function input_num($a){
+  $name = saniti($a->n);$label = saniti($a->l);$value = is_numeric($a->d) ? $a->d : '';$title = saniti($a->tt);$x = saniti($a->x);
+  $a->w = $a->w ?? '';
+  $a->ww = $a->ww ?? '';
+  $a->s = is_numeric($a->s) ? $a->s : ''; // Validar valor máximo
+  $a->v = $a->v ?? false;
+  $a->u = $a->u ?? true;
+  $a->t = $a->t ?? '';
+  $a->vc = $a->vc ?? '';
+  $a->so = $a->so ?? '';
+  $rta = "<div class='campo " . saniti($a->w) . " " . saniti($a->ww) . " borde1 oscuro'>";
+  $rta .= "<div>{$label}</div>";
+  $rta .= "<input type='number' id='{$name}' name='{$name}'";
+  if ($a->s !== '')$rta .= " max='" . saniti($a->s) . "'";
+  $rta .= " class='" . saniti($a->w) . " " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
+  $rta .= " title='{$title}'";
+  $rta .= "\" onblur=\"";
+  if ($a->v) $rta .= "if(valido(this))";
+  if ($a->x) $rta .= "solo_reg(this," . saniti($a->x) . ");"; // Sanitizando la expresión regular
+  $rta .= "\"";
+  if ($a->vc !== '')$rta .= " onfocus=\"" . saniti($a->vc) . "\"";
+  if ($a->so !== '')$rta .= " onchange=\"" . saniti($a->so) . "\"";
+  if (!$a->u) $rta .= " readonly";
+  if ($value !== '') $rta .= " value='" . saniti($value) . "'";
+  $rta .= "></div>"; // Cerrar el div
+  return $rta;
+}
+
+function input_email($a) {
+  $name = saniti($a->n);
+  $label = saniti($a->l);
+  $value = filter_var($a->d, FILTER_VALIDATE_EMAIL) ? $a->d : ''; // Validar email
+  $title = saniti($a->tt);
+  
+  // Definir valores predeterminados si no existen
+  $a->w = $a->w ?? '';
+  $a->ww = $a->ww ?? '';
+  $a->v = $a->v ?? false;
+  $a->u = $a->u ?? true;
+  $a->t = $a->t ?? '';
+  $a->vc = $a->vc ?? '';
+  $a->so = $a->so ?? '';
+
+  $rta = "<div class='campo " . saniti($a->w) . " " . saniti($a->ww) . " borde1 oscuro'>";
+  $rta .= "<div>{$label}</div>";
+  $rta .= "<input type='email' id='{$name}' name='{$name}'";
+  $rta .= " class='" . saniti($a->w) . " " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
+  $rta .= " title='{$title}'";
+  
+  // Agregar validaciones de eventos
+  $rta .= " onblur=\"";
+  if ($a->v) $rta .= "if(valido(this))";
+  $rta .= "\"";
+  
+  if ($a->vc !== '') $rta .= " onfocus=\"" . saniti($a->vc) . "\"";
+  if ($a->so !== '') $rta .= " onchange=\"" . saniti($a->so) . "\"";
+  if (!$a->u) $rta .= " readonly";
+  if ($value !== '') $rta .= " value='" . saniti($value) . "'";
+  
+  $rta .= "></div>"; // Cerrar el div
+  
+  return $rta;
 }
 
 //~ <input class='captura valido agendar' type='date' id='fecha_atenc' name='fecha_atenc' value=".$hoy." min='".$hoy."' max='3000-01-01' required></div>";

@@ -201,6 +201,7 @@ return $rta;
 }
 
 function get_seguim(){
+  var_dump($sql);
   if($_REQUEST['id']==''){
     return "";
   }else{

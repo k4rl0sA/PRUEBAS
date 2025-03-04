@@ -108,18 +108,18 @@ return $rta;
 function gra_emb_Id() {
   $id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
+
   $days = fechas_app('ETNIAS');
   $fechaMinima = date('Y-m-d', strtotime("$days days"));
-
-  // Validar la fecha proporcionada
   $fechavisi = $_POST['fechavisi'] ?? '';
   if (!empty($fechavisi)) {
       if ($fechavisi < $fechaMinima) {
-          return "Error: La fecha no puede ser menor a $fechaMinima.";
+        return "msj['Error: La fecha no puede ser menor a $fechaMinima.']";
       }
   } else {
-      return "Error: La fecha es obligatoria.";
+      return "msj['Error: La fecha es obligatoria.']";
   }
+
   if (count($id) == 2) {
       $sql = "INSERT INTO etn_identi VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), NULL, NULL, 'A')";
       $params =[

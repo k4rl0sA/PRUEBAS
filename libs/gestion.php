@@ -150,7 +150,7 @@ function log_error($message) {
 
 function validFecha($mod,$fecha){
   $days = fechas_app($mod);
-  $fechaMin = date('Y-m-d', strtotime("$days days"));
+  $fechaMin = date('Y-m-d', strtotime("$days days + 5 hours"));
   $fech = $fecha ?? '';
   if (!empty($fech)) {
       if ($fech < $fechaMin) {

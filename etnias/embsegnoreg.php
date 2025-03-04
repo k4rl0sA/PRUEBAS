@@ -83,8 +83,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();");
   
-  
-  $o='ges';
+    $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
   $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fecha de Evento Obstetrico','fecha_obstetrico',null,null,true,true,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Gestaciones','fxobs',null,null,true,true,'','col-2');

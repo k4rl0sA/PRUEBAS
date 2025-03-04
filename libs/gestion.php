@@ -164,18 +164,17 @@ function validFecha($mod,$fecha){
 
 function validNum($num,$ncar=[]){
   if (empty($num)) {
-    return "Error: El número es obligatorio.";
+    return "msj['Error: El número es obligatorio.']";
 }
 if (!is_numeric($num)) {
-  return "Error: El valor ingresado no es un número válido.";
+  return "msj['Error: El valor ingresado no es un número válido.']";
 }
 $numDigitos = strlen((string) $num);
 foreach ($ncar as $limiteDigitos) {
   if ($numDigitos > $limiteDigitos) {
-      return "Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.";
+      return "msj['Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.']";
   }
 }
-return 'ok';
 }
 
 function cleanTx($val) {

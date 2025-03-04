@@ -366,7 +366,7 @@ function cmp_person(){
     $w='person';
 	$o='infgen';
 	$key='pEr';
-	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>'','telefono1'=>'','telefono2'=>'','correo'=>''];
+	$t=['encuentra'=>'','idpersona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','fecha_nacimiento'=>'','sexo'=>'','genero'=>'','oriensexual'=>'','nacionalidad'=>'','estado_civil'=>'','niveduca'=>'','abanesc'=>'','ocupacion'=>'','tiemdesem'=>'','vinculo_jefe'=>'','etnia'=>'','pueblo'=>'','idioma'=>'','discapacidad'=>'','regimen'=>'','eapb'=>'','afiliaoficio'=>'','sisben'=>'','catgosisb'=>'','pobladifer'=>'','incluofici'=>'','cuidador'=>'','perscuidada'=>'','tiempo_cuidador'=>'','cuidador_unidad'=>'','vinculo'=>'','tiempo_descanso'=>'','descanso_unidad'=>'','reside_localidad'=>'','localidad_vive'=>'','transporta'=>'','telefono1'=>'','telefono2'=>'0','correo'=>''];
 	// print_r($_POST);
 	if (count(divide($_POST['id']))==2){
 		$edit=false;
@@ -511,8 +511,8 @@ function gra_person(){
 	// print_r($_POST);
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
-	return validNum($_POST['telefono1'],[7,10]);
-	return validNum($_POST['telefono2'],[1,7,10]);
+	return $rta=validNum($_POST['telefono1'],[7,10]);
+	return $rta=validNum($_POST['telefono2'],[1,7,10]);
 	if(count($id)!=1){
 		$sql="UPDATE `person` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),
@@ -556,6 +556,7 @@ function gra_person(){
 		`usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
 		`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
 		WHERE idpeople =TRIM(UPPER('{$id[0]}'))";
+		$rta=dato_mysql($sql);
 		//    echo $sql."    ".$rta;
 	}else{
 		/* $sql1="INSERT INTO `personas_datocomp` VALUES (TRIM(UPPER('{$_POST['tipo_doc']}')),TRIM(UPPER('{$_POST['idpersona']}')),TRIM(UPPER('{$_POST['fpe']}')),TRIM(UPPER('{$_POST['fta']}')),TRIM(UPPER('{$_POST['imc']}')),TRIM(UPPER('{$_POST['tas']}')),TRIM(UPPER('{$_POST['tad']}')),TRIM(UPPER('{$_POST['glu']}')),TRIM(UPPER('{$_POST['bra']}')),TRIM(UPPER('{$_POST['abd']}')),TRIM(UPPER('{$_POST['pef']}')),TRIM(UPPER('{$_POST['des']}')),TRIM(UPPER('{$_POST['fin']}')),TRIM(UPPER('{$_POST['oms']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),TRIM(UPPER('{$_SESSION['us_sds']}')),null,null,'A')";
@@ -608,10 +609,11 @@ function gra_person(){
 		TRIM(UPPER('{$_POST['correo']}')),
 		TRIM(UPPER('{$_SESSION['us_sds']}')),
 		DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";	
+		$rta=dato_mysql($sql);
 		
 	}
 		//echo $sql;
-		$rta=dato_mysql($sql);
+		
 		return $rta;
 	}
 	

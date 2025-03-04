@@ -127,11 +127,25 @@ function validCsrfTok() {
   }
 }
 
-function log_error($message) {
+/* function log_error($message) {
   if (!is_dir('../logs')) {
     mkdir('../logs', 0777, true);
 }
   file_put_contents('../logs/file.log', "[" . date('Y-m-d H:i:s') . "] " . $message . PHP_EOL, FILE_APPEND);
+} */
+
+function usuSess(){
+  return $usu = isset($_SESSION['us_sds']) ? $_SESSION['us_sds'] : 'Usuario Desconocido';
+}
+function log_error($message) {
+  $timestamp = date('Y-m-d H:i:s');
+  $marca = date('Y-m-d H:i:s', strtotime('-5 hours')); 
+  $logMessage = "[$marca] - ".usuSess()." = $message" . PHP_EOL;
+  try {
+      file_put_contents(__DIR__ . '/../logs/file.log', $logMessage, FILE_APPEND);
+  } catch (Throwable $e) {
+      file_put_contents(__DIR__ . '/../logs/errors_backup.log', "[$marca] Error al registrar: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+  }
 }
 
 function cleanTx($val) {

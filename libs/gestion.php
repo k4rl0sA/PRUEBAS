@@ -900,6 +900,7 @@ function input_num($a){
   if ($a->s !== '')$rta .= " max='" . saniti($a->s) . "'";
   $rta .= " class='" . saniti($a->w) . " " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
   $rta .= " title='{$title}'";
+  $rta .= " oninput=\"this.value = this.value.replace(/[eE]/g, '')\"";
   $rta .= "\" onblur=\"";
   if ($a->v) $rta .= "if(valido(this))";
   if ($a->x) $rta .= "solo_reg(this," . saniti($a->x) . ");"; // Sanitizando la expresión regular

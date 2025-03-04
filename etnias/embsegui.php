@@ -175,6 +175,7 @@ function gra_seguim() {
 ['type' => 's', 'value' => $_POST['servicio_encu']],
 ['type' => 's', 'value' => $_POST['imp_diag2']],
 ['type' => 's', 'value' => $_POST['nece_apoy']],
+['type' => 's', 'value' => $_POST['fecha_egreso']],
 ['type' => 's', 'value' => $_POST['espe1']],
 ['type' => 's', 'value' => $_POST['espe2']],
 ['type' => 's', 'value' => $_POST['adh_tto']],
@@ -205,7 +206,7 @@ function get_seguim(){
     // var_dump($_POST,$_GET);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT null,idseg,P.sexo,fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest,paren,Nom_fami, S.tipo_doc, num_doc,  tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, espe1, espe2, adh_tto, observaciones
+    $sql="SELECT null,idseg,P.sexo,fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest,paren,Nom_fami, S.tipo_doc, num_doc,  tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, fecha_egreso,espe1, espe2, adh_tto, observaciones
           FROM `emb_segui` S
           left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";

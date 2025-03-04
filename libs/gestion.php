@@ -695,10 +695,10 @@ class cmp { //ntwplcsdxhvuf
       $b=select_mult($this);
 		break;
   case 'nu':
-      $b => input_num($this);
+      $b = input_num($this);
       break;
   case 'em'
-      $b => input_num($this);
+      $b = input_num($this);
       break;
     default:
         $b=input_txt($this);

@@ -114,6 +114,8 @@ function gra_emb_Id() {
   $fechavisi = $_POST['fechavisi'] ?? '';
   if (!empty($fechavisi)) {
       if ($fechavisi < $fechaMinima) {
+        
+        log_error("Fraude: fecha = " . $_POST['tb']);
         return "msj['Error: La fecha no puede ser menor a $fechaMinima.']";
       }
   } else {

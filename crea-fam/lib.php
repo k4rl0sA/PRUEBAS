@@ -424,9 +424,9 @@ function cmp_person(){
 	
 	$o='hab';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE CONTACTO',$w);
-	$c[]=new cmp('telefono1','n','10',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
-	$c[]=new cmp('telefono2','n','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
-	$c[]=new cmp('correo','n','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxmail',null,false,true,'','col-4');
+	$c[]=new cmp('telefono1','nu','10',$d['telefono1'],$w.' '.$o,'telefono1','telefono1','rgxphone',NULL,true,true,'','col-3');
+	$c[]=new cmp('telefono2','nu','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxphone1',null,false,true,'','col-3');
+	$c[]=new cmp('correo','em','10',$d['telefono2'],$w.' '.$o,'telefono2','telefono2','rgxmail',null,false,true,'','col-4');
 
 
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

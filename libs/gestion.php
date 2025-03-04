@@ -885,7 +885,7 @@ function saniti($value) {
 }
 
 function input_num($a){
-  $name = saniti($a->n);$label = saniti($a->l);$value = is_numeric($a->d) ? $a->d : '';$title = saniti($a->tt);$x = saniti($a->x);
+  $name = saniti($a->n);$label = ($a->l);$value = is_numeric($a->d) ? $a->d : '';$title = saniti($a->tt);$x = saniti($a->x);
   $a->w = $a->w ?? '';
   $a->ww = $a->ww ?? '';
   $a->s = is_numeric($a->s) ? $a->s : ''; // Validar valor máximo

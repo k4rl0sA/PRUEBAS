@@ -154,7 +154,7 @@ function validFecha($mod,$fecha){
   $fech = $fecha ?? '';
   if (!empty($fech)) {
       if ($fech < $fechaMin) {
-        log_error("Fraude: fecha = " . $_POST['tb'].$fech);
+        log_error("Fraude: fecha = " . $_POST['tb'].' - '.$fech);
         return "msj['Error: La fecha no puede ser menor a $fechaMin.']";
       }
   } else {

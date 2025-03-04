@@ -158,7 +158,19 @@ function fechas_app($modu){
   }
   return intval($dias);
 }
-
+function usuSess(){
+  return $usu = isset($_SESSION['us_sds']) ? $_SESSION['us_sds'] : 'Usuario Desconocido';
+}
+function log_error($message) {
+  $timestamp = date('Y-m-d H:i:s');
+  $marca = date('Y-m-d H:i:s', strtotime('-5 hours')); 
+  $logMessage = "[$marca] - ".usuSess()." = $message" . PHP_EOL;
+  try {
+      file_put_contents(__DIR__ . '/../errors.log', $logMessage, FILE_APPEND);
+  } catch (Throwable $e) {
+      file_put_contents(__DIR__ . '/../errors_backup.log', "[$marca] Error al registrar: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+  }
+}
 
 function datos_mysql($sql,$resulttype = MYSQLI_ASSOC, $pdbs = false){
 		$arr = ['code' => 0, 'message' => '', 'responseResult' => []];
@@ -496,7 +508,7 @@ function divide($a){
 
 function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
-	$sql="SELECT perfil,componente,crear,editar,consultar,ajustar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".$_SESSION['us_sds']."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
+	$sql="SELECT perfil,componente,crear,editar,consultar,ajustar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = FN_PERFIL('".."') AND componente=FN_COMPONENTE('".$_SESSION['us_sds']."') AND estado = 'A'";
 	$data=datos_mysql($sql);
   // print_r($sql);
 	if ($data && isset($data['responseResult'][0])) {

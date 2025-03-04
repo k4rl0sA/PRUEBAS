@@ -148,6 +148,20 @@ function log_error($message) {
   }
 }
 
+function validFecha($mod,$fecha){
+  $days = fechas_app($mod);
+  $fechaMin = date('Y-m-d', strtotime("$days days"));
+  $fech = $fecha ?? '';
+  if (!empty($fech)) {
+      if ($fech < $fechaMin) {
+        log_error("Fraude: fecha = " . $_POST['tb'].$fech);
+        return "msj['Error: La fecha no puede ser menor a $fechaMin.']";
+      }
+  } else {
+      return "msj['Error: La fecha es obligatoria.']";
+  }
+}
+
 function cleanTx($val) {
   $val = trim($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');//maneja las inyecciones XSS

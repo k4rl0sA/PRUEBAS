@@ -698,7 +698,7 @@ class cmp { //ntwplcsdxhvuf
       $b = input_num($this);
       break;
   case 'em'
-      $b = input_num($this);
+      $b = input_email($this);
       break;
     default:
         $b=input_txt($this);

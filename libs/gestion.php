@@ -697,7 +697,7 @@ class cmp { //ntwplcsdxhvuf
   case 'nu':
       $b = input_num($this);
       break;
-  case 'em'
+  case 'em':
       $b = input_email($this);
       break;
     default:

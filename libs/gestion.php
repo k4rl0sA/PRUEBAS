@@ -162,6 +162,21 @@ function validFecha($mod,$fecha){
   }
 }
 
+function validNum($num,$ncar=[]){
+  if (empty($num)) {
+    return "Error: El número es obligatorio.";
+}
+if (!is_numeric($num)) {
+  return "Error: El valor ingresado no es un número válido.";
+}
+$numDigitos = strlen((string) $num);
+foreach ($ncar as $limiteDigitos) {
+  if ($numDigitos > $limiteDigitos) {
+      return "Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.";
+  }
+}
+}
+
 function cleanTx($val) {
   $val = trim($val);
   $val = htmlspecialchars($val, ENT_QUOTES, 'UTF-8');//maneja las inyecciones XSS

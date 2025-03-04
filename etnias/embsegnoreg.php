@@ -87,6 +87,7 @@ function cmp_segnoreg(){
   $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
   $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Gestaciones','fxobs',null,null,true,true,'','col-2');
+  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fecha de Evento Obstetrico','fecha_obstetrico',null,null,true,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Partos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('abortos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Abortos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('cesareas','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Cesareas','fxobs',null,null,true,true,'','col-2');
@@ -256,7 +257,7 @@ function gra_segnoreg(){
         $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
       $equi=$equ['responseResult'][0]['equipo'];
-      $sql = "INSERT INTO emb_segreg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+      $sql = "INSERT INTO emb_segreg VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
     $params = [
 ['type' => 'i', 'value' => $id[0]],
 ['type' => 's', 'value' => $_POST['fecha_seg']],
@@ -264,6 +265,7 @@ function gra_segnoreg(){
 ['type' => 's', 'value' => $_POST['estado_seg']],
 ['type' => 's', 'value' => $_POST['motivo_estado']],
 ['type' => 's', 'value' => $_POST['prioridad']],
+['type' => 's', 'value' => $_POST['fecha_obs']],
 ['type' => 's', 'value' => $_POST['gestaciones']],
 ['type' => 's', 'value' => $_POST['partos']],
 ['type' => 's', 'value' => $_POST['abortos']],
@@ -339,7 +341,7 @@ function get_segnoreg(){
     return "";
   }else{
     $id=divide($_REQUEST['id']);
-    $sql="SELECT P.fecha_nacimiento,P.sexo,idsegnoreg,fecha_seg, segui, estado_seg, motivo, prioridad, gestaciones, partos, abortos, cesareas, vivos, muertos, fum, edad_gest, resul_gest, peso_nacer, asist_controles, exa_labo, cons_micronutri, esq_vacu, signos_alarma1, diag_sifigest, adhe_tto, diag_sificong, seg_partera, seg_med_ancestral1, diag_cronico, cual, tto_enf, ctrl_cronico, signos_alarma2, seg_med_ancestral2, doc_madre, ctrl_cyd, lactancia_mat, esq_vacunacion, sig_alarma_seg, seg_med_ancestral3, at_med, at_partera, sistolica, diastolica, frec_cardiaca, frec_respiratoria, saturacion, gluco, peri_cefalico, peri_braqueal, peso, talla, imc, zcore, clasi_nutri, ser_remigesti, observaciones
+    $sql="SELECT P.fecha_nacimiento,P.sexo,idsegnoreg,fecha_seg, segui, estado_seg, motivo, prioridad, fecha_obs, gestaciones, partos, abortos, cesareas, vivos, muertos, fum, edad_gest, resul_gest, peso_nacer, asist_controles, exa_labo, cons_micronutri, esq_vacu, signos_alarma1, diag_sifigest, adhe_tto, diag_sificong, seg_partera, seg_med_ancestral1, diag_cronico, cual, tto_enf, ctrl_cronico, signos_alarma2, seg_med_ancestral2, doc_madre, ctrl_cyd, lactancia_mat, esq_vacunacion, sig_alarma_seg, seg_med_ancestral3, at_med, at_partera, sistolica, diastolica, frec_cardiaca, frec_respiratoria, saturacion, gluco, peri_cefalico, peri_braqueal, peso, talla, imc, zcore, clasi_nutri, ser_remigesti, observaciones
           FROM `emb_segreg` S
           left join person P ON S.idpeople=P.idpeople
           WHERE idsegnoreg='{$id[0]}'";

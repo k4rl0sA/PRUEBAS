@@ -108,11 +108,8 @@ return $rta;
 function gra_emb_Id() {
   $id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
-  // Parámetros comunes para INSERT y UPDATE
-  $days=fechas_app('ETNIAS');
-
-  $days = fechas_app('ETNIAS'); // Obtiene el número de días a restar (generalmente negativo)
-  $fechaMinima = date('Y-m-d', strtotime("$days days")); // Calcula la fecha mínima permitida
+  $days = fechas_app('ETNIAS');
+  $fechaMinima = date('Y-m-d', strtotime("$days days"));
 
   // Validar la fecha proporcionada
   $fechavisi = $_POST['fechavisi'] ?? '';

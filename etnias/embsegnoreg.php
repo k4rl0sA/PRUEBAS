@@ -233,6 +233,7 @@ function get_persona(){
   
 function gra_segnoreg(){
  	$id=divide($_POST['idsegnoreg']);
+   return validFecha('ETNIAS',$_POST['fecha_seg']);
   $pn=$_POST['peso_nacer']?? null;
   $docma=$_POST['doc_madre']?? null;
   $sis=$_POST['sistolica']?? null;

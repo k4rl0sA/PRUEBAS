@@ -64,8 +64,9 @@ function lis_eventos(){
 }
 
 function cmp_servagen(){
-	$rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
-	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>";
+	/* $rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
+	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>"; */
+    $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
 	$d=get_persona();
 	if ($d==""){$d=$t;}

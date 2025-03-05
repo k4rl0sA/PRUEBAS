@@ -39,21 +39,6 @@ function focus_vspeve(){
   return $rta;
 }
 
-/* function seg_vspeve(){
-	// var_dump($_POST['id']);
-	$id=divide($_POST['id']);
-	$sql="SELECT `id_eve` ACCIONES,
-  tipo_doc,documento,fecha_seg Fecha,numsegui Seguimiento,FN_CATALOGODESC(87,evento) EVENTO,FN_CATALOGODESC(73,estado_s) estado,cierre_caso Cierra,
-  fecha_cierre 'Fecha de Cierre',nombre Creó 
-  FROM vspeve A
-	  LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE tipo_doc='".$id[1]."' AND documento='".$id[0];
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"acompsic-lis",5);
-   } */
-
 function lis_eventos(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
@@ -78,8 +63,8 @@ function lis_eventos(){
 	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'vspeve.php');
 }
 
-function cmp_vspeve(){
-	$rta="<div class='encabezado medid'>TABLA DE EVENTOS POR USUARIO</div>
+function cmp_servagen(){
+	$rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
 	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
 	$d=get_persona();
@@ -141,27 +126,9 @@ function opc_evento($id=''){
     }elseif($d['anos']>54){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5) and estado='A' ORDER BY 2",$id); 
     }
-    /* elseif($d['anos']>9 && $d['anos']<18){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5,2,3) and estado='A' ORDER BY 2",$id); 
-    } */
-  }
-  /* if($d['anos']<6){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5,1,2,3) and estado='A' ORDER BY 2",$id);
-  }elseif($d['anos']<18){
-
-  }
-  elseif($d['anos']<18 || ($d['anos']>17 && $d['sexo']=='M')){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5,1,2,3) and estado='A' ORDER BY 2",$id);
-  }elseif(($d['anos']>9 && $d['anos']<55 && $d['sexo']=='M')){
-    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5,4) and estado='A' ORDER BY 2",$id); */
-
   }
 
-
-
-  // $d['sexo']&&
-  
-
+  }
 
 function gra_vspeve(){
   // print_r($_POST);
@@ -238,4 +205,4 @@ if ($a=='vspeve-lis' && $b=='acciones'){//a mnombre del modulo
 function bgcolor($a,$c,$f='c'){
   $rta="";
   return $rta;
-   }
+}

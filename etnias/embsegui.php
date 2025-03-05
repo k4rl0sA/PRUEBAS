@@ -186,6 +186,7 @@ function gra_seguim() {
 ['type' => 's', 'value' => NULL],
 ['type' => 's', 'value' => NULL],
 ];
+var_dump($sql);
 $rta=show_sql($sql, $params);
 // $rta = mysql_prepd($sql, $params);
 }else{

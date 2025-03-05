@@ -933,8 +933,6 @@ function input_email($a) {
   $label = saniti($a->l);
   $value = filter_var($a->d, FILTER_VALIDATE_EMAIL) ? $a->d : ''; // Validar email
   $title = saniti($a->tt);
-  
-  // Definir valores predeterminados si no existen
   $a->w = $a->w ?? '';
   $a->ww = $a->ww ?? '';
   $a->v = $a->v ?? false;
@@ -942,26 +940,20 @@ function input_email($a) {
   $a->t = $a->t ?? '';
   $a->vc = $a->vc ?? '';
   $a->so = $a->so ?? '';
-
   $rta = "<div class='campo " . saniti($a->w) . " " . saniti($a->ww) . " borde1 oscuro'>";
   $rta .= "<div>{$label}</div>";
   $rta .= "<input type='email' id='{$name}' name='{$name}'";
   $rta .= " class='" . saniti($a->w) . " " . ($a->v ? 'valido' : '') . " " . ($a->u ? 'captura' : 'bloqueo') . " " . ($a->t == 't' ? '' : 'txt-right') . "'";
   $rta .= " title='{$title}'";
-  
-  // Agregar validaciones de eventos
   $rta .= " onblur=\"";
   if ($a->v) $rta .= "if(valido(this));";
   if ($a->x) $rta .= "solo_reg(this," . saniti($a->x) . ");";
   $rta .= "\"";
-  
   if ($a->vc !== '') $rta .= " onfocus=\"" . saniti($a->vc) . "\"";
   if ($a->so !== '') $rta .= " onchange=\"" . saniti($a->so) . "\"";
   if (!$a->u) $rta .= " readonly";
-  if ($value !== '') $rta .= " value='" . saniti($value) . "'";
-  
-  $rta .= "></div>"; // Cerrar el div
-  
+  if ($value !== '') $rta .= " value='" . saniti($value) . "'";  
+  $rta .= "></div>";
   return $rta;
 }
 

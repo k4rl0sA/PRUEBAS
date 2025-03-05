@@ -184,11 +184,10 @@ function gra_seguim() {
 ['type' => 's', 'value' => $bina],
 ['type' => 's', 'value' => $_SESSION['us_sds']],
 ['type' => 's', 'value' => NULL],
-['type' => 's', 'value' => NULL]
+['type' => 's', 'value' => NULL],
 ];
-var_dump($sql);
-$rta=show_sql($sql, $params);
-// $rta = mysql_prepd($sql, $params);
+//$rta=show_sql($sql, $params);
+$rta = mysql_prepd($sql, $params);
 }else{
   $sql="UPDATE emb_segui SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE idseg=?"; //  compromiso=?, equipo=?, 
    $params = [
@@ -196,8 +195,7 @@ $rta=show_sql($sql, $params);
        ['type' => 'i', 'value' => $_SESSION['us_sds']],
        ['type' => 'i', 'value' => $id[0]]
      ];
-     $rta=show_sql($sql, $params);
-    //  $rta = mysql_prepd($sql, $params);
+     $rta = mysql_prepd($sql, $params);
    }
 return $rta;
 }

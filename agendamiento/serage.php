@@ -52,8 +52,6 @@ function lis_eventos(){
     $regxPag=5;
     $pag=(isset($_POST['pag-eventos']))? ($_POST['pag-eventos']-1)* $regxPag:0;
 
-
-
     $sql="SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
     FROM vspeve E 
     WHERE E.idpeople='{$id[0]}'";  
@@ -75,7 +73,7 @@ function cmp_servagen(){
 	$o='datos';
   $key='eve';
   $edad='AÑOS= '.$d['anos'].' MESES= '.$d['meses'].' DIAS= '.$d['dias'];
-  $days=fechas_app('vsp');
+  $days=fechas_app('AGENDA');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
 	$c[]=new cmp('idpersona','n','20',$d['idpersona'],$w.' '.$o.' '.$key,'N° Identificación','idpersona',null,'',false,false,'','col-3');
@@ -86,10 +84,10 @@ function cmp_servagen(){
   $c[]=new cmp('edad','t',30,$edad,$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-3');
 	
 	$o='prufin';
- 	$c[]=new cmp($o,'e',null,'EVENTOS VSP',$w);
- 	$c[]=new cmp('docum_base','t',22,$e,$w.' '.$o,'Documento Base','docum_base',null,null,true,true,'','col-25');
-  $c[]=new cmp('evento','s',3, $e,$w,'Evento','evento',null,null,true,true,'','col-2');
-  $c[]=new cmp('fecha_even','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-25',"validDate(this,$days,0);");
+    $c[]=new cmp($o,'e',null,'SERVICIOS AGENDAMIENTO',$w);
+    $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-25',"validDate(this,$days,0);");
+    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','evento',null,null,true,true,'','col-2');
+    $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','evento',null,null,true,true,'','col-2');
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

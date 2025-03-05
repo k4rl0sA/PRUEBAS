@@ -951,7 +951,7 @@ function input_email($a) {
   
   // Agregar validaciones de eventos
   $rta .= " onblur=\"";
-  if ($a->v) $rta .= "if(valido(this))";
+  if ($a->v) $rta .= "if(valido(this));";
   if ($a->x) $rta .= "solo_reg(this," . saniti($a->x) . ");";
   $rta .= "\"";
   

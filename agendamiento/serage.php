@@ -177,7 +177,7 @@ function get_servagen(){
     return "";
   }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat_ws('_',id_eve,idpeople),docum_base,evento,fecha_even
+      $sql="SELECT concat_ws('_',idpeople,servicio),fecha_solici,tipo_consulta,servicio
       FROM vspeve
       WHERE id_eve ='{$id[0]}'";
       // echo $sql;

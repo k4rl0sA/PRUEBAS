@@ -1,11 +1,10 @@
 <?php
+ini_set('display_errors','1');
 require_once 'PHPExcel/Classes/PHPExcel.php';
-
 $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
 }
-
 // Scripts SQL de las tablas
 $scripts = [
     "Asignacion Predios" => "SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
@@ -39,20 +38,16 @@ $scripts = [
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo
     LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE AND (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-01' AND curdate()"
 ];
-
 $objPHPExcel = new PHPExcel();
 $index = 0;
-
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
-
     if ($result) {
         if ($index > 0) {
             $objPHPExcel->createSheet();
         }
         $objPHPExcel->setActiveSheetIndex($index);
         $objPHPExcel->getActiveSheet()->setTitle($nombreHoja);
-
         // Encabezados
         $fields = $result->fetch_fields();
         $col = 0;
@@ -60,7 +55,6 @@ foreach ($scripts as $nombreHoja => $query) {
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, 1, $field->name);
             $col++;
         }
-
         // Datos
         $rowNum = 2;
         while ($row = $result->fetch_assoc()) {
@@ -75,11 +69,10 @@ foreach ($scripts as $nombreHoja => $query) {
         $index++;
     }
 }
-
 // Establecer la primera hoja como activa
 $objPHPExcel->setActiveSheetIndex(0);
-
 // Configuración para descarga
+ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="datos_unificados.xlsx"');
 header('Cache-Control: max-age=0');

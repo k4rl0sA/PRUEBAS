@@ -84,7 +84,7 @@ function cmp_servagen(){
   $c[]=new cmp('edad','t',30,$edad,$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-3');
 	
 	$o='prufin';
-    $c[]=new cmp($o,'e',null,'SERVICIOS AGENDAMIENTO',$w);
+    $c[]=new cmp($o,'e',null,'SERVICIO AGENDAMIENTO',$w);
     $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-25',"validDate(this,$days,0);");
     $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','evento',null,null,true,true,'','col-2');
     $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','evento',null,null,true,true,'','col-2');

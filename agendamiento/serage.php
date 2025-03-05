@@ -19,12 +19,12 @@ else {
   }   
 }
 
-function focus_vspeve(){
-  return 'vspeve';
+function focus_servagen(){
+  return 'servagen';
  }
  
- function men_vspeve(){
-  $rta=cap_menus('vspeve','pro');
+ function men_servagen(){
+  $rta=cap_menus('servagen','pro');
   return $rta;
  }
  
@@ -32,7 +32,7 @@ function focus_vspeve(){
  function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
-  if ($a=='vspeve' && isset($acc['crear']) && $acc['crear']=='SI') {  
+  if ($a=='servagen' && isset($acc['crear']) && $acc['crear']=='SI') {  
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     }
   $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  
@@ -60,7 +60,7 @@ function lis_eventos(){
     $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'vspeve.php');
+	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'servagen.php');
 }
 
 function cmp_servagen(){
@@ -71,7 +71,7 @@ function cmp_servagen(){
 	$d=get_persona();
 	if ($d==""){$d=$t;}
 	$e="";
-	$w='vspeve';
+	$w='servagen';
 	$o='datos';
   $key='eve';
   $edad='AÑOS= '.$d['anos'].' MESES= '.$d['meses'].' DIAS= '.$d['dias'];
@@ -131,7 +131,7 @@ function opc_evento($id=''){
 
   }
 
-function gra_vspeve(){
+function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
   if(count($id)==1){
@@ -174,7 +174,7 @@ function get_persona(){
   }
 }
 
-function get_vspeve(){
+function get_servagen(){
   if($_REQUEST['id']==''){
     return "";
   }else{
@@ -195,9 +195,9 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($a);
 // var_dump($rta);
-if ($a=='vspeve-lis' && $b=='acciones'){//a mnombre del modulo
+if ($a=='servagen-lis' && $b=='acciones'){//a mnombre del modulo
 	$rta="<nav class='menu right'>";	
-	$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'vspeve',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'vspeve.php');\"></li>";
+	$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'servagen',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'servagen.php');\"></li>";
 }
  return $rta;
 }

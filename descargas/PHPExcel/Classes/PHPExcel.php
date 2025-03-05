@@ -1,9 +1,11 @@
 <?php
 
 /** PHPExcel root directory */
+var_dump(dirname(__FILE__) . '/'.'PHPExcel/Autoloader.php');
 if (!defined('PHPEXCEL_ROOT')) {
-    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/descargas/');
+    define('PHPEXCEL_ROOT', dirname(__FILE__) . '/');
     require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+
 }
 
 /**

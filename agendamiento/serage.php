@@ -161,7 +161,7 @@ function get_persona(){
 		P.sexo sexo,
     TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
     TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
-    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 31 AS dias
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P
 		left join vspeve E ON P.idpeople = E.idpeople
     WHERE P.idpeople='{$id[0]}'"; 

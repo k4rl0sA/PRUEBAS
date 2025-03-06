@@ -510,7 +510,7 @@ function gra_person(){
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
 	return $rta=validNum($_POST['telefono1'],[7,10]);
-	return $rta=validNum($_POST['telefono2'],[1,7,10]);
+	return $rta=validNum($_POST['telefono2'],[7,10][0]);
 	if(count($id)!=1){
 		$sql="UPDATE `person` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),

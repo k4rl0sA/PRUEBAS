@@ -162,20 +162,23 @@ function validFecha($mod,$fecha){
   return true;
 }
 
-function validNum($num,$ncar=[]){
+function validNum($num,$ncar=[],$nlit=[]){
   if (empty($num)) {
     return "msj['Error: El número es obligatorio.']";
-}
-if (!is_numeric($num)) {
-  return "msj['Error: El valor ingresado no es un número válido.']";
-}
-$numDigitos = strlen((string) $num);
-foreach ($ncar as $limiteDigitos) {
-  if ($numDigitos > $limiteDigitos) {
-      return "msj['Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.']";
   }
-}
-return true;
+  if (!is_numeric($num)) {
+    return "msj['Error: El valor ingresado no es un número válido.']";
+  }
+  if (in_array($num, $excepciones)) {
+    return true;
+  }
+  $nDig = strlen((string) $num);
+  foreach ($ncar as $limDig) {
+    if ($nDig > $limDig) {
+      return "msj['Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.']";
+    }
+  }
+  return true;
 }
 
 function cleanTx($val) {

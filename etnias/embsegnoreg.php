@@ -140,7 +140,7 @@ function cmp_segnoreg(){
   
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);
-  var_dump($p['ano'],'=año - ',$p['mes'],'=mes')
+  var_dump($p['ano'],'=año - ',$p['mes'],'=mes');
   $men5 = ($p['ano']<5) ? true : false ;
   $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$men5,'','col-25');
 

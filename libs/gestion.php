@@ -169,7 +169,7 @@ function validNum($num,$ncar=[],$nlit=[]){
   if (!is_numeric($num)) {
     return "msj['Error: El valor ingresado no es un número válido.']";
   }
-  if (in_array($num, $excepciones)) {
+  if (in_array($num,$nlit)) {
     return true;
   }
   $nDig = strlen((string) $num);

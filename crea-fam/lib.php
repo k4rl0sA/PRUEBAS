@@ -506,11 +506,11 @@ function gra_person(){
 	// print_r($_POST);
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
-	if ($rtaFec = validNum($_POST['telefono1'],[7,10]) !== true) {
-		return $rtaFec;
+	if (($rtaN = validNum($_POST['telefono1'], [7, 10])) !== true) {
+		return $rtaN;
 	}
-	if ($rtaFec = validNum($_POST['telefono2'],[7,10],[0]) !== true) {
-		return $rtaFec;
+	if (($rtaN = validNum($_POST['telefono2'], [7, 10], [0])) !== true) {
+		return $rtaN;
 	}
 	if(count($id)!=1){
 		$sql="UPDATE `person` SET 

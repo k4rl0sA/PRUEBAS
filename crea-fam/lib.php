@@ -509,7 +509,7 @@ function gra_person(){
 	if (($rtaN = validNum($_POST['telefono1'], [7, 10])) !== true) {
 		return $rtaN;
 	}
-	if (($rtaN = validNum($_POST['telefono2'], [7, 10], [0])) !== true) {
+	if (($rtaN = validNum($_POST['telefono2'], [7, 10], ['0'])) !== true) {
 		return $rtaN;
 	}
 	if(count($id)!=1){

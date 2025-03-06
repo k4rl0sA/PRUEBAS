@@ -171,6 +171,7 @@ function opc_enfoque($id=''){
         // var_dump($a);
 		if ($a=='emb_Id' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'seguim',event,this,['saberes'],'../etnias/embid.php')";
 				
 			}
 		return $rta;

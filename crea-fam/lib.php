@@ -333,7 +333,6 @@ function gra_homes(){
 		array('type' => 's', 'value' => $_POST['telefono2']),
 		array('type' => 's', 'value' => $_POST['telefono3']),
  */
-
  		$params[] = array('type' => 's', 'value' => namequipo());
  		$params[] = array('type' => 'i', 'value' => $_SESSION['us_sds']);
  		$params[] = array('type' => 's', 'value' => date("Y-m-d H:i:s"));
@@ -341,7 +340,6 @@ function gra_homes(){
  		$params[] = array('type' => 's', 'value' => NULL);
  		$params[] = array('type' => 's', 'value' => 'A');
 	}
-	
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	return $rta;
@@ -429,8 +427,7 @@ function cmp_person(){
 	$c[]=new cmp('correo','em','80',$d['correo'],$w.' '.$o,'Correo','correo','rgxmail',null,true,true,'','col-4');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
-   }
-
+}
       
 function lista_persons(){ //revisar
 	// var_dump($_POST);
@@ -509,8 +506,12 @@ function gra_person(){
 	// print_r($_POST);
 	$id=divide($_POST['idp']);
 	// print_r(count($id));
-	return $rta=validNum($_POST['telefono1'],[7,10]);
-	return $rta=validNum($_POST['telefono2'],[7,10],[0]);
+	if ($rtaFec = validNum($_POST['telefono1'],[7,10]) !== true) {
+		return $rtaFec;
+	}
+	if ($rtaFec = validNum($_POST['telefono2'],[7,10],[0]) !== true) {
+		return $rtaFec;
+	}
 	if(count($id)!=1){
 		$sql="UPDATE `person` SET 
 		encuentra=TRIM(UPPER('{$_POST['encuentra']}')),

@@ -163,7 +163,7 @@ function validFecha($mod,$fecha){
 }
 
 function validNum($num,$ncar=[],$nlit=[]){
-  if ($num==='' || $num=== null) {
+  if ($num === '' || $num === null) {
     return "msj['Error: El número es obligatorio.']";
   }
   if (!is_numeric($num)) {

@@ -152,14 +152,14 @@ function validFecha($mod,$fecha){
   $days = fechas_app($mod);
   $fechaMin = date('Y-m-d', strtotime("$days days"));
   $fech = $fecha ?? '';
-  if (!empty($fech)) {
-      if ($fech < $fechaMin) {
-        log_error("Fraude: fecha = " . $_POST['tb'].' - '.$fech);
-        return "msj['Error: La fecha no puede ser menor a $fechaMin.']";
-      }
-  } else {
-      return "msj['Error: La fecha es obligatoria.']";
+  if (empty($fech)) {
+    return "msj['Error: La fecha es obligatoria.']";
   }
+  if ($fech < $fechaMin) {
+    log_error("Fraude: fecha = " . $_POST['tb'] . ' - ' . $fech);
+    return "msj['Error: La fecha no puede ser menor a $fechaMin.']";
+  }
+  return true;
 }
 
 function validNum($num,$ncar=[]){

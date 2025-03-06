@@ -109,8 +109,9 @@ function gra_emb_Id() {
   $id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
   
-  // return validFecha('ETNIAS',$_POST['fechavisi']);
- 
+  if (($rtaFec = validFecha('ETNIAS', $_POST['fechavisi'] ?? '')) !== true) {
+    return $rtaFec;
+  }
   if (count($id) == 2) {
       $sql = "INSERT INTO etn_identi VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATE_SUB(NOW(), INTERVAL 5 HOUR), NULL, NULL, 'A')";
       $params =[

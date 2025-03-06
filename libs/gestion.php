@@ -172,12 +172,11 @@ function validNum($num,$ncar=[],$nlit=[]){
   if (in_array($num,$nlit)) {
     return true;
   }
+  
   $nDig = strlen((string) $num);
-  foreach ($ncar as $limDig) {
-    if ($nDig > $limDig) {
-      return "msj['Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.']";
-    }
-  }
+  if (!in_array($nDig, $ncar)) {
+    return "msj['Error: El número ingresado ($num) no tiene la cantidad de dígitos permitida.']";
+}
   return true;
 }
 

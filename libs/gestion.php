@@ -175,6 +175,7 @@ foreach ($ncar as $limiteDigitos) {
       return "msj['Error: El número ingresado ($num) no puede tener más de $limiteDigitos dígitos.']";
   }
 }
+return true;
 }
 
 function cleanTx($val) {

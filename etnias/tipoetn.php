@@ -82,6 +82,7 @@ function cmp_ethnicity(){
 
 function gra_ethnicity(){
 	$id=divide($_POST['id_acc']);
+  if (($rtaFec = validFecha('ETNIAS', $_POST['fecha_acc'] ?? '')) !== true) {return $rtaFec;}
     // var_dump(COUNT($id));
       $sql = "INSERT INTO acc_indigenas VALUES (null,?,?,?,?,DATE_SUB(NOW(), INTERVAL 5 HOUR),'','','A')";
       $params = [

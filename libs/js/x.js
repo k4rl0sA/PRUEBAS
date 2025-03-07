@@ -1185,14 +1185,14 @@ function enabEmbEdGes(){
 function enabEspe2(){
 	const inte=document.getElementById('interven').value;
 	if(inte=='2'){
-		noRequired('espe2',true);
-		NoObligat('espe2',true);
+		const ele=document.getElementById('espe2');
+		noRequired(ele,true);
+		NoObligat(ele,true);
 	}	
 }
 function NoObligat(a,flag){
-	const ele=document.getElementById(a);
-	ele.classList.toggle('valido', !flag);
-    ele.classList.toggle('captura', flag);
-    ele.classList.toggle('bloqueo', !flag);
+	a.classList.toggle('valido', !flag);
+    a.classList.toggle('captura', flag);
+    a.classList.toggle('bloqueo', !flag);
     flag ? ele.setAttribute('readonly', true) : ele.removeAttribute('readonly');
 }

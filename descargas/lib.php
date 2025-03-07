@@ -218,16 +218,17 @@ echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) 
 ob_flush();
 flush();
 
-// Descargar el archivo y luego eliminarlo
+// Enviar el archivo al cliente para descargar
 if (file_exists($filename)) {
-    // Enviar el archivo al cliente
+    // Configurar las cabeceras para la descarga
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+    header('Content-Disposition: attachment; filename="datos_unificados.xlsx"');
     header('Content-Length: ' . filesize($filename));
     readfile($filename);
 
     // Eliminar el archivo después de la descarga
     unlink($filename);
+    exit; // Terminar la ejecución del script
 } else {
     echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
 }

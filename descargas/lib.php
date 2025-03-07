@@ -18,7 +18,7 @@ if ($mysqli->connect_error) {
 }
 
 $scripts = [
-    "VSP" => "SELECT * FROM ( 
+ /*   "VSP" => "SELECT * FROM ( 
     SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A 
     LEFT JOIN person P ON A.idpeople = P.idpeople 
     LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
@@ -138,10 +138,9 @@ $scripts = [
     LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
     LEFT JOIN usuarios U ON X.usu_creo = U.id_usuario
-    ) AS CombinedQuery WHERE fecha_seg BETWEEN '2025-03-01' AND CURDATE() AND subred = 3;"
-    // ,
+    ) AS CombinedQuery WHERE fecha_seg BETWEEN '2025-03-01' AND CURDATE() AND subred = 3;",*/
 
-    /* "Gestion Predios" => "SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,
+    "Gestion Predios" => "SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,
     A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva, A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
     FROM `geo_gest` A
     LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
@@ -162,7 +161,7 @@ $scripts = [
     FROM `hog_carac` V
     LEFT JOIN hog_fam F ON V.idfam = F.id_fam
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-    LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-05' AND curdate()" */
+    LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-05' AND curdate()"
 ];
 
 $spreadsheet = new Spreadsheet();

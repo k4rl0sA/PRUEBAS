@@ -64,7 +64,7 @@ function cmp_uaic_id(){
     $c[]=new cmp('iduaic','h',11,$id,$w.' '.$o,'iduaic',null,null,false,false,'','col-2');
     $c[]=new cmp('fecha_seg','d',10,$d['fecha_seg'],$w.' '.$o,'Fecha de Seguimiento','fecha_seg',null,null,true,$up,'','col-25',"validDate(this,$days,0);");
     $c[]=new cmp('parentesco','s',3,$d['parentesco'],$w.' '.$o,'Parentesco','paren',null,null,true,$up,'','col-25',"enabEmbPare('parentesco');");
-    $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' prT '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,$up,'','col-5');
+    $c[]=new cmp('nombre_cui','t',50,$d['nombre_cui'],$w.' prT '.$o,'Nombre Completo del Cuidador','nombre_cui',null,null,true,true,'','col-5');
     $c[]=new cmp('tipo_doc','s',3,$d['tipo_doc'],$w.' prT '.$o,'Tipo De Documento ','tipo_doc',null,null,true,$up,'','col-3');
     $c[]=new cmp('num_doc','n',18,$d['num_doc'],$w.' prT '.$o,'Número De Documento','num_doc',null,null,true,$up,'','col-3');
     $c[]=new cmp('telefono','n',21,$d['telefono'],$w.' prT '.$o,'Teléfono De Contacto','telefono',null,null,true,$up,'','col-4');

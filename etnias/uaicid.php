@@ -82,16 +82,16 @@ function cmp_uaic_id(){
     $c[]=new cmp('aten_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,true,$up,'','col-25');
     
     
-    if($p['ano']<5){
+    if($p['mes']<60){
       $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$up,'','col-25');
     }
     var_dump($p['mes'],'mes-'.$p['ano']);
-    if($p['mes']>= 6 && $p['ano']< 5){
+    if($p['mes']>= 6 && $p['mes']< 60){
       $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$up,'','col-25');
     }
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,$up,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,$up,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
-    if($p['ano']<5){
+    if($p['mes']<60){
       $c[]=new cmp('zscore','t',50,$d['zcore'],$w.' '.$o,'Zcore','zscore',null,null,false,false,'','col-35');
     }
     $c[]=new cmp('clasi_nut','s',3,$d['clasi_nut'],$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,$up,'','col-35');
@@ -130,9 +130,7 @@ function get_persona(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
-  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
-		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
+		$sql="SELECT TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() )  AS mes
 		from person P WHERE P.idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);

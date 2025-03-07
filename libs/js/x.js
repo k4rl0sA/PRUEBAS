@@ -1190,6 +1190,11 @@ function enabEspe2(){
 		NoObligat(ele,true);
 	}	
 }
+function noObliFecEtni(){
+		const ele=document.getElementById('fecha_obs');
+		noRequired(ele,true);
+		NoObligat(ele,true);
+}
 function NoObligat(a,flag){
 	a.classList.toggle('valido', !flag);
     a.classList.toggle('captura', flag);

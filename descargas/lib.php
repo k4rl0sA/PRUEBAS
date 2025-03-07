@@ -209,7 +209,7 @@ foreach ($scripts as $nombreHoja => $query) {
 }
 
 // Guardar el archivo Excel
-$filename = 'datos_unificados.xlsx';
+$filename = sys_get_temp_dir() . '/datos_unificados.xlsx'; // Guardar en la carpeta temporal del servidor
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
 
@@ -218,4 +218,18 @@ echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) 
 ob_flush();
 flush();
 
-session_write_close(); // Liberar la sesión
+// Descargar el archivo y luego eliminarlo
+if (file_exists($filename)) {
+    // Enviar el archivo al cliente
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+    header('Content-Length: ' . filesize($filename));
+    readfile($filename);
+
+    // Eliminar el archivo después de la descarga
+    unlink($filename);
+} else {
+    echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
+}
+
+session_write_close();

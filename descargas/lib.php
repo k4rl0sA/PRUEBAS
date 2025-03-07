@@ -209,7 +209,7 @@ foreach ($scripts as $nombreHoja => $query) {
 }
 
 // Guardar el archivo Excel
-$filename = sys_get_temp_dir() . '/datos_unificados.xlsx'; // Guardar en la carpeta temporal del servidor
+$filename = '/datos_unificados.xlsx'; // Guardar en la carpeta temporal del servidor
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
 

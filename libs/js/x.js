@@ -1189,7 +1189,7 @@ function enabEspe2(){
 	noRequired('espe2',true);
 	NoObligat('espe2',true);
 }
-function NoObligat(a){
+function NoObligat(a,flag){
 	const ele=getElementById(a);
 	ele.classList.toggle('valido', !flag);
     ele.classList.toggle('captura', flag);

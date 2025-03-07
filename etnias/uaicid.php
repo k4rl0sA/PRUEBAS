@@ -81,12 +81,12 @@ function cmp_uaic_id(){
     $c[]=new cmp('aten_medi','s',3,$d['aten_medi'],$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,true,$up,'','col-25');
     $c[]=new cmp('aten_part','s',3,$d['aten_part'],$w.' '.$o,'Recibio Atención por Partera','rta',null,null,true,$up,'','col-25');
     
-    
+
     if($p['mes']<60){
-      $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$up,'','col-25');
+      $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$up,'','col-25');  
     }
     if($p['mes']>= 6 && $p['mes']< 60){
-      $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$up,'','col-25');
+      $c[]=new cmp('peri_bra','sd',4,$d['peri_bra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$up,'','col-25');
     }
     $c[]=new cmp('peso','sd',5,$d['peso'],$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,$up,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
     $c[]=new cmp('talla','sd',4,$d['talla'],$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,$up,'','col-2',"Zsco('zscore','../etnias/uaicid.php');");
@@ -129,7 +129,7 @@ function get_persona(){
 		return "";
 	}else{
 		 $id=divide($_POST['id']);
-		$sql="SELECT TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() )  AS mes
+		$sql="SELECT sexo,fecha_nacimiento,TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() )  AS mes
 		from person P WHERE P.idpeople='".$id[0]."'";
 		// echo $sql;
 		$info=datos_mysql($sql);
@@ -217,7 +217,7 @@ function gra_uaic_id(){
 ['type' => 's', 'value' => $_POST['aten_medi']??null],
 ['type' => 's', 'value' => $_POST['aten_part']??null],
 ['type' => 's', 'value' => $_POST['peri_cef']??null],
-['type' => 's', 'value' => $_POST['pbra']??null],
+['type' => 's', 'value' => $_POST['peri_bra']??null],
 ['type' => 's', 'value' => $_POST['peso']??null],
 ['type' => 's', 'value' => $_POST['talla']??null],
 ['type' => 's', 'value' => $_POST['zscore']??null],

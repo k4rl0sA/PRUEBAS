@@ -85,7 +85,6 @@ function cmp_uaic_id(){
     if($p['mes']<60){
       $c[]=new cmp('peri_cef','sd',4,$d['peri_cef'],$w.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$up,'','col-25');
     }
-    var_dump($p['mes'],'mes-'.$p['ano']);
     if($p['mes']>= 6 && $p['mes']< 60){
       $c[]=new cmp('peri_bra','sd',4,$d['pbra'],$w.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$up,'','col-25');
     }

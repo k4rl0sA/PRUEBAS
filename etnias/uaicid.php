@@ -254,8 +254,8 @@ function gra_uaic_id(){
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[0]]//IDACORDE AL NUMERO DEL INDICE
       ];
-       $rta = show_sql($sql, $params);
-    // $rta = mysql_prepd($sql, $params);
+      //  $rta = show_sql($sql, $params);
+     $rta = mysql_prepd($sql, $params);
     }
 return $rta;
 }

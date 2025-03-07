@@ -1187,4 +1187,12 @@ function enabEspe2(){
 		{ id: 'interven', value: '2', compare: true }
 	];
 	noRequired('espe2',true);
+	NoObligat('espe2',true);
+}
+function NoObligat(a){
+	const ele=getElementById(a);
+	ele.classList.toggle('valido', !flag);
+    ele.classList.toggle('captura', flag);
+    ele.classList.toggle('bloqueo', !flag);
+    flag ? ele.setAttribute('readonly', false) : ele.removeAttribute('readonly');
 }

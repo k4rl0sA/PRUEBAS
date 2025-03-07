@@ -1182,3 +1182,9 @@ function enabEmbEdGes(){
 	];
 	EnabDepeDynamic(['EGe'], conditions);
 }
+function enabEspe2(){
+	const conditions = [
+		{ id: 'interven', value: '2', compare: true }
+	];
+	noRequired('espe2',true);
+}

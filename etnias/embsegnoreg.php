@@ -140,10 +140,10 @@ function cmp_segnoreg(){
   
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);
-  $men5 = ($p['ano']<5) ? true : false ;
+  $men5 = ($p['mes']<60) ? true : false ;
   $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$me5.' ','Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$men5,'','col-25');
 
-  $men = ($p['mes']>= 6 && $p['ano']< 5) ? true : false ;
+  $men = ($p['mes']>= 6 && $p['mes']< 60) ? true : false ;
   $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$me5.' ','Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$men,'','col-25');
   $c[]=new cmp('peso','sd',6,$d,$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
@@ -165,7 +165,7 @@ function get_persona(){
 	}else{
 		 $id=divide($_POST['id']);
 		$sql="SELECT FN_CATALOGODESC(21,sexo) sexo,fecha_nacimiento,TIMESTAMPDIFF(YEAR,fecha_nacimiento, CURDATE() ) AS ano,
-  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) % 12 AS mes,
+  		TIMESTAMPDIFF(MONTH,fecha_nacimiento ,CURDATE() ) AS mes,
 		DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento,INTERVAL TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) MONTH)) AS dia
 		from person P WHERE P.idpeople='".$id[0]."'";
 		// echo $sql;

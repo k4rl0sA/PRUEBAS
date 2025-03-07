@@ -1184,7 +1184,7 @@ function enabEmbEdGes(){
 }
 function enabEspe2(){
 	const inte=document.getElementById('interven').value;
-	if(inte==2){
+	if(inte=='2'){
 		noRequired('espe2',true);
 		NoObligat('espe2',true);
 	}	

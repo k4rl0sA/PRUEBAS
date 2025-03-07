@@ -68,7 +68,7 @@ function cmp_uaic_seg(){
 	$o='modini';
   $ob='Ob';
   $no='nO';
-  $bl='bL'; 
+  $bl='bL';
   $x=false;
   $d=get_uaic_seg();
   $d='';

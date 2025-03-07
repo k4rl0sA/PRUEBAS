@@ -138,7 +138,7 @@ $scripts = [
     LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
     LEFT JOIN usuarios U ON X.usu_creo = U.id_usuario
-    ) AS CombinedQuery WHERE fecha_seg BETWEEN '2025-02-01' AND CURDATE() AND subred = 3;"
+    ) AS CombinedQuery WHERE fecha_seg BETWEEN '2025-03-01' AND CURDATE() AND subred = 3;"
     // ,
 
     /* "Gestion Predios" => "SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,

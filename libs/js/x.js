@@ -1195,4 +1195,5 @@ function NoObligat(a,flag){
     a.classList.toggle('captura', flag);
     a.classList.toggle('bloqueo', !flag);
     flag ? a.removeAttribute('readonly'): a.setAttribute('readonly', true);
+	flag ? a.removeAttribute('disabled'): a.setAttribute('disabled', true);
 }

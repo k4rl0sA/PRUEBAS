@@ -1183,14 +1183,14 @@ function enabEmbEdGes(){
 	EnabDepeDynamic(['EGe'], conditions);
 }
 function enabEspe2(){
-	const conditions = [
-		{ id: 'interven', value: '2', compare: true }
-	];
-	noRequired('espe2',true);
-	NoObligat('espe2',true);
+	const inte=document.getElementById('interven').value;
+	if(inte==2){
+		noRequired('espe2',true);
+		NoObligat('espe2',true);
+	}	
 }
 function NoObligat(a,flag){
-	const ele=getElementById(a);
+	const ele=document.getElementById(a);
 	ele.classList.toggle('valido', !flag);
     ele.classList.toggle('captura', flag);
     ele.classList.toggle('bloqueo', !flag);

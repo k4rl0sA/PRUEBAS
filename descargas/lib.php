@@ -217,7 +217,7 @@ echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) 
 ob_flush();
 flush();
 
-// Enviar el archivo al cliente para descargar
+/* // Enviar el archivo al cliente para descargar
 if (file_exists($filename)) {
     // Configurar las cabeceras para la descarga
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -230,6 +230,6 @@ if (file_exists($filename)) {
     exit; // Terminar la ejecución del script
 } else {
     echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
-}
+} */
 
 session_write_close(); // Liberar la sesión

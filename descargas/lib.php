@@ -1,4 +1,5 @@
 <?php
+try{
 session_start();
 header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
@@ -14,7 +15,7 @@ header('Cache-Control: no-cache');
 header('Connection: keep-alive');
 $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 if ($mysqli->connect_error) {
-    die("Error de conexión: " . $mysqli->connect_error);
+    throw new Exception("Error de conexión: " . $mysqli->connect_error);
 }
 $scripts = [
     "VSP" => "SELECT * FROM ( SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A LEFT JOIN person P ON A.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  UNION  SELECT G.subred,G.localidad, F.idpre, F.id_fam,B.id_psicduel Cod_Registro, B.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, B.fecha_seg, B.numsegui,FN_CATALOGODESC(87,B.evento),FN_CATALOGODESC(73,B.estado_s),FN_CATALOGODESC(170,B.cierre_caso),B.fecha_cierre,FN_CATALOGODESC(198,B.motivo_cierre),FN_CATALOGODESC(170,B.activa_ruta) activa_ruta,FN_CATALOGODESC(79,B.ruta) Ruta,B.observaciones, B.equipo_bina, B.usu_creo, U.nombre, U.perfil FROM `vsp_apopsicduel` B  LEFT JOIN person P ON B.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON B.usu_creo = U.id_usuario  UNION 
@@ -53,6 +54,13 @@ $scripts = [
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo
     LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-05' AND curdate()"*/
 ];
+// Guardar el archivo Excel
+$filename = 'datos_unificados.xlsx';
+// 🔥 Eliminar archivo si existe para evitar conflictos
+if (file_exists($filename)) {
+    unlink($filename);
+}
+
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
@@ -92,12 +100,6 @@ foreach ($scripts as $nombreHoja => $query) {
         flush();
     }
 }
-// Guardar el archivo Excel
-$filename = 'datos_unificados.xlsx';
-// 🔥 Eliminar archivo si existe para evitar conflictos
-if (file_exists($filename)) {
-    unlink($filename);
-}
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
 // Notificar que el proceso ha terminado
@@ -119,7 +121,9 @@ if (file_exists($filename)) {
     unlink($filename);
     exit;
 } else {
-    echo "Error: Archivo no encontrado.";
+    throw new Exception("Error: El archivo no se generó correctamente.");
 }
-session_write_close();
-exit;
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}

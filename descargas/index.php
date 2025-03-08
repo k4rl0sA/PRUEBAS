@@ -54,7 +54,8 @@
                 }
             };
 
-            eventSource.onerror = function() {
+            eventSource.onerror = function(event) {
+                console.error("Error en SSE:", event);
                 eventSource.close(); // Cerrar la conexión en caso de error
                 alert('Ocurrió un error durante la generación del archivo.');
             };

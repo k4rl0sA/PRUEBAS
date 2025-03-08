@@ -1,22 +1,16 @@
 <?php
 session_start();
-
 ini_set('display_errors', '1');
 require 'vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 header('Connection: keep-alive');
-
-// Simular el proceso de generación del archivo
 $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
 }
-
 $scripts = [
     "VSP" => "SELECT * FROM ( 
     SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A 
@@ -163,7 +157,6 @@ $scripts = [
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo
     LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-05' AND curdate()"*/
 ];
-
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
@@ -196,7 +189,6 @@ foreach ($scripts as $nombreHoja => $query) {
             $rowNum++;
         }
 
-        // Actualizar el progreso
         $currentStep++;
         $progress = intval(($currentStep / $totalSteps) * 100);
 
@@ -206,30 +198,25 @@ foreach ($scripts as $nombreHoja => $query) {
         flush();
     }
 }
-
-// Guardar el archivo Excel
-$filename = 'datos_unificados.xlsx';
+// Guardar el archivo Excel en una ubicación temporal
+$filename = sys_get_temp_dir() . '/datos_unificados.xlsx'; // Guardar en la carpeta temporal del servidor
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
-
 // Notificar que el proceso ha terminado
 echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) . "\n\n";
 ob_flush();
 flush();
-
-/* // Enviar el archivo al cliente para descargar
+// Enviar el archivo al cliente para descargar
 if (file_exists($filename)) {
     // Configurar las cabeceras para la descarga
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment; filename="datos_unificados.xlsx"');
     header('Content-Length: ' . filesize($filename));
     readfile($filename);
-
     // Eliminar el archivo después de la descarga
     unlink($filename);
     exit; // Terminar la ejecución del script
 } else {
     echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
-} */
-
+}
 session_write_close(); // Liberar la sesión

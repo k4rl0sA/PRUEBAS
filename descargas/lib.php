@@ -1,5 +1,10 @@
 <?php
 session_start();
+header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 ini_set('display_errors', '1');
 require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -78,6 +83,10 @@ foreach ($scripts as $nombreHoja => $query) {
 }
 // Guardar el archivo Excel
 $filename = 'datos_unificados.xlsx';
+// 🔥 Eliminar archivo si existe para evitar conflictos
+if (file_exists($filename)) {
+    unlink($filename);
+}
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
 // Notificar que el proceso ha terminado

@@ -1,24 +1,23 @@
 <?php
-try{
-session_start();
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
-header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-ini_set('display_errors', '1');
-require 'vendor/autoload.php';
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-header('Content-Type: text/event-stream');
-header('Cache-Control: no-cache');
-header('Connection: keep-alive');
-$mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
-if ($mysqli->connect_error) {
-    throw new Exception("Error de conexión: " . $mysqli->connect_error);
-}
+try {
+    session_start();
+    ini_set('display_errors', '1');
+    error_reporting(E_ALL);
+    ini_set('log_errors', 1);
+    ini_set('error_log', 'errores.log'); // Guardar errores en este archivo
+
+    require 'vendor/autoload.php';
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+    header('Content-Type: text/event-stream');
+    header('Cache-Control: no-cache');
+    header('Connection: keep-alive');
+
+    $mysqli = new mysqli("srv1111.hstgr.io", "u478152275_08", "micontraseñasupersegura", "u478152275_08");
+    if ($mysqli->connect_error) {
+        throw new Exception("Error de conexión: " . $mysqli->connect_error);
+    }
 $scripts = [
     "VSP" => "SELECT * FROM ( SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A LEFT JOIN person P ON A.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario  UNION  SELECT G.subred,G.localidad, F.idpre, F.id_fam,B.id_psicduel Cod_Registro, B.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, B.fecha_seg, B.numsegui,FN_CATALOGODESC(87,B.evento),FN_CATALOGODESC(73,B.estado_s),FN_CATALOGODESC(170,B.cierre_caso),B.fecha_cierre,FN_CATALOGODESC(198,B.motivo_cierre),FN_CATALOGODESC(170,B.activa_ruta) activa_ruta,FN_CATALOGODESC(79,B.ruta) Ruta,B.observaciones, B.equipo_bina, B.usu_creo, U.nombre, U.perfil FROM `vsp_apopsicduel` B  LEFT JOIN person P ON B.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON B.usu_creo = U.id_usuario  UNION 
     SELECT G.subred,G.localidad, F.idpre, F.id_fam,C.id_bpnpret Cod_Registro, C.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, C.fecha_seg, C.numsegui,FN_CATALOGODESC(87,C.evento),FN_CATALOGODESC(73,C.estado_s),FN_CATALOGODESC(170,C.cierre_caso),C.fecha_cierre,FN_CATALOGODESC(198,C.motivo_cierre),FN_CATALOGODESC(170,C.activa_ruta) activa_ruta,FN_CATALOGODESC(79,C.ruta) Ruta,C.observaciones, C.equipo_bina, C.usu_creo, U.nombre, U.perfil FROM `vsp_bpnpret` C LEFT JOIN person P ON C.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario UNION  SELECT G.subred,G.localidad, F.idpre, F.id_fam,D.id_bpnterm Cod_Registro, D.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, D.fecha_seg, D.numsegui,FN_CATALOGODESC(87,D.evento),FN_CATALOGODESC(73,D.estado_s),FN_CATALOGODESC(170,D.cierre_caso),D.fecha_cierre,FN_CATALOGODESC(198,D.motivo_cierre),FN_CATALOGODESC(170,D.activa_ruta) activa_ruta,FN_CATALOGODESC(79,D.ruta) Ruta,D.observaciones, D.equipo_bina, D.usu_creo, U.nombre, U.perfil FROM `vsp_bpnterm` D  LEFT JOIN person P ON D.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON D.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,E.id_cancinfa Cod_Registro, E.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, E.fecha_seg, E.numsegui,FN_CATALOGODESC(87,E.evento),FN_CATALOGODESC(73,E.estado_s),FN_CATALOGODESC(170,E.cierre_caso),E.fecha_cierre,FN_CATALOGODESC(198,E.motivo_cierre),FN_CATALOGODESC(170,E.activa_ruta) activa_ruta,FN_CATALOGODESC(79,E.ruta) Ruta,E.observaciones, E.equipo_bina, E.usu_creo, U.nombre, U.perfil FROM `vsp_cancinfa` E LEFT JOIN person P ON E.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON E.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,H.id_condsuic Cod_Registro, H.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, H.fecha_seg, H.numsegui,FN_CATALOGODESC(87,H.evento),FN_CATALOGODESC(73,H.estado_s),FN_CATALOGODESC(170,H.cierre_caso),H.fecha_cierre,FN_CATALOGODESC(198,H.motivo_cierre),FN_CATALOGODESC(170,H.activa_ruta) activa_ruta,FN_CATALOGODESC(79,H.ruta) Ruta,H.observaciones, H.equipo_bina, H.usu_creo, U.nombre, U.perfil FROM `vsp_condsuic` H  LEFT JOIN person P ON H.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON H.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,I.id_cronicos Cod_Registro, I.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, I.fecha_seg, I.numsegui,FN_CATALOGODESC(87,I.evento),FN_CATALOGODESC(73,I.estado_s),FN_CATALOGODESC(170,I.cierre_caso),I.fecha_cierre,FN_CATALOGODESC(198,I.motivo_cierre),FN_CATALOGODESC(170,I.activa_ruta) activa_ruta,FN_CATALOGODESC(79,I.ruta) Ruta,I.observaciones, I.equipo_bina, I.usu_creo, U.nombre, U.perfil FROM `vsp_cronicos` I LEFT JOIN person P ON I.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON I.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,J.id_dntsevymod Cod_Registro, J.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, J.fecha_seg, J.numsegui,FN_CATALOGODESC(87,J.evento),FN_CATALOGODESC(73,J.estado_s),FN_CATALOGODESC(170,J.cierre_caso),J.fecha_cierre,FN_CATALOGODESC(198,J.motivo_cierre),FN_CATALOGODESC(170,J.activa_ruta) activa_ruta,FN_CATALOGODESC(79,J.ruta) Ruta,J.observaciones, J.equipo_bina, J.usu_creo, U.nombre, U.perfil FROM `vsp_dntsevymod` J LEFT JOIN person P ON J.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON J.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,K.id_eraira Cod_Registro, K.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, K.fecha_seg, K.numsegui,FN_CATALOGODESC(87,K.evento),FN_CATALOGODESC(73,K.estado_s),FN_CATALOGODESC(170,K.cierre_caso),K.fecha_cierre,FN_CATALOGODESC(198,K.motivo_cierre),FN_CATALOGODESC(170,K.activa_ruta) activa_ruta,FN_CATALOGODESC(79,K.ruta) Ruta,K.observaciones, K.equipo_bina, K.usu_creo, U.nombre, U.perfil FROM `vsp_eraira` K  LEFT JOIN person P ON K.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON K.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,L.id_gestante Cod_Registro, L.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, L.fecha_seg, L.numsegui,FN_CATALOGODESC(87,L.evento),FN_CATALOGODESC(73,L.estado_s),FN_CATALOGODESC(170,L.cierre_caso),L.fecha_cierre,FN_CATALOGODESC(198,L.motivo_cierre),FN_CATALOGODESC(170,L.activa_ruta) activa_ruta,FN_CATALOGODESC(79,L.ruta) Ruta,L.observaciones, L.equipo_bina, L.usu_creo, U.nombre, U.perfil FROM `vsp_gestantes` L LEFT JOIN person P ON L.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON L.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,M.id_hbgestacio Cod_Registro, M.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, M.fecha_seg, M.numsegui,FN_CATALOGODESC(87,M.evento),FN_CATALOGODESC(73,M.estado_s),FN_CATALOGODESC(170,M.cierre_caso),M.fecha_cierre,FN_CATALOGODESC(198,M.motivo_cierre),FN_CATALOGODESC(170,M.activa_ruta) activa_ruta,FN_CATALOGODESC(79,M.ruta) Ruta,M.observaciones, M.equipo_bina, M.usu_creo, U.nombre, U.perfil FROM `vsp_hbgest` M LEFT JOIN person P ON M.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON M.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,N.id_mnehosp Cod_Registro, N.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, N.fecha_seg, N.numsegui,FN_CATALOGODESC(87,N.evento),FN_CATALOGODESC(73,N.estado_s),FN_CATALOGODESC(170,N.cierre_caso),N.fecha_cierre,FN_CATALOGODESC(198,N.motivo_cierre),FN_CATALOGODESC(170,N.activa_ruta) activa_ruta,FN_CATALOGODESC(79,N.ruta) Ruta,N.observaciones, N.equipo_bina, N.usu_creo, U.nombre, U.perfil FROM `vsp_mnehosp` N LEFT JOIN person P ON N.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON N.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,O.id_otroprio Cod_Registro, O.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, O.fecha_seg, O.numsegui,FN_CATALOGODESC(87,O.evento),FN_CATALOGODESC(73,O.estado_s),FN_CATALOGODESC(170,O.cierre_caso),O.fecha_cierre,FN_CATALOGODESC(198,O.motivo_cierre),FN_CATALOGODESC(170,O.activa_ruta) activa_ruta,FN_CATALOGODESC(79,O.ruta) Ruta,O.observaciones, O.equipo_bina, O.usu_creo, U.nombre, U.perfil FROM `vsp_otroprio` O  LEFT JOIN person P ON O.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON O.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,Q.id_saludoral Cod_Registro, Q.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, Q.fecha_seg, Q.numsegui,FN_CATALOGODESC(87,Q.evento),FN_CATALOGODESC(73,Q.estado_s),FN_CATALOGODESC(170,Q.cierre_caso),Q.fecha_cierre,FN_CATALOGODESC(198,Q.motivo_cierre),FN_CATALOGODESC(170,Q.activa_ruta) activa_ruta,FN_CATALOGODESC(79,Q.ruta) Ruta,Q.observaciones, Q.equipo_bina, Q.usu_creo, U.nombre, U.perfil FROM `vsp_saludoral` Q LEFT JOIN person P ON Q.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON Q.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,R.id_sificong Cod_Registro, R.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, R.fecha_seg, R.numsegui,FN_CATALOGODESC(87,R.evento),FN_CATALOGODESC(73,R.estado_s),FN_CATALOGODESC(170,R.cierre_caso),R.fecha_cierre,FN_CATALOGODESC(198,R.motivo_cierre),FN_CATALOGODESC(170,R.activa_ruta) activa_ruta,FN_CATALOGODESC(79,R.ruta) Ruta,R.observaciones, R.equipo_bina, R.usu_creo, U.nombre, U.perfil FROM `vsp_sificong` R LEFT JOIN person P ON R.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON R.usu_creo = U.id_usuario  UNION  SELECT G.subred,G.localidad, F.idpre, F.id_fam,S.id_sifigest Cod_Registro, S.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, S.fecha_seg, S.numsegui,FN_CATALOGODESC(87,S.evento),FN_CATALOGODESC(731,S.estado_s),FN_CATALOGODESC(170,S.cierre_caso),S.fecha_cierre,FN_CATALOGODESC(198,S.motivo_cierre),FN_CATALOGODESC(170,S.activa_ruta) activa_ruta,FN_CATALOGODESC(79,S.ruta) Ruta,S.observaciones, S.equipo_bina, S.usu_creo, U.nombre, U.perfil FROM `vsp_sifigest` S  LEFT JOIN person P ON S.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON S.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,T.id_vihgestacio Cod_Registro, T.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, T.fecha_seg, T.numsegui,FN_CATALOGODESC(87,T.evento),FN_CATALOGODESC(73,T.estado_s),FN_CATALOGODESC(170,T.cierre_caso),T.fecha_cierre,FN_CATALOGODESC(198,T.motivo_cierre),FN_CATALOGODESC(170,T.activa_ruta) activa_ruta,FN_CATALOGODESC(79,T.ruta) Ruta,T.observaciones, T.equipo_bina, T.usu_creo, U.nombre, U.perfil FROM `vsp_vihgest` T LEFT JOIN person P ON T.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON T.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,V.id_gestante Cod_Registro, V.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, V.fecha_seg, V.numsegui,FN_CATALOGODESC(87,V.evento),FN_CATALOGODESC(73,V.estado_s),FN_CATALOGODESC(170,V.cierre_caso),V.fecha_cierre,FN_CATALOGODESC(198,V.motivo_cierre),FN_CATALOGODESC(170,V.activa_ruta) activa_ruta,FN_CATALOGODESC(79,V.ruta) Ruta,V.observaciones, V.equipo_bina, V.usu_creo, U.nombre, U.perfil FROM `vsp_violges` V LEFT JOIN person P ON V.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo  LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario  UNION SELECT G.subred,G.localidad, F.idpre, F.id_fam,W.id_violreite Cod_Registro,W.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, W.fecha_seg, W.numsegui,FN_CATALOGODESC(87,W.evento),FN_CATALOGODESC(73,W.estado_s),FN_CATALOGODESC(170,W.cierre_caso),W.fecha_cierre,FN_CATALOGODESC(198,W.motivo_cierre),FN_CATALOGODESC(170,W.activa_ruta) activa_ruta,FN_CATALOGODESC(79,W.ruta) Ruta,W.observaciones, W.equipo_bina, W.usu_creo, U.nombre, U.perfil FROM `vsp_violreite` W LEFT JOIN person P ON W.idpeople = P.idpeople  LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON W.usu_creo = U.id_usuario UNION
@@ -56,9 +55,9 @@ $scripts = [
     LEFT JOIN hog_geo G ON F.idpre = G.idgeo
     LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-05' AND curdate()"*/
 ];
-// Guardar el archivo Excel
 $filename = 'datos_unificados.xlsx';
-// 🔥 Eliminar archivo si existe para evitar conflictos
+    
+// Si el archivo ya existe, eliminarlo
 if (file_exists($filename)) {
     unlink($filename);
 }
@@ -66,66 +65,61 @@ if (file_exists($filename)) {
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
+
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
-    if ($result) {
-        if (!$result) {
-            throw new Exception("Error en la consulta SQL: " . $mysqli->error);
-        }
-        $sheet = $spreadsheet->createSheet($currentStep);
-        $sheet->setTitle($nombreHoja);
-        // Agregar encabezados
-        $fields = $result->fetch_fields();
+    if (!$result) {
+        throw new Exception("Error en la consulta SQL: " . $mysqli->error);
+    }
+
+    $sheet = $spreadsheet->createSheet($currentStep);
+    $sheet->setTitle($nombreHoja);
+
+    // Agregar encabezados
+    $fields = $result->fetch_fields();
+    $col = 1;
+    foreach ($fields as $field) {
+        $columnLetter = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col);
+        $sheet->setCellValue($columnLetter . '1', $field->name);
+        $col++;
+    }
+
+    // Agregar datos
+    $rowNum = 2;
+    while ($row = $result->fetch_assoc()) {
         $col = 1;
-        foreach ($fields as $field) {
+        foreach ($row as $value) {
             $columnLetter = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col);
-            $sheet->setCellValue($columnLetter . '1', $field->name);
+            $sheet->setCellValue($columnLetter . $rowNum, $value);
             $col++;
         }
-        // Agregar datos
-        $rowNum = 2;
-        while ($row = $result->fetch_assoc()) {
-            $col = 1;
-            foreach ($row as $value) {
-                $columnLetter = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col);
-                $sheet->setCellValue($columnLetter . $rowNum, $value);
-                $col++;
-            }
-            $rowNum++;
-        }
-        // Actualizar el progreso
-        $currentStep++;
-        $progress = intval(($currentStep / $totalSteps) * 100);
-        // Enviar el progreso al cliente
-        echo "data: " . json_encode(['progress' => $progress]) . "\n\n";
-        ob_flush();
-        flush();
+        $rowNum++;
     }
+
+    // Actualizar el progreso
+    $currentStep++;
+    $progress = intval(($currentStep / $totalSteps) * 100);
+
+    // Enviar el progreso al cliente
+    echo "data: " . json_encode(['progress' => $progress]) . "\n\n";
+    ob_flush();
+    flush();
 }
+
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
-// Notificar que el proceso ha terminado
-echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) . "\n\n";
-ob_flush();
-if (file_exists($filename)) {
-    // Configurar encabezados para la descarga
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($filename));
-    ob_clean();
-    flush();
-    readfile($filename);
-    // Eliminar el archivo después de la descarga
-    unlink($filename);
-    exit;
-} else {
+
+if (!file_exists($filename)) {
     throw new Exception("Error: El archivo no se generó correctamente.");
 }
+
+// Enviar evento SSE de finalización
+echo "data: " . json_encode(['status' => 'completed', 'filename' => 'descargar.php?file=' . urlencode($filename)]) . "\n\n";
+ob_flush();
+flush();
 } catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
-    exit;
+echo "data: " . json_encode(['error' => $e->getMessage()]) . "\n\n";
+ob_flush();
+flush();
 }
+?>

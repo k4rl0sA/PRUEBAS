@@ -4,6 +4,24 @@ ini_set('display_errors', '1');
 require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+// Verificar si se está solicitando el progreso o la descarga
+if (isset($_GET['action']) && $_GET['action'] === 'download') {
+    // Descargar el archivo
+    $filename = sys_get_temp_dir() . '/datos_unificados.xlsx';
+    if (file_exists($filename)) {
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="datos_unificados.xlsx"');
+        header('Content-Length: ' . filesize($filename));
+        readfile($filename);
+        unlink($filename); // Eliminar el archivo después de la descarga
+        exit;
+    } else {
+        header('HTTP/1.1 404 Not Found');
+        echo "El archivo no existe.";
+        exit;
+    }
+}
+// Si no es una solicitud de descarga, manejar la generación del archivo y el progreso
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 header('Connection: keep-alive');
@@ -160,11 +178,14 @@ $scripts = [
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
+
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
+
     if ($result) {
         $sheet = $spreadsheet->createSheet($currentStep);
         $sheet->setTitle($nombreHoja);
+
         // Agregar encabezados
         $fields = $result->fetch_fields();
         $col = 1;
@@ -173,6 +194,7 @@ foreach ($scripts as $nombreHoja => $query) {
             $sheet->setCellValue($columnLetter . '1', $field->name);
             $col++;
         }
+
         // Agregar datos
         $rowNum = 2;
         while ($row = $result->fetch_assoc()) {
@@ -184,33 +206,25 @@ foreach ($scripts as $nombreHoja => $query) {
             }
             $rowNum++;
         }
+
         $currentStep++;
         $progress = intval(($currentStep / $totalSteps) * 100);
+
         // Enviar el progreso al cliente
         echo "data: " . json_encode(['progress' => $progress]) . "\n\n";
         ob_flush();
         flush();
     }
 }
+
 // Guardar el archivo Excel en una ubicación temporal
 $filename = sys_get_temp_dir() . '/datos_unificados.xlsx'; // Guardar en la carpeta temporal del servidor
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
-// Notificar que el proceso ha terminado
+
+// Notificar que el proceso ha terminado y proporcionar el enlace de descarga
 echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) . "\n\n";
 ob_flush();
 flush();
-// Enviar el archivo al cliente para descargar
-if (file_exists($filename)) {
-    // Configurar las cabeceras para la descarga
-    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="datos_unificados.xlsx"');
-    header('Content-Length: ' . filesize($filename));
-    readfile($filename);
-    // Eliminar el archivo después de la descarga
-    unlink($filename);
-    exit; // Terminar la ejecución del script
-} else {
-    echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
-}
+
 session_write_close(); // Liberar la sesión

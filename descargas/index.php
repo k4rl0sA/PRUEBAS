@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar Excel con Barra de Progreso</title>
+    <title>Generar Excel</title>
     <style>
         #progress-bar {
             width: 100%;
@@ -37,7 +37,7 @@
             document.getElementById('progress').innerText = '0%';
 
             // Iniciar la conexión SSE
-            const eventSource = new EventSource('lib.php');
+            const eventSource = new EventSource('generate_excel.php');
 
             eventSource.onmessage = function(event) {
                 const data = JSON.parse(event.data);
@@ -50,7 +50,9 @@
 
                 if (data.status === 'completed') {
                     eventSource.close(); // Cerrar la conexión SSE
-                    window.location.href = data.filename; // Descargar el archivo
+
+                    // Iniciar la descarga del archivo
+                    window.location.href = 'generate_excel.php?action=download';
                 }
             };
 

@@ -59,6 +59,9 @@ $currentStep = 0;
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
     if ($result) {
+        if (!$result) {
+            throw new Exception("Error en la consulta SQL: " . $mysqli->error);
+        }
         $sheet = $spreadsheet->createSheet($currentStep);
         $sheet->setTitle($nombreHoja);
         // Agregar encabezados

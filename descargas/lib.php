@@ -160,14 +160,11 @@ $scripts = [
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
-
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
-
     if ($result) {
         $sheet = $spreadsheet->createSheet($currentStep);
         $sheet->setTitle($nombreHoja);
-
         // Agregar encabezados
         $fields = $result->fetch_fields();
         $col = 1;
@@ -176,7 +173,6 @@ foreach ($scripts as $nombreHoja => $query) {
             $sheet->setCellValue($columnLetter . '1', $field->name);
             $col++;
         }
-
         // Agregar datos
         $rowNum = 2;
         while ($row = $result->fetch_assoc()) {
@@ -188,10 +184,8 @@ foreach ($scripts as $nombreHoja => $query) {
             }
             $rowNum++;
         }
-
         $currentStep++;
         $progress = intval(($currentStep / $totalSteps) * 100);
-
         // Enviar el progreso al cliente
         echo "data: " . json_encode(['progress' => $progress]) . "\n\n";
         ob_flush();

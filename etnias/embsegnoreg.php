@@ -132,7 +132,6 @@ function cmp_segnoreg(){
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
   $c[]=new cmp('aten_med','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,true,true,'','col-25');
   $c[]=new cmp('aten_par','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,true,true,'','col-25');
-  var_dump($p['mes']);
   $men = ($p['mes']<216) ? false : true ;
   $c[]=new cmp('sistolica','sd',3,$d,$w.' '.$p,'Valor Sistolica (50 mmhg y 200 mmhg)','sistolica','rgxsisto',null,true,$men,'','col-25');
   $c[]=new cmp('diastolica','sd',3,$d,$w.' '.$p,'Valor Diastolica (30 mmhg y 150 mmhg)','diastolica','rgxdiast',null,true,$men,'','col-25');

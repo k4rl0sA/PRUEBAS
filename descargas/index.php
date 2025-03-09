@@ -231,19 +231,7 @@ $scripts = [
     LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
     WHERE (G.subred) in (3) AND date(A.fecha) BETWEEN '2025-02-01' AND CURDATE();",
 
-"APGAR" => "SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_apgar AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
-P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
-A.fecha_toma AS Fecha_Toma,
-FN_CATALOGODESC(37,A.ayuda_fam) AS Apgar_7_A_17_Años_Preg_1, FN_CATALOGODESC(37,A.fam_comprobl) AS Apgar_7_A_17_Años_Preg_2, FN_CATALOGODESC(37,A.fam_percosnue) AS Apgar_7_A_17_Años_Preg_3, FN_CATALOGODESC(37,A.fam_feltrienf) AS Apgar_7_A_17_Años_Preg_4, FN_CATALOGODESC(37,A.fam_comptiemjun) AS Apgar_7_A_17_Años_Preg_5,
-FN_CATALOGODESC(137,A.sati_famayu) AS Apgar_Mayor_de_18_Años_Preg_1, FN_CATALOGODESC(137,A.sati_famcompro) AS Apgar_Mayor_de_18_Años_Preg_2, FN_CATALOGODESC(137,A.sati_famapoemp) AS Apgar_Mayor_de_18_Años_Preg_3, FN_CATALOGODESC(137,A.sati_famemosion) AS Apgar_Mayor_de_18_Años_Preg_4, FN_CATALOGODESC(137,A.sati_famcompar) AS Apgar_Mayor_de_18_Años_Preg_5, 
-A.puntaje, A.descripcion,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
-FROM `hog_tam_apgar` A
-LEFT JOIN person P ON A.idpeople=P.idpeople
-LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
-LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+"APGAR" => "SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_apgar AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,A.fecha_toma AS Fecha_Toma,FN_CATALOGODESC(37,A.ayuda_fam) AS Apgar_7_A_17_Años_Preg_1, FN_CATALOGODESC(37,A.fam_comprobl) AS Apgar_7_A_17_Años_Preg_2, FN_CATALOGODESC(37,A.fam_percosnue) AS Apgar_7_A_17_Años_Preg_3, FN_CATALOGODESC(37,A.fam_feltrienf) AS Apgar_7_A_17_Años_Preg_4, FN_CATALOGODESC(37,A.fam_comptiemjun) AS Apgar_7_A_17_Años_Preg_5,FN_CATALOGODESC(137,A.sati_famayu) AS Apgar_Mayor_de_18_Años_Preg_1, FN_CATALOGODESC(137,A.sati_famcompro) AS Apgar_Mayor_de_18_Años_Preg_2, FN_CATALOGODESC(137,A.sati_famapoemp) AS Apgar_Mayor_de_18_Años_Preg_3, FN_CATALOGODESC(137,A.sati_famemosion) AS Apgar_Mayor_de_18_Años_Preg_4, FN_CATALOGODESC(137,A.sati_famcompar) AS Apgar_Mayor_de_18_Años_Preg_5,A.puntaje, A.descripcion,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion FROM `hog_tam_apgar` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
 WHERE AND G.subred in (3) AND date(A.fecha_toma) BETWEEN '2025-02-01' AND CURDATE();",
 
     "VSP" => "SELECT * FROM (SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A LEFT JOIN  person P ON A.idpeople = P.idpeople LEFT JOIN  hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN  hog_geo G ON F.idpre = G.idgeo LEFT JOIN  usuarios U ON A.usu_creo = U.id_usuario UNION 

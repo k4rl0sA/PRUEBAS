@@ -1,17 +1,16 @@
 <?php
 session_start();
-header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+
 ini_set('display_errors', '1');
 require 'vendor/autoload.php';
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 header('Connection: keep-alive');
+
 $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 if ($mysqli->connect_error) {
     die("Error de conexión: " . $mysqli->connect_error);
@@ -48,11 +47,14 @@ $scripts = [
 $spreadsheet = new Spreadsheet();
 $totalSteps = count($scripts);
 $currentStep = 0;
+
 foreach ($scripts as $nombreHoja => $query) {
     $result = $mysqli->query($query);
+
     if ($result) {
         $sheet = $spreadsheet->createSheet($currentStep);
         $sheet->setTitle($nombreHoja);
+
         // Agregar encabezados
         $fields = $result->fetch_fields();
         $col = 1;
@@ -61,6 +63,7 @@ foreach ($scripts as $nombreHoja => $query) {
             $sheet->setCellValue($columnLetter . '1', $field->name);
             $col++;
         }
+
         // Agregar datos
         $rowNum = 2;
         while ($row = $result->fetch_assoc()) {
@@ -72,43 +75,46 @@ foreach ($scripts as $nombreHoja => $query) {
             }
             $rowNum++;
         }
+
         // Actualizar el progreso
         $currentStep++;
         $progress = intval(($currentStep / $totalSteps) * 100);
+
         // Enviar el progreso al cliente
         echo "data: " . json_encode(['progress' => $progress]) . "\n\n";
         ob_flush();
         flush();
     }
 }
+
 // Guardar el archivo Excel
 $filename = 'datos_unificados.xlsx';
-// 🔥 Eliminar archivo si existe para evitar conflictos
-if (file_exists($filename)) {
-    unlink($filename);
-}
 $writer = new Xlsx($spreadsheet);
 $writer->save($filename);
+
 // Notificar que el proceso ha terminado
 echo "data: " . json_encode(['status' => 'completed', 'filename' => $filename]) . "\n\n";
 ob_flush();
+flush();
+
+/* // Enviar el archivo al cliente para descargar
 if (file_exists($filename)) {
-    // Configurar encabezados para la descarga
-    header('Content-Description: File Transfer');
+    // Configurar las cabeceras para la descarga
+
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
+    header('Content-Disposition: attachment; filename="datos_unificados.xlsx"');
+
+
+
     header('Content-Length: ' . filesize($filename));
-    ob_clean();
-    flush();
+
+
     readfile($filename);
+
     // Eliminar el archivo después de la descarga
     unlink($filename);
-    exit;
+    exit; // Terminar la ejecución del script
 } else {
-    echo "Error: Archivo no encontrado.";
-}
-session_write_close();
-exit;
+    echo "data: " . json_encode(['status' => 'error', 'message' => 'El archivo no existe']) . "\n\n";
+} */
+session_write_close(); // Liberar la sesión

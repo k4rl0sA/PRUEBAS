@@ -27,39 +27,194 @@ $scripts = [
     WHERE (G.subred) in (3) AND date(V.fecha) BETWEEN '2025-03-01' AND curdate()",
 
     "FECHAS"=>"SELECT * FROM (
-        SELECT G.subred, F.idpre,F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_factura Cod_Registro,'ADMISION', A.fecha_consulta as fecha_seg,NULL as fecha_cierre FROM adm_facturacion  A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.idamb Cod_Registro,'AMBIENTAL', A.fecha as fecha_seg,NULL as fecha_cierre FROM hog_amb  A LEFT JOIN hog_fam F ON A.idvivamb = F.id_fam  LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION   
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_apgar Cod_Registro,'APGAR', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_apgar  A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_findrisc Cod_Registro,'FINDRISC', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_findrisc  A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.idoms Cod_Registro,'OMS', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_oms  A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_epoc Cod_Registro,'EPOC', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_epoc ALEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_signos Cod_Registro,'SIGNOS', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_signos  A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_create = U.id_usuario UNION   
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_aten Cod_Registro,'ATENCION', A.fecha_atencion as fecha_seg,NULL as fecha_cierre FROM eac_atencion  A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.id Cod_Registro,'PLAN DE CUIDADO FAMILIAR', A.fecha as fecha_seg,NULL as fecha_cierre FROM hog_plancuid  A  LEFT JOIN hog_fam F ON A.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.id_viv Cod_Registro,'CARACTERIZACION', A.fecha as fecha_seg,A.fechanot as fecha_cierre FROM hog_carac  A LEFT JOIN hog_fam F ON A.idfam = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_create = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_alert Cod_Registro,'ALERTAS', A.fecha as fecha_seg,null as fecha_cierre FROM hog_alert A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_acompsic Cod_Registro,'ACOMPAÑAMIENTO PSICOSOCIAL', A.fecha_seg,A.fecha_cierre FROM `vsp_acompsic` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_psicduel Cod_Registro,'APOYO PSICOLOGICO EN DUELO', A.fecha_seg, A.fecha_cierre FROM `vsp_apopsicduel` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_bpnpret Cod_Registro,'BPN PRETÉRMINO', A.fecha_seg, A.fecha_cierre FROM `vsp_bpnpret` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_bpnterm Cod_Registro,'BPN A TÉRMINO', A.fecha_seg, A.fecha_cierre FROM `vsp_bpnterm` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_cancinfa Cod_Registro,'CANCER INFANTIL', A.fecha_seg, A.fecha_cierre FROM `vsp_cancinfa` A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_condsuic Cod_Registro,'CONDUCTA SUICIDA', A.fecha_seg, A.fecha_cierre FROM `vsp_condsuic` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_cronicos Cod_Registro,'CRONICOS', A.fecha_seg, A.fecha_cierre FROM `vsp_cronicos` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_dntsevymod Cod_Registro,'DNT AGUDA, MODERADA O SEVERA - MENORES CON EXCESO DE PESO - FAMILIAS CON MENORES DE 5 AÑOS', A.fecha_seg, A.fecha_cierre FROM `vsp_dntsevymod` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_eraira Cod_Registro,'ERA IRA', A.fecha_seg, A.fecha_cierre FROM `vsp_eraira` A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_gestante Cod_Registro,'FAMILIAS CON GESTANTES - BAJO PESO GESTACIONAL - OBESIDAD GESTACIONAL - MATERNAS ADOLESCENTES', A.fecha_seg, A.fecha_cierre FROM `vsp_gestantes` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_hbgestacio Cod_Registro,'HB GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_hbgest` A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_mnehosp Cod_Registro,'MNE HIPOTIRODISMO', A.fecha_seg, A.fecha_cierre FROM `vsp_mnehosp` ALEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_mme Cod_Registro,'MORBILIDAD MATERNA EXTREMA', A.fecha_cierre, A.fecha_cierre FROM `vsp_mme` A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_otroprio Cod_Registro,'OTROS CASOS PRIORIZADOS', A.fecha_seg, A.fecha_cierre FROM `vsp_otroprio` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_saludoral Cod_Registro,'SALUD ORAL', A.fecha_seg, A.fecha_cierre FROM `vsp_saludoral` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_sificong Cod_Registro,'SIFILIS CONGENITA', A.fecha_seg, A.fecha_cierre FROM `vsp_sificong` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1 ,P.apellido2) Nombres,A.id_sifigest Cod_Registro,'SÍFILIS GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_sifigest` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_vihgestacio Cod_Registro,'VIH GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_vihgest` A  LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_gestante Cod_Registro,'VIOLENCIA EN GESTANTES', A.fecha_seg, A.fecha_cierre FROM `vsp_violges` ALEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_violreite Cod_Registro,'VIOLENCIA REITERADA', A.fecha_seg, A.fecha_cierre FROM `vsp_violreite` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.id_people,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.idsesion Cod_Registro,'RELEVO SESIONES', A.rel_validacion2 , NULL as fecha_cierre FROM `rel_sesion` A LEFT JOIN person P ON A.id_people = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo UNION  
-        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_eve  Cod_Registro,'VALIDAR EVENTO', A.fecha_even, NULL as fecha_cierre FROM `vspeve` A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_factura Cod_Registro,'ADMISION', A.fecha_consulta as fecha_seg,NULL as fecha_cierre FROM adm_facturacion   A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam  
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.idamb Cod_Registro,'AMBIENTAL', A.fecha as fecha_seg,NULL as fecha_cierre FROM hog_amb  A
+        LEFT JOIN hog_fam F ON A.idvivamb = F.id_fam  
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_apgar Cod_Registro,'APGAR', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_apgar  A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_findrisc Cod_Registro,'FINDRISC', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_findrisc  A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.idoms Cod_Registro,'OMS', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_oms  A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_epoc Cod_Registro,'EPOC', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_tam_epoc A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_signos Cod_Registro,'SIGNOS', A.fecha_toma as fecha_seg,NULL as fecha_cierre FROM hog_signos  A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_create = U.id_usuario 
+        UNION  
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_aten Cod_Registro,'ATENCION', A.fecha_atencion as fecha_seg,NULL as fecha_cierre FROM eac_atencion  A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.idviv Cod_Registro,'PLAN DE CUIDADO FAMILIAR', A.fecha as fecha_seg,NULL as fecha_cierre FROM hog_plancuid  A
+        LEFT JOIN hog_fam F ON A.idviv = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.id_viv Cod_Registro,'CARACTERIZACION', A.fecha as fecha_seg,A.fechanot as fecha_cierre FROM hog_carac  A
+        LEFT JOIN hog_fam F ON A.idfam = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_create = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_alert Cod_Registro,'ALERTAS', A.fecha as fecha_seg,null as fecha_cierre FROM hog_alert A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION    
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_acompsic Cod_Registro,'ACOMPAÑAMIENTO PSICOSOCIAL', A.fecha_seg,A.fecha_cierre FROM `vsp_acompsic` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_psicduel Cod_Registro,'APOYO PSICOLOGICO EN DUELO', A.fecha_seg, A.fecha_cierre FROM `vsp_apopsicduel` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_bpnpret Cod_Registro,'BPN PRETÉRMINO', A.fecha_seg, A.fecha_cierre FROM `vsp_bpnpret` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_bpnterm Cod_Registro,'BPN A TÉRMINO', A.fecha_seg, A.fecha_cierre FROM `vsp_bpnterm` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_cancinfa Cod_Registro,'CANCER INFANTIL', A.fecha_seg, A.fecha_cierre FROM `vsp_cancinfa` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_condsuic Cod_Registro,'CONDUCTA SUICIDA', A.fecha_seg, A.fecha_cierre FROM `vsp_condsuic` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_cronicos Cod_Registro,'CRONICOS', A.fecha_seg, A.fecha_cierre FROM `vsp_cronicos` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_dntsevymod Cod_Registro,'DNT AGUDA, MODERADA O SEVERA - MENORES CON EXCESO DE PESO - FAMILIAS CON MENORES DE 5 AÑOS', A.fecha_seg, A.fecha_cierre FROM `vsp_dntsevymod` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_eraira Cod_Registro,'ERA IRA', A.fecha_seg, A.fecha_cierre FROM `vsp_eraira` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_gestante Cod_Registro,'FAMILIAS CON GESTANTES - BAJO PESO GESTACIONAL - OBESIDAD GESTACIONAL - MATERNAS ADOLESCENTES', A.fecha_seg, A.fecha_cierre FROM `vsp_gestantes` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_hbgestacio Cod_Registro,'HB GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_hbgest` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_mnehosp Cod_Registro,'MORBILIDAD MATERNA EXTREMA', A.fecha_seg, A.fecha_cierre FROM `vsp_mnehosp` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_otroprio Cod_Registro,'OTROS CASOS PRIORIZADOS', A.fecha_seg, A.fecha_cierre FROM `vsp_otroprio` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_saludoral Cod_Registro,'SALUD ORAL', A.fecha_seg, A.fecha_cierre FROM `vsp_saludoral` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_sificong Cod_Registro,'SIFILIS CONGENITA', A.fecha_seg, A.fecha_cierre FROM `vsp_sificong` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_sifigest Cod_Registro,'SÍFILIS GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_sifigest` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_vihgestacio Cod_Registro,'VIH GESTACIONAL', A.fecha_seg, A.fecha_cierre FROM `vsp_vihgest` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_gestante Cod_Registro,'VIOLENCIA EN GESTANTES', A.fecha_seg, A.fecha_cierre FROM `vsp_violges` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_mme Cod_Registro,'MME', A.fecha_seg, A.fecha_cierre FROM `vsp_mme` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+        UNION 
+        SELECT G.subred, F.idpre, F.id_fam,A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,A.id_violreite Cod_Registro,'VIOLENCIA REITERADA', A.fecha_seg, A.fecha_cierre FROM `vsp_violreite` A
+        LEFT JOIN person P ON A.idpeople = P.idpeople 
+        LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+        UNION
+        SELECT G.subred, F.idpre, F.id_fam,NULL as id_people,NULL as idpersona,NULL as tipo_doc,NULL as Nombres,A.idcon Cod_Registro,'COMPROMISOS', A.fecha as fecha_seg, NULL as fecha_cierre 
+        FROM hog_planconc A 
+        LEFT JOIN hog_fam F ON A.idviv= F.id_fam 
+        LEFT JOIN hog_geo G ON F.idpre = G.idgeo 
+        LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
         ) AS CombinedQuery WHERE fecha_seg BETWEEN '2025-02-01' AND CURDATE() AND subred = 3;",
 
     "VSP" => "SELECT * FROM (SELECT G.subred, G.localidad, F.idpre, F.id_fam,A.id_acompsic Cod_Registro, A.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, A.fecha_seg,A.numsegui,FN_CATALOGODESC(87,A.evento),FN_CATALOGODESC(73,A.estado_s),FN_CATALOGODESC(170,A.cierre_caso),A.fecha_cierre,FN_CATALOGODESC(198,A.motivo_cierre),FN_CATALOGODESC(170,A.activa_ruta) activa_ruta,FN_CATALOGODESC(79,A.ruta) Ruta,A.observaciones, A.equipo_bina, A.usu_creo, U.nombre, U.perfil FROM `vsp_acompsic` A LEFT JOIN  person P ON A.idpeople = P.idpeople LEFT JOIN  hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN  hog_geo G ON F.idpre = G.idgeo LEFT JOIN  usuarios U ON A.usu_creo = U.id_usuario UNION 

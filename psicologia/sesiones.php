@@ -68,6 +68,7 @@ function cmp_sesiones_psi() {
 	$c[]=new cmp($o,'e',null,'Sesion 3, 4, 5, 6',$w);
 	//$key=' srch';
 	$key=divide($_POST['id']);
+	$days=fechas_app('psicologia');
 	$sql="SELECT TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) edad FROM person WHERE idpeople='{$key[0]}'";
 		$info=datos_mysql($sql);
 		$edad=$info['responseResult'][0]['edad'];
@@ -76,7 +77,7 @@ function cmp_sesiones_psi() {
 	$nse=$data['responseResult'][0]['total']; */
 		// $blo = ($ed) ? '' : 'bloqueo' ;
 	$c[]=new cmp('idpsi','h','20', $_POST['id'],$w.' '.$o,'','',null,null,false,false,'','col-1');
-	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3','validDate(this,-140,0);');
+	$c[]=new cmp('psi_fecha_sesion','d','10',$j,$w.' '.$o,'Fecha de la Sesion','psi_fecha_sesion',null,null,true,true,'','col-3',"validDate(this,$days,0);");
 	$c[]=new cmp('psi_sesion','s','3',$j,$w.' '.$o,'Sesion','psi_sesion',null,null,false,false,'','col-4');
 	$c[]=new cmp('cod_admin4','s','12',$j,$w.' cA4 '.$o,'Codigo Admisión','cod_admin4',null,null,true,true,'','col-3');
 
@@ -139,15 +140,14 @@ function cap_menus($a,$b='cap',$con='con') {
 
   function numSess($a){
 	// var_dump($id);
-	$sql="select MAX(psi_sesion) from psi_sesiones WHERE id_people='$a'";
+	$sql="SELECT MAX(psi_sesion) as max_sesion FROM psi_sesiones WHERE id_people='$a'";
 	$info=datos_mysql($sql);
 	// var_dump($info);
-	if (isset($info['responseResult'][0])){
-		return intval($info['responseResult'][0]['psi_sesion'])+1;
-		 
-	}else{
-		return 3;
-	}
+	 if (isset($info['responseResult'][0]['max_sesion']) && $info['responseResult'][0]['max_sesion'] !== null) {
+        return intval($info['responseResult'][0]['max_sesion']) + 1;
+    } else {
+        return 3;
+    }
 }
 
 function gra_sesiones_psi(){
@@ -284,7 +284,7 @@ function formato_dato($a,$b,$c,$d){
 	// var_dump($c);
 	if ($a=='sesiones' && $b=='acciones'){
 		$rta="<nav class='menu right'>";
-			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sesiones-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','contin_caso'],'sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);
+			$rta.="<li class='icono editar ' title='Editar Sesiones' id='".$c['ACCIONES']."' Onclick=\"Color('sesiones-lis');setTimeout(getData,300,'sesiones_psi',event,this,['psi_fecha_sesion','psi_sesion','cod_admin4','contin_caso'],'../psicologia/sesiones.php');\"></li>";  //getData('plancon',event,this,'id');act_lista(f,this);
 		}
 return $rta;
 }

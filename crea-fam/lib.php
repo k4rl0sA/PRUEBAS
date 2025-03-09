@@ -985,7 +985,7 @@ function formato_dato($a,$b,$c,$d){
 				$rta .= acceso('ember') ? "<li title='Seguimientos Hospitalarios' onclick=\"mostrar('seguim','pro',event,'','../etnias/embsegui.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-rectangle-list ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 			if (uaic($c['ACCIONES'])) {
-				$rta .= acceso('uaic') ? "<li title='Identificación UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'Identificación');Color('datos-lis');\"><i class=' fa-solid fa-id-badge ico' id='{$c['ACCIONES']}'></i></li>":"";
+				$rta .= acceso('uaic') ? "<li title='Identificación UAIC' onclick=\"mostrar('uaic_id','pro',event,'','../etnias/uaicid.php',7,'Identificación');Color('datos-lis');setTimeout(enabEmbPare,1000,'parentesco');\"><i class=' fa-solid fa-id-badge ico' id='{$c['ACCIONES']}'></i></li>":"";
 				$rta .= acceso('uaic') ? "<li title='Seguimientos UAIC' onclick=\"mostrar('uaic_seg','pro',event,'','../etnias/uaicseg.php',7,'Seguimientos');Color('datos-lis');\"><i class=' fa-solid fa-list-ol ico' id='{$c['ACCIONES']}'></i></li>":"";
 			}
 		$rta .= acceso('servagen') ? "<li title='Servicio de Agendamiento' onclick=\"mostrar('servagen','pro',event,'','../agendamiento/serage.php',7,'Servicio de Agendamiento');Color('datos-lis');\"><i class=' fa-solid fa-square-phone ico' id='{$c['ACCIONES']}'></i></li>":"";

@@ -83,7 +83,6 @@
     .spinner {
         margin-top: 1rem;
     }
-
     .spinner-border {
         width: 2rem;
         height: 2rem;
@@ -92,17 +91,14 @@
         border-radius: 50%;
         animation: spinner-border 0.75s linear infinite;
     }
-
     @keyframes spinner-border {
         to {
             transform: rotate(360deg);
         }
     }
-
     .text-primary {
         color: #007bff;
     }
-
     .sr-only {
         position: absolute;
         width: 1px;
@@ -123,14 +119,12 @@
         <input type="date" id="fecha" name="fecha" required>
         <button type="button" onclick="generarArchivo()">Generar Archivo</button>
     </form>
-
     <div class="progress-container">
         <div class="progress-bar">
             <div class="progress-bar-fill" id="progressBarFill"></div>
         </div>
         <div class="progress-text" id="progressText">0%</div>
     </div>
-
     <!-- Spinner de carga -->
     <div class="spinner" id="spinner" style="display: none;">
         <div class="spinner-border text-primary" role="status">
@@ -147,7 +141,6 @@
                 return;
             }
             document.getElementById('spinner').style.display = 'block';
-
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'generar_excel.php', true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

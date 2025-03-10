@@ -55,7 +55,7 @@ function lis_servicios(){
     $sql="SELECT id_agen 'Cod Registro',FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
     FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}'";  
-    $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
+    $sql.=" ORDER BY 3 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"servicios",$regxPag,'servagen.php');

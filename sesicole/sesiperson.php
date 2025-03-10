@@ -38,8 +38,8 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
    FUNCTION lis_perses(){
-	var_dump($_POST['id']);
-  $id = divide($_POST['id']);
+	// var_dump($_POST['id']);
+  $id = isset($_POST['id']) ? divide($_POST['id']) : (isset($_POST['ids']) ? divide($_POST['ids']) : null);
   $info=datos_mysql("SELECT COUNT(*) total FROM persescol A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 
   WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];

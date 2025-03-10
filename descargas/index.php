@@ -1,3 +1,7 @@
+<?php
+ini_set('display_errors', '1');
+$mod = 'descargas';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -133,7 +137,7 @@
     </div>
 </div>
     <script>
-        var mod = 'catalogo';
+        var mod = 'descargas';
         function generarArchivo() {
             const fecha = document.getElementById('fecha').value;
             if (!fecha) {

@@ -128,10 +128,10 @@ function opc_evento($id=''){
   }
   }
 
-/* function gra_servagen(){
+function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
-if(count($id)==2){
+/* if(count($id)==2){
   $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,?)";
   $params = [
   ['type' => 'i', 'value' => $id[0]],
@@ -142,8 +142,8 @@ if(count($id)==2){
   ];
     // echo $sql;
     return $rta = mysql_prepd($sql, $params);
-  }
-  }  */
+  } */
+  } 
 
 function get_persona(){
   if($_REQUEST['id']==''){

@@ -247,7 +247,7 @@ function gra_uaic_id(){
     //  $rta = show_sql($sql, $params);
     $rta = mysql_prepd($sql, $params);
     }else{
-   $sql="UPDATE uaic_ide SET $id=?,observacion=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE iduaic=?";
+   $sql="UPDATE uaic_ide SET $id,observacion=?, usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE iduaic=?";
     $params = [
         ['type' => 's', 'value' => $_POST['observacion']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],

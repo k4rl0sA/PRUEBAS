@@ -138,6 +138,7 @@
     </div>
 </div>
     <script>
+        var mod = 'catalogo';
         function generarArchivo() {
             const fecha = document.getElementById('fecha').value;
             if (!fecha) {
@@ -175,5 +176,16 @@
             xhr.send(`fecha=${fecha}`);
         }
     </script>
+    <div class="overlay" id="overlay" onClick="closeModal();">
+		<div class="popup" id="popup" z-index="0" onClick="closeModal();">
+			<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
+			<h3>
+				<div class='image' id='<?php echo $mod; ?>-image'></div>
+			</h3>
+			<h4>
+				<div class='message' id='<?php echo $mod; ?>-modal'></div>
+			</h4>
+		</div>
+	</div>
 </body>
 </html>

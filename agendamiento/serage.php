@@ -101,7 +101,7 @@ function opc_sexo($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
 
-/* function opc_evento($id=''){
+function opc_evento($id=''){
   $d=get_persona();
   if($d['sexo']=='M'){
     if($d['anos']<6){
@@ -126,7 +126,7 @@ function opc_sexo($id=''){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5) and estado='A' ORDER BY 2",$id); 
     }
   }
-  } */
+  }
 
 function gra_servagen(){
   // print_r($_POST);

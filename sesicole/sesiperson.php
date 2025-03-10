@@ -37,7 +37,7 @@ function cap_menus($a,$b='cap',$con='con') {
 	return $rta;
 }
 
-   FUNCTION lis_perses(){
+   FUNCTION lis_persescol(){
 	// var_dump($_POST['id']);
   $id = divide($_POST['id']);
   $info=datos_mysql("SELECT COUNT(*) total FROM persescol A LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario 

@@ -128,7 +128,7 @@ function opc_evento($id=''){
   }
   }
 
-function gra_servagen(){
+/* function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
 if(count($id)==2){
@@ -143,7 +143,7 @@ if(count($id)==2){
     // echo $sql;
     return $rta = mysql_prepd($sql, $params);
   }
-  } 
+  }  */
 
 function get_persona(){
   if($_REQUEST['id']==''){

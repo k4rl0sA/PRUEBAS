@@ -44,7 +44,7 @@ function cap_menus($a,$b='cap',$con='con') {
   WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-persescol']))? ($_POST['pag-persescol']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-perses']))? ($_POST['pag-perses']-1)* $regxPag:0;
 
 //   `id_person` ACCIONES,
 	$sql="SELECT  id_person 'Cod Registro',sesion 'Sesion',
@@ -56,7 +56,7 @@ FROM persescol A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"persescol",$regxPag,'sesiperson.php');
+	return create_table($total,$datos["responseResult"],"perses",$regxPag,'sesiperson.php');
    }
 
    

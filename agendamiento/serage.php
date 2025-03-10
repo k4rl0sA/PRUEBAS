@@ -131,6 +131,9 @@ function opc_evento($id=''){
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
+  if (count($id)==2) {
+    
+  }
 /* if(count($id)==2){
   $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,?)";
   $params = [

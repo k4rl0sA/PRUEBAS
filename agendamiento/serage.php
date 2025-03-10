@@ -32,6 +32,7 @@ function focus_servagen(){
  function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
+  var_dump($acc);
   if ($a=='servagen' && isset($acc['crear']) && $acc['crear']=='SI') {  
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     }

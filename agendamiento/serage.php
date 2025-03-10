@@ -85,7 +85,7 @@ function cmp_servagen(){
 	
 	$o='prufin';
     $c[]=new cmp($o,'e',null,'SERVICIO AGENDAMIENTO',$w);
-    $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Creación Evento','fecha_even',null,null,true,true,'','col-15',"validDate(this,$days,0);");
+    $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Solicitud','fecha_even',null,null,true,true,'','col-15',"validDate(this,$days,0);");
     $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','evento',null,null,true,true,'','col-25');
     $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','evento',null,null,true,true,'','col-3');
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -132,24 +132,18 @@ function opc_evento($id=''){
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
-  if(count($id)==1){
-    $sql="UPDATE vspeve SET 
-            docum_base = TRIM(UPPER('{$_POST['docum_base']}')),
-            evento = TRIM(UPPER('{$_POST['evento']}')),
-            fecha_even = TRIM(UPPER('{$_POST['fecha_even']}')),
-            `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
-            WHERE id_eve =TRIM(UPPER('{$id[0]}'))";
+if(count($id)==2){
+  $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,?)";
+  $params = [
+  ['type' => 'i', 'value' => $id[0]],
+  ['type' => 's', 'value' => $_POST['fecha_sol']],
+  ['type' => 's', 'value' => $_POST['tipo_cons']],
+  ['type' => 's', 'value' => $_POST['servicio']],
+  ['type' => 's', 'value' => 'A']
+  ];
     // echo $sql;
-  }else if(count($id)==2){
-    $sql="INSERT INTO vspeve VALUES (NULL,trim(upper('{$id[0]}')),
-    trim(upper('{$_POST['docum_base']}')),
-    trim(upper('{$_POST['evento']}')),
-    trim(upper('{$_POST['fecha_even']}')),
-    TRIM(UPPER('{$_SESSION['us_sds']}')),DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A')";
-    // echo $sql;
+    return $rta = mysql_prepd($sql, $params);
   }
-    $rta=dato_mysql($sql);
-    return $rta;
   } 
 
 function get_persona(){

@@ -250,7 +250,7 @@ function gra_uaic_id(){
    $sql="UPDATE uaic_ide SET observacion=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR), usu_update=? WHERE iduaic=?";
     $params = [
         ['type' => 's', 'value' => $_POST['observacion']],
-        ['type' => 's', 'value' => date("Y-m-d H:i:s")],
+        // ['type' => 's', 'value' => date("Y-m-d H:i:s")],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 'i', 'value' => $id[0]]//IDACORDE AL NUMERO DEL INDICE
       ];

@@ -44,7 +44,7 @@ function lis_servicios(){
     $id=divide($_POST['id']);
 
     $total="SELECT COUNT(*) AS total FROM (
-      SELECT id_agen 'Cod Registro',idpeople,FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
+      SELECT id_agen 'Cod Registro',FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
     FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}') AS Subquery";
     $info=datos_mysql($total);
@@ -52,7 +52,7 @@ function lis_servicios(){
     $regxPag=5;
     $pag=(isset($_POST['pag-servicios']))? ($_POST['pag-servicios']-1)* $regxPag:0;
 
-    $sql="SELECT id_agen 'Cod Registro',idpeople,FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
+    $sql="SELECT id_agen 'Cod Registro',FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
     FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}'";  
     $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";

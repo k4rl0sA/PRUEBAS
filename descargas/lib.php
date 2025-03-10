@@ -6,6 +6,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $fecha = $_POST['fecha'];
+
 $spreadsheet = new Spreadsheet();
 $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 
@@ -139,4 +142,5 @@ header("Content-Disposition: attachment; filename=\"$filename\"");
 readfile($filename);
 unlink($filename); // Elimina el archivo temporal
 exit;
+}
 ?>

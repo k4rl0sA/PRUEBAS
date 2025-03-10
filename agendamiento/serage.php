@@ -101,7 +101,7 @@ function opc_sexo($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
 
-function opc_evento($id=''){
+/* function opc_evento($id=''){
   $d=get_persona();
   if($d['sexo']=='M'){
     if($d['anos']<6){
@@ -126,8 +126,7 @@ function opc_evento($id=''){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=87 AND valor IN(5) and estado='A' ORDER BY 2",$id); 
     }
   }
-
-  }
+  } */
 
 function gra_servagen(){
   // print_r($_POST);
@@ -157,7 +156,6 @@ function get_persona(){
     TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
     DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P
-		left join vspeve E ON P.idpeople = E.idpeople
     WHERE P.idpeople='{$id[0]}'"; 
     // echo $sql;
     // print_r($_REQUEST);
@@ -171,10 +169,10 @@ function get_servagen(){
     return "";
   }else{
       $id=divide($_REQUEST['id']);
-      $sql="SELECT concat_ws('_',idpeople,servicio),fecha_solici,tipo_consulta,servicio
-      FROM vspeve
-      WHERE id_eve ='{$id[0]}'";
-      // echo $sql;
+      $sql="SELECT id_agen,fecha_solici,tipo_consulta,servicio
+      FROM hog_agen 
+      WHERE id_agen ='{$id[0]}'";
+      // echo $sq1l;
       // print_r($id);
       $info=datos_mysql($sql);
       return json_encode($info['responseResult'][0]);
@@ -189,7 +187,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($rta);
 if ($a=='servagen-lis' && $b=='acciones'){//a mnombre del modulo
 	$rta="<nav class='menu right'>";	
-	$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'servagen',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado'],'servagen.php');\"></li>";
+	$rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'servagen',event,this,['fecha_sol','tipo_cons','servicio'],'servagen.php');\"></li>";
 }
  return $rta;
 }

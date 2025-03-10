@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../libs/js/a.js"></script>
     <title>Generar Archivo Consolidado</title>
     <style>
         body {
@@ -140,7 +141,7 @@
         function generarArchivo() {
             const fecha = document.getElementById('fecha').value;
             if (!fecha) {
-                alert('Por favor, seleccione una fecha.');
+                inform('Por favor, seleccione una fecha.');
                 return;
             }
             document.getElementById('spinner').style.display = 'block';
@@ -154,13 +155,13 @@
                     if (xhr.status === 200) {
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
-                            alert('Archivo generado con éxito.');
+                            inform('Archivo generado con éxito.');
                             window.location.href = response.file;
                         } else {
-                            alert('Error al generar el archivo.');
+                            warnin('Error al generar el archivo.');
                         }
                     } else {
-                        alert('Error en la conexión con el servidor.');
+                        warnin('Error en la conexión con el servidor.');
                     }
                 }
             };

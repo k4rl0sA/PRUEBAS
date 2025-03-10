@@ -32,7 +32,6 @@ function focus_servagen(){
  function cap_menus($a,$b='cap',$con='con') {
   $rta = "";
   $acc=rol($a);
-  var_dump($acc);
   if ($a=='servagen' && isset($acc['crear']) && $acc['crear']=='SI') {  
    $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
     }
@@ -40,7 +39,7 @@ function focus_servagen(){
   return $rta;
 }
 
-function lis_eventos(){
+/* function lis_eventos(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
 
@@ -60,7 +59,7 @@ function lis_eventos(){
     // echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'servagen.php');
-}
+} */
 
 function cmp_servagen(){
 	/* $rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
@@ -72,7 +71,7 @@ function cmp_servagen(){
 	$e="";
 	$w='servagen';
 	$o='datos';
-  $key='eve';
+  $key='age';
   $edad='AÑOS= '.$d['anos'].' MESES= '.$d['meses'].' DIAS= '.$d['dias'];
   $days=fechas_app('AGENDA');
 	$c[]=new cmp($o,'e',null,'DATOS DE IDENTIFICACIÓN',$w);

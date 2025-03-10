@@ -44,7 +44,7 @@ function cap_menus($a,$b='cap',$con='con') {
   WHERE A.estado = 'A' AND sesion='".$id[0]."'");  // CAMBIO 
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=4;
-  $pag=(isset($_POST['pag-perses']))? ($_POST['pag-perses']-1)* $regxPag:0;
+  $pag=(isset($_POST['pag-persescol']))? ($_POST['pag-persescol']-1)* $regxPag:0;
 
 //   `id_person` ACCIONES,
 	$sql="SELECT  id_person 'Cod Registro',sesion 'Sesion',
@@ -56,7 +56,7 @@ FROM persescol A
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo $sql;
 	$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"perses",$regxPag,'../sesicole/sesiperson.php');
+	return create_table($total,$datos["responseResult"],"persescol",$regxPag,'sesiperson.php');
    }
 
    
@@ -92,7 +92,7 @@ function cmp_sespers(){
 	$c[]=new cmp('eapb','s',3,'',$w.' rgm '.$o,'eapb','eapb',null,null,true,true,'','col-2');
 
 	// $c[]=new cmp('medico','s',15,$d,$w.' der '.$o,'Asignado','medico',null,null,false,false,'','col-5');
-	$rta.="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='bpnpret-lis'>".lis_perses()."</div></div>";
+	$rta.="<div class='encabezado'>TABLA USUARIOS DE LA SESIÓN</div><div class='contenido' id='persescol-lis'>".lis_perses()."</div></div>";
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

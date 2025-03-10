@@ -131,22 +131,18 @@ function opc_evento($id=''){
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
-  if (count($id)==2) {
-    $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,?)";
-    
-  }
-/* if(count($id)==2){
-  $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,$_SESSION['us_sds'],DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,?)";
+if(count($id)==2){
+  $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
   $params = [
   ['type' => 'i', 'value' => $id[0]],
   ['type' => 's', 'value' => $_POST['fecha_sol']],
   ['type' => 's', 'value' => $_POST['tipo_cons']],
   ['type' => 's', 'value' => $_POST['servicio']],
-  ['type' => 's', 'value' => 'A']
+  ['type' => 's', 'value' => $_SESSION['us_sds']]
   ];
     // echo $sql;
     return $rta = mysql_prepd($sql, $params);
-  } */
+  }
   } 
 
 function get_persona(){

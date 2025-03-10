@@ -39,32 +39,32 @@ function focus_servagen(){
   return $rta;
 }
 
-/* function lis_eventos(){
+function lis_servicios(){
     // var_dump($_POST['id']);
     $id=divide($_POST['id']);
 
     $total="SELECT COUNT(*) AS total FROM (
-      SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
-    FROM vspeve E 
+      SELECT id_agen 'Cod Registro',idpeople,FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
+    FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}') AS Subquery";
     $info=datos_mysql($total);
     $total=$info['responseResult'][0]['total']; 
     $regxPag=5;
-    $pag=(isset($_POST['pag-eventos']))? ($_POST['pag-eventos']-1)* $regxPag:0;
+    $pag=(isset($_POST['pag-servicios']))? ($_POST['pag-servicios']-1)* $regxPag:0;
 
-    $sql="SELECT id_eve 'Cod Registro',idpeople,FN_CATALOGODESC(87,evento),fecha_even
-    FROM vspeve E 
+    $sql="SELECT id_agen 'Cod Registro',idpeople,FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
+    FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}'";  
     $sql.=" ORDER BY 4 desc LIMIT $pag, $regxPag";
     // echo $sql;
 		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"eventos",$regxPag,'servagen.php');
-} */
+	return create_table($total,$datos["responseResult"],"servicios",$regxPag,'servagen.php');
+}
 
 function cmp_servagen(){
-	/* $rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
-	<div class='contenido' id='eventos-lis'>".lis_eventos()."</div></div>"; */
-    $rta="";
+	$rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
+	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
+    // $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
 	$d=get_persona();
 	if ($d==""){$d=$t;}

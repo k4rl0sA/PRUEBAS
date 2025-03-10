@@ -131,6 +131,9 @@ function opc_evento($id=''){
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
+  if (($rtaFec = validFecha('AGENDAMIENTO', $_POST['fecha_sol'] ?? '')) !== true) {
+    return $rtaFec;
+  }
 if(count($id)==2){
   $sql = "INSERT INTO hog_agen VALUES(NULL,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
   $params = [

@@ -204,7 +204,7 @@ $drv="https://drive.google.com/thumbnail?id=";
 			title="Inline Frame Example"
 			width="100%"
 			height="700"
-			src="../puntos/">
+			src="https://www.saludcapital.gov.co/Paginas2/Noticia_Portal_Detalle.aspx?IP=2440">
 		</iframe>
 
 </div>

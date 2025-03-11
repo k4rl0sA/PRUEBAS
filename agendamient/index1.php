@@ -11,7 +11,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="../libs/css/s.css" rel="stylesheet">
 <script src="../libs/js/c18082020.js"></script>
 <script src="../libs/js/d.js"></script>
-<script>
+<script >
 var mod='agendamiento';	
 var ruta_app='lib.php';
 var hoy = new Date().toISOString().slice(0,10);
@@ -202,25 +202,11 @@ function grabar(tb='',ev){
   var f=document.getElementsByClassName('valido '+tb);
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
-  }
-  if (tb=='agendamiento'){
-	  var con=document.getElementById('con'),
-	  cit=document.getElementById('cit');
-	  if ((cit.value==1 || cit.value==2 || cit.value==3 ||cit.value==5 ||cit.value==7 ||cit.value==8 ||cit.value==12 ||cit.value==14 || cit.value==15) && con.value!=2){
-		alert('El Tipo Cita NO corresponde con el tipo de Consulta,por favor valide e intente nuevamente');
-	  }else{
-		  document.getElementById(tb+'-pro-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-			if (document.getElementById(tb+'-pro-msj') != undefined)
-				act_lista(tb);
-				act_lista('agendamiento');
-	  }
-  }else{
-	document.getElementById(tb+'-pro-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-	if (document.getElementById(tb+'-pro-msj') != undefined)
-		act_lista(tb);
-		act_lista('agendamiento');
-  }
-
+  }   
+  document.getElementById(tb+'-pro-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+  if (document.getElementById(tb+'-pro-msj') != undefined)
+  act_lista(tb);
+  act_lista('agendamiento');
 }
 
 function valDate(a){
@@ -235,12 +221,9 @@ function valDate(a){
 
 function validDate(a){
 		let Ini=dateAdd();
-		//26-05-2023
 		let Fin=dateAdd(18);
 	
 	let min=`${Ini.a}-${Ini.m}-${Ini.d}`;
-	//26-05-2023
-	//let min=`2023-05-01`; //26-05-2023
 	let max=`${Fin.a}-${Fin.m}-${Fin.d}`;
 	
 	//~ var max=dayjs(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`).format('YYYY-MM-DD');
@@ -281,12 +264,12 @@ function validTime(a){
 <body Onload="actualizar();">
 <?php
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
+if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='agendamiento';
 $ya = new DateTime();
 $estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=40 and estado='A' order by 1",'');
-$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil` IN('DIG','TEC') AND estado='A' ORDER BY 1",$_SESSION["us_riesgo"]); 
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' AND estado='A' ORDER BY 1",$_SESSION["us_riesgo"]); 
 ?>
 
 <form method='post' id='fapp' >

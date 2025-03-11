@@ -1,21 +1,28 @@
 <?php
- require_once '../libs/gestion.php';
-ini_set('display_errors','1');
-if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
+require_once "../libs/gestion.php";
+ini_set('display_errors','0');
+
+if (!isset($_SESSION['us_riesgo'])) die("<script>window.top.location.href='/';</script>");
 else {
   $rta="";
   switch ($_POST['a']){
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs,'');
+    echo csv($rs);
     die;
     break;
   default:
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }
+ }
+
+
+function divide($a){
+	$id=explode("_", $a);
+	return ($id);
 }
 
 function whe_agendamiento() {
@@ -205,7 +212,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('con','s',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
- $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3'); 
+ $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3','validDate'); 
  $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora','hora',null,null,true,true,'','col-2','validTime');
  $c[]=new cmp('nom','t',100,$d['nombre_atendio'],$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
  $c[]=new cmp('obc','a',1000,$d['observac_cita'],$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 

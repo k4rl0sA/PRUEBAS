@@ -50,6 +50,10 @@ $mod = 'descargas';
             font-size: 1rem;
             margin-bottom: 1rem;
             box-sizing: border-box;
+            text-align: justify;
+            font-size: large;
+            border-color: blue;
+            border: groove;
         }
         button {
             background-color: #007bff;

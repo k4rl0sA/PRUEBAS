@@ -143,7 +143,7 @@ $mod = 'descargas';
     function generarArchivo() {
     const fecha = document.getElementById('fecha').value;
     if (!fecha) {
-        alert('Por favor, seleccione una fecha.');
+        inform('Por favor, seleccione una fecha.');
         return;
     }
 

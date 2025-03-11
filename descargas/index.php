@@ -140,41 +140,46 @@ $mod = 'descargas';
 </div>
     <script>
         var mod = 'descargas';
-        function generarArchivo() {
-            const fecha = document.getElementById('fecha').value;
-            if (!fecha) {
-                inform('Por favor, seleccione una fecha.');
-                return;
+    function generarArchivo() {
+    const fecha = document.getElementById('fecha').value;
+    if (!fecha) {
+        alert('Por favor, seleccione una fecha.');
+        return;
+    }
+
+    // Mostrar el spinner
+    document.getElementById('spinner').style.display = 'block';
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'generar_excel.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            // Ocultar el spinner cuando la solicitud termine
+            document.getElementById('spinner').style.display = 'none';
+
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+
+                // Actualizar la barra de progreso
+                document.getElementById('progressBarFill').style.width = `${response.progreso}%`;
+                document.getElementById('progressText').textContent = `${Math.round(response.progreso)}%`;
+
+                if (response.success) {
+                    inform('Archivo generado con éxito.');
+                    window.location.href = response.file;
+                } else {
+                    warnin('Error al generar el archivo.');
+                }
+            } else {
+                warnin('Error en la conexión con el servidor.');
             }
-            document.getElementById('spinner').style.display = 'block';
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'generar_excel.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    document.getElementById('spinner').style.display = 'none';
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.success) {
-                            inform('Archivo generado con éxito.');
-                            window.location.href = response.file;
-                        } else {
-                            warnin('Error al generar el archivo.');
-                        }
-                    } else {
-                        warnin('Error en la conexión con el servidor.');
-                    }
-                }
-            };
-            xhr.onprogress = function(event) {
-                if (event.lengthComputable) {
-                    const porcentaje = (event.loaded / event.total) * 100;
-                    document.getElementById('progressBarFill').style.width = `${porcentaje}%`;
-                    document.getElementById('progressText').textContent = `${Math.round(porcentaje)}%`;
-                }
-            };
-            xhr.send(`fecha=${fecha}`);
         }
+    };
+
+    xhr.send(`fecha=${fecha}`);
+}
     </script>
     <div class="overlay" id="overlay" onClick="closeModal();">
 		<div class="popup" id="popup" z-index="0" onClick="closeModal();">

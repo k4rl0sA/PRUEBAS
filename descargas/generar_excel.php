@@ -89,12 +89,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $index = 0;
     $totalScripts = count($scripts);
     $progreso = 0;
+
+    // Array para almacenar los datos de progreso
+    $response = ['progreso' => 0];
+
     foreach ($scripts as $nombreHoja => $query) {
         $result = $mysqli->query($query);
+
         if ($result) {
             $sheet = $spreadsheet->createSheet($index);
             $sheet->setTitle($nombreHoja);
-            // Agregar encabezados y datos
+
+            // Agregar encabezados
             $fields = $result->fetch_fields();
             $col = 1;
             foreach ($fields as $field) {
@@ -102,6 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sheet->setCellValue($columnLetter . '1', $field->name);
                 $col++;
             }
+
+            // Agregar datos
             $rowNum = 2;
             while ($row = $result->fetch_assoc()) {
                 $col = 1;
@@ -112,17 +120,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 $rowNum++;
             }
+
             $index++;
             $progreso = ($index / $totalScripts) * 100;
-            echo json_encode(['progreso' => $progreso]);
+
+            // Actualizar el progreso en la respuesta
+            $response['progreso'] = $progreso;
         } else {
             die(json_encode(['success' => false, 'message' => 'Error en la consulta']));
         }
     }
+
+    // Guardar el archivo Excel
     $filename = "datos_unificados_" . time() . ".xlsx";
     $writer = new Xlsx($spreadsheet);
     $writer->save($filename);
-    echo json_encode(['success' => true, 'file' => $filename]);
+
+    // Respuesta final con el progreso y el enlace de descarga
+    $response['success'] = true;
+    $response['file'] = $filename;
+
+    echo json_encode($response);
     exit;
 }
 ?>

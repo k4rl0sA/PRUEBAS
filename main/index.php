@@ -171,7 +171,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 //echo "<script>alert('ok-MAIN')</script>";
 // if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 require_once "../libs/gestion.php";
-$img=datos_mysql("SELECT `id_key` FROM `medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
+$img=datos_mysql("SELECT `id_key` FROM `adm_medios` WHERE `modulo`= 'MAI' AND `estado`='A' ORDER BY `id`");
 $vid="https://drive.google.com/file/d/";
 $drv="https://drive.google.com/thumbnail?id=";
 //$dr="https://drive.google.com/thumbnail?id=1c79WTsxeuzdyAL3xMn9kTKuHwnQjYS6A"

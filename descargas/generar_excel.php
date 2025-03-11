@@ -6,7 +6,8 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha = $_POST['fecha'];
     $spreadsheet = new Spreadsheet();
-    $mysqli = new mysqli("srv1111.hstgr.io", "u478152275_08", "micontraseñasupersegura", "u478152275_08");
+    // $mysqli = new mysqli("srv1111.hstgr.io", "u478152275_08", "micontraseñasupersegura", "u478152275_08");
+    $mysqli = new mysqli("srv1723.hstgr.io", "u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
     if ($mysqli->connect_error) {
         die(json_encode(['success' => false, 'message' => 'Error de conexión a la base de datos']));
     }

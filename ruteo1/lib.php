@@ -24,7 +24,7 @@ function lis_rute(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) '', er.id_ruteo AS ACCIONES,er.nombres, er.fecha_asig AS Asignado,FN_CATALOGODESC(191,priorizacion)'Priorización',er.estado 
+	$sql="SELECT er.id_ruteo AS ACCIONES,er.nombres, er.fecha_asig AS Asignado,FN_CATALOGODESC(191,priorizacion)'Priorización',er.estado 
   FROM eac_ruteo er 
   WHERE subred_report IN (select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute();
 	$sql.="ORDER BY fecha_create";

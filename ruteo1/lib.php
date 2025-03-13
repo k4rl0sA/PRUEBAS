@@ -21,13 +21,13 @@ else {
 
 function lis_rute(){
 	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo 
-	where subred_report in(select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute());
+	where subred_report in (select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,`id_ruteo` ACCIONES,nombres,`fecha_asig` Asignado,FN_CATALOGODESC(191,priorizacion) Priorización,estado
-  FROM `eac_ruteo` 
-  WHERE subred_report in(select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute();
+	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1), er.id_ruteo AS ACCIONES,er.nombres, er.fecha_asig AS Asignado,FN_CATALOGODESC(191,priorizacion)'Priorización',er.estado 
+  FROM eac_ruteo er 
+  WHERE subred_report IN (select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	//echo($sql);

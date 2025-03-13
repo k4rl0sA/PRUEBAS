@@ -18,7 +18,6 @@ else {
   }   
 }
 
-
 function lis_rute(){
 	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo 
 	where subred_report in (select subred from usuarios where id_usuario = '".$_SESSION['us_sds']."') ".whe_rute());
@@ -55,12 +54,10 @@ function focus_rute(){
  return 'rute';
 }
 
-
 function men_rute(){
  $rta=cap_menus('rute','pro');
  return $rta;
 }
-
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
@@ -69,7 +66,6 @@ function cap_menus($a,$b='cap',$con='con') {
   }
   return $rta;
 }
-
 
 function cmp_rute(){
  $rta="";
@@ -167,9 +163,6 @@ function cmp_rute(){
  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
  }
  
- 
- 
- 
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -185,8 +178,6 @@ function lista_gestion(){ //revisar
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }
-
-
 
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
@@ -212,8 +203,6 @@ function opc_estado($id=''){
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id); 
 			// var_dump($id);
 }
-
-
 
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
@@ -313,7 +302,6 @@ function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('MED','ENF') AND componente='EAC' and subred='{$com[2]}' ORDER BY 1",$id);
 } */
 
-
 function get_rute(){
 	if($_POST['id']=='0'){
 		return "";
@@ -335,7 +323,6 @@ function get_rute(){
 	} 
 }
 
- 
 function gra_rute(){
 	$id=divide($_POST['id']);
 	if($_POST['id']=='0'){

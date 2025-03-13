@@ -121,6 +121,7 @@ $mod='rute';
 $ya = new DateTime();
 $grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=191 and estado='A' order by 1",'');
 // $fuentes=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=33 and estado='A' order by 1",'');
+$localidad=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=2 and estado='A' and valor in(select subred from usuarios where id_usuario = '{$_SESSION['us_sds']}') order by 1",'');
 // $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='AUX' ORDER BY 1",$_SESSION['us_sds']);
 ?>
 <form method='post' id='fapp' >
@@ -133,6 +134,11 @@ $grupos=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=19
 	<div class="campo"><div>Grupo Priorizado</div>
 		<select class="captura" id="fgrupo" name="fgrupo" OnChange="actualizar();">
 			<?php echo $grupos; ?>
+		</select>
+	</div>
+		<div class="campo"><div>Estados</div>
+		<select class="captura" id="festados" name="festados" OnChange="actualizar();">
+			<?php echo $localidad; ?>
 		</select>
 	</div>
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=10 id="fpred" name="fpred" OnChange="actualizar();"></div>

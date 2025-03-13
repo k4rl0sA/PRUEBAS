@@ -12,8 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(json_encode(['success' => false, 'message' => 'Error de conexión a la base de datos']));
     }
     $scripts = [
-        "Pruebas" => "SELECT  1+1",
-    
         "Asignacion Predios" => "SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno FROM `geo_asig` A LEFT JOIN hog_geo G ON A.idgeo=G.idgeo  LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario  LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario 
         WHERE G.subred in (3) AND A.fecha_create >='$fecha'",
     

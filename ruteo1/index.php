@@ -144,7 +144,7 @@ $prioridad=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo
 	</div>
 	<div class="campo"><div>Codigo del Predio</div><input class="captura" type="number" size=10 id="fpred" name="fpred" OnChange="actualizar();"></div>
 	<div class="campo"><div>Documento Usuario</div><input class="captura" type="number" size=20 id="fusu" name="fusu" OnChange="actualizar();"></div>
-	<div class="campo"><div>Estados</div>
+	<div class="campo"><div>Estado</div>
 		<select class="captura" id="festados" name="festados" OnChange="actualizar();">
 			<?php echo $localidad; ?>
 		</select>

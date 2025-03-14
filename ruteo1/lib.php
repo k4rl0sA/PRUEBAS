@@ -169,9 +169,9 @@ function cmp_rute(){
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT fecha_gestion Fecha,FN_CATALOGODESC(35,estado_g) Estado,fecha_create 'Fecha de Creación'
-		FROM eac_ruteo_ges 
-			WHERE  usu_creo='".$_SESSION['us_sds']."'";
+		$sql="SELECT erg.fecha_gest 'Fecha',FN_CATALOGODESC(35,estado_g)'estado',erg.fecha_create 'Fecha de Creación'
+ 		FROM eac_ruteo_ges erg 
+ 		WHERE  erg.usu_creo ='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		//$_SESSION['sql_person']=$sql;
@@ -309,7 +309,7 @@ function get_rute(){
 		$id=divide($_POST['id']);
 		$sql="SELECT `id_ruteo`, R.`idgeo`,`fuente`, `fecha_asig`, `priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `fecha_nac`, `sexo`, `nacionalidad`, `etnia`,`regimen`,`eapb`, 
 		`tipo_doc_acu`, `documento_acu`, `nombres_acu`, R.direccion,`telefono1`, `telefono2`, `telefono3`, `fecha_consulta`,`cod_cups`,`per_consul`,R.`subred_report`, G.`localidad`, G.`upz`, G.`barrio`, 
-		G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.`cordx`, G.`cordy`, RG.fecha_gestion 'fecha_gest',RV.fecha_gestion, RG.estado_g, RG.motivo_estado, RG.direccion_nueva, RG.sector_catastral AS sect, RG.nummanzana AS manz, RG.predio_num AS pred, RG.observaciones AS obse, RV.direccion_nueva AS dir_new, RV.sector_catastral AS sector, RV.nummanzana AS manzana, RV.predio_num AS predio, RV.telefono_1 AS tel_1, RV.telefono_2 AS tel_2, RV.telefono_3 AS tel_3
+		G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.`cordx`, G.`cordy`, RG.fecha_gest 'fecha_gest',RV.fecha_gestion, RG.estado_g, RG.motivo_estado, RG.direccion_nueva, RG.sector_catastral AS sect, RG.nummanzana AS manz, RG.predio_num AS pred, RG.observaciones AS obse, RV.direccion_nueva AS dir_new, RV.sector_catastral AS sector, RV.nummanzana AS manzana, RV.predio_num AS predio, RV.telefono_1 AS tel_1, RV.telefono_2 AS tel_2, RV.telefono_3 AS tel_3
 		 FROM `eac_ruteo` R
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo=RG.idruteo

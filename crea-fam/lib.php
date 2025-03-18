@@ -155,7 +155,8 @@ function lis_famili(){
 		V.fecha_create Creado,nombre Creó
 		FROM `hog_fam` V 
 			LEFT JOIN usuarios P ON V.usu_create=id_usuario
-			LEFT JOIN hog_carac C ON V.id_fam=C.idfam AND C.fecha = (SELECT MAX(fecha) FROM hog_carac WHERE idfam = V.id_fam)
+			LEFT JOIN hog_carac C ON V.id_fam=C.idfam AND C.fecha = (SELECT MAX(fecha) FROM hog_carac WHERE C.idfam = V.id_fam)
+			
 		WHERE idpre='".$_POST['id'];
 		$sql.="' ORDER BY V.fecha_create";
 		//  echo $sql;

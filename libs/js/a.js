@@ -944,6 +944,12 @@ function getData(a, ev, i, blo, path = ruta_app) {
 		  console.error(rta);
 		  return;
 		}
+
+		// Verificar si la respuesta contiene un error
+		if (rta.error) {
+			console.error('Error desde el backend:', rta.error);
+			return;
+		}
   
 		const data = Object.values(rta);
   

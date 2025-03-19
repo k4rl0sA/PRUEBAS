@@ -261,6 +261,7 @@ function grabar(tb='',ev){
     myFetch('lib.php',"a=gra&tb="+tb,mod);  
 	act_lista(tb+'uso');
 }
+}
 
 </script>
 </head>

@@ -79,7 +79,6 @@ function cmp_rute(){
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
  $d=get_rute();
- $e=get_gest();
  if ($d=="") {$d=$t;}
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);

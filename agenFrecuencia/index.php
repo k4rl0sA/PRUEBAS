@@ -43,47 +43,6 @@ function showFil(a){
 	}
 }
 
-//~ function changeSelect(a,b){
-	//~ if(b!=''){		
-		//~ const x = document.getElementById(a);
-		//~ const z = document.getElementById(b);
-		//~ z.innerHTML="";
-		//~ loader=document.getElementById('loader');
-		//~ if (loader != undefined) loader.style.display = 'block';
-		//~ if (window.XMLHttpRequest)
-			//~ xmlhttp = new XMLHttpRequest();
-		//~ else
-			//~ xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			
-			//~ xmlhttp.onreadystatechange = function () {
-			//~ if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-				//~ data =JSON.parse(xmlhttp.responseText);
-				//~ console.log(data);
-			//~ }}
-				//~ xmlhttp.open("POST", ruta_app,false);
-				//~ xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				//~ xmlhttp.send('a=opc&tb='+a+b+'&id='+x.value);
-				//var rta =data;
-				//~ var data=Object.values(data);
-				//~ var opt = document.createElement('option');
-				//~ opt.text ='SELECCIONE';
-				//~ opt.classList.add('alerta');
-				//~ opt.value='0';
-				//~ z.add(opt);
-				//~ for(i=0;i<data.length;i++){
-					//~ var obj=Object.keys(data[i]);					
-					//~ var opt = document.createElement('option');
-					//~ opt.text =data[i][obj[1]];
-					//~ opt.value=data[i][obj[0]];;
-					//~ z.add(opt);
-				//~ }
-				//~ if (loader != undefined) loader.style.display = 'none';
-	//~ }
-//~ }
-
-
-
-
 function getPerson() {	
 	var id = document.getElementById('idp');
 	var tp= document.getElementById('tdo');
@@ -133,18 +92,6 @@ function getPerson() {
 	}
 }
 
-//~ function grabar(tb='',ev){
-  //~ if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
-  //~ var f=document.getElementsByClassName('valido '+tb);
-   //~ for (i=0;i<f.length;i++) {
-     //~ if (!valido(f[i])) {f[i].focus(); return};
-  //~ }  
-  //~ document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-  //~ if (document.getElementById(tb+'-msj') != undefined)
-  //~ act_lista(tb+'uso');
-//~ }
-
-
 function getPersonExt() {	
 	var id = document.getElementById('idp');
 	var tp= document.getElementById('tdo');
@@ -185,25 +132,6 @@ function getPersonExt() {
 	}
 }
 
-//~ function validMotivo(){
-	//~ var cit= document.getElementById('cit'),
-	//~ obs= document.getElementById('obs'),
-	//~ mot1= document.getElementById('mot1'),
-	//~ mot2= document.getElementById('mot2');
-
-	//~ if(obs.value==3 ){
-		//~ mot2.style.display = "block";
-		//~ mot1.style.display = "none";
-	//~ }else if(obs.value==2){
-		//~ mot1.style.display = "block";
-		//~ mot2.style.display = "none";
-	//~ }else{
-		//~ mot1.style.display = "none";
-		//~ mot2.style.display = "none";
-	//~ }
-	
-//~ }
-
 function validDate(a){
 		let Ini=dateAdd(-1847);
 		let Fin=dateAdd();
@@ -226,7 +154,6 @@ function valDate(a){
 	}
 }
 
-
 function hideMotiv(){
 	setTimeout(function(){
 		motiv=document.getElementById('frecuenciauso-pro-con').getElementsByClassName('col-6');
@@ -236,7 +163,6 @@ function hideMotiv(){
 		}
 	},100);
 }
-
 
 function loadMotiv(){
 	setTimeout(function(){
@@ -302,7 +228,6 @@ function grabar(tb='',ev){
 	sex= document.getElementById('gen'),
 	mot3= document.getElementById('mot3'),
 	mot2= document.getElementById('mot2');
-	
 	
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);

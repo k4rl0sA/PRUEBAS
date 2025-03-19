@@ -79,7 +79,7 @@ function cmp_rute(){
  'fecha_update'=>'', 'estado'=>''];
  $w='rute';
  $d=get_rute();
- $e=get_rute();
+ $e=get_gest();
  if ($d=="") {$d=$t;}
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);
@@ -120,27 +120,27 @@ function cmp_rute(){
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
- $c[]=new cmp('fecha_llamada','d','10',$d['fecha_llamada'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_llamada','s',2,$d['estado_llamada'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
- $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+ $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
- $c[]=new cmp('estado_agenda','s',2,$d['estado_agenda'],$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
- $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
+ $c[]=new cmp('estado_agenda','s',2,'',$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
- $c[]=new cmp('direccion_nueva_v','t','90',$d['dir_new'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('sector_catastral_v','n','6',$d['sector'],$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('nummanzana_v','n','3',$d['manzana'],$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('predio_num_v','n','3',$d['predio'],$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('sector_catastral_v','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('nummanzana_v','n','3','',$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('predio_num_v','n','3','',$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO DE ASIGNACIÓN',$w);
- $c[]=new cmp('docu_confirm','nu','999999999999999999',$d['docu_confirm'],$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25');
- $c[]=new cmp('nombre','s','6',$d['doc_asignado'],$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
+ $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
  
  
 //  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
@@ -302,6 +302,22 @@ function get_rute(){
 		 LEFT JOIN hog_geo G ON R.idgeo=G.idgeo
 		 LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo=RG.idruteo
          LEFT JOIN eac_ruteo_val RV ON R.id_ruteo=RV.idruteo
+		 WHERE  id_ruteo='{$id[0]}'";
+		$info=datos_mysql($sql);
+		if (!$info['responseResult']) {
+			return '';
+		}
+	return $info['responseResult'][0];
+	} 
+}
+
+function get_gest(){
+	if($_POST['id']=='0'){
+		return "";
+	}else{
+		$id=divide($_POST['id']);
+		$sql="SELECT `id_ruteo`, 
+		 FROM `eac_ruteo_ges` R
 		 WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {

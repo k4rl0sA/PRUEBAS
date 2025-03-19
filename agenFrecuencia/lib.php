@@ -1,15 +1,14 @@
 <?php
 require_once "../libs/gestion.php";
-ini_set('display_errors','0');
-
-if (!isset($_SESSION['us_riesgo'])) die("<script>window.top.location.href='/';</script>");
+ini_set('display_errors','1');
+if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
   $rta="";
   switch ($_POST['a']){
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:

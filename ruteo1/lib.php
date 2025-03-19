@@ -137,8 +137,8 @@ $o='gesefc';
  $c[]=new cmp('predio_num_v','n','3',$d['predio'],$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
 
  $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
- $c[]=new cmp('docu_confirm','nu','999999999999999999',$d['docu_confirm'],$w.' pRe '.$o,'Fecha de Gestion','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp($o,'e',null,'PROCESO DE ASIGNACIÓN',$w);
+ $c[]=new cmp('docu_confirm','nu','999999999999999999',$d['docu_confirm'],$w.' pRe '.$o,'Documento Confirmado','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil','perfil',null,null,false,$u,'','col-25');
  $c[]=new cmp('nombre','s','6',$d['doc_asignado'],$w.' dir '.$o,'Asignado A','doc_asignado',null,null,false,$u,'','col-25');
  

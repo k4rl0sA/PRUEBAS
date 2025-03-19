@@ -69,7 +69,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rute(){
  $rta="";
-	$rta .="<div class='encabezado vivienda'>TABLA DE GESTIONES REALIZADAS</div>
+	$rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
 	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',

@@ -97,7 +97,7 @@ function cmp_rute(){
  $o='atemed';
  $c[]=new cmp($o,'e',null,'DATOS DEL USUARIO QUE REQUIERE LA ATENCIÓN MEDICA',$w);
  $c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$o,'TIPO DE DOCUMENTO','tipo_doc',null,null,false,$u,'','col-2');
- $c[]=new cmp('documento','nu','99999999999999',$d['documento'],$w.' '.$o,'NUMERO DE DOCUMENTO','documento',null,null,false,$u,'','col-2');
+ $c[]=new cmp('documento','nu','999999999999999999',$d['documento'],$w.' '.$o,'NUMERO DE DOCUMENTO','documento',null,null,false,$u,'','col-2');
  $c[]=new cmp('nombres','t','80',$d['nombres'],$w.' '.$o,'NOMBRES Y APELLIDOS DEL USUARIO','nombres',null,null,false,$u,'','col-4');
  $c[]=new cmp('sexo','s','3',$d['sexo'],$w.' '.$o,'SEXO','sexo',null,null,false,$u,'','col-2');
  
@@ -124,19 +124,16 @@ function cmp_rute(){
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
- $c[]=new cmp('fecha_llamada','d','10',$d['fecha_gest'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_llamada','s',2,$d['estado_g'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('fecha_llamada','d','10',$d['fecha_llamada'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('estado_llamada','s',2,$d['estado_llamada'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
 
 $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
- $c[]=new cmp('fecha_agendado','d','10',$d['fecha_agendado'],$w.' pRe '.$o,'Fecha de Gestion','fecha_agendado',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('docum','nu','999999999999999',$d['docum'],$w.' pRe '.$o,'Fecha de Gestion','docum',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_agenda','s',2,$d['estado_agenda'],$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3',$d['motivo_estado'],$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
-
- 
- $c[]=new cmp('perfil','t','90',$d['direccion_nueva'],$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$u,'','col-25');
- $c[]=new cmp('nombre','n','6',$d['sect'],$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$u,'','col-25');
+ $c[]=new cmp('docu_confirm','nu','999999999999999999',$d['docu_confirm'],$w.' pRe '.$o,'Fecha de Gestion','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('perfil','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva',null,null,false,$u,'','col-25');
+ $c[]=new cmp('nombre','n','6',$d['doc_asignado'],$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_n',null,null,false,$u,'','col-25');
  
 //  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
   

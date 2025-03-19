@@ -247,6 +247,7 @@ function grabar(tb='',ev){
 		/* document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
 		if (document.getElementById(tb+'-msj') != undefined) act_lista(tb+'uso'); */
 		myFetch('lib.php',"a=gra&tb="+tb,mod);
+		act_lista(tb+'uso');
 	}
 	  //~ valDate('mot3');
   //~ }else if(obs.value==3 && mot2.value==''){
@@ -258,6 +259,7 @@ function grabar(tb='',ev){
 		act_lista(tb+'uso');
 	} */
     myFetch('lib.php',"a=gra&tb="+tb,mod);  
+	act_lista(tb+'uso');
 }
 
 </script>

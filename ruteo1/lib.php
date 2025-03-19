@@ -150,7 +150,7 @@ $o='gesefc';
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT erg.fecha_gest 'Fecha',FN_CATALOGODESC(35,estado_g)'estado',erg.fecha_create 'Fecha de Creación'
+		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.docu_asignado 'Asignado A', fecha_create 'Creó'
  		FROM eac_ruteo_ges erg 
  		WHERE  erg.usu_creo ='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";

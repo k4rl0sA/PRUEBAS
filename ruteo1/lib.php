@@ -95,8 +95,6 @@ function cmp_rute(){
  $c[]=new cmp('priorizacion','s','3',$d['priorizacion'],$w.' '.$o,'COHORTE DE RIESGO','priorizacion',null,null,false,$u,'','col-3');
  $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','tipo_prior',null,null,false,$u,'','col-3');
 
- $o='atemed';
- $c[]=new cmp($o,'e',null,'DATOS DEL USUARIO QUE REQUIERE LA ATENCIÓN MEDICA',$w);
  $c[]=new cmp('tipo_doc','s','3',$d['tipo_doc'],$w.' '.$o,'TIPO DE DOCUMENTO','tipo_doc',null,null,false,$u,'','col-2');
  $c[]=new cmp('documento','nu','999999999999999999',$d['documento'],$w.' '.$o,'NUMERO DE DOCUMENTO','documento',null,null,false,$u,'','col-2');
  $c[]=new cmp('nombres','t','80',$d['nombres'],$w.' '.$o,'NOMBRES Y APELLIDOS DEL USUARIO','nombres',null,null,false,$u,'','col-4');

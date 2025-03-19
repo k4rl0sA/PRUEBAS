@@ -211,11 +211,11 @@ function gra_frecuencia(){
 	 
  if ($_POST['key']){
 	 $id=divide($_POST['key']);
-	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_riesgo']."',observaciones=UPPER('{$_POST['obs']}'),
+	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
  WHERE id_persona={$id[0]} AND tipo_doc=UPPER('{$id[1]}') AND tipo_cita='{$id[2]}' AND `realizada`='NO';";
  }else{
-	 $sql="INSERT INTO frecuenciauso VALUES ({$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_riesgo']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	 $sql="INSERT INTO frecuenciauso VALUES ({$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
  }
 	//~ echo $sql;
 	$rta=dato_mysql($sql);

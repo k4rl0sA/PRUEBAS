@@ -127,6 +127,7 @@ function cmp_rute(){
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
  $c[]=new cmp('fecha_llamada','d','10',$d['fecha_llamada'],$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('estado_llamada','s',2,$d['estado_llamada'],$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
@@ -157,7 +158,9 @@ function lista_gestion(){ //revisar
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }
-
+function opc_estado_agenda($id=''){
+	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=1 AND estado='A' ORDER BY 1", $id);
+}
 function opc_idgeo($a){
 	$id=divide($a);
 	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod

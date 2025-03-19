@@ -62,7 +62,7 @@ function cmp_ruteresol(){
 
 function opc_idgeo($a){
 	$id=divide($a);
-	$sql="SELECT concat_ws('_',sector_catastral,nummanzana,predio_num,unidad_habit) cod
+	$sql="idgeo AS Cod_Predio
 		FROM `eac_ruteo` WHERE id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];
@@ -73,7 +73,7 @@ function opc_idgeo($a){
 }
 
 function opc_cod_predio($co=''){
-	$sql="SELECT idgeo id ,FN_CATALOGODESC(44,estado_v) estado from hog_geo where idgeo=$co";
+	$sql="SELECT idgeo AS Cod_Predio ,FN_CATALOGODESC(44,estado_v) estado from geo_gest where idgeo=$co";
 	$info=datos_mysql($sql);
 	$cod= $info['responseResult'][0]['id'];
 	return $cod;
@@ -84,13 +84,13 @@ function opc_estado($id=''){
 		$co=divide($cod);
 		// $cod=opc_cod_predio()
 		// var_dump($_REQUEST['predio']);
-		return	opc_sql("SELECT idgeo,FN_CATALOGODESC(44,estado_v) from hog_geo where sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3 and estrategia=2",$id);
+		return	opc_sql("SELECT idgeo AS Cod_Predio, FN_CATALOGODESC(44,estado_v) from geo_gest where idgeo='$co[0]' AND estado_v>3",$id);
 }
 
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idpre={$id[0]}";
+		$sql="SELECT id_fam AS 'Cod_Familia', concat(id_fam,' - ','FAMILIA ',numfam) FROM hog_fam hv where idpre={$id[0]}";
 		$info=datos_mysql($sql);
 		// print_r($sql);
 		return json_encode($info['responseResult']);
@@ -102,7 +102,7 @@ function opc_famili($id=''){
 	if ($id==''){
 
 	}else{
-		return opc_sql("SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idviv='$id'", $id);
+		return opc_sql("SELECT id_fam AS 'Cod_Familia', concat(id_fam,' - ','FAMILIA ',numfam) FROM hog_fam hv where id_fam='$id'", $id);
 	}
 }
 function opc_usuario($id=''){

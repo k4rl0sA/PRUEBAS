@@ -280,11 +280,15 @@ function opc_estado_g($id=''){
 function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=36 and estado='A' ORDER BY 1",$id);
 }
-/* function opc_asignado($id=''){
+function opc_perfil($id=''){
+return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=218 and estado="A" ORDER BY 1',$id);
+}
+function opc_doc_asignado($id=''){
 	$co=datos_mysql("select FN_USUARIO(".$_SESSION['us_sds'].") as co;");
 	$com=divide($co['responseResult'][0]['co']);
-	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE `perfil` IN('MED','ENF') AND componente='EAC' and subred='{$com[2]}' ORDER BY 1",$id);
-} */
+	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
+}
+
 
 function get_rute(){
 	if($_POST['id']=='0'){

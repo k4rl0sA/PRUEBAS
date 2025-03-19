@@ -267,7 +267,7 @@ function grabar(tb='',ev){
 <body Onload="actualizar();">
 <?php
 require_once "../libs/gestion.php";
-if (!isset($_SESSION["us_riesgo"])){ die("<script>window.top.location.href = '/';</script>");}
+if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
 
 $mod='frecuenciauso';
 $ya = new DateTime();

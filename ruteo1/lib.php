@@ -89,7 +89,7 @@ function cmp_rute(){
 //var_dump($d);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'CASO REPORTADO',$w);
- $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
+ $c[]=new cmp('id','t','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
  $c[]=new cmp('fecha_asig','d','10',$d['fecha_asig'],$w.' '.$o,'FECHA ASINACION','fecha_asig',null,null,false,$u,'','col-15');
  $c[]=new cmp('fuente','s','3',$d['fuente'],$w.' '.$o,'FUENTE O REMITENTE','fuente',null,null,false,$u,'','col-25');
  $c[]=new cmp('priorizacion','s','3',$d['priorizacion'],$w.' '.$o,'COHORTE DE RIESGO','priorizacion',null,null,false,$u,'','col-3');

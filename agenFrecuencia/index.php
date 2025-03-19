@@ -3,7 +3,7 @@ ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 require_once "../libs/gestion.php";
 if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
-$mod='sesigcole';
+$mod='frecuenciauso';
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` 
 WHERE`perfil` IN('ADM','AUXHOG','PROFAM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO','PSICLINICOS') 
 and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 2",$_SESSION['us_sds']);

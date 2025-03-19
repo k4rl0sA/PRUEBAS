@@ -1,47 +1,34 @@
 <?php
-session_start();
 ini_set('display_errors','1');
 include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
+require_once "../libs/gestion.php";
+if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</script>");}
+$mod='sesigcole';
+$digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` 
+WHERE`perfil` IN('ADM','AUXHOG','PROFAM','MEDICINA','ENFERMERIA','PSICOLOGIA','NUTRICION','TERAPEUTA','AMBIENTAL','ODONTOLOGIA','AGCAMBIO','AUXRELEVO','PSICLINICOS') 
+and subred=(SELECT subred FROM usuarios where id_usuario='{$_SESSION['us_sds']}')  ORDER BY 2",$_SESSION['us_sds']);
+$perfi=datos_mysql("SELECT perfil as perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+$perfil = (!$perfi['responseResult']) ? '' : $perfi['responseResult'][0]['perfil'] ;
 ?>
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sigrev || Frecuencia de Uso</title>
-<link href="https://fonts.googleapis.com/css2?family=Economica&family=Spicy+Rice&family=Trade+Winds&display=swap" rel="stylesheet">
-<link href="../libs/css/s.css" rel="stylesheet">
-<script src="../libs/js/c18082020.js"></script>
+<title>Frecuencia de Uso || <?php echo $APP; ?></title>
+<link href="../libs/css/stylePop.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<script src="../libs/js/a.js?=2.2"></script>
+<script src="../libs/js/x.js"></script>
 <script src="../libs/js/d.js"></script>
-<script >
-var mod='frecuenciauso';	
+<script src="../libs/js/popup.js"></script>
+<script>
+var mod='frecuenciauso';
 var ruta_app='lib.php';
-function csv(b){
-		var myWindow = window.open("../libs/gestion.php?a=exportar&b="+b,"Descargar archivo");
-}
-
-document.onkeyup=function(ev) {
- ev=ev||window.event;
- if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
- if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
-};
-
 
 function actualizar(){
 	act_lista(mod);
 }
 
-
-function showFil(a){
-	desplegar(a+'-fil');
-	if (document.getElementById(a) != undefined) {
-		var w=document.getElementById(a);
-		if(w.classList.contains('col-8')){
-			w.classList.replace('col-8','col');
-		}else{
-			w.classList.replace('col','col-8');
-		}
-		
-	}
-}
 
 function getPerson() {	
 	var id = document.getElementById('idp');
@@ -257,18 +244,20 @@ function grabar(tb='',ev){
 		  alert(rta[0]);
 		  return rta[1];
 	}else{
-		document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-		if (document.getElementById(tb+'-msj') != undefined) act_lista(tb+'uso');
+		/* document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+		if (document.getElementById(tb+'-msj') != undefined) act_lista(tb+'uso'); */
+		myFetch('lib.php',"a=gra&tb="+tb,mod);
 	}
 	  //~ valDate('mot3');
   //~ }else if(obs.value==3 && mot2.value==''){
 	  //~ alert('El valor del campo Motivo,No puede estar vacio, por favor valide');
   }else{
    //VALIDACIONES FRECUENCIA DE USO
-	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+	/* document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
 	if (document.getElementById(tb+'-msj') != undefined)
 		act_lista(tb+'uso');
-	}
+	} */
+    myFetch('lib.php',"a=gra&tb="+tb,mod);  
 }
 
 </script>

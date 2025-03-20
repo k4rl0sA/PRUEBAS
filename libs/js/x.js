@@ -785,7 +785,7 @@ function EnabEfec(a,b,c,d,e) {
 		}
 	});
 
-	if(a.value === '1'){
+	if(a.value === '1'||a.value === '2' ){
 		enaFie(document.getElementById('condi_diag'),false);
 	}else{
 		enaFie(document.getElementById('condi_diag'),true);

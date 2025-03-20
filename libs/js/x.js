@@ -759,7 +759,7 @@ function EnabEfec(a,b,c,d,e) {
 	elm = [...document.querySelectorAll(cl)];
 
 	elems.forEach(element => {
-		const flag = (a.value !== '1');
+		const flag = (a.value <3);
 		enaFie(element, flag);
 	});
 

@@ -745,6 +745,8 @@ function ZscoAte(a){
 	}
 }
 
+
+//EnabEfec(this,['hab','acc'],['Ob'],['nO'],['bL']);
 function EnabEfec(a,b,c,d,e) {
 	const clas = b.map(clase => `select.${clase}, input.${clase},textarea.${clase}`).join(', ');
 	const cls = c.map(clase => `select.${clase}, input.${clase},textarea.${clase}`).join(', ');
@@ -757,7 +759,7 @@ function EnabEfec(a,b,c,d,e) {
 	elm = [...document.querySelectorAll(cl)];
 
 	elems.forEach(element => {
-		const flag = (a.value !== '1' || a.value!== '2');
+		const flag = (a.value !== '1');
 		enaFie(element, flag);
 	});
 

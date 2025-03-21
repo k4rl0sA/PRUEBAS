@@ -133,6 +133,7 @@ function cmp_rute(){
  $c[]=new cmp('estado_agenda','s',2,'',$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
  $c[]=new cmp('fecha_gestion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil_gest','s',3,'',$w.' '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
 
@@ -145,10 +146,11 @@ function cmp_rute(){
  $c[]=new cmp('predio_num_v','n','3','',$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
 
  $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO DE ASIGNACIÓN',$w);
+ $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25');
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
+ $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  
  
 //  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');

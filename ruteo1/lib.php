@@ -185,7 +185,7 @@ function opc_perfil($id=''){
 }
 
 opc_usuario_gest($id=''){
-	return opc_sql("SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE estado = 'A'",$id);
+	// return opc_sql("SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE estado = 'A'",$id);
 }
 
 

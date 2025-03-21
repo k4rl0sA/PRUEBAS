@@ -119,14 +119,17 @@ function cmp_rute(){
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
- $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Gestion','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'estado','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Agenda','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
+ $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
  $c[]=new cmp('estado_agenda','s',2,'',$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
+ $c[]=new cmp('fecha_gestion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('perfil_gest','s',3,'',$w.' '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
+ $c[]=new cmp('usuario_gest','s','10','',$w.' '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
@@ -160,6 +163,20 @@ function lista_gestion(){ //revisar
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }
 
+function opc_perfil_gest($id=''){
+    if($_REQUEST['id']!=''){	
+            $sql = "SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+            perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+            and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
+            and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY 1";
+            $info = datos_mysql($sql);		
+            return json_encode($info['responseResult']);	
+    } 
+}
+
+function opc_perfil($id=''){
+    return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
+}
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }

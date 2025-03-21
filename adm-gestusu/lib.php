@@ -167,7 +167,6 @@ function opc_perfil($id=''){
     }
 }
 
-
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=216 and estado='A' ORDER BY 1",$id);
 }

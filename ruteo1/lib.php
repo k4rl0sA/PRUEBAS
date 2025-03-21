@@ -180,6 +180,15 @@ function opc_perfil_gest($id=''){
 	  } 
   }
 
+function opc_perfil($id=''){
+    return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
+}
+
+opc_usuario_gest($id=''){
+	return opc_sql("SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE estado = 'A'",$id);
+}
+
+
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }

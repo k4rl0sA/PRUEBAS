@@ -139,7 +139,7 @@ function cmp_rute(){
 
 
  $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
+ $c[]=new cmp($o,'e',null,'DATOS GEOGRAFICOS',$w);
  $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');
  $c[]=new cmp('sector_catastral_v','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
  $c[]=new cmp('nummanzana_v','n','3','',$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');

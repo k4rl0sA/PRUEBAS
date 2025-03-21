@@ -128,9 +128,9 @@ $o='gesefc';
  $c[]=new cmp('estado_agenda','s',2,'',$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
  $c[]=new cmp('fecha_gestion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('perfil_gest','s',3,'',$w.' '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
+/*  $c[]=new cmp('perfil_gest','s',3,'',$w.' '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
-
+ */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN',$w);
  $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');

@@ -119,8 +119,8 @@ function cmp_rute(){
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
- $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Agenda','estado_g',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,true,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Agenda','estado_g',null,null,true,true,'','col-4',"enabFielSele(this,['motivo_estado']);");
  $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 $o='gesefc';

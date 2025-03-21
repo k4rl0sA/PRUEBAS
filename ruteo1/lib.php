@@ -169,6 +169,17 @@ function lista_gestion(){ //revisar
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }
 
+function opc_perfil_gest($id=''){
+	  if($_REQUEST['id']!=''){	
+			  $sql = "SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+			  perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+			  and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
+			  and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY 1";
+			  $info = datos_mysql($sql);		
+			  return json_encode($info['responseResult']);	
+	  } 
+  }
+
 function opc_gestion($id=''){
 	return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=222 AND estado='A' ORDER BY 1", $id);
 }

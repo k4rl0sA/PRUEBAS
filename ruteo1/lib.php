@@ -120,7 +120,7 @@ function cmp_rute(){
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
  $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,true,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Agenda','estado_g',null,null,true,true,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Agenda','estado_g',null,null,true,true,'','col-4','enabRutGest();');//
  $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
 /* $o='gesefc';
@@ -130,14 +130,14 @@ function cmp_rute(){
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
- $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,false,'','col-4','enabRutGest();');//
+ $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,false,'','col-4');//
  $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4');
  $c[]=new cmp('fecha_gestion','d','10','',$w.' sTA '.$o,'Fecha de gestión','fecha_gestion',null,null,true,false,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' sTA '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,false,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil_gest','s',3,'',$w.' sTA '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,false,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' sTA '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,false,'','col-2');
 
- $o='gesefc';
+ $o='gesgeo';
  $c[]=new cmp($o,'e',null,'DATOS GEOGRAFICOS',$w);
  $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');
  $c[]=new cmp('sector_catastral_v','n','6','',$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');

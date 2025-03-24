@@ -98,6 +98,15 @@ function opc_perfil($id=''){
     $com=divide($co['responseResult'][0]['co']);
     return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
   }
+  function opc_perfilusuario($id=''){
+    if($_REQUEST['id']!=''){	
+            $sql = "SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+            perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+            and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY 1";
+            $info = datos_mysql($sql);		
+            return json_encode($info['responseResult']);	
+        }
+}
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

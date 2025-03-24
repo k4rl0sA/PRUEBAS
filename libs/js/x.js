@@ -1210,3 +1210,15 @@ function enabRutGest(){
 	];
 	EnabDepeDynamic(['sTA'], conditions);
 }
+function enabRutOthSub(){
+	const conditions = [
+		{ id: 'motivo_estado', value: '4', compare: true }
+	];
+	EnabDepeDynamic(['dir'], conditions);
+}
+function enabRutAgen() {
+	const conditions = [
+		{ id: 'estado_agenda', value: '2', compare: true }
+	];
+	EnabDepeDynamic(['AGe'], conditions);
+}

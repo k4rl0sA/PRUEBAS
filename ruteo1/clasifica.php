@@ -98,7 +98,7 @@ function opc_perfil($id=''){
     $com=divide($co['responseResult'][0]['co']);
     return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
   }
-  function opc_perfilusuario($id=''){
+  function opc_perfilnombre($id=''){
     if($_REQUEST['id']!=''){	
             $sql = "SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
             perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 

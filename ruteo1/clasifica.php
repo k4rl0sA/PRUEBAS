@@ -93,6 +93,11 @@ function opc_pre_clasif($id=''){
 function opc_perfil($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=218 and estado="A" ORDER BY 1',$id);
   }
+  function opc_doc_asignado($id=''){
+    $co=datos_mysql("select FN_USUARIO(".$_SESSION['us_sds'].") as co;");
+    $com=divide($co['responseResult'][0]['co']);
+    return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
+  }
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

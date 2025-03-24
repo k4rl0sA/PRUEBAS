@@ -140,9 +140,9 @@ function cmp_rute(){
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'DATOS GEOGRAFICOS',$w);
  $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('sector_catastral_v','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('nummanzana_v','n','3','',$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');
- $c[]=new cmp('predio_num_v','n','3','',$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('sector_catastral_v','n','6','',$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('nummanzana_v','n','3','',$w.' dir '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');
+ $c[]=new cmp('predio_num_v','n','3','',$w.' dir '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
 //  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
   
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();

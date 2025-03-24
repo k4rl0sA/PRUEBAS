@@ -1206,7 +1206,7 @@ function NoObligat(a,flag){
 }
 function enabRutGest(){
 	const conditions = [
-		{ id: 'motivo_estado', value: '1', compare: true }
+		{ id: 'estado_llamada', value: '1', compare: true }
 	];
 	EnabDepeDynamic(['sTA'], conditions);
 }

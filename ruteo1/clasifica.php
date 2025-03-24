@@ -84,6 +84,9 @@ estado='G'
   $rta=dato_mysql($sql);
   return $rta;
 }
+function opc_clasificacion($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=191 and estado='A' ORDER BY 1",$id);
+}
 
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);

@@ -115,7 +115,7 @@ function cmp_rute(){
  $c[]=new cmp('predio_num','n','3',$d['predio_num'],$w.' '.$o,'Predio de Num (3)','predio_num',null,null,false,$u,'','col-25');
  $c[]=new cmp('unidad_habit','n','4',$d['unidad_habit'],$w.' '.$o,'Unidad habitacional (3)','unidad_habit',null,null,false,$u,'','col-25');
  $c[]=new cmp('cordx','t','15',$d['cordx'],$w.' '.$o,'Cordx','cordx',null,null,false,$u,'','col-5');
- $c[]=new cmp('cordy','t','15',$d['cordy'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-5');
+ $c[]=new cmp('cordy','t','15',$d['cordrutclasify'],$w.' '.$o,'Cordy','cordy',null,null,false,$u,'','col-5');
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
@@ -130,12 +130,12 @@ function cmp_rute(){
  */
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
- $c[]=new cmp('estado_agenda','s',2,'',$w.' pRe '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
+ $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
  $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
- $c[]=new cmp('fecha_gestion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('perfil_gest','s',3,'',$w.' '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
- $c[]=new cmp('usuario_gest','s','10','',$w.' '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
+ $c[]=new cmp('fecha_gestion','d','10','',$w.' sTA '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' sTA '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('perfil_gest','s',3,'',$w.' sTA '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
+ $c[]=new cmp('usuario_gest','s','10','',$w.' sTA '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
 
 
  $o='gesefc';

@@ -1204,3 +1204,9 @@ function NoObligat(a,flag){
     flag ? a.removeAttribute('readonly'): a.setAttribute('readonly', true);
 	flag ? a.removeAttribute('disabled'): a.setAttribute('disabled', true);
 }
+function enabRutGest(){
+	const conditions = [
+		{ id: 'motivo_estado', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['sTA'], conditions);
+}

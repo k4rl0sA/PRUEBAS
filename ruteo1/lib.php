@@ -131,12 +131,11 @@ function cmp_rute(){
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
  $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,$x,'','col-4',"enabFielSele(this,['motivo_estado']);");//
- $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','validState(this);');
+ $c[]=new cmp('motivo_estado','s','3','',$w.' sTA '.$o,'motivo_estado','motivo_estado',null,null,false,false,'','col-4','enabRutGest();');
  $c[]=new cmp('fecha_gestion','d','10','',$w.' sTA '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' sTA '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil_gest','s',3,'',$w.' sTA '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,true,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' sTA '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,$x,'','col-2');
-
 
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'DATOS GEOGRAFICOS',$w);

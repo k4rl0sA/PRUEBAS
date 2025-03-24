@@ -144,17 +144,6 @@ function cmp_rute(){
  $c[]=new cmp('sector_catastral_v','n','6','',$w.' '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,true,$u,'','col-25');
  $c[]=new cmp('nummanzana_v','n','3','',$w.' '.$o,'Nummanzana (3)','nummanzana_v',null,null,true,$u,'','col-25');
  $c[]=new cmp('predio_num_v','n','3','',$w.' '.$o,'Predio de Num (3)','predio_num_v',null,null,true,$u,'','col-25');
-
- $o='gesefc';
- $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
- $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$x,'','col-2');
- $c[]=new cmp('pre_clasif','s','10','',$w.' '.$o,'Clasificación','pre_clasif',null,null,true,$x,'','col-2');
- $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25');
- $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
- $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
- 
- 
 //  $c[]=new cmp('observacion','a',50,$d['obse'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
   
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
@@ -447,6 +436,7 @@ function formato_dato($a,$b,$c,$d){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
 		$rta.="<li class='icono canin1' title='GESTIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('ruteresol','pro',event,'','ruteoresolut.php',7,'ruteresol');\"></li>";
+		$rta.="<li class='icono canin1' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
 		// if($c['Gestionado']== '1' || $c['Gestionado']=='2'){
 	
 		// }

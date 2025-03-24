@@ -1222,3 +1222,9 @@ function enabRutAgen() {
 	];
 	EnabDepeDynamic(['AGe'], conditions);
 }
+function enabRutRech() {
+	const conditions = [
+		{ id: 'estado_agenda', value: '3', compare: true }
+	];
+	EnabDepeDynamic(['ReC'], conditions);
+}

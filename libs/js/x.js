@@ -1228,9 +1228,15 @@ function enabRutRech() {
 	];
 	EnabDepeDynamic(['ReC'], conditions);
 }
-function enabEmbPue() {
+function enabEmbRGes() {
 	const conditions = [
 		{ id: 'edad_gest', value: '44', compare: true }
 	];
 	EnabDepeDynamic(['Pue'], conditions);
+}
+function enabEmbPRg() {
+	const conditions = [
+		{ id: 'edad_gest', value: '44', compare: false }
+	];
+	EnabDepeDynamic(['PrG'], conditions);
 }

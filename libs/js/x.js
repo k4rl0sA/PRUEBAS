@@ -1095,6 +1095,8 @@ function enabPrioEtn() {
 		{ value: '9', classes: ['mE5'] },
 		{ value: '27', classes: ['mE5'] },
 	];
+	
+	
 	conditions.forEach(condition => {
 		const isConditionMet = prioridad === condition.value;
 		if (isConditionMet) {
@@ -1194,7 +1196,6 @@ function enabEspe2(){
 }
 function noObliFecEtni(){
 		const ele=document.getElementById('fecha_obs');
-		noRequired(ele,true);
 		NoObligat(ele,true);
 }
 function NoObligat(a,flag){

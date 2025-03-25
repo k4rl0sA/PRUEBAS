@@ -93,7 +93,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('muertos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Muertos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('fum','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fecha Última Menstruación','fum',null,null,true,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,true,true,'','col-4','enabEmbRGes();enabEmbPRg();');
-  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$no.' '.$o,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
+  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$no,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$bl.' Pue '.$no,'Resultado De La Gestación','resul_gest',null,null,true,false,'','col-2',"enabNV();");
   $c[]=new cmp('peso_nacer','sd',5,$d,$w.' '.$bl.' Nav '.$no,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,false,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d,$w.' PrG '.$bl.' '.$no,'¿Asiste A Controles Prenatales?','rta',null,null,true,true,'','col-2');

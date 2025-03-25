@@ -81,7 +81,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");//
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();");
+  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();enCroGes();");
   
     $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
@@ -138,7 +138,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('frec_cardiaca','sd',3,$d,$w.' '.$o,'Frecuencia Cardiaca (50 a 150 lt)','frec_cardiaca','rgxfcard',null,true,true,'','col-25');
   $c[]=new cmp('frec_respiratoria','sd',3,$d,$w.' '.$o,'Frecuencia Respiratoria (15 a 60 x min)','frec_respiratoria','rgxfresp',null,true,true,'','col-25');
   $c[]=new cmp('saturacion','sd',3,$d,$w.' '.$o,'Saturación (40 a 99 %)','saturacion','rgxsatu',null,true,true,'','col-25');
-  $c[]=new cmp('gluco','sd',3,$d,$w.' '.$q,'Glucometria (40 a 500 mg/dl)','gluco','rgxgluco',null,true,$men,'','col-25');
+  $c[]=new cmp('gluco','sd',3,$d,$w.' GlU '.$q,'Glucometria (40 a 500 mg/dl)','gluco','rgxgluco',null,true,false,'','col-25');
   
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);

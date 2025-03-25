@@ -1115,6 +1115,35 @@ function enabPrioEtn() {
 		});
 	});
 }
+function enCroGes(){
+	const prioridad = document.getElementById('prioridad').value;
+	const enabledClasses = {};
+	const conditions = [
+		{ value: '2', classes: ['GlU'] },
+		{ value: '3', classes: ['GlU'] },
+		{ value: '16', classes: ['GlU'] },
+		{ value: '17', classes: ['GlU'] },
+		{ value: '19', classes: ['GlU'] }
+	];
+	conditions.forEach(condition => {
+		const isConditionMet = prioridad === condition.value;
+		if (isConditionMet) {
+			condition.classes.forEach(cls => {
+				enabledClasses[cls] = true;
+			});
+		}
+	});
+	conditions.forEach(condition => {
+		condition.classes.forEach(cls => {
+			const selector = `select.${cls}, input.${cls}, textarea.${cls}`;
+			const elements = document.querySelectorAll(selector);
+			elements.forEach(element => {
+				enaFie(element, !enabledClasses[cls]);
+			});
+		});
+	});
+}
+
 function diagCroEtn() {
 	const conditions = [
 		{ id: 'diag_cronico', value: '4', compare: true }

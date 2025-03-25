@@ -81,11 +81,10 @@ function cmp_segnoreg(){
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");//
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();noObliFecEtni()");
+  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$o,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();");
   
     $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
-  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$no.' '.$o,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Gestaciones','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Partos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('abortos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Abortos','fxobs',null,null,true,true,'','col-2');
@@ -94,6 +93,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('muertos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Muertos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('fum','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fecha Última Menstruación','fum',null,null,true,true,'','col-2');
   $c[]=new cmp('edad_gest','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Edad Gestacional Al Momento De Identificacion En Semanas','edad_gest',null,null,true,true,'','col-4','enabEmbRGes();enabEmbPRg();');
+  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$no.' '.$o,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
   $c[]=new cmp('resul_gest','s',3,$d,$w.' '.$bl.' Pue '.$no,'Resultado De La Gestación','resul_gest',null,null,true,false,'','col-2',"enabNV();");
   $c[]=new cmp('peso_nacer','sd',5,$d,$w.' '.$bl.' Nav '.$no,'Peso Al Nacer (Gr)','peso_nacer',null,null,false,false,'','col-2');
   $c[]=new cmp('asist_controles','s',3,$d,$w.' PrG '.$bl.' '.$no,'¿Asiste A Controles Prenatales?','rta',null,null,true,true,'','col-2');

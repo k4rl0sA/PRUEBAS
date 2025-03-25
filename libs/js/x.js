@@ -1228,3 +1228,9 @@ function enabRutRech() {
 	];
 	EnabDepeDynamic(['ReC'], conditions);
 }
+function enabEmbPue() {
+	const conditions = [
+		{ id: 'edad_gest', value: '44', compare: true }
+	];
+	EnabDepeDynamic(['dir'], conditions);
+}

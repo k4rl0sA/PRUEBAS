@@ -46,8 +46,16 @@ function cmp_rutclasif(){
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$x,'','col-2');
  $c[]=new cmp('pre_clasif','s','10','',$w.' '.$o,'Clasificación','pre_clasif',null,null,true,$x,'','col-2');
+ $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$x,'','col-2');
+ $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,$x,'','col-5',"selectDepend('acciones_1','desc_accion1','../vsp/acompsic.php');");
+ $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,$x,'','col-5');
+ $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$no.' '.$o,'Accion 2','acciones_2',null,null,false,$x,'','col-5',"selectDepend('acciones_2','desc_accion2','../vsp/acompsic.php');");
+ $c[]=new cmp('desc_accion2','s','3',$d,$w.' '.$no.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,$x,'','col-5');
+ $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$no.' '.$o,'Accion 3','acciones_3',null,null,false,$x,'','col-5',"selectDepend('acciones_3','desc_accion3','../vsp/acompsic.php');");
+ $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$no.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,$x,'','col-5');
+
+
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
@@ -107,6 +115,50 @@ function opc_perfil($id=''){
             return json_encode($info['responseResult']);	
         }
 }
+function opc_acciones_1($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
+  }
+  function opc_desc_accion1($id=''){
+    return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
+    }
+  
+  
+  function opc_acciones_1desc_accion1($id=''){
+  if($_REQUEST['id']!=''){
+        $id=divide($_REQUEST['id']);
+        $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        $info=datos_mysql($sql);		
+        return json_encode($info['responseResult']);
+      }
+  }
+  function opc_acciones_2desc_accion2($id=''){
+    if($_REQUEST['id']!=''){
+          $id=divide($_REQUEST['id']);
+          $sql="SELECT idcatadeta,descripcion  FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+          $info=datos_mysql($sql);		
+          return json_encode($info['responseResult']);
+        }
+    }
+    function opc_acciones_3desc_accion3($id=''){
+      if($_REQUEST['id']!=''){
+            $id=divide($_REQUEST['id']);
+            $sql="SELECT idcatadeta 'id',descripcion 'asc' FROM `catadeta` WHERE idcatalogo='75' and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+            $info=datos_mysql($sql);		
+            return json_encode($info['responseResult']);
+          }
+      }
+  function opc_acciones_2($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
+  }
+  function opc_desc_accion2($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
+  }
+  function opc_acciones_3($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);
+  }
+  function opc_desc_accion3($id=''){
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=75 and estado='A' ORDER BY 1",$id);
+  }
 function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];

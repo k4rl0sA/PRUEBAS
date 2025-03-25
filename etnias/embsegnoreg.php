@@ -106,6 +106,10 @@ function cmp_segnoreg(){
   $c[]=new cmp('diag_sificong','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Sifilis Congenita?','rta',null,null,true,true,'','col-3');
   $c[]=new cmp('seg_partera','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Le Ha Realizado Seguimiento Partera?','rta',null,null,true,true,'','col-3');
   $c[]=new cmp('seg_med_ancestral1','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'¿Le Ha Realizado Seguimiento El Médico Ancestral?','rta',null,null,true,true,'','col-4');
+
+ 
+  
+  
   
   $o='cronicos';
   $c[]=new cmp($o,'e',null,'CONDICIONES CRONICAS',$w);

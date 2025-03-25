@@ -371,7 +371,7 @@ function opc_segui($id=''){
  }
 
  function opc_fxobs($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=244 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=267 and estado='A' ORDER BY cast(idcatadeta AS UNSIGNED)",$id);
 }
 
 function opc_edad_gest($id=''){

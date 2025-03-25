@@ -55,8 +55,11 @@ function cmp_rutclasif(){
  $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$no.' '.$o,'Accion 3','acciones_3',null,null,false,$x,'','col-5',"selectDepend('acciones_3','desc_accion3','../vsp/acompsic.php');");
  $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$no.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,$x,'','col-5');
 
+ $o='alto';
+ $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
+ $c[]=new cmp('perfil_alto','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_alto',null,'',true,false,'','col-2',"selectDepend('perfil_alto','usuario_alto');");
+ $c[]=new cmp('usuario_alto','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_alto',null,null,true,false,'','col-2');
 
- $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' pRe '.$o,'Documento Confirmado del Usuario','docu_confirm',null,null,true,$x,'','col-2','validDate(this,-2,0);');
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
  $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$x,'','col-2','validDate(this,-2,0);');
@@ -114,6 +117,25 @@ function opc_perfilnombre($id=''){
     $info = datos_mysql($sql);		
   return json_encode($info['responseResult']);	
   }
+}
+function opc_perfil_alto($id=''){
+  if($_REQUEST['id']!=''){	
+      $sql = "SELECT *,id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+      perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+      and componente=(SELECT componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
+      and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY 1";
+      $info = datos_mysql($sql);		
+      return json_encode($info['responseResult']);	
+  } 
+}
+function opc_perfil_altousuario_alto($id=''){
+  if($_REQUEST['id']!=''){	
+          $sql = "SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 
+          perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
+          and subred=(SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ORDER BY nombre";
+          $info = datos_mysql($sql);		
+          return json_encode($info['responseResult']);	
+      }
 }
 function opc_acciones_1($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);

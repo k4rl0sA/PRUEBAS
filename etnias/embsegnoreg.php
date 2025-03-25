@@ -85,7 +85,7 @@ function cmp_segnoreg(){
   
     $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);
-  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$o,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
+  $c[]=new cmp('fecha_obs','d',10,$d,$w.' '.$bl.' '.$ge.' '.$no.' '.$o,'Fecha de Evento Obstetrico','fecha_obs',null,null,true,false,'','col-2');
   $c[]=new cmp('gestaciones','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Gestaciones','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('partos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Partos','fxobs',null,null,true,true,'','col-2');
   $c[]=new cmp('abortos','s',3,$d,$w.' '.$bl.' '.$ge.' '.$o,'Abortos','fxobs',null,null,true,true,'','col-2');

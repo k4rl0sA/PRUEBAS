@@ -238,7 +238,7 @@ function opc_rta($id=''){
 }
 
 function opc_edad_gesta($id=''){
-  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=137 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
+  return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=268 and estado='A' ORDER BY LPAD(idcatadeta, 2, '0') ASC",$id);
 }
 
 function opc_tipo_doc($id=''){

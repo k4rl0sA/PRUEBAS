@@ -1232,5 +1232,5 @@ function enabEmbPue() {
 	const conditions = [
 		{ id: 'edad_gest', value: '44', compare: true }
 	];
-	EnabDepeDynamic(['dir'], conditions);
+	EnabDepeDynamic(['Pue'], conditions);
 }

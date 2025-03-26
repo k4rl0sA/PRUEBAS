@@ -101,6 +101,9 @@ estado='G'
   $rta=dato_mysql($sql);
   return $rta;
 }
+function opc_riesgo($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=273 and estado='A' ORDER BY 1",$id);
+}
 function opc_clasificacion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=191 and estado='A' ORDER BY 1",$id);
 }

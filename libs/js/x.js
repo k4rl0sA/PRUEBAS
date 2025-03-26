@@ -1248,13 +1248,13 @@ function enabRutOthSub(){
 }
 function enabRutAgen() {
 	const conditions = [
-		{ id: 'estado_agenda', value: '2', compare: true }
+		{ id: 'estado_agenda', value: '1', compare: true }
 	];
 	EnabDepeDynamic(['AGe'], conditions);
 }
 function enabRutRech() {
 	const conditions = [
-		{ id: 'estado_agenda', value: '3', compare: true }
+		{ id: 'estado_agenda', value: '2', compare: true }
 	];
 	EnabDepeDynamic(['ReC'], conditions);
 }

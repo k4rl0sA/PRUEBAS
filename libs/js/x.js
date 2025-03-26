@@ -1270,3 +1270,10 @@ function enabEmbPRg() {
 	];
 	EnabDepeDynamic(['PrG'], conditions);
 }
+
+function enabEmbSif() {
+	const conditions = [
+		{ id: 'diag_sifigest', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['SiF'], conditions);
+}

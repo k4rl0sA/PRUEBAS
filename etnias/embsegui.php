@@ -206,7 +206,8 @@ function get_seguim(){
     // var_dump($_POST,$_GET);
     $id=divide($_REQUEST['id']);
     // print_r($id);
-    $sql="SELECT idseg, fecha_seg, segui, estado_seg, motivo, interven, gestante, edad_gest,paren,Nom_fami, S.tipo_doc, num_doc,  tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, fecha_egreso, espe1, espe2, adh_tto, observaciones
+    // segui, estado_seg, motivo, interven, gestante, edad_gest,paren,Nom_fami, S.tipo_doc, num_doc,  tel_conta, ubi, ser_req, fecha_ing, uss_ing, motivo_cons, uss_tras, ing_unidad, ante_salud, imp_diag, uss_encu, servicio_encu, imp_diag2, nece_apoy, fecha_egreso, espe1, espe2, adh_tto, observaciones
+    $sql="SELECT idseg, fecha_seg
           FROM `emb_segui` S
           left join person P ON S.idpeople=P.idpeople
           WHERE idseg='{$id[0]}'";

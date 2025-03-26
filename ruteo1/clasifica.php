@@ -48,10 +48,12 @@ function cmp_rutclasif(){
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
  $c[]=new cmp('pre_clasif','s','10','',$w.' '.$o,'Clasificación','pre_clasif',null,null,true,$u,'','col-25');
  $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$u,'','col-25');
+ $c[]=new cmp('riesgo','s','10','',$w.' '.$o,'Riesgo','riesgo',null,null,true,$u,'','col-25');
+
+ $o='bajo';
+ $c[]=new cmp($o,'e',null,'RIESGO BAJO',$w);
  $c[]=new cmp('accion','s','10','',$w.' '.$o,'Definir Acción','clasificacion',null,null,true,$u,'','col-25');
  $c[]=new cmp('fecha','d','10','',$w.' '.$o,'Fecha de Programación','fecha',null,null,true,$u,'','col-25','validDate(this,-2,0);');
-
-
  $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,$u,'','col-5',"selectDepend('acciones_1','desc_accion1','../vsp/acompsic.php');");
  $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,$u,'','col-5');
  $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$o,'Accion 2','acciones_2',null,null,false,$u,'','col-5',"selectDepend('acciones_2','desc_accion2','../vsp/acompsic.php');");

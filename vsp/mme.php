@@ -163,7 +163,7 @@ function cmp_mme(){
     $c[]=new cmp('asiste_ctrl_cyd','s','3',$d,$w.' PuE '.$o,'¿Asiste a Controles de Crecimiento y Desarrollo o plan canguro?','rta2',null,null,false,$x,'','col-4');
     $c[]=new cmp('vacuna_comple','s','3',$d,$w.' PuE '.$o,'¿Tiene esquema de vacunación completo para la edad?','rta',null,null,false,$x,'','col-3');
     $c[]=new cmp('lacmate_exclu','s','3',$d,$w.' PuE '.$o,'¿Recibe lactancia materna exclusiva?','rta',null,null,false,$x,'','col-2');
-    $c[]=new cmp('signos_alarma','s','3',$d,$w.' PuE '.$o,'¿La madre identifica signos de alarma?','rta',null,null,false,$x,'','col-2');
+    $c[]=new cmp('signos_alarma_lac','s','3',$d,$w.' PuE '.$o,'¿La madre identifica signos de alarma?','rta',null,null,false,$x,'','col-2');
 
     $o='info';
     $c[]=new cmp($o,'e',null,'INFORMACION GENERAL',$w);

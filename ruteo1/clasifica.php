@@ -50,10 +50,10 @@ var_dump($d);
  $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$u,'','col-2');
  $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,$u,'','col-5',"selectDepend('acciones_1','desc_accion1','../vsp/acompsic.php');");
  $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,$u,'','col-5');
- $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$no.' '.$o,'Accion 2','acciones_2',null,null,false,$u,'','col-5',"selectDepend('acciones_2','desc_accion2','../vsp/acompsic.php');");
- $c[]=new cmp('desc_accion2','s','3',$d,$w.' '.$no.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,$u,'','col-5');
- $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$no.' '.$o,'Accion 3','acciones_3',null,null,false,$u,'','col-5',"selectDepend('acciones_3','desc_accion3','../vsp/acompsic.php');");
- $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$no.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,$u,'','col-5');
+ $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$o,'Accion 2','acciones_2',null,null,false,$u,'','col-5',"selectDepend('acciones_2','desc_accion2','../vsp/acompsic.php');");
+ $c[]=new cmp('desc_accion2','s','3',$d,$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,$u,'','col-5');
+ $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$o,'Accion 3','acciones_3',null,null,false,$u,'','col-5',"selectDepend('acciones_3','desc_accion3','../vsp/acompsic.php');");
+ $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,$u,'','col-5');
 
  $o='alto';
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);

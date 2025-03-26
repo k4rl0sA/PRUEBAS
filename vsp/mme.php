@@ -412,7 +412,7 @@ function gra_mme(){
     ['type' => 's', 'value' => $_POST['asiste_ctrl_cyd']],//66
     ['type' => 's', 'value' => $_POST['vacuna_comple']],//67
     ['type' => 's', 'value' => $_POST['lacmate_exclu']],//68
-    ['type' => 's', 'value' => $_POST['signos_alarma']],//69
+    ['type' => 's', 'value' => $_POST['signos_alarma_lac']],//69
     ['type' => 's', 'value' => $_POST['cam_sign']],//70
     ['type' => 's', 'value' => $_POST['qui_vida']],//71
     ['type' => 's', 'value' => $_POST['viv_malt']],//72
@@ -499,8 +499,7 @@ function formato_dato($a,$b,$c,$d){
 	if ($a=='mme' && $b=='acciones'){//a mnombre del modulo
 		$rta="<nav class='menu right'>";	
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'mme',event,this,['fecha_seg','numsegui','evento','estado_s','motivo_estado','tiposeg','cierre_caso'],'../vsp/mme.php');\"></li>";
-	}
-	
+	}	
  return $rta;
 }
 

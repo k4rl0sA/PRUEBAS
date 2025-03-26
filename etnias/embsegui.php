@@ -259,7 +259,7 @@ function opc_equi($id=''){
 function formato_dato($a,$b,$c,$d){
   $b=strtolower($b);
 	$rta=$c[$d];
-  var_dump($a);
+  // var_dump($a);
   if ($a=='seguimi' && $b=='acciones'){
     $rta="<nav class='menu right'>";
     $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'seguim',event,this,'../etnias/embsegui.php',[]);enbValue('idseg','seguim','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);\"></li>";

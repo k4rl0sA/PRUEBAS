@@ -128,6 +128,9 @@ function opc_perfil_alto($id=''){
       return json_encode($info['responseResult']);	
   } 
 }
+function opc_usuario_alto($id=''){
+	// return opc_sql("SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE estado = 'A'",$id);
+}
 function opc_perfil_altousuario_alto($id=''){
   if($_REQUEST['id']!=''){	
           $sql = "SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios WHERE 

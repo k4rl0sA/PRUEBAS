@@ -212,8 +212,7 @@ function get_seguim(){
           WHERE idseg='{$id[0]}'";
           // echo $sql;
   $info=datos_mysql($sql);
-  if (!empty($info['responseResult'])) 
-  return json_encode($info['responseResult'][0]);
+  if (!empty($info['responseResult'])) return json_encode($info['responseResult'][0]);
 } 
 }
 

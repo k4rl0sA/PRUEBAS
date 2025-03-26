@@ -1242,7 +1242,7 @@ function enabRutGest(){
 }
 function enabRutOthSub(){
 	const conditions = [
-		{ id: 'motivo_estado', value: '4', compare: true }
+		{ id: 'estado_agenda', value: '4', compare: true }
 	];
 	EnabDepeDynamic(['dir'], conditions);
 }

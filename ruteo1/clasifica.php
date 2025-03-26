@@ -73,7 +73,7 @@ function get_rutclasif(){
 	}else{
 		$id=divide($_POST['id']);
 		// var_dump($id);
-		$sql="SELECT `id_ruteo`,predio,famili,usuario,cod_admin
+		$sql="SELECT `id_ruteo`,idgeo,famili,usuario,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);

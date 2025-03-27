@@ -80,10 +80,10 @@ function cmp_rute(){
  $w='rute';
  $d=get_rute();
  if ($d=="") {$d=$t;}
+ $days=fechas_app('RUTEO');
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?true:false;
- 
 // var_dump($_POST);
 // var_dump($d);
  $o='segrep';
@@ -119,7 +119,7 @@ function cmp_rute(){
  
  $o='gesefc';
  $c[]=new cmp($o,'e',null,'CONTACTO TELEFONICO',$w);
- $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,true,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('fecha_llamada','d','10','',$w.' pRe '.$o,'Fecha de Primer Contacto Telefonico','fecha_gestion',null,null,true,true,'','col-2',"validDate(this,$days,0);");
  $c[]=new cmp('estado_llamada','s',2,'',$w.' pRe '.$o,'Estado Primer Contacto','estado_g',null,null,true,true,'','col-4','enabRutGest();');//
  $c[]=new cmp('observacion','a',50,'',$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 
@@ -132,8 +132,8 @@ function cmp_rute(){
  $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
  $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,false,'','col-4','enabRutAgen();enabRutRech();enabRutOthSub();');//
  $c[]=new cmp('motivo_estado','s','3','',$w.' ReC '.$o,'Motivo del Rechazado','motivo_estado',null,null,false,false,'','col-4');//
- $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,true,false,'','col-2','validDate(this,-2,0);');
- $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,false,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,true,false,'','col-2',"validDate(this,$days,0);");
+ $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,false,'','col-2',"validDate(this,$days,0);");
  $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,false,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,false,'','col-2');
 

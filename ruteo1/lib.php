@@ -381,16 +381,20 @@ function gra_rute(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]
 		];
-		// var_dump($rta);
+		var_dump($rta);
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
 	}else{
-
+	// 	$sql="UPDATE eac_ruteo_ges SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE id_rutges=?"; //  compromiso=?, equipo=?, 
+	// 	 $params = [
+	// 		  ['type' => 's', 'value' => $_POST['observaciones']],
+	// 		 ['type' => 'i', 'value' => $_SESSION['us_sds']],
+	// 		 ['type' => 'i', 'value' => $id[0]]
+	// 	   ];
+	//  $rta = mysql_prepd($sql, $params);
 	 }
-	//  echo($_POST);
-	
 	// // $rta = mysql_prepd($sql, $params);
-	/return $rta;
+	return $rta;
 }
 
 function formato_dato($a,$b,$c,$d){

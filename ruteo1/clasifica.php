@@ -65,12 +65,12 @@ function cmp_rutclasif(){
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
- $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','solici_agenda',null,'',true,$u,'','col-2');
- $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','activa_ruta',null,null,true,$u,'','col-2');
- $c[]=new cmp('sectorial','o','2','',$w.' '.$o,'¿Sectorial?','sectorial',null,null,true,true,'','col-25');
- $c[]=new cmp('intersectorial','o','2','',$w.' '.$o,'¿Intersectorial?','intersectorial',null,null,true,true,'','col-25');
- $c[]=new cmp('entornos','o','2','',$w.' '.$o,'¿Entornos?','entornos',null,null,true,true,'','col-25');
- $c[]=new cmp('aseguramiento','o','2','',$w.' '.$o,'Aseguramiento','aseguramiento',null,null,true,true,'','col-25');
+ $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','rta',null,'',true,$u,'','col-2');
+ $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,$u,'','col-2');
+ $c[]=new cmp('sectorial','s','2','',$w.' '.$o,'¿Sectorial?','rta',null,null,true,true,'','col-25');
+ $c[]=new cmp('intersectorial','s','2','',$w.' '.$o,'¿Intersectorial?','rta',null,null,true,true,'','col-25');
+ $c[]=new cmp('entornos','s','2','',$w.' '.$o,'¿Entornos?','rta',null,null,true,true,'','col-25');
+ $c[]=new cmp('aseguramiento','s','2','',$w.' '.$o,'Aseguramiento','rta',null,null,true,true,'','col-25');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -105,10 +105,7 @@ estado='G'
   return $rta;
 }
 
-function opc_solici_agenda($id=''){
-return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=170 and estado="A" ORDER BY 1',$id);
-}
-function opc_activa_ruta($id=''){
+function opc_rta($id=''){
 return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=170 and estado="A" ORDER BY 1',$id);
 }
 function opc_riesgo($id=''){

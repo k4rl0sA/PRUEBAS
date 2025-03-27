@@ -399,9 +399,17 @@ return $rta; */
 	['type' => 's', 'value' => NULL]
 		];
 		
-	 $rta = show_sql($sql, $params);
+	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
-	}
+	}else{
+		$sql="UPDATE eac_ruteo_ges SET observaciones=?,fecha_update=DATE_SUB(NOW(),INTERVAL 5 HOUR),usu_update=? WHERE id_rutges=?"; //  compromiso=?, equipo=?, 
+		 $params = [
+			  ['type' => 's', 'value' => $_POST['observaciones']],
+			 ['type' => 'i', 'value' => $_SESSION['us_sds']],
+			 ['type' => 'i', 'value' => $id[0]]
+		   ];
+		   $rta = mysql_prepd($sql, $params);
+		 }
 	// $rta = mysql_prepd($sql, $params);
 	return $rta;
 }

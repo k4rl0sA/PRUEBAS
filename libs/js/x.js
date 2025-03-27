@@ -1282,3 +1282,9 @@ function rutRisk(){
 	];
 	EnabDepeDynamic(['alto'], conditions);
 }
+function rutRisklow(){
+	const conditions = [
+		{ id: 'riesgo', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['alto'], conditions);
+}

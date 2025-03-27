@@ -388,6 +388,8 @@ function gra_rute(){
 	}else{
 
 	 }
+	 echo ($_POST);
+	
 	// // $rta = mysql_prepd($sql, $params);
 	// return $rta;
 }

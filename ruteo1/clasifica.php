@@ -67,6 +67,9 @@ function cmp_rutclasif(){
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
  $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','rta',null,'',true,$u,'','col-2');
  $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,$u,'','col-2');
+ 
+ $o='ruta';
+ $c[]=new cmp($o,'e',null,'ACTIVACIÓN DE RUTA',$w);
  $c[]=new cmp('sectorial','s','2','',$w.' '.$o,'¿Sectorial?','rta',null,null,true,true,'','col-25');
  $c[]=new cmp('intersectorial','s','2','',$w.' '.$o,'¿Intersectorial?','rta',null,null,true,true,'','col-25');
  $c[]=new cmp('entornos','s','2','',$w.' '.$o,'¿Entornos?','rta',null,null,true,true,'','col-25');

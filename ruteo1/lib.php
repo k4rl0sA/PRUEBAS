@@ -134,7 +134,7 @@ function cmp_rute(){
  $c[]=new cmp('motivo_estado','s','3','',$w.' ReC '.$o,'Motivo del Rechazado','motivo_estado',null,null,false,false,'','col-4');//
  $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,true,false,'','col-2',"validDate(this,$days,0);");
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,true,false,'','col-2',"validDate(this,$days,0);");
- $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,false,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
+  $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',true,false,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_gest',null,null,true,false,'','col-2');
 
  $o='gesgeo';
@@ -356,7 +356,8 @@ function get_gest(){
 }
 
 function gra_rute(){
-	$id=divide($_POST['id']);
+	$id=divide($_POST['id'] ?? '');
+	
 
 /* $id=divide($_POST['variable']);
 $sql = "INSERT INTO variable VALUES(?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,?)";
@@ -373,26 +374,29 @@ $params = [
 ];
 $rta = mysql_prepd($sql, $params);
 return $rta; */
-
 	if($_POST['id']=='0'){
-	$sql = "INSERT INTO eac_ruteo_val VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-	$params = array(
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 'i', 'value' => $id[0]),
-	array('type' => 's', 'value' => $_POST['fecha_gestion']),
-	array('type' => 's', 'value' => $_POST['direccion_nueva_v']),
-	array('type' => 's', 'value' => $_POST['sector_catastral_v']),
-	array('type' => 's', 'value' => $_POST['nummanzana_v']),
-	array('type' => 's', 'value' => $_POST['predio_num_v']),
-	array('type' => 's', 'value' => $_POST['telefono1_v']),
-	array('type' => 's', 'value' => $_POST['telefono2_v']),
-	array('type' => 's', 'value' => $_POST['telefono3_v']),
-	array('type' => 'i', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => 'A')
-	);
+	$sql = "INSERT INTO eac_ruteo_val VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	$params = [
+	['type' => 'i', 'value' => $id[0]],
+	['type' => 's', 'value' => $_POST['fecha_llamadas']],
+	['type' => 's', 'value' => $_POST['estado_llamada']],
+	['type' => 's', 'value' => $_POST['observaciones']],
+	['type' => 's', 'value' => $_POST['estado_agenda']],
+	['type' => 's', 'value' => $_POST['motivo_estado']],
+	['type' => 's', 'value' => $_POST['fecha_gestion']],
+	['type' => 's', 'value' => $_POST['docu_confirm']],
+	['type' => 's', 'value' => $_POST['perfil_gest']],
+	['type' => 's', 'value' => $_POST['usuario_gest']],
+	['type' => 's', 'value' => $_POST['direccion_n']],
+	['type' => 's', 'value' => $_POST['sector_n']],
+	['type' => 's', 'value' => $_POST['manzana_n']],
+	['type' => 's', 'value' => $_POST['predio_n']],
+	['type' => 's', 'value' => $bina],
+	['type' => 's', 'value' => $equi],
+	['type' => 's', 'value' => $_SESSION['us_sds']],
+	['type' => 's', 'value' => NULL],
+	['type' => 's', 'value' => NULL]
+		];
 	// var_dump($params);
 	$rta = mysql_prepd($sql, $params);
 	}

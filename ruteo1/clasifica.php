@@ -37,9 +37,9 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rutclasif(){
  $rta="";
- $t=['id_ruteo'=>'','predio'=>'','famili'=>'','usuario'=>'','cod_admin'=>''];
+ $t=['id_ruteo'=>'','idgeo'=>''];
  $w='rutclasif';
- $d=get_rutclasif(); 
+ $d=get_rutclasif();
  if ($d=="") {$d=$t;}
  $u=($d['predio']== NULL || $d['predio']== 0)?true:false;
  var_dump($d);
@@ -66,7 +66,7 @@ function cmp_rutclasif(){
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,false,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,false,'','col-25');
  $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','rta',null,'',true,false,'','col-2');
- $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,false,'','col-2');
+ $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,false,'','col-2','rutRute();');
  
  $cl='ruta';
  $c[]=new cmp($cl,'l',null,'ACTIVACIÓN DE RUTA',$w);

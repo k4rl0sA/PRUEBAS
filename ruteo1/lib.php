@@ -356,7 +356,7 @@ function get_gest(){
 }
 
 function gra_rute(){
-	$id=divide($_POST['id'] ?? '');
+	$id=divide($_POST['id_rutges'] ?? '');
 	
 
 /* $id=divide($_POST['variable']);

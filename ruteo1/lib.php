@@ -394,7 +394,6 @@ return $rta; */
 	['type' => 's', 'value' => $_POST['sector_n']],
 	['type' => 's', 'value' => $_POST['manzana_n']],
 	['type' => 's', 'value' => $_POST['predio_n']],
-	['type' => 's', 'value' => $bina],
 	['type' => 's', 'value' => $equi],
 	['type' => 's', 'value' => $_SESSION['us_sds']],
 	['type' => 's', 'value' => NULL],

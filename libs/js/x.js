@@ -1276,7 +1276,7 @@ function enabEmbSif() {
 	];
 	EnabDepeDynamic(['SiF'], conditions);
 }
-function rutRisk(){
+function rutRiskHig(){
 	const conditions = [
 		{ id: 'riesgo', value: '1', compare: true }
 	];
@@ -1284,7 +1284,7 @@ function rutRisk(){
 }
 function rutRisklow(){
 	const conditions = [
-		{ id: 'riesgo', value: '1', compare: true }
+		{ id: 'riesgo', value: '2', compare: true }
 	];
-	EnabDepeDynamic(['alto'], conditions);
+	EnabDepeDynamic(['bajo'], conditions);
 }

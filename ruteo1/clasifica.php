@@ -63,12 +63,11 @@ function cmp_rutclasif(){
 
  $o='alto';
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
- $c[]=new cmp('perfil_alto','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_alto',null,'',true,$u,'','col-2',"selectDepend('perfil_alto','usuario_alto');");
- $c[]=new cmp('usuario_alto','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_alto',null,null,true,$u,'','col-2');
-
  $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
- $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$u,'','col-2','validDate(this,-2,0);');
+ $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','solici_agenda',null,'',true,$u,'','col-2');
+ $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','activa_ruta',null,null,true,$u,'','col-2');
+ $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$u,'','col-2');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -101,6 +100,13 @@ estado='G'
 	//echo $sql;
   $rta=dato_mysql($sql);
   return $rta;
+}
+
+function opc_solici_agenda($id=''){
+return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=170 and estado="A" ORDER BY 1',$id);
+}
+function opc_activa_ruta($id=''){
+return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=170 and estado="A" ORDER BY 1',$id);
 }
 function opc_riesgo($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=273 and estado='A' ORDER BY 1",$id);

@@ -402,7 +402,7 @@ return $rta; */
 	$rta = mysql_prepd($sql, $params);
 	}
 	// $rta = mysql_prepd($sql, $params);
-	return $rta;
+	// return $rta;
 }
 
 function formato_dato($a,$b,$c,$d){

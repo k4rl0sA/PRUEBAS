@@ -375,7 +375,10 @@ $params = [
 $rta = mysql_prepd($sql, $params);
 return $rta; */
 	if($_POST['id']=='0'){
-	$sql = "INSERT INTO eac_ruteo_val VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
+		$bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
+		$equi=$equ['responseResult'][0]['equipo'];
+		$sql = "INSERT INTO eac_ruteo_val VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	$params = [
 	['type' => 'i', 'value' => $id[0]],
 	['type' => 's', 'value' => $_POST['fecha_llamadas']],

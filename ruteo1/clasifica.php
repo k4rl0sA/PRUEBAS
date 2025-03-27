@@ -46,8 +46,8 @@ function cmp_rutclasif(){
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('pre_clasif','s','10','',$w.' '.$o,'Clasificación','pre_clasif',null,null,true,$u,'','col-25');
- $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Pre Clasificación','clasificacion',null,null,true,$u,'','col-25');
+ $c[]=new cmp('pre_clasif','s','10','',$w.' '.$o,'Pre Clasificación','pre_clasif',null,null,true,$u,'','col-25');
+ $c[]=new cmp('clasificacion','s','10','',$w.' '.$o,'Clasificación','clasificacion',null,null,true,$u,'','col-25');
  $c[]=new cmp('riesgo','s','10','',$w.' '.$o,'Riesgo','riesgo',null,null,true,$u,'','col-25');
 
  $o='bajo';

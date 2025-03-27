@@ -361,7 +361,8 @@ function gra_rute(){
 		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 		$bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
 		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,A)";
-	$params = [
+		$rta='';
+		$params = [
 	['type' => 'i', 'value' => $id[0]],
 	['type' => 's', 'value' => $_POST['fecha_llamadas']],
 	['type' => 's', 'value' => $_POST['estado_llamada']],

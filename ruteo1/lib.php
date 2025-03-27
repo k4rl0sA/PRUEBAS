@@ -392,8 +392,8 @@ function gra_rute(){
 	// 		 ['type' => 'i', 'value' => $_SESSION['us_sds']],
 	// 		 ['type' => 'i', 'value' => $id[0]]
 	// 	   ];
-	 $rta = mysql_prepd($sql, $params);
-	}
+	//  $rta = mysql_prepd($sql, $params);
+	// }
 	// // $rta = mysql_prepd($sql, $params);
 	return $rta;
 }

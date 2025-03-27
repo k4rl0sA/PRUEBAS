@@ -67,7 +67,10 @@ function cmp_rutclasif(){
  $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
  $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','solici_agenda',null,'',true,$u,'','col-2');
  $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','activa_ruta',null,null,true,$u,'','col-2');
- $c[]=new cmp('fecha_asignacion','d','10','',$w.' '.$o,'Fecha de gestión','fecha_gestion',null,null,true,$u,'','col-2');
+ $c[]=new cmp('sectorial','o','2','',$w.' '.$o,'¿Sectorial?','sectorial',null,null,true,true,'','col-25');
+ $c[]=new cmp('intersectorial','o','2','',$w.' '.$o,'¿Intersectorial?','intersectorial',null,null,true,true,'','col-25');
+ $c[]=new cmp('entornos','o','2','',$w.' '.$o,'¿Entornos?','entornos',null,null,true,true,'','col-25');
+ $c[]=new cmp('aseguramiento','o','2','',$w.' '.$o,'Aseguramiento','aseguramiento',null,null,true,true,'','col-25');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

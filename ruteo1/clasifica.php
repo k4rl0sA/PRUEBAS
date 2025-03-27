@@ -75,7 +75,6 @@ function cmp_rutclasif(){
  return $rta;
 }
 
-
 function get_rutclasif(){
 	if($_POST['id']=='0'){
 		return "";

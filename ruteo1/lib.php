@@ -399,8 +399,8 @@ return $rta; */
 	['type' => 's', 'value' => NULL]
 		];
 	// var_dump($params);
-	$rta = show_sql($sql, $params);
-	$rta = mysql_prepd($sql, $params);
+	// $rta = show_sql($sql, $params);
+	return $rta = mysql_prepd($sql, $params);
 	}
 	// $rta = mysql_prepd($sql, $params);
 	return $rta;

@@ -69,7 +69,7 @@ function cmp_rutclasif(){
  $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,$u,'','col-2');
  
  $o='ruta';
- $c[]=new cmp($o,'e',null,'ACTIVACIÓN DE RUTA',$w);
+ $c[]=new cmp($o,'l',null,'ACTIVACIÓN DE RUTA',$w);
  $c[]=new cmp('sectorial','s','2','',$w.' '.$o,'¿Sectorial?','rta',null,null,true,true,'','col-25');
  $c[]=new cmp('intersectorial','s','2','',$w.' '.$o,'¿Intersectorial?','rta',null,null,true,true,'','col-25');
  $c[]=new cmp('entornos','s','2','',$w.' '.$o,'¿Entornos?','rta',null,null,true,true,'','col-25');

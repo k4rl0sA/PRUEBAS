@@ -52,28 +52,28 @@ function cmp_rutclasif(){
 
  $o='bajo';
  $c[]=new cmp($o,'e',null,'RIESGO BAJO',$w);
- $c[]=new cmp('accion','s','10','',$w.' '.$o,'Definir Acción','clasificacion',null,null,true,$u,'','col-25');
- $c[]=new cmp('fecha','d','10','',$w.' '.$o,'Fecha de Programación','fecha',null,null,true,$u,'','col-25','validDate(this,-2,0);');
- $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,$u,'','col-5',"selectDepend('acciones_1','desc_accion1','../clasifica.php');");
- $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,$u,'','col-5');
- $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$o,'Accion 2','acciones_2',null,null,false,$u,'','col-5',"selectDepend('acciones_2','desc_accion2','../clasifica.php');");
- $c[]=new cmp('desc_accion2','s','3',$d,$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,$u,'','col-5');
- $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$o,'Accion 3','acciones_3',null,null,false,$u,'','col-5',"selectDepend('acciones_3','desc_accion3','../clasifica.php');");
- $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,$u,'','col-5');
+ $c[]=new cmp('accion','s','10','',$w.' '.$o,'Definir Acción','clasificacion',null,null,true,false,'','col-25');
+ $c[]=new cmp('fecha','d','10','',$w.' '.$o,'Fecha de Programación','fecha',null,null,true,false,'','col-25','validDate(this,-2,0);');
+ $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,false,'','col-5',"selectDepend('acciones_1','desc_accion1','../clasifica.php');");
+ $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,false,'','col-5');
+ $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$o,'Accion 2','acciones_2',null,null,false,false,'','col-5',"selectDepend('acciones_2','desc_accion2','../clasifica.php');");
+ $c[]=new cmp('desc_accion2','s','3',$d,$w.' '.$o,'Descripcion Accion 2','desc_accion2',null,null,false,false,'','col-5');
+ $c[]=new cmp('acciones_3','s','3',$d,$w.' '.$o,'Accion 3','acciones_3',null,null,false,false,'','col-5',"selectDepend('acciones_3','desc_accion3','../clasifica.php');");
+ $c[]=new cmp('desc_accion3','s','3',$d,$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,false,'','col-5');
 
  $o='alto';
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
- $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,$u,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
- $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,$u,'','col-25');
- $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','rta',null,'',true,$u,'','col-2');
- $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,$u,'','col-2');
+ $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,false,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
+ $c[]=new cmp('nombre','s','6','',$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,false,'','col-25');
+ $c[]=new cmp('solici_agenda','s',3,'',$w.' AGe '.$o,'solici_agenda','rta',null,'',true,false,'','col-2');
+ $c[]=new cmp('activa_ruta','s','10','',$w.' AGe '.$o,'activa_ruta','rta',null,null,true,false,'','col-2');
  
  $cl='alto';
  $c[]=new cmp($o,'l',null,'ACTIVACIÓN DE RUTA',$w);
- $c[]=new cmp('sectorial','s','2','',$w.' '.$cl.' '.$o,'¿Sectorial?','rta',null,null,true,true,'','col-25');
- $c[]=new cmp('intersectorial','s','2','',$w.' '.$cl.' '.$o,'¿Intersectorial?','rta',null,null,true,true,'','col-25');
- $c[]=new cmp('entornos','s','2','',$w.' '.$cl.' '.$o,'¿Entornos?','rta',null,null,true,true,'','col-25');
- $c[]=new cmp('aseguramiento','s','2','',$w.' '.$cl.' '.$o,'Aseguramiento','rta',null,null,true,true,'','col-25');
+ $c[]=new cmp('sectorial','s','2','',$w.' '.$cl.' '.$o,'¿Sectorial?','rta',null,null,true,false,'','col-25');
+ $c[]=new cmp('intersectorial','s','2','',$w.' '.$cl.' '.$o,'¿Intersectorial?','rta',null,null,true,false,'','col-25');
+ $c[]=new cmp('entornos','s','2','',$w.' '.$cl.' '.$o,'¿Entornos?','rta',null,null,true,false,'','col-25');
+ $c[]=new cmp('aseguramiento','s','2','',$w.' '.$cl.' '.$o,'Aseguramiento','rta',null,null,true,false,'','col-25');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }

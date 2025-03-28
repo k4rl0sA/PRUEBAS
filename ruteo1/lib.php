@@ -395,6 +395,7 @@ function gra_rute(){
 			  ['type' => 'i', 'value' => $id[0]]
 		];
 	}
+	var_dump($sql);
 	return mysql_prepd($sql, $params);
 }
 

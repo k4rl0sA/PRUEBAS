@@ -440,6 +440,9 @@ function regCalls(){
 
 function gra_rute(){
 	$id=divide($_POST['id'] ?? '');
+	if (($rtaFec = validFecha('RUTEO', $_POST['fecha_llamada'] ?? '')) !== true) {
+		return $rtaFec;
+	  }
 	$usu = $_SESSION['us_sds'];
 		// $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 	 $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';

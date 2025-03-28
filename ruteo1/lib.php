@@ -413,8 +413,8 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-// var_dump($c);
-// var_dump($a);
+var_dump($c);
+var_dump($a);
 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";

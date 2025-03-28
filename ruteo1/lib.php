@@ -357,7 +357,7 @@ function get_gest(){
 
 function gra_rute(){
 	$id=divide($_POST['id_ruteo'] ?? '');
-		$equi=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
+		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 		$bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
 		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
 		$params = [
@@ -375,7 +375,7 @@ function gra_rute(){
 	['type' => 's', 'value' => $_POST['sector_catastral_v']],
 	['type' => 's', 'value' => $_POST['nummanzana_v']],
 	['type' => 's', 'value' => $_POST['predio_num_v']],
-	['type' => 's', 'value' => $equi],
+	['type' => 's', 'value' => $equ],
 	['type' => 's', 'value' => $_SESSION['us_sds']],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]

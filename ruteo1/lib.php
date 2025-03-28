@@ -378,6 +378,19 @@ function get_gest(){
 	} 
 }
 
+function regCalls(){
+	if (empty($_REQUEST['id'])) {
+        return "";
+    }
+    $id = divide($_REQUEST['id']);
+    $sql = "SELECT *
+            FROM eac_ruteo_ges A
+            WHERE A.id_rutges='{$id[0]}'";
+    $info = datos_mysql($sql);
+    $data = $info['responseResult'][0];
+    return json_encode($data);
+}
+
 function gra_rute(){
 	$id=divide($_POST['id'] ?? '');
 	$usu = $_SESSION['us_sds'];
@@ -417,8 +430,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 if ($a=='calls-lis' && $b=='acciones'){
 	$rta="<nav class='menu right'>";
-	$rta.="<li class='icono Ver' title='Ver Registro' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
-	
+	$rta.="<li title='Ver Registro '><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'regCalls',event,this,'lib.php',[]);\"></i></li>"; 
 }
 if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

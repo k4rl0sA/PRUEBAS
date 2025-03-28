@@ -89,7 +89,7 @@ function cmp_rute(){
  $o='segrep';
  $c[]=new cmp($o,'e',null,'CASO REPORTADO',$w);
  $c[]=new cmp('id','t','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,false,'','col-1');
- $c[]=new cmp('fecha_asig','d','10',$d['fecha_asig'],$w.' '.$o,'FECHA ASIGNACIÓN','fecha_asig',null,null,false,false,'','col-15');
+ $c[]=new cmp('fecha_asig','d','10',$d['fecha_asig'],$w.' '.$o,'FECHA ASIGNACIÓN','fecha_asig',null,null,false,false,'','col 	-15');
  $c[]=new cmp('fuente','s','3',$d['fuente'],$w.' '.$o,'FUENTE O REMITENTE','fuente',null,null,false,false,'','col-25');
  $c[]=new cmp('priorizacion','s','3',$d['priorizacion'],$w.' '.$o,'COHORTE DE RIESGO','priorizacion',null,null,false,false,'','col-3');
  $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','tipo_prior',null,null,false,false,'','col-3');
@@ -350,10 +350,11 @@ function get_rute(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT `id_ruteo`,R.`idgeo`,`fuente`,`fecha_asig`,`priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `sexo`, R.direccion,`telefono1`, `telefono2`, `telefono3`, G.`subred`, G.`localidad`, G.`upz`, G.`barrio`, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.`cordx`, G.`cordy` 
-		FROM `eac_ruteo` R 
-		LEFT JOIN hog_geo G ON R.idgeo=G.idgeo 
-		WHERE id_ruteo='{$id[0]}'";
+		$sql="SELECT id_ruteo, fecha_asig, fuente, priorizacion, tipo_prior, tipo_doc , documento ,nombres, sexo , er.direccion ,telefono1 ,telefono2 ,telefono3, hg.subred, localidad, upz , barrio, sector_catastral, nummanzana, predio_num, unidad_habit, cordx, cordy, fecha_llamada, estado_llamada, erg.observaciones, estado_agenda, motivo_estado, fecha_gestion, docu_confirm, perfil_gest, usuario_gest, direccion_n, sector_n, manzana_n,predio_n
+	FROM eac_ruteo_ges erg 
+	left join eac_ruteo er ON erg.idruteo = er.id_ruteo 
+	LEFT JOIN hog_geo hg ON er.idgeo = hg.idgeo
+	WHERE erg.id_rutges ='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';

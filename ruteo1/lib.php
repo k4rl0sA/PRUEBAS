@@ -357,9 +357,6 @@ function get_gest(){
 
 function gra_rute(){
 	$id=divide($_POST['id_ruteo'] ?? '');
-	
-	if($_POST['id']=='0'){
-		// var_dump ($_POST['id']);
 		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 		$bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
 		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,A)";
@@ -386,18 +383,6 @@ function gra_rute(){
 		var_dump($rta);
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
-	}else {
-		$sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id_rutges=?";
-		$params =[
-			  ['type' => 's', 'value' => $_POST['observaciones'] ?? ''],
-			//   ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
-			//   ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
-			//   ['type' => 's', 'value' => $usu],
-			  ['type' => 'i', 'value' => $id[0]]
-		];
-	}
-	var_dump($sql);
-	return mysql_prepd($sql, $params);
 }
 
 function formato_dato($a,$b,$c,$d){

@@ -32,7 +32,7 @@ function lis_rute(){
 	//echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-	}
+}
 
 function whe_rute() {
 	$sql = " AND estado='A' ";
@@ -160,6 +160,22 @@ function lista_gestion(){ //revisar
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"datos-lis",10);
 }
+
+/* function lis_rute(){
+	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo 
+	where 1 ".whe_rute());
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
+	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
+  FROM eac_ruteo er 
+  WHERE 1 ".whe_rute();
+	$sql.="ORDER BY fecha_create";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
+	//echo($sql);
+		$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"rute",$regxPag);
+} */
 
 function opc_perfil_gest($id=''){
 	  if($_REQUEST['id']!=''){	

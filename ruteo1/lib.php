@@ -333,7 +333,7 @@ function opc_barrio($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=270 and estado='A' ORDER BY 1",$id);
 } */
 function opc_estado_g_filtrado($idruteo, $id = ''){
-    global $con;
+	global $con;
     $sqlEstados = "SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = $idruteo";
     $estadosExistentes = [];
     if ($con->multi_query($sqlEstados)) {
@@ -349,18 +349,30 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
             }
         } while ($con->more_results() && $con->next_result());
     }
-    $estadosPosibles = [1, 2, 3, 4, 5]; // 1=Contactado, 2=NC1, 3=NC2, 4=NC3, 5=Visita en Campo
-    $estadoSiguiente = 1; // Siempre "CONTACTADO"
-    foreach ([2, 3, 4] as $nc) {
-        if (in_array($nc, $estadosExistentes)) {
-            $estadoSiguiente = $nc + 1; 
+    // Si no hay registros previos, mostrar "CONTACTADO" y "NO CONTACTADO 1"
+    if (empty($estadosExistentes)) {
+        $estadosPermitidos = [1, 2]; // CONTACTADO (1) y NO CONTACTADO 1 (2)
+    } else {
+        // Definir el siguiente estado a mostrar basado en los registros existentes
+        $estadosPermitidos = [1]; // Siempre se muestra "CONTACTADO"
+        if (in_array(2, $estadosExistentes)) {
+            if (in_array(3, $estadosExistentes)) {
+                if (in_array(4, $estadosExistentes)) {
+                    $estadosPermitidos[] = 5; // Si ya están NC1, NC2 y NC3 → Mostrar "VISITA EN CAMPO"
+                } else {
+                    $estadosPermitidos[] = 4; // Si ya están NC1 y NC2 → Mostrar "NO CONTACTADO 3"
+                }
+            } else {
+                $estadosPermitidos[] = 3; // Si ya está NC1 → Mostrar "NO CONTACTADO 2"
+            }
         } else {
-            break;
+            $estadosPermitidos[] = 2; // Si no hay ningún NO CONTACTADO → Mostrar "NO CONTACTADO 1"
         }
     }
+    // Construir la consulta para los estados permitidos
     $sqlEstadosDisponibles = "SELECT idcatadeta, descripcion FROM catadeta 
                               WHERE idcatalogo = 270 AND estado = 'A' 
-                              AND idcatadeta IN (1, $estadoSiguiente) 
+                              AND idcatadeta IN (" . implode(',', $estadosPermitidos) . ") 
                               ORDER BY idcatadeta";
     return opc_sql($sqlEstadosDisponibles, $id);
 }

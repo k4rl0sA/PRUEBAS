@@ -334,11 +334,8 @@ function opc_barrio($id=''){
 } */
 function opc_estado_g_filtrado($idruteo, $id = ''){
     global $con;
-
-    // Obtener los estados ya registrados para el idruteo
     $sqlEstados = "SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = $idruteo";
     $estadosExistentes = [];
-
     if ($con->multi_query($sqlEstados)) {
         do {
             if ($con->errno == 0) {
@@ -352,11 +349,8 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
             }
         } while ($con->more_results() && $con->next_result());
     }
-
-    // Definir el estado siguiente según la prioridad
     $estadosPosibles = [1, 2, 3, 4, 5]; // 1=Contactado, 2=NC1, 3=NC2, 4=NC3, 5=Visita en Campo
-    $estadoSiguiente = 1; // Siempre se debe mostrar "CONTACTADO"
-
+    $estadoSiguiente = 1; // Siempre "CONTACTADO"
     foreach ([2, 3, 4] as $nc) {
         if (in_array($nc, $estadosExistentes)) {
             $estadoSiguiente = $nc + 1; 
@@ -364,20 +358,15 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
             break;
         }
     }
-
-    // Construir la consulta para los estados permitidos
     $sqlEstadosDisponibles = "SELECT idcatadeta, descripcion FROM catadeta 
                               WHERE idcatalogo = 270 AND estado = 'A' 
                               AND idcatadeta IN (1, $estadoSiguiente) 
                               ORDER BY idcatadeta";
-
     return opc_sql($sqlEstadosDisponibles, $id);
 }
-
 function opc_estado_g($id='') {
-	$idruteo=divide($_POST['id']);
-	$opciones = opc_estado_g_filtrado($idruteo[0], $id);
-	return $opciones;
+	$idruteo = divide($_POST['id'])[0] ?? 0;
+    return opc_estado_g_filtrado($idruteo, $id);
 }
 
 function opc_motivo_estado($id=''){

@@ -376,7 +376,7 @@ function gra_rute(){
 	['type' => 's', 'value' => $_POST['sector_catastral_v']?? ''],
 	['type' => 's', 'value' => $_POST['nummanzana_v']?? ''],
 	['type' => 's', 'value' => $_POST['predio_num_v']?? ''],
-	['type' => 's', 'value' => $equi],
+	['type' => 's', 'value' => $bina],
 	['type' => 's', 'value' => $usu],
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]

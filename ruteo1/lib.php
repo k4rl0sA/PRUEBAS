@@ -134,7 +134,7 @@ function cmp_rute(){
  $c[]=new cmp('motivo_estado','s','3','',$w.' ReC '.$o,'Motivo del Rechazado','motivo_estado',null,null,false,false,'','col-4');//
  $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,false,false,'','col-2',"validDate(this,$days,0);");
  $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,false,false,'','col-2',"validDate(this,$days,0);");
-  $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',false,false,'','col-2',"selectDepend('perfil_gest','usuario_gest');");
+  $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',false,false,'','col-2',"selectDepend('perfil_gest','usuario_gest','lib.php');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_gest',null,null,false,false,'','col-2');
 
  $o='gesgeo';
@@ -446,7 +446,7 @@ function gra_rute(){
 	$usu = $_SESSION['us_sds'];
 		// $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 	 $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
 		$params = [
 	['type' => 'i', 'value' => $id[0]],
 	['type' => 's', 'value' => $_POST['fecha_llamada'] ?? ''],
@@ -456,7 +456,6 @@ function gra_rute(){
 	['type' => 's', 'value' => $_POST['motivo_estado']?? ''],
 	['type' => 's', 'value' => $_POST['fecha_gestion']?? ''],
 	['type' => 's', 'value' => $_POST['docu_confirm']?? ''],
-	['type' => 's', 'value' => $_POST['perfil_gest']?? ''],
 	['type' => 's', 'value' => $_POST['usuario_gest']?? ''],
 	['type' => 's', 'value' => $_POST['direccion_nueva_v']?? ''],
 	['type' => 's', 'value' => $_POST['sector_catastral_v']?? ''],

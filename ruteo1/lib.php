@@ -386,7 +386,7 @@ function gra_rute(){
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
 	}else {
-		$sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id_ruteo=?";
+		$sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id=?";
 		$params =[
 			//   ['type' => 's', 'value' => $_POST['lider'] ?? ''],
 			//   ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],

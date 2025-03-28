@@ -394,6 +394,7 @@ function gra_rute(){
 			  ['type' => 's', 'value' => $usu],
 			  ['type' => 'i', 'value' => $id[0]]
 		];
+	}
 	return '';
 }
 

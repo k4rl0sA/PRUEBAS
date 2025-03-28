@@ -332,36 +332,42 @@ function opc_barrio($id=''){
 /* function opc_estado_g($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=270 and estado='A' ORDER BY 1",$id);
 } */
-
-function nivel_contact($id_registro) {
-    // Consultar el máximo nivel de contacto existente para este caso
-    $result = datos_mysql("SELECT MAX(estado_llamada) as max_nivel FROM eac_ruteo_ges 
-	WHERE idruteo = $id_registro AND estado_llamada BETWEEN 2 AND 4");
-    if (isset($result['responseResult'][0]['max_nivel'])) {
-        $max_nivel = $result['responseResult'][0]['max_nivel'];
-		if ($max_nivel === null) return 2;
-        if ($max_nivel >= 4) return 0;
-        return $max_nivel + 1;
+function siguiente_contacto_disponible($id_ruteo) {
+    // Consultar los estados de contacto ya usados para este ruteo
+    $query = "SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = ? AND estado_llamada BETWEEN 2 AND 4
+              ORDER BY estado_llamada";
+    $resultados = datos_mysql($query, [$id_ruteo]);
+    $contactados_usados = [];
+    if (isset($resultados['responseResult'])) {
+        foreach ($resultados['responseResult'] as $row) {
+            $contactados_usados[] = $row['estado_llamada'];
+        }
     }
-    return 2;
+    for ($i = 2; $i <= 4; $i++) {
+        if (!in_array($i, $contactados_usados)) {
+            return $i;
+        }
+    }
+    return null;
 }
 
 function opc_estado_g($id = '') {
-	$id_registro = divide($_POST['id'])[0] ?? 0;
-    $nivel = nivel_contact($id_registro);
-    $sql_base = "SELECT `idcatadeta`, descripcion FROM `catadeta` 
-                 WHERE idcatalogo=270 AND estado='A'";
-    if ($nivel >= 2 && $nivel <= 4) {
-        $descripcion = "CONTACTADO ".($nivel-1);
-        $sql = "($sql_base) 
+    $id_ruteo = divide($_POST['id'])[0] ?? 0;
+    $siguiente_contacto = siguiente_contacto_disponible($id_ruteo);
+    $sql = "SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo = 270 AND estado = 'A'";
+    if ($siguiente_contacto !== null) {
+        $nivel = $siguiente_contacto - 1;
+        $sql = "($sql) 
                 UNION 
-                (SELECT $nivel as idcatadeta, '$descripcion' as descripcion)
+                (SELECT $siguiente_contacto as idcatadeta, 
+                        'CONTACTADO $nivel' as descripcion)
                 ORDER BY idcatadeta";
     } else {
-        $sql = "$sql_base ORDER BY idcatadeta";
+        $sql .= " ORDER BY idcatadeta";
     }
     return opc_sql($sql, $id);
 }
+
 function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=272 and estado='A' ORDER BY 1",$id);
 }

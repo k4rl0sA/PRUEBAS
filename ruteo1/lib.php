@@ -381,7 +381,7 @@ function gra_rute(){
 	['type' => 's', 'value' => NULL],
 	['type' => 's', 'value' => NULL]
 		];
-		var_dump($rta);
+		// var_dump($rta);
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
 }

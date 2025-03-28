@@ -386,7 +386,7 @@ function gra_rute(){
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
 	}
-	return $rta;
+	return '';
 }
 
 function formato_dato($a,$b,$c,$d){

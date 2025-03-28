@@ -386,14 +386,14 @@ function gra_rute(){
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
 	}else {
-		// $sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id_ruteo=?";
-		// $params =[
-		// 	//   ['type' => 's', 'value' => $_POST['lider'] ?? ''],
-		// 	//   ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
-		// 	//   ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
-		// 	//   ['type' => 's', 'value' => $usu],
-		// 	  ['type' => 'i', 'value' => $id[0]]
-		// ];
+		$sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id_rutges=?";
+		$params =[
+			  ['type' => 's', 'value' => $_POST['observaciones'] ?? ''],
+			//   ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
+			//   ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
+			//   ['type' => 's', 'value' => $usu],
+			  ['type' => 'i', 'value' => $id[0]]
+		];
 	}
 	return mysql_prepd($sql, $params);
 }

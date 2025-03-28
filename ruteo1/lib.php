@@ -349,27 +349,25 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
             }
         } while ($con->more_results() && $con->next_result());
     }
-    // Si no hay registros previos, mostrar "CONTACTADO" y "NO CONTACTADO 1"
     if (empty($estadosExistentes)) {
-        $estadosPermitidos = [1, 2]; // CONTACTADO (1) y NO CONTACTADO 1 (2)
+        $estadosPermitidos = [1, 2];
     } else {
         // Definir el siguiente estado a mostrar basado en los registros existentes
-        $estadosPermitidos = [1]; // Siempre se muestra "CONTACTADO"
+        $estadosPermitidos = [1];
         if (in_array(2, $estadosExistentes)) {
             if (in_array(3, $estadosExistentes)) {
                 if (in_array(4, $estadosExistentes)) {
-                    $estadosPermitidos[] = 5; // Si ya están NC1, NC2 y NC3 → Mostrar "VISITA EN CAMPO"
+                    $estadosPermitidos[] = 5;
                 } else {
-                    $estadosPermitidos[] = 4; // Si ya están NC1 y NC2 → Mostrar "NO CONTACTADO 3"
+                    $estadosPermitidos[] = 4;
                 }
             } else {
-                $estadosPermitidos[] = 3; // Si ya está NC1 → Mostrar "NO CONTACTADO 2"
+                $estadosPermitidos[] = 3;
             }
         } else {
-            $estadosPermitidos[] = 2; // Si no hay ningún NO CONTACTADO → Mostrar "NO CONTACTADO 1"
+            $estadosPermitidos[] = 2; // ningUn NO CONTACTADO Mostrar NO CONTACTADO 1
         }
     }
-    // Construir la consulta para los estados permitidos
     $sqlEstadosDisponibles = "SELECT idcatadeta, descripcion FROM catadeta 
                               WHERE idcatalogo = 270 AND estado = 'A' 
                               AND idcatadeta IN (" . implode(',', $estadosPermitidos) . ") 

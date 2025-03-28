@@ -356,7 +356,7 @@ function get_gest(){
 }
 
 function gra_rute(){
-	$id=divide($_POST['id_rutges'] ?? '');
+	$id=divide($_POST['id_ruteo'] ?? '');
 	if($_POST['id']=='0'){
 		var_dump ($_POST['id']);
 		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
@@ -385,7 +385,15 @@ function gra_rute(){
 		var_dump($rta);
 	//  $rta = show_sql($sql, $params);
 	return $rta = mysql_prepd($sql, $params);
-	}
+	}else {
+		$sql = "UPDATE eac_ruteo_ges SET  usu_update=?, fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) WHERE id_ruteo=?";
+		$params =[
+			  ['type' => 's', 'value' => $_POST['lider'] ?? ''],
+			  ['type' => 'i', 'value' => $_POST['saberes'] ?? 0],
+			  ['type' => 'i', 'value' => $_POST['pueblo'] ?? 0],
+			  ['type' => 's', 'value' => $usu],
+			  ['type' => 'i', 'value' => $id[0]]
+		];
 	return '';
 }
 

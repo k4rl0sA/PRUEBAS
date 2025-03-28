@@ -332,51 +332,52 @@ function opc_barrio($id=''){
 /* function opc_estado_g($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=270 and estado='A' ORDER BY 1",$id);
 } */
-function generar_opciones_contacto($idruteo, $estado_actual_id = null) {
-    $con = $GLOBALS['con'];
-    $sql_historial = "SELECT estado_llamada FROM eac_ruteo_ges 
-                     WHERE idruteo = $idruteo ORDER BY fecha_llamada DESC";
-    $historial = array();
-    if ($result = $con->query($sql_historial)) {
-        while ($row = $result->fetch_array(MYSQLI_NUM)) {
-            $historial[] = $row[0];
-        }
-        $result->free();
+function opc_estado_g_filtrado($idruteo, $id = ''){
+    global $con;
+
+    // Obtener los estados ya registrados para el idruteo
+    $sqlEstados = "SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = $idruteo";
+    $estadosExistentes = [];
+
+    if ($con->multi_query($sqlEstados)) {
+        do {
+            if ($con->errno == 0) {
+                $rs = $con->store_result();
+                if ($rs !== false) {
+                    while ($r = $rs->fetch_array(MYSQLI_NUM)) {
+                        $estadosExistentes[] = $r[0]; 
+                    }
+                }
+                $rs->free();
+            }
+        } while ($con->more_results() && $con->next_result());
     }
-    $max_no_contactado = 0;
-    foreach ($historial as $estado) {
-        if ($estado == 2) { // NO CONTACTADO 1
-            $max_no_contactado = max($max_no_contactado, 1);
-        } elseif ($estado == 3) { // NO CONTACTADO 2
-            $max_no_contactado = max($max_no_contactado, 2);
-        } elseif ($estado == 4) { // NO CONTACTADO 3
-            $max_no_contactado = max($max_no_contactado, 3);
-        }
-    }
-    $sql = "SELECT idcatadeta, descripcion FROM catadeta 
-           WHERE idcatalogo = 270 AND estado = 'A'";
-    if ($max_no_contactado >= 0) {
-        if ($max_no_contactado == 0) {
-            $sql .= " AND (valor IS NULL OR valor >= 1.0)";
-        } elseif ($max_no_contactado == 1) {
-            $sql .= " AND (valor IS NULL OR valor >= 2.0 OR idcatadeta = 1)";
-        } elseif ($max_no_contactado == 2) {
-            $sql .= " AND (valor IS NULL OR valor >= 3.0 OR idcatadeta = 1)";
-        } elseif ($max_no_contactado >= 3) {
-            $sql .= " AND (valor IS NULL OR idcatadeta = 5)";
+
+    // Definir el estado siguiente según la prioridad
+    $estadosPosibles = [1, 2, 3, 4, 5]; // 1=Contactado, 2=NC1, 3=NC2, 4=NC3, 5=Visita en Campo
+    $estadoSiguiente = 1; // Siempre se debe mostrar "CONTACTADO"
+
+    foreach ([2, 3, 4] as $nc) {
+        if (in_array($nc, $estadosExistentes)) {
+            $estadoSiguiente = $nc + 1; 
+        } else {
+            break;
         }
     }
-    $sql .= " ORDER BY CASE 
-                WHEN idcatadeta = 1 THEN 1  -- CONTACTADO primero
-                WHEN idcatadeta = 5 THEN 2  -- VISITA EN CAMPO segundo
-                ELSE valor + 2 END";        -- Luego NO CONTACTADOs en orden
-    return opc_sql($sql, $estado_actual_id);
+
+    // Construir la consulta para los estados permitidos
+    $sqlEstadosDisponibles = "SELECT idcatadeta, descripcion FROM catadeta 
+                              WHERE idcatalogo = 270 AND estado = 'A' 
+                              AND idcatadeta IN (1, $estadoSiguiente) 
+                              ORDER BY idcatadeta";
+
+    return opc_sql($sqlEstadosDisponibles, $id);
 }
 
 function opc_estado_g($id='') {
 	$idruteo=divide($_POST['id']);
-	$opciones = generar_opciones_contacto($idruteo[0], $id);
-	echo $opciones;
+	$opciones = opc_estado_g_filtrado($idruteo[0], $id);
+	return $opciones;
 }
 
 function opc_motivo_estado($id=''){

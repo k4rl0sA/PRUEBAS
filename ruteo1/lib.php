@@ -359,12 +359,12 @@ function gra_rute(){
 	$id=divide($_POST['id_ruteo'] ?? '');
 		$equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 		$bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,A)";
+		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
 		$params = [
 	['type' => 'i', 'value' => $id[0]],
-	['type' => 's', 'value' => $_POST['fecha_llamadas']],
+	['type' => 's', 'value' => $_POST['fecha_llamada']],
 	['type' => 's', 'value' => $_POST['estado_llamada']],
-	['type' => 's', 'value' => $_POST['observaciones']],
+	['type' => 's', 'value' => $_POST['observacion']],
 	['type' => 's', 'value' => $_POST['estado_agenda']],
 	['type' => 's', 'value' => $_POST['motivo_estado']],
 	['type' => 's', 'value' => $_POST['fecha_gestion']],

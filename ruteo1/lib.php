@@ -32,7 +32,7 @@ function lis_rute(){
 	//echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-}
+	}
 
 function whe_rute() {
 	$sql = " AND estado='A' ";
@@ -70,7 +70,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_rute(){
  $rta="";
 	$rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
-	<div class='contenido' id='calls-lis' >".lista_gestion()."</div></div>";
+	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
@@ -151,38 +151,15 @@ function cmp_rute(){
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo_ges 
-	where idruteo=$id[0]");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-calls']))? ($_POST['pag-calls']-1)* $regxPag:0;
-		
-		$sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',
-		FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
+		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 
- WHERE idruteo=$id[0]";
+ WHERE erg.usu_creo ='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		//$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"calls-lis",10);
+		return panel_content($datos["responseResult"],"datos-lis",10);
 }
-
-/* function lis_rute(){
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo 
-	where 1 ".whe_rute());
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
-  FROM eac_ruteo er 
-  WHERE 1 ".whe_rute();
-	$sql.="ORDER BY fecha_create";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	//echo($sql);
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-} */
 
 function opc_perfil_gest($id=''){
 	  if($_REQUEST['id']!=''){	
@@ -350,11 +327,10 @@ function get_rute(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT id_ruteo, fecha_asig, fuente, priorizacion, tipo_prior, tipo_doc , documento ,nombres, sexo , er.direccion ,telefono1 ,telefono2 ,telefono3, hg.subred, localidad, upz , barrio, sector_catastral, nummanzana, predio_num, unidad_habit, cordx, cordy, fecha_llamada, estado_llamada, erg.observaciones, estado_agenda, motivo_estado, fecha_gestion, docu_confirm, perfil_gest, usuario_gest, direccion_n, sector_n, manzana_n,predio_n
-	FROM eac_ruteo_ges erg 
-	left join eac_ruteo er ON erg.idruteo = er.id_ruteo 
-	LEFT JOIN hog_geo hg ON er.idgeo = hg.idgeo
-	WHERE erg.id_rutges ='{$id[0]}'";
+		$sql="SELECT `id_ruteo`,R.`idgeo`,`fuente`,`fecha_asig`,`priorizacion`,tipo_prior, `tipo_doc`, `documento`, `nombres`, `sexo`, R.direccion,`telefono1`, `telefono2`, `telefono3`, G.`subred`, G.`localidad`, G.`upz`, G.`barrio`, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.`cordx`, G.`cordy` 
+		FROM `eac_ruteo` R 
+		LEFT JOIN hog_geo G ON R.idgeo=G.idgeo 
+		WHERE id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';
@@ -377,19 +353,6 @@ function get_gest(){
 		}
 	return $info['responseResult'][0];
 	} 
-}
-
-function regCalls(){
-	if (empty($_REQUEST['id'])) {
-        return "";
-    }
-    $id = divide($_REQUEST['id']);
-    $sql = "SELECT *
-            FROM eac_ruteo_ges A
-            WHERE A.id_rutges='{$id[0]}'";
-    $info = datos_mysql($sql);
-    $data = $info['responseResult'][0];
-    return json_encode($data);
 }
 
 function gra_rute(){
@@ -429,11 +392,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($c);
 // var_dump($a);
-if ($a=='calls-lis' && $b=='acciones'){
-	$rta="<nav class='menu right'>";
-	$rta.="<li title='Ver Registro '><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'regCalls',event,this,'lib.php',[]);\"></i></li>"; 
-}
-if ($a=='rute' && $b=='acciones'){
+	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
 		$rta.="<li class='icono  editarAgenda' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
@@ -442,6 +401,7 @@ if ($a=='rute' && $b=='acciones'){
 	
 		// }
 	}
+	
  return $rta;
 }
 

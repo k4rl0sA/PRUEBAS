@@ -70,7 +70,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_rute(){
  $rta="";
 	$rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
-	<div class='contenido' id='datos-lis' >".lista_gestion()."</div></div>";
+	<div class='contenido' id='calls-lis' >".lista_gestion()."</div></div>";
 
  $t=['id'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
  'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
@@ -151,14 +151,21 @@ function cmp_rute(){
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
+	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo_ges 
+	where idruteo=$id[0]");
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-calls']))? ($_POST['pag-calls']-1)* $regxPag:0;
+		
+		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',
+		FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 
- WHERE erg.usu_creo ='".$_SESSION['us_sds']."'";
+ WHERE idruteo=$id[0]";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		//$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
-		return panel_content($datos["responseResult"],"datos-lis",10);
+		return panel_content($datos["responseResult"],"calls-lis",10);
 }
 
 /* function lis_rute(){

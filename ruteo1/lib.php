@@ -151,7 +151,7 @@ function cmp_rute(){
 function lista_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
-		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
+		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 
  WHERE erg.usu_creo ='".$_SESSION['us_sds']."'";
 		$sql.=" ORDER BY fecha_create";

@@ -395,7 +395,7 @@ function gra_rute(){
 			  ['type' => 'i', 'value' => $id[0]]
 		];
 	}
-	return '';
+	return mysql_prepd($sql, $params);
 }
 
 function formato_dato($a,$b,$c,$d){

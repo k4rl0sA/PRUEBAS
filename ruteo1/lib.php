@@ -329,8 +329,45 @@ function opc_upz($id=''){
 function opc_barrio($id=''){
 	return opc_sql("SELECT `idcatadeta`,CONCAT(idcatadeta,'-',descripcion) FROM `catadeta` WHERE idcatalogo=20 and estado='A' ORDER BY 1",$id);
 }
-function opc_estado_g($id=''){
+/* function opc_estado_g($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=270 and estado='A' ORDER BY 1",$id);
+} */
+
+function nivel_contact($id_registro) {
+    // Consultar el máximo nivel de contacto existente para este caso
+    $result = datos_mysql("SELECT MAX(estado_llamada) as max_nivel FROM eac_ruteo_ges 
+	WHERE idruteo = $id_registro AND estado_llamada BETWEEN 2 AND 4");
+    if (isset($result['responseResult'][0]['max_nivel'])) {
+        $max_nivel = $result['responseResult'][0]['max_nivel'];
+        if ($max_nivel === null) {
+            return 2;
+        }
+        if ($max_nivel >= 4) {
+            return 0;
+        }
+        return $max_nivel + 1;
+    }
+    return 2;
+}
+
+function opc_estado_g($id = '') {
+	$id_registro = divide($_POST['id'])[0] ?? 0;
+    $nivel = nivel_contact($id_registro);
+    /* $estados = opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` 
+                        WHERE idcatalogo=270 and estado='A' 
+                        AND (descripcion NOT LIKE 'CONTACTADO%' OR descripcion = 'CONTACTADO $nivel') ORDER BY 1",$id);
+    return $estados; */
+	$estados = opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` 
+                        WHERE idcatalogo=270 AND estado='A' 
+                        ORDER BY 1", $id);
+    if ($nivel >= 2 && $nivel <= 4) {
+        $descripcion = "CONTACTADO ".($nivel-1);
+        $estados[] = [
+            'idcatadeta' => $nivel,
+            'descripcion' => $descripcion
+        ];
+    }
+    return $estados;
 }
 function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=272 and estado='A' ORDER BY 1",$id);

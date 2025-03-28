@@ -157,7 +157,7 @@ function lista_gestion(){ //revisar
 	$regxPag=5;
 	$pag=(isset($_POST['pag-calls']))? ($_POST['pag-calls']-1)* $regxPag:0;
 		
-		$sql="SELECT id_rutges,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',
+		$sql="SELECT id_rutges ACCIONES,id_rutges Cod Registro,erg.fecha_llamada 'Fecha',FN_CATALOGODESC(35,estado_llamada) 'Estado de la LLamada',
 		FN_CATALOGODESC(35,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 
  WHERE idruteo=$id[0]";
@@ -413,9 +413,14 @@ function formato_dato($a,$b,$c,$d){
  $b=strtolower($b);
  $rta=$c[$d];
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
-var_dump($c);
-var_dump($a);
-	if ($a=='rute' && $b=='acciones'){
+// var_dump($c);
+// var_dump($a);
+if ($a=='calls-lis' && $b=='acciones'){
+	$rta="<nav class='menu right'>";
+	$rta.="<li class='icono Ver' title='Ver Registro' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
+	
+}
+/* 	if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
 		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
 		$rta.="<li class='icono  editarAgenda' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
@@ -423,7 +428,7 @@ var_dump($a);
 		// if($c['Gestionado']== '1' || $c['Gestionado']=='2'){
 	
 		// }
-	}
+	} */
 	
  return $rta;
 }

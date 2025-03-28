@@ -334,9 +334,7 @@ function opc_barrio($id=''){
 } */
 function siguiente_contacto_disponible($id_ruteo) {
     // Consultar los estados de contacto ya usados para este ruteo
-    $query = "SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = ? AND estado_llamada BETWEEN 2 AND 4
-              ORDER BY estado_llamada";
-    $resultados = datos_mysql($query, [$id_ruteo]);
+    $resultados = datos_mysql("SELECT estado_llamada FROM eac_ruteo_ges WHERE idruteo = $id_ruteo AND estado_llamada BETWEEN 2 AND 4 ORDER BY estado_llamada");
     $contactados_usados = [];
     if (isset($resultados['responseResult'])) {
         foreach ($resultados['responseResult'] as $row) {

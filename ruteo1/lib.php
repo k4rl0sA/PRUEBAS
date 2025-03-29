@@ -25,7 +25,7 @@ function lis_rute(){
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
-  FROM eac_ruteo er 
+  FROM eac_ruteo er  
   ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
@@ -35,9 +35,13 @@ function lis_rute(){
 }
 
 function whe_rute() {
-	$sql = " WHERE estado='A' ";
-	if ($_POST['fpred'])
-		$sql .= " AND idgeo ='".$_POST['fpred']."' ";
+	$sql = " WHERE ";
+	if ($_POST['fpred']){
+		$sql .= " AND idgeo ='".$_POST['fpred']."' AND estado='A'";
+	}else{
+		$sql .= "0 ";
+	}
+		
 	/* if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
 	if ($_POST['fgrupo'])

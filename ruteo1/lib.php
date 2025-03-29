@@ -36,7 +36,7 @@ function lis_rute(){
 function whe_rute() {
 	$sql1 = " WHERE ";
 	if ($_POST['fpred']){
-		$sql1 .= " AND idgeo ='".$_POST['fpred']."' AND estado='A'";
+		$sql1 .= " idgeo ='".$_POST['fpred']."' AND estado='A'";
 	}else{
 		$sql1 .= " 0 ";
 	}

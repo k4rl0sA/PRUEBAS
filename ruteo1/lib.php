@@ -26,7 +26,7 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo er 
-  WHERE 1 ".whe_rute();
+  WHERE 0 ".whe_rute();
 	$sql.="ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	//echo($sql);
@@ -36,6 +36,8 @@ function lis_rute(){
 
 function whe_rute() {
 	$sql = " AND estado='A' ";
+	if ($_POST['fpred'])
+		$sql .= " AND idgeo ='".$_POST['fpred']."' ";
 	/* if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";
 	if ($_POST['fgrupo'])
@@ -44,8 +46,7 @@ function whe_rute() {
 		$sql .= " AND sector_catastral = '".$_POST['fseca']."'";
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
-	if ($_POST['fpred'])
-		$sql .= " AND predio_num ='".$_POST['fpred']."' "; */
+	 */
 	return $sql;
 }
 

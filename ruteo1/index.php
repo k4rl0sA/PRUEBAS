@@ -31,7 +31,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function getData(a, ev,i,blo) {
+/* function getData(a, ev,i,blo) {
 	if (ev.type == 'click') {
 		var c = document.getElementById(a+'-pro-con');
 		var cmp=c.querySelectorAll('.captura,.bloqueo')
@@ -67,7 +67,7 @@ function getData(a, ev,i,blo) {
 				} 
 	}
 }
-
+ */
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);
@@ -89,7 +89,7 @@ function grabar(tb='',ev){
 }   
 
 
-function enabFielSele(a, b) {
+/* function enabFielSele(a, b) {
 	var ele = document.getElementById(b);
 	if(a.value==3 || a.value==6){
 		enaFie(ele,false);
@@ -110,7 +110,7 @@ function enabFielSele(a, b) {
 		}
 	}
 }
-
+ */
 </script>
 </head>
 <body Onload="actualizar();">

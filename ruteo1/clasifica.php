@@ -52,8 +52,8 @@ function cmp_rutclasif(){
 
  $o='bajo';
  $c[]=new cmp($o,'e',null,'RIESGO BAJO',$w);
- $c[]=new cmp('accion','s','10','',$w.' '.$o,'Definir Acción','clasificacion',null,null,true,false,'','col-25');
- $c[]=new cmp('fecha','d','10','',$w.' '.$o,'Fecha de Programación','fecha',null,null,true,false,'','col-25','validDate(this,-2,0);');
+ $c[]=new cmp('accion','s','10','',$w.' '.$o,'Definir Acción','clasificacion',null,null,true,false,'','col-5');
+ $c[]=new cmp('fecha','d','10','',$w.' '.$o,'Fecha de Programación','fecha',null,null,true,false,'','col-5','validDate(this,-2,0);');
  $c[]=new cmp('acciones_1','s','3',$d,$w.' '.$o,'Accion 1','acciones_1',null,null,false,false,'','col-5',"selectDepend('acciones_1','desc_accion1','clasifica.php');");
  $c[]=new cmp('desc_accion1','s','3',$d,$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,false,false,'','col-5');
  $c[]=new cmp('acciones_2','s','3',$d,$w.' '.$o,'Accion 2','acciones_2',null,null,false,false,'','col-5',"selectDepend('acciones_2','desc_accion2','clasifica.php');");

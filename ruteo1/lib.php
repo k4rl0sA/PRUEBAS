@@ -438,21 +438,21 @@ function gra_rute(){
 	$usu = $_SESSION['us_sds'];
 		// $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
 	 $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';
-		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
+		$sql = "INSERT INTO eac_ruteo_ges VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),?,?,'A')";
 		$params = [
 	['type' => 'i', 'value' => $id[0]],
 	['type' => 's', 'value' => $_POST['fecha_llamada'] ?? ''],
-	['type' => 's', 'value' => $_POST['estado_llamada']?? ''],
+	['type' => 'i', 'value' => $_POST['estado_llamada']?? ''],
 	['type' => 's', 'value' => $_POST['observacion']?? ''],
-	['type' => 's', 'value' => $_POST['estado_agenda']?? ''],
-	['type' => 's', 'value' => $_POST['motivo_estado']?? ''],
+	['type' => 'i', 'value' => $_POST['estado_agenda']?? ''],
+	['type' => 'i', 'value' => $_POST['motivo_estado']?? ''],
 	['type' => 's', 'value' => $_POST['fecha_gestion']?? ''],
-	['type' => 's', 'value' => $_POST['docu_confirm']?? ''],
+	['type' => 'i', 'value' => $_POST['docu_confirm']?? ''],
 	['type' => 's', 'value' => $_POST['usuario_gest']?? ''],
 	['type' => 's', 'value' => $_POST['direccion_nueva_v']?? ''],
-	['type' => 's', 'value' => $_POST['sector_catastral_v']?? ''],
-	['type' => 's', 'value' => $_POST['nummanzana_v']?? ''],
-	['type' => 's', 'value' => $_POST['predio_num_v']?? ''],
+	['type' => 'i', 'value' => $_POST['sector_catastral_v']?? ''],
+	['type' => 'i', 'value' => $_POST['nummanzana_v']?? ''],
+	['type' => 'i', 'value' => $_POST['predio_num_v']?? ''],
 	['type' => 's', 'value' => $bina],
 	['type' => 's', 'value' => $usu],
 	['type' => 's', 'value' => NULL],

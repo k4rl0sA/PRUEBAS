@@ -35,11 +35,11 @@ function lis_rute(){
 }
 
 function whe_rute() {
-	$sql = " WHERE ";
+	$sql1 = " WHERE ";
 	if ($_POST['fpred']){
-		$sql .= " AND idgeo ='".$_POST['fpred']."' AND estado='A'";
+		$sql1 .= " AND idgeo ='".$_POST['fpred']."' AND estado='A'";
 	}else{
-		$sql .= "0 ";
+		$sql1 .= "0 ";
 	}
 		
 	/* if ($_POST['flocalidad'])
@@ -51,7 +51,7 @@ function whe_rute() {
 	if ($_POST['fmanz'])
 		$sql .= " AND nummanzana ='".$_POST['fmanz']."' ";
 	 */
-	return $sql;
+	return $sql1;
 }
 
 

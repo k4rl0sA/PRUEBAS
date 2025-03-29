@@ -38,7 +38,7 @@ function whe_rute() {
 	if ($_POST['fpred']){
 		$sql1 .= " AND idgeo ='".$_POST['fpred']."' AND estado='A'";
 	}else{
-		$sql1 .= "0 ";
+		$sql1 .= " 0 ";
 	}
 		
 	/* if ($_POST['flocalidad'])

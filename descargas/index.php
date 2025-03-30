@@ -8,7 +8,6 @@ $mod = 'descargas';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../libs/css/stylePop.css" rel="stylesheet">
-    <link rel="stylesheet" href="../libs/css/s.css">
     <script src="../libs/js/a.js?v=1.0"></script>
     <script src="../libs/js/popup.js?v=1.0"></script>
     <title>Generar Archivo Consolidado</title>

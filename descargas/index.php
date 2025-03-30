@@ -125,8 +125,16 @@ $mod = 'descargas';
 <div class="container">
     <h1>Generar Archivo Excel</h1>
     <form id="generarForm">
+    <label for="fecha">Seleccione El tipo de archivo a descargar:</label>
+        <select class="captura" id="tipo" name="tipo">
+            <option value="excel_CON.php">CON Validaciones</option>
+            <option value="excel_SIN.php">SIN Validaciones</option>
+        </select>
+
         <label for="fecha">Seleccione la fecha:</label>
         <input type="date" id="fecha" name="fecha" required>
+
+        
         <button type="button" onclick="generarArchivo()">Generar Archivo</button>
     </form>
     <div class="progress-container">

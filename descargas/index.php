@@ -41,7 +41,7 @@ $mod = 'descargas';
             color: #555;
             margin-bottom: 0.5rem;
         }
-        input[type="date"] {
+        input[type="date"],select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ddd;

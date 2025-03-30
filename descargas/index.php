@@ -154,6 +154,7 @@ $mod = 'descargas';
         var mod = 'descargas';
     function generarArchivo() {
     const fecha = document.getElementById('fecha').value;
+    const tipo = document.getElementById('tipo').value;
     if (!fecha) {
         inform('Por favor, seleccione una fecha.');
         return;
@@ -163,7 +164,7 @@ $mod = 'descargas';
     document.getElementById('spinner').style.display = 'block';
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'generar_excel.php', true);
+    xhr.open('POST',tipo, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function() {

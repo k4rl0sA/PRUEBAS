@@ -42,17 +42,27 @@ $mod = 'descargas';
             margin-bottom: 0.5rem;
         }
         input[type="date"],select {
-            width: 100%;
-            padding: 0.75rem;
+            /* width: 100%;
+            padding: 0.5rem;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 12px;
             font-size: 1rem;
             margin-bottom: 1rem;
             box-sizing: border-box;
             text-align: justify;
             font-size: large;
             border-color: blue;
-            border: groove;
+            border: groove; */
+
+            width: 100%;
+    padding: 0.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    text-align: justify;
+    font-size: large;
+    border: groove;
+    border-color: cornflowerblue;
         }
         button {
             background-color: #007bff;

@@ -99,7 +99,7 @@ function get_rutclasif(){
 function gra_rutclasif(){
 
   $id=divide($_POST['id']);
-  $sql = "INSERT INTO eac_ruteo_clas VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
+  $sql = "INSERT INTO eac_ruteo_clas VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
   $params = [
   ['type' => 's', 'value' => $id[0]],
   ['type' => 's', 'value' => $_POST['pre_clasif']],

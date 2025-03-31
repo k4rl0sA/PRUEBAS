@@ -475,7 +475,7 @@ function gra_rute(){
 
 function agend($id) {
     $id = divide($id);
-    $sql = "SELECT COUNT(*) AS agenda from eac_ruteo_ges WHERE idruteo=$id[0] and estado_agenda=1";
+    $sql = "SELECT COUNT(*) AS agenda from eac_ruteo_ges WHERE idruteo=$id[0] and estado_agenda=1 and estado_llamada=1";
     $info = datos_mysql($sql);
 	// var_dump($info);
 	if(intval($info['responseResult'][0]["agenda"])==1){

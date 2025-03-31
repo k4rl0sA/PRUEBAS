@@ -397,7 +397,7 @@ function get_rute(){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
-		$sql="SELECT id_ruteo, fecha_asig, fuente, priorizacion, tipo_prior, tipo_doc , documento ,nombres, sexo , er.direccion ,telefono1 ,telefono2 ,telefono3, hg.subred, localidad, upz , barrio, sector_catastral, nummanzana, predio_num, unidad_habit, cordx, cordy, fecha_llamada, estado_llamada, erg.observaciones, estado_agenda, motivo_estado, fecha_gestion, docu_confirm ,''perfil_gest,usuario_gest, direccion_n, sector_n, manzana_n,predio_n
+		$sql="SELECT id_ruteo, fecha_asig, fuente, priorizacion, tipo_prior, tipo_doc , documento ,nombres, sexo , direccion ,telefono1 ,telefono2 ,telefono3, hg.subred, localidad, upz , barrio, sector_catastral, nummanzana, predio_num, unidad_habit, cordx, cordy, fecha_llamada, estado_llamada, erg.observaciones, estado_agenda, motivo_estado, fecha_gestion, docu_confirm ,perfil_gest,usuario_gest, direccion_n, sector_n, manzana_n,predio_n
 	FROM eac_ruteo_ges erg 
 	left join eac_ruteo er ON erg.idruteo = er.id_ruteo 
 	LEFT JOIN hog_geo hg ON er.idgeo = hg.idgeo

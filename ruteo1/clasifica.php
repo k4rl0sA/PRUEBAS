@@ -42,7 +42,7 @@ function cmp_rutclasif(){
  $d=get_rutclasif();
  if ($d=="") {$d=$t;}
  $u=($d['idrutges']== NULL || $d['idrutges']== '')?true:false;
- var_dump($d);
+//  var_dump($d);
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('id','h','20',$d['idrutges'],$w.' '.$o,'','',null,null,true,$u,'','col-1');

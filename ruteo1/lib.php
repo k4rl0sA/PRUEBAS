@@ -401,7 +401,6 @@ function get_rute(){
  		FROM `eac_ruteo` R 
  		LEFT JOIN hog_geo G ON R.idgeo=G.idgeo 
  		WHERE id_ruteo='{$id[0]}'";
-	var_dump($sql);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';

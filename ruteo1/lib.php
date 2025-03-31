@@ -77,7 +77,7 @@ function cmp_rute(){
 	<div class='contenido' id='calls-lis' >".lista_gestion()."</div></div>";
 
  $t=['id'=>'', 'idgeo'=>'', 'id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','fecha_nac'=>'','sexo'=>'',
- 'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','fecha_consulta'=>'',
+ 'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'','direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'', 'subred'=>'','fecha_consulta'=>'',
  'cod_cups'=>'','per_consul'=>'','subred_report'=>'','localidad'=>'','upz'=>'','barrio'=>'','cordx'=>'','cordy'=>'','fecha_gestion'=>'','fecha_gest'=>'','estado_g'=>'',
  'motivo_estado'=>'','direccion_nueva'=>'','sect'=>'', 'manz'=>'','pred'=>'', 'obse'=>'','dir_new'=>'','sector'=>'', 'manzana'=>'','predio'=>'','usu_creo'=>'', 'fecha_create'=>'', 'usu_update'=>'', 
  'fecha_update'=>'', 'estado'=>''];

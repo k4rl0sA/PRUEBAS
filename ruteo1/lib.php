@@ -348,7 +348,6 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
     if (empty($estadosExistentes)) {
         $estadosPermitidos = [1, 2];
     } else {
-        // Definir el siguiente estado a mostrar basado en los registros existentes
         $estadosPermitidos = [1];
         if (in_array(2, $estadosExistentes)) {
             if (in_array(3, $estadosExistentes)) {

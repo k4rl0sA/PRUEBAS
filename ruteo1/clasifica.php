@@ -37,11 +37,11 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_rutclasif(){
  $rta="";
- $t=['id_ruteo'=>'','idgeo'=>''];
+ $t=['id_rutclas'=>'','idrutges'=>'','preclasif'=>'','clasifica'=>'','riesgo'=>'','accion'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','profesional'=>'','solic_agend'=>'','ruta'=>'','sectorial'=>'','intsectorial'=>'','entornos'=>'','aseguram'=>''];
  $w='rutclasif';
  $d=get_rutclasif();
  if ($d=="") {$d=$t;}
- $u=($d['predio']== NULL || $d['predio']== 0)?true:false;
+ $u=($d['idrutges']== NULL || $d['idrutges']== '')?true:false;
  var_dump($d);
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);

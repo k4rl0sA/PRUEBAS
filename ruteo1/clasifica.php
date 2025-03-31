@@ -63,7 +63,7 @@ function cmp_rutclasif(){
 
  $o='alto';
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
- $c[]=new cmp('perfil','s','90',$d[''],$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,false,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
+ $c[]=new cmp('perfil','s','90','',$w.' dir '.$o,'Perfil A Asignar','perfil',null,null,false,false,'','col-25',"selectDepend('perfil','nombre','clasifica.php');");
  $c[]=new cmp('nombre','s','6',$d['profesional'],$w.' dir '.$o,'Profesional Asignado','doc_asignado',null,null,false,false,'','col-25');
  $c[]=new cmp('solici_agenda','s',3,$d['solic_agend'],$w.' AGe '.$o,'solici_agenda','rta',null,'',true,false,'','col-2');
  $c[]=new cmp('activa_ruta','s','10',$d['ruta'],$w.' AGe '.$o,'activa_ruta','rta',null,null,true,false,'','col-2','rutRute();');

@@ -392,7 +392,6 @@ function opc_doc_asignado($id=''){
 	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
 }
 
-
 function get_rute(){
 	if($_POST['id']=='0'){
 		return "";

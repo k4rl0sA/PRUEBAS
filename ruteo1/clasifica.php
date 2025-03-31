@@ -85,7 +85,7 @@ function get_rutclasif(){
 		$id=divide($_POST['id']);
 		var_dump($id);
 		$sql="SELECT id_rutclas,idrutges,preclasif,clasifica,riesgo,accion,fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,profesional,solic_agend,ruta,sectorial,intsectorial,entornos,aseguram
-		 FROM `eac_ruteo_clas` WHERE  id_ruteo='{$id[0]}'";
+		 FROM `eac_ruteo_clas` WHERE  idrutges='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);
 		return $info['responseResult'][0];

@@ -403,6 +403,7 @@ function get_rute(){
 	left join eac_ruteo er ON erg.idruteo = er.id_ruteo 
 	LEFT JOIN hog_geo hg ON er.idgeo = hg.idgeo
 	WHERE erg.id_rutges ='{$id[0]}'";
+	var_dump($sql);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return '';

@@ -88,7 +88,11 @@ function get_rutclasif(){
 		 FROM `eac_ruteo_clas` WHERE  idrutges='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);
-		return $info['responseResult'][0];
+      if(!empty($info['responseResult'])){
+        return $info['responseResult'][0];
+      }else {
+        return '';
+      }
 	} 
 }
 

@@ -87,7 +87,7 @@ function cmp_rute(){
 
  //'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'',
  $w='rute';
- $d=get_rute();
+ $d=get_ruteo();
 //  var_dump($d);
  if ($d=="") {$d=$t;}
  $days=fechas_app('RUTEO');
@@ -392,7 +392,7 @@ function opc_doc_asignado($id=''){
 	return opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE  subred='{$com[2]}' ORDER BY 1",$id);//`perfil` IN('MED','ENF')
 }
 
-function get_rute(){
+function get_ruteo(){
 	if($_POST['id']=='0'){
 		return "";
 	}else{
@@ -425,7 +425,7 @@ function get_gest(){
 	} 
 }
 
-function regCalls(){
+function get_rute(){
 	if (empty($_REQUEST['id'])) {
         return "";
     }

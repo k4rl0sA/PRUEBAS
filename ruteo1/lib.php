@@ -493,7 +493,7 @@ function formato_dato($a,$b,$c,$d){
 // var_dump($a);
 if ($a=='calls-lis' && $b=='acciones'){
 	$rta="<nav class='menu right'>";
-	$rta.="<li title='Ver Registro '><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'regCalls',event,this,'lib.php',[]);\"></i></li>"; 
+	$rta.="<li title='Ver Registro '><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'rute',event,this,'lib.php',[]);\"></i></li>"; 
 }
 if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		

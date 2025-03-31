@@ -97,7 +97,36 @@ function get_rutclasif(){
 }
 
 function gra_rutclasif(){
-$sql="UPDATE `eac_ruteo` SET 
+
+  $id=divide($_POST['id']);
+  $sql = "INSERT INTO eac_ruteo_clas VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,DATE_SUB(NOW(),INTERVAL 5 HOUR),NULL,NULL,'A')";
+  $params = [
+  ['type' => 's', 'value' => $id[0]],
+  ['type' => 's', 'value' => $_POST['pre_clasif']],
+  ['type' => 's', 'value' => $_POST['clasificacion']],
+  ['type' => 's', 'value' => $_POST['riesgo']],
+  ['type' => 's', 'value' => $_POST['accion']],
+  ['type' => 's', 'value' => $_POST['fecha']],
+  ['type' => 's', 'value' => $_POST['acciones_1']],
+  ['type' => 's', 'value' => $_POST['desc_accion1']],
+  ['type' => 's', 'value' => $_POST['acciones_2']],
+  ['type' => 's', 'value' => $_POST['desc_accion2']],
+  ['type' => 's', 'value' => $_POST['acciones_3']],
+  ['type' => 's', 'value' => $_POST['desc_accion3']],
+  ['type' => 's', 'value' => $_POST['nombre']],
+  ['type' => 's', 'value' => $_POST['solici_agenda']],
+  ['type' => 's', 'value' => $_POST['activa_ruta']],
+  ['type' => 's', 'value' => $_POST['sectorial']],
+  ['type' => 's', 'value' => $_POST['intersectorial']],
+  ['type' => 's', 'value' => $_POST['entornos']],
+  ['type' => 's', 'value' => $_POST['aseguramiento']],
+  ['type' => 'i', 'value' => $_SESSION['us_sds']]
+  ];
+  $rta = mysql_prepd($sql, $params);
+  return $rta;
+
+
+/* $sql="UPDATE `eac_ruteo` SET 
 famili=TRIM(UPPER('{$_POST['famili']}')),
 usuario=TRIM(UPPER('{$_POST['usuario']}')),
 `predio`=TRIM(UPPER('{$_POST['estado']}')),
@@ -107,8 +136,8 @@ usuario=TRIM(UPPER('{$_POST['usuario']}')),
 estado='G'
 	WHERE id_ruteo='{$_POST['id']}'";
 	//echo $sql;
-  $rta=dato_mysql($sql);
-  return $rta;
+  $rta=dato_mysql($sql); 
+  return $rta;*/
 }
 
 function opc_rta($id=''){

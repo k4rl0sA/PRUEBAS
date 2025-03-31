@@ -88,6 +88,7 @@ function cmp_rute(){
  //'nacionalidad'=>'','etnia'=>'','regimen'=>'','eapb'=>'','tipo_doc_acu'=>'','documento_acu'=>'','nombres_acu'=>'',
  $w='rute';
  $d=get_rute();
+ var_dump($$d);
  if ($d=="") {$d=$t;}
  $days=fechas_app('RUTEO');
  $u=($d['idgeo']=='0')?true:false;

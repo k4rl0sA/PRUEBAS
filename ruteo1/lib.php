@@ -497,7 +497,7 @@ if ($a=='calls-lis' && $b=='acciones'){
 }
 if ($a=='rute' && $b=='acciones'){
 		$rta="<nav class='menu right'>";		
-		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7);\"></li>";
+		$rta.="<li class='icono mapa' title='Ruteo' id='".$c['ACCIONES']."' Onclick=\"mostrar('rute','pro',event,'','lib.php',7,['fecha_llamada','estado_llamada','observacion']);\"></li>";
 		if (agend($c['ACCIONES'])) {
 			$rta.="<li class='icono  editarAgenda' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
 		}

@@ -160,10 +160,6 @@ function validFecha($mod,$fecha){
     log_error("Fraude: fecha = " . $_POST['tb'] . ' - ' . $fech);
     return "msj['Error: La fecha no puede ser menor a $fechaMin.']";
   }
-  if ($fech > $fechaMax) {
-    log_error("Fraude: fecha = " . $_POST['tb'] . ' - ' . $fech);
-    return "msj['Error: La fecha no puede ser menor a $fechaMax.']";
-  }
   return true;
 }
 

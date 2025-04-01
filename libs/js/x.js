@@ -1302,6 +1302,6 @@ function enabRutVisit(){
 		const conditions = [
 			{ id: 'estado_llamada', value: '5', compare: true }
 		];
-		EnabDepeDynamic(['sTA'], conditions);
+		EnabDepeDynamic(['AGe'], conditions);
 	}
 }

@@ -1294,3 +1294,17 @@ function rutRute(){
 	];
 	EnabDepeDynamic(['ruta'], conditions);
 }
+function enabRutVisit(){
+	const est=document.getElementById('estado_llamada').value;
+	const agen=document.getElementById('estado_agenda');
+	if (est.value==5){
+		agen.value=1;
+	}
+}
+
+/* function enabRutGest(){
+	const conditions = [
+		{ id: 'estado_llamada', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['sTA'], conditions);
+} */

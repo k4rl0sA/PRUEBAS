@@ -1303,5 +1303,6 @@ function enabRutVisit(){
 			{ id: 'estado_llamada', value: '5', compare: true }
 		];
 		EnabDepeDynamic(['AGe'], conditions);
+		agen.value=1;
 	}
 }

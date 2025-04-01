@@ -1236,7 +1236,7 @@ function NoObligat(a,flag){
 }
 function enabRutGest(){
 	const conditions = [
-		{ id: 'estado_llamada', value: '1', compare: true }
+		{ id: 'estado_llamada', value: '1', compare: true },
 	];
 	EnabDepeDynamic(['sTA'], conditions);
 }
@@ -1299,5 +1299,9 @@ function enabRutVisit(){
 	const agen=document.getElementById('estado_agenda');
 	if (est.value=="5"){
 		agen.value=1;
+		const conditions = [
+			{ id: 'estado_llamada', value: '5', compare: true }
+		];
+		EnabDepeDynamic(['sTA'], conditions);
 	}
 }

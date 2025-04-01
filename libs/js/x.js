@@ -1295,7 +1295,7 @@ function rutRute(){
 	EnabDepeDynamic(['ruta'], conditions);
 }
 function enabRutVisit(){
-	const est=document.getElementById('estado_llamada').value;
+	const est=document.getElementById('estado_llamada');
 	const agen=document.getElementById('estado_agenda');
 	if (est.value=="5"){
 		agen.value=1;

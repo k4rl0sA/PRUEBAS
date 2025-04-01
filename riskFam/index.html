@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Risk Assessment Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Family Risk Assessment Tool</h1>
+    
+    <div class="card">
+      <div class="card-header">
+        <h2>Family Risk Index (FRI)</h2>
+        <button id="generateBtn" class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+            <path d="M21 3v5h-5"></path>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+            <path d="M3 21v-5h5"></path>
+          </svg>
+          Generate Data
+        </button>
+      </div>
+      
+      <div id="riskAlert" class="alert medium">
+        <div class="risk-level" id="riskLevelText">Medium Risk</div>
+        <div id="totalRiskText">Total Risk Score: 55.00%</div>
+      </div>
+      
+      <div class="risk-factors">
+        <h3>Risk Factors</h3>
+        
+        <div class="grid-2">
+          <div>Socioeconomic Status:</div>
+          <div class="text-right" id="socioeconomicText">60% (20%)</div>
+          
+          <div>Family Structure:</div>
+          <div class="text-right" id="familyStructureText">45% (15%)</div>
+          
+          <div>Health Conditions:</div>
+          <div class="text-right" id="healthConditionsText">70% (20%)</div>
+          
+          <div>Social Vulnerability:</div>
+          <div class="text-right" id="socialVulnerabilityText">50% (15%)</div>
+          
+          <div>Access to Health:</div>
+          <div class="text-right" id="accessToHealthText">30% (10%)</div>
+          
+          <div>Living Environment:</div>
+          <div class="text-right" id="livingEnvironmentText">65% (10%)</div>
+          
+          <div>Demographics:</div>
+          <div class="text-right" id="demographicsText">40% (10%)</div>
+          
+          <div class="total-label">TOTAL:</div>
+          <div class="text-right total-value" id="totalText">55.00% (100%)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Risk Classification</h3>
+      <div class="risk-classification">
+        <div>
+          <span class="risk-indicator low"></span>
+          <span>Low Risk (0-40%): The family has favorable conditions and does not require priority intervention.</span>
+        </div>
+        <div>
+          <span class="risk-indicator medium"></span>
+          <span>Medium Risk (41-70%): The family has vulnerabilities that require monitoring and support.</span>
+        </div>
+        <div>
+          <span class="risk-indicator high"></span>
+          <span>High Risk (71-100%): The family faces multiple risk factors and needs urgent intervention.</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Risk Visualization</h3>
+      <div class="risk-visualization">
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Socioeconomic Status (20%)</span>
+            <span id="socioeconomicValue">60%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="socioeconomicBar" class="progress-bar-fill medium" style="width: 60%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Family Structure (15%)</span>
+            <span id="familyStructureValue">45%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="familyStructureBar" class="progress-bar-fill medium" style="width: 45%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Health Conditions (20%)</span>
+            <span id="healthConditionsValue">70%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="healthConditionsBar" class="progress-bar-fill medium" style="width: 70%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Social Vulnerability (15%)</span>
+            <span id="socialVulnerabilityValue">50%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="socialVulnerabilityBar" class="progress-bar-fill medium" style="width: 50%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Access to Health (10%)</span>
+            <span id="accessToHealthValue">30%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="accessToHealthBar" class="progress-bar-fill low" style="width: 30%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Living Environment (10%)</span>
+            <span id="livingEnvironmentValue">65%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="livingEnvironmentBar" class="progress-bar-fill medium" style="width: 65%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container">
+          <div class="risk-bar-header">
+            <span>Demographics (10%)</span>
+            <span id="demographicsValue">40%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="demographicsBar" class="progress-bar-fill low" style="width: 40%"></div>
+          </div>
+        </div>
+        
+        <div class="risk-bar-container total">
+          <div class="risk-bar-header">
+            <span>TOTAL FAMILY RISK (100%)</span>
+            <span id="totalValue">55.00%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="totalBar" class="progress-bar-fill medium" style="width: 55%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

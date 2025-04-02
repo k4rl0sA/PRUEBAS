@@ -480,7 +480,7 @@ if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
 	array('type' => 's', 'value' => date("Y-m-d H:i:s"))
 	);
 	$rta1 = mysql_prepd($sql1, $params1);
-	if (strpos($rta1, "Correctamente") !== false) {
+	if (strpos($rta1, "correctamente") !== false) {
 		$rta.= " Y Se ha asignado el predio";
 	}
 }

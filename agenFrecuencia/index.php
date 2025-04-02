@@ -27,6 +27,48 @@ function actualizar(){
 	act_lista(mod);
 }
 
+function hideMotiv(){
+	setTimeout(function(){
+		motiv=document.getElementById('frecuenciauso-pro-con').getElementsByClassName('col-6');
+		for (i=0;i<motiv.length;i++){
+			motiv[i].style.display='none'
+			motiv[i].setAttribute("id",i+1);
+		}
+	},100);
+}
+
+function changeSelect(a,b){
+	if(b!=''){
+		var pmot1=document.getElementById('1'),
+		pmot2=document.getElementById('2')
+		mo3=document.getElementById('mot3'),
+		mo2=document.getElementById('mot2');
+		const x = document.getElementById('obs');
+		if (x.value==2){
+			mo2.value="";
+			mo3.value="";
+			pmot2.style.display = 'none';
+			pmot1.style.display = 'block';
+		//~ }else if(x.value==3){
+			//~ mo3.value="";
+			//~ pmot1.style.display = 'none';
+			//~ pmot2.style.display = 'block';
+		}else if(x.value==3 && cit.value==11){
+			pmot2.style.display = 'none';
+			mo3.value="";
+			mo2.value="";
+		}else if(x.value==1 && cit.value==13){
+			pmot2.style.display = 'block';
+			mo3.value="";
+			mo2.value="";
+			pmot1.style.display = 'none';
+		}else{
+			mo3.value="";
+			mo2.value="";
+			hideMotiv();
+		}
+	}
+}
 
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
@@ -115,7 +157,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 			<!-- <li class='icono exportar'      title='Exportar Información General'    Onclick="csv(mod);"></li> -->
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
-			<li class='icono crear' title='Crear' onclick="mostrar($mod,'pro');"></li><!-- hideMotiv(); -->
+			<li class='icono crear'       title='Crear frecuencia de Uso'     Onclick="mostrar(mod,'pro');hideMotiv();"></li><!--hideMotiv();-->
 		</nav>
 		<nav class='menu right' >
 			<li class='icono ayuda'      title='Necesitas Ayuda'            Onclick=" window.open('https://drive.google.com/drive/folders/1JGd31V_12mh8-l2HkXKcKVlfhxYEkXpA', '_blank');"></li>

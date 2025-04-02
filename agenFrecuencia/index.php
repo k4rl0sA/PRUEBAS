@@ -27,12 +27,148 @@ function actualizar(){
 	act_lista(mod);
 }
 
+function getPerson() {	
+	var id = document.getElementById('idp');
+	var tp= document.getElementById('tdo');
+	if (id.value!='' && tp.value!=''){
+		if (loader != undefined) loader.style.display = 'block';
+			if (window.XMLHttpRequest)
+				xmlhttp = new XMLHttpRequest();
+			else
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				xmlhttp.onreadystatechange = function () {
+					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','fec'];
+						for(i=2;i<cmp.length;i++){
+							document.getElementById(cmp[i]).value='';
+						}
+						try {
+							var rta=JSON.parse(xmlhttp.responseText);
+							if(rta==null){
+								rta1=getPersonExt();
+								if(rta1==null){
+									return;
+								}else{
+									data =rta1;
+									console.log(data);
+									var data=Object.values(data);
+									for(i=0;i<cmp.length;i++){
+										document.getElementById(cmp[i]).value=data[i];
+									}
+								}
+							}else{
+								data =rta;
+								console.log(data);
+								var data=Object.values(data);
+								for(i=0;i<cmp.length;i++){
+									document.getElementById(cmp[i]).value=data[i];
+								}
+							}	
+						} catch (e) {
+							return;
+						}							
+					}
+				}
+				xmlhttp.open("POST", ruta_app,true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send('a=get&tb=persona&id='+id.value+'_'+tp.value);
+				if (loader != undefined) loader.style.display ='none';		  
+	}
+}
+
+function getPersonExt() {	
+	var id = document.getElementById('idp');
+	var tp= document.getElementById('tdo');
+	if (id.value!='' && tp.value!=''){
+		if (loader != undefined) loader.style.display = 'block';
+			if (window.XMLHttpRequest)
+				xmlhttp = new XMLHttpRequest();
+			else
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				xmlhttp.onreadystatechange = function () {
+					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','fec'];
+						for(i=2;i<cmp.length;i++){
+							document.getElementById(cmp[i]).value='';
+						}
+						try {
+							var rta=JSON.parse(xmlhttp.responseText);
+							if(rta==null){
+								alert('No se encontro el Tipo y Documento ingresado, por favor valide');
+								return;
+							}else{
+								data =rta;
+								console.log(data);
+								var data=Object.values(data);
+								for(i=0;i<cmp.length;i++){
+									document.getElementById(cmp[i]).value=data[i];
+								}
+							}	
+						} catch (e) {
+							return;
+						}							
+					}
+				}
+				xmlhttp.open("POST", ruta_app,true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send('a=get&tb=persona_ext&id='+id.value+'_'+tp.value);
+				if (loader != undefined) loader.style.display = 'none';				         
+	}
+}
+
+function validDate(a){
+		let Ini=dateAdd(-1847);
+		let Fin=dateAdd();
+	
+	let min=`${Ini.a}-${Ini.m}-${Ini.d}`;
+	let max=`${Fin.a}-${Fin.m}-${Fin.d}`;
+	var a=document.getElementById(a);
+	//~ var max=dayjs(`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`).format('YYYY-MM-DD');
+	RangeDateTime(a.id,min,max);
+	//~ validTime('hci');
+}
+
+function valDate(a){
+	var b=document.getElementById(a);
+	if (b.value<b.min || b.value>b.max){
+		error='El valor de la fecha debe ser igual o Posterior a ('+b.min+') ó igual o Inferior a ('+b.max+'), por favor valide para continuar.';
+		return rta=[error,false];
+	}else{
+		return true;
+	}
+}
+
 function hideMotiv(){
 	setTimeout(function(){
 		motiv=document.getElementById('frecuenciauso-pro-con').getElementsByClassName('col-6');
 		for (i=0;i<motiv.length;i++){
 			motiv[i].style.display='none'
 			motiv[i].setAttribute("id",i+1);
+		}
+	},100);
+}
+
+function loadMotiv(){
+	setTimeout(function(){
+		const x = document.getElementById('obs');
+		var mo3=document.getElementById('mot3'),
+		mo2=document.getElementById('mot2'),
+		cit=document.getElementById('cit');
+		if (x.value==2){
+			document.getElementById('1').style.display = 'block';
+			mo2.value="";
+		//~ }else if(x.value==3){
+			//~ document.getElementById('2').style.display = 'block';
+			//~ mo3.value="";
+		}else if(x.value==3 && cit.value==11){
+			document.getElementById('2').style.display = 'none';
+			mo3.value="";
+			mo2.value="";
+		}else if(x.value==1 && cit.value==13){
+			document.getElementById('2').style.display = 'block';
+			mo3.value="";
+		}else{
+			
 		}
 	},100);
 }
@@ -71,13 +207,19 @@ function changeSelect(a,b){
 }
 
 function grabar(tb='',ev){
+	var cit= document.getElementById('cit'),
+	obs= document.getElementById('obs'),	
+	sex= document.getElementById('gen'),
+	mot3= document.getElementById('mot3'),
+	mot2= document.getElementById('mot2');
+	
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);
    for (i=0;i<f.length;i++) {
      if (!valido(f[i])) {f[i].focus(); return};
   }
-   //VALIDACIONES FRECUENCIA DE USO
-   if (obs.value==3 && cit.value!=11 ){
+  //VALIDACIONES FRECUENCIA DE USO
+  if (obs.value==3 && cit.value!=11 ){
 	  alert('La observación no corresponde al tipo de cita asignado, por favor valide');
   }else if(cit.value==18 && (obs.value!=1 || (mot3.value!='' || mot2.value!=''))){
 	  alert('El valor del campo Observaciones ó Motivo,No corresponde con respecto al tipo de Cita asignado, por favor valide');
@@ -99,13 +241,18 @@ function grabar(tb='',ev){
 		  alert(rta[0]);
 		  return rta[1];
 	}else{
-	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-    act_lista(tb+'uso');
-    }
-}else{
-	myFetch(ruta_app,"a=gra&tb="+tb,mod);
-    act_lista(tb+'uso');
-}   
+		document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+		if (document.getElementById(tb+'-msj') != undefined) act_lista(tb+'uso');
+	}
+	  //~ valDate('mot3');
+  //~ }else if(obs.value==3 && mot2.value==''){
+	  //~ alert('El valor del campo Motivo,No puede estar vacio, por favor valide');
+  }else{
+   //VALIDACIONES FRECUENCIA DE USO
+	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+	if (document.getElementById(tb+'-msj') != undefined)
+		act_lista(tb+'uso');
+	}
 }
 
 </script>

@@ -18,12 +18,7 @@ else {
   }   
 }
 
-function divide($a){
-	$id=explode("_", $a);
-	return ($id);
-}
-
-function whe_frecuenciauso() {
+/* function whe_frecuenciauso() {
 	$sql = "";
 	if ($_POST['fidpersona'])
 		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
@@ -39,7 +34,7 @@ function whe_frecuenciauso() {
 		}
 	}
 	return $sql;
-}
+} */
 
 /* function lis_frecuenciauso(){
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
@@ -60,7 +55,7 @@ from frecuenciauso WHERE '1'='1'";
 return panel_content($datos["responseResult"],"frecuenciauso",19);
 } */
 
-function lis_frecuenciauso(){
+/* function lis_frecuenciauso(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` WHERE 1 ".whe_frecuenciauso()." ORDER BY 10 DESC; ");
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
@@ -75,7 +70,7 @@ from frecuenciauso WHERE 1 ";
 	//  echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
-	}
+	} */
 
 function focus_frecuenciauso(){
  return 'frecuenciauso';
@@ -136,7 +131,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_frecuenciauso(){
- $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
+ /* $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
  'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>''];
  $w='frecuencia';
   $d=get_frecuenciauso(); 
@@ -168,7 +163,8 @@ function cmp_frecuenciauso(){
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
- return $rta;
+ return $rta; */
+ return '';
 }
 
  function lis_citasUsuario(){

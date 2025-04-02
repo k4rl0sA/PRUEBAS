@@ -31,43 +31,6 @@ function actualizar(){
 	act_lista(mod);
 }
 
-/* function getData(a, ev,i,blo) {
-	if (ev.type == 'click') {
-		var c = document.getElementById(a+'-pro-con');
-		var cmp=c.querySelectorAll('.captura,.bloqueo')
-		if (loader != undefined) loader.style.display = 'block';
-			if (window.XMLHttpRequest)
-				xmlhttp = new XMLHttpRequest();
-			else
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				xmlhttp.onreadystatechange = function () {
-				if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-					data =JSON.parse(xmlhttp.responseText);
-					if (loader != undefined) loader.style.display = 'none';
-						console.log(data)
-					}
-				}
-				xmlhttp.open("POST", ruta_app,false);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('a=get&tb='+a+'&id=' + i.id);
-				var rta =data;
-				var data=Object.values(rta);
-				for (i=0;i<cmp.length;i++) {
-					//~ if cmp[i]==27{
-						cmp[i].value=data[i];
-						if(cmp[i].type==='checkbox')cmp[i].checked=false;
-							if (cmp[i].value=='SI' && cmp[i].type==='checkbox'){
-								cmp[i].checked=true;
-							}else if(cmp[i].value!='SI' && cmp[i].type==='checkbox'){
-								cmp[i].value='NO';
-							}
-							for (x=0;x<blo.length;x++) {
-								if(cmp[i].name==blo[x]) cmp[i].disabled = true;
-							}
-				} 
-	}
-}
- */
 function grabar(tb='',ev){
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);
@@ -90,29 +53,6 @@ function grabar(tb='',ev){
 	openModal();
 }   
 
-
-/* function enabFielSele(a, b) {
-	var ele = document.getElementById(b);
-	if(a.value==3 || a.value==6){
-		enaFie(ele,false);
-	}else{
-		enaFie(ele,true);
-	}
-	if(a.value==6){
-		const c = document.querySelectorAll('.dir input');
-		for (i = 0; i < c.length; i++) {
-			var el = document.getElementById(c[i].id);
-			enaFie(el, false);		
-		}
-	}else{
-		const d = document.querySelectorAll('.dir input');
-		for (i = 0; i < d.length; i++) {
-			var e = document.getElementById(d[i].id);
-			enaFie(e, true);		
-		}
-	}
-}
- */
 </script>
 </head>
 <body Onload="actualizar();">

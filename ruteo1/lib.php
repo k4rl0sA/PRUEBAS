@@ -469,28 +469,22 @@ function gra_rute(){
 	['type' => 's', 'value' => NULL]
 		];
 		// var_dump($rta);
-	//  $rta = show_sql($sql, $params);
-	var_dump($_POST);
+	$rta = show_sql($sql, $params);
+	// var_dump($_POST);
 if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
-	$sql1 = "INSERT INTO geo_asig VALUES(?,?,?,?,?,?,?,?)";
+	$sql1 = "INSERT INTO geo_asig VALUES(NULL,?,?,?,?,NULL,NULL,'A')";
 	$params1 = array(
-	array('type' => 'i', 'value' => NULL),
-	array('type' => 's', 'value' => $id[0]),
-	array('type' => 's', 'value' => $_POST['asignado']),
+	array('type' => 's', 'value' => $_POST['fpred']),
+	array('type' => 's', 'value' => $_POST['usuario_gest']),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
-	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => NULL),
-	array('type' => 's', 'value' => 'A')
+	array('type' => 's', 'value' => date("Y-m-d H:i:s"))
 	);
-	return "Inserta";
-}else{
-	return "NO Inserta";
+	$rta1 = mysql_prepd($sql1, $params1);
+	if (strpos($rta1, "Correctamente") !== false) {
+		$rta.= " Y Se ha asignado el predio";
+	}
 }
-	
-	// $rta1 = mysql_prepd($sql1, $params1);
-
-	// return $rta = mysql_prepd($sql, $params);
+	return $rta;
 }
 
 function agend($id) {

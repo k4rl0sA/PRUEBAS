@@ -74,7 +74,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_rute(){
  $rta="";
 	$rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
-	<div class='contenido' id='calls-lis' >".lista_gestion()."</div></div>";
+	<div class='contenido' id='calls-lis' >".lis_gestion()."</div></div>";
 
  $t=['id'=>'', 'idgeo'=>'', 'id_ruteo'=>'','fecha_asig'=>'','fuente'=>'','priorizacion'=>'','tipo_prior'=>'','tipo_doc'=>'','documento'=>'','nombres'=>'','sexo'=>'',
  'direccion'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'', 'subred'=>'','localidad'=>'','upz'=>'','barrio'=>'', 'sector_catastral'=>'','nummanzana'=>'',
@@ -158,7 +158,7 @@ function cmp_rute(){
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
-function lista_gestion(){ //revisar
+function lis_gestion(){ //revisar
 	// var_dump($_POST);
 	$id=divide($_POST['id']);
 	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo_ges 

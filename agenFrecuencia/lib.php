@@ -130,7 +130,7 @@ function cap_menus($a,$b='cap',$con='con') {
 }
 
 function cmp_frecuenciauso(){
- /* $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
+ $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
  'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>''];
  $w='frecuencia';
   $d=get_frecuenciauso(); 
@@ -162,8 +162,7 @@ function cmp_frecuenciauso(){
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
- return $rta; */
- return '';
+ return $rta;
 }
 
  function lis_citasUsuario(){

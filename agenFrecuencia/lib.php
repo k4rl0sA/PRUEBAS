@@ -131,7 +131,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_frecuenciauso(){
  $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
- 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>''];
+ 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>'','punto_atencion'=>''];
  $w='frecuencia';
   $d=get_frecuenciauso(); 
   //~ var_dump($d);

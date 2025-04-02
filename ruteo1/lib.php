@@ -470,7 +470,25 @@ function gra_rute(){
 		];
 		// var_dump($rta);
 	//  $rta = show_sql($sql, $params);
-	return $rta = mysql_prepd($sql, $params);
+if($_POST['fecha_gestion']!='' && $_POST['usuario_gest']){
+	return "NO inserta";
+}else{
+	return "Inserta";
+}
+	$sql1 = "INSERT INTO geo_asig VALUES(?,?,?,?,?,?,?,?)";
+	$params1 = array(
+	array('type' => 'i', 'value' => NULL),
+	array('type' => 's', 'value' => $id[0]),
+	array('type' => 's', 'value' => $_POST['asignado']),
+	array('type' => 'i', 'value' => $_SESSION['us_sds']),
+	array('type' => 's', 'value' => date("Y-m-d H:i:s")),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => NULL),
+	array('type' => 's', 'value' => 'A')
+	);
+	// $rta1 = mysql_prepd($sql1, $params1);
+
+	// return $rta = mysql_prepd($sql, $params);
 }
 
 function agend($id) {

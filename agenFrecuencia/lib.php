@@ -126,7 +126,6 @@ function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
   //~ $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
   //~ $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
-  $rta .= "<li class='icono $a cancelar'    title='Cerrar'          Onclick=\"ocultar('".$a."','".$b."');\" >";
   return $rta;
 }
 

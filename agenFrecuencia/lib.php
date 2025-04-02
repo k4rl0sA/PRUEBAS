@@ -18,7 +18,7 @@ else {
   }   
 }
 
-/* function whe_frecuenciauso() {
+function whe_frecuenciauso() {
 	$sql = "";
 	if ($_POST['fidpersona'])
 		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
@@ -34,9 +34,9 @@ else {
 		}
 	}
 	return $sql;
-} */
+}
 
-/* function lis_frecuenciauso(){
+function lis_frecuenciauso(){
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
 	concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
 `id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
@@ -53,7 +53,7 @@ from frecuenciauso WHERE '1'='1'";
 	$_SESSION['sql_frecuenciauso']=$sql1;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"frecuenciauso",19);
-} */
+}
 
 /* function lis_frecuenciauso(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` WHERE 1 ".whe_frecuenciauso()." ORDER BY 10 DESC; ");

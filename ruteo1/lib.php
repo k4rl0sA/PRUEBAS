@@ -470,7 +470,7 @@ function gra_rute(){
 		];
 		// var_dump($rta);
 	//  $rta = show_sql($sql, $params);
-if($_POST['fecha_gestion']!='' && $_POST['usuario_gest']){
+if($_POST['fecha_gestion']!='' && $_POST['usuario_gest']!=''){
 	return "NO inserta";
 }else{
 	return "Inserta";

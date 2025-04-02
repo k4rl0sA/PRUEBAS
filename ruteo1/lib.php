@@ -506,7 +506,7 @@ function formato_dato($a,$b,$c,$d){
 // $rta=iconv('UTF-8','ISO-8859-1',$rta);
 // var_dump($c);
 // var_dump($a);
-if ($a=='calls-lis' && $b=='acciones'){
+if ($a=='gestion-lis' && $b=='acciones'){
 	$rta="<nav class='menu right'>";
 	$rta.="<li title='Ver Registro '><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'rute',event,this,'lib.php',['fecha_llamada','estado_llamada','observacion']);\"></i></li>"; 
 }

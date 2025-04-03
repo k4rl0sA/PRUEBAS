@@ -143,7 +143,7 @@ function lis_citasUsuario(){
 	$sql="SELECT idfrecuencia,p.idpersona,p.tipo_doc,FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
 	`observaciones` 
 	FROM `frecuenciauso` f left join person p ON f.idpeople=p.idpeople 
-	WHERE `id_people`='{$id[0]}' AND `realizada`='NO'";
+	WHERE f.id_people='{$id[0]}' AND `realizada`='NO'";
 //~ echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"citasUsuario",5);

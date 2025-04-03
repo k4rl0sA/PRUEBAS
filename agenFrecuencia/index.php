@@ -27,95 +27,6 @@ function actualizar(){
 	act_lista(mod);
 }
 
-/* function getPerson() {	
-	var id = document.getElementById('idp');
-	var tp= document.getElementById('tdo');
-	if (id.value!='' && tp.value!=''){
-		if (loader != undefined) loader.style.display = 'block';
-			if (window.XMLHttpRequest)
-				xmlhttp = new XMLHttpRequest();
-			else
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				xmlhttp.onreadystatechange = function () {
-					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','fec'];
-						for(i=2;i<cmp.length;i++){
-							document.getElementById(cmp[i]).value='';
-						}
-						try {
-							var rta=JSON.parse(xmlhttp.responseText);
-							if(rta==null){
-								rta1=getPersonExt();
-								if(rta1==null){
-									return;
-								}else{
-									data =rta1;
-									console.log(data);
-									var data=Object.values(data);
-									for(i=0;i<cmp.length;i++){
-										document.getElementById(cmp[i]).value=data[i];
-									}
-								}
-							}else{
-								data =rta;
-								console.log(data);
-								var data=Object.values(data);
-								for(i=0;i<cmp.length;i++){
-									document.getElementById(cmp[i]).value=data[i];
-								}
-							}	
-						} catch (e) {
-							return;
-						}							
-					}
-				}
-				xmlhttp.open("POST", ruta_app,true);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('a=get&tb=persona&id='+id.value+'_'+tp.value);
-				if (loader != undefined) loader.style.display ='none';		  
-	}
-}
-
-function getPersonExt() {	
-	var id = document.getElementById('idp');
-	var tp= document.getElementById('tdo');
-	if (id.value!='' && tp.value!=''){
-		if (loader != undefined) loader.style.display = 'block';
-			if (window.XMLHttpRequest)
-				xmlhttp = new XMLHttpRequest();
-			else
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				xmlhttp.onreadystatechange = function () {
-					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','fec'];
-						for(i=2;i<cmp.length;i++){
-							document.getElementById(cmp[i]).value='';
-						}
-						try {
-							var rta=JSON.parse(xmlhttp.responseText);
-							if(rta==null){
-								alert('No se encontro el Tipo y Documento ingresado, por favor valide');
-								return;
-							}else{
-								data =rta;
-								console.log(data);
-								var data=Object.values(data);
-								for(i=0;i<cmp.length;i++){
-									document.getElementById(cmp[i]).value=data[i];
-								}
-							}	
-						} catch (e) {
-							return;
-						}							
-					}
-				}
-				xmlhttp.open("POST", ruta_app,true);
-				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xmlhttp.send('a=get&tb=persona_ext&id='+id.value+'_'+tp.value);
-				if (loader != undefined) loader.style.display = 'none';				         
-	}
-}
- */
 function validDate(a){
 		let Ini=dateAdd(-1847);
 		let Fin=dateAdd();
@@ -241,18 +152,17 @@ function grabar(tb='',ev){
 		  alert(rta[0]);
 		  return rta[1];
 	}else{
-		document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-		if (document.getElementById(tb+'-msj') != undefined) act_lista(tb+'uso');
+		myFetch(ruta_app,"a=gra&tb="+tb,mod);
+	/* 	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
+		if (document.getElementById(tb+'-msj') != undefined)  */
+		act_lista(tb+'uso');
 	}
 	  //~ valDate('mot3');
   //~ }else if(obs.value==3 && mot2.value==''){
 	  //~ alert('El valor del campo Motivo,No puede estar vacio, por favor valide');
   }else{
    //VALIDACIONES FRECUENCIA DE USO
-	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-	if (document.getElementById(tb+'-msj') != undefined)
-		act_lista(tb+'uso');
-	}
+   myFetch(ruta_app,"a=gra&tb="+tb,mod);
 }
 
 </script>

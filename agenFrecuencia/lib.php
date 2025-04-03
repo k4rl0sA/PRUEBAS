@@ -82,12 +82,11 @@ function men_frecuenciauso(){
 function get_frecuenciauso(){
 	if ($_POST['id']){
 		$id=divide($_POST['id']);			
-	$sql="SELECT T1.fecha_create,T1.id_persona,T1.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.genero,T3.fecha,T1.observaciones,motivo,
+	$sql="SELECT T1.fecha_create,T2.idpersona,T1.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.genero,T1.observaciones,motivo,
 	punto_atencion,tipo_cita 
 	from frecuenciauso T1 
-	left join personas T2 ON T1.id_persona=T2.idpersona
-	LEFT join caracterizacion T3 ON T2.ficha=T3.idficha 
-	WHERE T1.id_persona='{$id[0]}' AND T1.tipo_doc=upper('{$id[1]}') AND tipo_cita='{$id[2]}' AND REALIZADA='{$id[3]}'";
+	left join person T2 ON T1.id_persona=T2.idpersona
+	WHERE T1.idpeople='{$id[0]}'AND tipo_cita='{$id[2]}' AND REALIZADA='{$id[3]}'";
 		$info=datos_mysql($sql);
 		 //~ echo $sql;
 		 

@@ -159,12 +159,12 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('mot3','d',10,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
  $c[]=new cmp('mot2','s',3,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
- $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
+//  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
  return $rta;
 }
 
- function lis_citasUsuario(){
+/*  function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
 	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(39,tipo_cita) `tipo de cita`, 
 	`observaciones` 
@@ -173,7 +173,7 @@ function cmp_frecuenciauso(){
 //~ echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"citasUsuario",5);
-}
+} */
 
 
 function opc_tipo_doc($id=''){

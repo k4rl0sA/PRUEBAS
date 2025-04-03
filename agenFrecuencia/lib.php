@@ -102,15 +102,15 @@ function get_persona(){
 	if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.genero
-	 FROM personas T1
-	 LEFT join caracterizacion T2 ON T1.ficha=T2.idficha
+	 FROM person T1
+	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);
 		return json_encode($info['responseResult'][0]);
 	}
 }
 function get_persona_ext(){
-	if ($_REQUEST['id']){
+	/* if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,genero,fecha_envio
 	 FROM personas1 
@@ -118,7 +118,8 @@ function get_persona_ext(){
 	 //~ echo $sql;
 		$info=datos_mysql($sql);
 		return json_encode($info['responseResult'][0]);
-	}
+	} */
+	return '';
 }
 
 

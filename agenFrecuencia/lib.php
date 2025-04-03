@@ -71,10 +71,8 @@ function get_frecuenciauso(){
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
 	WHERE T1.idfrecuencia='{$id[0]}'";
-	echo $sql;
+	// echo $sql;
 		$info=datos_mysql($sql);
-		
-		 
 		return $info['responseResult'][0];
 	}
 }

@@ -138,13 +138,14 @@ function cmp_frecuenciauso(){
 
 function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
+	 var_dump($_POST);
 	$sql="SELECT idfrecuencia Cod_Registro,p.idpersona Documento,p.tipo_doc 'Tipo Documento',FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
 	FN_CATALOGODESC(278,`observaciones`) observaciones,motivo 
 	FROM `frecuenciauso` f left join person p ON f.idpeople=p.idpeople 
 	WHERE f.idfrecuencia='{$id[0]}' AND `realizada`='NO'";
 // echo $sql;
 	$datos=datos_mysql($sql);
-return panel_content($datos["responseResult"],"citasUsuario",5);
+return panel_content($datos["responseResult"],"citasUsuario",9);
 }
 function opc_tipo_doc($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);

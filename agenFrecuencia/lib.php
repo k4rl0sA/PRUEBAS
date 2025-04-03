@@ -193,7 +193,7 @@ function gra_frecuencia(){
 	 $id=divide($_POST['key']);
 	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
- WHERE id_people={$id[0]} AND tipo_cita='{$id[2]}' AND `realizada`='NO';";
+ WHERE idfrecuencia={$id[0]}";
  }else{
 	 $sql="INSERT INTO frecuenciauso VALUES (NULL,{$_POST['idp']},'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
  }

@@ -1577,7 +1577,7 @@ function lis_admisi($txt){
 	$sql="SELECT 
 G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
-A.id_factura Cod_Registro, A.soli_admis AS Solicitud_Admision, A.fecha_consulta AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, A.cod_admin AS Cod_Admision, FN_CATALOGODESC(126,A.cod_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.final_consul) AS Finalidad_Consulta, A.cod_factura AS Cod_Factura, FN_CATALOGODESC(184,A.estado) AS Estado_Admision,
+A.id_factura Cod_Registro, A.soli_admis AS Solicitud_Admision, A.fecha_consulta AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, A.cod_admin AS Cod_Admision, FN_CATALOGODESC(126,A.cod_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.final_consul) AS Finalidad_Consulta, A.cod_factura AS Cod_Factura, FN_CATALOGODESC(184,A.estado_hist) AS Estado_Admision,
 A.fecha_create AS Fecha_Creacion, A.usu_creo AS Cod_Usuario_Crea, U.nombre AS Nombre_Usuario_Crea, U.perfil AS Perfil_Usuario_Crea, 
 A.fecha_update AS Fecha_Edicion, A.usu_update AS Cod_Usuario_Edita, U1.nombre AS Nombre_Usuario_Edita, U1.perfil AS Perfil_Usuario_Edita
 FROM `adm_facturacion` A

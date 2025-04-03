@@ -139,7 +139,7 @@ function cmp_frecuenciauso(){
 function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
 	$sql="SELECT idfrecuencia,p.idpersona,p.tipo_doc,FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
-	FN_CATALOGODESC(278,`observaciones`) observaciones 
+	FN_CATALOGODESC(278,`observaciones`) observaciones,motivo 
 	FROM `frecuenciauso` f left join person p ON f.idpeople=p.idpeople 
 	WHERE f.idfrecuencia='{$id[0]}' AND `realizada`='NO'";
 // echo $sql;

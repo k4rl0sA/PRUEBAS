@@ -189,7 +189,7 @@ function gra_frecuencia(){
 		 $mot='NULL';
 	 }
  if ($_POST['key']){
-	var_dump($_POST);
+	// var_dump($_POST);
 	 $id=divide($_POST['key']);
 	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 

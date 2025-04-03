@@ -52,23 +52,6 @@ from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuar
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
 }
 
-/* function lis_frecuenciauso(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` WHERE 1 ".whe_frecuenciauso()." ORDER BY 10 DESC; ");
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	
-	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
-	$sql="SELECT concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(278,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
-from frecuenciauso WHERE 1 ";
-	$sql.=whe_frecuenciauso();
-	$sql.="  ORDER BY 10 DESC";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	//  echo $sql;
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
-	} */
-
 function focus_frecuenciauso(){
  return 'frecuenciauso';
 }
@@ -111,20 +94,6 @@ function get_persona(){
 		}
 	}
 }
-function get_persona_ext(){
-	/* if ($_REQUEST['id']){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT idpersona,tipo_doc,nombre1,nombre2,apellido1,apellido2,fecha_nacimiento,genero,fecha_envio
-	 FROM personas1 
-	 WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	 //~ echo $sql;
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
-	} */
-	return '';
-}
-
-
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
   //~ $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
@@ -164,12 +133,12 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('mot3','d',10,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
  $c[]=new cmp('mot2','s',3,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-//  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
+ $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
  return $rta;
 }
 
-/*  function lis_citasUsuario(){
+function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
 	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
 	`observaciones` 
@@ -178,8 +147,7 @@ function cmp_frecuenciauso(){
 //~ echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"citasUsuario",5);
-} */
-
+}
 function opc_tipo_doc($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 }

@@ -164,6 +164,7 @@ function grabar(tb='',ev){
    //VALIDACIONES FRECUENCIA DE USO
    myFetch(ruta_app,"a=gra&tb="+tb,mod);
 }
+}
 
 </script>
 </head>

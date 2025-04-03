@@ -104,7 +104,11 @@ function get_persona(){
 	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]);
+		if (!$info['responseResult']) {
+			return json_encode (new stdClass);
+		}else{
+			return json_encode($info['responseResult'][0]);
+		}
 	}
 }
 function get_persona_ext(){

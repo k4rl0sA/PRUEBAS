@@ -43,7 +43,7 @@ function lis_frecuenciauso(){
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 //~ echo $sql;
 $sql="SELECT idfrecuencia ACCIONES,
-`idpersona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,A.fecha_create,A.estado
+`idpersona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(278,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,A.fecha_create,A.estado
 from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 10 DESC";
@@ -59,7 +59,7 @@ from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuar
 	
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 	$sql="SELECT concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
+`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(278,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
 from frecuenciauso WHERE 1 ";
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 10 DESC";
@@ -167,7 +167,7 @@ function cmp_frecuenciauso(){
 
 /*  function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
-	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(39,tipo_cita) `tipo de cita`, 
+	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
 	`observaciones` 
 	FROM `frecuenciauso` 
 	WHERE `id_people`='{$id[0]}' AND `realizada`='NO'";

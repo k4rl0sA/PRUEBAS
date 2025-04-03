@@ -66,7 +66,7 @@ function get_frecuenciauso(){
 	if ($_POST['id']){
 		// var_dump($_POST);
 		$id=divide($_POST['id']);			
-	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,FN_CATALOGODESC(278,T1.observaciones) observaciones,motivo,
+	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,T1.observaciones,motivo,
 	punto_atencion,tipo_cita 
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
@@ -139,10 +139,10 @@ function cmp_frecuenciauso(){
 function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
 	$sql="SELECT idfrecuencia,p.idpersona,p.tipo_doc,FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
-	`observaciones` 
+	FN_CATALOGODESC(278,`observaciones`) observaciones 
 	FROM `frecuenciauso` f left join person p ON f.idpeople=p.idpeople 
 	WHERE f.idfrecuencia='{$id[0]}' AND `realizada`='NO'";
-echo $sql;
+// echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"citasUsuario",5);
 }

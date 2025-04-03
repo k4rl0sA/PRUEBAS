@@ -176,7 +176,6 @@ function cmp_frecuenciauso(){
 return panel_content($datos["responseResult"],"citasUsuario",5);
 } */
 
-
 function opc_tipo_doc($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
 }

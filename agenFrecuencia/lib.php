@@ -85,7 +85,7 @@ function get_frecuenciauso(){
 	$sql="SELECT T1.fecha_create,T2.idpersona,T1.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.genero,T1.observaciones,motivo,
 	punto_atencion,tipo_cita 
 	from frecuenciauso T1 
-	left join person T2 ON T1.id_persona=T2.idpersona
+	left join person T2 ON T1.idpeople=T2.idpeople
 	WHERE T1.idpeople='{$id[0]}'AND tipo_cita='{$id[2]}' AND REALIZADA='{$id[3]}'";
 		$info=datos_mysql($sql);
 		 //~ echo $sql;

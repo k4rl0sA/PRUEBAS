@@ -138,7 +138,6 @@ function cmp_frecuenciauso(){
 
 function lis_citasUsuario(){
 	 $id=divide($_POST['id']);
-	 var_dump($_POST);
 	$sql="SELECT idfrecuencia Cod_Registro,p.idpersona Documento,p.tipo_doc 'Tipo Documento',FN_CATALOGODESC(275,tipo_cita) `tipo de cita`, 
 	FN_CATALOGODESC(278,`observaciones`) observaciones,motivo 
 	FROM `frecuenciauso` f left join person p ON f.idpeople=p.idpeople 
@@ -190,6 +189,7 @@ function gra_frecuencia(){
 		 $mot='NULL';
 	 }
  if ($_POST['key']){
+	var_dump($_POST);
 	 $id=divide($_POST['key']);
 	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 

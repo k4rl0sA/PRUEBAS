@@ -27,7 +27,7 @@ function actualizar(){
 	act_lista(mod);
 }
 
-function getPerson() {	
+/* function getPerson() {	
 	var id = document.getElementById('idp');
 	var tp= document.getElementById('tdo');
 	if (id.value!='' && tp.value!=''){
@@ -115,7 +115,7 @@ function getPersonExt() {
 				if (loader != undefined) loader.style.display = 'none';				         
 	}
 }
-
+ */
 function validDate(a){
 		let Ini=dateAdd(-1847);
 		let Fin=dateAdd();

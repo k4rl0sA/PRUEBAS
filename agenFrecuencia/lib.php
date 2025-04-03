@@ -37,14 +37,14 @@ function whe_frecuenciauso() {
 }
 
 function lis_frecuenciauso(){
-	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_admision());
+	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 //~ echo $sql;
-$sql="SELECT concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
-from frecuenciauso WHERE 1 ";
+$sql="SELECT idfrecuencia ACCIONES,
+`idpersona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
+from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 10 DESC";
 	$sql.=' LIMIT '.$pag.','.$regxPag;

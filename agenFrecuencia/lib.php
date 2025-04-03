@@ -37,22 +37,19 @@ function whe_frecuenciauso() {
 }
 
 function lis_frecuenciauso(){
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
-	concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
-from frecuenciauso WHERE '1'='1'";
-	$sql.=whe_frecuenciauso();
-	$sql.=" ORDER BY 10 DESC";
+	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_admision());
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 //~ echo $sql;
-	 $sql1="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,
-	concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`, usu_creo
-from frecuenciauso WHERE '1'='1'";
-	$sql1.=whe_frecuenciauso();
-	$sql1.=" ORDER BY 10 DESC";
-	$_SESSION['sql_frecuenciauso']=$sql1;
+$sql="SELECT concat(id_persona,'_',tipo_doc,'_',tipo_cita,'_',realizada) ACCIONES,
+`id_persona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(38,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`realizada`,FN_CATALOGODESC(82,observaciones) Observaciones,IF(motivo = 1,'ORDEN',if(motivo=2,'EXAMEN',motivo)) motivo,`fecha_create`,`estado`
+from frecuenciauso WHERE 1 ";
+	$sql.=whe_frecuenciauso();
+	$sql.="  ORDER BY 10 DESC";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 	$datos=datos_mysql($sql);
-return panel_content($datos["responseResult"],"frecuenciauso",19);
+	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
 }
 
 /* function lis_frecuenciauso(){
@@ -171,7 +168,7 @@ function cmp_frecuenciauso(){
 	$sql="SELECT `id_persona`, `tipo_doc`,FN_CATALOGODESC(39,tipo_cita) `tipo de cita`, 
 	`observaciones` 
 	FROM `frecuenciauso` 
-	WHERE `id_persona`='{$id[0]}' AND `tipo_doc`='{$id[1]}' AND `realizada`='NO'";
+	WHERE `id_people`='{$id[0]}' AND `realizada`='NO'";
 //~ echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"citasUsuario",5);
@@ -225,9 +222,9 @@ function gra_frecuencia(){
 	 $id=divide($_POST['key']);
 	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
- WHERE id_persona={$id[0]} AND tipo_doc=UPPER('{$id[1]}') AND tipo_cita='{$id[2]}' AND `realizada`='NO';";
+ WHERE id_people={$id[0]} AND tipo_cita='{$id[2]}' AND `realizada`='NO';";
  }else{
-	 $sql="INSERT INTO frecuenciauso VALUES ({$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	 $sql="INSERT INTO frecuenciauso VALUES ({$_POST['idp']},'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
  }
 	//~ echo $sql;
 	$rta=dato_mysql($sql);

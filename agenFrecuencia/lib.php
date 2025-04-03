@@ -70,7 +70,7 @@ function get_frecuenciauso(){
 	punto_atencion,tipo_cita 
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
-	WHERE T1.idpeople='{$id[0]}'AND tipo_cita='{$id[2]}' AND REALIZADA='{$id[3]}'";
+	WHERE T1.idpeople='{$id[0]}'";
 	echo $sql;
 		$info=datos_mysql($sql);
 		

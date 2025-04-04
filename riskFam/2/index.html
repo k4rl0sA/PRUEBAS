@@ -601,8 +601,8 @@
                 <!-- High risk segment (71-100%) -->
                 <path id="highRiskPath" class="risk-gauge-high" d="M 30 150 A 120 120 0 0 1 270 150" stroke-dasharray="141.375 471.25" stroke-dashoffset="329.875" />
                 
-                <!-- Needle -->
-                <path id="gaugeNeedle" class="risk-gauge-needle" d="M 150 150 L 145 50 L 155 50 Z" transform="rotate(-90, 150, 150)" />
+                <!-- Needle - Fixed to point outward from the center -->
+                <polygon id="gaugeNeedle" class="risk-gauge-needle" points="150,150 145,60 155,60" transform="rotate(-90, 150, 150)" />
                 
                 <!-- Center point -->
                 <circle class="risk-gauge-center" cx="150" cy="150" r="10" />
@@ -808,6 +808,7 @@
       // Update risk level
       let riskLevelText = "";
       riskLevel.classList.remove('low', 'medium', 'high');
+      
       if (totalRisk >= 71) {
         riskLevelText = "High Risk";
         riskLevel.classList.add('high');
@@ -818,19 +819,24 @@
         riskLevelText = "Low Risk";
         riskLevel.classList.add('low');
       }
+      
       riskLevel.textContent = riskLevelText;
     }
+
     // Calculate needle rotation angle based on risk value
     function calculateNeedleRotation(riskValue) {
       // Map risk value (0-100) to rotation angle (-90 to 90 degrees)
       return -90 + (riskValue * 180 / 100);
     }
+
     // Render risk factors
     function renderRiskFactors() {
       riskFactorsContainer.innerHTML = '';
+      
       Object.keys(factors).forEach(key => {
         const factor = factors[key];
         const riskClass = getRiskClass(factor.value);
+        
         const factorElement = document.createElement('div');
         factorElement.className = 'risk-factor';
         factorElement.innerHTML = `
@@ -852,24 +858,29 @@
             <span>Contribution: ${(factor.value * factor.weight).toFixed(1)}%</span>
           </div>
         `;
+        
         riskFactorsContainer.appendChild(factorElement);
       });
     }
+
     // Get risk class based on value
     function getRiskClass(value) {
       if (value >= 71) return 'high';
       if (value >= 41) return 'medium';
       return 'low';
     }
+
     // Get risk level text based on value
     function getRiskLevelText(value) {
       if (value >= 71) return 'High';
       if (value >= 41) return 'Medium';
       return 'Low';
     }
+
     // Initialize Chart.js chart
     function initChart() {
       const ctx = document.getElementById('riskChart').getContext('2d');
+      
       // Prepare data for the chart
       const chartData = {
         labels: Object.values(factors).map(factor => factor.name),
@@ -881,6 +892,7 @@
           borderWidth: 1
         }]
       };
+      
       // Chart configuration
       const chartConfig = {
         type: 'radar',
@@ -932,9 +944,11 @@
           }
         }
       };
+      
       // Create chart
       riskChart = new Chart(ctx, chartConfig);
     }
+
     // Update chart with new data
     function updateChart() {
       riskChart.data.datasets[0].data = Object.values(factors).map(factor => factor.value);
@@ -942,6 +956,7 @@
       riskChart.data.datasets[0].borderColor = Object.values(factors).map(factor => getChartColor(factor.value, 1));
       riskChart.update();
     }
+
     // Update chart colors when theme changes
     function updateChartColors() {
       if (riskChart) {
@@ -951,6 +966,7 @@
         riskChart.update();
       }
     }
+
     // Get chart color based on risk value
     function getChartColor(value, alpha) {
       if (value >= 71) {
@@ -961,6 +977,7 @@
         return `rgba(16, 185, 129, ${alpha})`; // green
       }
     }
+
     // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', initApp);
   </script>

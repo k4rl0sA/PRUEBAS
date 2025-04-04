@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Risk Assessment Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="theme-toggle">
+    <input type="checkbox" id="theme-switch" class="theme-switch">
+    <label for="theme-switch" class="theme-switch-label">
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </label>
+  </div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Family Risk Assessment</h1>
+      <p class="subtitle">Evaluate and visualize family risk factors</p>
+    </header>
+
+    <main class="content">
+      <section class="risk-summary-section">
+        <div class="card risk-summary">
+          <div class="card-header">
+            <h2>Family Risk Index</h2>
+            <button id="generateBtn" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+              Generate Data
+            </button>
+          </div>
+          
+          <div class="risk-meter-container">
+            <div class="risk-meter">
+              <div class="risk-meter-scale">
+                <div class="risk-meter-low"></div>
+                <div class="risk-meter-medium"></div>
+                <div class="risk-meter-high"></div>
+              </div>
+              <div class="risk-meter-needle" id="riskMeterNeedle"></div>
+              <div class="risk-meter-center"></div>
+              <div class="risk-meter-labels">
+                <span>0%</span>
+                <span>40%</span>
+                <span>70%</span>
+                <span>100%</span>
+              </div>
+            </div>
+            <div class="risk-meter-value" id="riskMeterValue">55.0%</div>
+            <div class="risk-level" id="riskLevel">Medium Risk</div>
+          </div>
+          
+          <div class="risk-classification">
+            <div class="risk-class low">
+              <div class="risk-indicator"></div>
+              <div class="risk-class-details">
+                <h4>Low Risk (0-40%)</h4>
+                <p>The family has favorable conditions and does not require priority intervention.</p>
+              </div>
+            </div>
+            <div class="risk-class medium">
+              <div class="risk-indicator"></div>
+              <div class="risk-class-details">
+                <h4>Medium Risk (41-70%)</h4>
+                <p>The family has vulnerabilities that require monitoring and support.</p>
+              </div>
+            </div>
+            <div class="risk-class high">
+              <div class="risk-indicator"></div>
+              <div class="risk-class-details">
+                <h4>High Risk (71-100%)</h4>
+                <p>The family faces multiple risk factors and needs urgent intervention.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="risk-factors-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Factors</h2>
+            <div class="total-risk">
+              <span>Total:</span>
+              <span id="totalRiskText">55.0%</span>
+            </div>
+          </div>
+          
+          <div class="risk-factors" id="riskFactors">
+            <!-- Risk factors will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <section class="risk-chart-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>Risk Visualization</h2>
+          </div>
+          
+          <div class="chart-container">
+            <canvas id="riskChart" width="400" height="400"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Family Risk Assessment Tool &copy; 2023</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

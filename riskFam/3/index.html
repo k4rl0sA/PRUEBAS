@@ -782,7 +782,7 @@
       // Update gauge needle rotation
       const needleRotation = calculateNeedleRotation(totalRisk);
       gaugeNeedle.setAttribute('transform', `rotate(${needleRotation}, 150, 150)`);
-      
+      riskMeterNeedle.style.transform = `translateX(-50%) rotate(${needleRotation}deg)`;
       // Update risk value display
       riskGaugeValue.textContent = `${totalRisk.toFixed(1)}%`;
       totalRiskText.textContent = `${totalRisk.toFixed(1)}%`;

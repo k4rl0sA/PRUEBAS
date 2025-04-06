@@ -136,14 +136,19 @@ $mod = 'descargas';
     <form id="generarForm">
     <label for="fecha">Seleccione El tipo de archivo a descargar:</label>
         <select id="tipo" name="tipo">
-            <option value="excel_CON.php">CON Validaciones</option>
-            <option value="excel_SIN.php">SIN Validaciones</option>
+        <option value="1">Pruebas y Asignación Predios</option>
+            <option value="2">Caracterización</option>
+            <option value="3">Fechas</option>
+            <option value="4">Alertas y VSP</option>
+            <option value="5">Todos los scripts</option>
         </select>
 
-        <label for="fecha">Seleccione la fecha:</label>
-        <input type="date" id="fecha" name="fecha" required>
+        <label for="fecha_inicio">Fecha de inicio:</label>
+        <input type="date" id="fecha_inicio" name="fecha_inicio" required>
 
-        
+        <label for="fecha_fin">Fecha de fin:</label>
+        <input type="date" id="fecha_fin" name="fecha_fin" required>
+
         <button type="button" onclick="generarArchivo()">Generar Archivo</button>
     </form>
     <div class="progress-container">
@@ -162,45 +167,43 @@ $mod = 'descargas';
     <script>
         var mod = 'descargas';
     function generarArchivo() {
-    const fecha = document.getElementById('fecha').value;
-    const tipo = document.getElementById('tipo').value;
-    if (!fecha) {
-        inform('Por favor, seleccione una fecha.');
+        const tipo = document.getElementById('tipo').value;
+        const fecha_inicio = document.getElementById('fecha_inicio').value;
+        const fecha_fin = document.getElementById('fecha_fin').value;
+    if (!fecha_inicio || !fecha_fin) {
+        inform('Por favor, seleccione ambas fechas.');
         return;
     }
-
     // Mostrar el spinner
     document.getElementById('spinner').style.display = 'block';
-
     const xhr = new XMLHttpRequest();
-    xhr.open('POST',tipo, true);
+    xhr.open('POST','lib.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             // Ocultar el spinner cuando la solicitud termine
             document.getElementById('spinner').style.display = 'none';
-
             if (xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-
-                // Actualizar la barra de progreso
-                document.getElementById('progressBarFill').style.width = `${response.progreso}%`;
-                document.getElementById('progressText').textContent = `${Math.round(response.progreso)}%`;
-
-                if (response.success) {
-                    inform('Archivo generado con éxito.');
-                    window.location.href = response.file;
-                } else {
-                    warnin('Error al generar el archivo.');
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    // Actualizar la barra de progreso
+                    document.getElementById('progressBarFill').style.width = `${response.progreso}%`;
+                    document.getElementById('progressText').textContent = `${Math.round(response.progreso)}%`;
+                    if (response.success) {
+                        inform('Archivo generado con éxito.');
+                        window.location.href = response.file;
+                    } else {
+                        warnin(response.message || 'Error al generar el archivo.');
+                    }
+                } catch (e) {
+                    warnin('Error al procesar la respuesta del servidor.');
                 }
             } else {
                 warnin('Error en la conexión con el servidor.');
             }
         }
     };
-
-    xhr.send(`fecha=${fecha}`);
+    xhr.send(`tipo=${tipo}&fecha_inicio=${fecha_inicio}&fecha_fin=${fecha_fin}`);
 }
     </script>
     <div class="overlay" id="overlay" onClick="closeModal();">

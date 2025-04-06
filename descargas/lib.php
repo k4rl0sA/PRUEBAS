@@ -174,7 +174,7 @@ switch ($tipo) {
     default:
         $scripts = $todosScripts; // Todos los scripts
 }
-try {
+// try {
     $spreadsheet = new Spreadsheet();
     $index = 0;
     foreach ($scripts as $nombreHoja => $query) {
@@ -242,7 +242,7 @@ try {
 
     // No necesitamos el JSON ahora ya que estamos forzando la descarga directamente
     exit;
-}
+
     
     /* // Configurar respuesta JSON
     echo json_encode([

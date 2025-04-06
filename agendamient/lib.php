@@ -83,7 +83,8 @@ function get_agendamiento(){
     $id=divide($_POST['id']);
 if($_POST['id']){
     $sql="SELECT T2.idpersona,T2.tipo_doc,T2.nombre1 nombre1,T2.nombre2 nombre2,T2.apellido1 apellido1,T2.apellido2 apellido2,
-    T2.fecha_nacimiento fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
+    T2.fecha_nacimiento,
+     concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
     ' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
     T2.genero genero, T2.eapb eapb,telefono1,telefono2,tipo_consulta,
     punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 

@@ -93,7 +93,7 @@ $id=divide($_POST['id']);
    T2.genero genero, T2.eapb eapb,T3.telefono1 telefono1,T3.telefono2 telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
 			FROM agendamiento T1 
 			left join person T2 ON T1.idpeople=T2.idpeople
-	WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'";
+	WHERE T1.idagendamiento='".$id[0]."'";//AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
 }

@@ -136,11 +136,11 @@ $mod = 'descargas';
     <form id="generarForm">
     <label for="fecha">Seleccione El tipo de archivo a descargar:</label>
         <select id="tipo" name="tipo">
-        <option value="1">Pruebas y Asignación Predios</option>
-            <option value="2">Caracterización</option>
+        <option value="1">SIN Validaciones</option>
+            <option value="2">CON Validaciones</option>
             <option value="3">Fechas</option>
-            <option value="4">Alertas y VSP</option>
-            <option value="5">Todos los scripts</option>
+            <option value="4">Alertas</option>
+            <option value="5">Caracteriz_OK</option>
         </select>
 
         <label for="fecha_inicio">Fecha de inicio:</label>

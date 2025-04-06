@@ -206,7 +206,7 @@ function cmp_agendamiento(){
  $rta.="</div>";
  return $rta;
 }
-function cmp_observaciones(){
+/* function cmp_observaciones(){
  $rta="";
  $t=['id_persona'=>'','tipodoc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','tipo_doc'=>'',
  'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','estado'=>''];
@@ -237,7 +237,7 @@ function cmp_observaciones(){
  $rta.="<br>";
  $rta.="</div>";
  return $rta;
-}
+} 
 
 function focus_observaciones(){
  return 'observaciones';
@@ -267,7 +267,7 @@ function gra_observaciones(){
 	$sql="SELECT `id_persona`,`tipodoc`,`tipo_cita`,estados,`observac_cita`,`usu_creo`,`usu_update`,`fecha_update`,`estado` FROM `observagendamiento`";
 		$_SESSION['sql_observaciones']=$sql;
 }
-
+*/
 
 function gra_agendamiento(){
 	$obs= trim(preg_replace("/[\r\n|\n|\r]+/",PHP_EOL,$_POST['obc']));

@@ -205,7 +205,7 @@ try {
         }
         $index++;
     }
-    $spreadsheet->removeSheetByIndex(0);
+    // $spreadsheet->removeSheetByIndex(0);
     // Generar nombre de archivo
     $nombresArchivos = [
         '1' => 'SIN Validaciones',

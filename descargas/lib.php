@@ -242,6 +242,7 @@ try {
 
     // No necesitamos el JSON ahora ya que estamos forzando la descarga directamente
     exit;
+}
     
     /* // Configurar respuesta JSON
     echo json_encode([

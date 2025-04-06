@@ -215,9 +215,35 @@ try {
         '5' => 'Caracteriz_OK'
     ];
     $filename = ($nombresArchivos[$tipo] ?? 'datos') . '_' . $fecha_inicio . '_a_' . $fecha_fin . '.xlsx';
+
+    $tempDir = sys_get_temp_dir();
+    $filePath = $tempDir . DIRECTORY_SEPARATOR . $filename;
+
     $writer = new Xlsx($spreadsheet);
     $writer->save($filename);
-    // Configurar respuesta JSON
+
+    // Configurar headers para descarga
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Content-Length: ' . filesize($filePath));
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Expires: 0');
+
+    // Enviar el archivo al cliente
+    readfile($filePath);
+
+    // Eliminar el archivo temporal
+    register_shutdown_function(function() use ($filePath) {
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+    });
+
+    // No necesitamos el JSON ahora ya que estamos forzando la descarga directamente
+    exit;
+    
+    /* // Configurar respuesta JSON
     echo json_encode([
         'success' => true,
         'file' => $filename,
@@ -235,4 +261,4 @@ try {
         $mysqli->close();
     }
 }
-?>
+?> */

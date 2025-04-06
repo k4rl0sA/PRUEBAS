@@ -1,34 +1,27 @@
 <?php
 require_once "../libs/gestion.php";
-ini_set('display_errors','0');
-
-if (!isset($_SESSION['us_riesgo'])) die("<script>window.top.location.href='/';</script>");
+ini_set('display_errors','1');
+if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
 else {
   $rta="";
   switch ($_POST['a']){
   case 'csv': 
     header_csv ($_REQUEST['tb'].'.csv');
     $rs=array('','');    
-    echo csv($rs);
+    echo csv($rs,'');
     die;
     break;
   default:
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }
- }
-
-
-function divide($a){
-	$id=explode("_", $a);
-	return ($id);
+  }   
 }
 
 function whe_agendamiento() {
 	$sql = "";
 	if ($_POST['fidpersona'])
-		$sql .= " AND id_persona like '%".$_POST['fidpersona']."%'";
+		$sql .= " AND idpersona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
 		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
 	if ($_POST['festado'])
@@ -80,7 +73,6 @@ function men_agendamiento(){
  $rta=cap_menus('agendamiento','pro');
  return $rta;
 }
-
 
 function get_agendamiento(){
 $id=divide($_POST['id']);
@@ -134,19 +126,7 @@ WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);
 		return json_encode($info['responseResult'][0]); 
 }
-function get_persona_ext(){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT 
-T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.genero,T1.eapb,T1.telefono1,T1.telefono2,T3.tipo_consulta,T3.punto_atencion,T3.tipo_cita,T3.fecha_cita,T3.hora_cita,T3.nombre_atendio,T3.observac_cita
-FROM personas1 T1
-LEFT join agendamiento T3 ON T1.idpersona=T3.id_persona
-WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
-//~ echo $sql;
-		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]); 
-}
-
- function lis_consulta(){
+function lis_consulta(){
 	 $id=divide($_POST['id']);
 	$sql="SELECT Concat(IFNULL(T2.nombre1,IFNULL(T4.nombre1,'')),' ',IFNULL(T2.nombre2,IFNULL(T4.nombre2,'')),' ',IFNULL(T2.apellido1,IFNULL(T4.apellido1,'')),' ',
 	IFNULL(T2.apellido2,IFNULL(T4.apellido2,' '))) NOMBRES,
@@ -197,8 +177,8 @@ function cmp_agendamiento(){
  $c[]=new cmp($o,'e',null,'AGENDAMIENTO DE USUARIOS',$w);
  $c[]=new cmp('ipe','h',50,$_POST['id'],$w,'','idp',null,'','','');  
  //~ $c[]=new cmp('fcr','h',18,$d['fecha_create'],$w.' '.$o,'',0,'','','',false,'','col-4');
- $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-3');
- $c[]=new cmp('tdo','s',3,$d['tipodoc'],$w.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-4','getPerson');
+ $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$key.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
+ $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3',"getDatForm('find','persona','percit');");
  $c[]=new cmp('no1','t',50,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',50,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-3');
  $c[]=new cmp('ap1','t',50,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-4');

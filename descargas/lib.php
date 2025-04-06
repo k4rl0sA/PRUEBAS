@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-$mysqli = new mysqli("srv1923.hstgr.io","u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
+$mysqli = new mysqli("srv1723.hstgr.io","u470700275_08", "z9#KqH!YK2VEyJpT", "u470700275_08");
 if ($mysqli->connect_error) {
     die(json_encode(['success' => false, 'message' => "Error de conexión: " . $mysqli->connect_error]));
 }

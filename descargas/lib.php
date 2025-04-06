@@ -218,6 +218,8 @@ $spreadsheet = new Spreadsheet();
     
     $writer = new Xlsx($spreadsheet);
     $writer->save($filename);
+    $defaultSheet = $spreadsheet->getActiveSheet();
+    $defaultSheet->setTitle('Datos');
 // Configurar respuesta JSON con el contenido del archivo
 $fileContent = file_get_contents($filename);
 unlink($filename); // Eliminar inmediatamente

@@ -185,6 +185,7 @@ $mod = 'descargas';
             const response = JSON.parse(xhr.responseText);
             
             if (response.success) {
+                document.getElementById('spinner').style.display = 'none';
                 // Crear enlace temporal para descarga
                 const link = document.createElement('a');
                 link.href = response.file;

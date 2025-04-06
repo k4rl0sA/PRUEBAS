@@ -251,7 +251,7 @@ function gra_observaciones(){
 	//~ $obs = trim(preg_replace('/\s+/', ' ',$_POST['obc']));
 	$obs= trim(preg_replace("/[\r\n|\n|\r]+/",PHP_EOL,$_POST['obc']));
  $sql="INSERT INTO observagendamiento VALUES ({$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['cit']}','{$_POST['est']}',UPPER('{$obs}'),
- '{$_SESSION['us_riesgo']}', NULL, NULL, 'A');";	
+ '{$_SESSION['us_sds']}', NULL, NULL, 'A');";	
 	//~ echo $sql;
   $rta=dato_mysql($sql);
   return $rta;	
@@ -270,7 +270,7 @@ function gra_agendamiento(){
   $id=divide($_POST['ipe']);
 	$sql="UPDATE agendamiento SET tipo_consulta='{$_POST['con']}',punto_atencion='{$_POST['pun']}',fecha_cita='{$_POST['fci']}',
 	hora_cita='{$_POST['hci']}',nombre_atendio=UPPER('{$_POST['nom']}'),observac_cita=trim('{$obs}'),
-	usu_update='".$_SESSION['us_riesgo']."',
+	usu_update='".$_SESSION['us_sds']."',
  fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
  WHERE idagendamiento='{$id[0]}';";
  //~ echo $sql;
@@ -279,7 +279,7 @@ function gra_agendamiento(){
  }else{
 	 $sql="INSERT INTO agendamiento VALUES (NULL,{$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['con']}','{$_POST['pun']}',
 	 '{$_POST['cit']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),'{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',
-	 trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_riesgo']}', NULL, NULL, '4');";
+	 trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
 //~ echo $sql;
 	$rta=dato_mysql($sql);
 	if (strpos($rta, 'Correctamente') === false) {
@@ -416,7 +416,7 @@ function gra_confirma_asistencia(){
 	$sql="UPDATE agendamiento SET fecha_llamada=DATE_SUB(NOW(), INTERVAL 5 HOUR),
 	nombre_llamada=UPPER('{$_POST['nom']}'),confirma_cita='{$_POST['con']}',
 	msjtxt='{$_POST['msj']}',observac_llamadas=trim(UPPER('{$_POST['obl']}')),
-	usu_update='".$_SESSION['us_riesgo']."',fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR),estado='6' 
+	usu_update='".$_SESSION['us_sds']."',fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR),estado='6' 
  WHERE id_persona='{$id[1]}' AND tipodoc=UPPER('{$id[2]}') AND fecha_cita='{$id[3]}' AND hora_cita='{$id[4]}';";
 	
 	//~ echo $sql;
@@ -466,7 +466,7 @@ function gra_seguimiento(){
 		$est=$_POST['est'];
 	}
 	$sql="UPDATE agendamiento SET `fecha_llamada2`=DATE_SUB(NOW(), INTERVAL 5 HOUR), `nombre_llamada2`=UPPER('{$_POST['nom']}'),`motivo_inasistencia`='{$_POST['tin']}', `reasigno`='{$_POST['rea']}',
-	`observac_llamada2`=trim(UPPER('{$_POST['obi']}')),`usu_update`='".$_SESSION['us_riesgo']."', `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR), `estado`='{$est}'
+	`observac_llamada2`=trim(UPPER('{$_POST['obi']}')),`usu_update`='".$_SESSION['us_sds']."', `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR), `estado`='{$est}'
 	WHERE id_persona='{$id[1]}' AND tipodoc=UPPER('{$id[2]}') AND fecha_cita='{$id[3]}' AND hora_cita='{$id[4]}';";
 	//~ echo $sql;
   $rta=dato_mysql($sql);

@@ -113,7 +113,7 @@ function get_persona(){
 		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento
         ,concat('Años= ',timestampdiff(YEAR,T1.fecha_nacimiento,curdate()),
     ' Meses= ',MONTH(CURDATE()) - MONTH(T1.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T1.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T1.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T1.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T1.fecha_nacimiento), (DAY(CURDATE()) < DAY(T1.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T1.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T1.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T1.fecha_nacimiento))) edad,
-    T1.sexo,T1.eapb,telefono1,telefono2,telefono3,T4.punto_atencion,T4.tipo_cita,T4.fecha_cita,T4.hora_cita,T4.nombre_atendio,T4.observac_cita
+    T1.sexo,T1.eapb,T3.telefono1,T3.telefono2,T3.telefono3,T4.punto_atencion,T4.tipo_cita,T4.fecha_cita,T4.hora_cita,T4.nombre_atendio,T4.observac_cita
 	 FROM person T1
 	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
      LEFT JOIN hog_fam T3 ON T1.vivipersona=T3.id_fam

@@ -95,38 +95,20 @@ if($_POST['id']){
 }
 } 
 
-function get_observ(){
-	$id=divide($_POST['id']);			
-	$sql="SELECT T1.id_persona,T1.tipodoc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,
-	concat('Años= ',
-	timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
-	', Meses= ',
-	MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 *IF( MONTH(CURDATE())<MONTH(T2.fecha_nacimiento), 1,IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE())<DAY(T2.fecha_nacimiento),1,0),0)
-) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento),(DAY(CURDATE())<DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE())<DAY(T2.fecha_nacimiento),1,0 ) ),
-	', Días= ',
-	DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE())< DAY(T2.fecha_nacimiento))) edad,T2.genero,
-	T2.eapb,T3.telefono1,T3.telefono2,tipo_consulta
-	FROM agendamiento T1 
-	left join personas	T2 ON T1.id_persona=T2.idpersona 
-	left join personas1 T4 ON T1.id_persona=T4.idpersona 
-	left join caracterizacion T3 ON T1.id_persona=T3.id_persona 
-	WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."')";
-		$info=datos_mysql($sql);
-		//~ echo($sql);
-		return $info['responseResult'][0];
-}
-
-
 function get_persona(){
+    if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT 
-T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.genero,T1.eapb,T2.telefono1,T2.telefono2,T3.tipo_consulta,T3.punto_atencion,T3.tipo_cita,T3.fecha_cita,T3.hora_cita,T3.nombre_atendio,T3.observac_cita
-FROM personas T1
-RIGHT join caracterizacion T2 ON T1.ficha=T2.idficha
-LEFT join agendamiento T3 ON T1.idpersona=T3.id_persona
-WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
+		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo
+	 FROM person T1
+	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
+	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);
-		return json_encode($info['responseResult'][0]); 
+		if (!$info['responseResult']) {
+			return json_encode (new stdClass);
+		}else{
+			return json_encode($info['responseResult'][0]);
+		}
+	}
 }
 function lis_consulta(){
     $info=datos_mysql("SELECT COUNT(*) total FROM agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
@@ -263,6 +245,26 @@ function gra_observaciones(){
   return $rta;	
 }
 
+function get_observ(){
+	$id=divide($_POST['id']);			
+	$sql="SELECT T1.id_persona,T1.tipodoc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,
+	concat('Años= ',
+	timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
+	', Meses= ',
+	MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 *IF( MONTH(CURDATE())<MONTH(T2.fecha_nacimiento), 1,IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE())<DAY(T2.fecha_nacimiento),1,0),0)
+) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento),(DAY(CURDATE())<DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE())<DAY(T2.fecha_nacimiento),1,0 ) ),
+	', Días= ',
+	DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE())< DAY(T2.fecha_nacimiento))) edad,T2.genero,
+	T2.eapb,T3.telefono1,T3.telefono2,tipo_consulta
+	FROM agendamiento T1 
+	left join personas	T2 ON T1.id_persona=T2.idpersona 
+	left join personas1 T4 ON T1.id_persona=T4.idpersona 
+	left join caracterizacion T3 ON T1.id_persona=T3.id_persona 
+	WHERE T1.id_persona='".$id[1]."' AND T1.tipodoc=upper('".$id[2]."')";
+		$info=datos_mysql($sql);
+		//~ echo($sql);
+		return $info['responseResult'][0];
+}
 
  function lis_observaciones(){
 	$sql="SELECT `id_persona`,`tipodoc`,`tipo_cita`,estados,`observac_cita`,`usu_creo`,`usu_update`,`fecha_update`,`estado` FROM `observagendamiento`";

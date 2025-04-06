@@ -174,8 +174,8 @@ switch ($tipo) {
     default:
         $scripts = $todosScripts; // Todos los scripts
 }
-// try {
-    $spreadsheet = new Spreadsheet();
+
+$spreadsheet = new Spreadsheet();
     $index = 0;
     foreach ($scripts as $nombreHoja => $query) {
         $result = $mysqli->query($query);
@@ -215,51 +215,18 @@ switch ($tipo) {
         '5' => 'Caracteriz_OK'
     ];
     $filename = ($nombresArchivos[$tipo] ?? 'datos') . '_' . $fecha_inicio . '_a_' . $fecha_fin . '.xlsx';
-
-    $tempDir = sys_get_temp_dir();
-    $filePath = $tempDir . DIRECTORY_SEPARATOR . $filename;
-
+    
     $writer = new Xlsx($spreadsheet);
     $writer->save($filename);
+// Configurar respuesta JSON con el contenido del archivo
+$fileContent = file_get_contents($filename);
+unlink($filename); // Eliminar inmediatamente
 
-    // Configurar headers para descarga
-    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment; filename="' . $filename . '"');
-    header('Content-Length: ' . filesize($filePath));
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Expires: 0');
-
-    // Enviar el archivo al cliente
-    readfile($filePath);
-
-    // Eliminar el archivo temporal
-    register_shutdown_function(function() use ($filePath) {
-        if (file_exists($filePath)) {
-            unlink($filePath);
-        }
-    });
-
-    // No necesitamos el JSON ahora ya que estamos forzando la descarga directamente
-    exit;
-
-    
-    /* // Configurar respuesta JSON
-    echo json_encode([
-        'success' => true,
-        'file' => $filename,
-        'progreso' => 100,
-        'message' => 'Archivo generado correctamente'
-    ]);
-} catch (Exception $e) {
-    echo json_encode([
-        'success' => false,
-        'message' => $e->getMessage(),
-        'progreso' => 0
-    ]);
-} finally {
-    if (isset($mysqli)) {
-        $mysqli->close();
-    }
-}
-?> */
+echo json_encode([
+    'success' => true,
+    'file' => 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' . base64_encode($fileContent),
+    'filename' => $filename,
+    'progreso' => 100,
+    'message' => 'Archivo generado correctamente'
+]);
+exit;

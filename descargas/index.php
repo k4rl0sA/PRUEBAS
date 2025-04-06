@@ -180,29 +180,27 @@ $mod = 'descargas';
     xhr.open('POST','lib.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            // Ocultar el spinner cuando la solicitud termine
-            document.getElementById('spinner').style.display = 'none';
-            if (xhr.status === 200) {
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    // Actualizar la barra de progreso
-                    document.getElementById('progressBarFill').style.width = `${response.progreso}%`;
-                    document.getElementById('progressText').textContent = `${Math.round(response.progreso)}%`;
-                    if (response.success) {
-                        inform('Archivo generado con éxito.');
-                        window.location.href = response.file;
-                    } else {
-                        warnin(response.message || 'Error al generar el archivo.');
-                    }
-                } catch (e) {
-                    console.log(e);
-                    warnin('Error al procesar la respuesta del servidor.');
-                }
+         if (xhr.readyState === 4 && xhr.status === 200) {
+        try {
+            const response = JSON.parse(xhr.responseText);
+            
+            if (response.success) {
+                // Crear enlace temporal para descarga
+                const link = document.createElement('a');
+                link.href = response.file;
+                link.download = response.filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                inform('Archivo descargado con éxito.');
             } else {
-                warnin('Error en la conexión con el servidor.');
+                warnin(response.message);
             }
+        } catch (e) {
+            warnin('Error al procesar la respuesta');
         }
+    }
     };
     xhr.send(`tipo=${tipo}&fecha_inicio=${fecha_inicio}&fecha_fin=${fecha_fin}`);
 }

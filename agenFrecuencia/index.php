@@ -155,6 +155,7 @@ function grabar(tb='',ev){
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);
 	/* 	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
 		if (document.getElementById(tb+'-msj') != undefined)  */
+		setTimeout(actualizar, 1000);
 		act_lista(tb+'uso');
 	}
 	  //~ valDate('mot3');
@@ -163,6 +164,7 @@ function grabar(tb='',ev){
   }else{
    //VALIDACIONES FRECUENCIA DE USO
    myFetch(ruta_app,"a=gra&tb="+tb,mod);
+   setTimeout(actualizar, 1000);
 }
 }
 

@@ -174,8 +174,9 @@ switch ($tipo) {
     default:
         $scripts = $todosScripts; // Todos los scripts
 }
-
-$spreadsheet = new Spreadsheet();
+try {
+    $spreadsheet = new Spreadsheet();
+    $spreadsheet->removeSheetByIndex(0);
     $index = 0;
     foreach ($scripts as $nombreHoja => $query) {
         $result = $mysqli->query($query);
@@ -183,8 +184,7 @@ $spreadsheet = new Spreadsheet();
             throw new Exception("Error en la consulta ($nombreHoja): " . $mysqli->error);
         }
         $sheet = $spreadsheet->createSheet($index);
-        $sheet->setTitle($nombreHoja);
-        // Agregar encabezados
+        $sheet->setTitle(substr($nombreHoja, 0, 31)); // Limitar a 31 caracteres (límite de Excel)
         $fields = $result->fetch_fields();
         $col = 1;
         foreach ($fields as $field) {
@@ -192,7 +192,6 @@ $spreadsheet = new Spreadsheet();
             $sheet->setCellValue($columnLetter . '1', $field->name);
             $col++;
         }
-        // Agregar datos
         $rowNum = 2;
         while ($row = $result->fetch_assoc()) {
             $col = 1;
@@ -205,30 +204,36 @@ $spreadsheet = new Spreadsheet();
         }
         $index++;
     }
-    // $spreadsheet->removeSheetByIndex(0);
-    // Generar nombre de archivo
     $nombresArchivos = [
-        '1' => 'SIN Validaciones',
-        '2' => 'CON Validaciones',
+        '1' => 'SIN_Validaciones',
+        '2' => 'CON_Validaciones',
         '3' => 'Fechas',
         '4' => 'Alertas',
         '5' => 'Caracteriz_OK'
     ];
     $filename = ($nombresArchivos[$tipo] ?? 'datos') . '_' . $fecha_inicio . '_a_' . $fecha_fin . '.xlsx';
-    
+    $tempDir = sys_get_temp_dir();
+    $filePath = $tempDir . DIRECTORY_SEPARATOR . $filename;
     $writer = new Xlsx($spreadsheet);
-    $writer->save($filename);
-    $defaultSheet = $spreadsheet->getActiveSheet();
-    $defaultSheet->setTitle('Datos');
-// Configurar respuesta JSON con el contenido del archivo
-$fileContent = file_get_contents($filename);
-unlink($filename); // Eliminar inmediatamente
-
-echo json_encode([
-    'success' => true,
-    'file' => 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' . base64_encode($fileContent),
-    'filename' => $filename,
-    'progreso' => 100,
-    'message' => 'Archivo generado correctamente'
-]);
+    $writer->save($filePath);
+    $fileContent = file_get_contents($filePath);
+    unlink($filePath);
+    echo json_encode([
+        'success' => true,
+        'file' => 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' . base64_encode($fileContent),
+        'filename' => $filename,
+        'progreso' => 100,
+        'message' => 'Archivo generado correctamente'
+    ]);
+} catch (Exception $e) {
+    echo json_encode([
+        'success' => false,
+        'message' => $e->getMessage(),
+        'progreso' => 0
+    ]);
+} finally {
+    if (isset($mysqli)) {
+        $mysqli->close();
+    }
+}
 exit;

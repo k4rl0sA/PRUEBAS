@@ -320,24 +320,19 @@ function gra_finalizado($a=''){
   //~ var_dump($id);
   return $rta;
 }
-//~ INSERT INTO `catalogo` (`idcatalogo`, `nombre`, `estado`) 
-//~ VALUES ('37', 'TIPOS DE CONSULTA', 'A');
-
-//~ INSERT INTO `catadeta` (`idcatalogo`, `idcatadeta`, `descripcion`, `estado`, `valor`) 
-//~ VALUES ('38', '3', 'CAPS BOMBEROS', 'A', NULL);
-
 function opc_idptdo(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 		
-		$sql1="SELECT DISTINCT(t1.tipo_cita) id,FN_CATALOGODESC(39,t1.tipo_cita) tcita 
+		/* $sql1="SELECT DISTINCT(t1.tipo_cita) id,FN_CATALOGODESC(39,t1.tipo_cita) tcita 
 		FROM frecuenciauso t1
-        LEFT JOIN agendamiento t2 ON t1.id_persona=t2.id_personaPREFIRIO
-		WHERE t1.id_persona='1023904500' AND t1.tipo_doc=UPPER('CC') AND t1.realizada='NO' AND t1.tipo_cita NOT IN( SELECT tipo_cita FROM agendamiento WHERE `id_persona`='1023904500' AND `tipodoc`=UPPER('CC') AND `estado` IN (4,6)) ;";
+        LEFT JOIN agendamiento t2 ON t1.id_persona=t2.id_persona 
+		WHERE t1.idpeople='1023904500' AND t1.tipo_doc=UPPER('CC') AND t1.realizada='NO' 
+        AND t1.tipo_cita NOT IN( SELECT tipo_cita FROM agendamiento WHERE `idpeople`='1023904500' AND `tipodoc`=UPPER('CC') AND `estado` IN (4,6)) ;"; */
 		
-		$sql="SELECT tipo_cita id,FN_CATALOGODESC(39,tipo_cita) tcita 
+		$sql="SELECT tipo_cita id,FN_CATALOGODESC(275,tipo_cita) tcita 
 		FROM frecuenciauso 
-		WHERE id_persona='".$id[0]."' AND tipo_doc=UPPER('".$id[1]."') AND realizada='NO' AND observaciones=1 AND estado='A' ;";
+		WHERE idpeople='".$id[0]."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
 		//~ var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);

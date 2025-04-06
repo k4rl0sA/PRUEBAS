@@ -87,7 +87,7 @@ $id=divide($_POST['id']);
 //~ }else{
 	//~ return "";
 //~ }
-  $sql="SELECT T1.id_persona,T1.tipodoc,T2.nombre1 nombre1,T2.nombre2 nombre2,T2.apellido1 apellido1,T2.apellido2 apellido2,
+  $sql="SELECT T2.idpersona,T1.tipodoc,T2.nombre1 nombre1,T2.nombre2 nombre2,T2.apellido1 apellido1,T2.apellido2 apellido2,
   T2.fecha_nacimiento fecha_nacimiento, concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
    ' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
    T2.genero genero, T2.eapb eapb,T3.telefono1 telefono1,T3.telefono2 telefono2,tipo_consulta,punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 

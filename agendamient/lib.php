@@ -53,7 +53,6 @@ from agendamiento WHERE estado not in (1,2,3,5) ";
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
 	ifnull(T1.usu_update,'-') 'Digitador1',ifnull(T1.observac_llamadas,'-') 'Observaciones de Recordación',ifnull(T1.fecha_llamada2,'-') 'Fecha Llamada por Efectividad',ifnull(T1.nombre_llamada2,'-') 'Nombre quien Contesto Llamada',ifnull(FN_CATALOGODESC(41,T1.motivo_inasistencia),'-') 'Motivo de la Inasistencia',ifnull(T1.reasigno,'-') 'Se reasigno la Cita',ifnull(T1.usu_update,'-') 'Digitador2',ifnull(T1.observac_llamada2,'-') 'Observaciones de Inasistencia' 
 FROM agendamiento T1
-	LEFT join personas1 T2 ON T1.id_persona=T2.idpersona AND T1.tipodoc=T2.tipo_doc
     LEFT join personas T3 ON T1.id_persona=T3.idpersona AND T1.tipodoc=T3.tipo_doc 
     LEFT join caracterizacion T4 ON T3.ficha=T4.idficha
 	WHERE '1'='1' ";

@@ -148,17 +148,17 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
       <div class='titulo' >AGENDAMIENTO DE CITAS
 		<nav class='menu left' >
 			<li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
-			<?php/*  if ($info['responseResult'][0]['perfil']=='ADM' || $info['responseResult'][0]['perfil']=='TEC' ){
-			 echo "<li class='icono exportar'      title='Exportar CSV'    Onclick=\"csv(mod);\"></li>";	
-			} */?>
+			<!-- if ($info['responseResult'][0]['perfil']=='ADM' || $info['responseResult'][0]['perfil']=='TEC' ){
+			 echo "<li class='icono exportar'      title='Exportar CSV'    Onclick=\"csv(mod);\"></li>";
+			}  -->
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono crear'       title='Crear Cita'     Onclick="mostrar(mod,'pro');"></li>	
 			<!-- <li class='icono comentarios'       title='Crear Observaciones'     Onclick="mostrar('observaciones','pro');"></li> -->
-			<?php /* $info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
+		<!-- 	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='".$_SESSION["us_sds"]."'");
 	if ($info['responseResult'][0]['perfil']=='ADM' || $info['responseResult'][0]['perfil']=='TEC' ){	
 			echo "<li class='icono exportar'      title='Exportar CSV Observaciones'    Onclick=\"ajax(ruta_app, 'a=lis&tb=observaciones', false);csv('observaciones');\"></li>";
-		} */?>
+		} -->
 		</nav>
       </div>
       <div>

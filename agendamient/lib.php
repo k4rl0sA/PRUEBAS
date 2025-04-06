@@ -467,7 +467,7 @@ function gra_seguimiento(){
 	}
 	$sql="UPDATE agendamiento SET `fecha_llamada2`=DATE_SUB(NOW(), INTERVAL 5 HOUR), `nombre_llamada2`=UPPER('{$_POST['nom']}'),`motivo_inasistencia`='{$_POST['tin']}', `reasigno`='{$_POST['rea']}',
 	`observac_llamada2`=trim(UPPER('{$_POST['obi']}')),`usu_update`='".$_SESSION['us_sds']."', `fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR), `estado`='{$est}'
-	WHERE id_persona='{$id[1]}' AND tipodoc=UPPER('{$id[2]}') AND fecha_cita='{$id[3]}' AND hora_cita='{$id[4]}';";
+	WHERE idfrecuencia='{$id[0]}'";// AND tipodoc=UPPER('{$id[2]}') AND fecha_cita='{$id[3]}' AND hora_cita='{$id[4]}';
 	//~ echo $sql;
   $rta=dato_mysql($sql);
   return $rta;

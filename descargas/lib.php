@@ -208,11 +208,11 @@ try {
     $spreadsheet->removeSheetByIndex(0);
     // Generar nombre de archivo
     $nombresArchivos = [
-        '1' => 'pruebas_asignacion_predios',
-        '2' => 'caracterizacion',
-        '3' => 'fechas',
-        '4' => 'alertas_vsp',
-        '5' => 'todos_los_datos'
+        '1' => 'SIN Validaciones',
+        '2' => 'CON Validaciones',
+        '3' => 'Fechas',
+        '4' => 'Alertas',
+        '5' => 'Caracteriz_OK'
     ];
     $filename = ($nombresArchivos[$tipo] ?? 'datos') . '_' . $fecha_inicio . '_a_' . $fecha_fin . '.xlsx';
     $writer = new Xlsx($spreadsheet);

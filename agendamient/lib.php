@@ -53,7 +53,7 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 //~ echo $sql;   
 	$sql1="SELECT IFNULL(T4.fecha,T2.fecha_envio) 'Fecha Caracterizacion',IFNULL(T3.apellido1,T2.apellido1) 'Primer Apellido',IFNULL(T3.apellido2,T2.apellido2) 'Segundo Apellido',IFNULL(T3.nombre1,T2.nombre1) 'Primer Nombre',
 	IFNULL(T3.nombre2,T2.nombre2) 'Segundo Nombre',IFNULL(T3.idpersona,T2.idpersona) 'N° Documento',FN_CATALOGODESC(1,IFNULL(T3.tipo_doc,T2.tipo_doc)) 'Tipo Documento',IFNULL(T3.fecha_nacimiento,T2.fecha_nacimiento) 'Fecha de Nacimiento',
-	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(37,T1.tipo_consulta) 'Tipo de Consulta',FN_CATALOGODESC(38,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
+	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(279,T1.tipo_consulta) 'Tipo de Consulta',FN_CATALOGODESC(274,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
 	T1.fecha_create 'Fecha de Asignación',T1.fecha_cita 'Fecha de la Cita',T1.hora_cita 'Hora de la Cita',T1.nombre_atendio 'Nombre quien Atendió Llamada',
 	FN_CATALOGODESC(40,T1.estado) 'Estado',T1.usu_creo 'Digitador',T1.observac_cita 'Observación Cita',IFNULL(T1.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
@@ -171,7 +171,8 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_agendamiento(){
  $rta="";
  $t=['id_persona'=>'','tipodoc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','tipo_doc'=>'',
- 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','nombre_atendio'=>'','observac_cita'=>''];
+ 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','nombre_atendio'=>'',
+ 'observac_cita'=>'','tipo_consulta'=>'','punto_atencion'=>'','tipo_cita'=>'','fecha_cita'=>'','hora_cita'=>''];
  $w='agendamiento';
  $d=get_agendamiento(); 
   //~ echo(json_encode($d));

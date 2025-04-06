@@ -38,9 +38,15 @@ function whe_agendamiento() {
 
 function lis_agendamiento(){
 	//~ estado=1 or estado=2 or  or estado=5 
-	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(idagendamiento,'_',id_persona,'_',tipodoc,'_',fecha_cita,'_',hora_cita) ACCIONES,
-`id_persona` ID,FN_CATALOGODESC(1,tipodoc) Tipo_Documento,
-FN_CATALOGODESC(39,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(40,`estado`) Estado
+    $info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
+
+
+	$sql="SELECT idagendamiento ACCIONES,
+`idpersona` ID,FN_CATALOGODESC(1,tipodoc) Tipo_Documento,
+FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(40,`estado`) Estado
 from agendamiento WHERE estado not in (1,2,3,5) ";
 	$sql.=whe_agendamiento();
 	$sql.="ORDER BY 6 ASC,7 ASC";
@@ -52,10 +58,9 @@ from agendamiento WHERE estado not in (1,2,3,5) ";
 	FN_CATALOGODESC(40,T1.estado) 'Estado',T1.usu_creo 'Digitador',T1.observac_cita 'Observación Cita',IFNULL(T1.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
 	ifnull(T1.usu_update,'-') 'Digitador1',ifnull(T1.observac_llamadas,'-') 'Observaciones de Recordación',ifnull(T1.fecha_llamada2,'-') 'Fecha Llamada por Efectividad',ifnull(T1.nombre_llamada2,'-') 'Nombre quien Contesto Llamada',ifnull(FN_CATALOGODESC(41,T1.motivo_inasistencia),'-') 'Motivo de la Inasistencia',ifnull(T1.reasigno,'-') 'Se reasigno la Cita',ifnull(T1.usu_update,'-') 'Digitador2',ifnull(T1.observac_llamada2,'-') 'Observaciones de Inasistencia' 
-FROM agendamiento T1
-    LEFT join personas T3 ON T1.id_persona=T3.idpersona AND T1.tipodoc=T3.tipo_doc 
-    LEFT join caracterizacion T4 ON T3.ficha=T4.idficha
-	WHERE '1'='1' ";
+FROM agendamiento A
+LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario
+	WHERE '1' ";
 	$sql1.=whe_agendamiento();
 	$sql1.="ORDER BY `fecha_cita` ASC,`hora_cita` ASC";
 	//~ echo $sql1;
@@ -126,16 +131,19 @@ WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		return json_encode($info['responseResult'][0]); 
 }
 function lis_consulta(){
-	 $id=divide($_POST['id']);
+    $info=datos_mysql("SELECT COUNT(*) total FROM agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
+	$total=$info['responseResult'][0]['total'];
+	$regxPag=5;
+	$pag=(isset($_POST['pag-agendamiento']))? ($_POST['pag-agendamiento']-1)* $regxPag:0;
+
+	$id=divide($_POST['id']);
 	$sql="SELECT Concat(IFNULL(T2.nombre1,IFNULL(T4.nombre1,'')),' ',IFNULL(T2.nombre2,IFNULL(T4.nombre2,'')),' ',IFNULL(T2.apellido1,IFNULL(T4.apellido1,'')),' ',
 	IFNULL(T2.apellido2,IFNULL(T4.apellido2,' '))) NOMBRES,
 	ifnull(T2.fecha_nacimiento,T4.fecha_nacimiento) Nacio,FN_CATALOGODESC(21,ifnull(T2.genero,T4.genero)) Sexo,FN_CATALOGODESC(18,ifnull(T2.eapb,T4.eapb)) Eapb,
 	ifnull(T3.telefono1,T4.telefono1) telefono1,ifnull(T3.telefono2,T4.telefono2) telefono2,
 	FN_CATALOGODESC(37,tipo_consulta) Consulta
 	 FROM agendamiento T1
-		left join personas T2 ON id_persona=T2.idpersona 
-		left join caracterizacion T3 ON T2.ficha=T3.idficha 
-		left join personas1 T4 ON T1.id_persona=T4.idpersona 
+		left join person T2 ON id_persona=T2.idpersona 
 		WHERE T1.idagendamiento='{$id[0]}'";
 		//~ WHERE T1.id_persona='".$id[1]."' AND tipodoc='".$id[2]."'";
 //~ echo $sql;

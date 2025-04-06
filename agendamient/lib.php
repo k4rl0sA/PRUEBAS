@@ -79,6 +79,7 @@ function men_agendamiento(){
 }
 
 function get_agendamiento(){
+    var_dump($_POST['id']);
 $id=divide($_POST['id']){
 //~ if ($id[1]!=''){
 	//~ $sql="CALL GET_AGENDAMIENTO('{$id[1]}','{$id[2]}','{$id[3]}','{$id[4]}');";

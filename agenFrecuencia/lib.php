@@ -195,7 +195,10 @@ function gra_frecuencia(){
  motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
  WHERE idfrecuencia={$id[0]}";
  }else{
-	 $sql="INSERT INTO frecuenciauso VALUES (NULL,{$_POST['idp']},'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	$sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";
+	$id=datos_mysql($sql);
+	$id=$id['responseResult'][0]['idpeople'];
+	 $sql="INSERT INTO frecuenciauso VALUES (NULL,{$id},'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
  }
 	//~ echo $sql;
 	$rta=dato_mysql($sql);

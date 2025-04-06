@@ -79,7 +79,7 @@ function men_agendamiento(){
 }
 
 function get_agendamiento(){
-$id=divide($_POST['id']);
+$id=divide($_POST['id']){
 //~ if ($id[1]!=''){
 	//~ $sql="CALL GET_AGENDAMIENTO('{$id[1]}','{$id[2]}','{$id[3]}','{$id[4]}');";
 	//~ $rta=datos_mysql($sql);
@@ -97,6 +97,7 @@ $id=divide($_POST['id']);
 	WHERE T1.idagendamiento='".$id[0]."'";//AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
+}
 }
 
 function get_observ(){

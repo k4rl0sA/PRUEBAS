@@ -196,7 +196,7 @@ $mod = 'descargas';
                         warnin(response.message || 'Error al generar el archivo.');
                     }
                 } catch (e) {
-                    console.log(response);
+                    console.log(e);
                     warnin('Error al procesar la respuesta del servidor.');
                 }
             } else {

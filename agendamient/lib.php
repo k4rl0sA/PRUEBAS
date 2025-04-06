@@ -78,7 +78,7 @@ function men_agendamiento(){
  return $rta;
 }
 
-function get_agendamiento(){
+/* function get_agendamiento(){
     var_dump($_POST['id']);
 $id=divide($_POST['id']){
 //~ if ($id[1]!=''){
@@ -99,7 +99,7 @@ $id=divide($_POST['id']){
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];
 }
-}
+} */
 
 function get_observ(){
 	$id=divide($_POST['id']);			

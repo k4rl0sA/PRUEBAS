@@ -117,7 +117,7 @@ function get_persona(){
 	 FROM person T1
 	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
      LEFT JOIN hog_fam T3 ON T1.vivipersona=T3.id_fam
-     RIGHT JOIN agendamiento T4 ON T1.idpeople=T4.idpeople
+     LEFT JOIN agendamiento T4 ON T1.idpeople=T4.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
      var_dump($sql);
 		$info=datos_mysql($sql);

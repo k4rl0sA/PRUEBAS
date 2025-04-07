@@ -321,7 +321,7 @@ function gra_agendamiento(){
 		 $id=$info['responseResult'][0]["id"]; 
 //~ echo " El id = ".$id." ";
 		$upfr=gra_finalizado($id);
-        var_dump($upfr);
+        // var_dump($upfr);
 		if (strpos($upfr, 'correctamente') === false) {
 			$upfr=', Sin embargo, No se pudo realizar la actualización de la cita, en el campo realizado en la tabla frecuencia de uso.';
 		}else{$upfr='';}

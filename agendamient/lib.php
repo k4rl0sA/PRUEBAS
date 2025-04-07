@@ -46,7 +46,7 @@ function lis_agendamiento(){
 
 	$sql="SELECT idagendamiento ACCIONES,
 idpersona Documento,FN_CATALOGODESC(1,tipo_doc) 'Tipo Documento',
-FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(40,A.estado) Estado
+FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(276,A.estado) Estado
 from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) ";
 	$sql.=whe_agendamiento();
 	$sql.="ORDER BY 6 ASC,7 ASC";
@@ -55,7 +55,7 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 	IFNULL(T3.nombre2,T2.nombre2) 'Segundo Nombre',IFNULL(T3.idpersona,T2.idpersona) 'N° Documento',FN_CATALOGODESC(1,IFNULL(T3.tipo_doc,T2.tipo_doc)) 'Tipo Documento',IFNULL(T3.fecha_nacimiento,T2.fecha_nacimiento) 'Fecha de Nacimiento',
 	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(274,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
 	T1.fecha_create 'Fecha de Asignación',T1.fecha_cita 'Fecha de la Cita',T1.hora_cita 'Hora de la Cita',T1.nombre_atendio 'Nombre quien Atendió Llamada',
-	FN_CATALOGODESC(40,T1.estado) 'Estado',T1.usu_creo 'Digitador',T1.observac_cita 'Observación Cita',IFNULL(T1.fecha_llamada,'00-00-0000') 'Fecha Recordación',
+	FN_CATALOGODESC(276,T1.estado) 'Estado',T1.usu_creo 'Digitador',T1.observac_cita 'Observación Cita',IFNULL(T1.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
 	ifnull(T1.usu_update,'-') 'Digitador1',ifnull(T1.observac_llamadas,'-') 'Observaciones de Recordación',ifnull(T1.fecha_llamada2,'-') 'Fecha Llamada por Efectividad',ifnull(T1.nombre_llamada2,'-') 'Nombre quien Contesto Llamada',ifnull(FN_CATALOGODESC(41,T1.motivo_inasistencia),'-') 'Motivo de la Inasistencia',ifnull(T1.reasigno,'-') 'Se reasigno la Cita',ifnull(T1.usu_update,'-') 'Digitador2',ifnull(T1.observac_llamada2,'-') 'Observaciones de Inasistencia' 
 FROM agendamiento A

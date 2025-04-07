@@ -198,7 +198,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='agendamiento';
 $ya = new DateTime();
-$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=40 and estado='A' order by 1",'');
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=276 and estado='A' order by 1",'');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' AND estado='A' ORDER BY 1",$_SESSION["us_sds"]); 
 ?>
 

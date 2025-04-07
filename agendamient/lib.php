@@ -405,7 +405,7 @@ function opc_tip_inasis($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=41 and estado='A' ORDER BY 1",$id);
 }
 function opc_estados($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=40 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=276 and estado='A' ORDER BY 1",$id);
 }
 function opc_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=78 and estado='A' ORDER BY 1",$id);

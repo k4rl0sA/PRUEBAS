@@ -88,7 +88,7 @@ function cmp_planDcui(){
 	$key='pln';
     $days=fechas_app('vivienda');
     $c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
-    $c[]=new cmp('fecha_caracteriza','d','10','',$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,$u,'','col-2',"validDate(this,$days,0);");
+    $c[]=new cmp('fecha_caracteriza','d','10','',$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2',"validDate(this,$days,0);");
 	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('accion1','s',3,'',$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
 	$c[]=new cmp('desc_accion1','s',3,'',$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');

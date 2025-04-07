@@ -19,7 +19,7 @@ else {
 }
 
 function lis_rute(){
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo ".whe_rute());
+	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.idgeo = A.idgeo ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
@@ -35,7 +35,7 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 }
 
 function whe_rute() {
-	$sql1 = " WHERE   G.subred =(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND A.doc_asignado =$_SESSION['us_sds'] ";
+	$sql1 = " WHERE   G.subred =(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND A.doc_asignado =$_SESSION['us_sds']  AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){

@@ -35,14 +35,14 @@ function lis_rute(){
 
 function whe_rute() {
 	$sql1 = " WHERE ";
-	if ($_POST['fpred']){
-		$sql1 .= " idgeo ='".$_POST['fpred']."' AND estado='A'";
+	if ($_POST['frut']){
+		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
+	}elseif($_POST['fusu']){
+		$sql1 .= " documento ='".$_POST['fusu']."'";
 	}else{
 		$sql1 .= " 0 ";
 	}
-	if($_POST['fusu']){
-		$sql1 .= " documento ='".$_POST['fusu']."'";
-	}
+	
 		
 	/* if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";

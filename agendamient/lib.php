@@ -384,9 +384,14 @@ function opc_punto_atenc($id=''){
 function opc_tipo_cita($id=''){
     if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
+
+        $sql="SELECT idpeople from person where idpersona='".$_REQUEST['idp']."' AND tipo_doc='".$_REQUEST['tdo']."'";
+        $id=datos_mysql($sql);
+        $id=$id['responseResult'][0]['idpeople'];
+
 	$sql="SELECT tipo_cita id,FN_CATALOGODESC(275,tipo_cita) tcita 
 		FROM frecuenciauso 
-		WHERE idpeople='".$id[0]."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
+		WHERE idpeople='".$id."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
 		var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);

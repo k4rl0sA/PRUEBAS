@@ -310,7 +310,7 @@ function gra_agendamiento(){
     '{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
 //~ echo $sql;
 	$rta=datos_mysql($sql);
-	if (strpos($rta, 'Correctamente') === false) {
+	if (strpos($rta, 'correctamente') === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
 	}else{
 		 $sql="SELECT MAX(idagendamiento) AS id FROM agendamiento;";
@@ -318,7 +318,7 @@ function gra_agendamiento(){
 		 $id=$info['responseResult'][0]["id"]; 
 //~ echo " El id = ".$id." ";
 		$upfr=gra_finalizado($id);
-		if (strpos($upfr, 'Correctamente') === false) {
+		if (strpos($upfr, 'correctamente') === false) {
 			$upfr=', Sin embargo, No se pudo realizar la actualización de la cita, en el campo realizado en la tabla frecuencia de uso.';
 		}else{$upfr='';}
 	}

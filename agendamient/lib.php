@@ -311,7 +311,7 @@ function gra_agendamiento(){
 //~ echo $sql;
 	$rta=datos_mysql($sql);
     var_dump($rta['responseResult'][0]["affected_rows"]);
-    $rta=['responseResult'][0]["affected_rows"]
+    $rta=['responseResult'][0]["affected_rows"];
 	if (strpos($rta,1) === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
 	}else{

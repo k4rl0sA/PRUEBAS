@@ -21,11 +21,11 @@ else {
 function whe_agendamiento() {
 	$sql = "";
 	if ($_POST['fidpersona'])
-		$sql .= " AND T2.idpersona like '%".$_POST['fidpersona']."%'";
+		$sql .= " AND P.idpersona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
-		$sql .= " AND T1.usu_creo ='".$_POST['fdigita']."' ";
+		$sql .= " AND A.usu_creo ='".$_POST['fdigita']."' ";
 	if ($_POST['festado'])
-		$sql .= " AND T1.estado = '".$_POST['festado']."' ";
+		$sql .= " AND A.estado = '".$_POST['festado']."' ";
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
 			$sql .= " AND fecha_cita >='".$_POST['fdes']."' AND fecha_cita <='".$_POST['fhas']."'";
@@ -59,7 +59,8 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
 	ifnull(T1.usu_update,'-') 'Digitador1',ifnull(T1.observac_llamadas,'-') 'Observaciones de Recordación',ifnull(T1.fecha_llamada2,'-') 'Fecha Llamada por Efectividad',ifnull(T1.nombre_llamada2,'-') 'Nombre quien Contesto Llamada',ifnull(FN_CATALOGODESC(41,T1.motivo_inasistencia),'-') 'Motivo de la Inasistencia',ifnull(T1.reasigno,'-') 'Se reasigno la Cita',ifnull(T1.usu_update,'-') 'Digitador2',ifnull(T1.observac_llamada2,'-') 'Observaciones de Inasistencia' 
 FROM agendamiento A
-LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN person P ON A.idpeople=P.idpeople 
+left JOIN usuarios U ON A.usu_creo = U.id_usuario
 	WHERE '1' ";
 	$sql1.=whe_agendamiento();
 	$sql1.="ORDER BY `fecha_cita` ASC,`hora_cita` ASC";

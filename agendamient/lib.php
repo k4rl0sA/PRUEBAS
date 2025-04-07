@@ -179,6 +179,7 @@ function cmp_agendamiento(){
  $u=($d['id_persona']=='')?true:false;
  $o='percit';
  $key='find';
+ $days=fechas_app('VIVIENDA');
  $c[]=new cmp($o,'e',null,'AGENDAMIENTO DE USUARIOS',$w);
  $c[]=new cmp('ipe','h',50,$_POST['id'],$w,'','idp',null,'','','');  
  //~ $c[]=new cmp('fcr','h',18,$d['fecha_create'],$w.' '.$o,'',0,'','','',false,'','col-4');

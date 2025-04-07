@@ -382,7 +382,8 @@ function opc_punto_atenc($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
 }
 function opc_tipo_cita($id=''){
-    if($_REQUEST['id']!=''){
+    return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
+ /*    if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
 
         $sql="SELECT idpeople from person where idpersona='".$_REQUEST['idp']."' AND tipo_doc='".$_REQUEST['tdo']."'";
@@ -395,7 +396,7 @@ function opc_tipo_cita($id=''){
 		var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
-    }
+    } */
 }
 function opc_tip_inasis($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=41 and estado='A' ORDER BY 1",$id);

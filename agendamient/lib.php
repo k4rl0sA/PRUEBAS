@@ -21,11 +21,11 @@ else {
 function whe_agendamiento() {
 	$sql = "";
 	if ($_POST['fidpersona'])
-		$sql .= " AND idpersona like '%".$_POST['fidpersona']."%'";
+		$sql .= " AND T2.idpersona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
-		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
+		$sql .= " AND T1.usu_creo ='".$_POST['fdigita']."' ";
 	if ($_POST['festado'])
-		$sql .= " AND estado = '".$_POST['festado']."' ";
+		$sql .= " AND T1.estado = '".$_POST['festado']."' ";
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
 			$sql .= " AND fecha_cita >='".$_POST['fdes']."' AND fecha_cita <='".$_POST['fhas']."'";

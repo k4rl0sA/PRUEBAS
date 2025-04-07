@@ -329,12 +329,12 @@ function gra_agendamiento(){
 }
 
 function gra_finalizado($a=''){
-	$sql="SELECT T1.idagendamiento,T1.tipo_cita
+	$sql="SELECT T1.idagendamiento id,T1.tipo_cita
 	FROM agendamiento T1
 	left join person T2 ON T1.idpeople=T2.idpeople 
 	WHERE T1.idagendamiento='{$a}'";
 	$info=datos_mysql($sql);
-	$id=$info['responseResult'][0]["idpeople"]; 
+	$id=$info['responseResult'][0]["id"]; 
 	$cita=$info['responseResult'][0]["tipo_cita"]; 
 
     $sql1 = "UPDATE frecuenciauso SET `realizada`='SI' 

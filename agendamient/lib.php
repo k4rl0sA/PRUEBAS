@@ -310,7 +310,7 @@ function gra_agendamiento(){
     '{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
 //~ echo $sql;
 	$rta=datos_mysql($sql);
-    var_dump($rta['responseResult'][0]["affected_rows"]);
+    // var_dump($rta['responseResult'][0]["affected_rows"]);
     $rta1=$rta['responseResult'][0]["affected_rows"];
 	if (strpos($rta1,1) === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
@@ -329,9 +329,9 @@ function gra_agendamiento(){
 }
 
 function gra_finalizado($a=''){
-	$sql="SELECT T1.idagendamiento,T1.tipodoc,T1.tipo_cita
+	$sql="SELECT T1.idagendamiento,T1.tipo_cita
 	FROM agendamiento T1
-	left join person T2 ON idpeople=T2.idpeople 
+	left join person T2 ON T1.idpeople=T2.idpeople 
 	WHERE T1.idagendamiento='{$a}'";
 	$info=datos_mysql($sql);
 	$id=$info['responseResult'][0]["idpeople"]; 

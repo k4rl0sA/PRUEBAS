@@ -377,14 +377,11 @@ function opc_etnia($id=''){
 function opc_nacionalidad($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=30 and estado='A' ORDER BY 1",$id);
 }
-function opc_tconsulta($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=37 and estado='A' ORDER BY 1",$id);
-}
 function opc_punto_atenc($id=''){
-	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=38 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
 }
 function opc_tipo_cita($id=''){
-	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=39 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
 function opc_tip_inasis($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=41 and estado='A' ORDER BY 1",$id);

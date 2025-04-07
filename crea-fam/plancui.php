@@ -106,14 +106,12 @@ function cmp_planDcui(){
 	function gra_planDcui(){
 		// print_r($_POST);
 	$id=divide($_POST['idp']);
-  var_dump(count($id));
   if(count($id)==1){
    /*  $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
     $info = datos_mysql($sql1); */
     if (($rtaFec = validFecha('VIVIENDA', $_POST['fecha_caracteriza'] ?? '')) !== true) {
       return $rtaFec;
     }
-    var_dump(count($id));
       $sql = "INSERT INTO hog_plancuid VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => $id[0]],
@@ -133,8 +131,8 @@ function cmp_planDcui(){
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
-      $rta=show_sql($sql, $params);
-      // $rta = mysql_prepd($sql, $params);
+      // $rta=show_sql($sql, $params);
+      $rta = mysql_prepd($sql, $params);
     }else{
     $sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";
     $params = [

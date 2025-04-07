@@ -250,9 +250,17 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
       </div>
       <div>
 		</div>	
-     <span class='mensaje' id='<?php echo$mod; ?>-msj' ></span>
-     <div class='contenido' id='<?php echo$mod; ?>-lis' ></div>     
+        <span class='mensaje' id='<?php echo $mod; ?>-msj' ></span>
+     <div class='contenido' id='<?php echo $mod; ?>-lis' ></div>
+	 <div class='contenido' id='cmprstss' ></div>     
 </div>
 <div class='load' id='loader' z-index='0' ></div>
 </form>	
+<div class="overlay" id="overlay" onClick="closeModal();">
+	<div class="popup" id="popup" z-index="0" onClick="closeModal();">
+		<div class="btn-close-popup" id="closePopup" onClick="closeModal();">&times;</div>
+		<h3><div class='image' id='<?php echo$mod; ?>-image'></div></h3>
+		<h4><div class='message' id='<?php echo$mod; ?>-modal'></div></h4>
+	</div>			
+</div>
 </body>

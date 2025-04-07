@@ -193,8 +193,9 @@ function cmp_agendamiento(){
  $c[]=new cmp('eda','t',50,$d['edad'],$w.' '.$o,'Edad','edad',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['genero'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
  $c[]=new cmp('eap','s',3,$d['eapb'],$w.' '.$o,'Eapb','eapb',null,null,false,false,'','col-3');
- $c[]=new cmp('te1','t',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
- $c[]=new cmp('te2','t',10,$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,false,'','col-2'); 
+ $c[]=new cmp('te1','na',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
+ $c[]=new cmp('te2','na',10,$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,false,'','col-2'); 
+ $c[]=new cmp('te3','na',10,$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,false,'','col-2'); 
  $c[]=new cmp('con','s',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 

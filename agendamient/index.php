@@ -135,13 +135,11 @@ function grabar(tb='',ev){
 		alert('El Tipo Cita NO corresponde con el tipo de Consulta,por favor valide e intente nuevamente');
 	  }else{
         myFetch(ruta_app,"a=gra&tb="+tb,mod);
-		act_lista(tb);
-		act_lista('agendamiento');
+        setTimeout(actualizar, 1000);
 	  }
   }else{
     myFetch(ruta_app,"a=gra&tb="+tb,mod);
-		act_lista(tb);
-		act_lista('agendamiento');
+    setTimeout(actualizar, 1000);
   }
 
 }

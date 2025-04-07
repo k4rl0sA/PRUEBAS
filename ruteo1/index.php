@@ -83,8 +83,8 @@ $prioridad=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo
       <div class='titulo' > RUTEO
 		<nav class='menu left' >
 			<li class='icono listado' title='Ver Listado' onclick="desplegar(mod+'-lis');" ></li>
-			<li class='icono exportar'      title='Exportar Información General'    Onclick="csv(mod);"></li>
-			<li class='icono exporta_R'      title='Exportar Información General'    Onclick="csv(mod);"></li>
+			<li class='icono exportar'      title='Exportar Información General'   Onclick="csv(mod);"></li>
+			<li class='icono exporta_R'      title='Exportar Información General'  Onclick="csv(mod);"></li>
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
 			<li class='icono lupa' title='Consultar Predio' Onclick="mostrar('predios','pro',event,'','../consultar/consulpred.php',7);">

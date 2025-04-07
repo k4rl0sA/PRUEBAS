@@ -331,7 +331,7 @@ function gra_agendamiento(){
 }
 
 function gra_finalizado($a=''){
-	$sql="SELECT T1.idagendamiento id,T1.tipo_cita
+	$sql="SELECT T1.idpeople id,T1.tipo_cita
 	FROM agendamiento T1
 	left join person T2 ON T1.idpeople=T2.idpeople 
 	WHERE T1.idagendamiento='{$a}'";

@@ -130,7 +130,7 @@ function get_persona(){
 	}
 }
 function lis_consulta(){
-    $info=datos_mysql("SELECT COUNT(*) total FROM agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
+    $info=datos_mysql("SELECT COUNT(*) total FROM agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_agendamiento());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-agendamiento']))? ($_POST['pag-agendamiento']-1)* $regxPag:0;

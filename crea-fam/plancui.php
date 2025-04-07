@@ -114,9 +114,8 @@ function cmp_planDcui(){
       return $rtaFec;
     }
     var_dump(count($id));
-      $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      $sql = "INSERT INTO hog_plancuid VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
-        ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $id[0]],
         ['type' => 's', 'value' => $_POST['fecha_caracteriza']],
         ['type' => 's', 'value' => $_POST['accion1']],

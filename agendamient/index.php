@@ -49,29 +49,6 @@ function getPerson() {
 								//~ if (loader != undefined) loader.style.display = 'none';
 								//~ alert('No se encontro el Tipo y Documento ingresado, por favor valide');
 								//~ return;
-								
-								rta1=getPersonExt();
-								if(rta1==null){
-									if (loader != undefined) loader.style.display = 'none';
-									//~ //alert('No se encontro el Tipo y Documento ingresado, por favor valide');
-									return;
-								}else{
-									data =rta1;
-									console.log(data);
-									var data=Object.values(data);
-									for(i=0;i<cmp.length;i++){
-										if(i==11){
-										//~ //getEdad(cmp[6]);
-										}else{
-											document.getElementById(cmp[i]).value=data[i];
-										}
-									}
-									changeSelect('idp','tdo','cit');
-								if (loader != undefined) loader.style.display = 'none';
-								}
-								
-								
-								
 							}else{
 								data =rta;
 								console.log(data);

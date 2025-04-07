@@ -171,7 +171,7 @@ function cap_menus($a,$b='cap',$con='con') {
 function cmp_agendamiento(){
  $rta="";
  $t=['id_persona'=>'','tipodoc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'','tipo_doc'=>'',
- 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','nombre_atendio'=>'',
+ 'fecha_nacimiento'=>'','edad'=>'','genero'=>'','eapb'=>'','telefono1'=>'','telefono2'=>'','telefono3'=>'','nombre_atendio'=>'',
  'observac_cita'=>'','tipo_consulta'=>'','punto_atencion'=>'','tipo_cita'=>'','fecha_cita'=>'','hora_cita'=>''];
  $w='agendamiento';
  $d=get_agendamiento(); 

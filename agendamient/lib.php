@@ -140,7 +140,7 @@ function lis_consulta(){
 	T2.fecha_nacimiento Nacio,FN_CATALOGODESC(21,T2.sexo) Sexo,FN_CATALOGODESC(18,T2.eapb) Eapb,
 	T3.telefono1,T3.telefono2,T3.telefono3
 	 FROM agendamiento T1
-		left join person T2 ON id_persona=T2.idpersona 
+		left join person T2 ON T1.idpeople=T2.idpeople 
         LEFT JOIN hog_fam T3 ON T2.vivipersona=T3.id_fam
 		WHERE T1.idagendamiento='{$id[0]}'";
 		//~ WHERE T1.id_persona='".$id[1]."' AND tipodoc='".$id[2]."'";

@@ -68,7 +68,7 @@ FUNCTION lis_planDcui(){
       // echo $sql;
       //$_SESSION['sql_person']=$sql;
         $datos=datos_mysql($sql);
-      return panel_content($datos["responseResult"],"gestion-lis",10);
+      return panel_content($datos["responseResult"],"planesCuidado-lis",10);
   }
 
 

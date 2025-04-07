@@ -143,7 +143,6 @@ function lis_consulta(){
 		left join person T2 ON T1.idpeople=T2.idpeople 
         LEFT JOIN hog_fam T3 ON T2.vivipersona=T3.id_fam
 		WHERE T1.idagendamiento='{$id[0]}'";
-		//~ WHERE T1.id_persona='".$id[1]."' AND tipodoc='".$id[2]."'";
 //~ echo $sql;
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"consulta",1);
@@ -151,7 +150,7 @@ return panel_content($datos["responseResult"],"consulta",1);
  
  function lis_consulta1(){
 	 $id=divide($_POST['id']);
-	$sql="SELECT FN_CATALOGODESC(38,punto_atencion) 'Punto de Atención',FN_CATALOGODESC(39,tipo_cita) 'Cita Tipo',fecha_cita Fecha,
+	$sql="SELECT FN_CATALOGODESC(274,punto_atencion) 'Punto de Atención',FN_CATALOGODESC(275,tipo_cita) 'Cita Tipo',fecha_cita Fecha,
 	hora_cita Hora 
 	FROM agendamiento T1
 	left join personas T2 ON id_persona=T2.idpersona 

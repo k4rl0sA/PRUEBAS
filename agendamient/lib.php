@@ -460,7 +460,7 @@ function gra_confirma_asistencia(){
 	nombre_llamada=UPPER('{$_POST['nom']}'),confirma_cita='{$_POST['con']}',
 	msjtxt='{$_POST['msj']}',observac_llamadas=trim(UPPER('{$_POST['obl']}')),
 	usu_update='".$_SESSION['us_sds']."',fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR),estado='6' 
- WHERE id_persona='{$id[1]}' AND tipodoc=UPPER('{$id[2]}') AND fecha_cita='{$id[3]}' AND hora_cita='{$id[4]}';";
+ WHERE idagendamiento='{$id[0]}';";
 	
 	//~ echo $sql;
   $rta=dato_mysql($sql);

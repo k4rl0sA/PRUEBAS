@@ -382,9 +382,15 @@ function opc_punto_atenc($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
 }
 function opc_tipo_cita($id=''){
-	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` 
-    left join frecuenciauso fu on idcatalogo=fu.tipo_cita
-    WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
+    if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+	$sql="SELECT tipo_cita id,FN_CATALOGODESC(39,tipo_cita) tcita 
+		FROM frecuenciauso 
+		WHERE id_persona='".$id[0]."' AND tipo_doc=UPPER('".$id[1]."') AND realizada='NO' AND observaciones=1 AND estado='A' ;";
+		//~ var_dump($sql);
+		$info=datos_mysql($sql);		
+		return json_encode($info['responseResult']);
+    }
 }
 function opc_tip_inasis($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=41 and estado='A' ORDER BY 1",$id);

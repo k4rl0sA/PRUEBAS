@@ -184,7 +184,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('ipe','h',50,$_POST['id'],$w,'','idp',null,'','','');  
  //~ $c[]=new cmp('fcr','h',18,$d['fecha_create'],$w.' '.$o,'',0,'','','',false,'','col-4');
  $c[]=new cmp('idp','n',18,$d['id_persona'],$w.' '.$key.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
- $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3',"getDatForm('find','persona','percit');");
+ $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3','getPerson');
  $c[]=new cmp('no1','t',50,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',50,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-3');
  $c[]=new cmp('ap1','t',50,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-4');

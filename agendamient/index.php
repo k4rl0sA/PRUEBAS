@@ -27,6 +27,77 @@ function actualizar(){
 	act_lista(mod);
 }
 
+function getPerson() {
+	var id = document.getElementById('idp');
+	var tp= document.getElementById('tdo');
+	if (id.value!='' && tp.value!=''){
+		if (loader != undefined) loader.style.display = 'block';
+			if (window.XMLHttpRequest)
+				xmlhttp = new XMLHttpRequest();
+			else
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				xmlhttp.onreadystatechange = function () {
+					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','eap','te1','te2','eda'];
+						for(i=2;i<cmp.length;i++){							
+								document.getElementById(cmp[i]).value='';
+						}
+								
+						try {
+							var rta=JSON.parse(xmlhttp.responseText);
+							if(rta==null){
+								//~ if (loader != undefined) loader.style.display = 'none';
+								//~ alert('No se encontro el Tipo y Documento ingresado, por favor valide');
+								//~ return;
+								
+								rta1=getPersonExt();
+								if(rta1==null){
+									if (loader != undefined) loader.style.display = 'none';
+									//~ //alert('No se encontro el Tipo y Documento ingresado, por favor valide');
+									return;
+								}else{
+									data =rta1;
+									console.log(data);
+									var data=Object.values(data);
+									for(i=0;i<cmp.length;i++){
+										if(i==11){
+										//~ //getEdad(cmp[6]);
+										}else{
+											document.getElementById(cmp[i]).value=data[i];
+										}
+									}
+									changeSelect('idp','tdo','cit');
+								if (loader != undefined) loader.style.display = 'none';
+								}
+								
+								
+								
+							}else{
+								data =rta;
+								console.log(data);
+								var data=Object.values(data);
+								for(i=0;i<cmp.length;i++){
+									if(i==11){
+										//~ getEdad(cmp[6]);
+									}else{
+										document.getElementById(cmp[i]).value=data[i];
+									}
+								}
+								changeSelect('idp','tdo','cit');
+								if (loader != undefined) loader.style.display = 'none';
+							}	
+						} catch (e) {
+							console.log(e);
+							return;
+						}							
+					}
+				}
+				xmlhttp.open("POST", ruta_app,true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send('a=get&tb=persona&id='+id.value+'_'+tp.value);
+	}
+}
+
 function getEdad(a){
 		var f = new Date();
 		var dateNow=dayjs(f.getFullYear()+'-'+(f.getMonth()+1)+'-'+f.getDate()).format('YYYY-MM-DD');

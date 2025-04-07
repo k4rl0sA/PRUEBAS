@@ -134,7 +134,7 @@ function cmp_planDcui(){
         ['type' => 's', 'value' => ''],
         ['type' => 's', 'value' => 'A']
       ];
-      $rta=show_sql($sql, $params)
+      $rta=show_sql($sql, $params);
       // $rta = mysql_prepd($sql, $params);
     }else{
     $sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";

@@ -303,11 +303,13 @@ function gra_agendamiento(){
  $rta=dato_mysql($sql);
 	return $rta;
  }else{
-	 $sql="INSERT INTO agendamiento VALUES (NULL,{$_POST['idp']},UPPER('{$_POST['tdo']}'),'{$_POST['con']}','{$_POST['pun']}',
-	 '{$_POST['cit']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),'{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',
-	 trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
+    $sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";
+	$id=datos_mysql($sql);
+	$id=$id['responseResult'][0]['idpeople'];
+	$sql="INSERT INTO agendamiento VALUES (NULL,$id,'{$_POST['pun']}','{$_POST['cit']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),
+    '{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
 //~ echo $sql;
-	$rta=dato_mysql($sql);
+	$rta=datos_mysql($sql);
 	if (strpos($rta, 'Correctamente') === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
 	}else{
@@ -325,19 +327,17 @@ function gra_agendamiento(){
 }
 
 function gra_finalizado($a=''){
-	$sql="SELECT T1.id_persona,T1.tipodoc,T1.tipo_cita
+	$sql="SELECT T1.idagendamiento,T1.tipodoc,T1.tipo_cita
 	FROM agendamiento T1
-	left join personas T2 ON id_persona=T2.idpersona 
-	WHERE idagendamiento='{$a}'";
+	left join person T2 ON idpeople=T2.idpeople 
+	WHERE T1.idagendamiento='{$a}'";
 	$info=datos_mysql($sql);
-	$id=$info['responseResult'][0]["id_persona"]; 
-	 $doc=$info['responseResult'][0]["tipodoc"]; 
+	$id=$info['responseResult'][0]["idpeople"]; 
 	$cita=$info['responseResult'][0]["tipo_cita"]; 
-	 
 	$sql="UPDATE frecuenciauso SET `realizada`='SI'
-	WHERE id_persona='{$id}' AND tipo_doc=UPPER('{$doc}') AND tipo_cita='{$cita}' AND realizada='NO';";
+	WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";
 	//~ echo $sql;
-  $rta=dato_mysql($sql);
+  $rta=datos_mysql($sql);
   //~ var_dump($id);
   return $rta;
 }

@@ -86,10 +86,11 @@ if($_POST['id']){
     T2.fecha_nacimiento,
      concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
     ' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
-    T2.genero genero, T2.eapb eapb,telefono1,telefono2,telefono3,
+    T2.genero genero, T2.eapb eapb,T3.telefono1,T3.telefono2,T3.telefono3,
     punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
 		FROM agendamiento T1 
 		left join person T2 ON T1.idpeople=T2.idpeople
+        LEFT JOIN hog_fam T3 ON T2.vivipersona=T3.id_fam
 	WHERE T1.idagendamiento='".$id[0]."'";//AND T1.tipodoc=upper('".$id[2]."') AND fecha_cita='".$id[3]."' AND hora_cita='".$id[4]."'
 		$info=datos_mysql($sql);
 		return $info['responseResult'][0];

@@ -106,6 +106,7 @@ function cmp_planDcui(){
 	function gra_planDcui(){
 		// print_r($_POST);
 	$id=divide($_POST['idp']);
+  var_dump($id);
   if(count($id)==1){
    /*  $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
     $info = datos_mysql($sql1); */

@@ -338,7 +338,7 @@ function gra_finalizado($a=''){
 	$cita=$info['responseResult'][0]["tipo_cita"]; 
 
     $sql1 = "UPDATE frecuenciauso SET `realizada`='SI' 
-    WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";
+    WHERE idpeople=? AND tipo_cita=? AND realizada='NO';";
 	$params1 = array(
 	array('type' => 'i', 'value' => $id),
 	array('type' => 's', 'value' => $cita)

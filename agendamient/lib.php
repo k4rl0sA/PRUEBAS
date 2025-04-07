@@ -45,7 +45,7 @@ function lis_agendamiento(){
 
 
 	$sql="SELECT idagendamiento ACCIONES,
-idpersona ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,
+idpersona Documento,FN_CATALOGODESC(1,tipo_doc) 'Tipo Documento',
 FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(40,A.estado) Estado
 from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) ";
 	$sql.=whe_agendamiento();

@@ -345,8 +345,8 @@ function gra_finalizado($a=''){
 	array('type' => 'i', 'value' => $id),
 	array('type' => 's', 'value' => $cita)
 	);
-    show_sql($sql1, $params1);
-	$rta1 = mysql_prepd($sql1, $params1);
+    $rta1 = show_sql($sql, $params);
+	// $rta1 = mysql_prepd($sql1, $params1);
 /* 
 	$sql="UPDATE frecuenciauso SET `realizada`='SI'
 	WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";

@@ -408,10 +408,10 @@ function opc_estados($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=276 and estado='A' ORDER BY 1",$id);
 }
 function opc_estado($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=78 and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=280 and estado='A' ORDER BY 1",$id);
 }
 function opc_est($id=''){
-	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=40 and idcatadeta IN(2,3,5) and estado='A' ORDER BY 1",$id);
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=276 and idcatadeta IN(2,3,5) and estado='A' ORDER BY 1",$id);
 }
 
 

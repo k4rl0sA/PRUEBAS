@@ -136,12 +136,12 @@ function lis_consulta(){
 	$pag=(isset($_POST['pag-agendamiento']))? ($_POST['pag-agendamiento']-1)* $regxPag:0;
 
 	$id=divide($_POST['id']);
-	$sql="SELECT Concat(IFNULL(T2.nombre1,IFNULL(T4.nombre1,'')),' ',IFNULL(T2.nombre2,IFNULL(T4.nombre2,'')),' ',IFNULL(T2.apellido1,IFNULL(T4.apellido1,'')),' ',
-	IFNULL(T2.apellido2,IFNULL(T4.apellido2,' '))) NOMBRES,
-	ifnull(T2.fecha_nacimiento,T4.fecha_nacimiento) Nacio,FN_CATALOGODESC(21,ifnull(T2.genero,T4.genero)) Sexo,FN_CATALOGODESC(18,ifnull(T2.eapb,T4.eapb)) Eapb,
-	ifnull(T3.telefono1,T4.telefono1) telefono1,ifnull(T3.telefono2,T4.telefono2) telefono2
+	$sql="SELECT Concat_WS(' ',T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2) NOMBRES,
+	T2.fecha_nacimiento Nacio,FN_CATALOGODESC(21,T2.sexo) Sexo,FN_CATALOGODESC(18,T2.eapb) Eapb,
+	T3.telefono1,T3.telefono2,T3.telefono3
 	 FROM agendamiento T1
 		left join person T2 ON id_persona=T2.idpersona 
+        LEFT JOIN hog_fam T3 ON T2.vivipersona=T3.id_fam
 		WHERE T1.idagendamiento='{$id[0]}'";
 		//~ WHERE T1.id_persona='".$id[1]."' AND tipodoc='".$id[2]."'";
 //~ echo $sql;

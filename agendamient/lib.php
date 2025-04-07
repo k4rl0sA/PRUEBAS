@@ -387,7 +387,7 @@ function opc_tipo_cita($id=''){
 	$sql="SELECT tipo_cita id,FN_CATALOGODESC(275,tipo_cita) tcita 
 		FROM frecuenciauso 
 		WHERE idpeople='".$id[0]."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
-		//~ var_dump($sql);
+		var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);
     }

@@ -345,15 +345,8 @@ function gra_finalizado($a=''){
 	array('type' => 'i', 'value' => $id),
 	array('type' => 's', 'value' => $cita)
 	);
-    $rta1 = show_sql($sql1, $params1);
-	// $rta1 = mysql_prepd($sql1, $params1);
-/* 
-	$sql="UPDATE frecuenciauso SET `realizada`='SI'
-	WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";
- 	//~ echo $sql;
-  $rta1=datos_mysql($sql);
-  */
-  //~ var_dump($id);
+    // $rta1 = show_sql($sql1, $params1);
+	$rta1 = mysql_prepd($sql1, $params1);
   return $rta1;
 }
 function opc_idptdo(){

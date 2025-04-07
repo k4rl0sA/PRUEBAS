@@ -350,7 +350,7 @@ function opc_idptdo(){
         LEFT JOIN agendamiento t2 ON t1.id_persona=t2.id_persona 
 		WHERE t1.idpeople='1023904500' AND t1.tipo_doc=UPPER('CC') AND t1.realizada='NO' 
         AND t1.tipo_cita NOT IN( SELECT tipo_cita FROM agendamiento WHERE `idpeople`='1023904500' AND `tipodoc`=UPPER('CC') AND `estado` IN (4,6)) ;"; */
-		$sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";
+		$sql="SELECT idpeople from person where idpersona='".$id[0]."' AND tipo_doc='".$id[1]."'";
 	    $id=datos_mysql($sql);
 	    $id=$id['responseResult'][0]['idpeople'];
         

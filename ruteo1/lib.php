@@ -40,6 +40,9 @@ function whe_rute() {
 	}else{
 		$sql1 .= " 0 ";
 	}
+	if($_POST['fusu']){
+		$sql1 .= " documento ='".$_POST['fusu']."'";
+	}
 		
 	/* if ($_POST['flocalidad'])
 		$sql .= " AND localidad = '".$_POST['flocalidad']."'";

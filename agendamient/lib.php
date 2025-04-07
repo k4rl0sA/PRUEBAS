@@ -310,7 +310,7 @@ function gra_agendamiento(){
     '{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
 //~ echo $sql;
 	$rta=datos_mysql($sql);
-    var_dump($rta);
+    var_dump($rta['responseResult']["affected_rows"]);
 	if (strpos($rta, 'correctamente') === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
 	}else{
@@ -335,12 +335,22 @@ function gra_finalizado($a=''){
 	$info=datos_mysql($sql);
 	$id=$info['responseResult'][0]["idpeople"]; 
 	$cita=$info['responseResult'][0]["tipo_cita"]; 
+
+    $sql1 = "UPDATE frecuenciauso SET `realizada`='SI' 
+    WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";
+	$params1 = array(
+	array('type' => 'i', 'value' => $id),
+	array('type' => 's', 'value' => $cita)
+	);
+	$rta1 = mysql_prepd($sql1, $params1);
+/* 
 	$sql="UPDATE frecuenciauso SET `realizada`='SI'
 	WHERE idpeople='{$id}' AND tipo_cita='{$cita}' AND realizada='NO';";
-	//~ echo $sql;
-  $rta=datos_mysql($sql);
+ 	//~ echo $sql;
+  $rta1=datos_mysql($sql);
+  */
   //~ var_dump($id);
-  return $rta;
+  return $rta1;
 }
 function opc_idptdo(){
 	if($_REQUEST['id']!=''){

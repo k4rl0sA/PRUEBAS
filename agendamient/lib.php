@@ -198,7 +198,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('te3','na',10,$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,false,'','col-2'); 
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
- $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3',"validDate(this,$days,0);"); 
+ $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3',"validDate(this,$days,30);"); 
  $c[]=new cmp('hci','c',10,$d['hora_cita'],$w.' '.$o,'Hora','hora',null,null,true,true,'','col-2','validTime');
  $c[]=new cmp('nom','t',100,$d['nombre_atendio'],$w,'Persona que Atendio','nombre_atendio',null,null,true,true,'','col-5');
  $c[]=new cmp('obc','a',1000,$d['observac_cita'],$w.' '.$o,'Observaciones','observacion',null,null,false,true,'','col-10s'); 

@@ -52,9 +52,30 @@ FUNCTION lis_planDcui(){
 	return panel_content($datos["responseResult"],"planDcui-lis",5);
    }
 
+   function lis_planesCuidado(){
+    // var_dump($_POST);
+    $id=divide($_POST['id']);
+    $info=datos_mysql("SELECT COUNT(*) total from hog_plancuid where idviv=$id[0]");
+    $total=$info['responseResult'][0]['total'];
+    $regxPag=5;
+    $pag=(isset($_POST['pag-planesCuidado']))? ($_POST['pag-planesCuidado']-1)* $regxPag:0;
+      
+      $sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
+      FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
+   FROM eac_ruteo_ges erg 
+   WHERE idruteo=$id[0]";
+      $sql.=" ORDER BY fecha_create";
+      // echo $sql;
+      //$_SESSION['sql_person']=$sql;
+        $datos=datos_mysql($sql);
+      return panel_content($datos["responseResult"],"gestion-lis",10);
+  }
+
 
 function cmp_planDcui(){
 	$rta="";
+  $rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
+	<div class='contenido' id='planesCuidado-lis' >".lis_planesCuidado()."</div></div>";
 	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d=get_planDcui();
 	if ($d==""){$d=$t;}
@@ -77,7 +98,7 @@ function cmp_planDcui(){
     $c[]=new cmp('desc_accion3','s','3',$d['desc_accion3'],$w.' '.$o,'Descripcion Accion 3','desc_accion3',null,null,false,true,'','col-5');
     $c[]=new cmp('accion4','s','3',$d['accion4'],$w.' '.$o,'Accion 4','accion4',null,null,false,true,'','col-5',"selectDepend('accion4','desc_accion4','../crea-fam/plancui.php');");
     $c[]=new cmp('desc_accion4','s','3',$d['desc_accion4'],$w.' '.$o,'Descripcion Accion 4','desc_accion3',null,null,false,true,'','col-5');
-	$c[]=new cmp('observacion','a',500,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
+	$c[]=new cmp('observacion','a',7000,$d['observacion'],$w.' '.$o,'Observacion','observacion',null,null,true,true,'','col-10');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }

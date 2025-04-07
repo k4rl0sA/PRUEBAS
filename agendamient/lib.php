@@ -344,7 +344,7 @@ function gra_finalizado($a=''){
 function opc_idptdo(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		var_dump($_REQUEST);
+		// var_dump($_REQUEST);
 		/* $sql1="SELECT DISTINCT(t1.tipo_cita) id,FN_CATALOGODESC(39,t1.tipo_cita) tcita 
 		FROM frecuenciauso t1
         LEFT JOIN agendamiento t2 ON t1.id_persona=t2.id_persona 

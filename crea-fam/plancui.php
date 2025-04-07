@@ -113,6 +113,7 @@ function cmp_planDcui(){
     if (($rtaFec = validFecha('VIVIENDA', $_POST['fecha_caracteriza'] ?? '')) !== true) {
       return $rtaFec;
     }
+    var_dump(count($id));
       $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $params = [
         ['type' => 'i', 'value' => NULL],

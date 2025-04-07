@@ -18,7 +18,7 @@ else {
   }   
 }
 
-/* function lis_rute(){
+function lis_rute(){
 	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.idgeo = A.idgeo ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
@@ -32,25 +32,9 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-} */
+} 
 
-function lis_rute() {
-    $info = datos_mysql("SELECT COUNT(*) as total FROM eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.idgeo = A.idgeo " . whe_rute());
-    $total = $info['responseResult'][0]['total'];
-	$regxPag = 5;
-	$pag_rute = isset($_POST['pag-rute']) ? intval($_POST['pag-rute']) : 1;
-	$pag = ($pag_rute - 1) * $regxPag;
-    $sql = "SELECT er.id_ruteo AS ACCIONES,er.idgeo AS Cod_Predio,FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada,er.documento AS Documento_Usuario,                   er.nombres AS Nombre_Usuario,
-                   FN_CATALOGODESC(218,er.perfil1) AS Interviene,FN_CATALOGODESC(269,er.actividad1) AS Realizar,er.estado
-				    FROM eac_ruteo er  
-            LEFT JOIN hog_geo G ON er.idgeo = G.idgeo
-            LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  
-            " . whe_rute();    
-    $sql .= " ORDER BY fecha_create";
-    $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
-    $datos = datos_mysql($sql);
-    return create_table($total, $datos["responseResult"], "rute", $regxPag);
-}
+
 
 function whe_rute() {
 /* 	$sql1 = " WHERE   G.subred =(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND A.doc_asignado =$_SESSION['us_sds']  AND ";

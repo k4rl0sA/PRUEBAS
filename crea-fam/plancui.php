@@ -106,11 +106,10 @@ function cmp_planDcui(){
 	function gra_planDcui(){
 		// print_r($_POST);
 	$id=divide($_POST['idp']);
-    $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
-    $info = datos_mysql($sql1);
-    if (!$info['responseResult']) {
+  if(count($id)==1){
+   /*  $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
+    $info = datos_mysql($sql1); */
       $sql = "INSERT INTO hog_plancuid VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
       $params = [
         ['type' => 'i', 'value' => NULL],
         ['type' => 'i', 'value' => $id[0]],
@@ -132,9 +131,8 @@ function cmp_planDcui(){
       ];
       $rta = mysql_prepd($sql, $params);
     }else{
-$sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";
-
-$params = [
+    $sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";
+    $params = [
         ['type' => 's', 'value' => $_POST['accion1']],
         ['type' => 's', 'value' => $_POST['desc_accion1']],
         ['type' => 's', 'value' => $_POST['accion2']],

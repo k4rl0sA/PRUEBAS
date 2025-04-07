@@ -153,7 +153,7 @@ return panel_content($datos["responseResult"],"consulta",1);
 	$sql="SELECT FN_CATALOGODESC(274,punto_atencion) 'Punto de Atención',FN_CATALOGODESC(275,tipo_cita) 'Cita Tipo',fecha_cita Fecha,
 	hora_cita Hora 
 	FROM agendamiento T1
-	left join personas T2 ON id_persona=T2.idpersona 
+	left join personas T2 ON T1.idpeople=T2.idpeople 
 	WHERE T1.idagendamiento='{$id[0]}'";
 //~ echo $sql;
 	$datos=datos_mysql($sql);

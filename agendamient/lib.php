@@ -386,7 +386,7 @@ function opc_tipo_cita($id=''){
 		$id=divide($_REQUEST['id']);
 	$sql="SELECT tipo_cita id,FN_CATALOGODESC(39,tipo_cita) tcita 
 		FROM frecuenciauso 
-		WHERE id_persona='".$id[0]."' AND tipo_doc=UPPER('".$id[1]."') AND realizada='NO' AND observaciones=1 AND estado='A' ;";
+		WHERE idpeople='".$id[0]."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
 		//~ var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);

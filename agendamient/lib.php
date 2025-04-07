@@ -315,11 +315,13 @@ function gra_agendamiento(){
 	if (strpos($rta1,1) === false) {
 		$rta='Ouch!, No se realizo la creación de la cita (Posiblemente este usuario ya tiene una cita agendada en esta misma fecha), compruebe la información del usuario e intente nuevamente.';
 	}else{
+        $rta="Se ha Insertado : " .$rta1. " Registro Correctamente.";
 		 $sql="SELECT MAX(idagendamiento) AS id FROM agendamiento;";
 		 $info=datos_mysql($sql);
 		 $id=$info['responseResult'][0]["id"]; 
 //~ echo " El id = ".$id." ";
 		$upfr=gra_finalizado($id);
+        var_dump($upfr);
 		if (strpos($upfr, 'correctamente') === false) {
 			$upfr=', Sin embargo, No se pudo realizar la actualización de la cita, en el campo realizado en la tabla frecuencia de uso.';
 		}else{$upfr='';}

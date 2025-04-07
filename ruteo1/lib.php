@@ -53,7 +53,7 @@ function lis_rute() {
 }
 
 function whe_rute() {
-	$sql1 = " WHERE   G.subred =(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND A.doc_asignado =$_SESSION['us_sds']  AND ";
+/* 	$sql1 = " WHERE   G.subred =(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND A.doc_asignado =$_SESSION['us_sds']  AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){
@@ -61,7 +61,7 @@ function whe_rute() {
 	}else{
 		$sql1 .= " 0 ";
 	}
-	return $sql1;
+	return $sql1; */
 }
 
 	/* if ($_POST['flocalidad'])

@@ -308,7 +308,7 @@ function gra_agendamiento(){
 	$id=$id['responseResult'][0]['idpeople'];
 	$sql="INSERT INTO agendamiento VALUES (NULL,$id,'{$_POST['pun']}','{$_POST['cit']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),
     '{$_POST['fci']}','{$_POST['hci']}','{$_POST['nom']}',trim('{$obs}'),NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,'{$_SESSION['us_sds']}', NULL, NULL, '4');";
-echo $sql;
+    // echo $sql;
 	$rta=datos_mysql($sql);
     // var_dump($rta['responseResult'][0]["affected_rows"]);
     $rta1=$rta['responseResult'][0]["affected_rows"];

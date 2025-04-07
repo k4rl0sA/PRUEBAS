@@ -119,7 +119,7 @@ function get_persona(){
      LEFT JOIN hog_fam T3 ON T1.vivipersona=T3.id_fam
      LEFT JOIN agendamiento T4 ON T1.idpeople=T4.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
-     var_dump($sql);
+    //  var_dump($sql);
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
 			return json_encode (new stdClass);

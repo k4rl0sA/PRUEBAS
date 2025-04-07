@@ -60,7 +60,7 @@ function getPerson() {
 										document.getElementById(cmp[i]).value=data[i];
 									}
 								}
-								changeSelect('idp','tdo','cit');
+								changeCita('idp','tdo','cit');
 								if (loader != undefined) loader.style.display = 'none';
 							}	
 						} catch (e) {
@@ -72,6 +72,45 @@ function getPerson() {
 				xmlhttp.open("POST", ruta_app,true);
 				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xmlhttp.send('a=get&tb=persona&id='+id.value+'_'+tp.value);
+	}
+}
+
+function changeCita(a,b,c){		
+		const x = document.getElementById(a);
+		const y = document.getElementById(b);
+		const z = document.getElementById(c);
+		if(a!=null && b!=null && c!=null){
+		z.innerHTML="";
+		loader=document.getElementById('loader');
+		if (loader != undefined) loader.style.display = 'block';
+		if (window.XMLHttpRequest)
+			xmlhttp = new XMLHttpRequest();
+		else
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			
+			xmlhttp.onreadystatechange = function () {
+			if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
+				data =JSON.parse(xmlhttp.responseText);
+				console.log(data);
+			}}
+				xmlhttp.open("POST", ruta_app,false);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xmlhttp.send('a=opc&tb='+a+b+'&id='+x.value+'_'+y.value);
+			//~ //	var rta =data;
+				var data=Object.values(data);
+				var opt = document.createElement('option');
+				opt.text ='SELECCIONE';
+				opt.classList.add('alerta');
+				opt.value='';
+				z.add(opt);
+				for(i=0;i<data.length;i++){
+					var obj=Object.keys(data[i]);					
+					var opt = document.createElement('option');
+					opt.text =data[i][obj[1]];
+					opt.value=data[i][obj[0]];;
+					z.add(opt);
+				}
+				if (loader != undefined) loader.style.display = 'none';
 	}
 }
 

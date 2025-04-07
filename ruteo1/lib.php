@@ -28,13 +28,13 @@ function lis_rute(){
   ".whe_rute();
 	$sql.=" ORDER BY fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo($sql);
+	echo($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 }
 
 function whe_rute() {
-	$sql1 = " WHERE ";
+	$sql1 = " WHERE  ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){

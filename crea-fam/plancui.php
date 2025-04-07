@@ -60,9 +60,9 @@ FUNCTION lis_planDcui(){
     $regxPag=5;
     $pag=(isset($_POST['pag-planesCuidado']))? ($_POST['pag-planesCuidado']-1)* $regxPag:0;
       
-      $sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
+    $sql="SELECT id ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
       FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
-   FROM eac_ruteo_ges erg 
+   FROM hog_plancuid 
    WHERE idruteo=$id[0]";
       $sql.=" ORDER BY fecha_create";
       // echo $sql;

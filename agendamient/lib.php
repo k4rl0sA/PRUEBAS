@@ -53,7 +53,7 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 //~ echo $sql;   
 	$sql1="SELECT IFNULL(T4.fecha,T2.fecha_envio) 'Fecha Caracterizacion',IFNULL(T3.apellido1,T2.apellido1) 'Primer Apellido',IFNULL(T3.apellido2,T2.apellido2) 'Segundo Apellido',IFNULL(T3.nombre1,T2.nombre1) 'Primer Nombre',
 	IFNULL(T3.nombre2,T2.nombre2) 'Segundo Nombre',IFNULL(T3.idpersona,T2.idpersona) 'N° Documento',FN_CATALOGODESC(1,IFNULL(T3.tipo_doc,T2.tipo_doc)) 'Tipo Documento',IFNULL(T3.fecha_nacimiento,T2.fecha_nacimiento) 'Fecha de Nacimiento',
-	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(279,T1.tipo_consulta) 'Tipo de Consulta',FN_CATALOGODESC(274,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
+	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(274,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
 	T1.fecha_create 'Fecha de Asignación',T1.fecha_cita 'Fecha de la Cita',T1.hora_cita 'Hora de la Cita',T1.nombre_atendio 'Nombre quien Atendió Llamada',
 	FN_CATALOGODESC(40,T1.estado) 'Estado',T1.usu_creo 'Digitador',T1.observac_cita 'Observación Cita',IFNULL(T1.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(T1.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(T1.confirma_cita,'-') 'Confirmo Cita',ifnull(T1.msjtxt,'-') 'Desea Envio de Msj',
@@ -86,7 +86,7 @@ if($_POST['id']){
     T2.fecha_nacimiento,
      concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
     ' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
-    T2.genero genero, T2.eapb eapb,telefono1,telefono2,tipo_consulta,
+    T2.genero genero, T2.eapb eapb,telefono1,telefono2,telefono3,
     punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
 		FROM agendamiento T1 
 		left join person T2 ON T1.idpeople=T2.idpeople
@@ -138,8 +138,7 @@ function lis_consulta(){
 	$sql="SELECT Concat(IFNULL(T2.nombre1,IFNULL(T4.nombre1,'')),' ',IFNULL(T2.nombre2,IFNULL(T4.nombre2,'')),' ',IFNULL(T2.apellido1,IFNULL(T4.apellido1,'')),' ',
 	IFNULL(T2.apellido2,IFNULL(T4.apellido2,' '))) NOMBRES,
 	ifnull(T2.fecha_nacimiento,T4.fecha_nacimiento) Nacio,FN_CATALOGODESC(21,ifnull(T2.genero,T4.genero)) Sexo,FN_CATALOGODESC(18,ifnull(T2.eapb,T4.eapb)) Eapb,
-	ifnull(T3.telefono1,T4.telefono1) telefono1,ifnull(T3.telefono2,T4.telefono2) telefono2,
-	FN_CATALOGODESC(37,tipo_consulta) Consulta
+	ifnull(T3.telefono1,T4.telefono1) telefono1,ifnull(T3.telefono2,T4.telefono2) telefono2
 	 FROM agendamiento T1
 		left join person T2 ON id_persona=T2.idpersona 
 		WHERE T1.idagendamiento='{$id[0]}'";
@@ -196,7 +195,6 @@ function cmp_agendamiento(){
  $c[]=new cmp('te1','na',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
  $c[]=new cmp('te2','na',10,$d['telefono2'],$w.' '.$o,'Telefono 2','telefono2',null,null,false,false,'','col-2'); 
  $c[]=new cmp('te3','na',10,$d['telefono3'],$w.' '.$o,'Telefono 3','telefono3',null,null,false,false,'','col-2'); 
- $c[]=new cmp('con','s',3,$d['tipo_consulta'],$w.' '.$o,'Tipo de Consulta','tconsulta',null,null,true,true,'','col-3'); 
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-5'); 
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,$u,'','col-5'); 
  $c[]=new cmp('fci','d',10,$d['fecha_cita'],$w.' '.$o,'Fecha','fecha',null,null,true,true,'','col-3','validDate'); 
@@ -295,7 +293,7 @@ function gra_agendamiento(){
 	$obs= trim(preg_replace("/[\r\n|\n|\r]+/",PHP_EOL,$_POST['obc']));
  if ($_POST['ipe']){
   $id=divide($_POST['ipe']);
-	$sql="UPDATE agendamiento SET tipo_consulta='{$_POST['con']}',punto_atencion='{$_POST['pun']}',fecha_cita='{$_POST['fci']}',
+	$sql="UPDATE agendamiento SET punto_atencion='{$_POST['pun']}',fecha_cita='{$_POST['fci']}',
 	hora_cita='{$_POST['hci']}',nombre_atendio=UPPER('{$_POST['nom']}'),observac_cita=trim('{$obs}'),
 	usu_update='".$_SESSION['us_sds']."',
  fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 

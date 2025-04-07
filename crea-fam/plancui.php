@@ -63,7 +63,7 @@ FUNCTION lis_planDcui(){
     $sql="SELECT P.id ACCIONES,P.fecha,U.nombre creo
    FROM hog_plancuid P
    left join usuarios U ON P.usu_creo=U.id_usuario
-   WHERE idruteo=$id[0]";
+   WHERE idviv=$id[0]";
       $sql.=" ORDER BY fecha_create";
       // echo $sql;
       //$_SESSION['sql_person']=$sql;

@@ -24,8 +24,11 @@ function whe_frecuenciauso() {
 		$sql .= " AND idpersona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
 		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
-	if ($_POST['festado'])
+	if ($_POST['festado']){
 		$sql .= " AND estado = '".$_POST['festado']."' ";
+	}else{
+		$sql .= " AND realizada = 'NO' ";
+	}
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
 			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";

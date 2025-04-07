@@ -79,7 +79,7 @@ function men_agendamiento(){
 }
 
 function get_agendamiento(){
-    var_dump($_POST['id']);
+    // var_dump($_POST['id']);
     $id=divide($_POST['id']);
 if($_POST['id']){
     $sql="SELECT T2.idpersona,T2.tipo_doc,T2.nombre1 nombre1,T2.nombre2 nombre2,T2.apellido1 apellido1,T2.apellido2 apellido2,

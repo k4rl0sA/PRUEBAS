@@ -324,7 +324,7 @@ function gra_agendamiento(){
 			$upfr=', Sin embargo, No se pudo realizar la actualización de la cita, en el campo realizado en la tabla frecuencia de uso.';
 		}else{$upfr='';}
 	}
-	return $rta." ".$upfr;
+	return $rta1." ".$upfr;
  }
 }
 

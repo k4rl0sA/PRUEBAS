@@ -190,7 +190,7 @@ function cmp_agendamiento(){
  $c[]=new cmp('ap1','t',50,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-4');
  $c[]=new cmp('ap2','t',50,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
  $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,false,'','col-3');
- $c[]=new cmp('eda','t',50,$d['edad'],$w.' '.$o,'Edad','edad',null,null,false,false,'','col-4');
+ $c[]=new cmp('eda','t',100,$d['edad'],$w.' '.$o,'Edad','edad',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['genero'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
  $c[]=new cmp('eap','s',3,$d['eapb'],$w.' '.$o,'Eapb','eapb',null,null,false,false,'','col-4');
  $c[]=new cmp('te1','na',10,$d['telefono1'],$w.' '.$o,'Telefono 1','telefono1',null,null,false,false,'','col-2');
@@ -350,10 +350,13 @@ function opc_idptdo(){
         LEFT JOIN agendamiento t2 ON t1.id_persona=t2.id_persona 
 		WHERE t1.idpeople='1023904500' AND t1.tipo_doc=UPPER('CC') AND t1.realizada='NO' 
         AND t1.tipo_cita NOT IN( SELECT tipo_cita FROM agendamiento WHERE `idpeople`='1023904500' AND `tipodoc`=UPPER('CC') AND `estado` IN (4,6)) ;"; */
-		
+		$sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";
+	    $id=datos_mysql($sql);
+	    $id=$id['responseResult'][0]['idpeople'];
+        
 		$sql="SELECT tipo_cita id,FN_CATALOGODESC(275,tipo_cita) tcita 
 		FROM frecuenciauso 
-		WHERE idpeople='".$id[0]."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
+		WHERE idpeople='".$id."' AND realizada='NO' AND observaciones=1 AND estado='A' ;";
 		//~ var_dump($sql);
 		$info=datos_mysql($sql);		
 		return json_encode($info['responseResult']);

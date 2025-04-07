@@ -238,7 +238,7 @@ return $rta;
 		$rta=$c[$d];
 		if ($a=='planDcui-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-				// $rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
+				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;
 	}

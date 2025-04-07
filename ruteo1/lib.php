@@ -27,7 +27,7 @@ function lis_rute(){
   FROM eac_ruteo  er  
   LEFT JOIN hog_geo G ON er.idgeo = G.idgeo
 LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
-	$sql.=" ORDER BY fecha_create";
+	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	echo($sql);
 		$datos=datos_mysql($sql);

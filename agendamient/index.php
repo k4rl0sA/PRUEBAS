@@ -38,7 +38,7 @@ function getPerson() {
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 				xmlhttp.onreadystatechange = function () {
 					if ((xmlhttp.readyState == 4) && (xmlhttp.status == 200)){
-						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','gen','eap','te1','te2','eda'];
+						var cmp=['idp','tdo','no1','no2','ap1','ap2','fen','eda','gen','eap','te1','te2','eda'];
 						for(i=2;i<cmp.length;i++){							
 								document.getElementById(cmp[i]).value='';
 						}

@@ -485,8 +485,10 @@ function gra_rute(){
 	// var_dump($_POST);
 if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
 	$sql1 = "INSERT INTO geo_asig VALUES(NULL,?,?,?,?,NULL,NULL,'A')";
+	$sql="SELECT idgeo id from eac_ruteo where id_ruteo=$_POST['frut']";
+	$info=datos_mysql($sql);
 	$params1 = array(
-	array('type' => 's', 'value' => $_POST['frut']),
+	array('type' => 's', 'value' => $info['responseResult'][0]['id']),
 	array('type' => 's', 'value' => $_POST['usuario_gest']),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s"))

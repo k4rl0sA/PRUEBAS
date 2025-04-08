@@ -55,7 +55,6 @@ function cmp_ruteresol(){
  $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
- $c[]=new cmp('cod_admin','s',3,$d['cod_admin'],$w.' PuE StG '.$o,'cod_admin','cod_admin',null,'',true,$u,'','col-4');//traer los codigos del usuario de atencion
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -140,7 +139,7 @@ function get_ruteresol(){
 	}else{
 		$id=divide($_POST['id']);
 		// var_dump($id);
-		$sql="SELECT `id_ruteo`,predio,famili,usuario,cod_admin
+		$sql="SELECT idgeo,predio,famili,usuario,cod_admin
 		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);

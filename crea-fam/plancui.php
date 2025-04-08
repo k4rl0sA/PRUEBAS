@@ -88,8 +88,8 @@ function cmp_planDcui(){
 	$key='pln';
     $days=fechas_app('vivienda');
     $c[]=new cmp($o,'e',null,'ACCIONES PROMOCIONALES Y DE IDENTIFICACIÓN DE RIESGOS REALIZADOS EN LA CARACTERIZACIÓN FAMILIAR',$w);
+    $c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
     $c[]=new cmp('fecha_caracteriza','d','10','',$w.' '.$o,'fecha_caracteriza','fecha_caracteriza',null,null,true,true,'','col-2',"validDate(this,$days,0);");
-	$c[]=new cmp('idp','h',15,$_POST['id'],$w.' '.$key.' '.$o,'id','id',null,'####',false,false);
 	$c[]=new cmp('accion1','s',3,'',$w.' '.$o,'Accion 1','accion1',null,null,true,true,'','col-3',"selectDepend('accion1','desc_accion1','../crea-fam/plancui.php');");
 	$c[]=new cmp('desc_accion1','s',3,'',$w.' '.$o,'Descripcion Accion 1','desc_accion1',null,null,true,true,'','col-5');
     $c[]=new cmp('accion2','s','3','',$w.' '.$o,'Accion 2','accion2',null,null,false,true,'','col-5',"selectDepend('accion2','desc_accion2','../crea-fam/plancui.php');");
@@ -162,7 +162,7 @@ return $rta;
 		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
 		FROM hog_plancuid A
 		WHERE A.idviv='{$id[0]}'";
-	//	echo $sql;		
+	echo $sql;		
 		$info = datos_mysql($sql);
 		// echo $sql; 
 	//	print_r($info['responseResult'][0]);
@@ -173,14 +173,14 @@ return $rta;
 		}
 	}
 
-  function get_compConc(){
+  function get_planDcuid(){
     if (!$_POST['id']) {
 			return '';
 		}
 		$id = divide($_POST['id']);
 		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
 		FROM hog_plancuid A
-		WHERE A.idviv='{$id[0]}'";
+		WHERE A.id='{$id[0]}'";
 	//	echo $sql;		
 		$info = datos_mysql($sql);
 		// echo $sql; 
@@ -258,7 +258,7 @@ return $rta;
 		$rta=$c[$d];
 		if ($a=='planesCuidado-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'planDcui',event,this,'../crea-fam/plancui.php',['fecha_caracteriza']);\"></i></li>";
+        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'planDcuid',event,this,'../crea-fam/plancui.php',['fecha_caracteriza']);\"></i></li>";
 				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;

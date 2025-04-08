@@ -78,9 +78,9 @@ function cmp_planDcui(){
 	<div class='contenido' id='planesCuidado-lis' >".lis_planesCuidado()."</div></div>";
 	// $t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
 	$d='';//get_planDcui()'';
-	if ($d==""){$d=$t;}
+	// if ($d==""){$d=$t;}
 //var_dump($d);
-	$u=($d['fecha']=='')?true:false;
+	// $u=($d['fecha']=='')?true:false;
 	$hoy=date('Y-m-d');
     $w="planDcui";
 	$o='accide';

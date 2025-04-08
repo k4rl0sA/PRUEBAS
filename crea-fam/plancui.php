@@ -161,7 +161,7 @@ return $rta;
 		$id = divide($_POST['id']);
 		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
 		FROM hog_plancuid A
-		WHERE A.idviv='{$id[0]}'";
+		WHERE A.id='{$id[0]}'";
 	echo $sql;		
 		$info = datos_mysql($sql);
 		// echo $sql; 

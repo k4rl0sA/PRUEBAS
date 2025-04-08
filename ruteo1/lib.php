@@ -394,7 +394,11 @@ function opc_doc_asignado($id=''){
 function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT  idpeople,concat(idpersona," - "concat_ws('',nombre1,nombre2,apellido1,apellido2)) from hog_fam hf LEFT JOIN person p ON  hf.id_fam=p.vivipersona where hf.id_fam={$id[0]} ORDER BY 1";
+		$sql="SELECT idpeople, CONCAT(idpersona, ' - ', CONCAT_WS(' ', nombre1, nombre2, apellido1, apellido2)) 
+              FROM hog_fam hf 
+              LEFT JOIN person p ON hf.id_fam=p.vivipersona 
+              WHERE hf.id_fam={$id[0]} 
+              ORDER BY 1";
 		$info=datos_mysql($sql);
 		print_r($sql);
 		return json_encode($info['responseResult']);

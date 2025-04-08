@@ -80,10 +80,11 @@ function opc_cod_predio($co=''){
 
 function opc_estado($id=''){
 	$cod=opc_idgeo($_REQUEST['id']);
-		$co=divide($cod);
+	var_dump($cod);
+		// $co=divide($cod);
 		// $cod=opc_cod_predio()
 		// var_dump($_REQUEST['predio']);
-		return	opc_sql("SELECT idgeo AS Cod_Predio, FN_CATALOGODESC(44,estado_v) from geo_gest where idgeo='$co[0]' AND estado_v>3",$id);
+		return	opc_sql("SELECT idgeo AS Cod_Predio, FN_CATALOGODESC(44,estado_v) from geo_gest where idgeo='$cod' AND estado_v>3",$id);
 }
 
 function opc_estadofamili(){

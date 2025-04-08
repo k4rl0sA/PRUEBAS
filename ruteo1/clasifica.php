@@ -76,7 +76,7 @@ function cmp_rutclasif(){
 
  $o='bajo';
  $c[]=new cmp($o,'e',null,'RIESGO BAJO',$w);
- $c[]=new cmp('accion','s','10',$d['accion'],$w.' '.$o,'Definir Acción','clasificacion',null,null,true,false,'','col-5');
+ $c[]=new cmp('accion','s','10',$d['accion'],$w.' '.$o,'Definir Acción','accion',null,null,true,false,'','col-5');
  
  $o='alto';
  $c[]=new cmp($o,'e',null,'RIESGO ALTO',$w);
@@ -198,6 +198,9 @@ function opc_perfil_altousuario_alto($id=''){
           $info = datos_mysql($sql);		
           return json_encode($info['responseResult']);	
       }
+}
+function opc_accion($id=''){
+return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=269 and estado="A" ORDER BY 1',$id);
 }
 function opc_acciones_1($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=22 and estado='A' ORDER BY 1",$id);

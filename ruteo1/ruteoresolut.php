@@ -77,7 +77,7 @@ function opc_cod_predio($co=''){
 
 function opc_estado($id=''){
 	$cod=opc_idgeo($_REQUEST['id']);
-	var_dump($_REQUEST);
+	// var_dump($_REQUEST);
 		// $co=divide($cod);
 		// $cod=opc_cod_predio()
 		// var_dump($_REQUEST['predio']);

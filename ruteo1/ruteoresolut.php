@@ -61,7 +61,7 @@ function cmp_ruteresol(){
 
 function opc_idgeo($a){
 	$id=divide($a);
-	$sql="idgeo AS Cod_Predio
+	$sql="SELECT idgeo AS Cod_Predio
 		FROM `eac_ruteo` WHERE id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
 		$cod= $info['responseResult'][0]['cod'];

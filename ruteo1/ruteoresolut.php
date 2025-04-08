@@ -117,7 +117,7 @@ function opc_usuario($id=''){
 
 
 
-
+/* 
 function opc_cod_admin($id=''){
 	// var_dump($id);
 	if ($id==''){
@@ -128,7 +128,7 @@ function opc_cod_admin($id=''){
 		return opc_sql("SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE cod_admin='$id'", $id);
 	}
 	//return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
-}
+} */
 
 
 function get_ruteresol(){

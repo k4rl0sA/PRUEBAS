@@ -486,7 +486,7 @@ function gra_rute(){
 if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
 	$sql1 = "INSERT INTO geo_asig VALUES(NULL,?,?,?,?,NULL,NULL,'A')";
 	$params1 = array(
-	array('type' => 's', 'value' => $_POST['fpred']),
+	array('type' => 's', 'value' => $_POST['frut']),
 	array('type' => 's', 'value' => $_POST['usuario_gest']),
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s"))

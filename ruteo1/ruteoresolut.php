@@ -54,7 +54,7 @@ function cmp_ruteresol(){
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
  $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario');");//N° FAMILIA
- $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
+ $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  return $rta;
 }
@@ -92,6 +92,16 @@ function opc_estadofamili(){
 		// print_r($sql);
 		return json_encode($info['responseResult']);
 	} 
+}
+
+function opc_familiusuario(){
+	if($_REQUEST['id']!=''){
+		$id=divide($_REQUEST['id']);
+		$sql="SELECT f.cod_admin 'cod',	concat_ws('-', f.cod_admin, FN_CATALOGODESC(127, f.final_consul)) FROM	adm_facturacion f WHERE	f.idpeople={$id[0]} ORDER BY 1";
+		$info=datos_mysql($sql);
+		// print_r($sql);
+		return json_encode($info['responseResult']);
+	} 					
 }
 
 function opc_famili($id=''){

@@ -270,17 +270,9 @@ function opc_usuario($id=''){
 	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
 }
 
-function opc_familiusuario(){
-	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT f.cod_admin 'cod',	concat_ws('-', f.cod_admin, FN_CATALOGODESC(127, f.final_consul)) FROM	adm_facturacion f WHERE	f.idpeople={$id[0]} ORDER BY 1";
-		$info=datos_mysql($sql);
-		// print_r($sql);
-		return json_encode($info['responseResult']);
-	} 					
-}
 
-function opc_usuariocod_admin(){
+
+/* function opc_usuariocod_admin(){
 	// var_dump($_REQUEST['id']);
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
@@ -289,7 +281,7 @@ function opc_usuariocod_admin(){
 		// print_r($sql);
 		return json_encode($info['responseResult']);
 	} 					
-}
+} */
 
 function opc_cod_admin($id=''){
 	// return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
@@ -297,9 +289,9 @@ function opc_cod_admin($id=''){
 function opc_fuente($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=33 and estado='A' ORDER BY 1",$id);
 }
-function opc_subred_report($id=''){
+/* function opc_subred_report($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' ORDER BY 1",$id);
-}
+} */
 function opc_priorizacion($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=191 and estado='A' ORDER BY 1",$id);
 }

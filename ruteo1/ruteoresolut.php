@@ -94,15 +94,7 @@ function opc_estadofamili(){
 	} 
 }
 
-function opc_familiusuario(){
-	if($_REQUEST['id']!=''){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT f.cod_admin 'cod',	concat_ws('-', f.cod_admin, FN_CATALOGODESC(127, f.final_consul)) FROM	adm_facturacion f WHERE	f.idpeople={$id[0]} ORDER BY 1";
-		$info=datos_mysql($sql);
-		// print_r($sql);
-		return json_encode($info['responseResult']);
-	} 					
-}
+
 
 function opc_famili($id=''){
 	// var_dump($id);

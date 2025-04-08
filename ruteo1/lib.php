@@ -394,7 +394,7 @@ function opc_doc_asignado($id=''){
 function opc_familiusuario(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT f.cod_admin 'cod',	concat_ws('-', f.cod_admin, FN_CATALOGODESC(127, f.final_consul)) FROM	adm_facturacion f WHERE	f.idpeople={$id[0]} ORDER BY 1";
+		$sql="select idpeople,concat(idpersona," - "concat_ws('',nombre1,nombre2,apellido1,apellido2)) from hog_fam hf where hf.id_fam={$id[0]} ORDER BY 1";
 		$info=datos_mysql($sql);
 		print_r($sql);
 		return json_encode($info['responseResult']);

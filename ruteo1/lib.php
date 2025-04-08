@@ -257,7 +257,7 @@ function opc_estado($id=''){
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_viv hv where idpre={$id[0]} ORDER BY 1";
+		$sql="SELECT idviv 'id',concat(idviv,' - ','FAMILIA ',numfam) FROM hog_fam hv where idpre={$id[0]} ORDER BY 1";
 		$info=datos_mysql($sql);
 		// print_r($sql);
 		return json_encode($info['responseResult']);

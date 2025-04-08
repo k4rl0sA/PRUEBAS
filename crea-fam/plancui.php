@@ -258,7 +258,7 @@ return $rta;
 		$rta=$c[$d];
 		if ($a=='planesCuidado-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'compConc',event,this,'../creafam/plancui.php',['fecha_caracteriza']);\"></i></li>";
+        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'planDcui',event,this,'../creafam/plancui.php',['fecha_caracteriza']);\"></i></li>";
 				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;

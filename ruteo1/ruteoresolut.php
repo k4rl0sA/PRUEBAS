@@ -133,7 +133,7 @@ function opc_cod_admin($id=''){
 } */
 
 
-function get_ruteresol(){
+/* function get_ruteresol(){
 	if($_POST['id']=='0'){
 		return "";
 	}else{
@@ -145,7 +145,7 @@ function get_ruteresol(){
     	// var_dump($info['responseResult'][0]);
 		return $info['responseResult'][0];
 	} 
-}
+} */
 
  
 function gra_ruteresol(){

@@ -76,8 +76,8 @@ function cmp_planDcui(){
 	$rta="";
   $rta .="<div class='encabezado vivienda'>TABLA DE LLAMADAS REALIZADAS</div>
 	<div class='contenido' id='planesCuidado-lis' >".lis_planesCuidado()."</div></div>";
-	$t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
-	$d=get_planDcui();
+	// $t=['id'=>'','fecha'=>'','accion1'=>'','desc_accion1'=>'','accion2'=>'','desc_accion2'=>'','accion3'=>'','desc_accion3'=>'','accion4'=>'','desc_accion4'=>'','observacion'=>''];
+	$d='';//get_planDcui()'';
 	if ($d==""){$d=$t;}
 //var_dump($d);
 	$u=($d['fecha']=='')?true:false;
@@ -173,7 +173,7 @@ return $rta;
 		}
 	}
 
-  function get_planDcuid(){
+  /* function get_planDcuid(){
     if (!$_POST['id']) {
 			return '';
 		}
@@ -190,7 +190,7 @@ return $rta;
 		}else{
 			return $info['responseResult'][0];
 		}
-}
+} */
 
     function opc_accion1desc_accion1($id=''){
         if($_REQUEST['id']!=''){
@@ -258,7 +258,7 @@ return $rta;
 		$rta=$c[$d];
 		if ($a=='planesCuidado-lis' && $b=='acciones'){
 			$rta="<nav class='menu right'>";		
-        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'planDcuid',event,this,'../crea-fam/plancui.php',['fecha_caracteriza']);\"></i></li>";
+        $rta.="<li title='Ver Compromiso'><i class='fa-solid fa-eye ico' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getDataFetch,500,'planDcui',event,this,'../crea-fam/plancui.php',['fecha_caracteriza']);\"></i></li>";
 				//$rta.="<li class='icono editar ' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'planDcui',event,this,['fecha','tipo_activi'],'../vivienda/amb.php');\"></li>";  //   act_lista(f,this);
 			}
 		return $rta;

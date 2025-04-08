@@ -107,7 +107,7 @@ function opc_evento($id=''){
   $d=get_persona();
   if($d['sexo']=='M'){
     if($d['anos']<6){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(5,1,2,3) and estado='A' ORDER BY 2",$id);
+      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1) and estado='A' ORDER BY 2",$id);
     }elseif($d['anos']>5 && $d['anos']<10){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(5,2,3) and estado='A' ORDER BY 2",$id); 
     }elseif($d['anos']>9 && $d['anos']<18){
@@ -119,7 +119,7 @@ function opc_evento($id=''){
     }
   }else{
     if($d['anos']<6){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(5,1,2,3) and estado='A' ORDER BY 2",$id);
+      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1) and estado='A' ORDER BY 2",$id);
     }elseif($d['anos']>5 && $d['anos']<18){
       return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(5,2,3) and estado='A' ORDER BY 2",$id); 
     }elseif($d['anos']>17 && $d['anos']<55){

@@ -134,7 +134,7 @@ function cmp_planDcui(){
       // $rta=show_sql($sql, $params);
       $rta = mysql_prepd($sql, $params);
     }else{
-    $sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE idviv=?";
+    $sql="UPDATE hog_plancuid SET  accion1=?,desc_accion1=?,accion2=?,desc_accion2=?,accion3=?,desc_accion3=?,accion4=?,desc_accion4=?,observacion=?,usu_update=?,fecha_update=? WHERE id=?";
     $params = [
         ['type' => 's', 'value' => $_POST['accion1']],
         ['type' => 's', 'value' => $_POST['desc_accion1']],
@@ -147,7 +147,7 @@ function cmp_planDcui(){
         ['type' => 's', 'value' => $_POST['observacion']],
         ['type' => 'i', 'value' => $_SESSION['us_sds']],
         ['type' => 's', 'value' => date("Y-m-d H:i:s")],
-['type' => 'i', 'value' => $id[0]]
+['type' => 'i', 'value' => $id[1]]
       ];
       $rta = mysql_prepd($sql, $params);
     }

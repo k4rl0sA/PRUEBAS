@@ -173,6 +173,25 @@ return $rta;
 		}
 	}
 
+  function get_compConc(){
+    if (!$_POST['id']) {
+			return '';
+		}
+		$id = divide($_POST['id']);
+		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
+		FROM hog_plancuid A
+		WHERE A.idviv='{$id[0]}'";
+	//	echo $sql;		
+		$info = datos_mysql($sql);
+		// echo $sql; 
+	//	print_r($info['responseResult'][0]);
+		if (!$info['responseResult']) {
+			return '';
+		}else{
+			return $info['responseResult'][0];
+		}
+}
+
     function opc_accion1desc_accion1($id=''){
         if($_REQUEST['id']!=''){
                     $id=divide($_REQUEST['id']);

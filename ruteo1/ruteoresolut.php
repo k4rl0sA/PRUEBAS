@@ -51,7 +51,7 @@ function cmp_ruteresol(){
 //  var_dump($d);
  $o='gesres';
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
- $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
+ $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
  $c[]=new cmp('estado','s',3,$d['predio'],$w.' PuE '.$o,'estado','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-25',"changeSelect('usuario','cod_admin');"); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO

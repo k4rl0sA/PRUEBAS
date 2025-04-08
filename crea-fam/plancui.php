@@ -162,15 +162,10 @@ return $rta;
 		$sql = "SELECT concat(A.idviv,'_',A.id) 'id',fecha,accion1,desc_accion1,accion2,desc_accion2,accion3,desc_accion3,accion4,desc_accion4,observacion 
 		FROM hog_plancuid A
 		WHERE A.id='{$id[0]}'";
-    echo $sql; 
-		$info = datos_mysql($sql);
-	//	print_r($info['responseResult'][0]);
-		if (!$info['responseResult']) {
-			return '';
-		}else{
-			return $info['responseResult'][0];
-		}
-	}
+    // echo $sql; 
+		$info=datos_mysql($sql);
+      return json_encode($info['responseResult'][0]);
+  }      
 
   /* function get_planDcuid(){
     if (!$_POST['id']) {

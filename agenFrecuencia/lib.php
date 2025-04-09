@@ -97,8 +97,10 @@ function get_persona(){
 }
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
-  //~ $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>";
-  //~ $rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+  if ($a=='frecuenciauso'){  
+	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+	// $rta .= "<li class='icono $a actualizar'    title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";
+  }
   return $rta;
 }
 
@@ -131,7 +133,7 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,true,'','col-7');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
- $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
+//  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
  return $rta;
 }
 

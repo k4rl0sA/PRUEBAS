@@ -120,7 +120,7 @@ function loadMotiv(){
 function grabar(tb='',ev){
 	var cit= document.getElementById('cit'),
 	obs= document.getElementById('obs'),	
-	sex= document.getElementById('gen'),
+	sex= document.getElementById('gen');
 	
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);

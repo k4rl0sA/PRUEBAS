@@ -130,42 +130,15 @@ function grabar(tb='',ev){
      if (!valido(f[i])) {f[i].focus(); return};
   }
   //VALIDACIONES FRECUENCIA DE USO
-  if (obs.value==3 && cit.value!=11 ){
-	  alert('La observación no corresponde al tipo de cita asignado, por favor valide');
-  }else if(cit.value==18 && (obs.value!=1 || (mot3.value!='' || mot2.value!=''))){
-	  alert('El valor del campo Observaciones ó Motivo,No corresponde con respecto al tipo de Cita asignado, por favor valide');
-  }else if(sex.value=='H' && (cit.value==7 || cit.value==12 || cit.value==14 || cit.value==8 )){
+  if(sex.value=='H' && (cit.value==7 || cit.value==12 || cit.value==14 || cit.value==8 )){
 	  alert('El valor del campo Sexo, no corresponde con respecto al tipo de Cita asignado, por favor valide');
   }else if(sex.value=='M' && cit.value==13){
 	  alert('El valor del campo Sexo, no corresponde con respecto al tipo de Cita asignado, por favor valide');  
-  }else if(cit.value==11 && (obs.value==3 && (mot2.value!='' ||mot3.value!=''))){
-	  alert('El valor del campo Observaciones ó Motivo,No corresponde con respecto al tipo de Cita asignado, por favor valide');
-  //~ }else if(cit.value==13 && (obs.value!=1)){
-	  //~ alert('El valor del campo Observaciones,No corresponde con respecto al tipo de Cita asignado, por favor valide');
-  }else if(cit.value==13 && obs.value==1 && mot2.value==''){
-	  alert('El valor del campo Motivo,No corresponde con respecto al tipo de Cita asignado, por favor valide');
-  }else if(obs.value==2 && mot3.value==''){
-	  alert('El valor del campo Motivo debe contener una fecha valida,No puede estar vacio, por favor valide');
-  }else if(obs.value==2 ){
-	  validDate('mot3');
-	if (Array.isArray(valDate('mot3'))){
-		  alert(rta[0]);
-		  return rta[1];
 	}else{
 		myFetch(ruta_app,"a=gra&tb="+tb,mod);
-	/* 	document.getElementById(tb+'-msj').innerHTML=ajax(ruta_app,"a=gra&tb="+tb,false);
-		if (document.getElementById(tb+'-msj') != undefined)  */
 		setTimeout(actualizar, 1000);
 		act_lista(tb+'uso');
 	}
-	  //~ valDate('mot3');
-  //~ }else if(obs.value==3 && mot2.value==''){
-	  //~ alert('El valor del campo Motivo,No puede estar vacio, por favor valide');
-  }else{
-   //VALIDACIONES FRECUENCIA DE USO
-   myFetch(ruta_app,"a=gra&tb="+tb,mod);
-   setTimeout(actualizar, 1000);
-}
 }
 
 </script>

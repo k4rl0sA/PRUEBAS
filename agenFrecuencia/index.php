@@ -48,7 +48,7 @@ function valDate(a){
 		return true;
 	}
 }
-
+/*
 function hideMotiv(){
 	setTimeout(function(){
 		motiv=document.getElementById('frecuenciauso-pro-con').getElementsByClassName('col-6');
@@ -84,7 +84,7 @@ function loadMotiv(){
 	},100);
 }
 
-function changeSelect(a,b){
+ function changeSelect(a,b){
 	if(b!=''){
 		var pmot1=document.getElementById('1'),
 		pmot2=document.getElementById('2')
@@ -115,7 +115,7 @@ function changeSelect(a,b){
 			hideMotiv();
 		}
 	}
-}
+} */
 
 function grabar(tb='',ev){
 	var cit= document.getElementById('cit'),

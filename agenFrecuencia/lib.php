@@ -175,7 +175,7 @@ function opc_upzbar(){
 
 
 
-function gra_frecuencia(){
+function gra_frecuenciauso(){
 	if ($_POST['mot3']){
 		 $mot="'".$_POST['mot3']."'";
 	 }else if($_POST['mot2']){

@@ -184,8 +184,7 @@ function gra_frecuencia(){
  if ($_POST['key']){
 	// var_dump($_POST);
 	 $id=divide($_POST['key']);
-	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',observaciones=UPPER('{$_POST['obs']}'),
- motivo=".$mot.",fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
+	$sql="UPDATE frecuenciauso SET punto_atencion='{$_POST['pun']}', tipo_cita='{$_POST['cit']}',usu_update='".$_SESSION['us_sds']."',fecha_update=DATE_SUB(NOW(), INTERVAL 5 HOUR) 
  WHERE idfrecuencia={$id[0]}";
  }else{
 	$sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";

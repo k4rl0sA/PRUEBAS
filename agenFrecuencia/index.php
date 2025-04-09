@@ -26,7 +26,7 @@ document.onkeyup=function(ev) {
 function actualizar(){
 	act_lista(mod);
 }
-
+/*
 function validDate(a){
 		let Ini=dateAdd(-1847);
 		let Fin=dateAdd();
@@ -48,7 +48,7 @@ function valDate(a){
 		return true;
 	}
 }
-/*
+
 function hideMotiv(){
 	setTimeout(function(){
 		motiv=document.getElementById('frecuenciauso-pro-con').getElementsByClassName('col-6');

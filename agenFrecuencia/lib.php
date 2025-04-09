@@ -69,7 +69,7 @@ function get_frecuenciauso(){
 	if ($_POST['id']){
 		// var_dump($_POST);
 		$id=divide($_POST['id']);			
-	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,T1.observaciones,motivo,
+	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,
 	punto_atencion,tipo_cita 
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
@@ -104,7 +104,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_frecuenciauso(){
  $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
- 'fecha_nacimiento'=>'','genero'=>'','observaciones'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','motivo'=>'','punto_atencion'=>''];
+ 'fecha_nacimiento'=>'','genero'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','punto_atencion'=>''];
  $w='frecuencia';
   $d=get_frecuenciauso(); 
   //~ var_dump($d);
@@ -129,10 +129,6 @@ function cmp_frecuenciauso(){
 //  $c[]=new cmp('fec','d',10,$d['fecha'],$w.' '.$o,'Fecha de Caracterización','fecha',null,null,false,false,'','col-3');
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-3');
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,true,'','col-7');
- $c[]=new cmp('obs','s',3,$d['observaciones'],$w.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-3',false,['mot3','mot2']);
- //~ $c[]=new cmp('mot','t',100,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,true,true,'','col-5');
- $c[]=new cmp('mot3','d',10,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
- $c[]=new cmp('mot2','s',3,$d['motivo'],$w.' '.$o,'Motivo','motivo',null,null,false,true,'','col-6');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";

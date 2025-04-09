@@ -133,21 +133,19 @@ function opc_cod_admin($id=''){
 } */
 
 
-/* function get_ruteresol(){
+function get_ruteresol(){
 	if($_POST['id']=='0'){
 		return "";
 	}else{
 		$id=divide($_POST['id']);
 		// var_dump($id);
-		$sql="SELECT idgeo,predio,famili,usuario
-		 FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+		$sql="SELECT idgeo,predio,famili,usuario FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);
 		return $info['responseResult'][0];
 	} 
-} */
+}
 
- 
 function gra_ruteresol(){
 $sql="UPDATE `eac_ruteo` SET 
 famili=TRIM(UPPER('{$_POST['famili']}')),

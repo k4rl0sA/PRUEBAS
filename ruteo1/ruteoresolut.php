@@ -150,13 +150,13 @@ function get_ruteresol(){
 
 function gra_ruteresol(){
 $sql="UPDATE `eac_ruteo` SET 
+estado_rut=TRIM(UPPER('{$_POST['estado_rut']}')),
 famili=TRIM(UPPER('{$_POST['famili']}')),
 usuario=TRIM(UPPER('{$_POST['usuario']}')),
-`predio`=TRIM(UPPER('{$_POST['estado']}')),
-`cod_admin`=TRIM(UPPER('{$_POST['cod_admin']}')),
+fecha=TRIM(UPPER('{$_POST['fecha']}')),
+usuario=TRIM(UPPER('{$_POST['usuario']}')),
 `usu_update`=TRIM(UPPER('{$_SESSION['us_sds']}')),
-`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR),
-estado='G'
+`fecha_update`=DATE_SUB(NOW(), INTERVAL 5 HOUR)
 	WHERE id_ruteo='{$_POST['id']}'";
 	//echo $sql;
   $rta=dato_mysql($sql);

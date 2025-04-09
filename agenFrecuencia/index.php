@@ -121,8 +121,6 @@ function grabar(tb='',ev){
 	var cit= document.getElementById('cit'),
 	obs= document.getElementById('obs'),	
 	sex= document.getElementById('gen'),
-	mot3= document.getElementById('mot3'),
-	mot2= document.getElementById('mot2');
 	
   if (tb=='' && ev.target.classList.contains(proc)) tb=proc;
   var f=document.getElementsByClassName('valido '+tb);

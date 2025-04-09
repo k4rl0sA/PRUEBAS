@@ -176,13 +176,6 @@ function opc_upzbar(){
 
 
 function gra_frecuenciauso(){
-	if ($_POST['mot3']){
-		 $mot="'".$_POST['mot3']."'";
-	 }else if($_POST['mot2']){
-		 $mot="'".$_POST['mot2']."'";
-	 }else{
-		 $mot='NULL';
-	 }
  if ($_POST['key']){
 	// var_dump($_POST);
 	 $id=divide($_POST['key']);
@@ -192,7 +185,7 @@ function gra_frecuenciauso(){
 	$sql="SELECT idpeople from person where idpersona='".$_POST['idp']."' AND tipo_doc='".$_POST['tdo']."'";
 	$id=datos_mysql($sql);
 	$id=$id['responseResult'][0]['idpeople'];
-	 $sql="INSERT INTO frecuenciauso VALUES (NULL,{$id},'{$_POST['pun']}','{$_POST['cit']}','NO',upper('{$_POST['obs']}'),".$mot.",'{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
+	 $sql="INSERT INTO frecuenciauso VALUES (NULL,{$id},'{$_POST['pun']}','{$_POST['cit']}','NO','{$_SESSION['us_sds']}',DATE_SUB(NOW(), INTERVAL 5 HOUR),NULL,NULL,'A');";
  }
 	//~ echo $sql;
 	$rta=dato_mysql($sql);

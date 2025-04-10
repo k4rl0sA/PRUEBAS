@@ -208,7 +208,7 @@ function lis_gestion(){ //revisar
     if($_REQUEST['id']!=''){	
             $sql = "SELECT id_usuario id,CONCAT(id_usuario,'-',nombre) usuario FROM usuarios right join apro_terr at ON id_usuario=at.doc_asignado WHERE 
             perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
-            and id_usuario ='{$_SESSION['us_sds']}' and ORDER BY nombre";
+            and id_usuario ='{$_SESSION['us_sds']}' ORDER BY nombre";
             $info = datos_mysql($sql);		
 		//  var_dump($sql);
             return json_encode($info['responseResult']);	

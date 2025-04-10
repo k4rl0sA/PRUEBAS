@@ -39,12 +39,12 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado
 	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
 		
-		$tot="SELECT  COUNT(*) as totalizar	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
+		// $tot="SELECT  COUNT(*) as total	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
+		$tot="NULL";
 		// echo $sql;
 		$_SESSION['sql_rute']=$sql1;
 		$_SESSION['tot_rute']=$tot;
 		// /* echo json_encode($rta); */
-
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 

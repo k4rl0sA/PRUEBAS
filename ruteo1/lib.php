@@ -31,17 +31,15 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo($sql);
 
-	$sql1="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
-	U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
-	U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno  
-	
-	FROM `geo_asig` A
-	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
-	LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario
-	LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
+	$sql1="SELECT  
+	R.id_ruteo AS Codigo_Registro, R.fuente, R.fecha_asig, R.priorizacion, R.tipo_prior, R.tipo_prior, R.documento, R.nombres, R.sexo,
+	G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3
+	FROM eac_ruteo R
+	LEFT JOIN hog_geo G ON R.idgeo = G.idgeo
+	LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado
+	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
 		
-		$tot="SELECT count(*) as total FROM `geo_asig` A  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
-	
+		$tot="SELECT  COUNT(*)	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
 		// echo $sql;
 		$_SESSION['sql_rute']=$sql1;
 		$_SESSION['tot_rute']=$tot;

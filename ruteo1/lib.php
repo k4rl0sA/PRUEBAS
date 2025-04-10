@@ -30,6 +30,7 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo($sql);
+	$_SESSION['sql_rute']="select 1 +1;";
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 

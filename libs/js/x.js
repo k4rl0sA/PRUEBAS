@@ -1240,7 +1240,7 @@ function enabRutGest(){
 	];
 	EnabDepeDynamic(['sTA'], conditions);
 }
-function enabRutOthSub(){
+/* function enabRutOthSub(){
 	const conditions = [
 		{ id: 'estado_agenda', value: '4', compare: true }
 	];
@@ -1251,7 +1251,20 @@ function enabRutSameSub(){
 		{ id: 'estado_agenda', value: '7', compare: true }
 	];
 	EnabDepeDynamic(['dir'], conditions);
+} */
+function enabRutOthSub() {
+    const element = document.getElementById('estado_agenda');
+    if (!element) {
+        console.error('Elemento con ID estado_agenda no encontrado.');
+        return;
+    }
+    const conditionMet = element.value === '4' || element.value === '7';
+    const elements = document.querySelectorAll('select.dir, input.dir, textarea.dir');
+    elements.forEach(element => {
+        enaFie(element, !conditionMet);
+    });
 }
+
 function enabRutAgen() {
 	const conditions = [
 		{ id: 'estado_agenda', value: '1', compare: true }

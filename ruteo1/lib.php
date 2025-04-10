@@ -45,7 +45,7 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 		// echo $sql;
 		$_SESSION['sql_rute']=$sql1;
 		$_SESSION['tot_rute']=$tot;
-		echo json_encode($rta);
+		// /* echo json_encode($rta); */
 
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);

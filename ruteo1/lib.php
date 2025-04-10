@@ -202,7 +202,7 @@ function lis_gestion(){ //revisar
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } */
   function opc_perfil_gest($id=''){
-	return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=218 and estado="A" AND descripcion=(select perfil from id_usuario where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1',$id);
+	return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=218 and estado="A" AND descripcion=(select perfil from id_usuario where id_usuario='.$_SESSION['us_sds'].') ORDER BY 1',$id);
 	}
   function opc_perfil_gestusuario_gest($id=''){
     if($_REQUEST['id']!=''){	

@@ -40,7 +40,7 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
 		
 		// $tot="SELECT  COUNT(*) as total	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
-		$tot="SELECT 1 AS total";
+		$tot="SELECT  COUNT(*) AS total FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='1022358140';";
 		// echo $sql;
 		$_SESSION['sql_rute']=$sql1;
 		$_SESSION['tot_rute']=$tot;

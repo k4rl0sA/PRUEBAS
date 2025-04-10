@@ -30,6 +30,24 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo($sql);
+
+	$sql1="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
+	U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
+	U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno  
+	
+	FROM `geo_asig` A
+	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
+	LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario
+	LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
+		
+		$tot="SELECT count(*) as total FROM `geo_asig` A  LEFT JOIN hog_geo G ON A.idgeo=G.idgeo LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
+	
+		// echo $sql;
+		$_SESSION['sql_rute']=$sql1;
+		$_SESSION['tot_rute']=$tot;
+		$rta = array('type' => 'OK','file'=>$txt);
+		echo json_encode($rta);
+
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 

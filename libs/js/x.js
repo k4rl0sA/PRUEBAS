@@ -1246,6 +1246,12 @@ function enabRutOthSub(){
 	];
 	EnabDepeDynamic(['dir'], conditions);
 }
+function enabRutSameSub(){
+	const conditions = [
+		{ id: 'estado_agenda', value: '7', compare: true }
+	];
+	EnabDepeDynamic(['dir'], conditions);
+}
 function enabRutAgen() {
 	const conditions = [
 		{ id: 'estado_agenda', value: '1', compare: true }

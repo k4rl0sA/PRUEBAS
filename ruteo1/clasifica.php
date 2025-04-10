@@ -46,8 +46,8 @@ function cmp_rutclasif(){
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('pre_clasif','s','10',$d['preclasif'],$w.' '.$o,'Pre Clasificación','pre_clasif',null,null,true,$u,'','col-25');
- $c[]=new cmp('clasificacion','s','10',$d['clasifica'],$w.' '.$o,'Clasificación','clasificacion',null,null,true,$u,'','col-25');
+ $c[]=new cmp('pre_clasif','s','10',$d['preclasif'],$w.' '.$o,'COHORTE DE RIESGO','pre_clasif',null,null,true,$u,'','col-25');
+ $c[]=new cmp('clasificacion','s','10',$d['clasifica'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','clasificacion',null,null,true,$u,'','col-25');
  $c[]=new cmp('riesgo','s','10',$d['riesgo'],$w.' '.$o,'Riesgo','riesgo',null,null,true,$u,'','col-25','rutRiskHig();rutRisklow();');
 
 

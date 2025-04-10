@@ -157,7 +157,7 @@ function cmp_rute(){
 
  $o='gesgeo';
  $c[]=new cmp($o,'e',null,'DATOS GEOGRAFICOS',$w);
- $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva','direccion_nueva_v',null,null,false,false,'','col-25');
+ $c[]=new cmp('direccion_nueva_v','t','90','',$w.' dir '.$o,'Direccion Nueva <a href="https://mapas.bogota.gov.co/#" target="_blank">Abrir MAPAS Bogotá</a>','direccion_nueva_v',null,null,false,false,'','col-25');
  $c[]=new cmp('sector_catastral_v','n','6','',$w.' dir '.$o,'Sector Catastral (6)','sector_catastral_v',null,null,false,false,'','col-25');
  $c[]=new cmp('nummanzana_v','n','3','',$w.' dir '.$o,'Nummanzana (3)','nummanzana_v',null,null,false,false,'','col-25');
  $c[]=new cmp('predio_num_v','n','3','',$w.' dir '.$o,'Predio de Num (3)','predio_num_v',null,null,false,false,'','col-25');

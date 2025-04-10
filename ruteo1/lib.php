@@ -30,15 +30,14 @@ LEFT JOIN apro_terr A ON G.idgeo = A.idgeo  ".whe_rute();
 	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo($sql);
-	$_SESSION['sql_rute']="SELECT  
+	/* $_SESSION['sql_rute']="SELECT  
 	R.id_ruteo AS Codigo_Registro, R.fuente, R.fecha_asig, R.priorizacion, R.tipo_prior, R.tipo_prior, R.documento, R.nombres, R.sexo,
 	G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3
 	FROM eac_ruteo R
 	LEFT JOIN hog_geo G ON R.idgeo = G.idgeo
 	LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado
 	WHERE A.doc_asignado ='$_SESSION['us_sds']';";
-	$_SESSION['tot_rute']="SELECT  count(*)	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='$_SESSION['us_sds']';";
-		$datos=datos_mysql($sql);
+	$_SESSION['tot_rute']="SELECT  count(*)	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='$_SESSION['us_sds']';";		$datos=datos_mysql($sql); */
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 
 

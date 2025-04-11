@@ -1313,96 +1313,33 @@ function enabRutVisit(){
 		agen.value=1;
 	}
 }
-function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
-    try {
-        const x = document.getElementById(a); // origen: tipo_cons
-        const z = document.getElementById(b); // destino: servicio
-
-        if (!x || !z) {
-            console.error('Elementos no encontrados');
-            return;
-        }
-
-        // Limpiar select destino
-        z.innerHTML = '';
-        z.add(new Option('SELECCIONE', ''));
-
-        if (!x.value) return;
-
-        // Obtener ID de la persona (asumiendo hidden con id="idp")
-        const idpElement = document.getElementById('idp');
-        const idp = idpElement ? idpElement.value : '';
-
-        if (!idp) {
-            console.error('ID de persona no disponible');
-            z.add(new Option('ID de persona requerido', ''));
-            return;
-        }
-
-        // Construir parámetro compuesto: "idp|valor_select"
-        const idCompuesto = `${idp}|${x.value}`;
-
-        // Preparar parámetros para serage.php
-        const params = new URLSearchParams();
-        params.append('a', 'opc');
-        params.append('tb', a + b);
-        params.append('id', idCompuesto);
-
-        // Agregar otros parámetros adicionales si se envían
-        for (const [key, elementId] of Object.entries(extraParams)) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                params.append(key, element.value);
-            }
-        }
-
-        // Realizar petición (modo síncrono para compatibilidad)
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', c, false); // síncrono
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                try {
-                    console.log('Respuesta cruda:', xhr.responseText);
-
-                    const data = JSON.parse(xhr.responseText);
-                    console.log('Datos parseados:', data);
-
-                    if (Array.isArray(data)) {
-                        data.forEach(item => {
-                            const opt = new Option(
-                                item.descripcion || item.text || '',
-                                item.idcatadeta || item.value || ''
-                            );
-                            z.add(opt);
-                        });
-                    } else {
-                        console.error('La respuesta no es un array válido');
-                        z.innerHTML = '';
-                        z.add(new Option('Formato inválido', ''));
-                    }
-                } catch (e) {
-                    console.error('Error al parsear JSON:', e, '\nRespuesta:', xhr.responseText);
-                    z.innerHTML = '';
-                    z.add(new Option('Error en datos', ''));
-                }
-            } else {
-                console.error('Error HTTP:', xhr.status, xhr.statusText);
-                z.innerHTML = '';
-                z.add(new Option('Error de conexión', ''));
-            }
-        };
-
-        xhr.onerror = function () {
-            console.error('Error de red');
-            z.innerHTML = '';
-            z.add(new Option('Error de red', ''));
-        };
-
-        xhr.send(params.toString());
-
-    } catch (error) {
-        console.error('Error en custSeleDepend:', error);
-    }
-}
+function custSeleDepend(id1, id2, url, params) {
+	const sel1 = document.getElementById(id1);
+	const sel2 = document.getElementById(id2);
+  
+	sel1.addEventListener('change', function () {
+	  let data = typeof params === 'function' ? params() : params;
+  
+	  fetch(url, {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: new URLSearchParams(data)
+	  })
+	  .then(res => res.json())
+	  .then(options => {
+		sel2.innerHTML = '';
+		options.forEach(opt => {
+		  const o = document.createElement('option');
+		  o.value = opt.idcatadeta;
+		  o.textContent = opt.descripcion;
+		  sel2.appendChild(o);
+		});
+	  })
+	  .catch(err => {
+		console.error('Error cargando dependiente:', err);
+	  });
+	});
+  }
+  

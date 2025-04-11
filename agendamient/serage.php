@@ -180,8 +180,8 @@ function get_persona(){
     DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P
     WHERE P.idpeople='{$id[0]}'"; 
-    // echo $sql;
-    // print_r($_REQUEST);
+    echo $sql;
+    print_r($_REQUEST);
     $info=datos_mysql($sql);
     return $info['responseResult'][0];
   }

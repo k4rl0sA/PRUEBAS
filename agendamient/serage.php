@@ -164,7 +164,7 @@ if (empty($d)) {
     $info=datos_mysql($sql);
     return json_encode($info['responseResult']);
   }
-}
+
 
 function gra_servagen(){
   // print_r($_POST);

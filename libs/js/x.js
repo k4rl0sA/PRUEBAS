@@ -1240,18 +1240,6 @@ function enabRutGest(){
 	];
 	EnabDepeDynamic(['sTA'], conditions);
 }
-/* function enabRutOthSub(){
-	const conditions = [
-		{ id: 'estado_agenda', value: '4', compare: true }
-	];
-	EnabDepeDynamic(['dir'], conditions);
-}
-function enabRutSameSub(){
-	const conditions = [
-		{ id: 'estado_agenda', value: '7', compare: true }
-	];
-	EnabDepeDynamic(['dir'], conditions);
-} */
 function enabRutOthSub() {
     const element = document.getElementById('estado_agenda');
     if (!element) {
@@ -1324,4 +1312,55 @@ function enabRutVisit(){
 		EnabDepeDynamic(['AGe'], conditions);
 		agen.value=1;
 	}
+}
+function custSeleDepend(a, b, c, extraParams = {}) {
+    try {
+        const originSelect = document.getElementById(a);
+        const targetSelect = document.getElementById(b);
+        if (!originSelect || !targetSelect) {
+            console.error('Elementos no encontrados');
+            return;
+        }
+        targetSelect.innerHTML = '';
+        const defaultOption = new Option('SELECCIONE', '');
+        targetSelect.add(defaultOption);
+        if (!originSelect.value) return;
+        const dynamicParams = {};
+        for (const [key, elementId] of Object.entries(extraParams)) {
+            const element = document.getElementById(elementId);
+            dynamicParams[key] = element?.value || '';
+        }
+        const baseUrl = c.includes('?') ? `${c}&` : `${c}?`;
+        const params = new URLSearchParams({
+            a: 'opc',
+            tb: `${a}${b}`,
+            id: originSelect.value,
+            ...dynamicParams  // operator para incluir parámetros dinámicos
+        });
+        const url = `${baseUrl}${params.toString()}`;
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                if (!Array.isArray(data)) throw new Error('La respuesta no es un array');
+                data.forEach(item => {
+                    const option = new Option(
+                        item.descripcion || item.text || '',
+                        item.idcatadeta || item.value || ''
+                    );
+                    targetSelect.add(option);
+                });
+                targetSelect.dispatchEvent(new Event('change'));
+            })
+            .catch(error => {
+                console.error('Error en custSeleDepend:', error);
+                const errorOption = new Option('Error al cargar opciones', '');
+                targetSelect.innerHTML = '';
+                targetSelect.add(errorOption);
+            });
+    } catch (error) {
+        console.error('Error en custSeleDepend:', error);
+    }
 }

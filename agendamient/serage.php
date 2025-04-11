@@ -112,7 +112,7 @@ function opc_tipo_consservicio($id=''){
     $d=get_persona();
       if($d['sexo']=='M'){
         if($d['anos']<6){ 
-          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor='$id[0]' AND catadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
+          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND catadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
         }elseif($d['anos']>=6 && $d['anos']<=11){
           return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND ='$id[0]' AND catadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }elseif($d['anos']>=12 && $d['anos']<=17){

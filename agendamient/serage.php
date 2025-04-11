@@ -107,9 +107,30 @@ function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
 function opc_tipo_consservicio($id=''){
-  if($_REQUEST['id']!=''){
-    $id=divide($_REQUEST['id']);
-    $d=get_persona();
+  if (empty($_REQUEST['id'])) {
+    return json_encode(['error' => 'Parámetro ID no proporcionado']);
+}
+
+// Obtener el ID (que contiene tanto user_id como dropdown_id)
+$combinedId = $_REQUEST['id'];
+$idParts = explode('_', $combinedId);
+
+// El primer elemento es el ID de usuario, el segundo es del desplegable
+$user_id = $idParts[0] ?? '';
+$dropdown_id = $idParts[1] ?? $idParts[0] ?? '';
+
+// Validar IDs
+if (empty($user_id) || empty($dropdown_id)) {
+    return json_encode(['error' => 'IDs no válidos']);
+}
+
+// Obtener datos del usuario
+$d = get_persona($user_id);
+
+if (empty($d)) {
+    return json_encode(['error' => 'No se encontró información del usuario']);
+}
+
       if($d['sexo']=='M'){
         if($d['anos']<6){ 
           $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";

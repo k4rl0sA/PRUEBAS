@@ -192,10 +192,10 @@ if(count($id)==2){
   } 
 
 function get_persona(){
-  if($_REQUEST['id']==''){
+  if($_POST['id']==''){
     return "";
   }else{
-    $id=divide($_REQUEST['id']);
+    $id=divide($_POST['id']);
     $sql="SELECT P.idpeople,P.idpersona idpersona,P.tipo_doc tipodoc,CONCAT_WS(' ',nombre1,nombre2,apellido1,apellido2) nombre,P.fecha_nacimiento fechanacimiento,
 		P.sexo sexo,
     TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,

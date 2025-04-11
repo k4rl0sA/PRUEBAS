@@ -108,12 +108,34 @@ function opc_servicio($id=''){
 }
 function opc_tipo_consservicio($id=''){
   if($_REQUEST['id']!=''){
-    $id=divide($_REQUEST['id']);
-    var_dump($_POST);
-    var_dump($_REQUEST);
-    var_dump($_REQUEST['idp']);
-    $d=get_persona();
-    // var_dump($d);
+    $user_id = '';
+  
+    // Primero intentar de $_POST (formulario inicial)
+    if(!empty($_POST['id'])) {
+      $id_temp = divide($_POST['id']);
+      $user_id = $id_temp[0]; // Asumiendo que el formato es "userid_otrodato"
+    }
+    // Si no, intentar de $_REQUEST (llamadas AJAX)
+    elseif(!empty($_REQUEST['id'])) {
+      $id_temp = divide($_REQUEST['id']);
+      $user_id = $id_temp[0];
+    }
+    
+    // Si sigue vacío, mostrar error controlado
+    if(empty($user_id)) {
+      return json_encode(['error' => 'ID de usuario no proporcionado']);
+    }
+  
+    // Procesar el ID del desplegable
+    if(!empty($_REQUEST['id'])) {
+      $id = divide($_REQUEST['id']);
+      $dropdown_id = end($id); // Obtener el último elemento del array dividido
+      
+      $d = get_persona($user_id);
+      
+      if(empty($d)) {
+        return json_encode(['error' => 'No se encontró información del usuario']);
+      }
       if($d['sexo']=='M'){
         if($d['anos']<6){ 
           $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";

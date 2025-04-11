@@ -106,65 +106,85 @@ function opc_consulta($id=''){
 function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
-function opc_tipo_consservicio($id=''){
-  var_dump($_REQUEST);
-  var_dump($_POST);
+function opc_tipo_consservicio($id = '') {
+  // Depuración de entrada
+  error_log("Datos recibidos en opc_tipo_consservicio: " . print_r($_REQUEST, true));
+  
+  // Verificar si tenemos el parámetro id
   if (empty($_REQUEST['id'])) {
-    return json_encode(['error' => 'Parámetro ID no proporcionado']);
-}
-// Obtener el ID (que contiene tanto user_id como dropdown_id)
-$combinedId = $_REQUEST['id'];
-$idParts = explode('_', $combinedId);
-
-// El primer elemento es el ID de usuario, el segundo es del desplegable
-$user_id = $idParts[0] ?? '';
-$dropdown_id = $idParts[1] ?? $idParts[0] ?? '';
-
-// Validar IDs
-if (empty($user_id) || empty($dropdown_id)) {
-    return json_encode(['error' => 'IDs no válidos']);
-}
-
-// Obtener datos del usuario
-$d = get_persona($user_id);
-
-if (empty($d)) {
-    return json_encode(['error' => 'No se encontró información del usuario']);
-}
-
-      if($d['sexo']=='M'){
-        if($d['anos']<6){ 
-          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=6 && $d['anos']<=11){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=12 && $d['anos']<=17){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=21 && $d['anos']<=26){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=29 && $d['anos']<=59){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=60){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }
-      }else{
-        if($d['anos']<6){ 
-          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=6 && $d['anos']<=11){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=12 && $d['anos']<=17){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=21 && $d['anos']<=26){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=29 && $d['anos']<=59){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=60){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }
-    }
-     var_dump($sql);
-    $info=datos_mysql($sql);
-    return json_encode($info['responseResult']);
+      return json_encode(['error' => 'Parámetro ID no proporcionado']);
   }
+
+  // Obtener el ID (puede venir como "3_1" o solo "1")
+  $combinedId = $_REQUEST['id'];
+  $idParts = explode('_', $combinedId);
+
+  // Determinar user_id y dropdown_id
+  if (count($idParts) >= 2) {
+      // Formato: "userid_dropdownid"
+      $user_id = $idParts[0];
+      $dropdown_id = $idParts[1];
+  } else {
+      // Formato antiguo: solo dropdownid (asumimos user_id viene de otra fuente)
+      $dropdown_id = $idParts[0];
+      $user_id = $_POST['idp'] ?? ''; // Intenta obtener user_id de idp
+  }
+
+  // Validar IDs
+  if (empty($user_id) || empty($dropdown_id)) {
+      return json_encode(['error' => 'IDs no válidos (user: '.$user_id.', dropdown: '.$dropdown_id.')']);
+  }
+
+  // Obtener datos del usuario
+  $d = get_persona($user_id);
+  
+  if (empty($d)) {
+      return json_encode(['error' => 'No se encontró información del usuario con ID: '.$user_id]);
+  }
+
+  // Definir las opciones por grupo de edad y sexo
+  $optionsByAgeSex = [
+      'M' => [
+          '0-5'   => [1,10,15,9,17,18,19,20,21,22,23,24,25,26,27],
+          '6-11'  => [2,10,15,9,17,18,19,20,21,22,23,24,25,26,27],
+          '12-17' => [3,10,15,9,17,18,19,20,21,22,23,24,25,26,27],
+          '21-26' => [5,10,15,9,17,18,19,20,21,22,23,24,25,26,27],
+          '29-59' => [4,10,15,9,17,18,19,20,21,22,23,24,25,26,27],
+          '60+'   => [6,10,15,9,17,18,19,20,21,22,23,24,25,26,27]
+      ],
+      'F' => $optionsByAgeSex['M'] // Mismas opciones para sexo femenino
+  ];
+
+  // Determinar grupo de edad
+  $age = $d['anos'] ?? 0;
+  $age_group = '60+';
+  if ($age < 6) $age_group = '0-5';
+  elseif ($age <= 11) $age_group = '6-11';
+  elseif ($age <= 17) $age_group = '12-17';
+  elseif ($age <= 26) $age_group = '21-26';
+  elseif ($age <= 59) $age_group = '29-59';
+
+  // Obtener las opciones filtradas
+  $filteredOptions = $optionsByAgeSex[$d['sexo']][$age_group] ?? [];
+  $optionsList = implode(',', $filteredOptions);
+
+  // Construir consulta SQL segura (usando $dropdown_id en lugar de $id[0])
+  $sql = sprintf(
+      "SELECT idcatadeta, descripcion FROM `catadeta` 
+       WHERE idcatalogo=275 AND estado='A' AND valor=%d AND idcatadeta IN (%s) 
+       ORDER BY LENGTH(idcatadeta), idcatadeta",
+      $dropdown_id,
+      $optionsList
+  );
+
+  error_log("Consulta SQL generada: " . $sql); // Log para depuración
+
+  // Ejecutar consulta
+  $info = datos_mysql($sql);
+  
+  // Verificar y devolver resultados
+  return json_encode($info['responseResult'] ?? ['error' => 'No se encontraron resultados']);
+}
 
 
 function gra_servagen(){

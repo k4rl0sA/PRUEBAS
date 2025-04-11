@@ -398,7 +398,7 @@ function input_sel($a){
 		if ($a->sd[$i]!='') $rta.="changeSelect('{$a->n}','{$a->sd[$i]}');";
 	}
   }
-  if ($a->so)$rta.=" OnChange='{$a->so}(this)'";
+  if ($a->so)$rta.=" OnChange='{$a->so}(this);'";
   $rta.="\"";
   $opc="opc=opc_{$a->c}('$a->d');";
   eval('$'.$opc);

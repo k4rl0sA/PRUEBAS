@@ -107,41 +107,41 @@ function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
 function opc_tipo_consservicio($id = '') {
-  // Depuración de entrada
-  error_log("Datos recibidos en opc_tipo_consservicio: " . print_r($_REQUEST, true));
-  
-  // Verificar si tenemos el parámetro id
-  if (empty($_REQUEST['id'])) {
-      return json_encode(['error' => 'Parámetro ID no proporcionado']);
-  }
+    // Depuración: Verificar datos recibidos
+    error_log("Datos recibidos: " . print_r($_REQUEST, true));
+    
+    // 1. Verificar parámetro ID
+    if (empty($_REQUEST['id'])) {
+        return json_encode(['error' => 'Parámetro ID no proporcionado']);
+    }
 
-  // Obtener el ID (puede venir como "3_1" o solo "1")
-  $combinedId = $_REQUEST['id'];
-  $idParts = explode('_', $combinedId);
+    // 2. Dividir el ID combinado (formato: iduser_iddesplegable)
+    $combinedId = $_REQUEST['id'];
+    $idParts = explode('_', $combinedId);
+    
+    // Validar que tenemos ambas partes
+    if (count($idParts) < 2) {
+        return json_encode(['error' => 'Formato de ID incorrecto. Se espera iduser_iddesplegable']);
+    }
 
-  // Determinar user_id y dropdown_id
-  if (count($idParts) >= 2) {
-      // Formato: "userid_dropdownid"
-      $user_id = $idParts[0];
-      $dropdown_id = $idParts[1];
-  } else {
-      // Formato antiguo: solo dropdownid (asumimos user_id viene de otra fuente)
-      $dropdown_id = $idParts[0];
-      $user_id = $_POST['idp'] ?? ''; // Intenta obtener user_id de idp
-  }
+    $user_id = $idParts[0];
+    $dropdown_id = $idParts[1];
 
-  // Validar IDs
-  if (empty($user_id) || empty($dropdown_id)) {
-      return json_encode(['error' => 'IDs no válidos (user: '.$user_id.', dropdown: '.$dropdown_id.')']);
-  }
+    // 3. Validar IDs numéricos
+    if (!is_numeric($user_id) || !is_numeric($dropdown_id)) {
+        return json_encode(['error' => 'IDs deben ser numéricos']);
+    }
 
-  // Obtener datos del usuario
-  $d = get_persona($user_id);
-  
-  if (empty($d)) {
-      return json_encode(['error' => 'No se encontró información del usuario con ID: '.$user_id]);
-  }
+    // 4. Obtener datos del usuario
+    $d = get_persona($user_id);
+    if (empty($d)) {
+        return json_encode(['error' => 'No se encontró información para el usuario ID: '.$user_id]);
+    }
 
+    // 5. Construir consulta SQL según sexo y edad
+    $baseSql = "SELECT idcatadeta, descripcion FROM `catadeta` 
+                WHERE idcatalogo=275 AND estado='A' AND valor=%d AND idcatadeta IN (%s) 
+                ORDER BY LENGTH(idcatadeta), idcatadeta";
   // Definir las opciones por grupo de edad y sexo
   $optionsByAgeSex = [
       'M' => [

@@ -1356,7 +1356,7 @@ function custSeleDepend(a, b, c, extraParams = {}) {
             })
             .catch(error => {
                 console.error('Error en custSeleDepend:', error);
-                const errorOption = new Option('Error al cargar opciones', '');
+                const errorOption = new Option('', '');
                 targetSelect.innerHTML = '';
                 targetSelect.add(errorOption);
             });

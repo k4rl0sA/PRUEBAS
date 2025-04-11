@@ -110,7 +110,6 @@ function opc_tipo_consservicio($id=''){
   if (empty($_REQUEST['id'])) {
     return json_encode(['error' => 'Parámetro ID no proporcionado']);
 }
-
 // Obtener el ID (que contiene tanto user_id como dropdown_id)
 $combinedId = $_REQUEST['id'];
 $idParts = explode('_', $combinedId);

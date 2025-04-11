@@ -114,29 +114,29 @@ function opc_tipo_consservicio($id=''){
         if($d['anos']<6){ 
           return opc_sql("SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND catadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;",$id);
         }elseif($d['anos']>=6 && $d['anos']<=11){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }elseif($d['anos']>=12 && $d['anos']<=17){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(3,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(3,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }elseif($d['anos']>=21 && $d['anos']<=26){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(5,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(5,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }elseif($d['anos']>=29 && $d['anos']<=59){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(4,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(4,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }elseif($d['anos']>=60){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(6,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(6,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY 2",$id); 
         }
       }else{
         if($d['anos']<6){ 
           return  opc_sql($sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND catadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;",$id);
         }elseif($d['anos']>=6 && $d['anos']<=11){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
         }elseif($d['anos']>=12 && $d['anos']<=17){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(3,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(3,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
         }elseif($d['anos']>=21 && $d['anos']<=26){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(5,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(5,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
         }elseif($d['anos']>=29 && $d['anos']<=59){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(4,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(4,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
         }elseif($d['anos']>=60){
-          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND =$id[0] AND catadeta IN(6,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
+          return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND catadeta IN(6,10,15,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;",$id); 
         }
     }
     $info=datos_mysql($sql);

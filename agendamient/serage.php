@@ -107,44 +107,50 @@ function opc_consulta($id=''){
 function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
-function opc_tipo_consservicio($id=''){
-  // var_dump($_POST['id']);
-  if($_REQUEST['id']!=''){
-    $id=divide($_REQUEST['id']);
-    $d=get_persona();
-      if($d['sexo']=='M'){
-        if($d['anos']<6){ 
-          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[2] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=6 && $d['anos']<=11){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=12 && $d['anos']<=17){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=21 && $d['anos']<=26){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=29 && $d['anos']<=59){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=60){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }
-      }else{
-        if($d['anos']<6){ 
-          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[2] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=6 && $d['anos']<=11){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=12 && $d['anos']<=17){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=21 && $d['anos']<=26){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=29 && $d['anos']<=59){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }elseif($d['anos']>=60){
-          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[2] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
-        }
-    }
-    //  var_dump($sql);
-    $info=datos_mysql($sql);
-    return json_encode($info['responseResult']);
+function opc_tipo_consservicio($id = '') {
+  if (empty($_REQUEST['id'])) {
+      return json_encode([]);
   }
+  $id = divide($_REQUEST['id']);
+  $persona = get_persona();
+  $edad = $persona['anos'];
+  $sexo = $persona['sexo'];
+  $edad_categoria = [
+      [0, 5, 1],
+      [6, 11, 2],
+      [12, 17, 3],
+      [21, 26, 5],
+      [29, 59, 4],
+      [60, 999, 6]
+  ];
+  $categorias = [];
+  foreach ($edad_categoria as [$min, $max, $cat_id]) {
+      if ($edad >= $min && $edad <= $max) {
+          $categorias[] = $cat_id;
+          break;
+      }
+  }
+  if ($sexo === 'M') { // Mujer
+      if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
+      if ($edad >= 50 && $edad <= 69) $categorias[] = 12;
+  } elseif ($sexo === 'H') { // Hombre
+      if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
+  }
+  if ($edad >= 50) {
+      $categorias[] = 16;
+  }
+  $categorias_comunes = [10, 15, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27];
+  $categorias = array_unique(array_merge($categorias, $categorias_comunes));
+  $lista = implode(',', $categorias);
+  $sql = "SELECT idcatadeta, descripcion
+          FROM catadeta
+          WHERE idcatalogo = 275
+            AND valor = $id[2]
+            AND idcatadeta IN ($lista)
+            AND estado = 'A'
+          ORDER BY LENGTH(idcatadeta), idcatadeta";
+  $info = datos_mysql($sql);
+  return json_encode($info['responseResult']);
 }
 
 function gra_servagen(){

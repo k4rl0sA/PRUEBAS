@@ -66,7 +66,7 @@ function cmp_servagen(){
 	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
     // $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
-	$d=get_persona($_POST['id']);
+	$d=get_persona();
 	if ($d==""){$d=$t;}
 	$e="";
 	$w='servagen';
@@ -111,7 +111,7 @@ function opc_tipo_consservicio($id=''){
     $id=divide($_REQUEST['id']);
     var_dump($_POST);
     var_dump($_REQUEST);
-    $d=get_persona($_POST['idp']);
+    $d=get_persona();
       if($d['sexo']=='M'){
         if($d['anos']<6){ 
           $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
@@ -146,33 +146,7 @@ function opc_tipo_consservicio($id=''){
     return json_encode($info['responseResult']);
   }
 }
-/* function opc_evento($id=''){
-  $d=get_persona();
-  if($d['sexo']=='M'){
-    if($d['anos']<6){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id);
-    }elseif($d['anos']>5 && $d['anos']<10){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }elseif($d['anos']>9 && $d['anos']<18){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }elseif($d['anos']>17 && $d['anos']<55){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }elseif($d['anos']>54){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }
-  }else{
-    if($d['anos']<6){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id);
-    }elseif($d['anos']>5 && $d['anos']<18){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }elseif($d['anos']>17 && $d['anos']<55){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }elseif($d['anos']>54){
-      return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor IN(1,2,3) and estado='A' ORDER BY 2",$id); 
-    }
-  }
-  }
- */
+
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['id']);
@@ -193,7 +167,7 @@ if(count($id)==2){
   }
   } 
 
-function get_persona($a=''){
+function get_persona(){
   if($_POST['id']==''){
     return "";
   }else{

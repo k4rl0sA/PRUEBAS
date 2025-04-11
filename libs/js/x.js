@@ -1322,8 +1322,7 @@ function custSeleDepend(a, b, c, extraParams = {}) {
             return;
         }
         targetSelect.innerHTML = '';
-        const defaultOption = new Option('SELECCIONE', '');
-        targetSelect.add(defaultOption);
+        targetSelect.add(new Option('SELECCIONE', ''));
         if (!originSelect.value) return;
         const dynamicParams = {};
         for (const [key, elementId] of Object.entries(extraParams)) {
@@ -1335,30 +1334,41 @@ function custSeleDepend(a, b, c, extraParams = {}) {
             a: 'opc',
             tb: `${a}${b}`,
             id: originSelect.value,
-            ...dynamicParams  // operator para incluir parámetros dinámicos
+            ...dynamicParams
         });
         const url = `${baseUrl}${params.toString()}`;
         fetch(url)
             .then(response => {
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                return response.json();
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                return response.clone().json().catch(() => response.text());
             })
             .then(data => {
-                if (!Array.isArray(data)) throw new Error('La respuesta no es un array');
-                data.forEach(item => {
-                    const option = new Option(
-                        item.descripcion || item.text || '',
-                        item.idcatadeta || item.value || ''
-                    );
-                    targetSelect.add(option);
-                });
-                targetSelect.dispatchEvent(new Event('change'));
+                if (typeof data === 'string') {
+                    try {
+                        data = JSON.parse(data);
+                    if (!Array.isArray(data)) throw new Error();
+                    } catch {
+                        throw new Error('La respuesta no es un JSON válido');
+                    }
+                }
+                if (Array.isArray(data)) {
+                    data.forEach(item => {
+                        targetSelect.add(new Option(
+                            item.descripcion || item.text || '',
+                            item.idcatadeta || item.value || ''
+                        ));
+                    });
+                    targetSelect.dispatchEvent(new Event('change'));
+                } else {
+                    throw new Error('Formato de respuesta inesperado');
+                }
             })
             .catch(error => {
                 console.error('Error en custSeleDepend:', error);
-                const errorOption = new Option('', '');
                 targetSelect.innerHTML = '';
-                targetSelect.add(errorOption);
+                targetSelect.add(new Option('Error al cargar opciones', ''));
             });
     } catch (error) {
         console.error('Error en custSeleDepend:', error);

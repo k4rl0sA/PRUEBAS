@@ -87,7 +87,7 @@ function cmp_servagen(){
 	$o='prufin';
     $c[]=new cmp($o,'e',null,'SERVICIO AGENDAMIENTO',$w);
     $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Solicitud','fecha_even',null,null,true,true,'','col-15',"validDate(this,$days,0);");
-    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25',"custSeleDepend('tipo_cons', 'servicio', '../agendamient/serage.php', {'patientId': 'idp'});");
+    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25',"custSeleDepend('tipo_cons', 'servicio', '../agendamient/serage.php', {'id_persona': 'idp'});");
     $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','servicio',null,null,true,true,'','col-3');
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
@@ -107,92 +107,44 @@ function opc_consulta($id=''){
 function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
-
-function opc_tipo_consservicio($legacy_param = '') {
-  global $con; // Asegúrate que la conexión $con esté disponible si datos_mysql la necesita globalmente.
-
-  $sql = ""; // Inicializar SQL
-  $info = ['responseResult' => []]; // Respuesta por defecto
-
-  // --- Obtener parámetros de forma segura ---
-  $tipo_cons_valor = $_REQUEST['id'] ?? null; // Valor del select 'tipo_cons'
-  $id_persona = $_REQUEST['id_persona'] ?? null; // Valor del input 'idp' (enviado como 'id_persona')
-
-  // --- Validar parámetros ---
-  if (!empty($tipo_cons_valor) && !empty($id_persona)) {
-
-      // --- Obtener datos de la persona ---
-      // Asumiendo que get_persona() necesita el ID y devuelve un array asociativo o null/false si falla
-      $d = get_persona($id_persona);
-
-      // --- Verificar si se obtuvieron datos de la persona ---
-      if ($d && is_array($d) && isset($d['sexo']) && isset($d['anos'])) {
-          $sexo = $d['sexo'];
-          $anos = (int)$d['anos']; // Convertir a entero para comparaciones seguras
-
-          // --- Construir la consulta SQL ---
-          // Es MUY recomendable usar consultas preparadas para evitar inyección SQL.
-          // Esta versión usa floatval para mitigar un poco el riesgo con 'valor', pero sigue siendo vulnerable.
-          $valor_filtrado = floatval($tipo_cons_valor); // Asume que 'valor' es numérico
-
-          $base_sql = "SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 275 AND estado = 'A' AND valor = {$valor_filtrado}";
-          $id_filter = "";
-          $order_by = "ORDER BY LENGTH(idcatadeta), idcatadeta";
-
-          // Simplificado: la lógica de M/F era idéntica en el original para cada rango de edad
-          if ($anos < 6) {
-              $id_filter = "AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          } elseif ($anos >= 6 && $anos <= 11) {
-              $id_filter = "AND idcatadeta IN (2,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          } elseif ($anos >= 12 && $anos <= 17) {
-              $id_filter = "AND idcatadeta IN (3,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          } elseif ($anos >= 21 && $anos <= 26) { // Rango original
-              $id_filter = "AND idcatadeta IN (5,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          } elseif ($anos >= 29 && $anos <= 59) { // Rango original
-              $id_filter = "AND idcatadeta IN (4,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          } elseif ($anos >= 60) {
-              $id_filter = "AND idcatadeta IN (6,10,15,9,17,18,19,20,21,22,23,24,25,26,27)";
-          }
-          // Considera si faltan rangos (ej. 18-20, 27-28) o si necesitas lógica adicional para sexo='F' (ej. idcatadeta 7, 8)
-
-          if (!empty($id_filter)) {
-              $sql = $base_sql . " " . $id_filter . " " . $order_by . ";";
-              // --- Ejecutar consulta ---
-              // Asumiendo que datos_mysql devuelve un array como ['responseResult' => [...datos...]] o similar
-              try {
-                  $info_raw = datos_mysql($sql); // Llamar a tu función de base de datos
-                  // Verifica si la consulta fue exitosa y devolvió el formato esperado
-                  if (isset($info_raw['responseResult']) && is_array($info_raw['responseResult'])) {
-                      $info = $info_raw;
-                  } else {
-                      error_log("Error o formato inesperado de datos_mysql para SQL: " . $sql);
-                      $info = ['responseResult' => []]; // Mantener respuesta vacía segura
-                  }
-              } catch (Exception $e) {
-                   error_log("Excepción en datos_mysql: " . $e->getMessage() . " | SQL: " . $sql);
-                   $info = ['responseResult' => []]; // Mantener respuesta vacía segura
-              }
-          } else {
-              // No se encontró un rango de edad aplicable
-               error_log("No se encontró filtro de ID para edad: " . $anos . " y valor: " . $valor_filtrado);
-              $info = ['responseResult' => []];
-          }
-      } else {
-          // No se pudieron obtener los datos de la persona
-          error_log("No se pudieron obtener datos válidos para id_persona: " . $id_persona . ". Datos recibidos de get_persona: " . print_r($d, true));
-          $info = ['responseResult' => []];
-      }
-  } else {
-      // Parámetros faltantes
-      error_log("Parámetros faltantes en opc_tipo_consservicio. id: " . $tipo_cons_valor . ", id_persona: " . $id_persona);
-      $info = ['responseResult' => []];
+function opc_tipo_consservicio($id=''){
+  var_dump($_POST['id']);
+  if($_REQUEST['id']!=''){
+    $id=divide($_REQUEST['id']);
+    $d=get_persona();
+      if($d['sexo']=='M'){
+        if($d['anos']<6){ 
+          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=6 && $d['anos']<=11){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=12 && $d['anos']<=17){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=21 && $d['anos']<=26){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=29 && $d['anos']<=59){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=60){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }
+      }else{
+        if($d['anos']<6){ 
+          $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=6 && $d['anos']<=11){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(2,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=12 && $d['anos']<=17){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(3,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=21 && $d['anos']<=26){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(5,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=29 && $d['anos']<=59){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(4,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }elseif($d['anos']>=60){
+          $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+        }
+    }
+    //  var_dump($sql);
+    $info=datos_mysql($sql);
+    return json_encode($info['responseResult']);
   }
-
-  // --- Devolver respuesta JSON ---
-  // Asegúrate de que no haya ningún `echo` o salida HTML antes de esta línea en serage.php
-  header('Content-Type: application/json; charset=utf-8');
-  // Devuelve solo el array de resultados, o un array vacío si no hay nada o hubo error
-  return json_encode($info['responseResult'] ?? []);
 }
 
 function gra_servagen(){
@@ -227,7 +179,7 @@ function get_persona(){
     DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 		FROM person P
     WHERE P.idpeople='{$id[0]}'"; 
-    echo $sql;
+    // echo $sql;
     // print_r($_REQUEST);
     $info=datos_mysql($sql);
     return $info['responseResult'][0];

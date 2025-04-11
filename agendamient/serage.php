@@ -109,8 +109,8 @@ function opc_servicio($id=''){
 function opc_tipo_consservicio($id=''){
   if($_REQUEST['id']!=''){
     $id=divide($_REQUEST['id']);
-    var_dump($_POST);
-    var_dump($_REQUEST);
+    /* var_dump($_POST);
+    var_dump($_REQUEST); */
     $d=get_persona();
       if($d['sexo']=='M'){
         if($d['anos']<6){ 

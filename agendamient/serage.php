@@ -66,7 +66,7 @@ function cmp_servagen(){
 	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
     // $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
-  var_dump($_POST);
+  // var_dump($_POST);
 	$d=get_persona();
 	if ($d==""){$d=$t;}
 	$e="";

@@ -1317,18 +1317,26 @@ function custSeleDepend(a, b, c, extraParams = {}) {
     try {
         const originSelect = document.getElementById(a);
         const targetSelect = document.getElementById(b);
+        
         if (!originSelect || !targetSelect) {
             console.error('Elementos no encontrados');
             return;
         }
+
+        // Limpiar select destino
         targetSelect.innerHTML = '';
         targetSelect.add(new Option('SELECCIONE', ''));
+
         if (!originSelect.value) return;
+
+        // Obtener parámetros dinámicos
         const dynamicParams = {};
         for (const [key, elementId] of Object.entries(extraParams)) {
             const element = document.getElementById(elementId);
             dynamicParams[key] = element?.value || '';
         }
+
+        // Construir URL
         const baseUrl = c.includes('?') ? `${c}&` : `${c}?`;
         const params = new URLSearchParams({
             a: 'opc',
@@ -1337,39 +1345,67 @@ function custSeleDepend(a, b, c, extraParams = {}) {
             ...dynamicParams
         });
         const url = `${baseUrl}${params.toString()}`;
+
+        // Mostrar URL en consola para diagnóstico
+        console.log('URL solicitada:', url);
+
+        // Realizar petición con manejo detallado de errores
         fetch(url)
             .then(response => {
+                // Guardar referencia a la respuesta para diagnóstico
+                window.lastFetchResponse = response.clone();
+                
                 if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
+                    // Si hay error HTTP, leer el cuerpo como texto para diagnóstico
+                    return response.text().then(text => {
+                        console.error('Error HTTP:', response.status, '\nRespuesta:', text);
+                        throw new Error(`Error HTTP ${response.status}: ${text.substring(0, 100)}...`);
+                    });
                 }
-                return response.clone().json().catch(() => response.text());
+                
+                // Verificar content-type
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    return response.text().then(text => {
+                        console.warn('Respuesta no es JSON:', text.substring(0, 200));
+                        throw new Error('El servidor no devolvió JSON');
+                    });
+                }
+                
+                return response.json();
             })
             .then(data => {
-                if (typeof data === 'string') {
-                    try {
-                        data = JSON.parse(data);
-                    if (!Array.isArray(data)) throw new Error();
-                    } catch {
-                        throw new Error('La respuesta no es un JSON válido');
-                    }
-                }
-                if (Array.isArray(data)) {
-                    data.forEach(item => {
-                        targetSelect.add(new Option(
-                            item.descripcion || item.text || '',
-                            item.idcatadeta || item.value || ''
-                        ));
-                    });
-                    targetSelect.dispatchEvent(new Event('change'));
-                } else {
+                console.log('Respuesta recibida:', data); // Depuración
+                
+                if (!Array.isArray(data)) {
+                    console.warn('La respuesta no es un array:', data);
                     throw new Error('Formato de respuesta inesperado');
                 }
+
+                // Procesar datos
+                data.forEach(item => {
+                    targetSelect.add(new Option(
+                        item.descripcion || item.text || '',
+                        item.idcatadeta || item.value || ''
+                    ));
+                });
+                
+                targetSelect.dispatchEvent(new Event('change'));
             })
             .catch(error => {
-                console.error('Error en custSeleDepend:', error);
+                console.error('Error completo en custSeleDepend:', error);
+                
+                // Mostrar más detalles del error
+                if (window.lastFetchResponse) {
+                    window.lastFetchResponse.text().then(text => {
+                        console.error('Contenido completo de la respuesta:', text);
+                    });
+                }
+                
                 targetSelect.innerHTML = '';
-                targetSelect.add(new Option('Error al cargar opciones', ''));
+                targetSelect.add(new Option('Error al cargar. Ver consola', ''));
             });
+
     } catch (error) {
         console.error('Error en custSeleDepend:', error);
     }

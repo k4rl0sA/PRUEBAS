@@ -173,7 +173,6 @@ if(count($id)==2){
   ['type' => 's', 'value' => $_POST['servicio']],
   ['type' => 's', 'value' => $_SESSION['us_sds']]
   ];
-    // echo $sql;
     return $rta = mysql_prepd($sql, $params);
   }
   } 

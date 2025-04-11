@@ -87,7 +87,7 @@ function cmp_servagen(){
 	$o='prufin';
     $c[]=new cmp($o,'e',null,'SERVICIO AGENDAMIENTO',$w);
     $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Solicitud','fecha_even',null,null,true,true,'','col-15',"validDate(this,$days,0);");
-    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25',"custSeleDepend('tipo_cons', 'servicio'););");
+    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25',"custSeleDepend('tipo_cons', 'servicio');");
     $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','servicio',null,null,true,true,'','col-3');
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;

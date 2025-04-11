@@ -1313,99 +1313,84 @@ function enabRutVisit(){
 		agen.value=1;
 	}
 }
-function custSeleDepend(a, b, c, extraParams = {}) {
+function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {
-        const originSelect = document.getElementById(a);
-        const targetSelect = document.getElementById(b);
+        const x = document.getElementById(a);
+        const z = document.getElementById(b);
         
-        if (!originSelect || !targetSelect) {
+        if (!x || !z) {
             console.error('Elementos no encontrados');
             return;
         }
 
         // Limpiar select destino
-        targetSelect.innerHTML = '';
-        targetSelect.add(new Option('SELECCIONE', ''));
+        z.innerHTML = '';
+        z.add(new Option('SELECCIONE', ''));
 
-        if (!originSelect.value) return;
+        if (!x.value) return;
 
-        // Obtener parámetros dinámicos
-        const dynamicParams = {};
+        // Preparar parámetros para serage.php
+        const params = new URLSearchParams();
+        params.append('a', 'opc');
+        params.append('tb', a + b);
+        params.append('id', x.value);
+        
+        // Agregar parámetros adicionales
         for (const [key, elementId] of Object.entries(extraParams)) {
             const element = document.getElementById(elementId);
-            dynamicParams[key] = element?.value || '';
+            if (element) {
+                params.append(key, element.value);
+            }
         }
 
-        // Construir URL
-        const baseUrl = c.includes('?') ? `${c}&` : `${c}?`;
-        const params = new URLSearchParams({
-            a: 'opc',
-            tb: `${a}${b}`,
-            id: originSelect.value,
-            ...dynamicParams
-        });
-        const url = `${baseUrl}${params.toString()}`;
-
-        // Mostrar URL en consola para diagnóstico
-        console.log('URL solicitada:', url);
-
-        // Realizar petición con manejo detallado de errores
-        fetch(url)
-            .then(response => {
-                // Guardar referencia a la respuesta para diagnóstico
-                window.lastFetchResponse = response.clone();
-                
-                if (!response.ok) {
-                    // Si hay error HTTP, leer el cuerpo como texto para diagnóstico
-                    return response.text().then(text => {
-                        console.error('Error HTTP:', response.status, '\nRespuesta:', text);
-                        throw new Error(`Error HTTP ${response.status}: ${text.substring(0, 100)}...`);
-                    });
+        // Realizar petición (modo síncrono para compatibilidad)
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', c, false); // Síncrono para mantener compatibilidad
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    // Mostrar respuesta cruda para diagnóstico
+                    console.log('Respuesta cruda:', xhr.responseText);
+                    
+                    const data = JSON.parse(xhr.responseText);
+                    console.log('Datos parseados:', data);
+                    
+                    // Procesar respuesta como array de objetos {idcatadeta, descripcion}
+                    if (Array.isArray(data)) {
+                        data.forEach(item => {
+                            const opt = new Option(
+                                item.descripcion || item.text || '',
+                                item.idcatadeta || item.value || ''
+                            );
+                            z.add(opt);
+                        });
+                    } else {
+                        console.error('La respuesta no es un array:', data);
+                        z.innerHTML = '';
+                        z.add(new Option('Formato inválido', ''));
+                    }
+                } catch (e) {
+                    console.error('Error al parsear JSON:', e, '\nRespuesta:', xhr.responseText);
+                    z.innerHTML = '';
+                    z.add(new Option('Error en datos', ''));
                 }
-                
-                // Verificar content-type
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    return response.text().then(text => {
-                        console.warn('Respuesta no es JSON:', text.substring(0, 200));
-                        throw new Error('El servidor no devolvió JSON');
-                    });
-                }
-                
-                return response.json();
-            })
-            .then(data => {
-                console.log('Respuesta recibida:', data); // Depuración
-                
-                if (!Array.isArray(data)) {
-                    console.warn('La respuesta no es un array:', data);
-                    throw new Error('Formato de respuesta inesperado');
-                }
-
-                // Procesar datos
-                data.forEach(item => {
-                    targetSelect.add(new Option(
-                        item.descripcion || item.text || '',
-                        item.idcatadeta || item.value || ''
-                    ));
-                });
-                
-                targetSelect.dispatchEvent(new Event('change'));
-            })
-            .catch(error => {
-                console.error('Error completo en custSeleDepend:', error);
-                
-                // Mostrar más detalles del error
-                if (window.lastFetchResponse) {
-                    window.lastFetchResponse.text().then(text => {
-                        console.error('Contenido completo de la respuesta:', text);
-                    });
-                }
-                
-                targetSelect.innerHTML = '';
-                targetSelect.add(new Option('Error al cargar. Ver consola', ''));
-            });
-
+            } else {
+                console.error('Error HTTP:', xhr.status, xhr.statusText);
+                z.innerHTML = '';
+                z.add(new Option('Error de conexión', ''));
+            }
+        };
+        
+        xhr.onerror = function() {
+            console.error('Error de red');
+            z.innerHTML = '';
+            z.add(new Option('Error de red', ''));
+        };
+        
+        xhr.send(params.toString());
+        
     } catch (error) {
         console.error('Error en custSeleDepend:', error);
     }

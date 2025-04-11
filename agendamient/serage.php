@@ -139,7 +139,7 @@ function opc_tipo_consservicio($id=''){
           $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=275 AND valor=$id[0] AND idcatadeta IN(6,10,15,9,17,18,19,20,21,22,23,24,25,26,27) and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta;";
         }
     }
-     var_dump($sql);
+    //  var_dump($sql);
     $info=datos_mysql($sql);
     return json_encode($info['responseResult']);
   }

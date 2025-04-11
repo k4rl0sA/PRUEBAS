@@ -106,7 +106,7 @@ function opc_consulta($id=''){
 function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
-function opc_consultaservicio($id=''){
+function opc_tipo_consservicio($id=''){
   if($_REQUEST['id']!=''){
     $id=divide($_REQUEST['id']);
     $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";

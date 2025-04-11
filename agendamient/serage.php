@@ -86,8 +86,8 @@ function cmp_servagen(){
 	$o='prufin';
     $c[]=new cmp($o,'e',null,'SERVICIO AGENDAMIENTO',$w);
     $c[]=new cmp('fecha_sol','d',10,$e,$w.' '.$o,'Fecha Solicitud','fecha_even',null,null,true,true,'','col-15',"validDate(this,$days,0);");
-    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25');
-    $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','evento',null,null,true,true,'','col-3');
+    $c[]=new cmp('tipo_cons','s',3, $e,$w,'Tipo de Consulta','consulta',null,null,true,true,'','col-25',"selectDepend('tipo_cons','servicio','../agendamient/serage.php');");
+    $c[]=new cmp('servicio','s',3, $e,$w,'Servicio','servicio',null,null,true,true,'','col-3');
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
@@ -102,6 +102,26 @@ function opc_sexo($id=''){
 }
 function opc_consulta($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=281 and estado="A" ORDER BY 1',$id);
+}
+function opc_servicio($id=''){
+  return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
+}
+function opc_consultaservicio($id=''){
+  if($_REQUEST['id']!=''){
+    $id=divide($_REQUEST['id']);
+    $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor='".$id[0]."' ORDER BY LENGTH(idcatadeta), idcatadeta;";
+    /* $d=get_persona();
+    if($d['sexo']=='M'){
+      if($d['anos']<6){ 
+
+      }
+    }else{
+
+    }
+     */
+    $info=datos_mysql($sql);
+    return json_encode($info['responseResult']);
+  }
 }
 function opc_evento($id=''){
   $d=get_persona();

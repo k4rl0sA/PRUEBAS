@@ -1316,93 +1316,59 @@ function enabRutVisit(){
 
 function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {
-        const x = document.getElementById(a); // origen: tipo_cons
-        const z = document.getElementById(b); // destino: servicio
-
-        if (!x || !z) {
-            console.error('Elementos no encontrados');
-            return;
-        }
-
-        // Limpiar select destino
-        z.innerHTML = '';
-        z.add(new Option('SELECCIONE', ''));
-
-        if (!x.value) return;
-
-        // Obtener ID de la persona (asumiendo hidden con id="idp")
+        const originSelect = document.getElementById(a);
+        const targetSelect = document.getElementById(b);
         const idpElement = document.getElementById('idp');
-        const idp = idpElement ? idpElement.value : '';
-
-        if (!idp) {
-            console.error('ID de persona no disponible');
-            z.add(new Option('ID de persona requerido', ''));
+        if (!originSelect || !targetSelect || !idpElement) {
+            console.error('Elementos requeridos no encontrados');
             return;
         }
-
-        // Construir parámetro compuesto: "idp|valor_select"
-        const idCompuesto = `${idp}_${x.value}`;
-
-        // Preparar parámetros para serage.php
+        targetSelect.innerHTML = '';
+        targetSelect.add(new Option('SELECCIONE', ''));
+        const selectedValue = originSelect.value;
+        if (!selectedValue) return;
+        const idPersona = idpElement.value;
+        if (!idPersona) {
+            console.error('ID no disponible');
+            targetSelect.add(new Option('ID requerido', ''));
+            return;
+        }
+        const idCompuesto = `${idPersona}_${selectedValue}`;
         const params = new URLSearchParams();
         params.append('a', 'opc');
-        params.append('tb', a + b);
+        params.append('tb', `${a}${b}`);
         params.append('id', idCompuesto);
-
-        // Agregar otros parámetros adicionales si se envían
-        for (const [key, elementId] of Object.entries(extraParams)) {
+        Object.entries(extraParams).forEach(([key, elementId]) => {
             const element = document.getElementById(elementId);
-            if (element) {
-                params.append(key, element.value);
-            }
-        }
-
-        // Realizar petición (modo síncrono para compatibilidad)
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', c, false); // síncrono
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                try {
-                    console.log('Respuesta cruda:', xhr.responseText);
-
-                    const data = JSON.parse(xhr.responseText);
-                    console.log('Datos parseados:', data);
-
-                    if (Array.isArray(data)) {
-                        data.forEach(item => {
-                            const opt = new Option(
-                                item.descripcion || item.text || '',
-                                item.idcatadeta || item.value || ''
-                            );
-                            z.add(opt);
-                        });
-                    } else {
-                        console.error('La respuesta no es un array válido');
-                        z.innerHTML = '';
-                        z.add(new Option('Formato inválido', ''));
-                    }
-                } catch (e) {
-                    console.error('Error al parsear JSON:', e, '\nRespuesta:', xhr.responseText);
-                    z.innerHTML = '';
-                    z.add(new Option('Error en datos', ''));
-                }
-            } else {
-                console.error('Error HTTP:', xhr.status, xhr.statusText);
-                z.innerHTML = '';
-                z.add(new Option('Error de conexión', ''));
-            }
-        };
-
-        xhr.onerror = function () {
-            console.error('Error de red');
-            z.innerHTML = '';
-            z.add(new Option('Error de red', ''));
-        };
-
-        xhr.send(params.toString());
-
+            if (element?.value) params.append(key, element.value);
+        });
+        fetch(c, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params.toString()
+        })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            if (!Array.isArray(data)) throw new Error('Respuesta no es un array');
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('SELECCIONE', ''));
+            data.forEach(item => {
+                targetSelect.add(new Option(
+                    item.descripcion || item.text || '',
+                    item.idcatadeta || item.value || ''
+                ));
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('Error al cargar', ''));
+        });
     } catch (error) {
         console.error('Error en custSeleDepend:', error);
     }

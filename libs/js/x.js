@@ -1313,6 +1313,7 @@ function enabRutVisit(){
 		agen.value=1;
 	}
 }
+
 function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {
         const x = document.getElementById(a); // origen: tipo_cons
@@ -1340,7 +1341,7 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
         }
 
         // Construir parámetro compuesto: "idp|valor_select"
-        const idCompuesto = `${idp}|${x.value}`;
+        const idCompuesto = `${idp}_${x.value}`;
 
         // Preparar parámetros para serage.php
         const params = new URLSearchParams();

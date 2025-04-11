@@ -111,6 +111,7 @@ function opc_tipo_consservicio($id=''){
     $id=divide($_REQUEST['id']);
     var_dump($_POST);
     var_dump($_REQUEST);
+    var_dump($_REQUEST['idp']);
     $d=get_persona();
     // var_dump($d);
       if($d['sexo']=='M'){

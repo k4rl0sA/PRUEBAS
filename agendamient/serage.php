@@ -197,7 +197,7 @@ function get_persona(){
 		FROM person P
     WHERE P.idpeople='{$id[0]}'"; 
     // echo $sql;
-    print_r($_REQUEST);
+    // print_r($_REQUEST);
     $info=datos_mysql($sql);
     return $info['responseResult'][0];
   }

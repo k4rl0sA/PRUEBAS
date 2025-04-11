@@ -66,7 +66,7 @@ function cmp_servagen(){
 	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
     // $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
-	$d=get_persona();
+	$d=get_persona($_POST['id']);
 	if ($d==""){$d=$t;}
 	$e="";
 	$w='servagen';
@@ -109,7 +109,7 @@ function opc_servicio($id=''){
 function opc_tipo_consservicio($id=''){
   if($_REQUEST['id']!=''){
     $id=divide($_REQUEST['id']);
-    $d=get_person($_POST['id']);
+    $d=get_persona($_POST['id']);
       if($d['sexo']=='M'){
         if($d['anos']<6){ 
           $sql="SELECT idcatadeta ,descripcion  FROM `catadeta` WHERE idcatalogo=275 and estado='A' and valor=$id[0] AND idcatadeta IN (1,10,15,9,17,18,19,20,21,22,23,24,25,26,27) ORDER BY LENGTH(idcatadeta), idcatadeta;";
@@ -191,7 +191,7 @@ if(count($id)==2){
   }
   } 
 
-function get_persona(){
+function get_persona($a=''){
   if($_POST['id']==''){
     return "";
   }else{
@@ -209,6 +209,7 @@ function get_persona(){
     return $info['responseResult'][0];
   }
 }
+
 
 function get_servagen(){
   if($_REQUEST['id']==''){

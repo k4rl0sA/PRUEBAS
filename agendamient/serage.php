@@ -134,7 +134,6 @@ function opc_tipo_consservicio($id = '') {
       if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
       if ($edad >= 50 && $edad <= 69) $categorias[] = 12;
       if ($edad >= 10 && $edad <= 59) $categorias[] = 19;
-    }
   } elseif ($sexo === 'H') { // Hombre
       if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
   }

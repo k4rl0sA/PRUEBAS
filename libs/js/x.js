@@ -1315,9 +1315,9 @@ function enabRutVisit(){
 }
 function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {
-        const x = document.getElementById(a);
-        const z = document.getElementById(b);
-        
+        const x = document.getElementById(a); // origen: tipo_cons
+        const z = document.getElementById(b); // destino: servicio
+
         if (!x || !z) {
             console.error('Elementos no encontrados');
             return;
@@ -1329,13 +1329,26 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
 
         if (!x.value) return;
 
+        // Obtener ID de la persona (asumiendo hidden con id="idp")
+        const idpElement = document.getElementById('idp');
+        const idp = idpElement ? idpElement.value : '';
+
+        if (!idp) {
+            console.error('ID de persona no disponible');
+            z.add(new Option('ID de persona requerido', ''));
+            return;
+        }
+
+        // Construir parámetro compuesto: "idp|valor_select"
+        const idCompuesto = `${idp}|${x.value}`;
+
         // Preparar parámetros para serage.php
         const params = new URLSearchParams();
         params.append('a', 'opc');
         params.append('tb', a + b);
-        params.append('id', x.value);
-        
-        // Agregar parámetros adicionales
+        params.append('id', idCompuesto);
+
+        // Agregar otros parámetros adicionales si se envían
         for (const [key, elementId] of Object.entries(extraParams)) {
             const element = document.getElementById(elementId);
             if (element) {
@@ -1345,19 +1358,17 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
 
         // Realizar petición (modo síncrono para compatibilidad)
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', c, false); // Síncrono para mantener compatibilidad
+        xhr.open('POST', c, false); // síncrono
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        
-        xhr.onload = function() {
+
+        xhr.onload = function () {
             if (xhr.status === 200) {
                 try {
-                    // Mostrar respuesta cruda para diagnóstico
                     console.log('Respuesta cruda:', xhr.responseText);
-                    
+
                     const data = JSON.parse(xhr.responseText);
                     console.log('Datos parseados:', data);
-                    
-                    // Procesar respuesta como array de objetos {idcatadeta, descripcion}
+
                     if (Array.isArray(data)) {
                         data.forEach(item => {
                             const opt = new Option(
@@ -1367,7 +1378,7 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
                             z.add(opt);
                         });
                     } else {
-                        console.error('La respuesta no es un array:', data);
+                        console.error('La respuesta no es un array válido');
                         z.innerHTML = '';
                         z.add(new Option('Formato inválido', ''));
                     }
@@ -1382,15 +1393,15 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
                 z.add(new Option('Error de conexión', ''));
             }
         };
-        
-        xhr.onerror = function() {
+
+        xhr.onerror = function () {
             console.error('Error de red');
             z.innerHTML = '';
             z.add(new Option('Error de red', ''));
         };
-        
+
         xhr.send(params.toString());
-        
+
     } catch (error) {
         console.error('Error en custSeleDepend:', error);
     }

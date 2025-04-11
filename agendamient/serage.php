@@ -66,6 +66,7 @@ function cmp_servagen(){
 	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
     // $rta="";
 	$t=['id_eve'=>'','tipodoc'=>'','idpersona'=>'','nombre'=>'','fechanacimiento'=>'','edad'=>'','sexo'=>'','docum_base'=>'','evento'=>'','fecha_even'=>''];
+  var_dump($_POST);
 	$d=get_persona();
 	if ($d==""){$d=$t;}
 	$e="";
@@ -107,7 +108,7 @@ function opc_servicio($id=''){
   return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=275 and estado="A" ORDER BY 1',$id);
 }
 function opc_tipo_consservicio($id=''){
-  var_dump($_POST);
+  var_dump($_POST['id']);
   if($_REQUEST['id']!=''){
     $id=divide($_REQUEST['id']);
     $d=get_persona();

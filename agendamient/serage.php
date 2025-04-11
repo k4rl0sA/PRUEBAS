@@ -52,7 +52,7 @@ function lis_servicios(){
     $regxPag=5;
     $pag=(isset($_POST['pag-servicios']))? ($_POST['pag-servicios']-1)* $regxPag:0;
 
-    $sql="SELECT id_agen 'Cod Registro',FN_CATALOGODESC(87,servicio),fecha_solici 'Fecha Solicitó'
+    $sql="SELECT id_agen 'Cod Registro',FN_CATALOGODESC(2785,servicio) Servicio,fecha_solici 'Fecha Solicitó'
     FROM hog_agen E 
     WHERE E.idpeople='{$id[0]}'";  
     $sql.=" ORDER BY 3 desc LIMIT $pag, $regxPag";

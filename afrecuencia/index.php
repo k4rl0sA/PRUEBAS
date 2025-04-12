@@ -188,7 +188,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 			<!-- <li class='icono exportar'      title='Exportar Información General'    Onclick="csv(mod);"></li> -->
 			<li class='icono actualizar'    title='Actualizar'      Onclick="actualizar();">
 			<li class='icono filtros'    title='Filtros'      Onclick="showFil(mod);">
-			<li class='icono crear'       title='Crear frecuencia de Uso'     Onclick="mostrar(mod,'pro');hideMotiv();"></li><!--hideMotiv();-->
+			<li class='icono crear'       title='Crear frecuencia de Uso'     Onclick="mostrar(mod,'pro');"></li><!--hideMotiv();-->
 		</nav>
       </div>
       <div>

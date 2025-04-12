@@ -15,7 +15,7 @@ else {
     eval('$rta='.$_POST['a'].'_'.$_POST['tb'].'();');
     if (is_array($rta)) json_encode($rta);
 	else echo $rta;
-  }   
+  }  
 }
 
 function whe_frecuenciauso() {
@@ -70,7 +70,9 @@ function get_frecuenciauso(){
 		// var_dump($_POST);
 		$id=divide($_POST['id']);			
 	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,
-	punto_atencion,tipo_cita 
+	punto_atencion,tipo_cita,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
+    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias 
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
 	WHERE T1.idfrecuencia='{$id[0]}'";
@@ -114,6 +116,7 @@ function cmp_frecuenciauso(){
  $u=($d['id_persona']=='')?true:false;
  $o='percit';
  $key='find';
+ $edad='AÑOS= '.$d['anos'].' MESES= '.$d['meses'].' DIAS= '.$d['dias'];
  $rta=" <span class='mensaje' id='".$w."-msj' ></span>";
  $c[]=new cmp($o,'e',null,'FRECUENCIA DE USO DE USUARIOS',$w);
  $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
@@ -126,10 +129,11 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
  $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['genero'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
- //~ $c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
- //~ $c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
-//  $c[]=new cmp('fec','d',10,$d['fecha'],$w.' '.$o,'Fecha de Caracterización','fecha',null,null,false,false,'','col-3');
+//$c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
+//$c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
+//$c[]=new cmp('fec','d',10,$d['fecha'],$w.' '.$o,'Fecha de Caracterización','fecha',null,null,false,false,'','col-3');
  $c[]=new cmp('pun','s',3,$d['punto_atencion'],$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-3');
+ $c[]=new cmp('edad','t',30,$edad,$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-2');
  $c[]=new cmp('cit','s',3,$d['tipo_cita'],$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,true,'','col-7');
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";

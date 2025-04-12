@@ -82,9 +82,7 @@ function get_persona(){
 	if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo,
-		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
-    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
-    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
+		concat('AÑOS =',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
 	 FROM person T1
 	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
@@ -107,7 +105,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_frecuenciauso(){
  $t=['id_persona'=>'','tipo_doc'=>'','nombre1'=>'','nombre2'=>'','apellido1'=>'','apellido2'=>'',
- 'fecha_nacimiento'=>'','genero'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','punto_atencion'=>'','anos'=>'','meses'=>'','dias'=>''];
+ 'fecha_nacimiento'=>'','genero'=>'','fecha'=>'','etnia'=>'','nacionalidad'=>'','tipo_cita'=>'','tel1'=>'','tel2'=>'','fecha_create'=>'','punto_atencion'=>'','edad'=>''];
  $w='frecuencia';
   $d=get_frecuenciauso(); 
   //~ var_dump($d);
@@ -115,7 +113,6 @@ function cmp_frecuenciauso(){
  $u=($d['id_persona']=='')?true:false;
  $o='percit';
  $key='find';
- $edad='AÑOS= '.$d['anos'].' MESES= '.$d['meses'].' DIAS= '.$d['dias'];
  $rta=" <span class='mensaje' id='".$w."-msj' ></span>";
  $c[]=new cmp($o,'e',null,'FRECUENCIA DE USO DE USUARIOS',$w);
  $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
@@ -128,7 +125,7 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('ap2','t',20,$d['apellido2'],$w.' '.$o,'Segundo Apellido','apellido2',null,null,false,false,'','col-3');
  $c[]=new cmp('fen','d',10,$d['fecha_nacimiento'],$w.' '.$o,'Fecha de Nacimiento','fecha_nacimiento',null,null,false,false,'','col-4');
  $c[]=new cmp('gen','s',3,$d['genero'],$w.' '.$o,'Sexo','genero',null,null,false,false,'','col-3');
- $c[]=new cmp('edad','t',30,$edad,$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-3');
+ $c[]=new cmp('edad','t',30,$d['edad'],$w.' '.$o,'edad en Años','edad',null,'',true,false,'','col-3');
 //$c[]=new cmp('te1','t',10,$d['tel1'],$w.' '.$o,'Teléfono 1','eapb',null,null,true,false,'','col-3');
 //$c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
 //$c[]=new cmp('fec','d',10,$d['fecha'],$w.' '.$o,'Fecha de Caracterización','fecha',null,null,false,false,'','col-3');

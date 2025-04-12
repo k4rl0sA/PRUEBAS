@@ -432,9 +432,9 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_psifin($tab);
 			break;
 		case '54':
-			$tab = "Sesiones_Colectivas";
+			$tab = "Servicios_Agendamiento";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_($tab);
+			if($tab=decript($encr,$clave))lis_servicAgend($tab);
 			break;
 		case '55':
 			$tab = "Sesiones_Colectivas";
@@ -445,7 +445,12 @@ function lis_planos() {
 			$tab = "Sesiones_Colectivas";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_($tab);
-			break;	
+			break;
+		case '57':
+				$tab = "Servicios_Agendamiento";
+				$encr = encript($tab, $clave);
+				if($tab=decript($encr,$clave))lis_($tab);
+				break;	
 		default:
         break;    
     }
@@ -2111,6 +2116,28 @@ WHERE 1";
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
+
+function lis_servicAgend($txt){
+	$sql="SELECT A.id_agen 'Cod Servicio',P.tipo_doc 'Tipo Documento',P.idpersona Documento,fecha_solici 'Fecha Solicitud',FN_CATALOGODESC(275, servicio) Servicio,U.nombre 'Solicito',f2.realizada 
+FROM hog_agen A
+LEFT JOIN person P ON A.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+LEFT JOIN (SELECT idpeople, realizada FROM frecuenciauso WHERE idfrecuencia IN (SELECT MIN(idfrecuencia) FROM frecuenciauso GROUP BY idpeople)) f2 ON A.idpeople = f2.idpeople
+WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+	$sql.=whe_date();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM hog_agen A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario LEFT JOIN (SELECT idpeople, realizada FROM frecuenciauso WHERE idfrecuencia IN (SELECT MIN(idfrecuencia) FROM frecuenciauso GROUP BY idpeople)) f2 ON A.idpeople = f2.idpeople WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
+	$tot.=whe_date();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

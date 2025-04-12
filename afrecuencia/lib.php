@@ -83,7 +83,10 @@ function get_frecuenciauso(){
 function get_persona(){
 	if ($_REQUEST['id']){
 		$id=divide($_REQUEST['id']);
-		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo
+		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo,
+		TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
+    TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
+    DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
 	 FROM person T1
 	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";

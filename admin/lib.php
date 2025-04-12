@@ -1,4 +1,4 @@
- <?php
+<?php
 ini_set('display_errors','1');
 require_once "../libs/gestion.php";
 if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
@@ -457,7 +457,7 @@ function lis_planos() {
 function lis_asigpre($txt){
 	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
 U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
-U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno  
+U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno, A.estado AS Estado_Registro  
 
 FROM `geo_asig` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
@@ -478,7 +478,7 @@ LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 
 function lis_gestpre($txt){
 	$sql="SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,
-A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva, A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion 
+A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva, A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro 
 FROM `geo_gest` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
 LEFT JOIN catadeta C ON G.barrio = C.idcatadeta
@@ -517,7 +517,7 @@ V.perros AS ANIMALES_PERROS,V.numero_perros AS N°_PERROS,V.perro_vacunas AS N°
 
 V.facamb1 AS FACTORES_AMBIEN_PRE1,V.facamb2 AS FACTORES_AMBIEN_PRE2,V.facamb3 AS FACTORES_AMBIEN_PRE3,V.facamb4 AS FACTORES_AMBIEN_PRE4,V.facamb5 AS FACTORES_AMBIEN_PRE5,V.facamb6 AS FACTORES_AMBIEN_PRE6,V.facamb7 AS FACTORES_AMBIEN_PRE7,V.facamb8 AS FACTORES_AMBIEN_PRE8,V.facamb9 AS FACTORES_AMBIEN_PRE9,V.observacion AS OBSERVACIONES,
 
-U.id_usuario AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, V.fecha_create AS Fecha_Creacion
+U.id_usuario AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, V.fecha_create AS Fecha_Creacion, V.estado AS Estado_Registro
 FROM `hog_carac` V
 LEFT JOIN hog_fam F ON V.idfam = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
@@ -542,7 +542,7 @@ FN_CATALOGODESC(22,C.accion1) AS Accion_1,FN_CATALOGODESC(75,C.desc_accion1) AS 
 FN_CATALOGODESC(22,C.accion2) AS Accion_2,FN_CATALOGODESC(75,C.desc_accion2) AS Descipcion_Accion2,
 FN_CATALOGODESC(22,C.accion3) AS Accion_3,FN_CATALOGODESC(75,C.desc_accion3) AS Descipcion_Accion3,
 FN_CATALOGODESC(22,C.accion4) AS Accion_4,FN_CATALOGODESC(75,C.desc_accion4) AS Descipcion_Accion4,
-C.observacion AS Obervaciones, C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion
+C.observacion AS Obervaciones, C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion, C.estado AS Estado_Registro
 
 FROM `hog_plancuid` C
 LEFT JOIN hog_fam F ON C.idviv = F.id_fam
@@ -565,7 +565,7 @@ function lis_plancomp($txt){
 	$sql="SELECT
 G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.idcon AS Cod_Registro,G.subred AS Subred,C.fecha AS Fecha, C.compromiso AS Compromiso_Concertado, FN_CATALOGODESC(26,C.equipo) AS Equipo, 
 S.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(234,S.tipo_seg) AS Tipo_Seguimiento, FN_CATALOGODESC(170,S.estado_seg) AS Estado_Seguimiento, S.obs_seg AS Observacion_Seguimiento,
-C.usu_creo AS Usuario_Creo,U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion
+C.usu_creo AS Usuario_Creo,U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion, C.estado AS Estado_Registro
 FROM `hog_planconc` C
 LEFT JOIN hog_segcom S ON C.idcon=S.id_con
 LEFT JOIN hog_plancuid P ON P.idviv = C.idviv
@@ -591,7 +591,7 @@ G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred 
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,
 S.fecha_toma AS Fecha_Toma, S.peso AS PESO, S.talla AS TALLA, S.imc AS IMC, S.tas AS Tension_Sistolica, S.tad AS Tension_Diastolica, S.frecard AS Frecuencia_Cardiaca, S.satoxi AS Saturacion_Oxigeno, S.peri_abdomi AS Perimetro_Abdominal, S.peri_braq AS Perimetro_Braquial, S.zscore AS ZSCORE, S.glucom AS Glucometria,
 
-S.usu_create AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, S.fecha_create AS Fecha_Creacion
+S.usu_create AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, S.fecha_create AS Fecha_Creacion, S.estado AS Estado_Registro
 FROM `hog_signos` S
 LEFT JOIN person P ON S.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -621,7 +621,7 @@ A.alert1 AS Alerta_N°_1, A.selmul1 AS  Descripcion_Alerta_N°_1, A.alert2 AS Al
 
 FN_CATALOGODESC(170,A.agen_intra) AS Agendamiento_Promotor, A.servicio AS Serivicio_Agendado, A.fecha_cita AS Fecha_de_la_Cita, A.hora_cita AS Hora_de_la_Cita, A.lugar_cita AS Lugar_de_la_Cita, FN_CATALOGODESC(170,A.deriva_pf) AS Derivacion_a_PCF,FN_CATALOGODESC(87,A.evento_pf) AS Evento_PCF,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `hog_alert` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -650,7 +650,7 @@ A.elevado AS elevado,A.electrica AS electrica,A.elementos AS elementos,A.barrera
 A.raciagua AS raciagua,A.sanitari AS sanitari,A.aguaresid AS aguaresid,A.terraza AS terraza,A.recipientes AS recipientes,A.vivaseada AS vivaseada,A.separesiduos AS separesiduos,A.reutresiduos AS reutresiduos,
 A.noresiduos AS noresiduos,A.adecresiduos AS adecresiduos,A.horaresiduos AS horaresiduos,A.plagas AS plagas,A.contplagas AS contplagas,A.pracsanitar AS pracsanitar,A.envaplaguicid AS envaplaguicid,A.consealiment AS consealiment,A.limpcocina AS limpcocina,A.cuidcuerpo AS cuidcuerpo,A.fechvencim AS fechvencim,A.limputensilios AS limputensilios,A.adqualime AS adqualime,A.almaquimicos AS almaquimicos,A.etiqprodu AS etiqprodu,A.juguetes AS juguetes,A.medicamalma AS medicamalma,A.medicvenc AS medicvenc,A.adqumedicam AS adqumedicam,A.medidaspp AS medidaspp,A.radiacion AS radiacion,A.contamaire AS contamaire,A.monoxido AS monoxido,A.residelectri AS residelectri,A.duermeelectri AS duermeelectri,A.vacunasmascot AS vacunasmascot,A.aseamascot AS aseamascot,A.alojmascot AS alojmascot,A.excrmascot AS excrmascot,A.permmascot AS permmascot,A.salumascot AS salumascot,A.pilas AS pilas,A.dispmedicamentos AS dispmedicamentos,A.dispcompu AS dispcompu,A.dispplamo AS dispplamo,A.dispbombill AS dispbombill,A.displlanta AS displlanta,
 A.dispplaguic AS dispplaguic,A.dispaceite AS dispaceite,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
  FROM `hog_amb` A
 LEFT JOIN hog_fam F ON A.idvivamb = F.id_fam
@@ -674,7 +674,7 @@ function lis_eventos($txt){
 	$sql="SELECT
 G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_eve AS Cod_Registro,G.subred AS Subred,
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, A.docum_base AS Documento_de_Base,FN_CATALOGODESC(87,A.evento) AS Evento_PCF,A.fecha_even AS Fecha_Generacion_Evento,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vspeve` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -714,7 +714,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,
 A.liker_dificul AS Liker_Dificultad,A.liker_emocion AS Liker_Emocion,A.liker_decision AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,A.users_bina AS Usuarios_Equipo,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_acompsic` A
  
@@ -752,7 +752,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultad,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emocion,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decision,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_apopsicduel` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -788,7 +788,7 @@ FN_CATALOGODESC(22,A.acciones_2) AS Accion_3,FN_CATALOGODESC(75,A.acciones_3) AS
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vsp_bpnpret` A
 
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -825,7 +825,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vsp_bpnterm` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -860,7 +860,7 @@ A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.supera_problema) AS Supera_Problemas_Practicos,
 FN_CATALOGODESC(170,A.supera_emocional) AS Supera_Estado_Emocional,FN_CATALOGODESC(170,A.supera_dolor) AS Supera_Valoracion_Dolor,FN_CATALOGODESC(170,A.supera_funcional) AS Supera_Valoracion_Funcional,FN_CATALOGODESC(170,A.supera_educacion) AS Supera_Necesidades_Educacion,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_cancinfa` A
 
@@ -903,7 +903,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento,FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion,FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento,FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion,
 FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_condsuic` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -940,7 +940,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_cronicos` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -978,7 +978,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_dntsevymod` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1016,7 +1016,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
  
 FROM `vsp_eraira` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1056,7 +1056,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vsp_gestantes` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1092,7 +1092,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vsp_hbgest` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1117,7 +1117,7 @@ A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimie
 A.fecha_control_mac AS Fecha_Control_MAC, FN_CATALOGODESC(170,A.ctrl_postpar_espe) AS Control_Post_Parto_Especialista, A.fecha_postpar_espe AS Fecha_Control_Post_Parto_Espec, FN_CATALOGODESC(88,A.asis_ctrl_postpar_espe) AS Asistio_Control_Post_Parto, A.porque_no_postpar AS Porque_No_Asist, FN_CATALOGODESC(170,A.consul_apoy_lacmater) AS Consulta_Apoyo_Lactancia, FN_CATALOGODESC(170,A.signos_alarma) AS Signos_Alarma_Seguimiento, A.desc_sigala AS Descripcion_Signos_Alarma, FN_CATALOGODESC(170,A.disc_ges) AS Getante_Discapacidad_O_Secuela, A.cual_disc_ges AS Cual, A.fecha_apoy_lacmater AS Fecha_Consulta_Apoyo_Lactancia, A.peso_rcnv AS Peso_RN, FN_CATALOGODESC(88,A.ctrl_recinac) AS Asiste_Control_RN, A.fecha_ctrl_nac AS Fecha_Control_RN, FN_CATALOGODESC(88,A.asis_ctrl_recinac) AS Asistio_Control_RN, A.porque_norec AS Porque, A.ult_peso AS Ultimo_Peso_Regis, FN_CATALOGODESC(170,A.consul_lacmate) AS Consulta_Apoyo_Lactancia_Mater, A.porque_nolact AS Porque_No, A.fecha_consul_lacmate AS Fecha_Consulta_LM, FN_CATALOGODESC(88,A.asiste_ctrl_cyd) AS Asiste_CYD, FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo_Edad, FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva, FN_CATALOGODESC(170,A.signos_alarma_lac) AS Madre_Identifica_Signos_Alarma, FN_CATALOGODESC(170,A.cam_sign) AS Considera_Cambios_Significativos, FN_CATALOGODESC(170,A.qui_vida) AS Quitarse_la_Vida, FN_CATALOGODESC(170,A.viv_malt) AS Violencia_o_Maltrato, FN_CATALOGODESC(170,A.adec_red) AS Red_Apoyo, A.fecha_egreopost AS Fecha_Post_Egreso_Hospitalario, 
 
 FN_CATALOGODESC(90,A.estrategia_1) AS Estrategia_Plan_1, FN_CATALOGODESC(90,A.estrategia_2) AS Estrategia_Plan_2, FN_CATALOGODESC(22,A.acciones_1) AS Accion_1, FN_CATALOGODESC(75,A.desc_accion1) AS Descripcion_Accion_1, FN_CATALOGODESC(22,A.acciones_2) AS Accion_2, FN_CATALOGODESC(75,A.desc_accion2) AS Descripcion_Accion_2, FN_CATALOGODESC(22,A.acciones_3) AS Accion_3, FN_CATALOGODESC(75,A.desc_accion3) AS Descripcion_Accion_3, FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta, FN_CATALOGODESC(79,A.ruta) AS Ruta, FN_CATALOGODESC(77,A.novedades) AS Novedades, A.otras_condiciones AS Otras_Condiciones, A.observaciones AS Observaciones, FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso, FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.conti_segespecial) AS Continua_Seg_Especialista, A.cual_segespecial AS Cual_Seguimiento, A.recomen_cierre AS Recomendación_Cierre, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vsp_mme` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1153,7 +1153,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_mnehosp` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1187,7 +1187,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_otroprio` A
 
@@ -1227,7 +1227,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,A.mejora_practica AS Mejora_Practicas,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_saludoral` A
 
@@ -1264,7 +1264,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_sificong` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1306,7 +1306,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_sifigest` A
 
@@ -1344,7 +1344,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta) AS Ruta,FN_CATALOGODESC(77,A.novedades) AS Novedades,FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid,A.caso_afirmativo AS Relacione_Cuales,A.otras_condiciones AS Otras_Condiciones,A.observaciones AS Observaciones,
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_vihgest` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1382,7 +1382,7 @@ FN_CATALOGODESC(22,A.acciones_3) AS Accion_3,FN_CATALOGODESC(75,A.desc_accion3) 
 FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta, FN_CATALOGODESC(79,A.ruta) AS Ruta, FN_CATALOGODESC(77,A.novedades) AS Novedades, FN_CATALOGODESC(170,A.signos_covid) AS Signos_Sintomas_Covid, A.caso_afirmativo AS Relacione_Cuales, A.otras_condiciones AS Otras_Condiciones, A.observaciones AS Observaciones,
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,
 FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre, A.fecha_cierre AS Fecha_Cierre, FN_CATALOGODESC(170,A.aplica_tamiz) AS Aplica_Tamizaje_Cope, FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades, FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones, FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones, FN_CATALOGODESC(140,A.cope_afronta) AS Cope_Afrontamiento, FN_CATALOGODESC(141,A.cope_evitacion) AS Cope_Evitacion, FN_CATALOGODESC(142,A.incremen_afron) AS Estrategia_Afrontamiento, FN_CATALOGODESC(143,A.incremen_evita) AS Estrategia_Evitacion, FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_violges` A
 
@@ -1421,7 +1421,7 @@ FN_CATALOGODESC(170,A.activa_ruta) AS Activacion_Ruta,FN_CATALOGODESC(79,A.ruta)
 
 FN_CATALOGODESC(170,A.cierre_caso) AS Cierre_de_Caso,FN_CATALOGODESC(198,A.motivo_cierre) AS Motivo_cierre,A.fecha_cierre AS Fecha_Cierre,FN_CATALOGODESC(78,A.liker_dificul) AS Liker_Dificultades,FN_CATALOGODESC(78,A.liker_emocion) AS Liker_Emociones,FN_CATALOGODESC(78,A.liker_decision) AS Liker_Decisiones,FN_CATALOGODESC(170,A.redu_riesgo_cierre) AS Reduccion_de_Riesgo,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `vsp_violreite` A
 
@@ -1444,7 +1444,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 function lis_usercreate($txt){
 	$sql="SELECT 
 G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion, FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
-P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion
+P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion,FN_CATALOGODESC(170,P.encuentra) Se_Encuentra
 FROM `person` P
 LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam
 LEFT JOIN hog_geo G ON F.idpre=G.idgeo
@@ -1469,7 +1469,7 @@ A.fecha_toma AS Fecha_Toma,
 FN_CATALOGODESC(37,A.ayuda_fam) AS Apgar_7_A_17_Años_Preg_1, FN_CATALOGODESC(37,A.fam_comprobl) AS Apgar_7_A_17_Años_Preg_2, FN_CATALOGODESC(37,A.fam_percosnue) AS Apgar_7_A_17_Años_Preg_3, FN_CATALOGODESC(37,A.fam_feltrienf) AS Apgar_7_A_17_Años_Preg_4, FN_CATALOGODESC(37,A.fam_comptiemjun) AS Apgar_7_A_17_Años_Preg_5,
 FN_CATALOGODESC(137,A.sati_famayu) AS Apgar_Mayor_de_18_Años_Preg_1, FN_CATALOGODESC(137,A.sati_famcompro) AS Apgar_Mayor_de_18_Años_Preg_2, FN_CATALOGODESC(137,A.sati_famapoemp) AS Apgar_Mayor_de_18_Años_Preg_3, FN_CATALOGODESC(137,A.sati_famemosion) AS Apgar_Mayor_de_18_Años_Preg_4, FN_CATALOGODESC(137,A.sati_famcompar) AS Apgar_Mayor_de_18_Años_Preg_5, 
 A.puntaje, A.descripcion,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_apgar` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1499,7 +1499,7 @@ A.fecha_toma AS Fecha_Toma,
 IF(A.tose_muvedias = 0, 'NO', 'SI') AS Tose_Muchas_Veces,IF(A.tiene_flema = 0, 'NO', 'SI') AS Tiene_Flemas_Mayoria_Dias,IF(A.aire_facil = 0, 'NO', 'SI') AS Se_Queda_Sin_Aire_Facilmente,IF(A.mayor = 0, 'NO', 'SI') AS Mayor_40_Años,IF(A.fuma = 0, 'NO', 'SI') AS Fuma_o_Exfumador,
 A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_epoc` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1529,7 +1529,7 @@ FN_CATALOGODESC(43,A.actifisica) AS Actividad_Fisica,FN_CATALOGODESC(46,A.verdur
 FN_CATALOGODESC(57,A.glicemia) AS Valores_Altos_Glucosa,FN_CATALOGODESC(41,A.diabfam) AS Diabetes_Familiares,
 A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_findrisc` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1555,7 +1555,7 @@ A.fecha_toma AS Fecha_Toma,
 
 FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes, FN_CATALOGODESC(170,A.fuma) AS Fuma, A.tas AS Tension_Arterial_Sistolica, REPLACE(REPLACE(A.puntaje, 'LT', '<'), 'GT', '>') AS Puntaje, A.descripcion AS Clasificacion_Puntaje,
 
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_oms` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1605,7 +1605,7 @@ P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docu
 A.id_aten AS Cod_Registro, A.id_factura AS Cod_Admision, A.fecha_atencion AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, FN_CATALOGODESC(126,A.codigo_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.finalidad_consulta) AS Finalidad_Consulta, FN_DESC(3,A.diagnostico1) AS DX1,FN_DESC(3,A.diagnostico2) AS DX2, FN_DESC(3,A.diagnostico3) AS DX3, A.fertil AS '¿Mujer_Edad_Fertil?', A.preconcepcional AS '¿Consulta_Preconsecional?', A.metodo AS '¿Metodo_Planificacion?', FN_CATALOGODESC(129,A.anticonceptivo) AS '¿Cua_Metodo?', A.planificacion AS Planificacion,A.mestruacion AS Fur,
 A.vih AS Prueba_VIH, FN_CATALOGODESC(187,A.resul_vih) AS Resultado_VIH, A.hb AS Prueba_HB, FN_CATALOGODESC(188,A.resul_hb) AS Resultado_HB, A.trepo_sifil AS Trepomina_Sifilis, FN_CATALOGODESC(188,A.resul_sifil) AS Resultado_Trepo_Sifilis, A.pru_embarazo AS Prueba_Embarazo, FN_CATALOGODESC(88,A.resul_emba) AS Resultado_Embarazo, A.pru_apetito AS Prueba_Apetito, A.resul_apetito AS Resultado_Apetito,
 A.orden_psicologia AS Orden_Psicologia, A.relevo AS Aplica_Relevo, FN_CATALOGODESC(203,A.estrategia) AS Estrategia, FN_CATALOGODESC(236,A.motivo_estrategia) AS Motivo_Estrategia,
-A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 
 FROM `eac_atencion` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
@@ -1629,7 +1629,7 @@ function lis_pcindi($txt){
 G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.id_aten AS Cod_Registro, A.fecha_atencion AS Fecha_Consulta, A.evento_interes AS Notificacion_Evento_Interes_SP, FN_CATALOGODESC(134,A.evento) AS Cual_Evento_SP, A.cuale_vento AS Otro_Evento_SP, A.sirc AS SIRC_usuarios_otras_EAPB, A.ruta_sirc AS Ruta_Sirc, A.remision AS Usuario_requiere_control, A.cual_remision AS Cuales, A.orden_vacunacion AS Orden_Vacunacion, FN_CATALOGODESC(185,A.vacunacion) AS Vacunacion, A.orden_laboratorio AS Orden_Laboratorio, FN_CATALOGODESC(133,A.laboratorios) AS Laboratorios, A.orden_medicamentos AS Orden_Medicamentos, FN_CATALOGODESC(186,A.medicamentos) AS Medicamentos, A.ruta_continuidad AS Activacion_Ruta, A.continuidad AS Cual_Ruta, A.orden_imagenes AS Ordena_Imágenes_Diagnósticas, A.orden_psicologia AS Orden_Psicologia, A.relevo AS Aplica_RBC, A.estrategia AS Estrategia, A.motivo_estrategia AS Motivo_Estrategia,
-A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `eac_atencion` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
@@ -1699,7 +1699,7 @@ P2.tipo_doc AS Tipo_Documento_Percuida2, P2.idpersona AS N°_Documento_Percuida2
 P3.tipo_doc AS Tipo_Documento_Percuida3, P3.idpersona AS N°_Documento_Percuida3, CONCAT(P3.nombre1,' ',P3.nombre2,' ',P3.apellido1,' ',P3.apellido2) AS Nombres_Percuida3, P3.fecha_nacimiento AS Fecha_Nacimiento_Percuida3, FN_CATALOGODESC(21,P3.sexo) AS Sexo_Percuida3, FN_CATALOGODESC(17,P3.regimen) AS Regimen_Percuida3, FN_CATALOGODESC(18,P3.eapb) AS Eapb_Percuida3, FN_CATALOGODESC(28,R.antecedentes_3) AS Antec_Patolo_Percuida3, R.otro_3 AS Otro_Antec_Patolo_Percuida3, R.cert_disca3 AS Certificado_Disca_Percuida3
 
 
-,R.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo
+,R.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, R.estado AS Estado_Registro
  
 FROM `rel_relevo` R
 LEFT JOIN person P ON R.id_people = P.idpeople
@@ -1789,7 +1789,7 @@ function lis_rbc_ses($txt){
 	G.subred AS Subred, G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, R.id_people AS Cod_Persona, R.idsesion AS Cod_Registro,  
 R.rel_validacion1 AS N°_Sesion, R.rel_validacion2 AS Fecha_Sesion, R.rel_validacion3 AS Perfil, FN_CATALOGODESC(301,R.rel_validacion4) AS Actividad_Respiro, R.rel_validacion5 AS Descripcion_Intervencion,
 FN_CATALOGODESC(103,R.autocuidado) AS Autocuidado, FN_CATALOGODESC(194,R.activesparc) AS Actividades_Esparcimiento, FN_CATALOGODESC(157,R.infeducom) AS Inf_Educa_Comuni_salud,
-R.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo
+R.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, R.estado AS Estado_Registro
 FROM
 `rel_sesion` R
 LEFT JOIN person P ON R.id_people = P.idpeople
@@ -1849,7 +1849,7 @@ A.fecha_ses1 AS Fecha_Sesion, A.tipo_caso AS Tipo_de_Caso, A.cod_admin AS Cod_Ad
 H.analisis AS Hamilton_Inicial, Z.analisis AS Zung_Inicial, W.analisis AS Whodas_Inicial, A.eva_chips AS Resultado_Eva_Chips, 
 A.psi_validacion1 AS Pensamiento_Termina_Vida, A.psi_validacion2 AS Accion_Termina_Vida, A.psi_validacion3 AS Plan_termina_Vida_Sem, A.psi_validacion4 AS Descripcion_Evaluacion, A.psi_validacion5 AS Persona_Le_Entiende, A.psi_validacion6 AS Persona_Acompaña_Razonable, A.psi_validacion7 AS Respuestas_Raras_Inusuales,
 A.psi_validacion8 AS No_Contacto_Realidad, A.psi_validacion9 AS Posibles_Transtornos, A.psi_validacion10 AS Plan_Termina_Vida, A.psi_validacion11 AS Posible_Transtorno_Mental, FN_DESC(3,A.psi_diag12) as Impresion_DX, A.psi_validacion13 AS Plan_Menejo_Terapeutico, A.psi_validacion14 AS No_Plan_Manejo_Terapeutico, A.otro AS Otro, A.psi_validacion15 AS Descripcion_Plan_Manejo, A.numsesi AS N°_Sesiones,
-A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create, A.estado AS Estado_Registro
 
 FROM `psi_psicologia` A
 LEFT JOIN person P ON A.id_people = P.idpeople
@@ -1878,7 +1878,7 @@ function lis_psicoses2($txt){
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
 
 A.psi_fecha_sesion AS Fecha_Sesion, A.cod_admin2 AS Cod_Admision, A.psi_validacion1 AS Problema_Que_Aflije, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Causa_Problema, FN_CATALOGODESC(124,A.psi_validacion6) AS Cuan_Dificil_Resultado, FN_CATALOGODESC(124,A.psi_validacion7) AS Como_Se_Sintio_Semana, A.psi_validacion8 AS Actividad_Desarrollar_1, A.psi_validacion9 AS Actividad_Desarrollar_2, A.psi_validacion10 AS Actividad_Desarrollar_3, (FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.psi_validacion7)) AS Resultado_Evaluacion, FN_CATALOGODESC(160,A.contin_caso) AS Continuidad_Caso,
-A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create, A.estado AS Estado_Registro
 FROM `psi_sesion2` A
 LEFT JOIN person P ON A.id_people = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -1903,7 +1903,7 @@ function lis_psicosesiones($txt){
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
 
 A.psi_fecha_sesion AS Fecha_Sesion, FN_CATALOGODESC(125,A.psi_sesion) AS N°_Sesion, A.cod_admin4 AS Cod_Admision, A.psi_validacion1 AS Problema_Preocupa_Principio, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije_Principio, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Le_Ha_Costado_Hacer_Principio,FN_CATALOGODESC(124,A.difhacer) AS Cuan_Dificil_Resultado,FN_CATALOGODESC(124,A.psi_validacion6) AS Como_Se_Sintio_Semana, A.psi_validacion7 AS Plan_Para_Terminar_Con_Su_Vida, A.psi_validacion8 AS Describa_Pensamientos_Planes, A.psi_validacion9 AS Acciones_Terminar_Su_Vida,FN_CATALOGODESC(130,A.psi_validacion10) AS Plan_Terminar_Con_Su_Vida_Prox_Semana, A.psi_validacion11 AS Describa_Su_Plan, A.psi_validacion12 AS Otro_Problema_Importante, FN_CATALOGODESC(124,A.psi_validacion13) AS Afectado_Otros_Problemas,A.psi_validacion14 AS Actividad_Desarrollar_1,A.psi_validacion15 AS Actividad_Desarrollar_2,A.psi_validacion16 AS Actividad_Desarrollar_3,(FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.difhacer)+FN_CATALOGODESC(124,A.psi_validacion13)) AS Resultado_Evaluacion,FN_CATALOGODESC(160,A.psi_validacion17) AS Continuidad_Caso,
-A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create, A.estado AS Estado_Registro
 FROM `psi_sesiones` A
 LEFT JOIN person P ON A.id_people = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -2019,7 +2019,7 @@ FN_CATALOGODESC(118,A.valor20) AS 'Piensa que debería hacer más por su familia
 FN_CATALOGODESC(118,A.valor21) AS 'Piensa que podría cuidar mejor a su familiar / persona cuidada', 
 FN_CATALOGODESC(118,A.valor22) AS 'En general, se siente cargado por el hecho de cuidar a su familiar / persona cuidada (grado de carga)', 
 A.puntaje AS Puntaje, A.analisis AS Descripcion_Puntaje,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_zarit` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -2065,7 +2065,7 @@ FN_CATALOGODESC(119, A.anuncio19) AS '19. Creo Que Sería Mejor Para Los Demás 
 FN_CATALOGODESC(119, A.anuncio20) AS '20. Me Gustan Las Mismas Cosas Que Solían Agradarme.',
  
 A.puntaje AS Puntaje, A.analisis AS Descripcion_Puntaje,
-A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
+A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `hog_tam_zung` A
 LEFT JOIN person P ON A.idpeople=P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
@@ -2092,7 +2092,7 @@ P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apell
 
 A.psi_fecha_sesion,A.cod_admisfin,A.zung_ini,A.hamilton_ini,A.whodas_ini,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.psi_validacion6,A.psi_validacion7,
 A.psi_validacion8,A.psi_validacion9,A.psi_validacion10,A.psi_validacion11,A.psi_validacion12,A.psi_validacion13,A.psi_validacion14,A.psi_validacion15,A.psi_validacion17,A.psi_validacion18,A.psi_validacion19,
-A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create
+A.usu_creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, A.fecha_create, A.estado AS Estado_Registro
 
 FROM `psi_sesion_fin` A
 LEFT JOIN person P ON A.id_people = P.idpeople

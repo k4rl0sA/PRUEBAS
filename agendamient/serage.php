@@ -61,15 +61,6 @@ function lis_servicios(){
 	return create_table($total,$datos["responseResult"],"servicios",$regxPag,'servagen.php');
 }
 
-select id_agen 'Cod Servicio',P.tipo_doc 'Tipo Documento',P.idpersona Documento,fecha_solici 'Fecha Solicitud',FN_CATALOGODESC(275,servicio)Servicio 
-from hog_agen A
-LEFT JOIN person P ON A.idpeople = P.idpeople
-LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
-LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
-WHERE  (G.subred) in (4)
-
-
 function cmp_servagen(){
 	$rta="<div class='encabezado medid'>TABLA DE SERVICIOS POR USUARIO</div>
 	<div class='contenido' id='eventos-lis'>".lis_servicios()."</div></div>";
@@ -101,8 +92,6 @@ function cmp_servagen(){
   for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	return $rta;
 }
-
-
 
 function opc_tipodoc($id=''){
   return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=1 and estado='A' ORDER BY 1",$id);
@@ -140,9 +129,8 @@ function opc_tipo_consservicio($id = '') {
       }
   }
   //aplica para ambos sexos
-  if ($edad >= 0 && $edad <18) {
-    $categorias[] = 24;
-  } 
+  if ($edad >= 0 && $edad <18) $categorias[] = 24;
+  
   if ($sexo === 'M') { // Mujer
       if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
       if ($edad >= 50 && $edad <= 69) $categorias[] = 12;

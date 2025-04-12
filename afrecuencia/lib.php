@@ -64,7 +64,6 @@ function men_frecuenciauso(){
  return $rta;
 }
 
-
 function get_frecuenciauso(){
 	if ($_POST['id']){
 		// var_dump($_POST);

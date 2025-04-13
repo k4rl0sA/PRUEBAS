@@ -546,37 +546,37 @@
     .pulse {
       animation: pulse 2s infinite;
     }
-  </style>
-</head>
-<body>
-  <div class="theme-toggle">
+    </style>
+  </head>
+  <body>
+    <div class="theme-toggle"></div>
     <input type="checkbox" id="theme-switch" class="theme-switch">
     <label for="theme-switch" class="theme-switch-label">
       <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
       <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </label>
-  </div>
+    </div>
 
-  <div class="app-container">
+    <div class="app-container">
     <header class="app-header">
-      <h1>Family Risk Assessment</h1>
-      <p class="subtitle">Evaluate and visualize family risk factors</p>
+      <h1>Evaluación de Riesgo Familiar</h1>
+      <p class="subtitle">Evalúa y visualiza los factores de riesgo familiar</p>
     </header>
 
     <main class="content">
       <section class="risk-summary-section">
-        <div class="card risk-summary">
-          <div class="card-header">
-            <h2>Family Risk Index</h2>
-            <button id="generateBtn" class="btn btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
-              Generate Data
-            </button>
-          </div>
-          
-          <div class="risk-gauge-container">
-            <div class="risk-gauge">
-              <svg class="risk-gauge-svg" width="300" height="170" viewBox="0 0 300 170">
+      <div class="card risk-summary">
+        <div class="card-header">
+        <h2>Índice de Riesgo Familiar</h2>
+        <button id="generateBtn" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+          Generar Datos
+        </button>
+        </div>
+        
+        <div class="risk-gauge-container">
+        <div class="risk-gauge">
+          <svg class="risk-gauge-svg" width="300" height="170" viewBox="0 0 300 170"></svg>
                 <!-- Background track (light gray) -->
                 <path class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 270 150" stroke="#e5e7eb" />
                 <!-- Low risk segment (green, 0-40%) -->
@@ -604,113 +604,113 @@
             <div class="risk-level low" id="riskLevel">Low Risk</div>
           </div>
           
-          <div class="risk-classification">
+            <div class="risk-classification">
             <div class="risk-class low">
               <div class="risk-indicator"></div>
               <div class="risk-class-details">
-                <h4>Low Risk (0-40%)</h4>
-                <p>The family has favorable conditions and does not require priority intervention.</p>
+              <h4>Riesgo Bajo (0-40%)</h4>
+              <p>La familia tiene condiciones favorables y no requiere intervención prioritaria.</p>
               </div>
             </div>
             <div class="risk-class medium">
               <div class="risk-indicator"></div>
               <div class="risk-class-details">
-                <h4>Medium Risk (41-70%)</h4>
-                <p>The family has vulnerabilities that require monitoring and support.</p>
+              <h4>Riesgo Medio (41-70%)</h4>
+              <p>La familia tiene vulnerabilidades que requieren monitoreo y apoyo.</p>
               </div>
             </div>
             <div class="risk-class high">
               <div class="risk-indicator"></div>
               <div class="risk-class-details">
-                <h4>High Risk (71-100%)</h4>
-                <p>The family faces multiple risk factors and needs urgent intervention.</p>
+              <h4>Riesgo Alto (71-100%)</h4>
+              <p>La familia enfrenta múltiples factores de riesgo y necesita intervención urgente.</p>
               </div>
             </div>
+            </div>
           </div>
-        </div>
-      </section>
+          </section>
 
-      <section class="risk-factors-section">
-        <div class="card">
-          <div class="card-header">
-            <h2>Risk Factors</h2>
+          <section class="risk-factors-section">
+          <div class="card">
+            <div class="card-header">
+            <h2>Factores de Riesgo</h2>
             <div class="total-risk">
               <span>Total:</span>
               <span id="totalRiskText">27.1%</span>
             </div>
-          </div>
-          
-          <div class="risk-factors" id="riskFactors">
+            </div>
+            
+            <div class="risk-factors" id="riskFactors">
             <!-- Risk factors will be inserted here by JavaScript -->
+            </div>
           </div>
-        </div>
-      </section>
+          </section>
 
-      <section class="risk-chart-section">
-        <div class="card">
-          <div class="card-header">
-            <h2>Risk Visualization</h2>
-          </div>
-          
-          <div class="chart-container">
+          <section class="risk-chart-section">
+          <div class="card">
+            <div class="card-header">
+            <h2>Visualización de Riesgo</h2>
+            </div>
+            
+            <div class="chart-container">
             <canvas id="riskChart" width="400" height="400"></canvas>
+            </div>
           </div>
+          </section>
+        </main>
+
+        <footer class="app-footer">
+          <p>Herramienta de Evaluación de Riesgo Familiar &copy; 2025</p>
+        </footer>
         </div>
-      </section>
-    </main>
 
-    <footer class="app-footer">
-      <p>Family Risk Assessment Tool &copy; 2025</p>
-    </footer>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // Initial data
-    const factors = {
-      socioeconomic: { 
-        name: "Socioeconomic Status", 
-        value: 30, 
-        weight: 0.20,
-        description: "Directly impacts access to essential goods and services."
-      },
-      familyStructure: { 
-        name: "Family Structure", 
-        value: 25, 
-        weight: 0.15,
-        description: "Influences social support, functionality, and household stability."
-      },
-      healthConditions: { 
-        name: "Health Conditions", 
-        value: 35, 
-        weight: 0.20,
-        description: "Determines quality of life and access to medical treatment."
-      },
-      socialVulnerability: { 
-        name: "Social Vulnerability", 
-        value: 20, 
-        weight: 0.15,
-        description: "Considers factors such as violence, displacement, and social exclusion."
-      },
-      accessToHealth: { 
-        name: "Access to Health Services", 
-        value: 15, 
-        weight: 0.10,
-        description: "Key to disease prevention and care."
-      },
-      livingEnvironment: { 
-        name: "Living Environment", 
-        value: 40, 
-        weight: 0.10,
-        description: "Evaluates housing conditions and their impact on health."
-      },
-      demographics: { 
-        name: "Demographic Characteristics", 
-        value: 25, 
-        weight: 0.10,
-        description: "Includes age, gender, and other variables that influence risk exposure."
-      }
-    };
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+        // Initial data
+        const factors = {
+          socioeconomic: { 
+          name: "Nivel Socioeconómico", 
+          value: 30, 
+          weight: 0.20,
+          description: "Impacta directamente el acceso a bienes y servicios esenciales."
+          },
+          familyStructure: { 
+          name: "Estructura Familiar", 
+          value: 25, 
+          weight: 0.15,
+          description: "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
+          },
+          healthConditions: { 
+          name: "Condiciones de Salud", 
+          value: 35, 
+          weight: 0.20,
+          description: "Determina la calidad de vida y el acceso al tratamiento médico."
+          },
+          socialVulnerability: { 
+          name: "Vulnerabilidad Social", 
+          value: 20, 
+          weight: 0.15,
+          description: "Considera factores como la violencia, el desplazamiento y la exclusión social."
+          },
+          accessToHealth: { 
+          name: "Acceso a Servicios de Salud", 
+          value: 15, 
+          weight: 0.10,
+          description: "Clave para la prevención y el cuidado de enfermedades."
+          },
+          livingEnvironment: { 
+          name: "Entorno de Vida", 
+          value: 40, 
+          weight: 0.10,
+          description: "Evalúa las condiciones de vivienda y su impacto en la salud."
+          },
+          demographics: { 
+          name: "Características Demográficas", 
+          value: 25, 
+          weight: 0.10,
+          description: "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
+          }
+        };
 
     // DOM elements
     const generateBtn = document.getElementById('generateBtn');

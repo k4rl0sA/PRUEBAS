@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-// Datos simulados
+// Datos personales simulados
 $personal = [
     [
         "document" => "123456789",
@@ -14,6 +14,7 @@ $personal = [
     ]
 ];
 
+// Factores de riesgo con valores aleatorios
 $riesgos = [
     "socioeconomic" => [
         "name" => "Nivel Socioeconómico",
@@ -59,6 +60,25 @@ $riesgos = [
     ]
 ];
 
+// Seleccionar un registro personal aleatorio
 $randomIndex = array_rand($personal);
-echo json_encode($personal[$randomIndex]);
+$selectedPerson = $personal[$randomIndex];
+
+// Combinar datos personales y factores de riesgo en un solo objeto
+$response = [
+    // Datos personales
+    "document" => $selectedPerson["document"],
+    "sex" => $selectedPerson["sex"],
+    "gender" => $selectedPerson["gender"],
+    "nationality" => $selectedPerson["nationality"],
+    "birthDate" => $selectedPerson["birthDate"],
+    "lifestage" => $selectedPerson["lifestage"],
+    "age" => $selectedPerson["age"],
+    
+    // Factores de riesgo
+    "riskFactors" => $riesgos
+];
+
+// Devolver la respuesta JSON
+echo json_encode($response);
 ?>

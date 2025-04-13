@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evaluación de Riesgos Familiares</title>
+  <title> Evaluación de Riesgos Familiares</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,22 +15,22 @@
       --color-primary-light: #818cf8;
       --color-primary-dark: #4f46e5;
       --color-secondary: #f59e0b;
-      
+
       --color-low-risk: #10b981;
       --color-medium-risk: #f59e0b;
       --color-high-risk: #ef4444;
-      
+
       --color-background: #f9fafb;
       --color-surface: #ffffff;
       --color-text: #1f2937;
       --color-text-secondary: #6b7280;
       --color-border: #e5e7eb;
-      
+
       /* Shadows */
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      
+
       /* Spacing */
       --spacing-xs: 0.25rem;
       --spacing-sm: 0.5rem;
@@ -37,18 +38,18 @@
       --spacing-lg: 1.5rem;
       --spacing-xl: 2rem;
       --spacing-2xl: 3rem;
-      
+
       /* Border radius */
       --radius-sm: 0.25rem;
       --radius-md: 0.5rem;
       --radius-lg: 1rem;
       --radius-full: 9999px;
-      
+
       /* Transitions */
       --transition-fast: 150ms ease;
       --transition-normal: 250ms ease;
       --transition-slow: 350ms ease;
-      
+
       /* Font sizes */
       --font-size-xs: 0.75rem;
       --font-size-sm: 0.875rem;
@@ -63,17 +64,17 @@
       --color-primary: #818cf8;
       --color-primary-light: #a5b4fc;
       --color-primary-dark: #6366f1;
-      
+
       --color-low-risk: #34d399;
       --color-medium-risk: #fbbf24;
       --color-high-risk: #f87171;
-      
+
       --color-background: #111827;
       --color-surface: #1f2937;
       --color-text: #f9fafb;
       --color-text-secondary: #d1d5db;
       --color-border: #374151;
-      
+
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
@@ -130,7 +131,8 @@
       color: white;
     }
 
-    .sun-icon, .moon-icon {
+    .sun-icon,
+    .moon-icon {
       position: absolute;
       transition: opacity var(--transition-normal), transform var(--transition-normal);
     }
@@ -145,12 +147,12 @@
       transform: scale(1);
     }
 
-    .theme-switch:checked ~ .theme-switch-label .sun-icon {
+    .theme-switch:checked~.theme-switch-label .sun-icon {
       opacity: 1;
       transform: scale(1);
     }
 
-    .theme-switch:checked ~ .theme-switch-label .moon-icon {
+    .theme-switch:checked~.theme-switch-label .moon-icon {
       opacity: 0;
       transform: scale(0.7);
     }
@@ -189,11 +191,24 @@
       gap: var(--spacing-xl);
     }
 
+    .risk-meter-needle {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      height: 110px;
+      background-color: var(--color-text);
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(-90deg);
+      transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10;
+    }
+
     @media (min-width: 768px) {
       .content {
         grid-template-columns: 1fr 1fr;
       }
-      
+
       .risk-summary-section {
         grid-column: span 2;
       }
@@ -203,7 +218,7 @@
       .content {
         grid-template-columns: 1fr 1fr 1fr;
       }
-      
+
       .risk-summary-section {
         grid-column: span 3;
       }
@@ -234,14 +249,6 @@
     .card-header h2 {
       font-size: var(--font-size-xl);
       font-weight: 600;
-    }
-
-    .card-body {
-      padding: var(--spacing-lg);
-    }
-
-    .card-body p {
-      margin-bottom: var(--spacing-sm);
     }
 
     /* Button styles */
@@ -305,29 +312,9 @@
       fill: var(--color-text);
     }
 
-    .risk-meter-needle {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      height: 110px;
-      background-color: var(--color-text);
-      transform-origin: bottom center;
-      transform: translateX(-50%) rotate(-90deg);
+    .risk-gauge-needle {
       transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 10;
-    }
-
-    .risk-meter-center {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background-color: var(--color-text);
-      border-radius: 50%;
-      z-index: 20;
+      transform-origin: 50% 100%;
     }
 
     .risk-gauge-labels {
@@ -550,9 +537,11 @@
       0% {
         transform: scale(1);
       }
+
       50% {
         transform: scale(1.05);
       }
+
       100% {
         transform: scale(1);
       }
@@ -563,12 +552,27 @@
     }
   </style>
 </head>
+
 <body>
   <div class="theme-toggle">
     <input type="checkbox" id="theme-switch" class="theme-switch">
     <label for="theme-switch" class="theme-switch-label">
-      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
     </label>
   </div>
 
@@ -601,32 +605,39 @@
           <div class="card-header">
             <h2>Índice de Riesgo Familiar</h2>
             <button id="generateBtn" class="btn btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                <path d="M3 21v-5h5"></path>
+              </svg>
               Generar Datos
             </button>
           </div>
-          
+
           <div class="risk-gauge-container">
             <div class="risk-gauge">
               <svg class="risk-gauge-svg" width="300" height="170" viewBox="0 0 300 170">
                 <!-- Background track (light gray) -->
                 <path class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 270 150" stroke="#e5e7eb" />
-                
                 <!-- Low risk segment (green, 0-40%) -->
-                <path id="lowRiskArc" class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 126 66" stroke="#10b981" />
-                
+                <path id="lowRiskArc" class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 100 41" stroke="#10b981" />
+                <!-- d="M 30 150 A 120 120 0 0 1 100 41" -->
                 <!-- Medium risk segment (yellow, 41-70%) -->
-                <path id="mediumRiskArc" class="risk-gauge-arc" d="M 126 66 A 120 120 0 0 1 222 66" stroke="#f59e0b" />
-                
+                <path id="mediumRiskArc" class="risk-gauge-arc" d="M 116 35 A 120 120 0 0 1 236 66" stroke="#f59e0b" />
+                <!-- d="M 116 35 A 120 120 0 0 1 236 66" -->
                 <!-- High risk segment (red, 71-100%) -->
-                <path id="highRiskArc" class="risk-gauge-arc" d="M 222 66 A 120 120 0 0 1 270 150" stroke="#ef4444" />
-                
+                <path id="highRiskArc" class="risk-gauge-arc" d="M 235 66 A 120 120 0 0 1 270 150" stroke="#ef4444" />
+                <!-- M 210 46 A 120 120 0 0 1 270 150 -->
                 <!-- Labels -->
                 <text x="30" y="170" text-anchor="middle" fill="currentColor" font-size="12">0%</text>
                 <text x="90" y="170" text-anchor="middle" fill="currentColor" font-size="12">20%</text>
                 <text x="150" y="170" text-anchor="middle" fill="currentColor" font-size="12">50%</text>
                 <text x="210" y="170" text-anchor="middle" fill="currentColor" font-size="12">80%</text>
                 <text x="270" y="170" text-anchor="middle" fill="currentColor" font-size="12">100%</text>
+                <!-- Center point (dark circle) -->
+                <circle cx="150" cy="150" r="12" fill="#1f2937" />
               </svg>
               <div class="risk-meter-needle" id="riskMeterNeedle"></div>
               <div class="risk-meter-center"></div>
@@ -634,7 +645,7 @@
             <div class="risk-gauge-value" id="riskGaugeValue">27.1%</div>
             <div class="risk-level low" id="riskLevel">Riesgo Bajo</div>
           </div>
-          
+
           <div class="risk-classification">
             <div class="risk-class low">
               <div class="risk-indicator"></div>
@@ -661,7 +672,7 @@
         </div>
       </section>
 
-      <section class="risk-factors-section">
+      <section class="risk-factors-section" style="width: 24.06rem;">
         <div class="card">
           <div class="card-header">
             <h2>Factores de Riesgo</h2>
@@ -670,19 +681,19 @@
               <span id="totalRiskText">27.1%</span>
             </div>
           </div>
-          
+
           <div class="risk-factors" id="riskFactors">
             <!-- Risk factors will be inserted here by JavaScript -->
           </div>
         </div>
       </section>
 
-      <section class="risk-chart-section">
+      <section class="risk-chart-section" style="width: 44.875rem;">
         <div class="card">
           <div class="card-header">
             <h2>Visualización de Riesgos</h2>
           </div>
-          
+
           <div class="chart-container">
             <canvas id="riskChart" width="400" height="400"></canvas>
           </div>
@@ -698,46 +709,46 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // Initial data
-    let factors = {
-      socioeconomic: { 
-        name: "Nivel Socioeconómico", 
-        value: 30, 
+    const factors = {
+      socioeconomic: {
+        name: "Nivel Socioeconómico",
+        value: 30,
         weight: 0.20,
         description: "Impacta directamente el acceso a bienes y servicios esenciales."
       },
-      familyStructure: { 
-        name: "Estructura Familiar", 
-        value: 25, 
+      familyStructure: {
+        name: "Estructura Familiar",
+        value: 25,
         weight: 0.15,
         description: "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
       },
-      healthConditions: { 
-        name: "Condiciones de Salud", 
-        value: 35, 
+      healthConditions: {
+        name: "Condiciones de Salud",
+        value: 35,
         weight: 0.20,
         description: "Determina la calidad de vida y el acceso al tratamiento médico."
       },
-      socialVulnerability: { 
-        name: "Vulnerabilidad Social", 
-        value: 20, 
+      socialVulnerability: {
+        name: "Vulnerabilidad Social",
+        value: 20,
         weight: 0.15,
         description: "Considera factores como la violencia, el desplazamiento y la exclusión social."
       },
-      accessToHealth: { 
-        name: "Acceso a Servicios de Salud", 
-        value: 15, 
+      accessToHealth: {
+        name: "Acceso a Servicios de Salud",
+        value: 15,
         weight: 0.10,
         description: "Clave para la prevención y el cuidado de enfermedades."
       },
-      livingEnvironment: { 
-        name: "Entorno de Vida", 
-        value: 40, 
+      livingEnvironment: {
+        name: "Entorno de Vida",
+        value: 40,
         weight: 0.10,
         description: "Evalúa las condiciones de la vivienda y su impacto en la salud."
       },
-      demographics: { 
-        name: "Características Demográficas", 
-        value: 25, 
+      demographics: {
+        name: "Características Demográficas",
+        value: 25,
         weight: 0.10,
         description: "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
       }
@@ -745,7 +756,7 @@
 
     // DOM elements
     const generateBtn = document.getElementById('generateBtn');
-    const riskMeterNeedle = document.getElementById('riskMeterNeedle');
+    const gaugeNeedle = document.getElementById('gaugeNeedle');
     const riskGaugeValue = document.getElementById('riskGaugeValue');
     const riskLevel = document.getElementById('riskLevel');
     const totalRiskText = document.getElementById('totalRiskText');
@@ -762,18 +773,19 @@
         document.body.classList.add('dark-theme');
         themeSwitch.checked = true;
       }
-      
+
       // Render initial risk factors
       renderRiskFactors();
-      
+
       // Calculate and display total risk
       calculateTotalRisk();
-      
+
       // Initialize chart
       initChart();
-      
+
       // Add event listeners
-      generateBtn.addEventListener('click', fetchDataAndUpdate);
+      generateBtn.addEventListener('click', generateRandomData);
+      generateBtn.addEventListener('click', fetchPersonalInfo);
       themeSwitch.addEventListener('change', toggleTheme);
     }
 
@@ -781,66 +793,30 @@
     function toggleTheme() {
       document.body.classList.toggle('dark-theme');
       localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
-      
+
       // Update chart colors
       updateChartColors();
     }
 
-    // Fetch data from PHP file and update UI
-    async function fetchDataAndUpdate() {
-      try {
-        // Add pulse animation to button
-        generateBtn.classList.add('pulse');
-        
-        // Remove animation after it completes
-        setTimeout(() => {
-          generateBtn.classList.remove('pulse');
-        }, 2000);
-        
-        // Fetch personal info and risk factors from PHP
-        const response = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lib-sLXoeH9FtWt8mJVAhp1YFP080AaX9h.php');
-        const personalData = await response.json();
-        
-        // Update personal information
-        document.getElementById('documentInfo').textContent = personalData.document;
-        document.getElementById('sexInfo').textContent = personalData.sex;
-        document.getElementById('genderInfo').textContent = personalData.gender;
-        document.getElementById('nationalityInfo').textContent = personalData.nationality;
-        document.getElementById('birthDateInfo').textContent = personalData.birthDate;
-        document.getElementById('lifestageInfo').textContent = personalData.lifestage;
-        document.getElementById('ageInfo').textContent = personalData.age;
-        
-        // Fetch risk factors data
-        const riskResponse = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lib-sLXoeH9FtWt8mJVAhp1YFP080AaX9h.php');
-        const riskData = await riskResponse.json();
-        
-        // Update factors with random values from PHP
-        for (const key in factors) {
-          if (riskData[key]) {
-            factors[key].value = riskData[key].value;
-          } else {
-            // If the key doesn't exist in the response, generate a random value
-            factors[key].value = Math.floor(Math.random() * 100);
-          }
-        }
-        
-        // Update UI
-        renderRiskFactors();
-        calculateTotalRisk();
-        updateChart();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        
-        // Fallback to random data generation if fetch fails
-        Object.keys(factors).forEach(key => {
-          factors[key].value = Math.floor(Math.random() * 100);
-        });
-        
-        // Update UI with random data
-        renderRiskFactors();
-        calculateTotalRisk();
-        updateChart();
-      }
+    // Generate random data for all factors
+    function generateRandomData() {
+      // Add pulse animation to button
+      generateBtn.classList.add('pulse');
+
+      // Remove animation after it completes
+      setTimeout(() => {
+        generateBtn.classList.remove('pulse');
+      }, 2000);
+
+      // Generate new random values
+      Object.keys(factors).forEach(key => {
+        factors[key].value = Math.floor(Math.random() * 100);
+      });
+
+      // Update UI
+      renderRiskFactors();
+      calculateTotalRisk();
+      updateChart();
     }
 
     // Calculate total risk based on all factors and their weights
@@ -848,19 +824,19 @@
       const totalRisk = Object.keys(factors).reduce((sum, key) => {
         return sum + (factors[key].value * factors[key].weight);
       }, 0);
-      
+
       // Update gauge needle rotation
       const needleRotation = calculateNeedleRotation(totalRisk);
+      //   gaugeNeedle.setAttribute('transform', `rotate(${needleRotation}, 150, 150)`);
       riskMeterNeedle.style.transform = `translateX(-50%) rotate(${needleRotation}deg)`;
-      
       // Update risk value display
       riskGaugeValue.textContent = `${totalRisk.toFixed(1)}%`;
       totalRiskText.textContent = `${totalRisk.toFixed(1)}%`;
-      
+
       // Update risk level
       let riskLevelText = "";
       riskLevel.classList.remove('low', 'medium', 'high');
-      
+
       if (totalRisk >= 71) {
         riskLevelText = "Riesgo Alto";
         riskLevel.classList.add('high');
@@ -871,7 +847,7 @@
         riskLevelText = "Riesgo Bajo";
         riskLevel.classList.add('low');
       }
-      
+
       riskLevel.textContent = riskLevelText;
     }
 
@@ -884,11 +860,11 @@
     // Render risk factors
     function renderRiskFactors() {
       riskFactorsContainer.innerHTML = '';
-      
+
       Object.keys(factors).forEach(key => {
         const factor = factors[key];
         const riskClass = getRiskClass(factor.value);
-        
+
         const factorElement = document.createElement('div');
         factorElement.className = 'risk-factor';
         factorElement.innerHTML = `
@@ -910,7 +886,7 @@
             <span>Contribución: ${(factor.value * factor.weight).toFixed(1)}%</span>
           </div>
         `;
-        
+
         riskFactorsContainer.appendChild(factorElement);
       });
     }
@@ -932,19 +908,19 @@
     // Initialize Chart.js chart
     function initChart() {
       const ctx = document.getElementById('riskChart').getContext('2d');
-      
+
       // Prepare data for the chart
       const chartData = {
         labels: Object.values(factors).map(factor => factor.name),
         datasets: [{
-          label: 'Factores de Riesgo',
+          label: 'Risk Factors',
           data: Object.values(factors).map(factor => factor.value),
           backgroundColor: Object.values(factors).map(factor => getChartColor(factor.value, 0.7)),
           borderColor: Object.values(factors).map(factor => getChartColor(factor.value, 1)),
           borderWidth: 1
         }]
       };
-      
+
       // Chart configuration
       const chartConfig = {
         type: 'radar',
@@ -980,15 +956,15 @@
             },
             tooltip: {
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   const label = context.label || '';
                   const value = context.raw || 0;
                   const index = context.dataIndex;
                   const factor = Object.values(factors)[index];
                   return [
                     `${label}: ${value}%`,
-                    `Peso: ${factor.weight * 100}%`,
-                    `Contribución: ${(value * factor.weight).toFixed(1)}%`
+                    `Weight: ${factor.weight * 100}%`,
+                    `Contribution: ${(value * factor.weight).toFixed(1)}%`
                   ];
                 }
               }
@@ -996,7 +972,7 @@
           }
         }
       };
-      
+
       // Create chart
       riskChart = new Chart(ctx, chartConfig);
     }
@@ -1032,9 +1008,27 @@
 
     // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
-      fetchDataAndUpdate(); // Load initial data
-      initApp();
-    });
+       fetchPersonalInfo();
+       initApp(); // Inicializar la aplicación existente
+     });
+    async function fetchPersonalInfo() {
+       try {
+         const response = await fetch('lib.php');
+         const data = await response.json();
+ 
+         // Renderizar datos en la sección de información personal
+         document.getElementById('documentInfo').textContent = data.document;
+         document.getElementById('sexInfo').textContent = data.sex;
+         document.getElementById('genderInfo').textContent = data.gender;
+         document.getElementById('nationalityInfo').textContent = data.nationality;
+         document.getElementById('birthDateInfo').textContent = data.birthDate;
+         document.getElementById('lifestageInfo').textContent = data.lifestage;
+         document.getElementById('ageInfo').textContent = data.age;
+       } catch (error) {
+         console.error('Error al cargar la información personal:', error);
+       }
+     }
   </script>
 </body>
+
 </html>

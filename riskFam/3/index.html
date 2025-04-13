@@ -1009,6 +1009,7 @@
     // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
        fetchPersonalInfo();
+       fetchRiskData();
        initApp(); // Inicializar la aplicación existente
      });
     async function fetchPersonalInfo() {
@@ -1068,11 +1069,6 @@
       setTimeout(() => {
         generateBtn.classList.remove('pulse');
       }, 2000);
-    });
-  
-    document.addEventListener('DOMContentLoaded', () => {
-      fetchRiskData(); // Cargar datos iniciales
-      initApp(); // Inicializar la aplicación existente
     });
   </script>
 </body>

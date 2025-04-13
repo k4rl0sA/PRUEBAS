@@ -1006,7 +1006,26 @@
     }
 
     // Initialize the application when DOM is loaded
-    document.addEventListener('DOMContentLoaded', initApp);
+    document.addEventListener('DOMContentLoaded', () => {
+       fetchPersonalInfo();
+       initApp(); // Inicializar la aplicación existente
+     });
+    async function fetchPersonalInfo() {
+       try {
+         const response = await fetch('lib.php');
+         const data = await response.json();
+ 
+         // Renderizar datos en la sección de información personal
+         document.getElementById('documentInfo').textContent = data.document;
+         document.getElementById('sexInfo').textContent = data.sex;
+         document.getElementById('genderInfo').textContent = data.gender;
+         document.getElementById('nationalityInfo').textContent = data.nationality;
+         document.getElementById('birthDateInfo').textContent = data.birthDate;
+         document.getElementById('ageInfo').textContent = data.age;
+       } catch (error) {
+         console.error('Error al cargar la información personal:', error);
+       }
+     }
   </script>
 </body>
 

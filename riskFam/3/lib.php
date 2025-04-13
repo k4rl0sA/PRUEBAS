@@ -11,6 +11,51 @@ $personal = [
         "birthDate" => "1990-05-15",
         "lifestage" => "Adulto",
         "age" => 33
+    ],
+    [
+        "document" => "987654321",
+        "sex" => "Femenino",
+        "gender" => "Mujer",
+        "nationality" => "Mexicana",
+        "birthDate" => "1985-12-01",
+        "lifestage" => "Adulto",
+        "age" => 38
+    ],
+    [
+        "document" => "456789123",
+        "sex" => "Masculino",
+        "gender" => "Hombre",
+        "nationality" => "Argentina",
+        "birthDate" => "2002-07-20",
+        "lifestage" => "Joven",
+        "age" => 21
+    ],
+    [
+        "document" => "321654987",
+        "sex" => "Femenino",
+        "gender" => "Mujer",
+        "nationality" => "Española",
+        "birthDate" => "1978-03-10",
+        "lifestage" => "Adulto Mayor",
+        "age" => 45
+    ],
+    [
+        "document" => "654987321",
+        "sex" => "Masculino",
+        "gender" => "Hombre",
+        "nationality" => "Chilena",
+        "birthDate" => "1995-11-25",
+        "lifestage" => "Adulto",
+        "age" => 28
+    ],
+    [
+        "document" => "789123456",
+        "sex" => "Femenino",
+        "gender" => "Mujer",
+        "nationality" => "Peruana",
+        "birthDate" => "2010-09-03",
+        "lifestage" => "Niño",
+        "age" => 13
     ]
 ];
 

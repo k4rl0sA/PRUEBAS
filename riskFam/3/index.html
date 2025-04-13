@@ -601,114 +601,114 @@
               <div class="risk-meter-center"></div>
             </div>
             <div class="risk-gauge-value" id="riskGaugeValue">27.1%</div>
-            <div class="risk-level low" id="riskLevel">Low Risk</div>
+            <div class="risk-level low" id="riskLevel">Riesgo Bajo</div>
           </div>
           
           <div class="risk-classification">
             <div class="risk-class low">
               <div class="risk-indicator"></div>
-              <div class="risk-class-details">
-                <h4>Low Risk (0-40%)</h4>
-                <p>The family has favorable conditions and does not require priority intervention.</p>
+                <div class="risk-class-details">
+                <h4>Riesgo Bajo (0-40%)</h4>
+                <p>La familia tiene condiciones favorables y no requiere intervención prioritaria.</p>
+                </div>
+              </div>
+              <div class="risk-class medium">
+                <div class="risk-indicator"></div>
+                <div class="risk-class-details">
+                <h4>Riesgo Medio (41-70%)</h4>
+                <p>La familia tiene vulnerabilidades que requieren seguimiento y apoyo.</p>
+                </div>
+              </div>
+              <div class="risk-class high">
+                <div class="risk-indicator"></div>
+                <div class="risk-class-details">
+                <h4>Riesgo Alto (71-100%)</h4>
+                <p>La familia enfrenta múltiples factores de riesgo y necesita intervención urgente.</p>
+                </div>
+              </div>
               </div>
             </div>
-            <div class="risk-class medium">
-              <div class="risk-indicator"></div>
-              <div class="risk-class-details">
-                <h4>Medium Risk (41-70%)</h4>
-                <p>The family has vulnerabilities that require monitoring and support.</p>
+            </section>
+
+            <section class="risk-factors-section">
+            <div class="card">
+              <div class="card-header">
+              <h2>Factores de Riesgo</h2>
+              <div class="total-risk">
+                <span>Total:</span>
+                <span id="totalRiskText">27.1%</span>
+              </div>
+              </div>
+              
+              <div class="risk-factors" id="riskFactors">
+              <!-- Risk factors will be inserted here by JavaScript -->
               </div>
             </div>
-            <div class="risk-class high">
-              <div class="risk-indicator"></div>
-              <div class="risk-class-details">
-                <h4>High Risk (71-100%)</h4>
-                <p>The family faces multiple risk factors and needs urgent intervention.</p>
+            </section>
+
+            <section class="risk-chart-section">
+            <div class="card">
+              <div class="card-header">
+              <h2>Visualización de Riesgos</h2>
+              </div>
+              
+              <div class="chart-container">
+              <canvas id="riskChart" width="400" height="400"></canvas>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+            </section>
+          </main>
 
-      <section class="risk-factors-section">
-        <div class="card">
-          <div class="card-header">
-            <h2>Risk Factors</h2>
-            <div class="total-risk">
-              <span>Total:</span>
-              <span id="totalRiskText">27.1%</span>
-            </div>
+          <footer class="app-footer">
+            <p>Herramienta de Evaluación de Riesgo Familiar &copy; 2025</p>
+          </footer>
           </div>
-          
-          <div class="risk-factors" id="riskFactors">
-            <!-- Risk factors will be inserted here by JavaScript -->
-          </div>
-        </div>
-      </section>
 
-      <section class="risk-chart-section">
-        <div class="card">
-          <div class="card-header">
-            <h2>Risk Visualization</h2>
-          </div>
-          
-          <div class="chart-container">
-            <canvas id="riskChart" width="400" height="400"></canvas>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="app-footer">
-      <p>Family Risk Assessment Tool &copy; 2025</p>
-    </footer>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // Initial data
-    const factors = {
-      socioeconomic: { 
-        name: "Socioeconomic Status", 
-        value: 30, 
-        weight: 0.20,
-        description: "Directly impacts access to essential goods and services."
-      },
-      familyStructure: { 
-        name: "Family Structure", 
-        value: 25, 
-        weight: 0.15,
-        description: "Influences social support, functionality, and household stability."
-      },
-      healthConditions: { 
-        name: "Health Conditions", 
-        value: 35, 
-        weight: 0.20,
-        description: "Determines quality of life and access to medical treatment."
-      },
-      socialVulnerability: { 
-        name: "Social Vulnerability", 
-        value: 20, 
-        weight: 0.15,
-        description: "Considers factors such as violence, displacement, and social exclusion."
-      },
-      accessToHealth: { 
-        name: "Access to Health Services", 
-        value: 15, 
-        weight: 0.10,
-        description: "Key to disease prevention and care."
-      },
-      livingEnvironment: { 
-        name: "Living Environment", 
-        value: 40, 
-        weight: 0.10,
-        description: "Evaluates housing conditions and their impact on health."
-      },
-      demographics: { 
-        name: "Demographic Characteristics", 
-        value: 25, 
-        weight: 0.10,
-        description: "Includes age, gender, and other variables that influence risk exposure."
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script>
+          // Initial data
+          const factors = {
+            socioeconomic: { 
+            name: "Nivel Socioeconómico", 
+            value: 30, 
+            weight: 0.20,
+            description: "Impacta directamente el acceso a bienes y servicios esenciales."
+            },
+            familyStructure: { 
+            name: "Estructura Familiar", 
+            value: 25, 
+            weight: 0.15,
+            description: "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
+            },
+            healthConditions: { 
+            name: "Condiciones de Salud", 
+            value: 35, 
+            weight: 0.20,
+            description: "Determina la calidad de vida y el acceso al tratamiento médico."
+            },
+            socialVulnerability: { 
+            name: "Vulnerabilidad Social", 
+            value: 20, 
+            weight: 0.15,
+            description: "Considera factores como la violencia, el desplazamiento y la exclusión social."
+            },
+            accessToHealth: { 
+            name: "Acceso a Servicios de Salud", 
+            value: 15, 
+            weight: 0.10,
+            description: "Clave para la prevención y el cuidado de enfermedades."
+            },
+            livingEnvironment: { 
+            name: "Entorno de Vida", 
+            value: 40, 
+            weight: 0.10,
+            description: "Evalúa las condiciones de la vivienda y su impacto en la salud."
+            },
+            demographics: { 
+            name: "Características Demográficas", 
+            value: 25, 
+            weight: 0.10,
+            description: "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
       }
     };
 

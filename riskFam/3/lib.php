@@ -9,6 +9,7 @@ $data = [
         "gender" => "Hombre",
         "nationality" => "Colombiana",
         "birthDate" => "1990-05-15",
+        "lifestage" => "Adulto",
         "age" => 33
     ]
 ];

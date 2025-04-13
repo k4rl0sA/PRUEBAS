@@ -1009,7 +1009,6 @@
     // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
        fetchPersonalInfo();
-       fetchRiskData();
        initApp(); // Inicializar la aplicación existente
      });
     async function fetchPersonalInfo() {
@@ -1029,47 +1028,6 @@
          console.error('Error al cargar la información personal:', error);
        }
      }
-     async function fetchRiskData() {
-      try {
-        const response = await fetch('lib.php');
-        const data = await response.json();
-  
-        // Actualizar información personal
-        document.getElementById('documentInfo').textContent = data.personalInfo.document;
-        document.getElementById('sexInfo').textContent = data.personalInfo.sex;
-        document.getElementById('genderInfo').textContent = data.personalInfo.gender;
-        document.getElementById('nationalityInfo').textContent = data.personalInfo.nationality;
-        document.getElementById('birthDateInfo').textContent = data.personalInfo.birthDate;
-        document.getElementById('lifestageInfo').textContent = data.personalInfo.lifestage;
-        document.getElementById('ageInfo').textContent = data.personalInfo.age;
-  
-        // Actualizar factores de riesgo
-        Object.keys(data.riskFactors).forEach(key => {
-          factors[key] = data.riskFactors[key];
-        });
-  
-        // Renderizar datos actualizados
-        renderRiskFactors();
-        calculateTotalRisk();
-        updateChart();
-      } catch (error) {
-        console.error('Error al cargar los datos de riesgo:', error);
-      }
-    }
-  
-    // Modificar el evento del botón para usar fetchRiskData
-    generateBtn.addEventListener('click', async () => {
-      // Agregar animación de carga
-      generateBtn.classList.add('pulse');
-  
-      // Llamar a fetchRiskData para actualizar los datos
-      await fetchRiskData();
-  
-      // Quitar animación después de completar
-      setTimeout(() => {
-        generateBtn.classList.remove('pulse');
-      }, 2000);
-    });
   </script>
 </body>
 

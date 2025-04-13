@@ -798,7 +798,7 @@
         }, 2000);
         
         // Fetch personal info and risk factors from PHP
-        const response = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lib-sLXoeH9FtWt8mJVAhp1YFP080AaX9h.php');
+        const response = await fetch('lib.php');
         const personalData = await response.json();
         
         // Update personal information
@@ -811,7 +811,7 @@
         document.getElementById('ageInfo').textContent = personalData.age;
         
         // Fetch risk factors data
-        const riskResponse = await fetch('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lib-sLXoeH9FtWt8mJVAhp1YFP080AaX9h.php');
+        const riskResponse = await fetch('lib.php');
         const riskData = await riskResponse.json();
         
         // Update factors with random values from PHP

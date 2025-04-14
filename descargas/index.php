@@ -202,6 +202,7 @@ $mod = 'descargas';
                 warnin(response.message);
             }
         } catch (e) {
+            console.error('Error al procesar la respuesta:', e);
             warnin('Error al procesar la respuesta');
         }
     }

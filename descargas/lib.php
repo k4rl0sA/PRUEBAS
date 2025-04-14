@@ -128,6 +128,9 @@ $todosScripts = [
         "Signos"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred AS Subred,P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,S.fecha_toma AS Fecha_Toma, S.peso AS PESO, S.talla AS TALLA, S.imc AS IMC, S.tas AS Tension_Sistolica, S.tad AS Tension_Diastolica, S.frecard AS Frecuencia_Cardiaca, S.satoxi AS Saturacion_Oxigeno, S.peri_abdomi AS Perimetro_Abdominal, S.peri_braq AS Perimetro_Braquial, S.zscore AS ZSCORE, S.glucom AS Glucometria,S.usu_create AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, S.fecha_create AS Fecha_Creacion FROM `hog_signos` S LEFT JOIN person P ON S.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON S.usu_create = U.id_usuario
         WHERE  S.fecha_toma>= '$fecha' AND S.fecha_toma <='$fecha_fin' AND G.subred = 3;",
 
+        "Epoc"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_epoc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,A.fecha_toma AS Fecha_Toma,IF(A.tose_muvedias = 0, 'NO', 'SI') AS Tose_Muchas_Veces,IF(A.tiene_flema = 0, 'NO', 'SI') AS Tiene_Flemas_Mayoria_Dias,IF(A.aire_facil = 0, 'NO', 'SI') AS Se_Queda_Sin_Aire_Facilmente,IF(A.mayor = 0, 'NO', 'SI') AS Mayor_40_Años,IF(A.fuma = 0, 'NO', 'SI') AS Fuma_o_Exfumador,A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro  FROM `hog_tam_epoc` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+        WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3",
+
         "Findrisc"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_findrisc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,A.fecha_toma AS Fecha_Toma,A.peso AS Peso,A.talla AS Talla,A.imc AS Imc,A.perimcint AS Perimetro_Cintura,FN_CATALOGODESC(43,A.actifisica) AS Actividad_Fisica,FN_CATALOGODESC(46,A.verduras) AS Consumo_Verduras_Frutas,FN_CATALOGODESC(56,A.hipertension) AS Toma_Medicamento_Hiper,FN_CATALOGODESC(57,A.glicemia) AS Valores_Altos_Glucosa,FN_CATALOGODESC(41,A.diabfam) AS Diabetes_Familiares,A.puntaje AS Puntaje,A.descripcion AS Clasificacion_Puntaje,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro FROM `hog_tam_findrisc` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
         WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3",
 
@@ -188,8 +191,8 @@ switch ($tipo) {
     case '7':
             $scripts = [
                 "OMS" => $todosScripts["OMS"],
-                "Findrisc" => $todosScripts["Findrisc"]
-
+                "Findrisc" => $todosScripts["Findrisc"],
+                "Epoc" => $todosScripts["Epoc"]
             ];
             break;
     default:

@@ -442,9 +442,9 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_idenUAIC($tab);
 			break;
 		case '56':
-			$tab = "Sesiones_Colectivas";
+			$tab = "Seguimientos UAIC";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_($tab);
+			if($tab=decript($encr,$clave))lis_SeguimientosUAIC($tab);
 			break;
 		case '57':
 				$tab = "Servicios_Agendamiento";
@@ -2167,6 +2167,36 @@ WHERE 1";
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
+
+function lis_SeguimientosUAIC($txt){
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaicseg AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+	P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,
+	FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
+	A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.segui) 'Seguimiento',FN_CATALOGODESC(73,A.estado_seg) 'Estado',FN_CATALOGODESC(265,A.motivo_seg) 'Motivo',
+	FN_CATALOGODESC(170,A.at_medi) AS 'Recibio Atención por Medico Ancestral',FN_CATALOGODESC(170,A.at_part) AS 'Recibio Atención por Partera',
+	A.peso,A.talla,A.zcore,FN_CATALOGODESC(98,A.clasi_nutri) AS 'Clasificación Nutricional',FN_CATALOGODESC(170,A.ftlc_apme) 'Tiene Ftlc U Otro Apme',A.cual,FN_CATALOGODESC(170,A.cita_nutri7)'Cita Con Nutricion O Pediatria A Los 7 Dias'
+	,FN_CATALOGODESC(170,A.cita_nutri15)'Cita Con Nutricion O Pediatria A Los 15 Dias',FN_CATALOGODESC(170,A.cita_nutri30)'Cita Con Nutricion O Pediatria A Los 30 Dias',A.observaciones, 
+	A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
+	FROM uaic_seg A
+	LEFT JOIN person P ON A.idpeople=P.idpeople
+	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+	LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+	WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred8();
+	$sql.=whe_date8();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM uaic_seg A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	 WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
+	$tot.=whe_date8();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

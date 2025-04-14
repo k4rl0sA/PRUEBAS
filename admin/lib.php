@@ -437,9 +437,9 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_servicAgend($tab);
 			break;
 		case '55':
-			$tab = "Sesiones_Colectivas";
+			$tab = "Identificación UAIC";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_($tab);
+			if($tab=decript($encr,$clave))lis_idenUAIC($tab);
 			break;
 		case '56':
 			$tab = "Sesiones_Colectivas";
@@ -2138,6 +2138,35 @@ WHERE 1";
 	echo json_encode($rta);
 }
 
+function lis_idenUAIC($txt){
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaic AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+	P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,
+	FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
+	A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(263,A.parentesco) AS Parentesco,A.nombre_cui AS Cuidador,A.tipo_doc AS Tipo_Documento,A.num_doc AS Documento,A.telefono ,
+	FN_CATALOGODESC(170,A.era) AS 'Enfermedad Respiratoria Aguda',FN_CATALOGODESC(170,A.eda) AS 'Enfermedad Diarreica Aguda',FN_CATALOGODESC(170,A.dnt) Desnutrición,
+	A.des_sinto AS 'Descripcion De Sintomas',FN_CATALOGODESC(170,A.aten_medi) AS 'Recibio Atención por Medico Ancestral',FN_CATALOGODESC(170,A.aten_part) AS 'Recibio Atención por Partera',A.peri_cef AS 'Perimetro Cefalico (Cm)',
+	A.peri_bra AS 'Perimetro Braquial (Cm)',A.peso,A.talla,A.zcore,FN_CATALOGODESC(98,A.clasi_nut) AS 'Clasificación Nutricional',A.tempe 'Temperatura',A.frec_res 'Frecuencia Respiratoria (min)',
+	A.frec_car 'Frecuencia Cardiaca',A.satu 'Saturación',FN_CATALOGODESC(170,A.sales_reh) AS 'Sales De Rehidratación',FN_CATALOGODESC(170,A.aceta) AS 'Acetaminofen',
+	FN_CATALOGODESC(170,A.traslados_uss) AS 'Traslados de Uss',FN_CATALOGODESC(170,A.educa) 'Educación',FN_CATALOGODESC(170,A.menor_hos) AS 'Menor Hospitalizado',A.tempe2 'Temperatura 2',A.frec_res2 'Frecuencia Respiratoria 2',A.frec_car2 'Frecuencia Cardiaca 2',
+	A.satu2 'Saturación 2',A.seg_entmed 'Seguimiento A Entrega De Medicamentos',A.observacion,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
+	FROM uaic_ide A
+	LEFT JOIN person P ON A.idpeople=P.idpeople
+	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+	LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred8();
+	$sql.=whe_date8();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	 WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
+	$tot.=whe_date8();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

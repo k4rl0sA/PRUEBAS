@@ -126,7 +126,11 @@ $todosScripts = [
         ) AS CombinedQuery WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <='$fecha_fin' AND subred = 3;",
 
         "Signos"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred AS Subred,P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,S.fecha_toma AS Fecha_Toma, S.peso AS PESO, S.talla AS TALLA, S.imc AS IMC, S.tas AS Tension_Sistolica, S.tad AS Tension_Diastolica, S.frecard AS Frecuencia_Cardiaca, S.satoxi AS Saturacion_Oxigeno, S.peri_abdomi AS Perimetro_Abdominal, S.peri_braq AS Perimetro_Braquial, S.zscore AS ZSCORE, S.glucom AS Glucometria,S.usu_create AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, S.fecha_create AS Fecha_Creacion FROM `hog_signos` S LEFT JOIN person P ON S.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON S.usu_create = U.id_usuario
-        WHERE  S.fecha_toma>= '$fecha' AND S.fecha_toma <= CURDATE() AND G.subred = 3;"
+        WHERE  S.fecha_toma>= '$fecha' AND S.fecha_toma <='$fecha_fin' AND G.subred = 3;",
+
+
+"OMS"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idoms AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,A.fecha_toma AS Fecha_Toma,FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes, FN_CATALOGODESC(170,A.fuma) AS Fuma, A.tas AS Tension_Arterial_Sistolica, REPLACE(REPLACE(A.puntaje, 'LT', '<'), 'GT', '>') AS Puntaje, A.descripcion AS Clasificacion_Puntaje,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro FROM `hog_tam_oms` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
+WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3"
     /* "Pruebas" => "SELECT 1+1", // Este es un ejemplo, no usa fechas
     "Asignacion Predios" => "SELECT * FROM geo_asig WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <= '$fecha_fin' AND subred = 3",
     "Caracteriz" => "SELECT * FROM hog_carac WHERE fecha_registro >= '$fecha_inicio' AND fecha_registro <= '$fecha_fin'",
@@ -176,6 +180,11 @@ switch ($tipo) {
     case '6':
             $scripts = [
                 "Signos" => $todosScripts["Signos"]
+            ];
+            break;
+    case '7':
+            $scripts = [
+                "OMS" => $todosScripts["OMS"]
             ];
             break;
     default:

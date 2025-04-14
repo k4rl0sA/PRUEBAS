@@ -123,8 +123,10 @@ $todosScripts = [
         SELECT G.subred,G.localidad, F.idpre, F.id_fam,V.id_gestante Cod_Registro, V.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, V.fecha_seg, V.numsegui,FN_CATALOGODESC(87,V.evento),FN_CATALOGODESC(73,V.estado_s),FN_CATALOGODESC(170,V.cierre_caso),V.fecha_cierre,FN_CATALOGODESC(198,V.motivo_cierre),FN_CATALOGODESC(170,V.activa_ruta) activa_ruta,FN_CATALOGODESC(79,V.ruta) Ruta,V.observaciones, V.equipo_bina, V.usu_creo, U.nombre, U.perfil,V.fecha_create,DATEDIFF(V.fecha_create,V.fecha_seg) AS Dias,character_length(V.observaciones) AS largo  FROM `vsp_violges` V LEFT JOIN  person P ON V.idpeople = P.idpeople LEFT JOIN  hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN  hog_geo G ON F.idpre = G.idgeo LEFT JOIN  usuarios U ON V.usu_creo = U.id_usuario UNION 
         SELECT G.subred,G.localidad, F.idpre, F.id_fam,W.id_violreite Cod_Registro,W.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, W.fecha_seg, W.numsegui,FN_CATALOGODESC(87,W.evento),FN_CATALOGODESC(73,W.estado_s),FN_CATALOGODESC(170,W.cierre_caso),W.fecha_cierre,FN_CATALOGODESC(198,W.motivo_cierre),FN_CATALOGODESC(170,W.activa_ruta) activa_ruta,FN_CATALOGODESC(79,W.ruta) Ruta,W.observaciones, W.equipo_bina, W.usu_creo, U.nombre, U.perfil,W.fecha_create,DATEDIFF(W.fecha_create,W.fecha_seg) AS Dias,character_length(W.observaciones) AS largo  FROM `vsp_violreite` W LEFT JOIN  person P ON W.idpeople = P.idpeople LEFT JOIN  hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN  hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON W.usu_creo = U.id_usuario UNION
         SELECT G.subred,G.localidad, F.idpre, F.id_fam,X.Id_mme Cod_Registro,X.idpeople,P.idpersona,P.tipo_doc,CONCAT_WS(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres,P.fecha_nacimiento,P.sexo,P.nacionalidad,P.regimen,P.eapb, X.fecha_seg, X.numsegui,FN_CATALOGODESC(87,X.evento),FN_CATALOGODESC(73,X.estado_s),FN_CATALOGODESC(170,X.cierre_caso),X.fecha_cierre,FN_CATALOGODESC(198,X.motivo_cierre),FN_CATALOGODESC(170,X.activa_ruta) activa_ruta,FN_CATALOGODESC(79,X.ruta) Ruta,X.observaciones,X.equipo, X.usu_creo, U.nombre, U.perfil,X.fecha_create,DATEDIFF(X.fecha_create,X.fecha_seg) AS Dias,character_length(X.observaciones) AS largo  FROM `vsp_mme` X LEFT JOIN  person P ON X.idpeople = P.idpeople LEFT JOIN  hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN  hog_geo G ON F.idpre = G.idgeo LEFT JOIN  usuarios U ON X.usu_creo = U.id_usuario
-        ) AS CombinedQuery WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <='$fecha_fin' AND subred = 3;"
+        ) AS CombinedQuery WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <='$fecha_fin' AND subred = 3;",
 
+        "Signos"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred AS Subred,P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,S.fecha_toma AS Fecha_Toma, S.peso AS PESO, S.talla AS TALLA, S.imc AS IMC, S.tas AS Tension_Sistolica, S.tad AS Tension_Diastolica, S.frecard AS Frecuencia_Cardiaca, S.satoxi AS Saturacion_Oxigeno, S.peri_abdomi AS Perimetro_Abdominal, S.peri_braq AS Perimetro_Braquial, S.zscore AS ZSCORE, S.glucom AS Glucometria,S.usu_create AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, S.fecha_create AS Fecha_Creacion FROM `hog_signos` S LEFT JOIN person P ON S.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON S.usu_create = U.id_usuario
+        WHERE  S.fecha_toma>= '$fecha' AND S.fecha_toma <= CURDATE() AND G.subred = 3;"
     /* "Pruebas" => "SELECT 1+1", // Este es un ejemplo, no usa fechas
     "Asignacion Predios" => "SELECT * FROM geo_asig WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <= '$fecha_fin' AND subred = 3",
     "Caracteriz" => "SELECT * FROM hog_carac WHERE fecha_registro >= '$fecha_inicio' AND fecha_registro <= '$fecha_fin'",
@@ -171,6 +173,11 @@ switch ($tipo) {
             "Caracteriz_OK" => $todosScripts["Caracteriz_OK"]
         ];
         break;
+    case '6':
+            $scripts = [
+                "Signos" => $todosScripts["Signos"]
+            ];
+            break;
     default:
         $scripts = $todosScripts; // Todos los scripts
 }

@@ -141,6 +141,8 @@ $mod = 'descargas';
             <option value="3">Fechas</option>
             <option value="4">Alertas</option>
             <option value="5">Caracteriz_OK</option>
+            <option value="6">Signos</option>
+            <option value="7">Tamizajes</option>
         </select>
 
         <label for="fecha_inicio">Fecha de inicio:</label>

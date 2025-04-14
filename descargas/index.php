@@ -143,6 +143,7 @@ $mod = 'descargas';
             <option value="5">Caracteriz_OK</option>
             <option value="6">Signos</option>
             <option value="7">Tamizajes</option>
+            <option value="7">Validar Fechas Atenciones Individuales</option>
         </select>
 
         <label for="fecha_inicio">Fecha de inicio:</label>

@@ -135,7 +135,11 @@ $todosScripts = [
         WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3",
 
         "OMS"=>"SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idoms AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,A.fecha_toma AS Fecha_Toma,FN_CATALOGODESC(170,A.diabetes) AS Tiene_Diabetes, FN_CATALOGODESC(170,A.fuma) AS Fuma, A.tas AS Tension_Arterial_Sistolica, REPLACE(REPLACE(A.puntaje, 'LT', '<'), 'GT', '>') AS Puntaje, A.descripcion AS Clasificacion_Puntaje,A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro FROM `hog_tam_oms` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
-        WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3"
+        WHERE A.fecha_toma>= '$fecha' AND A.fecha_toma<='$fecha_fin' AND G.subred=3",
+
+        "VALIDA_ATENCIONES_INDIV"=>"SELECT  A.id_factura 'Cod_Registro_Factura',A.fecha_consulta 'Fecha Admision',A.usu_creo  AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, AT.id_aten 'Cod_Registro_Atencion',AT.fecha_atencion,AT.usu_creo AS Usuario_Creo, U1.nombre AS Nombre_Creo, U1.perfil AS Perfil_Creo,S.id_signos 'Cod_Registro_Signos',S.fecha_toma,S.usu_create AS Usuario_Creo, U2.nombre AS Nombre_Creo, U2.perfil AS Perfil_Creo,IF(A.fecha_consulta = AT.fecha_atencion AND AT.fecha_atencion = S.fecha_toma,'Iguales','Diferentes') AS Estatus_Fechas FROM adm_facturacion A LEFT JOIN eac_atencion AT ON A.id_factura=AT.id_factura LEFT JOIN hog_signos S  ON AT.idpeople =S.idpeople LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario LEFT JOIN usuarios U1 ON AT.usu_creo = U1.id_usuario LEFT JOIN usuarios U2 ON S.usu_create= U2.id_usuario 
+        where G.subred=3 and U2.perfil<>'AUXHOG' and AT.fecha_atencion>= '$fecha' AND AT.fecha_atencion<='$fecha_fin'" 
+
 
     /* "Pruebas" => "SELECT 1+1", // Este es un ejemplo, no usa fechas
     "Asignacion Predios" => "SELECT * FROM geo_asig WHERE fecha_seg >= '$fecha_inicio' AND fecha_seg <= '$fecha_fin' AND subred = 3",
@@ -195,6 +199,11 @@ switch ($tipo) {
                 "Epoc" => $todosScripts["Epoc"]
             ];
             break;
+    case '8':
+            $scripts = [
+                "VALIDA_ATENCIONES_INDIV" => $todosScripts["VALIDA_ATENCIONES_INDIV"]
+                ];
+                break;
     default:
         $scripts = $todosScripts; // Todos los scripts
 }

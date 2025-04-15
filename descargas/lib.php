@@ -52,7 +52,7 @@ $todosScripts = [
      WHERE G.subred IN (3) AND A.psi_fecha_sesion >= '$fecha_inicio' AND A.psi_fecha_sesion <='$fecha_fin'",
 
     "PlandeCuidado"=>"SELECT G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.id AS Cod_Registro,G.subred AS Subred,C.fecha AS Fecha_Caracterizacion,FN_CATALOGODESC(22,C.accion1) AS Accion_1,FN_CATALOGODESC(75,C.desc_accion1) AS Descipcion_Accion1,FN_CATALOGODESC(22,C.accion2) AS Accion_2,FN_CATALOGODESC(75,C.desc_accion2) AS Descipcion_Accion2,FN_CATALOGODESC(22,C.accion3) AS Accion_3,FN_CATALOGODESC(75,C.desc_accion3) AS Descipcion_Accion3,FN_CATALOGODESC(22,C.accion4) AS Accion_4,FN_CATALOGODESC(75,C.desc_accion4) AS Descipcion_Accion4,C.observacion AS Obervaciones, C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion, C.estado AS Estado_Registro FROM `hog_plancuid` C LEFT JOIN hog_fam F ON C.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario
-    WHERE G.subred IN (3) AND C.fecha >='$fecha_inicio' AND A.psi_fecha_sesion <='$fecha_fin' ",
+    WHERE G.subred IN (3) AND C.fecha >='$fecha_inicio' AND C.fecha <='$fecha_fin' ",
 
     "FECHAS"=>"SELECT * FROM ( 
     SELECT G.subred, F.idpre, F.id_fam,A.id_factura Cod_Registro,'ADMISION', A.fecha_consulta as fecha_seg,NULL as fecha_cierre FROM adm_facturacion A

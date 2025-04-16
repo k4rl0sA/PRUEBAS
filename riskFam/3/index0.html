@@ -377,6 +377,19 @@
       gap: var(--spacing-md);
     }
 
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
     @media (min-width: 768px) {
       .risk-classification {
         grid-template-columns: 1fr 1fr 1fr;

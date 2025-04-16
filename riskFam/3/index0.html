@@ -769,7 +769,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // Initial data
-/*     let factors = {
+    let factors = {
       socioeconomic: { 
         name: "Nivel Socioeconómico", 
         value: 30, 
@@ -807,7 +807,6 @@
         description: "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
       }
     };
- */
     // DOM elements
     const generateBtn = document.getElementById('generateBtn');
     const riskMeterNeedle = document.getElementById('riskMeterNeedle');
@@ -945,7 +944,7 @@
     function renderRiskFactors() {
       riskFactorsContainer.innerHTML = '';
       
-      Object.keys(factors).forEach(key => {
+      Object.keys(factors).forEach(key => { //ACA GENERA EL ERROR
         const factor = factors[key];
         const riskClass = getRiskClass(factor.value);
         

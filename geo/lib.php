@@ -76,7 +76,7 @@ function cmp_geoloc(){
     $c[]=new cmp('cordx','t','15','',$w.' '.$o,'Cordx','cordx',null,'',false,false,'','col-25');
     $c[]=new cmp('cordy','t','15','',$w.' '.$o,'Cordy','cordy',null,'',false,false,'','col-25');
     
-    $c[]=new cmp('territorio','t','6','',$w.' '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
+    $c[]=new cmp('territorio','s','6','',$w.' '.$o,'Territorio','territorio',null,'',false,false,'','col-2');
 	
 	$o='infasi';
 	$c[]=new cmp($o,'e',null,'GESTIÓN DEL PREDIO',$w);

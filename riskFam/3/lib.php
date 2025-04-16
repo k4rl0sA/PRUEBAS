@@ -64,25 +64,25 @@ $riesgos = [
     "socioeconomic" => [
         "name" => "Nivel Socioeconómico",
         "value" => rand(0, 100),
-        "weight" => 0.20,
+        "weight" => 0.18,
         "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
     ],
     "familyStructure" => [
         "name" => "Estructura Familiar",
         "value" => rand(0, 100),
-        "weight" => 0.15,
+        "weight" => 0.20,
         "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
     ],
-    "healthConditions" => [
+    /* "healthConditions" => [
         "name" => "Condiciones de Salud",
         "value" => rand(0, 100),
         "weight" => 0.20,
         "description" => "Determina la calidad de vida y el acceso al tratamiento médico."
-    ],
+    ], */
     "socialVulnerability" => [
         "name" => "Vulnerabilidad Social",
         "value" => rand(0, 100),
-        "weight" => 0.15,
+        "weight" => 0.12,
         "description" => "Considera factores como la violencia, el desplazamiento y la exclusión social."
     ],
     "accessToHealth" => [
@@ -92,7 +92,7 @@ $riesgos = [
         "description" => "Clave para la prevención y el cuidado de enfermedades."
     ],
     "livingEnvironment" => [
-        "name" => "Entorno de Vida",
+        "name" => "Entorno Habitacional",
         "value" => rand(0, 100),
         "weight" => 0.10,
         "description" => "Evalúa las condiciones de la vivienda y su impacto en la salud."

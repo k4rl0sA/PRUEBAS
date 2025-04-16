@@ -144,7 +144,9 @@ function opc_estado($id=''){
 function opc_motivo_estado($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=5 and estado='A' ORDER BY 1",$id);
 }
-
+function opc_territorio($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=283 and estado='A' ORDER BY 1",$id);
+}
 
 
 

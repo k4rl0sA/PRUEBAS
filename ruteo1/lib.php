@@ -36,7 +36,7 @@ LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 	G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3
 	FROM eac_ruteo R
 	LEFT JOIN hog_geo G ON R.idgeo = G.idgeo
-	LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado
+	LEFT JOIN apro_terr A ON G.territorio = A.territorio AND R.actividad1 = A.doc_asignado
 	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
 		
 		// $tot="SELECT  COUNT(*) as total	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";

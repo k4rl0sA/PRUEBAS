@@ -380,7 +380,7 @@
     .animate-spin {
       animation: spin 1s linear infinite;
     }
-    
+
     @keyframes spin {
       from {
         transform: rotate(0deg);
@@ -863,58 +863,62 @@
    // Fetch data from PHP file and update UI
    async function fetchDataAndUpdate() {
   const documentNumber = document.getElementById('searchInput').value;
+  
   if (!documentNumber) {
     alert('Por favor ingrese un número de documento');
     return;
   }
+
   try {
-    generateBtn.classList.add('pulse');
-    // Fetch data from PHP with document number
+    // Mostrar estado de carga
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+      </svg>
+      Buscando...
+    `;
+
     const response = await fetch(`lib.php?document=${documentNumber}`);
+    
     if (!response.ok) {
-      throw new Error('Error en la respuesta del servidor');
+      throw new Error(`Error HTTP: ${response.status}`);
     }
+
     const data = await response.json();
-    // Update personal information
-    document.getElementById('documentInfo').textContent = data.document || '-';
-    document.getElementById('sexInfo').textContent = data.sex || '-';
-    document.getElementById('genderInfo').textContent = data.gender || '-';
-    document.getElementById('nationalityInfo').textContent = data.nationality || '-';
-    document.getElementById('birthDateInfo').textContent = data.birthDate || '-';
-    document.getElementById('lifestageInfo').textContent = data.lifestage || '-';
-    document.getElementById('ageInfo').textContent = data.age || '-';
-    // Define factors object if not defined
-    if (!window.factors) {
-      window.factors = {
-        socioeconomic: { name: "Nivel Socioeconómico", value: 0, weight: 0.18 },
-        familyStructure: { name: "Estructura Familiar", value: 0, weight: 0.20 },
-        socialVulnerability: { name: "Vulnerabilidad Social", value: 0, weight: 0.12 },
-        accessToHealth: { name: "Acceso a Servicios de Salud", value: 0, weight: 0.10 },
-        livingEnvironment: { name: "Entorno Habitacional", value: 0, weight: 0.10 },
-        demographics: { name: "Características Demográficas", value: 0, weight: 0.30 }
-      };
+    
+    if (data.error) {
+      throw new Error(data.error);
     }
-    // Update risk factors from response
-    if (data.riskFactors) {
-      for (const key in window.factors) {
-        if (data.riskFactors[key]) {
-          window.factors[key].value = data.riskFactors[key].value;
-          window.factors[key].description = data.riskFactors[key].description;
-        }
-      }
-    }
-    // Update UI
+
+    console.log('Datos recibidos:', data); // Para depuración
+
+    // Actualizar información personal
+    updatePersonalInfo(data);
+    
+    // Actualizar factores de riesgo
+    updateRiskFactors(data.riskFactors);
+    
+    // Actualizar UI
     renderRiskFactors();
     calculateTotalRisk();
     updateChart();
+
   } catch (error) {
-    console.error('Error fetching data:', error);
-    alert('Error al obtener los datos. Por favor intente nuevamente.');
+    console.error('Error al obtener datos:', error);
+    alert(`Error: ${error.message}`);
   } finally {
-    generateBtn.classList.remove('pulse');
+    // Restaurar estado normal del botón
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      Buscar usuario
+    `;
   }
 }
-
     // Calculate total risk based on all factors and their weights
     function calculateTotalRisk() {
       const totalRisk = Object.keys(factors).reduce((sum, key) => {

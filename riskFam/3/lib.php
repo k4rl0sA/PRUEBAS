@@ -3,8 +3,31 @@ header('Content-Type: application/json');
 
 // Datos personales simulados
 $personal = [
-    [
-        "document" => "123456789",
+    "123456789" => [
+        "sex" => "Masculino",
+        "gender" => "Hombre",
+        "nationality" => "Colombiana",
+        "birthDate" => "1990-05-15",
+        "lifestage" => "Adulto",
+        "age" => 33,
+        "location" => "Localidad 1",
+        "upz" => "UPZ 101",
+        "address" => "Calle 123 #45-67",
+        "phone" => "3001234567"
+    ],
+    "987654321" => [
+        "sex" => "Femenino",
+        "gender" => "Mujer",
+        "nationality" => "Mexicana",
+        "birthDate" => "1985-12-01",
+        "lifestage" => "Adulto",
+        "age" => 38,
+        "location" => "Localidad 2",
+        "upz" => "UPZ 202",
+        "address" => "Carrera 89 #12-34",
+        "phone" => "3102345678"
+    ],
+    "123456789"=> [
         "sex" => "Masculino",
         "gender" => "Hombre",
         "nationality" => "Colombiana",
@@ -12,8 +35,7 @@ $personal = [
         "lifestage" => "Adulto",
         "age" => 33
     ],
-    [
-        "document" => "987654321",
+    "987654321"=>[
         "sex" => "Femenino",
         "gender" => "Mujer",
         "nationality" => "Mexicana",
@@ -21,8 +43,7 @@ $personal = [
         "lifestage" => "Adulto",
         "age" => 38
     ],
-    [
-        "document" => "456789123",
+    "456789123"=>[
         "sex" => "Masculino",
         "gender" => "Hombre",
         "nationality" => "Argentina",
@@ -30,8 +51,7 @@ $personal = [
         "lifestage" => "Joven",
         "age" => 21
     ],
-    [
-        "document" => "321654987",
+    "321654987"=>[
         "sex" => "Femenino",
         "gender" => "Mujer",
         "nationality" => "Española",
@@ -39,8 +59,7 @@ $personal = [
         "lifestage" => "Adulto Mayor",
         "age" => 45
     ],
-    [
-        "document" => "654987321",
+    "654987321"=>[
         "sex" => "Masculino",
         "gender" => "Hombre",
         "nationality" => "Chilena",
@@ -48,8 +67,7 @@ $personal = [
         "lifestage" => "Adulto",
         "age" => 28
     ],
-    [
-        "document" => "789123456",
+    "789123456"=>[
         "sex" => "Femenino",
         "gender" => "Mujer",
         "nationality" => "Peruana",

@@ -919,6 +919,42 @@
     `;
   }
 }
+
+// Función auxiliar para actualizar información personal
+function updatePersonalInfo(data) {
+  const fields = {
+    documentInfo: data.document,
+    sexInfo: data.sex,
+    genderInfo: data.gender,
+    nationalityInfo: data.nationality,
+    birthDateInfo: data.birthDate,
+    lifestageInfo: data.lifestage,
+    ageInfo: data.age,
+    locationInfo: data.location || '-',
+    upzInfo: data.upz || '-',
+    addressInfo: data.address || '-',
+    phoneInfo: data.phone || '-'
+  };
+  for (const [id, value] of Object.entries(fields)) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = value || '-';
+    }
+  }
+}
+
+// Función auxiliar para actualizar factores de riesgo
+function updateRiskFactors(riskFactors) {
+  if (!riskFactors) return;
+  for (const key in factors) {
+    if (riskFactors[key]) {
+      factors[key].value = riskFactors[key].value;
+      // Mantener la descripción existente si no viene en los datos
+      factors[key].description = riskFactors[key].description || factors[key].description;
+    }
+  }
+}
+
     // Calculate total risk based on all factors and their weights
     function calculateTotalRisk() {
       const totalRisk = Object.keys(factors).reduce((sum, key) => {

@@ -73,12 +73,6 @@ $riesgos = [
         "weight" => 0.20,
         "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
     ],
-    /* "healthConditions" => [
-        "name" => "Condiciones de Salud",
-        "value" => rand(0, 100),
-        "weight" => 0.20,
-        "description" => "Determina la calidad de vida y el acceso al tratamiento médico."
-    ], */
     "socialVulnerability" => [
         "name" => "Vulnerabilidad Social",
         "value" => rand(0, 100),

@@ -116,26 +116,31 @@ $riesgos = [
         "description" => "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
     ]
 ];
+// Obtener documento de la solicitud
+$document = $_GET['document'] ?? null;
 
-// Seleccionar un registro personal aleatorio
-$randomIndex = array_rand($personal);
-$selectedPerson = $personal[$randomIndex];
-
-// Combinar datos personales y factores de riesgo en un solo objeto
-$response = [
-    // Datos personales
-    "document" => $selectedPerson["document"],
-    "sex" => $selectedPerson["sex"],
-    "gender" => $selectedPerson["gender"],
-    "nationality" => $selectedPerson["nationality"],
-    "birthDate" => $selectedPerson["birthDate"],
-    "lifestage" => $selectedPerson["lifestage"],
-    "age" => $selectedPerson["age"],
+if ($document && isset($personal[$document])) {
+    $selectedPerson = $personal[$document];
     
-    // Factores de riesgo
-    "riskFactors" => $riesgos
-];
-
-// Devolver la respuesta JSON
+    $response = [
+        "document" => $document,
+        "sex" => $selectedPerson["sex"],
+        "gender" => $selectedPerson["gender"],
+        "nationality" => $selectedPerson["nationality"],
+        "birthDate" => $selectedPerson["birthDate"],
+        "lifestage" => $selectedPerson["lifestage"],
+        "age" => $selectedPerson["age"],
+        "location" => $selectedPerson["location"],
+        "upz" => $selectedPerson["upz"],
+        "address" => $selectedPerson["address"],
+        "phone" => $selectedPerson["phone"],
+        "riskFactors" => $riesgos
+    ];
+} else {
+    $response = [
+        "error" => "Documento no encontrado",
+        "document" => $document
+    ];
+}
 echo json_encode($response);
 ?>

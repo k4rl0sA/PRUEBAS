@@ -33,7 +33,11 @@ $personal = [
         "nationality" => "Colombiana",
         "birthDate" => "1990-05-15",
         "lifestage" => "Adulto",
-        "age" => 33
+        "age" => 33,
+        "location" => "Localidad 2",
+        "upz" => "UPZ 202",
+        "address" => "Carrera 89 #12-34",
+        "phone" => "3102345678"
     ],
     "987654321"=>[
         "sex" => "Femenino",

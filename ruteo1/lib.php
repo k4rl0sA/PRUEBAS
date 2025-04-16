@@ -19,7 +19,7 @@ else {
 }
 
 function lis_rute(){
-	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.idgeo = A.idgeo ".whe_rute());
+	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.territorio = A.territorio ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;

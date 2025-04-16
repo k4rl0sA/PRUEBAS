@@ -841,65 +841,65 @@
       generateBtn.addEventListener('click', fetchDataAndUpdate);
       themeSwitch.addEventListener('change', toggleTheme);
     }
-
     // Toggle dark/light theme
     function toggleTheme() {
       document.body.classList.toggle('dark-theme');
       localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
-      
       // Update chart colors
       updateChartColors();
     }
-
    // Fetch data from PHP file and update UI
-async function fetchDataAndUpdate() {
+   async function fetchDataAndUpdate() {
+  const documentNumber = document.getElementById('searchInput').value;
+  if (!documentNumber) {
+    alert('Por favor ingrese un número de documento');
+    return;
+  }
   try {
-    // Add pulse animation to button
     generateBtn.classList.add('pulse');
-    
-    // Remove animation after it completes
-    setTimeout(() => {
-      generateBtn.classList.remove('pulse');
-    }, 2000);
-    
-    // Fetch data from PHP
-    const response = await fetch('lib.php');
+    // Fetch data from PHP with document number
+    const response = await fetch(`lib.php?document=${documentNumber}`);
+    if (!response.ok) {
+      throw new Error('Error en la respuesta del servidor');
+    }
     const data = await response.json();
-    
     // Update personal information
-    document.getElementById('documentInfo').textContent = data.document;
-    document.getElementById('sexInfo').textContent = data.sex;
-    document.getElementById('genderInfo').textContent = data.gender;
-    document.getElementById('nationalityInfo').textContent = data.nationality;
-    document.getElementById('birthDateInfo').textContent = data.birthDate;
-    document.getElementById('lifestageInfo').textContent = data.lifestage;
-    document.getElementById('ageInfo').textContent = data.age;
-    
-    // Update risk factors
+    document.getElementById('documentInfo').textContent = data.document || '-';
+    document.getElementById('sexInfo').textContent = data.sex || '-';
+    document.getElementById('genderInfo').textContent = data.gender || '-';
+    document.getElementById('nationalityInfo').textContent = data.nationality || '-';
+    document.getElementById('birthDateInfo').textContent = data.birthDate || '-';
+    document.getElementById('lifestageInfo').textContent = data.lifestage || '-';
+    document.getElementById('ageInfo').textContent = data.age || '-';
+    // Define factors object if not defined
+    if (!window.factors) {
+      window.factors = {
+        socioeconomic: { name: "Nivel Socioeconómico", value: 0, weight: 0.18 },
+        familyStructure: { name: "Estructura Familiar", value: 0, weight: 0.20 },
+        socialVulnerability: { name: "Vulnerabilidad Social", value: 0, weight: 0.12 },
+        accessToHealth: { name: "Acceso a Servicios de Salud", value: 0, weight: 0.10 },
+        livingEnvironment: { name: "Entorno Habitacional", value: 0, weight: 0.10 },
+        demographics: { name: "Características Demográficas", value: 0, weight: 0.30 }
+      };
+    }
+    // Update risk factors from response
     if (data.riskFactors) {
-      for (const key in factors) {
+      for (const key in window.factors) {
         if (data.riskFactors[key]) {
-          factors[key].value = data.riskFactors[key].value;
+          window.factors[key].value = data.riskFactors[key].value;
+          window.factors[key].description = data.riskFactors[key].description;
         }
       }
     }
-    
     // Update UI
     renderRiskFactors();
     calculateTotalRisk();
     updateChart();
   } catch (error) {
     console.error('Error fetching data:', error);
-    
-    // Fallback to random data generation if fetch fails
-    Object.keys(factors).forEach(key => {
-      factors[key].value = Math.floor(Math.random() * 100);
-    });
-    
-    // Update UI with random data
-    renderRiskFactors();
-    calculateTotalRisk();
-    updateChart();
+    alert('Error al obtener los datos. Por favor intente nuevamente.');
+  } finally {
+    generateBtn.classList.remove('pulse');
   }
 }
 

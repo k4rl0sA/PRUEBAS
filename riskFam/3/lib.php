@@ -120,27 +120,17 @@ $riesgos = [
 $document = $_GET['document'] ?? null;
 
 if ($document && isset($personal[$document])) {
-    $selectedPerson = $personal[$document];
-    
-    $response = [
-        "document" => $document,
-        "sex" => $selectedPerson["sex"],
-        "gender" => $selectedPerson["gender"],
-        "nationality" => $selectedPerson["nationality"],
-        "birthDate" => $selectedPerson["birthDate"],
-        "lifestage" => $selectedPerson["lifestage"],
-        "age" => $selectedPerson["age"],
-        "location" => $selectedPerson["location"],
-        "upz" => $selectedPerson["upz"],
-        "address" => $selectedPerson["address"],
-        "phone" => $selectedPerson["phone"],
-        "riskFactors" => $riesgos
-    ];
+    $response = array_merge(
+        ["document" => $document],
+        $personal[$document],
+        ["riskFactors" => $riesgos]
+    );
 } else {
     $response = [
         "error" => "Documento no encontrado",
         "document" => $document
     ];
 }
+
 echo json_encode($response);
 ?>

@@ -28,10 +28,10 @@ $sql = "SELECT
         WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
         ELSE ''
     END AS life_course,
-    CONCAT_WS(' - ',G.localidad,FN_CATALOGODESC(2,G.localidad)) AS location,
+    CONCAT_WS('-',G.localidad, FN_CATALOGODESC(2,G.localidad)) AS location,
     G.upz,
     G.direccion AS address,
-    P.telefono1 AS phone
+	NULLIF(TRIM(BOTH ' -' FROM CONCAT_WS(' - ',NULLIF(P.telefono1 COLLATE utf8mb4_unicode_ci, ''),NULLIF(P.telefono2 COLLATE utf8mb4_unicode_ci, ''),NULLIF(F.telefono1 COLLATE utf8mb4_unicode_ci, ''),NULLIF(F.telefono2 COLLATE utf8mb4_unicode_ci, ''))),'') AS phone
 FROM person P
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo

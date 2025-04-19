@@ -27,7 +27,7 @@ $sql = "SELECT
         WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'ADULTEZ'
         WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
         ELSE ''
-    END AS life_course,
+    END AS lifestage,
     CONCAT_WS('-',G.localidad, FN_CATALOGODESC(2,G.localidad)) AS location,
     G.upz,
     G.direccion AS address,

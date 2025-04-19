@@ -17,7 +17,7 @@ $sql = "SELECT
             sexo AS sex,
             genero AS gender,
             nacionalidad AS nationality,
-            fec_nac AS birthDate,
+            fecha_nacimiento AS birthDate,
             etapa_ciclo AS lifestage,
             edad AS age,
             localidad AS location,

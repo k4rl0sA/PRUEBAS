@@ -1,43 +1,40 @@
 <?php
+header('Content-Type: application/json');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-header('Content-Type: application/json');
+// Cargar config y funciones necesarias
 require_once __DIR__ . '/../../libs/gestion.php';
-
-
-// Conexión a la base de datos
-$conn = conDB(); // Asumiendo que `conDB()` está en gestion.php
-
-// Obtener documento de la solicitud
+// Obtener el documento desde la URL
 $document = $_GET['document'] ?? null;
-
-// Validar que se haya enviado el documento
 if (!$document) {
-    echo json_encode(["error" => "Documento no proporcionado"]);
+    echo json_encode(["error" => "Documento no proporcionado."]);
     exit;
 }
-
-// Consultar datos personales desde la tabla `person`
-$sql = "SELECT sex, gender, nationality, birthDate, lifestage, age, location, upz, address, phone 
+// Consultar datos personales desde la tabla person
+$sql = "SELECT 
+            doc AS document,
+            sexo AS sex,
+            genero AS gender,
+            nacionalidad AS nationality,
+            fec_nac AS birthDate,
+            etapa_ciclo AS lifestage,
+            edad AS age,
+            localidad AS location,
+            upz,
+            direccion AS address,
+            tel AS phone
         FROM person 
-        WHERE document = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $document);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    echo json_encode([
-        "error" => "Documento no encontrado",
-        "document" => $document
-    ]);
+        WHERE doc = '$document' 
+        LIMIT 1";
+$res = datos_mysql($sql);
+if ($res['code'] !== 0 || empty($res['responseResult'])) {
+    echo json_encode(["error" => "Documento no encontrado", "document" => $document]);
     exit;
 }
-
-$data = $result->fetch_assoc();
-
-// Generar factores de riesgo aleatorios (como en el ejemplo original)
+// Datos de la persona
+$datos = $res['responseResult'][0];
+// Generar factores de riesgo aleatorios
 $riesgos = [
     "socioeconomic" => [
         "name" => "Nivel Socioeconómico",
@@ -76,12 +73,5 @@ $riesgos = [
         "description" => "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
     ]
 ];
-
-// Armar la respuesta
-$response = array_merge(
-    ["document" => $document],
-    $data,
-    ["riskFactors" => $riesgos]
-);
-
-echo json_encode($response);
+// Devolver respuesta
+echo json_encode(array_merge($datos, ["riskFactors" => $riesgos]));

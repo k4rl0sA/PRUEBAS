@@ -13,7 +13,7 @@ if (!$document) {
 }
 // Consultar datos personales desde la tabla person
 $sql = "SELECT 
-            doc AS document,
+            idpersona AS document,
             sexo AS sex,
             genero AS gender,
             nacionalidad AS nationality,
@@ -25,7 +25,7 @@ $sql = "SELECT
             direccion AS address,
             tel AS phone
         FROM person 
-        WHERE doc = '$document' 
+        WHERE idpersona = '$document' 
         LIMIT 1";
 $res = datos_mysql($sql);
 if ($res['code'] !== 0 || empty($res['responseResult'])) {

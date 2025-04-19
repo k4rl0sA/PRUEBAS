@@ -9,9 +9,6 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 
-// Iniciar sesión (si es necesario)
-session_start();
-
 // Verificar si el script se está llamando directamente
 if (basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
     // Validar autenticación si es necesario

@@ -22,7 +22,7 @@ if (basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
 }
 
 // Incluir archivo de gestión de base de datos
-require_once __DIR__.'/../libs/gestion.php';
+require_once __DIR__.'/../../libs/gestion.php';
 
 // Función principal
 try {

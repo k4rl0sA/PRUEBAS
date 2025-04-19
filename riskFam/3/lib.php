@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once "gestion.php";
+require_once "../gestion.php";
 
 // Conexión a la base de datos
 $conn = conDB(); // Asumiendo que `conDB()` está en gestion.php

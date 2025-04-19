@@ -45,6 +45,7 @@ if ($res['code'] !== 0 || empty($res['responseResult'])) {
 // Datos de la persona
 $datos = $res['responseResult'][0];
 
+//Riesgo Socioeconómico
 $sql1="SELECT ROUND((((CASE G.estrato WHEN 1 THEN 6 WHEN 2 THEN 5  WHEN 3 THEN 4  WHEN 4 THEN 3 WHEN 5 THEN 2  WHEN 6 THEN 1  ELSE 0  END) +
 (CASE C.ingreso  WHEN 1 THEN 3  WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0  END)- 2) / 7.0) * 100, 2) AS SE
 FROM person P 
@@ -54,6 +55,26 @@ LEFT JOIN (SELECT hc.*  FROM hog_carac hc  INNER JOIN (SELECT idfam, MAX(fecha) 
 WHERE P.idpersona ='$document' LIMIT 1"; 
 $res1 = datos_mysql($sql1);
 $socioEcono = $res1['responseResult'][0]['SE'];
+//Riesgo Estructura Familiar
+$sql2="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$res2 = datos_mysql($sql2);
+$estruFamil = $res2['responseResult'][0];
+//Riesgo Vulnerabilidad Social
+$sql3="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$res3 = datos_mysql($sql3);
+$vulnSocial = $res3['responseResult'][0];
+//Riesgo Acceso a Servicios de Salud
+$sql4="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$res4 = datos_mysql($sql4);
+$accesoSalud = $res4['responseResult'][0];
+//Riesgo Entorno Habitacional
+$sql5="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$res5 = datos_mysql($sql5);
+$entornoHab = $res5['responseResult'][0];
+//Riesgo Características Demográficas
+$sql6="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$res6 = datos_mysql($sql6);
+$caracDemo = $res6['responseResult'][0];
 // Generar factores de riesgo aleatorios
 $riesgos = [
     "socioeconomic" => [

@@ -15,41 +15,39 @@ if (!isset($_SESSION["us_sds"])) {
   exit;
 }
 
-// Configuración de la base de datos (tu código existente)
-// ... [mantén tu configuración de conexión existente] ...
-
 // Nuevo caso para manejar solicitudes JSON
 $req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
 switch ($req) {
     case 'get_person_data':
         header('Content-Type: application/json');
         $document = $_GET['document'] ?? null;
-        if ($document) {
-            $personData = get_person_data($document);
-            $riskFactors = get_risk_factors($document);
-            
-            if ($personData) {
-                $response = array_merge(
-                    ["document" => $document],
-                    $personData,
-                    ["riskFactors" => $riskFactors]
-                );
-            } else {
-                $response = [
-                    "error" => "Documento no encontrado",
-                    "document" => $document
-                ];
-            }
+        
+        if (!$document) {
+            echo json_encode(["error" => "Documento no proporcionado"]);
+            exit;
+        }
+        
+        $personData = get_person_data($document);
+        $riskFactors = get_risk_factors();
+        
+        if ($personData) {
+            $response = array_merge(
+                ["document" => $document],
+                $personData,
+                ["riskFactors" => $riskFactors]
+            );
         } else {
             $response = [
-                "error" => "Documento no proporcionado"
+                "error" => "Documento no encontrado",
+                "document" => $document
             ];
         }
+        
         echo json_encode($response);
         exit;
         break;
         
-    // ... [mantén tus otros casos existentes] ...
+    // ... [otros casos existentes] ...
 }
 
 // Función para obtener datos personales desde la base de datos
@@ -62,10 +60,13 @@ function get_person_data($document) {
             FROM `person` 
             WHERE idpersona = ?";
     
+    // Preparar parámetros para consulta segura
     $params = [['type' => 's', 'value' => $document]];
+    
+    // Asegúrate de que tu función datos_mysql() pueda manejar parámetros preparados
     $data = datos_mysql($sql, $params);
     
-    if (!empty($data['responseResult'])) {
+    if (!empty($data['responseResult']) && isset($data['responseResult'][0])) {
         $person = $data['responseResult'][0];
         
         // Mapear sexo
@@ -103,60 +104,44 @@ function get_person_data($document) {
     }
     return null;
 }
-// Factores de riesgo con valores aleatorios
-$riesgos = [
-    "socioeconomic" => [
-        "name" => "Nivel Socioeconómico",
-        "value" => rand(0, 100),
-        "weight" => 0.18,
-        "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
-    ],
-    "familyStructure" => [
-        "name" => "Estructura Familiar",
-        "value" => rand(0, 100),
-        "weight" => 0.20,
-        "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
-    ],
-    "socialVulnerability" => [
-        "name" => "Vulnerabilidad Social",
-        "value" => rand(0, 100),
-        "weight" => 0.12,
-        "description" => "Considera factores como la violencia, el desplazamiento y la exclusión social."
-    ],
-    "accessToHealth" => [
-        "name" => "Acceso a Servicios de Salud",
-        "value" => rand(0, 100),
-        "weight" => 0.10,
-        "description" => "Clave para la prevención y el cuidado de enfermedades."
-    ],
-    "livingEnvironment" => [
-        "name" => "Entorno Habitacional",
-        "value" => rand(0, 100),
-        "weight" => 0.10,
-        "description" => "Evalúa las condiciones de la vivienda y su impacto en la salud."
-    ],
-    "demographics" => [
-        "name" => "Características Demográficas",
-        "value" => rand(0, 100),
-        "weight" => 0.30,
-        "description" => "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
-    ]
-];
-// Obtener documento de la solicitud
-$document = $_GET['document'] ?? null;
-
-if ($document && isset($personal[$document])) {
-    $response = array_merge(
-        ["document" => $document],
-        $personal[$document],
-        ["riskFactors" => $riesgos]
-    );
-} else {
-    $response = [
-        "error" => "Documento no encontrado",
-        "document" => $document
+function get_risk_factors() {
+    return [
+        "socioeconomic" => [
+            "name" => "Nivel Socioeconómico",
+            "value" => rand(0, 100),
+            "weight" => 0.18,
+            "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
+        ],
+        "familyStructure" => [
+            "name" => "Estructura Familiar",
+            "value" => rand(0, 100),
+            "weight" => 0.20,
+            "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
+        ],
+        "socialVulnerability" => [
+            "name" => "Vulnerabilidad Social",
+            "value" => rand(0, 100),
+            "weight" => 0.12,
+            "description" => "Considera factores como la violencia, el desplazamiento y la exclusión social."
+        ],
+        "accessToHealth" => [
+            "name" => "Acceso a Servicios de Salud",
+            "value" => rand(0, 100),
+            "weight" => 0.10,
+            "description" => "Clave para la prevención y el cuidado de enfermedades."
+        ],
+        "livingEnvironment" => [
+            "name" => "Entorno Habitacional",
+            "value" => rand(0, 100),
+            "weight" => 0.10,
+            "description" => "Evalúa las condiciones de la vivienda y su impacto en la salud."
+        ],
+        "demographics" => [
+            "name" => "Características Demográficas",
+            "value" => rand(0, 100),
+            "weight" => 0.30,
+            "description" => "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
+        ]
     ];
 }
-
-echo json_encode($response);
 ?>

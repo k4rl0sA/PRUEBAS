@@ -9,15 +9,6 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 
-// Verificar si el script se está llamando directamente
-if (basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME'])) {
-    // Validar autenticación si es necesario
-    if (!isset($_SESSION["us_sds"])) {
-        echo json_encode(['error' => 'No autenticado']);
-        exit;
-    }
-}
-
 // Incluir archivo de gestión de base de datos
 require_once __DIR__.'/../../libs/gestion.php';
 

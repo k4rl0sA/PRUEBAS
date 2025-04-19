@@ -8,6 +8,10 @@ require_once "../../gestion.php";
 
 // Conexión a la base de datos
 $conn = conDB(); // Asumiendo que `conDB()` está en gestion.php
+$conn = conDB();
+if (!$conn) {
+    die(json_encode(["error" => "No se pudo conectar a la base de datos"]));
+}
 
 // Obtener documento de la solicitud
 $document = $_GET['document'] ?? null;

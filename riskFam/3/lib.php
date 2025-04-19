@@ -1,17 +1,9 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 header('Content-Type: application/json');
-require_once "../../gestion.php";
-
+require_once __DIR__.'/../../libs/gestion.php';
 
 // Conexión a la base de datos
 $conn = conDB(); // Asumiendo que `conDB()` está en gestion.php
-$conn = conDB();
-if (!$conn) {
-    die(json_encode(["error" => "No se pudo conectar a la base de datos"]));
-}
 
 // Obtener documento de la solicitud
 $document = $_GET['document'] ?? null;

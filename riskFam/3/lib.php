@@ -45,7 +45,6 @@ if ($res['code'] !== 0 || empty($res['responseResult'])) {
 // Datos de la persona
 $datos = $res['responseResult'][0];
 
-socioeconomic
 $sql1="SELECT ROUND((((CASE G.estrato WHEN 1 THEN 6 WHEN 2 THEN 5  WHEN 3 THEN 4  WHEN 4 THEN 3 WHEN 5 THEN 2  WHEN 6 THEN 1  ELSE 0  END) +
 (CASE C.ingreso  WHEN 1 THEN 3  WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0  END)- 2) / 7.0) * 100, 2) AS SE
 FROM person P 

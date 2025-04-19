@@ -16,7 +16,7 @@ $sql = "SELECT
     idpersona AS document,
     FN_CATALOGODESC(21,sexo) AS sex,
     FN_CATALOGODESC(19,genero) AS gender,
-    nacionalidad AS nationality,
+    FN_CATALOGODESC(30,nacionalidad) AS nationality,
     fecha_nacimiento AS birthDate,
     TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS age,
     CASE 

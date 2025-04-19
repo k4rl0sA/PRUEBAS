@@ -1,69 +1,55 @@
 <?php
-// Configuración inicial
-ini_set('display_errors', 1); // Mostrar errores para depuración
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__.'/php_errors.log');
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.use_strict_mode', 1);
+session_start();
+ini_set('display_errors','1');
+setlocale(LC_TIME, 'es_CO');
+date_default_timezone_set('America/Bogota');
+setlocale(LC_ALL,'es_CO');
 
-// Headers para respuesta JSON
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
-
-// Incluir archivo de gestión de base de datos
-require_once __DIR__.'/../../libs/gestion.php';
-
-// Función principal
-try {
-    // Validar parámetro document
-    if (!isset($_GET['document']) || empty($_GET['document'])) {
-        throw new Exception('Documento no proporcionado');
-    }
-
-    $document = $_GET['document'];
-    
-    // Validar formato del documento
-    if (!is_numeric($document)) {
-        throw new Exception('Documento no válido');
-    }
-
-    // Obtener datos personales
-    $personData = get_person_data($document);
-    
-    if (!$personData) {
-        throw new Exception('Documento no encontrado');
-    }
-
-    // Obtener factores de riesgo
-    $riskFactors = get_risk_factors($document);
-
-    // Preparar respuesta exitosa
-    $response = [
-        'success' => true,
-        'document' => $document,
-        'person' => $personData,
-        'riskFactors' => $riskFactors
-    ];
-
-    echo json_encode($response);
-
-} catch (Exception $e) {
-    // Manejo de errores
-    http_response_code(400); // Bad Request
-    echo json_encode([
-        'success' => false,
-        'error' => $e->getMessage()
-    ]);
+$APP='GTAPS';
+if (!isset($_SESSION["us_sds"])) {
+  header("Location: /index.php"); 
+  exit;
 }
 
-/**
- * Obtiene datos personales desde la base de datos
- */
-function get_person_data($document) {
-    // Verificar conexión a la base de datos
-    if (!isset($GLOBALS['con']) || !$GLOBALS['con']) {
-        throw new Exception("Error de conexión a la base de datos");
-    }
+// Nuevo caso para manejar solicitudes JSON
+$req = (isset($_REQUEST['a'])) ? $_REQUEST['a'] : '';
+switch ($req) {
+    case 'get_person_data':
+        header('Content-Type: application/json');
+        $document = $_GET['document'] ?? null;
+        if ($document) {
+            $personData = get_person_data($document);
+            $riskFactors = get_risk_factors($document);
+            
+            if ($personData) {
+                $response = array_merge(
+                    ["document" => $document],
+                    $personData,
+                    ["riskFactors" => $riskFactors]
+                );
+            } else {
+                $response = [
+                    "error" => "Documento no encontrado",
+                    "document" => $document
+                ];
+            }
+        } else {
+            $response = [
+                "error" => "Documento no proporcionado"
+            ];
+        }
+        echo json_encode($response);
+        exit;
+        break;
+        
+    // ... [mantén tus otros casos existentes] ...
+}
 
+// Función para obtener datos personales desde la base de datos
+function get_person_data($document) {
     $sql = "SELECT 
                 nombre1, nombre2, apellido1, apellido2, 
                 fecha_nacimiento, sexo, genero, nacionalidad,
@@ -72,60 +58,48 @@ function get_person_data($document) {
             FROM `person` 
             WHERE idpersona = ?";
     
-    $stmt = $GLOBALS['con']->prepare($sql);
-    if (!$stmt) {
-        throw new Exception("Error preparando consulta: ".$GLOBALS['con']->error);
+    $params = [['type' => 's', 'value' => $document]];
+    $data = datos_mysql($sql, $params);
+    
+    if (!empty($data['responseResult'])) {
+        $person = $data['responseResult'][0];
+        
+        // Mapear sexo
+        $sexMap = ['M' => 'Masculino', 'F' => 'Femenino'];
+        $sex = $sexMap[$person['sexo']] ?? $person['sexo'];
+        
+        // Mapear género
+        $genderMap = ['H' => 'Hombre', 'M' => 'Mujer'];
+        $gender = $genderMap[$person['genero']] ?? $person['genero'];
+        
+        // Calcular edad
+        $birthDate = new DateTime($person['fecha_nacimiento']);
+        $today = new DateTime();
+        $age = $birthDate->diff($today)->y;
+        
+        // Determinar etapa de vida
+        $lifestage = 'Adulto';
+        if ($age < 12) $lifestage = 'Niño';
+        elseif ($age < 18) $lifestage = 'Adolescente';
+        elseif ($age < 60) $lifestage = 'Adulto';
+        else $lifestage = 'Adulto Mayor';
+        
+        return [
+            "sex" => $sex,
+            "gender" => $gender,
+            "nationality" => $person['nacionalidad'],
+            "birthDate" => $person['fecha_nacimiento'],
+            "lifestage" => $lifestage,
+            "age" => $age,
+            "location" => $person['localidad_vive'],
+            "phone" => $person['telefono1'],
+            "email" => $person['correo'],
+            "fullName" => trim("{$person['nombre1']} {$person['nombre2']} {$person['apellido1']} {$person['apellido2']}")
+        ];
     }
-    
-    $stmt->bind_param("s", $document);
-    if (!$stmt->execute()) {
-        throw new Exception("Error ejecutando consulta: ".$stmt->error);
-    }
-    
-    $result = $stmt->get_result();
-    if (!$result) {
-        throw new Exception("Error obteniendo resultados: ".$stmt->error);
-    }
-    
-    $person = $result->fetch_assoc();
-    $stmt->close();
-    
-    if (!$person) {
-        return null;
-    }
-    
-    // Procesar datos
-    $sexMap = ['M' => 'Masculino', 'F' => 'Femenino'];
-    $genderMap = ['H' => 'Hombre', 'M' => 'Mujer'];
-    
-    $birthDate = new DateTime($person['fecha_nacimiento']);
-    $today = new DateTime();
-    $age = $birthDate->diff($today)->y;
-    
-    // Determinar etapa de vida
-    if ($age < 12) $lifestage = 'Niño';
-    elseif ($age < 18) $lifestage = 'Adolescente';
-    elseif ($age < 60) $lifestage = 'Adulto';
-    else $lifestage = 'Adulto Mayor';
-    
-    return [
-        "sex" => $sexMap[$person['sexo']] ?? $person['sexo'],
-        "gender" => $genderMap[$person['genero']] ?? $person['genero'],
-        "nationality" => $person['nacionalidad'],
-        "birthDate" => $person['fecha_nacimiento'],
-        "lifestage" => $lifestage,
-        "age" => $age,
-        "location" => $person['localidad_vive'],
-        "phone" => $person['telefono1'],
-        "email" => $person['correo'],
-        "fullName" => trim("{$person['nombre1']} {$person['nombre2']} {$person['apellido1']} {$person['apellido2']}"),
-        "upz" => "UPZ-".rand(100, 199), // Ejemplo - reemplaza con datos reales
-        "address" => "Calle ".rand(1, 200)." #".rand(1, 100)."-".rand(1, 100) // Ejemplo - reemplaza con datos reales
-    ];
+    return null;
 }
-/**
- * Obtiene factores de riesgo (versión básica)
- */
+// Función para obtener factores de riesgo
 function get_risk_factors() {
     return [
         "socioeconomic" => [

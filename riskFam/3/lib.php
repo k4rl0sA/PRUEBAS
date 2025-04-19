@@ -1,90 +1,71 @@
 <?php
-// Configuración de errores
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Configuración inicial
+ini_set('display_errors', 0); // Desactivar visualización de errores en producción
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__.'/php_errors.log');
 
-// Configuración de seguridad
-ini_set('session.cookie_httponly', 1);
-ini_set('session.cookie_secure', 1);
-ini_set('session.use_strict_mode', 1);
+// Headers para respuesta JSON
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
 
-// Iniciar sesión
+// Validar autenticación si es necesario
 session_start();
-
-// Configuración regional
-setlocale(LC_TIME, 'es_CO');
-date_default_timezone_set('America/Bogota');
-setlocale(LC_ALL,'es_CO');
-
-// Incluir archivo de gestión
-require_once '../libs/gestion.php';
-
-// Verificar autenticación
 if (!isset($_SESSION["us_sds"])) {
-  header("Location: /index.php"); 
-  exit;
+    echo json_encode(['error' => 'No autenticado']);
+    exit;
 }
 
-// Manejar solicitud JSON
+// Conexión a la base de datos (usando tu configuración existente)
+require_once '../libs/gestion.php';
+
+// Función principal
 try {
-    header('Content-Type: application/json');
-    
-    // Verificar si es una solicitud de datos personales
-    if (isset($_GET['document'])) {
-        $document = $_GET['document'];
-        
-        // Validar documento
-        if (empty($document) || !is_numeric($document)) {
-            throw new Exception("Documento no válido");
-        }
-        
-        // Obtener datos
-        $personData = get_person_data($document);
-        
-        if (!$personData) {
-            throw new Exception("Documento no encontrado");
-        }
-        
-        // Obtener factores de riesgo
-        $riskFactors = get_risk_factors($document);
-        
-        // Preparar respuesta
-        $response = [
-            "success" => true,
-            "document" => $document,
-            "person" => $personData,
-            "riskFactors" => $riskFactors
-        ];
-        
-        echo json_encode($response);
-        exit;
+    // Validar parámetro document
+    if (!isset($_GET['document']) || empty($_GET['document'])) {
+        throw new Exception('Documento no proporcionado');
     }
+
+    $document = $_GET['document'];
     
-    // Si no es una solicitud de documento, devolver error
-    throw new Exception("Parámetros incorrectos");
+    // Validar formato del documento (ajusta según tus necesidades)
+    if (!is_numeric($document)) {
+        throw new Exception('Documento no válido');
+    }
+
+    // Obtener datos personales
+    $personData = get_person_data($document);
     
+    if (!$personData) {
+        throw new Exception('Documento no encontrado');
+    }
+
+    // Obtener factores de riesgo
+    $riskFactors = get_risk_factors($document);
+
+    // Preparar respuesta exitosa
+    $response = [
+        'success' => true,
+        'document' => $document,
+        'person' => $personData,
+        'riskFactors' => $riskFactors
+    ];
+
+    echo json_encode($response);
+
 } catch (Exception $e) {
-    http_response_code(500);
+    // Manejo de errores
+    http_response_code(400); // Bad Request
     echo json_encode([
-        "success" => false,
-        "error" => $e->getMessage(),
-        "request" => $_GET
+        'success' => false,
+        'error' => $e->getMessage()
     ]);
-    exit;
 }
 
 /**
  * Obtiene datos personales desde la base de datos
  */
 function get_person_data($document) {
-    // Verificar conexión a BD
-    if (!isset($GLOBALS['con']) || !$GLOBALS['con']) {
-        throw new Exception("Error de conexión a la base de datos");
-    }
-    
     $sql = "SELECT 
                 nombre1, nombre2, apellido1, apellido2, 
                 fecha_nacimiento, sexo, genero, nacionalidad,
@@ -93,33 +74,24 @@ function get_person_data($document) {
             FROM `person` 
             WHERE idpersona = ?";
     
-    // Preparar y ejecutar consulta
-    $stmt = $GLOBALS['con']->prepare($sql);
-    if (!$stmt) {
-        throw new Exception("Error preparando consulta: ".$GLOBALS['con']->error);
-    }
+    $params = [['type' => 's', 'value' => $document]];
+    $data = datos_mysql($sql, $params);
     
-    $stmt->bind_param("s", $document);
-    if (!$stmt->execute()) {
-        throw new Exception("Error ejecutando consulta: ".$stmt->error);
-    }
-    
-    $result = $stmt->get_result();
-    if (!$result) {
-        throw new Exception("Error obteniendo resultados: ".$stmt->error);
-    }
-    
-    $person = $result->fetch_assoc();
-    $stmt->close();
-    
-    if (!$person) {
+    if (empty($data['responseResult'])) {
         return null;
     }
+
+    $person = $data['responseResult'][0];
     
-    // Procesar datos
+    // Mapear sexo
     $sexMap = ['M' => 'Masculino', 'F' => 'Femenino'];
-    $genderMap = ['H' => 'Hombre', 'M' => 'Mujer'];
+    $sex = $sexMap[$person['sexo']] ?? $person['sexo'];
     
+    // Mapear género
+    $genderMap = ['H' => 'Hombre', 'M' => 'Mujer'];
+    $gender = $genderMap[$person['genero']] ?? $person['genero'];
+    
+    // Calcular edad
     $birthDate = new DateTime($person['fecha_nacimiento']);
     $today = new DateTime();
     $age = $birthDate->diff($today)->y;
@@ -131,8 +103,8 @@ function get_person_data($document) {
     else $lifestage = 'Adulto Mayor';
     
     return [
-        "sex" => $sexMap[$person['sexo']] ?? $person['sexo'],
-        "gender" => $genderMap[$person['genero']] ?? $person['genero'],
+        "sex" => $sex,
+        "gender" => $gender,
         "nationality" => $person['nacionalidad'],
         "birthDate" => $person['fecha_nacimiento'],
         "lifestage" => $lifestage,
@@ -140,10 +112,15 @@ function get_person_data($document) {
         "location" => $person['localidad_vive'],
         "phone" => $person['telefono1'],
         "email" => $person['correo'],
-        "fullName" => trim("{$person['nombre1']} {$person['nombre2']} {$person['apellido1']} {$person['apellido2']}")
+        "fullName" => trim("{$person['nombre1']} {$person['nombre2']} {$person['apellido1']} {$person['apellido2']}"),
+        "upz" => "UPZ-".rand(100, 199), // Ejemplo - reemplaza con datos reales
+        "address" => "Calle ".rand(1, 200)." #".rand(1, 100)."-".rand(1, 100) // Ejemplo - reemplaza con datos reales
     ];
 }
 
+/**
+ * Obtiene factores de riesgo (versión básica)
+ */
 function get_risk_factors() {
     return [
         "socioeconomic" => [

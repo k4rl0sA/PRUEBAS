@@ -13,19 +13,29 @@ if (!$document) {
 }
 // Consultar datos personales desde la tabla person
 $sql = "SELECT 
-            idpersona AS document,
-            sexo AS sex,
-            genero AS gender,
-            nacionalidad AS nationality,
-            fecha_nacimiento AS birthDate,
-            etapa_ciclo AS lifestage,
-            edad AS age,
-            localidad AS location,
-            upz,
-            direccion AS address,
-            tel AS phone
-        FROM person 
-        WHERE idpersona = '$document' 
+    idpersona AS document,
+    sexo AS sex,
+    genero AS gender,
+    nacionalidad AS nationality,
+    fecha_nacimiento AS birthDate,
+    TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS age,
+    CASE 
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 0 AND 5 THEN 'PRIMERA INFANCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 6 AND 11 THEN 'INFANCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 12 AND 17 THEN 'ADOLESCENCIA'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 18 AND 28 THEN 'JUVENTUD'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) BETWEEN 29 AND 59 THEN 'ADULTEZ'
+        WHEN TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) >= 60 THEN 'VEJEZ'
+        ELSE ''
+    END AS life_course,
+    G.localidad AS location,
+    G.upz,
+    G.direccion AS address,
+    P.telefono1 AS phone
+FROM person P
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+WHERE idpersona = '$document' 
         LIMIT 1";
 $res = datos_mysql($sql);
 if ($res['code'] !== 0 || empty($res['responseResult'])) {

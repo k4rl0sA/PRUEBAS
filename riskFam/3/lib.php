@@ -14,7 +14,7 @@ if (!$document) {
 // Consultar datos personales desde la tabla person
 $sql = "SELECT 
     idpersona AS document,
-    sexo AS sex,
+    FN_CATALOGODESC(21,sexo) AS sex,
     genero AS gender,
     nacionalidad AS nationality,
     fecha_nacimiento AS birthDate,

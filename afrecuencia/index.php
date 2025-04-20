@@ -86,7 +86,76 @@ function loadMotiv(){
 }
 
  function changeSelect(a,b){
-	if(b!=''){
+	if(b!=''){function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
+    try {
+        const originSelect = document.getElementById(a);
+        const targetSelect = document.getElementById(b);
+        const idpElement = document.getElementById('idp');
+        if (!originSelect || !targetSelect || !idpElement) {
+            console.error('Elementos requeridos no encontrados');
+            return;
+        }
+        targetSelect.innerHTML = '';
+        targetSelect.add(new Option('SELECCIONE', ''));
+        const selectedValue = originSelect.value;
+        if (!selectedValue) return;
+        const idPersona = idpElement.value;
+        if (!idPersona) {
+            console.error('ID no disponible');
+            targetSelect.add(new Option('ID requerido', ''));
+            return;
+        }
+        const idCompuesto = `${idPersona}_${selectedValue}`;
+        const params = new URLSearchParams();
+        params.append('a', 'opc');
+        params.append('tb', `${a}${b}`);
+        params.append('id', idCompuesto);
+        Object.entries(extraParams).forEach(([key, elementId]) => {
+            const element = document.getElementById(elementId);
+            if (element?.value) params.append(key, element.value);
+        });
+        fetch(c, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params.toString()
+        })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
+            // Primero obtener el texto crudo de la respuesta
+            return response.text().then(text => {
+                try {
+                    // Intentar parsear como JSON
+                    return JSON.parse(text);
+                } catch (e) {
+                    // Si falla, mostrar el contenido real recibido
+                    console.error('Respuesta no es JSON válido. Contenido recibido:', text);
+                    throw new Error(`La respuesta no es JSON válido. Puede ser una página de error HTML. Contenido: ${text.substring(0, 100)}...`);
+                }
+            });
+        })
+        .then(data => {
+            if (!Array.isArray(data)) throw new Error('Respuesta no es un array');
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('SELECCIONE', ''));
+            data.forEach(item => {
+                targetSelect.add(new Option(
+                    item.descripcion || item.text || '',
+                    item.idcatadeta || item.value || ''
+                ));
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('Error al cargar', ''));
+        });
+    } catch (error) {
+        console.error('Error en custSeleDepend:', error);
+    }
+}
 		var pmot1=document.getElementById('1'),
 		pmot2=document.getElementById('2')
 		mo3=document.getElementById('mot3'),
@@ -117,6 +186,77 @@ function loadMotiv(){
 		}
 	}
 } */
+
+function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
+    try {
+        const originSelect = document.getElementById(a);
+        const targetSelect = document.getElementById(b);
+        const idpElement = document.getElementById('idp');
+        if (!originSelect || !targetSelect || !idpElement) {
+            console.error('Elementos requeridos no encontrados');
+            return;
+        }
+        targetSelect.innerHTML = '';
+        targetSelect.add(new Option('SELECCIONE', ''));
+        const selectedValue = originSelect.value;
+        if (!selectedValue) return;
+        const idPersona = idpElement.value;
+        if (!idPersona) {
+            console.error('ID no disponible');
+            targetSelect.add(new Option('ID requerido', ''));
+            return;
+        }
+        const idCompuesto = `${idPersona}_${selectedValue}`;
+        const params = new URLSearchParams();
+        params.append('a', 'opc');
+        params.append('tb', `${a}${b}`);
+        params.append('id', idCompuesto);
+        Object.entries(extraParams).forEach(([key, elementId]) => {
+            const element = document.getElementById(elementId);
+            if (element?.value) params.append(key, element.value);
+        });
+        fetch(c, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params.toString()
+        })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
+            // Primero obtener el texto crudo de la respuesta
+            return response.text().then(text => {
+                try {
+                    // Intentar parsear como JSON
+                    return JSON.parse(text);
+                } catch (e) {
+                    // Si falla, mostrar el contenido real recibido
+                    console.error('Respuesta no es JSON válido. Contenido recibido:', text);
+                    throw new Error(`La respuesta no es JSON válido. Puede ser una página de error HTML. Contenido: ${text.substring(0, 100)}...`);
+                }
+            });
+        })
+        .then(data => {
+            if (!Array.isArray(data)) throw new Error('Respuesta no es un array');
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('SELECCIONE', ''));
+            data.forEach(item => {
+                targetSelect.add(new Option(
+                    item.descripcion || item.text || '',
+                    item.idcatadeta || item.value || ''
+                ));
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            targetSelect.innerHTML = '';
+            targetSelect.add(new Option('Error al cargar', ''));
+        });
+    } catch (error) {
+        console.error('Error en custSeleDepend:', error);
+    }
+}
 
 function grabar(tb='',ev){
 	var cit= document.getElementById('cit'),

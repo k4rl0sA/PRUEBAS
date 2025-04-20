@@ -99,10 +99,8 @@ function get_person(){
 	  return "";
 	}else{
 	  $id=divide($_POST['id']);
-	  $sql="SELECT P.idpeople,P.fecha_nacimiento fechanacimiento,P.sexo sexo,	  TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
-	  TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
-	  DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
-		  FROM person P
+	  $sql="SELECT P.sexo sexo,	  TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
+	  		  FROM person P
 	  WHERE P.idpeople='{$id[0]}'"; 
 	  // echo $sql;
 	  // print_r($_REQUEST);
@@ -177,7 +175,7 @@ function opc_tipo_cita($id=''){
 }
 function opc_tdocit($id=''){
 	$id = divide($_REQUEST['id']);
-	$persona = get_persona();
+	$persona = get_person();
 	$edad = $persona['anos'];
 	$sexo = $persona['sexo'];
 	$edad_categoria = [

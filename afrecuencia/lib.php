@@ -202,8 +202,8 @@ function opc_tdocit($id=''){
 			  AND estado = 'A'
 			ORDER BY LENGTH(idcatadeta), idcatadeta";
 	$info = datos_mysql($sql);
-	// return $sql;
-	return json_encode($info['responseResult']);
+	 return $sql;
+	//return json_encode($info['responseResult']);
 }
 function opc_estados($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=11 and estado='A' ORDER BY 1",$id);

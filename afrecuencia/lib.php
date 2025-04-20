@@ -94,6 +94,22 @@ function get_persona(){
 		}
 	}
 }
+function get_person(){
+	if($_POST['id']==''){
+	  return "";
+	}else{
+	  $id=divide($_POST['id']);
+	  $sql="SELECT P.idpeople,P.fecha_nacimiento fechanacimiento,P.sexo sexo,	  TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos,
+	  TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12) AS meses,
+	  DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30 AS dias
+		  FROM person P
+	  WHERE P.idpeople='{$id[0]}'"; 
+	  // echo $sql;
+	  // print_r($_REQUEST);
+	  $info=datos_mysql($sql);
+	  return $info['responseResult'][0];
+	}
+  }
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
   if ($a=='frecuenciauso'){  

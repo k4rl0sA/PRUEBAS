@@ -203,6 +203,7 @@ function opc_tdocit($id=''){
 			  AND estado = 'A'
 			ORDER BY LENGTH(idcatadeta), idcatadeta";
 	$info = datos_mysql($sql);
+	return $sql;
 	return json_encode($info['responseResult']);
 }
 function opc_estados($id=''){

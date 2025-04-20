@@ -97,7 +97,7 @@ function get_persona(){
 function get_person($a,$b){
 	  $sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
 	  		  FROM person P
-	  WHERE P.idpeople='{$id[0]}' and tipo_doc='{$id[1]}'"; 
+	  WHERE P.idpeople='{$a}' and tipo_doc='{$b}'"; 
 	  // echo $sql;
 	  // print_r($_REQUEST);
 	  $info=datos_mysql($sql);

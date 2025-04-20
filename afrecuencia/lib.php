@@ -159,7 +159,6 @@ function opc_punto_atenc($id=''){
 function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
-
 function opc_tdocit($id=''){
 	$id = divide($_REQUEST['id']);
 	$persona = get_persona();
@@ -209,8 +208,6 @@ function opc_tdocit($id=''){
 function opc_estados($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=11 and estado='A' ORDER BY 1",$id);
 }
-
-
 function opc_upzbar(){
 	if($_REQUEST['id']!=''){
 		$id=divide($_REQUEST['id']);

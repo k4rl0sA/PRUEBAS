@@ -68,7 +68,8 @@ function get_frecuenciauso(){
 	if ($_POST['id']){
 		// var_dump($_POST);
 		$id=divide($_POST['id']);			
-	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero
+	$sql="SELECT T1.fecha_create,T2.idpersona id_persona,T2.tipo_doc,T2.nombre1,T2.nombre2,T2.apellido1,T2.apellido2,T2.fecha_nacimiento,T2.sexo genero,
+	concat('AÑOS =',TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, T2.fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(T2.fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
 	from frecuenciauso T1 
 	left join person T2 ON T1.idpeople=T2.idpeople
 	WHERE T1.idfrecuencia='{$id[0]}'";

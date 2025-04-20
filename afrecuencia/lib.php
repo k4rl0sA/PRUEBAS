@@ -163,16 +163,16 @@ function opc_tipo_cita($id=''){
 function get_person($a,$b){
 	$sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
 			  FROM person P
-	WHERE P.idpeople='{$a}' and tipo_doc='{$b}'"; 
+	WHERE P.idpersona='{$a}' and tipo_doc='{$b}'"; 
 	// echo $sql;
 	// print_r($_REQUEST);
 	$info=datos_mysql($sql);
-	var_dump($sql);
+	// var_dump($sql);
 	return ($info['responseResult'][0] ?? null);
 
 }
 function opc_tdocit($id=''){
-	var_dump($_REQUEST);
+	// var_dump($_REQUEST);
 	$id = divide($_REQUEST['id']);
 	$persona = get_person($id[0],$id[1]);
 	$edad = $persona['anos'];

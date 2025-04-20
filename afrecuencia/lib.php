@@ -101,7 +101,7 @@ function get_person($a,$b){
 	  // echo $sql;
 	  // print_r($_REQUEST);
 	  $info=datos_mysql($sql);
-	  return $info['responseResult'][0];
+	  return $info['responseResult'];
   }
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 

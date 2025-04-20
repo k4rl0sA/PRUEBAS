@@ -94,15 +94,7 @@ function get_persona(){
 		}
 	}
 }
-function get_person($a,$b){
-	  $sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
-	  		  FROM person P
-	  WHERE P.idpeople='{$a}' and tipo_doc='{$b}'"; 
-	  // echo $sql;
-	  // print_r($_REQUEST);
-	  $info=datos_mysql($sql);
-	  return $info['responseResult'];
-  }
+
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
   if ($a=='frecuenciauso'){  
@@ -167,6 +159,16 @@ function opc_punto_atenc($id=''){
 }
 function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
+}
+function get_person($a,$b){
+	$sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
+			  FROM person P
+	WHERE P.idpeople='{$a}' and tipo_doc='{$b}'"; 
+	// echo $sql;
+	// print_r($_REQUEST);
+	$info=datos_mysql($sql);
+	var_dump($info);
+	// return $info['responseResult'];
 }
 function opc_tdocit($id=''){
 	var_dump($_REQUEST);

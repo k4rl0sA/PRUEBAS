@@ -167,8 +167,9 @@ function get_person($a,$b){
 	// echo $sql;
 	// print_r($_REQUEST);
 	$info=datos_mysql($sql);
-	var_dump($info);
-	// return $info['responseResult'];
+	var_dump($sql);
+	return ($info['responseResult'][0] ?? null);
+
 }
 function opc_tdocit($id=''){
 	var_dump($_REQUEST);

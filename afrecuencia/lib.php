@@ -130,7 +130,7 @@ function cmp_frecuenciauso(){
 //$c[]=new cmp('te2','t',10,$d['tel2'],$w.' '.$o,'Teléfono 2','etnia',null,null,true,false,'','col-4');
 //$c[]=new cmp('fec','d',10,$d['fecha'],$w.' '.$o,'Fecha de Caracterización','fecha',null,null,false,false,'','col-3');
  $c[]=new cmp('pun','s',3,'',$w.' '.$o,'Punto de Atención','punto_atenc',null,null,true,true,'','col-3');
- $c[]=new cmp('cit','s',3,'',$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,true,'','col-7');
+ $c[]=new cmp('cit','s',3,'',$w.' '.$o,'Tipo de Cita','tipo_cita',null,null,true,true,'','col-7',"custSeleDepend('cit', 'servicio', 'lib.php', {'id_persona': 'idp'});");
  for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
  $rta.="<div id='tblConsulta'>".lis_citasUsuario()."</div>";
 //  $rta.="<div class='campo frecuencia percit col-10'><center><button style='background-color:#65cc67;border-radius:12px;color:white;padding:8px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('frecuencia',this);\">Guardar</button></center></div>";
@@ -160,7 +160,7 @@ function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
 
-function opc_tipcit($id=''){
+function opc_citservicio($id=''){
 	$id = divide($_REQUEST['id']);
 	$persona = get_persona();
 	$edad = $persona['anos'];

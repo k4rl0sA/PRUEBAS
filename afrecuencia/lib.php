@@ -99,7 +99,7 @@ function get_person(){
 	  return "";
 	}else{
 	  $id=divide($_POST['id']);
-	  $sql="SELECT P.sexo sexo,	  TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
+	  $sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
 	  		  FROM person P
 	  WHERE P.idpeople='{$id[0]}'"; 
 	  // echo $sql;
@@ -174,6 +174,7 @@ function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
 function opc_tdocit($id=''){
+	var_dump($_REQUEST);
 	$id = divide($_REQUEST['id']);
 	$persona = get_person();
 	$edad = $persona['anos'];

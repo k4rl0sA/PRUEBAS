@@ -94,19 +94,14 @@ function get_persona(){
 		}
 	}
 }
-function get_person(){
-	if($_POST['id']==''){
-	  return "";
-	}else{
-	  $id=divide($_POST['id']);
+function get_person($a,$b){
 	  $sql="SELECT P.sexo sexo,TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS anos
 	  		  FROM person P
-	  WHERE P.idpeople='{$id[0]}'"; 
+	  WHERE P.idpeople='{$id[0]}' and tipo_doc='{$id[1]}'"; 
 	  // echo $sql;
 	  // print_r($_REQUEST);
 	  $info=datos_mysql($sql);
 	  return $info['responseResult'][0];
-	}
   }
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
@@ -176,7 +171,7 @@ function opc_tipo_cita($id=''){
 function opc_tdocit($id=''){
 	var_dump($_REQUEST);
 	$id = divide($_REQUEST['id']);
-	$persona = get_person();
+	$persona = get_person($id[0],$id[1]);
 	$edad = $persona['anos'];
 	$sexo = $persona['sexo'];
 	$edad_categoria = [

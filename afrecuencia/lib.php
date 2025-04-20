@@ -157,7 +157,49 @@ function opc_punto_atenc($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A'  AND valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
 }
 function opc_tipo_cita($id=''){
-	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
+	$id = divide($_REQUEST['id']);
+	$persona = get_persona();
+	$edad = $persona['anos'];
+	$sexo = $persona['sexo'];
+	$edad_categoria = [
+		[0, 5, 1],
+		[6, 11, 2],
+		[12, 17, 3],
+		[21, 26, 5],
+		[29, 59, 4],
+		[60, 999, 6]
+	];
+	$categorias = [];
+	foreach ($edad_categoria as [$min, $max, $cat_id]) {
+		if ($edad >= $min && $edad <= $max) {
+			$categorias[] = $cat_id;
+			break;
+		}
+	}
+	//aplica para ambos sexos
+	if ($edad >= 0 && $edad <18) $categorias[] = 24;
+	
+	if ($sexo === 'M') { // Mujer
+		if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
+		if ($edad >= 50 && $edad <= 69) $categorias[] = 12;
+		if ($edad >= 10 && $edad <= 59) $categorias[] = 19;
+	} elseif ($sexo === 'H') { // Hombre
+		if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
+	}
+	if ($edad >= 50) {
+		$categorias[] = 16;
+	}
+	$categorias_comunes = [10, 15, 9, 17, 18, 20, 21, 22, 23, 25, 26, 27];
+	$categorias = array_unique(array_merge($categorias, $categorias_comunes));
+	$lista = implode(',', $categorias);
+	$sql = "SELECT idcatadeta, descripcion
+			FROM catadeta
+			WHERE idcatalogo = 275
+			  AND idcatadeta IN ($lista)
+			  AND estado = 'A'
+			ORDER BY LENGTH(idcatadeta), idcatadeta";
+	$info = datos_mysql($sql);
+	return json_encode($info['responseResult']);
 }
 function opc_estados($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=11 and estado='A' ORDER BY 1",$id);

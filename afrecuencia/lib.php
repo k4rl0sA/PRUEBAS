@@ -118,7 +118,7 @@ function cmp_frecuenciauso(){
  $c[]=new cmp('key','h',50,$_POST['id'],$w.' '.$o,'',0,'','','',false,'','col-4');
   //~ $c[]=new cmp('ipe','h',10,$_POST['id'],$w,'','idp',null,'','',''); 
  $c[]=new cmp('idp','nu',99999999999999999,$d['id_persona'],$w.' '.$key.' '.$o,'N° Identificación',0,'rgxdfnum','#################',true,$u,'','col-4');
-  $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3',"getDatForm('find','persona','percit');custSeleDepend('cit', 'servicio', 'lib.php', {'id_persona': 'idp'});");
+  $c[]=new cmp('tdo','s',3,$d['tipo_doc'],$w.' '.$key.' '.$o,'Tipo Documento','tipo_doc',null,null,true,$u,'','col-3',"getDatForm('find','persona','percit');custSeleDepend('tdo', 'cit', 'lib.php', {'id_persona': 'idp'});");
  $c[]=new cmp('no1','t',20,$d['nombre1'],$w.' '.$o,'Primer Nombre','nombre1',null,null,false,false,'','col-3');
  $c[]=new cmp('no2','t',20,$d['nombre2'],$w.' '.$o,'Segundo Nombre','nombre2',null,null,false,false,'','col-4');
  $c[]=new cmp('ap1','t',20,$d['apellido1'],$w.' '.$o,'Primer Apellido','apellido1',null,null,false,false,'','col-3');
@@ -160,7 +160,7 @@ function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	
 }
 
-function opc_citservicio($id=''){
+function opc_tdocit($id=''){
 	$id = divide($_REQUEST['id']);
 	$persona = get_persona();
 	$edad = $persona['anos'];

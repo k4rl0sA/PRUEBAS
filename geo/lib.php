@@ -123,6 +123,10 @@ function get_predio(){
   	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo 
   	LEFT JOIN apro_terr AP ON G.territorio = AP.territorio
    	WHERE A.estado='A' AND A.idgeo ='".$id[0]."'"; 
+	$perfil=perfil1($_SESSION['us_sds']);
+	if($perfil!='ADM'){
+		$sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";	
+	}
    	$sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {

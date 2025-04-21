@@ -127,7 +127,7 @@ function get_predio(){
 	if($perfil!='ADM'){
 		$sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";	
 	}
-   	$sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";
+   	// $sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";
 	$info=datos_mysql($sql);
 	if (!$info['responseResult']) {
 		return json_encode (new stdClass);

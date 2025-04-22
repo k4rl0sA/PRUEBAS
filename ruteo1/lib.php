@@ -116,7 +116,7 @@ function cmp_rute(){
  $d=get_ruteo();
 //  var_dump($d);
  if ($d=="") {$d=$t;}
- $days=fechas_app('RUTEO');
+ $days=fechas_app('ruteo');
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?true:false;

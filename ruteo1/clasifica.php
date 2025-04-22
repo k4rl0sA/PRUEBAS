@@ -42,7 +42,7 @@ function cmp_rutclasif(){
  $d=get_rutclasif();
  if ($d=="") {$d=$t;}
  $u=($d['idrutges']== NULL || $d['idrutges']== '')?true:false;
- $days=fechas_app('RUTEO');
+ $days=fechas_app('ruteo');
 //  var_dump($d);
  $o='gescla';
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);

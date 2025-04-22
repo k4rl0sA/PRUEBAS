@@ -122,6 +122,7 @@ function cmp_rute(){
  $x=($d['idgeo']=='0')?true:false;
 // var_dump($_POST);
 // var_dump($d);
+var_dump($days);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'CASO REPORTADO',$w);
  $c[]=new cmp('id','h','20',$d['id_ruteo'],$w.' '.$o,'','',null,null,true,false,'','col-1');

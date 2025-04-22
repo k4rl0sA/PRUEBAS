@@ -214,6 +214,11 @@ function fechas_app($modu){
       $info=datos_mysql($sql);
       $dias=$info['responseResult'][0]['valor'];
     break;
+    case 'ruteo':
+      $sql="SELECT valor FROM `catadeta` WHERE idcatalogo='224' and estado='A' and idcatadeta=6;";
+      $info=datos_mysql($sql);
+      $dias=$info['responseResult'][0]['valor'];
+    break;
     default:
       $dias=-7;
       break;

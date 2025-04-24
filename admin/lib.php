@@ -2407,10 +2407,7 @@ function whe_subred14() {
 }
 
 function whe_date14(){
-	$dia=date('d');
-	$mes=date('m');
-	$ano=date('Y');
-	$sql= " AND RG.fecha_llamada>='{$_POST['fechad']}' AND RG.fecha_llamada<='{$_POST['fechah']}'";
+	$sql= " AND RG.fecha_llamada BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
 

@@ -25,12 +25,11 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo  er  
- LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
+  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
 LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
-//   if (perfilUsu()!=='ADM')	$sql.=" LEFT JOIN apro_terr A ON G.territorio = A.territorio ";
-	$sql.=" ".whe_rute()." ORDER BY er.fecha_create";
+	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo($sql);
+	//echo($sql);
 
 	$sql1="SELECT  
 	R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'FUENTE O REMITENTE', R.fecha_asig AS 'FECHA ASIGNACIÓN', FN_CATALOGODESC(191,R.priorizacion) AS 'COHORTE DE RIESGO', FN_CATALOGODESC(235,R.tipo_prior) AS 'GRUPO DE POBLACION PRIORIZADA', 
@@ -53,11 +52,12 @@ LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 
 
+
+
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
     $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
-	// if (perfilUsu()!=='ADM')	$sql1.= " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){
@@ -168,9 +168,9 @@ function cmp_rute(){
  $c[]=new cmp($o,'e',null,'PROCESO DE GESTIÓN',$w);
  $c[]=new cmp('estado_agenda','s',2,'',$w.' sTA '.$o,'Estado','estado_agenda',null,null,true,false,'','col-4','enabRutAgen();enabRutRech();enabRutOthSub();');//
  $c[]=new cmp('motivo_estado','s','3','',$w.' ReC '.$o,'Motivo del Rechazado','motivo_estado',null,null,false,false,'','col-4');//
- $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,false,false,'','col-2',"validDate(this,0,30);");
- $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,false,false,'','col-2',"validDate(this,$days,0);");
-$c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',false,false,'','col-2',"selectDepend('perfil_gest','usuario_gest','lib.php');");
+ $c[]=new cmp('fecha_gestion','d','10','',$w.' AGe '.$o,'Fecha de Agenda','fecha_gestion',null,null,false,false,'','col-2',"validDate(this,$days,30);");
+ $c[]=new cmp('docu_confirm','nu','999999999999999999','',$w.' AGe '.$o,'Documento Confirmado  del Usuario','docu_confirm',null,null,false,false,'','col-2');
+  $c[]=new cmp('perfil_gest','s',3,'',$w.' AGe '.$o,'Perfil que Gestiona','perfil_gest',null,'',false,false,'','col-2',"selectDepend('perfil_gest','usuario_gest','lib.php');");
  $c[]=new cmp('usuario_gest','s','10','',$w.' AGe '.$o,'Usuario que Gestiona','usuario_gest',null,null,false,false,'','col-2');
 
  $o='gesgeo';
@@ -192,7 +192,7 @@ function lis_gestion(){ //revisar
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-gestion']))? ($_POST['pag-gestion']-1)* $regxPag:0;
-	0	
+		
 		$sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
 		FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 
@@ -549,8 +549,9 @@ if ($a=='rute' && $b=='acciones'){
 		if (agend($c['ACCIONES'])) {
 			$rta.="<li class='icono  editarAgenda' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
 		}
+
 		// $rta.="<li class='icono  editarAgenda' title='CLASIFICACIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('rutclasif','pro',event,'','clasifica.php',7,'clasifica');\"></li>";
-		$rta.="<li class='icono efectividadAgenda' title='GESTIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('ruteresol','pro',event,'','ruteoresolut.php',7,'ruteresol');\"></li>";
+		//$rta.="<li class='icono efectividadAgenda' title='GESTIÓN' id='".$c['ACCIONES']."' Onclick=\"mostrar('ruteresol','pro',event,'','ruteoresolut.php',7,'ruteresol');\"></li>";
 		// if($c['Gestionado']== '1' || $c['Gestionado']=='2'){
 		// }
 	}

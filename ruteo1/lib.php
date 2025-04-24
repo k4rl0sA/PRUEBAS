@@ -29,7 +29,7 @@ function lis_rute(){
   if (perfilUsu()!=='ADM')	$sql1.=" LEFT JOIN apro_terr A ON G.territorio = A.territorio  ";
 	$sql.=" ".whe_rute()." ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	// echo($sql);
+	echo($sql);
 
 	$sql1="SELECT  
 	R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'FUENTE O REMITENTE', R.fecha_asig AS 'FECHA ASIGNACIÓN', FN_CATALOGODESC(191,R.priorizacion) AS 'COHORTE DE RIESGO', FN_CATALOGODESC(235,R.tipo_prior) AS 'GRUPO DE POBLACION PRIORIZADA', 

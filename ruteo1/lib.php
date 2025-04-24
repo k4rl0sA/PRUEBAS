@@ -25,7 +25,8 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo  er  
-  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo"; 
+ LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
+LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 //   if (perfilUsu()!=='ADM')	$sql.=" LEFT JOIN apro_terr A ON G.territorio = A.territorio ";
 	$sql.=" ".whe_rute()." ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
@@ -55,7 +56,7 @@ function lis_rute(){
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
-    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') ";
+    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	// if (perfilUsu()!=='ADM')	$sql1.= " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";

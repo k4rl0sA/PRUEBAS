@@ -52,8 +52,6 @@ function lis_rute(){
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 
 
-
-
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;

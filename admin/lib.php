@@ -447,10 +447,15 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_SeguimientosUAIC($tab);
 			break;
 		case '57':
-				$tab = "Servicios_Agendamiento";
-				$encr = encript($tab, $clave);
-				if($tab=decript($encr,$clave))lis_($tab);
-				break;	
+			$tab = "Ruteo_Gestionados";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_ruteoGestionados($tab);
+			break;
+		case '58':
+			$tab = "Ruteo_Gestionados";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_($tab);
+			break;	
 		default:
         break;    
     }
@@ -1673,7 +1678,7 @@ WHERE F.usu_create NOT IN (1022358140) ";
 }
 
 function lis_gesrut($txt){
-	$sql="SELECT 
+/* 	$sql="SELECT 
 R.subred_report AS Subred, R.id_ruteo AS Cod_Ruteo, FN_CATALOGODESC(33,R.fuente) AS Fuente, R.fecha_asig Fecha_Asignacion, FN_CATALOGODESC(191,R.priorizacion) AS Priorizacion, FN_CATALOGODESC(235,R.tipo_prior) AS Tipo_Priorizacion, R.tipo_doc AS Tipo_Documento, R.documento AS N°_Documento, R.nombres AS Nombres_Usuario, R.fecha_nac Fecha_Nacimiento, R.sexo AS Sexo, RG.fecha_gest AS Fecha_gestion, FN_CATALOGODESC(35,RG.estado_g) AS Motivo_Estado, RG.observaciones AS Observaciones, RG.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, RG.fecha_create AS Fecha_Creacion 
 FROM `eac_ruteo_ges` RG
 LEFT JOIN `eac_ruteo` R ON RG.idruteo = R.id_ruteo
@@ -1687,7 +1692,7 @@ LEFT JOIN usuarios U ON RG.usu_creo = U.id_usuario WHERE 1";
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
-	echo json_encode($rta);
+	echo json_encode($rta); */
 }
 
 function lis_rbc($txt){
@@ -2119,12 +2124,7 @@ WHERE 1";
 
 function lis_servicAgend($txt){
 	$sql="SELECT A.id_agen 'Cod Servicio',P.tipo_doc 'Tipo Documento',P.idpersona Documento,fecha_solici 'Fecha Solicitud',FN_CATALOGODESC(275, servicio) Servicio,U.nombre 'Solicito',f2.realizada 
-FROM hog_agen A
-LEFT JOIN person P ON A.idpeople = P.idpeople
-LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
-LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
-LEFT JOIN (SELECT idpeople, realizada FROM frecuenciauso WHERE idfrecuencia IN (SELECT MIN(idfrecuencia) FROM frecuenciauso GROUP BY idpeople)) f2 ON A.idpeople = f2.idpeople
+FROM hog_agen A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario LEFT JOIN (SELECT idpeople, realizada FROM frecuenciauso WHERE idfrecuencia IN (SELECT MIN(idfrecuencia) FROM frecuenciauso GROUP BY idpeople)) f2 ON A.idpeople = f2.idpeople
 WHERE 1";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 	$sql.=whe_date();
@@ -2190,6 +2190,22 @@ function lis_SeguimientosUAIC($txt){
 	 WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred8();
 	$tot.=whe_date8();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_ruteoGestionados($txt){
+	$sql="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio'
+	FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario;
+	WHERE RG.estado_agenda IS NOT NULL";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
+	$sql.=whe_date14();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario WHERE RG.estado_agenda IS NOT NULL";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
+	$tot.=whe_date14();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
@@ -2385,7 +2401,7 @@ function whe_date13(){
 
 
 function whe_subred14() {
-	$sql= " AND (R.subred_report) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
 	return $sql;
 }
 
@@ -2393,7 +2409,7 @@ function whe_date14(){
 	$dia=date('d');
 	$mes=date('m');
 	$ano=date('Y');
-	$sql= " AND date(RG.fecha_gest) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$sql= " AND RG.fecha_llamada>='{$_POST['fechad']}' AND RG.fecha_llamada<='{$_POST['fechah']}'";
 	return $sql;
 }
 

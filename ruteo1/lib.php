@@ -25,9 +25,9 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo  er  
-  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
-LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
-	$sql.=" ORDER BY er.fecha_create";
+  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo" 
+  if (perfilUsu()!=='ADM')	$sql1.=" LEFT JOIN apro_terr A ON G.territorio = A.territorio  ";
+	$sql.=" ".whe_rute()." ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	// echo($sql);
 
@@ -57,7 +57,8 @@ LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
-    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
+    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') ";
+	if (perfilUsu()!=='ADM')	$sql1.= " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){
@@ -192,7 +193,7 @@ function lis_gestion(){ //revisar
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-gestion']))? ($_POST['pag-gestion']-1)* $regxPag:0;
-		
+	0	
 		$sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
 		FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
  FROM eac_ruteo_ges erg 

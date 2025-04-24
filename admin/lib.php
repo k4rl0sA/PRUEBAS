@@ -449,13 +449,13 @@ function lis_planos() {
 		case '57':
 			$tab = "Ruteo_Gestionados";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))
+			if($tab=decript($encr,$clave))lis_ruteoGestionados($tab);
 			($tab);
 			break;
 		case '58':
 			$tab = "Ruteo_Gestionados";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_ruteoGestionados($tab);
+			if($tab=decript($encr,$clave))lis_($tab);
 			break;	
 		default:
         break;    

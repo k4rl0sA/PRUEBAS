@@ -2203,7 +2203,7 @@ function lis_ruteoGestionados($txt){
 	  WHERE RG.estado_agenda IS NOT NULL ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
-	// echo $sql;
+	 echo $sql;
 	$tot="SELECT COUNT(*) total FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario WHERE RG.estado_agenda IS NOT NULL ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$tot.=whe_date14();

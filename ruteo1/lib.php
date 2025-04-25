@@ -21,7 +21,7 @@ else {
 function lis_rute(){
 	$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.territorio = A.territorio ".whe_rute());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
+	$regxPag=10;
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo  er  

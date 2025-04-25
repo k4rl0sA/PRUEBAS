@@ -19,23 +19,17 @@ else {
 }
 
 function lis_rute(){
-	/* $tot="SELECT COUNT(*) total from eac_ruteo er 	LEFT JOIN hog_geo G ON er.idgeo = G.idgeo";
-	if (perfil1()!='ADM') $tot. = " LEFT JOIN apro_terr A ON G.territorio = A.territorio "; 
-	$tot.=whe_rute(); */
-	$tot="SELECT COUNT(*) total from eac_ruteo er 	LEFT JOIN hog_geo G ON er.idgeo = G.idgeo  LEFT JOIN apro_terr A ON G.territorio = A.territorio". whe_rute();
-	var_dump($tot);
-	$info=datos_mysql($tot);
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=10;
-	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene,er.estado
-  FROM eac_ruteo  er  
-  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo ";
-  if (perfil1()!='ADM') $sql. = " LEFT JOIN apro_terr A ON G.territorio = A.territorio  "; 
-$sql.= whe_rute();
-	$sql.=" ORDER BY er.fecha_create";
-	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo($sql);
+		$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.territorio = A.territorio ".whe_rute());
+		$total=$info['responseResult'][0]['total'];
+		$regxPag=5;
+		$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
+		$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
+	  FROM eac_ruteo  er  
+	  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
+	LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
+		$sql.=" ORDER BY er.fecha_create";
+		$sql.=' LIMIT '.$pag.','.$regxPag;
+	//echo($sql);
 
 	$sql1="SELECT  
 	R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'FUENTE O REMITENTE', R.fecha_asig AS 'FECHA ASIGNACIÓN', FN_CATALOGODESC(191,R.priorizacion) AS 'COHORTE DE RIESGO', FN_CATALOGODESC(235,R.tipo_prior) AS 'GRUPO DE POBLACION PRIORIZADA', 
@@ -62,7 +56,7 @@ function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
     $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND ";
-	if (perfil1()!='ADM') $sql1 = " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
+	if (perfil1()!='ADM') $sql1 .= " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
 	}elseif($_POST['fusu']){

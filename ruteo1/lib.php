@@ -51,15 +51,19 @@ function lis_rute(){
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
-    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND ";
-	if (perfil1()!='ADM') $sql1 .= " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
-	if ($_POST['frut']){
-		$sql1 .= " id_ruteo ='".$_POST['frut']."'";
-	}elseif($_POST['fusu']){
-		$sql1 .= " documento ='".$_POST['fusu']."'";
-	}else{
-		$sql1 .= " 0 ";
-	}
+    $perfil = perfil1();
+    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" . $us_sds . "')";
+    // Agregar condición de apro_terr solo si el perfil no es 'ADM'
+    if ($perfil != 'ADM') {
+        $sql1 .= " AND A.doc_asignado = " . intval($doc_asignado);
+    }
+    if ($_POST['frut']) {
+        $sql1 .= " AND id_ruteo ='" . $_POST['frut'] . "'";
+    } elseif ($_POST['fusu']) {
+        $sql1 .= " AND documento ='" . $_POST['fusu'] . "'";
+    } else {
+        $sql1 .= " AND 0";
+    }
 	return $sql1;
 }
 

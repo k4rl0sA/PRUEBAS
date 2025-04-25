@@ -41,7 +41,7 @@ function lis_rute(){
     
     $sql .= " ORDER BY er.fecha_create";
     $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
-
+	var_dump($sql);
     $datos = datos_mysql($sql);
     return create_table($total, $datos["responseResult"], "rute", $regxPag);
 }

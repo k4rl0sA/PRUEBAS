@@ -59,7 +59,7 @@ LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;
-    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "')";
+    $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" .$us_sds. "') AND ";
 	// if (perfil1()!='ADM') $sql1 = " AND A.doc_asignado = " . intval($doc_asignado) . " AND ";
 	if ($_POST['frut']){
 		$sql1 .= " id_ruteo ='".$_POST['frut']."'";

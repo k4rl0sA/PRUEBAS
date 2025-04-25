@@ -19,13 +19,12 @@ else {
 }
 
 function lis_rute(){
-	$perfil = perfil1(); // Obtiene el perfil actual
-    $joinAproTerr = ($perfil != 'ADM') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
-
+	$perfil = perfil1();
+	$jAproTerr = ($perfil != 'ADM') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
     $info = datos_mysql("SELECT COUNT(*) total 
         FROM eac_ruteo er 
         LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
-        $joinAproTerr " . whe_rute());
+        $jAproTerr " . whe_rute());
     
     $total = $info['responseResult'][0]['total'];
     $regxPag = 5;
@@ -39,7 +38,7 @@ function lis_rute(){
                 er.estado
             FROM eac_ruteo er  
             LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
-            $joinAproTerr " . whe_rute();
+            $jAproTerr " . whe_rute();
     
     $sql .= " ORDER BY er.fecha_create";
     $sql .= ' LIMIT ' . $pag . ',' . $regxPag;

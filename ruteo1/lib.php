@@ -19,20 +19,34 @@ else {
 }
 
 function lis_rute(){
-		$info=datos_mysql("SELECT COUNT(*) total from eac_ruteo er LEFT JOIN hog_geo G ON er.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.territorio = A.territorio ".whe_rute());
-		$total=$info['responseResult'][0]['total'];
-		$regxPag=5;
-		$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
-		$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
-	  FROM eac_ruteo  er  
-	  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
-	LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
-		$sql.=" ORDER BY er.fecha_create";
-		$sql.=' LIMIT '.$pag.','.$regxPag;
-	//echo($sql);
-		$datos=datos_mysql($sql);
-	return create_table($total,$datos["responseResult"],"rute",$regxPag);
-} 
+	$perfil = perfil1(); // Obtiene el perfil actual
+    $joinAproTerr = ($perfil != 'ADM') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
+
+    $info = datos_mysql("SELECT COUNT(*) total 
+        FROM eac_ruteo er 
+        LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
+        $joinAproTerr " . whe_rute());
+    
+    $total = $info['responseResult'][0]['total'];
+    $regxPag = 5;
+    $pag = (isset($_POST['pag-rute'])) ? ($_POST['pag-rute'] - 1) * $regxPag : 0;
+
+    $sql = "SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, 
+                FN_CATALOGODESC(235, tipo_prior) AS Grupo_Poblacion_Priorizada, 
+                er.documento AS Documento_Usuario, er.nombres AS Nombre_Usuario, 
+                FN_CATALOGODESC(218, er.perfil1) AS Interviene, 
+                FN_CATALOGODESC(269, er.actividad1) AS Realizar, 
+                er.estado
+            FROM eac_ruteo er  
+            LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
+            $joinAproTerr " . whe_rute();
+    
+    $sql .= " ORDER BY er.fecha_create";
+    $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
+
+    $datos = datos_mysql($sql);
+    return create_table($total, $datos["responseResult"], "rute", $regxPag);
+}
 
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';

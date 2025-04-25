@@ -27,7 +27,6 @@ function lis_rute(){
     $total = $info['responseResult'][0]['total'];
     $regxPag = 10;
     $pag = (isset($_POST['pag-rute'])) ? ($_POST['pag-rute'] - 1) * $regxPag : 0;
-
     $sql = "SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, 
                 FN_CATALOGODESC(235, tipo_prior) AS Grupo_Poblacion_Priorizada, 
                 er.documento AS Documento_Usuario, er.nombres AS Nombre_Usuario, 
@@ -37,7 +36,6 @@ function lis_rute(){
             FROM eac_ruteo er  
             LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
             $jAproTerr " . whe_rute();
-    
     $sql .= " ORDER BY er.fecha_create";
     $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
 	// var_dump($sql);

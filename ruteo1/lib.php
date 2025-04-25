@@ -52,8 +52,6 @@ LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
 	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 } 
 
-
-
 function whe_rute() {
 	$us_sds = $_SESSION['us_sds'] ?? '';
     $doc_asignado = $_SESSION['us_sds'] ?? 0;

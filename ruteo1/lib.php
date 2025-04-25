@@ -19,8 +19,7 @@ else {
 }
 
 function lis_rute(){
-	$perfil = perfil1();
-	$jAproTerr = ($perfil != 'ADM') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
+	$jAproTerr = ($_SESSION['us_sds'] != '80811594') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
     $info = datos_mysql("SELECT COUNT(*) total 
         FROM eac_ruteo er 
         LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
@@ -41,7 +40,7 @@ function lis_rute(){
     
     $sql .= " ORDER BY er.fecha_create";
     $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
-	var_dump($sql);
+	// var_dump($sql);
     $datos = datos_mysql($sql);
     return create_table($total, $datos["responseResult"], "rute", $regxPag);
 }
@@ -52,7 +51,7 @@ function whe_rute() {
     $perfil = perfil1();
     $sql1 = " WHERE G.subred = (SELECT subred FROM usuarios WHERE id_usuario = '" . $us_sds . "')";
     // Agregar condición de apro_terr solo si el perfil no es 'ADM'
-    if ($perfil != 'ADM') {
+    if ($doc_asignado != '80811594') {
         $sql1 .= " AND A.doc_asignado = " . intval($doc_asignado);
     }
     if ($_POST['frut']) {

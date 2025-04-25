@@ -30,11 +30,12 @@ function lis_rute(){
 	$pag=(isset($_POST['pag-rute']))? ($_POST['pag-rute']-1)* $regxPag:0;
 	$sql="SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, FN_CATALOGODESC(235,tipo_prior) AS Grupo_Poblacion_Priorizada, er.documento AS Documento_Usuario,er.nombres AS Nombre_Usuario,FN_CATALOGODESC(218,er.perfil1) AS Interviene, FN_CATALOGODESC(269,er.actividad1) AS Realizar ,er.estado
   FROM eac_ruteo  er  
-  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
-LEFT JOIN apro_terr A ON G.territorio = A.territorio  ".whe_rute();
+  LEFT JOIN hog_geo G ON er.idgeo = G.idgeo ";
+  if (perfil1()!='ADM') $sql. = " LEFT JOIN apro_terr A ON G.territorio = A.territorio  "; 
+$sql.= whe_rute();
 	$sql.=" ORDER BY er.fecha_create";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	//echo($sql);
+	echo($sql);
 
 	$sql1="SELECT  
 	R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'FUENTE O REMITENTE', R.fecha_asig AS 'FECHA ASIGNACIÓN', FN_CATALOGODESC(191,R.priorizacion) AS 'COHORTE DE RIESGO', FN_CATALOGODESC(235,R.tipo_prior) AS 'GRUPO DE POBLACION PRIORIZADA', 

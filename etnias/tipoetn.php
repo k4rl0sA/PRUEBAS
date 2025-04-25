@@ -66,7 +66,7 @@ function cmp_ethnicity(){
 	$days=fechas_app('vivienda');
   $d='';
   $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('ETNIAS');
+  $days=fechas_app('etnias');
   // $d=get_ethnicity();
   // var_dump($_POST);
 	$c[]=new cmp($o,'e',null,'PLAN DE CUIDADO FAMILIAR CONCERTADO',$w);
@@ -82,7 +82,7 @@ function cmp_ethnicity(){
 
 function gra_ethnicity(){
 	$id=divide($_POST['id_acc']);
-  if (($rtaFec = validFecha('ETNIAS', $_POST['fecha_acc'] ?? '')) !== true) {return $rtaFec;}
+  if (($rtaFec = validFecha('etnias', $_POST['fecha_acc'] ?? '')) !== true) {return $rtaFec;}
     // var_dump(COUNT($id));
       $sql = "INSERT INTO acc_indigenas VALUES (null,?,?,?,?,DATE_SUB(NOW(), INTERVAL 5 HOUR),'','','A')";
       $params = [

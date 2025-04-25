@@ -23,7 +23,7 @@ function lis_rute(){
 	if (perfil1()!='ADM') $tot. = " LEFT JOIN apro_terr A ON G.territorio = A.territorio "; 
 	$tot.=whe_rute(); */
 	$tot="SELECT COUNT(*) total from eac_ruteo er 	LEFT JOIN hog_geo G ON er.idgeo = G.idgeo  LEFT JOIN apro_terr A ON G.territorio = A.territorio". whe_rute();
-	// var_dump($tot);
+	var_dump($tot);
 	$info=datos_mysql($tot);
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=10;

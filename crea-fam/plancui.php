@@ -109,7 +109,7 @@ function cmp_planDcui(){
   if(count($id)==1){
    /*  $sql1="select idviv from hog_plancuid where idviv='{$id[0]}'";
     $info = datos_mysql($sql1); */
-    if (($rtaFec = validFecha('VIVIENDA', $_POST['fecha_caracteriza'] ?? '')) !== true) {
+    if (($rtaFec = validFecha('vivienda', $_POST['fecha_caracteriza'] ?? '')) !== true) {
       return $rtaFec;
     }
       $sql = "INSERT INTO hog_plancuid VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

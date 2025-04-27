@@ -182,7 +182,7 @@ function get_persona(){
 
 function gra_uaic_seg(){
 	$id=divide($_POST['iduaicseg']);
-  if (($rtaFec = validFecha('ETNIAS', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
+  if (($rtaFec = validFecha('etnias', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
     if(COUNT($id)==2){
       $equ=datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);
       $bina = isset($_POST['fequi'])?(is_array($_POST['fequi'])?implode("-", $_POST['fequi']):implode("-",array_map('trim',explode(",",str_replace("'","",$_POST['fequi']))))):'';

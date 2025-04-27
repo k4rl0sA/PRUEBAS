@@ -487,7 +487,7 @@ function get_rute(){
 
 function gra_rute(){
 	$id=divide($_POST['id'] ?? '');
-	if (($rtaFec = validFecha('RUTEO', $_POST['fecha_llamada'] ?? '')) !== true) {
+	if (($rtaFec = validFecha('ruteo', $_POST['fecha_llamada'] ?? '')) !== true) {
 		return $rtaFec;
 	  }
 	$usu = $_SESSION['us_sds'];

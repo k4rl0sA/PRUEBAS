@@ -158,7 +158,7 @@ function opc_tipo_consservicio($id = '') {
 function gra_servagen(){
   // print_r($_POST);
   $id=divide($_POST['idp']);
-  if (($rtaFec = validFecha('AGENDAMIENTO', $_POST['fecha_sol'] ?? '')) !== true) {
+  if (($rtaFec = validFecha('agendamiento', $_POST['fecha_sol'] ?? '')) !== true) {
     return $rtaFec;
   }
 if(count($id)==2){

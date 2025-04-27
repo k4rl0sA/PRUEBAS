@@ -109,7 +109,7 @@ function gra_emb_Id() {
   $id = divide($_POST['id'] ?? '');
   $usu = $_SESSION['us_sds'];
   
-  if (($rtaFec = validFecha('ETNIAS', $_POST['fechavisi'] ?? '')) !== true) {
+  if (($rtaFec = validFecha('etnias', $_POST['fechavisi'] ?? '')) !== true) {
     return $rtaFec;
   }
   if (count($id) == 2) {

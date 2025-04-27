@@ -234,7 +234,7 @@ function get_persona(){
   
 function gra_segnoreg(){
  	$id=divide($_POST['idsegnoreg']);
-  if (($rtaFec = validFecha('ETNIAS', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
+  if (($rtaFec = validFecha('etnias', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
   $pn=$_POST['peso_nacer']?? null;
   $docma=$_POST['doc_madre']?? null;
   $sis=$_POST['sistolica']?? null;

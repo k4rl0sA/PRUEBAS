@@ -140,7 +140,7 @@ function get_persona(){
 
 function gra_seguim() {
   $id = divide($_POST['idseg']);
-  if (($rtaFec = validFecha('ETNIAS', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
+  if (($rtaFec = validFecha('etnias', $_POST['fecha_seg'] ?? '')) !== true) {return $rtaFec;}
   if(COUNT($id)==2){
   $numdoc=($_POST['num_doc']=== '')? 0: $_POST['num_doc'];
       $equ = datos_mysql("select equipo from usuarios where id_usuario=".$_SESSION['us_sds']);

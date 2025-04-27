@@ -433,7 +433,7 @@ function opc_familiusuario(){
               WHERE hf.id_fam={$id[0]} 
               ORDER BY 1";
 		$info=datos_mysql($sql);
-		// print_r($sql);
+		print_r($sql);
 		return json_encode($info['responseResult']);
 	} 					
 }

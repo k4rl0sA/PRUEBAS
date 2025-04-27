@@ -134,7 +134,7 @@ function cmp_rute(){
  $u=($d['idgeo']=='0')?true:false;
 //  var_dump($d['estado_g']);
  $x=($d['idgeo']=='0')?true:false;
-// var_dump($_POST);
+var_dump($_GET);
 // var_dump($d);
  $o='segrep';
  $c[]=new cmp($o,'e',null,'CASO REPORTADO',$w);

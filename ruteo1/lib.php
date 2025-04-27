@@ -27,6 +27,7 @@ function lis_rute(){
     $total = $info['responseResult'][0]['total'];
     $regxPag = 10;
     $pag = (isset($_POST['pag-rute'])) ? ($_POST['pag-rute'] - 1) * $regxPag : 0;
+
     $sql = "SELECT er.id_ruteo AS ACCIONES, er.idgeo AS Cod_Predio, 
                 FN_CATALOGODESC(235, tipo_prior) AS Grupo_Poblacion_Priorizada, 
                 er.documento AS Documento_Usuario, er.nombres AS Nombre_Usuario, 
@@ -36,11 +37,30 @@ function lis_rute(){
             FROM eac_ruteo er  
             LEFT JOIN hog_geo G ON er.idgeo = G.idgeo 
             $jAproTerr " . whe_rute();
+    
     $sql .= " ORDER BY er.fecha_create";
     $sql .= ' LIMIT ' . $pag . ',' . $regxPag;
 	// var_dump($sql);
-    $datos = datos_mysql($sql);
-    return create_table($total, $datos["responseResult"], "rute", $regxPag);
+
+	$sql1="SELECT  
+	R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'FUENTE O REMITENTE', R.fecha_asig AS 'FECHA ASIGNACIÓN', FN_CATALOGODESC(191,R.priorizacion) AS 'COHORTE DE RIESGO', FN_CATALOGODESC(235,R.tipo_prior) AS 'GRUPO DE POBLACION PRIORIZADA', 
+    R.tipo_doc AS 'TIPO DE DOCUMENTO', R.documento AS 'NÚMERO DE DOCUMENTO', R.nombres AS 'NOMBRES Y APELLIDOS DEL USUARIO', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',
+	G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,
+    RG.fecha_llamada AS 'Fecha Contacto Telefonico', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion'
+	FROM eac_ruteo R
+	LEFT JOIN hog_geo G ON R.idgeo = G.idgeo
+	LEFT JOIN apro_terr A ON G.territorio = A.territorio AND R.actividad1 = A.doc_asignado
+	LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo = RG.idruteo
+	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
+		
+		// $tot="SELECT  COUNT(*) as total	FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON R.idgeo = A.idgeo AND R.actividad1 = A.doc_asignado	WHERE A.doc_asignado ='".$_SESSION['us_sds']."'";
+		$tot="SELECT  COUNT(*) AS total FROM eac_ruteo R LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN apro_terr A ON G.territorio = A.territorio AND R.actividad1 = A.doc_asignado LEFT JOIN eac_ruteo_ges RG ON R.id_ruteo = RG.idruteo	WHERE A.doc_asignado ='".$_SESSION['us_sds']."';";
+		// echo $sql;
+		$_SESSION['sql_rute']=$sql1;
+		$_SESSION['tot_rute']=$tot;
+		// /* echo json_encode($rta); */
+		$datos=datos_mysql($sql);
+	return create_table($total,$datos["responseResult"],"rute",$regxPag);
 }
 
 function whe_rute() {

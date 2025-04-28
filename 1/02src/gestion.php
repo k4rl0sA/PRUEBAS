@@ -21,7 +21,7 @@ function db_connect() {
   $dom = $_SERVER['HTTP_HOST'];
 $dominio = preg_replace('/^www\./i', '', $dom);
 $comy = array(
-  'pruebasiginf.site' => [
+  'pruebagtaps.site' => [
       's' => 'localhost',
       'u' => 'u470700275_09',
       'p' => 'K4r3n1905*',
@@ -34,7 +34,7 @@ $comy = array(
       'bd' => 'u470700275_08'
   ]
 );
-$allowed_domains = ['pruebasiginf.site', 'gitapps.site'];
+$allowed_domains = ['pruebagtaps.site', 'gitapps.site'];
 if (in_array($dominio, $allowed_domains)) {
   $dbConfig = $comy[$dominio];
 }else{

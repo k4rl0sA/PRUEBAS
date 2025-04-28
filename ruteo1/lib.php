@@ -532,7 +532,7 @@ if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
 	if (strpos($rta1, "correctamente") !== false) {
 		$rta.= " Y Se ha asignado el predio";
 	}else{
-		$rta.= "Falta Asignar el Predio";
+		$rta.= $rta1;
 	}
 }
 	return $rta;

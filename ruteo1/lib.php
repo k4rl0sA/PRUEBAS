@@ -242,8 +242,8 @@ function lis_gestion(){ //revisar
             perfil=(select descripcion from catadeta c where idcatalogo=218 and idcatadeta='{$_REQUEST['id']}' and estado='A') 
             and id_usuario ='{$_SESSION['us_sds']}' ORDER BY nombre";
             $info = datos_mysql($sql);		
-		 return json_encode($sql);	
-            // return json_encode($info['responseResult']);	
+		 //return json_encode($sql);	
+           return json_encode($info['responseResult']);	
         }
 }
   function opc_clasificacion($id=''){

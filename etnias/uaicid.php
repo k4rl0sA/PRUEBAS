@@ -51,7 +51,7 @@ function cmp_uaic_id(){
   $e="";
   $d=get_uaic_id();
   $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('ETNIAS');
+  $days=fechas_app('etnias');
   $id=$d['iduaic']===''?$_POST['id']:$d['iduaic'];
   $ke=divide($id);
   $up=count($ke)==2? true:false;

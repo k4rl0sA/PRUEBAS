@@ -73,7 +73,7 @@ function cmp_uaic_seg(){
   $d=get_uaic_seg();
   $d='';
   $d=($d=="")?$d=$t:$d;
-  $days=fechas_app('ETNIAS');
+  $days=fechas_app('etnias');
   $p=get_persona();
 	  $c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
     $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],'zsc','fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');

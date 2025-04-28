@@ -68,7 +68,7 @@ function cmp_segnoreg(){
   $bl='bL';
   $x=false;
   $block=['gestan','cronicos'];
-  $days=fechas_app('ETNIAS');
+  $days=fechas_app('etnias');
   $ge='GEs';
   $cro='CrO';
   $me5='mE5';

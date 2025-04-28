@@ -12,7 +12,7 @@ $comy = array(
         'port' => '3306',
         'charset' => 'utf8mb4'
     ],
-    'pruebasiginf.site' => [
+    'pruebagtaps.site' => [
         's' => 'localhost',
         'u' => 'u470700275_17',
         'p' => 'testPassword',

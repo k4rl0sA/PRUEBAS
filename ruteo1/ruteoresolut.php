@@ -18,19 +18,14 @@ else {
   }   
 }
 
-
-
-
 function focus_ruteresol(){
  return 'ruteresol';
 }
-
 
 function men_ruteresol(){
  $rta=cap_menus('ruteresol','pro');
  return $rta;
 }
-
 
 function cap_menus($a,$b='cap',$con='con') {
   $rta = ""; 
@@ -39,7 +34,6 @@ function cap_menus($a,$b='cap',$con='con') {
   }
   return $rta;
 }
-
 
 function cmp_ruteresol(){
  $rta="";
@@ -80,12 +74,8 @@ function opc_cod_predio($co=''){
 function opc_estado($id=''){
 	$cod=opc_idgeo($_REQUEST['id']);
 	// var_dump($_REQUEST);
-		// $co=divide($cod);
-		// $cod=opc_cod_predio()
-		// var_dump($_REQUEST['predio']);
 		return	opc_sql("SELECT DISTINCT(idgeo) AS Cod_Predio, FN_CATALOGODESC(44,estado_v) from geo_gest where idgeo='$cod' AND estado_v>3",$id);
 }
-
 
 function opc_estadofamili(){
 	if($_REQUEST['id']!=''){
@@ -97,8 +87,6 @@ function opc_estadofamili(){
 	} 
 }
 
-
-
 function opc_famili($id=''){
 	// var_dump($id);
 	if ($id==''){
@@ -107,6 +95,7 @@ function opc_famili($id=''){
 		return opc_sql("SELECT id_fam AS 'Cod_Familia', concat(id_fam,' - ','FAMILIA ',numfam) FROM hog_fam hv where id_fam='$id'", $id);
 	}
 }
+
 function opc_usuario($id=''){
 	// var_dump($id);
 	if ($id==''){
@@ -119,22 +108,9 @@ function opc_usuario($id=''){
 	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);
 }
 
-
-
-
-/* 
-function opc_cod_admin($id=''){
-	// var_dump($id);
-	if ($id==''){
-
-	}else{
-		$co=divide($id);
-		// var_dump($sql);
-		return opc_sql("SELECT f.cod_admin cod,concat_ws('_',cod_admin,FN_CATALOGODESC(127,final_consul)) FROM adm_facturacion f WHERE cod_admin='$id'", $id);
+function opc_estado_ruteo($id=''){
+	return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=278 and estado="A" ORDER BY 1',$id);
 	}
-	//return opc_sql("SELECT `idcatadeta`, descripcion FROM `catadeta` WHERE idcatalogo=0 AND estado='A' ORDER BY 1", $id);
-} */
-
 
 function get_ruteresol(){
 	if($_POST['id']=='0'){

@@ -543,7 +543,7 @@ function agend($id) {
     $sql = "SELECT COUNT(*) AS agenda from eac_ruteo_ges g
 LEFT JOIN eac_ruteo er ON g.idruteo=er.id_ruteo 
 	LEFT JOIN usuarios u ON er.actividad1=u.id_usuario
-	WHERE idruteo=$id[0] and (estado_agenda=1 or estado_agenda=9) and estado_llamada=1 and u.perfil IN ('AUXHOG','ADM');";
+	WHERE idruteo=$id[0] and (estado_agenda=1 or estado_agenda=9) and estado_llamada=1 and u.perfil IN ('AUXHOG','ADM1');";
     $info = datos_mysql($sql);
 	// var_dump($info);
 	if(intval($info['responseResult'][0]["agenda"])>0){

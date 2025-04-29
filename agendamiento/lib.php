@@ -84,9 +84,7 @@ function get_agendamiento(){
     $id=divide($_POST['id']);
 if($_POST['id']){
     $sql="SELECT T2.idpersona,T2.tipo_doc,T2.nombre1 nombre1,T2.nombre2 nombre2,T2.apellido1 apellido1,T2.apellido2 apellido2,
-    T2.fecha_nacimiento,
-     concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),
-    ' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
+    T2.fecha_nacimiento,concat('AÑOS =',TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, T2.fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(T2.fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, T2.fecha_nacimiento, CURDATE()) YEAR)) % 30) edad,     
     T2.genero genero, T2.eapb eapb,T3.telefono1,T3.telefono2,T3.telefono3,
     punto_atencion,tipo_cita,fecha_cita,hora_cita,nombre_atendio,observac_cita 
 		FROM agendamiento T1 
@@ -97,7 +95,7 @@ if($_POST['id']){
 		return $info['responseResult'][0];
 }
 } 
-
+//concat('Años= ',timestampdiff(YEAR,T2.fecha_nacimiento,curdate()),' Meses= ',MONTH(CURDATE()) - MONTH(T2.fecha_nacimiento) + 12 * IF( MONTH(CURDATE()) < MONTH(T2.fecha_nacimiento),1, IF(MONTH(CURDATE())=MONTH(T2.fecha_nacimiento),IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0),0)) - IF(MONTH(CURDATE())<>MONTH(T2.fecha_nacimiento), (DAY(CURDATE()) < DAY(T2.fecha_nacimiento)), IF (DAY(CURDATE()) < DAY(T2.fecha_nacimiento),1,0 ) ), ' Días= ',DAY(CURDATE())-DAY(T2.fecha_nacimiento)+30*(DAY(CURDATE()) < DAY(T2.fecha_nacimiento))) edad,
 /* function get_persona(){
 		$id=divide($_REQUEST['id']);
 		$sql="SELECT 

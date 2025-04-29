@@ -1380,3 +1380,9 @@ function stateRutEnd(){
 	];
 	EnabDepeDynamic(['RuE'], conditions);
 }
+function stateRutFam(){
+	const conditions = [
+		{ id: 'estado', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['StG'], conditions);
+}

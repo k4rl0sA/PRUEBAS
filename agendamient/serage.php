@@ -133,13 +133,16 @@ function opc_tipo_consservicio($id = '') {
 	if ($edad >= 50)$categorias[] = 16;
 	if ($edad > 18)$categorias[] = 20;
 	
-	if ($sexo === 'M') { // Mujer
-		if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
-		if ($edad >= 50 && $edad <= 69) $categorias[] = 12;
-		if ($edad >= 10 && $edad <= 59) $categorias[] = [19,30];
-	} elseif ($sexo === 'H') { // Hombre
-		if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
-	}
+  if ($sexo === 'M') { // Mujer
+    if ($edad >= 25 && $edad <= 69) $categorias[] = 14;
+    if ($edad >= 50 && $edad <= 69) $categorias[] = 12;
+    if ($edad >= 10 && $edad <= 59) {
+      $categorias[] = 19;
+      $categorias[] = 30;
+    }
+  } elseif ($sexo === 'H') { // Hombre
+    if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
+  }
 	
 	$categorias_comunes = [10, 15, 9, 17, 18, 21, 22, 23, 25, 26, 27,28,29,31,32,33,34];
   $categorias = array_unique(array_merge($categorias, $categorias_comunes));

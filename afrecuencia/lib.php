@@ -46,7 +46,7 @@ function lis_frecuenciauso(){
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 //~ echo $sql;
 $sql="SELECT idfrecuencia ACCIONES,
-`idpersona` ID,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,A.fecha_create,A.estado
+`idpersona` Documento,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,A.fecha_create,A.estado
 from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 8 DESC";

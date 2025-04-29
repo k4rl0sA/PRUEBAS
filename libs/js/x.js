@@ -1382,7 +1382,7 @@ function stateRutEnd(){
 }
 function stateRutFam(){
 	const conditions = [
-		{ id: 'estado', value: '1', compare: true }
+		{ id: 'estado', value: '3', compare: true }
 	];
 	EnabDepeDynamic(['StG'], conditions);
 }

@@ -88,7 +88,7 @@ function opc_estado($id=''){
 }
 
 function opc_estado_rut($id=''){
-return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=278 and estado="A" ORDER BY 1',$id);
+// return opc_sql('SELECT idcatadeta,descripcion FROM catadeta WHERE idcatalogo=278 and estado="A" ORDER BY 1',$id);
 }
 
 function opc_estadofamili(){

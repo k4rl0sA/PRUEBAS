@@ -43,7 +43,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_ruteresol(){
  $rta="";
- $t=['id_ruteo'=>'','estado'=>'','estado_rut'=>'','famili'=>'','usuario'=>'','fecha'=>''];
+ $t=['id_ruteo'=>'','estado_ruteo'=>'','estado_rut'=>'','famili'=>'','usuario'=>'','fecha'=>''];
  $w='ruteresol';
  $d=get_ruteresol(); 
  if ($d=="") {$d=$t;}
@@ -53,7 +53,7 @@ function cmp_ruteresol(){
  $days=fechas_app('ruteo');
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('est','s',3,$d['estado'],$w.' '.$o,'Estado Ruteo','estado_rut',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");$c[]=new cmp('fecha','d',3,$d['fecha'],$w.' PuE '.$o,'Fecha','fecha',null,null,true,$u,'','col-2',"validDate(this,$days,7);");
+ $c[]=new cmp('est','s',3,$d['estado_ruteo'],$w.' '.$o,'Estado Ruteo','estado_ruteo',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");$c[]=new cmp('fecha','d',3,$d['fecha'],$w.' PuE '.$o,'Fecha','fecha',null,null,true,$u,'','col-2',"validDate(this,$days,7);");
  $c[]=new cmp('estado','s',3,$d['estado_rut'],$w.' PuE '.$o,'Estado Predio','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-45'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO
@@ -142,7 +142,7 @@ function get_ruteresol(){
 	}else{
 		$id=divide($_POST['id']);
 		// var_dump($id);
-		$sql="SELECT id_ruteo,fecha,estado_rut,famili,usuario FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
+		$sql="SELECT id_ruteo,estado_ruteo,fecha,estado_rut,famili,usuario FROM `eac_ruteo` WHERE  id_ruteo='{$id[0]}'";
 		$info=datos_mysql($sql);
     	// var_dump($info['responseResult'][0]);
 		return $info['responseResult'][0];

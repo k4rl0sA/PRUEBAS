@@ -156,7 +156,7 @@ function opc_genero($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=21 and estado='A' ORDER BY 1",$id);
 }
 function opc_punto_atenc($id=''){
-	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A'  AND valor IN(0,select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
+	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=274 and estado='A'  AND (valor=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') AND valor=0) ORDER BY LENGTH(idcatadeta), idcatadeta",$id);
 }
 function opc_tipo_cita($id=''){
 	return opc_sql("SELECT `idcatadeta`,concat(idcatadeta,' - ',descripcion) FROM `catadeta` WHERE idcatalogo=275 and estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta",$id);	

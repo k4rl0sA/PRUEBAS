@@ -53,7 +53,8 @@ function cmp_ruteresol(){
  $days=fechas_app('ruteo');
  $c[]=new cmp($o,'e',null,'PROCESO GESTIÓN RESOLUTIVA',$w);
  $c[]=new cmp('id','h','20',$_POST['id'],$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('est','s',3,$d['estado'],$w.' '.$o,'Estado Ruteo','estado_rut',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");$c[]=new cmp('fecha','d',3,$d['fecha'],$w.' PuE '.$o,'Fecha','fecha',null,null,true,$u,'','col-2',"validDate(this,$days,7);");
+ $c[]=new cmp('est','s',3,$d['estado'],$w.' '.$o,'Estado Ruteo','estado_rut',null,null,true,$u,'','col-2',"ruteEnd();");
+ $c[]=new cmp('fecha','d',3,$d['fecha'],$w.' PuE '.$o,'Fecha','fecha',null,null,true,$u,'','col-2',"validDate(this,$days,7);");
  $c[]=new cmp('estado','s',3,$d['estado_rut'],$w.' PuE '.$o,'Estado Predio','estado',null,null,true,$u,'','col-2',"changeSelect('estado','famili');enabDepeInner('estado','StG',['RECHAZADA','FALLIDO','NO RESIDENCIAL']);");
  $c[]=new cmp('famili','s',3,$d['famili'],$w.' PuE StG '.$o,'famili','famili',null,'',true, $u,'','col-15',"changeSelect('famili','usuario');");//N° FAMILIA
  $c[]=new cmp('usuario','s',3,$d['usuario'],$w.' PuE StG '.$o,'usuario','usuario',null,'',true,$u,'','col-45'); //TIPO_DOC,DOCUMENTO Y NOMBRE USUARIO

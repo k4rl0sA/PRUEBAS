@@ -1373,3 +1373,10 @@ function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
         console.error('Error en custSeleDepend:', error);
     }
 }
+
+function stateRutEnd(){
+	const conditions = [
+		{ id: 'est', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['RuE'], conditions);
+}

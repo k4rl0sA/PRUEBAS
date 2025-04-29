@@ -141,7 +141,7 @@ function opc_tipo_consservicio($id = '') {
 		if ($edad >= 50 && $edad <= 75) $categorias[] = 13;
 	}
 	
-	$categorias_comunes = [10, 15, 9, 17, 18, 21, 22, 23, 25, 26, 27,28,29];
+	$categorias_comunes = [10, 15, 9, 17, 18, 21, 22, 23, 25, 26, 27,28,29,31,32,33,34];
   $categorias = array_unique(array_merge($categorias, $categorias_comunes));
   $lista = implode(',', $categorias);
   $sql = "SELECT idcatadeta, descripcion

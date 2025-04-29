@@ -131,12 +131,12 @@ function grabar(tb='',ev){
   if (tb=='agendamiento'){
 	  var con=document.getElementById('con'),
 	  cit=document.getElementById('cit');
-	  if ((cit.value==1 || cit.value==2 || cit.value==3 ||cit.value==5 ||cit.value==7 ||cit.value==8 ||cit.value==12 ||cit.value==14 || cit.value==15)){
+	  /* if ((cit.value==1 || cit.value==2 || cit.value==3 ||cit.value==5 ||cit.value==7 ||cit.value==8 ||cit.value==12 ||cit.value==14 || cit.value==15)){
 		alert('El Tipo Cita NO corresponde con el tipo de Consulta,por favor valide e intente nuevamente');
-	  }else{
+	  }else{ }*/
         myFetch(ruta_app,"a=gra&tb="+tb,mod);
         setTimeout(actualizar, 1000);
-	  }
+	  
   }else{
     myFetch(ruta_app,"a=gra&tb="+tb,mod);
     setTimeout(actualizar, 1000);

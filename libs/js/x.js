@@ -12,8 +12,6 @@ function hideCuida(act,clsCmp) {
 	}
 }
 
-
-
 function valSist(a){
 	const sis=document.getElementById(a).value;
 	if(parseInt(sis)<60 || parseInt(sis)>310){
@@ -1385,4 +1383,14 @@ function stateRutFam(){
 		{ id: 'estado', value: '3', compare: true }
 	];
 	EnabDepeDynamic(['StG'], conditions);
+}
+function validarPorTexto(selectElement) {
+    const textoSeleccionado = selectElement.options[selectElement.selectedIndex].text;
+    if (textoSeleccionado === "EFECTIVA") {
+        const elementosStG = document.querySelectorAll('.StG');
+        elementosStG.forEach(elemento => enaFie(elemento, false));
+    } else {
+        const elementosStG = document.querySelectorAll('.StG');
+        elementosStG.forEach(elemento => enaFie(elemento, true));
+    }
 }

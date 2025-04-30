@@ -52,7 +52,7 @@ LEFT JOIN person P ON A.idpeople=P.idpeople
 left JOIN usuarios U ON A.usu_creo = U.id_usuario 
 WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
 	$sql.=whe_frecuenciauso();
-	$sql.="  ORDER BY A.fecha_create DESC";
+	$sql.="  ORDER BY 1 DESC";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);

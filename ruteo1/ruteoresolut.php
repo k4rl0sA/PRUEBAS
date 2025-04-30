@@ -88,6 +88,17 @@ function opc_estadofamili(){
 	} 
 }
 
+function opc_familiusuario($id=''){
+	// var_dump($id);
+	if ($id==''){
+
+	}else{
+		$co=divide($id);
+		// var_dump($sql);
+		return opc_sql("SELECT idpeople AS 'usuario', concat_ws('-',idpeople,idpersona) FROM person p where vivipersona='$co[0]'", $id);
+	}
+}
+
 function opc_famili($id=''){
 	// var_dump($id);
 	if ($id==''){

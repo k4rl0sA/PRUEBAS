@@ -23,7 +23,7 @@ function whe_frecuenciauso() {
 	if ($_POST['fidpersona'])
 		$sql .= " AND idpersona like '%".$_POST['fidpersona']."%'";
 	if ($_POST['fdigita'])
-		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
+		$sql .= " AND A.usu_creo ='".$_POST['fdigita']."' ";
 	if ($_POST['festado']){
 		$sql .= " AND A.estado = '".$_POST['festado']."' ";
 	}else{

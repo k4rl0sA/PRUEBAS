@@ -53,7 +53,7 @@ WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 7 DESC";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
-	echo $sql;
+	// echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
 }

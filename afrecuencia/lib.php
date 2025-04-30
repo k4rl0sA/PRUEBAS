@@ -25,7 +25,7 @@ function whe_frecuenciauso() {
 	if ($_POST['fdigita'])
 		$sql .= " AND usu_creo ='".$_POST['fdigita']."' ";
 	if ($_POST['festado']){
-		$sql .= " AND estado = '".$_POST['festado']."' ";
+		$sql .= " AND A.estado = '".$_POST['festado']."' ";
 	}else{
 		$sql .= " AND realizada = 'NO' ";
 	}

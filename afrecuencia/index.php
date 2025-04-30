@@ -290,7 +290,7 @@ if (!isset($_SESSION["us_sds"])){ die("<script>window.top.location.href = '/';</
 
 $mod='frecuenciauso';
 $ya = new DateTime();
-$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'');
+$estados=opc_sql("select idcatadeta,descripcion from catadeta where idcatalogo=11 and estado='A' order by 1",'A');
 $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='DIG' and estado='A' AND subred=(select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ORDER BY 1",''); 
 ?>
 <form method='post' id='fapp'>
@@ -306,7 +306,7 @@ $digitadores=opc_sql("SELECT `id_usuario`,nombre FROM `usuarios` WHERE`perfil`='
 			<?php echo $digitadores; ?>
 		</select>
 	</div>
-	<div class="campo"><div>Estado Cita</div>
+	<div class="campo"><div>Estado Frecuencia</div>
 		<select class="captura" id="festado" name="festado" OnChange="actualizar();">
 			<?php echo $estados; ?>
 		</select>

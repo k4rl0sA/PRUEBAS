@@ -47,9 +47,12 @@ function lis_frecuenciauso(){
 //~ echo $sql;
 $sql="SELECT idfrecuencia ACCIONES,
 `idpersona` Documento,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,A.fecha_create,A.estado
-from frecuenciauso A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
+from frecuenciauso A 
+LEFT JOIN person P ON A.idpeople=P.idpeople 
+left JOIN usuarios U ON A.usu_creo = U.id_usuario 
+WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ";
 	$sql.=whe_frecuenciauso();
-	$sql.="  ORDER BY 8 DESC";
+	$sql.="  ORDER BY 7 DESC";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);

@@ -44,7 +44,6 @@ function lis_frecuenciauso(){
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
-echo $sql;
 $sql="SELECT idfrecuencia ACCIONES,
 `idpersona` Documento,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,A.fecha_create,A.estado
 from frecuenciauso A 
@@ -54,6 +53,7 @@ WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_
 	$sql.=whe_frecuenciauso();
 	$sql.="  ORDER BY 7 DESC";
 	$sql.=' LIMIT '.$pag.','.$regxPag;
+	echo $sql;
 	$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
 }

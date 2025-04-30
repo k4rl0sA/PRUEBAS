@@ -31,9 +31,9 @@ function whe_frecuenciauso() {
 	}
 	if ($_POST['fdes']) {
 		if ($_POST['fhas']) {
-			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='".$_POST['fhas']." 23:59:59'";
+			$sql .= " AND A.fecha_create >='".$_POST['fdes']." 00:00:00' AND A.fecha_create <='".$_POST['fhas']." 23:59:59'";
 		} else {
-			$sql .= " AND fecha_create >='".$_POST['fdes']." 00:00:00' AND fecha_create <='". $_POST['fdes']." 23:59:59'";
+			$sql .= " AND A.fecha_create >='".$_POST['fdes']." 00:00:00' AND A.fecha_create <='". $_POST['fdes']." 23:59:59'";
 		}
 	}
 	return $sql;

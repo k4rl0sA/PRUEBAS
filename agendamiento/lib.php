@@ -47,7 +47,7 @@ function lis_agendamiento(){
 	$sql="SELECT idagendamiento ACCIONES,
 idpersona Documento,FN_CATALOGODESC(1,tipo_doc) 'Tipo Documento',
 FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(276,A.estado) Estado
-from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) ";
+from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) AND U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')";
 	$sql.=whe_agendamiento();
 	$sql.="ORDER BY 6 ASC,7 ASC";
 //~ echo $sql;   

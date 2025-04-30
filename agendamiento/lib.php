@@ -61,7 +61,7 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 FROM agendamiento A
 LEFT JOIN person P ON A.idpeople=P.idpeople 
 left JOIN usuarios U ON A.usu_creo = U.id_usuario
-	WHERE '1' ";
+	WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')";
 	$sql1.=whe_agendamiento();
 	$sql1.="ORDER BY `fecha_cita` ASC,`hora_cita` ASC";
 	//~ echo $sql1;

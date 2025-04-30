@@ -433,8 +433,8 @@ function opc_familiusuario(){
               WHERE hf.id_fam={$id[0]} 
               ORDER BY 1";
 		$info=datos_mysql($sql);
-		return json_encode($sql);
-		// return json_encode($info['responseResult']);
+		// return json_encode($sql);
+		return json_encode($info['responseResult']);
 	} 					
 }
 function get_ruteo(){

@@ -527,7 +527,7 @@ if(!empty($_POST['fecha_gestion']) && !empty($_POST['usuario_gest'])){
 	array('type' => 'i', 'value' => $_SESSION['us_sds']),
 	array('type' => 's', 'value' => date("Y-m-d H:i:s"))
 	);
-	show_sql($sql1, $params1);
+	//show_sql($sql1, $params1);
 	$rta1 = mysql_prepd($sql1, $params1);
 	if (strpos($rta1, "correctamente") !== false) {
 		$rta.= " Y Se ha asignado el predio";

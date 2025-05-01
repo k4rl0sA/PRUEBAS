@@ -115,7 +115,7 @@ function opc_usuario($id=''){
 	}else{
 		$co=divide($id);
 		var_dump($id);
-		return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p 
+		return opc_sql("SELECT CONCAT_WS(idpeople),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM person p 
 		WHERE idpeople='$co[0]'", $id);
 	}
 	// return opc_sql("SELECT CONCAT_WS('_',tipo_doc,idpersona),CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM personas p WHERE vivipersona={$id} ORDER BY 1", $id);

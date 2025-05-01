@@ -1386,11 +1386,17 @@ function stateRutFam(){
 }
 function validarPorTexto(selectElement) {
     const textoSeleccionado = selectElement.options[selectElement.selectedIndex].text;
-    if (textoSeleccionado === "EFECTIVA") {
-        const elementosStG = document.querySelectorAll('.StG');
-        elementosStG.forEach(elemento => enaFie(elemento, false));
-    } else {
-        const elementosStG = document.querySelectorAll('.StG');
-        elementosStG.forEach(elemento => enaFie(elemento, true));
-    }
+    const habilitar = textoSeleccionado === "EFECTIVA";
+    const elementosStG = document.querySelectorAll('select.StG, input.StG');
+    elementosStG.forEach(elemento => {
+        enaFie(elemento, !habilitar);
+        const divPadre = elemento.closest('div.StG');
+        if (divPadre) {
+            if (habilitar) {
+                divPadre.classList.remove('bloqueo');
+            } else {
+                divPadre.classList.add('bloqueo');
+            }
+        }
+    });
 }

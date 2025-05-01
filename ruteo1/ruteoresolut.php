@@ -141,7 +141,8 @@ function get_ruteresol(){
 
 function gra_ruteresol(){
 $sql="UPDATE `eac_ruteo` SET 
-estado_rut=TRIM(UPPER('{$_POST['estado_rut']}')),
+estado_ruteo=TRIM(UPPER('{$_POST['est']}')),
+estado_rut=TRIM(UPPER('{$_POST['estado']}')),
 famili=TRIM(UPPER('{$_POST['famili']}')),
 usuario=TRIM(UPPER('{$_POST['usuario']}')),
 fecha=TRIM(UPPER('{$_POST['fecha']}')),

@@ -37,7 +37,7 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function cmp_ruteresol(){
  $rta="";
- $t=['id_ruteo'=>'','estado_ruteo'=>'','estado_rut'=>'','famili'=>'','usuario'=>'','fecha'=>''];
+ $t=['id_ruteo'=>'','estado_ruteo'=>'','fecha'=>'','estado_rut'=>'','famili'=>'','usuario'=>''];
  $w='ruteresol';
  $d=get_ruteresol(); 
  if ($d=="") {$d=$t;}

@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/libs/nav.php';
 <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Chicle&family=Merienda&family=Rancho&family=Boogaloo&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <script src="../libs/js/a.js"></script>
-<script src="../libs/js/x.js?v=3.0"></script>
+<script src="../libs/js/x.js?v=4.0"></script>
 <script src="../libs/js/d.js"></script>
 <script src="../libs/js/popup.js"></script>
 <script>
@@ -25,7 +25,6 @@ document.onkeyup=function(ev) {
 	if (ev.ctrlKey && ev.keyCode==46) ev.target.value='';
 	if (ev.ctrlKey && ev.keyCode==45) ev.target.value=ev.target.placeholder;
 };
-
 
 function actualizar(){
 	act_lista(mod);

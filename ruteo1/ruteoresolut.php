@@ -114,7 +114,7 @@ function opc_usuario($id=''){
 
 	}else{
 		$co=divide($id);
-		var_dump($id);
+		// var_dump($id);
 		return opc_sql("SELECT idpeople,CONCAT_WS('-',idpersona,tipo_doc,CONCAT_WS(' ',nombre1,apellido1)) FROM person p 
 		WHERE idpeople='$co[0]'", $id);
 	}

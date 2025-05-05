@@ -53,8 +53,8 @@ LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
 LEFT JOIN (SELECT hc.*  FROM hog_carac hc  INNER JOIN (SELECT idfam, MAX(fecha) AS fecha_max  FROM hog_carac GROUP BY idfam) ult ON hc.idfam = ult.idfam AND hc.fecha = ult.fecha_max) C ON P.vivipersona = C.idfam
 WHERE P.idpersona ='$document' LIMIT 1";  */
-$sql1="SELECT G.estrato,
-C.ingreso,
+$sql1="SELECT G.estrato estrato,
+C.ingreso ingreso,
 ROUND((((CASE G.estrato WHEN 1 THEN 6 WHEN 2 THEN 5  WHEN 3 THEN 4  WHEN 4 THEN 3 WHEN 5 THEN 2  WHEN 6 THEN 1  ELSE 0  END) +
 (CASE C.ingreso  WHEN 1 THEN 3  WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0  END)- 2) / 7.0) * 100, 2) AS SE
 FROM person P 
@@ -90,6 +90,8 @@ $riesgos = [
         "name" => "Nivel Socioeconómico",
         "value" => $socioEcono,
         "weight" => 0.18,
+        "estrato" => $res1['responseResult'][0]['estrato'],
+        "ingreso" => $res1['responseResult'][0]['ingreso'],
         "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
     ],
     "familyStructure" => [

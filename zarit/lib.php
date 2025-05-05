@@ -210,9 +210,6 @@ function gra_tamzarit(){
 		}else{
 			return "Ya se realizo los dos momentos";
 		}
-	
-
-	
 		$suma_zarit = (
 			$_POST['valor1']+
 			$_POST['valor2']+
@@ -237,7 +234,6 @@ function gra_tamzarit(){
 			$_POST['valor21']+
 			$_POST['valor22']
 		);
-
 		if($suma_zarit <= 47){
 			$escala_zarit = 'No hay sobrecarga';
 		}else if($suma_zarit >= 47 && $suma_zarit <= 55){
@@ -245,7 +241,6 @@ function gra_tamzarit(){
 		}else{
 			$escala_zarit = 'Sobrecarga intensa';
 		}
-
 		$sql="INSERT INTO hog_tam_zarit VALUES (null,
 		$id[0],
 		TRIM(UPPER('{$_POST['fecha_toma']}')),

@@ -64,6 +64,8 @@ LEFT JOIN (SELECT hc.* FROM hog_carac hc INNER JOIN (SELECT idfam, MAX(fecha) AS
 WHERE P.idpersona = '$document' LIMIT 1";
 $res1 = datos_mysql($sql1);
 $socioEcono = $res1['responseResult'][0]['SE'];
+$estrato= $res1['responseResult'][0]['estrato'];
+$ingreso= $res1['responseResult'][0]['ingreso'];
 //Riesgo Estructura Familiar
 $sql2="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res2 = datos_mysql($sql2);
@@ -90,8 +92,8 @@ $riesgos = [
         "name" => "Nivel Socioeconómico",
         "value" => $socioEcono,
         "weight" => 0.18,
-        "estrato" => $res1['responseResult'][0]['estrato'],
-        "ingreso" => $res1['responseResult'][0]['ingreso'],
+    /*     "estrato" => $estrato,
+        "ingreso" => $ingreso, */
         "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
     ],
     "familyStructure" => [

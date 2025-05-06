@@ -189,6 +189,16 @@
       gap: var(--spacing-xl);
     }
 
+    @media (min-width: 430px) {
+      .content {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .risk-summary-section {
+        grid-column: span 2;
+      }
+    }
+
     @media (min-width: 768px) {
       .content {
         grid-template-columns: 1fr 1fr;

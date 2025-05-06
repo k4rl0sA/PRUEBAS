@@ -46,13 +46,6 @@ if ($res['code'] !== 0 || empty($res['responseResult'])) {
 $datos = $res['responseResult'][0];
 
 //Riesgo Socioeconómico
-/* $sql1="SELECT ROUND((((CASE G.estrato WHEN 1 THEN 6 WHEN 2 THEN 5  WHEN 3 THEN 4  WHEN 4 THEN 3 WHEN 5 THEN 2  WHEN 6 THEN 1  ELSE 0  END) +
-(CASE C.ingreso  WHEN 1 THEN 3  WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0  END)- 2) / 7.0) * 100, 2) AS SE
-FROM person P 
-LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
-LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-LEFT JOIN (SELECT hc.*  FROM hog_carac hc  INNER JOIN (SELECT idfam, MAX(fecha) AS fecha_max  FROM hog_carac GROUP BY idfam) ult ON hc.idfam = ult.idfam AND hc.fecha = ult.fecha_max) C ON P.vivipersona = C.idfam
-WHERE P.idpersona ='$document' LIMIT 1";  */
 $sql1="SELECT G.estrato estrato,
 FN_CATALOGODESC(13,C.ingreso) ingreso,
 ROUND((((CASE G.estrato WHEN 1 THEN 6 WHEN 2 THEN 5  WHEN 3 THEN 4  WHEN 4 THEN 3 WHEN 5 THEN 2  WHEN 6 THEN 1  ELSE 0  END) +
@@ -66,26 +59,32 @@ $res1 = datos_mysql($sql1);
 $socioEcono = $res1['responseResult'][0]['SE'];
 $estrato= $res1['responseResult'][0]['estrato'];
 $ingreso= $res1['responseResult'][0]['ingreso'];
+
 //Riesgo Estructura Familiar
 $sql2="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res2 = datos_mysql($sql2);
 $estruFamil = $res2['responseResult'][0];
+
 //Riesgo Vulnerabilidad Social
 $sql3="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res3 = datos_mysql($sql3);
 $vulnSocial = $res3['responseResult'][0];
+
 //Riesgo Acceso a Servicios de Salud
 $sql4="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res4 = datos_mysql($sql4);
 $accesoSalud = $res4['responseResult'][0];
+
 //Riesgo Entorno Habitacional
 $sql5="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res5 = datos_mysql($sql5);
 $entornoHab = $res5['responseResult'][0];
+
 //Riesgo Características Demográficas
 $sql6="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
 $res6 = datos_mysql($sql6);
 $caracDemo = $res6['responseResult'][0];
+
 // Generar factores de riesgo aleatorios
 $riesgos = [
     "socioeconomic" => [
@@ -127,5 +126,4 @@ $riesgos = [
         "description" => "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
     ]
 ];
-// Devolver respuesta
 echo json_encode(array_merge($datos, ["riskFactors" => $riesgos]));

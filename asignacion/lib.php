@@ -51,7 +51,7 @@ function cmp_asigpred(){
 	$key='pRE';
 	$esta = (perfil1()!=='GEO') ? true : false;
 	// $c[]=new cmp($p,'e',null,'PREDIO',$w);
-	$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo'],'../asignacion/lib.php');act_lista('predios');");
+	$c[]=new cmp('cod_pre','n','10','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo'],'../asignacion/lib.php');act_lista('predios');");
 	$c[]=new cmp($o,'e',null,'DATOS DEL PREDIO',$w);
 	//$c[]=new cmp('cod_pre','n','6','',$w.' '.$key.' '.$o,'Codigo del Predio','cod_pre',null,'',true,true,'','col-25',"getDatForm('pRE','predio',['geo']);");
 	$c[]=new cmp('id','h',15,$_POST['id'],$w.' '.$o,' ','',null,'####',false,false);

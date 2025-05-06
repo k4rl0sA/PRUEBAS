@@ -602,6 +602,43 @@
     .btn {
       margin-left: var(--spacing-sm);
     }
+
+     /* Ajustes específicos para pantallas muy pequeñas (menos de 480px) */
+  @media (max-width: 480px) {
+    .app-header h1 {
+      font-size: var(--font-size-lg);
+    }
+
+    .subtitle {
+      font-size: var(--font-size-sm);
+    }
+
+    .card-header h2 {
+      font-size: var(--font-size-md);
+    }
+
+    .risk-gauge-labels text {
+      font-size: 10px; /* Reducir tamaño de las etiquetas del gráfico */
+    }
+
+    .risk-gauge-value {
+      font-size: var(--font-size-lg);
+    }
+
+    .risk-level {
+      font-size: var(--font-size-sm);
+    }
+
+    .risk-factor-header {
+      flex-direction: column; /* Apilar el nombre y el valor del factor */
+      align-items: flex-start;
+    }
+
+    .risk-factor-details {
+      flex-direction: column; /* Apilar los detalles del factor */
+      align-items: flex-start;
+    }
+  }
   </style>
 </head>
 <body>

@@ -633,9 +633,40 @@
       animation: pulse 2s infinite;
     }
 
+    .risk-factor {
+      position: relative;
+    }
+
+    .risk-factor-tooltip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: var(--spacing-sm) 0;
+      z-index: 100;
+    }
+
+    .risk-factor-tooltip .tooltip-content {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-sm);
+      box-shadow: var(--shadow-md);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+
+
     /* ======================
        MEDIA QUERIES
        ====================== */
+       @media (hover: hover) {
+         /* Solo mostrar tooltips con hover en dispositivos que soportan hover */
+         .risk-factor-tooltip {
+           pointer-events: none;
+         }
+      }
 
     /* Small devices (landscape phones, 576px and up) */
     @media (min-width: 576px) {
@@ -655,6 +686,18 @@
         grid-template-columns: 1fr 1fr;
       }
     }
+
+    /* Para dispositivos móviles */
+@media (max-width: 768px) {
+  .risk-factor-tooltip {
+    position: static;
+    margin-top: var(--spacing-sm);
+  }
+  
+  .risk-factor-tooltip .tooltip-content {
+    width: 100%;
+  }
+}
 
     /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) {

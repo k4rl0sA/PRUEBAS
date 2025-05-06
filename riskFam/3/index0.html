@@ -159,7 +159,7 @@
     .app-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: var(--spacing-sd);
+      padding: var(--spacing-sm);
     }
 
     .app-header {
@@ -621,7 +621,7 @@
     }
 
     .risk-gauge-labels text {
-      font-size: 10px; /* Reducir tamaño de las etiquetas del gráfico */
+      font-size: 10px;
     }
 
     .risk-gauge-value {
@@ -633,14 +633,18 @@
     }
 
     .risk-factor-header {
-      flex-direction: column; /* Apilar el nombre y el valor del factor */
+      flex-direction: column; 
       align-items: flex-start;
     }
 
     .risk-factor-details {
-      flex-direction: column; /* Apilar los detalles del factor */
+      flex-direction: column; 
       align-items: flex-start;
     }
+
+    .app-container {
+    padding: var(--spacing-xs);
+  }
   }
 
 

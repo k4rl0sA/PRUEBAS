@@ -1078,11 +1078,13 @@
           factors[key].value = riskFactors[key].value;
           // Mantener la descripción existente si no viene en los datos
           factors[key].description = riskFactors[key].description || factors[key].description;
+          
           // Actualizar estrato e ingreso si existen
       if (key === 'socioeconomic') {
         factors[key].estrato = riskFactors[key].estrato || 0;
         factors[key].ingreso = riskFactors[key].ingreso || 0;
       }
+      
         }
       }
     }

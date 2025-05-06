@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Evaluación de Riesgos Familiares</title>
+  <title>Evaluación de Riesgos Familiares</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -50,7 +49,7 @@
       --transition-normal: 250ms ease;
       --transition-slow: 350ms ease;
 
-      /* Font sizes */
+      /* Font sizes - Mobile first */
       --font-size-xs: 0.75rem;
       --font-size-sm: 0.875rem;
       --font-size-md: 1rem;
@@ -88,7 +87,7 @@
     }
 
     html {
-      font-size: 16px;
+      font-size: 14px; /* Base más pequeña para móviles */
       scroll-behavior: smooth;
     }
 
@@ -98,6 +97,7 @@
       color: var(--color-text);
       line-height: 1.5;
       transition: background-color var(--transition-normal), color var(--transition-normal);
+      min-height: 100vh;
     }
 
     /* Theme toggle */
@@ -117,8 +117,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: var(--radius-full);
       background-color: var(--color-surface);
       box-shadow: var(--shadow-md);
@@ -131,10 +131,11 @@
       color: white;
     }
 
-    .sun-icon,
-    .moon-icon {
+    .sun-icon, .moon-icon {
       position: absolute;
       transition: opacity var(--transition-normal), transform var(--transition-normal);
+      width: 20px;
+      height: 20px;
     }
 
     .sun-icon {
@@ -147,81 +148,53 @@
       transform: scale(1);
     }
 
-    .theme-switch:checked~.theme-switch-label .sun-icon {
+    .theme-switch:checked ~ .theme-switch-label .sun-icon {
       opacity: 1;
       transform: scale(1);
     }
 
-    .theme-switch:checked~.theme-switch-label .moon-icon {
+    .theme-switch:checked ~ .theme-switch-label .moon-icon {
       opacity: 0;
       transform: scale(0.7);
     }
 
     /* Layout */
     .app-container {
-      max-width: 1200px;
+      max-width: 100%;
+      padding: var(--spacing-sm);
       margin: 0 auto;
-      padding: var(--spacing-md);
+      overflow-x: hidden; /* Previene desbordamiento horizontal */
     }
 
     .app-header {
       text-align: center;
-      margin-bottom: var(--spacing-2xl);
-      padding-top: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      padding-top: var(--spacing-2xl);
     }
 
     .app-header h1 {
-      font-size: var(--font-size-3xl);
+      font-size: var(--font-size-2xl);
       font-weight: 700;
       margin-bottom: var(--spacing-xs);
       background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      line-height: 1.2;
     }
 
     .subtitle {
       color: var(--color-text-secondary);
-      font-size: var(--font-size-lg);
+      font-size: var(--font-size-md);
+      max-width: 90%;
+      margin: 0 auto;
     }
 
     .content {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--spacing-xl);
-    }
-
-    .risk-meter-needle {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      height: 110px;
-      background-color: var(--color-text);
-      transform-origin: bottom center;
-      transform: translateX(-50%) rotate(-90deg);
-      transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 10;
-    }
-
-    @media (min-width: 768px) {
-      .content {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .risk-summary-section {
-        grid-column: span 2;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .content {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
-      .risk-summary-section {
-        grid-column: span 3;
-      }
+      gap: var(--spacing-md);
+      width: 100%;
     }
 
     /* Card styles */
@@ -231,6 +204,7 @@
       box-shadow: var(--shadow-md);
       overflow: hidden;
       transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+      width: 100%;
     }
 
     .card:hover {
@@ -242,19 +216,28 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--spacing-lg);
+      padding: var(--spacing-md);
       border-bottom: 1px solid var(--color-border);
     }
 
     .card-header h2 {
-      font-size: var(--font-size-xl);
+      font-size: var(--font-size-lg);
       font-weight: 600;
+    }
+
+    .card-body {
+      padding: var(--spacing-md);
+    }
+
+    .card-body p {
+      margin-bottom: var(--spacing-sm);
     }
 
     /* Button styles */
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: var(--spacing-sm);
       padding: var(--spacing-sm) var(--spacing-md);
       border-radius: var(--radius-md);
@@ -264,10 +247,13 @@
       transition: all var(--transition-fast);
       border: none;
       outline: none;
+      min-height: 44px; /* Tamaño táctil mínimo */
     }
 
     .btn svg {
       transition: transform var(--transition-normal);
+      width: 16px;
+      height: 16px;
     }
 
     .btn:hover svg {
@@ -285,7 +271,7 @@
 
     /* Modern Risk Gauge styles */
     .risk-gauge-container {
-      padding: var(--spacing-xl);
+      padding: var(--spacing-lg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -293,18 +279,21 @@
 
     .risk-gauge {
       position: relative;
-      width: 300px;
-      height: 170px;
-      margin-bottom: var(--spacing-xl);
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin: 0 auto var(--spacing-lg);
     }
 
     .risk-gauge-svg {
+      width: 100%;
+      height: auto;
       overflow: visible;
     }
 
     .risk-gauge-arc {
       fill: none;
-      stroke-width: 12;
+      stroke-width: 10;
       stroke-linecap: round;
     }
 
@@ -312,36 +301,58 @@
       fill: var(--color-text);
     }
 
-    .risk-gauge-needle {
+    .risk-meter-needle {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      height: 90px;
+      background-color: var(--color-text);
+      transform-origin: bottom center;
+      transform: translateX(-50%) rotate(-90deg);
       transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-      transform-origin: 50% 100%;
+      z-index: 10;
+    }
+
+    .risk-meter-center {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: var(--color-text);
+      border-radius: 50%;
+      z-index: 20;
     }
 
     .risk-gauge-labels {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding: 0 var(--spacing-md);
-      margin-top: var(--spacing-sm);
+      padding: 0 var(--spacing-sm);
+      margin-top: var(--spacing-xs);
       font-size: var(--font-size-xs);
       color: var(--color-text-secondary);
     }
 
     .risk-gauge-value {
-      font-size: var(--font-size-3xl);
+      font-size: var(--font-size-2xl);
       font-weight: 700;
-      margin-bottom: var(--spacing-xs);
+      margin-bottom: var(--spacing-sm);
       text-align: center;
     }
 
     .risk-level {
       font-size: var(--font-size-md);
       font-weight: 600;
-      padding: var(--spacing-xs) var(--spacing-lg);
+      padding: var(--spacing-xs) var(--spacing-md);
       border-radius: var(--radius-full);
       color: white;
       transition: background-color var(--transition-normal);
       text-align: center;
+      width: fit-content;
+      margin: 0 auto;
     }
 
     .risk-level.low {
@@ -358,16 +369,29 @@
 
     /* Risk classification styles */
     .risk-classification {
-      padding: 0 var(--spacing-xl) var(--spacing-xl);
+      padding: 0 var(--spacing-md) var(--spacing-lg);
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--spacing-md);
     }
 
-    @media (min-width: 768px) {
-      .risk-classification {
-        grid-template-columns: 1fr 1fr 1fr;
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
       }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .risk-factors-section,
+    .risk-chart-section {
+      width: 100%;
+      max-width: 100%;
     }
 
     .risk-class {
@@ -390,8 +414,8 @@
     }
 
     .risk-indicator {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       margin-bottom: var(--spacing-sm);
     }
@@ -409,13 +433,13 @@
     }
 
     .risk-class-details h4 {
-      font-size: var(--font-size-md);
+      font-size: var(--font-size-sm);
       font-weight: 600;
       margin-bottom: var(--spacing-xs);
     }
 
     .risk-class-details p {
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-xs);
       color: var(--color-text-secondary);
     }
 
@@ -425,14 +449,15 @@
       align-items: center;
       gap: var(--spacing-sm);
       font-weight: 600;
+      font-size: var(--font-size-sm);
     }
 
     .risk-factors {
-      padding: var(--spacing-lg);
+      padding: var(--spacing-md);
     }
 
     .risk-factor {
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
     }
 
     .risk-factor:last-child {
@@ -441,9 +466,17 @@
 
     .risk-factor-header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: var(--spacing-xs);
       margin-bottom: var(--spacing-xs);
+    }
+
+    @media (min-width: 400px) {
+      .risk-factor-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     .risk-factor-name {
@@ -451,11 +484,12 @@
       display: flex;
       align-items: center;
       gap: var(--spacing-sm);
+      font-size: var(--font-size-sm);
     }
 
     .risk-factor-badge {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: var(--radius-full);
       font-size: var(--font-size-xs);
       font-weight: 600;
@@ -476,6 +510,7 @@
 
     .risk-factor-value {
       font-weight: 600;
+      font-size: var(--font-size-sm);
     }
 
     .risk-factor-weight {
@@ -484,7 +519,7 @@
     }
 
     .risk-factor-bar {
-      height: 8px;
+      height: 6px;
       width: 100%;
       background-color: var(--color-border);
       border-radius: var(--radius-full);
@@ -512,24 +547,73 @@
 
     .risk-factor-details {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: var(--spacing-xs);
       font-size: var(--font-size-xs);
       color: var(--color-text-secondary);
     }
 
+    @media (min-width: 400px) {
+      .risk-factor-details {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
     /* Chart styles */
     .chart-container {
-      padding: var(--spacing-lg);
-      height: 400px;
+      padding: var(--spacing-md);
+      height: auto;
+      min-height: 300px;
     }
 
     /* Footer styles */
     .app-footer {
-      margin-top: var(--spacing-2xl);
-      padding: var(--spacing-lg) 0;
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-md) 0;
       text-align: center;
       color: var(--color-text-secondary);
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-xs);
+    }
+
+    /* Input Styles */
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: var(--spacing-md);
+      gap: var(--spacing-sm);
+    }
+
+    @media (min-width: 400px) {
+      .input-group {
+        flex-direction: row;
+      }
+    }
+
+    .form-control {
+      flex: 1;
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: var(--font-size-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+      min-height: 44px; /* Tamaño táctil mínimo */
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px var(--color-primary-light);
+    }
+
+    /* Personal info grid */
+    .personal-info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
     }
 
     /* Animations */
@@ -537,11 +621,9 @@
       0% {
         transform: scale(1);
       }
-
       50% {
         transform: scale(1.05);
       }
-
       100% {
         transform: scale(1);
       }
@@ -550,29 +632,86 @@
     .pulse {
       animation: pulse 2s infinite;
     }
+
+    /* ======================
+       MEDIA QUERIES
+       ====================== */
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {
+      html {
+        font-size: 15px;
+      }
+      
+      .app-container {
+        padding: var(--spacing-md);
+      }
+      
+      .personal-info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .risk-classification {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      html {
+        font-size: 16px;
+      }
+      
+      .content {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .risk-summary-section {
+        grid-column: span 2;
+      }
+      
+      .risk-classification {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      .app-container {
+        max-width: 1200px;
+      }
+      
+      .content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .risk-summary-section {
+        grid-column: span 3;
+      }
+      
+      .app-header h1 {
+        font-size: var(--font-size-3xl);
+      }
+      
+      .subtitle {
+        font-size: var(--font-size-lg);
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      .risk-gauge {
+        max-width: 350px;
+      }
+    }
   </style>
 </head>
-
 <body>
   <div class="theme-toggle">
     <input type="checkbox" id="theme-switch" class="theme-switch">
     <label for="theme-switch" class="theme-switch-label">
-      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-      </svg>
-      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </label>
   </div>
 
@@ -583,61 +722,78 @@
     </header>
 
     <main class="content">
-<!--       <section class="personal-info-section">
+      <section class="search-info-risk">
+        <div class="card">
+          <div class="card-header">
+            <h2>Búsqueda de Usuario</h2>
+          </div>
+          <div class="card-body">
+            <p>Ingrese el número de documento para buscar información del usuario.</p>
+            <div class="input-group">
+              <input type="number" id="searchInput" class="form-control" placeholder="Número de Documento">
+              <button id="generateBtn" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                Buscar usuario
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="personal-info-section">
         <div class="card">
           <div class="card-header">
             <h2>Información Personal</h2>
           </div>
           <div class="card-body">
-            <p><strong>Documento:</strong> <span id="documentInfo">-</span></p>
-            <p><strong>Sexo:</strong> <span id="sexInfo">-</span></p>
-            <p><strong>Género:</strong> <span id="genderInfo">-</span></p>
-            <p><strong>Nacionalidad:</strong> <span id="nationalityInfo">-</span></p>
-            <p><strong>Fecha de Nacimiento:</strong> <span id="birthDateInfo">-</span></p>
-            <p><strong>Curso de Vida:</strong> <span id="lifestageInfo">-</span></p>
-            <p><strong>Edad:</strong> <span id="ageInfo">-</span></p>
+            <div class="personal-info-grid">
+              <div>
+                <p><strong>Documento:</strong> <span id="documentInfo">-</span></p>
+                <p><strong>Sexo:</strong> <span id="sexInfo">-</span></p>
+                <p><strong>Género:</strong> <span id="genderInfo">-</span></p>
+                <p><strong>Nacionalidad:</strong> <span id="nationalityInfo">-</span></p>
+                <p><strong>Fecha de Nacimiento:</strong> <span id="birthDateInfo">-</span></p>
+                <p><strong>Curso de Vida:</strong> <span id="lifestageInfo">-</span></p>
+              </div>
+              <div>
+                <p><strong>Edad:</strong> <span id="ageInfo">-</span></p>
+                <p><strong>Localidad:</strong> <span id="locationInfo">-</span></p>
+                <p><strong>Upz:</strong> <span id="upzInfo">-</span></p>
+                <p><strong>Dirección:</strong> <span id="addressInfo">-</span></p>
+                <p><strong>Teléfono:</strong> <span id="phoneInfo">-</span></p>
+              </div>
+            </div>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <section class="risk-summary-section">
         <div class="card risk-summary">
           <div class="card-header">
             <h2>Índice de Riesgo Familiar</h2>
-            <button id="generateBtn" class="btn btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                <path d="M21 3v5h-5"></path>
-                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-                <path d="M3 21v-5h5"></path>
-              </svg>
-              Generar Datos
-            </button>
           </div>
 
           <div class="risk-gauge-container">
             <div class="risk-gauge">
-              <svg class="risk-gauge-svg" width="300" height="170" viewBox="0 0 300 170">
+              <svg class="risk-gauge-svg" viewBox="0 0 300 170">
                 <!-- Background track (light gray) -->
                 <path class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 270 150" stroke="#e5e7eb" />
+
                 <!-- Low risk segment (green, 0-40%) -->
                 <path id="lowRiskArc" class="risk-gauge-arc" d="M 30 150 A 120 120 0 0 1 100 41" stroke="#10b981" />
-                <!-- d="M 30 150 A 120 120 0 0 1 100 41" -->
+
                 <!-- Medium risk segment (yellow, 41-70%) -->
                 <path id="mediumRiskArc" class="risk-gauge-arc" d="M 116 35 A 120 120 0 0 1 236 66" stroke="#f59e0b" />
-                <!-- d="M 116 35 A 120 120 0 0 1 236 66" -->
+
                 <!-- High risk segment (red, 71-100%) -->
                 <path id="highRiskArc" class="risk-gauge-arc" d="M 235 66 A 120 120 0 0 1 270 150" stroke="#ef4444" />
-                <!-- M 210 46 A 120 120 0 0 1 270 150 -->
+
                 <!-- Labels -->
                 <text x="30" y="170" text-anchor="middle" fill="currentColor" font-size="12">0%</text>
                 <text x="90" y="170" text-anchor="middle" fill="currentColor" font-size="12">20%</text>
                 <text x="150" y="170" text-anchor="middle" fill="currentColor" font-size="12">50%</text>
                 <text x="210" y="170" text-anchor="middle" fill="currentColor" font-size="12">80%</text>
                 <text x="270" y="170" text-anchor="middle" fill="currentColor" font-size="12">100%</text>
-                <!-- Center point (dark circle) -->
-                <circle cx="150" cy="150" r="12" fill="#1f2937" />
               </svg>
               <div class="risk-meter-needle" id="riskMeterNeedle"></div>
               <div class="risk-meter-center"></div>
@@ -672,7 +828,7 @@
         </div>
       </section>
 
-      <section class="risk-factors-section" style="width: 24.06rem;">
+      <section class="risk-factors-section">
         <div class="card">
           <div class="card-header">
             <h2>Factores de Riesgo</h2>
@@ -688,14 +844,14 @@
         </div>
       </section>
 
-      <section class="risk-chart-section" style="width: 44.875rem;">
+      <section class="risk-chart-section">
         <div class="card">
           <div class="card-header">
             <h2>Visualización de Riesgos</h2>
           </div>
 
           <div class="chart-container">
-            <canvas id="riskChart" width="400" height="400"></canvas>
+            <canvas id="riskChart"></canvas>
           </div>
         </div>
       </section>
@@ -709,29 +865,23 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // Initial data
-    const factors = {
+    let factors = {
       socioeconomic: {
         name: "Nivel Socioeconómico",
         value: 30,
-        weight: 0.20,
+        weight: 0.18,
         description: "Impacta directamente el acceso a bienes y servicios esenciales."
       },
       familyStructure: {
         name: "Estructura Familiar",
         value: 25,
-        weight: 0.15,
-        description: "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
-      },
-      healthConditions: {
-        name: "Condiciones de Salud",
-        value: 35,
         weight: 0.20,
-        description: "Determina la calidad de vida y el acceso al tratamiento médico."
+        description: "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
       },
       socialVulnerability: {
         name: "Vulnerabilidad Social",
         value: 20,
-        weight: 0.15,
+        weight: 0.12,
         description: "Considera factores como la violencia, el desplazamiento y la exclusión social."
       },
       accessToHealth: {
@@ -741,7 +891,7 @@
         description: "Clave para la prevención y el cuidado de enfermedades."
       },
       livingEnvironment: {
-        name: "Entorno de Vida",
+        name: "Entorno Habitacional",
         value: 40,
         weight: 0.10,
         description: "Evalúa las condiciones de la vivienda y su impacto en la salud."
@@ -749,14 +899,14 @@
       demographics: {
         name: "Características Demográficas",
         value: 25,
-        weight: 0.10,
+        weight: 0.30,
         description: "Incluye edad, género y otras variables que influyen en la exposición al riesgo."
       }
     };
 
     // DOM elements
     const generateBtn = document.getElementById('generateBtn');
-    const gaugeNeedle = document.getElementById('gaugeNeedle');
+    const riskMeterNeedle = document.getElementById('riskMeterNeedle');
     const riskGaugeValue = document.getElementById('riskGaugeValue');
     const riskLevel = document.getElementById('riskLevel');
     const totalRiskText = document.getElementById('totalRiskText');
@@ -784,8 +934,7 @@
       initChart();
 
       // Add event listeners
-      generateBtn.addEventListener('click', generateRandomData);
-      generateBtn.addEventListener('click', fetchPersonalInfo);
+      generateBtn.addEventListener('click', fetchDataAndUpdate);
       themeSwitch.addEventListener('change', toggleTheme);
     }
 
@@ -793,30 +942,103 @@
     function toggleTheme() {
       document.body.classList.toggle('dark-theme');
       localStorage.setItem('darkTheme', document.body.classList.contains('dark-theme'));
-
       // Update chart colors
       updateChartColors();
     }
 
-    // Generate random data for all factors
-    function generateRandomData() {
-      // Add pulse animation to button
-      generateBtn.classList.add('pulse');
+    // Fetch data from PHP file and update UI
+    async function fetchDataAndUpdate() {
+      const documentNumber = document.getElementById('searchInput').value;
 
-      // Remove animation after it completes
-      setTimeout(() => {
-        generateBtn.classList.remove('pulse');
-      }, 2000);
+      if (!documentNumber) {
+        alert('Por favor ingrese un número de documento');
+        return;
+      }
 
-      // Generate new random values
-      Object.keys(factors).forEach(key => {
-        factors[key].value = Math.floor(Math.random() * 100);
-      });
+      try {
+        // Mostrar estado de carga
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+          </svg>
+          Buscando...
+        `;
 
-      // Update UI
-      renderRiskFactors();
-      calculateTotalRisk();
-      updateChart();
+        const response = await fetch(`lib.php?document=${documentNumber}`);
+
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        console.log('Datos recibidos:', data); // Para depuración
+
+        // Actualizar información personal
+        updatePersonalInfo(data);
+
+        // Actualizar factores de riesgo
+        updateRiskFactors(data.riskFactors);
+
+        // Actualizar UI
+        renderRiskFactors();
+        calculateTotalRisk();
+        updateChart();
+
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        alert(`Error: ${error.message}`);
+      } finally {
+        // Restaurar estado normal del botón
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          Buscar usuario
+        `;
+      }
+    }
+
+    // Función auxiliar para actualizar información personal
+    function updatePersonalInfo(data) {
+      const fields = {
+        documentInfo: data.document,
+        sexInfo: data.sex,
+        genderInfo: data.gender,
+        nationalityInfo: data.nationality,
+        birthDateInfo: data.birthDate,
+        lifestageInfo: data.lifestage,
+        ageInfo: data.age,
+        locationInfo: data.location,
+        upzInfo: data.upz,
+        addressInfo: data.address,
+        phoneInfo: data.phone
+      };
+      for (const [id, value] of Object.entries(fields)) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.textContent = value || '-';
+        }
+      }
+    }
+
+    // Función auxiliar para actualizar factores de riesgo
+    function updateRiskFactors(riskFactors) {
+      if (!riskFactors) return;
+      for (const key in factors) {
+        if (riskFactors[key]) {
+          factors[key].value = riskFactors[key].value;
+          // Mantener la descripción existente si no viene en los datos
+          factors[key].description = riskFactors[key].description || factors[key].description;
+        }
+      }
     }
 
     // Calculate total risk based on all factors and their weights
@@ -827,8 +1049,8 @@
 
       // Update gauge needle rotation
       const needleRotation = calculateNeedleRotation(totalRisk);
-      //   gaugeNeedle.setAttribute('transform', `rotate(${needleRotation}, 150, 150)`);
       riskMeterNeedle.style.transform = `translateX(-50%) rotate(${needleRotation}deg)`;
+
       // Update risk value display
       riskGaugeValue.textContent = `${totalRisk.toFixed(1)}%`;
       totalRiskText.textContent = `${totalRisk.toFixed(1)}%`;
@@ -913,7 +1135,7 @@
       const chartData = {
         labels: Object.values(factors).map(factor => factor.name),
         datasets: [{
-          label: 'Risk Factors',
+          label: 'Factores de Riesgo',
           data: Object.values(factors).map(factor => factor.value),
           backgroundColor: Object.values(factors).map(factor => getChartColor(factor.value, 0.7)),
           borderColor: Object.values(factors).map(factor => getChartColor(factor.value, 1)),
@@ -944,7 +1166,7 @@
               },
               pointLabels: {
                 font: {
-                  size: 12
+                  size: window.innerWidth < 768 ? 10 : 12
                 },
                 color: getComputedStyle(document.body).getPropertyValue('--color-text')
               }
@@ -956,15 +1178,15 @@
             },
             tooltip: {
               callbacks: {
-                label: function (context) {
+                label: function(context) {
                   const label = context.label || '';
                   const value = context.raw || 0;
                   const index = context.dataIndex;
                   const factor = Object.values(factors)[index];
                   return [
                     `${label}: ${value}%`,
-                    `Weight: ${factor.weight * 100}%`,
-                    `Contribution: ${(value * factor.weight).toFixed(1)}%`
+                    `Peso: ${factor.weight * 100}%`,
+                    `Contribución: ${(value * factor.weight).toFixed(1)}%`
                   ];
                 }
               }
@@ -984,7 +1206,6 @@
       riskChart.data.datasets[0].borderColor = Object.values(factors).map(factor => getChartColor(factor.value, 1));
       riskChart.update();
     }
-
     // Update chart colors when theme changes
     function updateChartColors() {
       if (riskChart) {
@@ -994,7 +1215,6 @@
         riskChart.update();
       }
     }
-
     // Get chart color based on risk value
     function getChartColor(value, alpha) {
       if (value >= 71) {
@@ -1005,30 +1225,9 @@
         return `rgba(16, 185, 129, ${alpha})`; // green
       }
     }
-
-    // Initialize the application when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
-       fetchPersonalInfo();
-       initApp(); // Inicializar la aplicación existente
-     });
-    async function fetchPersonalInfo() {
-       try {
-         const response = await fetch('lib.php');
-         const data = await response.json();
- 
-         // Renderizar datos en la sección de información personal
-         document.getElementById('documentInfo').textContent = data.document;
-         document.getElementById('sexInfo').textContent = data.sex;
-         document.getElementById('genderInfo').textContent = data.gender;
-         document.getElementById('nationalityInfo').textContent = data.nationality;
-         document.getElementById('birthDateInfo').textContent = data.birthDate;
-         document.getElementById('lifestageInfo').textContent = data.lifestage;
-         document.getElementById('ageInfo').textContent = data.age;
-       } catch (error) {
-         console.error('Error al cargar la información personal:', error);
-       }
-     }
+      initApp();
+    });
   </script>
 </body>
-
 </html>

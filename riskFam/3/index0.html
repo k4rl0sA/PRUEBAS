@@ -189,26 +189,7 @@
       gap: var(--spacing-xl);
     }
 
-    @media (min-width: 768px) {
-      .content {
-        grid-template-columns: 1fr 1fr;
-      }
-      
-      .risk-summary-section {
-        grid-column: span 2;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .content {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-      
-      .risk-summary-section {
-        grid-column: span 3;
-      }
-    }
-
+  
     /* Card styles */
     .card {
       background-color: var(--color-surface);
@@ -390,11 +371,12 @@
       }
     }
 
-    @media (min-width: 768px) {
-      .risk-classification {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+    .risk-factors-section,
+      .risk-chart-section {
+        width: 100%; 
     }
+
+    
 
     .risk-class {
       display: flex;
@@ -603,6 +585,28 @@
       margin-left: var(--spacing-sm);
     }
 
+    @media (min-width: 768px) {
+      .risk-classification {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .content {
+        grid-template-columns: 1fr 1fr;
+      }
+      .risk-summary-section {
+        grid-column: span 2;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .content {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      
+      .risk-summary-section {
+        grid-column: span 3;
+      }
+    }
+
      /* Ajustes específicos para pantallas muy pequeñas (menos de 480px) */
   @media (max-width: 480px) {
     .app-header h1 {
@@ -639,6 +643,8 @@
       align-items: flex-start;
     }
   }
+
+
   </style>
 </head>
 <body>

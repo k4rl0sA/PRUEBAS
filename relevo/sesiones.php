@@ -79,7 +79,7 @@ function cmp_sesiones() {
 	$rta="";
 	$rta .="<div class='encabezado placuifam'>TABLA DE COMPROMISOS CONCERTADOS</div>
 	<div class='contenido' id='session-lis' >".lis_session()."</div></div>";
-	$info=datos_mysql("SELECT FN_PERFIL('{$_SESSION['us_sds']}') perfil;");
+	$info=datos_mysql("select perfil from usuarios where id_usuario='".$_SESSION['us_sds']."'");
 	$per=$info['responseResult'][0]['perfil'];
 	// var_dump($_POST);
 	$w='sesiones';

@@ -63,7 +63,7 @@ function cmp_admision(){
 	$w='admision';
 	$o='infusu';
 	// var_dump($d);
-	$perfil=datos_mysql("select FN_PERFIL({$_SESSION['us_sds']})");
+	$perfil=datos_mysql("select perfil from usuarios where id_usuario='".$_SESSION['us_sds']."'");
 	$p = ($perfil["responseResult"]!='FAC') ? false : true ;
 	$c[]=new cmp($o,'e',null,'INFORMACIÓN DEL USUARIO',$w);
 	 

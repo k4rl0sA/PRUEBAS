@@ -92,8 +92,8 @@ $riesgos = [
         "name" => "Nivel Socioeconómico",
         "value" => $socioEcono,
         "weight" => 0.18,
-    /*     "estrato" => $estrato,
-        "ingreso" => $ingreso, */
+        "estrato" => $estrato,
+        "ingreso" => $ingreso,
         "description" => "Impacta directamente el acceso a bienes y servicios esenciales."
     ],
     "familyStructure" => [

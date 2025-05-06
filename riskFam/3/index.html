@@ -1085,6 +1085,21 @@
         const factor = factors[key];
         const riskClass = getRiskClass(factor.value);
 
+        // Crear elemento de tooltip para datos adicionales
+    let additionalInfo = '';
+    if (key === 'socioeconomic' && (factor.estrato || factor.ingreso)) {
+      const estratoText = factor.estrato ? `Estrato: ${factor.estrato}` : '';
+      const ingresoText = factor.ingreso ? `Nivel de ingreso: ${getIngresoText(factor.ingreso)}` : '';
+      additionalInfo = `
+        <div class="risk-factor-tooltip">
+          <div class="tooltip-content">
+            ${estratoText}<br>
+            ${ingresoText}
+          </div>
+        </div>
+      `;
+    }
+
         const factorElement = document.createElement('div');
         factorElement.className = 'risk-factor';
         factorElement.innerHTML = `
@@ -1105,11 +1120,61 @@
             <span>${factor.description}</span>
             <span>Contribución: ${(factor.value * factor.weight).toFixed(1)}%</span>
           </div>
+          ${additionalInfo}
         `;
 
         riskFactorsContainer.appendChild(factorElement);
       });
+      // Agregar event listeners para los tooltips
+      setupTooltips();
     }
+
+    // Configurar los tooltips para hover y touch
+function setupTooltips() {
+  const riskFactors = document.querySelectorAll('.risk-factor');
+  
+  riskFactors.forEach(factor => {
+    const tooltip = factor.querySelector('.risk-factor-tooltip');
+    if (!tooltip) return;
+    
+    // Para hover en desktop
+    factor.addEventListener('mouseenter', () => {
+      tooltip.style.display = 'block';
+    });
+    
+    factor.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+    
+    // Para touch en móviles
+    factor.addEventListener('click', (e) => {
+      // Evitar que se propague si ya hay un tooltip mostrándose
+      if (document.querySelector('.risk-factor-tooltip[style="display: block;"]')) {
+        e.stopPropagation();
+        return;
+      }
+      
+      // Alternar la visibilidad del tooltip
+      if (tooltip.style.display === 'block') {
+        tooltip.style.display = 'none';
+      } else {
+        // Ocultar otros tooltips antes de mostrar este
+        document.querySelectorAll('.risk-factor-tooltip').forEach(t => {
+          t.style.display = 'none';
+        });
+        tooltip.style.display = 'block';
+      }
+      e.stopPropagation();
+    });
+  });
+  
+  // Cerrar tooltips al hacer click en cualquier otro lugar
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.risk-factor-tooltip').forEach(tooltip => {
+      tooltip.style.display = 'none';
+    });
+  });
+}
 
     // Get risk class based on value
     function getRiskClass(value) {

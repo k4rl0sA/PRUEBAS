@@ -1139,7 +1139,7 @@
     let additionalInfo = '';
     if (key === 'socioeconomic' && (factor.estrato || factor.ingreso)) {
       const estratoText = factor.estrato ? `Estrato: ${factor.estrato}` : '';
-      const ingresoText = factor.ingreso ? `Nivel de ingreso: ${getIngresoText(factor.ingreso)}` : '';
+      const ingresoText = factor.ingreso ? `Nivel de ingreso: ${factor.ingreso}` : '';
       additionalInfo = `
         <div class="risk-factor-tooltip">
           <div class="tooltip-content">

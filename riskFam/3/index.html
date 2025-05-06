@@ -1172,6 +1172,17 @@
       setupTooltips();
     }
 
+
+    // Función para traducir el código de ingreso a texto
+function getIngresoText(ingresoCode) {
+  const ingresoMap = {
+    1: 'Alto',
+    2: 'Medio',
+    3: 'Bajo'
+  };
+  return ingresoMap[ingresoCode] || 'No especificado';
+}
+
     // Configurar los tooltips para hover y touch
 function setupTooltips() {
   const riskFactors = document.querySelectorAll('.risk-factor');

@@ -631,7 +631,7 @@ function perfil($a){
 
 function perfil1($a = null) {
   if ($a === null) $a = $_SESSION['us_sds'];
-  $per = datos_mysql("SELECT FN_PERFIL({$a}) AS perfil");
+  $per = datos_mysql("select perfil from usuarios where id_usuario='".$a."'");
   $perfil = $per["responseResult"][0]['perfil'];
   return $perfil;
 }

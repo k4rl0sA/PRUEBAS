@@ -612,7 +612,7 @@ function divide($a){
 function rol($a){ //a=modulo, b=perfil c=componente
 	$rta=array();
 	$sql="SELECT perfil,componente,crear,editar,consultar,ajustar,importar FROM adm_roles WHERE modulo = '".$a."' and perfil = (select perfil from usuarios where id_usuario='".$_SESSION['us_sds']."') AND componente= (select componente from usuarios where id_usuario='".$_SESSION['us_sds']."') AND estado = 'A'";
-  echo $sql;
+  // echo $sql;
 	$data=datos_mysql($sql);
 	if ($data && isset($data['responseResult'][0])) {
         $rta = $data['responseResult'][0];

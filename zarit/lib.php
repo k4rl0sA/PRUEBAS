@@ -151,7 +151,7 @@ function men_tamzarit(){
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = "";
 	$acc=rol($a);
-	if ($a=='zarit' && isset($acc['crear']) && $acc['crear']=='SI') {  
+	if ($a=='tamzarit' && isset($acc['crear']) && $acc['crear']=='SI') {  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	  }
 	$rta .= "<li class='icono $a actualizar'  title='Actualizar'      Onclick=\"act_lista('$a',this);\"></li>";  

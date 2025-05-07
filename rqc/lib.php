@@ -69,6 +69,7 @@ function cmp_tamrqc(){
     $c[]=new cmp($o,'e',null,'Resultados',$w);
     $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
     $c[]=new cmp('totalno','n',2,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
+    $c[]=new cmp('Descripcion','t',100,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
 
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     
@@ -112,11 +113,8 @@ function cap_menus($a,$b='cap',$con='con') {
 
 function gra_tamrqc(){
     $id=divide($_POST['idrqc']);
-    
-    // Calcular totales SI y NO
     $total_si = 0;
     $total_no = 0;
-    
     for($i=1; $i<=10; $i++) {
         if($_POST['sintoma'.$i] == 'SI') {
             $total_si++;
@@ -124,7 +122,7 @@ function gra_tamrqc(){
             $total_no++;
         }
     }
-    
+    $alteracion = $total_si > 0 ? 'ALTERACIÓN' : '';
     $sql="INSERT INTO hog_tam_rqc VALUES (
         null,
         {$id[0]},

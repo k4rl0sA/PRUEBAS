@@ -103,7 +103,7 @@ function men_tamrqc(){
 function cap_menus($a,$b='cap',$con='con') {
     $rta = "";
     $acc=rol($a);
-    var_dump($a);
+    // var_dump($a);
     if ($a=='tamrqc' && isset($acc['crear']) && $acc['crear']=='SI') {  
         $rta .= "<li class='icono $a grabar' title='Grabar' OnClick=\"grabar('$a',this);\"></li>";
     }

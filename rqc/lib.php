@@ -72,7 +72,6 @@ function cmp_tamrqc(){
     $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2');
 
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-    
     return $rta;
 }
 

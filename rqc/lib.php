@@ -122,7 +122,7 @@ function gra_tamrqc(){
             $total_no++;
         }
     }
-    $alteracion = $total_si > 0 ?'ALTERACIÓN': '';
+    $descripcion = $total_si > 0 ?'ALTERACIÓN': '';
     $sql="INSERT INTO hog_tam_rqc VALUES (
         null,
         {$id[0]},
@@ -139,6 +139,7 @@ function gra_tamrqc(){
         TRIM(UPPER('{$_POST['sintoma10']}')),
         '{$total_si}',
         '{$total_no}',
+        '{$descripcion}',
         TRIM(UPPER('{$_SESSION['us_sds']}')),
         DATE_SUB(NOW(), INTERVAL 5 HOUR),
         NULL,

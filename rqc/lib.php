@@ -103,7 +103,8 @@ function men_tamrqc(){
 function cap_menus($a,$b='cap',$con='con') {
     $rta = "";
     $acc=rol($a);
-    if ($a=='tamrqc' && isset($acc['crear']) && $acc['crear']=='SI') {  
+    var_dump($acc,$a);
+    if ($a=='rqc' && isset($acc['crear']) && $acc['crear']=='SI') {  
         $rta .= "<li class='icono $a grabar' title='Grabar' OnClick=\"grabar('$a',this);\"></li>";
     }
     $rta .= "<li class='icono $a actualizar' title='Actualizar' Onclick=\"act_lista('$a',this);\"></li>";  

@@ -116,7 +116,7 @@ function gra_tamrqc(){
     $total_si = 0;
     $total_no = 0;
     for($i=1; $i<=10; $i++) {
-        if($_POST['sintoma'.$i] == 'SI') {
+        if($_POST['sintoma'.$i] == 1) {
             $total_si++;
         } else {
             $total_no++;

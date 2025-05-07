@@ -122,7 +122,7 @@ function gra_tamrqc(){
             $total_no++;
         }
     }
-    $alteracion = $total_si > 0 ? 'ALTERACIÓN' : '';
+    $alteracion = $total_si > 0 ?'ALTERACIÓN': '';
     $sql="INSERT INTO hog_tam_rqc VALUES (
         null,
         {$id[0]},

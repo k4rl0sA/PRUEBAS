@@ -69,7 +69,7 @@ function cmp_tamrqc(){
     $c[]=new cmp($o,'e',null,'Resultados',$w);
     $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
     $c[]=new cmp('totalno','n',2,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
-    $c[]=new cmp('Descripcion','t',100,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
+    $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2');
 
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     

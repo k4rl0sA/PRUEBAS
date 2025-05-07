@@ -20,7 +20,7 @@ else {
 }
 
 
-function lis_tamzarit(){
+/* function lis_tamzarit(){
 	// concat(zarit_idpersona,'_',zarit_tipodoc,'_',zarit_momento) ACCIONES,
 	$sql="SELECT ROW_NUMBER() OVER (ORDER BY 1) R,concat(zarit_idpersona,'_',zarit_tipodoc,'_',zarit_momento) ACCIONES,tam_zarit 'Cod Registro',zarit_idpersona Documento,FN_CATALOGODESC(1,zarit_tipodoc) 'Tipo de Documento',CONCAT_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) Nombres, 
 	FN_CATALOGODESC(21,P.sexo) Sexo,FN_CATALOGODESC(116,zarit_momento) Momento,`zarit_puntaje` Puntaje 
@@ -66,7 +66,7 @@ function whe_tamzarit() {
 	}
 	return $sql;
 }
-
+ */
 function cmp_tamzarit(){
 	$rta="<div class='encabezado zarit'>TABLA ZARIT</div><div class='contenido' id='zarit-lis'>".lis_zarit()."</div></div>";
 	$t=['tam_zarit'=>'','zarit_tipodoc'=>'','zarit_nombre'=>'','zarit_idpersona'=>'','zarit_fechanacimiento'=>'','zarit_puntaje'=>'','zarit_momento'=>'','zarit_edad'=>'','zarit_rutina'=>'','zarit_rol'=>'',	 'zarit_actividad'=>'','zarit_evento'=>'','zarit_comportamiento'=>'','zarit_valor21'=>'','zarit_valor22'=>'','zarit_analisis'=>'','zarit_puntaje'=>'']; 

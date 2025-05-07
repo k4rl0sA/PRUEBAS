@@ -95,9 +95,16 @@ function cmp_tamsrq(){
 
     $o='resultados';
     $c[]=new cmp($o,'e',null,'Resultados',$w);
-    $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
+    $c[]=new cmp('ansiedad','t',100,'',$w.' '.$o,'Ansiedad','ansiedad',null,'',false,false,'','col-2');
+    $c[]=new cmp('suicida','t',100,'',$w.' '.$o,'suicida','suicida',null,'',false,false,'','col-2');
+    $c[]=new cmp('psicosis','t',100,'',$w.' '.$o,'psicosis','psicosis',null,'',false,false,'','col-2');
+    $c[]=new cmp('epilepsia','t',100,'',$w.' '.$o,'epilepsia','epilepsia',null,'',false,false,'','col-2');
+    $c[]=new cmp('alcoholismo','t',100,'',$w.' '.$o,'alcoholismo','alcoholismo',null,'',false,false,'','col-2');
+
+    
+    /* $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
     $c[]=new cmp('totalno','n',2,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
-    $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2');
+    $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2'); */
 
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     

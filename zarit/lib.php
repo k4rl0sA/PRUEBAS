@@ -39,17 +39,6 @@ LEFT JOIN personas P ON O.zarit_idpersona = P.idpersona
 	return panel_content($datos["responseResult"],"tamzarit",20);
 }
 
-function lis_zarit(){
-	$id=divide($_POST['id']);//id_zarit ACCIONES,
-	$sql="SELECT id_zarit 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
-	FROM hog_tam_zarit A
-	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
-	$sql.="WHERE idpeople='".$id[0];
-	$sql.="' ORDER BY fecha_create";
-	// echo $sql;
-	$datos=datos_mysql($sql);
-	return panel_content($datos["responseResult"],"zarit-lis",5);
-}
 
 function whe_tamzarit() {
 	$sql = "";
@@ -67,6 +56,18 @@ function whe_tamzarit() {
 	return $sql;
 }
  */
+function lis_zarit(){
+	$id=divide($_POST['id']);//id_zarit ACCIONES,
+	$sql="SELECT id_zarit 'Cod Registro',momento,analisis,puntaje,`nombre` Creó,`fecha_create` 'fecha Creó'
+	FROM hog_tam_zarit A
+	LEFT JOIN  usuarios U ON A.usu_creo=U.id_usuario ";
+	$sql.="WHERE idpeople='".$id[0];
+	$sql.="' ORDER BY fecha_create";
+	// echo $sql;
+	$datos=datos_mysql($sql);
+	return panel_content($datos["responseResult"],"zarit-lis",5);
+}
+
 function cmp_tamzarit(){
 	$rta="<div class='encabezado zarit'>TABLA ZARIT</div><div class='contenido' id='zarit-lis'>".lis_zarit()."</div></div>";
 	$t=['tam_zarit'=>'','zarit_tipodoc'=>'','zarit_nombre'=>'','zarit_idpersona'=>'','zarit_fechanacimiento'=>'','zarit_puntaje'=>'','zarit_momento'=>'','zarit_edad'=>'','zarit_rutina'=>'','zarit_rol'=>'',	 'zarit_actividad'=>'','zarit_evento'=>'','zarit_comportamiento'=>'','zarit_valor21'=>'','zarit_valor22'=>'','zarit_analisis'=>'','zarit_puntaje'=>'']; 

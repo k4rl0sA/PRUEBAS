@@ -101,10 +101,10 @@ function men_tamrqc(){
 }
 
 function cap_menus($a,$b='cap',$con='con') {
-    // var_dump('VALOR A: ',$a);
+    var_dump('VALOR A: ',$a);
     $rta = "";
     $acc=rol($a);
-    // var_dump('VALOR ACC',$acc);
+    var_dump('VALOR ACC',$acc);
     if ($a=='rqc' && isset($acc['crear']) && $acc['crear']=='SI') {  
         $rta .= "<li class='icono $a grabar' title='Grabar' OnClick=\"grabar('$a',this);\"></li>";
     }

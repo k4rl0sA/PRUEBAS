@@ -189,6 +189,7 @@ function gra_tamsrq(){
         TRIM(UPPER('{$_POST['pregunta30']}')),
         '{$total_si}',
         '{$total_no}',
+        '{$descripcion}',
         TRIM(UPPER('{$_SESSION['us_sds']}')),
         DATE_SUB(NOW(), INTERVAL 5 HOUR),
         NULL,

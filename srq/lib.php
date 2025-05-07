@@ -101,7 +101,7 @@ function cmp_tamsrq(){
     $c[]=new cmp('epilepsia','t',100,'',$w.' '.$o,'epilepsia','epilepsia',null,'',false,false,'','col-2');
     $c[]=new cmp('alcoholismo','t',100,'',$w.' '.$o,'alcoholismo','alcoholismo',null,'',false,false,'','col-2');
 
-    
+
     /* $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
     $c[]=new cmp('totalno','n',2,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
     $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2'); */
@@ -149,6 +149,11 @@ function cap_menus($a,$b='cap',$con='con') {
 function gra_tamsrq(){
     $id=divide($_POST['idsrq']);
     
+    $ansiedad
+    $suicida=
+    $psicosis=
+    $epilepsia=
+    $alcoholismo=
   
     
     $sql="INSERT INTO hog_tam_srq VALUES (
@@ -185,9 +190,11 @@ function gra_tamsrq(){
         TRIM(UPPER('{$_POST['pregunta28']}')),
         TRIM(UPPER('{$_POST['pregunta29']}')),
         TRIM(UPPER('{$_POST['pregunta30']}')),
-        '{$total_si}',
-        '{$total_no}',
-        '{$descripcion}',
+        '{$ansiedad}',
+        '{$suicida}',
+        '{$psicosis}',
+        '{$epilepsia}',
+        '{$alcoholismo}',
         TRIM(UPPER('{$_SESSION['us_sds']}')),
         DATE_SUB(NOW(), INTERVAL 5 HOUR),
         NULL,

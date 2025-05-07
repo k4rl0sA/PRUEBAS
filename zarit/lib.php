@@ -121,31 +121,6 @@ function cmp_tamzarit(){
 	return $rta;
    }
 
-  /*  function get_tamzarit(){
-	if($_POST['id']==0){
-		return "";
-	}else{
-		 $id=divide($_POST['id']);
-		// print_r($_POST);
-		$sql="SELECT `tam_zarit`,`zarit_idpersona`,`zarit_tipodoc`,
-		FN_CATALOGODESC(116,zarit_momento) zarit_momento,`zarit_valor1`,`zarit_valor2`,`zarit_valor3`, 
-		`zarit_valor4`,`zarit_valor5`,`zarit_valor6`,
-		`zarit_valor7`,`zarit_valor8`,`zarit_valor9`,
-		`zarit_valor10`,`zarit_valor11`,`zarit_valor12`,
-		`zarit_valor13`,`zarit_valor14`,`zarit_valor15`,
-		`zarit_valor16`,`zarit_valor17`,`zarit_valor18`,
-		`zarit_valor19`,`zarit_valor20`,`zarit_valor21`,`zarit_puntaje`,`zarit_analisis`,
-		`zarit_valor22`,O.estado,P.idpersona,P.tipo_doc,concat_ws(' ',P.nombre1,P.nombre2,P.apellido1,P.apellido2) zarit_nombre,P.fecha_nacimiento zarit_fechanacimiento,YEAR(CURDATE())-YEAR(P.fecha_nacimiento) zarit_edad
-		FROM `hog_tam_zarit` O
-		LEFT JOIN personas P ON O.zarit_idpersona = P.idpersona and O.zarit_tipodoc=P.tipo_doc
-	
-		WHERE zarit_idpersona ='{$id[0]}' AND zarit_tipodoc='{$id[1]}' AND zarit_momento = '{$id[2]}'  ";
-		// echo $sql;
-		$info=datos_mysql($sql);
-				return $info['responseResult'][0];
-		}
-	}  */
-
 	function get_tamzarit(){
 		if($_POST['id']==0){
 			return "";
@@ -162,20 +137,6 @@ function cmp_tamzarit(){
 					return $info['responseResult'][0];
 			}
 	} 
-
-/* function get_person(){
-	// print_r($_POST);
-	$id=divide($_POST['id']);
-$sql="SELECT idpersona,tipo_doc,concat_ws(' ',nombre1,nombre2,apellido1,apellido2) nombres,fecha_nacimiento,YEAR(CURDATE())-YEAR(fecha_nacimiento) Edad
-FROM personas 
-	WHERE idpersona='".$id[0]."' AND tipo_doc=upper('".$id[1]."')";
-	// echo $sql;
-	$info=datos_mysql($sql);
-	if (!$info['responseResult']) {
-		return '';
-	}
-return json_encode($info['responseResult'][0]);
-} */
 
 function focus_tamzarit(){
 	return 'tamzarit';

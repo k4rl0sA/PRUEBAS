@@ -55,8 +55,8 @@ function lis_sesigcole(){
         LIMIT $pag, $regxPag";
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 
-	var_dump("Total registros: " . $total);
-	var_dump("Datos obtenidos: " .$datos["responseResult"]);
+	var_dump($total);
+	var_dump($sql);
 }else{
 	return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
 			<strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el número del Predio a Consultar

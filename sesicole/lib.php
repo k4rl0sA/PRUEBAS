@@ -26,7 +26,7 @@ function lis_sesigcole(){
 		SELECT sc.id_cole AS 'ACCIONES',sc.fecha,FN_CATALOGODESC(239, sc.tipo_activ),sc.lugar,FN_CATALOGODESC(237, sc.tematica1),FN_CATALOGODESC(238, sc.des_temati1),u.nombre AS Creo,
 		sc.fecha_create AS Creado,sc.estado FROM hog_sescole sc LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo 
 		WHERE gg.estado_v IN ('7') AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ".whe_sesigcole().") AS Subquery";
-			// echo $total;
+		 echo $total;
 	$info=datos_mysql($total);
 	$total=$info['responseResult'][0]['total'];
 	$regxPag=5;

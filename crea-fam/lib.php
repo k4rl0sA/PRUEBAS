@@ -970,7 +970,6 @@ function formato_dato($a,$b,$c,$d){
 			$rta .= acceso('sesiones') ? "<li title='Sesiónes' onclick=\"mostrar('sesiones','pro',event,'','../relevo/sesiones.php',7);Color('datos-lis');\"> <i class=' fa-solid fa-address-book ico' id='{$c['ACCIONES']}' onclick=\"setTimeout(chanActi,300,'rel_validacion3','act',['" . implode("','", $perfiles) . "']);\"></i></li>" : "";
 		}
 		$rta .= acceso('psicologia') ? "<li title='RQC' onclick=\"mostrar('tamrqc','pro',event,'','../rqc/lib.php',7,'rqc');Color('datos-lis');\"><i class='fas fa-notes-medical ico' id='{$c['ACCIONES']}'></i></li>":"";
-
 		$rta .= acceso('psicologia') ? "<li title='SRQ' onclick=\"mostrar('tamsrq','pro',event,'','../srq/lib.php',7,'srq');Color('datos-lis');\"><i class='fas fa-notes-medical ico' id='{$c['ACCIONES']}'></i></li>":"";
 
 		$rta .= acceso('psicologia') ? "<li title='Psicologia Sesión 1' onclick=\"mostrar('psicologia','pro',event,'','../psicologia/lib.php',7,'psicologia');Color('datos-lis');\"><i class=' fa-solid fa-person-circle-question ico' id='{$c['ACCIONES']}'></i></li>":"";

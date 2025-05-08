@@ -453,9 +453,9 @@ function lis_planos() {
 			($tab);
 			break;
 		case '58':
-			$tab = "Ruteo_Gestionados";
+			$tab = "Predios_Distrito";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_($tab);
+			if($tab=decript($encr,$clave))lis_predios($tab);//SOLO ADM
 			break;	
 		default:
         break;    
@@ -2213,6 +2213,17 @@ function lis_ruteoGestionados($txt){
 	 FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario  WHERE RG.estado_agenda IS NOT NULL ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$tot.=whe_date14();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_predios($txt){
+	$sql="SELECT idgeo 'Cod_predio', FN_CATALOGODESC(72,subred),sector_catastral,nummanzana,predio_num,unidad_habit,cordx,cordy FROM hog_geo 
+	 WHERE 1";
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM hog_geo WHERE 1 ";	
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);

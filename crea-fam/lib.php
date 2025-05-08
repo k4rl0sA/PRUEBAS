@@ -803,6 +803,7 @@ function eventAsign($key) {
 function get_Tamiz($fec) {
     $info = datos_mysql("select TIMESTAMPDIFF(YEAR,'$fec',CURDATE()) AS ano");
     $edad = isset($info['responseResult'][0]['ano']) ? intval($info['responseResult'][0]['ano']) : 0;
+	var_dump($edad);
     $tamiz = [];
     if ($edad >= 7) {
         $tamiz[] = 'tamApgar';

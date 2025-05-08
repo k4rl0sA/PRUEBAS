@@ -22,24 +22,43 @@ else {
 
 function lis_sesigcole(){
 	if (!empty($_POST['fpred'])) {
-	$total="SELECT COUNT(*) AS total FROM (
-		SELECT sc.id_cole AS 'ACCIONES',sc.fecha,FN_CATALOGODESC(239, sc.tipo_activ),sc.lugar,FN_CATALOGODESC(237, sc.tematica1),FN_CATALOGODESC(238, sc.des_temati1),u.nombre AS Creo,
-		sc.fecha_create AS Creado,sc.estado FROM hog_sescole sc LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo 
-		WHERE gg.estado_v IN ('7') AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') ".whe_sesigcole().") AS Subquery";
-		 echo $total;
-	$info=datos_mysql($total);
-	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
-	$pag=(isset($_POST['pag-sesigcole']))? ($_POST['pag-sesigcole']-1)* $regxPag:0;
+		$total = "SELECT COUNT(*) AS total FROM (
+            SELECT sc.id_cole AS 'ACCIONES', sc.fecha, FN_CATALOGODESC(239, sc.tipo_activ), sc.lugar, 
+                   FN_CATALOGODESC(237, sc.tematica1), FN_CATALOGODESC(238, sc.des_temati1), u.nombre AS Creo,
+                   sc.fecha_create AS Creado, sc.estado 
+            FROM hog_sescole sc 
+            LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario 
+            LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo 
+            LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo 
+            WHERE gg.estado_v IN ('7') 
+              AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}') 
+              " . whe_sesigcole() . "
+        ) AS Subquery";
+        $info = datos_mysql($total);
+        $total = $info['responseResult'][0]['total'];
+        $regxPag = 5;
+        $pag = (isset($_POST['pag-sesigcole'])) ? ($_POST['pag-sesigcole'] - 1) * $regxPag : 0;
 
-  $sql="SELECT sc.id_cole AS 'ACCIONES',sc.fecha,FN_CATALOGODESC(239, sc.tipo_activ),sc.lugar,FN_CATALOGODESC(237, sc.tematica1),FN_CATALOGODESC(238, sc.des_temati1),u.nombre AS Creo,
-  sc.fecha_create AS Creado,sc.estado FROM hog_sescole sc LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo 
-  WHERE gg.estado_v IN ('7') 
-    AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}')
-   ".whe_sesigcole()." 
-	LIMIT $pag, $regxPag"; 
-	// GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar,sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
-//    echo $sql;
+  $sql="SELECT 
+            sc.id_cole AS 'ACCIONES',
+            sc.fecha,
+            FN_CATALOGODESC(239, sc.tipo_activ),
+            sc.lugar,
+            FN_CATALOGODESC(237, sc.tematica1),
+            FN_CATALOGODESC(238, sc.des_temati1),
+            u.nombre AS Creo,
+            sc.fecha_create AS Creado,
+            sc.estado
+        FROM hog_sescole sc
+        LEFT JOIN usuarios u ON sc.usu_create = u.id_usuario
+        LEFT JOIN geo_gest gg ON sc.idpre = gg.idgeo
+        LEFT JOIN hog_geo hg ON gg.idgeo = hg.idgeo
+        WHERE gg.estado_v IN ('7')
+          AND hg.subred = (SELECT subred FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}')
+          " . whe_sesigcole() . " 
+        GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar, sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
+        LIMIT $pag, $regxPag";
+   echo $sql;
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 
 }else{

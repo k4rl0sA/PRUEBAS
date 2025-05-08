@@ -149,12 +149,46 @@ function cap_menus($a,$b='cap',$con='con') {
 function gra_tamsrq(){
     $id=divide($_POST['idsrq']);
     
-    $ansiedad
-    $suicida=
-    $psicosis=
-    $epilepsia=
-    $alcoholismo=
+    $ansiedad = "Bajo o sin riesgo";
+    $suicida = "Bajo o sin riesgo";
+    $psicosis = "Bajo o sin riesgo";
+    $epilepsia = "Bajo o sin riesgo";
+    $alcoholismo = "Bajo o sin riesgo";
   
+     // Contar respuestas afirmativas
+     $total_si_emocional = 0; // Preguntas 1 a 20
+     $total_si_psicosis = 0;  // Preguntas 21 a 24
+     $total_si_alcohol = 0;   // Preguntas 26 a 30
+
+     for ($i = 1; $i <= 30; $i++) {
+        if ($_POST['pregunta' . $i] == 'SI') {
+            if ($i >= 1 && $i <= 20) $total_si_emocional++;
+            if ($i >= 21 && $i <= 24) $total_si_psicosis++;
+            if ($i >= 26 && $i <= 30) $total_si_alcohol++;
+        }
+    }
+    // Suicida
+    if ($_POST['pregunta17'] == 'SI') {
+        $suicida = "Alto riesgo";
+    }
+    // Psicosis
+    if ($total_si_psicosis >= 2) {
+        $psicosis = "Alto riesgo";
+    }
+    // Ansiedad (trastorno emocional común)
+    if ($total_si_emocional >= 8) {
+        $ansiedad = "Moderado riesgo";
+    } else {
+        $ansiedad = "Bajo o sin riesgo";
+    }
+    // Epilepsia
+    if ($_POST['pregunta25'] == 'SI') {
+        $epilepsia = "Moderado riesgo";
+    }
+    // Alcoholismo
+    if ($total_si_alcohol >= 2) {
+        $alcoholismo = "Moderado riesgo";
+    }
     
     $sql="INSERT INTO hog_tam_srq VALUES (
         null,

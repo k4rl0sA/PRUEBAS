@@ -106,10 +106,6 @@ function cmp_tamsrq(){
     $c[]=new cmp('alcoholismo','t',100,'',$w.' '.$o,'alcoholismo','alcoholismo',null,'',false,false,'','col-2');
 
 
-    /* $c[]=new cmp('totalsi','n',2,'',$w.' '.$o,'Total Sí','totalsi',null,'',false,false,'','col-2');
-    $c[]=new cmp('totalno','n',2,'',$w.' '.$o,'Total No','totalno',null,'',false,false,'','col-2');
-    $c[]=new cmp('descripcion','t',100,'',$w.' '.$o,'Descripción','descripcion',null,'',false,false,'','col-2'); */
-
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
     
     return $rta;
@@ -165,7 +161,7 @@ function gra_tamsrq(){
      $total_si_alcohol = 0;   // Preguntas 26 a 30
 
      for ($i = 1; $i <= 30; $i++) {
-        if ($_POST['pregunta' . $i] == 'SI') {
+        if ($_POST['pregunta' . $i] ==1) {
             if ($i >= 1 && $i <= 20) $total_si_emocional++;
             if ($i >= 21 && $i <= 24) $total_si_psicosis++;
             if ($i >= 26 && $i <= 30) $total_si_alcohol++;

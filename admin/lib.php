@@ -2578,7 +2578,13 @@ function opc_gestion($id=''){
 }
 
 function opc_proceso($id=''){
+	$com=datos_mysql("SELECT  perfil  FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'");
+	$perfil = $com['responseResult'][0]['perfil'] ;
+if ($perfil=='ADM'){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 ORDER BY LPAD(idcatadeta,2,'0')",$id);
+}else{
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=206 and estado='A' ORDER BY LPAD(idcatadeta,2,'0')",$id);
+}
 }
 
 function opc_tarea($id=''){

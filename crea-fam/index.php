@@ -162,7 +162,7 @@ function grabar(tb='',ev){
   'uaic_seg':'../etnias/uaicseg.php',
   'servagen':'../agendamient/serage.php',
   'tamrqc':'../rqc/lib.php',
-  'srq':'../srq/lib.php'
+  'tamsrq':'../srq/lib.php'
  	};
    let ruta_app = rutaMap[tb] || 'lib.php';
   if(tb=='sesion2'){

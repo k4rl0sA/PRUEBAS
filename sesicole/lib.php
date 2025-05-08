@@ -53,10 +53,11 @@ function lis_sesigcole(){
           " . whe_sesigcole() . " 
         GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar, sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
         LIMIT $pag, $regxPag";
+		var_dump($total);
+	var_dump($sql);
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 
-	var_dump($total);
-	var_dump($sql);
+	
 }else{
 	return "<div class='error' style='padding: 12px; background-color:#00a3ffa6;color: white; border-radius: 25px; z-index:100; top:0;text-transform:none'>
 			<strong style='text-transform:uppercase'>NOTA:</strong>Por favor Ingrese el número del Predio a Consultar

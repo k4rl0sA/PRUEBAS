@@ -59,7 +59,7 @@ function lis_sesigcole(){
         GROUP BY sc.id_cole, sc.fecha, sc.tipo_activ, sc.lugar, sc.tematica1, sc.des_temati1, u.nombre, sc.fecha_create, sc.estado 
         LIMIT $pag, $regxPag";
 		var_dump("Total registros: " . $total);
-        var_dump("Datos obtenidos: " . print_r($datos["responseResult"], true));
+        var_dump("Datos obtenidos: " , print_r($datos["responseResult"], true));
 
 		$datos=datos_mysql($sql);
 	return create_table($total,$datos["responseResult"],"sesigcole",$regxPag); 

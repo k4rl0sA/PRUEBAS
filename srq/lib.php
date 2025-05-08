@@ -23,7 +23,11 @@ else {
 function lis_srq(){
     $id=divide($_POST['id']); //id_srq ACCIONES,
     $sql="SELECT tam_srq 'Cod Registro', fecha_toma 'Fecha Toma',
-          CONCAT(totalsi,' SI / ',totalno,' NO') as Resultado,
+          ansiedad as 'Ansiedad', 
+          suicida as 'Suicida', 
+          psicosis as 'Psicosis', 
+          epilepsia as 'Epilepsia', 
+          alcoholismo as 'Alcoholismo',
           `nombre` Creó, `fecha_create` 'fecha Creó'
           FROM hog_tam_srq A
           LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario ";

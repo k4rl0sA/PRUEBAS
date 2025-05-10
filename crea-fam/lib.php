@@ -899,7 +899,7 @@ function get_Tamiz($fec) {
 	if ($edad>=5 && $edad<=15) {
 		$tamiz[] = 'tamrqc';
 	}
-	if ($edad>=18) {
+	if ($edad>=16) {
 		$tamiz[] = 'tamsrq';
 	}
     return $tamiz;

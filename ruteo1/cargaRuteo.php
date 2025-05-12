@@ -51,12 +51,13 @@ function cmp_routing(){
     $c[]=new cmp('subred','s','11','',$w.' iDG '.$o,'Subred','subred',null,'',true,false,'','col-1');
     $c[]=new cmp('direccion','t',100,'',$w.' iDG '.$o,'Dirección','direccion',null,'',true,false,'','col-3');
     
-     $o='asignacion';
+    $o='asignacion';
+    $c[]=new cmp($o,'e',null,'ASIGNACIÓN',$w);
     $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-3');
     $c[]=new cmp('actividad1','n','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3');
 
 /*
-    $c[]=new cmp($o,'e',null,'ASIGNACIÓN',$w);
+    
     $c[]=new cmp('estado_ruteo','s','3',$d['estado_ruteo']??'',$w.' '.$o,'Estado Ruteo','estado_ruteo',null,'',true,true,'','col-3');
     $c[]=new cmp('estado_rut','s','10',$d['estado_rut']??'',$w.' '.$o,'Estado Ruta','estado_rut',null,'',true,true,'','col-3');
     $c[]=new cmp('famili','n','10',$d['famili']??'',$w.' '.$o,'Familia','famili',null,'',true,true,'','col-3');

@@ -143,11 +143,7 @@ function gra_routing(){
     return $rta;
 }
 function opc_perfil1($id=''){
-    if($_REQUEST['id']!=''){
-        $perfil = divide($_REQUEST['id']);
-        return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);
-    }
-    return json_encode([]);
+    return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);
 }
 function opc_perfil1actividad1($id=''){
     if($_REQUEST['id']!=''){
@@ -190,9 +186,6 @@ function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
 
-function opc_perfil1($id=''){
-    return opc_sql("SELECT  `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=218 estado='A' ORDER BY nombre", $id);
-}
 
 function opc_actividades($id=''){
     return opc_sql("SELECT id_actividad as idcatadeta, nombre as descripcion FROM actividades WHERE estado='A' ORDER BY nombre", $id);

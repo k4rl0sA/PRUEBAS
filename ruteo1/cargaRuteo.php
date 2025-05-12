@@ -142,7 +142,7 @@ function gra_routing(){
     $rta = dato_mysql($sql);
     return $rta;
 }
-function opc_perfil($id=''){
+function opc_perfil1($id=''){
     if($_REQUEST['id']!=''){
         $perfil = divide($_REQUEST['id']);
         return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);

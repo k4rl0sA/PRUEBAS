@@ -184,7 +184,7 @@ function opc_sexo($id=''){
 }
 
 function opc_usuarios($id=''){
-    return opc_sql("SELECT id_usuario as idcatadeta, nombre as descripcion FROM usuarios WHERE estado='A' ORDER BY nombre", $id);
+    return opc_sql("SELECT id_usuario ,CONCAT_WS('-', id_usuario, nombre) FROM usuarios WHERE subred IN (SELECT subred FROM usuarios WHERE id_usuario = {$_SESSION['us_sds']}) AND estado='A' ORDER BY nombre ", $id);
 }
 function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);

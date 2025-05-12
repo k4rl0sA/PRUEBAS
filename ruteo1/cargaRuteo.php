@@ -28,7 +28,6 @@ function cmp_ruteo(){
     $c[]=new cmp($o,'e',null,'INFORMACIÓN BÁSICA',$w);
     $c[]=new cmp('id_ruteo','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
     $c[]=new cmp('fuente','s','3',$d['fuente']??'',$w.' '.$o,'Fuente','fuente',null,'',true,true,'','col-3');
-    $c[]=new cmp('fecha_asig','d','10',$d['fecha_asig']??date('Y-m-d'),$w.' '.$o,'Fecha Asignación','fecha_asig',null,'',true,true,'','col-3');
     $c[]=new cmp('priorizacion','s','3',$d['priorizacion']??'',$w.' '.$o,'Priorización','priorizacion',null,'',true,true,'','col-3');
     $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior']??'',$w.' '.$o,'Tipo Prioridad','tipo_prior',null,'',true,true,'','col-3');
     
@@ -96,7 +95,7 @@ function gra_ruteo(){
     $data = array(
         'id_ruteo' => NULL,
         'fuente' => $_POST['fuente'],
-        'fecha_asig' => $_POST['fecha_asig'],
+        'fecha_asig' => date('Y-m-d'),
         'priorizacion' => $_POST['priorizacion'],
         'tipo_prior' => $_POST['tipo_prior'],
         'tipo_doc' => $_POST['tipo_doc'],
@@ -108,14 +107,15 @@ function gra_ruteo(){
         'telefono2' => $_POST['telefono2'],
         'telefono3' => $_POST['telefono3'],
         'idgeo' => $_POST['idgeo'],
-        'estado_ruteo' => $_POST['estado_ruteo'],
-        'estado_rut' => $_POST['estado_rut'],
-        'famili' => $_POST['famili'],
-        'usuario' => $_POST['usuario'],
+        'fecha' => NULL,
+        'estado_ruteo' => NULL,
+        'estado_rut' => NULL,
+        'famili' => NULL,
+        'usuario' => NULL,
         'perfil1' => $_POST['perfil1'],
         'actividad1' => $_POST['actividad1'],
-        'usu_update' => $_SESSION['us_sds'],
-        'fecha_update' => date('Y-m-d H:i:s'),
+        'usu_update' => NULL,
+        'fecha_update' => NULL,
         'estado' => 'A'
     );
     
@@ -125,16 +125,7 @@ function gra_ruteo(){
         $columns = implode(", ", array_keys($data));
         $values = "'" . implode("', '", array_values($data)) . "'";
         $sql = "INSERT INTO eac_ruteo ($columns) VALUES ($values)";
-    } else {
-        // $updates = array();
-        // foreach($data as $key => $value) {
-        //     $updates[] = "$key = '$value'";
-        // }
-        // $updates_str = implode(", ", $updates);
-        
-        // $sql = "UPDATE eac_ruteo SET $updates_str WHERE id_ruteo = '{$_POST['id_ruteo']}'";
-    }
-    
+    } 
     $rta = dato_mysql($sql);
     return $rta;
 }

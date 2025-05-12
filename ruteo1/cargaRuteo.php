@@ -178,7 +178,9 @@ function opc_tipo_doc($id=''){
 function opc_sexo($id=''){
     return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=21 AND estado='A' ORDER BY descripcion", $id);
 }
-
+function opc_actvidad1($id=''){
+    /* return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY descripcion", $id); */
+}
 function opc_usuarios($id=''){
     return opc_sql("SELECT id_usuario ,CONCAT_WS('-', id_usuario, nombre) FROM usuarios WHERE subred IN (SELECT subred FROM usuarios WHERE id_usuario = {$_SESSION['us_sds']}) AND estado='A' ORDER BY nombre ", $id);
 }

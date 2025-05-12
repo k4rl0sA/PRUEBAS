@@ -457,6 +457,21 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_predios($tab);//SOLO ADM
 			break;	
+		case '59':
+			$tab = "Identificación Embera";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_identEmb($tab);
+			break;
+		case '60':
+			$tab = "Seguimiento Rutinario Embera";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_SeguiRutEmb($tab);
+			break;
+		case '61':
+			$tab = "Seguimiento Hospitalario Embera";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_SeguiHosEmb($tab);
+			break;
 		default:
         break;    
     }

@@ -47,9 +47,9 @@ function cmp_routing(){
     
     $o='ubicacion';
     $c[]=new cmp($o,'e',null,'UBICACIÓN GEOGRÁFICA',$w);
-    $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-3');
-    $c[]=new cmp('subred','n','11','',$w.' '.$o,'Subred','subred',null,'',true,true,'','col-3');
-    $c[]=new cmp('direccion','n','11','',$w.' '.$o,'Dirección','direccion',null,'',true,true,'','col-3');
+    $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-2');
+    $c[]=new cmp('subred','s','11','',$w.' '.$o,'Subred','subred',null,'',true,true,'','col-1');
+    $c[]=new cmp('direccion','t',100,'',$w.' '.$o,'Dirección','direccion',null,'',true,true,'','col-3');
     
     /* $o='asignacion';
     $c[]=new cmp($o,'e',null,'ASIGNACIÓN',$w);

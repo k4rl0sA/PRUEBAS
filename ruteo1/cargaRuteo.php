@@ -56,17 +56,13 @@ function cmp_routing(){
     $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3',"selectDepend('perfil1','actividad1','cargaRuteo.php');");
     $c[]=new cmp('actividad1','s','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3');
 
-/*
-    
-    $c[]=new cmp('estado_ruteo','s','3',$d['estado_ruteo']??'',$w.' '.$o,'Estado Ruteo','estado_ruteo',null,'',true,true,'','col-3');
+/*  $c[]=new cmp('estado_ruteo','s','3',$d['estado_ruteo']??'',$w.' '.$o,'Estado Ruteo','estado_ruteo',null,'',true,true,'','col-3');
     $c[]=new cmp('estado_rut','s','10',$d['estado_rut']??'',$w.' '.$o,'Estado Ruta','estado_rut',null,'',true,true,'','col-3');
     $c[]=new cmp('famili','n','10',$d['famili']??'',$w.' '.$o,'Familia','famili',null,'',true,true,'','col-3');
     $c[]=new cmp('usuario','s','10',$d['usuario']??'',$w.' '.$o,'Usuario Asignado','usuario',null,'',true,true,'','col-3');
     $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3');
     $c[]=new cmp('actividad1','n','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3'); */
-
     for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
-    
     return $rta;
 }
 function get_idgeog() {

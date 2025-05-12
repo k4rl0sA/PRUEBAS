@@ -178,7 +178,7 @@ function opc_tipo_doc($id=''){
 function opc_sexo($id=''){
     return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=21 AND estado='A' ORDER BY descripcion", $id);
 }
-function opc_actvidad1($id=''){
+function opc_actividad1($id=''){
     /* return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY descripcion", $id); */
 }
 function opc_usuarios($id=''){

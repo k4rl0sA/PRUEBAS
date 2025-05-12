@@ -24,13 +24,6 @@ function cmp_ruteo(){
     $rta="";
     $w='ruteo';
     $d = array();
-    if($_POST['id'] != 0) {
-        $id = $_POST['id'];
-        $sql = "SELECT * FROM eac_ruteo WHERE id_ruteo = '$id'";
-        $result = datos_mysql($sql);
-        $d = $result['responseResult'][0];
-    }
-    
     $o='datos';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN BÁSICA',$w);
     $c[]=new cmp('id_ruteo','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);

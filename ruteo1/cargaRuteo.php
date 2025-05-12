@@ -47,7 +47,7 @@ function cmp_routing(){
     
     $o='ubicacion';
     $c[]=new cmp($o,'e',null,'UBICACIÓN GEOGRÁFICA',$w);
-    $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' idG '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-2',"getDatForm('idG','idgeog','iDG');");
+    $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' idG '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-2',"getDatForm('idG','idgeog','iDG','../ruteo1/cargaRuteo.php');");
     $c[]=new cmp('subred','s','11','',$w.' iDG '.$o,'Subred','subred',null,'',true,false,'','col-1');
     $c[]=new cmp('direccion','t',100,'',$w.' iDG '.$o,'Dirección','direccion',null,'',true,false,'','col-3');
     

@@ -38,7 +38,8 @@ function grabar(tb='',ev){
   }
   var rutaMap = {
 			'ruteresol':'ruteoresolut.php',
-			'rutclasif':'clasifica.php'
+			'rutclasif':'clasifica.php',
+			'routing':'cargaRuteo.php'
 		};
 		var ruta_app = rutaMap[tb] || 'lib.php';
 	myFetch(ruta_app,"a=gra&tb="+tb,mod);

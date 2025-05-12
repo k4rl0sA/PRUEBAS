@@ -66,7 +66,7 @@ function cmp_routing(){
 }
 function get_idgeog() {
     $id = $_POST['id'];
-    $sql = "SELECT subred, direccion FROM hog_geo WHERE idgeo = $id";
+    $sql = "SELECT idgeo,subred,direccion FROM hog_geo WHERE idgeo = $id";
     $result = datos_mysql($sql);
     if (!$result['responseResult']) {
         return json_encode(new stdClass());

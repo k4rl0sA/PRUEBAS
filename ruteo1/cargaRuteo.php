@@ -69,8 +69,18 @@ function get_idgeog(){
     $sql = "SELECT subred,direccion FROM hog_geo WHERE idgeo = $id";
     // var_dump($sql);
     $result = datos_mysql($sql);
-    return $result['responseResult'][0];
+    if (!$info['responseResult']) {
+		return json_encode (new stdClass);
+	}
+	return json_encode($info['responseResult'][0]);
+	}else{
+		// return json_encode (new stdClass);
+		return $rta="Error: El predio con este ID no se encuentra registrado.";
+
+	}
 }
+
+
 function get_routing(){
     if($_POST['id']==0){
         return array();

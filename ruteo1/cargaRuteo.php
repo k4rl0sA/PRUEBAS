@@ -48,6 +48,7 @@ function cmp_routing(){
     $o='ubicacion';
     $c[]=new cmp($o,'e',null,'UBICACIÓN GEOGRÁFICA',$w);
     $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-3');
+    $c[]=new cmp('idgeo','n','11',$d['idgeo']??'',$w.' '.$o,'ID Geográfico','idgeo',null,'',true,true,'','col-3');
     
     /* $o='asignacion';
     $c[]=new cmp($o,'e',null,'ASIGNACIÓN',$w);
@@ -157,6 +158,9 @@ function opc_estado_rut($id=''){
 
 function opc_usuarios($id=''){
     return opc_sql("SELECT id_usuario as idcatadeta, nombre as descripcion FROM usuarios WHERE estado='A' ORDER BY nombre", $id);
+}
+function opc_subred($id=''){
+	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
 
 function opc_perfiles($id=''){

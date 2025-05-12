@@ -52,7 +52,7 @@ function cmp_routing(){
     $c[]=new cmp('direccion','t',100,'',$w.' iDG '.$o,'Dirección','direccion',null,'',true,false,'','col-3');
     
      $o='asignacion';
-    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3',"selectDepend('perfil1','actividad1','cargaRuteo.php');");
+    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-3');
     $c[]=new cmp('actividad1','n','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3');
 
 /*

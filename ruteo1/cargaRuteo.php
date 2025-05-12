@@ -64,20 +64,14 @@ function cmp_routing(){
     
     return $rta;
 }
-function get_idgeog(){
+function get_idgeog() {
     $id = $_POST['id'];
-    $sql = "SELECT subred,direccion FROM hog_geo WHERE idgeo = $id";
-    // var_dump($sql);
+    $sql = "SELECT subred, direccion FROM hog_geo WHERE idgeo = $id";
     $result = datos_mysql($sql);
-    if (!$info['responseResult']) {
-		return json_encode (new stdClass);
-	}
-	return json_encode($info['responseResult'][0]);
-	}else{
-		// return json_encode (new stdClass);
-		return $rta="Error: El predio con este ID no se encuentra registrado.";
-
-	}
+    if (!$result['responseResult']) {
+        return json_encode(new stdClass());
+    }
+    return json_encode($result['responseResult'][0]);
 }
 
 

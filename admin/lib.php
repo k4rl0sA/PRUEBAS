@@ -2580,7 +2580,15 @@ function whe_date23(){
 	$sql= " AND date(A.psi_fecha_sesion) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
+function whe_subred24() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
 
+function whe_date24(){
+	$sql= " AND date(V.fechavisi) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
 
 function encript($texto, $clave) {
     $txtcript = openssl_encrypt($texto, 'aes-256-ecb', $clave, 0);

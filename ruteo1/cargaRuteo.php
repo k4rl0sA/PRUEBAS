@@ -52,7 +52,7 @@ function cmp_routing(){
     $c[]=new cmp('direccion','t',100,'',$w.' iDG '.$o,'Dirección','direccion',null,'',true,false,'','col-3');
     
      $o='asignacion';
-    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3');
+    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3',"selectDepend('perfil1','actividad1','cargaRuteo.php');");
     $c[]=new cmp('actividad1','n','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3');
 
 /*
@@ -146,6 +146,18 @@ function gra_routing(){
     return $rta;
 }
 
+function opc_perfil($id=''){
+	$info=datos_mysql("SELECT perfil FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}'");
+	$adm=$info['responseResult'][0]['perfil'];
+	if ($adm=='ADM') {
+		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A'",$id);
+	}else {
+		$sql ="SELECT CASE WHEN componente = 'EAC' THEN 2 WHEN componente = 'HOG' THEN 1 END as componente FROM usuarios WHERE id_usuario ='{$_SESSION['us_sds']}'";
+		$com=datos_mysql($sql);
+		$comp = $com['responseResult'][0]['componente'];
+		return opc_sql("SELECT idcatadeta, descripcion FROM `catadeta` WHERE idcatalogo = 218 AND estado = 'A' AND valor IN('{$comp}')",$id);
+	}
+}
 function opc_priorizaciontipo_prior($id=''){
     if($_REQUEST['id']!=''){
         $id=divide($_REQUEST['id']);
@@ -179,7 +191,7 @@ function opc_subred($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=72 and estado='A' and idcatadeta in(1,2,4,3) ORDER BY 1",$id);
 }
 
-function opc_perfiles($id=''){
+function opc_perfil1($id=''){
     return opc_sql("SELECT  `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=218 estado='A' ORDER BY nombre", $id);
 }
 

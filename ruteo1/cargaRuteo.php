@@ -28,7 +28,7 @@ function cmp_routing(){
     $c[]=new cmp($o,'e',null,'INFORMACIÓN BÁSICA',$w);
     $c[]=new cmp('id_ruteo','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
     $c[]=new cmp('fuente','s','3',$d['fuente']??'',$w.' '.$o,'Fuente','fuente',null,'',true,true,'','col-25');
-    $c[]=new cmp('priorizacion','s','3',$d['priorizacion']??'',$w.' '.$o,'Priorización','priorizacion',null,'',true,true,'','col-15');
+    $c[]=new cmp('priorizacion','s','3',$d['priorizacion']??'',$w.' '.$o,'Priorización','priorizacion',null,'',true,true,'','col-15',"selectDepend('priorizacion','tipo_prior','cargaRuteo.php');");
     $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior']??'',$w.' '.$o,'Tipo Prioridad','tipo_prior',null,'',true,true,'','col-6');
     
     $o='beneficiario';

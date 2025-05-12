@@ -69,7 +69,7 @@ function get_idgeog(){
     $sql = "SELECT subred,direccion FROM hog_geo WHERE idgeo = $id";
     var_dump($sql);
     $result = datos_mysql($sql);
-    return $result['responseResult'][0]['idgeo'];
+    return $result['responseResult'][0];
 }
 function get_routing(){
     if($_POST['id']==0){

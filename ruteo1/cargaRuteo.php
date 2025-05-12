@@ -27,9 +27,9 @@ function cmp_routing(){
     $o='datos';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN BÁSICA',$w);
     $c[]=new cmp('id_ruteo','h',15,$_POST['id'],$w.' '.$o,'','',null,'####',false,false);
-    $c[]=new cmp('fuente','s','3',$d['fuente']??'',$w.' '.$o,'Fuente','fuente',null,'',true,true,'','col-3');
-    $c[]=new cmp('priorizacion','s','3',$d['priorizacion']??'',$w.' '.$o,'Priorización','priorizacion',null,'',true,true,'','col-3');
-    $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior']??'',$w.' '.$o,'Tipo Prioridad','tipo_prior',null,'',true,true,'','col-3');
+    $c[]=new cmp('fuente','s','3',$d['fuente']??'',$w.' '.$o,'Fuente','fuente',null,'',true,true,'','col-25');
+    $c[]=new cmp('priorizacion','s','3',$d['priorizacion']??'',$w.' '.$o,'Priorización','priorizacion',null,'',true,true,'','col-15');
+    $c[]=new cmp('tipo_prior','s','3',$d['tipo_prior']??'',$w.' '.$o,'Tipo Prioridad','tipo_prior',null,'',true,true,'','col-6');
     
     $o='beneficiario';
     $c[]=new cmp($o,'e',null,'DATOS DEL BENEFICIARIO',$w);
@@ -40,7 +40,7 @@ function cmp_routing(){
     
     $o='contacto';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN DE CONTACTO',$w);
-    $c[]=new cmp('direccion','t','50',$d['direccion']??'',$w.' '.$o,'Dirección','direccion',null,'',true,true,'','col-6');
+    $c[]=new cmp('direccion','t','50',$d['direccion']??'',$w.' '.$o,'Dirección','direccion',null,'',true,true,'','col-3');
     $c[]=new cmp('telefono1','t','10',$d['telefono1']??'',$w.' '.$o,'Teléfono 1','telefono1',null,'',true,true,'','col-2');
     $c[]=new cmp('telefono2','t','10',$d['telefono2']??'',$w.' '.$o,'Teléfono 2','telefono2',null,'',true,true,'','col-2');
     $c[]=new cmp('telefono3','t','10',$d['telefono3']??'',$w.' '.$o,'Teléfono 3','telefono3',null,'',true,true,'','col-2');

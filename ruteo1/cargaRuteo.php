@@ -53,7 +53,7 @@ function cmp_routing(){
     
     $o='asignacion';
     $c[]=new cmp($o,'e',null,'ASIGNACIÓN',$w);
-    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil',null,'',true,true,'','col-3',"selectDepend('perfil1','actividad1','cargaRuteo.php');");
+    $c[]=new cmp('perfil1','s','3',$d['perfil1']??'',$w.' '.$o,'Perfil','perfil1',null,'',true,true,'','col-3',"selectDepend('perfil1','actividad1','cargaRuteo.php');");
     $c[]=new cmp('actividad1','s','11',$d['actividad1']??'',$w.' '.$o,'Actividad','actividad1',null,'',true,true,'','col-3');
 
 /*
@@ -146,7 +146,13 @@ function gra_routing(){
     $rta = dato_mysql($sql);
     return $rta;
 }
-
+function opc_perfil($id=''){
+    if($_REQUEST['id']!=''){
+        $perfil = divide($_REQUEST['id']);
+        return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);
+    }
+    return json_encode([]);
+}
 function opc_perfil1actividad1($id=''){
     if($_REQUEST['id']!=''){
         $perfil = divide($_REQUEST['id']);

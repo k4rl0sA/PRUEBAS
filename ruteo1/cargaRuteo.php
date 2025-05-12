@@ -85,9 +85,9 @@ function men_ruteo(){
     if(isset($acc['crear']) && $acc['crear']=='SI') {
         $rta .= "<li class='icono ruteo grabar' title='Grabar' OnClick=\"grabar('ruteo',this);\"></li>";
     }
-    if(isset($acc['editar']) && $acc['editar']=='SI') {
+ /*    if(isset($acc['editar']) && $acc['editar']=='SI') {
         $rta .= "<li class='icono ruteo editar' title='Editar' Onclick=\"mostrar('ruteo','pro',event,'','lib.php',7,'ruteo');\"></li>";
-    }
+    } */
     $rta .= "<li class='icono ruteo actualizar' title='Actualizar' Onclick=\"act_lista('ruteo',this);\"></li>";
     return $rta;
 }

@@ -67,7 +67,7 @@ function cmp_routing(){
 function get_idgeog(){
     $id = $_POST['id'];
     $sql = "SELECT subred,direccion FROM hog_geo WHERE idgeo = $id";
-    var_dump($sql);
+    // var_dump($sql);
     $result = datos_mysql($sql);
     return $result['responseResult'][0];
 }

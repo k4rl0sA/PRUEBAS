@@ -20,9 +20,9 @@ else {
   }   
 }
 
-function cmp_ruteo(){
+function cmp_routing(){
     $rta="";
-    $w='ruteo';
+    $w='routing';
     $d = array();
     $o='datos';
     $c[]=new cmp($o,'e',null,'INFORMACIÓN BÁSICA',$w);
@@ -63,7 +63,7 @@ function cmp_ruteo(){
     return $rta;
 }
 
-function get_ruteo(){
+function get_routing(){
     if($_POST['id']==0){
         return array();
     }else{
@@ -74,24 +74,24 @@ function get_ruteo(){
     }
 }
 
-function focus_ruteo(){
-    return 'ruteo';
+function focus_routing(){
+    return 'routing';
 }
 
-function men_ruteo(){
+function men_routing(){
     $rta = "";
-    $acc = rol('ruteo');
+    $acc = rol('routing');
     if(isset($acc['crear']) && $acc['crear']=='SI') {
         $rta .= "<li class='icono ruteo grabar' title='Grabar' OnClick=\"grabar('ruteo',this);\"></li>";
     }
  /*    if(isset($acc['editar']) && $acc['editar']=='SI') {
         $rta .= "<li class='icono ruteo editar' title='Editar' Onclick=\"mostrar('ruteo','pro',event,'','lib.php',7,'ruteo');\"></li>";
     } */
-    $rta .= "<li class='icono ruteo actualizar' title='Actualizar' Onclick=\"act_lista('ruteo',this);\"></li>";
+    $rta .= "<li class='icono ruteo actualizar' title='Actualizar' Onclick=\"act_lista('routing',this);\"></li>";
     return $rta;
 }
 
-function gra_ruteo(){
+function gra_routing(){
     $data = array(
         'id_ruteo' => NULL,
         'fuente' => $_POST['fuente'],
@@ -147,8 +147,8 @@ function opc_sexo($id=''){
     return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=21 AND estado='A' ORDER BY descripcion", $id);
 }
 
-function opc_estado_ruteo($id=''){
-    return opc_sql("SELECT codigo as idcatadeta, nombre as descripcion FROM cat_estado_ruteo WHERE estado='A' ORDER BY nombre", $id);
+function opc_estado_routing($id=''){
+    return opc_sql("SELECT codigo as idcatadeta, nombre as descripcion FROM cat_estado_routing WHERE estado='A' ORDER BY nombre", $id);
 }
 
 function opc_estado_rut($id=''){
@@ -170,7 +170,7 @@ function opc_actividades($id=''){
 function formato_dato($a,$b,$c,$d){
     $b=strtolower($b);
     $rta=$c[$d];
-    if ($a=='ruteo' && $b=='acciones'){
+    if ($a=='routing' && $b=='acciones'){
         $rta="<nav class='menu right'>";        
         // $rta.="<li class='icono editar' title='Editar' id='".$c['ID']."' Onclick=\"mostrar('ruteo','pro',event,'','lib.php',7,'ruteo');\"></li>";
         $rta.="</nav>";

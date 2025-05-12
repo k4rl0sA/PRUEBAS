@@ -84,7 +84,7 @@ function men_routing(){
     $rta = "";
     $acc = rol('routing');
     if(isset($acc['crear']) && $acc['crear']=='SI') {
-        $rta .= "<li class='icono ruteo grabar' title='Grabar' OnClick=\"grabar('ruteo',this);\"></li>";
+        $rta .= "<li class='icono ruteo grabar' title='Grabar' OnClick=\"grabar('routing',this);\"></li>";
     }
  /*    if(isset($acc['editar']) && $acc['editar']=='SI') {
         $rta .= "<li class='icono ruteo editar' title='Editar' Onclick=\"mostrar('ruteo','pro',event,'','lib.php',7,'ruteo');\"></li>";

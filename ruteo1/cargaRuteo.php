@@ -130,17 +130,12 @@ function gra_routing(){
         'fecha_update' => NULL,
         'estado' => 'A'
     );
-    
-    if($_POST['id_ruteo'] == 0) {
         $data['usu_create'] = $_SESSION['us_sds'];
         $data['fecha_create'] = date('Y-m-d H:i:s');
         $columns = implode(", ", array_keys($data));
         $values = "'" . implode("', '", array_values($data)) . "'";
         $sql = "INSERT INTO eac_ruteo ($columns) VALUES ($values)";
         $rta = dato_mysql($sql);
-    }else{
-        $rta = "error";
-    } 
     return $rta;
 }
 function opc_perfil1($id=''){

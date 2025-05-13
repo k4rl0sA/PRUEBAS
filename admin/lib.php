@@ -2235,8 +2235,7 @@ function lis_ruteoGestionados($txt){
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
 	// echo $sql;
-	$tot="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio'
-	 FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario  WHERE RG.estado_agenda IS NOT NULL ";	
+		$tot="SELECT COUNT(*) total FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario WHERE RG.estado_agenda IS NOT NULL ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$tot.=whe_date14();
 	$_SESSION['sql_'.$txt]=$sql;

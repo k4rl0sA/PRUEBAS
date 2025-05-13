@@ -86,7 +86,7 @@ function whe_rute() {
     } else {
         $sql1 .= " AND 0";
     }
-	var_dump($sql1);
+	// var_dump($sql1);
 	return $sql1;
 }
 

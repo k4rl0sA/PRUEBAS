@@ -47,7 +47,7 @@ function cmp_rutclasif(){
  $mykey=$_POST['id'].'_'.$d['id_rutclas'];
  $c[]=new cmp($o,'e',null,'PROCESO DE CLASIFICACIÓN',$w);
  $c[]=new cmp('id','h','20',$mykey,$w.' '.$o,'','',null,null,true,$u,'','col-1');
- $c[]=new cmp('pre_clasif','s','10',$d['preclasif'],$w.' '.$o,'COHORTE DE RIESGO','pre_clasif',null,null,true,$u,'','col-25');
+ $c[]=new cmp('pre_clasif','s','10',$d['preclasif'],$w.' '.$o,'COHORTE DE RIESGO','pre_clasif',null,null,true,$u,'','col-25',"selectDepend('pre_clasif','clasificacion','clasifica.php');");
  $c[]=new cmp('clasificacion','s','10',$d['clasifica'],$w.' '.$o,'GRUPO DE POBLACION PRIORIZADA','clasificacion',null,null,true,$u,'','col-25');
  $c[]=new cmp('riesgo','s','10',$d['riesgo'],$w.' '.$o,'Riesgo','riesgo',null,null,true,$u,'','col-25','rutRiskHig();rutRisklow();');
 
@@ -147,6 +147,16 @@ estado='G'
 	//echo $sql;
   $rta=dato_mysql($sql); 
   return $rta;*/
+}
+
+function opc_pre_clasifclasificacion($id=''){
+  if($_REQUEST['id']!=''){
+      $id=divide($_REQUEST['id']);
+      $sql="SELECT idcatadeta ,descripcion FROM `catadeta` WHERE idcatalogo=235 and estado='A' and valor=".$id[0]." ORDER BY LENGTH(idcatadeta), idcatadeta;";
+      // var_dump($sql);
+      $info=datos_mysql($sql);
+      return json_encode($info['responseResult']);
+  }
 }
 
 function opc_rta($id=''){

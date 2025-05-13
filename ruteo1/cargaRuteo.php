@@ -146,12 +146,13 @@ function opc_perfil1($id=''){
     return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);
 }
 function opc_perfil1actividad1($id=''){
+    var_dump($_REQUEST);
     if($_REQUEST['id']!=''){
         $perfil = divide($_REQUEST['id']);
         $sql="SELECT id_usuario, CONCAT_WS('-', id_usuario, nombre) AS descripcion FROM usuarios WHERE subred IN (SELECT subred FROM usuarios WHERE id_usuario = {$_SESSION['us_sds']}) AND perfil = {$perfil[0]} AND estado = 'A'";
         return opc_sql($sql, $id);
     }
-    var_dump($_REQUEST);
+    
     return json_encode([]);
 }
 function opc_priorizaciontipo_prior($id=''){

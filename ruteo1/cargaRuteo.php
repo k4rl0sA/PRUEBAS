@@ -152,7 +152,6 @@ function opc_perfil1actividad1($id=''){
     }
     return json_encode([]);
 }
-
 function opc_priorizaciontipo_prior($id=''){
     if($_REQUEST['id']!=''){
         $id=divide($_REQUEST['id']);

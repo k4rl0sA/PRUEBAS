@@ -2213,14 +2213,15 @@ function lis_SeguimientosUAIC($txt){
 }
 
 function lis_ruteoGestionados($txt){
-	$sql="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio',FN_CATALOGODESC(191,preclasif) 'Preclasificacion',FN_CATALOGODESC(235,clasifica) 'Clasificacion Promotor',FN_CATALOGODESC(273,riesgo) 'Riesgo',U1.nombre 'Derivado a',U1.perfil 'Perfil Derivado'
+	$sql="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio',FN_CATALOGODESC(191,preclasif) 'Preclasificacion',FN_CATALOGODESC(235,clasifica) 'Clasificacion Promotor',FN_CATALOGODESC(273,riesgo) 'Riesgo',U1.nombre 'Derivado a',U1.perfil 'Perfil Derivado',R.idgeo 'Predio',R.fecha 'Fecha Gestion Final',R.famili 'Familia',CONCAT(P.idpersona,'-',CONCAT(P.nombre1,' ',P.apellido1)) 'Usuario Final' 
 	 FROM eac_ruteo_ges RG 
 	 LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo 
 	 LEFT JOIN hog_geo G ON R.idgeo = G.idgeo 
 	 LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario 
 	 LEFT JOIN eac_ruteo_clas C ON RG.id_rutges = C.idrutges
-	 LEFT JOIN usuarios U1 ON C.profesional= U1.id_usuario 
-	 WHERE RG.estado_agenda IS NOT NULL ";
+	 LEFT JOIN usuarios U1 ON C.profesional= U1.id_usuario
+	 LEFT JOIN person P ON R.usuario=P.idpeople 
+	 WHERE RG.estado_agenda !=0";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
 	// echo $sql;

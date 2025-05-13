@@ -2290,7 +2290,7 @@ function lis_frecuencia($txt){
 		if (perfilUsu()!=='ADM')	$sql.=whe_subred();
 		$sql.=whe_date13();
 		// echo $sql;
-		$tot="SELECT COUNT(*) total FROM `hog_tam_zung` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+		$tot="SELECT COUNT(*) total from frecuenciauso F LEFT JOIN person P ON F.idpeople = P.idpeople LEFT JOIN usuarios U ON F.usu_creo = U.id_usuario LEFT JOIN usuarios U1 ON F.usu_update = U1.id_usuario LEFT JOIN hog_fam H ON P.vivipersona = H.id_fam LEFT JOIN hog_geo G ON H.idpre = G.idgeo WHERE 1 ";	
 		if (perfilUsu()!=='ADM')	$tot.=whe_subred();
 		$tot.=whe_date13();
 		$_SESSION['sql_'.$txt]=$sql;

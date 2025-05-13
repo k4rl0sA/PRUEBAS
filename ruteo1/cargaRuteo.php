@@ -75,7 +75,6 @@ function get_idgeog() {
     return json_encode($result['responseResult'][0]);
 }
 
-
 function get_routing(){
     if($_POST['id']==0){
         return array();

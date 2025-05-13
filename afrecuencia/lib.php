@@ -92,6 +92,10 @@ function get_persona(){
 	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 		$info=datos_mysql($sql);
 		if (!$info['responseResult']) {
+			$sql1="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo,
+				concat('AÑOS =',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
+	 			FROM person T1
+	 			WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
 			return json_encode (new stdClass);
 		}else{
 			return json_encode($info['responseResult'][0]);
@@ -243,8 +247,6 @@ function opc_upzbar(){
 		return json_encode($info['responseResult']);
 	} 
 }
-
-
 
 function gra_frecuenciauso(){
  if ($_POST['key']){

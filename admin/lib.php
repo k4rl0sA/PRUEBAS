@@ -472,6 +472,16 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_SeguiHosEmb($tab);
 			break;
+		case '62':
+			$tab = "Frecuencia De Uso";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_frecuencia($tab);
+			break;
+		case '63':
+			$tab = "Agendamiento";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_agendamiento($tab);
+			break;
 		default:
         break;    
     }
@@ -2267,6 +2277,28 @@ WHERE 1";
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
+
+function lis_frecuencia($txt){
+	$sql="SELECT G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',F.idfrecuencia 'Cod Registro',F.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',F.fecha_create 'Creada',F.usu_creo 'id Creo',U.nombre 'nombre Creo',F.fecha_update 'Editado',F.usu_update 'Edito',U1.nombre 'Nombre Edito',F.realizada,F.estado
+		from frecuenciauso F 
+		LEFT JOIN person P ON F.idpeople = P.idpeople
+		LEFT JOIN usuarios U ON F.usu_creo = U.id_usuario
+		LEFT JOIN usuarios U1 ON F.usu_update = U1.id_usuario
+		LEFT JOIN hog_fam H ON P.vivipersona = H.id_fam
+		LEFT JOIN hog_geo G ON H.idpre = G.idgeo
+		WHERE 1 ";
+		if (perfilUsu()!=='ADM')	$sql.=whe_subred();
+		$sql.=whe_date13();
+		// echo $sql;
+		$tot="SELECT COUNT(*) total FROM `hog_tam_zung` A LEFT JOIN person P ON A.idpeople=P.idpeople LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";	
+		if (perfilUsu()!=='ADM')	$tot.=whe_subred();
+		$tot.=whe_date13();
+		$_SESSION['sql_'.$txt]=$sql;
+		$_SESSION['tot_'.$txt]=$tot;
+		$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+	
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";

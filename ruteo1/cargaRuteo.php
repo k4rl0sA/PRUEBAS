@@ -138,8 +138,10 @@ function gra_routing(){
         $columns = implode(", ", array_keys($data));
         $values = "'" . implode("', '", array_values($data)) . "'";
         $sql = "INSERT INTO eac_ruteo ($columns) VALUES ($values)";
+        $rta = dato_mysql($sql);
+    }else{
+        $rta = "error";
     } 
-    $rta = dato_mysql($sql);
     return $rta;
 }
 function opc_perfil1($id=''){

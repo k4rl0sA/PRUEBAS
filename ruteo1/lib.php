@@ -212,7 +212,7 @@ function lis_gestion(){ //revisar
  FROM eac_ruteo_ges erg 
  WHERE idruteo=$id[0]";
 		$sql.=" ORDER BY fecha_create";
-		// echo $sql;
+		echo $sql;
 		$_SESSION['sql_person']=$sql;
 			$datos=datos_mysql($sql);
 		return panel_content($datos["responseResult"],"gestion-lis",10);

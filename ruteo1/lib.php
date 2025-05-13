@@ -22,8 +22,8 @@ function lis_rute(){
 	$info = datos_mysql("SELECT perfil FROM usuarios  where id_usuario='".$_SESSION['us_sds']."';" );
 	$perfil = $info['responseResult'][0]['perfil'];
 var_dump($perfil);
-	$jAproTerr = ($_SESSION['us_sds'] != '80811594') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
-		// $jAproTerr = ($perfil != 'ADM') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
+	// $jAproTerr = ($_SESSION['us_sds'] != '80811594') ? "LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
+	$jAproTerr = ($perfil != 'ADM') ? " LEFT JOIN apro_terr A ON G.territorio = A.territorio" : ""; // Condiciona el JOIN
 
 
     $info = datos_mysql("SELECT COUNT(*) total FROM eac_ruteo er 

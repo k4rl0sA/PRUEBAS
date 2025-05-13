@@ -150,7 +150,8 @@ function opc_perfil1actividad1($id=''){
     if($_REQUEST['id']!=''){
         $perfil = divide($_REQUEST['id']);
         $sql="SELECT id_usuario, CONCAT_WS('-', id_usuario, nombre) AS descripcion FROM usuarios WHERE subred IN (SELECT subred FROM usuarios WHERE id_usuario = {$_SESSION['us_sds']}) AND perfil IN (select descripcion from catadeta where idcatalogo =218 and idcatadeta={$perfil[0]})  AND estado = 'A'";
-        return opc_sql($sql, $id);
+        $info=datos_mysql($sql);
+        return json_encode($info['responseResult']);
     }
     
     return json_encode([]);

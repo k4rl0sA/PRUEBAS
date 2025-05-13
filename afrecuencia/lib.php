@@ -84,27 +84,29 @@ function get_frecuenciauso(){
 
 function get_persona(){
 	if ($_REQUEST['id']){
-		$id=divide($_REQUEST['id']);
-		$sql="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo,
-		concat('AÑOS =',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
-	 FROM person T1
-	 RIGHT join hog_agen T2 ON T1.idpeople=T2.idpeople
-	 WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
-		$info=datos_mysql($sql);
+		$id = divide($_REQUEST['id']);
+		$sql = "SELECT T1.idpersona, T1.tipo_doc, T1.nombre1, T1.nombre2, T1.apellido1, T1.apellido2, T1.fecha_nacimiento, T1.sexo,
+		concat('AÑOS =', TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()), ' Meses =', TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) - (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12), ' Dias =', DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
+		FROM person T1
+		RIGHT JOIN hog_agen T2 ON T1.idpeople = T2.idpeople
+		WHERE T1.idpersona = '{$id[0]}' AND T1.tipo_doc = UPPER('{$id[1]}')";
+		$info = datos_mysql($sql);
 		if (!$info['responseResult']) {
-			$sql1="SELECT T1.idpersona,T1.tipo_doc,T1.nombre1,T1.nombre2,T1.apellido1,T1.apellido2,T1.fecha_nacimiento,T1.sexo,
-				concat('AÑOS =',TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()),' Meses =',TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE())-(TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12),'Dias =',DATEDIFF(CURDATE(),DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
-	 			FROM person T1
-	 			WHERE T1.idpersona='".$id[0]."' AND T1.tipo_doc=upper('".$id[1]."')";
-				if (!$info['responseResult']) {
-					return json_encode (new stdClass);
-				}else{
-					return json_encode($info['responseResult'][0]);
-				}
-		}else{
+			$sql1 = "SELECT T1.idpersona, T1.tipo_doc, T1.nombre1, T1.nombre2, T1.apellido1, T1.apellido2, T1.fecha_nacimiento, T1.sexo,
+			concat('AÑOS =', TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()), ' Meses =', TIMESTAMPDIFF(MONTH, fecha_nacimiento, CURDATE()) - (TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) * 12), ' Dias =', DATEDIFF(CURDATE(), DATE_ADD(fecha_nacimiento, INTERVAL TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) YEAR)) % 30) edad
+			FROM person T1
+			WHERE T1.idpersona = '{$id[0]}' AND T1.tipo_doc = UPPER('{$id[1]}')";
+			$info = datos_mysql($sql1);
+			if (!$info['responseResult']) {
+				return json_encode(new stdClass());
+			} else {
+				return json_encode($info['responseResult'][0]);
+			}
+		} else {
 			return json_encode($info['responseResult'][0]);
 		}
 	}
+	return json_encode(new stdClass());
 }
 
 function cap_menus($a,$b='cap',$con='con') {

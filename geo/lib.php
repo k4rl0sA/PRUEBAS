@@ -116,24 +116,25 @@ $sql.="' ORDER BY fecha_create";
    }
 
 function get_predio(){
-	//  print_r($_POST);
-	$id=divide($_POST['id']);
-	$sql="SELECT G.idgeo,G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
- 	FROM `geo_asig` A 
-  	LEFT JOIN hog_geo G ON A.idgeo=G.idgeo 
-  	LEFT JOIN apro_terr AP ON G.territorio = AP.territorio
-   	WHERE A.estado='A' AND A.idgeo ='".$id[0]."'"; 
-	$perfil=perfil1($_SESSION['us_sds']);
-	if($perfil!='ADM'){
-		$sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";	
+	$id = divide($_POST['id']);
+	$sql = "SELECT G.idgeo, G.zona, G.localidad, G.upz, G.barrio, G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit, G.direccion, G.vereda, G.cordx, G.cordy, G.territorio 
+	FROM `geo_asig` A 
+	LEFT JOIN hog_geo G ON A.idgeo = G.idgeo";
+	$perfil = perfil1($_SESSION['us_sds']);
+	if ($perfil == 'AUXHOG') {
+		$sql .= " LEFT JOIN apro_terr AP ON G.territorio = AP.territorio";
 	}
-   	// $sql.=" AND AP.doc_asignado ='".$_SESSION['us_sds']."'";
-	$info=datos_mysql($sql);
+	$sql .= " WHERE A.estado = 'A' AND A.idgeo = '" . $id[0] . "'";
+	if ($perfil == 'AUXHOG') {
+		$sql .= " AND AP.doc_asignado = '" . $_SESSION['us_sds'] . "'";
+	}
+	$info = datos_mysql($sql);
 	if (!$info['responseResult']) {
-		return json_encode (new stdClass);
+		return json_encode(new stdClass);
 	}
-return json_encode($info['responseResult'][0]);
+	return json_encode($info['responseResult'][0]);
 }
+
 function opc_zona($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=3 and estado='A' ORDER BY 1",$id);
 }
@@ -153,9 +154,6 @@ function opc_motivo_estado($id=''){
 function opc_territorio($id=''){
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=283 and estado='A' ORDER BY 1",$id);
 }
-
-
-
 function opc_rol($id=''){
 	return opc_sql("SELECT distinct perfil,perfil FROM `usuarios` WHERE  subred in(SELECT subred FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') AND componente IN(SELECT componente FROM usuarios WHERE id_usuario='{$_SESSION['us_sds']}') and estado='A' ORDER BY 1",$id);
 }

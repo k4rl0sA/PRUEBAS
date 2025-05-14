@@ -40,7 +40,7 @@ function lis_agendamiento(){
 	//~ estado=1 or estado=2 or  or estado=5 
     $info=datos_mysql("SELECT COUNT(*) total from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) AND U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_agendamiento());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=15;
+	$regxPag=2;
 	$pag=(isset($_POST['pag-agendamiento']))? ($_POST['pag-agendamiento']-1)* $regxPag:0;
 
 	$sql="SELECT idagendamiento ACCIONES,

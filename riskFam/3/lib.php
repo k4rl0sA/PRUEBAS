@@ -61,9 +61,94 @@ $estrato= $res1['responseResult'][0]['estrato'];
 $ingreso= $res1['responseResult'][0]['ingreso'];
 
 //Riesgo Estructura Familiar
-$sql2="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
+$sql2=" WITH Ultimo_Apgar AS (
+    SELECT 
+        A.idpeople,
+        A.fecha_toma,
+        A.puntaje,
+        A.descripcion,
+        ROW_NUMBER() OVER (PARTITION BY A.idpeople ORDER BY A.fecha_toma DESC) AS rn
+    FROM hog_tam_apgar A
+),
+Apgar_Persona_Familia AS (
+    SELECT 
+        P.idpeople,
+        P.vivipersona,
+        UA.fecha_toma,
+        UA.puntaje,
+        UA.descripcion
+    FROM person P
+    LEFT JOIN (
+        SELECT * FROM Ultimo_Apgar WHERE rn = 1
+    ) UA ON P.idpeople = UA.idpeople
+),
+Apgar_Completado AS (
+    SELECT 
+        PF1.idpeople,
+        PF1.vivipersona,
+        COALESCE(PF1.fecha_toma, PF2.fecha_toma) AS fecha_toma,
+        COALESCE(PF1.puntaje, PF2.puntaje) AS puntaje,
+        COALESCE(PF1.descripcion, PF2.descripcion) AS descripcion
+    FROM Apgar_Persona_Familia PF1
+    LEFT JOIN (
+        -- Buscar un resultado de APGAR dentro del mismo grupo familiar
+        SELECT 
+            P2.vivipersona,
+            UA2.fecha_toma,
+            UA2.puntaje,
+            UA2.descripcion
+        FROM person P2
+        INNER JOIN (
+            SELECT * FROM Ultimo_Apgar WHERE rn = 1
+        ) UA2 ON P2.idpeople = UA2.idpeople
+    ) PF2 ON PF1.vivipersona = PF2.vivipersona AND PF1.descripcion IS NULL
+)
+SELECT 
+    AC.idpeople,
+    AC.vivipersona,
+    AC.fecha_toma,
+    AC.puntaje,
+    AC.descripcion AS Descripcion_APGAR,
+    -- Puntaje invertido (más alto = más riesgo)
+    CASE AC.descripcion
+        WHEN 'Función Familiar Normal' THEN 1
+        WHEN 'Disfunción Familiar Leve' THEN 2
+        WHEN 'Disfunción Familiar Moderada' THEN 3
+        WHEN 'Disfunción Familiar Severa' THEN 4
+        ELSE NULL
+    END AS Puntaje_Invertido,
+    -- EF (estructura familiar): normalizado a 0-100 como el SE
+    ROUND((( 
+        CASE AC.descripcion
+            WHEN 'Función Familiar Normal' THEN 1
+            WHEN 'Disfunción Familiar Leve' THEN 2
+            WHEN 'Disfunción Familiar Moderada' THEN 3
+            WHEN 'Disfunción Familiar Severa' THEN 4
+            ELSE 1
+        END - 1
+    ) / 3.0 ) * 100, 2) AS EF_100,
+    -- Puntaje ponderado con el 20% de peso
+    ROUND((( 
+        CASE AC.descripcion
+            WHEN 'Función Familiar Normal' THEN 1
+            WHEN 'Disfunción Familiar Leve' THEN 2
+            WHEN 'Disfunción Familiar Moderada' THEN 3
+            WHEN 'Disfunción Familiar Severa' THEN 4
+            ELSE 1
+        END - 1
+    ) / 3.0 ) * 20.0, 2) AS Puntaje_EF_20,
+    -- Clasificación textual del riesgo
+    CASE AC.descripcion
+        WHEN 'Función Familiar Normal' THEN 'Bajo Riesgo'
+        WHEN 'Disfunción Familiar Leve' THEN 'Riesgo Medio'
+        WHEN 'Disfunción Familiar Moderada' THEN 'Alto Riesgo'
+        WHEN 'Disfunción Familiar Severa' THEN 'Muy Alto Riesgo'
+        ELSE 'Sin Clasificación'
+    END AS Clasificacion_Riesgo_EF
+FROM Apgar_Completado AC;";
 $res2 = datos_mysql($sql2);
-$estruFamil = $res2['responseResult'][0];
+$estruFamil = $res2['responseResult'][0]['puntaje'];
+$apgar = $res2['responseResult'][0]['DEscripcion_APGAR'];
 
 //Riesgo Vulnerabilidad Social
 $sql3="SELECT 1 FROM person P LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam";
@@ -97,8 +182,9 @@ $riesgos = [
     ],
     "familyStructure" => [
         "name" => "Estructura Familiar",
-        "value" => rand(0, 100),
+        "value" => $estruFamil,
         "weight" => 0.20,
+        "apgar" => $apgar,
         "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
     ],
     "socialVulnerability" => [

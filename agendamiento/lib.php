@@ -49,6 +49,7 @@ FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamad
 from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE A.estado not in (1,2,3,5) AND U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}')";
 	$sql.=whe_agendamiento();
 	$sql.="ORDER BY 6 ASC,7 ASC";
+	$sql.=' LIMIT '.$pag.','.$regxPag;
 //~ echo $sql;   
 	/* $sql1="SELECT IFNULL(T4.fecha,T2.fecha_envio) 'Fecha Caracterizacion',IFNULL(T3.apellido1,T2.apellido1) 'Primer Apellido',IFNULL(T3.apellido2,T2.apellido2) 'Segundo Apellido',IFNULL(T3.nombre1,T2.nombre1) 'Primer Nombre',
 	IFNULL(T3.nombre2,T2.nombre2) 'Segundo Nombre',IFNULL(T3.idpersona,T2.idpersona) 'N° Documento',FN_CATALOGODESC(1,IFNULL(T3.tipo_doc,T2.tipo_doc)) 'Tipo Documento',IFNULL(T3.fecha_nacimiento,T2.fecha_nacimiento) 'Fecha de Nacimiento',
@@ -66,7 +67,7 @@ left JOIN usuarios U ON A.usu_creo = U.id_usuario
 	//~ echo $sql1;
 	$_SESSION['sql_agendamiento']=$sql1; */
 	$datos=datos_mysql($sql);
-return panel_content($datos["responseResult"],"agendamiento",19);
+return create_table($total,$datos["responseResult"],"frecuenciauso",$regxPag);
 }
 
 function focus_agendamiento(){

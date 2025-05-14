@@ -2230,8 +2230,7 @@ function lis_ruteoGestionados($txt){
 	 LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario 
 	 LEFT JOIN eac_ruteo_clas C ON RG.id_rutges = C.idrutges
 	 LEFT JOIN usuarios U1 ON C.profesional= U1.id_usuario
-	 LEFT JOIN person P ON R.usuario=P.idpeople 
-	 WHERE RG.estado_agenda !=0 ";
+	 LEFT JOIN person P ON R.usuario=P.idpeople ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
 	// echo $sql;

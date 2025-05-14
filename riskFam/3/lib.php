@@ -147,7 +147,7 @@ SELECT
     END AS Clasificacion_Riesgo_EF
 FROM Apgar_Completado AC;";
 $res2 = datos_mysql($sql2);
-$estruFamil = $res2['responseResult'][0]['puntaje'];
+$estruFamil = $res2['responseResult'][0]['EF_100'];
 $apgar = $res2['responseResult'][0]['Descripcion_APGAR'];
 
 //Riesgo Vulnerabilidad Social

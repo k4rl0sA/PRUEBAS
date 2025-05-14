@@ -43,7 +43,6 @@ function lis_agendamiento(){
 	$regxPag=5;
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 
-
 	$sql="SELECT idagendamiento ACCIONES,
 idpersona Documento,FN_CATALOGODESC(1,tipo_doc) 'Tipo Documento',
 FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`fecha_cita`,`hora_cita`,fecha_llamada 'Recordación Cita',FN_CATALOGODESC(276,A.estado) Estado
@@ -51,7 +50,7 @@ from agendamiento A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuari
 	$sql.=whe_agendamiento();
 	$sql.="ORDER BY 6 ASC,7 ASC";
 //~ echo $sql;   
-	$sql1="SELECT IFNULL(T4.fecha,T2.fecha_envio) 'Fecha Caracterizacion',IFNULL(T3.apellido1,T2.apellido1) 'Primer Apellido',IFNULL(T3.apellido2,T2.apellido2) 'Segundo Apellido',IFNULL(T3.nombre1,T2.nombre1) 'Primer Nombre',
+	/* $sql1="SELECT IFNULL(T4.fecha,T2.fecha_envio) 'Fecha Caracterizacion',IFNULL(T3.apellido1,T2.apellido1) 'Primer Apellido',IFNULL(T3.apellido2,T2.apellido2) 'Segundo Apellido',IFNULL(T3.nombre1,T2.nombre1) 'Primer Nombre',
 	IFNULL(T3.nombre2,T2.nombre2) 'Segundo Nombre',IFNULL(T3.idpersona,T2.idpersona) 'N° Documento',FN_CATALOGODESC(1,IFNULL(T3.tipo_doc,T2.tipo_doc)) 'Tipo Documento',IFNULL(T3.fecha_nacimiento,T2.fecha_nacimiento) 'Fecha de Nacimiento',
 	FN_CATALOGODESC(21,IFNULL(T3.genero,T2.genero)) 'Genero',FN_CATALOGODESC(16,IFNULL(T3.etnia,T2.etnia)) 'Etnia',FN_CATALOGODESC(30,IFNULL(T3.nacionalidad,T2.nacionalidad)) 'Nacionalidad',FN_CATALOGODESC(2,IFNULL(T4.localidad,T2.localidad)) 'Localidad',IFNULL(T4.upz,T2.upz) 'UPZ',IFNULL(T4.direccion,T2.direccion) 'Dirección',IFNULL(T4.telefono1,T2.telefono1) 'Teléfono1',IFNULL(T4.telefono2,T2.telefono2) 'Teléfono2',FN_CATALOGODESC(274,T1.punto_atencion) 'PUnto de Atención',FN_CATALOGODESC(39,T1.tipo_cita) 'Tipo de Cita',
 	T1.fecha_create 'Fecha de Asignación',T1.fecha_cita 'Fecha de la Cita',T1.hora_cita 'Hora de la Cita',T1.nombre_atendio 'Nombre quien Atendió Llamada',
@@ -65,7 +64,7 @@ left JOIN usuarios U ON A.usu_creo = U.id_usuario
 	$sql1.=whe_agendamiento();
 	$sql1.="ORDER BY `fecha_cita` ASC,`hora_cita` ASC";
 	//~ echo $sql1;
-	$_SESSION['sql_agendamiento']=$sql1;
+	$_SESSION['sql_agendamiento']=$sql1; */
 	$datos=datos_mysql($sql);
 return panel_content($datos["responseResult"],"agendamiento",19);
 }

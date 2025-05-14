@@ -87,10 +87,10 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$until_day_open=1;//dia del mes fecha abierta
-	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-52 ;//fechas abiertas hasta un determinado dia -41
+	$fecha = rango_fechas_habilitadas(11);
+	/* $until_day_open=14;//dia del mes para mantener fechas abiertas
+	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-31 ; */
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
-	//$ini=-53;
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
 	if ($d==""){$d=$t;}
@@ -98,12 +98,30 @@ function cmp_planos(){
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
 	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',true,true,'','col-35');
-	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
-	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
+	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$fecha['min'],0)");
+	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$fecha['max'],0)");
 	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','fapp');grabar('gestion',this);\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL
 	return $rta;
+}
+
+function rango_fechas_habilitadas($until_day_open) {
+    $hoy = new DateTime();
+    $anio = (int)$hoy->format('Y');
+    $mes = (int)$hoy->format('m');
+    $dia = (int)$hoy->format('d');
+
+    if ($until_day_open >= $dia) {
+        // Desde el 1 del mes anterior hasta hoy
+        $start = (new DateTime("first day of last month"))->format('Y-m-d');
+        $end = $hoy->format('Y-m-d');
+    } else {
+        // Solo desde el 1 del mes actual hasta hoy
+        $start = (new DateTime("first day of this month"))->format('Y-m-d');
+        $end = $hoy->format('Y-m-d');
+    }
+    return ['min' => $start, 'max' => $end];
 }
 
 function gra_gestion(){
@@ -2223,18 +2241,24 @@ function lis_SeguimientosUAIC($txt){
 }
 
 function lis_ruteoGestionados($txt){
-	$sql="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico', RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio',FN_CATALOGODESC(191,preclasif) 'Preclasificacion',FN_CATALOGODESC(235,clasifica) 'Clasificacion Promotor',FN_CATALOGODESC(273,riesgo) 'Riesgo',U1.nombre 'Derivado a',U1.perfil 'Perfil Derivado',R.idgeo 'Predio',R.fecha 'Fecha Gestion Final',FN_CATALOGODESC(278,R.estado_ruteo) Estado,R.famili 'Familia',P.idpeople 'Cod Persona',CONCAT(P.idpersona,'-',CONCAT(P.nombre1,' ',P.apellido1)) 'Usuario Final' 
+	$sql="SELECT R.id_ruteo AS Codigo_Registro, FN_CATALOGODESC(33,R.fuente) AS 'Fuente O Remitente', R.fecha_asig AS 'Fecha Asignación SDS', FN_CATALOGODESC(191,R.priorizacion) AS 'Cohorte De Riesgo', FN_CATALOGODESC(235,R.tipo_prior) AS 'Grupo De Población Priorizada', R.tipo_doc AS 'Tipo De Documento', R.documento AS 'Número De Documento', R.nombres AS 'Nombres Y Apellidos Del Usuario', FN_CATALOGODESC(21,R.sexo) AS 'Sexo',G.subred AS Subred, G.idgeo AS Cod_Predio, G.direccion AS Direccion, R.telefono1 AS Telefono_1, R.telefono2 AS Telefono_2, R.telefono3 AS Telefono_3,R.actividad1 AS 'Cod Usuario ASignado', U.nombre AS 'Nombre Colaborador',RG.id_rutges AS Cod_Registro, RG.fecha_llamada AS 'Fecha Llamada', FN_CATALOGODESC(270,RG.estado_llamada) AS 'Estado Contacto Telefonico',RG.estado,RG.observaciones AS Observaciones, FN_CATALOGODESC(271,RG.estado_agenda) AS 'Estado Gestion', FN_CATALOGODESC(272,RG.motivo_estado) AS 'Motivo Estado Gestion', RG.fecha_gestion AS 'Fecha Programacion Visita', RG.docu_confirm AS 'Documento Confirmado Usuario', RG.usuario_gest AS 'Cod Colaborador Asignado', RG.direccion_n AS 'Direccion Nueva', RG.sector_n AS 'Sector Catastral', RG.manzana_n AS 'N° Manzana', RG.predio_n AS 'N° Predio',FN_CATALOGODESC(191,preclasif) 'Preclasificacion',FN_CATALOGODESC(235,clasifica) 'Clasificacion Promotor',FN_CATALOGODESC(273,riesgo) 'Riesgo',U1.nombre 'Derivado a',U1.perfil 'Perfil Derivado',R.idgeo 'Predio',R.fecha 'Fecha Gestion Final',FN_CATALOGODESC(278,R.estado_ruteo) Estado,R.famili 'Familia',P.idpeople 'Cod Persona',CONCAT(P.idpersona,'-',CONCAT(P.nombre1,' ',P.apellido1)) 'Usuario Final'
 	 FROM eac_ruteo_ges RG 
 	 LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo 
 	 LEFT JOIN hog_geo G ON R.idgeo = G.idgeo 
 	 LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario 
 	 LEFT JOIN eac_ruteo_clas C ON RG.id_rutges = C.idrutges
 	 LEFT JOIN usuarios U1 ON C.profesional= U1.id_usuario
-	 LEFT JOIN person P ON R.usuario=P.idpeople ";
+	 LEFT JOIN person P ON R.usuario=P.idpeople 
+	 WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
-	// echo $sql;
-		$tot="SELECT COUNT(*) total FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario WHERE RG.estado_agenda IS NOT NULL ";	
+	 //echo $sql;
+	$tot="SELECT COUNT(*) total FROM eac_ruteo_ges RG LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo 
+	 LEFT JOIN hog_geo G ON R.idgeo = G.idgeo 
+	 LEFT JOIN usuarios U ON R.actividad1 = U.id_usuario 
+	 LEFT JOIN eac_ruteo_clas C ON RG.id_rutges = C.idrutges
+	 LEFT JOIN usuarios U1 ON C.profesional= U1.id_usuario
+	 LEFT JOIN person P ON R.usuario=P.idpeople WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$tot.=whe_date14();
 	$_SESSION['sql_'.$txt]=$sql;

@@ -42,7 +42,7 @@ function whe_frecuenciauso() {
 function lis_frecuenciauso(){
 	$info=datos_mysql("SELECT COUNT(*) total FROM `frecuenciauso` A LEFT JOIN person P ON A.idpeople=P.idpeople left JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE U.subred IN (select subred from usuarios where id_usuario='{$_SESSION['us_sds']}') ".whe_frecuenciauso());
 	$total=$info['responseResult'][0]['total'];
-	$regxPag=5;
+	$regxPag=15;
 	$pag=(isset($_POST['pag-frecuenciauso']))? ($_POST['pag-frecuenciauso']-1)* $regxPag:0;
 $sql="SELECT idfrecuencia ACCIONES,
 `idpersona` Documento,FN_CATALOGODESC(1,tipo_doc) Tipo_Documento,FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',`realizada`,A.fecha_create,A.estado

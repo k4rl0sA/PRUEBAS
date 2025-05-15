@@ -216,9 +216,9 @@ function lis_gestion(){ //revisar
 	$pag=(isset($_POST['pag-gestion']))? ($_POST['pag-gestion']-1)* $regxPag:0;
 		
 		$sql="SELECT id_rutges ACCIONES,id_rutges 'Cod Registro',erg.fecha_llamada 'Fecha',FN_CATALOGODESC(270,estado_llamada) 'Estado de la LLamada',
-		FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó' 
+		FN_CATALOGODESC(271,estado_agenda) 'Estado de la Agenda',erg.usuario_gest 'Asignado A', fecha_create 'Creó',erg.estado 'Estado'
  FROM eac_ruteo_ges erg 
- WHERE idruteo=$id[0]";
+ WHERE idruteo=$id[0] and estado='A' ";
 		$sql.=" ORDER BY fecha_create";
 		// echo $sql;
 		$_SESSION['sql_person']=$sql;

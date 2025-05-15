@@ -2322,7 +2322,7 @@ function lis_agendamiento($txt){
 	A.fecha_create 'Fecha de Asignación',A.fecha_cita 'Fecha de la Cita',A.hora_cita 'Hora de la Cita',A.nombre_atendio 'Nombre quien Atendió Llamada',A.usu_creo 'Digitador',A.observac_cita 'Observación Cita',IFNULL(A.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(A.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(A.confirma_cita,'-') 'Confirmo Cita',ifnull(A.msjtxt,'-') 'Desea Envio de Msj',
 	ifnull(A.usu_update,'-') 'Digitador1',ifnull(A.observac_llamadas,'-') 'Observaciones de Recordación',ifnull(A.fecha_llamada2,'-') 'Fecha Llamada por Efectividad',ifnull(A.nombre_llamada2,'-') 'Nombre quien Contesto Llamada',ifnull(FN_CATALOGODESC(41,A.motivo_inasistencia),'-') 'Motivo de la Inasistencia',ifnull(A.reasigno,'-') 'Se reasigno la Cita',ifnull(A.usu_update,'-') 'Digitador2',ifnull(A.observac_llamada2,'-') 'Observaciones de Inasistencia',FN_CATALOGODESC(276,A.estado) 'Estado'
-FROM agendamiento A
+FROM agendamiento A 
 	LEFT JOIN person P ON A.idpeople = P.idpeople
 	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
 	LEFT JOIN usuarios U1 ON A.usu_update = U1.id_usuario

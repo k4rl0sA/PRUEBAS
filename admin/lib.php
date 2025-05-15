@@ -1781,9 +1781,7 @@ WHERE 1";
 function lis_cope($txt){
 	$sql="SELECT 
 G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, G.subred AS Subred,G.localidad AS Localidad,FN_CATALOGODESC(3,G.zona) AS Zona, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, 
-
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad ,FN_CATALOGODESC(16,P.etnia) AS ETNIA, FN_CATALOGODESC(15,P.pueblo) AS Pueblo, P.idioma AS Habla_Español, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(54,P.vinculo_jefe) AS Vinculo_Jefe_Hogar, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion,FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, FN_CATALOGODESC(180,P.niveduca) AS Nivel_Educativo, P.abanesc AS Razón_Abandono_Escolar, P.tiemdesem AS Tiempo_Desempleo,
-
 C.fecha_toma AS Fecha,
 FN_CATALOGODESC(120,C.reporta)  AS Caso_Reportado,
 FN_CATALOGODESC(135,C.pregunta1)  AS Pregunta_1,
@@ -1814,14 +1812,11 @@ FN_CATALOGODESC(135,C.pregunta25)  AS Pregunta_25,
 FN_CATALOGODESC(135,C.pregunta26)  AS Pregunta_26,
 FN_CATALOGODESC(135,C.pregunta27)  AS Pregunta_27,
 FN_CATALOGODESC(135,C.pregunta28)  AS Pregunta_28,
-
 C.puntajea  AS Puntaje_Afrontamiento,
 C.descripciona  AS Descipcion_Afrontamiento,
 C.puntajee  AS Puntaje_Evitacion,
 C.descripcione  AS Descipcion_Evitacion
-
  FROM `hog_tam_cope` C
- 
 LEFT JOIN person P ON C.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo	

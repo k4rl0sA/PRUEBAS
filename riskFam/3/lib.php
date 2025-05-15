@@ -148,6 +148,7 @@ SELECT
 FROM Apgar_Completado AC;";
 $res2 = datos_mysql($sql2);
 $estruFamil = $res2['responseResult'][0]['EF_100'];
+$puntaje=$res2['responseResult'][0]['puntaje']
 $apgar = $res2['responseResult'][0]['Descripcion_APGAR'];
 
 //Riesgo Vulnerabilidad Social
@@ -184,6 +185,7 @@ $riesgos = [
         "name" => "Estructura Familiar",
         "value" => $estruFamil,
         "weight" => 0.20,
+        "puntaje" => $puntaje,
         "apgar" => $apgar,
         "description" => "Influye en el apoyo social, la funcionalidad y la estabilidad del hogar."
     ],

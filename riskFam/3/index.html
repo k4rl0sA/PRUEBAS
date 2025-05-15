@@ -1151,6 +1151,19 @@
       `;
     }
 
+     if (key === 'familyStructure' && (factor.puntaje || factor.apgar)) {
+      const estratoText = factor.estrato ? `Estrato: ${factor.estrato}` : '';
+      const ingresoText = factor.ingreso ? `Nivel de ingreso: ${factor.ingreso}` : '';
+      additionalInfo = `
+        <div class="risk-factor-tooltip">
+          <div class="tooltip-content">
+            ${estratoText}<br>
+            ${ingresoText}
+          </div>
+        </div>
+      `;
+    }
+
         const factorElement = document.createElement('div');
         factorElement.className = 'risk-factor';
         factorElement.innerHTML = `

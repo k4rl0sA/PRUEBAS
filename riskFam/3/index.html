@@ -1152,13 +1152,13 @@
     }
 
      if (key === 'familyStructure' && (factor.puntaje || factor.apgar)) {
-      const estratoText = factor.estrato ? `Estrato: ${factor.estrato}` : '';
-      const ingresoText = factor.ingreso ? `Nivel de ingreso: ${factor.ingreso}` : '';
+      const puntajeText = factor.puntaje ? `Puntaje: ${factor.puntaje}` : '';
+      const ingresoText = factor.apgar ? `Descripcion Apgar: ${factor.apgar}` : '';
       additionalInfo = `
         <div class="risk-factor-tooltip">
           <div class="tooltip-content">
-            ${estratoText}<br>
-            ${ingresoText}
+            ${puntajeText}<br>
+            ${apgarText}
           </div>
         </div>
       `;

@@ -1151,19 +1151,6 @@
       `;
     }
 
-/*      if (key === 'familyStructure' && (factor.puntaje || factor.apgar)) {
-      const puntajeText = factor.puntaje ? `Puntaje: ${factor.puntaje}` : '';
-      const ingresoText = factor.apgar ? `Descripcion Apgar: ${factor.apgar}` : '';
-      additionalInfo = `
-        <div class="risk-factor-tooltip">
-          <div class="tooltip-content">
-            ${puntajeText}<br>
-            ${apgarText}
-          </div>
-        </div>
-      `;
-    } */
-
         const factorElement = document.createElement('div');
         factorElement.className = 'risk-factor';
         factorElement.innerHTML = `

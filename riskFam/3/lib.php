@@ -148,7 +148,7 @@ SELECT
 FROM Apgar_Completado AC;";
 $res2 = datos_mysql($sql2);
 $estruFamil = $res2['responseResult'][0]['EF_100'];
-$puntaje=$res2['responseResult'][0]['puntaje']
+$puntaje=$res2['responseResult'][0]['puntaje'];
 $apgar = $res2['responseResult'][0]['Descripcion_APGAR'];
 
 //Riesgo Vulnerabilidad Social

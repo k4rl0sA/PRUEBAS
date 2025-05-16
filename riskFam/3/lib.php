@@ -11,7 +11,7 @@ $tipo = $_GET['tipo'] ?? null;
 if (!$document) {
     echo json_encode(["error" => "Documento no proporcionado."]);
     exit;
-}elseif ($tipo) {
+}elseif (!$tipo) {
     echo json_encode(["error" => "Tipo de documento no proporcionado."]);
     exit;
 }

@@ -59,37 +59,41 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
     echo json_encode($out);
 } */
 
-function opc_3(){
-    $title=['Coord. Y', 'Coord. X', 'Estado', 'Marker', 'URL'];
-    $sql= "SELECT 
+function opc_3() {
+    $title = ['Coord. Y', 'Coord. X', 'Estado', 'Marker', 'URL'];
+    
+    $sql = "SELECT 
         hg.cordy,
         hg.cordx, 
-        IFNULL(hc.fecha,'NO') as Caracterizado,
+        IFNULL(hc.fecha, 'NO') as Caracterizado,
         CASE
             WHEN hc.fecha IS NULL THEN 'red'
             ELSE 'blue'
         END AS color,
-        CONCAT('https:\/\/www.google.com\/maps\/') as url
+        'https://www.google.com/maps/' as url
     FROM hog_geo hg 
-    LEFT JOIN geo_gest g ON hg.idgeo=g.idgeo 
-    LEFT JOIN hog_fam f ON hg.idgeo=f.idpre
-    LEFT JOIN hog_carac hc ON f.id_fam=hc.idfam
-    WHERE 1 ". whe_opc_3();
+    LEFT JOIN geo_gest g ON hg.idgeo = g.idgeo 
+    LEFT JOIN hog_fam f ON hg.idgeo = f.idpre
+    LEFT JOIN hog_carac hc ON f.id_fam = hc.idfam
+    WHERE 1 " . whe_opc_3();
+
     $data = datos_mysql($sql);
     $json = $data['responseResult'];
+
     $rta = array();
     foreach ($json as $fila) {
         $row = array(
-            floatval($fila['cordy']),
-            floatval($fila['cordx']),
-            $fila['Caracterizado'],
-            $fila['color'],
-            $fila['url']  // Añadiendo la URL al array
+            floatval($fila['cordy']),  // Latitud
+            floatval($fila['cordx']),  // Longitud
+            $fila['Caracterizado'],    // Estado
+            $fila['color'],            // Color del marcador
+            $fila['url']              // URL genérica
         );
         $rta[] = $row;
     }
+    
     $out = array_merge([$title], $rta);
-    echo json_encode($out);
+    echo json_encode($out, JSON_NUMERIC_CHECK);
 }
 
 function whe_opc_3() {

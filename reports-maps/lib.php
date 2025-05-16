@@ -45,11 +45,11 @@ function opc_3(){
         FROM hog_geo hg 
         left JOIN geo_gest g ON hg.idgeo=g.idgeo 
  */
-        $sql= "select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado, 
-        CASE hc.fecha 
-        WHEN '' THEN 'red'
-        else 'blue'
-		end as color
+        $sql= " select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado, 
+         CASE
+        WHEN hc.fecha IS NULL THEN 'red'
+        ELSE 'blue'
+    END AS color
          FROM hog_geo hg 
         left JOIN geo_gest g ON hg.idgeo=g.idgeo 
         LEFT JOIN hog_fam f ON hg.idgeo=f.idpre

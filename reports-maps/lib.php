@@ -72,7 +72,7 @@ function whe_opc_3() {
 	if ($_POST['floc'])
 		$sql .= " AND localidad = '".$_POST['floc']."'";
 	if ($_POST['fter'])
-		$sql .= " AND territorio =(select descripcion from catadeta where idcatalogo=202 AND idcatadeta=".$_POST['fter'].")";
+		$sql .= " AND territorio =(select descripcion from catadeta where idcatalogo=283 AND idcatadeta=".$_POST['fter'].")";
 	if ($_POST['fest']){
 		$sql .= " AND estado_v ='".$_POST['fest']."' ";
 	}
@@ -82,7 +82,7 @@ function whe_opc_3() {
 
 function opc_flocfter(){
     $id=divide($_REQUEST['id']);
-    $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=202 and estado='A' and 
+    $sql="SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo=283 and estado='A' and 
     valor=(select valor from catadeta where idcatalogo=2 AND  idcatadeta=$id[0]) ORDER BY CAST(idcatadeta AS UNSIGNED)";
     $info=datos_mysql($sql);		
     return json_encode($info['responseResult']);

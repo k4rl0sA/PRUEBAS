@@ -29,7 +29,7 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 
 function opc_3(){
     $title=['Coord. Y', 'Coord. X', 'Estado','Marker'];
-
+/* 
     $sql= "SELECT 
         cordy,cordx,FN_CATALOGODESC(44, estado_v) AS estado,
         CASE estado_v
@@ -44,6 +44,16 @@ function opc_3(){
             END AS color
         FROM hog_geo hg 
         left JOIN geo_gest g ON hg.idgeo=g.idgeo 
+ */
+        $sql= "select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado 
+        CASE hc.fecha 
+        WHEN '' THEN 'red'
+        else 'blue'
+		end as color
+         FROM hog_geo hg 
+        left JOIN geo_gest g ON hg.idgeo=g.idgeo 
+        LEFT JOIN hog_fam f ON hg.idgeo=f.idpre
+        LEFT JOIN hog_carac hc ON f.id_fam=hc.idfam
         WHERE 1 ". whe_opc_3();
 
         $data = datos_mysql($sql);
@@ -54,7 +64,7 @@ function opc_3(){
             $row = array(
                 floatval($fila['cordy']),
                 floatval($fila['cordx']),
-                $fila['estado'],
+                $fila['Caracterizado'],
                 $fila['color']
             );
             $rta[] = $row;

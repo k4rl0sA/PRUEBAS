@@ -45,7 +45,8 @@ function opc_3(){
         FROM hog_geo hg 
         left JOIN geo_gest g ON hg.idgeo=g.idgeo 
  */
-        $sql= " select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado, 
+        $sql= " select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado,
+        'https://www.google.com/maps/',
          CASE
         WHEN hc.fecha IS NULL THEN 'red'
         ELSE 'blue'

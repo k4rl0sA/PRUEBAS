@@ -51,7 +51,7 @@ $datos = $res['responseResult'][0];
 
 //Riesgo Socioeconómico
 $sql1="SELECT 
-  G.estrato AS 'estrato',FN_CATALOGODESC(13,C.ingreso) AS 'Ingreso Economico', ROUND(((CASE G.estrato  WHEN 1 THEN 6 WHEN 2 THEN 5 WHEN 3 THEN 4 WHEN 4 THEN 3 WHEN 5 THEN 2 WHEN 6 THEN 1 ELSE 0 END + CASE C.ingreso  WHEN 1 THEN 3 WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0 END ) - 2) * 100 / 7,2) AS SE
+  G.estrato AS 'Estrato',FN_CATALOGODESC(13,C.ingreso) AS 'Ingreso', ROUND(((CASE G.estrato  WHEN 1 THEN 6 WHEN 2 THEN 5 WHEN 3 THEN 4 WHEN 4 THEN 3 WHEN 5 THEN 2 WHEN 6 THEN 1 ELSE 0 END + CASE C.ingreso  WHEN 1 THEN 3 WHEN 2 THEN 2  WHEN 3 THEN 1 ELSE 0 END ) - 2) * 100 / 7,2) AS SE
 FROM `person` P
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
@@ -61,8 +61,8 @@ AND P.idpersona = '$document'  AND P.tipo_doc='$tipo' LIMIT 1";
 
 $res1 = datos_mysql($sql1);
 $socioEcono = $res1['responseResult'][0]['SE'];
-$estrato= $res1['responseResult'][0]['estrato'];
-$ingreso= $res1['responseResult'][0]['ingreso'];
+$estrato= $res1['responseResult'][0]['Estrato'];
+$ingreso= $res1['responseResult'][0]['Ingreso'];
 
 //Riesgo Estructura Familiar
 $sql2=" WITH Ultimo_Apgar AS (

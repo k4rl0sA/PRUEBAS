@@ -55,9 +55,6 @@ LEFT JOIN hog_carac C ON F.id_fam = C.idfam
 WHERE C.fecha = (SELECT MAX(C2.fecha) FROM hog_carac C2 WHERE C2.idfam = C.idfam)
 AND P.idpersona = '$document'  AND P.tipo_doc='$tipo' LIMIT 1";
 
-
-
-
 $res1 = datos_mysql($sql1);
 $socioEcono = $res1['responseResult'][0]['SE'];
 $estrato= $res1['responseResult'][0]['estrato'];

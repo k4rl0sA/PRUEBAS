@@ -42,7 +42,8 @@ function opc_3(){
             WHEN 7 THEN 'green'
             ELSE 'red' 
             END AS color
-        FROM hog_geo hg
+        FROM hog_geo hg 
+        left JOIN geo_gest g ON hg.idgeo=g.idgeo 
         WHERE 1 ". whe_opc_3();
 
         $data = datos_mysql($sql);

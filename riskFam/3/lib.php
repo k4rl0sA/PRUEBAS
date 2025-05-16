@@ -7,8 +7,12 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/../../libs/gestion.php';
 // Obtener el documento desde la URL
 $document = $_GET['document'] ?? null;
+$tipo = $_GET['tipo'] ?? null;
 if (!$document) {
     echo json_encode(["error" => "Documento no proporcionado."]);
+    exit;
+}elseif ($tipo) {
+    echo json_encode(["error" => "Tipo de documento no proporcionado."]);
     exit;
 }
 // Consultar datos personales desde la tabla person
@@ -35,7 +39,7 @@ $sql = "SELECT
 FROM person P
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam 
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
-WHERE idpersona = '$document' 
+WHERE idpersona = '$document' and tipo_doc='$tipo'
         LIMIT 1";
 $res = datos_mysql($sql);
 if ($res['code'] !== 0 || empty($res['responseResult'])) {

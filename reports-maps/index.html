@@ -958,11 +958,11 @@
     const searchControl = new L.Control.Search({
       layer: prediosLayer,
       propertyName: "DIRECCION",
-      zoom: 5,
+      zoom: 20,
       marker: false,
       textPlaceholder: "Buscar dirección...",
       moveToLocation: function(latlng, title, map) {
-        map.setView(latlng, 18);
+        map.setView(latlng, 30);
       }
     });
 

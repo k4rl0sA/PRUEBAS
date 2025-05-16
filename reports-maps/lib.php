@@ -27,24 +27,8 @@ if (isset($_POST['a']) && isset($_POST['tb'])) {
 }
 
 
-function opc_3(){
+/* function opc_3(){
     $title=['Coord. Y', 'Coord. X', 'Estado','Marker'];
-/* 
-    $sql= "SELECT 
-        cordy,cordx,FN_CATALOGODESC(44, estado_v) AS estado,
-        CASE estado_v
-            WHEN 1 THEN 'blue'
-            WHEN 2 THEN 'yellow'
-            WHEN 3 THEN 'yellow'
-            WHEN 4 THEN 'purple'
-            WHEN 5 THEN 'pink'
-            WHEN 6 THEN 'ltblue'
-            WHEN 7 THEN 'green'
-            ELSE 'red' 
-            END AS color
-        FROM hog_geo hg 
-        left JOIN geo_gest g ON hg.idgeo=g.idgeo 
- */
         $sql= " select  hg.cordy,hg.cordx, ifnull(hc.fecha,'NO') as Caracterizado,
         'https://www.google.com/maps/',
          CASE
@@ -70,14 +54,43 @@ function opc_3(){
             );
             $rta[] = $row;
         }
-        /* if (empty($rta)) {
-            $rta = [[null, null, null, null]];
-        } */
         $out= array_merge([$title],$rta);
     // var_dump($sql);
     echo json_encode($out);
-}
+} */
 
+function opc_3(){
+    $title=['Coord. Y', 'Coord. X', 'Estado', 'Marker', 'URL'];
+    $sql= "SELECT 
+        hg.cordy,
+        hg.cordx, 
+        IFNULL(hc.fecha,'NO') as Caracterizado,
+        CASE
+            WHEN hc.fecha IS NULL THEN 'red'
+            ELSE 'blue'
+        END AS color,
+        CONCAT('https://www.google.com/maps/?q=', hg.cordy, ',', hg.cordx) as url
+    FROM hog_geo hg 
+    LEFT JOIN geo_gest g ON hg.idgeo=g.idgeo 
+    LEFT JOIN hog_fam f ON hg.idgeo=f.idpre
+    LEFT JOIN hog_carac hc ON f.id_fam=hc.idfam
+    WHERE 1 ". whe_opc_3();
+    $data = datos_mysql($sql);
+    $json = $data['responseResult'];
+    $rta = array();
+    foreach ($json as $fila) {
+        $row = array(
+            floatval($fila['cordy']),
+            floatval($fila['cordx']),
+            $fila['Caracterizado'],
+            $fila['color'],
+            $fila['url']  // Añadiendo la URL al array
+        );
+        $rta[] = $row;
+    }
+    $out = array_merge([$title], $rta);
+    echo json_encode($out);
+}
 
 function whe_opc_3() {
 	$sql = "";

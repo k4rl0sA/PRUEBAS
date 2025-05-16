@@ -224,6 +224,8 @@ function men_tamfindrisc(){
    function cap_menus($a,$b='cap',$con='con') {
 	$rta = "";
 	$acc=rol($a);
+	$rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
+	
 	if ($a=='findrisc' && isset($acc['crear']) && $acc['crear']=='SI') {  
 	 $rta .= "<li class='icono $a grabar'      title='Grabar'          OnClick=\"grabar('$a',this);\"></li>"; //~ openModal();
 	  }

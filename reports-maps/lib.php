@@ -69,7 +69,7 @@ function opc_3(){
             WHEN hc.fecha IS NULL THEN 'red'
             ELSE 'blue'
         END AS color,
-        CONCAT('https://www.google.com/maps/') as url,
+        CONCAT('https://www.google.com/maps/') as url
     FROM hog_geo hg 
     LEFT JOIN geo_gest g ON hg.idgeo=g.idgeo 
     LEFT JOIN hog_fam f ON hg.idgeo=f.idpre

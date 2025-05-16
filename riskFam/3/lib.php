@@ -8,11 +8,8 @@ require_once __DIR__ . '/../../libs/gestion.php';
 // Obtener el documento desde la URL
 $document = $_GET['document'] ?? null;
 $tipo = $_GET['tipo'] ?? null;
-if (!$document) {
-    echo json_encode(["error" => "Documento no proporcionado."]);
-    exit;
-}elseif (!$tipo) {
-    echo json_encode(["error" => "Tipo de documento no proporcionado."]);
+if (!$document || !$tipo) {
+    echo json_encode(["error" => "Documento o tipo no proporcionado."]);
     exit;
 }
 // Consultar datos personales desde la tabla person

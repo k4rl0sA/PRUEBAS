@@ -143,10 +143,10 @@ function cmp_segnoreg(){
   $o='antrop';
   $c[]=new cmp($o,'e',null,'VALORACIÓN ANTROPOMETRICA',$w);
   $men5 = ($p['mes']<60) ? true : false ;
-  $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$me5.' ','Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$men5,'','col-25');
+  $c[]=new cmp('peri_cefalico','sd',4,$d,$w.' '.$me5.' '.$o,'Perimetro Cefalico (Cm)','peri_cefalico',null,null,true,$men5,'','col-25');
 
   $men = ($p['mes']>= 6 && $p['mes']< 60) ? true : false ;
-  $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$me5.' ','Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$men,'','col-25');
+  $c[]=new cmp('peri_braqueal','sd',4,$d,$w.' '.$me5.' '.$o,'Perimetro Braquial  (Cm)','peri_braqueal',null,null,true,$men,'','col-25');
   $c[]=new cmp('peso','sd',6,$d,$w.' '.$o,'Peso (Kg)','peso','rgxpeso',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
   $c[]=new cmp('imc','sd',6,$d,$w.' '.$bl.' '.$o,'Imc','imc',null,null,false,false,'','col-3');

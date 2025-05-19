@@ -81,7 +81,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
   $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");//
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
-  $c[]=new cmp('prioridad','s',3,$d,$w.' '.$no,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();enCroGes();");
+  $c[]=new cmp('prioridad','s',3,$d,$w,'Prioridad','prioridad',null,null,true,true,'','col-2',"enabPrioEtn();enCroGes();");
   
     $o='ges';
   $c[]=new cmp($o,'e',null,'GESTANTES',$w);

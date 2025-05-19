@@ -151,7 +151,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('talla','sd',5,$d,$w.' '.$o,'Talla (Cm)','talla','rgxtalla',null,true,true,'','col-25',"calImc('peso','talla','imc');Zsco('zscore','../etnias/embsegnoreg.php');");
   $c[]=new cmp('imc','sd',6,$d,$w.' '.$bl.' '.$o,'Imc','imc',null,null,false,false,'','col-3');
   $c[]=new cmp('zscore','t',50,$d,$w.' '.$bl.' '.$o,'Zcore','zscore',null,null,false,$men5,'','col-35');
-  $c[]=new cmp('clasi_nut','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,true,true,'','col-35');
+  $c[]=new cmp('clasi_nut','s',3,$d,$w.' '.$o,'Clasificación Nutricional','clasi_nutri',null,null,false,true,'','col-35');
   
   $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);

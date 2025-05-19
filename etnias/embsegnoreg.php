@@ -403,7 +403,7 @@ function opc_clasi_nutri($id=''){
         // var_dump($a);
 		if ($a=='segnoreg' && $b=='acciones'){
 			$rta="<nav class='menu right'>";
-      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,['fecha_seg','segui','estado_seg','prioridad','gestaciones', 'partos','abortos','cesareas','vivos','muertos','fum','edad_gest','aten_med','aten_par','sistolica','diastolica','frec_cardiaca','frec_respiratoria','saturacion','gluco','peso','talla','clasi_nut','ser_remigesti','asist_controles','exa_labo','cons_micronutri','esq_vacu'],'../etnias/embsegnoreg.php');\"></li>";//setTimeout(enabPrioEtn,700);enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);
+      $rta.="<li class='icono editar' title='Editar' id='".$c['ACCIONES']."' Onclick=\"setTimeout(getData,500,'segnoreg',event,this,['fecha_seg','segui','estado_seg','prioridad','gestaciones', 'partos','abortos','cesareas','vivos','muertos','fum','edad_gest','signos_alarma1','diag_sifigest','adhe_tto','diag_sificong','seg_partera','seg_med_ancestral1','aten_med','aten_par','sistolica','diastolica','frec_cardiaca','frec_respiratoria','saturacion','gluco','peso','talla','clasi_nut','ser_remigesti','asist_controles','exa_labo','cons_micronutri','esq_vacu'],'../etnias/embsegnoreg.php');\"></li>";//setTimeout(enabPrioEtn,700);enbValue('id','segnoreg','".$c['ACCIONES']."');enaFie(document.getElementById('observaciones'),false);
 			}
 		return $rta;
 	}

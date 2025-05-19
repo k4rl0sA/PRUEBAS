@@ -155,7 +155,7 @@ function cmp_segnoreg(){
   
   $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
-  $c[]=new cmp('ser_remigesti','s',3,$d,$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,true,true,'','col-25');
+  $c[]=new cmp('ser_remigesti','s',3,$d,$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-25');
   $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-75');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put(); 
 	return $rta;

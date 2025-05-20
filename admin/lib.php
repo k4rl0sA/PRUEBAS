@@ -27,7 +27,7 @@ function perfilUsu(){
 
 
 function cmp_gestionusu(){
-	$rta="";
+/* 	$rta="";
 	$hoy=date('Y-m-d');
 	$t=['gestion'=>'','perfil'=>'','documento'=>'','usuarios'=>'','nombre'=>'','correo'=>'','subred'=>'','bina'=>'','territorio'=>'','perfiln'=>''];
 	$d='';
@@ -46,7 +46,7 @@ function cmp_gestionusu(){
 	$c[]=new cmp('perfiln','s','3',$d['perfiln'],$w.' GsT cRL '.$o,'Perfil Nuevo','Perfil',null,'',true,false,'','col-15',"enClSe('perfiln','prF',[['bIN'],['TEr']]);");
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"grabar('adm_usuarios','adm_usuarios');\">Guardar</button></center>";
-	return $rta;
+	return $rta; */
 }
 
 

@@ -243,7 +243,7 @@ function gra_sesiones_psi(){
 function opc_cod_admin4($id='') {
 	// var_dump($_REQUEST['id']);
 	$cod=divide($_REQUEST['id']);
-	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.idpeople='".$cod[0]."' AND cod_cups=9 AND final_consul IN(17,18,19,20,21,22,23,24) ORDER BY 1", $id);
+	return opc_sql("SELECT cod_admin,CONCAT_WS(' - ',cod_admin,FN_CATALOGODESC(127,final_consul))  from adm_facturacion af WHERE af.idpeople='".$cod[0]."' AND cod_cups IN (9,16) AND final_consul IN(17,18,19,20,21,22,23,24) ORDER BY 1", $id);
 }
 function opc_psi_validacion9($id='') {
 	return opc_sql("SELECT `idcatadeta`,descripcion FROM `catadeta` WHERE idcatalogo = 124 and estado='A' ORDER BY 1",$id);

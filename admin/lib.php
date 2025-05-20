@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors',1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors','1');
 require_once "../libs/gestion.php";
 if ($_POST['a']!='opc') $perf=perfil($_POST['tb']);
 if (!isset($_SESSION['us_sds'])) die("<script>window.top.location.href='/';</script>");
@@ -89,9 +87,8 @@ function whe_adm_usuarios() {
 
 function cmp_planos(){
 	$rta="";
-	$fecha = rango_fechas_habilitadas(11);
-	/* $until_day_open=14;//dia del mes para mantener fechas abiertas
-	$ini = (date('d')>$until_day_open) ? -date('d'):-date('d')-31 ; */
+	$until_day_open=14;//dia del mes fecha abierta
+	$ini = (date('d')>$until_day_open) ? -date('d')-31:-date('d')-29 ;//fechas abiertas hasta un determinado dia -41
 	//$ini=date('d')<11 ?-date('d')-31:-date('d');//normal
 	$t=['proceso'=>'','rol'=>'','documento'=>'','usuarios'=>'','descarga'=>'','fechad'=>'','fechah'=>''];
 	$d='';
@@ -100,30 +97,12 @@ function cmp_planos(){
 	$o='infusu';
 	$c[]=new cmp($o,'e',null,'DESCARGA DE PLANOS',$w);
 	$c[]=new cmp('proceso','s',3,$d['proceso'],$w.' DwL '.$o,'Proceso','proceso',null,'',true,true,'','col-35');
-	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$fecha['min'],0)");
-	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$fecha['max'],0)");
+	$c[]=new cmp('fechad','d',10,$d['fechad'],$w.' DwL '.$o,'Desde','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
+	$c[]=new cmp('fechah','d',10,$d['fechah'],$w.' DwL '.$o,'Hasta','proceso',null,'',true,true,'','col-2',"validDate(this,$ini,0)");
 	// $c[]=new cmp('descarga','t',100,$d['descarga'],$w.' '.$o,'Ultima Descarga','rol',null,'',false,false,'','col-5');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put();
 	$rta.="<center><button style='background-color:#4d4eef;border-radius:12px;color:white;padding:12px;text-align:center;cursor:pointer;' type='button' Onclick=\"DownloadCsv('lis','planos','fapp');grabar('gestion',this);\">Descargar</button></center>";//DownloadCsv('lis','plano','DwL
 	return $rta;
-}
-
-function rango_fechas_habilitadas($until_day_open) {
-    $hoy = new DateTime();
-    $anio = (int)$hoy->format('Y');
-    $mes = (int)$hoy->format('m');
-    $dia = (int)$hoy->format('d');
-
-    if ($until_day_open >= $dia) {
-        // Desde el 1 del mes anterior hasta hoy
-        $start = (new DateTime("first day of last month"))->format('Y-m-d');
-        $end = $hoy->format('Y-m-d');
-    } else {
-        // Solo desde el 1 del mes actual hasta hoy
-        $start = (new DateTime("first day of this month"))->format('Y-m-d');
-        $end = $hoy->format('Y-m-d');
-    }
-    return ['min' => $start, 'max' => $end];
 }
 
 function gra_gestion(){

@@ -140,7 +140,7 @@ function gra_routing(){
           $sql_id = "SELECT LAST_INSERT_ID() as id_ruteo";
     $result = datos_mysql($sql_id);
     $last_id = $result['responseResult'][0]['id_ruteo'] ?? null;
-    return $rta . '<br>El id creado fue el : ' . $last_id;
+    return $rta . '<br>El id creado fue el : <span style="color:red;">' . $last_id . '</span>';
 }
 function opc_perfil1($id=''){
     return opc_sql("SELECT idcatadeta, descripcion FROM catadeta WHERE idcatalogo=218 AND estado='A' ORDER BY LENGTH(idcatadeta), idcatadeta", $id);

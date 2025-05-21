@@ -2276,6 +2276,34 @@ WHERE 1";
 	echo json_encode($rta);
 }
 
+function lis_SeguiRutEmb($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, ES.idsegnoreg AS Cod_Registro, G.subred AS Subred,ES.idpeople AS Cod_Persona, 
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento,P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,
+ES.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,ES.segui) AS Número_Seguimiento, FN_CATALOGODESC(73,ES.estado_seg) AS Estado, FN_CATALOGODESC(265,ES.motivo) AS Motivo_Fallido, FN_CATALOGODESC(258,ES.prioridad) AS Prioridad, ES.gestaciones As Gestaciones, ES.partos AS Partos, ES.abortos AS Abortos, ES.cesareas AS Cesareas, ES.vivos AS Vivos, ES.muertos AS Muertos, ES.fum AS Fecha_Ultima_Regla, ES.edad_gest AS Edad_Gestacional, ES.fecha_obs AS Fecha_Eve_Obs, FN_CATALOGODESC(259,ES.resul_gest) AS Resultado_Gestación, ES.peso_nacer AS Peso_al_Nacer, FN_CATALOGODESC(170,ES.asist_controles) AS Asiste_Control, FN_CATALOGODESC(170,ES.exa_labo) AS Examen_Laboratorios, FN_CATALOGODESC(170,ES.cons_micronutri) AS Micronutrientes, FN_CATALOGODESC(170,ES.esq_vacu) AS Esquema_Vacunación, FN_CATALOGODESC(170,ES.signos_alarma1) AS Signos_Alarma, FN_CATALOGODESC(170,ES.diag_sifigest) AS Diag_Sifilis_Gestacional, FN_CATALOGODESC(170,ES.adhe_tto) AS Adherencia_Tratamiento, FN_CATALOGODESC(170,ES.diag_sificong) AS Diag_Sifilis_Congenita, FN_CATALOGODESC(170,ES.seg_partera) AS Seguimiento_Partera, FN_CATALOGODESC(170,ES.seg_med_ancestral1) AS Segumiento_Medico_Ancestral, 
+FN_CATALOGODESC(252,ES.diag_cronico) AS Diagnosico_Cronico, ES.cual AS Cual, FN_CATALOGODESC(170,ES.tto_enf) AS Cuenta_Tratamiento_Enfermera, FN_CATALOGODESC(170,ES.ctrl_cronico) AS Control_Cronicos, FN_CATALOGODESC(170,ES.signos_alarma2) AS Presenta_Signos_Alarma, FN_CATALOGODESC(170,ES.seg_med_ancestral2) AS Segumiento_Medico_Ancestral, 
+ES.doc_madre AS Docuemnto_Madre, FN_CATALOGODESC(170,ES.ctrl_cyd) AS Control_CyD, FN_CATALOGODESC(170,ES.lactancia_mat) AS Recibe_Lactancia_Materna, FN_CATALOGODESC(170,ES.esq_vacunacion) AS Vacunación, FN_CATALOGODESC(170,ES.sig_alarma_seg) AS Signos_Alarma,	FN_CATALOGODESC(170,ES.seg_med_ancestral3) AS Seguimiento_Medico_Ancestral,
+FN_CATALOGODESC(170,ES.at_med) AS Atención_Medico_Ancestral, FN_CATALOGODESC(170,ES.at_partera) AS Atención_Partera, ES.sistolica AS Sistolica,	ES.diastolica AS Diastolica, ES.frec_cardiaca AS Frecuencia_Cardiaca, ES.frec_respiratoria AS Frecuencia_Respiratoria, ES.saturacion AS Saturación, ES.gluco AS Glucometria, ES.peri_cefalico AS Perimetro_Cefalico, ES.peri_braqueal AS Perimetro_Braqueal, ES.peso AS Peso, ES.talla, ES.imc,	ES.zcore, FN_CATALOGODESC(260,ES.clasi_nutri) AS Clasificación_Nutricional,	FN_CATALOGODESC(261,ES.ser_remigesti) AS Remision_Gestion, ES.observaciones AS Observaciones, ES.usu_creo ,U.nombre AS Nombre_Creo,
+U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, ES.estado AS Estado_Registro
+FROM emb_segreg ES
+LEFT JOIN person P ON ES.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario
+WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred24();
+	$sql.=whe_date24();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	 WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred24();
+	$tot.=whe_date24();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 function lis_frecuencia($txt){
 	$sql="SELECT G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',F.idfrecuencia 'Cod Registro',F.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',F.fecha_create 'Creada',F.usu_creo 'id Creo',U.nombre 'nombre Creo',F.fecha_update 'Editado',F.usu_update 'Edito',U1.nombre 'Nombre Edito',F.realizada,F.estado
 		from frecuenciauso F 

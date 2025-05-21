@@ -2304,6 +2304,33 @@ WHERE 1";
 	echo json_encode($rta);
 }
 
+function lis_SeguiHosEmb($txt){
+	$sql="SELECT 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, ES.idseg AS Cod_Registro, G.subred AS Subred,ES.idpeople AS Cod_Persona, 
+P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento,P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,
+ES.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,ES.segui) AS Número_Seguimiento, FN_CATALOGODESC(73,ES.estado_seg) AS Estado, FN_CATALOGODESC(265,ES.motivo) AS Motivo_Fallido, FN_CATALOGODESC(262,ES.interven) AS Intervención, FN_CATALOGODESC(170,ES.gestante) AS Gestante, ES.edad_gest AS Edad_gestacional,	FN_CATALOGODESC(263,ES.paren) AS Parentesco, ES.Nom_fami AS Nombre_familiar, FN_CATALOGODESC(1,ES.tipo_doc) AS Tipo_Documento, ES.num_doc AS Número_Documento, ES.tel_conta AS Telefono_Contacto, FN_CATALOGODESC(264,ES.ubi) AS Ubicación, ES.ser_req AS Servcio_Rquereido, ES.fecha_ing AS Fecha_Ingreso,	ES.uss_ing AS USS_Ingreso, ES.motivo_cons AS Motivo_Consulta, ES.uss_tras AS USS_Traslado,	ES.ing_unidad AS Ingrseo_Unidad, ES.ante_salud AS Antecedentes_Salud, ES.imp_diag AS Impresion_Diagnostica,	
+ES.uss_encu AS USS_Encuentra, ES.servicio_encu AS Servicio_Encuentra, ES.imp_diag2 AS Impresion_Diagnostica, FN_CATALOGODESC(170,ES.nece_apoy) AS Apoyo_Intersectorial, 
+ES.fecha_egreso, ES.espe1 AS Especialidad_1, ES.espe2 AS Especialidad_2, FN_CATALOGODESC(170,ES.adh_tto) AS Adherente_Tratamiento, ES.observaciones AS Observaciones, ES.usu_creo, U.nombre AS Nombre_Creo,
+U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, ES.estado AS Estado_Registro
+FROM emb_segui ES
+LEFT JOIN person P ON ES.idpeople = P.idpeople
+LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario
+WHERE 1";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred24();
+	$sql.=whe_date24();
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	 WHERE 1 ";	
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred24();
+	$tot.=whe_date24();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 function lis_frecuencia($txt){
 	$sql="SELECT G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',F.idfrecuencia 'Cod Registro',F.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',F.fecha_create 'Creada',F.usu_creo 'id Creo',U.nombre 'nombre Creo',F.fecha_update 'Editado',F.usu_update 'Edito',U1.nombre 'Nombre Edito',F.realizada,F.estado
 		from frecuenciauso F 

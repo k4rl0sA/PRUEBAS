@@ -451,11 +451,11 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_ruteoGestionados($tab);
 			($tab);
 			break;
-		case '58':
+	    case '58':
 			$tab = "Predios_Distrito";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_predios($tab);//SOLO ADM
-			break;	
+			if($tab=decript($encr,$clave))lis_predios($tab);//SOLO ADM INACTIVO EN CATADETA
+			break;
 		case '59':
 			$tab = "Identificación Embera";
 			$encr = encript($tab, $clave);
@@ -482,15 +482,15 @@ function lis_planos() {
 			if($tab=decript($encr,$clave))lis_agendamiento($tab);
 			break;
 		case '64':
-			$tab = "SEGUIMIENTO A COMPROMISOS PCF";
+			$tab = "Seguimiento a Compromisos PCF";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_agendamiento($tab);
+			if($tab=decript($encr,$clave))lis_segcomp($tab);
 			break;
 		case '65':
 			$tab = "GESTION PREDIOS";
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_gestPredios($tab);
-			break;
+			break;	
 		default:
         break;    
     }
@@ -498,12 +498,10 @@ function lis_planos() {
 
 
 
-
 function lis_asigpre($txt){
-	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, 
+	$sql="SELECT G.subred AS Subred, G.idgeo AS Cod_Predio, G.localidad AS Localidad, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num, G.unidad_habit) AS Cod_Sector_Catastral, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 U.id_usuario AS Cod_Asignado, U.nombre AS Nombre_Asignado, U.perfil AS Perfil_Asignado, A.fecha_create AS Fecha_Asignacion, 
-U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno, A.estado AS Estado_Registro  
-
+U1.id_usuario AS Cod_Quien_Asigno, U1.nombre AS Nombre_Quien_Asigno, U1.perfil AS Perfil_Quien_Asigno, A.estado AS Estado_Registro
 FROM `geo_asig` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
 LEFT JOIN usuarios U ON A.doc_asignado=U.id_usuario
@@ -522,7 +520,7 @@ LEFT JOIN usuarios U1 ON A.usu_create=U1.id_usuario WHERE 1 ";
 }
 
 function lis_gestpre($txt){
-	$sql="SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato,
+	$sql="SELECT G.idgeo AS Cod_Predio, A.id_ges AS Cod_Registro, G.subred AS Cod_Subred, FN_CATALOGODESC(72,G.subred) AS Subred, G.zona AS Zona, G.localidad AS Cod_Localidad, FN_CATALOGODESC(2,G.localidad) AS Localidad, G.upz AS Cod_Upz, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Cod_Barrio, C.descripcion AS Barrio, CONCAT('_', G.sector_catastral, G.nummanzana, G.predio_num) AS Cod_Sector, G.sector_catastral AS Sector_catastral, G.nummanzana AS N°_Manzana, G.predio_num AS N°_Predio, G.unidad_habit AS Unidad_Habitacional, G.direccion AS Direccion, G.vereda AS Vereda, G.cordx AS Coordenada_X, G.cordy AS Coordenada_Y, G.estrato AS Estrato, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 A.direccion_nueva AS Direccion_Nueva, A.vereda_nueva AS Vereda_Nueva, A.cordxn AS Coordenada_X_Nueva, A.cordyn AS Coordenada_Y_Nueva, FN_CATALOGODESC(44,A.estado_v) AS Estado_Visita, FN_CATALOGODESC(5,A.motivo_estado) AS Motivo_Estado, A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro 
 FROM `geo_gest` A
 LEFT JOIN hog_geo G ON A.idgeo=G.idgeo
@@ -543,7 +541,7 @@ LEFT JOIN usuarios U ON A.usu_creo=U.id_usuario WHERE 1 ";
 
 function lis_caract($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,V.id_viv AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, G.estrato AS Estrato, 
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,V.id_viv AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, G.estrato AS Estrato, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 F.numfam AS Familia_N°,concat(F.complemento1,' ',F.nuc1,' ',F.complemento2,' ',F.nuc2,' ',F.complemento3,' ',F.nuc3) AS Complementos,F.telefono1 AS Telefono_1,F.telefono2 AS Telefono_2,F.telefono3 AS Telefono_3,
 
@@ -582,7 +580,7 @@ LEFT JOIN usuarios U ON V.usu_create=U.id_usuario WHERE 1 ";
 
 function lis_plancui($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.id AS Cod_Registro,G.subred AS Subred,C.fecha AS Fecha_Caracterizacion,
+G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.id AS Cod_Registro,G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', C.fecha AS Fecha_Caracterizacion,
 FN_CATALOGODESC(22,C.accion1) AS Accion_1,FN_CATALOGODESC(75,C.desc_accion1) AS Descipcion_Accion1,
 FN_CATALOGODESC(22,C.accion2) AS Accion_2,FN_CATALOGODESC(75,C.desc_accion2) AS Descipcion_Accion2,
 FN_CATALOGODESC(22,C.accion3) AS Accion_3,FN_CATALOGODESC(75,C.desc_accion3) AS Descipcion_Accion3,
@@ -608,11 +606,9 @@ LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_plancomp($txt){
 	$sql="SELECT
-G.idgeo Cod_Predio,C.idviv AS Cod_Familia,C.idcon AS Cod_Registro,G.subred AS Subred,C.fecha AS Fecha, C.compromiso AS Compromiso_Concertado, FN_CATALOGODESC(26,C.equipo) AS Equipo, 
-S.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(234,S.tipo_seg) AS Tipo_Seguimiento, FN_CATALOGODESC(170,S.estado_seg) AS Estado_Seguimiento, S.obs_seg AS Observacion_Seguimiento,
-C.usu_creo AS Usuario_Creo,U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion, C.estado AS Estado_Registro
+G.idgeo Cod_Predio, C.idviv AS Cod_Familia, C.idcon AS Cod_Registro, G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', C.fecha AS Fecha, C.compromiso AS Compromiso_Concertado, FN_CATALOGODESC(26,C.equipo) AS 'Perfil que Concerta', 
+C.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, C.fecha_create AS Fecha_Creacion, C.estado AS Estado_Registro
 FROM `hog_planconc` C
-LEFT JOIN hog_segcom S ON C.idcon=S.id_con
 LEFT JOIN hog_plancuid P ON P.idviv = C.idviv
 LEFT JOIN hog_fam F ON C.idviv = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
@@ -620,7 +616,7 @@ LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred3();
 	$sql.=whe_date3();
 	
-	$tot="SELECT count(*) as total FROM `hog_planconc` C  LEFT JOIN hog_segcom S ON C.idcon=S.id_con LEFT JOIN hog_plancuid P ON P.idviv = C.idviv LEFT JOIN hog_fam F ON C.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
+	$tot="SELECT count(*) as total FROM `hog_planconc` C  LEFT JOIN hog_plancuid P ON P.idviv = C.idviv LEFT JOIN hog_fam F ON C.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred3();
 	$tot.=whe_date3();
 	// echo $sql;
@@ -630,9 +626,33 @@ LEFT JOIN usuarios U ON C.usu_creo = U.id_usuario WHERE 1 ";
 	echo json_encode($rta);
 }
 
+function lis_segcomp($txt){
+	$sql="SELECT  
+S.id_segcom AS 'Cod Registro', C.idviv AS 'Cod Familia', C.idcon AS 'Cod Compromiso', G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
+S.fecha_seg AS 'Fecha Seguimiento',FN_CATALOGODESC(234,S.tipo_seg) AS 'Tipo Seguimiento', FN_CATALOGODESC(170,S.estado_seg) AS '¿Seguimiento Cumplido?', S.obs_seg AS 'Observacion Seguimiento',
+S.usu_create AS 'Documento Colaborador', U.nombre AS 'Nombre Colaborador', U.perfil AS 'Perfil Colaborador', U.equipo AS 'Equipo Colaborador', C.fecha_create AS 'Fecha Creacion Registro'
+FROM `hog_segcom` S
+LEFT JOIN hog_planconc C ON S.id_con = C.idcon
+LEFT JOIN hog_plancuid P ON C.idviv = P.idviv
+LEFT JOIN hog_fam F ON P.idviv = F.id_fam
+LEFT JOIN hog_geo G ON F.idpre = G.idgeo
+LEFT JOIN usuarios U ON S.usu_create = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred27();
+	$sql.=whe_date27();
+	
+	$tot="SELECT count(*) as total FROM `hog_segcom` S  LEFT JOIN hog_planconc C ON S.id_con = C.idcon LEFT JOIN hog_plancuid P ON C.idviv = P.idviv LEFT JOIN hog_fam F ON P.idviv = F.id_fam LEFT JOIN hog_geo G ON F.idpre = G.idgeo LEFT JOIN usuarios U ON S.usu_create = U.id_usuario WHERE 1 ";
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred27();
+	$tot.=whe_date27();
+	// echo $sql;
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
 function lis_signos($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred AS Subred,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,S.id_signos AS Cod_Registro,G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,
 S.fecha_toma AS Fecha_Toma, S.peso AS PESO, S.talla AS TALLA, S.imc AS IMC, S.tas AS Tension_Sistolica, S.tad AS Tension_Diastolica, S.frecard AS Frecuencia_Cardiaca, S.satoxi AS Saturacion_Oxigeno, S.peri_abdomi AS Perimetro_Abdominal, S.peri_braq AS Perimetro_Braquial, S.zscore AS ZSCORE, S.glucom AS Glucometria,
 
@@ -656,7 +676,7 @@ LEFT JOIN usuarios U ON S.usu_create = U.id_usuario WHERE 1 ";
 }
 
 function lis_alertas($txt){
-	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_alert AS Cod_Registro,G.subred AS Subred, G.zona AS Zona, G.localidad AS Localidad, G.barrio AS Barrio, G.manz_cuidado AS Manzana_Cuidado, P.idpeople AS Cod_Persona,
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_alert AS Cod_Registro,G.subred AS Subred, G.zona AS Zona, G.localidad AS Localidad, G.barrio AS Barrio, G.manz_cuidado AS Manzana_Cuidado, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', P.idpeople AS Cod_Persona,
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion, FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 FN_CATALOGODESC(176,A.cursovida) AS Curso_de_Vida, A.fecha AS Fecha, FN_CATALOGODESC(34,A.tipo) AS Tipo_Intervencion,FN_CATALOGODESC(166,A.crit_epi) AS Criterio_Epidemiologico,  
 
@@ -688,7 +708,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_riesamb($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idamb AS Cod_Registro,G.subred AS Subred,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idamb AS Cod_Registro,G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 A.fecha AS Fecha_Seguimiento,FN_CATALOGODESC(34,A.tipo_activi) AS Tipo_Seguimiento,
 A.seguro AS seguro,A.grietas AS grietas,A.combustible AS combustible,A.separadas AS separadas,A.lena AS lena,A.ilumina AS ilumina,A.fuma AS fuma,A.bano AS bano,A.cocina AS cocina,
 A.elevado AS elevado,A.electrica AS electrica,A.elementos AS elementos,A.barreras AS barreras,A.zontrabajo AS zontrabajo,A.agua AS agua,A.tanques AS tanques,A.adecagua AS adecagua,
@@ -717,7 +737,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario
 
 function lis_eventos($txt){
 	$sql="SELECT
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_eve AS Cod_Registro,G.subred AS Subred,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_eve AS Cod_Registro,G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, A.docum_base AS Documento_de_Base,FN_CATALOGODESC(87,A.evento) AS Evento_PCF,A.fecha_even AS Fecha_Generacion_Evento,
 A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
 FROM `vspeve` A
@@ -740,7 +760,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_acompsic($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_acompsic AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_acompsic AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -781,7 +801,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_apopsicduel($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_psicduel AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_psicduel AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -819,7 +839,7 @@ echo json_encode($rta);
 
 function lis_bpnpret($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_bpnpret AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_bpnpret AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -854,7 +874,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_bpnterm($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_bpnterm AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_bpnterm AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -890,7 +910,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_cancinfa($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_cancinfa AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_cancinfa AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -927,7 +947,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_condsuic($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_condsuic AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_condsuic AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -969,7 +989,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_cronicos($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_cronicos AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_cronicos AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -1006,7 +1026,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_dntsevymod($txt){
 	$sql="SELECT
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_dntsevymod AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_dntsevymod AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1044,7 +1064,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_eraira($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_eraira AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_eraira AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -1082,7 +1102,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_gestantes($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -1121,7 +1141,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_hbgest($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_hbgestacio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_hbgestacio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -1156,7 +1176,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 }
 
 function lis_mme($txt){
-	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_mme AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_mme AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento, FN_CATALOGODESC(87,A.evento) AS Evento, FN_CATALOGODESC(243,A.tiposeg) AS Tipo_Seguimiento, FN_CATALOGODESC(73,A.estado_s) AS Estado, FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado, FN_CATALOGODESC(136,A.etapa) AS Etapa, FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento, FN_CATALOGODESC(244,A.gestaciones) AS Gestaciones, FN_CATALOGODESC(244,A.partos) AS Partos, FN_CATALOGODESC(244,A.abortos) AS Abortos, FN_CATALOGODESC(244,A.cesareas) AS Cesareas, FN_CATALOGODESC(244,A.vivos) AS Vivos, FN_CATALOGODESC(244,A.muertos) AS Muertos, A.fecha_egre AS Fecha_Egreso_Hospitalario, A.edad_padre AS Edad_del_Padre, FN_CATALOGODESC(170,A.asis_ctrpre) AS Asiste_control_Prenatal, FN_CATALOGODESC(170,A.ing_ctrpre) AS 'Ingreso_Control_<Sem10', FN_CATALOGODESC(245,A.cpn) AS Cuantos_CPN, A.porque_no AS Porque, FN_CATALOGODESC(170,A.exam_lab) AS Examenes_Laboratorio_al_Dia, FN_CATALOGODESC(170,A.esqu_vacuna) AS Esquema_Vacuna_Completo, FN_CATALOGODESC(170,A.cons_micronutr) AS Consume_Micronutrientes, FN_CATALOGODESC(170,A.trata_farma) AS Tratamiento_Farmacologico, A.tipo_tratafarma AS Tipo_Tratamiento, A.cualtra AS Otro_Cual, FN_CATALOGODESC(170,A.adhe_tratafarma) AS Adherente_al_Tratamiento, A.porque_noadh AS Porque, A.peso AS 'Peso_(Kg)', A.talla AS 'Talla_(Cm)', A.imc AS Imc, FN_CATALOGODESC(210,A.clasi_nutri) AS Clasificacion_Nutricional, FN_CATALOGODESC(170,A.signos_alarma_seg) AS Signos_de_Alarma, A.descr_sigalarma AS Descripcion_Signo_Alarma, A.entrega_medic_labo AS Entrega_Medicamen_Laborator_Casa, A.fecha_obstetrica AS Fecha_Evento_Obstetrico, FN_CATALOGODESC(137,A.edad_gesta) AS Edad_Gestacional_Evento, FN_CATALOGODESC(193,A.resul_gest) AS Resultado_Gestacion, FN_CATALOGODESC(170,A.meto_fecunda) AS Metodo_Regulacion, FN_CATALOGODESC(138,A.cualmet) AS Cual_Metodo, A.otro_cual AS Otro_Metodo_Cual, A.motivo_nofecund AS Motivo_No_Acceso, FN_CATALOGODESC(170,A.control_mac) AS Control_MAC,
 A.fecha_control_mac AS Fecha_Control_MAC, FN_CATALOGODESC(170,A.ctrl_postpar_espe) AS Control_Post_Parto_Especialista, A.fecha_postpar_espe AS Fecha_Control_Post_Parto_Espec, FN_CATALOGODESC(88,A.asis_ctrl_postpar_espe) AS Asistio_Control_Post_Parto, A.porque_no_postpar AS Porque_No_Asist, FN_CATALOGODESC(170,A.consul_apoy_lacmater) AS Consulta_Apoyo_Lactancia, FN_CATALOGODESC(170,A.signos_alarma) AS Signos_Alarma_Seguimiento, A.desc_sigala AS Descripcion_Signos_Alarma, FN_CATALOGODESC(170,A.disc_ges) AS Getante_Discapacidad_O_Secuela, A.cual_disc_ges AS Cual, A.fecha_apoy_lacmater AS Fecha_Consulta_Apoyo_Lactancia, A.peso_rcnv AS Peso_RN, FN_CATALOGODESC(88,A.ctrl_recinac) AS Asiste_Control_RN, A.fecha_ctrl_nac AS Fecha_Control_RN, FN_CATALOGODESC(88,A.asis_ctrl_recinac) AS Asistio_Control_RN, A.porque_norec AS Porque, A.ult_peso AS Ultimo_Peso_Regis, FN_CATALOGODESC(170,A.consul_lacmate) AS Consulta_Apoyo_Lactancia_Mater, A.porque_nolact AS Porque_No, A.fecha_consul_lacmate AS Fecha_Consulta_LM, FN_CATALOGODESC(88,A.asiste_ctrl_cyd) AS Asiste_CYD, FN_CATALOGODESC(170,A.vacuna_comple) AS Esquema_Vacuna_Completo_Edad, FN_CATALOGODESC(170,A.lacmate_exclu) AS Lactancia_Materna_Exclusiva, FN_CATALOGODESC(170,A.signos_alarma_lac) AS Madre_Identifica_Signos_Alarma, FN_CATALOGODESC(170,A.cam_sign) AS Considera_Cambios_Significativos, FN_CATALOGODESC(170,A.qui_vida) AS Quitarse_la_Vida, FN_CATALOGODESC(170,A.viv_malt) AS Violencia_o_Maltrato, FN_CATALOGODESC(170,A.adec_red) AS Red_Apoyo, A.fecha_egreopost AS Fecha_Post_Egreso_Hospitalario, 
@@ -1182,7 +1202,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_mnehosp($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_mnehosp AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_mnehosp AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
@@ -1219,7 +1239,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_otroprio($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_otroprio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_otroprio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1254,7 +1274,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_saludoral($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_saludoral AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_saludoral AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1294,7 +1314,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_sificong($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_sificong AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_sificong AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1330,7 +1350,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_sifigest($txt){
 	$sql="SELECT 
-	G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_sifigest AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+	G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_sifigest AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 	
 	P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 	A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento,FN_CATALOGODESC(87,A.evento) AS Evento,FN_CATALOGODESC(73,A.estado_s) AS Estado,FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado,FN_CATALOGODESC(136,A.etapa) AS Etapa,FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
@@ -1373,7 +1393,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_vihgest($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_vihgestacio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_vihgestacio AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1410,7 +1430,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_violges($txt){
 	$sql="SELECT
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_gestante AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.fecha_seg AS Fecha_Seguimiento, FN_CATALOGODESC(76,A.numsegui) AS N°_Seguimiento, FN_CATALOGODESC(87,A.evento) AS Evento, FN_CATALOGODESC(73,A.estado_s) AS Estado,
 FN_CATALOGODESC(74,A.motivo_estado) AS Motivo_Estado, FN_CATALOGODESC(136,A.etapa) AS Etapa, FN_CATALOGODESC(137,A.sema_gest) AS Semanas_Gestacion_Posevento,
@@ -1450,7 +1470,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_violreite($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_violreite AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_violreite AS Cod_Registro,G.subred AS Subred,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 
@@ -1488,7 +1508,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_usercreate($txt){
 	$sql="SELECT 
-G.subred AS Subred,F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion, FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
+G.subred AS Subred,F.idpre AS Cod_Predio, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', F.id_fam AS Cod_Familia,P.idpeople AS Cod_Persona, TIMESTAMPDIFF(YEAR, P.fecha_nacimiento, CURDATE()) AS Edad_Actual, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia, FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Indigena, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion, FN_CATALOGODESC(17,P.regimen) AS Regimen,FN_CATALOGODESC(18,P.eapb) AS Eapb,
 P.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, P.fecha_create AS Fecha_Creacion,FN_CATALOGODESC(170,P.encuentra) Se_Encuentra
 FROM `person` P
 LEFT JOIN hog_fam F ON P.vivipersona=F.id_fam
@@ -1508,7 +1528,7 @@ LEFT JOIN usuarios U ON P.usu_creo=U.id_usuario WHERE 1 ";
 
 function lis_apgar($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_apgar AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_apgar AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma,
 FN_CATALOGODESC(37,A.ayuda_fam) AS Apgar_7_A_17_Años_Preg_1, FN_CATALOGODESC(37,A.fam_comprobl) AS Apgar_7_A_17_Años_Preg_2, FN_CATALOGODESC(37,A.fam_percosnue) AS Apgar_7_A_17_Años_Preg_3, FN_CATALOGODESC(37,A.fam_feltrienf) AS Apgar_7_A_17_Años_Preg_4, FN_CATALOGODESC(37,A.fam_comptiemjun) AS Apgar_7_A_17_Años_Preg_5,
@@ -1537,7 +1557,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_epoc($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_epoc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_epoc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma,
 
@@ -1565,7 +1585,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_findrisc($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_findrisc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_findrisc AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma,
 
@@ -1594,7 +1614,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_oms($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idoms AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.idoms AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma,
 
@@ -1620,11 +1640,11 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_admisi($txt){
 	$sql="SELECT 
-G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+G.subred AS Subred, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.id_factura Cod_Registro, A.soli_admis AS Solicitud_Admision, A.fecha_consulta AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, A.cod_admin AS Cod_Admision, FN_CATALOGODESC(126,A.cod_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.final_consul) AS Finalidad_Consulta, A.cod_factura AS Cod_Factura, FN_CATALOGODESC(184,A.estado_hist) AS Estado_Admision,
 A.fecha_create AS Fecha_Creacion, A.usu_creo AS Cod_Usuario_Crea, U.nombre AS Nombre_Usuario_Crea, U.perfil AS Perfil_Usuario_Crea, 
-A.fecha_update AS Fecha_Edicion, A.usu_update AS Cod_Usuario_Edita, U1.nombre AS Nombre_Usuario_Edita, U1.perfil AS Perfil_Usuario_Edita
+A.fecha_update AS Fecha_Edicion, A.usu_update AS Cod_Usuario_Edita, U1.nombre AS Nombre_Usuario_Edita, U1.perfil AS Perfil_Usuario_Edita, FN_CATALOGODESC(284,A.estado) AS 'Estado Registro'
 FROM `adm_facturacion` A
 LEFT JOIN person P ON A.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona =  F.id_fam
@@ -1645,7 +1665,7 @@ LEFT JOIN usuarios U1 ON A.usu_update = U1.id_usuario WHERE 1 ";
 
 function lis_atencion($txt){
 	$sql="SELECT 
-G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+G.subred AS Subred, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.id_aten AS Cod_Registro, A.id_factura AS Cod_Admision, A.fecha_atencion AS Fecha_Consulta, FN_CATALOGODESC(182,A.tipo_consulta) AS Tipo_Consulta, FN_CATALOGODESC(126,A.codigo_cups) AS Codigo_CUPS, FN_CATALOGODESC(127,A.finalidad_consulta) AS Finalidad_Consulta, FN_DESC(3,A.diagnostico1) AS DX1,FN_DESC(3,A.diagnostico2) AS DX2, FN_DESC(3,A.diagnostico3) AS DX3, A.fertil AS '¿Mujer_Edad_Fertil?', A.preconcepcional AS '¿Consulta_Preconsecional?', A.metodo AS '¿Metodo_Planificacion?', FN_CATALOGODESC(129,A.anticonceptivo) AS '¿Cua_Metodo?', A.planificacion AS Planificacion,A.mestruacion AS Fur,
 A.vih AS Prueba_VIH, FN_CATALOGODESC(187,A.resul_vih) AS Resultado_VIH, A.hb AS Prueba_HB, FN_CATALOGODESC(188,A.resul_hb) AS Resultado_HB, A.trepo_sifil AS Trepomina_Sifilis, FN_CATALOGODESC(188,A.resul_sifil) AS Resultado_Trepo_Sifilis, A.pru_embarazo AS Prueba_Embarazo, FN_CATALOGODESC(88,A.resul_emba) AS Resultado_Embarazo, A.pru_apetito AS Prueba_Apetito, A.resul_apetito AS Resultado_Apetito,
@@ -1671,7 +1691,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_pcindi($txt){
 	$sql="SELECT 
-G.subred AS Subred, G.localidad AS Localidad, G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
+G.subred AS Subred, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', G.idgeo AS Cod_predio, F.id_fam AS Cod_Familia,
 P.idpeople AS Cod_Persona, P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Docuumento, CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad, FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo_Etnia, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb,
 A.id_aten AS Cod_Registro, A.fecha_atencion AS Fecha_Consulta, A.evento_interes AS Notificacion_Evento_Interes_SP, FN_CATALOGODESC(134,A.evento) AS Cual_Evento_SP, A.cuale_vento AS Otro_Evento_SP, A.sirc AS SIRC_usuarios_otras_EAPB, A.ruta_sirc AS Ruta_Sirc, A.remision AS Usuario_requiere_control, A.cual_remision AS Cuales, A.orden_vacunacion AS Orden_Vacunacion, FN_CATALOGODESC(185,A.vacunacion) AS Vacunacion, A.orden_laboratorio AS Orden_Laboratorio, FN_CATALOGODESC(133,A.laboratorios) AS Laboratorios, A.orden_medicamentos AS Orden_Medicamentos, FN_CATALOGODESC(186,A.medicamentos) AS Medicamentos, A.ruta_continuidad AS Activacion_Ruta, A.continuidad AS Cual_Ruta, A.orden_imagenes AS Ordena_Imágenes_Diagnósticas, A.orden_psicologia AS Orden_Psicologia, A.relevo AS Aplica_RBC, A.estrategia AS Estrategia, A.motivo_estrategia AS Motivo_Estrategia,
 A.usu_creo AS Cod_Usuario, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, A.fecha_create AS Fecha_Creacion, A.estado AS Estado_Registro
@@ -1694,7 +1714,7 @@ LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario WHERE 1 ";
 
 function lis_famcrea($txt){
 	$sql="SELECT 
-G.subred AS Subred, F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia, 
+G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', F.idpre AS Cod_Predio, F.id_fam AS Cod_Familia, 
 F.usu_create, U.nombre AS Nombre_Usuario, U.perfil AS Perfil_Usuario, F.fecha_create AS Fecha_Creacion
 FROM `hog_fam` F
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
@@ -1713,26 +1733,36 @@ WHERE F.usu_create NOT IN (1022358140) ";
 }
 
 function lis_gesrut($txt){
-/* 	$sql="SELECT 
-R.subred_report AS Subred, R.id_ruteo AS Cod_Ruteo, FN_CATALOGODESC(33,R.fuente) AS Fuente, R.fecha_asig Fecha_Asignacion, FN_CATALOGODESC(191,R.priorizacion) AS Priorizacion, FN_CATALOGODESC(235,R.tipo_prior) AS Tipo_Priorizacion, R.tipo_doc AS Tipo_Documento, R.documento AS N°_Documento, R.nombres AS Nombres_Usuario, R.fecha_nac Fecha_Nacimiento, R.sexo AS Sexo, RG.fecha_gest AS Fecha_gestion, FN_CATALOGODESC(35,RG.estado_g) AS Motivo_Estado, RG.observaciones AS Observaciones, RG.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, RG.fecha_create AS Fecha_Creacion 
-FROM `eac_ruteo_ges` RG
-LEFT JOIN `eac_ruteo` R ON RG.idruteo = R.id_ruteo
-LEFT JOIN usuarios U ON RG.usu_creo = U.id_usuario WHERE 1";
+ 	$sql="SELECT G.subred AS 'Subred', G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', G.idgeo AS 'Cod Predio', RC.id_rutclas AS 'Cod Registro', RC.idrutges AS 'Cod Ruteo', FN_CATALOGODESC(191,RC.preclasif) AS 'Cohorte de Riesgo', FN_CATALOGODESC(235,RC.clasifica) AS 'Grupo De Población Priorizada', FN_CATALOGODESC(273,RC.riesgo) AS 'Riesgo', 
+
+FN_CATALOGODESC(22,RC.accion1) AS Accion_1, FN_CATALOGODESC(75,RC.desc_accion1) AS Descripcion_Accion_1,
+FN_CATALOGODESC(22,RC.accion2) AS Accion_2, FN_CATALOGODESC(75,RC.desc_accion2) AS Descripcion_Accion_2,
+FN_CATALOGODESC(22,RC.accion3) AS Accion_3, FN_CATALOGODESC(75,RC.desc_accion3) AS Descripcion_Accion_3,
+RC.fecha AS 'Fecha de Programación', FN_CATALOGODESC(170,RC.solic_agend) AS '¿Solicito Servicio Agendamiento?', FN_CATALOGODESC(170,RC.ruta) AS '¿Activo Ruta?', FN_CATALOGODESC(170,RC.sectorial) AS '¿Sectorial?', FN_CATALOGODESC(170,RC.intsectorial) AS '¿Intersectorial?', FN_CATALOGODESC(170,RC.entornos) AS '¿Entorno?', FN_CATALOGODESC(170,RC.aseguram) AS '¿Aseguramiento?',
+FN_CATALOGODESC(269,RC.accion) AS 'Definir Acción', RC.profesional AS 'Documento Colaborador Asignado', U.nombre AS 'Nombre Colaborador Asignado', U.perfil AS 'Perfil Colaborador Asignado', 
+
+RC.usu_creo AS 'Documento Colaborador', U1.nombre AS 'Nombre Colaborador', U1.perfil AS 'Perfil Colaborador'
+FROM `eac_ruteo_clas` RC
+LEFT JOIN eac_ruteo_ges RG ON RC.idrutges = RG.id_rutges
+LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo
+LEFT JOIN hog_geo G ON R.idgeo = G.idgeo
+LEFT JOIN usuarios U ON RC.profesional = U.id_usuario
+LEFT JOIN usuarios U1 ON RC.usu_creo = U1.id_usuario WHERE 1";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred14();
 	$sql.=whe_date14();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM `eac_ruteo_ges` RG LEFT JOIN `eac_ruteo` R ON RG.idruteo = R.id_ruteo LEFT JOIN usuarios U ON RG.usu_creo = U.id_usuario WHERE 1 ";	
+	$tot="SELECT COUNT(*) total FROM `eac_ruteo_clas` RC LEFT JOIN eac_ruteo_ges RG ON RC.idrutges = RG.id_rutges LEFT JOIN eac_ruteo R ON RG.idruteo = R.id_ruteo LEFT JOIN hog_geo G ON R.idgeo = G.idgeo LEFT JOIN usuarios U ON RC.profesional = U.id_usuario LEFT JOIN usuarios U1 ON RC.usu_creo = U1.id_usuario WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred14();
 	$tot.=whe_date14();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
-	echo json_encode($rta); */
+	echo json_encode($rta); 
 }
 
 function lis_rbc($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, R.idrelevo AS Cod_Registro, G.subred AS Subred,
+G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, R.idrelevo AS Cod_Registro, G.subred AS Subred,  G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 R.acep_rbc AS Aceptacion_estrategia_RBC, R.fecha_acep AS Fecha_Aceptacion,
 
 P.tipo_doc AS Tipo_Documento_Cuidador, P.idpersona AS N°_Documento_Cuidador, CONCAT(P.nombre1,' ',P.nombre2,' ',P.apellido1,' ',P.apellido2) AS Nombres_Cuidador, P.fecha_nacimiento AS Fecha_Nacimiento_Cuidador, FN_CATALOGODESC(21,P.sexo) AS Sexo_Cuidador, FN_CATALOGODESC(17,P.regimen) AS Regimen_Cuidador,FN_CATALOGODESC(18,P.eapb) AS Eapb_Cuidador, FN_CATALOGODESC(28,R.ante_cuidador) AS Antec_Patolo_Cuidador, R.otros_antecuidador AS Otro_Antec_Patolo_Cuidador, R.np_cuida AS Personas_al_Cuidado, 
@@ -1771,8 +1801,10 @@ WHERE 1";
 
 function lis_cope($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, G.subred AS Subred,G.localidad AS Localidad,FN_CATALOGODESC(3,G.zona) AS Zona, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, 
+G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, G.subred AS Subred,G.localidad AS Localidad,FN_CATALOGODESC(3,G.zona) AS Zona, FN_CATALOGODESC(7,G.upz) AS Upz, G.barrio AS Barrio, G.direccion AS Direccion, G.cordx AS Cordenada_X, G.cordy AS Cordenada_Y, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
+
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento, P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo, FN_CATALOGODESC(19,P.genero) AS Genero, FN_CATALOGODESC(49,P.oriensexual) AS Orientacion_Sexual, FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad ,FN_CATALOGODESC(16,P.etnia) AS ETNIA, FN_CATALOGODESC(15,P.pueblo) AS Pueblo, P.idioma AS Habla_Español, FN_CATALOGODESC(178,P.pobladifer) AS Poblacion_Diferencial, FN_CATALOGODESC(14,P.discapacidad) AS Tipo_Discapacidad, FN_CATALOGODESC(54,P.vinculo_jefe) AS Vinculo_Jefe_Hogar, FN_CATALOGODESC(175,P.ocupacion) AS Ocupacion,FN_CATALOGODESC(17,P.regimen) AS Regimen, FN_CATALOGODESC(18,P.eapb) AS Eapb, P.afiliaoficio AS Afiliacon_por_Oficio, FN_CATALOGODESC(180,P.niveduca) AS Nivel_Educativo, P.abanesc AS Razón_Abandono_Escolar, P.tiemdesem AS Tiempo_Desempleo,
+
 C.fecha_toma AS Fecha,
 FN_CATALOGODESC(120,C.reporta)  AS Caso_Reportado,
 FN_CATALOGODESC(135,C.pregunta1)  AS Pregunta_1,
@@ -1803,11 +1835,14 @@ FN_CATALOGODESC(135,C.pregunta25)  AS Pregunta_25,
 FN_CATALOGODESC(135,C.pregunta26)  AS Pregunta_26,
 FN_CATALOGODESC(135,C.pregunta27)  AS Pregunta_27,
 FN_CATALOGODESC(135,C.pregunta28)  AS Pregunta_28,
+
 C.puntajea  AS Puntaje_Afrontamiento,
 C.descripciona  AS Descipcion_Afrontamiento,
 C.puntajee  AS Puntaje_Evitacion,
 C.descripcione  AS Descipcion_Evitacion
+
  FROM `hog_tam_cope` C
+ 
 LEFT JOIN person P ON C.idpeople = P.idpeople
 LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo	
@@ -1826,7 +1861,7 @@ LEFT JOIN hog_geo G ON F.idpre = G.idgeo
 
 function lis_rbc_ses($txt){
 	$sql="SELECT
-	G.subred AS Subred, G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, R.id_people AS Cod_Persona, R.idsesion AS Cod_Registro,  
+	G.subred AS Subred, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, R.id_people AS Cod_Persona, R.idsesion AS Cod_Registro,  
 R.rel_validacion1 AS N°_Sesion, R.rel_validacion2 AS Fecha_Sesion, R.rel_validacion3 AS Perfil, FN_CATALOGODESC(301,R.rel_validacion4) AS Actividad_Respiro, R.rel_validacion5 AS Descripcion_Intervencion,
 FN_CATALOGODESC(103,R.autocuidado) AS Autocuidado, FN_CATALOGODESC(194,R.activesparc) AS Actividades_Esparcimiento, FN_CATALOGODESC(157,R.infeducom) AS Inf_Educa_Comuni_salud,
 R.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, R.estado AS Estado_Registro
@@ -1852,7 +1887,7 @@ WHERE 1";
 
 function lis_sescole($txt){
 	$sql="SELECT
-	G.idgeo AS Cod_Predio, G.subred AS Subred, G.zona AS Zona, G.localidad, C.id_cole AS Cod_Registro, C.fecha AS Fecha_Sesion, FN_CATALOGODESC(239,C.tipo_activ) AS Tipo_Actividad, C.lugar AS Lugar_Actividad, FN_CATALOGODESC(242,C.jornada) AS Jornada_Actividad, C.equipo AS Equipo_Realiza_Actividad, 
+	G.idgeo AS Cod_Predio, G.subred AS Subred, G.zona AS Zona, G.localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio', C.id_cole AS Cod_Registro, C.fecha AS Fecha_Sesion, FN_CATALOGODESC(239,C.tipo_activ) AS Tipo_Actividad, C.lugar AS Lugar_Actividad, FN_CATALOGODESC(242,C.jornada) AS Jornada_Actividad, C.equipo AS Equipo_Realiza_Actividad, 
 FN_CATALOGODESC(237,C.tematica1) AS Actividad_Tematica_1, FN_CATALOGODESC(238,C.des_temati1) AS Descrip_Tematica_1,
 FN_CATALOGODESC(237,C.tematica2) AS Actividad_Tematica_2, FN_CATALOGODESC(238,C.des_temati2) AS Descrip_Tematica_2,
 FN_CATALOGODESC(237,C.tematica3) AS Actividad_Tematica_3, FN_CATALOGODESC(238,C.des_temati3) AS Descrip_Tematica_3,
@@ -1882,7 +1917,7 @@ WHERE 1";
 
 function lis_psicoses1($txt){
 	$sql="SELECT
-	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idpsi AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad,
+	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idpsi AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
 A.fecha_ses1 AS Fecha_Sesion, A.tipo_caso AS Tipo_de_Caso, A.cod_admin AS Cod_Admision, 
@@ -1914,7 +1949,7 @@ WHERE 1";
 
 function lis_psicoses2($txt){
 	$sql="SELECT
-	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.id_sesion2 AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad,
+	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.id_sesion2 AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
 
 A.psi_fecha_sesion AS Fecha_Sesion, A.cod_admin2 AS Cod_Admision, A.psi_validacion1 AS Problema_Que_Aflije, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Causa_Problema, FN_CATALOGODESC(124,A.psi_validacion6) AS Cuan_Dificil_Resultado, FN_CATALOGODESC(124,A.psi_validacion7) AS Como_Se_Sintio_Semana, A.psi_validacion8 AS Actividad_Desarrollar_1, A.psi_validacion9 AS Actividad_Desarrollar_2, A.psi_validacion10 AS Actividad_Desarrollar_3, (FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.psi_validacion7)) AS Resultado_Evaluacion, FN_CATALOGODESC(160,A.contin_caso) AS Continuidad_Caso,
@@ -1939,7 +1974,7 @@ WHERE 1";
 
 function lis_psicosesiones($txt){
 	$sql="SELECT
-	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idsesipsi AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad,
+	G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idsesipsi AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,concat(P.nombre1,' ',P.nombre2) AS Nombres,concat(P.apellido1,' ',P.apellido2) AS Apellidos,P.fecha_nacimiento AS Fecha_Nacimiento,FN_CATALOGODESC(21,P.sexo) AS Sexo,FN_CATALOGODESC(19,P.genero) AS Genero,FN_CATALOGODESC(30,P.nacionalidad) AS Nacionalidad,FN_CATALOGODESC(16,P.etnia) AS Etnia,FN_CATALOGODESC(15,P.pueblo) AS Pueblo,
 
 A.psi_fecha_sesion AS Fecha_Sesion, FN_CATALOGODESC(125,A.psi_sesion) AS N°_Sesion, A.cod_admin4 AS Cod_Admision, A.psi_validacion1 AS Problema_Preocupa_Principio, FN_CATALOGODESC(124,A.psi_validacion2) AS Cuanto_Afecto_Semana, A.psi_validacion3 AS Otro_Problema_Aflije_Principio, FN_CATALOGODESC(124,A.psi_validacion4) AS Otro_Cuanto_Afecto_Semana, A.psi_validacion5 AS Le_Ha_Costado_Hacer_Principio,FN_CATALOGODESC(124,A.difhacer) AS Cuan_Dificil_Resultado,FN_CATALOGODESC(124,A.psi_validacion6) AS Como_Se_Sintio_Semana, A.psi_validacion7 AS Plan_Para_Terminar_Con_Su_Vida, A.psi_validacion8 AS Describa_Pensamientos_Planes, A.psi_validacion9 AS Acciones_Terminar_Su_Vida,FN_CATALOGODESC(130,A.psi_validacion10) AS Plan_Terminar_Con_Su_Vida_Prox_Semana, A.psi_validacion11 AS Describa_Su_Plan, A.psi_validacion12 AS Otro_Problema_Importante, FN_CATALOGODESC(124,A.psi_validacion13) AS Afectado_Otros_Problemas,A.psi_validacion14 AS Actividad_Desarrollar_1,A.psi_validacion15 AS Actividad_Desarrollar_2,A.psi_validacion16 AS Actividad_Desarrollar_3,(FN_CATALOGODESC(124,A.psi_validacion2)+FN_CATALOGODESC(124,A.psi_validacion4)+FN_CATALOGODESC(124,A.psi_validacion6)+FN_CATALOGODESC(124,A.difhacer)+FN_CATALOGODESC(124,A.psi_validacion13)) AS Resultado_Evaluacion,FN_CATALOGODESC(160,A.psi_validacion17) AS Continuidad_Caso,
@@ -1964,7 +1999,7 @@ WHERE 1";
 
 function lis_barthel($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_barthel AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_barthel AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma, FN_CATALOGODESC(116,A.momento) AS Momento, FN_CATALOGODESC(106,A.comer) AS Comer, FN_CATALOGODESC(107,A.lavarse) AS Lavarse, FN_CATALOGODESC(108,A.vestirse) AS Vestirse, FN_CATALOGODESC(109,A.arreglarse) AS Arreglarse, FN_CATALOGODESC(110,A.deposicion) AS 'Deposiciones_(Según Semana Anterior)', FN_CATALOGODESC(111,A.miccion) AS Miccion, FN_CATALOGODESC(112,A.sanitario) as sanitario ,FN_CATALOGODESC(113, A.trasladarse) AS trasladarse,FN_CATALOGODESC(114, A.deambular) AS deambular,FN_CATALOGODESC(115, A.escalones) AS escalones, A.total AS Total, 
 A.usu_creo AS Usuario_Creo, U.nombre AS Nombre_Creo, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, A.fecha_create AS Fecha_Creacion
@@ -1988,7 +2023,7 @@ WHERE 1";
 
 function lis_hamilton($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, A.id_hamilton AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, A.id_hamilton AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma, FN_CATALOGODESC(116,A.momento) AS Momento, FN_CATALOGODESC(117,A.sintoma1) AS '1. Estado de ánimo ansioso.', FN_CATALOGODESC(117,A.sintoma2) AS '2. Tensión.Sensación de tensión', FN_CATALOGODESC(117,A.sintoma3) AS '3. Temores.A la oscuridad', FN_CATALOGODESC(117,A.sintoma4) AS '4. Insomnio.Dificultad para dormirse', FN_CATALOGODESC(117,A.sintoma5) AS '5. Intelectual (cognitivo)', FN_CATALOGODESC(117,A.sintoma6) AS '6. Estado de ánimo deprimido.', FN_CATALOGODESC(117,A.sintoma7) AS '7. Síntomas somáticos generales', FN_CATALOGODESC(117,A.sintoma8) AS '8. Síntomas somáticos generales', FN_CATALOGODESC(117,A.sintoma9) AS '9. Síntomas cardiovasculares.', FN_CATALOGODESC(117,A.sintoma10) AS '10. Síntomas respiratorios.', FN_CATALOGODESC(117,A.sintoma11) AS '11. Síntomas gastrointestinales.', FN_CATALOGODESC(117,A.sintoma12) AS '12. Síntomas genitourinarios.', FN_CATALOGODESC(117,A.sintoma13) AS '13. Síntomas autónomos.', FN_CATALOGODESC(117,A.sintoma14) AS '14. Comportamiento en la entrevista.', A.psiquica AS 'Ansiedad psíquica', A.somatica AS 'Ansiedad somática', A.total AS Puntuacion, A.analisis AS Descripcion_Puntuacion
 FROM `hog_tam_hamilton` A
@@ -2011,7 +2046,7 @@ WHERE 1";
 
 function lis_whodas($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_whodas AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_whodas AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma, FN_CATALOGODESC(116,A.momento) AS Momento, A.comprension1, A.comprension2, A.comprension3, A.comprension4, A.comprension5, A.comprension6, A.moverse1, A.moverse2, A.moverse3, A.moverse4, A.moverse5, A.cuidado1, A.cuidado2, A.cuidado3, A.cuidado4, A.relacionarce1, A.relacionarce2, A.relacionarce3, A.relacionarce4, A.relacionarce5, A.actividades1, A.actividades2, A.actividades3, A.actividades4, A.actividades5, A.actividades6, A.actividades7, A.actividades8, A.participacion1, A.participacion2, A.participacion3, A.participacion4, A.participacion5, A.participacion6, A.participacion7, A.participacion8, A.whodas_dias1, A.whodas_dias2, A.whodas_dias3, A.porcentaje_comprension, A.porcentaje_moverse, A.porcentaje_cuidado, A.porcentaje_relacionarce, A.porcentaje_actividades, A.porcentaje_participacion, A.porcentaje_total, A.analisis
 FROM `hog_tam_whodas` A
@@ -2034,7 +2069,8 @@ WHERE 1";
 
 function lis_zarit($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_zarit AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_zarit AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma, FN_CATALOGODESC(116,A.momento) AS Momento,
 FN_CATALOGODESC(118,A.valor1) AS 'Piensa que su familiar / persona cuidada le pide más ayuda de la realmente necesita', 
 FN_CATALOGODESC(118,A.valor2) AS 'Piensa que debido al tiempo que dedica a su familiar no tiene suficiente tiempo para usted', 
@@ -2081,7 +2117,8 @@ WHERE 1";
 
 function lis_zung($txt){
 	$sql="SELECT  
-G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_zung AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.id_zung AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
+P.idpeople AS Cod_Usuario,P.tipo_doc AS Tipo_Documento,P.idpersona AS N°_Documento,CONCAT(P.nombre1, ' ', P.nombre2) AS Nombres_Usuario,CONCAT(P.apellido1, ' ', P.apellido2) AS Apellidos_Usuario,P.fecha_nacimiento AS Fecha_Nacimiento,  FN_CATALOGODESC(21,P.sexo) AS Sexo,
 A.fecha_toma AS Fecha_Toma, FN_CATALOGODESC(116,A.momento) AS Momento,
 FN_CATALOGODESC(119, A.anuncio1) AS '1. Me Siento Triste Y Deprimido.',
 FN_CATALOGODESC(119, A.anuncio2) AS '2. Por Las Mañanas Me Siento Mejor Que Por Las Tardes.',
@@ -2127,7 +2164,7 @@ WHERE 1";
 
 function lis_psifin($txt){
 	$sql="SELECT 
-G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idpsifin AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad,
+G.idgeo Cod_Predio, F.id_fam AS Cod_Familia, A.idpsifin AS Cod_Registro, G.subred AS Subred, FN_CATALOGODESC(3,G.zona) AS Zona, G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
 
 A.psi_fecha_sesion,A.cod_admisfin,A.zung_ini,A.hamilton_ini,A.whodas_ini,A.psi_validacion1,A.psi_validacion2,A.psi_validacion3,A.psi_validacion4,A.psi_validacion5,A.psi_validacion6,A.psi_validacion7,
@@ -2169,7 +2206,7 @@ WHERE 1";
 }
 
 function lis_idenUAIC($txt){
-	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaic AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaic AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 	P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,
 	FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
 	A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(263,A.parentesco) AS Parentesco,A.nombre_cui AS Cuidador,A.tipo_doc AS Tipo_Documento,A.num_doc AS Documento,A.telefono ,
@@ -2199,7 +2236,7 @@ WHERE 1";
 }
 
 function lis_SeguimientosUAIC($txt){
-	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaicseg AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad,
+	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia,A.iduaicseg AS Cod_Registro,G.subred AS Subred,FN_CATALOGODESC(3,G.zona) AS Zona,G.localidad AS Localidad, G.territorio AS 'Cod Territorio', FN_CATALOGODESC(283,G.territorio) AS 'Nombre Territorio',
 	P.tipo_doc,P.idpersona,concat(P.nombre1,' ',P.nombre2) AS NOMBRES,concat(P.apellido1,' ',P.apellido2) AS APELLIDOS,P.fecha_nacimiento AS FECHA_NACIMIENTO,
 	FN_CATALOGODESC(21,P.sexo) AS SEXO,FN_CATALOGODESC(19,P.genero) AS GENERO,FN_CATALOGODESC(30,P.nacionalidad) AS NACIONALIDAD,FN_CATALOGODESC(16,P.etnia) AS ETNIA,FN_CATALOGODESC(15,P.pueblo) AS PUEBLO,
 	A.fecha_seg AS Fecha_Seguimiento,FN_CATALOGODESC(76,A.segui) 'Seguimiento',FN_CATALOGODESC(73,A.estado_seg) 'Estado',FN_CATALOGODESC(265,A.motivo_seg) 'Motivo',
@@ -2264,8 +2301,6 @@ function lis_predios($txt){
 	echo json_encode($rta);
 }
 
-
-
 function lis_identEmb($txt){
 	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, V.idriesgo AS Cod_Registro, G.subred AS Subred,V.idpeople AS Cod_Persona, 
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento,P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,	V.fechavisi AS Fecha_Visita, V.lider AS Lider, V.educacion AS Educación,V.espanol AS Habla_Español, FN_CATALOGODESC(256,V.saberes) AS Saberes, FN_CATALOGODESC(257,V.enfoque) AS Enfoque, FN_CATALOGODESC(266,V.pueblo) AS Pueblo,	V.usu_creo,	U.nombre AS Nombre_Creo,V.fecha_create,	V.usu_update, V.fecha_update, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, V.estado AS Estado_Registro
@@ -2278,7 +2313,7 @@ WHERE 1";
 	if (perfilUsu()!=='ADM')	$sql.=whe_subred24();
 	$sql.=whe_date24();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	$tot="SELECT COUNT(*) total FROM etn_identi V LEFT JOIN person P ON V.idpeople = P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON V.usu_creo = U.id_usuario 
 	 WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred24();
 	$tot.=whe_date24();
@@ -2303,13 +2338,13 @@ LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
 LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario
 WHERE 1";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred24();
-	$sql.=whe_date24();
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred25();
+	$sql.=whe_date25();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	$tot="SELECT COUNT(*) total FROM emb_segreg ES LEFT JOIN person P ON ES.idpeople = P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario 
 	 WHERE 1 ";	
-	if (perfilUsu()!=='ADM')	$tot.=whe_subred24();
-	$tot.=whe_date24();
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred25();
+	$tot.=whe_date25();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
@@ -2330,13 +2365,13 @@ LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam
 LEFT JOIN hog_geo G ON F.idpre = G.idgeo
 LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario
 WHERE 1";
-	if (perfilUsu()!=='ADM')	$sql.=whe_subred24();
-	$sql.=whe_date24();
+	if (perfilUsu()!=='ADM')	$sql.=whe_subred26();
+	$sql.=whe_date26();
 	// echo $sql;
-	$tot="SELECT COUNT(*) total FROM uaic_ide A LEFT JOIN person P ON A.idpeople=P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario 
+	$tot="SELECT COUNT(*) total FROM emb_segui ES LEFT JOIN person P ON ES.idpeople = P.idpeople	LEFT JOIN hog_fam F ON P.vivipersona = F.id_fam	LEFT JOIN hog_geo G ON F.idpre = G.idgeo	LEFT JOIN usuarios U ON ES.usu_creo = U.id_usuario 
 	 WHERE 1 ";	
-	if (perfilUsu()!=='ADM')	$tot.=whe_subred24();
-	$tot.=whe_date24();
+	if (perfilUsu()!=='ADM')	$tot.=whe_subred26();
+	$tot.=whe_date26();
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);
@@ -2391,8 +2426,8 @@ FROM agendamiento A
 
 function lis_gestPredios($txt){
 	$sql="SELECT G.idgeo,U.nombre,FN_CATALOGODESC(44,ga.estado_v) ESTADO  FROM geo_gest ga 
-LEFT JOIN hog_geo G ON ga.idgeo = G.idgeo
-LEFT JOIN usuarios U ON ga.usu_creo = U.id_usuario ORDER BY 1";
+		LEFT JOIN hog_geo G ON ga.idgeo = G.idgeo
+		LEFT JOIN usuarios U ON ga.usu_creo = U.id_usuario ORDER BY 1";
 	// echo $sql;
 	$tot="SELECT COUNT(*) total FROM hog_geo WHERE 1 ";	
 	$_SESSION['sql_'.$txt]=$sql;
@@ -2400,7 +2435,6 @@ LEFT JOIN usuarios U ON ga.usu_creo = U.id_usuario ORDER BY 1";
 	$rta = array('type' => 'OK','file'=>$txt);
 	echo json_encode($rta);
 }
-	
 
 function whe_subred() {
 	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
@@ -2594,7 +2628,10 @@ function whe_subred14() {
 }
 
 function whe_date14(){
-	$sql= " AND RG.fecha_llamada BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND RG.fecha_llamada>='{$_POST['fechad']}' AND RG.fecha_llamada<='{$_POST['fechah']}'";
 	return $sql;
 }
 
@@ -2723,6 +2760,38 @@ function whe_date24(){
 	$sql= " AND date(V.fechavisi) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
 	return $sql;
 }
+
+function whe_subred25() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+function whe_date25(){
+	$sql= " AND date(ES.fecha_seg) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+function whe_subred26() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+function whe_date26(){
+	$sql= " AND date(ES.fecha_seg) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
+function whe_subred27() {
+	$sql= " AND (G.subred) in (SELECT subred FROM usuarios where id_usuario='".$_SESSION['us_sds']."')";
+	return $sql;
+}
+
+function whe_date27(){
+	$dia=date('d');
+	$mes=date('m');
+	$ano=date('Y');
+	$sql= " AND date(S.fecha_seg) BETWEEN '{$_POST['fechad']}' AND '{$_POST['fechah']}'";
+	return $sql;
+}
+
 function encript($texto, $clave) {
     $txtcript = openssl_encrypt($texto, 'aes-256-ecb', $clave, 0);
     return base64_encode($txtcript);

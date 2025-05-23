@@ -481,6 +481,16 @@ function lis_planos() {
 			$encr = encript($tab, $clave);
 			if($tab=decript($encr,$clave))lis_agendamiento($tab);
 			break;
+		case '64':
+			$tab = "SEGUIMIENTO A COMPROMISOS PCF";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_agendamiento($tab);
+			break;
+		case '65':
+			$tab = "GESTION PREDIOS";
+			$encr = encript($tab, $clave);
+			if($tab=decript($encr,$clave))lis_gestPredios($tab);
+			break;
 		default:
         break;    
     }
@@ -2254,6 +2264,8 @@ function lis_predios($txt){
 	echo json_encode($rta);
 }
 
+
+
 function lis_identEmb($txt){
 	$sql="SELECT G.idgeo Cod_Predio,F.id_fam AS Cod_Familia, V.idriesgo AS Cod_Registro, G.subred AS Subred,V.idpeople AS Cod_Persona, 
 P.tipo_doc AS Tipo_Documento, P.idpersona AS N°_Documento,P.nombre1 AS Primer_Nombre, P.nombre2 AS Segundo_Nombre, P.apellido1 AS Primer_Apellido, P.apellido2 AS Seundo_Apellido, P.fecha_nacimiento AS Fecha_Nacimiento, FN_CATALOGODESC(21,P.sexo) AS Sexo,	V.fechavisi AS Fecha_Visita, V.lider AS Lider, V.educacion AS Educación,V.espanol AS Habla_Español, FN_CATALOGODESC(256,V.saberes) AS Saberes, FN_CATALOGODESC(257,V.enfoque) AS Enfoque, FN_CATALOGODESC(266,V.pueblo) AS Pueblo,	V.usu_creo,	U.nombre AS Nombre_Creo,V.fecha_create,	V.usu_update, V.fecha_update, U.perfil AS Perfil_Creo, U.equipo AS Equipo_Creo, V.estado AS Estado_Registro
@@ -2332,7 +2344,7 @@ WHERE 1";
 }
 
 function lis_frecuencia($txt){
-	$sql="SELECT G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',F.idfrecuencia 'Cod Registro',F.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',F.fecha_create 'Creada',F.usu_creo 'id Creo',U.nombre 'nombre Creo',F.fecha_update 'Editado',F.usu_update 'Edito',U1.nombre 'Nombre Edito',F.realizada,F.estado
+	$sql="SELECT G.subred,G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',F.idfrecuencia 'Cod Registro',F.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',FN_CATALOGODESC(274,`punto_atencion`) 'Punto de Control',FN_CATALOGODESC(275,tipo_cita) 'Tipo Cita',F.fecha_create 'Creada',F.usu_creo 'id Creo',U.nombre 'nombre Creo',F.fecha_update 'Editado',F.usu_update 'Edito',U1.nombre 'Nombre Edito',F.realizada,F.estado
 		from frecuenciauso F 
 		LEFT JOIN person P ON F.idpeople = P.idpeople
 		LEFT JOIN usuarios U ON F.usu_creo = U.id_usuario
@@ -2353,7 +2365,7 @@ function lis_frecuencia($txt){
 }
 
 function lis_agendamiento($txt){
-	$sql="SELECT G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',A.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',
+	$sql="SELECT G.subred,G.idgeo 'Cod Predio',FN_CATALOGODESC(283,G.territorio) 'Territorio',H.id_fam 'Cod Familia',A.idpeople 'Cod Persona',P.idpersona 'Documento',FN_CATALOGODESC(1,P.tipo_doc) 'Tipo Documento',
 	P.fecha_nacimiento 'Fecha de Nacimiento',P.sexo,FN_CATALOGODESC(274,A.punto_atencion ) 'Punto de Atención',FN_CATALOGODESC(275,A.tipo_cita) 'Tipo de Cita',
 	A.fecha_create 'Fecha de Asignación',A.fecha_cita 'Fecha de la Cita',A.hora_cita 'Hora de la Cita',A.nombre_atendio 'Nombre quien Atendió Llamada',A.usu_creo 'Digitador',A.observac_cita 'Observación Cita',IFNULL(A.fecha_llamada,'00-00-0000') 'Fecha Recordación',
 	ifnull(A.nombre_llamada,'-') 'Nombre quien Recibió Llamada' ,ifnull(A.confirma_cita,'-') 'Confirmo Cita',ifnull(A.msjtxt,'-') 'Desea Envio de Msj',
@@ -2371,6 +2383,18 @@ FROM agendamiento A
 	$tot="SELECT COUNT(*) total FROM agendamiento A LEFT JOIN person P ON A.idpeople = P.idpeople LEFT JOIN usuarios U ON A.usu_creo = U.id_usuario LEFT JOIN usuarios U1 ON A.usu_update = U1.id_usuario LEFT JOIN hog_fam H ON P.vivipersona = H.id_fam LEFT JOIN hog_geo G ON H.idpre = G.idgeo WHERE 1 ";	
 	if (perfilUsu()!=='ADM')	$tot.=whe_subred();
 	$tot.=whe_date();
+	$_SESSION['sql_'.$txt]=$sql;
+	$_SESSION['tot_'.$txt]=$tot;
+	$rta = array('type' => 'OK','file'=>$txt);
+	echo json_encode($rta);
+}
+
+function lis_gestPredios($txt){
+	$sql="SELECT G.idgeo,U.nombre,FN_CATALOGODESC(44,ga.estado_v) ESTADO  FROM geo_gest ga 
+LEFT JOIN hog_geo G ON ga.idgeo = G.idgeo
+LEFT JOIN usuarios U ON ga.usu_creo = U.id_usuario ORDER BY 1";
+	// echo $sql;
+	$tot="SELECT COUNT(*) total FROM hog_geo WHERE 1 ";	
 	$_SESSION['sql_'.$txt]=$sql;
 	$_SESSION['tot_'.$txt]=$tot;
 	$rta = array('type' => 'OK','file'=>$txt);

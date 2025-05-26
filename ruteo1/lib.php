@@ -285,7 +285,6 @@ function opc_idgeo($a){
 			from hog_geo where 
 			sector_catastral='$co[0]' AND nummanzana='$co[1]' AND predio_num='$co[2]' AND unidad_habit='$co[3]' AND estado_v>3",$id);  */
 }
-
 function opc_estado($id=''){
 	$id=opc_idgeo($_REQUEST['id']);
 		$co=divide($id);
@@ -400,6 +399,7 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
             if (in_array(3, $estadosExistentes)) {
                 if (in_array(4, $estadosExistentes)) {
                     $estadosPermitidos[] = 5;
+					$estadosPermitidos[] = 6;
                 } else {
                     $estadosPermitidos[] = 4;
                 }

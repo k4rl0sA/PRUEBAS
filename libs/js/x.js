@@ -1253,7 +1253,7 @@ function enabRutOthSub() {
 
 function enabRutAgen() {
 	const conditions = [
-		{ id: 'estado_agenda', value: '1', compare: true }
+		{ id: 'estado_agenda', value: '1', compare: true },
 		{ id: 'estado_agenda', value: '11', compare: true }
 	];
 	EnabDepeDynamic(['AGe'], conditions);

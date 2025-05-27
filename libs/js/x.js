@@ -1252,12 +1252,16 @@ function enabRutOthSub() {
 }
 
 function enabRutAgen() {
-	const estadoAgenda = document.getElementById('estado_agenda');
-	const isEnabled = estadoAgenda && (estadoAgenda.value === '1' || estadoAgenda.value === '11');
-	const elements = document.querySelectorAll('select.AGe, input.AGe, textarea.AGe');
-	elements.forEach(element => {
-		enaFie(element, !isEnabled);
-	});
+	const conditions = [
+		{ id: 'estado_agenda', value: '1', compare: true }
+	];
+	EnabDepeDynamic(['AGe'], conditions);
+}
+function enabRutEdu() {
+	const conditions = [
+		{ id: 'estado_agenda', value: '11', compare: true }
+	];
+	EnabDepeDynamic(['AGe'], conditions);
 }
 function enabRutRech() {
 	const conditions = [

@@ -489,7 +489,7 @@ function lis_planos() {
 		case '65':
 			$tab = "GESTION PREDIOS";
 			$encr = encript($tab, $clave);
-			if($tab=decript($encr,$clave))lis_gestPredios($tab);
+			if($tab=decript($encr,$clave))lis_gestPredios($tab);//ADM
 			break;	
 		default:
         break;    

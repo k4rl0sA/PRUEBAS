@@ -394,12 +394,11 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
     if (empty($estadosExistentes)) {
         $estadosPermitidos = [1, 2,6];
     } else {
-        $estadosPermitidos = [1];
+        $estadosPermitidos = [1,6];
         if (in_array(2, $estadosExistentes)) {
             if (in_array(3, $estadosExistentes)) {
                 if (in_array(4, $estadosExistentes)) {
                     $estadosPermitidos[] = 5;
-					$estadosPermitidos[] = 6;
                 } else {
                     $estadosPermitidos[] = 4;
                 }

@@ -392,7 +392,7 @@ function opc_estado_g_filtrado($idruteo, $id = ''){
         } while ($con->more_results() && $con->next_result());
     }
     if (empty($estadosExistentes)) {
-        $estadosPermitidos = [1, 2];
+        $estadosPermitidos = [1, 2,6];
     } else {
         $estadosPermitidos = [1];
         if (in_array(2, $estadosExistentes)) {

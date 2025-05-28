@@ -1319,6 +1319,10 @@ function enabRutVisit() {
 		EnabDepeDynamic(['AGe'], [
 			{ id: 'estado_llamada', value: est.value, compare: true }
 		]);
+	}else{
+		EnabDepeDynamic(['AGe'], [
+			{ id: 'estado_llamada', value: est.value, compare: false }
+		]);
 	}
 }
 

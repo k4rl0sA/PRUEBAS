@@ -1306,16 +1306,19 @@ function rutRute(){
 	];
 	EnabDepeDynamic(['ruta'], conditions);
 }
-function enabRutVisit(){
-	const est=document.getElementById('estado_llamada');
-	const agen=document.getElementById('estado_agenda');
-	if (est.value=="5" || est.value=="6" ){
-		agen.value=1;
-		/* const conditions = [
-			{ id: 'estado_llamada', value: '5', compare: true }
-		]; */
-		EnabDepeDynamic(['AGe'], true);
-		agen.value=1;
+function enabRutVisit() {
+	const est = document.getElementById('estado_llamada');
+	const agen = document.getElementById('estado_agenda');
+	if (est.value === "5" || est.value === "6") {
+		agen.value = 1;
+		const conditions = [
+			{ id: 'estado_llamada', value: '5', compare: true },
+			{ id: 'estado_llamada', value: '6', compare: true }
+		];
+		// Habilita los campos de la clase 'AGe' si estado_llamada es 5 o 6
+		EnabDepeDynamic(['AGe'], [
+			{ id: 'estado_llamada', value: est.value, compare: true }
+		]);
 	}
 }
 

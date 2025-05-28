@@ -73,7 +73,7 @@ function cmp_segnoreg(){
   $cro='CrO';
   $me5='mE5';
   $p=get_persona();
-  var_dump($p['mes']*12);
+  var_dump($p['mes']/12);
 	$c[]=new cmp($o,'e',null,'MODULO INICIAL',$w);
   $c[]=new cmp('fechanacimiento','h','10',$p['fecha_nacimiento'],$w.' zsc '.$o,'fecha nacimiento','fechanacimiento',null,'',true,false,'','col-2');
   $c[]=new cmp('sexo','h',1,$p['sexo'],$w.' zsc '.$o,'sexo','sexo',null,'',false,false,'','col-1');

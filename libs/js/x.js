@@ -1303,7 +1303,7 @@ function rutRute(){
 function enabRutVisit(){
 	const est=document.getElementById('estado_llamada');
 	const agen=document.getElementById('estado_agenda');
-	if (est.value=="5"){
+	if (est.value=="5" || est.value=="6" ){
 		agen.value=1;
 		const conditions = [
 			{ id: 'estado_llamada', value: '5', compare: true }

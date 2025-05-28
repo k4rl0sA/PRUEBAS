@@ -1311,9 +1311,9 @@ function enabRutVisit(){
 	const agen=document.getElementById('estado_agenda');
 	if (est.value=="5" || est.value=="6" ){
 		agen.value=1;
-		const conditions = [
+		/* const conditions = [
 			{ id: 'estado_llamada', value: '5', compare: true }
-		];
+		]; */
 		EnabDepeDynamic(['AGe'], conditions);
 		agen.value=1;
 	}

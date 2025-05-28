@@ -80,7 +80,7 @@ function cmp_segnoreg(){
   $c[]=new cmp('idsegnoreg','h',15,$_POST['id'],$w.' '.$o,'id','id',null,'####',false,false);
   $c[]=new cmp('fecha_seg','d',10,$d,$w.' '.$o,'Fecha Seguimiento','fecha_seg',null,null,true,true,'','col-2',"validDate(this,$days,0);");
   $c[]=new cmp('segui','s',3,$d,$w.' '.$o,'Seguimiento N°','segui',null,null,true,true,'','col-2',"staEfe('segui','sta');EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL'])");
-  $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);");//
+  $c[]=new cmp('estado_seg','s',3,$d,$w.' sTa '.$o,'Estado','estado_seg',null,null,true,true,'','col-2',"enabFielSele(this,true,['motivo_estado'],['3']);enabFielSele(this,false,['prioridad'],['3']);enabFielSele(this,true,['prioridad'],['1']);EnabEfec(this,['ges','cronicos','menor5','signosV','antrop','aspfin'],['Ob'],['nO'],['bL']);EnabFall();");//
   $c[]=new cmp('motivo_estado','s','3',$d,$w.' '.$o,'Motivo de Estado','motivo_estado',null,null,false,$x,'','col-2');
   $c[]=new cmp('prioridad','s',3,$d,$w.' '.$no,'Prioridad','prioridad',null,null,false,true,'','col-2',"enabPrioEtn();enCroGes();");
   
@@ -133,6 +133,7 @@ function cmp_segnoreg(){
   $c[]=new cmp($o,'e',null,'SIGNOS VITALES',$w);
   $c[]=new cmp('aten_med','s',3,$d,$w.' '.$o,'Recibio Atención por Medico Ancestral','rta',null,null,false,true,'','col-25');
   $c[]=new cmp('aten_par','s',3,$d,$w.' '.$o,'Recibio Atención por Partera','rta',null,null,false,true,'','col-25');
+
   $men = ($p['mes']>143) ? true : false ;
   $c[]=new cmp('sistolica','sd',3,$d,$w.' '.$no,'Valor Sistolica (50 mmhg y 200 mmhg)','sistolica','rgxsisto',null,true,$men,'','col-25');
   $c[]=new cmp('diastolica','sd',3,$d,$w.' '.$no,'Valor Diastolica (30 mmhg y 150 mmhg)','diastolica','rgxdiast',null,true,$men,'','col-25');
@@ -157,7 +158,7 @@ function cmp_segnoreg(){
   $o='aspfin';
   $c[]=new cmp($o,'e',null,'ASPECTOS FINALES',$w);
   $c[]=new cmp('ser_remigesti','s',3,$d,$w.' '.$o,'Servicio De Remision Y/O Gestion','ser_remigesti',null,null,false,true,'','col-25');
-  $c[]=new cmp('observaciones','a',7000,$d,$w.' '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-75');
+  $c[]=new cmp('observaciones','a',7000,$d,$w.' obse '.$ob.' '.$o,'Observaciones','observaciones',null,null,true,true,'','col-75');
 	for ($i=0;$i<count($c);$i++) $rta.=$c[$i]->put(); 
 	return $rta;
 }

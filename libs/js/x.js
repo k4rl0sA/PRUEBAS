@@ -1326,6 +1326,13 @@ function enabRutVisit() {
 	}
 }
 
+function EnabFall(){
+		const conditions = [
+		{ id: 'estado_seg', value: '1', compare: false }
+	];
+	EnabDepeDynamic(['ges','cronicos','menor5','signosV','antrop','obse'], conditions);
+}
+
 function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {
         const originSelect = document.getElementById(a);

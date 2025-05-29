@@ -243,12 +243,17 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap; /* Permite que los elementos bajen si no caben */
 }
 
 .indicator-label {
-    min-width: 140px;
+    min-width: 0;
+    max-width: 140px; /* Ajusta según tu diseño */
     font-size: 14px;
     color: #666;
+    word-break: break-word; /* Permite cortar palabras largas */
+    white-space: normal;    /* Permite saltos de línea */
+    flex: 1 1 140px;        /* Permite que crezca pero tenga un mínimo */
 }
 
 .progress-bar {

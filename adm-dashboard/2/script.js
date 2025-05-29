@@ -187,6 +187,8 @@ function updateMetrics(data) {
     animateCounter('totalFamilies', data.totalFamilies);
     animateCounter('pregnantWomen', data.pregnantWomen);
     animateCounter('monthlyConsultations', data.monthlyConsultations);
+    document.getElementById('disabilityTotal').textContent = formatNumber(data.disability.total);
+    document.getElementById('disabilityPercentage').textContent = data.disability.percentage + '% de la población';
 }
 
 // Animate counter function

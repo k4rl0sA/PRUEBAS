@@ -29,7 +29,8 @@ function initializeCharts(data) {
 // Age distribution chart
 function initializeAgeChart(data) {
     const ctx = document.getElementById('ageChart').getContext('2d');
-    ageChart = new Chart(ctx, {
+    if (window.ageChart) window.ageChart.destroy();
+    window.ageChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.ageDistribution.labels,
@@ -418,4 +419,4 @@ function startRealTimeUpdates() {
 // Export functions for global access
 window.refreshData = refreshData;
 
-if (ageChart) ageChart.destroy();
+if (window.ageChart) window.ageChart.destroy();

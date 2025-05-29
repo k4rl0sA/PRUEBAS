@@ -432,12 +432,8 @@ body {
 }
 
 /* Ajuste para los canvas dentro de .demo-card */
-.demo-card canvas {
-    height: 180px !important;
-    max-height: 180px !important;
-    width: 100% !important;
-    display: block;
-    margin: 0 auto;
+.demo-card canvas, .chart-container canvas {
+    will-change: transform;
 }
 
 /* Responsive Design */

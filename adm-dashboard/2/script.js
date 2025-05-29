@@ -26,37 +26,6 @@ function initializeCharts(data) {
     initializeElderlyChart(data);
 }
 
-
-// Sample data
-/* const healthData = {
-    patients: 3553128,
-    families: 1570758,
-    pregnantWomen: 25933,
-    monthlyConsultations: 89456,
-    ageDistribution: {
-        labels: ['0-5 años', '6-17 años', '18-29 años', '30-44 años', '45-59 años', '60+ años'],
-        data: [341866, 568501, 710626, 852754, 420998, 659383]
-    },
-    genderDistribution: {
-        labels: ['Hombres', 'Mujeres'],
-        data: [1776564, 1776564]
-    },
-    specialties: {
-        labels: ['Medicina General', 'Pediatría', 'Ginecología', 'Odontología', 'Psicología', 'Enfermería'],
-        data: [28456, 15234, 12890, 18765, 8901, 5210]
-    },
-    disability: {
-        labels: ['Visual', 'Auditiva', 'Motora', 'Cognitiva', 'Múltiple'],
-        data: [45123, 31087, 52198, 18765, 8236]
-    },
-    elderly: {
-        labels: ['60-69 años', '70-79 años', '80+ años'],
-        data: [329691, 197615, 132077]
-    }
-};
- */
-
-
 // Age distribution chart
 function initializeAgeChart(data) {
     const ctx = document.getElementById('ageChart').getContext('2d');
@@ -66,7 +35,7 @@ function initializeAgeChart(data) {
             labels: data.ageDistribution.labels,
             datasets: [{
                 data: data.ageDistribution.values,
-                 backgroundColor: [
+                backgroundColor: [
                     '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'
                 ],
                 borderWidth: 2,
@@ -95,10 +64,10 @@ function initializeSpecialtyChart(data) {
     specialtyChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: data.specialties.labels,
+            labels: data.specialtyConsultations.labels,
             datasets: [{
                 label: 'Consultas',
-                data: data.specialties.values,
+                data: data.specialtyConsultations.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -142,9 +111,9 @@ function initializeDisabilityChart(data) {
     disabilityChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: data.disability.labels,
+            labels: data.disability.distribution.labels,
             datasets: [{
-                data: data.disability.values,
+                data: data.disability.distribution.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -181,9 +150,9 @@ function initializeElderlyChart(data) {
     elderlyChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: data.elderly.labels,
+            labels: data.elderly.distribution.labels,
             datasets: [{
-                data: data.elderly.values,
+                data: data.elderly.distribution.values,
                 backgroundColor: [
                     '#10B981',
                     '#059669',
@@ -264,7 +233,8 @@ function setupEventListeners() {
     // Filter change listeners
     document.getElementById('departmentFilter').addEventListener('change', handleFilterChange);
     document.getElementById('municipalityFilter').addEventListener('change', handleFilterChange);
-    document.getElementById('dateFilter').addEventListener('change', handleFilterChange);
+    document.getElementById('dateFilterFr').addEventListener('change', handleFilterChange);
+    document.getElementById('dateFilterTo').addEventListener('change', handleFilterChange);
 }
 
 // Toggle between age and gender charts
@@ -287,9 +257,10 @@ function toggleChart(chartType) {
 function handleFilterChange() {
     const department = document.getElementById('departmentFilter').value;
     const municipality = document.getElementById('municipalityFilter').value;
-    const date = document.getElementById('dateFilter').value;
+    const dateFr = document.getElementById('dateFilterFr').value;
+    const dateTo = document.getElementById('dateFilterTo').value;
     
-    console.log('Filters changed:', { department, municipality, date });
+    console.log('Filters changed:', { department, municipality, dateFr, dateTo });
     
     // Add loading state
     document.body.classList.add('loading');
@@ -297,13 +268,13 @@ function handleFilterChange() {
     // Simulate API call
     setTimeout(() => {
         // Update data based on filters
-        updateDataBasedOnFilters(department, municipality, date);
+        updateDataBasedOnFilters(department, municipality, dateFr, dateTo);
         document.body.classList.remove('loading');
     }, 1000);
 }
 
-// Update data based on filters
-function updateDataBasedOnFilters(department, municipality, date) {
+// Update data based on filters (simulación local, para producción haz fetch con filtros)
+function updateDataBasedOnFilters(department, municipality, dateFr, dateTo) {
     const multiplier = Math.random() * 0.3 + 0.85;
 
     dashboardData.totalPatients = Math.floor(3553128 * multiplier);
@@ -319,6 +290,18 @@ function updateDataBasedOnFilters(department, municipality, date) {
         Math.floor(value * multiplier)
     );
 
+    dashboardData.disability.distribution.values = dashboardData.disability.distribution.values.map(value =>
+        Math.floor(value * multiplier)
+    );
+
+    dashboardData.elderly.distribution.values = dashboardData.elderly.distribution.values.map(value =>
+        Math.floor(value * multiplier)
+    );
+
+    dashboardData.genderDistribution.values = dashboardData.genderDistribution.values.map(value =>
+        Math.floor(value * multiplier)
+    );
+
     updateMetrics(dashboardData);
     updateCharts();
 }
@@ -330,6 +313,12 @@ function updateCharts() {
 
     specialtyChart.data.datasets[0].data = dashboardData.specialtyConsultations.values;
     specialtyChart.update();
+
+    disabilityChart.data.datasets[0].data = dashboardData.disability.distribution.values;
+    disabilityChart.update();
+
+    elderlyChart.data.datasets[0].data = dashboardData.elderly.distribution.values;
+    elderlyChart.update();
 }
 
 // Refresh data function
@@ -343,7 +332,7 @@ function refreshData() {
     }, 500);
     
     // Simulate data refresh
-    updateDataBasedOnFilters('', '', '');
+    updateDataBasedOnFilters('', '', '', '');
     
     // Add new activity
     addNewActivity();
@@ -425,4 +414,4 @@ function startRealTimeUpdates() {
 }
 
 // Export functions for global access
-window.refreshData = refreshData; 
+window.refreshData = refreshData;

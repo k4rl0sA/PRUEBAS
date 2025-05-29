@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 // Simulación de datos, reemplaza por tus consultas reales
 $data = [
-    "totalPatients" => 3553128,
+    "totalPatients" => 423751286,
     "totalFamilies" => 1570758,
     "pregnantWomen" => 25933,
     "monthlyConsultations" => 89456,

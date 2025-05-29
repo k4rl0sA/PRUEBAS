@@ -1328,7 +1328,7 @@ function enabRutVisit() {
 
 function EnabFall(){
 		const conditions = [
-		{ id: 'estado_seg', value: '1', compare: false }
+		{ id: 'estado_seg', value: '1', compare: true }
 	];
 	EnabDepeDynamic(['ges','cronicos','menor5','signosV','antrop'], conditions);
 }

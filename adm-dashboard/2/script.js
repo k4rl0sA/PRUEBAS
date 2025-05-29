@@ -417,3 +417,5 @@ function startRealTimeUpdates() {
 
 // Export functions for global access
 window.refreshData = refreshData;
+
+if (ageChart) ageChart.destroy();

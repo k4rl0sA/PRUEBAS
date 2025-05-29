@@ -1,8 +1,34 @@
 // Global variables for charts
 let ageChart, specialtyChart, disabilityChart, elderlyChart;
+let dashboardData = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('lib.php')
+        .then(res => res.json())
+        .then(data => {
+            dashboardData = data;
+            initializeCharts(data);
+            updateMetrics(data);
+            setupEventListeners();
+            startRealTimeUpdates();
+        })
+        .catch(err => {
+            alert('Error cargando datos del backend');
+            console.error(err);
+        });
+});
+
+// Inicializar todos los gráficos con datos del backend
+function initializeCharts(data) {
+    initializeAgeChart(data);
+    initializeSpecialtyChart(data);
+    initializeDisabilityChart(data);
+    initializeElderlyChart(data);
+}
+
 
 // Sample data
-const healthData = {
+/* const healthData = {
     patients: 3553128,
     families: 1570758,
     pregnantWomen: 25933,
@@ -28,7 +54,7 @@ const healthData = {
         data: [329691, 197615, 132077]
     }
 };
-
+ */
 // Initialize dashboard
 document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
@@ -37,30 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
     startRealTimeUpdates();
 });
 
-// Initialize all charts
-function initializeCharts() {
-    initializeAgeChart();
-    initializeSpecialtyChart();
-    initializeDisabilityChart();
-    initializeElderlyChart();
-}
 
 // Age distribution chart
-function initializeAgeChart() {
+function initializeAgeChart(data) {
     const ctx = document.getElementById('ageChart').getContext('2d');
     ageChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: healthData.ageDistribution.labels,
             datasets: [{
-                data: healthData.ageDistribution.data,
-                backgroundColor: [
-                    '#FF6B9D',
-                    '#4ECDC4',
-                    '#45B7D1',
-                    '#96CEB4',
-                    '#FFEAA7',
-                    '#DDA0DD'
+                data: healthData.ageDistribution.values,
+                 backgroundColor: [
+                    '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'
                 ],
                 borderWidth: 2,
                 borderColor: '#fff'
@@ -83,7 +97,7 @@ function initializeAgeChart() {
 }
 
 // Specialty consultations chart
-function initializeSpecialtyChart() {
+function initializeSpecialtyChart(data) {
     const ctx = document.getElementById('specialtyChart').getContext('2d');
     specialtyChart = new Chart(ctx, {
         type: 'bar',
@@ -91,7 +105,7 @@ function initializeSpecialtyChart() {
             labels: healthData.specialties.labels,
             datasets: [{
                 label: 'Consultas',
-                data: healthData.specialties.data,
+                data: healthData.specialties.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -130,14 +144,14 @@ function initializeSpecialtyChart() {
 }
 
 // Disability chart
-function initializeDisabilityChart() {
+function initializeDisabilityChart(data) {
     const ctx = document.getElementById('disabilityChart').getContext('2d');
     disabilityChart = new Chart(ctx, {
         type: 'pie',
         data: {
             labels: healthData.disability.labels,
             datasets: [{
-                data: healthData.disability.data,
+                data: healthData.disability.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -169,14 +183,14 @@ function initializeDisabilityChart() {
 }
 
 // Elderly chart
-function initializeElderlyChart() {
+function initializeElderlyChart(data) {
     const ctx = document.getElementById('elderlyChart').getContext('2d');
     elderlyChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: healthData.elderly.labels,
             datasets: [{
-                data: healthData.elderly.data,
+                data: healthData.elderly.values,
                 backgroundColor: [
                     '#10B981',
                     '#059669',
@@ -206,11 +220,11 @@ function initializeElderlyChart() {
 }
 
 // Update metrics with animation
-function updateMetrics() {
-    animateCounter('totalPatients', healthData.patients);
-    animateCounter('totalFamilies', healthData.families);
-    animateCounter('pregnantWomen', healthData.pregnantWomen);
-    animateCounter('monthlyConsultations', healthData.monthlyConsultations);
+function updateMetrics(data) {
+    animateCounter('totalPatients', data.totalPatients);
+    animateCounter('totalFamilies', data.totalFamilies);
+    animateCounter('pregnantWomen', data.pregnantWomen);
+    animateCounter('monthlyConsultations', data.monthlyConsultations);
 }
 
 // Animate counter function
@@ -263,12 +277,12 @@ function setupEventListeners() {
 // Toggle between age and gender charts
 function toggleChart(chartType) {
     if (chartType === 'gender') {
-        ageChart.data.labels = healthData.genderDistribution.labels;
-        ageChart.data.datasets[0].data = healthData.genderDistribution.data;
+        ageChart.data.labels = dashboardData.genderDistribution.labels;
+        ageChart.data.datasets[0].data = dashboardData.genderDistribution.data;
         ageChart.data.datasets[0].backgroundColor = ['#0066CC', '#FF6B9D'];
     } else {
-        ageChart.data.labels = healthData.ageDistribution.labels;
-        ageChart.data.datasets[0].data = healthData.ageDistribution.data;
+        ageChart.data.labels = dashboardData.ageDistribution.labels;
+        ageChart.data.datasets[0].data = dashboardData.ageDistribution.data;
         ageChart.data.datasets[0].backgroundColor = [
             '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'
         ];
@@ -300,18 +314,18 @@ function updateDataBasedOnFilters(department, municipality, date) {
     // Simulate different data based on filters
     const multiplier = Math.random() * 0.3 + 0.85; // Random variation between 0.85 and 1.15
     
-    healthData.patients = Math.floor(3553128 * multiplier);
-    healthData.families = Math.floor(1570758 * multiplier);
-    healthData.pregnantWomen = Math.floor(25933 * multiplier);
-    healthData.monthlyConsultations = Math.floor(89456 * multiplier);
+    dashboardData.patients = Math.floor(3553128 * multiplier);
+    dashboardData.families = Math.floor(1570758 * multiplier);
+    dashboardData.pregnantWomen = Math.floor(25933 * multiplier);
+    dashboardData.monthlyConsultations = Math.floor(89456 * multiplier);
     
     // Update age distribution
-    healthData.ageDistribution.data = healthData.ageDistribution.data.map(value => 
+    dashboardData.ageDistribution.data = dashboardData.ageDistribution.data.map(value => 
         Math.floor(value * multiplier)
     );
     
     // Update specialty data
-    healthData.specialties.data = healthData.specialties.data.map(value => 
+    dashboardData.specialties.data = dashboardData.specialties.data.map(value => 
         Math.floor(value * multiplier)
     );
     
@@ -322,10 +336,10 @@ function updateDataBasedOnFilters(department, municipality, date) {
 
 // Update all charts
 function updateCharts() {
-    ageChart.data.datasets[0].data = healthData.ageDistribution.data;
+    ageChart.data.datasets[0].data = dashboardData.ageDistribution.data;
     ageChart.update();
     
-    specialtyChart.data.datasets[0].data = healthData.specialties.data;
+    specialtyChart.data.datasets[0].data = dashboardData.specialties.data;
     specialtyChart.update();
 }
 

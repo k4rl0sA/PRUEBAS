@@ -109,6 +109,7 @@ function initializeSpecialtyChart(data) {
 // Disability chart
 function initializeDisabilityChart(data) {
     const ctx = document.getElementById('disabilityChart').getContext('2d');
+      if (window.disabilityChart) window.disabilityChart.destroy();
     disabilityChart = new Chart(ctx, {
         type: 'pie',
         data: {

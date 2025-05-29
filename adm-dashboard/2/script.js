@@ -70,9 +70,9 @@ function initializeAgeChart(data) {
     ageChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: healthData.ageDistribution.labels,
+            labels: data.ageDistribution.labels,
             datasets: [{
-                data: healthData.ageDistribution.values,
+                data: data.ageDistribution.values,
                  backgroundColor: [
                     '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'
                 ],
@@ -102,10 +102,10 @@ function initializeSpecialtyChart(data) {
     specialtyChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: healthData.specialties.labels,
+            labels: data.specialties.labels,
             datasets: [{
                 label: 'Consultas',
-                data: healthData.specialties.values,
+                data: data.specialties.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -149,9 +149,9 @@ function initializeDisabilityChart(data) {
     disabilityChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: healthData.disability.labels,
+            labels: data.disability.labels,
             datasets: [{
-                data: healthData.disability.values,
+                data: data.disability.values,
                 backgroundColor: [
                     '#0066CC',
                     '#00D4FF',
@@ -188,9 +188,9 @@ function initializeElderlyChart(data) {
     elderlyChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: healthData.elderly.labels,
+            labels: data.elderly.labels,
             datasets: [{
-                data: healthData.elderly.values,
+                data: data.elderly.values,
                 backgroundColor: [
                     '#10B981',
                     '#059669',

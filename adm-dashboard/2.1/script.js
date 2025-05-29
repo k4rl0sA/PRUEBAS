@@ -228,7 +228,6 @@ function setupEventListeners() {
         button.addEventListener('click', function() {
             chartButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
             const chartType = this.dataset.chart;
             toggleChart(chartType);
         });
@@ -239,6 +238,43 @@ function setupEventListeners() {
     document.getElementById('municipalityFilter').addEventListener('change', handleFilterChange);
     document.getElementById('dateFilterFr').addEventListener('change', handleFilterChange);
     document.getElementById('dateFilterTo').addEventListener('change', handleFilterChange);
+}
+
+// Nueva función para manejar los filtros y consultar el backend
+function handleFilterChange() {
+    const subred = document.getElementById('departmentFilter').value;
+    const territorio = document.getElementById('municipalityFilter').value;
+    const fecha_inicio = document.getElementById('dateFilterFr').value;
+    const fecha_fin = document.getElementById('dateFilterTo').value;
+
+    const params = new URLSearchParams();
+    params.append('subred', subred);
+    params.append('territorio', territorio);
+    params.append('fecha_inicio', fecha_inicio);
+    params.append('fecha_fin', fecha_fin);
+
+    document.body.classList.add('loading');
+
+    fetch('lib.php', {
+        method: 'POST',
+        body: params
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.body.classList.remove('loading');
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        dashboardData = data;
+        initializeCharts(data);
+        updateMetrics(data);
+    })
+    .catch(err => {
+        document.body.classList.remove('loading');
+        alert('Error cargando datos del backend');
+        console.error(err);
+    });
 }
 
 // Toggle between age and gender charts
@@ -272,13 +308,13 @@ function handleFilterChange() {
     // Simulate API call
     setTimeout(() => {
         // Update data based on filters
-        updateDataBasedOnFilters(department, municipality, dateFr, dateTo);
+        handleFilterChange();
         document.body.classList.remove('loading');
     }, 1000);
 }
 
 // Update data based on filters (simulación local, para producción haz fetch con filtros)
-function updateDataBasedOnFilters(department, municipality, dateFr, dateTo) {
+/* function updateDataBasedOnFilters(department, municipality, dateFr, dateTo) {
     const multiplier = Math.random() * 0.3 + 0.85;
 
     dashboardData.totalPatients = Math.floor(3553128 * multiplier);
@@ -308,6 +344,41 @@ function updateDataBasedOnFilters(department, municipality, dateFr, dateTo) {
 
     updateMetrics(dashboardData);
     updateCharts();
+} */
+function handleFilterChange() {
+    const subred = document.getElementById('departmentFilter').value;
+    const territorio = document.getElementById('municipalityFilter').value;
+    const fecha_inicio = document.getElementById('dateFilterFr').value;
+    const fecha_fin = document.getElementById('dateFilterTo').value;
+
+    const params = new URLSearchParams();
+    params.append('subred', subred);
+    params.append('territorio', territorio);
+    params.append('fecha_inicio', fecha_inicio);
+    params.append('fecha_fin', fecha_fin);
+
+    document.body.classList.add('loading');
+
+    fetch('lib.php', {
+        method: 'POST',
+        body: params
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.body.classList.remove('loading');
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        dashboardData = data;
+        initializeCharts(data);
+        updateMetrics(data);
+    })
+    .catch(err => {
+        document.body.classList.remove('loading');
+        alert('Error cargando datos del backend');
+        console.error(err);
+    });
 }
 
 // Update all charts
@@ -336,7 +407,7 @@ function refreshData() {
     }, 500);
     
     // Simulate data refresh
-    updateDataBasedOnFilters('', '', '', '');
+    // updateDataBasedOnFilters('', '', '', '');
     
     // Add new activity
     addNewActivity();

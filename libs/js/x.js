@@ -1327,6 +1327,7 @@ function enabRutVisit() {
 }
 
 function EnabFall(){
+	alert('Esta funcionalidad no esta disponible en este momento, por favor intente mas tarde');
 		const conditions = [
 		{ id: 'estado_seg', value: '1', compare: false }
 	];

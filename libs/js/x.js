@@ -1333,6 +1333,13 @@ function EnabFall(){
 	];
 	EnabDepeDynamic(['ges','cronicos','menor5','signosV','antrop','obse'], conditions);
 }
+function prueba(){
+	alert('Esta funcionalidad no esta disponible en este momento, por favor intente mas tarde');
+	const conditions = [
+		{ id: 'estado_seg', value: '1', compare: false }
+	];
+	EnabDepeDynamic(['ges','cronicos','menor5','signosV','antrop','obse'], conditions);
+}
 
 function custSeleDepend(a, b, c = ruta_app, extraParams = {}) {
     try {

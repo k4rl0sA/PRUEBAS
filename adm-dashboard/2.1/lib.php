@@ -1,10 +1,43 @@
 <?php
 header('Content-Type: application/json');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Cargar config y funciones necesarias
+require_once __DIR__ . '/../../libs/gestion.php';
+
+// Obtener y sanitizar parámetros
+$fechadesde = $_POST['fecha_inicio'] ?? '';
+$fechahasta = $_POST['fecha_fin'] ?? '';
+$subred = $_POST['subred'] ?? '';
+$territorio = $_POST['territorio'] ?? '';
+
+// Validar parámetros si es necesario
+
+// Consultar datos 
+$sql = "SELECT COUNT(*) AS total_caracterizaciones
+FROM hog_carac hc
+JOIN hog_fam hf ON hc.idfam = hf.id_fam
+JOIN hog_geo hg ON hf.idpre = hg.idgeo
+WHERE hc.fecha BETWEEN '$fechadesde' AND '$fechahasta'
+  AND hg.subred = '$subred'
+  AND hg.territorio = '$territorio';";
+$caract = datos_mysql($sql);
+if ($caract['code'] !== 0 || empty($caract['responseResult'])) {
+    echo json_encode(["error" => "Objeto no encontrado"]);
+    exit;
+}
+$caracterizaciones = $caract['responseResult'][0]['total_caracterizaciones'] ?? 0;
+if ($caracterizaciones === 0) {
+    echo json_encode(["error" => "No se encontraron caracterizaciones en el rango de fechas especificado."]);
+    exit;
+}
 
 // Simulación de datos, reemplaza por tus consultas reales
 $data = [
     "totalPatients" => 423751286,
-    "totalFamilies" => 1570758,
+    "totalFamilies" => $caracterizaciones,
     "pregnantWomen" => 25933,
     "monthlyConsultations" => 89456,
     "lastUpdate" => "hace 1 hora",

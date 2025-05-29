@@ -220,6 +220,8 @@ function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
+// ...existing code...
+
 // Setup event listeners
 function setupEventListeners() {
     // Chart toggle buttons
@@ -240,7 +242,7 @@ function setupEventListeners() {
     document.getElementById('dateFilterTo').addEventListener('change', handleFilterChange);
 }
 
-// Nueva función para manejar los filtros y consultar el backend
+// ÚNICA función para manejar los filtros y consultar el backend
 function handleFilterChange() {
     const subred = document.getElementById('departmentFilter').value;
     const territorio = document.getElementById('municipalityFilter').value;
@@ -293,58 +295,7 @@ function toggleChart(chartType) {
     ageChart.update();
 }
 
-// Handle filter changes
-function handleFilterChange() {
-    const department = document.getElementById('departmentFilter').value;
-    const municipality = document.getElementById('municipalityFilter').value;
-    const dateFr = document.getElementById('dateFilterFr').value;
-    const dateTo = document.getElementById('dateFilterTo').value;
-    
-    console.log('Filters changed:', { department, municipality, dateFr, dateTo });
-    
-    // Add loading state
-    document.body.classList.add('loading');
-    
-    // Simulate API call
-    setTimeout(() => {
-        // Update data based on filters
-        handleFilterChange();
-        document.body.classList.remove('loading');
-    }, 1000);
-}
-
 // Update data based on filters (simulación local, para producción haz fetch con filtros)
-/* function updateDataBasedOnFilters(department, municipality, dateFr, dateTo) {
-    const multiplier = Math.random() * 0.3 + 0.85;
-
-    dashboardData.totalPatients = Math.floor(3553128 * multiplier);
-    dashboardData.totalFamilies = Math.floor(1570758 * multiplier);
-    dashboardData.pregnantWomen = Math.floor(25933 * multiplier);
-    dashboardData.monthlyConsultations = Math.floor(89456 * multiplier);
-
-    dashboardData.ageDistribution.values = dashboardData.ageDistribution.values.map(value =>
-        Math.floor(value * multiplier)
-    );
-
-    dashboardData.specialtyConsultations.values = dashboardData.specialtyConsultations.values.map(value =>
-        Math.floor(value * multiplier)
-    );
-
-    dashboardData.disability.distribution.values = dashboardData.disability.distribution.values.map(value =>
-        Math.floor(value * multiplier)
-    );
-
-    dashboardData.elderly.distribution.values = dashboardData.elderly.distribution.values.map(value =>
-        Math.floor(value * multiplier)
-    );
-
-    dashboardData.genderDistribution.values = dashboardData.genderDistribution.values.map(value =>
-        Math.floor(value * multiplier)
-    );
-
-    updateMetrics(dashboardData);
-    updateCharts();
-} */
 function handleFilterChange() {
     const subred = document.getElementById('departmentFilter').value;
     const territorio = document.getElementById('municipalityFilter').value;

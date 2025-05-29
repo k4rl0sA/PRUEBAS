@@ -55,13 +55,6 @@ function initializeCharts(data) {
     }
 };
  */
-// Initialize dashboard
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCharts();
-    updateMetrics();
-    setupEventListeners();
-    startRealTimeUpdates();
-});
 
 
 // Age distribution chart

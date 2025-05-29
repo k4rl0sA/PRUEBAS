@@ -271,11 +271,11 @@ function setupEventListeners() {
 function toggleChart(chartType) {
     if (chartType === 'gender') {
         ageChart.data.labels = dashboardData.genderDistribution.labels;
-        ageChart.data.datasets[0].data = dashboardData.genderDistribution.data;
-        ageChart.data.datasets[0].backgroundColor = ['#0066CC', '#FF6B9D'];
+        ageChart.data.datasets[0].data = dashboardData.genderDistribution.values;
+        ageChart.data.datasets[0].backgroundColor = ['#0066CC', '#FF6B9D', '#A855F7'];
     } else {
         ageChart.data.labels = dashboardData.ageDistribution.labels;
-        ageChart.data.datasets[0].data = dashboardData.ageDistribution.data;
+        ageChart.data.datasets[0].data = dashboardData.ageDistribution.values;
         ageChart.data.datasets[0].backgroundColor = [
             '#FF6B9D', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'
         ];
@@ -304,35 +304,31 @@ function handleFilterChange() {
 
 // Update data based on filters
 function updateDataBasedOnFilters(department, municipality, date) {
-    // Simulate different data based on filters
-    const multiplier = Math.random() * 0.3 + 0.85; // Random variation between 0.85 and 1.15
-    
-    dashboardData.patients = Math.floor(3553128 * multiplier);
-    dashboardData.families = Math.floor(1570758 * multiplier);
+    const multiplier = Math.random() * 0.3 + 0.85;
+
+    dashboardData.totalPatients = Math.floor(3553128 * multiplier);
+    dashboardData.totalFamilies = Math.floor(1570758 * multiplier);
     dashboardData.pregnantWomen = Math.floor(25933 * multiplier);
     dashboardData.monthlyConsultations = Math.floor(89456 * multiplier);
-    
-    // Update age distribution
-    dashboardData.ageDistribution.data = dashboardData.ageDistribution.data.map(value => 
+
+    dashboardData.ageDistribution.values = dashboardData.ageDistribution.values.map(value =>
         Math.floor(value * multiplier)
     );
-    
-    // Update specialty data
-    dashboardData.specialties.data = dashboardData.specialties.data.map(value => 
+
+    dashboardData.specialtyConsultations.values = dashboardData.specialtyConsultations.values.map(value =>
         Math.floor(value * multiplier)
     );
-    
-    // Update charts and metrics
-    updateMetrics();
+
+    updateMetrics(dashboardData);
     updateCharts();
 }
 
 // Update all charts
 function updateCharts() {
-    ageChart.data.datasets[0].data = dashboardData.ageDistribution.data;
+    ageChart.data.datasets[0].data = dashboardData.ageDistribution.values;
     ageChart.update();
-    
-    specialtyChart.data.datasets[0].data = dashboardData.specialties.data;
+
+    specialtyChart.data.datasets[0].data = dashboardData.specialtyConsultations.values;
     specialtyChart.update();
 }
 

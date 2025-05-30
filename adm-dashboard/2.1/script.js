@@ -243,7 +243,7 @@ function setupEventListeners() {
 }
 
 // ÚNICA función para manejar los filtros y consultar el backend
-function handleFilterChange() {
+/* function handleFilterChange() {
     const subred = document.getElementById('departmentFilter').value;
     const territorio = document.getElementById('municipalityFilter').value;
     const fecha_inicio = document.getElementById('dateFilterFr').value;
@@ -277,7 +277,7 @@ function handleFilterChange() {
         alert('Error cargando datos del backend');
         console.error(err);
     });
-}
+} */
 
 // Toggle between age and gender charts
 function toggleChart(chartType) {

@@ -29,8 +29,8 @@ function initializeCharts(data) {
 // Age distribution chart
 function initializeAgeChart(data) {
     const ctx = document.getElementById('ageChart').getContext('2d');
-    if (window.ageChart) window.ageChart.destroy();
-    window.ageChart = new Chart(ctx, {
+    if (ageChart) ageChart.destroy();
+    ageChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: data.ageDistribution.labels,

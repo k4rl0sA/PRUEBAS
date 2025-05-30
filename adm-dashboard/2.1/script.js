@@ -442,4 +442,7 @@ function startRealTimeUpdates() {
 // Export functions for global access
 window.refreshData = refreshData;
 
-if (window.ageChart) window.ageChart.destroy();
+if (ageChart) ageChart.destroy();
+if (specialtyChart) specialtyChart.destroy();
+if (disabilityChart) disabilityChart.destroy();
+if (elderlyChart) elderlyChart.destroy();
